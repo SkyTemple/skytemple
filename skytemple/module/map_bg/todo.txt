@@ -1,0 +1,37 @@
+required:
+- BPA assignment (removing and adding BPAs at slots, creating new BPA files, deleting BPA files)
+- Setting number of layers
+    - If increased: Delete BPC tiles, tile mappings and BMA mappings, show warning before
+    - If added: Create empty BPC tile list, empty tile mappings and empty BMA mappings
+- Setting number of collision
+    - If decrease, warning
+- Adding / removing BMA data layer
+    - If remove, warning
+- Changing BMA chunk width and height
+    - Also setting camera / width height manually up to chunk sizes max. Note about layers.
+- Importing and exporting BPA tiles
+    - Rows: Tiles
+    - Cols: Images
+- Setting BPA frame durations
+- BMA map export
+    - Animated
+    - Layers
+- BMA map import
+    - Layers (also sets palette, tiles, tile mappings, removes BPA mappings from tile map)
+- BPC tile export/import (also sets palette)
+- BPC tile mapping editor
+    - Includes BPA tile slots
+    - Add and remove chunks!
+    - Add and remove single tiles (BPC only)
+- BPC chunk export / import (also sets palette, tiles, removes BPA mappings from tile map)
+- Editing palettes
+- Enabling / disabling palette animation
+- Setting palette animation specs per palette
+- Changing palette animation palette
+
+Layer controls:
+- Zoom
+- BG Color Toggle
+- Grid tiles
+- Grid chunks
+- Hide other layer

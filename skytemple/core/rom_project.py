@@ -1,4 +1,5 @@
 """Manages the state and files of the currently open ROM"""
+import logging
 from typing import Union, Iterator
 
 from ndspy.rom import NintendoDSRom
@@ -6,8 +7,11 @@ from ndspy.rom import NintendoDSRom
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.modules import Modules
 from skytemple.core.task import AsyncTaskRunner
-from skytemple.core.ui_signals import SIGNAL_OPENED, SIGNAL_OPENED_ERROR
+from skytemple.core.ui_signals import SIGNAL_OPENED, SIGNAL_OPENED_ERROR, SIGNAL_SAVED_ERROR, SIGNAL_SAVED
 from skytemple_files.common.types.data_handler import DataHandler, T
+from skytemple_files.common.types.file_types import FileType
+
+logger = logging.getLogger(__name__)
 
 
 class RomProject:
@@ -40,10 +44,14 @@ class RomProject:
 
     def __init__(self, filename: str):
         self.filename = filename
-        self._rom = None
+        self._rom: NintendoDSRom = None
         self._loaded_modules = {}
         # Dict of filenames -> models
         self._opened_files = {}
+        # Dict of filenames -> file handler object
+        self._file_handlers = {}
+        # List of modified filenames
+        self._modified_files = []
 
     def load(self):
         """Load the ROM into memory and initialize all modules"""
@@ -66,4 +74,42 @@ class RomProject:
         if file_path_in_rom not in self._opened_files:
             bin = self._rom.getFileByName(file_path_in_rom)
             self._opened_files[file_path_in_rom] = file_handler_class.deserialize(bin)
+            self._file_handlers[file_path_in_rom] = file_handler_class
         return self._opened_files[file_path_in_rom]
+
+    def mark_as_modified(self, file: Union[str, object]):
+        """Mark a file as modified, either by filename or model. TODO: Input checking"""
+        if isinstance(file, str):
+            assert file in self._opened_files
+            if file not in self._modified_files:
+                self._modified_files.append(file)
+        else:
+            filename = list(self._opened_files.keys())[list(self._opened_files.values()).index(file)]
+            self._modified_files.append(filename)
+            if file not in self._modified_files:
+                self._modified_files.append(file)
+
+    def has_modifications(self):
+        return len(self._modified_files) > 0
+
+    def save(self, go):
+        """Save the rom. The signal SIGNAL_SAVED/SIGNAL_SAVED_ERROR will be emitted on go if done."""
+        AsyncTaskRunner().instance().run_task(self._save_impl(go))
+
+    async def _save_impl(self, go):
+        try:
+            for name in self._modified_files:
+                model = self._opened_files[name]
+                handler = self._file_handlers[name]
+                logger.debug(f"Saving {name} in ROM. Model: {model}, Handler: {handler}")
+                binary_data = handler.serialize(model)
+                self._rom.setFileByName(name, binary_data)
+            self._modified_files = []
+            logger.debug(f"Saving ROM to {self.filename}")
+            self._rom.saveToFile(self.filename)
+            if go:
+                AsyncTaskRunner.emit(go, SIGNAL_SAVED)
+
+        except Exception as err:
+            if go:
+                AsyncTaskRunner.emit(go, SIGNAL_SAVED_ERROR, err)

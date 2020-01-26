@@ -3,6 +3,7 @@ import traceback
 from threading import current_thread
 
 import gi
+import logging
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.controller_loader import load_controller
@@ -10,20 +11,32 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject, SIGNAL_OPENED
 from skytemple.core.task import AsyncTaskRunner
 from skytemple.core.ui_signals import SkyTempleSignalContainer, SIGNAL_OPENED_ERROR, SIGNAL_VIEW_LOADED, \
-    SIGNAL_VIEW_LOADED_ERROR
+    SIGNAL_VIEW_LOADED_ERROR, SIGNAL_SAVED_ERROR, SIGNAL_SAVED
+from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified
 
 gi.require_version('Gtk', '3.0')
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import *
 from gi.repository.GObject import GObject
 main_thread = current_thread()
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 
 class MainController:
+
+    _main_window = None
+
+    @classmethod
+    def window(cls):
+        """Utility method to get main window from modules"""
+        return cls._main_window
+
     def __init__(self, builder: Builder, window: Window):
         self.builder = builder
         self.window = window
+        self.__class__._main_window = window
 
         # Created on demand
         self._loading_dialog: Dialog = None
@@ -43,6 +56,8 @@ class MainController:
         self._signal_container.connect(SIGNAL_OPENED_ERROR, self.on_file_opened_error)
         self._signal_container.connect(SIGNAL_VIEW_LOADED, self.on_view_loaded)
         self._signal_container.connect(SIGNAL_VIEW_LOADED_ERROR, self.on_view_loaded_error)
+        self._signal_container.connect(SIGNAL_SAVED, self.on_file_saved)
+        self._signal_container.connect(SIGNAL_SAVED_ERROR, self.on_file_saved_error)
 
         self._search_text = None
         self._current_view_module = None
@@ -57,8 +72,54 @@ class MainController:
         self._configure_error_view()
 
     def on_destroy(self, *args):
+        logger.debug('Window destroyed. Ending task runner.')
         AsyncTaskRunner.end()
         Gtk.main_quit()
+
+    def on_main_window_delete_event(self, *args):
+        rom = RomProject.get_current()
+        if rom is not None and rom.has_modifications():
+            response = self._show_are_you_sure(rom)
+            if response == 0:
+                return False
+            elif response == 1:
+                # Save (True on success, False on failure. Don't close the file if we can't save it...)
+                # TODO: NOT TRUE. We are using signals. This is broken right now!
+                return not self._save()
+            else:
+                # Cancel
+                return True
+        return False
+
+    def on_key_press_event(self, wdg, event):
+        ctrl = (event.state & Gdk.ModifierType.CONTROL_MASK)
+
+        if ctrl and event.keyval == Gdk.KEY_s and RomProject.get_current() is not None:
+            self._save()
+
+    def on_save_button_clicked(self, wdg):
+        self._save()
+
+    def on_save_as_button_clicked(self, wdg):
+        project = RomProject.get_current()
+
+        dialog = Gtk.FileChooserDialog(
+            "Save As...",
+            self.window,
+            Gtk.FileChooserAction.SAVE,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+        )
+        dialog.set_filename(project.filename)
+
+        add_dialog_file_filters(dialog)
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.OK:
+            project.filename = fn
+            self._save(True)
 
     def on_open_more_clicked(self, button: Button):
         """Dialog to open a file"""
@@ -69,16 +130,7 @@ class MainController:
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
         )
 
-        filter_nds = Gtk.FileFilter()
-        filter_nds.set_name("Nintendo DS ROMs (*.nds)")
-        filter_nds.add_mime_type("application/x-nintendo-ds-rom")
-        filter_nds.add_pattern("*.nds")
-        dialog.add_filter(filter_nds)
-
-        filter_any = Gtk.FileFilter()
-        filter_any.set_name("Any files")
-        filter_any.add_pattern("*")
-        dialog.add_filter(filter_any)
+        add_dialog_file_filters(dialog)
 
         response = dialog.run()
         fn = dialog.get_filename()
@@ -96,6 +148,7 @@ class MainController:
     def on_file_opened(self, c):
         """Update the UI after a ROM file has been opened."""
         assert current_thread() == main_thread
+        logger.debug('File opened.')
 
         self._init_window_after_rom_load(os.path.basename(RomProject.get_current().filename))
 
@@ -115,16 +168,41 @@ class MainController:
 
         if self._loading_dialog is not None:
             self._loading_dialog.hide()
-            self._loading_dialog.destroy()
             self._loading_dialog = None
 
     def on_file_opened_error(self, c, exception):
         """Handle errors during file openings."""
         assert current_thread() == main_thread
+        logger.debug('Error on file open.')
         if self._loading_dialog is not None:
             self._loading_dialog.hide()
-            self._loading_dialog.destroy()
             self._loading_dialog = None
+        # TODO: Better exception display
+        md = Gtk.MessageDialog(self.window,
+                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                               Gtk.ButtonsType.OK, str(exception),
+                               title="SkyTemple - Error!")
+        md.set_position(Gtk.WindowPosition.CENTER)
+        md.run()
+        md.destroy()
+
+    def on_file_saved(self, c):
+        if self._loading_dialog is not None:
+            self._loading_dialog.hide()
+            self._loading_dialog = None
+
+        rom = RomProject.get_current()
+        self._set_title(os.path.basename(rom.filename), False)
+        recursive_down_item_store_mark_as_modified(self._item_store[self._item_store.get_iter_first()], False)
+
+    def on_file_saved_error(self, c, exception):
+        """Handle errors during file saving."""
+        logger.debug('Error on save open.')
+
+        if self._loading_dialog is not None:
+            self._loading_dialog.hide()
+            self._loading_dialog = None
+
         # TODO: Better exception display
         md = Gtk.MessageDialog(self.window,
                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
@@ -136,8 +214,11 @@ class MainController:
 
     def on_main_item_list_selection_changed(self, selection: TreeSelection):
         """Handle click on item: Switch view"""
+        assert current_thread() == main_thread
         model, treeiter = selection.get_selected()
         if model is not None and treeiter is not None and RomProject.get_current() is not None:
+            logger.debug('View selected. Locking and showing Loader.')
+            self._lock_trees()
             selected_node = model[treeiter]
             self._init_window_before_view_load(model[treeiter])
             # Show loading stack page in editor stack
@@ -152,19 +233,47 @@ class MainController:
                 self._signal_container
             ))
 
-    def on_view_loaded(self, c, module: AbstractModule, controller: AbstractController, item_id: int):
+    def on_view_loaded(
+            self, c, module: AbstractModule, controller: AbstractController, item_id: int
+    ):
         """A new module view was loaded! Present it!"""
+        assert current_thread() == main_thread
         # Check if current view still matches expected
+        logger.debug('View loaded.')
+        view = controller.get_view()
         if self._current_view_module != module or self._current_view_controller_class != controller.__class__ or self._current_view_item_id != item_id:
+            logger.warning('Loaded view not matching selection.')
+            view.destroy()
             return
-        # TODO Insert the view at page 3 [0,1,2,3] of the stack. If there is already a page, remove it.
-        pass
+        # Insert the view at page 3 [0,1,2,3] of the stack. If there is already a page, remove it.
+        old_view = self._editor_stack.get_child_by_name('es__loaded_view')
+        if old_view:
+            logger.debug('Destroying old view...')
+            self._editor_stack.remove(old_view)
+            old_view.destroy()
+        logger.debug('Adding and showing new view...')
+        self._editor_stack.add_named(view, 'es__loaded_view')
+        view.show_all()
+        self._editor_stack.set_visible_child(view)
+        logger.debug('Unlocking view trees.')
+        self._unlock_trees()
 
     def on_view_loaded_error(self, c, ex: BaseException):
         """An error during module view load happened :("""
+        assert current_thread() == main_thread
+        logger.debug('View load error. Unlocking.')
         tb: TextBuffer = self.builder.get_object('es_error_text_buffer')
         tb.set_text(''.join(traceback.format_exception(etype=type(ex), value=ex, tb=ex.__traceback__)))
         self._editor_stack.set_visible_child(self.builder.get_object('es_error'))
+        self._unlock_trees()
+
+    def on_item_store_row_changed(self, model, path, iter):
+        """Update the window title for the current selected tree model row if it changed"""
+        if model is not None and iter is not None:
+            selection_model, selection_iter = self._main_item_list.get_selection().get_selected()
+            if selection_model is not None and selection_iter is not None:
+                if selection_model[selection_iter].path == path:
+                    self._init_window_before_view_load(model[iter])
 
     def on_main_item_list_search_search_changed(self, search: Gtk.SearchEntry):
         """Filter the main item view using the search field"""
@@ -234,33 +343,23 @@ class MainController:
             self.builder.get_object('file_opening_dialog_label').set_label(
                 f'Loading ROM "{os.path.basename(filename)}"...'
             )
+            logger.debug(f'Opening {filename}.')
             RomProject.open(filename, self._signal_container)
             self._loading_dialog.run()
 
     def _check_open_file(self):
         """Check for open files, and ask the user what to do. Returns false if they cancel."""
         rom = RomProject.get_current()
-        if rom is not None:
-            dialog: MessageDialog = Gtk.MessageDialog(
-                self.window,
-                Gtk.DialogFlags.MODAL,
-                Gtk.MessageType.WARNING,
-                Gtk.ButtonsType.NONE, f"Do you want to save changes to {os.path.basename(rom.filename)}?"
-            )
-            dont_save: Widget = dialog.add_button("Don't Save", 0)
-            dont_save.get_style_context().add_class('destructive-action')
-            dialog.add_button("Cancel", Gtk.ResponseType.CANCEL)
-            dialog.add_button("Save", 1)
-            dialog.format_secondary_text(f"If you don't save, your changes will be lost.")
-            response = dialog.run()
-            dialog.destroy()
+        if rom is not None and rom.has_modifications():
+            response = self._show_are_you_sure(rom)
 
             if response == 0:
                 # Don't save
                 return True
             elif response == 1:
                 # Save (True on success, False on failure. Don't close the file if we can't save it...)
-                return self._save_file(rom)
+                # TODO: NOT TRUE. We are using signals. This is broken right now!
+                return self._save()
             else:
                 # Cancel
                 return False
@@ -271,7 +370,7 @@ class MainController:
         main_item_list: TreeView = self.builder.get_object('main_item_list')
 
         icon = TreeViewColumn("Icon", Gtk.CellRendererPixbuf(), icon_name=0)
-        column = TreeViewColumn("Title", Gtk.CellRendererText(), text=1)
+        column = TreeViewColumn("Title", Gtk.CellRendererText(), text=6)
 
         main_item_list.append_column(icon)
         main_item_list.append_column(column)
@@ -312,16 +411,62 @@ class MainController:
         self.builder.get_object('save_as_button').set_sensitive(True)
         self.builder.get_object('main_item_list_search').set_sensitive(True)
         # TODO: Titlebar for Non-CSD situation
-        tb: HeaderBar = self.window.get_titlebar()
-        tb.set_title(f"{rom_name} (SkyTemple)")
+        self._set_title(rom_name, False)
 
     def _init_window_before_view_load(self, node: TreeModelRow):
         """Update the subtitle / breadcrumb before switching views"""
         bc = ""
         parent = node
         while parent:
-            bc = f" > {parent[1]}" + bc
+            bc = f" > {parent[6]}" + bc
             parent = parent.parent
         bc = bc[3:]
-        # TODO: Titlebar for Non-CSD situation
         self.window.get_titlebar().set_subtitle(bc)
+
+        # Check if files are modified
+        if RomProject.get_current().has_modifications():
+            self._set_title(os.path.basename(RomProject.get_current().filename), True)
+
+    def _set_title(self, rom_name, is_modified):
+        # TODO: Titlebar for Non-CSD situation
+        tb: HeaderBar = self.window.get_titlebar()
+        tb.set_title(f"{'*' if is_modified else ''}{rom_name} (SkyTemple)")
+
+    def _lock_trees(self):
+        # TODO: Lock the other two!
+        self._main_item_list.set_sensitive(False)
+
+    def _unlock_trees(self):
+        # TODO: Unlock the other two!
+        self._main_item_list.set_sensitive(True)
+
+    def _save(self, force=False):
+        rom = RomProject.get_current()
+
+        if rom.has_modifications() or force:
+            self._loading_dialog = self.builder.get_object('file_opening_dialog')
+            self.builder.get_object('file_opening_dialog_label').set_label(
+                f'Saving ROM "{os.path.basename(rom.filename)}"...'
+            )
+            logger.debug(f'Saving {rom.filename}.')
+
+            # This will trigger a signal.
+            rom.save(self._signal_container)
+            self._loading_dialog.run()
+
+    def _show_are_you_sure(self, rom):
+        dialog: MessageDialog = Gtk.MessageDialog(
+            self.window,
+            Gtk.DialogFlags.MODAL,
+            Gtk.MessageType.WARNING,
+            Gtk.ButtonsType.NONE, f"Do you want to save changes to {os.path.basename(rom.filename)}?"
+        )
+        dont_save: Widget = dialog.add_button("Don't Save", 0)
+        dont_save.get_style_context().add_class('destructive-action')
+        dialog.add_button("Cancel", Gtk.ResponseType.CANCEL)
+        dialog.add_button("Save", 1)
+        dialog.format_secondary_text(f"If you don't save, your changes will be lost.")
+        response = dialog.run()
+        dialog.destroy()
+        return response
+
