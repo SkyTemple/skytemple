@@ -49,7 +49,7 @@ class PaletteEditorController:
             self.builder.get_object('add_remove_btns').set_visible(False)
 
         resp = self.dialog.run()
-        self.dialog.hide()
+        self.dialog.destroy()
 
         if resp == ResponseType.OK:
             return self.palettes

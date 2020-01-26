@@ -1,3 +1,4 @@
+import itertools
 import os
 from typing import Union, List
 
@@ -17,7 +18,10 @@ bpa_views = [
 
 
 class ChunkEditorController:
-    def __init__(self, parent_window, layer_number, bpc: Bpc, bpl: Bpl, bpas: List[Union[Bpa, None]], bpa_durations):
+    def __init__(self,
+                 parent_window, layer_number,
+                 bpc: Bpc, bpl: Bpl, bpas: List[Union[Bpa, None]],
+                 bpa_durations, pal_ani_durations):
         path = os.path.abspath(os.path.dirname(__file__))
 
         self.builder = Gtk.Builder()
@@ -34,6 +38,7 @@ class ChunkEditorController:
         self.bpas = bpas[bpa_start:bpa_start+4]
         self.bpl = bpl
         self.bpa_durations = bpa_durations
+        self.pal_ani_durations = pal_ani_durations
 
         self.current_tile_id = 0
         self.current_tile_drawer: DrawerTiled = None
@@ -47,20 +52,26 @@ class ChunkEditorController:
         self.tile_surfaces = []
         # For each palette
         for pal in range(0, len(self.bpl.palettes)):
-            all_bpc_tiles_for_current_pal = self.bpc.tiles_to_pil(self.layer_number, self.bpl.palettes, 1, pal).convert('RGBA')
+            all_bpc_tiles_for_current_pal = self.bpc.tiles_to_pil(self.layer_number, self.bpl.palettes, 1, pal)
             tiles_current_pal = []
             # For each frame of palette animation...
-            # TODO: Palette animation
-            for pal_ani in range(0, 1):
+            # TODO: This can be massively improved in performance by checking if the palettes actually use
+            #       animation and how many frames!
+            pal_ani_len = len(self.bpl.animation_palette) if self.bpl.has_palette_animation else 1
+            for pal_ani in range(0, pal_ani_len):
                 tiles_current_pal_ani = []
                 # BPC tiles
                 # - have no animations.
+                # Switch out the palette with that from the palette animation
+                if self.bpl.has_palette_animation:
+                    pal_for_frame = itertools.chain.from_iterable(self.bpl.apply_palette_animations(pal_ani))
+                    all_bpc_tiles_for_current_pal.putpalette(pal_for_frame)
                 # For each tile...
                 for tile_idx in range(0, len(self.bpc.layers[self.layer_number].tiles)):
                     tiles_current_pal_ani.append([pil_to_cairo_surface(
                         all_bpc_tiles_for_current_pal.crop(
                             (0, tile_idx * BPC_TILE_DIM, BPC_TILE_DIM, tile_idx * BPC_TILE_DIM + BPC_TILE_DIM)
-                        )
+                        ).convert('RGBA')
                     )])
 
                 # BPA tiles
@@ -72,6 +83,9 @@ class ChunkEditorController:
                         for tile_idx in range(0, bpa.number_of_tiles):
                             tiles_current_frame = []
                             for frame in all_bpa_tiles_for_current_pal:
+                                # Switch out the palette with that from the palette animation
+                                if self.bpl.has_palette_animation:
+                                    all_bpc_tiles_for_current_pal.putpalette(pal_for_frame)
                                 tiles_current_frame.append(pil_to_cairo_surface(
                                     frame.crop(
                                         (0, tile_idx * BPC_TILE_DIM, BPC_TILE_DIM, tile_idx * BPC_TILE_DIM + BPC_TILE_DIM)
@@ -120,7 +134,7 @@ class ChunkEditorController:
         self.dialog.resize(1420, 716)
 
         resp = self.dialog.run()
-        self.dialog.hide()
+        self.dialog.destroy()
 
         if resp == ResponseType.OK:
             return self.edited_mappings
@@ -211,7 +225,7 @@ class ChunkEditorController:
         icon_view: IconView = self.builder.get_object(f'icon_view_chunk')
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         renderer = DrawerTiledCellRenderer(
-            icon_view, self.bpa_durations, True, self.edited_mappings, self.tile_surfaces, 1
+            icon_view, self.bpa_durations, self.pal_ani_durations, True, self.edited_mappings, self.tile_surfaces, 1
         )
 
         store = Gtk.ListStore(int)
@@ -231,7 +245,7 @@ class ChunkEditorController:
         icon_view: IconView = self.builder.get_object(f'icon_view_tiles_in_chunk')
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         renderer = DrawerTiledCellRenderer(
-            icon_view, self.bpa_durations, False, self.edited_mappings, self.tile_surfaces, 3
+            icon_view, self.bpa_durations, self.pal_ani_durations, False, self.edited_mappings, self.tile_surfaces, 3
         )
 
         store = Gtk.ListStore(int)
@@ -251,7 +265,7 @@ class ChunkEditorController:
         )
 
         self.current_tile_drawer = DrawerTiled(
-            current_tile, [self.edited_mappings[0]], self.bpa_durations, self.tile_surfaces
+            current_tile, [self.edited_mappings[0]], self.bpa_durations, self.pal_ani_durations, self.tile_surfaces
         )
         self.current_tile_drawer.scale = 10
         self.current_tile_drawer.start()
@@ -262,7 +276,7 @@ class ChunkEditorController:
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
 
         renderer = DrawerTiledCellRenderer(
-            icon_view, self.bpa_durations, False, self.dummy_tile_map, self.tile_surfaces, 3
+            icon_view, self.bpa_durations, self.pal_ani_durations, False, self.dummy_tile_map, self.tile_surfaces, 3
         )
 
         store = Gtk.ListStore(int, str)
@@ -290,7 +304,7 @@ class ChunkEditorController:
             else:
                 view.set_selection_mode(Gtk.SelectionMode.BROWSE)
                 renderer = DrawerTiledCellRenderer(
-                    view, self.bpa_durations, False, self.dummy_tile_map, self.tile_surfaces, 3
+                    view, self.bpa_durations, self.pal_ani_durations, False, self.dummy_tile_map, self.tile_surfaces, 3
                 )
 
                 store = Gtk.ListStore(int, str)

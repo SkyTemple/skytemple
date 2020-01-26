@@ -111,7 +111,7 @@ class BgMenuController:
         non_none_bpas = [b for b in self.parent.bpas if b is not None]
         if len(non_none_bpas) > 0:
             # Assuming the game runs 60 FPS.
-            duration = round(1000 / 60 * non_none_bpas[0].frame_info[0].unk1)
+            duration = round(1000 / 60 * non_none_bpas[0].frame_info[0].duration_per_frame)
 
         if response == Gtk.ResponseType.OK:
             frames = self.parent.bma.to_pil(self.parent.bpc, self.parent.bpl.palettes, self.parent.bpas, False, False)
@@ -207,13 +207,14 @@ class BgMenuController:
         bpc_layer_to_use = 0 if self.parent.bma.number_of_layers < 2 else 1
         cntrl = ChunkEditorController(
             MainController.window(), bpc_layer_to_use, self.parent.bpc, self.parent.bpl,
-            self.parent.bpas, self.parent.bpa_durations
+            self.parent.bpas, self.parent.bpa_durations, self.parent.pal_ani_durations
         )
         edited_mappings = cntrl.show()
         if edited_mappings:
             self.parent.bpc.layers[bpc_layer_to_use].tilemap = edited_mappings
             self.parent.reload_all()
             self.parent.mark_as_modified()
+        del cntrl
 
     def on_men_chunks_layer2_edit_activate(self):
         # This is controlled by a separate controller
@@ -223,13 +224,14 @@ class BgMenuController:
             bpc_layer_to_use = 0
             cntrl = ChunkEditorController(
                 MainController.window(), bpc_layer_to_use, self.parent.bpc, self.parent.bpl,
-                self.parent.bpas, self.parent.bpa_durations
+                self.parent.bpas, self.parent.bpa_durations, self.parent.pal_ani_durations
             )
             edited_mappings = cntrl.show()
             if edited_mappings:
                 self.parent.bpc.layers[bpc_layer_to_use].tilemap = edited_mappings
                 self.parent.reload_all()
                 self.parent.mark_as_modified()
+            del cntrl
 
     def on_men_chunks_layer1_export_activate(self):
         self._export_chunks(0 if self.parent.bma.number_of_layers < 2 else 1)
@@ -297,7 +299,7 @@ class BgMenuController:
                     entry.set_input_purpose(Gtk.InputPurpose.NUMBER)
                     entry.set_width_chars(4)
                     entry.set_max_length(4)
-                    entry.set_text(str(frame_info.unk1))
+                    entry.set_text(str(frame_info.duration_per_frame))
                     entry.set_halign(Gtk.Align.START)
                     entry.show()
                     bpa_duration_box.pack_start(entry, False, True, 5)
@@ -452,6 +454,7 @@ class BgMenuController:
             self.parent.bpl.palettes = edited_palettes
             self.parent.reload_all()
             self.parent.mark_as_modified()
+        del cntrl
 
     def on_men_palettes_ani_settings_activate(self):
         dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_palettes_animated_settings')
@@ -462,8 +465,8 @@ class BgMenuController:
         self.on_palette_animation_enabled_state_set(self.parent.bpl.has_palette_animation)
         if self.parent.bpl.has_palette_animation:
             for i, spec in enumerate(self.parent.bpl.animation_specs):
-                self.parent.builder.get_object(f'pallete_anim_setting_unk3_p{i+1}').set_text(str(spec.unk3))
-                self.parent.builder.get_object(f'pallete_anim_setting_unk4_p{i+1}').set_text(str(spec.unk4))
+                self.parent.builder.get_object(f'pallete_anim_setting_unk3_p{i+1}').set_text(str(spec.duration_per_frame))
+                self.parent.builder.get_object(f'pallete_anim_setting_unk4_p{i+1}').set_text(str(spec.number_of_frames))
 
         response = dialog.run()
         dialog.hide()
@@ -476,18 +479,18 @@ class BgMenuController:
                 self.parent.bpl.animation_specs = []
                 for i in range(1, 17):
                     try:
-                        unk3 = int(self.parent.builder.get_object(f'pallete_anim_setting_unk3_p{i}').get_text())
+                        duration_per_frame = int(self.parent.builder.get_object(f'pallete_anim_setting_unk3_p{i}').get_text())
                     except ValueError:
-                        unk3 = 0
+                        duration_per_frame = 0
                         had_errors = True
                     try:
-                        unk4 = int(self.parent.builder.get_object(f'pallete_anim_setting_unk4_p{i}').get_text())
+                        number_of_frames = int(self.parent.builder.get_object(f'pallete_anim_setting_unk4_p{i}').get_text())
                     except ValueError:
-                        unk4 = 0
+                        number_of_frames = 0
                         had_errors = True
                     self.parent.bpl.animation_specs.append(BplAnimationSpec(
-                        unk3=unk3,
-                        unk4=unk4
+                        duration_per_frame=duration_per_frame,
+                        number_of_frames=number_of_frames
                     ))
             else:
                 # Doesn't have
@@ -536,6 +539,7 @@ class BgMenuController:
             self.parent.bpl.animation_palette = edited_palettes
             self.parent.reload_all()
             self.parent.mark_as_modified()
+        del cntrl
 
     def _export_chunks(self, layer):
         dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_chunks_export')

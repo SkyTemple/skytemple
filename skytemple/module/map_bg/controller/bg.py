@@ -1,3 +1,4 @@
+import itertools
 from typing import TYPE_CHECKING
 
 import gi
@@ -280,11 +281,15 @@ class BgController(AbstractController):
         for layer_idx, layer in enumerate(layers):
             chunks_current_layer = []
             # For each frame of palette animation...
-            # TODO: Palette animation
-            for pal_ani in range(0, 1):
+            pal_ani_len = len(self.bpl.animation_palette) if self.bpl.has_palette_animation else 1
+            for pal_ani in range(0, pal_ani_len):
                 chunks_current_pal = []
                 # For each frame of tile animation...
                 for img in layer:
+                    # Switch out the palette with that from the palette animation
+                    if self.bpl.has_palette_animation:
+                        pal_for_frame = itertools.chain.from_iterable(self.bpl.apply_palette_animations(pal_ani))
+                        img.putpalette(pal_for_frame)
                     # Remove alpha first
                     img_mask = img.copy()
                     img_mask.putpalette(MASK_PAL)
@@ -306,9 +311,14 @@ class BgController(AbstractController):
             self.bpa_durations = 0
             for bpa in self.bpas:
                 if bpa is not None:
-                    single_bpa_duration = max(info.unk1 for info in bpa.frame_info)
+                    single_bpa_duration = max(info.duration_per_frame for info in bpa.frame_info)
                     if single_bpa_duration > self.bpa_durations:
                         self.bpa_durations = single_bpa_duration
+
+            # TODO: No BPL animations at different speeds supported at the moment
+            self.pal_ani_durations = 0
+            if self.bpl.has_palette_animation:
+                self.pal_ani_durations = max(spec.duration_per_frame for spec in self.bpl.animation_specs)
 
     def _init_drawer(self):
         """(Re)-initialize the main drawing area"""
@@ -339,7 +349,7 @@ class BgController(AbstractController):
             self.bma.map_height_chunks * self.bma.tiling_height * BPC_TILE_DIM
         )
 
-        self.drawer = Drawer(self.bg_draw, self.bma, self.bpa_durations, self.chunks_surfaces)
+        self.drawer = Drawer(self.bg_draw, self.bma, self.bpa_durations, self.pal_ani_durations, self.chunks_surfaces)
         self.drawer.start()
 
     def _init_drawer_layer_selected(self):
@@ -377,7 +387,9 @@ class BgController(AbstractController):
 
         icon_view: IconView = self.builder.get_object(f'bg_chunks_view')
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
-        self.current_icon_view_renderer = DrawerCellRenderer(icon_view, layer_number, self.bpa_durations, self.chunks_surfaces)
+        self.current_icon_view_renderer = DrawerCellRenderer(icon_view, layer_number,
+                                                             self.bpa_durations, self.pal_ani_durations,
+                                                             self.chunks_surfaces)
         store = Gtk.ListStore(int)
         icon_view.set_model(store)
         icon_view.pack_start(self.current_icon_view_renderer, True)
@@ -534,7 +546,7 @@ class BgController(AbstractController):
         if self.current_icon_view_renderer:
             self.current_icon_view_renderer.stop()
         self._init_chunk_imgs()
-        self.drawer.reset(self.bma, self.bpa_durations, self.chunks_surfaces)
+        self.drawer.reset(self.bma, self.bpa_durations, self.pal_ani_durations, self.chunks_surfaces)
         self.drawer.start()
         self._init_tab(self.notebook.get_nth_page(self.notebook.get_current_page()))
 

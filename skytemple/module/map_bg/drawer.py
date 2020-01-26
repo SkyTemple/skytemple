@@ -23,7 +23,7 @@ class DrawerInteraction(Enum):
 
 class Drawer:
     def __init__(
-            self, draw_area: Widget, bma: Union[Bma, None], bpa_durations: int,
+            self, draw_area: Widget, bma: Union[Bma, None], bpa_durations: int, pal_ani_durations: int,
             chunks_surfaces: List[List[List[List[cairo.Surface]]]]
     ):
         """
@@ -34,9 +34,10 @@ class Drawer:
         :param chunks_surfaces: Bg controller format chunk surfaces
         """
         # TODO: No BPAs at different speeds supported at the moment
+        # TODO: No BPL animations at different speeds supported at the moment
         self.draw_area = draw_area
 
-        self.reset(bma, bpa_durations, chunks_surfaces)
+        self.reset(bma, bpa_durations, pal_ani_durations, chunks_surfaces)
 
         self.draw_chunk_grid = False
         self.draw_tile_grid = False
@@ -63,7 +64,7 @@ class Drawer:
         self.drawing_is_active = False
 
     # noinspection PyAttributeOutsideInit
-    def reset(self, bma, bpa_durations, chunks_surfaces):
+    def reset(self, bma, bpa_durations, pal_ani_durations, chunks_surfaces):
         if isinstance(bma, Bma):
             self.tiling_width = bma.tiling_width
             self.tiling_height = bma.tiling_height
@@ -88,9 +89,10 @@ class Drawer:
             self.data_layer = None
 
         self.bpa_durations = bpa_durations
+        self.pal_ani_durations = pal_ani_durations
 
         # TODO
-        self.frames_pal = 1
+        self.frames_pal = len(chunks_surfaces[0])
         self.frames_layer = [len(layer[0]) for layer in chunks_surfaces]
         self.chunks = chunks_surfaces
 
@@ -330,7 +332,6 @@ class Drawer:
 
     def _adv_frames(self):
         # Advance frame if enough time passed
-        # TODO: Duration doesn't seem to fit?
         if self.bpa_durations > 0:
             for layer_idx, _ in enumerate(self.current_ani_layer):
                 if self.frame_counter % self.bpa_durations == 0:
@@ -338,10 +339,11 @@ class Drawer:
                     if self.current_ani_layer[layer_idx] >= self.frames_layer[layer_idx]:
                         self.current_ani_layer[layer_idx] = 0
 
-        # TODO: Palette animation Duration, see above
-        self.current_ani_pal += 1
-        if self.current_ani_pal >= self.frames_pal:
-            self.current_ani_pal = 0
+        if self.pal_ani_durations > 0:
+            if self.frame_counter % self.pal_ani_durations == 0:
+                self.current_ani_pal += 1
+                if self.current_ani_pal >= self.frames_pal:
+                    self.current_ani_pal = 0
 
         self.frame_counter += 1
         if self.frame_counter > FRAME_COUNTER_MAX:
@@ -429,10 +431,10 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
         'chunkidx': (int, "", "", 0, 999999, 0, ParamFlags.READWRITE)
     }
 
-    def __init__(self, icon_view, layer: int, bpa_durations: int,
+    def __init__(self, icon_view, layer: int, bpa_durations: int, pal_ani_durations: int,
                  chunks_surfaces: List[List[List[List[cairo.Surface]]]]):
 
-        super().__init__(icon_view, None, bpa_durations, chunks_surfaces)
+        super().__init__(icon_view, None, bpa_durations, pal_ani_durations, chunks_surfaces)
         super(Gtk.CellRenderer, self).__init__()
         self.layer = layer
 

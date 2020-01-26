@@ -21,7 +21,7 @@ FRAME_COUNTER_MAX = 1000000
 class DrawerTiled:
     def __init__(
             self, draw_area: Widget, tile_mappings: Union[None, List[TilemapEntry]],
-            bpa_durations: int,
+            bpa_durations: int, pal_ani_durations: int,
             # Format: tile_surfaces[pal][pal_frame][tile_idx][frame]
             tile_surfaces: List[List[List[List[cairo.Surface]]]]
     ):
@@ -33,6 +33,7 @@ class DrawerTiled:
         :param tile_surfaces: List of all surfaces
         """
         # TODO: No BPAs at different speeds supported at the moment
+        # TODO: No BPL animations at different speeds supported at the moment
         self.draw_area = draw_area
 
         self.tile_mappings = tile_mappings
@@ -45,9 +46,10 @@ class DrawerTiled:
             self.set_tile_mappings(tile_mappings)
 
         self.bpa_durations = bpa_durations
+        self.pal_ani_durations = pal_ani_durations
 
         # TODO
-        self.frames_pal = 1
+        self.frames_pal = len(tile_surfaces[0])
 
         self.current_ani_pal = 0
         self.current_ani_layer = 0
@@ -129,15 +131,15 @@ class DrawerTiled:
 
     def _adv_frames(self):
         # Advance frame if enough time passed
-        # TODO: Duration doesn't seem to fit?
         if self.bpa_durations > 0:
             if self.frame_counter % self.bpa_durations == 0:
                 self.current_ani_layer += 1
 
-        # TODO: Palette animation Duration, see above
-        self.current_ani_pal += 1
-        if self.current_ani_pal >= self.frames_pal:
-            self.current_ani_pal = 0
+        if self.pal_ani_durations > 0:
+            if self.frame_counter % self.pal_ani_durations == 0:
+                self.current_ani_pal += 1
+                if self.current_ani_pal >= self.frames_pal:
+                    self.current_ani_pal = 0
 
         self.frame_counter += 1
         if self.frame_counter > FRAME_COUNTER_MAX:
@@ -149,11 +151,11 @@ class DrawerTiledCellRenderer(DrawerTiled, Gtk.CellRenderer):
         'tileidx': (int, "", "", 0, 999999, 0, ParamFlags.READWRITE)
     }
 
-    def __init__(self, icon_view, bpa_durations: int,
+    def __init__(self, icon_view, bpa_durations: int, pal_ani_durations: int,
                  will_draw_chunk, all_mappings: List[TilemapEntry],
                  tile_surfaces: List[List[List[List[cairo.Surface]]]], scale):
 
-        super().__init__(icon_view, None, bpa_durations, tile_surfaces)
+        super().__init__(icon_view, None, bpa_durations, pal_ani_durations, tile_surfaces)
         super(Gtk.CellRenderer, self).__init__()
 
         self.scale = scale

@@ -71,6 +71,9 @@ class MainController:
         self._connect_item_views()
         self._configure_error_view()
 
+        ### DEBUG
+        self._open_file('/home/marco/austausch/dev/skytemple/skyworkcopy_edit_pal.nds')
+
     def on_destroy(self, *args):
         logger.debug('Window destroyed. Ending task runner.')
         AsyncTaskRunner.end()
