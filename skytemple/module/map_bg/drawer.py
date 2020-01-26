@@ -167,9 +167,11 @@ class Drawer:
                 ctx.translate(0, -chunk_height * self.height_in_chunks)
 
             if (self.edited_layer != -1 and layer_idx < 1 and layer_idx != self.edited_layer) \
-                or (layer_idx == 1 and self.dim_layers):
+                or (layer_idx == 1 and self.dim_layers) \
+                or (layer_idx == 0 and len(self.frames_layer) < 2 and self.dim_layers):
                 # For Layer 0 if not the current edited: Draw dark rectangle
                 # or for layer 1 if dim layers
+                # ...or for layer 0 if dim layers and no second layer
                 ctx.set_source_rgba(0, 0, 0, 0.5)
                 ctx.rectangle(
                     0, 0,

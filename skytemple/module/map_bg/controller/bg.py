@@ -234,6 +234,30 @@ class BgController(AbstractController):
     def on_men_tiles_layer2_import_activate(self, *args):
         self.menu_controller.on_men_tiles_layer2_import_activate()
 
+    def on_men_tiles_ani_settings_activate(self, *args):
+        self.menu_controller.on_men_tiles_ani_settings_activate()
+
+    def on_men_tiles_ani_export_activate(self, *args):
+        self.menu_controller.on_men_tiles_ani_export_activate()
+
+    def on_dialog_tiles_animated_export_export_btn_clicked(self, *args):
+        self.menu_controller.on_dialog_tiles_animated_export_export_btn_clicked()
+
+    def on_dialog_tiles_animated_export_import_btn_clicked(self, *args):
+        self.menu_controller.on_dialog_tiles_animated_export_import_btn_clicked()
+
+    def on_men_palettes_edit_activate(self, *args):
+        self.menu_controller.on_men_palettes_edit_activate()
+
+    def on_men_palettes_ani_settings_activate(self, *args):
+        self.menu_controller.on_men_palettes_ani_settings_activate()
+
+    def on_palette_animation_enabled_state_set(self, wdg, state, *args):
+        self.menu_controller.on_palette_animation_enabled_state_set(state)
+
+    def on_men_palettes_ani_edit_activate(self, *args):
+        self.menu_controller.on_men_palettes_ani_edit_activate()
+
     def _init_chunk_imgs(self):
         """(Re)-draw the chunk images"""
         if self.bpc.number_of_layers > 1:
@@ -352,6 +376,7 @@ class BgController(AbstractController):
         self.current_chunks_icon_layer = layer_number
 
         icon_view: IconView = self.builder.get_object(f'bg_chunks_view')
+        icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         self.current_icon_view_renderer = DrawerCellRenderer(icon_view, layer_number, self.bpa_durations, self.chunks_surfaces)
         store = Gtk.ListStore(int)
         icon_view.set_model(store)

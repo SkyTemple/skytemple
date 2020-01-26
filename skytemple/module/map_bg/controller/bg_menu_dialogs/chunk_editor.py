@@ -209,6 +209,7 @@ class ChunkEditorController:
     def _init_icon_view_chunk(self):
         """Fill the icon view containing all the chunks"""
         icon_view: IconView = self.builder.get_object(f'icon_view_chunk')
+        icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         renderer = DrawerTiledCellRenderer(
             icon_view, self.bpa_durations, True, self.edited_mappings, self.tile_surfaces, 1
         )
@@ -228,6 +229,7 @@ class ChunkEditorController:
     def _init_icon_view_tiles_in_chunk(self):
         """Init the icon view containing the 3x3 tiles for the current chunk"""
         icon_view: IconView = self.builder.get_object(f'icon_view_tiles_in_chunk')
+        icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         renderer = DrawerTiledCellRenderer(
             icon_view, self.bpa_durations, False, self.edited_mappings, self.tile_surfaces, 3
         )
@@ -257,6 +259,7 @@ class ChunkEditorController:
     def _init_icon_view_static_tiles(self):
         """Fill the icon view containing all static tiles"""
         icon_view: IconView = self.builder.get_object(f'icon_view_static_tiles')
+        icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
 
         renderer = DrawerTiledCellRenderer(
             icon_view, self.bpa_durations, False, self.dummy_tile_map, self.tile_surfaces, 3
@@ -268,7 +271,7 @@ class ChunkEditorController:
         icon_view.add_attribute(renderer, 'tileidx', 0)
         icon_view.set_text_column(1)
         icon_view.connect('selection-changed', self.on_icon_view_static_tiles_selection_changed)
-        
+
         for idx in range(0, len(self.bpc.layers[self.layer_number].tiles)):
             store.append([idx, str(idx)])
 
@@ -285,6 +288,7 @@ class ChunkEditorController:
                 label.show()
                 sw.add(label)
             else:
+                view.set_selection_mode(Gtk.SelectionMode.BROWSE)
                 renderer = DrawerTiledCellRenderer(
                     view, self.bpa_durations, False, self.dummy_tile_map, self.tile_surfaces, 3
                 )

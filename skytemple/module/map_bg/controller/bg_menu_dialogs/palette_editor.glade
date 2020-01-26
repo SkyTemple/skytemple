@@ -2,9 +2,19 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkDialog" id="dialog_palettes_edit">
+  <object class="GtkImage" id="img_add">
+    <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Map Dimensions</property>
+    <property name="icon_name">add</property>
+  </object>
+  <object class="GtkImage" id="img_remove">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">remove</property>
+  </object>
+  <object class="GtkDialog" id="map_bg_palettes">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Palette Editor</property>
     <property name="modal">True</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
@@ -57,9 +67,13 @@
           </packing>
         </child>
         <child>
-          <object class="GtkNotebook">
+          <object class="GtkNotebook" id="notebook">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="scrollable">True</property>
+            <property name="enable_popup">True</property>
+            <signal name="scroll-event" handler="on_notebook_scroll_event" swapped="no"/>
+            <signal name="switch-page" handler="on_notebook_switch_page" swapped="no"/>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -68,17 +82,18 @@
           </packing>
         </child>
         <child>
-          <object class="GtkBox">
+          <object class="GtkBox" id="make_unique_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="margin_left">10</property>
+            <property name="margin_right">10</property>
+            <property name="margin_top">10</property>
+            <property name="margin_bottom">10</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">10</property>
-                <property name="margin_right">10</property>
-                <property name="margin_top">10</property>
                 <property name="margin_bottom">10</property>
                 <property name="orientation">vertical</property>
                 <child>
@@ -87,12 +102,13 @@
                     <property name="can_focus">False</property>
                     <property name="layout_style">start</property>
                     <child>
-                      <object class="GtkButton">
+                      <object class="GtkButton" id="make_unique_button">
                         <property name="label" translatable="yes">Make all colors unqiue</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="halign">start</property>
+                        <signal name="clicked" handler="on_make_unique_button_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -101,11 +117,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton">
+                      <object class="GtkButton" id="make_unique_info_button">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="always_show_image">True</property>
+                        <signal name="clicked" handler="on_make_unique_info_button_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
@@ -140,6 +157,55 @@
             <property name="expand">False</property>
             <property name="fill">False</property>
             <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButtonBox" id="add_remove_btns">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">10</property>
+            <property name="margin_right">10</property>
+            <property name="margin_top">10</property>
+            <property name="margin_bottom">10</property>
+            <property name="layout_style">start</property>
+            <child>
+              <object class="GtkButton" id="palette_add">
+                <property name="label" translatable="yes">Add Frame (after current)</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">CTRL + Click to add before current</property>
+                <property name="image">img_add</property>
+                <property name="always_show_image">True</property>
+                <signal name="button-release-event" handler="on_palette_add_button_release_event" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="palette_remove">
+                <property name="label" translatable="yes">Remove current Frame</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="image">img_remove</property>
+                <property name="always_show_image">True</property>
+                <signal name="clicked" handler="on_palette_remove_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
           </packing>
         </child>
       </object>

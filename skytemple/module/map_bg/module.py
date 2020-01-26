@@ -71,10 +71,12 @@ class MapBgModule(AbstractModule):
             parent = other
             if level.bma_name[0] in sub_nodes.keys():
                 parent = sub_nodes[level.bma_name[0]]
+            # TODO: DEBUG
+            dbg = ' [HAS PAL ANI]' if self.get_bpl(i).has_palette_animation else ''
             self._tree_level_iter.append(
                 item_store.append(parent, [
                     # TODO: Name from Strings
-                    'image', level.bma_name, self,  BgController, i, False, ''
+                    'image', level.bma_name + dbg, self,  BgController, i, False, ''
                 ])
             )
 
