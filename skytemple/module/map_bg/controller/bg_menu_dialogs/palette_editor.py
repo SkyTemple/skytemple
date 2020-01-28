@@ -113,7 +113,7 @@ class PaletteEditorController:
 
         self.notebook.insert_page(bx, tab_label, idx)
         self.page_boxes.insert(idx, bx)
-        self.palettes.insert(idx, [0 for _ in range(0, len(self.palettes[current_page_idx]))])
+        self.palettes.insert(idx, self.palettes[current_page_idx].copy())
 
         self.notebook.set_current_page(idx)
 

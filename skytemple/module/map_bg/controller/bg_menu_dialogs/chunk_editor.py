@@ -220,6 +220,12 @@ class ChunkEditorController:
                 # == self.edited_mappings[self.current_tile_id].pal_idx = self.current_tile_picker_palette
             self.builder.get_object(f'tile_number_label').set_text(str(selected_bpc_tile))
 
+    def on_add_chunk_clicked(self, *args):
+        m = self.builder.get_object(f'icon_view_chunk').get_model()
+        m.append([len(self.edited_mappings)])
+        for i in range(len(self.edited_mappings), len(self.edited_mappings)+9):
+            self.edited_mappings.append(TilemapEntry.from_int(0))
+
     def _init_icon_view_chunk(self):
         """Fill the icon view containing all the chunks"""
         icon_view: IconView = self.builder.get_object(f'icon_view_chunk')

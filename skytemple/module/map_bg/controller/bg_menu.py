@@ -211,6 +211,10 @@ class BgMenuController:
         )
         edited_mappings = cntrl.show()
         if edited_mappings:
+            # TODO: Hardcoded chunk size
+            new_chunk_size = int(len(edited_mappings) / 9)
+            if new_chunk_size > self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len:
+                self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len = new_chunk_size
             self.parent.bpc.layers[bpc_layer_to_use].tilemap = edited_mappings
             self.parent.reload_all()
             self.parent.mark_as_modified()
@@ -227,7 +231,12 @@ class BgMenuController:
                 self.parent.bpas, self.parent.bpa_durations, self.parent.pal_ani_durations
             )
             edited_mappings = cntrl.show()
+
             if edited_mappings:
+                # TODO: Hardcoded chunk size
+                new_chunk_size = int(len(edited_mappings) / 9)
+                if new_chunk_size > self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len:
+                    self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len = new_chunk_size
                 self.parent.bpc.layers[bpc_layer_to_use].tilemap = edited_mappings
                 self.parent.reload_all()
                 self.parent.mark_as_modified()
@@ -421,6 +430,10 @@ class BgMenuController:
                     finally:
                         for handle in img_handles:
                             handle.close()
+                # Don't forget to update the BPC!
+                bpa_relative_idx = active_bpa_index % 4
+                bpc_layer_for_bpa = 0 if active_bpa_index < 4 else 1
+                self.parent.bpc.layers[bpc_layer_for_bpa].bpas[bpa_relative_idx] = active_bpa.number_of_tiles
                 md = Gtk.MessageDialog(MainController.window(),
                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
                                        Gtk.ButtonsType.OK, f"The animated tiles were successfully imported, using the files: "
@@ -492,6 +505,9 @@ class BgMenuController:
                         duration_per_frame=duration_per_frame,
                         number_of_frames=number_of_frames
                     ))
+                # Add at least one palette if palette animation was just enabled
+                if self.parent.bpl.animation_palette is None or self.parent.bpl.animation_palette == []:
+                    self.parent.bpl.animation_palette = [[0, 0, 0] * 15]
             else:
                 # Doesn't have
                 self.parent.bpl.has_palette_animation = False

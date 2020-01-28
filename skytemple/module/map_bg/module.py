@@ -23,7 +23,7 @@ MAP_BG_LIST = MAP_BG_PATH + 'bg_list.dat'
 class MapBgModule(AbstractModule):
     @classmethod
     def depends_on(cls):
-        return ['tiled_bg']
+        return ['bgp']
 
     def __init__(self, rom_project: RomProject):
         """Loads the list of backgrounds for the ROM."""
