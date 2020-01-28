@@ -1,3 +1,20 @@
+#  Copyright 2020 Parakoopa
+#
+#  This file is part of SkyTemple.
+#
+#  SkyTemple is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  SkyTemple is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+
 import os
 import traceback
 from threading import current_thread
@@ -72,7 +89,7 @@ class MainController:
         self._configure_error_view()
 
         ### DEBUG
-        self._open_file('/home/marco/austausch/dev/skytemple/skyworkcopy_edit_pal.nds')
+        #self._open_file('/home/marco/austausch/dev/skytemple/skyworkcopy_edit.nds')
 
     def on_destroy(self, *args):
         logger.debug('Window destroyed. Ending task runner.')
