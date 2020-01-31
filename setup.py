@@ -21,6 +21,7 @@ setup(
     classifiers=[
         # TODO
     ],
+    package_data={'': ['**.css', '**.glade']},
     entry_points='''
         [skytemple.module]
         bgp=          skytemple.module.bgp.module:BgpModule
