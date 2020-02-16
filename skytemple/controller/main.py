@@ -260,7 +260,12 @@ class MainController:
         assert current_thread() == main_thread
         # Check if current view still matches expected
         logger.debug('View loaded.')
-        view = controller.get_view()
+        try:
+            view = controller.get_view()
+        except Exception as err:
+            logger.debug("Error retreiving the loaded view")
+            self.on_view_loaded_error(c, err)
+            return
         if self._current_view_module != module or self._current_view_controller_class != controller.__class__ or self._current_view_item_id != item_id:
             logger.warning('Loaded view not matching selection.')
             view.destroy()

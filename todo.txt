@@ -1,0 +1,25 @@
+- MapBG:
+  - MapBG metadata
+  - MapBG warning if rest room (0x08)
+  - Save map settings
+  - Add / Remove (enable / disable) BPAs
+  - Save BPA settings
+  - Copy assets for duplicate MapBG file assigments
+  - Change single BMA import so, that images don't need to have the same palettes,
+    if both contain less than 16 palettes, combine the palettes instead.
+  - MapBG full animated export: Palette animations
+  - MapBG names and name editing
+- BGP
+- Full color image conversion tool
+- Portrait
+- str
+- Sprites
+- Scripts: Opcodes
+- Scripts: Metadata / MapBG links
+- Saving on close / file close
+- Save error handling
+
+- Dungeon tiles
+- Dungeon settings
+- Pokémon stat editing
+- Item, moves, abilities editing
