@@ -27,11 +27,11 @@ setup(
         bgp=          skytemple.module.bgp.module:BgpModule
         portrait=     skytemple.module.portrait.module:PortraitModule
         map_bg=       skytemple.module.map_bg.module:MapBgModule
+        script=       skytemple.module.script.module:ScriptModule
     ''',
     #dungeon=      skytemple.module.dungeon.module:DungeonModule
     #item=         skytemple.module.item.module:ItemModule
     #music=        skytemple.module.music.module:MusicModule
-    #script=       skytemple.module.script.module:ScriptModule
     #sprite=       skytemple.module.sprite.module:SpriteModule
     #stats=        skytemple.module.stats.module:StatsModule
     #strings=      skytemple.module.strings.module:StringsModule

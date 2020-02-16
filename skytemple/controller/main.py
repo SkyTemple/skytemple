@@ -394,10 +394,16 @@ class MainController:
         """Connect the all items, recent items and favorite items views"""
         main_item_list: TreeView = self.builder.get_object('main_item_list')
 
-        icon = TreeViewColumn("Icon", Gtk.CellRendererPixbuf(), icon_name=0)
-        column = TreeViewColumn("Title", Gtk.CellRendererText(), text=6)
+        icon = Gtk.CellRendererPixbuf()
+        title = Gtk.CellRendererText()
+        column = TreeViewColumn("Title")
 
-        main_item_list.append_column(icon)
+        column.pack_start(icon, True)
+        column.pack_start(title, True)
+
+        column.add_attribute(icon, "icon_name", 0)
+        column.add_attribute(title, "text", 6)
+
         main_item_list.append_column(column)
 
         self._main_item_filter = self._item_store.filter_new()

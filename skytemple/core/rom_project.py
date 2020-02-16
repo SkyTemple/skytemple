@@ -27,7 +27,7 @@ from skytemple.core.task import AsyncTaskRunner
 from skytemple.core.ui_signals import SIGNAL_OPENED, SIGNAL_OPENED_ERROR, SIGNAL_SAVED_ERROR, SIGNAL_SAVED
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.common.util import get_files_from_rom_with_extension
+from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder
 
 logger = logging.getLogger(__name__)
 
@@ -134,3 +134,6 @@ class RomProject:
 
     def get_files_with_ext(self, ext):
         return get_files_from_rom_with_extension(self._rom, ext)
+
+    def get_rom_folder(self, path):
+        return get_rom_folder(self._rom, path)

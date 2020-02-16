@@ -2,6 +2,10 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <object class="GtkImage">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+  </object>
   <object class="GtkTextBuffer" id="es_error_text_buffer"/>
   <object class="GtkTreeStore" id="item_store">
     <columns>
@@ -14,7 +18,7 @@
       <!-- column-name controller_class -->
       <column type="PyObject"/>
       <!-- column-name item_id -->
-      <column type="gint"/>
+      <column type="PyObject"/>
       <!-- column-name modified -->
       <column type="gboolean"/>
       <!-- column-name final_label -->
