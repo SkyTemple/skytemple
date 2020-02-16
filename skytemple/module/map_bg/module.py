@@ -57,10 +57,10 @@ class MapBgModule(AbstractModule):
         ])
         sub_nodes = {
             'S': item_store.append(root, [
-                'folder', 'S - Special', self, FolderController, 0, False, ''
+                'folder', 'S - System', self, FolderController, 0, False, ''
             ]),
             'T': item_store.append(root, [
-                'folder', 'T - Town / Test', self, FolderController, 0, False, ''
+                'folder', 'T - Town', self, FolderController, 0, False, ''
             ]),
             'D': item_store.append(root, [
                 'folder', 'D - Dungeon', self, FolderController, 0, False, ''
@@ -69,13 +69,16 @@ class MapBgModule(AbstractModule):
                 'folder', 'G - Guild', self, FolderController, 0, False, ''
             ]),
             'H': item_store.append(root, [
-                'folder', 'H - Home', self, FolderController, 0, False, ''
+                'folder', 'H - Habitat', self, FolderController, 0, False, ''
             ]),
             'P': item_store.append(root, [
                 'folder', 'P - Places', self, FolderController, 0, False, ''
             ]),
             'V': item_store.append(root, [
                 'folder', 'V - Visual', self, FolderController, 0, False, ''
+            ]),
+            'W': item_store.append(root, [
+                'folder', 'W - Weather', self, FolderController, 0, False, ''
             ])
         }
         # Other
