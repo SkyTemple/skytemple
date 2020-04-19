@@ -14,7 +14,7 @@ setup(
     description='GUI Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US)',
     long_description=long_description,
     long_description_content_type='text/x-rst',
-    url='https://github.com/Parakoopa/skytemple/',
+    url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         # TODO
     ],

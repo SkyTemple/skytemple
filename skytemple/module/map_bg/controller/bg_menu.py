@@ -194,6 +194,7 @@ class BgMenuController:
             try:
                 img1_path = map_import_layer1_file.get_filename()
                 img2_path = map_import_layer2_file.get_filename()
+                palettes_from_lower_layer = self.parent.builder.get_object('dialog_map_import_palette_config').get_value()
                 if self.parent.bma.number_of_layers < 2 and img1_path is not None:
                     with open(img1_path, 'rb') as f:
                         self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, Image.open(f), None, True)
@@ -206,7 +207,8 @@ class BgMenuController:
                 elif img1_path is not None and img2_path is not None:
                     with open(img1_path, 'rb') as f1:
                         with open(img2_path, 'rb') as f2:
-                            self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, Image.open(f1), Image.open(f2), True)
+                            self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, Image.open(f1), Image.open(f2),
+                                                     True, how_many_palettes_lower_layer=int(palettes_from_lower_layer))
             except Exception as err:
                 # TODO Better exception display
                 md = Gtk.MessageDialog(MainController.window(),
@@ -232,7 +234,7 @@ class BgMenuController:
             new_chunk_size = int(len(edited_mappings) / 9)
             if new_chunk_size > self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len:
                 self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len = new_chunk_size
-            self.parent.bpc.layers[bpc_layer_to_use].tilemap = edited_mappings
+            self.parent.bpc.layers[bpc_layer_to_use].tilemap = edited_mappings.copy()
             self.parent.reload_all()
             self.parent.mark_as_modified()
         del cntrl
