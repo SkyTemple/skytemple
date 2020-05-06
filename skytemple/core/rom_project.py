@@ -17,19 +17,21 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 import logging
-from typing import Union, Iterator
+from typing import Union, Iterator, TYPE_CHECKING, Optional
 
+from gi.repository import GLib
 from ndspy.rom import NintendoDSRom
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.modules import Modules
-from skytemple.core.task import AsyncTaskRunner
-from skytemple.core.ui_signals import SIGNAL_OPENED, SIGNAL_OPENED_ERROR, SIGNAL_SAVED_ERROR, SIGNAL_SAVED
+from skytemple.core.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.data_handler import DataHandler, T
-from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder
 
 logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from skytemple.controller.main import MainController
 
 
 class RomProject:
@@ -41,24 +43,24 @@ class RomProject:
         return cls._current
 
     @classmethod
-    def open(cls, filename, gobject=None):
+    def open(cls, filename, main_controller: Optional['MainController'] = None):
         """
         Open a file (in a new thread).
-        If a gobject is passed: the signal from const SIGNAL_OPENED will be emitted on it when done.
+        If the main controller is set, it will be informed about this.
         """
-        AsyncTaskRunner().instance().run_task(cls._open_impl(filename, gobject))
+        AsyncTaskRunner().instance().run_task(cls._open_impl(filename, main_controller))
 
     @classmethod
-    async def _open_impl(cls, filename, go):
+    async def _open_impl(cls, filename, main_controller: Optional['MainController']):
         cls._current = RomProject(filename)
         try:
             cls._current.load()
-            if go:
-                AsyncTaskRunner.emit(go, SIGNAL_OPENED)
+            if main_controller:
+                GLib.idle_add(lambda: main_controller.on_file_opened())
         except BaseException as ex:
             cls._current = None
-            if go:
-                AsyncTaskRunner.emit(go, SIGNAL_OPENED_ERROR, ex)
+            if main_controller:
+                GLib.idle_add(lambda ex=ex: main_controller.on_file_opened_error(ex))
 
     def __init__(self, filename: str):
         self.filename = filename
@@ -110,11 +112,11 @@ class RomProject:
     def has_modifications(self):
         return len(self._modified_files) > 0
 
-    def save(self, go):
-        """Save the rom. The signal SIGNAL_SAVED/SIGNAL_SAVED_ERROR will be emitted on go if done."""
-        AsyncTaskRunner().instance().run_task(self._save_impl(go))
+    def save(self, main_controller: Optional['MainController']):
+        """Save the rom. The main controller will be informed about this, if given."""
+        AsyncTaskRunner().instance().run_task(self._save_impl(main_controller))
 
-    async def _save_impl(self, go):
+    async def _save_impl(self, main_controller: Optional['MainController']):
         try:
             for name in self._modified_files:
                 model = self._opened_files[name]
@@ -125,12 +127,12 @@ class RomProject:
             self._modified_files = []
             logger.debug(f"Saving ROM to {self.filename}")
             self._rom.saveToFile(self.filename)
-            if go:
-                AsyncTaskRunner.emit(go, SIGNAL_SAVED)
+            if main_controller:
+                GLib.idle_add(lambda: main_controller.on_file_saved())
 
         except Exception as err:
-            if go:
-                AsyncTaskRunner.emit(go, SIGNAL_SAVED_ERROR, err)
+            if main_controller:
+                GLib.idle_add(lambda err=err: main_controller.on_file_saved_error(err))
 
     def get_files_with_ext(self, ext):
         return get_files_from_rom_with_extension(self._rom, ext)

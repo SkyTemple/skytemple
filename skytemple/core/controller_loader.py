@@ -18,21 +18,18 @@
 
 from typing import TYPE_CHECKING
 
-from gi.repository.Gtk import Widget
+from gi.repository import GLib
 
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.task import AsyncTaskRunner
-from skytemple.core.ui_signals import SIGNAL_VIEW_LOADED_ERROR, SIGNAL_VIEW_LOADED
 
 if TYPE_CHECKING:
     from skytemple.core.abstract_module import AbstractModule
+    from skytemple.controller.main import MainController
 
 
-async def load_controller(module: 'AbstractModule', controller_class, item_id: int, go=None):
-    # TODO
+async def load_controller(module: 'AbstractModule', controller_class, item_id: int, main_controller: 'MainController'):
     try:
         controller: AbstractController = controller_class(module, item_id)
-        AsyncTaskRunner.emit(go, SIGNAL_VIEW_LOADED, module, controller, item_id)
-    except Exception as err:
-        if go:
-            AsyncTaskRunner.emit(go, SIGNAL_VIEW_LOADED_ERROR, err)
+        GLib.idle_add(lambda: main_controller.on_view_loaded(module, controller, item_id))
+    except Exception as ex:
+        GLib.idle_add(lambda ex=ex: main_controller.on_view_loaded_error(ex))

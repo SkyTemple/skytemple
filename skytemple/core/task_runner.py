@@ -1,4 +1,4 @@
-"""Manages Asyncio event loop in a separate loop handler thread"""
+"""Manages asyncio event loop in a separate loop handler thread"""
 #  Copyright 2020 Parakoopa
 #
 #  This file is part of SkyTemple.
@@ -58,11 +58,6 @@ class AsyncTaskRunner(Thread):
     def run_task(self, coro):
         """Runs an asynchronous task"""
         return asyncio.run_coroutine_threadsafe(self.coro_runner(coro), self.loop)
-
-    @classmethod
-    def emit(cls, go, signal, *args, **kwargs):
-        """Safely emit a gi signal."""
-        GLib.idle_add(lambda: go.emit(signal, *args, **kwargs))
 
     @staticmethod
     async def coro_runner(coro):

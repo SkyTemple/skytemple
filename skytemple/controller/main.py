@@ -25,10 +25,8 @@ import logging
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.controller_loader import load_controller
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.rom_project import RomProject, SIGNAL_OPENED
-from skytemple.core.task import AsyncTaskRunner
-from skytemple.core.ui_signals import SkyTempleSignalContainer, SIGNAL_OPENED_ERROR, SIGNAL_VIEW_LOADED, \
-    SIGNAL_VIEW_LOADED_ERROR, SIGNAL_SAVED_ERROR, SIGNAL_SAVED
+from skytemple.core.rom_project import RomProject
+from skytemple.core.task_runner import AsyncTaskRunner
 from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified
 
 gi.require_version('Gtk', '3.0')
@@ -66,15 +64,6 @@ class MainController:
 
         builder.connect_signals(self)
         window.connect("destroy", self.on_destroy)
-
-        # Custom file-related signal container
-        self._signal_container = SkyTempleSignalContainer()
-        self._signal_container.connect(SIGNAL_OPENED, self.on_file_opened)
-        self._signal_container.connect(SIGNAL_OPENED_ERROR, self.on_file_opened_error)
-        self._signal_container.connect(SIGNAL_VIEW_LOADED, self.on_view_loaded)
-        self._signal_container.connect(SIGNAL_VIEW_LOADED_ERROR, self.on_view_loaded_error)
-        self._signal_container.connect(SIGNAL_SAVED, self.on_file_saved)
-        self._signal_container.connect(SIGNAL_SAVED_ERROR, self.on_file_saved_error)
 
         self._search_text = None
         self._current_view_module = None
@@ -165,7 +154,7 @@ class MainController:
         if treeiter is not None and model is not None:
             self._open_file(model[treeiter][0])
 
-    def on_file_opened(self, c):
+    def on_file_opened(self):
         """Update the UI after a ROM file has been opened."""
         assert current_thread() == main_thread
         logger.debug('File opened.')
@@ -183,14 +172,14 @@ class MainController:
 
             # TODO: Select main ROM item by default
         except BaseException as ex:
-            self.on_file_opened_error(c, ex)
+            self.on_file_opened_error(ex)
             return
 
         if self._loading_dialog is not None:
             self._loading_dialog.hide()
             self._loading_dialog = None
 
-    def on_file_opened_error(self, c, exception):
+    def on_file_opened_error(self, exception):
         """Handle errors during file openings."""
         assert current_thread() == main_thread
         logger.debug('Error on file open.')
@@ -206,7 +195,7 @@ class MainController:
         md.run()
         md.destroy()
 
-    def on_file_saved(self, c):
+    def on_file_saved(self):
         if self._loading_dialog is not None:
             self._loading_dialog.hide()
             self._loading_dialog = None
@@ -215,7 +204,7 @@ class MainController:
         self._set_title(os.path.basename(rom.filename), False)
         recursive_down_item_store_mark_as_modified(self._item_store[self._item_store.get_iter_first()], False)
 
-    def on_file_saved_error(self, c, exception):
+    def on_file_saved_error(self, exception):
         """Handle errors during file saving."""
         logger.debug('Error on save open.')
 
@@ -250,11 +239,11 @@ class MainController:
             # Fully load the view and the controller
             AsyncTaskRunner.instance().run_task(load_controller(
                 self._current_view_module, self._current_view_controller_class, self._current_view_item_id,
-                self._signal_container
+                self
             ))
 
     def on_view_loaded(
-            self, c, module: AbstractModule, controller: AbstractController, item_id: int
+            self, module: AbstractModule, controller: AbstractController, item_id: int
     ):
         """A new module view was loaded! Present it!"""
         assert current_thread() == main_thread
@@ -264,7 +253,7 @@ class MainController:
             view = controller.get_view()
         except Exception as err:
             logger.debug("Error retreiving the loaded view")
-            self.on_view_loaded_error(c, err)
+            self.on_view_loaded_error(err)
             return
         if self._current_view_module != module or self._current_view_controller_class != controller.__class__ or self._current_view_item_id != item_id:
             logger.warning('Loaded view not matching selection.')
@@ -283,7 +272,7 @@ class MainController:
         logger.debug('Unlocking view trees.')
         self._unlock_trees()
 
-    def on_view_loaded_error(self, c, ex: BaseException):
+    def on_view_loaded_error(self, ex: BaseException):
         """An error during module view load happened :("""
         assert current_thread() == main_thread
         logger.debug('View load error. Unlocking.')
@@ -369,7 +358,7 @@ class MainController:
                 f'Loading ROM "{os.path.basename(filename)}"...'
             )
             logger.debug(f'Opening {filename}.')
-            RomProject.open(filename, self._signal_container)
+            RomProject.open(filename, self)
             self._loading_dialog.run()
 
     def _check_open_file(self):
@@ -482,7 +471,7 @@ class MainController:
             logger.debug(f'Saving {rom.filename}.')
 
             # This will trigger a signal.
-            rom.save(self._signal_container)
+            rom.save(self)
             self._loading_dialog.run()
 
     def _show_are_you_sure(self, rom):
