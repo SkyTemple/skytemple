@@ -21,7 +21,7 @@ import gi
 
 from skytemple.core.global_configuration import GlobalConfiguration
 from skytemple.core.modules import Modules
-from skytemple.core.task_runner import AsyncTaskRunner
+from skytemple_files.common.task_runner import AsyncTaskRunner
 
 gi.require_version('Gtk', '3.0')
 try:

@@ -26,14 +26,14 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.controller_loader import load_controller
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
-from skytemple.core.task_runner import AsyncTaskRunner
+from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified
 
 gi.require_version('Gtk', '3.0')
 
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import *
-from gi.repository.GObject import GObject
+
 main_thread = current_thread()
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)

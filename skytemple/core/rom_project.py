@@ -24,7 +24,7 @@ from ndspy.rom import NintendoDSRom
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.modules import Modules
-from skytemple.core.task_runner import AsyncTaskRunner
+from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder
 
