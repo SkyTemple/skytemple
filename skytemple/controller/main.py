@@ -86,6 +86,7 @@ class MainController:
         Gtk.main_quit()
 
     def on_main_window_delete_event(self, *args):
+        # TODO (later, don't forget): Check ssb debugger exit first!
         rom = RomProject.get_current()
         if rom is not None and rom.has_modifications():
             response = self._show_are_you_sure(rom)
@@ -93,8 +94,10 @@ class MainController:
                 return False
             elif response == 1:
                 # Save (True on success, False on failure. Don't close the file if we can't save it...)
-                # TODO: NOT TRUE. We are using signals. This is broken right now!
-                return not self._save()
+                self._save()
+                # TODO: we just cancel atm, because the saving is done async. It would probably be nice to also
+                #       exit, when it's done without error
+                return True
             else:
                 # Cancel
                 return True

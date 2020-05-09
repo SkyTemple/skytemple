@@ -16,6 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 import os
+import sys
 
 import gi
 
@@ -38,7 +39,7 @@ except ImportError:
     md.destroy()
     exit(1)
 
-from gi.repository import Gtk, Gdk, GLib
+from gi.repository import Gtk, Gdk, GLib, Gio
 from gi.repository.Gtk import Window
 from skytemple.controller.main import MainController
 
@@ -46,6 +47,15 @@ from skytemple.controller.main import MainController
 def main():
     # TODO: Gtk.Application: https://python-gtk-3-tutorial.readthedocs.io/en/latest/application.html
     path = os.path.abspath(os.path.dirname(__file__))
+
+    if sys.platform.startswith('win'):
+        # Load theming under Windows
+        _windows_load_theme()
+
+    # TODO: Specify this corretly for packaging! - also in the setup.py!
+    itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
+    itheme.append_search_path(os.path.abspath(os.path.join(path, "..", "data", "icons")))
+    itheme.rescan_if_needed()
 
     # Load Builder and Window
     builder = Gtk.Builder()
@@ -80,10 +90,23 @@ def main():
     MainController(builder, main_window)
 
     main_window.present()
+    main_window.set_icon_name('skytemple')
     try:
         Gtk.main()
     except (KeyboardInterrupt, SystemExit):
         AsyncTaskRunner.end()
+
+
+def _windows_load_theme():
+    from skytemple_files.common.platform_utils.win import win_use_light_theme
+    theme_name = 'Windows-10-Dark-3.2-dark'
+    icon_name = 'Papirus-Light'
+    if win_use_light_theme():
+        theme_name = 'Windows-10-3.2'
+        icon_name = 'Papirus-Dark'
+    settings = Gtk.Settings.get_default()
+    settings.set_property("gtk-theme-name", theme_name)
+    settings.set_property("gtk-icon-theme-name", icon_name)
 
 
 if __name__ == '__main__':
