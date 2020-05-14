@@ -5,7 +5,7 @@ SkyTemple
 
 |build| |pypi-version| |pypi-downloads| |pypi-license| |pypi-pyversions| |discord|
 
-.. |logo| image:: https://raw.githubusercontent.com/SkyTemple/skytemple/master/data/icons/hicolor/256x256/apps/skytemple.png
+.. |logo| image:: https://raw.githubusercontent.com/SkyTemple/skytemple/master/skytemple/data/icons/hicolor/256x256/apps/skytemple.png
 
 .. |build| image:: https://jenkins.riptide.parakoopa.de/buildStatus/icon?job=skytemple%2Fmaster
     :target: https://jenkins.riptide.parakoopa.de/blue/organizations/jenkins/skytemple/activity
