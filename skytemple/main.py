@@ -52,9 +52,8 @@ def main():
         # Load theming under Windows
         _windows_load_theme()
 
-    # TODO: Specify this corretly for packaging! - also in the setup.py!
     itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
-    itheme.append_search_path(os.path.abspath(os.path.join(path, "..", "data", "icons")))
+    itheme.append_search_path(os.path.abspath(os.path.join(path, "data", "icons")))
     itheme.rescan_if_needed()
 
     # Load Builder and Window
