@@ -4920,11 +4920,12 @@ are used for the image data on Layer 1 and 2.</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
-                  <object class="GtkMenuItem">
+                  <object class="GtkMenuItem" id="men_tools_tilequant">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Convert PNG to PMD2 indexed PNG...</property>
+                    <property name="label" translatable="yes">Convert image to PMD2 indexed PNG...</property>
                     <property name="use_underline">True</property>
+                    <signal name="activate" handler="on_men_tools_tilequant_activate" swapped="no"/>
                   </object>
                 </child>
               </object>

@@ -22,6 +22,7 @@ from threading import current_thread
 import gi
 import logging
 
+from skytemple.controller.tilequant import TilequantController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.controller_loader import load_controller
 from skytemple.core.module_controller import AbstractController
@@ -42,17 +43,17 @@ logger = logging.getLogger(__name__)
 
 class MainController:
 
-    _main_window = None
+    _instance: 'MainController' = None
 
     @classmethod
     def window(cls):
         """Utility method to get main window from modules"""
-        return cls._main_window
+        return cls._instance.window
 
     def __init__(self, builder: Builder, window: Window):
         self.builder = builder
         self.window = window
-        self.__class__._main_window = window
+        self.__class__._instance = self
 
         self.settings = SkyTempleSettingsStore()
         self.recent_files = self.settings.get_recent_files()
@@ -81,6 +82,8 @@ class MainController:
         self._load_recent_files()
         self._connect_item_views()
         self._configure_error_view()
+
+        self.tilequant_controller = TilequantController(self.window, self.builder)
 
     def on_destroy(self, *args):
         logger.debug('Window destroyed. Ending task runner.')
@@ -329,6 +332,10 @@ class MainController:
     def gtk_widget_hide_on_delete(self, w: Gtk.Widget, *args):
         w.hide_on_delete()
         return True
+
+    @classmethod
+    def show_tilequant_dialog(cls, num_pals=16, num_colors=16):
+        cls._instance.tilequant_controller.run(num_pals, num_colors)
 
     def _load_position_and_size(self):
         # Load window sizes

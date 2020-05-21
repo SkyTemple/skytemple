@@ -301,6 +301,9 @@ class BgController(AbstractController):
     def on_men_palettes_ani_edit_activate(self, *args):
         self.menu_controller.on_men_palettes_ani_edit_activate()
 
+    def on_men_tools_tilequant_activate(self, *args):
+        MainController.show_tilequant_dialog(14, 16)
+
     def _init_chunk_imgs(self):
         """(Re)-draw the chunk images"""
         if self.bpc.number_of_layers > 1:
