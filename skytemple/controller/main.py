@@ -26,12 +26,13 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.controller_loader import load_controller
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
+from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified
 
 gi.require_version('Gtk', '3.0')
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, GLib
 from gi.repository.Gtk import *
 
 main_thread = current_thread()
@@ -53,6 +54,9 @@ class MainController:
         self.window = window
         self.__class__._main_window = window
 
+        self.settings = SkyTempleSettingsStore()
+        self.recent_files = self.settings.get_recent_files()
+
         # Created on demand
         self._loading_dialog: Dialog = None
         self._main_item_list: TreeView = None
@@ -69,6 +73,7 @@ class MainController:
         self._current_view_module = None
         self._current_view_controller_class = None
         self._current_view_item_id = None
+        self._resize_timeout_id = None
 
         self._load_position_and_size()
         self._configure_csd()
@@ -76,9 +81,6 @@ class MainController:
         self._load_recent_files()
         self._connect_item_views()
         self._configure_error_view()
-
-        ### DEBUG
-        #self._open_file('/home/marco/austausch/dev/skytemple/skyworkcopy_edit.nds')
 
     def on_destroy(self, *args):
         logger.debug('Window destroyed. Ending task runner.')
@@ -156,6 +158,19 @@ class MainController:
         model, treeiter = selection.get_selected()
         if treeiter is not None and model is not None:
             self._open_file(model[treeiter][0])
+            self.builder.get_object('open_menu').hide()
+
+    def on_main_window_configure_event(self, *args):
+        """Save the window size and position to the settings store"""
+        # We delay handling this, to make sure we only handle it when the user is done resizing/moving.
+        if self._resize_timeout_id is not None:
+            GLib.source_remove(self._resize_timeout_id)
+        self._resize_timeout_id = GLib.timeout_add_seconds(1, self.on_main_window_configure_event__handle)
+
+    def on_main_window_configure_event__handle(self):
+        self.settings.set_window_position(self.window.get_position())
+        self.settings.set_window_size(self.window.get_size())
+        self._resize_timeout_id = None
 
     def on_file_opened(self):
         """Update the UI after a ROM file has been opened."""
@@ -305,9 +320,13 @@ class MainController:
         return True
 
     def _load_position_and_size(self):
-        # TODO
-        self.window.set_position(Gtk.WindowPosition.CENTER)
-        self.window.resize(900, 600)
+        # Load window sizes
+        window_size = self.settings.get_window_size()
+        if window_size is not None:
+            self.window.resize(*window_size)
+        window_position = self.settings.get_window_position()
+        if window_position is not None:
+            self.window.move(*window_position)
 
     def _configure_csd(self):
         # TODO. Following code disables CSD.
@@ -327,8 +346,7 @@ class MainController:
             #main_window.set_icon_from_file(get_resource_path("icon.png"))
 
     def _load_recent_files(self):
-        # TODO. Also check if all recent files still exist!
-        recent_file_list = []
+        recent_file_list = self.recent_files
 
         sw_header: ScrolledWindow = self.builder.get_object('open_tree_sw')
         sw_header.set_min_content_width(285)
@@ -369,6 +387,15 @@ class MainController:
             )
             logger.debug(f'Opening {filename}.')
             RomProject.open(filename, self)
+            # Add to the list of recent files and save
+            new_recent_files = []
+            for rf in self.recent_files:
+                if rf != filename:
+                    new_recent_files.append(filename)
+            new_recent_files.insert(0, filename)
+            self.recent_files = new_recent_files
+            self.settings.set_recent_files(self.recent_files)
+            # Show loading spinner
             self._loading_dialog.run()
 
     def _check_open_file(self):

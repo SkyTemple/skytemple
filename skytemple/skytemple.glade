@@ -129,6 +129,7 @@
   <object class="GtkWindow" id="main_window">
     <property name="can_focus">False</property>
     <property name="icon_name">skytemple</property>
+    <signal name="configure-event" handler="on_main_window_configure_event" swapped="no"/>
     <signal name="delete-event" handler="on_main_window_delete_event" swapped="no"/>
     <signal name="key-press-event" handler="on_key_press_event" swapped="no"/>
     <child type="titlebar">
