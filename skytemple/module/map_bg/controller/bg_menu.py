@@ -160,8 +160,24 @@ class BgMenuController:
         map_wh_link.connect('state-set', partial(on_map_wh_link_state_set,  self.parent.builder))
 
         resp = dialog.run()
-        # TODO - don't forget to update BPC also
-        # TODO: NOW
+        if resp == ResponseType.OK:
+            try:
+                params = (
+                    int(map_width_chunks.get_text()), int(map_height_chunks.get_text()),
+                    int(map_width_tiles.get_text()), int(map_height_tiles.get_text()),
+                )
+            except ValueError:
+                md = Gtk.MessageDialog(MainController.window(),
+                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                       Gtk.ButtonsType.OK, "Please only enter numbers for the map size.",
+                                       title="Error!")
+                md.set_position(Gtk.WindowPosition.CENTER)
+                md.run()
+                md.destroy()
+            else:
+                self.parent.bma.resize(*params)
+                self.parent.reload_all()
+                self.parent.mark_as_modified()
         dialog.hide()
 
     def on_men_map_export_gif_activate(self):
