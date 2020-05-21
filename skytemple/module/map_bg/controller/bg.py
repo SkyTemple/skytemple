@@ -75,6 +75,7 @@ class BgController(AbstractController):
         self._init_drawer()
         self._init_tab(self.notebook.get_nth_page(self.notebook.get_current_page()))
         self._refresh_metadata()
+        self._init_rest_room_note()
         self.builder.connect_signals(self)
         return self.builder.get_object('editor_map_bg')
 
@@ -568,3 +569,8 @@ class BgController(AbstractController):
         self.drawer.reset(self.bma, self.bpa_durations, self.pal_ani_durations, self.chunks_surfaces)
         self._init_tab(self.notebook.get_nth_page(self.notebook.get_current_page()))
 
+    def _init_rest_room_note(self):
+        """If the data layer of this map contains 0x08, this is probably a rest room"""
+        info_bar = self.builder.get_object('editor_rest_room_note')
+        if self.bma.unknown_data_block is None or not any(v == 8 for v in self.bma.unknown_data_block):
+            info_bar.destroy()
