@@ -19,9 +19,11 @@ from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
-from skytemple.core.ui_utils import recursive_generate_item_store_row_label
+from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.bgp.controller.bgp import BgpController
 from skytemple.module.bgp.controller.main import MainController
+from skytemple_files.common.types.file_types import FileType
+
 BGP_FILE_EXT = 'bgp'
 
 
@@ -52,3 +54,15 @@ class BgpModule(AbstractModule):
             )
 
         recursive_generate_item_store_row_label(self._tree_model[root])
+
+    def mark_as_modified(self, item_id):
+        """Mark a specific bg as modified"""
+        bgp_filename = self.list_of_bgps[item_id]
+        self.project.mark_as_modified(bgp_filename)
+        # Mark as modified in tree
+        row = self._tree_model[self._tree_level_iter[item_id]]
+        recursive_up_item_store_mark_as_modified(row)
+
+    def get_bgp(self, item_id):
+        bgp_filename = self.list_of_bgps[item_id]
+        return self.project.open_file_in_rom(bgp_filename, FileType.BGP)
