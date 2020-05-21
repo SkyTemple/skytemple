@@ -99,6 +99,9 @@ class MapBgModule(AbstractModule):
 
         recursive_generate_item_store_row_label(self._tree_model[root])
 
+    def get_level_entry(self, item_id):
+        return self.bgs.level[item_id]
+
     def get_bma(self, item_id) -> Bma:
         l = self.bgs.level[item_id]
         return self.project.open_file_in_rom(f'{MAP_BG_PATH}{l.bma_name.lower()}.bma', FileType.BMA)

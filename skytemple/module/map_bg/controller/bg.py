@@ -28,6 +28,7 @@ from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
 from skytemple.module.map_bg.controller.bg_menu import BgMenuController
 from skytemple.module.map_bg.drawer import Drawer, DrawerCellRenderer, DrawerInteraction
+from skytemple_files.graphics.bg_list_dat.model import BMA_EXT, BPC_EXT, BPL_EXT, BPA_EXT
 from skytemple_files.graphics.bma.model import MASK_PAL
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 
@@ -76,6 +77,7 @@ class BgController(AbstractController):
         self.notebook = self.builder.get_object('bg_notebook')
         self._init_drawer()
         self._init_tab(self.notebook.get_nth_page(self.notebook.get_current_page()))
+        self._refresh_metadata()
         self.builder.connect_signals(self)
         return self.builder.get_object('editor_map_bg')
 
@@ -453,10 +455,11 @@ class BgController(AbstractController):
         toolbox_box_child_collision = self.builder.get_object('bg_layers_toolbox_collision')
         toolbox_box_child_data = self.builder.get_object('bg_layers_toolbox_data')
 
-        for child in notebook_page.get_children():
-            notebook_page.remove(child)
-        for child in toolbox_box.get_children():
-            toolbox_box.remove(child)
+        if Gtk.Buildable.get_name(notebook_page) != 'metadata':
+            for child in notebook_page.get_children():
+                    notebook_page.remove(child)
+            for child in toolbox_box.get_children():
+                toolbox_box.remove(child)
 
         page_name = Gtk.Buildable.get_name(notebook_page)
         if page_name == 'bg_layer2' and self.bma.number_of_layers < 2:
@@ -536,6 +539,17 @@ class BgController(AbstractController):
             pass
 
         self._update_scales()
+
+    def _refresh_metadata(self):
+        level_entry = self.module.get_level_entry(self.item_id)
+        self.builder.get_object('filename_bma').set_text(level_entry.bma_name + BMA_EXT)
+        self.builder.get_object('filename_bpc').set_text(level_entry.bpc_name + BPC_EXT)
+        self.builder.get_object('filename_bpl').set_text(level_entry.bpl_name + BPL_EXT)
+        for i in range(0, 8):
+            if level_entry.bpa_names[i] is not None:
+                self.builder.get_object(f'filename_bpa{i + 1}').set_text(level_entry.bpa_names[i] + BPA_EXT)
+            else:
+                self.builder.get_object(f'filename_bpa{i + 1}').set_text("n/a")
 
     def _update_scales(self):
         """Update drawers+DrawingArea and iconview+Renderer scales"""
