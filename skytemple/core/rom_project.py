@@ -152,6 +152,11 @@ class RomProject:
     def create_new_file(self, filename, model, file_handler_class: DataHandler[T]):
         """Creates a new file in the ROM and fills it with the model content provided and
         writes the serialized model data there"""
-        create_file_in_rom(self._rom, filename, file_handler_class.serialize(model))
-        self._opened_files[filename] = model
+        copy_bin = file_handler_class.serialize(model)
+        create_file_in_rom(self._rom, filename, copy_bin)
+        self._opened_files[filename] = file_handler_class.deserialize(copy_bin)
         self._file_handlers[filename] = file_handler_class
+        return copy_bin
+
+    def file_exists(self, filename):
+        return self._rom.filenames.idOf(filename) is not None

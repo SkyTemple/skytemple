@@ -24,11 +24,13 @@ from gi.repository.GObject import TYPE_PYOBJECT
 from gi.repository.GdkPixbuf import Pixbuf, Colorspace
 from gi.repository.Gtk import *
 
+from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
 from skytemple.module.map_bg.controller.bg_menu import BgMenuController
 from skytemple.module.map_bg.drawer import Drawer, DrawerCellRenderer, DrawerInteraction
-from skytemple_files.graphics.bg_list_dat.model import BMA_EXT, BPC_EXT, BPL_EXT, BPA_EXT
+from skytemple_files.common.types.file_types import FileType
+from skytemple_files.graphics.bg_list_dat.model import BMA_EXT, BPC_EXT, BPL_EXT, BPA_EXT, DIR
 from skytemple_files.graphics.bma.model import MASK_PAL
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 
@@ -69,6 +71,17 @@ class BgController(AbstractController):
 
         self.menu_controller = BgMenuController(self)
 
+        # SkyTemple can not correctly edit MapBG files which are shared between multiple MapBGs.
+        # We have to copy them!
+        self._was_asset_copied = False
+        self._perform_asset_copy()
+        if self._was_asset_copied:
+            # Force reload of the models, if we had to copy.
+            self.bma = module.get_bma(item_id)
+            self.bpl = module.get_bpl(item_id)
+            self.bpc = module.get_bpc(item_id)
+            self.bpas = module.get_bpas(item_id)
+
     def get_view(self) -> Widget:
         self.builder = self._get_builder(__file__, 'map_bg.glade')
         self.notebook = self.builder.get_object('bg_notebook')
@@ -77,6 +90,18 @@ class BgController(AbstractController):
         self._refresh_metadata()
         self._init_rest_room_note()
         self.builder.connect_signals(self)
+        if self._was_asset_copied:
+                md = Gtk.MessageDialog(MainController.window(),
+                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                       Gtk.ButtonsType.OK, f"This map background shared some asset files with other "
+                                                           f"map backgrounds.\n"
+                                                           f"SkyTemple can't edit shared files, so "
+                                                           f"those assets were copied.",
+                                       title="SkyTemple - Notice")
+                md.run()
+                md.destroy()
+                self.module.mark_as_modified(self.item_id)
+                self.module.mark_level_list_as_modified()
         return self.builder.get_object('editor_map_bg')
 
     def on_bg_notebook_switch_page(self, notebook, page, *args):
@@ -575,3 +600,46 @@ class BgController(AbstractController):
         info_bar = self.builder.get_object('editor_rest_room_note')
         if self.bma.unknown_data_block is None or not any(v == 8 for v in self.bma.unknown_data_block):
             info_bar.destroy()
+
+    def _perform_asset_copy(self):
+        """Check if assets need to be copied, and if so do so."""
+        map_list = self.module.bgs
+        entry = self.module.get_level_entry(self.item_id)
+        if map_list.find_bma(entry.bma_name) > 1:
+            self._was_asset_copied = True
+            new_name, new_rom_filename = self._find_new_name(entry.bma_name, BMA_EXT)
+            self.module.project.create_new_file(new_rom_filename,
+                                                self.bma, FileType.BMA)
+            entry.bma_name = new_name
+        if map_list.find_bpl(entry.bpl_name) > 1:
+            self._was_asset_copied = True
+            new_name, new_rom_filename = self._find_new_name(entry.bpl_name, BPL_EXT)
+            self.module.project.create_new_file(new_rom_filename,
+                                                self.bpl, FileType.BPL)
+            entry.bpl_name = new_name
+        if map_list.find_bpc(entry.bpc_name) > 1:
+            self._was_asset_copied = True
+            new_name, new_rom_filename = self._find_new_name(entry.bpc_name, BPC_EXT)
+            self.module.project.create_new_file(new_rom_filename,
+                                                self.bpc, FileType.BPC)
+            entry.bpc_name = new_name
+        for bpa_id, bpa in enumerate(entry.bpa_names):
+            if bpa is not None:
+                if map_list.find_bpa(bpa) > 1:
+                    self._was_asset_copied = True
+                    new_name, new_rom_filename = self._find_new_name(bpa, BPA_EXT)
+                    self.module.project.create_new_file(new_rom_filename,
+                                                        self.bpas[bpa_id], FileType.BPA)
+                    entry.bpa_names[bpa_id] = new_name
+
+    def _find_new_name(self, name_upper, ext):
+        """Tries to find a free new name to place in the ROM."""
+        if name_upper[-1].isdigit():
+            # Is already a digit, add one
+            try_name = name_upper[:-1] + str(int(name_upper[-1]) + 1)
+        else:
+            try_name = f"{name_upper}1"
+        try_rom_filename = f"{DIR}/{try_name.lower()}{ext}"
+        if self.module.project.file_exists(try_rom_filename):
+            return self._find_new_name(try_name, ext)
+        return try_name, try_rom_filename
