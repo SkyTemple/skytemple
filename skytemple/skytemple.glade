@@ -303,10 +303,9 @@
                             <property name="rules_hint">True</property>
                             <property name="search_column">1</property>
                             <property name="enable_tree_lines">True</property>
+                            <signal name="button-press-event" handler="on_main_item_list_button_press_event" swapped="no"/>
                             <child internal-child="selection">
-                              <object class="GtkTreeSelection">
-                                <signal name="changed" handler="on_main_item_list_selection_changed" swapped="no"/>
-                              </object>
+                              <object class="GtkTreeSelection"/>
                             </child>
                           </object>
                         </child>

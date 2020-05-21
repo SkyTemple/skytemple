@@ -239,26 +239,29 @@ class MainController:
         md.run()
         md.destroy()
 
-    def on_main_item_list_selection_changed(self, selection: TreeSelection):
+    def on_main_item_list_button_press_event(self, tree: TreeView, event: Gdk.Event):
         """Handle click on item: Switch view"""
         assert current_thread() == main_thread
-        model, treeiter = selection.get_selected()
-        if model is not None and treeiter is not None and RomProject.get_current() is not None:
-            logger.debug('View selected. Locking and showing Loader.')
-            self._lock_trees()
-            selected_node = model[treeiter]
-            self._init_window_before_view_load(model[treeiter])
-            # Show loading stack page in editor stack
-            self._editor_stack.set_visible_child(self.builder.get_object('es_loading'))
-            # Set current view values for later check (if race conditions between fast switching)
-            self._current_view_module = selected_node[2]
-            self._current_view_controller_class = selected_node[3]
-            self._current_view_item_id = selected_node[4]
-            # Fully load the view and the controller
-            AsyncTaskRunner.instance().run_task(load_controller(
-                self._current_view_module, self._current_view_controller_class, self._current_view_item_id,
-                self
-            ))
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
+            model, treeiter = tree.get_selection().get_selected()
+            if model is not None and treeiter is not None and RomProject.get_current() is not None:
+                logger.debug('View selected. Locking and showing Loader.')
+                self._lock_trees()
+                selected_node = model[treeiter]
+                self._init_window_before_view_load(model[treeiter])
+                # Show loading stack page in editor stack
+                self._editor_stack.set_visible_child(self.builder.get_object('es_loading'))
+                # Set current view values for later check (if race conditions between fast switching)
+                self._current_view_module = selected_node[2]
+                self._current_view_controller_class = selected_node[3]
+                self._current_view_item_id = selected_node[4]
+                # Fully load the view and the controller
+                AsyncTaskRunner.instance().run_task(load_controller(
+                    self._current_view_module, self._current_view_controller_class, self._current_view_item_id,
+                    self
+                ))
+                # Expand the node
+                tree.expand_row(model.get_path(treeiter), False)
 
     def on_view_loaded(
             self, module: AbstractModule, controller: AbstractController, item_id: int
