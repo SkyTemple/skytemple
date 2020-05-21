@@ -15,8 +15,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-from skytemple.core.module_controller import AbstractController
+from skytemple.core.module_controller import NotImplementedController
 
 
-class SubEntryController(AbstractController):
+class SubEntryController(NotImplementedController):
     pass

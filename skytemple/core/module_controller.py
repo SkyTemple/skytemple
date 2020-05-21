@@ -40,3 +40,11 @@ class AbstractController(ABC):
         builder = Gtk.Builder()
         builder.add_from_file(os.path.join(path, glade_file))
         return builder
+
+
+class NotImplementedController(AbstractController):
+    def __init__(self, module: AbstractModule, item_id: int):
+        pass
+
+    def get_view(self) -> Widget:
+        return Gtk.Label.new("(This view is not implemented)")
