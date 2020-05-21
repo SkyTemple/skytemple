@@ -297,6 +297,13 @@ class MainController:
         self._search_text = search.get_text()
         self._main_item_filter.refilter()
 
+    def on_settings_about_clicked(self, *args):
+        self.builder.get_object("about_dialog").run()
+
+    def gtk_widget_hide_on_delete(self, w: Gtk.Widget, *args):
+        w.hide_on_delete()
+        return True
+
     def _load_position_and_size(self):
         # TODO
         self.window.set_position(Gtk.WindowPosition.CENTER)

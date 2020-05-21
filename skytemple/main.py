@@ -98,14 +98,13 @@ def main():
 
 def _windows_load_theme():
     from skytemple_files.common.platform_utils.win import win_use_light_theme
+    settings = Gtk.Settings.get_default()
     theme_name = 'Windows-10-Dark-3.2-dark'
-    icon_name = 'Papirus-Light'
     if win_use_light_theme():
         theme_name = 'Windows-10-3.2'
-        icon_name = 'Papirus-Dark'
-    settings = Gtk.Settings.get_default()
+    else:
+        settings.set_property("gtk-application-prefer-dark-theme", True)
     settings.set_property("gtk-theme-name", theme_name)
-    settings.set_property("gtk-icon-theme-name", icon_name)
 
 
 if __name__ == '__main__':

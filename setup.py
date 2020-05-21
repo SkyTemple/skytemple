@@ -1,3 +1,5 @@
+import os
+
 from setuptools import setup, find_packages
 
 # README read-in
@@ -6,6 +8,17 @@ this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 # END README read-in
+
+
+def recursive_pkg_files(file_ext):
+    directory = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'skytemple')
+    paths = []
+    for (path, directories, filenames) in os.walk(directory):
+        for filename in filenames:
+            if filename.endswith(file_ext):
+                paths.append(os.path.relpath(os.path.join('..', path, filename), directory))
+    return paths
+
 
 setup(
     name='skytemple',
@@ -30,7 +43,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8'
     ],
-    package_data={'skytemple': ['*.css', '**/*.css', '*.glade', '**/*.glade', 'data/*/*/*/*/*']},
+    package_data={'skytemple': ['*.css', 'data/*/*/*/*/*'] + recursive_pkg_files('.glade')},
     entry_points='''
         [skytemple.module]
         bgp=          skytemple.module.bgp.module:BgpModule

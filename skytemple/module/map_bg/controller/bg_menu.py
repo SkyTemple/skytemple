@@ -22,7 +22,10 @@ from collections import OrderedDict
 from functools import partial
 from typing import TYPE_CHECKING
 
-from PIL import Image
+try:
+    from PIL import Image
+except ImportError:
+    from pil import Image
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
 from natsort import ns, natsorted
