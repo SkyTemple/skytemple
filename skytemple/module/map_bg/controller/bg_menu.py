@@ -47,6 +47,8 @@ class BgMenuController:
         self.parent = bg
 
     def on_men_map_settings_activate(self):
+        bma = self.parent.bma
+        bpc = self.parent.bpc
         dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_settings')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
@@ -61,12 +63,60 @@ class BgMenuController:
         has_data_layer: Gtk.Switch = self.parent.builder.get_object(
             'settings_has_data_layer'
         )
-        number_layers_adjustment.set_value(self.parent.bma.number_of_layers)
-        number_collision_adjustment.set_value(self.parent.bma.number_of_collision_layers)
-        has_data_layer.set_active(self.parent.bma.unk6 > 0)
+        number_layers_adjustment.set_value(bma.number_of_layers)
+        number_collision_adjustment.set_value(bma.number_of_collision_layers)
+        has_data_layer.set_active(bma.unk6 > 0)
 
         resp = dialog.run()
-        # TODO - don't forget to update BPC also
+        if resp == ResponseType.OK:
+            has_a_change = False
+            number_layers = number_layers_adjustment.get_value()
+            if number_layers > 1 and bma.number_of_layers <= 1:
+                # A LAYER WAS ADDED
+                has_a_change = True
+                bma.add_upper_layer()
+                bpc.add_upper_layer()
+            elif number_layers <= 1 and bma.number_of_layers > 1:
+                # A LAYER WAS REMOVE
+                has_a_change = True
+                bma.remove_upper_layer()
+                bpc.remove_upper_layer()
+            number_col_layers = number_collision_adjustment.get_value()
+            if number_col_layers > 1 and bma.number_of_collision_layers <= 0:
+                # COLLISION 1 WAS ADDED
+                has_a_change = True
+                bma.number_of_collision_layers = 1
+                bma.collision = [False for _ in range(0, bma.map_width_camera * bma.map_height_camera)]
+            if number_col_layers > 1 and bma.number_of_collision_layers <= 1:
+                # COLLISION 2 WAS ADDED
+                has_a_change = True
+                bma.number_of_collision_layers = 2
+                bma.collision2 = [False for _ in range(0, bma.map_width_camera * bma.map_height_camera)]
+            if number_col_layers <= 1 and bma.number_of_collision_layers > 1:
+                # COLLISION 2 WAS REMOVED
+                has_a_change = True
+                bma.number_of_collision_layers = 1
+                bma.collision2 = None
+            if number_col_layers <= 0 and bma.number_of_collision_layers > 0:
+                # COLLISION 1 WAS REMOVED
+                has_a_change = True
+                bma.number_of_collision_layers = 0
+                bma.collision = None
+            has_data_layer_now = has_data_layer.get_active()
+            if has_data_layer_now and not bma.unk6:
+                # DATA LAYER WAS ADDED
+                has_a_change = True
+                bma.unk6 = True
+                bma.unknown_data_block = [0 for _ in range(0, bma.map_width_camera * bma.map_height_camera)]
+            if not has_data_layer_now and bma.unk6:
+                # DATA LAYER WAS REMOVED
+                has_a_change = True
+                bma.unk6 = False
+                bma.unknown_data_block = None
+            
+            if has_a_change:
+                self.parent.reload_all()
+                self.parent.mark_as_modified()
         dialog.hide()
 
     def on_men_map_width_height_activate(self):
@@ -111,6 +161,7 @@ class BgMenuController:
 
         resp = dialog.run()
         # TODO - don't forget to update BPC also
+        # TODO: NOW
         dialog.hide()
 
     def on_men_map_export_gif_activate(self):
