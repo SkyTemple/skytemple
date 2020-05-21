@@ -20,12 +20,13 @@ Tile based instead of chunk based.
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 from enum import Enum, auto
-from typing import List, Union, Tuple
+from typing import List, Union, Tuple, Iterable
 
 from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
 from gi.repository.Gtk import Widget, CellRendererState
 
+from skytemple.module.map_bg.animation_context import AnimationContext
 from skytemple_files.common.tiled_image import TilemapEntry
 from skytemple_files.graphics.bma.model import Bma
 import cairo
@@ -39,7 +40,7 @@ class DrawerTiled:
     def __init__(
             self, draw_area: Widget, tile_mappings: Union[None, List[TilemapEntry]],
             bpa_durations: int, pal_ani_durations: int,
-            # Format: tile_surfaces[pal][pal_frame][tile_idx][frame]
+            # Format: tile_surfaces[pal][tile_idx][pal_frame][frame]
             tile_surfaces: List[List[List[List[cairo.Surface]]]]
     ):
         """
@@ -49,12 +50,9 @@ class DrawerTiled:
         :param bpa_durations:
         :param tile_surfaces: List of all surfaces
         """
-        # TODO: No BPAs at different speeds supported at the moment
-        # TODO: No BPL animations at different speeds supported at the moment
         self.draw_area = draw_area
 
         self.tile_mappings = tile_mappings
-        self.tile_surfaces = tile_surfaces
 
         self.tiling_width = 3
         self.tiling_height = 3
@@ -62,15 +60,7 @@ class DrawerTiled:
         if tile_mappings:
             self.set_tile_mappings(tile_mappings)
 
-        self.bpa_durations = bpa_durations
-        self.pal_ani_durations = pal_ani_durations
-
-        # TODO
-        self.frames_pal = len(tile_surfaces[0])
-
-        self.current_ani_pal = 0
-        self.current_ani_layer = 0
-        self.frame_counter = 0
+        self.animation_context = AnimationContext(tile_surfaces, bpa_durations, pal_ani_durations)
 
         self.scale = 1
 
@@ -105,7 +95,7 @@ class DrawerTiled:
             # XXX: Gtk doesn't remove the widget on switch sometimes...
             self.draw_area.destroy()
             return False
-        self._adv_frames()
+        self.animation_context.advance()
         self.draw_area.queue_draw()
         return self.drawing_is_active
 
@@ -123,11 +113,12 @@ class DrawerTiled:
 
         matrix_x_flip = cairo.Matrix(-1, 0, 0, 1, BPC_TILE_DIM, 0)
         matrix_y_flip = cairo.Matrix(1, 0, 0, -1, 0, BPC_TILE_DIM)
+        tiles_for_pals = self.animation_context.current()
         for i, mapping in enumerate(self.tile_mappings):
+            tiles_for_frame = tiles_for_pals[mapping.pal_idx]
             tile_at_pos = mapping.idx
-            if 0 < tile_at_pos < len(self.tile_surfaces[mapping.pal_idx][self.current_ani_pal]):
-                frames_for_tile = self.tile_surfaces[mapping.pal_idx][self.current_ani_pal][tile_at_pos]
-                tile = frames_for_tile[self.current_ani_layer % len(frames_for_tile)]
+            if 0 < tile_at_pos < len(tiles_for_frame):
+                tile = tiles_for_frame[tile_at_pos]
                 if mapping.flip_x:
                     ctx.transform(matrix_x_flip)
                 if mapping.flip_y:
@@ -145,22 +136,6 @@ class DrawerTiled:
             else:
                 # Move to next tile in line
                 ctx.translate(BPC_TILE_DIM, 0)
-
-    def _adv_frames(self):
-        # Advance frame if enough time passed
-        if self.bpa_durations > 0:
-            if self.frame_counter % self.bpa_durations == 0:
-                self.current_ani_layer += 1
-
-        if self.pal_ani_durations > 0:
-            if self.frame_counter % self.pal_ani_durations == 0:
-                self.current_ani_pal += 1
-                if self.current_ani_pal >= self.frames_pal:
-                    self.current_ani_pal = 0
-
-        self.frame_counter += 1
-        if self.frame_counter > FRAME_COUNTER_MAX:
-            self.frame_counter = 0
 
 
 class DrawerTiledCellRenderer(DrawerTiled, Gtk.CellRenderer):

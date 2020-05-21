@@ -71,48 +71,52 @@ class ChunkEditorController:
         for pal in range(0, len(self.bpl.palettes)):
             all_bpc_tiles_for_current_pal = self.bpc.tiles_to_pil(self.layer_number, self.bpl.palettes, 1, pal)
             tiles_current_pal = []
-            # For each frame of palette animation...
-            # TODO: This can be massively improved in performance by checking if the palettes actually use
-            #       animation and how many frames!
-            pal_ani_len = len(self.bpl.animation_palette) if self.bpl.has_palette_animation else 1
-            for pal_ani in range(0, pal_ani_len):
-                tiles_current_pal_ani = []
-                # BPC tiles
-                # - have no animations.
-                # Switch out the palette with that from the palette animation
-                if self.bpl.has_palette_animation:
-                    pal_for_frame = itertools.chain.from_iterable(self.bpl.apply_palette_animations(pal_ani))
-                    all_bpc_tiles_for_current_pal.putpalette(pal_for_frame)
-                # For each tile...
-                for tile_idx in range(0, len(self.bpc.layers[self.layer_number].tiles)):
-                    tiles_current_pal_ani.append([pil_to_cairo_surface(
+            self.tile_surfaces.append(tiles_current_pal)
+
+            has_pal_ani = self.bpl.is_palette_affected_by_animation(pal)
+            len_pal_ani = len(self.bpl.animation_palette) if has_pal_ani else 1
+
+            # BPC tiles
+            # For each tile...
+            for tile_idx in range(0, len(self.bpc.layers[self.layer_number].tiles)):
+                # For each frame of palette animation...
+                pal_ani_tile = []
+                tiles_current_pal.append(pal_ani_tile)
+                for pal_ani in range(0, len_pal_ani):
+                    # Switch out the palette with that from the palette animation
+                    if has_pal_ani:
+                        pal_for_frame = itertools.chain.from_iterable(self.bpl.apply_palette_animations(pal_ani))
+                        all_bpc_tiles_for_current_pal.putpalette(pal_for_frame)
+                    pal_ani_tile.append([pil_to_cairo_surface(
                         all_bpc_tiles_for_current_pal.crop(
                             (0, tile_idx * BPC_TILE_DIM, BPC_TILE_DIM, tile_idx * BPC_TILE_DIM + BPC_TILE_DIM)
                         ).convert('RGBA')
                     )])
-
-                # BPA tiles
-                # Have animations
-                start_bpa_idx = 0 if self.layer_number == 0 else 4
-                for bpa in self.bpas[start_bpa_idx:start_bpa_idx+4]:
-                    if bpa is not None:
-                        all_bpa_tiles_for_current_pal = bpa.tiles_to_pil_separate(self.bpl.palettes[pal], 1)
-                        for tile_idx in range(0, bpa.number_of_tiles):
-                            tiles_current_frame = []
+            # BPA tiles
+            # For each BPA...
+            start_bpa_idx = 0 if self.layer_number == 0 else 4
+            for bpa in self.bpas[start_bpa_idx:start_bpa_idx+4]:
+                if bpa is not None:
+                    all_bpa_tiles_for_current_pal = bpa.tiles_to_pil_separate(self.bpl.palettes[pal], 1)
+                    # For each tile...
+                    for tile_idx in range(0, bpa.number_of_tiles):
+                        pal_ani_tile = []
+                        tiles_current_pal.append(pal_ani_tile)
+                        # For each frame of palette animation...
+                        for pal_ani in range(0, len_pal_ani):
+                            bpa_ani_tile = []
+                            pal_ani_tile.append(bpa_ani_tile)
+                            # For each frame of BPA animation...
                             for frame in all_bpa_tiles_for_current_pal:
                                 # Switch out the palette with that from the palette animation
-                                if self.bpl.has_palette_animation:
+                                if has_pal_ani:
+                                    pal_for_frame = itertools.chain.from_iterable(self.bpl.apply_palette_animations(pal_ani))
                                     all_bpc_tiles_for_current_pal.putpalette(pal_for_frame)
-                                tiles_current_frame.append(pil_to_cairo_surface(
+                                bpa_ani_tile.append(pil_to_cairo_surface(
                                     frame.crop(
                                         (0, tile_idx * BPC_TILE_DIM, BPC_TILE_DIM, tile_idx * BPC_TILE_DIM + BPC_TILE_DIM)
                                     ).convert('RGBA')
                                 ))
-                            tiles_current_pal_ani.append(tiles_current_frame)
-
-                tiles_current_pal.append(tiles_current_pal_ani)
-
-            self.tile_surfaces.append(tiles_current_pal)
 
             self.builder.connect_signals(self)
 

@@ -17,18 +17,20 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 from enum import Enum, auto
-from typing import List, Union, Tuple
+from typing import List, Union, Tuple, Iterable
 
 from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
 from gi.repository.Gtk import Widget, CellRendererState
 
+from skytemple.core.mapbg_util.drawer_plugin.grid import GridDrawerPlugin
+from skytemple.core.mapbg_util.drawer_plugin.selection import SelectionDrawerPlugin
+from skytemple.module.map_bg.animation_context import AnimationContext
 from skytemple_files.graphics.bma.model import Bma
 import cairo
 
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 FPS = 60
-FRAME_COUNTER_MAX = 1000000
 
 
 class DrawerInteraction(Enum):
@@ -41,7 +43,8 @@ class DrawerInteraction(Enum):
 class Drawer:
     def __init__(
             self, draw_area: Widget, bma: Union[Bma, None], bpa_durations: int, pal_ani_durations: int,
-            chunks_surfaces: List[List[List[List[cairo.Surface]]]]
+            # chunks_surfaces[layer_number][chunk_idx][palette_animation_frame][frame]
+            chunks_surfaces: List[Iterable[Iterable[List[cairo.Surface]]]]
     ):
         """
         Initialize a drawer...
@@ -50,8 +53,6 @@ class Drawer:
         :param bpa_durations: How many frames to hold a BPA animation tile
         :param chunks_surfaces: Bg controller format chunk surfaces
         """
-        # TODO: No BPAs at different speeds supported at the moment
-        # TODO: No BPL animations at different speeds supported at the moment
         self.draw_area = draw_area
 
         self.reset(bma, bpa_durations, pal_ani_durations, chunks_surfaces)
@@ -75,6 +76,12 @@ class Drawer:
         self.draw_collision1 = False
         self.draw_collision2 = False
         self.draw_data_layer = False
+
+        self.selection_plugin = SelectionDrawerPlugin(BPC_TILE_DIM, BPC_TILE_DIM, self.selection_draw_callback)
+        self.tile_grid_plugin = GridDrawerPlugin(BPC_TILE_DIM, BPC_TILE_DIM)
+        self.chunk_grid_plugin = GridDrawerPlugin(
+            BPC_TILE_DIM * self.tiling_width, BPC_TILE_DIM * self.tiling_height, color=(0.15, 0.15, 0.15, 0.25)
+        )
 
         self.scale = 1
 
@@ -105,17 +112,7 @@ class Drawer:
             self.collision2 = None
             self.data_layer = None
 
-        self.bpa_durations = bpa_durations
-        self.pal_ani_durations = pal_ani_durations
-
-        # TODO
-        self.frames_pal = len(chunks_surfaces[0])
-        self.frames_layer = [len(layer[0]) for layer in chunks_surfaces]
-        self.chunks = chunks_surfaces
-
-        self.current_ani_pal = 0
-        self.current_ani_layer = [0 for _ in chunks_surfaces]
-        self.frame_counter = 0
+        self.animation_context = AnimationContext(chunks_surfaces, bpa_durations, pal_ani_durations)
 
     def start(self):
         """Start drawing on the DrawingArea"""
@@ -135,7 +132,7 @@ class Drawer:
             # XXX: Gtk doesn't remove the widget on switch sometimes...
             self.draw_area.destroy()
             return False
-        self._adv_frames()
+        self.animation_context.advance()
         self.draw_area.queue_draw()
         return self.drawing_is_active
 
@@ -157,12 +154,11 @@ class Drawer:
         ctx.fill()
 
         # Layers
-        for layer_idx, layer_frame_idx in enumerate(self.current_ani_layer):
+        for layer_idx, chunks_at_frame in enumerate(self.animation_context.current()):
             if self.show_only_edited_layer and layer_idx != self.edited_layer:
                 continue
             current_layer_mappings = self.mappings[layer_idx]
             for i, chunk_at_pos in enumerate(current_layer_mappings):
-                chunks_at_frame = self.chunks[layer_idx][self.current_ani_pal][layer_frame_idx]
                 if 0 < chunk_at_pos < len(chunks_at_frame):
                     chunk = chunks_at_frame[chunk_at_pos]
                     ctx.set_source_surface(chunk, 0, 0)
@@ -187,7 +183,7 @@ class Drawer:
 
             if (self.edited_layer != -1 and layer_idx < 1 and layer_idx != self.edited_layer) \
                 or (layer_idx == 1 and self.dim_layers) \
-                or (layer_idx == 0 and len(self.frames_layer) < 2 and self.dim_layers):
+                or (layer_idx == 0 and self.animation_context.num_layers < 2 and self.dim_layers):
                 # For Layer 0 if not the current edited: Draw dark rectangle
                 # or for layer 1 if dim layers
                 # ...or for layer 0 if dim layers and no second layer
@@ -250,121 +246,49 @@ class Drawer:
             if do_translates:
                 ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)
 
-        # Selection
         size_w, size_h = self.draw_area.get_size_request()
-        if self.mouse_x < size_w and self.mouse_y < size_h:
-            if self.interaction_mode == DrawerInteraction.CHUNKS:
-                layer_frame_idx = self.current_ani_layer[self.edited_layer]
-                chunks_at_frame = self.chunks[self.edited_layer][self.current_ani_pal][layer_frame_idx]
-                # Background
-                ctx.set_source_rgba(0, 0, 1, 0.3)
-                ctx.rectangle(
-                    self.mouse_x - 3, self.mouse_y - 3,
-                    self.tiling_width * BPC_TILE_DIM + 6,
-                    self.tiling_height * BPC_TILE_DIM + 6
-                )
-                ctx.fill()
-                # Selected Chunk
-                ctx.set_source_surface(chunks_at_frame[self.interaction_chunks_selected_id], self.mouse_x, self.mouse_y)
-                ctx.get_source().set_filter(cairo.Filter.NEAREST)
-                ctx.paint()
-            elif self.interaction_mode == DrawerInteraction.COL:
-                # Background
-                ctx.set_source_rgba(0, 0, 1, 0.3)
-                ctx.rectangle(
-                    self.mouse_x - 3, self.mouse_y - 3,
-                    BPC_TILE_DIM + 6,
-                    BPC_TILE_DIM + 6
-                )
-                ctx.fill()
-                if self.interaction_col_solid:
-                    ctx.set_source_rgba(1, 0, 0, 1)
-                    ctx.rectangle(
-                        self.mouse_x, self.mouse_y,
-                        BPC_TILE_DIM,
-                        BPC_TILE_DIM
-                    )
-                    ctx.fill()
-            elif self.interaction_mode == DrawerInteraction.DAT:
-                # Background
-                ctx.set_source_rgba(0, 0, 1, 0.3)
-                ctx.rectangle(
-                    self.mouse_x - 3, self.mouse_y - 3,
-                    BPC_TILE_DIM + 6,
-                    BPC_TILE_DIM + 6
-                )
-                ctx.fill()
-                if self.interaction_dat_value > 0:
-                    ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
-                    ctx.set_font_size(6)
-                    ctx.set_source_rgb(1, 1, 1)
-                    ctx.move_to(self.mouse_x, self.mouse_y + BPC_TILE_DIM - 2)
-                    ctx.show_text(f"{self.interaction_dat_value:02x}")
+        # Selection
+        if self.interaction_mode == DrawerInteraction.CHUNKS:
+            self.selection_plugin.set_size(self.tiling_width * BPC_TILE_DIM, self.tiling_height * BPC_TILE_DIM)
+        else:
+            self.selection_plugin.set_size(BPC_TILE_DIM, BPC_TILE_DIM)
+        self.selection_plugin.draw(ctx, size_w, size_h, self.mouse_x, self.mouse_y)
 
         # Tile Grid
         if self.draw_tile_grid:
-            ctx.set_line_width(1)
-            ctx.set_source_rgba(0.2, 0.2, 0.2, 0.25)
-            for i in range(0, self.width_in_tiles * self.height_in_tiles):
-                ctx.rectangle(
-                    0, 0,
-                    BPC_TILE_DIM,
-                    BPC_TILE_DIM
-                )
-                ctx.stroke()
-                if (i + 1) % self.width_in_tiles == 0:
-                    # Move to beginning of next line
-                    if do_translates:
-                        ctx.translate(-BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM)
-                else:
-                    # Move to next tile in line
-                    if do_translates:
-                        ctx.translate(BPC_TILE_DIM, 0)
-            # Move back to beginning
-            if do_translates:
-                ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)
+            self.tile_grid_plugin.draw(ctx, size_w, size_h, self.mouse_x, self.mouse_y)
 
         # Chunk Grid
         if self.draw_chunk_grid:
-            ctx.set_line_width(1)
-            ctx.set_source_rgba(0.15, 0.15, 0.15, 0.25)
-            for i in range(0, self.width_in_chunks * self.height_in_chunks):
+            self.chunk_grid_plugin.draw(ctx, size_w, size_h, self.mouse_x, self.mouse_y)
+
+    def selection_draw_callback(self, ctx: cairo.Context, x: int, y: int):
+        if self.interaction_mode == DrawerInteraction.CHUNKS:
+            # Draw a chunk
+            chunks_at_frame = self.animation_context.current()[self.edited_layer]
+            ctx.set_source_surface(
+                chunks_at_frame[self.interaction_chunks_selected_id], x, y
+            )
+            ctx.get_source().set_filter(cairo.Filter.NEAREST)
+            ctx.paint()
+        elif self.interaction_mode == DrawerInteraction.COL:
+            # Draw collision
+            if self.interaction_col_solid:
+                ctx.set_source_rgba(1, 0, 0, 1)
                 ctx.rectangle(
-                    0, 0,
-                    chunk_width,
-                    chunk_height
+                    x, y,
+                    BPC_TILE_DIM,
+                    BPC_TILE_DIM
                 )
-                ctx.stroke()
-                if (i + 1) % self.width_in_chunks == 0:
-                    # Move to beginning of next line
-                    if do_translates:
-                        ctx.translate(-chunk_width * (self.width_in_chunks - 1), chunk_height)
-                else:
-                    # Move to next tile in line
-                    if do_translates:
-                        ctx.translate(chunk_width, 0)
-            # Move back to beginning
-            if do_translates:
-                ctx.translate(0, -chunk_height * self.height_in_tiles)
-
-    def _adv_frames(self):
-        # Advance frame if enough time passed
-        if self.bpa_durations > 0:
-            for layer_idx, _ in enumerate(self.current_ani_layer):
-                if self.frame_counter % self.bpa_durations == 0:
-                    self.current_ani_layer[layer_idx] += 1
-                    if self.current_ani_layer[layer_idx] >= self.frames_layer[layer_idx]:
-                        self.current_ani_layer[layer_idx] = 0
-
-        if self.pal_ani_durations > 0:
-            if self.frame_counter % self.pal_ani_durations == 0:
-                self.current_ani_pal += 1
-                if self.current_ani_pal >= self.frames_pal:
-                    self.current_ani_pal = 0
-
-        self.frame_counter += 1
-        if self.frame_counter > FRAME_COUNTER_MAX:
-            self.frame_counter = 0
+                ctx.fill()
+        elif self.interaction_mode == DrawerInteraction.DAT:
+            # Draw data
+            if self.interaction_dat_value > 0:
+                ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+                ctx.set_font_size(6)
+                ctx.set_source_rgb(1, 1, 1)
+                ctx.move_to(x, y + BPC_TILE_DIM - 2)
+                ctx.show_text(f"{self.interaction_dat_value:02x}")
 
     def set_mouse_position(self, x, y):
         self.mouse_x = x

@@ -49,11 +49,8 @@ class BgController(AbstractController):
         self.bpc = module.get_bpc(item_id)
         self.bpas = module.get_bpas(item_id)
 
-        self.chunks_layer0 = None
-        self.chunks_layer1 = None
-
         # Cairo surfaces for each tile in each layer for each frame
-        # chunks_surfaces[layer_number][palette_animation_frame][frame][chunk_idx]
+        # chunks_surfaces[layer_number][chunk_idx][palette_animation_frame][frame]
         self.chunks_surfaces = []
         self.bpa_durations = 0
 
@@ -281,50 +278,43 @@ class BgController(AbstractController):
     def _init_chunk_imgs(self):
         """(Re)-draw the chunk images"""
         if self.bpc.number_of_layers > 1:
-            self.chunks_layer0 = self.bpc.chunks_animated_to_pil(1, self.bpl.palettes, self.bpas, 1)
-            self.chunks_layer1 = self.bpc.chunks_animated_to_pil(0, self.bpl.palettes, self.bpas, 1)
-            number_of_chunks = [self.bpc.layers[1].chunk_tilemap_len, self.bpc.layers[0].chunk_tilemap_len]
+            layer_idxs_bpc = [1, 0]
         else:
-            self.chunks_layer0 = self.bpc.chunks_animated_to_pil(0, self.bpl.palettes, self.bpas, 1)
-            self.chunks_layer1 = None
-            number_of_chunks = [self.bpc.layers[0].chunk_tilemap_len]
-
-        layers = [self.chunks_layer0]
-        if self.chunks_layer1 is not None:
-            layers.append(self.chunks_layer1)
+            layer_idxs_bpc = [0]
 
         self.chunks_surfaces = []
-        chunk_width = self.bma.tiling_width * BPC_TILE_DIM
-        chunk_height = self.bma.tiling_height * BPC_TILE_DIM
-        # For each layer...
-        for layer_idx, layer in enumerate(layers):
-            chunks_current_layer = []
-            # For each frame of palette animation...
-            pal_ani_len = len(self.bpl.animation_palette) if self.bpl.has_palette_animation else 1
-            for pal_ani in range(0, pal_ani_len):
-                chunks_current_pal = []
-                # For each frame of tile animation...
-                for img in layer:
-                    # Switch out the palette with that from the palette animation
-                    if self.bpl.has_palette_animation:
-                        pal_for_frame = itertools.chain.from_iterable(self.bpl.apply_palette_animations(pal_ani))
-                        img.putpalette(pal_for_frame)
-                    # Remove alpha first
-                    img_mask = img.copy()
-                    img_mask.putpalette(MASK_PAL)
-                    img_mask = img_mask.convert('1')
-                    img = img.convert('RGBA')
-                    img.putalpha(img_mask)
 
-                    chunks_current_frame = []
-                    # For each chunk...
-                    for chunk_idx in range(0, number_of_chunks[layer_idx]):
-                        chunks_current_frame.append(pil_to_cairo_surface(
-                            img.crop((0, chunk_idx * chunk_width, chunk_width, chunk_idx * chunk_width + chunk_height))
-                        ))
-                    chunks_current_pal.append(chunks_current_frame)
-                chunks_current_layer.append(chunks_current_pal)
+        # For each layer...
+        for layer_idx, layer_idx_bpc in enumerate(layer_idxs_bpc):
+            chunks_current_layer = []
             self.chunks_surfaces.append(chunks_current_layer)
+            # For each chunk...
+            for chunk_idx in range(0, self.bpc.layers[layer_idx_bpc].chunk_tilemap_len):
+                # For each frame of palette animation... ( applicable for this chunk )
+                pal_ani_frames = []
+                chunks_current_layer.append(pal_ani_frames)
+
+                chunk_data = self.bpc.get_chunk(layer_idx_bpc, chunk_idx)
+                chunk_images = self.bpc.single_chunk_animated_to_pil(layer_idx_bpc, chunk_idx, self.bpl.palettes, self.bpas)
+                has_pal_ani = any(self.bpl.is_palette_affected_by_animation(chunk.pal_idx) for chunk in chunk_data)
+                len_pal_ani = len(self.bpl.animation_palette) if has_pal_ani else 1
+
+                for pal_ani in range(0, len_pal_ani):
+                    # For each frame of tile animation...
+                    bpa_ani_frames = []
+                    pal_ani_frames.append(bpa_ani_frames)
+                    for img in chunk_images:
+                        # Switch out the palette with that from the palette animation
+                        if has_pal_ani:
+                            pal_for_frame = itertools.chain.from_iterable(self.bpl.apply_palette_animations(pal_ani))
+                            img.putpalette(pal_for_frame)
+                        # Remove alpha first
+                        img_mask = img.copy()
+                        img_mask.putpalette(MASK_PAL)
+                        img_mask = img_mask.convert('1')
+                        img = img.convert('RGBA')
+                        img.putalpha(img_mask)
+                        bpa_ani_frames.append(pil_to_cairo_surface(img))
 
             # TODO: No BPAs at different speeds supported at the moment
             self.bpa_durations = 0
@@ -415,7 +405,7 @@ class BgController(AbstractController):
         icon_view.add_attribute(self.current_icon_view_renderer, 'chunkidx', 0)
         icon_view.connect('selection-changed', self.on_current_icon_view_selection_changed)
 
-        for idx in range(0, len(self.chunks_surfaces[layer_number][0][0])):
+        for idx in range(0, len(self.chunks_surfaces[layer_number])):
             store.append([idx])
 
         icon_view.select_path(store.get_path(store.get_iter_first()))
