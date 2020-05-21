@@ -179,16 +179,21 @@ class MainController:
 
         self._init_window_after_rom_load(os.path.basename(RomProject.get_current().filename))
 
-        # TODO: Load root node, ROM
+        # Load root node, ROM
+        rom_module = RomProject.get_current().get_rom_module()
+        rom_module.load_tree_items(self._item_store, None)
+        root_node = rom_module.get_root_node()
+
         # Load item tree items
         try:
-            for module in RomProject.get_current().modules():
-                # TODO: Skip ROM module, add as child of ROM module
-                module.load_tree_items(self._item_store)
-                # TODO: Check multi language support in Strings module, enable language switcher
+            for module in RomProject.get_current().get_modules(False):
+                module.load_tree_items(self._item_store, root_node)
             # TODO: Load settings from ROM for history, bookmarks, etc? - separate module?
 
-            # TODO: Select main ROM item by default
+            # Select & load main ROM item by default
+            selection: TreeSelection = self._main_item_list.get_selection()
+            selection.select_iter(root_node)
+            self.load_view(self._item_store, root_node, self._main_item_list)
         except BaseException as ex:
             self.on_file_opened_error(ex)
             return
@@ -200,7 +205,7 @@ class MainController:
     def on_file_opened_error(self, exception):
         """Handle errors during file openings."""
         assert current_thread() == main_thread
-        logger.debug('Error on file open.')
+        logger.error('Error on file open.', exc_info=exception)
         if self._loading_dialog is not None:
             self._loading_dialog.hide()
             self._loading_dialog = None
@@ -224,7 +229,7 @@ class MainController:
 
     def on_file_saved_error(self, exception):
         """Handle errors during file saving."""
-        logger.debug('Error on save open.')
+        logger.error('Error on save open.', exc_info=exception)
 
         if self._loading_dialog is not None:
             self._loading_dialog.hide()
@@ -245,23 +250,26 @@ class MainController:
         if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
             model, treeiter = tree.get_selection().get_selected()
             if model is not None and treeiter is not None and RomProject.get_current() is not None:
-                logger.debug('View selected. Locking and showing Loader.')
-                self._lock_trees()
-                selected_node = model[treeiter]
-                self._init_window_before_view_load(model[treeiter])
-                # Show loading stack page in editor stack
-                self._editor_stack.set_visible_child(self.builder.get_object('es_loading'))
-                # Set current view values for later check (if race conditions between fast switching)
-                self._current_view_module = selected_node[2]
-                self._current_view_controller_class = selected_node[3]
-                self._current_view_item_id = selected_node[4]
-                # Fully load the view and the controller
-                AsyncTaskRunner.instance().run_task(load_controller(
-                    self._current_view_module, self._current_view_controller_class, self._current_view_item_id,
-                    self
-                ))
-                # Expand the node
-                tree.expand_row(model.get_path(treeiter), False)
+                self.load_view(model, treeiter, tree)
+
+    def load_view(self, model: Gtk.TreeModel, treeiter: Gtk.TreeIter, tree: Gtk.TreeView):
+        logger.debug('View selected. Locking and showing Loader.')
+        self._lock_trees()
+        selected_node = model[treeiter]
+        self._init_window_before_view_load(model[treeiter])
+        # Show loading stack page in editor stack
+        self._editor_stack.set_visible_child(self.builder.get_object('es_loading'))
+        # Set current view values for later check (if race conditions between fast switching)
+        self._current_view_module = selected_node[2]
+        self._current_view_controller_class = selected_node[3]
+        self._current_view_item_id = selected_node[4]
+        # Fully load the view and the controller
+        AsyncTaskRunner.instance().run_task(load_controller(
+            self._current_view_module, self._current_view_controller_class, self._current_view_item_id,
+            self
+        ))
+        # Expand the node
+        tree.expand_row(model.get_path(treeiter), False)
 
     def on_view_loaded(
             self, module: AbstractModule, controller: AbstractController, item_id: int

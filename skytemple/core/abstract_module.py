@@ -16,9 +16,10 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 from abc import ABC, abstractmethod
+from typing import Optional
 
 import pkg_resources
-from gi.repository.Gtk import TreeStore
+from gi.repository.Gtk import TreeStore, TreeIter
 
 SKYTEMPLE_VERSION = pkg_resources.get_distribution("skytemple").version
 
@@ -43,6 +44,6 @@ class AbstractModule(ABC):
         return SKYTEMPLE_VERSION
 
     @abstractmethod
-    def load_tree_items(self, item_store: TreeStore):
+    def load_tree_items(self, item_store: TreeStore, root_node: Optional[TreeIter]):
         """Add the module nodes to the item tree"""
         pass

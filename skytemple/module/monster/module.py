@@ -20,15 +20,15 @@ from gi.repository.Gtk import TreeStore
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label
-from skytemple.module.portrait.controller.main import MainController
-from skytemple.module.portrait.controller.portrait import PortraitController
+from skytemple.module.monster.controller.main import MainController
+from skytemple.module.monster.controller.portrait import PortraitController
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.graphics.kao.model import Kao
 
 PORTRAIT_FILE = 'FONT/kaomado.kao'
 
 
-class PortraitModule(AbstractModule):
+class MonsterModule(AbstractModule):
     @classmethod
     def depends_on(cls):
         return []
@@ -41,9 +41,9 @@ class PortraitModule(AbstractModule):
         self._tree_model = None
         self._tree_level_iter = []
 
-    def load_tree_items(self, item_store: TreeStore):
-        # TODO: Add to rom root node
-        root = item_store.append(None, [
+    def load_tree_items(self, item_store: TreeStore, root_node):
+        # TODO: Rename to 'Pokémon'
+        root = item_store.append(root_node, [
             'system-users', 'Portraits', self, MainController, 0, False, ''
         ])
         self._tree_model = item_store

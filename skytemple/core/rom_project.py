@@ -17,7 +17,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 import logging
-from typing import Union, Iterator, TYPE_CHECKING, Optional
+from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict
 
 from gi.repository import GLib
 from ndspy.rom import NintendoDSRom
@@ -65,7 +65,8 @@ class RomProject:
     def __init__(self, filename: str):
         self.filename = filename
         self._rom: NintendoDSRom = None
-        self._loaded_modules = {}
+        self._rom_module: Optional[AbstractModule] = None
+        self._loaded_modules: Dict[str, AbstractModule] = {}
         # Dict of filenames -> models
         self._opened_files = {}
         # Dict of filenames -> file handler object
@@ -78,11 +79,19 @@ class RomProject:
         self._rom = NintendoDSRom.fromFile(self.filename)
         self._loaded_modules = {}
         for name, module in Modules.all().items():
-            self._loaded_modules[name] = module(self)
+            if name == 'rom':
+                self._rom_module = module(self)
+            else:
+                self._loaded_modules[name] = module(self)
         # TODO: Check ROM module if ROM is actually supported!
 
-    def modules(self) -> Iterator[AbstractModule]:
+    def get_rom_module(self):
+        return self._rom_module
+
+    def get_modules(self, include_rom_module=True) -> Iterator[AbstractModule]:
         """Iterate over loaded modules"""
+        if include_rom_module:
+            return iter(list(self._loaded_modules.values()) + [self._rom_module])
         return iter(self._loaded_modules.values())
 
     def open_file_in_rom(self, file_path_in_rom: str, file_handler_class: DataHandler[T]) -> T:

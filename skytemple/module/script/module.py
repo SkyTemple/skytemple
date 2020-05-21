@@ -49,10 +49,9 @@ class ScriptModule(AbstractModule):
 
         self._tree_model = None
 
-    def load_tree_items(self, item_store: TreeStore):
-        # TODO: Add to rom root node
+    def load_tree_items(self, item_store: TreeStore, root_node):
         # -> Script [main]
-        root = item_store.append(None, [
+        root = item_store.append(root_node, [
             'folder-text', 'Scripts', self, MainController, 0, False, ''
         ])
 

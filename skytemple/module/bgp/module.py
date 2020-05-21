@@ -38,9 +38,8 @@ class BgpModule(AbstractModule):
         self._tree_model = None
         self._tree_level_iter = []
 
-    def load_tree_items(self, item_store: TreeStore):
-        # TODO: Add to rom root node
-        root = item_store.append(None, [
+    def load_tree_items(self, item_store: TreeStore, root_node):
+        root = item_store.append(root_node, [
             'folder-pictures', 'Backgrounds', self, MainController, 0, False, ''
         ])
         self._tree_model = item_store

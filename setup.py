@@ -46,8 +46,8 @@ setup(
     package_data={'skytemple': ['*.css', 'data/*/*/*/*/*'] + recursive_pkg_files('.glade')},
     entry_points='''
         [skytemple.module]
+        rom=          skytemple.module.rom.module:RomModule
         bgp=          skytemple.module.bgp.module:BgpModule
-        portrait=     skytemple.module.portrait.module:PortraitModule
         map_bg=       skytemple.module.map_bg.module:MapBgModule
         script=       skytemple.module.script.module:ScriptModule
         [console_scripts]
@@ -57,6 +57,7 @@ setup(
     #item=         skytemple.module.item.module:ItemModule
     #music=        skytemple.module.music.module:MusicModule
     #sprite=       skytemple.module.sprite.module:SpriteModule
+    #monster=      skytemple.module.monster.module:MonsterModule
     #stats=        skytemple.module.stats.module:StatsModule
     #strings=      skytemple.module.strings.module:StringsModule
 )
