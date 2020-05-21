@@ -15,12 +15,16 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-
+import logging
 import os
 import re
 from collections import OrderedDict
 from functools import partial
 from typing import TYPE_CHECKING
+
+from skytemple_files.common.types.file_types import FileType
+from skytemple_files.graphics.bg_list_dat.model import BPA_EXT, DIR
+from skytemple_files.graphics.bpa.model import BpaFrameInfo
 
 try:
     from PIL import Image
@@ -40,6 +44,8 @@ from skytemple_files.graphics.bpl.model import BplAnimationSpec
 
 if TYPE_CHECKING:
     from skytemple.module.map_bg.controller.bg import BgController
+
+logger = logging.getLogger(__name__)
 
 
 class BgMenuController:
@@ -372,14 +378,19 @@ class BgMenuController:
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
+        bpas_frame_info_entries = []
         for i, bpa in enumerate(self.parent.bpas):
             gui_i = i + 1
-            # TODO: For now disable all enable buttons, because it's not implemented yet
-            # TODO: Keep them disabled later for the second layer, if only one exists.
             enabled = self.parent.builder.get_object(f'bpa_enable{gui_i}')
-            enabled.set_sensitive(False)
+            # If there's no second layer: Disable activating the BPA
+            # TODO: Currently when removing layers, BPAs are not removed. Is that a problem?
+            if self.parent.bma.number_of_layers <= 1 and i > 3:
+                enabled.set_sensitive(False)
             enabled.set_active(bpa is not None)
             dialog.resize(470, 450)
+
+            this_frame_info_entries = []
+            bpas_frame_info_entries.append(this_frame_info_entries)
 
             bpa_duration_box: Gtk.Box = self.parent.builder.get_object(f'bpa_box{gui_i}')
             for child in bpa_duration_box:
@@ -392,7 +403,6 @@ class BgMenuController:
             else:
                 # Fill value for existing BPAs
                 for frame_info in bpa.frame_info:
-                    # TODO: Signal handlers for the enable buttons to re-activate/lock the entries.
                     entry: Gtk.Entry = Gtk.Entry.new()
                     entry.set_input_purpose(Gtk.InputPurpose.NUMBER)
                     entry.set_width_chars(4)
@@ -400,13 +410,69 @@ class BgMenuController:
                     entry.set_text(str(frame_info.duration_per_frame))
                     entry.set_halign(Gtk.Align.START)
                     entry.show()
+                    this_frame_info_entries.append(entry)
                     bpa_duration_box.pack_start(entry, False, True, 5)
 
         resp = dialog.run()
         dialog.hide()
 
         if resp == ResponseType.OK:
-            pass # todo
+            had_errors = False
+            for i, (bpa, bpa_entries) in enumerate(zip(self.parent.bpas, bpas_frame_info_entries)):
+                gui_i = i + 1
+                if bpa is None and self.parent.builder.get_object(f'bpa_enable{gui_i}').get_active():
+                    # HAS TO BE ADDED
+                    map_bg_entry = self.parent.module.get_level_entry(self.parent.item_id)
+                    # Add file
+                    new_bpa_filename = f"{map_bg_entry.bpl_name}{gui_i}"
+                    new_bpa_filename_with_ext = new_bpa_filename.lower() + BPA_EXT
+                    try:
+                        self.parent.module.project.create_new_file(f"{DIR}/{new_bpa_filename_with_ext}",
+                                                                   FileType.BPA.new(), FileType.BPA)
+                    except FileExistsError:
+                        # Hm, okay, then we just re-use this file.
+                        pass
+                    # Add to MapBG list
+                    map_bg_entry.bpa_names[i] = new_bpa_filename
+                    # Refresh controller state
+                    self.parent.bpas = self.parent.module.get_bpas(self.parent.item_id)
+                    new_bpa = self.parent.bpas[i]
+                    # Add to BPC
+                    self.parent.bpc.process_bpa_change(i, new_bpa.number_of_tiles)
+                    self.parent.module.mark_level_list_as_modified()
+                if bpa is not None and not self.parent.builder.get_object(f'bpa_enable{gui_i}').get_active():
+                    # HAS TO BE DELETED
+                    map_bg_entry = self.parent.module.get_level_entry(self.parent.item_id)
+                    # Delete from BPC
+                    self.parent.bpc.process_bpa_change(i, 0)
+                    # Delete from MapBG list
+                    map_bg_entry.bpa_names[i] = None
+                    # Refresh controller state
+                    self.parent.bpas = self.parent.module.get_bpas(self.parent.item_id)
+                    self.parent.module.mark_level_list_as_modified()
+                if bpa is not None:
+                    new_frame_info = []
+                    for entry_i, entry in enumerate(bpa_entries):
+                        try:
+                            number_of_frames = int(entry.get_text())
+                        except ValueError:
+                            number_of_frames = 0
+                            had_errors = True
+                        new_frame_info.append(BpaFrameInfo(number_of_frames, 0))
+                    bpa.frame_info = new_frame_info
+
+            if had_errors:
+                md = Gtk.MessageDialog(MainController.window(),
+                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                       Gtk.ButtonsType.OK, "Some values were invalid (not a number). "
+                                                           "They were replaced with 0.",
+                                       title="Warning!")
+                md.set_position(Gtk.WindowPosition.CENTER)
+                md.run()
+                md.destroy()
+
+            self.parent.reload_all()
+            self.parent.mark_as_modified()
 
     def on_men_tiles_ani_export_activate(self):
         dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_tiles_animated_export')
@@ -471,7 +537,7 @@ class BgMenuController:
                 md.run()
                 md.destroy()
             except Exception as err:
-                # TODO Better exception display
+                logger.error("Error during BPA export", exc_info=err)
                 md = Gtk.MessageDialog(MainController.window(),
                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
                                        Gtk.ButtonsType.OK, str(err),
@@ -490,7 +556,7 @@ class BgMenuController:
             "Import animated tiles (BPA)",
             MainController.window(),
             file_chooser_mode,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
         )
 
         if is_single_mode:
@@ -506,6 +572,7 @@ class BgMenuController:
                     filenames_base = [os.path.basename(fn)]
                     with open(fn, 'rb') as f:
                         active_bpa.pil_to_tiles(Image.open(f))
+                        self.parent.bpc.process_bpa_change(active_bpa_index, active_bpa.number_of_tiles)
                 else:
                     r = re.compile(
                         f"{self.parent.module.bgs.level[self.parent.item_id].bma_name}_bpa{active_bpa_index+1}_\d+\.png",
@@ -516,6 +583,7 @@ class BgMenuController:
                     try:
                         images = [Image.open(h) for h in img_handles]
                         active_bpa.pil_to_tiles_separate(images)
+                        self.parent.bpc.process_bpa_change(active_bpa_index, active_bpa.number_of_tiles)
                     finally:
                         for handle in img_handles:
                             handle.close()
@@ -531,7 +599,7 @@ class BgMenuController:
                 md.run()
                 md.destroy()
             except Exception as err:
-                # TODO Better exception display
+                logger.error("Error during BPA import", exc_info=err)
                 md = Gtk.MessageDialog(MainController.window(),
                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
                                        Gtk.ButtonsType.OK, str(err),

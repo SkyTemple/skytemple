@@ -321,7 +321,7 @@ class BgController(AbstractController):
             self.bpa_durations = 0
             for bpa in self.bpas:
                 if bpa is not None:
-                    single_bpa_duration = max(info.duration_per_frame for info in bpa.frame_info)
+                    single_bpa_duration = max(info.duration_per_frame for info in bpa.frame_info) if len(bpa.frame_info) > 0 else 9999
                     if single_bpa_duration > self.bpa_durations:
                         self.bpa_durations = single_bpa_duration
 
@@ -568,6 +568,7 @@ class BgController(AbstractController):
         self._init_chunk_imgs()
         self.drawer.reset(self.bma, self.bpa_durations, self.pal_ani_durations, self.chunks_surfaces)
         self._init_tab(self.notebook.get_nth_page(self.notebook.get_current_page()))
+        self._refresh_metadata()
 
     def _init_rest_room_note(self):
         """If the data layer of this map contains 0x08, this is probably a rest room"""

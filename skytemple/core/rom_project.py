@@ -26,7 +26,7 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.modules import Modules
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.data_handler import DataHandler, T
-from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder
+from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom
 
 logger = logging.getLogger(__name__)
 
@@ -148,3 +148,10 @@ class RomProject:
 
     def get_rom_folder(self, path):
         return get_rom_folder(self._rom, path)
+
+    def create_new_file(self, filename, model, file_handler_class: DataHandler[T]):
+        """Creates a new file in the ROM and fills it with the model content provided and
+        writes the serialized model data there"""
+        create_file_in_rom(self._rom, filename, file_handler_class.serialize(model))
+        self._opened_files[filename] = model
+        self._file_handlers[filename] = file_handler_class

@@ -94,8 +94,7 @@ class ChunkEditorController:
                     )])
             # BPA tiles
             # For each BPA...
-            start_bpa_idx = 0 if self.layer_number == 0 else 4
-            for bpa in self.bpas[start_bpa_idx:start_bpa_idx+4]:
+            for bpa in self.bpas:
                 if bpa is not None:
                     all_bpa_tiles_for_current_pal = bpa.tiles_to_pil_separate(self.bpl.palettes[pal], 1)
                     # For each tile...

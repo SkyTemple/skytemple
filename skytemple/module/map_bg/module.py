@@ -138,3 +138,6 @@ class MapBgModule(AbstractModule):
         # Mark as modified in tree
         row = self._tree_model[self._tree_level_iter[item_id]]
         recursive_up_item_store_mark_as_modified(row)
+
+    def mark_level_list_as_modified(self):
+        self.project.mark_as_modified(MAP_BG_LIST)
