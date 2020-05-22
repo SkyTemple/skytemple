@@ -14,9 +14,10 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-
+import logging
 from typing import Union, List
 
+from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
@@ -26,6 +27,7 @@ from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
 from skytemple.module.map_bg.controller.bg import BgController
 from skytemple.module.map_bg.controller.folder import FolderController
 from skytemple.module.map_bg.controller.main import MainController
+from skytemple.module.map_bg.script.add_created_with_logo import AddCreatedWithLogo
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.graphics.bg_list_dat.model import BgList
 from skytemple_files.graphics.bma.model import Bma
@@ -35,6 +37,7 @@ from skytemple_files.graphics.bpl.model import Bpl
 
 MAP_BG_PATH = 'MAP_BG/'
 MAP_BG_LIST = MAP_BG_PATH + 'bg_list.dat'
+logger = logging.getLogger(__name__)
 
 
 class MapBgModule(AbstractModule):
@@ -141,3 +144,39 @@ class MapBgModule(AbstractModule):
 
     def mark_level_list_as_modified(self):
         self.project.mark_as_modified(MAP_BG_LIST)
+
+    def add_created_with_logo(self):
+        """Add a 'Created with SkyTemple' logo to S05P01A."""
+        try:
+            bma = self.project.open_file_in_rom(f'{MAP_BG_PATH}s05p01a.bma', FileType.BMA)
+            bpc = self.project.open_file_in_rom(f'{MAP_BG_PATH}s05p01a.bpc', FileType.BPC)
+            bpl = self.project.open_file_in_rom(f'{MAP_BG_PATH}s05p01a.bpl', FileType.BPL)
+
+            AddCreatedWithLogo(bma, bpc, bpl).process()
+
+            self.project.mark_as_modified(f'{MAP_BG_PATH}s05p01a.bma')
+            self.project.mark_as_modified(f'{MAP_BG_PATH}s05p01a.bpc')
+            self.project.mark_as_modified(f'{MAP_BG_PATH}s05p01a.bpl')
+            item_id = -1
+            for i, entry in enumerate(self.bgs.level):
+                if entry.bma_name == 'S05P01A':
+                    item_id = i
+                    break
+            if item_id != -1:
+                row = self._tree_model[self._tree_level_iter[item_id]]
+                recursive_up_item_store_mark_as_modified(row)
+        except BaseException as err:
+            logger.error("Logo add error", exc_info=err)
+            md = Gtk.MessageDialog(None,
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                   Gtk.ButtonsType.OK, str(err))
+            md.set_position(Gtk.WindowPosition.CENTER)
+            md.run()
+            md.destroy()
+        else:
+            md = Gtk.MessageDialog(None,
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                   Gtk.ButtonsType.OK, "Logo added successfully. Thank you!")
+            md.set_position(Gtk.WindowPosition.CENTER)
+            md.run()
+            md.destroy()

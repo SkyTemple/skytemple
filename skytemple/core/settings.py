@@ -33,6 +33,8 @@ KEY_RECENT_3 = 'file3'
 KEY_RECENT_4 = 'file4'
 KEY_RECENT_5 = 'file5'
 
+KEY_ASSISTANT_SHOWN = 'assistant_shown'
+
 KEY_WINDOW_SIZE_X = 'width'
 KEY_WINDOW_SIZE_Y = 'height'
 KEY_WINDOW_POS_X = 'pos_x'
@@ -78,6 +80,18 @@ class SkyTempleSettingsStore:
             self.loaded_config[SECT_RECENT_FILES][KEY_RECENT_4] = recent_files[3]
         if len(recent_files) > 4:
             self.loaded_config[SECT_RECENT_FILES][KEY_RECENT_5] = recent_files[4]
+        self._save()
+
+    def get_assistant_shown(self) -> bool:
+        if SECT_GENERAL in self.loaded_config:
+            if KEY_ASSISTANT_SHOWN in self.loaded_config[SECT_GENERAL]:
+                return int(self.loaded_config[SECT_GENERAL][KEY_ASSISTANT_SHOWN]) > 0
+        return False
+
+    def set_assistant_shown(self, value: bool):
+        if SECT_GENERAL not in self.loaded_config:
+            self.loaded_config[SECT_GENERAL] = {}
+        self.loaded_config[SECT_GENERAL][KEY_ASSISTANT_SHOWN] = '1' if value else '0'
         self._save()
 
     def get_window_size(self) -> Optional[Tuple[int, int]]:

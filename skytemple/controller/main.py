@@ -75,6 +75,7 @@ class MainController:
         self._current_view_controller_class = None
         self._current_view_item_id = None
         self._resize_timeout_id = None
+        self._loaded_map_bg_module = None
 
         self._load_position_and_size()
         self._configure_csd()
@@ -107,6 +108,10 @@ class MainController:
                 # Cancel
                 return True
         return False
+
+    def on_intro_dialog_close(self, assistant: Gtk.Assistant, *args):
+        self.settings.set_assistant_shown(True)
+        assistant.hide()
 
     def on_key_press_event(self, wdg, event):
         ctrl = (event.state & Gdk.ModifierType.CONTROL_MASK)
@@ -191,6 +196,8 @@ class MainController:
         try:
             for module in RomProject.get_current().get_modules(False):
                 module.load_tree_items(self._item_store, root_node)
+                if module.__class__.__name__ == 'MapBgModule':
+                    self._loaded_map_bg_module = module
             # TODO: Load settings from ROM for history, bookmarks, etc? - separate module?
 
             # Select & load main ROM item by default
@@ -204,6 +211,10 @@ class MainController:
         if self._loading_dialog is not None:
             self._loading_dialog.hide()
             self._loading_dialog = None
+
+        # Show the initial assistant window
+        if not self.settings.get_assistant_shown():
+            self.on_settings_show_assistant_clicked()
 
     def on_file_opened_error(self, exception):
         """Handle errors during file openings."""
@@ -325,6 +336,26 @@ class MainController:
         """Filter the main item view using the search field"""
         self._search_text = search.get_text()
         self._main_item_filter.refilter()
+
+    def on_settings_show_assistant_clicked(self, *args):
+        assistant: Gtk.Assistant = self.builder.get_object('intro_dialog')
+        assistant.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
+        assistant.commit()
+        assistant.set_transient_for(self.window)
+        assistant.set_attached_to(self.window)
+        assistant.show_all()
+
+    def on_intro_dialog_created_with_clicked(self, *args):
+        if RomProject.get_current() is None or self._loaded_map_bg_module is None:
+            md = Gtk.MessageDialog(MainController.window(),
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                   Gtk.ButtonsType.OK, "A project must be opened to use this.")
+            md.set_position(Gtk.WindowPosition.CENTER)
+            md.run()
+            md.destroy()
+            return
+        self._loaded_map_bg_module.add_created_with_logo()
+
 
     def on_settings_about_clicked(self, *args):
         self.builder.get_object("about_dialog").run()

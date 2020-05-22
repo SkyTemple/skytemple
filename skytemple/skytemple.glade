@@ -711,6 +711,144 @@ The images created by this tool can be imported for brackgrounds.</property>
     </action-widgets>
   </object>
   <object class="GtkTextBuffer" id="es_error_text_buffer"/>
+  <object class="GtkAssistant" id="intro_dialog">
+    <property name="can_focus">False</property>
+    <property name="modal">True</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="skip_taskbar_hint">True</property>
+    <property name="skip_pager_hint">True</property>
+    <property name="use_header_bar">1</property>
+    <signal name="apply" handler="on_intro_dialog_close" swapped="no"/>
+    <signal name="cancel" handler="on_intro_dialog_close" swapped="no"/>
+    <signal name="close" handler="on_intro_dialog_close" swapped="no"/>
+    <signal name="escape" handler="on_intro_dialog_close" swapped="no"/>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="spacing">20</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixel_size">127</property>
+            <property name="icon_name">skytemple</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="label" translatable="yes">&lt;span size="large"&gt;Welcome to SkyTemple!&lt;/span&gt;
+
+With this tool you can edit various things in ROMs 
+of Pokémon Mystery Dungeon Explorers of Sky.
+
+Please note the following:
+- This is still very early software, please make backups of your
+  ROM. Things &lt;i&gt;will&lt;/i&gt; break.
+- A project directory was created next to the ROM.
+- Please report any issues.</property>
+            <property name="use_markup">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="page_type">intro</property>
+        <property name="complete">True</property>
+        <property name="has_padding">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_top">10</property>
+        <property name="margin_bottom">10</property>
+        <property name="spacing">20</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixel_size">127</property>
+            <property name="icon_name">skytemple</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Can we add a "Created with SkyTemple" message
+ to the logos, that appear when starting the game?
+
+This message will be placed on Layer 2 of map
+background S05P01A. If you don't like it, you can
+easily remove it or customize it.
+
+If you want to do it later, or for another project, 
+you can reopen this dialog, using the menu on 
+the top-right of the main window.</property>
+                <property name="use_markup">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="intro_dialog_created_with">
+                <property name="label" translatable="yes">Add "Created with SkyTemple"</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="halign">start</property>
+                <property name="margin_top">10</property>
+                <signal name="clicked" handler="on_intro_dialog_created_with_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="page_type">confirm</property>
+        <property name="complete">True</property>
+        <property name="has_padding">False</property>
+      </packing>
+    </child>
+  </object>
   <object class="GtkTreeStore" id="item_store">
     <columns>
       <!-- column-name icon -->
@@ -810,6 +948,20 @@ The images created by this tool can be imported for brackgrounds.</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
+          <object class="GtkModelButton" id="settings_show_assistant">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">Show welcome screen</property>
+            <signal name="clicked" handler="on_settings_show_assistant_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkModelButton" id="settings_about">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -820,7 +972,7 @@ The images created by this tool can be imported for brackgrounds.</property>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">0</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>
