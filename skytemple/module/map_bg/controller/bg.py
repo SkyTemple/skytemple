@@ -229,6 +229,9 @@ class BgController(AbstractController):
         if self.current_icon_view_renderer:
             self.current_icon_view_renderer.set_pink_bg(w.get_active())
 
+    def tb_goto_scene(self, w):
+        pass  # TODO: GOTO BUTTONS
+
     def on_men_map_settings_activate(self, *args):
         self.menu_controller.on_men_map_settings_activate()
 

@@ -167,6 +167,9 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="shadow_type">in</property>
+            <signal name="button-press-event" handler="on_bg_draw_sw_button_press_event" swapped="no"/>
+            <signal name="button-release-event" handler="on_bg_draw_sw_button_release_event" swapped="no"/>
+            <signal name="motion-notify-event" handler="on_bg_draw_sw_motion_notify_event" swapped="no"/>
           </object>
           <packing>
             <property name="resize">True</property>

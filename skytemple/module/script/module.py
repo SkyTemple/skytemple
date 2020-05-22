@@ -22,23 +22,21 @@ from gi.repository.Gtk import TreeStore
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label
-from skytemple.module.script.controller.common import CommonController
-from skytemple.module.script.controller.enter import EnterController
-from skytemple.module.script.controller.lsd_entry import LsdEntryController
+from skytemple.module.script.controller.folder import FolderController
 from skytemple.module.script.controller.map import MapController
 from skytemple.module.script.controller.ssa import SsaController
 from skytemple.module.script.controller.ssb import SsbController
 from skytemple.module.script.controller.lsd import LsdController
 from skytemple.module.script.controller.main import MainController
 from skytemple.module.script.controller.sub import SubController
-from skytemple.module.script.controller.sub_entry import SubEntryController
-from skytemple_files.common.script_util import load_script_files, SCRIPT_DIR, UNIONALL_SSB, SSA_EXT, SSS_EXT
+from skytemple_files.common.script_util import load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT
+from skytemple_files.common.types.file_types import FileType
 
 
 class ScriptModule(AbstractModule):
     @classmethod
     def depends_on(cls):
-        return []
+        return ['map_bg']
 
     def __init__(self, rom_project: RomProject):
         """Loads the list of backgrounds for the ROM."""
@@ -52,91 +50,83 @@ class ScriptModule(AbstractModule):
     def load_tree_items(self, item_store: TreeStore, root_node):
         # -> Script [main]
         root = item_store.append(root_node, [
-            'folder-text', 'Scripts', self, MainController, 0, False, ''
+            'folder-templates-symbolic', 'Script Scenes', self, MainController, 0, False, ''
         ])
 
         self._tree_model = item_store
 
         #    -> Common [common]
-        common_root = item_store.append(root, [
-            'folder', 'Common', self,  CommonController, 0, False, ''
+        item_store.append(root, [
+            'text-plain', 'Scripts', self,  SsbController, 0, False, ''
         ])
-        #       -> Master Script (unionall) [ssb]
-        #       -> (others) [ssb]
-        for name in self.script_engine_file_tree['common']:
-            display_name = name
-            if name == UNIONALL_SSB:
-                display_name = f'Master Script ({name})'
-            item_store.append(common_root, [
-                'text-plain', display_name, self,  SsbController, 0, False, ''
+
+        sub_nodes = {
+            'S': item_store.append(root, [
+                'folder-symbolic', 'S - System', self, FolderController, 0, False, ''
+            ]),
+            'T': item_store.append(root, [
+                'folder-symbolic', 'T - Town', self, FolderController, 0, False, ''
+            ]),
+            'D': item_store.append(root, [
+                'folder-symbolic', 'D - Dungeon', self, FolderController, 0, False, ''
+            ]),
+            'G': item_store.append(root, [
+                'folder-symbolic', 'G - Guild', self, FolderController, 0, False, ''
+            ]),
+            'H': item_store.append(root, [
+                'folder-symbolic', 'H - Habitat', self, FolderController, 0, False, ''
+            ]),
+            'P': item_store.append(root, [
+                'folder-symbolic', 'P - Places', self, FolderController, 0, False, ''
+            ]),
+            'V': item_store.append(root, [
+                'folder-symbolic', 'V - Visual', self, FolderController, 0, False, ''
             ])
+        }
+        # Other
+        other = item_store.append(root, [
+            'folder-symbolic', 'Other', self, FolderController, 0, False, ''
+        ])
 
         for i, map_obj in enumerate(self.script_engine_file_tree['maps'].values()):
+            parent = other
+            if map_obj['name'][0] in sub_nodes.keys():
+                parent = sub_nodes[map_obj['name'][0]]
             #    -> (Map Name) [map]
-            map_root = item_store.append(root, [
-                'folder', map_obj['name'], self,  MapController, map_obj['name'], False, ''
+            map_root = item_store.append(parent, [
+                'folder-symbolic', map_obj['name'], self,  MapController, map_obj['name'], False, ''
             ])
 
-            #       -> Enter Scripts [enter]
-            enter_root = item_store.append(map_root, [
-                'folder', 'Enter Scripts', self,  EnterController, 0, False, ''
-            ])
             if map_obj['enter_sse'] is not None:
-                #          -> Map [ssa]
-                item_store.append(enter_root, [
-                    'image', 'Map', self,  SsaController, {'map': map_obj['name'], 'file': map_obj['enter_sse']}, False, ''
+                #          -> Scene [ssa]
+                item_store.append(map_root, [
+                    'folder-templates-symbolic', 'Enter (sse)', self,  SsaController,
+                    {'map': map_obj['name'], 'file': f"{SCRIPT_DIR}/{map_obj['name']}/{map_obj['enter_sse']}"}, False, ''
                 ])
-                #          -> Script X [ssb]
-                for ssb in map_obj['enter_ssbs']:
-                    item_store.append(enter_root, [
-                        'text-plain', f'Script {self._get_fnumber_from_str("enter", ssb)}',
-                        self,  SsbController, {'map': map_obj['name'], 'file': ssb}, False, ''
-                    ])
 
             #       -> Acting Scripts [lsd]
             acting_root = item_store.append(map_root, [
-                'folder', 'Acting Scripts', self,  LsdController, 0, False, ''
+                'folder-symbolic', 'Acting (ssa)', self,  LsdController, 0, False, ''
             ])
             for ssa, ssb in map_obj['ssas']:
                 stem = ssa[:-len(SSA_EXT)]
-                #          -> (name) [lsd_entry]
-                acting_entry = item_store.append(acting_root, [
-                    'folder', stem, self,  LsdEntryController, 0, False, ''
-                ])
-
-                #             -> Map [ssa]
-                item_store.append(acting_entry, [
-                    'image', f'Map',
-                    self, SsaController, {'map': map_obj['name'], 'file': ssa}, False, ''
-                ])
-                #             -> Script [ssb]
-                item_store.append(acting_entry, [
-                    'text-plain', f'Script',
-                    self, SsbController, {'map': map_obj['name'], 'file': ssb}, False, ''
+                #             -> Scene [ssa]
+                item_store.append(acting_root, [
+                    'folder-templates-symbolic', stem,
+                    self, SsaController, {'map': map_obj['name'], 'file': f"{SCRIPT_DIR}/{map_obj['name']}/{ssa}"}, False, ''
                 ])
 
             #       -> Sub Scripts [sub]
             sub_root = item_store.append(map_root, [
-                'folder', 'Sub Scripts', self,  SubController, 0, False, ''
+                'folder-symbolic', 'Sub (sss)', self,  SubController, 0, False, ''
             ])
             for sss, ssbs in map_obj['subscripts'].items():
                 stem = sss[:-len(SSS_EXT)]
-                #          -> (name) [sub_entry]
-                sub_entry = item_store.append(sub_root, [
-                    'folder', stem, self,  SubEntryController, 0, False, ''
+                #             -> Scene [ssa]
+                item_store.append(sub_root, [
+                    'folder-templates-symbolic', stem,
+                    self, SsaController, {'map': map_obj['name'], 'file': f"{SCRIPT_DIR}/{map_obj['name']}/{sss}"}, False, ''
                 ])
-
-                #             -> Map [ssa]
-                item_store.append(sub_entry, [
-                    'image', f'Map',
-                    self, SsaController, {'map': map_obj['name'], 'file': sss}, False, ''
-                ])
-                for ssb in ssbs:
-                    #             -> Script X [ssb]
-                    item_store.append(sub_entry, [
-                        'text-plain', f'Script {self._get_fnumber_from_str(stem, ssb)}',
-                        self, SsbController, {'map': map_obj['name'], 'file': ssb}, False, ''
-                    ])
 
         recursive_generate_item_store_row_label(self._tree_model[root])
 
@@ -148,3 +138,6 @@ class ScriptModule(AbstractModule):
             # If it doesn't match, we just return the original string in quotes.
             return f'"{string}"'
         return str(int(match.group(1)))
+
+    def get_ssa(self, filename):
+        return self.project.open_file_in_rom(filename, FileType.SSA)

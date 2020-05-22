@@ -94,6 +94,9 @@ class RomProject:
             return iter(list(self._loaded_modules.values()) + [self._rom_module])
         return iter(self._loaded_modules.values())
 
+    def get_module(self, name):
+        return self._loaded_modules[name]
+
     def open_file_in_rom(self, file_path_in_rom: str, file_handler_class: DataHandler[T]) -> T:
         """
         Open a file. If already open, the opened object is returned.

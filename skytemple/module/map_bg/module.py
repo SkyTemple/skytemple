@@ -43,7 +43,7 @@ logger = logging.getLogger(__name__)
 class MapBgModule(AbstractModule):
     @classmethod
     def depends_on(cls):
-        return ['bgp']
+        return []
 
     def __init__(self, rom_project: RomProject):
         """Loads the list of backgrounds for the ROM."""
@@ -59,33 +59,33 @@ class MapBgModule(AbstractModule):
         ])
         sub_nodes = {
             'S': item_store.append(root, [
-                'folder', 'S - System', self, FolderController, 0, False, ''
+                'folder-symbolic', 'S - System', self, FolderController, 0, False, ''
             ]),
             'T': item_store.append(root, [
-                'folder', 'T - Town', self, FolderController, 0, False, ''
+                'folder-symbolic', 'T - Town', self, FolderController, 0, False, ''
             ]),
             'D': item_store.append(root, [
-                'folder', 'D - Dungeon', self, FolderController, 0, False, ''
+                'folder-symbolic', 'D - Dungeon', self, FolderController, 0, False, ''
             ]),
             'G': item_store.append(root, [
-                'folder', 'G - Guild', self, FolderController, 0, False, ''
+                'folder-symbolic', 'G - Guild', self, FolderController, 0, False, ''
             ]),
             'H': item_store.append(root, [
-                'folder', 'H - Habitat', self, FolderController, 0, False, ''
+                'folder-symbolic', 'H - Habitat', self, FolderController, 0, False, ''
             ]),
             'P': item_store.append(root, [
-                'folder', 'P - Places', self, FolderController, 0, False, ''
+                'folder-symbolic', 'P - Places', self, FolderController, 0, False, ''
             ]),
             'V': item_store.append(root, [
-                'folder', 'V - Visual', self, FolderController, 0, False, ''
+                'folder-symbolic', 'V - Visual', self, FolderController, 0, False, ''
             ]),
             'W': item_store.append(root, [
-                'folder', 'W - Weather', self, FolderController, 0, False, ''
+                'folder-symbolic', 'W - Weather', self, FolderController, 0, False, ''
             ])
         }
         # Other
         other = item_store.append(root, [
-            'folder', 'Other', self, FolderController, 0, False, ''
+            'folder-symbolic', 'Other', self, FolderController, 0, False, ''
         ])
         self._tree_model = item_store
         self._tree_level_iter = []
@@ -96,7 +96,7 @@ class MapBgModule(AbstractModule):
             self._tree_level_iter.append(
                 item_store.append(parent, [
                     # TODO: Name from Strings
-                    'image', level.bma_name, self,  BgController, i, False, ''
+                    'image-x-generic-symbolic', level.bma_name, self,  BgController, i, False, ''
                 ])
             )
 

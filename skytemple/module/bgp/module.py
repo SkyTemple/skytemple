@@ -42,14 +42,14 @@ class BgpModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
-            'folder-pictures', 'Backgrounds', self, MainController, 0, False, ''
+            'folder-pictures-symbolic', 'Backgrounds', self, MainController, 0, False, ''
         ])
         self._tree_model = item_store
         self._tree_level_iter = []
         for i, bgp_name in enumerate(self.list_of_bgps):
             self._tree_level_iter.append(
                 item_store.append(root, [
-                    'image', bgp_name, self,  BgpController, i, False, ''
+                    'image-x-generic-symbolic', bgp_name, self,  BgpController, i, False, ''
                 ])
             )
 

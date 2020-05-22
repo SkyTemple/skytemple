@@ -18,5 +18,5 @@
 from skytemple.core.module_controller import NotImplementedController
 
 
-class SubEntryController(NotImplementedController):
+class FolderController(NotImplementedController):
     pass
