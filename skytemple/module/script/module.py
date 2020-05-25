@@ -15,11 +15,14 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import re
-from typing import Union
+from typing import Union, Optional, List, Dict
 
+from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST_TYPE_SCENE_SSE, REQUEST_TYPE_SCENE_SSA, \
+    REQUEST_TYPE_SCENE_SSS
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label
 from skytemple.module.script.controller.folder import FolderController
@@ -44,6 +47,12 @@ class ScriptModule(AbstractModule):
 
         # Load all scripts
         self.script_engine_file_tree = load_script_files(self.project.get_rom_folder(SCRIPT_DIR))
+
+        # Tree iters for handle_request:
+        self._map_scene_root: Dict[str, Gtk.TreeIter] = {}
+        self._map_ssas: Dict[str, List[Gtk.TreeIter]] = {}
+        self._map_sse: Dict[str, Gtk.TreeIter] = {}
+        self._map_ssss: Dict[str, List[Gtk.TreeIter]] = {}
 
         self._tree_model = None
 
@@ -92,14 +101,17 @@ class ScriptModule(AbstractModule):
             parent = other
             if map_obj['name'][0] in sub_nodes.keys():
                 parent = sub_nodes[map_obj['name'][0]]
+            self._map_ssas[map_obj['name']] = []
+            self._map_ssss[map_obj['name']] = []
             #    -> (Map Name) [map]
             map_root = item_store.append(parent, [
                 'folder-symbolic', map_obj['name'], self,  MapController, map_obj['name'], False, ''
             ])
+            self._map_scene_root[map_obj['name']] = map_root
 
             if map_obj['enter_sse'] is not None:
-                #          -> Scene [ssa]
-                item_store.append(map_root, [
+                #          -> Enter [sse]
+                self._map_sse[map_obj['name']] = item_store.append(map_root, [
                     'folder-templates-symbolic', 'Enter (sse)', self,  SsaController, {
                         'map': map_obj['name'],
                         'file': f"{SCRIPT_DIR}/{map_obj['name']}/{map_obj['enter_sse']}",
@@ -115,15 +127,17 @@ class ScriptModule(AbstractModule):
             for ssa, ssb in map_obj['ssas']:
                 stem = ssa[:-len(SSA_EXT)]
                 #             -> Scene [ssa]
-                item_store.append(acting_root, [
-                    'folder-templates-symbolic', stem,
-                    self, SsaController, {
-                        'map': map_obj['name'],
-                        'file': f"{SCRIPT_DIR}/{map_obj['name']}/{ssa}",
-                        'type': 'ssa',
-                        'scripts': [ssb]
-                    }, False, ''
-                ])
+                self._map_ssas[map_obj['name']].append(
+                    item_store.append(acting_root, [
+                        'folder-templates-symbolic', stem,
+                        self, SsaController, {
+                            'map': map_obj['name'],
+                            'file': f"{SCRIPT_DIR}/{map_obj['name']}/{ssa}",
+                            'type': 'ssa',
+                            'scripts': [ssb]
+                        }, False, ''
+                    ])
+                )
 
             #       -> Sub Scripts [sub]
             sub_root = item_store.append(map_root, [
@@ -131,27 +145,47 @@ class ScriptModule(AbstractModule):
             ])
             for sss, ssbs in map_obj['subscripts'].items():
                 stem = sss[:-len(SSS_EXT)]
-                #             -> Scene [ssa]
-                item_store.append(sub_root, [
-                    'folder-templates-symbolic', stem,
-                    self, SsaController, {
-                        'map': map_obj['name'],
-                        'file': f"{SCRIPT_DIR}/{map_obj['name']}/{sss}",
-                        'type': 'sss',
-                        'scripts': ssbs.copy()
-                    }, False, ''
-                ])
+                #             -> Scene [sss]
+                self._map_ssss[map_obj['name']].append(
+                    item_store.append(sub_root, [
+                        'folder-templates-symbolic', stem,
+                        self, SsaController, {
+                            'map': map_obj['name'],
+                            'file': f"{SCRIPT_DIR}/{map_obj['name']}/{sss}",
+                            'type': 'sss',
+                            'scripts': ssbs.copy()
+                        }, False, ''
+                    ])
+                )
 
         recursive_generate_item_store_row_label(self._tree_model[root])
 
-    def _get_fnumber_from_str(self, stem, string) -> str:
-        """Returns the number part from a string like enter00.sse."""
-        regex = re.compile('^' + stem + '(\\d{1,2})\\....$')
-        match = regex.match(string)
-        if not match:
-            # If it doesn't match, we just return the original string in quotes.
-            return f'"{string}"'
-        return str(int(match.group(1)))
+    def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
+        if request.type == REQUEST_TYPE_SCENE:
+            # if we have an enter scene, open it directly.
+            if request.identifier in self._map_sse:
+                return self._map_sse[request.identifier]
+            # otherwise show scene landing page
+            if request.identifier in self._map_scene_root.keys():
+                return self._map_scene_root[request.identifier]
+        if request.type == REQUEST_TYPE_SCENE_SSE:
+            if request.identifier in self._map_sse:
+                return self._map_sse[request.identifier]
+        if request.type == REQUEST_TYPE_SCENE_SSA:
+            if request.identifier[0] in self._map_ssas:
+                for it in self._map_ssas[request.identifier[0]]:
+                    # Check if the filename of the tree iter entry (see load_tree_items) matches the request filename.
+                    file_name = self._tree_model[it][4]['file'].split('/')[-1]
+                    if file_name == request.identifier[1]:
+                        return it
+        if request.type == REQUEST_TYPE_SCENE_SSS:
+            if request.identifier[0] in self._map_ssss:
+                for it in self._map_ssss[request.identifier[0]]:
+                    # Check if the filename of the tree iter entry (see load_tree_items) matches the request filename.
+                    file_name = self._tree_model[it][4]['file'].split('/')[-1]
+                    if file_name == request.identifier[1]:
+                        return it
+        return None
 
     def get_ssa(self, filename):
         return self.project.open_file_in_rom(filename, FileType.SSA)

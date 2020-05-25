@@ -19,7 +19,10 @@ from abc import ABC, abstractmethod
 from typing import Optional
 
 import pkg_resources
+from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore, TreeIter
+
+from skytemple.core.open_request import OpenRequest
 
 SKYTEMPLE_VERSION = pkg_resources.get_distribution("skytemple").version
 
@@ -47,3 +50,11 @@ class AbstractModule(ABC):
     def load_tree_items(self, item_store: TreeStore, root_node: Optional[TreeIter]):
         """Add the module nodes to the item tree"""
         pass
+
+    def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
+        """
+        Handle an OpenRequest. Must return the iterator for the view in the main view list, as generated
+        in load_tree_items.
+        If not implemented, always returns None
+        """
+        return None

@@ -17,13 +17,14 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 import logging
-from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict
+from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable
 
-from gi.repository import GLib
+from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.modules import Modules
+from skytemple.core.open_request import OpenRequest
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
@@ -54,7 +55,7 @@ class RomProject:
 
     @classmethod
     async def _open_impl(cls, filename, main_controller: Optional['MainController']):
-        cls._current = RomProject(filename)
+        cls._current = RomProject(filename, main_controller.load_view_main_list)
         try:
             cls._current.load()
             if main_controller:
@@ -64,7 +65,7 @@ class RomProject:
             if main_controller:
                 GLib.idle_add(lambda ex=ex: main_controller.on_file_opened_error(ex))
 
-    def __init__(self, filename: str):
+    def __init__(self, filename: str, cb_open_view: Callable[[Gtk.TreeIter], None]):
         self.filename = filename
         self._rom: NintendoDSRom = None
         self._rom_module: Optional['RomModule'] = None
@@ -75,6 +76,8 @@ class RomProject:
         self._file_handlers = {}
         # List of modified filenames
         self._modified_files = []
+        # Callback for opening views using iterators from the main view list.
+        self._cb_open_view: Callable[[Gtk.TreeIter], None] = cb_open_view
 
     def load(self):
         """Load the ROM into memory and initialize all modules"""
@@ -168,3 +171,16 @@ class RomProject:
 
     def load_rom_data(self):
         return get_ppmdu_config_for_rom(self._rom)
+
+    def request_open(self, request: OpenRequest, raise_exception=False):
+        """
+        Handle a request to open a resource in the editor. If the resource was not found, nothing happens,
+        unless raise_exception is true, in which case a ValueError is raised.
+        """
+        for module in self._loaded_modules.values():
+            result = module.handle_request(request)
+            if result is not None:
+                self._cb_open_view(result)
+                return
+        if raise_exception:
+            raise ValueError("No handler for request.")

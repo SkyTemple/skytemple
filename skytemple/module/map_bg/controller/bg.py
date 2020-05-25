@@ -27,6 +27,7 @@ from gi.repository.Gtk import *
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
+from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE
 from skytemple.module.map_bg.controller.bg_menu import BgMenuController
 from skytemple.module.map_bg.drawer import Drawer, DrawerCellRenderer, DrawerInteraction
 from skytemple_files.common.types.file_types import FileType
@@ -90,6 +91,13 @@ class BgController(AbstractController):
         self._refresh_metadata()
         self._init_rest_room_note()
         self.builder.connect_signals(self)
+        try:
+            # Invalidate SSA scene cache for this BG
+            # TODO: This is obviously very ugly coupling...
+            from skytemple.module.script.controller.ssa import SsaController
+            SsaController.map_bg_surface_cache = (None, )
+        except ImportError:
+            pass
         if self._was_asset_copied:
                 md = Gtk.MessageDialog(MainController.window(),
                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
@@ -229,8 +237,21 @@ class BgController(AbstractController):
         if self.current_icon_view_renderer:
             self.current_icon_view_renderer.set_pink_bg(w.get_active())
 
-    def tb_goto_scene(self, w):
-        pass  # TODO: GOTO BUTTONS
+    def on_tb_goto_scene_clicked(self, w):
+        try:
+            self.module.project.request_open(OpenRequest(
+                # TODO: Unify the mapping of MapBG names to scene/script maps. Currently BPL name
+                #       is used everywhere, but the logic for determining this should probably be moved to a new module.
+                REQUEST_TYPE_SCENE, self.module.get_level_entry(self.item_id).bpl_name
+            ), True)
+        except ValueError:
+            md = Gtk.MessageDialog(MainController.window(),
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                   Gtk.ButtonsType.OK, f"A script map with the same name as "
+                                                       f"this background does not exist.",
+                                   title="No Scenes Found")
+            md.run()
+            md.destroy()
 
     def on_men_map_settings_activate(self, *args):
         self.menu_controller.on_men_map_settings_activate()

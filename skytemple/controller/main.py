@@ -202,7 +202,7 @@ class MainController:
 
             # Select & load main ROM item by default
             selection: TreeSelection = self._main_item_list.get_selection()
-            selection.select_iter(root_node)
+            selection.select_path(self._item_store.get_path(root_node))
             self.load_view(self._item_store, root_node, self._main_item_list)
         except BaseException as ex:
             self.on_file_opened_error(ex)
@@ -264,10 +264,14 @@ class MainController:
         if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
             model, treeiter = tree.get_selection().get_selected()
             if model is not None and treeiter is not None and RomProject.get_current() is not None:
-                self.load_view(model, treeiter, tree)
+                self.load_view(model, treeiter, tree, False)
 
-    def load_view(self, model: Gtk.TreeModel, treeiter: Gtk.TreeIter, tree: Gtk.TreeView):
+    def load_view_main_list(self, treeiter: Gtk.TreeIter):
+        return self.load_view(self._item_store, treeiter, self._main_item_list)
+
+    def load_view(self, model: Gtk.TreeModel, treeiter: Gtk.TreeIter, tree: Gtk.TreeView, scroll_into_view=True):
         logger.debug('View selected. Locking and showing Loader.')
+        path = model.get_path(treeiter)
         self._lock_trees()
         selected_node = model[treeiter]
         self._init_window_before_view_load(model[treeiter])
@@ -283,7 +287,12 @@ class MainController:
             self
         ))
         # Expand the node
-        tree.expand_row(model.get_path(treeiter), False)
+        tree.expand_to_path(path)
+        # Select node
+        tree.get_selection().select_path(path)
+        # Scroll node into view
+        if scroll_into_view:
+            tree.scroll_to_cell(path, None, True, 0.5, 0.5)
 
     def on_view_loaded(
             self, module: AbstractModule, controller: AbstractController, item_id: int

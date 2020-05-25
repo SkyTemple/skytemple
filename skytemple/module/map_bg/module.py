@@ -15,12 +15,13 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import Union, List
+from typing import Union, List, Optional
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label
@@ -101,6 +102,17 @@ class MapBgModule(AbstractModule):
             )
 
         recursive_generate_item_store_row_label(self._tree_model[root])
+
+    def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
+        if request.type == REQUEST_TYPE_MAP_BG:
+            # Find item ID using BPL mapping - TODO: Again, we need to unify this matching logic
+            item_id = -1
+            for i, level in enumerate(self.bgs.level):
+                if level.bpl_name == request.identifier:
+                    item_id = i
+            if item_id > -1:
+                return self._tree_level_iter[item_id]
+        return None
 
     def get_level_entry(self, item_id):
         return self.bgs.level[item_id]

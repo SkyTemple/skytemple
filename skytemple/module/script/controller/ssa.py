@@ -22,6 +22,8 @@ from gi.repository.Gtk import TreeViewColumn
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
+from skytemple.core.open_request import REQUEST_TYPE_MAP_BG, OpenRequest, REQUEST_TYPE_SCENE_SSE, \
+    REQUEST_TYPE_SCENE_SSA, REQUEST_TYPE_SCENE_SSS
 from skytemple.module.script.drawer import Drawer
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine
@@ -50,6 +52,9 @@ def resizable(column):
 class SsaController(AbstractController):
     _last_open_tab = None
     _paned_pos = None
+    # Cache for map backgrounds, for faster scene view transitions in the same map context
+    # Should be set to (None, ) when loading a map BG context.
+    map_bg_surface_cache = (None, )
 
     def __init__(self, module: 'ScriptModule', item: dict):
         self.module = module
@@ -67,6 +72,7 @@ class SsaController(AbstractController):
         self._map_bg_width = SIZE_REQUEST_NONE
         self._map_bg_height = SIZE_REQUEST_NONE
         self._map_bg_surface = None
+        self._suppress_events = False
 
         self._w_ssa_draw: Optional[Gtk.DrawingArea] = None
 
@@ -163,20 +169,26 @@ class SsaController(AbstractController):
         model, cbiter = w.get_model(), w.get_active_iter()
         if model is not None and cbiter is not None and cbiter != []:
             item_id = model[cbiter][0]
-            bma = self.map_bg_module.get_bma(item_id)
-            bpl = self.map_bg_module.get_bpl(item_id)
-            bpc = self.map_bg_module.get_bpc(item_id)
-            bpas = self.map_bg_module.get_bpas(item_id)
-            self._map_bg_surface = pil_to_cairo_surface(
-                bma.to_pil(bpc, bpl.palettes, bpas, False, False)[0].convert('RGBA')
-            )
+            if self.__class__.map_bg_surface_cache[0] == item_id:
+                self._map_bg_surface, bma_width, bma_height = self.__class__.map_bg_surface_cache[1:]
+            else:
+                bma = self.map_bg_module.get_bma(item_id)
+                bpl = self.map_bg_module.get_bpl(item_id)
+                bpc = self.map_bg_module.get_bpc(item_id)
+                bpas = self.map_bg_module.get_bpas(item_id)
+                self._map_bg_surface = pil_to_cairo_surface(
+                    bma.to_pil(bpc, bpl.palettes, bpas, False, False)[0].convert('RGBA')
+                )
+                bma_width = bma.map_width_camera * BPC_TILE_DIM
+                bma_height = bma.map_height_camera * BPC_TILE_DIM
+                self.__class__.map_bg_surface_cache = (item_id, self._map_bg_surface, bma_width, bma_height)
             if self.drawer:
-                self._set_drawer_bg(self._map_bg_surface,
-                                    bma.map_width_camera * BPC_TILE_DIM,
-                                    bma.map_height_camera * BPC_TILE_DIM)
+                self._set_drawer_bg(self._map_bg_surface, bma_width, bma_height)
 
     def on_tool_scene_goto_bg_clicked(self, *args):
-        pass  # TODO: GOTO BUTTONS
+        self.module.project.request_open(OpenRequest(
+            REQUEST_TYPE_MAP_BG, self.mapname
+        ))
 
     # EVENTS TOOLBAR #
     def on_tool_events_add_clicked(self, *args):
@@ -269,10 +281,30 @@ class SsaController(AbstractController):
     def on_po_trigger_delete_clicked(self, *args):
         pass
 
+    # TREE VIEWS #
+    def on_ssa_scenes_selection_changed(self, selection: Gtk.TreeSelection, *args):
+        if not self._suppress_events:
+            model, treeiter = selection.get_selected()
+            if treeiter is not None and model is not None:
+                filename = model[treeiter][0]
+                if filename[-3:] == 'sse':
+                    self.module.project.request_open(OpenRequest(
+                        REQUEST_TYPE_SCENE_SSE, self.mapname
+                    ))
+                elif filename[-3:] == 'ssa':
+                    self.module.project.request_open(OpenRequest(
+                        REQUEST_TYPE_SCENE_SSA, (self.mapname, filename)
+                    ))
+                elif filename[-3:] == 'sss':
+                    self.module.project.request_open(OpenRequest(
+                        REQUEST_TYPE_SCENE_SSS, (self.mapname, filename)
+                    ))
+
     def _init_ssa(self):
         self.ssa = self.module.get_ssa(self.filename)
 
     def _init_all_the_stores(self):
+        self._suppress_events = True
         # MAP BGS
         map_bg_list: BgList = self.map_bg_module.bgs
         tool_choose_map_bg_cb: Gtk.ComboBox = self.builder.get_object('tool_choose_map_bg_cb')
@@ -315,8 +347,13 @@ class SsaController(AbstractController):
         scenes_list_store = Gtk.ListStore(str)
         ssa_scenes.append_column(resizable(TreeViewColumn("Name", Gtk.CellRendererText(), text=0)))
         ssa_scenes.set_model(scenes_list_store)
+        select_iter_current_scene = None
         for scene in self.module.get_scenes_for_map(self.mapname):
-            scenes_list_store.append(self._list_entry_generate_scene(scene))
+            it = scenes_list_store.append(self._list_entry_generate_scene(scene))
+            if scene == self.filename.split('/')[-1]:
+                select_iter_current_scene = it
+        if select_iter_current_scene is not None:
+            ssa_scenes.get_selection().select_iter(select_iter_current_scene)
 
         # ENTITY LISTS (STORE SETUP)
         # Are filled later (under layers; with the layer data)
@@ -463,6 +500,8 @@ class SsaController(AbstractController):
                 
             # > PO - Sectors [DATA]
             po_sector_store.append([i, f'Sector {i}'])
+
+        self._suppress_events = False
 
     def _init_drawer(self):
         self.drawer = Drawer(self._w_ssa_draw, self.ssa)

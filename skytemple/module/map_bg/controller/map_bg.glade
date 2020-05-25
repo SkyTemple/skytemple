@@ -141,7 +141,7 @@
             <property name="can_focus">False</property>
             <property name="tooltip_text" translatable="yes">Edit the scene with the same name as the map background</property>
             <property name="is_important">True</property>
-            <property name="label" translatable="yes">Go to Scene</property>
+            <property name="label" translatable="yes">Go to Scenes</property>
             <property name="use_underline">True</property>
             <property name="icon_name">go-next-symbolic</property>
             <signal name="clicked" handler="on_tb_goto_scene_clicked" swapped="no"/>

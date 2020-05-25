@@ -815,7 +815,9 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <child internal-child="selection">
-                                  <object class="GtkTreeSelection"/>
+                                  <object class="GtkTreeSelection" id="ssa_scenes_selection">
+                                    <signal name="changed" handler="on_ssa_scenes_selection_changed" swapped="no"/>
+                                  </object>
                                 </child>
                               </object>
                             </child>
