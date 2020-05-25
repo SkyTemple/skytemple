@@ -75,6 +75,8 @@ class Drawer:
             ctx.paint()
 
         size_w, size_h = self.draw_area.get_size_request()
+        size_w /= self.scale
+        size_h /= self.scale
         # Selection
         self.selection_plugin.set_size(BPC_TILE_DIM, BPC_TILE_DIM)
         self.selection_plugin.draw(ctx, size_w, size_h, self.mouse_x, self.mouse_y)

@@ -186,14 +186,14 @@ class MainController:
         logger.debug('File opened.')
 
         self._init_window_after_rom_load(os.path.basename(RomProject.get_current().filename))
-
-        # Load root node, ROM
-        rom_module = RomProject.get_current().get_rom_module()
-        rom_module.load_tree_items(self._item_store, None)
-        root_node = rom_module.get_root_node()
-
-        # Load item tree items
         try:
+            # Load root node, ROM
+            rom_module = RomProject.get_current().get_rom_module()
+            rom_module.load_rom_data()
+            rom_module.load_tree_items(self._item_store, None)
+            root_node = rom_module.get_root_node()
+
+            # Load item tree items
             for module in RomProject.get_current().get_modules(False):
                 module.load_tree_items(self._item_store, root_node)
                 if module.__class__.__name__ == 'MapBgModule':

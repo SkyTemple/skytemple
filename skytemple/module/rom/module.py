@@ -23,6 +23,7 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import generate_item_store_row_label
 from skytemple.module.rom.controller.main import MainController
+from skytemple_files.common.ppmdu_config.data import Pmd2Data
 
 
 class RomModule(AbstractModule):
@@ -34,6 +35,7 @@ class RomModule(AbstractModule):
         """Main ROM metadata management module."""
         self.project = rom_project
         self._root_node: Optional[TreeIter] = None
+        self._static_data: Optional[Pmd2Data] = None
 
     def get_root_node(self):
         return self._root_node
@@ -44,3 +46,9 @@ class RomModule(AbstractModule):
             MainController, 0, False, ''
         ])
         generate_item_store_row_label(item_store[self._root_node])
+
+    def load_rom_data(self):
+        self._static_data = self.project.load_rom_data()
+
+    def get_static_data(self) -> Pmd2Data:
+        return self._static_data

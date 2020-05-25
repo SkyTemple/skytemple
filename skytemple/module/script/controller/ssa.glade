@@ -508,7 +508,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkTreeView" id="ssa_triggers">
+                  <object class="GtkTreeView" id="ssa_events">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <child internal-child="selection">
@@ -902,46 +902,6 @@
                                 <property name="position">0</property>
                               </packing>
                             </child>
-                            <child>
-                              <object class="GtkToolbar">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="icon_size">2</property>
-                                <child>
-                                  <object class="GtkToolButton" id="tool_actors_add">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Add</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="icon_name">list-add-symbolic</property>
-                                    <signal name="clicked" handler="on_tool_actors_add_clicked" swapped="no"/>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="homogeneous">True</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkToolButton" id="tool_actors_remove">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Remove</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="icon_name">list-remove-symbolic</property>
-                                    <signal name="clicked" handler="on_tool_actors_remove_clicked" swapped="no"/>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="homogeneous">True</property>
-                                  </packing>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
                           </object>
                         </child>
                       </object>
@@ -1046,46 +1006,6 @@
                                 <property name="expand">True</property>
                                 <property name="fill">True</property>
                                 <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkToolbar">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="icon_size">2</property>
-                                <child>
-                                  <object class="GtkToolButton" id="tool_objects_add">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Add</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="icon_name">list-add-symbolic</property>
-                                    <signal name="clicked" handler="on_tool_objects_add_clicked" swapped="no"/>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="homogeneous">True</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkToolButton" id="tool_objects_remove">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Remove</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="icon_name">list-remove-symbolic</property>
-                                    <signal name="clicked" handler="on_tool_objects_remove_clicked" swapped="no"/>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="homogeneous">True</property>
-                                  </packing>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
                               </packing>
                             </child>
                           </object>
@@ -1194,46 +1114,6 @@
                                 <property name="position">0</property>
                               </packing>
                             </child>
-                            <child>
-                              <object class="GtkToolbar">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="icon_size">2</property>
-                                <child>
-                                  <object class="GtkToolButton" id="tool_performers_add">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Add</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="icon_name">list-add-symbolic</property>
-                                    <signal name="clicked" handler="on_tool_performers_add_clicked" swapped="no"/>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="homogeneous">True</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkToolButton" id="tool_performers_remove">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Remove</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="icon_name">list-remove-symbolic</property>
-                                    <signal name="clicked" handler="on_tool_performers_remove_clicked" swapped="no"/>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="homogeneous">True</property>
-                                  </packing>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
                           </object>
                         </child>
                       </object>
@@ -1325,7 +1205,7 @@
                                 <property name="can_focus">True</property>
                                 <property name="shadow_type">in</property>
                                 <child>
-                                  <object class="GtkTreeView" id="ssa_trigger">
+                                  <object class="GtkTreeView" id="ssa_triggers">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <child internal-child="selection">
@@ -1338,46 +1218,6 @@
                                 <property name="expand">True</property>
                                 <property name="fill">True</property>
                                 <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkToolbar">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="icon_size">2</property>
-                                <child>
-                                  <object class="GtkToolButton" id="tool_triggers_add">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Add</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="icon_name">list-add-symbolic</property>
-                                    <signal name="clicked" handler="on_tool_triggers_add_clicked" swapped="no"/>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="homogeneous">True</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkToolButton" id="tool_triggers_remove">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Remove</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="icon_name">list-remove-symbolic</property>
-                                    <signal name="clicked" handler="on_tool_triggers_remove_clicked" swapped="no"/>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="homogeneous">True</property>
-                                  </packing>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
                               </packing>
                             </child>
                           </object>
@@ -1475,13 +1315,14 @@
           <object class="GtkImage">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="margin_top">5</property>
             <property name="margin_bottom">5</property>
             <property name="icon_name">user-available-symbolic</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">0</property>
-            <property name="width">6</property>
+            <property name="width">5</property>
           </packing>
         </child>
         <child>
@@ -1528,61 +1369,12 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="margin_top">10</property>
-            <property name="label" translatable="yes">Position</property>
+            <property name="label" translatable="yes">Direction</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">4</property>
-            <property name="width">6</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">Y</property>
-          </object>
-          <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">X</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="po_actor_x">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="width_chars">3</property>
-            <signal name="changed" handler="on_po_actor_x_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="po_actor_y">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="width_chars">3</property>
-            <signal name="changed" handler="on_po_actor_y_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">3</property>
-            <property name="top_attach">5</property>
+            <property name="width">2</property>
           </packing>
         </child>
         <child>
@@ -1622,15 +1414,22 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkButton" id="po_actor_delete">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">Dir</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">edit-delete-symbolic</property>
+              </object>
+            </child>
           </object>
           <packing>
-            <property name="left_attach">4</property>
-            <property name="top_attach">5</property>
+            <property name="left_attach">5</property>
+            <property name="top_attach">0</property>
           </packing>
         </child>
         <child>
@@ -1639,8 +1438,9 @@
             <property name="can_focus">False</property>
           </object>
           <packing>
-            <property name="left_attach">5</property>
-            <property name="top_attach">5</property>
+            <property name="left_attach">2</property>
+            <property name="top_attach">4</property>
+            <property name="width">4</property>
           </packing>
         </child>
       </object>
@@ -1652,6 +1452,8 @@
       <object class="GtkGrid">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_left">5</property>
+        <property name="margin_right">5</property>
         <property name="margin_top">5</property>
         <property name="margin_bottom">5</property>
         <property name="row_spacing">5</property>
@@ -1660,13 +1462,15 @@
           <object class="GtkImage">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="valign">end</property>
+            <property name="margin_top">5</property>
             <property name="margin_bottom">5</property>
             <property name="icon_name">package-x-generic-symbolic</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">0</property>
-            <property name="width">6</property>
+            <property name="width">5</property>
           </packing>
         </child>
         <child>
@@ -1713,61 +1517,12 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="margin_top">10</property>
-            <property name="label" translatable="yes">Position</property>
+            <property name="label" translatable="yes">Direction</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">4</property>
-            <property name="width">6</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">Y</property>
-          </object>
-          <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">X</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="po_object_x">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="width_chars">3</property>
-            <signal name="changed" handler="on_po_object_x_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="po_object_y">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="width_chars">3</property>
-            <signal name="changed" handler="on_po_object_y_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">3</property>
-            <property name="top_attach">5</property>
+            <property name="width">2</property>
           </packing>
         </child>
         <child>
@@ -1807,16 +1562,44 @@
           </packing>
         </child>
         <child>
+          <object class="GtkButton" id="po_object_delete">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">edit-delete-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">5</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBox" id="po_object_dir">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">4</property>
+            <property name="width">4</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="margin_top">10</property>
             <property name="label" translatable="yes">Hitbox</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">6</property>
+            <property name="top_attach">5</property>
             <property name="width">6</property>
           </packing>
         </child>
@@ -1829,31 +1612,8 @@
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">7</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="po_object_width">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="width_chars">3</property>
-            <signal name="changed" handler="on_po_object_width_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">7</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="po_object_height">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="width_chars">3</property>
-            <signal name="changed" handler="on_po_object_height_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">3</property>
-            <property name="top_attach">7</property>
+            <property name="top_attach">6</property>
+            <property name="width">2</property>
           </packing>
         </child>
         <child>
@@ -1864,37 +1624,34 @@
             <property name="label" translatable="yes">H</property>
           </object>
           <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">7</property>
+            <property name="left_attach">3</property>
+            <property name="top_attach">6</property>
           </packing>
         </child>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkEntry" id="po_object_height">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">Dir</property>
+            <property name="can_focus">True</property>
+            <property name="width_chars">3</property>
+            <signal name="changed" handler="on_po_object_height_changed" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">4</property>
-            <property name="top_attach">5</property>
+            <property name="top_attach">6</property>
+            <property name="width">2</property>
           </packing>
         </child>
         <child>
-          <object class="GtkComboBox" id="po_object_dir">
+          <object class="GtkEntry" id="po_object_width">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can_focus">True</property>
+            <property name="width_chars">3</property>
+            <signal name="changed" handler="on_po_object_width_changed" swapped="no"/>
           </object>
           <packing>
-            <property name="left_attach">5</property>
-            <property name="top_attach">5</property>
+            <property name="left_attach">2</property>
+            <property name="top_attach">6</property>
           </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
         </child>
       </object>
     </child>
@@ -1905,6 +1662,8 @@
       <object class="GtkGrid">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_left">5</property>
+        <property name="margin_right">5</property>
         <property name="margin_top">5</property>
         <property name="margin_bottom">5</property>
         <property name="row_spacing">5</property>
@@ -1913,13 +1672,15 @@
           <object class="GtkImage">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="valign">center</property>
+            <property name="margin_top">5</property>
             <property name="margin_bottom">5</property>
             <property name="icon_name">input-gaming-symbolic</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">0</property>
-            <property name="width">6</property>
+            <property name="width">5</property>
           </packing>
         </child>
         <child>
@@ -1946,68 +1707,6 @@
             <property name="left_attach">0</property>
             <property name="top_attach">2</property>
             <property name="width">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="margin_top">10</property>
-            <property name="label" translatable="yes">Position</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">4</property>
-            <property name="width">6</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">Y</property>
-          </object>
-          <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">X</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="po_performer_x">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="width_chars">3</property>
-            <signal name="changed" handler="on_po_performer_x_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="po_performer_y">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="width_chars">3</property>
-            <signal name="changed" handler="on_po_performer_y_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">3</property>
-            <property name="top_attach">5</property>
           </packing>
         </child>
         <child>
@@ -2035,16 +1734,57 @@
           </packing>
         </child>
         <child>
+          <object class="GtkButton" id="po_performer_delete">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">edit-delete-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">5</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="margin_top">10</property>
+            <property name="label" translatable="yes">Direction</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">3</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkComboBox" id="po_performer_dir">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">3</property>
+            <property name="width">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
             <property name="label" translatable="yes">Hitbox</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">6</property>
+            <property name="top_attach">4</property>
             <property name="width">6</property>
           </packing>
         </child>
@@ -2057,7 +1797,8 @@
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">7</property>
+            <property name="top_attach">5</property>
+            <property name="width">2</property>
           </packing>
         </child>
         <child>
@@ -2068,20 +1809,8 @@
             <signal name="changed" handler="on_po_performer_width_changed" swapped="no"/>
           </object>
           <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">7</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="po_performer_height">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="width_chars">3</property>
-            <signal name="changed" handler="on_po_performer_height_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">3</property>
-            <property name="top_attach">7</property>
+            <property name="left_attach">2</property>
+            <property name="top_attach">5</property>
           </packing>
         </child>
         <child>
@@ -2092,55 +1821,22 @@
             <property name="label" translatable="yes">H</property>
           </object>
           <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">7</property>
+            <property name="left_attach">3</property>
+            <property name="top_attach">5</property>
           </packing>
         </child>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkEntry" id="po_performer_height">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">Dir</property>
+            <property name="can_focus">True</property>
+            <property name="width_chars">3</property>
+            <signal name="changed" handler="on_po_performer_height_changed" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">4</property>
             <property name="top_attach">5</property>
+            <property name="width">2</property>
           </packing>
-        </child>
-        <child>
-          <object class="GtkComboBox" id="po_performer_dir">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">5</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
         </child>
       </object>
     </child>
@@ -2151,6 +1847,8 @@
       <object class="GtkGrid">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_left">5</property>
+        <property name="margin_right">5</property>
         <property name="margin_top">5</property>
         <property name="margin_bottom">5</property>
         <property name="row_spacing">5</property>
@@ -2159,6 +1857,8 @@
           <object class="GtkImage">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="valign">center</property>
+            <property name="margin_top">5</property>
             <property name="margin_bottom">5</property>
             <property name="icon_name">dialog-information-symbolic</property>
           </object>
@@ -2173,7 +1873,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="label" translatable="yes">Kind</property>
+            <property name="label" translatable="yes">Event</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -2195,68 +1895,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="margin_top">10</property>
-            <property name="label" translatable="yes">Position</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">4</property>
-            <property name="width">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">Y</property>
-          </object>
-          <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">end</property>
-            <property name="label" translatable="yes">X</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="po_trigger_x">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="width_chars">3</property>
-            <signal name="changed" handler="on_po_trigger_x_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="po_trigger_y">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="width_chars">3</property>
-            <signal name="changed" handler="on_po_trigger_y_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="left_attach">3</property>
-            <property name="top_attach">5</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkComboBox" id="po_trigger_sector">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -2265,7 +1903,7 @@
           <packing>
             <property name="left_attach">2</property>
             <property name="top_attach">2</property>
-            <property name="width">2</property>
+            <property name="width">3</property>
           </packing>
         </child>
         <child>
@@ -2277,7 +1915,7 @@
           <packing>
             <property name="left_attach">2</property>
             <property name="top_attach">1</property>
-            <property name="width">2</property>
+            <property name="width">3</property>
           </packing>
         </child>
         <child>
@@ -2285,13 +1923,12 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="margin_top">10</property>
             <property name="label" translatable="yes">Hitbox</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">6</property>
-            <property name="width">4</property>
+            <property name="top_attach">3</property>
+            <property name="width">5</property>
           </packing>
         </child>
         <child>
@@ -2303,19 +1940,26 @@
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">7</property>
+            <property name="top_attach">4</property>
+            <property name="width">2</property>
           </packing>
         </child>
         <child>
-          <object class="GtkEntry" id="po_trigger_width">
+          <object class="GtkButton" id="po_trigger_delete">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="width_chars">3</property>
-            <signal name="changed" handler="on_po_trigger_width_changed" swapped="no"/>
+            <property name="receives_default">True</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">edit-delete-symbolic</property>
+              </object>
+            </child>
           </object>
           <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">7</property>
+            <property name="left_attach">4</property>
+            <property name="top_attach">0</property>
           </packing>
         </child>
         <child>
@@ -2326,8 +1970,8 @@
             <signal name="changed" handler="on_po_trigger_height_changed" swapped="no"/>
           </object>
           <packing>
-            <property name="left_attach">3</property>
-            <property name="top_attach">7</property>
+            <property name="left_attach">4</property>
+            <property name="top_attach">4</property>
           </packing>
         </child>
         <child>
@@ -2338,21 +1982,21 @@
             <property name="label" translatable="yes">H</property>
           </object>
           <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">7</property>
+            <property name="left_attach">3</property>
+            <property name="top_attach">4</property>
           </packing>
         </child>
         <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
+          <object class="GtkEntry" id="po_trigger_width">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="width_chars">3</property>
+            <signal name="changed" handler="on_po_trigger_width_changed" swapped="no"/>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">4</property>
+          </packing>
         </child>
       </object>
     </child>

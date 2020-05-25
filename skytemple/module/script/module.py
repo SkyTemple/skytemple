@@ -100,8 +100,12 @@ class ScriptModule(AbstractModule):
             if map_obj['enter_sse'] is not None:
                 #          -> Scene [ssa]
                 item_store.append(map_root, [
-                    'folder-templates-symbolic', 'Enter (sse)', self,  SsaController,
-                    {'map': map_obj['name'], 'file': f"{SCRIPT_DIR}/{map_obj['name']}/{map_obj['enter_sse']}"}, False, ''
+                    'folder-templates-symbolic', 'Enter (sse)', self,  SsaController, {
+                        'map': map_obj['name'],
+                        'file': f"{SCRIPT_DIR}/{map_obj['name']}/{map_obj['enter_sse']}",
+                        'type': 'sse',
+                        'scripts': map_obj['enter_ssbs'].copy()
+                    }, False, ''
                 ])
 
             #       -> Acting Scripts [lsd]
@@ -113,7 +117,12 @@ class ScriptModule(AbstractModule):
                 #             -> Scene [ssa]
                 item_store.append(acting_root, [
                     'folder-templates-symbolic', stem,
-                    self, SsaController, {'map': map_obj['name'], 'file': f"{SCRIPT_DIR}/{map_obj['name']}/{ssa}"}, False, ''
+                    self, SsaController, {
+                        'map': map_obj['name'],
+                        'file': f"{SCRIPT_DIR}/{map_obj['name']}/{ssa}",
+                        'type': 'ssa',
+                        'scripts': [ssb]
+                    }, False, ''
                 ])
 
             #       -> Sub Scripts [sub]
@@ -125,7 +134,12 @@ class ScriptModule(AbstractModule):
                 #             -> Scene [ssa]
                 item_store.append(sub_root, [
                     'folder-templates-symbolic', stem,
-                    self, SsaController, {'map': map_obj['name'], 'file': f"{SCRIPT_DIR}/{map_obj['name']}/{sss}"}, False, ''
+                    self, SsaController, {
+                        'map': map_obj['name'],
+                        'file': f"{SCRIPT_DIR}/{map_obj['name']}/{sss}",
+                        'type': 'sss',
+                        'scripts': ssbs.copy()
+                    }, False, ''
                 ])
 
         recursive_generate_item_store_row_label(self._tree_model[root])
@@ -141,3 +155,19 @@ class ScriptModule(AbstractModule):
 
     def get_ssa(self, filename):
         return self.project.open_file_in_rom(filename, FileType.SSA)
+
+    def get_scenes_for_map(self, mapname):
+        """Returns the filenames (not including paths) of all SSE/SSA/SSS files for this map."""
+        if mapname not in self.script_engine_file_tree['maps']:
+            return []
+        map_obj = self.script_engine_file_tree['maps'][mapname]
+
+        scenes = []
+        if map_obj['enter_sse'] is not None:
+            scenes.append(map_obj['enter_sse'])
+        for ssa, _ in map_obj['ssas']:
+            scenes.append(ssa)
+        for sss in map_obj['subscripts'].keys():
+            scenes.append(sss)
+
+        return scenes

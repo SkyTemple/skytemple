@@ -247,6 +247,8 @@ class Drawer:
                 ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)
 
         size_w, size_h = self.draw_area.get_size_request()
+        size_w /= self.scale
+        size_h /= self.scale
         # Selection
         if self.interaction_mode == DrawerInteraction.CHUNKS:
             self.selection_plugin.set_size(self.tiling_width * BPC_TILE_DIM, self.tiling_height * BPC_TILE_DIM)

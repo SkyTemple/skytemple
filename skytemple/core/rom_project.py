@@ -26,12 +26,14 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.modules import Modules
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.data_handler import DataHandler, T
-from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom
+from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
+    get_ppmdu_config_for_rom
 
 logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
     from skytemple.controller.main import MainController
+    from skytemple.module.rom.module import RomModule
 
 
 class RomProject:
@@ -65,7 +67,7 @@ class RomProject:
     def __init__(self, filename: str):
         self.filename = filename
         self._rom: NintendoDSRom = None
-        self._rom_module: Optional[AbstractModule] = None
+        self._rom_module: Optional['RomModule'] = None
         self._loaded_modules: Dict[str, AbstractModule] = {}
         # Dict of filenames -> models
         self._opened_files = {}
@@ -85,7 +87,7 @@ class RomProject:
                 self._loaded_modules[name] = module(self)
         # TODO: Check ROM module if ROM is actually supported!
 
-    def get_rom_module(self):
+    def get_rom_module(self) -> 'RomModule':
         return self._rom_module
 
     def get_modules(self, include_rom_module=True) -> Iterator[AbstractModule]:
@@ -163,3 +165,6 @@ class RomProject:
 
     def file_exists(self, filename):
         return self._rom.filenames.idOf(filename) is not None
+
+    def load_rom_data(self):
+        return get_ppmdu_config_for_rom(self._rom)
