@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from functools import partial
 from typing import TYPE_CHECKING, Optional, List
 
 import cairo
@@ -52,6 +53,7 @@ def resizable(column):
 class SsaController(AbstractController):
     _last_open_tab = None
     _paned_pos = None
+    _last_scale_factor = None
     # Cache for map backgrounds, for faster scene view transitions in the same map context
     # Should be set to (None, ) when loading a map BG context.
     map_bg_surface_cache = (None, )
@@ -67,7 +69,10 @@ class SsaController(AbstractController):
 
         self.builder = None
 
-        self._scale_factor = 1
+        if self.__class__._last_scale_factor is not None:
+            self._scale_factor = self.__class__._last_scale_factor
+        else:
+            self._scale_factor = 1
         self._bg_draw_is_clicked = False
         self._map_bg_width = SIZE_REQUEST_NONE
         self._map_bg_height = SIZE_REQUEST_NONE
@@ -139,10 +144,12 @@ class SsaController(AbstractController):
     # SCENE TOOLBAR #
     def on_tool_scene_zoom_in_clicked(self, *args):
         self._scale_factor *= 2
+        self.__class__._last_scale_factor = self._scale_factor
         self._update_scales()
 
     def on_tool_scene_zoom_out_clicked(self, *args):
         self._scale_factor /= 2
+        self.__class__._last_scale_factor = self._scale_factor
         self._update_scales()
 
     def on_tool_scene_grid_toggled(self, w, *args):
@@ -504,7 +511,7 @@ class SsaController(AbstractController):
         self._suppress_events = False
 
     def _init_drawer(self):
-        self.drawer = Drawer(self._w_ssa_draw, self.ssa)
+        self.drawer = Drawer(self._w_ssa_draw, self.ssa, partial(self._get_event_script_name, self.ssa.triggers, short=True))
         self.drawer.start()
 
         self.drawer.set_draw_tile_grid(self.builder.get_object(f'tool_scene_grid').get_active())
@@ -624,10 +631,13 @@ class SsaController(AbstractController):
     def _get_performer_name(self, performer: SsaPerformer):
         return f'Type {performer.type}'
 
-    def _get_event_script_name(self, events: List[SsaTrigger], event_id: int):
+    def _get_event_script_name(self, events: List[SsaTrigger], event_id: int, short=False) -> str:
         if len(events) < event_id + 1:
             return f'??? {event_id}'
-        return self._get_talk_script_name(events[event_id].script_id)
+        name = self._get_talk_script_name(events[event_id].script_id)
+        if short:
+            return name[-6:-4]
+        return name
 
     def _talk_script_matches(self, script_name, script_id):
         try:
