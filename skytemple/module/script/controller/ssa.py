@@ -165,7 +165,7 @@ class SsaController(AbstractController):
                          popup_y=int(button.y),
                          open_popover=False)
             if selected is not None:
-                tree, index, l_iter = self._get_list_tree_index_and_iter_for(selected, layer)
+                tree, l_iter = self._get_list_tree_and_iter_for(selected)
                 self._selected_by_map_click = True
                 tree.get_selection().select_iter(l_iter)
                 self._selected_by_map_click = False
@@ -221,8 +221,8 @@ class SsaController(AbstractController):
                     start_x, start_y = self._bg_draw_is_clicked__location
                     # Start drag & drop if mouse moved at least one tile.
                     if not self._bg_draw_is_clicked__drag_active and (
-                            abs(start_x - this_x) > BPC_TILE_DIM * self._scale_factor
-                            or abs(start_y - this_y) > BPC_TILE_DIM * self._scale_factor
+                            abs(start_x - this_x) > BPC_TILE_DIM / 2 * self._scale_factor
+                            or abs(start_y - this_y) > BPC_TILE_DIM / 2 * self._scale_factor
                     ):
                         self._bg_draw_is_clicked__drag_active = True
                         self.drawer.set_drag_position(
@@ -475,58 +475,91 @@ class SsaController(AbstractController):
 
     # OVERLAY COMMON #
     def _on_po_sector_changed(self, widget: Gtk.ComboBox, *args):
-        if self._currently_selected_entity is not None:
-            pass  # todo
-            self._refresh_for_selected()
+        model, cbiter = widget.get_model(), widget.get_active_iter()
+        if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
+            new_layer_id = model[cbiter][0]
+            if self._currently_selected_entity is not None:
+                if isinstance(self._currently_selected_entity, SsaActor):
+                    index = self.ssa.layer_list[self._currently_selected_entity_layer].actors.index(self._currently_selected_entity)
+                    del self.ssa.layer_list[self._currently_selected_entity_layer].actors[index]
+                    self.ssa.layer_list[new_layer_id].actors.append(self._currently_selected_entity)
+                elif isinstance(self._currently_selected_entity, SsaObject):
+                    index = self.ssa.layer_list[self._currently_selected_entity_layer].objects.index(self._currently_selected_entity)
+                    del self.ssa.layer_list[self._currently_selected_entity_layer].objects[index]
+                    self.ssa.layer_list[new_layer_id].objects.append(self._currently_selected_entity)
+                elif isinstance(self._currently_selected_entity, SsaPerformer):
+                    index = self.ssa.layer_list[self._currently_selected_entity_layer].performers.index(self._currently_selected_entity)
+                    del self.ssa.layer_list[self._currently_selected_entity_layer].performers[index]
+                    self.ssa.layer_list[new_layer_id].performers.append(self._currently_selected_entity)
+                elif isinstance(self._currently_selected_entity, SsaEvent):
+                    index = self.ssa.layer_list[self._currently_selected_entity_layer].events.index(self._currently_selected_entity)
+                    del self.ssa.layer_list[self._currently_selected_entity_layer].events[index]
+                    self.ssa.layer_list[new_layer_id].events.append(self._currently_selected_entity)
+
+                # Also update the layer list entry for old and new layer
+                self._refresh_layer(self._currently_selected_entity_layer)
+                new_layer_iter = self._refresh_layer(new_layer_id)
+
+                # Select the layer:
+                ssa_layers = self.builder.get_object('ssa_layers')
+                self._currently_selected_entity_layer = new_layer_id
+                ssa_layers.get_selection().select_iter(new_layer_iter)
+                
+                self._refresh_for_selected()
+
+    def _refresh_layer(self, layer_id):
+        ssa_layers = self.builder.get_object('ssa_layers')
+        l_iter = self._find_list_iter(ssa_layers, lambda row: layer_id == row[0])
+        for i, f in enumerate(self._list_entry_generate_layer(layer_id, self.ssa.layer_list[layer_id])[0:2]):
+            ssa_layers.get_model()[l_iter][i] = f
+        return l_iter
 
     def _refresh_for_selected(self):
         # Refresh drawing
         self._w_ssa_draw.queue_draw()
         # Refresh list entries
-        tree, index, l_iter = self._get_list_tree_index_and_iter_for(self._currently_selected_entity,
-                                                                     self._currently_selected_entity_layer)
+        tree, l_iter = self._get_list_tree_and_iter_for(self._currently_selected_entity)
         if isinstance(self._currently_selected_entity, SsaActor):
             for i, f in enumerate(self._list_entry_generate_actor(self._currently_selected_entity_layer,
-                                                                  index, self._currently_selected_entity)):
+                                                                  self._currently_selected_entity)):
                 tree.get_model()[l_iter][i] = f
         elif isinstance(self._currently_selected_entity, SsaObject):
             for i, f in enumerate(self._list_entry_generate_object(self._currently_selected_entity_layer,
-                                                                   index, self._currently_selected_entity)):
+                                                                   self._currently_selected_entity)):
                 tree.get_model()[l_iter][i] = f
         elif isinstance(self._currently_selected_entity, SsaPerformer):
             for i, f in enumerate(self._list_entry_generate_performer(self._currently_selected_entity_layer,
-                                                                      index, self._currently_selected_entity)):
+                                                                      self._currently_selected_entity)):
                 tree.get_model()[l_iter][i] = f
         elif isinstance(self._currently_selected_entity, SsaEvent):
             for i, f in enumerate(self._list_entry_generate_trigger(self._currently_selected_entity_layer,
-                                                                    index, self._currently_selected_entity)):
+                                                                    self._currently_selected_entity)):
                 tree.get_model()[l_iter][i] = f
         # Mark as modified
         self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
-    def _get_list_tree_index_and_iter_for(self, selected, layer) -> Tuple[Gtk.TreeView, int, Optional[Gtk.TreeIter]]:
-        index = -1
+    def _get_list_tree_and_iter_for(self, selected) -> Tuple[Gtk.TreeView, Optional[Gtk.TreeIter]]:
         tree = None
         if isinstance(selected, SsaActor):
-            index = self.ssa.layer_list[layer].actors.index(selected)
             tree: Gtk.TreeView = self.builder.get_object("ssa_actors")
         elif isinstance(selected, SsaObject):
-            index = self.ssa.layer_list[layer].objects.index(selected)
             tree: Gtk.TreeView = self.builder.get_object("ssa_objects")
         elif isinstance(selected, SsaPerformer):
-            index = self.ssa.layer_list[layer].performers.index(selected)
             tree: Gtk.TreeView = self.builder.get_object("ssa_performers")
         elif isinstance(selected, SsaEvent):
-            index = self.ssa.layer_list[layer].events.index(selected)
             tree: Gtk.TreeView = self.builder.get_object("ssa_triggers")
+
+        return tree, self._find_list_iter(tree, lambda row: selected is row[1])
+
+    def _find_list_iter(self, tree, condition_cb):
         if tree is not None:
             l_iter: Gtk.TreeIter = tree.get_model().get_iter_first()
             while l_iter:
                 row = tree.get_model()[l_iter]
-                if layer == row[0] and index == row[1]:
-                    return tree, index, l_iter
+                if condition_cb(row):
+                    return l_iter
                 l_iter = tree.get_model().iter_next(l_iter)
-        return tree, index, None
+        return None
 
     # TREE VIEWS #
     def on_ssa_scenes_selection_changed(self, selection: Gtk.TreeSelection, *args):
@@ -563,7 +596,7 @@ class SsaController(AbstractController):
             self._deselect("ssa_performers")
             self._deselect("ssa_triggers")
             if not self._selected_by_map_click:
-                self._select(self.ssa.layer_list[entry[0]].actors[entry[1]], entry[0], False)
+                self._select(entry[1], entry[0], False)
 
     def on_ssa_objects_selection_changed(self, selection: Gtk.TreeSelection, *args):
         model, treeiter = selection.get_selected()
@@ -573,7 +606,7 @@ class SsaController(AbstractController):
             self._deselect("ssa_performers")
             self._deselect("ssa_triggers")
             if not self._selected_by_map_click:
-                self._select(self.ssa.layer_list[entry[0]].objects[entry[1]], entry[0], False)
+                self._select(entry[1], entry[0], False)
 
     def on_ssa_performers_selection_changed(self, selection: Gtk.TreeSelection, *args):
         model, treeiter = selection.get_selected()
@@ -583,7 +616,7 @@ class SsaController(AbstractController):
             self._deselect("ssa_objects")
             self._deselect("ssa_triggers")
             if not self._selected_by_map_click:
-                self._select(self.ssa.layer_list[entry[0]].performers[entry[1]], entry[0], False)
+                self._select(entry[1], entry[0], False)
 
     def on_ssa_triggers_selection_changed(self, selection: Gtk.TreeSelection, *args):
         model, treeiter = selection.get_selected()
@@ -593,35 +626,35 @@ class SsaController(AbstractController):
             self._deselect("ssa_objects")
             self._deselect("ssa_performers")
             if not self._selected_by_map_click:
-                self._select(self.ssa.layer_list[entry[0]].events[entry[1]], entry[0], False)
+                self._select(entry[1], entry[0], False)
 
     def on_ssa_actors_button_press_event(self, tree: Gtk.TreeView, event: Gdk.Event):
         if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
             model, treeiter = tree.get_selection().get_selected()
             if treeiter is not None and model is not None:
                 entry = model[treeiter]
-                self._select(self.ssa.layer_list[entry[0]].actors[entry[1]], entry[0], True)
+                self._select(entry[1], entry[0], True)
 
     def on_ssa_objects_button_press_event(self, tree: Gtk.TreeView, event: Gdk.Event):
         if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
             model, treeiter = tree.get_selection().get_selected()
             if treeiter is not None and model is not None:
                 entry = model[treeiter]
-                self._select(self.ssa.layer_list[entry[0]].objects[entry[1]], entry[0], True)
+                self._select(entry[1], entry[0], True)
 
     def on_ssa_performers_button_press_event(self, tree: Gtk.TreeView, event: Gdk.Event):
         if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
             model, treeiter = tree.get_selection().get_selected()
             if treeiter is not None and model is not None:
                 entry = model[treeiter]
-                self._select(self.ssa.layer_list[entry[0]].performers[entry[1]], entry[0], True)
+                self._select(entry[1], entry[0], True)
 
     def on_ssa_triggers_button_press_event(self, tree: Gtk.TreeView, event: Gdk.Event):
         if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
             model, treeiter = tree.get_selection().get_selected()
             if treeiter is not None and model is not None:
                 entry = model[treeiter]
-                self._select(self.ssa.layer_list[entry[0]].events[entry[1]], entry[0], True)
+                self._select(entry[1], entry[0], True)
 
     def on_po_closed(self, *args):
         self._currently_open_popover = None
@@ -629,18 +662,14 @@ class SsaController(AbstractController):
     def _deselect(self, list_name):
         self.builder.get_object(list_name).get_selection().unselect_all()
 
-    def _select(self, selected: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]], selected_layer,
+    def _select(self, selected: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]], selected_layer: Optional[int],
                 open_popover=True, popup_x=None, popup_y=None):
         if self._currently_open_popover is not None:
             self._currently_open_popover.popdown()
         # Also select the layer back.
-        ssa_layers: Gtk.TreeView = self.builder.get_object('ssa_layers')
-        l_iter = ssa_layers.get_model().get_iter_first()
-        while l_iter is not None:
-            row = ssa_layers.get_model()[l_iter]
-            if row[0] == selected_layer:
-                ssa_layers.get_selection().select_iter(l_iter)
-            l_iter = ssa_layers.get_model().iter_next(l_iter)
+        if selected_layer is not None:
+            ssa_layers: Gtk.TreeView = self.builder.get_object('ssa_layers')
+            ssa_layers.get_selection().select_iter(self._find_list_iter(ssa_layers, lambda row: row[0] == selected_layer))
 
         # this will prevent the updating events from firing, when selecting below.
         self._currently_selected_entity = None
@@ -781,8 +810,8 @@ class SsaController(AbstractController):
         # Are filled later (under layers; with the layer data)
         # ssa_actors
         ssa_actors: Gtk.TreeView = self.builder.get_object('ssa_actors')
-        # (layer, index in layer, kind, script name)
-        actors_list_store = Gtk.ListStore(int, int, str, str)
+        # (layer, entity, kind, script name)
+        actors_list_store = Gtk.ListStore(int, object, str, str)
         ssa_actors.append_column(resizable(TreeViewColumn("Sector", Gtk.CellRendererText(), text=0)))
         ssa_actors.append_column(resizable(TreeViewColumn("Kind", Gtk.CellRendererText(), text=2)))
         ssa_actors.append_column(resizable(TreeViewColumn("Talk Script", Gtk.CellRendererText(), text=3)))
@@ -790,8 +819,8 @@ class SsaController(AbstractController):
 
         # ssa_objects
         ssa_objects: Gtk.TreeView = self.builder.get_object('ssa_objects')
-        # (layer, index in layer, kind, script name)
-        objects_list_store = Gtk.ListStore(int, int, str, str)
+        # (layer, entity, kind, script name)
+        objects_list_store = Gtk.ListStore(int, object, str, str)
         ssa_objects.append_column(resizable(TreeViewColumn("Sector", Gtk.CellRendererText(), text=0)))
         ssa_objects.append_column(resizable(TreeViewColumn("Kind", Gtk.CellRendererText(), text=2)))
         ssa_objects.append_column(resizable(TreeViewColumn("Talk Script", Gtk.CellRendererText(), text=3)))
@@ -799,16 +828,16 @@ class SsaController(AbstractController):
 
         # ssa_performers
         ssa_performers: Gtk.TreeView = self.builder.get_object('ssa_performers')
-        # (layer, index in layer, kind)
-        performers_list_store = Gtk.ListStore(int, int, str)
+        # (layer, entity, kind)
+        performers_list_store = Gtk.ListStore(int, object, str)
         ssa_performers.append_column(resizable(TreeViewColumn("Sector", Gtk.CellRendererText(), text=0)))
         ssa_performers.append_column(resizable(TreeViewColumn("Type", Gtk.CellRendererText(), text=2)))
         ssa_performers.set_model(performers_list_store)
 
         # ssa_triggers
         ssa_triggers: Gtk.TreeView = self.builder.get_object('ssa_triggers')
-        # (layer, index in layer, event coroutine name)
-        triggers_list_store = Gtk.ListStore(int, int, str)
+        # (layer, entity, event coroutine name)
+        triggers_list_store = Gtk.ListStore(int, object, str)
         ssa_triggers.append_column(resizable(TreeViewColumn("Sector", Gtk.CellRendererText(), text=0)))
         ssa_triggers.append_column(resizable(TreeViewColumn("Event Script", Gtk.CellRendererText(), text=2)))
         ssa_triggers.set_model(triggers_list_store)
@@ -905,28 +934,25 @@ class SsaController(AbstractController):
         ssa_layers.append_column(resizable(TreeViewColumn("Name", Gtk.CellRendererText(), text=1)))
         ssa_layers.set_model(layer_list_store)
         for i, layer in enumerate(self.ssa.layer_list):
-            layer_list_store.append([
-                # TODO: Don't forget to update this, when adding / removing
-                i, f'Sector {i} ({self._get_layer_content_string(layer)})', True, False
-            ])
+            layer_list_store.append(self._list_entry_generate_layer(i, layer))
 
             # ENTITY LISTS (DATA)
             # ssa_actors
-            for e_i, actor in enumerate(layer.actors):
-                # (layer, index in layer, kind, script name)
-                actors_list_store.append(self._list_entry_generate_actor(i, e_i, actor))
+            for actor in layer.actors:
+                # (layer, entity, kind, script name)
+                actors_list_store.append(self._list_entry_generate_actor(i, actor))
             # ssa_objects
-            for e_i, obj in enumerate(layer.objects):
-                # (layer, index in layer, kind, script name)
-                objects_list_store.append(self._list_entry_generate_object(i, e_i, obj))
+            for obj in layer.objects:
+                # (layer, entity, kind, script name)
+                objects_list_store.append(self._list_entry_generate_object(i, obj))
             # ssa_performers
-            for e_i, performer in enumerate(layer.performers):
-                # (layer, index in layer, kind, script name)
-                performers_list_store.append(self._list_entry_generate_performer(i, e_i, performer))
+            for performer in layer.performers:
+                # (layer, entity, kind, script name)
+                performers_list_store.append(self._list_entry_generate_performer(i, performer))
             # ssa_triggers
-            for e_i, trigger in enumerate(layer.events):
-                # (layer, index in layer, event coroutine name)
-                triggers_list_store.append(self._list_entry_generate_trigger(i, e_i, trigger))
+            for trigger in layer.events:
+                # (layer, entity, event coroutine name)
+                triggers_list_store.append(self._list_entry_generate_trigger(i, trigger))
                 
             # > PO - Sectors [DATA]
             po_sector_store.append([i, f'Sector {i}'])
@@ -978,30 +1004,35 @@ class SsaController(AbstractController):
             self._get_file_shortname(scene)
         ]
 
-    def _list_entry_generate_actor(self, layer_id, idx_in_layer, actor):
+    def _list_entry_generate_actor(self, layer_id, actor):
         return [
-            layer_id, idx_in_layer, 
+            layer_id, actor,
             self._get_actor_name(actor),
             self._get_talk_script_name(actor.script_id)
         ]
 
-    def _list_entry_generate_object(self, layer_id, idx_in_layer, obj):
+    def _list_entry_generate_object(self, layer_id, obj):
         return [
-            layer_id, idx_in_layer,
+            layer_id, obj,
             self._get_object_name(obj),
             self._get_talk_script_name(obj.script_id)
         ]
 
-    def _list_entry_generate_performer(self, layer_id, idx_in_layer, performer):
+    def _list_entry_generate_performer(self, layer_id, performer):
         return [
-            layer_id, idx_in_layer,
+            layer_id, performer,
             self._get_performer_name(performer)
         ]
 
-    def _list_entry_generate_trigger(self, layer_id, idx_in_layer, trigger):
+    def _list_entry_generate_trigger(self, layer_id, trigger):
         return [
-            layer_id, idx_in_layer,
+            layer_id, trigger,
             self._get_event_script_name(self.ssa.triggers, trigger.trigger_id)
+        ]
+
+    def _list_entry_generate_layer(self, i, layer):
+        return [
+            i, f'Sector {i} ({self._get_layer_content_string(layer)})', True, False
         ]
 
     def _get_coroutine_name(self, coroutine: Pmd2ScriptRoutine):
