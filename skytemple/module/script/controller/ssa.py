@@ -197,8 +197,12 @@ class SsaController(AbstractController):
                     self._currently_selected_entity.pos.y_relative = math.floor(tile_y)
                     if tile_x % 1 != 0:
                         self._currently_selected_entity.pos.x_offset = 2
+                    else:
+                        self._currently_selected_entity.pos.x_offset = 0
                     if tile_y % 1 != 0:
                         self._currently_selected_entity.pos.y_offset = 2
+                    else:
+                        self._currently_selected_entity.pos.y_offset = 0
                     self._bg_draw_is_clicked__drag_active = False
                     self._bg_draw_is_clicked__location = None
         self._bg_draw_is_clicked__location = None
