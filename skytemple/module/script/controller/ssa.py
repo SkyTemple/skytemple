@@ -14,8 +14,9 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import math
 from functools import partial
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING, Optional, List, Union, Callable, Mapping, Tuple
 
 import cairo
 from gi.repository import Gtk, Gdk
@@ -31,6 +32,7 @@ from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine
 from skytemple_files.graphics.bg_list_dat.model import BgList
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 from skytemple_files.script.ssa_sse_sss.actor import SsaActor
+from skytemple_files.script.ssa_sse_sss.event import SsaEvent
 from skytemple_files.script.ssa_sse_sss.layer import SsaLayer
 from skytemple_files.script.ssa_sse_sss.model import Ssa
 from skytemple_files.script.ssa_sse_sss.object import SsaObject
@@ -48,6 +50,27 @@ SIZE_REQUEST_NONE = 500
 def resizable(column):
     column.set_resizable(True)
     return column
+
+
+def cell_renderer_radio():
+    renderer_radio = Gtk.CellRendererToggle()
+    renderer_radio.set_radio(True)
+    return renderer_radio
+
+
+def column_with_tooltip(label_text, tooltip_text, cell_renderer, attribute, column_id):
+    column = Gtk.TreeViewColumn()
+    column_header = Gtk.Label(label_text)
+    column_header.set_tooltip_text(tooltip_text)
+    column_header.show()
+    column.set_widget(column_header)
+    column.pack_start(cell_renderer, True)
+    column.add_attribute(cell_renderer, attribute, column_id)
+    return column
+
+
+def center_position(x, y, w, h):
+    return int(x + w/2), int(y + h/2)
 
 
 class SsaController(AbstractController):
@@ -73,13 +96,23 @@ class SsaController(AbstractController):
             self._scale_factor = self.__class__._last_scale_factor
         else:
             self._scale_factor = 1
-        self._bg_draw_is_clicked = False
+        self._bg_draw_is_clicked__location: Optional[Tuple[int, int]] = None
+        self._bg_draw_is_clicked__drag_active = False
         self._map_bg_width = SIZE_REQUEST_NONE
         self._map_bg_height = SIZE_REQUEST_NONE
         self._map_bg_surface = None
         self._suppress_events = False
 
+        self._currently_open_popover = None
+        self._currently_selected_entity: Optional[SsaActor, SsaObject, SsaEvent, SsaPerformer] = None
+        self._currently_selected_entity_layer: Optional[int] = None
+        self._selected_by_map_click = False
+
         self._w_ssa_draw: Optional[Gtk.DrawingArea] = None
+        self._w_po_actors: Optional[Gtk.Popover] = None
+        self._w_po_objects: Optional[Gtk.Popover] = None
+        self._w_po_performers: Optional[Gtk.Popover] = None
+        self._w_po_triggers: Optional[Gtk.Popover] = None
 
         self.ssa: Optional[Ssa] = None
 
@@ -88,6 +121,10 @@ class SsaController(AbstractController):
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'ssa.glade')
         self._w_ssa_draw = self.builder.get_object('ssa_draw')
+        self._w_po_actors: Optional[Gtk.Popover] = self.builder.get_object('po_actor')
+        self._w_po_objects: Optional[Gtk.Popover] = self.builder.get_object('po_object')
+        self._w_po_performers: Optional[Gtk.Popover] = self.builder.get_object('po_performer')
+        self._w_po_triggers: Optional[Gtk.Popover] = self.builder.get_object('po_trigger')
 
         paned: Gtk.Paned = self.builder.get_object('ssa_paned')
         if self.__class__._paned_pos is not None:
@@ -116,29 +153,79 @@ class SsaController(AbstractController):
         correct_mouse_x = int((button.x - 4) / self._scale_factor)
         correct_mouse_y = int((button.y - 4) / self._scale_factor)
         if button.button == 1:
-            self._bg_draw_is_clicked = True
-            # Snap to 0,5 tiles
-            snap_x = correct_mouse_x - correct_mouse_x % (BPC_TILE_DIM / 2)
-            snap_y = correct_mouse_y - correct_mouse_y % (BPC_TILE_DIM / 2)
-            self.drawer.set_mouse_position(snap_x, snap_y)
+            self._bg_draw_is_clicked__drag_active = False
+            self._bg_draw_is_clicked__location = (int(button.x), int(button.y))
+            self.drawer.set_mouse_position(correct_mouse_x, correct_mouse_y)
+
+            # Select.
+            self.drawer.end_drag()
+            layer, selected = self.drawer.get_under_mouse()
+            self._select(selected, layer,
+                         popup_x=int(button.x),
+                         popup_y=int(button.y),
+                         open_popover=False)
+            if selected is not None:
+                tree, index, l_iter = self._get_list_tree_index_and_iter_for(selected, layer)
+                self._selected_by_map_click = True
+                tree.get_selection().select_iter(l_iter)
+                self._selected_by_map_click = False
+
         self._w_ssa_draw.queue_draw()
 
     def on_ssa_draw_event_button_release_event(self, box, button: Gdk.EventButton):
         if button.button == 1:
-            self._bg_draw_is_clicked = False
+            if self._currently_selected_entity is not None:
+                if not self._bg_draw_is_clicked__drag_active:
+                    # Open popover
+                    self._select(self._currently_selected_entity, self._currently_selected_entity_layer,
+                                 popup_x=int(self._bg_draw_is_clicked__location[0]),
+                                 popup_y=int(self._bg_draw_is_clicked__location[1]),
+                                 open_popover=True)
+                else:
+                    # END DRAG / UPDATE POSITION
+                    tile_x, tile_y = self.drawer.get_current_drag_entity_pos()
+                    tile_x /= BPC_TILE_DIM
+                    tile_y /= BPC_TILE_DIM
+                    # Out of bounds failsafe:
+                    if tile_x < 0:
+                        tile_x = 0
+                    if tile_y < 0:
+                        tile_y = 0
+                    self.drawer.end_drag()
+                    self.module.mark_as_modified(self.mapname, self.type, self.filename)
+                    self._currently_selected_entity.pos.x_relative = math.floor(tile_x)
+                    self._currently_selected_entity.pos.y_relative = math.floor(tile_y)
+                    if tile_x % 1 != 0:
+                        self._currently_selected_entity.pos.x_offset = 2
+                    if tile_y % 1 != 0:
+                        self._currently_selected_entity.pos.y_offset = 2
+                    self._bg_draw_is_clicked__drag_active = False
+                    self._bg_draw_is_clicked__location = None
+        self._bg_draw_is_clicked__location = None
+        self._bg_draw_is_clicked__drag_active = False
         self._w_ssa_draw.queue_draw()
 
     def on_ssa_draw_event_motion_notify_event(self, box, motion: Gdk.EventMotion):
         correct_mouse_x = int((motion.x - 4) / self._scale_factor)
         correct_mouse_y = int((motion.y - 4) / self._scale_factor)
         if self.drawer:
-            # Snap to 0,5 tiles
-            snap_x = correct_mouse_x - correct_mouse_x % (BPC_TILE_DIM / 2)
-            snap_y = correct_mouse_y - correct_mouse_y % (BPC_TILE_DIM / 2)
-            self.drawer.set_mouse_position(snap_x, snap_y)
-            # TODO:
-            #if self.bg_draw_is_clicked:
-            #    self._set_col_at_pos(snap_x, snap_y)
+            self.drawer.set_mouse_position(correct_mouse_x, correct_mouse_y)
+
+            if self._currently_selected_entity is not None:
+                this_x, this_y = motion.get_coords()
+                if self._bg_draw_is_clicked__location is not None:
+                    start_x, start_y = self._bg_draw_is_clicked__location
+                    # Start drag & drop if mouse moved at least one tile.
+                    if not self._bg_draw_is_clicked__drag_active and (
+                            abs(start_x - this_x) > BPC_TILE_DIM * self._scale_factor
+                            or abs(start_y - this_y) > BPC_TILE_DIM * self._scale_factor
+                    ):
+                        self._bg_draw_is_clicked__drag_active = True
+                        self.drawer.set_drag_position(
+                            int((start_x - 4) / self._scale_factor) - self._currently_selected_entity.pos.x_absolute,
+                            int((start_y - 4) / self._scale_factor) - self._currently_selected_entity.pos.y_absolute
+                        )
+
             self._w_ssa_draw.queue_draw()
 
     # SCENE TOOLBAR #
@@ -214,6 +301,16 @@ class SsaController(AbstractController):
     def on_tool_sector_remove_clicked(self, *args):
         pass
 
+    def on_ssa_layers_visible_toggled(self, model, widget, path):
+        model[path][2] = not model[path][2]
+        if self.drawer:
+            self.drawer.set_sector_visible(model[path][0], model[path][2])
+
+    def on_ssa_layers_solo_toggled(self, model, widget, path):
+        model[path][3] = not model[path][3]
+        if self.drawer:
+            self.drawer.set_sector_solo(model[path][0], model[path][3])
+
     # SCRIPT TOOLBAR #
     def on_tool_script_edit_clicked(self, *args):
         pass
@@ -225,68 +322,207 @@ class SsaController(AbstractController):
         pass
 
     # ACTOR OVERLAY #
-    def on_po_actor_sector_changed(self, *args):
-        pass
+    def on_po_actor_sector_changed(self, widget: Gtk.ComboBox, *args):
+        self._on_po_sector_changed(widget)
 
-    def on_po_actor_kind_changed(self, *args):
-        pass
+    def on_po_actor_kind_changed(self, widget: Gtk.ComboBox, *args):
+        model, cbiter = widget.get_model(), widget.get_active_iter()
+        if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
+            kind_id = model[cbiter][0]
+            self._currently_selected_entity.actor = self.static_data.script_data.level_entities__by_id[kind_id]
+            self._refresh_for_selected()
 
-    def on_po_actor_script_changed(self, *args):
-        pass
+    def on_po_actor_script_changed(self, widget: Gtk.ComboBox, *args):
+        model, cbiter = widget.get_model(), widget.get_active_iter()
+        if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
+            self._currently_selected_entity.script_id = model[cbiter][0]
+            self._refresh_for_selected()
 
-    def on_po_actor_delete_clicked(self, *args):
-        pass
+    def on_po_actor_dir_changed(self, widget: Gtk.ComboBox, *args):
+        model, cbiter = widget.get_model(), widget.get_active_iter()
+        if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
+            self._currently_selected_entity.pos.direction = self.static_data.script_data.directions__by_id[model[cbiter][0]]
+            self._refresh_for_selected()
+
+    def on_po_actor_delete_clicked(self, widget: Gtk.ComboBox, *args):
+        pass  # todo
+        # self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
     # OBJECT OVERLAY #
-    def on_po_object_sector_changed(self, *args):
-        pass
+    def on_po_object_sector_changed(self, widget: Gtk.ComboBox, *args):
+        self._on_po_sector_changed(widget)
 
-    def on_po_object_kind_changed(self, *args):
-        pass
+    def on_po_object_kind_changed(self, widget: Gtk.ComboBox, *args):
+        model, cbiter = widget.get_model(), widget.get_active_iter()
+        if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
+            kind_id = model[cbiter][0]
+            self._currently_selected_entity.object = self.static_data.script_data.objects__by_id[kind_id]
+            self._refresh_for_selected()
 
-    def on_po_object_script_changed(self, *args):
-        pass
+    def on_po_object_script_changed(self, widget: Gtk.ComboBox, *args):
+        model, cbiter = widget.get_model(), widget.get_active_iter()
+        if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
+            self._currently_selected_entity.script_id = model[cbiter][0]
+            self._refresh_for_selected()
 
-    def on_po_object_width_changed(self, *args):
-        pass
+    def on_po_object_width_changed(self, widget: Gtk.Entry, *args):
+        try:
+            size = int(widget.get_text())
+        except ValueError:
+            pass  # Ignore errors
+        else:
+            if self._currently_selected_entity is not None:
+                self._currently_selected_entity.hitbox_w = size
+                self._refresh_for_selected()
 
-    def on_po_object_height_changed(self, *args):
-        pass
+    def on_po_object_height_changed(self, widget: Gtk.Entry, *args):
+        try:
+            size = int(widget.get_text())
+        except ValueError:
+            pass  # Ignore errors
+        else:
+            if self._currently_selected_entity is not None:
+                self._currently_selected_entity.hitbox_h = size
+                self._refresh_for_selected()
 
-    def on_po_object_delete_clicked(self, *args):
-        pass
+    def on_po_object_dir_changed(self, widget: Gtk.ComboBox, *args):
+        model, cbiter = widget.get_model(), widget.get_active_iter()
+        if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
+            self._currently_selected_entity.pos.direction = self.static_data.script_data.directions__by_id[model[cbiter][0]]
+            self._refresh_for_selected()
+
+    def on_po_object_delete_clicked(self, widget: Gtk.ComboBox, *args):
+        pass  # todo
+        # self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
     # PERFORMER OVERLAY #
-    def on_po_performer_sector_changed(self, *args):
-        pass
+    def on_po_performer_sector_changed(self, widget: Gtk.ComboBox, *args):
+        self._on_po_sector_changed(widget)
 
-    def on_po_performer_kind_changed(self, *args):
-        pass
+    def on_po_performer_kind_changed(self, widget: Gtk.ComboBox, *args):
+        model, cbiter = widget.get_model(), widget.get_active_iter()
+        if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
+            self._currently_selected_entity.type = model[cbiter][0]
+            self._refresh_for_selected()
 
-    def on_po_performer_width_changed(self, *args):
-        pass
+    def on_po_performer_width_changed(self, widget: Gtk.Entry, *args):
+        try:
+            size = int(widget.get_text())
+        except ValueError:
+            pass  # Ignore errors
+        else:
+            if self._currently_selected_entity is not None:
+                self._currently_selected_entity.hitbox_w = size
+                self._refresh_for_selected()
 
-    def on_po_performer_height_changed(self, *args):
-        pass
+    def on_po_performer_height_changed(self, widget: Gtk.Entry, *args):
+        try:
+            size = int(widget.get_text())
+        except ValueError:
+            pass  # Ignore errors
+        else:
+            if self._currently_selected_entity is not None:
+                self._currently_selected_entity.hitbox_h = size
+                self._refresh_for_selected()
 
-    def on_po_performer_delete_clicked(self, *args):
-        pass
+    def on_po_performer_dir_changed(self, widget: Gtk.ComboBox, *args):
+        model, cbiter = widget.get_model(), widget.get_active_iter()
+        if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
+            self._currently_selected_entity.pos.direction = self.static_data.script_data.directions__by_id[model[cbiter][0]]
+            self._refresh_for_selected()
+
+    def on_po_performer_delete_clicked(self, widget: Gtk.ComboBox, *args):
+        pass  # todo
+        # self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
     # TRIGGER OVERLAY #
-    def on_po_trigger_sector_changed(self, *args):
-        pass
+    def on_po_trigger_sector_changed(self, widget: Gtk.ComboBox, *args):
+        self._on_po_sector_changed(widget)
 
-    def on_po_trigger_id_changed(self, *args):
-        pass
+    def on_po_trigger_id_changed(self, widget: Gtk.ComboBox, *args):
+        model, cbiter = widget.get_model(), widget.get_active_iter()
+        if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
+            self._currently_selected_entity.trigger_id = model[cbiter][0]
+            self._refresh_for_selected()
 
-    def on_po_trigger_width_changed(self, *args):
-        pass
+    def on_po_trigger_width_changed(self, widget: Gtk.Entry, *args):
+        try:
+            size = int(widget.get_text())
+        except ValueError:
+            pass  # Ignore errors
+        else:
+            if self._currently_selected_entity is not None:
+                self._currently_selected_entity.trigger_width = size
+                self._refresh_for_selected()
 
-    def on_po_trigger_height_changed(self, *args):
-        pass
+    def on_po_trigger_height_changed(self, widget: Gtk.Entry, *args):
+        try:
+            size = int(widget.get_text())
+        except ValueError:
+            pass  # Ignore errors
+        else:
+            if self._currently_selected_entity is not None:
+                self._currently_selected_entity.trigger_height = size
+                self._refresh_for_selected()
 
-    def on_po_trigger_delete_clicked(self, *args):
-        pass
+    def on_po_trigger_delete_clicked(self, widget: Gtk.ComboBox, *args):
+        pass  # todo
+        # self.module.mark_as_modified(self.mapname, self.type, self.filename)
+
+    # OVERLAY COMMON #
+    def _on_po_sector_changed(self, widget: Gtk.ComboBox, *args):
+        if self._currently_selected_entity is not None:
+            pass  # todo
+            self._refresh_for_selected()
+
+    def _refresh_for_selected(self):
+        # Refresh drawing
+        self._w_ssa_draw.queue_draw()
+        # Refresh list entries
+        tree, index, l_iter = self._get_list_tree_index_and_iter_for(self._currently_selected_entity,
+                                                                     self._currently_selected_entity_layer)
+        if isinstance(self._currently_selected_entity, SsaActor):
+            for i, f in enumerate(self._list_entry_generate_actor(self._currently_selected_entity_layer,
+                                                                  index, self._currently_selected_entity)):
+                tree.get_model()[l_iter][i] = f
+        elif isinstance(self._currently_selected_entity, SsaObject):
+            for i, f in enumerate(self._list_entry_generate_object(self._currently_selected_entity_layer,
+                                                                   index, self._currently_selected_entity)):
+                tree.get_model()[l_iter][i] = f
+        elif isinstance(self._currently_selected_entity, SsaPerformer):
+            for i, f in enumerate(self._list_entry_generate_performer(self._currently_selected_entity_layer,
+                                                                      index, self._currently_selected_entity)):
+                tree.get_model()[l_iter][i] = f
+        elif isinstance(self._currently_selected_entity, SsaEvent):
+            for i, f in enumerate(self._list_entry_generate_trigger(self._currently_selected_entity_layer,
+                                                                    index, self._currently_selected_entity)):
+                tree.get_model()[l_iter][i] = f
+        # Mark as modified
+        self.module.mark_as_modified(self.mapname, self.type, self.filename)
+
+    def _get_list_tree_index_and_iter_for(self, selected, layer) -> Tuple[Gtk.TreeView, int, Optional[Gtk.TreeIter]]:
+        index = -1
+        tree = None
+        if isinstance(selected, SsaActor):
+            index = self.ssa.layer_list[layer].actors.index(selected)
+            tree: Gtk.TreeView = self.builder.get_object("ssa_actors")
+        elif isinstance(selected, SsaObject):
+            index = self.ssa.layer_list[layer].objects.index(selected)
+            tree: Gtk.TreeView = self.builder.get_object("ssa_objects")
+        elif isinstance(selected, SsaPerformer):
+            index = self.ssa.layer_list[layer].performers.index(selected)
+            tree: Gtk.TreeView = self.builder.get_object("ssa_performers")
+        elif isinstance(selected, SsaEvent):
+            index = self.ssa.layer_list[layer].events.index(selected)
+            tree: Gtk.TreeView = self.builder.get_object("ssa_triggers")
+        if tree is not None:
+            l_iter: Gtk.TreeIter = tree.get_model().get_iter_first()
+            while l_iter:
+                row = tree.get_model()[l_iter]
+                if layer == row[0] and index == row[1]:
+                    return tree, index, l_iter
+                l_iter = tree.get_model().iter_next(l_iter)
+        return tree, index, None
 
     # TREE VIEWS #
     def on_ssa_scenes_selection_changed(self, selection: Gtk.TreeSelection, *args):
@@ -306,6 +542,181 @@ class SsaController(AbstractController):
                     self.module.project.request_open(OpenRequest(
                         REQUEST_TYPE_SCENE_SSS, (self.mapname, filename)
                     ))
+
+    def on_ssa_layers_selection_changed(self, selection: Gtk.TreeSelection, *args):
+        model, treeiter = selection.get_selected()
+        target = None
+        if treeiter is not None and model is not None:
+            target = model[treeiter][0]
+        if self.drawer:
+            self.drawer.set_sector_highlighted(target)
+
+    def on_ssa_actors_selection_changed(self, selection: Gtk.TreeSelection, *args):
+        model, treeiter = selection.get_selected()
+        if treeiter is not None and model is not None:
+            entry = model[treeiter]
+            self._deselect("ssa_objects")
+            self._deselect("ssa_performers")
+            self._deselect("ssa_triggers")
+            if not self._selected_by_map_click:
+                self._select(self.ssa.layer_list[entry[0]].actors[entry[1]], entry[0], False)
+
+    def on_ssa_objects_selection_changed(self, selection: Gtk.TreeSelection, *args):
+        model, treeiter = selection.get_selected()
+        if treeiter is not None and model is not None:
+            entry = model[treeiter]
+            self._deselect("ssa_actors")
+            self._deselect("ssa_performers")
+            self._deselect("ssa_triggers")
+            if not self._selected_by_map_click:
+                self._select(self.ssa.layer_list[entry[0]].objects[entry[1]], entry[0], False)
+
+    def on_ssa_performers_selection_changed(self, selection: Gtk.TreeSelection, *args):
+        model, treeiter = selection.get_selected()
+        if treeiter is not None and model is not None:
+            entry = model[treeiter]
+            self._deselect("ssa_actors")
+            self._deselect("ssa_objects")
+            self._deselect("ssa_triggers")
+            if not self._selected_by_map_click:
+                self._select(self.ssa.layer_list[entry[0]].performers[entry[1]], entry[0], False)
+
+    def on_ssa_triggers_selection_changed(self, selection: Gtk.TreeSelection, *args):
+        model, treeiter = selection.get_selected()
+        if treeiter is not None and model is not None:
+            entry = model[treeiter]
+            self._deselect("ssa_actors")
+            self._deselect("ssa_objects")
+            self._deselect("ssa_performers")
+            if not self._selected_by_map_click:
+                self._select(self.ssa.layer_list[entry[0]].events[entry[1]], entry[0], False)
+
+    def on_ssa_actors_button_press_event(self, tree: Gtk.TreeView, event: Gdk.Event):
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
+            model, treeiter = tree.get_selection().get_selected()
+            if treeiter is not None and model is not None:
+                entry = model[treeiter]
+                self._select(self.ssa.layer_list[entry[0]].actors[entry[1]], entry[0], True)
+
+    def on_ssa_objects_button_press_event(self, tree: Gtk.TreeView, event: Gdk.Event):
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
+            model, treeiter = tree.get_selection().get_selected()
+            if treeiter is not None and model is not None:
+                entry = model[treeiter]
+                self._select(self.ssa.layer_list[entry[0]].objects[entry[1]], entry[0], True)
+
+    def on_ssa_performers_button_press_event(self, tree: Gtk.TreeView, event: Gdk.Event):
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
+            model, treeiter = tree.get_selection().get_selected()
+            if treeiter is not None and model is not None:
+                entry = model[treeiter]
+                self._select(self.ssa.layer_list[entry[0]].performers[entry[1]], entry[0], True)
+
+    def on_ssa_triggers_button_press_event(self, tree: Gtk.TreeView, event: Gdk.Event):
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
+            model, treeiter = tree.get_selection().get_selected()
+            if treeiter is not None and model is not None:
+                entry = model[treeiter]
+                self._select(self.ssa.layer_list[entry[0]].events[entry[1]], entry[0], True)
+
+    def on_po_closed(self, *args):
+        self._currently_open_popover = None
+
+    def _deselect(self, list_name):
+        self.builder.get_object(list_name).get_selection().unselect_all()
+
+    def _select(self, selected: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]], selected_layer,
+                open_popover=True, popup_x=None, popup_y=None):
+        if self._currently_open_popover is not None:
+            self._currently_open_popover.popdown()
+        # Also select the layer back.
+        ssa_layers: Gtk.TreeView = self.builder.get_object('ssa_layers')
+        l_iter = ssa_layers.get_model().get_iter_first()
+        while l_iter is not None:
+            row = ssa_layers.get_model()[l_iter]
+            if row[0] == selected_layer:
+                ssa_layers.get_selection().select_iter(l_iter)
+            l_iter = ssa_layers.get_model().iter_next(l_iter)
+
+        # this will prevent the updating events from firing, when selecting below.
+        self._currently_selected_entity = None
+        self._currently_selected_entity_layer = None
+        self.drawer.set_selected(selected)
+        if open_popover:
+            if isinstance(selected, SsaActor):
+                popover: Gtk.Popover = self._w_po_actors
+                if popup_x is None or popup_y is None:
+                    popup_x, popup_y = center_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_actor(selected)))
+                self._select_in_combobox_where_callback('po_actor_kind', lambda r: selected.actor.id == r[0])
+                self._select_in_combobox_where_callback('po_actor_sector', lambda r: selected_layer == r[0])
+                self._select_in_combobox_where_callback('po_actor_script', lambda r: selected.script_id == r[0])
+                self._select_in_combobox_where_callback('po_actor_dir', lambda r: selected.pos.direction.id == r[0])
+
+                popover.set_relative_to(self._w_ssa_draw)
+                rect = Gdk.Rectangle()
+                rect.x = popup_x
+                rect.y = popup_y
+                popover.set_pointing_to(rect)
+                popover.popup()
+            elif isinstance(selected, SsaObject):
+                popover: Gtk.Popover = self._w_po_objects
+                if popup_x is None or popup_y is None:
+                    popup_x, popup_y = center_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_object(selected)))
+                self._select_in_combobox_where_callback('po_object_kind', lambda r: selected.object.id == r[0])
+                self._select_in_combobox_where_callback('po_object_sector', lambda r: selected_layer == r[0])
+                self._select_in_combobox_where_callback('po_object_script', lambda r: selected.script_id == r[0])
+                self._select_in_combobox_where_callback('po_object_dir', lambda r: selected.pos.direction.id == r[0])
+                self.builder.get_object('po_object_width').set_text(str(selected.hitbox_w))
+                self.builder.get_object('po_object_height').set_text(str(selected.hitbox_h))
+
+                popover.set_relative_to(self._w_ssa_draw)
+                rect = Gdk.Rectangle()
+                rect.x = popup_x
+                rect.y = popup_y
+                popover.set_pointing_to(rect)
+                popover.popup()
+            elif isinstance(selected, SsaPerformer):
+                popover: Gtk.Popover = self._w_po_performers
+                if popup_x is None or popup_y is None:
+                    popup_x, popup_y = center_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_performer(selected)))
+                self._select_in_combobox_where_callback('po_performer_kind', lambda r: selected.type == r[0])
+                self._select_in_combobox_where_callback('po_performer_sector', lambda r: selected_layer == r[0])
+                self._select_in_combobox_where_callback('po_performer_dir', lambda r: selected.pos.direction.id == r[0])
+                self.builder.get_object('po_performer_width').set_text(str(selected.hitbox_w))
+                self.builder.get_object('po_performer_height').set_text(str(selected.hitbox_h))
+
+                popover.set_relative_to(self._w_ssa_draw)
+                rect = Gdk.Rectangle()
+                rect.x = popup_x
+                rect.y = popup_y
+                popover.set_pointing_to(rect)
+                popover.popup()
+            elif isinstance(selected, SsaEvent):
+                popover: Gtk.Popover = self._w_po_triggers
+                if popup_x is None or popup_y is None:
+                    popup_x, popup_y = center_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_trigger(selected)))
+                self._select_in_combobox_where_callback('po_trigger_id', lambda r: selected.trigger_id == r[0])
+                self._select_in_combobox_where_callback('po_trigger_sector', lambda r: selected_layer == r[0])
+                self.builder.get_object('po_trigger_width').set_text(str(selected.trigger_width))
+                self.builder.get_object('po_trigger_height').set_text(str(selected.trigger_height))
+
+                popover.set_relative_to(self._w_ssa_draw)
+                rect = Gdk.Rectangle()
+                rect.x = popup_x
+                rect.y = popup_y
+                popover.set_pointing_to(rect)
+                popover.popup()
+        self._currently_selected_entity = selected
+        self._currently_selected_entity_layer = selected_layer
+
+    def _select_in_combobox_where_callback(self, cb_name: str, callback: Callable[[Mapping], bool]):
+        cb: Gtk.ComboBox = self.builder.get_object(cb_name)
+        l_iter = cb.get_model().get_iter_first()
+        while l_iter is not None:
+            if callback(cb.get_model()[l_iter]):
+                cb.set_active_iter(l_iter)
+                return
+            l_iter = cb.get_model().iter_next(l_iter)
 
     def _init_ssa(self):
         self.ssa = self.module.get_ssa(self.filename)
@@ -430,7 +841,8 @@ class SsaController(AbstractController):
 
         # > PO - Talk Script
         po_script_store = Gtk.ListStore(int, str)  # ID, name
-        for s_i, script in enumerate([self._get_file_shortname(script) for script in self.scripts]):
+        po_script_store.append([-1, 'None'])
+        for s_i, script in [(self._script_id(script, as_int=True), self._get_file_shortname(script)) for script in self.scripts]:
             po_script_store.append([s_i, script])
         
         po_actor_script: Gtk.ComboBox = self.builder.get_object('po_actor_script')
@@ -443,7 +855,7 @@ class SsaController(AbstractController):
         # Actors
         po_actor_kind_store = Gtk.ListStore(int, str)  # ID, name
         for actor_kind in self.static_data.script_data.level_entities:
-            po_script_store.append([actor_kind.id, actor_kind.name])
+            po_actor_kind_store.append([actor_kind.id, actor_kind.name])
         
         po_actor_kind: Gtk.ComboBox = self.builder.get_object('po_actor_kind')
         self._fast_set_comboxbox_store(po_actor_kind, po_actor_kind_store, 1)
@@ -451,7 +863,7 @@ class SsaController(AbstractController):
         # Objects
         po_object_kind_store = Gtk.ListStore(int, str)  # ID, name
         for object_kind in self.static_data.script_data.objects:
-            po_script_store.append([object_kind.id, object_kind.name])
+            po_object_kind_store.append([object_kind.id, object_kind.unique_name])
         
         po_object_kind: Gtk.ComboBox = self.builder.get_object('po_object_kind')
         self._fast_set_comboxbox_store(po_object_kind, po_object_kind_store, 1)
@@ -461,30 +873,37 @@ class SsaController(AbstractController):
         # TODO: Put into scriptdata when knowing what they do, also
         #       see SsaPerformer model.
         for performer_type in [0, 1, 2, 3, 4, 5]:
-            po_script_store.append([performer_type, f'Type {performer_type}'])
+            po_performer_kind_store.append([performer_type, f'Type {performer_type}'])
 
         po_performer_kind: Gtk.ComboBox = self.builder.get_object('po_performer_kind')
         self._fast_set_comboxbox_store(po_performer_kind, po_performer_kind_store, 1)
         
         # Trigger
-        po_trigger_id_store = Gtk.ListStore(int, str)  # ID, name
+        po_trigger_id_store = Gtk.ListStore(int, str)  # trigger ID, name
         # TODO: This store must be synced with the event list updating!
         for e_i, event in enumerate(self.ssa.triggers):
-            po_script_store.append([e_i, self._get_talk_script_name(event.script_id)])
+            po_trigger_id_store.append([e_i, f"{self._get_talk_script_name(event.script_id)} "
+                                             f"/ {self._get_coroutine_name(event.coroutine)}"])
 
         po_trigger_id: Gtk.ComboBox = self.builder.get_object('po_trigger_id')
         self._fast_set_comboxbox_store(po_trigger_id, po_trigger_id_store, 1)
 
         # LAYERS
         ssa_layers: Gtk.TreeView = self.builder.get_object('ssa_layers')
-        # ID is index; (display_name)
-        layer_list_store = Gtk.ListStore(str)
-        ssa_layers.append_column(resizable(TreeViewColumn("Name", Gtk.CellRendererText(), text=0)))
+        # (index, display_name, visible, solo)
+        layer_list_store = Gtk.ListStore(int, str, bool, bool)
+        renderer_visible = Gtk.CellRendererToggle()
+        renderer_visible.connect("toggled", partial(self.on_ssa_layers_visible_toggled, layer_list_store))
+        ssa_layers.append_column(column_with_tooltip("V", "Visible", renderer_visible, "active", 2))
+        renderer_solo = Gtk.CellRendererToggle()
+        renderer_solo.connect("toggled", partial(self.on_ssa_layers_solo_toggled, layer_list_store))
+        ssa_layers.append_column(column_with_tooltip("S", "Solo", renderer_solo, "active", 3))
+        ssa_layers.append_column(resizable(TreeViewColumn("Name", Gtk.CellRendererText(), text=1)))
         ssa_layers.set_model(layer_list_store)
         for i, layer in enumerate(self.ssa.layer_list):
             layer_list_store.append([
                 # TODO: Don't forget to update this, when adding / removing
-                f'Sector {i} ({self._get_layer_content_string(layer)})'
+                i, f'Sector {i} ({self._get_layer_content_string(layer)})', True, False
             ])
 
             # ENTITY LISTS (DATA)
@@ -585,6 +1004,8 @@ class SsaController(AbstractController):
         return coroutine.name
 
     def _get_talk_script_name(self, script_id: int):
+        if script_id == -1:
+            return 'None'
         if self.type == 'ssa':
             if len(self.scripts) < 1:
                 return '???'
@@ -636,12 +1057,20 @@ class SsaController(AbstractController):
             return f'??? {event_id}'
         name = self._get_talk_script_name(events[event_id].script_id)
         if short:
-            return name[-6:-4]
+            return self._script_id(name)
         return name
+
+    def _script_id(self, name, as_int=False) -> Union[str, int]:
+        if not as_int:
+            return name[-6:-4]
+        try:
+            return int(name[-6:-4])
+        except ValueError:
+            return 0
 
     def _talk_script_matches(self, script_name, script_id):
         try:
-            suffix = int(script_name[-6:-4])
+            suffix = self._script_id(script_name, as_int=True)
             if suffix == script_id:
                 return True
         except ValueError:

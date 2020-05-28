@@ -31,8 +31,8 @@ class SelectionDrawerPlugin(AbstractDrawerPlugin):
         self.brush_width = brush_width
         self.brush_height = brush_height
 
-    def draw(self, ctx: cairo.Context, size_w: int, size_h: int, mouse_x: int, mouse_y: int):
-        if mouse_x < size_w and mouse_y < size_h:
+    def draw(self, ctx: cairo.Context, size_w: int, size_h: int, mouse_x: int, mouse_y: int, ignore_obb=False):
+        if ignore_obb or (mouse_x < size_w and mouse_y < size_h):
             # Background
             ctx.set_source_rgba(0, 0, 1, 0.3)
             ctx.rectangle(

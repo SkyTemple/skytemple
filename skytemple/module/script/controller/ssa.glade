@@ -579,7 +579,9 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <child internal-child="selection">
-                                      <object class="GtkTreeSelection"/>
+                                      <object class="GtkTreeSelection" id="ssa_layers_selection">
+                                        <signal name="changed" handler="on_ssa_layers_selection_changed" swapped="no"/>
+                                      </object>
                                     </child>
                                   </object>
                                 </child>
@@ -892,8 +894,11 @@
                                   <object class="GtkTreeView" id="ssa_actors">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <signal name="button-press-event" handler="on_ssa_actors_button_press_event" swapped="no"/>
                                     <child internal-child="selection">
-                                      <object class="GtkTreeSelection"/>
+                                      <object class="GtkTreeSelection" id="ssa_actors_selection">
+                                        <signal name="changed" handler="on_ssa_actors_selection_changed" swapped="no"/>
+                                      </object>
                                     </child>
                                   </object>
                                 </child>
@@ -998,8 +1003,11 @@
                                   <object class="GtkTreeView" id="ssa_objects">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <signal name="button-press-event" handler="on_ssa_objects_button_press_event" swapped="no"/>
                                     <child internal-child="selection">
-                                      <object class="GtkTreeSelection"/>
+                                      <object class="GtkTreeSelection" id="ssa_objects_selection">
+                                        <signal name="changed" handler="on_ssa_objects_selection_changed" swapped="no"/>
+                                      </object>
                                     </child>
                                   </object>
                                 </child>
@@ -1104,8 +1112,11 @@
                                   <object class="GtkTreeView" id="ssa_performers">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <signal name="button-press-event" handler="on_ssa_performers_button_press_event" swapped="no"/>
                                     <child internal-child="selection">
-                                      <object class="GtkTreeSelection"/>
+                                      <object class="GtkTreeSelection" id="ssa_performers_selection">
+                                        <signal name="changed" handler="on_ssa_performers_selection_changed" swapped="no"/>
+                                      </object>
                                     </child>
                                   </object>
                                 </child>
@@ -1210,8 +1221,11 @@
                                   <object class="GtkTreeView" id="ssa_triggers">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <signal name="button-press-event" handler="on_ssa_triggers_button_press_event" swapped="no"/>
                                     <child internal-child="selection">
-                                      <object class="GtkTreeSelection"/>
+                                      <object class="GtkTreeSelection" id="ssa_triggers_selection">
+                                        <signal name="changed" handler="on_ssa_triggers_selection_changed" swapped="no"/>
+                                      </object>
                                     </child>
                                   </object>
                                 </child>
@@ -1303,6 +1317,7 @@
   </object>
   <object class="GtkPopover" id="po_actor">
     <property name="can_focus">False</property>
+    <signal name="closed" handler="on_po_closed" swapped="no"/>
     <child>
       <object class="GtkGrid">
         <property name="visible">True</property>
@@ -1438,6 +1453,7 @@
           <object class="GtkComboBox" id="po_actor_dir">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <signal name="changed" handler="on_po_actor_dir_changed" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">2</property>
@@ -1450,6 +1466,7 @@
   </object>
   <object class="GtkPopover" id="po_object">
     <property name="can_focus">False</property>
+    <signal name="closed" handler="on_po_closed" swapped="no"/>
     <child>
       <object class="GtkGrid">
         <property name="visible">True</property>
@@ -1585,6 +1602,7 @@
           <object class="GtkComboBox" id="po_object_dir">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <signal name="changed" handler="on_po_object_dir_changed" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">2</property>
@@ -1660,6 +1678,7 @@
   </object>
   <object class="GtkPopover" id="po_performer">
     <property name="can_focus">False</property>
+    <signal name="closed" handler="on_po_closed" swapped="no"/>
     <child>
       <object class="GtkGrid">
         <property name="visible">True</property>
@@ -1690,7 +1709,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="label" translatable="yes">Kind</property>
+            <property name="label" translatable="yes">Type</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -1770,6 +1789,7 @@
           <object class="GtkComboBox" id="po_performer_dir">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <signal name="changed" handler="on_po_performer_dir_changed" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">2</property>
@@ -1845,6 +1865,7 @@
   </object>
   <object class="GtkPopover" id="po_trigger">
     <property name="can_focus">False</property>
+    <signal name="closed" handler="on_po_closed" swapped="no"/>
     <child>
       <object class="GtkGrid">
         <property name="visible">True</property>

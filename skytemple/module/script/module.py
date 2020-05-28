@@ -14,8 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-import re
-from typing import Union, Optional, List, Dict
+from typing import Optional, Dict
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
@@ -24,7 +23,7 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST_TYPE_SCENE_SSE, REQUEST_TYPE_SCENE_SSA, \
     REQUEST_TYPE_SCENE_SSS
 from skytemple.core.rom_project import RomProject
-from skytemple.core.ui_utils import recursive_generate_item_store_row_label
+from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.script.controller.folder import FolderController
 from skytemple.module.script.controller.map import MapController
 from skytemple.module.script.controller.ssa import SsaController
@@ -50,9 +49,9 @@ class ScriptModule(AbstractModule):
 
         # Tree iters for handle_request:
         self._map_scene_root: Dict[str, Gtk.TreeIter] = {}
-        self._map_ssas: Dict[str, List[Gtk.TreeIter]] = {}
+        self._map_ssas: Dict[str, Dict[str, Gtk.TreeIter]] = {}
         self._map_sse: Dict[str, Gtk.TreeIter] = {}
-        self._map_ssss: Dict[str, List[Gtk.TreeIter]] = {}
+        self._map_ssss: Dict[str, Dict[str, Gtk.TreeIter]] = {}
 
         self._tree_model = None
 
@@ -101,8 +100,8 @@ class ScriptModule(AbstractModule):
             parent = other
             if map_obj['name'][0] in sub_nodes.keys():
                 parent = sub_nodes[map_obj['name'][0]]
-            self._map_ssas[map_obj['name']] = []
-            self._map_ssss[map_obj['name']] = []
+            self._map_ssas[map_obj['name']] = {}
+            self._map_ssss[map_obj['name']] = {}
             #    -> (Map Name) [map]
             map_root = item_store.append(parent, [
                 'folder-symbolic', map_obj['name'], self,  MapController, map_obj['name'], False, ''
@@ -127,17 +126,16 @@ class ScriptModule(AbstractModule):
             for ssa, ssb in map_obj['ssas']:
                 stem = ssa[:-len(SSA_EXT)]
                 #             -> Scene [ssa]
-                self._map_ssas[map_obj['name']].append(
-                    item_store.append(acting_root, [
-                        'folder-templates-symbolic', stem,
-                        self, SsaController, {
-                            'map': map_obj['name'],
-                            'file': f"{SCRIPT_DIR}/{map_obj['name']}/{ssa}",
-                            'type': 'ssa',
-                            'scripts': [ssb]
-                        }, False, ''
-                    ])
-                )
+                filename = f"{SCRIPT_DIR}/{map_obj['name']}/{ssa}"
+                self._map_ssas[map_obj['name']][filename] = item_store.append(acting_root, [
+                    'folder-templates-symbolic', stem,
+                    self, SsaController, {
+                        'map': map_obj['name'],
+                        'file': filename,
+                        'type': 'ssa',
+                        'scripts': [ssb]
+                    }, False, ''
+                ])
 
             #       -> Sub Scripts [sub]
             sub_root = item_store.append(map_root, [
@@ -146,17 +144,16 @@ class ScriptModule(AbstractModule):
             for sss, ssbs in map_obj['subscripts'].items():
                 stem = sss[:-len(SSS_EXT)]
                 #             -> Scene [sss]
-                self._map_ssss[map_obj['name']].append(
-                    item_store.append(sub_root, [
-                        'folder-templates-symbolic', stem,
-                        self, SsaController, {
-                            'map': map_obj['name'],
-                            'file': f"{SCRIPT_DIR}/{map_obj['name']}/{sss}",
-                            'type': 'sss',
-                            'scripts': ssbs.copy()
-                        }, False, ''
-                    ])
-                )
+                filename = f"{SCRIPT_DIR}/{map_obj['name']}/{sss}"
+                self._map_ssss[map_obj['name']][filename] = item_store.append(sub_root, [
+                    'folder-templates-symbolic', stem,
+                    self, SsaController, {
+                        'map': map_obj['name'],
+                        'file': filename,
+                        'type': 'sss',
+                        'scripts': ssbs.copy()
+                    }, False, ''
+                ])
 
         recursive_generate_item_store_row_label(self._tree_model[root])
 
@@ -173,14 +170,14 @@ class ScriptModule(AbstractModule):
                 return self._map_sse[request.identifier]
         if request.type == REQUEST_TYPE_SCENE_SSA:
             if request.identifier[0] in self._map_ssas:
-                for it in self._map_ssas[request.identifier[0]]:
+                for it in self._map_ssas[request.identifier[0]].values():
                     # Check if the filename of the tree iter entry (see load_tree_items) matches the request filename.
                     file_name = self._tree_model[it][4]['file'].split('/')[-1]
                     if file_name == request.identifier[1]:
                         return it
         if request.type == REQUEST_TYPE_SCENE_SSS:
             if request.identifier[0] in self._map_ssss:
-                for it in self._map_ssss[request.identifier[0]]:
+                for it in self._map_ssss[request.identifier[0]].values():
                     # Check if the filename of the tree iter entry (see load_tree_items) matches the request filename.
                     file_name = self._tree_model[it][4]['file'].split('/')[-1]
                     if file_name == request.identifier[1]:
@@ -205,3 +202,24 @@ class ScriptModule(AbstractModule):
             scenes.append(sss)
 
         return scenes
+
+    def mark_as_modified(self, mapname, type, filename):
+        """Mark a specific scene as modified"""
+        self.project.mark_as_modified(filename)
+
+        treeiter = None
+        if type == 'ssa':
+            if mapname in self._map_ssas and filename in self._map_ssas[mapname]:
+                treeiter = self._map_ssas[mapname][filename]
+        elif type == 'sss':
+            if mapname in self._map_ssss and filename in self._map_ssss[mapname]:
+                treeiter = self._map_ssss[mapname][filename]
+        elif type == 'sse':
+            if mapname in self._map_sse:
+                treeiter = self._map_sse[mapname]
+
+        # Mark as modified in tree
+        if treeiter is not None:
+            row = self._tree_model[treeiter]
+            if row is not None:
+                recursive_up_item_store_mark_as_modified(row)
