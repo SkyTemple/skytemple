@@ -22,6 +22,7 @@ import cairo
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import TreeViewColumn
 
+from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import REQUEST_TYPE_MAP_BG, OpenRequest, REQUEST_TYPE_SCENE_SSE, \
@@ -316,77 +317,93 @@ class SsaController(AbstractController):
         self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
     def on_tool_sector_remove_clicked(self, *args):
-        widget: Gtk.TreeView = self.builder.get_object('ssa_layers')
-        model: Gtk.ListStore
-        model, treeiter = widget.get_selection().get_selected()
-        if treeiter is not None and model is not None:
-            layer_id = model[treeiter][0]
-            # UPDATE ALL LAYERS LIST ENTRIES AFTER THIS ONE!
-            after_iter = model.iter_next(treeiter)
-            after_inc = 0
-            while after_iter:
-                model[after_iter][0:2] = self._list_entry_generate_layer(
-                    layer_id + after_inc, self.ssa.layer_list[layer_id + after_inc + 1]
-                )[0:2]
-                after_iter = model.iter_next(after_iter)
-                after_inc += 1
-            # REMOVE ALL ENTITIES THAT NO LONGER EXIST FROM THE LISTS
-            layer = self.ssa.layer_list[layer_id]
-            for actor in layer.actors:
-                tree, l_iter = self._get_list_tree_and_iter_for(actor)
-                tree.get_model().remove(l_iter)
-            for object in layer.objects:
-                tree, l_iter = self._get_list_tree_and_iter_for(object)
-                tree.get_model().remove(l_iter)
-            for performer in layer.performers:
-                tree, l_iter = self._get_list_tree_and_iter_for(performer)
-                tree.get_model().remove(l_iter)
-            for trigger in layer.events:
-                tree, l_iter = self._get_list_tree_and_iter_for(trigger)
-                tree.get_model().remove(l_iter)
-            # UPDATE ALL ENTITY LIST LAYER INDICES AFTER THIS ONE!
-            for after_inc, layer in enumerate(self.ssa.layer_list[layer_id + 1:]):
-                for actor in layer.actors:
-                    self._refresh_list_entry_for(actor, layer_id + after_inc)
-                for object in layer.objects:
-                    self._refresh_list_entry_for(object, layer_id + after_inc)
-                for performer in layer.performers:
-                    self._refresh_list_entry_for(performer, layer_id + after_inc)
-                for trigger in layer.events:
-                    self._refresh_list_entry_for(trigger, layer_id + after_inc)
-            # Remove layer
-            del self.ssa.layer_list[layer_id]
-            # Remove from ssa_layers
-            model.remove(treeiter)
-            # Tell drawer
-            self.drawer.sector_removed(layer_id)
-            # Get iter in popover combo box
-            po_store: Gtk.ListStore = self.builder.get_object('po_actor_sector').get_model()
-            po_iter = po_store.get_iter_first()
-            found_in_po = False
-            while po_iter:
-                if po_store[po_iter][0] == layer_id:
-                    found_in_po = True
-                    break
-                po_iter = po_store.iter_next(po_iter)
-            if found_in_po:
-                # Update all popover entries after this one
-                after_iter = po_store.iter_next(po_iter)
+        # Confirmation dialog
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+            Gtk.ButtonsType.YES_NO,
+            f"Are you sure you want to remove this sector?\n"
+            f"Removing the sector will re-number all following sectors (eg. if you remove Sector 70, sector 71 will become 70, 72 -> 71, etc.)\n"
+            f"Removing a sector may cause serious issues when the game tries to load the scene.",
+            title="Warning!"
+        )
+
+        response = md.run()
+        md.destroy()
+
+        if response == Gtk.ResponseType.YES:
+            # Okay, delete the layer/sector
+            widget: Gtk.TreeView = self.builder.get_object('ssa_layers')
+            model: Gtk.ListStore
+            model, treeiter = widget.get_selection().get_selected()
+            if treeiter is not None and model is not None:
+                layer_id = model[treeiter][0]
+                # UPDATE ALL LAYERS LIST ENTRIES AFTER THIS ONE!
+                after_iter = model.iter_next(treeiter)
                 after_inc = 0
                 while after_iter:
-                    po_store[after_iter] = [layer_id + after_inc, f'Sector {layer_id + after_inc}']
-                    after_iter = po_store.iter_next(after_iter)
+                    model[after_iter][0:2] = self._list_entry_generate_layer(
+                        layer_id + after_inc, self.ssa.layer_list[layer_id + after_inc + 1]
+                    )[0:2]
+                    after_iter = model.iter_next(after_iter)
                     after_inc += 1
-                # Remove from popover combo box
-                po_store.remove(po_iter)
-            # Remove now invalid references:
-            if self._currently_selected_entity_layer == layer_id:
-                self._currently_selected_entity_layer = None
-                self._currently_selected_entity = None
-                self._bg_draw_is_clicked__drag_active = False
-                self._bg_draw_is_clicked__location = None
-            # Mark as modified
-            self.module.mark_as_modified(self.mapname, self.type, self.filename)
+                # REMOVE ALL ENTITIES THAT NO LONGER EXIST FROM THE LISTS
+                layer = self.ssa.layer_list[layer_id]
+                for actor in layer.actors:
+                    tree, l_iter = self._get_list_tree_and_iter_for(actor)
+                    tree.get_model().remove(l_iter)
+                for object in layer.objects:
+                    tree, l_iter = self._get_list_tree_and_iter_for(object)
+                    tree.get_model().remove(l_iter)
+                for performer in layer.performers:
+                    tree, l_iter = self._get_list_tree_and_iter_for(performer)
+                    tree.get_model().remove(l_iter)
+                for trigger in layer.events:
+                    tree, l_iter = self._get_list_tree_and_iter_for(trigger)
+                    tree.get_model().remove(l_iter)
+                # UPDATE ALL ENTITY LIST LAYER INDICES AFTER THIS ONE!
+                for after_inc, layer in enumerate(self.ssa.layer_list[layer_id + 1:]):
+                    for actor in layer.actors:
+                        self._refresh_list_entry_for(actor, layer_id + after_inc)
+                    for object in layer.objects:
+                        self._refresh_list_entry_for(object, layer_id + after_inc)
+                    for performer in layer.performers:
+                        self._refresh_list_entry_for(performer, layer_id + after_inc)
+                    for trigger in layer.events:
+                        self._refresh_list_entry_for(trigger, layer_id + after_inc)
+                # Remove layer
+                del self.ssa.layer_list[layer_id]
+                # Remove from ssa_layers
+                model.remove(treeiter)
+                # Tell drawer
+                self.drawer.sector_removed(layer_id)
+                # Get iter in popover combo box
+                po_store: Gtk.ListStore = self.builder.get_object('po_actor_sector').get_model()
+                po_iter = po_store.get_iter_first()
+                found_in_po = False
+                while po_iter:
+                    if po_store[po_iter][0] == layer_id:
+                        found_in_po = True
+                        break
+                    po_iter = po_store.iter_next(po_iter)
+                if found_in_po:
+                    # Update all popover entries after this one
+                    after_iter = po_store.iter_next(po_iter)
+                    after_inc = 0
+                    while after_iter:
+                        po_store[after_iter] = [layer_id + after_inc, f'Sector {layer_id + after_inc}']
+                        after_iter = po_store.iter_next(after_iter)
+                        after_inc += 1
+                    # Remove from popover combo box
+                    po_store.remove(po_iter)
+                # Remove now invalid references:
+                if self._currently_selected_entity_layer == layer_id:
+                    self._currently_selected_entity_layer = None
+                    self._currently_selected_entity = None
+                    self._bg_draw_is_clicked__drag_active = False
+                    self._bg_draw_is_clicked__location = None
+                # Mark as modified
+                self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
     def on_ssa_layers_visible_toggled(self, model, widget, path):
         model[path][2] = not model[path][2]
