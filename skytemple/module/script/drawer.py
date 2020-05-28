@@ -462,6 +462,18 @@ class Drawer:
     def end_drag(self):
         self._selected__drag = None
 
+    def sector_added(self):
+        self._sectors_solo.append(False)
+        self._sectors_visible.append(True)
+
+    def sector_removed(self, id):
+        del self._sectors_solo[id]
+        del self._sectors_visible[id]
+        if self._sector_highlighted == id:
+            self._sector_highlighted = None
+        elif self._sector_highlighted > id:
+            self._sector_highlighted -= 1
+
     def get_current_drag_entity_pos(self) -> Tuple[int, int]:
         corrected_mouse_x = self.mouse_x - self._selected__drag[0]
         corrected_mouse_y = self.mouse_y - self._selected__drag[1]
