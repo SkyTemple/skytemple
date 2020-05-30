@@ -276,7 +276,7 @@ class SsaController(AbstractController):
                 bpc = self.map_bg_module.get_bpc(item_id)
                 bpas = self.map_bg_module.get_bpas(item_id)
                 self._map_bg_surface = pil_to_cairo_surface(
-                    bma.to_pil(bpc, bpl.palettes, bpas, False, False)[0].convert('RGBA')
+                    bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[0].convert('RGBA')
                 )
                 bma_width = bma.map_width_camera * BPC_TILE_DIM
                 bma_height = bma.map_height_camera * BPC_TILE_DIM

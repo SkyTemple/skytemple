@@ -207,7 +207,7 @@ class BgMenuController:
             duration = round(1000 / 60 * non_none_bpas[0].frame_info[0].duration_per_frame)
 
         if response == Gtk.ResponseType.OK:
-            frames = self.parent.bma.to_pil(self.parent.bpc, self.parent.bpl.palettes, self.parent.bpas, False, False)
+            frames = self.parent.bma.to_pil(self.parent.bpc, self.parent.bpl, self.parent.bpas, False, False)
             frames[0].save(
                 fn,
                 save_all=True,
