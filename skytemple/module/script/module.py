@@ -23,6 +23,7 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST_TYPE_SCENE_SSE, REQUEST_TYPE_SCENE_SSA, \
     REQUEST_TYPE_SCENE_SSS
 from skytemple.core.rom_project import RomProject
+from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.script.controller.folder import FolderController
 from skytemple.module.script.controller.map import MapController
@@ -223,3 +224,6 @@ class ScriptModule(AbstractModule):
             row = self._tree_model[treeiter]
             if row is not None:
                 recursive_up_item_store_mark_as_modified(row)
+
+    def get_sprite_provider(self) -> SpriteProvider:
+        return self.project.get_sprite_provider()

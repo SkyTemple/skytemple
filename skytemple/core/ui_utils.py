@@ -15,6 +15,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import os
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeModelRow
@@ -75,3 +76,7 @@ def add_dialog_png_filter(dialog):
         filter.add_mime_type("image/png")
         filter.add_pattern("*.png")
         dialog.add_filter(filter)
+
+
+def data_dir():
+    return os.path.join(os.path.dirname(__file__), '..', 'data')

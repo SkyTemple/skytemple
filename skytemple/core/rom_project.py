@@ -15,7 +15,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-
 import logging
 from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable
 
@@ -25,6 +24,8 @@ from ndspy.rom import NintendoDSRom
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.modules import Modules
 from skytemple.core.open_request import OpenRequest
+from skytemple.core.model_context import ModelContext
+from skytemple.core.sprite_provider import SpriteProvider
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
@@ -35,6 +36,15 @@ logger = logging.getLogger(__name__)
 if TYPE_CHECKING:
     from skytemple.controller.main import MainController
     from skytemple.module.rom.module import RomModule
+
+
+try:
+    from contextlib import nullcontext
+except ImportError:  # < Python 3.7
+    from contextlib import contextmanager
+    @contextmanager
+    def nullcontext(enter_result=None):
+        yield enter_result
 
 
 class RomProject:
@@ -70,8 +80,13 @@ class RomProject:
         self._rom: NintendoDSRom = None
         self._rom_module: Optional['RomModule'] = None
         self._loaded_modules: Dict[str, AbstractModule] = {}
+        self._sprite_renderer: Optional[SpriteProvider] = None
         # Dict of filenames -> models
         self._opened_files = {}
+        self._opened_files_contexts = {}
+        # List of filenames that were requested to be opened threadsafe.
+        self._files_threadsafe = []
+        self._files_unsafe = []
         # Dict of filenames -> file handler object
         self._file_handlers = {}
         # List of modified filenames
@@ -88,7 +103,8 @@ class RomProject:
                 self._rom_module = module(self)
             else:
                 self._loaded_modules[name] = module(self)
-        # TODO: Check ROM module if ROM is actually supported!
+
+        self._sprite_renderer = SpriteProvider(self)
 
     def get_rom_module(self) -> 'RomModule':
         return self._rom_module
@@ -102,16 +118,32 @@ class RomProject:
     def get_module(self, name):
         return self._loaded_modules[name]
 
-    def open_file_in_rom(self, file_path_in_rom: str, file_handler_class: DataHandler[T]) -> T:
+    def open_file_in_rom(self, file_path_in_rom: str, file_handler_class: DataHandler[T],
+                         threadsafe=False) -> Union[T, ModelContext[T]]:
         """
         Open a file. If already open, the opened object is returned.
         The second parameter is a file handler to use. Please note, that the file handler is only
         used if the file is not already open.
+
+        The value of ``threadsafe`` must be the same for all requests to the file. If one request to open a
+        file used the value False but another True or vice-versa, this will raise a ValueError.
+
+        If ``threadsafe`` is True, instead of returning the model, a ModelContext[T] is returned.
         """
         if file_path_in_rom not in self._opened_files:
             bin = self._rom.getFileByName(file_path_in_rom)
             self._opened_files[file_path_in_rom] = file_handler_class.deserialize(bin)
             self._file_handlers[file_path_in_rom] = file_handler_class
+        if threadsafe:
+            if file_path_in_rom in self._files_unsafe:
+                raise ValueError(
+                    f"Tried to open {file_path_in_rom} threadsafe, but it was requested unsafe somewhere else."
+                )
+            if file_path_in_rom not in self._opened_files_contexts:
+                self._opened_files_contexts[file_path_in_rom] = ModelContext(self._opened_files[file_path_in_rom])
+            return self._opened_files_contexts[file_path_in_rom]
+        elif file_path_in_rom in self._files_threadsafe:
+            raise ValueError(f"Tried to open {file_path_in_rom} unsafe, but it was requested threadsafe somewhere else.")
         return self._opened_files[file_path_in_rom]
 
     def mark_as_modified(self, file: Union[str, object]):
@@ -136,11 +168,14 @@ class RomProject:
     async def _save_impl(self, main_controller: Optional['MainController']):
         try:
             for name in self._modified_files:
-                model = self._opened_files[name]
-                handler = self._file_handlers[name]
-                logger.debug(f"Saving {name} in ROM. Model: {model}, Handler: {handler}")
-                binary_data = handler.serialize(model)
-                self._rom.setFileByName(name, binary_data)
+                context = self._opened_files_contexts[name] \
+                    if name in self._opened_files_contexts \
+                    else nullcontext(self._opened_files[name])
+                with context as model:
+                    handler = self._file_handlers[name]
+                    logger.debug(f"Saving {name} in ROM. Model: {model}, Handler: {handler}")
+                    binary_data = handler.serialize(model)
+                    self._rom.setFileByName(name, binary_data)
             self._modified_files = []
             logger.debug(f"Saving ROM to {self.filename}")
             self._rom.saveToFile(self.filename)
@@ -184,3 +219,6 @@ class RomProject:
                 return
         if raise_exception:
             raise ValueError("No handler for request.")
+
+    def get_sprite_provider(self) -> SpriteProvider:
+        return self._sprite_renderer

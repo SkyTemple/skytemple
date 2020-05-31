@@ -184,6 +184,8 @@ class MainController:
         """Update the UI after a ROM file has been opened."""
         assert current_thread() == main_thread
         logger.debug('File opened.')
+        # Init the sprite provider
+        RomProject.get_current().get_sprite_provider().init_loader(self.window.get_screen())
 
         self._init_window_after_rom_load(os.path.basename(RomProject.get_current().filename))
         try:

@@ -22,6 +22,7 @@ import gi
 
 from skytemple.core.global_configuration import GlobalConfiguration
 from skytemple.core.modules import Modules
+from skytemple.core.ui_utils import data_dir
 from skytemple_files.common.task_runner import AsyncTaskRunner
 
 gi.require_version('Gtk', '3.0')
@@ -53,7 +54,7 @@ def main():
         _windows_load_theme()
 
     itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
-    itheme.append_search_path(os.path.abspath(os.path.join(path, "data", "icons")))
+    itheme.append_search_path(os.path.abspath(os.path.join(data_dir(), "icons")))
     itheme.rescan_if_needed()
 
     # Load Builder and Window

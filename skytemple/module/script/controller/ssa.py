@@ -120,6 +120,7 @@ class SsaController(AbstractController):
         self.drawer: Optional[Drawer] = None
 
     def get_view(self) -> Gtk.Widget:
+        self.module.get_sprite_provider().reset()
         self.builder = self._get_builder(__file__, 'ssa.glade')
         self._w_ssa_draw = self.builder.get_object('ssa_draw')
         self._w_po_actors: Optional[Gtk.Popover] = self.builder.get_object('po_actor')
@@ -1114,7 +1115,9 @@ class SsaController(AbstractController):
         self._suppress_events = False
 
     def _init_drawer(self):
-        self.drawer = Drawer(self._w_ssa_draw, self.ssa, partial(self._get_event_script_name, self.ssa.triggers, short=True))
+        self.drawer = Drawer(self._w_ssa_draw, self.ssa,
+                             partial(self._get_event_script_name, self.ssa.triggers, short=True),
+                             self.module.get_sprite_provider())
         self.drawer.start()
 
         self.drawer.set_draw_tile_grid(self.builder.get_object(f'tool_scene_grid').get_active())

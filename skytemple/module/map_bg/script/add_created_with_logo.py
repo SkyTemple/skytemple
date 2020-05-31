@@ -19,6 +19,7 @@ import os
 from PIL import Image
 from gi.repository import Gtk
 
+from skytemple.core.ui_utils import data_dir
 from skytemple_files.common.tiled_image import from_pil
 from skytemple_files.graphics.bma.model import Bma
 from skytemple_files.graphics.bpc.model import Bpc, BPC_TILE_DIM
@@ -47,7 +48,7 @@ class AddCreatedWithLogo:
     def process(self):
         # BPC:
         start_offset = self.bpc.layers[0].chunk_tilemap_len
-        with open(os.path.join(os.path.dirname(__file__), '..', '..', '..', 'data', 'created_with.png'), 'rb') as f:
+        with open(os.path.join(data_dir(), 'created_with.png'), 'rb') as f:
             palettes = self._import_to_bpc(0, Image.open(f))
         # BMA:
         for x in range(0, 11):
