@@ -27,6 +27,7 @@ from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import REQUEST_TYPE_MAP_BG, OpenRequest, REQUEST_TYPE_SCENE_SSE, \
     REQUEST_TYPE_SCENE_SSA, REQUEST_TYPE_SCENE_SSS
+from skytemple.module.script.controller.ssa_event_dialog import SsaEventDialogController
 from skytemple.module.script.drawer import Drawer, InteractionMode
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine
@@ -334,13 +335,106 @@ class SsaController(AbstractController):
 
     # EVENTS TOOLBAR #
     def on_tool_events_add_clicked(self, *args):
-        pass
+        dialog = SsaEventDialogController(
+            self.builder, MainController.window(),
+            self._get_event_dialog_script_names(),
+            self.static_data.script_data
+        )
+        response = dialog.run()
+        if response == Gtk.ResponseType.OK:
+            new_event = dialog.get_event()
+            self.ssa.triggers.append(new_event)
+            self.builder.get_object('ssa_events').get_model().append(
+                self._list_entry_generate_event(new_event)
+            )
+            # Update popovers for events
+            po_trigger_id: Gtk.ComboBox = self.builder.get_object('po_trigger_id')
+            po_trigger_id.get_model().append([new_event,
+                                              f"{self._get_talk_script_name(new_event.script_id)} "
+                                              f"/ {self._get_coroutine_name(new_event.coroutine)}"])
+            # Update lists for triggers
+            for layer_id, layer in enumerate(self.ssa.layer_list):
+                for trigger in layer.events:
+                    self._refresh_list_entry_for(trigger, layer_id)
+
+            self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
     def on_tool_events_remove_clicked(self, *args):
-        pass
+        widget: Gtk.TreeView = self.builder.get_object('ssa_events')
+        model: Gtk.ListStore
+        model, treeiter = widget.get_selection().get_selected()
+        if treeiter is not None and model is not None:
+            row = model[treeiter][:]
+            # Remove from list
+            model.remove(treeiter)
+            # Remove from model
+            trigger_id = self.ssa.triggers.index(row[0])
+            self.ssa.triggers.remove(row[0])
+            # Update popovers combobox for events
+            po_trigger_id: Gtk.ComboBox = self.builder.get_object('po_trigger_id')
+            po_store: Gtk.ListStore = po_trigger_id.get_model()
+            po_iter = po_store.get_iter_first()
+            while po_iter:
+                if po_store[po_iter][0] == row[0]:
+                    po_store.remove(po_iter)
+                    break
+                po_iter = po_store.iter_next(po_iter)
+            # Update triggers ( set to 0 if removed, if bigger than index, decrease by 1 )
+            for layer_id, layer in enumerate(self.ssa.layer_list):
+                for trigger in layer.events:
+                    if trigger.trigger_id == trigger_id:
+                        trigger.trigger_id = 0
+                    elif trigger.trigger_id > trigger_id:
+                        trigger.trigger_id -= 1
+                    self._refresh_list_entry_for(trigger, layer_id)
+            # Mark as modified
+            self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
     def on_tool_events_edit_clicked(self, *args):
-        pass
+        widget: Gtk.TreeView = self.builder.get_object('ssa_events')
+        model: Gtk.ListStore
+        model, treeiter = widget.get_selection().get_selected()
+        if treeiter is not None and model is not None:
+            edit_model: SsaTrigger = model[treeiter][0]
+            dialog = SsaEventDialogController(
+                self.builder, MainController.window(),
+                self._get_event_dialog_script_names(),
+                self.static_data.script_data,
+                edit=edit_model
+            )
+            response = dialog.run()
+            if response == Gtk.ResponseType.OK:
+                new_event = dialog.get_event()
+                edit_model.coroutine = new_event.coroutine
+                edit_model.script_id = new_event.script_id
+                edit_model.unk2 = new_event.unk2
+                edit_model.unk3 = new_event.unk3
+                # Update popovers for events
+                po_trigger_id: Gtk.ComboBox = self.builder.get_object('po_trigger_id')
+                po_store: Gtk.ListStore = po_trigger_id.get_model()
+                po_iter = po_store.get_iter_first()
+                while po_iter:
+                    if po_store[po_iter][0] == edit_model:
+                        po_store[po_iter][:] = [
+                            edit_model,
+                            f"{self._get_talk_script_name(edit_model.script_id)} "
+                            f"/ {self._get_coroutine_name(edit_model.coroutine)}"
+                        ]
+                        break
+                    po_iter = po_store.iter_next(po_iter)
+                # Update lists for triggers
+                for layer_id, layer in enumerate(self.ssa.layer_list):
+                    for trigger in layer.events:
+                        self._refresh_list_entry_for(trigger, layer_id)
+                # Update event list
+                l_iter = model.get_iter_first()
+                while l_iter:
+                    if model[l_iter][0] == edit_model:
+                        model[l_iter][:] = self._list_entry_generate_event(edit_model)
+                        break
+                    l_iter = model.iter_next(l_iter)
+
+                self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
     # SECTOR TOOLBAR #
     def on_tool_sector_add_clicked(self, *args):
@@ -631,7 +725,7 @@ class SsaController(AbstractController):
     def on_po_trigger_id_changed(self, widget: Gtk.ComboBox, *args):
         model, cbiter = widget.get_model(), widget.get_active_iter()
         if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
-            self._currently_selected_entity.trigger_id = model[cbiter][0]
+            self._currently_selected_entity.trigger_id = self.ssa.triggers.index(model[cbiter][0])
             self._refresh_for_selected()
 
     def on_po_trigger_width_changed(self, widget: Gtk.Entry, *args):
@@ -930,7 +1024,7 @@ class SsaController(AbstractController):
                 popover: Gtk.Popover = self._w_po_triggers
                 if popup_x is None or popup_y is None:
                     popup_x, popup_y = popover_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_trigger(selected)))
-                self._select_in_combobox_where_callback('po_trigger_id', lambda r: selected.trigger_id == r[0])
+                self._select_in_combobox_where_callback('po_trigger_id', lambda r: selected.trigger_id == self.ssa.triggers.index(r[0]))
                 self._select_in_combobox_where_callback('po_trigger_sector', lambda r: selected_layer == r[0])
                 self.builder.get_object('po_trigger_width').set_text(str(selected.trigger_width))
                 self.builder.get_object('po_trigger_height').set_text(str(selected.trigger_height))
@@ -985,7 +1079,7 @@ class SsaController(AbstractController):
 
         # EVENTS - TODO: Unify naming of SSA events/triggers with the UI!
         ssa_events: Gtk.TreeView = self.builder.get_object('ssa_events')
-        # ID is index; (obj, coroutine name, script name, unk2, unk3)
+        # (obj, coroutine name, script name, unk2, unk3)
         events_list_store = Gtk.ListStore(object, str, str, int, int)
         ssa_events.append_column(resizable(TreeViewColumn("Triggered Script", Gtk.CellRendererText(), text=2)))
         ssa_events.append_column(resizable(TreeViewColumn("Coroutine", Gtk.CellRendererText(), text=1)))
@@ -1127,10 +1221,9 @@ class SsaController(AbstractController):
         self._fast_set_comboxbox_store(po_performer_kind, po_performer_kind_store, 1)
         
         # Trigger
-        po_trigger_id_store = Gtk.ListStore(int, str)  # trigger ID, name
-        # TODO: This store must be synced with the event list updating!
+        po_trigger_id_store = Gtk.ListStore(object, str)  # event object, name
         for e_i, event in enumerate(self.ssa.triggers):
-            po_trigger_id_store.append([e_i, f"{self._get_talk_script_name(event.script_id)} "
+            po_trigger_id_store.append([event, f"{self._get_talk_script_name(event.script_id)} "
                                              f"/ {self._get_coroutine_name(event.coroutine)}"])
 
         po_trigger_id: Gtk.ComboBox = self.builder.get_object('po_trigger_id')
@@ -1328,6 +1421,9 @@ class SsaController(AbstractController):
         except ValueError:
             return False
         return False
+
+    def _get_event_dialog_script_names(self):
+        return {self._script_id(script, as_int=True): self._get_file_shortname(script) for script in self.scripts}
 
     def _build_pos(self, x: float, y: float, dir=True) -> SsaPosition:
         direction = 1 if dir else None
