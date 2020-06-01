@@ -27,7 +27,7 @@ from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import REQUEST_TYPE_MAP_BG, OpenRequest, REQUEST_TYPE_SCENE_SSE, \
     REQUEST_TYPE_SCENE_SSA, REQUEST_TYPE_SCENE_SSS
-from skytemple.module.script.drawer import Drawer
+from skytemple.module.script.drawer import Drawer, InteractionMode
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine
 from skytemple_files.graphics.bg_list_dat.model import BgList
@@ -38,6 +38,7 @@ from skytemple_files.script.ssa_sse_sss.layer import SsaLayer
 from skytemple_files.script.ssa_sse_sss.model import Ssa
 from skytemple_files.script.ssa_sse_sss.object import SsaObject
 from skytemple_files.script.ssa_sse_sss.performer import SsaPerformer
+from skytemple_files.script.ssa_sse_sss.position import SsaPosition
 from skytemple_files.script.ssa_sse_sss.trigger import SsaTrigger
 
 if TYPE_CHECKING:
@@ -70,8 +71,8 @@ def column_with_tooltip(label_text, tooltip_text, cell_renderer, attribute, colu
     return column
 
 
-def center_position(x, y, w, h):
-    return int(x + w/2), int(y + h/2)
+def popover_position(x, y, w, h):
+    return int(x + w/2), y - BPC_TILE_DIM
 
 
 class SsaController(AbstractController):
@@ -152,6 +153,8 @@ class SsaController(AbstractController):
         self.__class__._paned_pos = paned.get_position()
 
     def on_ssa_draw_event_button_press_event(self, box, button: Gdk.EventButton):
+        if not self.drawer or self.drawer.interaction_mode != InteractionMode.SELECT:
+            return
         correct_mouse_x = int((button.x - 4) / self._scale_factor)
         correct_mouse_y = int((button.y - 4) / self._scale_factor)
         if button.button == 1:
@@ -163,8 +166,6 @@ class SsaController(AbstractController):
             self.drawer.end_drag()
             layer, selected = self.drawer.get_under_mouse()
             self._select(selected, layer,
-                         popup_x=int(button.x),
-                         popup_y=int(button.y),
                          open_popover=False)
             if selected is not None:
                 tree, l_iter = self._get_list_tree_and_iter_for(selected)
@@ -175,13 +176,45 @@ class SsaController(AbstractController):
         self._w_ssa_draw.queue_draw()
 
     def on_ssa_draw_event_button_release_event(self, box, button: Gdk.EventButton):
-        if button.button == 1:
-            if self._currently_selected_entity is not None:
+        if button.button == 1 and self.drawer is not None:
+            # PLACE
+            place_layer = 0
+            new_entity = None
+            if self.drawer.get_sector_highlighted() is not None:
+                place_layer = self.drawer.get_sector_highlighted()
+
+            if self.drawer.interaction_mode == InteractionMode.PLACE_ACTOR:
+                new_entity = SsaActor(
+                    self.static_data.script_data, 0, self._build_pos(*self.drawer.get_pos_place_actor()), -1, -1
+                )
+                self.ssa.layer_list[place_layer].actors.append(new_entity)
+            elif self.drawer.interaction_mode == InteractionMode.PLACE_OBJECT:
+                new_entity = SsaObject(
+                    self.static_data.script_data, 0, 2, 2, self._build_pos(*self.drawer.get_pos_place_object()), -1, -1
+                )
+                self.ssa.layer_list[place_layer].objects.append(new_entity)
+            elif self.drawer.interaction_mode == InteractionMode.PLACE_PERFORMER:
+                new_entity = SsaPerformer(
+                    0, 1, 1, self._build_pos(*self.drawer.get_pos_place_performer()), -1, -1
+                )
+                self.ssa.layer_list[place_layer].performers.append(new_entity)
+            elif self.drawer.interaction_mode == InteractionMode.PLACE_TRIGGER:
+                new_entity = SsaEvent(
+                    2, 2, 0, 0, self._build_pos(*self.drawer.get_pos_place_trigger(), dir=False), 65535
+                )
+                self.ssa.layer_list[place_layer].events.append(new_entity)
+            if new_entity is not None:
+                # Switch back to move/select mode
+                self.builder.get_object('tool_scene_move').set_active(True)
+                self._select(new_entity, place_layer)
+                self._add_entity_to_list(new_entity, place_layer)
+                self.module.mark_as_modified(self.mapname, self.type, self.filename)
+
+            # SELECT / DRAG
+            elif self._currently_selected_entity is not None:
                 if not self._bg_draw_is_clicked__drag_active:
                     # Open popover
                     self._select(self._currently_selected_entity, self._currently_selected_entity_layer,
-                                 popup_x=int(self._bg_draw_is_clicked__location[0]),
-                                 popup_y=int(self._bg_draw_is_clicked__location[1]),
                                  open_popover=True)
                 else:
                     # END DRAG / UPDATE POSITION
@@ -251,19 +284,28 @@ class SsaController(AbstractController):
             self._w_ssa_draw.queue_draw()
 
     def on_tool_scene_move_toggled(self, *args):
-        pass
+        if self.drawer:
+            self.drawer.interaction_mode = InteractionMode.SELECT
 
     def on_tool_scene_add_actor_toggled(self, *args):
-        pass
+        if self.drawer:
+            self.drawer.interaction_mode = InteractionMode.PLACE_ACTOR
+            self._select(None, None)
 
     def on_tool_scene_add_object_toggled(self, *args):
-        pass
+        if self.drawer:
+            self.drawer.interaction_mode = InteractionMode.PLACE_OBJECT
+            self._select(None, None)
 
     def on_tool_scene_add_performer_toggled(self, *args):
-        pass
+        if self.drawer:
+            self.drawer.interaction_mode = InteractionMode.PLACE_PERFORMER
+            self._select(None, None)
 
     def on_tool_scene_add_trigger_toggled(self, *args):
-        pass
+        if self.drawer:
+            self.drawer.interaction_mode = InteractionMode.PLACE_TRIGGER
+            self._select(None, None)
 
     def on_tool_choose_map_bg_cb_changed(self, w: Gtk.ComboBox):
         model, cbiter = w.get_model(), w.get_active_iter()
@@ -461,6 +503,7 @@ class SsaController(AbstractController):
         self._bg_draw_is_clicked__location = None
         if self._currently_open_popover is not None:
             self._currently_open_popover.popdown()
+        self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
         self._refresh_layer(self._currently_selected_entity_layer)
         # Mark as modified
@@ -521,6 +564,7 @@ class SsaController(AbstractController):
         self._bg_draw_is_clicked__location = None
         if self._currently_open_popover is not None:
             self._currently_open_popover.popdown()
+        self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
         self._refresh_layer(self._currently_selected_entity_layer)
         # Mark as modified
@@ -574,6 +618,7 @@ class SsaController(AbstractController):
         self._bg_draw_is_clicked__location = None
         if self._currently_open_popover is not None:
             self._currently_open_popover.popdown()
+        self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
         self._refresh_layer(self._currently_selected_entity_layer)
         # Mark as modified
@@ -621,6 +666,7 @@ class SsaController(AbstractController):
         self._bg_draw_is_clicked__location = None
         if self._currently_open_popover is not None:
             self._currently_open_popover.popdown()
+        self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
         self._refresh_layer(self._currently_selected_entity_layer)
         # Mark as modified
@@ -690,17 +736,20 @@ class SsaController(AbstractController):
             for i, f in enumerate(self._list_entry_generate_trigger(layer, entity)):
                 tree.get_model()[l_iter][i] = f
 
-    def _get_list_tree_and_iter_for(self, selected) -> Tuple[Gtk.TreeView, Optional[Gtk.TreeIter]]:
+    def _get_list_for(self, entity) -> Gtk.TreeView:
         tree = None
-        if isinstance(selected, SsaActor):
+        if isinstance(entity, SsaActor):
             tree: Gtk.TreeView = self.builder.get_object("ssa_actors")
-        elif isinstance(selected, SsaObject):
+        elif isinstance(entity, SsaObject):
             tree: Gtk.TreeView = self.builder.get_object("ssa_objects")
-        elif isinstance(selected, SsaPerformer):
+        elif isinstance(entity, SsaPerformer):
             tree: Gtk.TreeView = self.builder.get_object("ssa_performers")
-        elif isinstance(selected, SsaEvent):
+        elif isinstance(entity, SsaEvent):
             tree: Gtk.TreeView = self.builder.get_object("ssa_triggers")
+        return tree
 
+    def _get_list_tree_and_iter_for(self, selected) -> Tuple[Gtk.TreeView, Optional[Gtk.TreeIter]]:
+        tree = self._get_list_for(selected)
         return tree, self._find_list_iter(tree, lambda row: selected is row[1])
 
     def _find_list_iter(self, tree, condition_cb):
@@ -832,7 +881,7 @@ class SsaController(AbstractController):
             if isinstance(selected, SsaActor):
                 popover: Gtk.Popover = self._w_po_actors
                 if popup_x is None or popup_y is None:
-                    popup_x, popup_y = center_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_actor(selected)))
+                    popup_x, popup_y = popover_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_actor(selected)))
                 self._select_in_combobox_where_callback('po_actor_kind', lambda r: selected.actor.id == r[0])
                 self._select_in_combobox_where_callback('po_actor_sector', lambda r: selected_layer == r[0])
                 self._select_in_combobox_where_callback('po_actor_script', lambda r: selected.script_id == r[0])
@@ -847,7 +896,7 @@ class SsaController(AbstractController):
             elif isinstance(selected, SsaObject):
                 popover: Gtk.Popover = self._w_po_objects
                 if popup_x is None or popup_y is None:
-                    popup_x, popup_y = center_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_object(selected)))
+                    popup_x, popup_y = popover_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_object(selected)))
                 self._select_in_combobox_where_callback('po_object_kind', lambda r: selected.object.id == r[0])
                 self._select_in_combobox_where_callback('po_object_sector', lambda r: selected_layer == r[0])
                 self._select_in_combobox_where_callback('po_object_script', lambda r: selected.script_id == r[0])
@@ -864,7 +913,7 @@ class SsaController(AbstractController):
             elif isinstance(selected, SsaPerformer):
                 popover: Gtk.Popover = self._w_po_performers
                 if popup_x is None or popup_y is None:
-                    popup_x, popup_y = center_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_performer(selected)))
+                    popup_x, popup_y = popover_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_performer(selected)))
                 self._select_in_combobox_where_callback('po_performer_kind', lambda r: selected.type == r[0])
                 self._select_in_combobox_where_callback('po_performer_sector', lambda r: selected_layer == r[0])
                 self._select_in_combobox_where_callback('po_performer_dir', lambda r: selected.pos.direction.id == r[0])
@@ -880,7 +929,7 @@ class SsaController(AbstractController):
             elif isinstance(selected, SsaEvent):
                 popover: Gtk.Popover = self._w_po_triggers
                 if popup_x is None or popup_y is None:
-                    popup_x, popup_y = center_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_trigger(selected)))
+                    popup_x, popup_y = popover_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_trigger(selected)))
                 self._select_in_combobox_where_callback('po_trigger_id', lambda r: selected.trigger_id == r[0])
                 self._select_in_combobox_where_callback('po_trigger_sector', lambda r: selected_layer == r[0])
                 self.builder.get_object('po_trigger_width').set_text(str(selected.trigger_width))
@@ -896,6 +945,17 @@ class SsaController(AbstractController):
                 self._currently_open_popover = popover
         self._currently_selected_entity = selected
         self._currently_selected_entity_layer = selected_layer
+
+    def _add_entity_to_list(self, entity: Union[SsaActor, SsaObject, SsaPerformer, SsaEvent], layer: int):
+        tree = self._get_list_for(entity)
+        if isinstance(entity, SsaActor):
+            tree.get_model().append(self._list_entry_generate_actor(layer, entity))
+        elif isinstance(entity, SsaObject):
+            tree.get_model().append(self._list_entry_generate_object(layer, entity))
+        elif isinstance(entity, SsaPerformer):
+            tree.get_model().append(self._list_entry_generate_performer(layer, entity))
+        elif isinstance(entity, SsaEvent):
+            tree.get_model().append(self._list_entry_generate_trigger(layer, entity))
 
     def _select_in_combobox_where_callback(self, cb_name: str, callback: Callable[[Mapping], bool]):
         cb: Gtk.ComboBox = self.builder.get_object(cb_name)
@@ -1147,7 +1207,7 @@ class SsaController(AbstractController):
         cb.pack_start(renderer_text, True)
         cb.add_attribute(renderer_text, "text", col)
 
-    def _list_entry_generate_event(self, event):
+    def _list_entry_generate_event(self, event: SsaTrigger):
         return [
             event,
             self._get_coroutine_name(event.coroutine),
@@ -1161,27 +1221,27 @@ class SsaController(AbstractController):
             self._get_file_shortname(scene)
         ]
 
-    def _list_entry_generate_actor(self, layer_id, actor):
+    def _list_entry_generate_actor(self, layer_id, actor: SsaActor):
         return [
             layer_id, actor,
             self._get_actor_name(actor),
             self._get_talk_script_name(actor.script_id)
         ]
 
-    def _list_entry_generate_object(self, layer_id, obj):
+    def _list_entry_generate_object(self, layer_id, obj: SsaObject):
         return [
             layer_id, obj,
             self._get_object_name(obj),
             self._get_talk_script_name(obj.script_id)
         ]
 
-    def _list_entry_generate_performer(self, layer_id, performer):
+    def _list_entry_generate_performer(self, layer_id, performer: SsaPerformer):
         return [
             layer_id, performer,
             self._get_performer_name(performer)
         ]
 
-    def _list_entry_generate_trigger(self, layer_id, trigger):
+    def _list_entry_generate_trigger(self, layer_id, trigger: SsaEvent):
         return [
             layer_id, trigger,
             self._get_event_script_name(self.ssa.triggers, trigger.trigger_id)
@@ -1268,3 +1328,13 @@ class SsaController(AbstractController):
         except ValueError:
             return False
         return False
+
+    def _build_pos(self, x: float, y: float, dir=True) -> SsaPosition:
+        direction = 1 if dir else None
+        x /= BPC_TILE_DIM
+        y /= BPC_TILE_DIM
+        x_relative = math.floor(x)
+        y_relative = math.floor(y)
+        x_offset = 2 if x % 1 != 0 else 0
+        y_offset = 2 if y % 1 != 0 else 0
+        return SsaPosition(self.static_data.script_data, x_relative, y_relative, x_offset, y_offset, direction)

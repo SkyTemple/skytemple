@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from enum import auto
+from enum import auto, Enum
 from typing import Tuple, Union, Callable, Optional
 
 import cairo
@@ -43,6 +43,14 @@ Num = Union[int, float]
 Color = Tuple[Num, Num, Num]
 
 
+class InteractionMode(Enum):
+    SELECT = auto()
+    PLACE_ACTOR = auto()
+    PLACE_OBJECT = auto()
+    PLACE_PERFORMER = auto()
+    PLACE_TRIGGER = auto()
+
+
 class Drawer:
     def __init__(
             self, draw_area: Gtk.Widget, ssa: Ssa, cb_trigger_label: Callable[[int], str],
@@ -56,6 +64,7 @@ class Drawer:
         self.draw_tile_grid = False
 
         # Interaction
+        self.interaction_mode = InteractionMode.SELECT
         self.mouse_x = 99999
         self.mouse_y = 99999
 
@@ -150,21 +159,33 @@ class Drawer:
         self.selection_plugin.draw(ctx, size_w, size_h, x, y, ignore_obb=True)
 
     def selection_draw_callback(self, ctx: cairo.Context, x: int, y: int):
-        if self._selected is not None and self._selected__drag is not None:
-            # Draw dragged:
-            x, y = self.get_current_drag_entity_pos()
-            if isinstance(self._selected, SsaActor):
-                x, y, w, h = self.get_bb_actor(self._selected, x=x, y=y)
-                self._draw_actor(ctx, self._selected, x, y, w, h)
-            elif isinstance(self._selected, SsaObject):
-                x, y, w, h = self.get_bb_object(self._selected, x=x, y=y)
-                self._draw_object(ctx, self._selected, x, y, w, h)
-            elif isinstance(self._selected, SsaPerformer):
-                x, y, w, h = self.get_bb_performer(self._selected, x=x, y=y)
-                self._draw_performer(ctx, self._selected, x, y, w, h)
-            elif isinstance(self._selected, SsaEvent):
-                x, y, w, h = self.get_bb_trigger(self._selected, x=x, y=y)
-                self._draw_trigger(ctx, self._selected, x, y, w, h)
+        if self.interaction_mode == InteractionMode.SELECT:
+            if self._selected is not None and self._selected__drag is not None:
+                # Draw dragged:
+                x, y = self.get_current_drag_entity_pos()
+                if isinstance(self._selected, SsaActor):
+                    x, y, w, h = self.get_bb_actor(self._selected, x=x, y=y)
+                    self._draw_actor(ctx, self._selected, x, y, w, h)
+                elif isinstance(self._selected, SsaObject):
+                    x, y, w, h = self.get_bb_object(self._selected, x=x, y=y)
+                    self._draw_object(ctx, self._selected, x, y, w, h)
+                elif isinstance(self._selected, SsaPerformer):
+                    x, y, w, h = self.get_bb_performer(self._selected, x=x, y=y)
+                    self._draw_performer(ctx, self._selected, x, y, w, h)
+                elif isinstance(self._selected, SsaEvent):
+                    x, y, w, h = self.get_bb_trigger(self._selected, x=x, y=y)
+                    self._draw_trigger(ctx, self._selected, x, y, w, h)
+            return
+        # Tool modes
+        elif self.interaction_mode == InteractionMode.PLACE_ACTOR:
+            self._surface_place_actor(ctx, x, y, BPC_TILE_DIM * 3, BPC_TILE_DIM * 3)
+        elif self.interaction_mode == InteractionMode.PLACE_OBJECT:
+            self._surface_place_object(ctx, x, y, BPC_TILE_DIM * 3, BPC_TILE_DIM * 3)
+        elif self.interaction_mode == InteractionMode.PLACE_PERFORMER:
+            self._surface_place_performer(ctx, x, y, BPC_TILE_DIM * 3, BPC_TILE_DIM * 3)
+        elif self.interaction_mode == InteractionMode.PLACE_TRIGGER:
+            self._surface_place_trigger(ctx, x, y, BPC_TILE_DIM * 3, BPC_TILE_DIM * 3)
+
 
     def set_mouse_position(self, x, y):
         self.mouse_x = x
@@ -344,22 +365,26 @@ class Drawer:
         ctx.set_dash([])
 
     def _handle_drag_and_place_modes(self):
-        # IF DRAGGED
-        if self._selected is not None and self._selected__drag is not None:
-            # Draw dragged:
-            x, y = self.get_current_drag_entity_pos()
-            if isinstance(self._selected, SsaActor):
-                x, y, w, h = self.get_bb_actor(self._selected, x=x, y=y)
-            elif isinstance(self._selected, SsaObject):
-                x, y, w, h = self.get_bb_object(self._selected, x=x, y=y)
-            elif isinstance(self._selected, SsaPerformer):
-                x, y, w, h = self.get_bb_performer(self._selected, x=x, y=y)
-            elif isinstance(self._selected, SsaEvent):
-                x, y, w, h = self.get_bb_trigger(self._selected, x=x, y=y)
-            return x, y, w, h
-        # DEFAULT
-        return self.mouse_x, self.mouse_y, BPC_TILE_DIM, BPC_TILE_DIM
-        # TODO: Tool modes
+        if self.interaction_mode == InteractionMode.SELECT:
+            # IF DRAGGED
+            if self._selected is not None and self._selected__drag is not None:
+                # Draw dragged:
+                x, y = self.get_current_drag_entity_pos()
+                if isinstance(self._selected, SsaActor):
+                    x, y, w, h = self.get_bb_actor(self._selected, x=x, y=y)
+                elif isinstance(self._selected, SsaObject):
+                    x, y, w, h = self.get_bb_object(self._selected, x=x, y=y)
+                elif isinstance(self._selected, SsaPerformer):
+                    x, y, w, h = self.get_bb_performer(self._selected, x=x, y=y)
+                elif isinstance(self._selected, SsaEvent):
+                    x, y, w, h = self.get_bb_trigger(self._selected, x=x, y=y)
+                return x, y, w, h
+            # DEFAULT
+            return self.mouse_x, self.mouse_y, BPC_TILE_DIM, BPC_TILE_DIM
+        # Tool modes
+        x = self.mouse_x - self.mouse_x % (BPC_TILE_DIM / 2)
+        y = self.mouse_y - self.mouse_y % (BPC_TILE_DIM / 2)
+        return x - BPC_TILE_DIM * 1.5, y - BPC_TILE_DIM * 1.5, BPC_TILE_DIM * 3, BPC_TILE_DIM * 3
 
     def _get_pmd_bounding_box(self, x_center: int, y_center: int, w: int, h: int,
                               y_offset=0.0) -> Tuple[int, int, int, int]:
@@ -460,6 +485,104 @@ class Drawer:
         ctx.paint()
         ctx.translate(-x, -y)
 
+    def _surface_place_actor(self, ctx: cairo.Context, x, y, w, h):
+        ctx.set_line_width(1)
+        sprite_surface = self.sprite_provider.get_monster_outline(1, 1)[0]
+
+        ctx.translate(x, y)
+        ctx.set_source_surface(sprite_surface)
+        ctx.get_source().set_filter(cairo.Filter.NEAREST)
+        ctx.paint()
+        self._draw_plus(ctx)
+        ctx.translate(-x, -y)
+
+    def get_pos_place_actor(self) -> Tuple[int, int]:
+        """Get the X and Y position on the grid to place the actor on, in PLACE_ACTOR mode."""
+        return self._snap_pos(
+            self.mouse_x,
+            self.mouse_y + BPC_TILE_DIM
+        )
+
+    def _surface_place_object(self, ctx: cairo.Context, x, y, w, h):
+        ctx.set_line_width(1)
+        cx, cy = x + w / 2, y + h / 2
+        rect_dim = BPC_TILE_DIM * 2
+        ctx.set_source_rgb(1, 1, 1)
+        ctx.rectangle(
+            cx - rect_dim / 2,
+            cy - rect_dim / 2,
+            rect_dim, rect_dim
+        )
+        ctx.stroke()
+        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.set_font_size(6)
+        ctx.move_to(cx - 5, cy - 2)
+        ctx.show_text(f'OBJ')
+        ctx.translate(x, y)
+        self._draw_plus(ctx)
+        ctx.translate(-x, -y)
+
+    def get_pos_place_object(self) -> Tuple[int, int]:
+        """Get the X and Y position on the grid to place the object on, in PLACE_OBJECT mode."""
+        return self._snap_pos(
+            self.mouse_x,
+            self.mouse_y
+        )
+
+    def _surface_place_performer(self, ctx: cairo.Context, x, y, w, h):
+        ctx.set_line_width(1)
+        cx, cy = x + w / 2, y + h / 2
+        self._triangle(ctx, cx - BPC_TILE_DIM / 2, cy - BPC_TILE_DIM / 2, BPC_TILE_DIM, (255, 255, 255), 1)
+        ctx.translate(x, y)
+        self._draw_plus(ctx)
+        ctx.translate(-x, -y)
+
+    def get_pos_place_performer(self) -> Tuple[int, int]:
+        """Get the X and Y position on the grid to place the performer on, in PLACE_PERFORMER mode."""
+        return self._snap_pos(
+            self.mouse_x,
+            self.mouse_y
+        )
+
+    def _surface_place_trigger(self, ctx: cairo.Context, x, y, w, h):
+        ctx.set_line_width(1)
+        cx, cy = x + w / 2, y + h / 2
+        rect_dim = BPC_TILE_DIM * 2
+        ctx.set_source_rgb(1, 1, 1)
+        ctx.rectangle(
+            cx - rect_dim / 2,
+            cy - rect_dim / 2,
+            rect_dim, rect_dim
+        )
+        ctx.stroke()
+        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.set_font_size(6)
+        ctx.move_to(cx - 5, cy - 2)
+        ctx.show_text(f'TRG')
+        ctx.translate(x, y)
+        self._draw_plus(ctx)
+        ctx.translate(-x, -y)
+
+    def get_pos_place_trigger(self) -> Tuple[int, int]:
+        """Get the X and Y position on the grid to place the trigger on, in PLACE_TRIGGER mode."""
+        return self._snap_pos(
+            self.mouse_x - BPC_TILE_DIM,
+            self.mouse_y - BPC_TILE_DIM
+        )
+
+    def _draw_plus(self, ctx: cairo.Context):
+        arrow_len = BPC_TILE_DIM / 4
+        ctx.set_source_rgb(1, 1, 1)
+        ctx.translate(-arrow_len, 0)
+        ctx.move_to(0, 0)
+        ctx.rel_line_to(arrow_len * 2, 0)
+        ctx.stroke()
+        ctx.translate(arrow_len, -arrow_len)
+        ctx.move_to(0, 0)
+        ctx.rel_line_to(0, arrow_len * 2)
+        ctx.stroke()
+        ctx.translate(0, arrow_len)
+
     def set_sector_visible(self, sector_id, value):
         self._sectors_visible[sector_id] = value
         self.draw_area.queue_draw()
@@ -471,6 +594,9 @@ class Drawer:
     def set_sector_highlighted(self, sector_id):
         self._sector_highlighted = sector_id
         self.draw_area.queue_draw()
+
+    def get_sector_highlighted(self):
+        return self._sector_highlighted
 
     def set_selected(self, entity: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]]):
         self._selected = entity
@@ -496,12 +622,10 @@ class Drawer:
             self._sector_highlighted -= 1
 
     def get_current_drag_entity_pos(self) -> Tuple[int, int]:
-        corrected_mouse_x = self.mouse_x - self._selected__drag[0]
-        corrected_mouse_y = self.mouse_y - self._selected__drag[1]
-        # Snap
-        x = corrected_mouse_x - corrected_mouse_x % (BPC_TILE_DIM / 2)
-        y = corrected_mouse_y - corrected_mouse_y % (BPC_TILE_DIM / 2)
-        return x, y
+        return self._snap_pos(
+            self.mouse_x - self._selected__drag[0],
+            self.mouse_y - self._selected__drag[1]
+        )
 
     def _redraw(self):
         if self.draw_area is None or self.draw_area.get_parent() is None:
@@ -511,3 +635,9 @@ class Drawer:
     @staticmethod
     def _is_in_bb(bb_x, bb_y, bb_w, bb_h, mouse_x, mouse_y):
         return bb_x <= mouse_x < bb_x + bb_w and bb_y <= mouse_y < bb_y + bb_h
+
+    @staticmethod
+    def _snap_pos(x, y):
+        x = x - x % (BPC_TILE_DIM / 2)
+        y = y - y % (BPC_TILE_DIM / 2)
+        return x, y
