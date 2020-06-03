@@ -89,7 +89,7 @@ class DebuggerManager:
         if project is not None and self.is_opened():
             self._opened_main_controller.load_rom()
 
-    def open_ssb(self, ssb_filename, main_window, project_fm):
+    def open_ssb(self, ssb_filename, main_window):
         """Open a SSB file in the debugger and focus it."""
         self.open(main_window)
         self._opened_main_controller.editor_notebook.open_ssb(ssb_filename)

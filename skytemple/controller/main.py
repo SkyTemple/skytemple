@@ -51,6 +51,11 @@ class MainController:
         """Utility method to get main window from modules"""
         return cls._instance.window
 
+    @classmethod
+    def debugger_manager(cls) -> DebuggerManager:
+        """Utility method to get debugger manager from modules"""
+        return cls._instance._debugger_manager
+
     def __init__(self, builder: Builder, window: Window):
         self.builder = builder
         self.window = window

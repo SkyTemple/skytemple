@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.2 -->
+<!-- Generated with glade 3.36.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkDialog" id="dialog_event">
@@ -845,6 +845,7 @@
                                   <object class="GtkTreeView" id="ssa_scripts">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <signal name="button-press-event" handler="on_ssa_scripts_button_press_event" swapped="no"/>
                                     <child internal-child="selection">
                                       <object class="GtkTreeSelection"/>
                                     </child>

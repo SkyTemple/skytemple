@@ -554,13 +554,21 @@ class SsaController(AbstractController):
 
     # SCRIPT TOOLBAR #
     def on_tool_script_edit_clicked(self, *args):
-        pass
+        tree: Gtk.TreeView = self.builder.get_object('ssa_scripts')
+        model, treeiter = tree.get_selection().get_selected()   
+        if treeiter is not None and model is not None:
+            manager = MainController.debugger_manager()
+            manager.open_ssb(f'SCRIPT/{self.mapname}/{model[treeiter][0]}', MainController.window())
 
     def on_tool_script_add_clicked(self, *args):
         pass
 
     def on_tool_script_remove_clicked(self, *args):
         pass
+
+    def on_ssa_scripts_button_press_event(self, tree, event):
+        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
+            self.on_tool_script_edit_clicked()
 
     # ACTOR OVERLAY #
     def on_po_actor_sector_changed(self, widget: Gtk.ComboBox, *args):
