@@ -34,7 +34,8 @@ setup(
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
-        'tilequant >= 0.0.1'
+        'tilequant >= 0.0.1',
+        'skytemple-ssb-debugger >= 0.0.2a1'
     ],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',

@@ -16,7 +16,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable
+from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Type
 
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
@@ -26,6 +26,7 @@ from skytemple.core.modules import Modules
 from skytemple.core.open_request import OpenRequest
 from skytemple.core.model_context import ModelContext
 from skytemple.core.sprite_provider import SpriteProvider
+from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
@@ -89,10 +90,12 @@ class RomProject:
         self._files_unsafe = []
         # Dict of filenames -> file handler object
         self._file_handlers = {}
+        self._file_handler_kwargs = {}
         # List of modified filenames
         self._modified_files = []
         # Callback for opening views using iterators from the main view list.
         self._cb_open_view: Callable[[Gtk.TreeIter], None] = cb_open_view
+        self._project_fm = ProjectFileManager(filename)
 
     def load(self):
         """Load the ROM into memory and initialize all modules"""
@@ -109,6 +112,9 @@ class RomProject:
     def get_rom_module(self) -> 'RomModule':
         return self._rom_module
 
+    def get_project_file_manager(self):
+        return self._project_fm
+
     def get_modules(self, include_rom_module=True) -> Iterator[AbstractModule]:
         """Iterate over loaded modules"""
         if include_rom_module:
@@ -118,8 +124,8 @@ class RomProject:
     def get_module(self, name):
         return self._loaded_modules[name]
 
-    def open_file_in_rom(self, file_path_in_rom: str, file_handler_class: DataHandler[T],
-                         threadsafe=False) -> Union[T, ModelContext[T]]:
+    def open_file_in_rom(self, file_path_in_rom: str, file_handler_class: Type[DataHandler[T]],
+                         threadsafe=False, **kwargs) -> Union[T, ModelContext[T]]:
         """
         Open a file. If already open, the opened object is returned.
         The second parameter is a file handler to use. Please note, that the file handler is only
@@ -129,11 +135,15 @@ class RomProject:
         file used the value False but another True or vice-versa, this will raise a ValueError.
 
         If ``threadsafe`` is True, instead of returning the model, a ModelContext[T] is returned.
+
+        Additional keyword arguments are passed to the handler (if the model isn't already loaded!!)
+        The keyword arguments will also be used for serializing again.
         """
         if file_path_in_rom not in self._opened_files:
             bin = self._rom.getFileByName(file_path_in_rom)
-            self._opened_files[file_path_in_rom] = file_handler_class.deserialize(bin)
+            self._opened_files[file_path_in_rom] = file_handler_class.deserialize(bin, **kwargs)
             self._file_handlers[file_path_in_rom] = file_handler_class
+            self._file_handler_kwargs[file_path_in_rom] = kwargs
         if threadsafe:
             if file_path_in_rom in self._files_unsafe:
                 raise ValueError(
@@ -168,23 +178,37 @@ class RomProject:
     async def _save_impl(self, main_controller: Optional['MainController']):
         try:
             for name in self._modified_files:
-                context = self._opened_files_contexts[name] \
-                    if name in self._opened_files_contexts \
-                    else nullcontext(self._opened_files[name])
-                with context as model:
-                    handler = self._file_handlers[name]
-                    logger.debug(f"Saving {name} in ROM. Model: {model}, Handler: {handler}")
-                    binary_data = handler.serialize(model)
-                    self._rom.setFileByName(name, binary_data)
+                self.prepare_save_model(name)
             self._modified_files = []
             logger.debug(f"Saving ROM to {self.filename}")
-            self._rom.saveToFile(self.filename)
+            self.save_as_is()
             if main_controller:
                 GLib.idle_add(lambda: main_controller.on_file_saved())
 
         except Exception as err:
             if main_controller:
                 GLib.idle_add(lambda err=err: main_controller.on_file_saved_error(err))
+
+    def prepare_save_model(self, name, assert_that=None):
+        """
+        Write the binary model for this type to the ROM object in memory.
+        If assert_that is given, it is asserted, that the model matches the one on record.
+        """
+        context = self._opened_files_contexts[name] \
+            if name in self._opened_files_contexts \
+            else nullcontext(self._opened_files[name])
+        with context as model:
+            handler = self._file_handlers[name]
+            logger.debug(f"Saving {name} in ROM. Model: {model}, Handler: {handler}")
+            # TODO: SsbHandler needs Pmd2Data!
+            if assert_that is not None:
+                assert assert_that is model, "The model that is being saved must match!"
+            binary_data = handler.serialize(model, **self._file_handler_kwargs[name])
+            self._rom.setFileByName(name, binary_data)
+
+    def save_as_is(self):
+        """Simply save the current ROM to disk."""
+        self._rom.saveToFile(self.filename)
 
     def get_files_with_ext(self, ext):
         return get_files_from_rom_with_extension(self._rom, ext)

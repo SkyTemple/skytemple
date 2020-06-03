@@ -16,6 +16,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import os
 import threading
 from typing import TYPE_CHECKING, Tuple, Dict, List, Union
 
@@ -25,6 +26,7 @@ from gi.repository import Gdk, Gtk, GdkPixbuf
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.model_context import ModelContext
+from skytemple.core.ui_utils import data_dir
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import MONSTER_MD, MONSTER_BIN
@@ -127,7 +129,7 @@ class SpriteProvider:
         self._monster_md: Md = self._project.open_file_in_rom(MONSTER_MD, FileType.MD, threadsafe=True)
         self._monster_bin: BinPack = self._project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
 
-        self._stripes = Image.open('/tmp/stripes.png')
+        self._stripes = Image.open(os.path.join(data_dir(), 'stripes.png'))
 
         # init_loader MUST be called next!
 

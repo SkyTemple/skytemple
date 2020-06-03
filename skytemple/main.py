@@ -24,6 +24,7 @@ from skytemple.core.global_configuration import GlobalConfiguration
 from skytemple.core.modules import Modules
 from skytemple.core.ui_utils import data_dir
 from skytemple_files.common.task_runner import AsyncTaskRunner
+from skytemple_ssb_debugger.main import get_debugger_data_dir
 
 gi.require_version('Gtk', '3.0')
 try:
@@ -55,6 +56,7 @@ def main():
 
     itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
     itheme.append_search_path(os.path.abspath(os.path.join(data_dir(), "icons")))
+    itheme.append_search_path(os.path.abspath(os.path.join(get_debugger_data_dir(), "icons")))
     itheme.rescan_if_needed()
 
     # Load Builder and Window

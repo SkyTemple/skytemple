@@ -28,6 +28,7 @@ from skytemple.core.controller_loader import load_controller
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.settings import SkyTempleSettingsStore
+from skytemple.core.ssb_debugger.manager import DebuggerManager
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified
 
@@ -84,15 +85,20 @@ class MainController:
         self._connect_item_views()
         self._configure_error_view()
 
+        self._debugger_manager = DebuggerManager()
+
         self.tilequant_controller = TilequantController(self.window, self.builder)
 
     def on_destroy(self, *args):
         logger.debug('Window destroyed. Ending task runner.')
         AsyncTaskRunner.end()
         Gtk.main_quit()
+        self._debugger_manager.destroy()
 
     def on_main_window_delete_event(self, *args):
-        # TODO (later, don't forget): Check ssb debugger exit first!
+        if not self._debugger_manager.close():
+            # Cancel
+            return True
         rom = RomProject.get_current()
         if rom is not None and rom.has_modifications():
             response = self._show_are_you_sure(rom)
@@ -121,6 +127,9 @@ class MainController:
 
     def on_save_button_clicked(self, wdg):
         self._save()
+
+    def on_debugger_button_clicked(self, wdg):
+        self._debugger_manager.open(self.window)
 
     def on_save_as_button_clicked(self, wdg):
         project = RomProject.get_current()
@@ -194,6 +203,9 @@ class MainController:
             rom_module.load_rom_data()
             rom_module.load_tree_items(self._item_store, None)
             root_node = rom_module.get_root_node()
+
+            # Tell the debugger
+            self._debugger_manager.handle_project_change()
 
             # Load item tree items
             for module in RomProject.get_current().get_modules(False):
@@ -461,6 +473,9 @@ class MainController:
     def _check_open_file(self):
         """Check for open files, and ask the user what to do. Returns false if they cancel."""
         rom = RomProject.get_current()
+        if not self._debugger_manager.check_save():
+            # Cancel
+            return False
         if rom is not None and rom.has_modifications():
             response = self._show_are_you_sure(rom)
 
@@ -527,6 +542,7 @@ class MainController:
         self.builder.get_object('save_button').set_sensitive(True)
         self.builder.get_object('save_as_button').set_sensitive(True)
         self.builder.get_object('main_item_list_search').set_sensitive(True)
+        self.builder.get_object('debugger_button').set_sensitive(True)
         # TODO: Titlebar for Non-CSD situation
         self._set_title(rom_name, False)
 
