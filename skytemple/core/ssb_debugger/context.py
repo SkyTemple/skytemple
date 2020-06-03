@@ -16,12 +16,17 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from typing import TYPE_CHECKING, Optional, List
 
+from gi.repository import Gtk
+
 from explorerscript.source_map import SourceMapPositionMark
+from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST_TYPE_SCENE_SSA, REQUEST_TYPE_SCENE_SSS, \
+    REQUEST_TYPE_SCENE_SSE
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHandler
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.project_file_manager import ProjectFileManager
-from skytemple_files.common.script_util import ScriptFiles, load_script_files, SCRIPT_DIR
+from skytemple_files.common.script_util import ScriptFiles, load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT, SSE_EXT, \
+    SSB_EXT
 from skytemple_ssb_debugger.context.abstract import AbstractDebuggerControlContext
 
 if TYPE_CHECKING:
@@ -82,13 +87,45 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         project.prepare_save_model(filename, assert_that=ssb_loaded_file)
         project.save_as_is()
 
-    def open_scene_editor(self, filename):
-        # TODO
-        pass
+    def open_scene_editor(self, type_of_scene, path):
+        try:
+            map_name, filename = path.split('/')[-2:]
+            if type_of_scene == 'ssa':
+                RomProject.get_current().request_open(OpenRequest(
+                    REQUEST_TYPE_SCENE_SSA, (map_name, filename.replace(SSB_EXT, SSA_EXT))
+                ), True)
+            elif type_of_scene == 'sss':
+                RomProject.get_current().request_open(OpenRequest(
+                    REQUEST_TYPE_SCENE_SSS, (map_name, filename.replace(SSB_EXT, SSS_EXT))
+                ), True)
+            elif type_of_scene == 'sse':
+                RomProject.get_current().request_open(OpenRequest(
+                    REQUEST_TYPE_SCENE_SSE, map_name
+                ), True)
+            else:
+                raise ValueError()
+            self._manager.main_window.present()
+        except ValueError:
+            md = Gtk.MessageDialog(self._manager.get_window(),
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                   Gtk.ButtonsType.OK, f"A scene for this script was not found.",
+                                   title="No Scenes Found")
+            md.run()
+            md.destroy()
 
     def open_scene_editor_for_map(self, map_name):
-        # TODO
-        pass
+        try:
+            RomProject.get_current().request_open(OpenRequest(
+                REQUEST_TYPE_SCENE, map_name
+            ), True)
+            self._manager.main_window.present()
+        except ValueError:
+            md = Gtk.MessageDialog(self._manager.get_window(),
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                   Gtk.ButtonsType.OK, f"A scene for this script was not found.",
+                                   title="No Scenes Found")
+            md.run()
+            md.destroy()
 
     def edit_position_mark(self, mapname: Optional[str], pos_marks: List[SourceMapPositionMark],
                            pos_mark_to_edit: int) -> bool:

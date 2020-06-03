@@ -33,6 +33,7 @@ class DebuggerManager:
         self._opened_main_window: Optional[Gtk.Window] = None
         self._opened_main_controller: Optional[DebuggerMainController] = None
         self._was_opened_once = False
+        self.main_window = None
 
     def open(self, main_window):
         """Open the debugger (if not already opened) and focus it's UI."""
@@ -48,8 +49,9 @@ class DebuggerManager:
                 builder, self._opened_main_window, self._context
             )
             self.handle_project_change()
+            self.main_window = main_window
 
-        self._opened_main_window.grab_focus()
+        self._opened_main_window.present()
 
     def close(self):
         """
@@ -106,4 +108,7 @@ class DebuggerManager:
 
     def get_controller(self) -> Optional[DebuggerMainController]:
         return self._opened_main_controller
+
+    def get_window(self) -> Optional[Gtk.Window]:
+        return self._opened_main_window
 
