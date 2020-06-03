@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-
+import logging
 import os
 import sys
 
@@ -111,4 +111,7 @@ def _windows_load_theme():
 
 
 if __name__ == '__main__':
+    # TODO: At the moment doesn't support any cli arguments.
+    logging.basicConfig()
+    logging.getLogger().setLevel(logging.DEBUG)
     main()
