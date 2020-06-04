@@ -98,6 +98,16 @@ class DebuggerManager:
         """Returns the managing context for the debugger. Returns None if the debugger is not opened!"""
         return self._context
 
+    def on_script_added(self, ssb_path, mapname, scene_type, scene_name):
+        """Inform the debugger about a newly created SSB file."""
+        if self.is_opened():
+            self._opened_main_controller.on_script_added(ssb_path, mapname, scene_type, scene_name)
+
+    def on_script_removed(self, ssb_path):
+        """Inform the debugger about a removed SSB file."""
+        if self.is_opened():
+            self._opened_main_controller.on_script_removed(ssb_path)
+
     # CONTEXT PRIVATE:
 
     def on_close(self):

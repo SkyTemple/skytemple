@@ -216,13 +216,18 @@ class RomProject:
     def get_rom_folder(self, path):
         return get_rom_folder(self._rom, path)
 
-    def create_new_file(self, filename, model, file_handler_class: DataHandler[T]):
+    def file_exists(self, path):
+        """Check if a file exists"""
+        return path in self._rom.filenames
+
+    def create_new_file(self, new_filename, model, file_handler_class: Type[DataHandler[T]], **kwargs):
         """Creates a new file in the ROM and fills it with the model content provided and
         writes the serialized model data there"""
-        copy_bin = file_handler_class.serialize(model)
-        create_file_in_rom(self._rom, filename, copy_bin)
-        self._opened_files[filename] = file_handler_class.deserialize(copy_bin)
-        self._file_handlers[filename] = file_handler_class
+        copy_bin = file_handler_class.serialize(model, **kwargs)
+        create_file_in_rom(self._rom, new_filename, copy_bin)
+        self._opened_files[new_filename] = file_handler_class.deserialize(copy_bin, **kwargs)
+        self._file_handlers[new_filename] = file_handler_class
+        self._file_handler_kwargs[new_filename] = kwargs
         return copy_bin
 
     def file_exists(self, filename):

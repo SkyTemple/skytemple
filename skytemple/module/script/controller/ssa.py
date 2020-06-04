@@ -27,10 +27,12 @@ from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import REQUEST_TYPE_MAP_BG, OpenRequest, REQUEST_TYPE_SCENE_SSE, \
     REQUEST_TYPE_SCENE_SSA, REQUEST_TYPE_SCENE_SSS
+from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHandler
 from skytemple.module.script.controller.ssa_event_dialog import SsaEventDialogController
 from skytemple.module.script.drawer import Drawer, InteractionMode
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine, Pmd2ScriptLevel
+from skytemple_files.common.script_util import SCRIPT_DIR, SSB_EXT
 from skytemple_files.graphics.bg_list_dat.model import BgList
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 from skytemple_files.script.ssa_sse_sss.actor import SsaActor
@@ -578,13 +580,57 @@ class SsaController(AbstractController):
             md.destroy()
             return
         # Ask for number to add
+        response, number = self._show_generic_input('Script Number', 'Create Script')
+        try:
+            number = int(number)
+        except ValueError:
+            md = Gtk.MessageDialog(
+                MainController.window(),
+                Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
+                Gtk.ButtonsType.OK,
+                f"Please enter a valid number."
+            )
+            md.run()
+            md.destroy()
+            return
         # Calculate name
+        ssb_path = f'{self.filename[:-4]}{number:02d}{SSB_EXT}'
         # Check if already exists
+        if self.module.project.file_exists(ssb_path):
+            md = Gtk.MessageDialog(
+                MainController.window(),
+                Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
+                Gtk.ButtonsType.OK,
+                f"This script already exists."
+            )
+            md.run()
+            md.destroy()
+            return
         # Write to ROM
+        save_kwargs = {
+            'filename': ssb_path,
+            'static_data': self.static_data,
+            'project_fm': self.module.project.get_project_file_manager()
+        }
+        self.module.project.create_new_file(
+            ssb_path, SsbLoadedFileHandler.create(**save_kwargs), SsbLoadedFileHandler, **save_kwargs
+        )
         # Update script list
+        short_name = self._get_file_shortname(ssb_path)
+        ssa_scripts_store: Gtk.ListStore = self.builder.get_object('ssa_scripts').get_model()
+        # The reason this is the same is because I screwed up when building self.scripts...
+        ssa_scripts_store.append([short_name, short_name])
         # Update debugger
+        MainController.debugger_manager().on_script_added(
+            ssb_path, self.mapname, self.type, self.filename.split('/')[-1]
+        )
         # Update popovers actors / objects
+        po_actor_script: Gtk.ComboBox = self.builder.get_object('po_actor_script')
+        po_actor_script.get_model().append([number, short_name])
+        # Add to object script list
+        self.scripts.append(short_name)
         # Mark as modified
+        self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
     def on_tool_script_remove_clicked(self, *args):
         if self.type == 'ssa':
@@ -603,7 +649,9 @@ class SsaController(AbstractController):
         # Remove rom ROM
         # Update script list
         # Update debugger
+        MainController.debugger_manager().on_script_removed(ssb_path)
         # Update popovers actors / objects
+        # Remove from object script list
         # Mark as modified
 
     def on_ssa_scripts_button_press_event(self, tree, event):
@@ -1139,7 +1187,7 @@ class SsaController(AbstractController):
 
         # SCRIPTS
         ssa_scripts: Gtk.TreeView = self.builder.get_object('ssa_scripts')
-        # (full path, display name)
+        # (short path (relative to scene), display name)
         scripts_list_store = Gtk.ListStore(str, str)
         ssa_scripts.append_column(resizable(TreeViewColumn("Name", Gtk.CellRendererText(), text=1)))
         ssa_scripts.set_model(scripts_list_store)
@@ -1482,3 +1530,21 @@ class SsaController(AbstractController):
         x_offset = 2 if x % 1 != 0 else 0
         y_offset = 2 if y % 1 != 0 else 0
         return SsaPosition(self.static_data.script_data, x_relative, y_relative, x_offset, y_offset, direction)
+
+    def _show_generic_input(self, label_text, ok_text):
+        dialog: Gtk.Dialog = self.builder.get_object('generic_input_dialog')
+        entry: Gtk.Entry = self.builder.get_object('generic_input_dialog_entry')
+        label: Gtk.Label = self.builder.get_object('generic_input_dialog_label')
+        label.set_text(label_text)
+        btn_cancel = dialog.add_button("Cancel", Gtk.ResponseType.CANCEL)
+        btn = dialog.add_button(ok_text, Gtk.ResponseType.OK)
+        btn.set_can_default(True)
+        btn.grab_default()
+        entry.set_activates_default(True)
+        dialog.set_attached_to(MainController.window())
+        dialog.set_transient_for(MainController.window())
+        response = dialog.run()
+        dialog.hide()
+        btn.get_parent().remove(btn)
+        btn_cancel.get_parent().remove(btn_cancel)
+        return response, entry.get_text()

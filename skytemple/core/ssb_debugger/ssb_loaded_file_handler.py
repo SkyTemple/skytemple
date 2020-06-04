@@ -15,21 +15,32 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from typing import Optional
+
 from skytemple_files.common.types.data_handler import DataHandler
 from skytemple_files.common.types.file_types import FileType
+from skytemple_files.script.ssb.handler import SsbHandler
 from skytemple_ssb_debugger.model.ssb_files.file import SsbLoadedFile
+from skytemple_ssb_debugger.model.ssb_files.file_manager import SsbFileManager
 
 
 class SsbLoadedFileHandler(DataHandler['SsbLoadedFile']):
     @classmethod
-    def deserialize(cls, data: bytes, *, filename, static_data, ssb_file_manager, project_fm, **kwargs) -> 'SsbLoadedFile':
+    def deserialize(cls, data: bytes, *, filename, static_data, project_fm, **kwargs) -> 'SsbLoadedFile':
         f = SsbLoadedFile(
             filename, FileType.SSB.deserialize(data, static_data),
-            ssb_file_manager, project_fm
+            None, project_fm
         )
-        f.exps.ssb_hash = ssb_file_manager.hash(data)
+        f.exps.ssb_hash = SsbFileManager.hash(data)
         return f
 
     @classmethod
     def serialize(cls, data: 'SsbLoadedFile', *, static_data, **kwargs) -> bytes:
         return FileType.SSB.serialize(data.ssb_model, static_data)
+
+    @classmethod
+    def create(cls, filename, static_data, project_fm) -> SsbLoadedFile:
+        """Create a new empty Ssb + SsbLoadedFile"""
+
+        return cls.deserialize(FileType.SSB.serialize(SsbHandler.create(static_data), static_data),
+                               filename=filename, static_data=static_data, project_fm=project_fm)

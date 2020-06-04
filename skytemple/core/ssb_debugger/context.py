@@ -74,11 +74,12 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         return self._project_fm
 
     def get_ssb(self, filename, ssb_file_manager: 'SsbFileManager') -> 'SsbLoadedFile':
-        return RomProject.get_current().open_file_in_rom(filename, SsbLoadedFileHandler,
-                                                         filename=filename,
-                                                         static_data=self.get_static_data(),
-                                                         ssb_file_manager=ssb_file_manager,
-                                                         project_fm=self._project_fm)
+        f: 'SsbLoadedFile' = RomProject.get_current().open_file_in_rom(filename, SsbLoadedFileHandler,
+                                                                       filename=filename,
+                                                                       static_data=self.get_static_data(),
+                                                                       project_fm=self._project_fm)
+        f.file_manager = ssb_file_manager
+        return f
 
     def save_ssb(self, filename, ssb_model, ssb_file_manager: 'SsbFileManager'):
         project = RomProject.get_current()
