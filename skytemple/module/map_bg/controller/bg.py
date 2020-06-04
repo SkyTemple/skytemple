@@ -239,10 +239,11 @@ class BgController(AbstractController):
 
     def on_tb_goto_scene_clicked(self, w):
         try:
+            associated = self.module.get_associated_script_map(self.item_id)
+            if associated is None:
+                raise ValueError()
             self.module.project.request_open(OpenRequest(
-                # TODO: Unify the mapping of MapBG names to scene/script maps. Currently BPL name
-                #       is used everywhere, but the logic for determining this should probably be moved to a new module.
-                REQUEST_TYPE_SCENE, self.module.get_level_entry(self.item_id).bpl_name
+                REQUEST_TYPE_SCENE, associated.name
             ), True)
         except ValueError:
             md = Gtk.MessageDialog(MainController.window(),

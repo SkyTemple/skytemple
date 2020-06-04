@@ -18,7 +18,7 @@
 
 # These constants are some request types used by core modules.
 REQUEST_TYPE_SCENE     = 'scene'   # identifier is the map name.
-REQUEST_TYPE_MAP_BG    = 'map_bg'  # identifier is the map name.
+REQUEST_TYPE_MAP_BG    = 'map_bg'  # identifier is the map bg id.
 REQUEST_TYPE_SCENE_SSE = 'sse'     # identifier is the map name.
 REQUEST_TYPE_SCENE_SSS = 'sss'     # identifier is (map name, file name). (file name != path)
 REQUEST_TYPE_SCENE_SSA = 'ssa'     # identifier is (map name, file name). (file name != path)

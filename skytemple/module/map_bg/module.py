@@ -105,13 +105,9 @@ class MapBgModule(AbstractModule):
 
     def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
         if request.type == REQUEST_TYPE_MAP_BG:
-            # Find item ID using BPL mapping - TODO: Again, we need to unify this matching logic
-            item_id = -1
-            for i, level in enumerate(self.bgs.level):
-                if level.bpl_name == request.identifier:
-                    item_id = i
-            if item_id > -1:
-                return self._tree_level_iter[item_id]
+            if request.identifier > len(self._tree_level_iter) - 1:
+                return None
+            return self._tree_level_iter[request.identifier]
         return None
 
     def get_level_entry(self, item_id):
@@ -192,3 +188,10 @@ class MapBgModule(AbstractModule):
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()
+
+    def get_associated_script_map(self, item_id):
+        """Returns the script map that is associated to this map bg item ID, or None if not found"""
+        for level in self.project.get_rom_module().get_static_data().script_data.level_list__by_id.values():
+            if level.mapid - 1 == item_id:
+                return level
+        return None

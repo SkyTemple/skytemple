@@ -30,7 +30,7 @@ from skytemple.core.open_request import REQUEST_TYPE_MAP_BG, OpenRequest, REQUES
 from skytemple.module.script.controller.ssa_event_dialog import SsaEventDialogController
 from skytemple.module.script.drawer import Drawer, InteractionMode
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
-from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine
+from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine, Pmd2ScriptLevel
 from skytemple_files.graphics.bg_list_dat.model import BgList
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 from skytemple_files.script.ssa_sse_sss.actor import SsaActor
@@ -92,6 +92,11 @@ class SsaController(AbstractController):
         self.filename = item['file']
         self.type = item['type']
         self.scripts = item['scripts']
+        self.level: Optional[Pmd2ScriptLevel] = None
+        self.mapbg_id = -1
+        if self.mapname in self.static_data.script_data.level_list__by_name:
+            self.level = self.static_data.script_data.level_list__by_name[self.mapname]
+            self.mapbg_id = self.level.mapid - 1
 
         self.builder = None
 
@@ -312,6 +317,7 @@ class SsaController(AbstractController):
         model, cbiter = w.get_model(), w.get_active_iter()
         if model is not None and cbiter is not None and cbiter != []:
             item_id = model[cbiter][0]
+            self.mapbg_id = item_id
             if self.__class__.map_bg_surface_cache[0] == item_id:
                 self._map_bg_surface, bma_width, bma_height = self.__class__.map_bg_surface_cache[1:]
             else:
@@ -330,7 +336,7 @@ class SsaController(AbstractController):
 
     def on_tool_scene_goto_bg_clicked(self, *args):
         self.module.project.request_open(OpenRequest(
-            REQUEST_TYPE_MAP_BG, self.mapname
+            REQUEST_TYPE_MAP_BG, self.mapbg_id
         ))
 
     # EVENTS TOOLBAR #
@@ -555,16 +561,50 @@ class SsaController(AbstractController):
     # SCRIPT TOOLBAR #
     def on_tool_script_edit_clicked(self, *args):
         tree: Gtk.TreeView = self.builder.get_object('ssa_scripts')
-        model, treeiter = tree.get_selection().get_selected()   
+        model, treeiter = tree.get_selection().get_selected()
         if treeiter is not None and model is not None:
             manager = MainController.debugger_manager()
             manager.open_ssb(f'SCRIPT/{self.mapname}/{model[treeiter][0]}', MainController.window())
 
     def on_tool_script_add_clicked(self, *args):
-        pass
+        if self.type == 'ssa':
+            md = Gtk.MessageDialog(
+                MainController.window(),
+                Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
+                Gtk.ButtonsType.OK,
+                f"Acting scenes must have exactly one script assigned to them."
+            )
+            md.run()
+            md.destroy()
+            return
+        # Ask for number to add
+        # Calculate name
+        # Check if already exists
+        # Write to ROM
+        # Update script list
+        # Update debugger
+        # Update popovers actors / objects
+        # Mark as modified
 
     def on_tool_script_remove_clicked(self, *args):
-        pass
+        if self.type == 'ssa':
+            md = Gtk.MessageDialog(
+                MainController.window(),
+                Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
+                Gtk.ButtonsType.OK,
+                f"Acting scenes must have exactly one script assigned to them."
+            )
+            md.run()
+            md.destroy()
+            return
+        # Calculate number
+        # Check if assigned to event
+        # Check if assigned to actor or object
+        # Remove rom ROM
+        # Update script list
+        # Update debugger
+        # Update popovers actors / objects
+        # Mark as modified
 
     def on_ssa_scripts_button_press_event(self, tree, event):
         if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
@@ -1076,11 +1116,11 @@ class SsaController(AbstractController):
         # MAP BGS
         map_bg_list: BgList = self.map_bg_module.bgs
         tool_choose_map_bg_cb: Gtk.ComboBox = self.builder.get_object('tool_choose_map_bg_cb')
-        map_bg_store = Gtk.ListStore(int, str)  # ID, BPL name
+        map_bg_store = Gtk.ListStore(int, str)  # ID, BMA name
         default_bg = map_bg_store.append([-1, "None"])
         for i, entry in enumerate(map_bg_list.level):
-            bg_iter = map_bg_store.append([i, entry.bpl_name])
-            if entry.bpl_name == self.mapname:
+            bg_iter = map_bg_store.append([i, entry.bma_name])
+            if i == self.mapbg_id:
                 default_bg = bg_iter
         self._fast_set_comboxbox_store(tool_choose_map_bg_cb, map_bg_store, 1)
         tool_choose_map_bg_cb.set_active_iter(default_bg)
