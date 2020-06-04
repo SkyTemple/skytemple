@@ -643,6 +643,16 @@ class SsaController(AbstractController):
             md.run()
             md.destroy()
             return
+        # TODO
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
+            Gtk.ButtonsType.OK,
+            f"Not implemented."
+        )
+        md.run()
+        md.destroy()
+        # Ask.
         # Calculate number
         # Check if assigned to event
         # Check if assigned to actor or object
