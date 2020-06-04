@@ -15,11 +15,12 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from enum import auto, Enum
-from typing import Tuple, Union, Callable, Optional
+from typing import Tuple, Union, Callable, Optional, List
 
 import cairo
 from gi.repository import Gtk
 
+from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.mapbg_util.drawer_plugin.grid import GridDrawerPlugin
 from skytemple.core.mapbg_util.drawer_plugin.selection import SelectionDrawerPlugin
 from skytemple.core.sprite_provider import SpriteProvider
@@ -38,6 +39,7 @@ COLOR_ACTORS = (1.0, 0, 1.0)
 COLOR_OBJECTS = (1.0, 0.627, 0)
 COLOR_PERFORMER = (0, 1.0, 1.0)
 COLOR_EVENTS = (0, 0, 1.0)
+COLOR_POS_MARKS = (0, 1.0, 0)
 COLOR_LAYER_HIGHLIGHT = (0.7, 0.7, 1, 0.7)
 Num = Union[int, float]
 Color = Tuple[Num, Num, Num]
@@ -60,6 +62,7 @@ class Drawer:
 
         self.ssa = ssa
         self.map_bg = None
+        self.position_marks: List[SourceMapPositionMark] = []
 
         self.draw_tile_grid = False
 
@@ -77,6 +80,7 @@ class Drawer:
         self._selected = None
         # If not None, drag is active and value is coordinate
         self._selected__drag: Optional[Tuple[int, int]] = None
+        self._edit_pos_marks = False
 
         self.selection_plugin = SelectionDrawerPlugin(
             BPC_TILE_DIM, BPC_TILE_DIM, self.selection_draw_callback
@@ -111,9 +115,10 @@ class Drawer:
         size_h /= self.scale
 
         # Black out bg a bit
-        ctx.set_source_rgba(0, 0, 0, 0.5)
-        ctx.rectangle(0, 0, size_w, size_h)
-        ctx.fill()
+        if not self._edit_pos_marks:
+            ctx.set_source_rgba(0, 0, 0, 0.5)
+            ctx.rectangle(0, 0, size_w, size_h)
+            ctx.fill()
 
         # Tile Grid
         if self.draw_tile_grid:
@@ -152,6 +157,17 @@ class Drawer:
                     self._draw_hitbox_performer(ctx, performer)
                     self._draw_performer(ctx, performer, *bb)
 
+        # Black out bg a bit
+        if self._edit_pos_marks:
+            ctx.set_source_rgba(0, 0, 0, 0.5)
+            ctx.rectangle(0, 0, size_w, size_h)
+            ctx.fill()
+
+        # RENDER POSITION MARKS
+        for pos_mark in self.position_marks:
+            bb = self.get_bb_pos_mark(pos_mark)
+            self._draw_pos_mark(ctx, pos_mark, *bb)
+
         # Cursor / Active selected / Place mode
         self._handle_selection(ctx)
         x, y, w, h = self._handle_drag_and_place_modes()
@@ -175,6 +191,9 @@ class Drawer:
                 elif isinstance(self._selected, SsaEvent):
                     x, y, w, h = self.get_bb_trigger(self._selected, x=x, y=y)
                     self._draw_trigger(ctx, self._selected, x, y, w, h)
+                elif isinstance(self._selected, SourceMapPositionMark):
+                    x, y, w, h = self.get_bb_pos_mark(self._selected, x=x, y=y)
+                    self._draw_pos_mark(ctx, self._selected, x, y, w, h)
             return
         # Tool modes
         elif self.interaction_mode == InteractionMode.PLACE_ACTOR:
@@ -186,7 +205,6 @@ class Drawer:
         elif self.interaction_mode == InteractionMode.PLACE_TRIGGER:
             self._surface_place_trigger(ctx, x, y, BPC_TILE_DIM * 3, BPC_TILE_DIM * 3)
 
-
     def set_mouse_position(self, x, y):
         self.mouse_x = x
         self.mouse_y = y
@@ -196,6 +214,7 @@ class Drawer:
         Returns the first entity under the mouse position, if any, and it's layer number.
         Not visible layers are not searched.
         Elements are searched in reversed drawing order (so what's drawn on top is also taken).
+        Does not return positon marks under the mouse.
         """
         for layer_i, layer in enumerate(reversed(self.ssa.layer_list)):
             layer_i = len(self.ssa.layer_list) - layer_i - 1
@@ -219,6 +238,17 @@ class Drawer:
                 if self._is_in_bb(*bb, self.mouse_x, self.mouse_y):
                     return layer_i, actor
         return None, None
+
+    def get_pos_mark_under_mouse(self) -> Optional[SourceMapPositionMark]:
+        """
+        Returns the first position mark under the mouse position, if any.
+        Elements are searched in reversed drawing order (so what's drawn on top is also taken).
+        """
+        for pos_mark in reversed(self.position_marks):
+            bb = self.get_bb_pos_mark(pos_mark)
+            if self._is_in_bb(*bb, self.mouse_x, self.mouse_y):
+                return pos_mark
+        return None
 
     def set_draw_tile_grid(self, v):
         self.draw_tile_grid = v
@@ -319,10 +349,31 @@ class Drawer:
 
         return coords_hitbox
 
+    def get_bb_pos_mark(self, pos_mark: SourceMapPositionMark, x=None, y=None) -> Tuple[int, int, int, int]:
+        if x is None:
+            x = pos_mark.x_with_offset * BPC_TILE_DIM
+        if y is None:
+            y = pos_mark.y_with_offset * BPC_TILE_DIM
+        return x - BPC_TILE_DIM, y - BPC_TILE_DIM, BPC_TILE_DIM * 3, BPC_TILE_DIM * 3
+
+    def _draw_pos_mark(self, ctx: cairo.Context, pos_mark: SourceMapPositionMark, *bb_cords):
+        # Outline
+        ctx.set_source_rgba(*COLOR_POS_MARKS, 0.8)
+        ctx.rectangle(*bb_cords)
+        ctx.set_line_width(4.0)
+        ctx.set_dash([1.0])
+        ctx.stroke()
+        ctx.set_dash([])
+        # Inner
+        ctx.rectangle(bb_cords[0] + BPC_TILE_DIM, bb_cords[1] + BPC_TILE_DIM, BPC_TILE_DIM, BPC_TILE_DIM)
+        ctx.fill()
+        # Label
+        self._draw_name(ctx, COLOR_POS_MARKS, pos_mark.name, bb_cords[0], bb_cords[1], scale=2)
+
     def _is_layer_visible(self, layer_i: int) -> bool:
         return self._sectors_solo[layer_i] or (not any(self._sectors_solo) and self._sectors_visible[layer_i])
 
-    def _is_dragged(self, entity: Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]):
+    def _is_dragged(self, entity: Union[SsaActor, SsaObject, SsaPerformer, SsaEvent, SourceMapPositionMark]):
         return entity == self._selected and self._selected__drag is not None
 
     def _handle_layer_highlight(self, ctx: cairo.Context, layer: int, x: int, y: int, w: int, h: int):
@@ -350,6 +401,8 @@ class Drawer:
             x, y, w, h = self.get_bb_performer(self._selected)
         elif isinstance(self._selected, SsaEvent):
             x, y, w, h = self.get_bb_trigger(self._selected)
+        elif isinstance(self._selected, SourceMapPositionMark):
+            x, y, w, h = self.get_bb_pos_mark(self._selected)
         else:
             return
         padding = 2
@@ -378,6 +431,8 @@ class Drawer:
                     x, y, w, h = self.get_bb_performer(self._selected, x=x, y=y)
                 elif isinstance(self._selected, SsaEvent):
                     x, y, w, h = self.get_bb_trigger(self._selected, x=x, y=y)
+                elif isinstance(self._selected, SourceMapPositionMark):
+                    x, y, w, h = self.get_bb_pos_mark(self._selected, x=x, y=y)
                 return x, y, w, h
             # DEFAULT
             return self.mouse_x, self.mouse_y, BPC_TILE_DIM, BPC_TILE_DIM
@@ -413,11 +468,11 @@ class Drawer:
                        a_sz,
                        (1, 1, 1), direction.id)
 
-    def _draw_name(self, ctx: cairo.Context, color: Color, label: str, x: int, y: int):
+    def _draw_name(self, ctx: cairo.Context, color: Color, label: str, x: int, y: int, scale=1):
         ctx.set_source_rgb(*color)
         ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
-        ctx.set_font_size(6)
-        ctx.move_to(x, y - 4)
+        ctx.set_font_size(6 * scale)
+        ctx.move_to(x, y - 4 * scale)
         ctx.show_text(label)
 
     def _triangle(self, ctx: cairo.Context, x: int, y: int, a_sz: int, color: Color, direction_id: int):
@@ -598,9 +653,12 @@ class Drawer:
     def get_sector_highlighted(self):
         return self._sector_highlighted
 
-    def set_selected(self, entity: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]]):
+    def set_selected(self, entity: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent, SourceMapPositionMark]]):
         self._selected = entity
         self.draw_area.queue_draw()
+
+    def add_position_marks(self, pos_marks):
+        self.position_marks += pos_marks
 
     def set_drag_position(self, x: int, y: int):
         """Start dragging. x/y is the offset on the entity, where the dragging was started."""
@@ -632,6 +690,9 @@ class Drawer:
             return
         self.draw_area.queue_draw()
 
+    def edit_position_marks(self):
+        self._edit_pos_marks = True
+
     @staticmethod
     def _is_in_bb(bb_x, bb_y, bb_w, bb_h, mouse_x, mouse_y):
         return bb_x <= mouse_x < bb_x + bb_w and bb_y <= mouse_y < bb_y + bb_h
@@ -641,3 +702,5 @@ class Drawer:
         x = x - x % (BPC_TILE_DIM / 2)
         y = y - y % (BPC_TILE_DIM / 2)
         return x, y
+
+

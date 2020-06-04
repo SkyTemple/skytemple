@@ -32,7 +32,7 @@ from skytemple.module.script.controller.ssa_event_dialog import SsaEventDialogCo
 from skytemple.module.script.drawer import Drawer, InteractionMode
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine, Pmd2ScriptLevel
-from skytemple_files.common.script_util import SCRIPT_DIR, SSB_EXT
+from skytemple_files.common.script_util import SSB_EXT
 from skytemple_files.graphics.bg_list_dat.model import BgList
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 from skytemple_files.script.ssa_sse_sss.actor import SsaActor
@@ -581,6 +581,8 @@ class SsaController(AbstractController):
             return
         # Ask for number to add
         response, number = self._show_generic_input('Script Number', 'Create Script')
+        if response != Gtk.ResponseType.OK:
+            return
         try:
             number = int(number)
         except ValueError:
@@ -659,7 +661,7 @@ class SsaController(AbstractController):
         # Remove rom ROM
         # Update script list
         # Update debugger
-        MainController.debugger_manager().on_script_removed(ssb_path)
+        #MainController.debugger_manager().on_script_removed(ssb_path)
         # Update popovers actors / objects
         # Remove from object script list
         # Mark as modified

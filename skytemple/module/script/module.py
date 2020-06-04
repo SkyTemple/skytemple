@@ -14,11 +14,12 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional, Dict
+from typing import Optional, Dict, List
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
+from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST_TYPE_SCENE_SSE, REQUEST_TYPE_SCENE_SSA, \
     REQUEST_TYPE_SCENE_SSS
@@ -27,6 +28,7 @@ from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.script.controller.folder import FolderController
 from skytemple.module.script.controller.map import MapController
+from skytemple.module.script.controller.dialog.pos_mark_editor import PosMarkEditorController
 from skytemple.module.script.controller.ssa import SsaController
 from skytemple.module.script.controller.ssb import SsbController
 from skytemple.module.script.controller.lsd import LsdController
@@ -227,3 +229,17 @@ class ScriptModule(AbstractModule):
 
     def get_sprite_provider(self) -> SpriteProvider:
         return self.project.get_sprite_provider()
+
+    def get_pos_mark_editor_controller(self, parent_window: Gtk.Window, mapname: str,
+                                       scene_name: str, scene_type: str,
+                                       pos_marks: List[SourceMapPositionMark],
+                                       pos_mark_to_edit: int) -> PosMarkEditorController:
+        if mapname not in self.project.get_rom_module().get_static_data().script_data.level_list__by_name:
+            raise ValueError("Map not found.")
+        return PosMarkEditorController(
+            self.get_ssa(f'{SCRIPT_DIR}/{mapname}/{scene_name[:-4]}.{scene_type}'), parent_window,
+            self.get_sprite_provider(),
+            self.project.get_rom_module().get_static_data().script_data.level_list__by_name[mapname],
+            self.project.get_module('map_bg'),
+            pos_marks, pos_mark_to_edit
+        )

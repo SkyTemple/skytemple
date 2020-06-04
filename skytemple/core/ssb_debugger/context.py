@@ -23,10 +23,10 @@ from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST
     REQUEST_TYPE_SCENE_SSE
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHandler
+from skytemple.module.script.controller.dialog.pos_mark_editor import PosMarkEditorController
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.project_file_manager import ProjectFileManager
-from skytemple_files.common.script_util import ScriptFiles, load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT, SSE_EXT, \
-    SSB_EXT
+from skytemple_files.common.script_util import ScriptFiles, load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT, SSB_EXT
 from skytemple_ssb_debugger.context.abstract import AbstractDebuggerControlContext
 
 if TYPE_CHECKING:
@@ -128,10 +128,26 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
             md.run()
             md.destroy()
 
-    def edit_position_mark(self, mapname: Optional[str], pos_marks: List[SourceMapPositionMark],
+    def edit_position_mark(self, mapname: str, scene_name: str, scene_type: str, pos_marks: List[SourceMapPositionMark],
                            pos_mark_to_edit: int) -> bool:
-        # TODO
-        pass
+        try:
+            cntrl: PosMarkEditorController = RomProject.get_current().get_module('script').get_pos_mark_editor_controller(
+                self._manager.get_window(), mapname, scene_name.split('/')[-1], scene_type, pos_marks, pos_mark_to_edit
+            )
+            return cntrl.run() == Gtk.ResponseType.OK
+        except IndexError:
+            md = Gtk.MessageDialog(self._manager.get_window(),
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                   Gtk.ButtonsType.OK, f"SkyTemple is missing the 'script' "
+                                                       f"module to handle this request.")
+            md.run()
+            md.destroy()
+        except ValueError as err:
+            md = Gtk.MessageDialog(self._manager.get_window(),
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                   Gtk.ButtonsType.OK, str(err))
+            md.run()
+            md.destroy()
 
     @property
     def _project_fm(self):
