@@ -14,46 +14,92 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from typing import List, Dict
 
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
-from skytemple.core.ui_utils import recursive_generate_item_store_row_label
+from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
+from skytemple.module.monster.controller.entity import EntityController
 from skytemple.module.monster.controller.main import MainController
-from skytemple.module.monster.controller.portrait import PortraitController
+from skytemple.module.monster.controller.monster import MonsterController
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.graphics.kao.model import Kao
+from skytemple_files.data.md.model import Md, MdEntry
 
-PORTRAIT_FILE = 'FONT/kaomado.kao'
+MONSTER_MD_FILE = 'BALANCE/monster.md'
 
 
 class MonsterModule(AbstractModule):
+    """Module to edit the monster.md and other Pokémon related data."""
     @classmethod
     def depends_on(cls):
-        return []
+        return ['portrait']
 
     def __init__(self, rom_project: RomProject):
-        """Loads the list of backgrounds for the ROM."""
         self.project = rom_project
-        self.kao: Kao = self.project.open_file_in_rom(PORTRAIT_FILE, FileType.KAO)
+        self.monster_md: Md = self.project.open_file_in_rom(MONSTER_MD_FILE, FileType.MD)
 
         self._tree_model = None
-        self._tree_level_iter = []
+        self._tree_iter__entity_roots = {}
+        self._tree_iter__entries = []
 
     def load_tree_items(self, item_store: TreeStore, root_node):
-        # TODO: Rename to 'Pokémon'
         root = item_store.append(root_node, [
-            'system-users', 'Portraits', self, MainController, 0, False, ''
+            'system-users-symbolic', 'Pokémon', self, MainController, 0, False, ''
         ])
         self._tree_model = item_store
-        self._tree_level_iter = []
-        for i in range(0, self.kao.toc_len):
-            self._tree_level_iter.append(
-                # TODO: More info, names, gender etc.
-                item_store.append(root, [
-                    'user-info', f'{i:04}', self,  PortraitController, i, False, ''
-                ])
-            )
+        self._tree_iter__entity_roots = {}
+        self._tree_iter__entries = {}
+
+        monster_entries_by_base_id: Dict[int, List[MdEntry]] = {}
+        for entry in self.monster_md.entries:
+            if entry.md_index_base not in monster_entries_by_base_id:
+                monster_entries_by_base_id[entry.md_index_base] = []
+            monster_entries_by_base_id[entry.md_index_base].append(entry)
+
+        for baseid, entry_list in monster_entries_by_base_id.items():
+            name = self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, baseid)
+            ent_root = item_store.append(root, self._generate_entry__entity_root(baseid, name))
+            self._tree_iter__entity_roots[baseid] = ent_root
+
+            for entry in entry_list:
+                self._tree_iter__entries[entry.md_index] = item_store.append(
+                    ent_root, self._generate_entry__entry(entry.md_index, entry.gender)
+                )
 
         recursive_generate_item_store_row_label(self._tree_model[root])
+
+    def refresh(self, item_id):
+        entry = self.monster_md.entries[item_id]
+        name = self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, entry.md_index_base)
+        self._tree_model[self._tree_iter__entity_roots[entry.md_index_base]][:] = self._generate_entry__entity_root(
+            entry.entid, name
+        )
+        self._tree_model[self._tree_iter__entries[item_id]][:] = self._generate_entry__entry(
+            entry.md_index, entry.gender
+        )
+
+    def _generate_entry__entity_root(self, entid, name):
+        return [
+            'user-info-symbolic', f'#{entid:03}: {name}',
+            self, EntityController, entid, False, ''
+        ]
+
+    def _generate_entry__entry(self, i, gender):
+        return [
+            'user-info-symbolic', f'${i:04}: {gender.name.capitalize()}',
+            self, MonsterController, i, False, ''
+        ]
+
+    def get_entry(self, item_id):
+        return self.monster_md[item_id]
+
+    def mark_as_modified(self, item_id):
+        """Mark as modified"""
+        self.project.get_string_provider().mark_as_modified()
+        self.project.mark_as_modified(MONSTER_MD_FILE)
+        # Mark as modified in tree
+        row = self._tree_model[self._tree_iter__entries[item_id]]
+        recursive_up_item_store_mark_as_modified(row)

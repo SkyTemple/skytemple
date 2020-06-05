@@ -52,6 +52,8 @@ setup(
         bgp=          skytemple.module.bgp.module:BgpModule
         map_bg=       skytemple.module.map_bg.module:MapBgModule
         script=       skytemple.module.script.module:ScriptModule
+        monster=      skytemple.module.monster.module:MonsterModule
+        portrait=     skytemple.module.portrait.module:PortraitModule
         [console_scripts]
         skytemple=skytemple.main:main
     ''',
@@ -59,7 +61,5 @@ setup(
     #item=         skytemple.module.item.module:ItemModule
     #music=        skytemple.module.music.module:MusicModule
     #sprite=       skytemple.module.sprite.module:SpriteModule
-    #monster=      skytemple.module.monster.module:MonsterModule
     #stats=        skytemple.module.stats.module:StatsModule
-    #strings=      skytemple.module.strings.module:StringsModule
 )

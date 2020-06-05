@@ -18,5 +18,5 @@
 from skytemple.core.module_controller import NotImplementedController
 
 
-class PortraitController(NotImplementedController):
+class EntityController(NotImplementedController):
     pass

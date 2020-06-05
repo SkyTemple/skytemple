@@ -16,7 +16,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Type
+from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Type, Tuple
 
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
@@ -26,6 +26,7 @@ from skytemple.core.modules import Modules
 from skytemple.core.open_request import OpenRequest
 from skytemple.core.model_context import ModelContext
 from skytemple.core.sprite_provider import SpriteProvider
+from skytemple.core.string_provider import StringProvider
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.data_handler import DataHandler, T
@@ -82,6 +83,7 @@ class RomProject:
         self._rom_module: Optional['RomModule'] = None
         self._loaded_modules: Dict[str, AbstractModule] = {}
         self._sprite_renderer: Optional[SpriteProvider] = None
+        self._string_provider: Optional[StringProvider] = None
         # Dict of filenames -> models
         self._opened_files = {}
         self._opened_files_contexts = {}
@@ -108,6 +110,7 @@ class RomProject:
                 self._loaded_modules[name] = module(self)
 
         self._sprite_renderer = SpriteProvider(self)
+        self._string_provider = StringProvider(self)
 
     def get_rom_module(self) -> 'RomModule':
         return self._rom_module
@@ -155,6 +158,9 @@ class RomProject:
         elif file_path_in_rom in self._files_threadsafe:
             raise ValueError(f"Tried to open {file_path_in_rom} unsafe, but it was requested threadsafe somewhere else.")
         return self._opened_files[file_path_in_rom]
+
+    def is_opened(self, filename):
+        return filename in self._opened_files
 
     def mark_as_modified(self, file: Union[str, object]):
         """Mark a file as modified, either by filename or model. TODO: Input checking"""
@@ -251,3 +257,6 @@ class RomProject:
 
     def get_sprite_provider(self) -> SpriteProvider:
         return self._sprite_renderer
+
+    def get_string_provider(self) -> StringProvider:
+        return self._string_provider
