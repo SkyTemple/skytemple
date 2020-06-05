@@ -401,6 +401,10 @@ class MonsterController(AbstractController):
     def _update_from_cb(self, w: Gtk.ComboBox):
         attr_name = Gtk.Buildable.get_name(w)[3:]
         val = w.get_model()[w.get_active_iter()][0]
+        current_val = getattr(self.entry, attr_name)
+        if isinstance(current_val, Enum):
+            enum_class = current_val.__class__
+            val = enum_class(val)
         setattr(self.entry, attr_name, val)
 
     def _update_lang_from_entry(self, w: Gtk.Entry, lang_index):
