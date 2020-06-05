@@ -177,30 +177,30 @@ class SpriteProvider:
                 self._load_actor_placeholder(name, direction_id, after_load_cb)
         return self.get_loader()
 
-    def get_monster(self, entid, direction_id: int, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+    def get_monster(self, md_index, direction_id: int, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
         """
         Returns the sprite using the index from the monster.md.
         As long as the sprite is being loaded, the loader sprite is returned instead.
         """
         with sprite_provider_lock:
-            if (entid, direction_id) in self._loaded__monsters:
-                return self._loaded__monsters[(entid, direction_id)]
-            if (entid, direction_id) not in self._requests__monsters:
-                self._requests__monsters.append((entid, direction_id))
-                self._load_monster(entid, direction_id, after_load_cb)
+            if (md_index, direction_id) in self._loaded__monsters:
+                return self._loaded__monsters[(md_index, direction_id)]
+            if (md_index, direction_id) not in self._requests__monsters:
+                self._requests__monsters.append((md_index, direction_id))
+                self._load_monster(md_index, direction_id, after_load_cb)
         return self.get_loader()
 
-    def get_monster_outline(self, entid, direction_id: int, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+    def get_monster_outline(self, md_index, direction_id: int, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
         """
         Returns the outline of a sprite using the index from the monster.md.
         As long as the sprite is being loaded, the loader sprite is returned instead.
         """
         with sprite_provider_lock:
-            if (entid, direction_id) in self._loaded__monsters_outlines:
-                return self._loaded__monsters_outlines[(entid, direction_id)]
-            if (entid, direction_id) not in self._requests__monsters_outlines:
-                self._requests__monsters_outlines.append((entid, direction_id))
-                self._load_monster_outline(entid, direction_id, after_load_cb)
+            if (md_index, direction_id) in self._loaded__monsters_outlines:
+                return self._loaded__monsters_outlines[(md_index, direction_id)]
+            if (md_index, direction_id) not in self._requests__monsters_outlines:
+                self._requests__monsters_outlines.append((md_index, direction_id))
+                self._load_monster_outline(md_index, direction_id, after_load_cb)
         return self.get_loader()
 
     def get_for_object(self, name, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
@@ -220,11 +220,11 @@ class SpriteProvider:
         AsyncTaskRunner.instance().run_task(self._load_actor_placeholder__impl(name, direction_id, after_load_cb))
 
     async def _load_actor_placeholder__impl(self, name, direction_id: int, after_load_cb):
-        entid = FALLBACK_STANDIN_ENTITIY
+        md_index = FALLBACK_STANDIN_ENTITIY
         if name in STANDIN_ENTITIES:
-            entid = STANDIN_ENTITIES[name]
+            md_index = STANDIN_ENTITIES[name]
         try:
-            sprite_img, cx, cy, w, h = self._retrieve_monster_sprite(entid, direction_id)
+            sprite_img, cx, cy, w, h = self._retrieve_monster_sprite(md_index, direction_id)
 
             # Convert to outline + stripes
             alpha_sprite = sprite_img.getchannel('A')
@@ -262,27 +262,27 @@ class SpriteProvider:
             self._requests__actor_placeholders.remove((name, direction_id))
         after_load_cb()
 
-    def _load_monster(self, entid, direction_id: int, after_load_cb):
-        AsyncTaskRunner.instance().run_task(self._load_monster__impl(entid, direction_id, after_load_cb))
+    def _load_monster(self, md_index, direction_id: int, after_load_cb):
+        AsyncTaskRunner.instance().run_task(self._load_monster__impl(md_index, direction_id, after_load_cb))
 
-    async def _load_monster__impl(self, entid, direction_id: int, after_load_cb):
+    async def _load_monster__impl(self, md_index, direction_id: int, after_load_cb):
         try:
-            pil_img, cx, cy, w, h = self._retrieve_monster_sprite(entid, direction_id)
+            pil_img, cx, cy, w, h = self._retrieve_monster_sprite(md_index, direction_id)
             surf = pil_to_cairo_surface(pil_img)
             loaded = surf, cx, cy, w, h
         except RuntimeError:
             loaded = self.get_error()
         with sprite_provider_lock:
-            self._loaded__monsters[(entid, direction_id)] = loaded
-            self._requests__monsters.remove((entid, direction_id))
+            self._loaded__monsters[(md_index, direction_id)] = loaded
+            self._requests__monsters.remove((md_index, direction_id))
         after_load_cb()
 
-    def _load_monster_outline(self, entid, direction_id: int, after_load_cb):
-        AsyncTaskRunner.instance().run_task(self._load_monster_outline__impl(entid, direction_id, after_load_cb))
+    def _load_monster_outline(self, md_index, direction_id: int, after_load_cb):
+        AsyncTaskRunner.instance().run_task(self._load_monster_outline__impl(md_index, direction_id, after_load_cb))
 
-    async def _load_monster_outline__impl(self, entid, direction_id: int, after_load_cb):
+    async def _load_monster_outline__impl(self, md_index, direction_id: int, after_load_cb):
         try:
-            sprite_img, cx, cy, w, h = self._retrieve_monster_sprite(entid, direction_id)
+            sprite_img, cx, cy, w, h = self._retrieve_monster_sprite(md_index, direction_id)
 
             # Convert to outline + stripes
 
@@ -298,14 +298,14 @@ class SpriteProvider:
         except RuntimeError:
             loaded = self.get_error()
         with sprite_provider_lock:
-            self._loaded__monsters_outlines[(entid, direction_id)] = loaded
-            self._requests__monsters_outlines.remove((entid, direction_id))
+            self._loaded__monsters_outlines[(md_index, direction_id)] = loaded
+            self._requests__monsters_outlines.remove((md_index, direction_id))
         after_load_cb()
 
-    def _retrieve_monster_sprite(self, entid, direction_id: int) -> Tuple[Image.Image, int, int, int, int]:
+    def _retrieve_monster_sprite(self, md_index, direction_id: int) -> Tuple[Image.Image, int, int, int, int]:
         try:
             with self._monster_md as monster_md:
-                actor_sprite_id = monster_md[entid].sprite_index
+                actor_sprite_id = monster_md[md_index].sprite_index
             with self._monster_bin as monster_bin:
                 sprite = self._load_sprite_from_bin_pack(monster_bin, actor_sprite_id)
 
@@ -317,8 +317,8 @@ class SpriteProvider:
             return sprite_img, cx, cy, sprite_img.width, sprite_img.height
         except BaseException as e:
             # Error :(
-            logger.warning(f"Error loading a monster sprite for {entid}.", exc_info=e)
-            raise RuntimeError(f"Error loading monster sprite for {entid}") from e
+            logger.warning(f"Error loading a monster sprite for {md_index}.", exc_info=e)
+            raise RuntimeError(f"Error loading monster sprite for {md_index}") from e
 
     def _load_object(self, name, after_load_cb):
         AsyncTaskRunner.instance().run_task(self._load_object__impl(name, after_load_cb))

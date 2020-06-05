@@ -140,6 +140,9 @@
           <object class="GtkDrawingArea" id="draw_portrait">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <signal name="draw" handler="on_draw_portrait_draw" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -151,6 +154,9 @@
           <object class="GtkDrawingArea" id="draw_sprite">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <signal name="draw" handler="on_draw_sprite_draw" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -1401,7 +1407,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Portrait</property>
+            <property name="label" translatable="yes">Portraits</property>
           </object>
           <packing>
             <property name="position">2</property>

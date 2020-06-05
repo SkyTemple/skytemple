@@ -14,13 +14,14 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-
 from gi.repository.Gtk import TreeStore
 
+from skytemple.controller.main import MainController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
+from skytemple.module.portrait.portrait_provider import PortraitProvider
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.graphics.kao.model import Kao
+from skytemple_files.graphics.kao.model import Kao, KaoImage
 
 PORTRAIT_FILE = 'FONT/kaomado.kao'
 
@@ -35,7 +36,15 @@ class PortraitModule(AbstractModule):
         """Loads the list of backgrounds for the ROM."""
         self.project = rom_project
         self.kao: Kao = self.project.open_file_in_rom(PORTRAIT_FILE, FileType.KAO)
+        self._portrait_provider = PortraitProvider(self.kao)
+        self._portrait_provider__was_init = False
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         """This module does not have main views."""
         pass
+
+    def get_portrait_provider(self) -> PortraitProvider:
+        if not self._portrait_provider__was_init:
+            self._portrait_provider.init_loader(MainController.window().get_screen())
+            self._portrait_provider__was_init = True
+        return self._portrait_provider

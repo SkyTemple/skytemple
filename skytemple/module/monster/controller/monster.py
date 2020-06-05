@@ -17,11 +17,13 @@
 from enum import Enum
 from typing import TYPE_CHECKING, Type, List
 
+import cairo
 from gi.repository import Gtk
 
 from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.data.md.model import Gender, PokeType, MovementType, IQGroup, Ability, EvolutionMethod
 
 if TYPE_CHECKING:
@@ -37,9 +39,14 @@ class MonsterController(AbstractController):
         self.builder = None
         self._is_loading = False
         self._string_provider = module.project.get_string_provider()
+        self._sprite_provider = module.project.get_sprite_provider()
+        self._portrait_provider = module.project.get_module('portrait').get_portrait_provider()
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'monster.glade')
+
+        self._sprite_provider.reset()
+        self._portrait_provider.reset()
 
         self._init_language_labels()
         self._init_entity_id()
@@ -50,9 +57,33 @@ class MonsterController(AbstractController):
         self._is_loading = False
 
         self.builder.connect_signals(self)
+        self.builder.get_object('draw_sprite').queue_draw()
 
         self.builder.get_object('settings_grid').check_resize()
         return self.builder.get_object('box_main')
+
+    def on_draw_portrait_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
+        scale = 2
+        portrait = self._portrait_provider.get(self.entry.md_index - 1, 0,
+                                                           lambda: widget.queue_draw())
+        ctx.scale(scale, scale)
+        ctx.set_source_surface(portrait)
+        ctx.get_source().set_filter(cairo.Filter.NEAREST)
+        ctx.paint()
+        if widget.get_size_request() != (IMG_DIM * scale, IMG_DIM * scale):
+            widget.set_size_request(IMG_DIM * scale, IMG_DIM * scale)
+
+    def on_draw_sprite_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
+        if self.entry.entid > 0:
+            sprite, x, y, w, h = self._sprite_provider.get_monster(self.entry.md_index, 0,
+                                                                   lambda: widget.queue_draw())
+        else:
+            sprite, x, y, w, h = self._sprite_provider.get_error()
+        ctx.set_source_surface(sprite)
+        ctx.get_source().set_filter(cairo.Filter.NEAREST)
+        ctx.paint()
+        if widget.get_size_request() != (w, h):
+            widget.set_size_request(w, h)
 
     def on_cb_type_primary_changed(self, w, *args):
         self._update_from_cb(w)
