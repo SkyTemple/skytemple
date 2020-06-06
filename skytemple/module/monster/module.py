@@ -16,6 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from typing import List, Dict
 
+from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
@@ -95,6 +96,11 @@ class MonsterModule(AbstractModule):
 
     def get_entry(self, item_id):
         return self.monster_md[item_id]
+
+    def get_portrait_view(self, item_id):
+        if item_id == 0:
+            return Gtk.Label.new("This entry has no portraits.")
+        return self.project.get_module('portrait').get_editor(item_id - 1, lambda: self.mark_as_modified(item_id))
 
     def mark_as_modified(self, item_id):
         """Mark as modified"""

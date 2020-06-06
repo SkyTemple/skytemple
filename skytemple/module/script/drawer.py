@@ -18,7 +18,7 @@ from enum import auto, Enum
 from typing import Tuple, Union, Callable, Optional, List
 
 import cairo
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 
 from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.mapbg_util.drawer_plugin.grid import GridDrawerPlugin
@@ -262,9 +262,9 @@ class Drawer:
         if y is None:
             y = actor.pos.y_absolute
         if actor.actor.entid <= 0:
-            _, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(actor.actor.name, actor.pos.direction.id, self._redraw)
+            _, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(actor.actor.name, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))
         else:
-            _, cx, cy, w, h = self.sprite_provider.get_monster(actor.actor.entid, actor.pos.direction.id, self._redraw)
+            _, cx, cy, w, h = self.sprite_provider.get_monster(actor.actor.entid, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))
         return x - cx, y - cy, w, h
 
     def _draw_hitbox_actor(self, ctx: cairo.Context, actor: SsaActor):
@@ -284,7 +284,7 @@ class Drawer:
             y = object.pos.y_absolute
         if object.object.name != 'NULL':
             # Load sprite to get dims.
-            _, cx, cy, w, h = self.sprite_provider.get_for_object(object.object.name, self._redraw)
+            _, cx, cy, w, h = self.sprite_provider.get_for_object(object.object.name, lambda: GLib.idle_add(self._redraw))
             return x - cx, y - cy, w, h
         return self._get_pmd_bounding_box(
             x, y, object.hitbox_w * BPC_TILE_DIM, object.hitbox_h * BPC_TILE_DIM
@@ -523,7 +523,7 @@ class Drawer:
             )[0]
         else:
             sprite = self.sprite_provider.get_monster(
-                actor.actor.entid, actor.pos.direction.id, self._redraw
+                actor.actor.entid, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw)
             )[0]
         ctx.translate(x, y)
         ctx.set_source_surface(sprite)
@@ -533,7 +533,7 @@ class Drawer:
 
     def _draw_object_sprite(self, ctx: cairo.Context, obj: SsaObject, x, y):
         """Draws the sprite for an object"""
-        sprite = self.sprite_provider.get_for_object(obj.object.name, self._redraw)[0]
+        sprite = self.sprite_provider.get_for_object(obj.object.name, lambda: GLib.idle_add(self._redraw))[0]
         ctx.translate(x, y)
         ctx.set_source_surface(sprite)
         ctx.get_source().set_filter(cairo.Filter.NEAREST)

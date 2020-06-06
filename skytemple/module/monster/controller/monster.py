@@ -18,7 +18,7 @@ from enum import Enum
 from typing import TYPE_CHECKING, Type, List
 
 import cairo
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
@@ -51,6 +51,7 @@ class MonsterController(AbstractController):
         self._init_language_labels()
         self._init_entity_id()
         self._init_stores()
+        self._init_sub_pages()
 
         self._is_loading = True
         self._init_values()
@@ -65,18 +66,19 @@ class MonsterController(AbstractController):
     def on_draw_portrait_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
         scale = 2
         portrait = self._portrait_provider.get(self.entry.md_index - 1, 0,
-                                                           lambda: widget.queue_draw())
+                                               lambda: GLib.idle_add(widget.queue_draw), True)
         ctx.scale(scale, scale)
         ctx.set_source_surface(portrait)
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
         ctx.paint()
+        ctx.scale(1 / scale, 1 / scale)
         if widget.get_size_request() != (IMG_DIM * scale, IMG_DIM * scale):
             widget.set_size_request(IMG_DIM * scale, IMG_DIM * scale)
 
     def on_draw_sprite_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
         if self.entry.entid > 0:
             sprite, x, y, w, h = self._sprite_provider.get_monster(self.entry.md_index, 0,
-                                                                   lambda: widget.queue_draw())
+                                                                   lambda: GLib.idle_add(widget.queue_draw))
         else:
             sprite, x, y, w, h = self._sprite_provider.get_error()
         ctx.set_source_surface(sprite)
@@ -443,3 +445,8 @@ class MonsterController(AbstractController):
         self._string_provider.get_model(lang).strings[
             self._string_provider.get_index(StringType.POKEMON_NAMES, self.entry.md_index_base)
         ] = w.get_text()
+
+    def _init_sub_pages(self):
+        notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
+        tab_label: Gtk.Label = Gtk.Label.new('Portraits')
+        notebook.append_page(self.module.get_portrait_view(self.item_id), tab_label)

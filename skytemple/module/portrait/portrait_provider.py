@@ -22,6 +22,7 @@ from gi.repository import Gdk, GdkPixbuf, Gtk
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple_files.common.task_runner import AsyncTaskRunner
+from skytemple_files.data.md.model import NUM_ENTITIES
 from skytemple_files.graphics.kao.model import Kao, KAO_IMG_METAPIXELS_DIM, KAO_IMG_IMG_DIM
 
 IMG_DIM = KAO_IMG_METAPIXELS_DIM * KAO_IMG_IMG_DIM
@@ -39,6 +40,7 @@ class PortraitProvider:
         self._error_surface = None
 
         self._loaded: Dict[Tuple[int, int], cairo.Surface] = {}
+        self._loaded__is_fallback: Dict[Tuple[int, int], bool] = {}
 
         self._requests: List[Tuple[int, int]] = []
 
@@ -66,33 +68,49 @@ class PortraitProvider:
     def reset(self):
         with portrait_provider_lock:
             self._loaded = {}
+            self._loaded__is_fallback = {}
             self._requests = []
 
-    def get(self, entry_id: int, sub_id: int, after_load_cb=lambda: None) -> cairo.Surface:
+    def get(self, entry_id: int, sub_id: int, after_load_cb=lambda: None, allow_fallback=True) -> cairo.Surface:
         """
         Returns a portrait.
         As long as the portrait is being loaded, the loader portrait is returned instead.
+        If allow_fallback is set, the base form entry is loaded (% 600), when the portrait doesn't exist.
         """
         with portrait_provider_lock:
             if (entry_id, sub_id) in self._loaded:
-                return self._loaded[(entry_id, sub_id)]
+                if allow_fallback or (not allow_fallback and not self._loaded__is_fallback[(entry_id, sub_id)]):
+                    return self._loaded[(entry_id, sub_id)]
+                else:
+                    return self.get_error()
             if (entry_id, sub_id) not in self._requests:
                 self._requests.append((entry_id, sub_id))
-                self._load(entry_id, sub_id, after_load_cb)
+                self._load(entry_id, sub_id, after_load_cb, allow_fallback)
         return self.get_loader()
 
-    def _load(self, entry_id, sub_id, after_load_cb):
-        AsyncTaskRunner.instance().run_task(self._load__impl(entry_id, sub_id, after_load_cb))
+    def _load(self, entry_id, sub_id, after_load_cb, allow_fallback):
+        AsyncTaskRunner.instance().run_task(self._load__impl(entry_id, sub_id, after_load_cb, allow_fallback))
 
-    async def _load__impl(self, entry_id, sub_id, after_load_cb):
+    async def _load__impl(self, entry_id, sub_id, after_load_cb, allow_fallback):
+        is_fallback = False
         try:
-            portrait_pil = self._kao.get(entry_id, sub_id).get()
+            kao = self._kao.get(entry_id, sub_id)
+            if kao is None:
+                if allow_fallback:
+                    is_fallback = True
+                    kao = self._kao.get(entry_id % NUM_ENTITIES, sub_id)
+                    if kao is None:
+                        raise RuntimeError()
+                else:
+                    raise RuntimeError()
+            portrait_pil = kao.get()
             surf = pil_to_cairo_surface(portrait_pil.convert('RGBA'))
             loaded = surf
         except (RuntimeError, ValueError):
             loaded = self.get_error()
         with portrait_provider_lock:
             self._loaded[(entry_id, sub_id)] = loaded
+            self._loaded__is_fallback[(entry_id, sub_id)] = is_fallback
             self._requests.remove((entry_id, sub_id))
         after_load_cb()
 
