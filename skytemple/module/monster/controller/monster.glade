@@ -889,9 +889,11 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="label_pre_evo_index">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">label_pre_evo_index</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -908,17 +910,6 @@
                         <property name="left_attach">2</property>
                         <property name="top_attach">19</property>
                         <property name="width">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkComboBox" id="cb_pre_evo_index">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <signal name="changed" handler="on_cb_pre_evo_index_changed" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">18</property>
                       </packing>
                     </child>
                     <child>
@@ -1335,10 +1326,24 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkComboBox" id="cb_base_form_index">
+                      <object class="GtkLabel" id="label_base_form_index">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <signal name="changed" handler="on_cb_base_form_index_changed" swapped="no"/>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">label_base_form_index</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="top_attach">17</property>
+                        <property name="width">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="entry_base_form_index">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="width_chars">10</property>
+                        <signal name="changed" handler="on_entry_base_form_index_changed" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -1346,14 +1351,15 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkEntry" id="entry_pre_evo_index">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
+                        <property name="width_chars">10</property>
+                        <signal name="changed" handler="on_entry_pre_evo_index_changed" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="top_attach">17</property>
-                        <property name="width">2</property>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">18</property>
                       </packing>
                     </child>
                   </object>

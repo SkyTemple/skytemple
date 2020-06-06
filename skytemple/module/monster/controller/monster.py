@@ -24,7 +24,8 @@ from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.module.portrait.portrait_provider import IMG_DIM
-from skytemple_files.data.md.model import Gender, PokeType, MovementType, IQGroup, Ability, EvolutionMethod
+from skytemple_files.data.md.model import Gender, PokeType, MovementType, IQGroup, Ability, EvolutionMethod, \
+    NUM_ENTITIES
 
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
@@ -56,6 +57,9 @@ class MonsterController(AbstractController):
         self._is_loading = True
         self._init_values()
         self._is_loading = False
+
+        self._update_pre_evo_label()
+        self._update_base_form_label()
 
         self.builder.connect_signals(self)
         self.builder.get_object('draw_sprite').queue_draw()
@@ -193,8 +197,9 @@ class MonsterController(AbstractController):
         self._update_from_entry(w)
         self.mark_as_modified()
 
-    def on_cb_pre_evo_index_changed(self, w, *args):
-        self._update_from_cb(w)
+    def on_entry_pre_evo_index_changed(self, w, *args):
+        self._update_from_entry(w)
+        self._update_pre_evo_label()
         self.mark_as_modified()
 
     def on_cb_evo_method_changed(self, w, *args):
@@ -282,8 +287,9 @@ class MonsterController(AbstractController):
         self._update_from_entry(w)
         self.mark_as_modified()
 
-    def on_cb_base_form_index_changed(self, w, *args):
-        self._update_from_cb(w)
+    def on_entry_base_form_index_changed(self, w, *args):
+        self._update_from_entry(w)
+        self._update_base_form_label()
         self.mark_as_modified()
 
     def _init_language_labels(self):
@@ -294,7 +300,7 @@ class MonsterController(AbstractController):
             gui_entry: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}')
             if lang_id < len(langs):
                 # We have this language
-                gui_label.set_text(langs[lang_id].name)
+                gui_label.set_text(langs[lang_id].name + ':')
             else:
                 # We don't.
                 gui_label.set_text("")
@@ -319,19 +325,6 @@ class MonsterController(AbstractController):
         self._comboxbox_for_enum(['cb_ability_primary', 'cb_ability_secondary'], Ability)
         # Evolution Methods
         self._comboxbox_for_enum(['cb_evo_method'], EvolutionMethod)
-        # Pre Evo Index / Base Form Index
-        pre_evo_store = Gtk.ListStore(int, str)  # id, name
-        base_form_store = Gtk.ListStore(int, str)  # id, name
-        processed_baseids = set()
-        for entry in self.module.monster_md.entries:
-            name = self._string_provider.get_value(StringType.POKEMON_NAMES, entry.md_index_base)
-            pre_evo_store.append([entry.md_index, f'${entry.md_index:04d}: {name} ({entry.gender.name[0]})'])
-            if entry.md_index_base not in processed_baseids:
-                base_form_store.append([entry.md_index, f'#{entry.md_index_base:03d}: {name}'])
-                processed_baseids.add(entry.md_index_base)
-
-        self._fast_set_comboxbox_store(self.builder.get_object('cb_pre_evo_index'), pre_evo_store, 1)
-        self._fast_set_comboxbox_store(self.builder.get_object('cb_base_form_index'), base_form_store, 1)
 
     def _init_values(self):
         # Names
@@ -349,8 +342,8 @@ class MonsterController(AbstractController):
         self._set_entry('entry_unk31', self.entry.unk31)
         self._set_entry('entry_national_pokedex_number', self.entry.national_pokedex_number)
         self._set_entry('entry_unk1', self.entry.unk1)
-        self._set_cb('cb_pre_evo_index', self.entry.pre_evo_index)
-        self._set_cb('cb_base_form_index', self.entry.base_form_index)
+        self._set_entry('entry_pre_evo_index', self.entry.pre_evo_index)
+        self._set_entry('entry_base_form_index', self.entry.base_form_index)
         self._set_cb('cb_evo_method', self.entry.evo_method.value)
         self._set_entry('entry_evo_param1', self.entry.evo_param1)
         self._set_entry('entry_evo_param2', self.entry.evo_param2)
@@ -450,3 +443,27 @@ class MonsterController(AbstractController):
         notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
         tab_label: Gtk.Label = Gtk.Label.new('Portraits')
         notebook.append_page(self.module.get_portrait_view(self.item_id), tab_label)
+
+    def _update_base_form_label(self):
+        label: Gtk.Label = self.builder.get_object('label_base_form_index')
+        entry: Gtk.Entry = self.builder.get_object('entry_base_form_index')
+        try:
+            entry_id = int(entry.get_text())
+            if entry_id > NUM_ENTITIES:
+                raise ValueError()
+            entry = self.module.monster_md[entry_id]
+            name = self._string_provider.get_value(StringType.POKEMON_NAMES, entry.md_index_base)
+            label.set_text(f'#{entry.md_index_base:03d}: {name}')
+        except BaseException:
+            label.set_text(f'??? Enter a valid Base ID (#)')
+
+    def _update_pre_evo_label(self):
+        label: Gtk.Label = self.builder.get_object('label_pre_evo_index')
+        entry: Gtk.Entry = self.builder.get_object('entry_pre_evo_index')
+        try:
+            entry_id = int(entry.get_text())
+            entry = self.module.monster_md[entry_id]
+            name = self._string_provider.get_value(StringType.POKEMON_NAMES, entry.md_index_base)
+            label.set_text(f'${entry.md_index:04d}: {name} ({entry.gender.name[0]})')
+        except BaseException:
+            label.set_text(f'??? Enter a valid Entry ID ($)')
