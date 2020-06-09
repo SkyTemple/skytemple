@@ -18,7 +18,10 @@ import logging
 from typing import TYPE_CHECKING
 
 import cairo
-from PIL import Image
+try:
+    from PIL import Image
+except:
+    from pil import Image
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
 

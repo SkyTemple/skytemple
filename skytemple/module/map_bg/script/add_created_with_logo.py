@@ -16,7 +16,10 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
 
-from PIL import Image
+try:
+    from PIL import Image
+except:
+    from pil import Image
 from gi.repository import Gtk
 
 from skytemple.core.ui_utils import data_dir

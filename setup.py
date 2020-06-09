@@ -45,7 +45,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8'
     ],
-    package_data={'skytemple': ['*.css', 'data/*/*/*/*/*'] + recursive_pkg_files('.glade')},
+    package_data={'skytemple': ['*.css', 'data/*/*/*/*/*', 'data/*'] + recursive_pkg_files('.glade')},
     entry_points='''
         [skytemple.module]
         rom=          skytemple.module.rom.module:RomModule

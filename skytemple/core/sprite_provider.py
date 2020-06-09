@@ -21,7 +21,10 @@ import threading
 from typing import TYPE_CHECKING, Tuple, Dict, List, Union
 
 import cairo
-from PIL import Image, ImageFilter
+try:
+    from PIL import Image, ImageFilter
+except ImportError:
+    from pil import Image, ImageFilter
 from gi.repository import Gdk, Gtk, GdkPixbuf
 
 from skytemple.core.img_utils import pil_to_cairo_surface
