@@ -53,7 +53,7 @@ class PosMarkEditorController:
         self.pos_mark_to_edit = pos_mark_to_edit
 
         self.level = level
-        self.mapbg_id = self.level.mapid - 1
+        self.mapbg_id = self.level.mapid
 
         self._scale_factor = 1
         self._bg_draw_is_clicked__location: Optional[Tuple[int, int]] = None

@@ -98,7 +98,7 @@ class SsaController(AbstractController):
         self.mapbg_id = -1
         if self.mapname in self.static_data.script_data.level_list__by_name:
             self.level = self.static_data.script_data.level_list__by_name[self.mapname]
-            self.mapbg_id = self.level.mapid - 1
+            self.mapbg_id = self.level.mapid
 
         self.builder = None
 

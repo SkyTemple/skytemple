@@ -204,8 +204,10 @@ class MainController:
         self._init_window_after_rom_load(os.path.basename(RomProject.get_current().filename))
         try:
             # Load root node, ROM
-            rom_module = RomProject.get_current().get_rom_module()
+            project = RomProject.get_current()
+            rom_module = project.get_rom_module()
             rom_module.load_rom_data()
+            logger.info(f'Loaded ROM {project.filename} ({rom_module.get_static_data().game_edition})')
             rom_module.load_tree_items(self._item_store, None)
             root_node = rom_module.get_root_node()
 
@@ -213,7 +215,7 @@ class MainController:
             self._debugger_manager.handle_project_change()
 
             # Load item tree items
-            for module in sorted(RomProject.get_current().get_modules(False), key=lambda m: m.sort_order()):
+            for module in sorted(project.get_modules(False), key=lambda m: m.sort_order()):
                 module.load_tree_items(self._item_store, root_node)
                 if module.__class__.__name__ == 'MapBgModule':
                     self._loaded_map_bg_module = module

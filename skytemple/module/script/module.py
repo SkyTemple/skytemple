@@ -192,7 +192,8 @@ class ScriptModule(AbstractModule):
         return None
 
     def get_ssa(self, filename):
-        return self.project.open_file_in_rom(filename, FileType.SSA)
+        return self.project.open_file_in_rom(filename, FileType.SSA,
+                                             scriptdata=self.project.get_rom_module().get_static_data().script_data)
 
     def get_scenes_for_map(self, mapname):
         """Returns the filenames (not including paths) of all SSE/SSA/SSS files for this map."""
