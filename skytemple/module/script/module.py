@@ -43,6 +43,10 @@ class ScriptModule(AbstractModule):
     def depends_on(cls):
         return ['map_bg']
 
+    @classmethod
+    def sort_order(cls):
+        return 50
+
     def __init__(self, rom_project: RomProject):
         """Loads the list of backgrounds for the ROM."""
         self.project = rom_project

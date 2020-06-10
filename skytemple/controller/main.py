@@ -213,7 +213,7 @@ class MainController:
             self._debugger_manager.handle_project_change()
 
             # Load item tree items
-            for module in RomProject.get_current().get_modules(False):
+            for module in sorted(RomProject.get_current().get_modules(False), key=lambda m: m.sort_order()):
                 module.load_tree_items(self._item_store, root_node)
                 if module.__class__.__name__ == 'MapBgModule':
                     self._loaded_map_bg_module = module

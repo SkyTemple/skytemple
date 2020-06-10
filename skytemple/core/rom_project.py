@@ -32,6 +32,7 @@ from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
     get_ppmdu_config_for_rom
+from skytemple_files.patch.patches import Patcher
 
 logger = logging.getLogger(__name__)
 
@@ -95,6 +96,7 @@ class RomProject:
         self._file_handler_kwargs = {}
         # List of modified filenames
         self._modified_files = []
+        self._forced_modified = False
         # Callback for opening views using iterators from the main view list.
         self._cb_open_view: Callable[[Gtk.TreeIter], None] = cb_open_view
         self._project_fm = ProjectFileManager(filename)
@@ -174,8 +176,11 @@ class RomProject:
             if file not in self._modified_files:
                 self._modified_files.append(file)
 
+    def force_mark_as_modified(self):
+        self._forced_modified = True
+
     def has_modifications(self):
-        return len(self._modified_files) > 0
+        return len(self._modified_files) > 0 or self._forced_modified
 
     def save(self, main_controller: Optional['MainController']):
         """Save the rom. The main controller will be informed about this, if given."""
@@ -186,6 +191,7 @@ class RomProject:
             for name in self._modified_files:
                 self.prepare_save_model(name)
             self._modified_files = []
+            self._forced_modified = False
             logger.debug(f"Saving ROM to {self.filename}")
             self.save_as_is()
             if main_controller:
@@ -260,3 +266,6 @@ class RomProject:
 
     def get_string_provider(self) -> StringProvider:
         return self._string_provider
+
+    def create_patcher(self):
+        return Patcher(self._rom, self.get_rom_module().get_static_data())

@@ -38,6 +38,10 @@ class MonsterModule(AbstractModule):
     def depends_on(cls):
         return ['portrait']
 
+    @classmethod
+    def sort_order(cls):
+        return 70
+
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
         self.monster_md: Md = self.project.open_file_in_rom(MONSTER_MD_FILE, FileType.MD)

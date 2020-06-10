@@ -31,6 +31,10 @@ class RomModule(AbstractModule):
     def depends_on(cls):
         return []
 
+    @classmethod
+    def sort_order(cls):
+        return 0
+
     def __init__(self, rom_project: RomProject):
         """Main ROM metadata management module."""
         self.project = rom_project

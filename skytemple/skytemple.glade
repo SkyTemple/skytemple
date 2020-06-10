@@ -848,6 +848,14 @@ the top-right of the main window.</property>
         <property name="has_padding">False</property>
       </packing>
     </child>
+    <child internal-child="action_area">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+      </object>
+      <packing>
+        <property name="has_padding">False</property>
+      </packing>
+    </child>
   </object>
   <object class="GtkTreeStore" id="item_store">
     <columns>
@@ -1323,10 +1331,12 @@ the top-right of the main window.</property>
                         </child>
                         <child>
                           <object class="GtkLabel">
-                            <property name="name">skytemple_error_label</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">Oops!</property>
+                            <style>
+                              <class name="skytemple-view-main-label"/>
+                            </style>
                           </object>
                           <packing>
                             <property name="expand">False</property>

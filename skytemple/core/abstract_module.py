@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Optional, List
 
 import pkg_resources
 from gi.repository import Gtk
@@ -33,9 +33,16 @@ class AbstractModule(ABC):
     """
     @classmethod
     @abstractmethod
-    def depends_on(cls):
+    def depends_on(cls) -> List[str]:
         """
         A list of modules (names of entry_points), that this module depends on.
+        """
+
+    @classmethod
+    @abstractmethod
+    def sort_order(cls) -> int:
+        """
+        Where to sort this module in the item tree, lower numbers mean higher.
         """
 
     @classmethod

@@ -46,6 +46,10 @@ class MapBgModule(AbstractModule):
     def depends_on(cls):
         return []
 
+    @classmethod
+    def sort_order(cls):
+        return 120
+
     def __init__(self, rom_project: RomProject):
         """Loads the list of backgrounds for the ROM."""
         self.project = rom_project

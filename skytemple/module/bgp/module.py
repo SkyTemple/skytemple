@@ -32,6 +32,10 @@ class BgpModule(AbstractModule):
     def depends_on(cls):
         return []
 
+    @classmethod
+    def sort_order(cls):
+        return 150
+
     def __init__(self, rom_project: RomProject):
         """Loads the list of backgrounds for the ROM."""
         self.project = rom_project

@@ -54,6 +54,7 @@ setup(
         script=       skytemple.module.script.module:ScriptModule
         monster=      skytemple.module.monster.module:MonsterModule
         portrait=     skytemple.module.portrait.module:PortraitModule
+        patch=        skytemple.module.patch.module:PatchModule
         [console_scripts]
         skytemple=skytemple.main:main
     ''',
