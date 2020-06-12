@@ -59,14 +59,18 @@ class MainController(AbstractController):
                 self._error("The current ROM is not supported by this patch.")
                 return
 
+            if self.module.project.has_modifications():
+                self._error("Please save the ROM before applying the patch.")
+                return
+
             try:
                 self._patcher.apply(name)
             except RuntimeError as err:
                 self._error(f"Error applying the patch:\n{err}")
             finally:
                 self.module.mark_as_modified()
-            self._error(f"Patch was successfully applied.", Gtk.MessageType.INFO)
-            self.refresh()
+            self._error(f"Patch was successfully applied. You should re-open the project, to make sure all data is "
+                        f"correctly loaded.", Gtk.MessageType.INFO)
 
     def on_btn_refresh_clicked(self, *args):
         self.refresh()
