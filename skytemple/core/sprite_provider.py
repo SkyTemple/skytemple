@@ -33,7 +33,7 @@ from skytemple.core.model_context import ModelContext
 from skytemple.core.ui_utils import data_dir
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.common.util import MONSTER_MD, MONSTER_BIN
+from skytemple_files.common.util import MONSTER_MD, MONSTER_BIN, open_utf8
 from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.data.md.model import Md
 from skytemple_files.graphics.wan_wat.model import Wan
@@ -376,7 +376,7 @@ class SpriteProvider:
             self._loaded_standins = STANDIN_ENTITIES_DEFAULT
             p = self._standin_entities_filepath()
             if os.path.exists(p):
-                with open(p, 'r') as f:
+                with open_utf8(p, 'r') as f:
                     try:
                         self._loaded_standins = {int(k): v for k, v in json.load(f).items()}
                     except BaseException as err:
@@ -387,7 +387,7 @@ class SpriteProvider:
         with sprite_provider_lock:
             self._loaded__actor_placeholders = {}
         p = self._standin_entities_filepath()
-        with open(p, 'w') as f:
+        with open_utf8(p, 'w') as f:
             json.dump(mappings, f)
         self._loaded_standins = mappings
 

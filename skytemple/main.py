@@ -102,9 +102,12 @@ def main():
 def _windows_load_theme():
     from skytemple_files.common.platform_utils.win import win_use_light_theme
     settings = Gtk.Settings.get_default()
-    theme_name = 'Windows-10-Dark-3.2-dark'
+    #theme_name = 'Windows-10-Dark-3.2-dark'
+    # TODO: The theme is a big broken atm, so we just use Adwaita on Windows.
+    theme_name = 'Adwaita'
     if win_use_light_theme():
-        theme_name = 'Windows-10-3.2'
+        #theme_name = 'Windows-10-3.2'
+        pass
     else:
         settings.set_property("gtk-application-prefer-dark-theme", True)
     settings.set_property("gtk-theme-name", theme_name)
