@@ -60,7 +60,7 @@ class MapBgModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
-            'folder-pictures', 'Map Backgrounds', self, MainController, 0, False, ''
+            'folder-pictures-symbolic', 'Map Backgrounds', self, MainController, 0, False, ''
         ])
         sub_nodes = {
             'S': item_store.append(root, [

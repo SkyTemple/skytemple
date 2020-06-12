@@ -72,7 +72,7 @@ class ScriptModule(AbstractModule):
 
         #    -> Common [common]
         item_store.append(root, [
-            'text-plain', 'Scripts', self,  SsbController, 0, False, ''
+            'text-x-generic-symbolic', 'Scripts', self,  SsbController, 0, False, ''
         ])
 
         sub_nodes = {

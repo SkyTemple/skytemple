@@ -91,7 +91,7 @@
             <property name="tooltip_text" translatable="yes">Hide Other Layers</property>
             <property name="label" translatable="yes">Hide Other</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">object-hidden</property>
+            <property name="icon_name">view-reveal-symbolic</property>
             <signal name="toggled" handler="on_tb_hide_other_toggled" swapped="no"/>
           </object>
           <packing>
@@ -117,7 +117,7 @@
             <property name="is_important">True</property>
             <property name="label" translatable="yes">BG Color</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">format-fill-color</property>
+            <property name="icon_name">color-select-symbolic</property>
             <signal name="toggled" handler="on_tb_bg_color_toggled" swapped="no"/>
           </object>
           <packing>
