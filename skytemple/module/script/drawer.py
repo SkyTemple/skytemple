@@ -262,7 +262,7 @@ class Drawer:
         if y is None:
             y = actor.pos.y_absolute
         if actor.actor.entid <= 0:
-            _, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(actor.actor.name, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))
+            _, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(actor.actor.id, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))
         else:
             _, cx, cy, w, h = self.sprite_provider.get_monster(actor.actor.entid, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))
         return x - cx, y - cy, w, h
@@ -519,7 +519,7 @@ class Drawer:
         """Draws the sprite for an actor"""
         if actor.actor.entid == 0:
             sprite = self.sprite_provider.get_actor_placeholder(
-                actor.actor.name, actor.pos.direction.id, self._redraw
+                actor.actor.id, actor.pos.direction.id, self._redraw
             )[0]
         else:
             sprite = self.sprite_provider.get_monster(

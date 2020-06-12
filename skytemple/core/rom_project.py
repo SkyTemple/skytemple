@@ -30,8 +30,10 @@ from skytemple.core.string_provider import StringProvider
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.data_handler import DataHandler, T
+from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
     get_ppmdu_config_for_rom
+from skytemple_files.container.sir0.sir0_serializable import Sir0Serializable
 from skytemple_files.patch.patches import Patcher
 
 logger = logging.getLogger(__name__)
@@ -149,6 +151,29 @@ class RomProject:
             self._opened_files[file_path_in_rom] = file_handler_class.deserialize(bin, **kwargs)
             self._file_handlers[file_path_in_rom] = file_handler_class
             self._file_handler_kwargs[file_path_in_rom] = kwargs
+        return self._open_common(file_path_in_rom, threadsafe)
+
+    def open_sir0_file_in_rom(self, file_path_in_rom: str, sir0_serializable_type: Type[Sir0Serializable],
+                              threadsafe=False):
+        """
+        Open a SIR0 wrapped file. If already open, the opened object is returned.
+        The second parameter is the type of a Sir0Serializable to use.
+        Please note, that this is only used if the file is not already open.
+
+        The value of ``threadsafe`` must be the same for all requests to the file. If one request to open a
+        file used the value False but another True or vice-versa, this will raise a ValueError.
+
+        If ``threadsafe`` is True, instead of returning the model, a ModelContext[T] is returned.
+        """
+        if file_path_in_rom not in self._opened_files:
+            bin = self._rom.getFileByName(file_path_in_rom)
+            sir0 = FileType.SIR0.deserialize(bin)
+            self._opened_files[file_path_in_rom] = FileType.SIR0.unwrap_obj(sir0, sir0_serializable_type)
+            self._file_handlers[file_path_in_rom] = FileType.SIR0
+            self._file_handler_kwargs[file_path_in_rom] = {}
+        return self._open_common(file_path_in_rom, threadsafe)
+
+    def _open_common(self, file_path_in_rom: str, threadsafe):
         if threadsafe:
             if file_path_in_rom in self._files_unsafe:
                 raise ValueError(
@@ -212,7 +237,9 @@ class RomProject:
         with context as model:
             handler = self._file_handlers[name]
             logger.debug(f"Saving {name} in ROM. Model: {model}, Handler: {handler}")
-            # TODO: SsbHandler needs Pmd2Data!
+            if handler == FileType.SIR0:
+                logger.debug(f"> Saving as Sir0 wrapped data.")
+                model = handler.wrap_obj(model)
             if assert_that is not None:
                 assert assert_that is model, "The model that is being saved must match!"
             binary_data = handler.serialize(model, **self._file_handler_kwargs[name])

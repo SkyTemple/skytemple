@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.36.0 -->
+<interface>
+  <requires lib="gtk+" version="3.22"/>
+  <object class="GtkListStore" id="list_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="gchararray"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+      <!-- column-name type -->
+      <column type="gchararray"/>
+      <!-- column-name ent_icon -->
+      <column type="GdkPixbuf"/>
+      <!-- column-name entid -->
+      <column type="gint"/>
+      <!-- column-name unk3 -->
+      <column type="gchararray"/>
+      <!-- column-name unk4 -->
+      <column type="gchararray"/>
+      <!-- column-name ent_name -->
+      <column type="gchararray"/>
+      <!-- column-name color -->
+      <column type="gchararray"/>
+    </columns>
+    <signal name="row-changed" handler="on_list_store_row_changed" swapped="no"/>
+  </object>
+  <object class="GtkStack" id="list_stack">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkBox" id="box_na">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkAlignment">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="xscale">0.80000001192092895508</property>
+            <property name="yscale">0.80000001192092895508</property>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">64</property>
+                    <property name="label" translatable="yes">Actor List</property>
+                    <style>
+                      <class name="skytemple-view-main-label"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">5</property>
+                    <property name="label" translatable="yes">The entries in this list can be placed on maps and used in scripts.</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">40</property>
+                    <property name="label" translatable="yes">&lt;Not available&gt;
+
+To view and edit this list, please apply the "ActorAndLevelLoader" 
+ASM patch from the "ASM Patches" menu.</property>
+                    <property name="justify">center</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="name">page0</property>
+        <property name="title" translatable="yes">page0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox" id="box_list">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkAlignment">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="xscale">0.80000001192092895508</property>
+            <property name="yscale">0.80000001192092895508</property>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">64</property>
+                    <property name="label" translatable="yes">Actor List</property>
+                    <style>
+                      <class name="skytemple-view-main-label"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">5</property>
+                    <property name="label" translatable="yes">The entries in this list can be placed on maps and used in scripts.</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="margin_top">20</property>
+                    <property name="margin_bottom">20</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <object class="GtkTreeView" id="actor_tree">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="model">list_store</property>
+                        <property name="search_column">0</property>
+                        <child internal-child="selection">
+                          <object class="GtkTreeSelection"/>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="title" translatable="yes">ID</property>
+                            <child>
+                              <object class="GtkCellRendererText"/>
+                              <attributes>
+                                <attribute name="foreground">8</attribute>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="resizable">True</property>
+                            <property name="title" translatable="yes">Name</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cr_name">
+                                <property name="editable">True</property>
+                                <signal name="edited" handler="on_cr_name_edited" swapped="no"/>
+                              </object>
+                              <attributes>
+                                <attribute name="foreground">8</attribute>
+                                <attribute name="text">1</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="resizable">True</property>
+                            <property name="title" translatable="yes">Type</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cr_type">
+                                <property name="editable">True</property>
+                                <signal name="edited" handler="on_cr_type_edited" swapped="no"/>
+                              </object>
+                              <attributes>
+                                <attribute name="foreground">8</attribute>
+                                <attribute name="text">2</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="resizable">True</property>
+                            <property name="title" translatable="yes">Pokémon</property>
+                            <child>
+                              <object class="GtkCellRendererPixbuf"/>
+                              <attributes>
+                                <attribute name="pixbuf">3</attribute>
+                              </attributes>
+                            </child>
+                            <child>
+                              <object class="GtkCellRendererText" id="cr_entity">
+                                <property name="editable">True</property>
+                                <signal name="edited" handler="on_cr_entity_edited" swapped="no"/>
+                                <signal name="editing-started" handler="on_cr_entity_editing_started" swapped="no"/>
+                              </object>
+                              <attributes>
+                                <attribute name="foreground">8</attribute>
+                                <attribute name="text">7</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="resizable">True</property>
+                            <property name="title" translatable="yes">Unk3</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cr_unk3">
+                                <property name="editable">True</property>
+                                <signal name="edited" handler="on_cr_unk3_edited" swapped="no"/>
+                              </object>
+                              <attributes>
+                                <attribute name="foreground">8</attribute>
+                                <attribute name="text">5</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="resizable">True</property>
+                            <property name="title" translatable="yes">Unk4</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cr_unk4">
+                                <property name="editable">True</property>
+                                <signal name="edited" handler="on_cr_unk4_edited" swapped="no"/>
+                              </object>
+                              <attributes>
+                                <attribute name="foreground">8</attribute>
+                                <attribute name="text">6</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_bottom">20</property>
+                    <property name="spacing">5</property>
+                    <child>
+                      <object class="GtkButton" id="btn_add">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="tooltip_text" translatable="yes">Reload</property>
+                        <signal name="clicked" handler="on_btn_add_clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="stock">gtk-add</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="pack_type">end</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="btn_remove">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="tooltip_text" translatable="yes">Reload</property>
+                        <signal name="clicked" handler="on_btn_remove_clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="stock">gtk-remove</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="pack_type">end</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="valign">baseline</property>
+                            <property name="margin_top">5</property>
+                            <property name="label" translatable="yes">Actors with outlines </property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkDrawingArea" id="draw_example_placeholder">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="valign">baseline</property>
+                            <signal name="draw" handler="on_draw_example_placeholder_draw" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="valign">baseline</property>
+                            <property name="margin_top">5</property>
+                            <property name="label" translatable="yes"> as sprites are &lt;span foreground="orange"&gt;special&lt;/span&gt; and replaced with another Pokémon when the game is running.</property>
+                            <property name="use_markup">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="valign">baseline</property>
+                        <property name="margin_top">5</property>
+                        <property name="label" translatable="yes">By chaning the 'Pokémon' entry for these actors, you will only change which outline is rendered in SkyTemple.</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">4</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="name">page1</property>
+        <property name="title" translatable="yes">page1</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
+  <object class="GtkListStore" id="monster_store">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_entities">
+    <property name="model">monster_store</property>
+    <property name="text_column">0</property>
+    <signal name="match-selected" handler="on_completion_entities_match_selected" swapped="no"/>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+</interface>

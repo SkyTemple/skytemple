@@ -15,6 +15,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import json
 import logging
 import os
 import threading
@@ -41,72 +42,73 @@ if TYPE_CHECKING:
     from skytemple.core.rom_project import RomProject
 
 
-SpriteAndOffsetAndDims = Tuple[cairo.Surface, int, int, int, int]
+SpriteAndOffsetAndDims = Tuple[cairo.ImageSurface, int, int, int, int]
 ActorSpriteKey = Tuple[Union[str, int], int]
 sprite_provider_lock = threading.Lock()
 logger = logging.getLogger(__name__)
 
 # TODO: Make configurable in list editing instead and save to a config file:
 FALLBACK_STANDIN_ENTITIY = 1
-STANDIN_ENTITIES = {
-    "PLAYER": 1,
-    "PLAYER_HERO": 1,
-    "PLAYER_PARTNER": 4,
-    "PLAYER_PARTNER2": 25,
-    "PLAYER_APPOINT": 7,
-    "ATTENDANT1": 4,
-    "ATTENDANT2": 7,
-    "ATTENDANT_HERO": 2,
-    "ATTENDANT_PARTNER": 5,
-    "ATTENDANT_PARTNER2": 26,
-    "ATTENDANT_APPOINT": 8,
-    "UNIT_NPC1": 152,
-    "UNIT_NPC2": 155,
-    "UNIT_NPC3": 158,
-    "UNIT_NPC4": 280,
-    "ADVENTURE_NPC1": 153,
-    "ADVENTURE_NPC2": 156,
-    "ADVENTURE_NPC3": 159,
-    "ADVENTURE_NPC4": 271,
-    "FRIEND_NPC1": 282,
-    "FRIEND_NPC2": 283,
-    "FRIEND_NPC3": 284,
-    "FRIEND_NPC4": 285,
-    "FRIEND_NPC5": 286,
-    "FRIEND_NPC6": 287,
-    "FRIEND_NPC7": 288,
-    "FRIEND_NPC8": 422,
-    "FRIEND_NPC9": 423,
-    "FRIEND_NPC10": 424,
-    "FRIEND_NPC11": 425,
-    "FRIEND_NPC12": 426,
-    "FRIEND_NPC13": 427,
-    "FRIEND_NPC14": 428,
-    "FRIEND_NPC15": 429,
-    "FRIEND_NPC16": 430,
-    "TALK_MAIN": 488,
-    "TALK_SUB": 488,
-    "EVENT_NPC_MAIN": 488,
-    "EVENT_NPC_SUB": 488,
-    "RANDOM_REQUEST_NPC01": 488,
-    "RANDOM_REQUEST_NPC02": 488,
-    "RANDOM_REQUEST_NPC03": 488,
-    "EVENT_NPC01": 488,
-    "EVENT_NPC02": 488,
-    "EVENT_NPC03": 488,
-    "EVENT_NPC04": 488,
-    "NPC_NEW_FRIEND": 488,
-    "NPC_DEMO_HERO": 1,
-    "NPC_DEMO_PARTNER": 4,
-    "NPC_HERO": 1,
-    "NPC_PARTNER": 4,
-    "NPC_PARTNER2": 25,
-    "NPC_APPOINT": 7,
-    "NPC_HERO_REAL": 1,
-    "NPC_PARTNER_REAL": 4,
-    "NPC_HERO_FIRST": 1,
-    "NPC_PARTNER_FIRST": 4
+STANDIN_ENTITIES_DEFAULT = {
+    0: 1,
+    1: 1,
+    2: 4,
+    3: 25,
+    4: 7,
+    10: 4,
+    11: 7,
+    12: 2,
+    13: 5,
+    14: 26,
+    15: 8,
+    22: 152,
+    23: 155,
+    24: 158,
+    25: 280,
+    26: 153,
+    27: 156,
+    28: 159,
+    29: 271,
+    30: 282,
+    31: 283,
+    32: 284,
+    33: 285,
+    34: 286,
+    35: 287,
+    36: 288,
+    37: 422,
+    38: 423,
+    39: 424,
+    40: 425,
+    41: 426,
+    42: 427,
+    43: 428,
+    44: 429,
+    45: 430,
+    46: 488,
+    47: 488,
+    48: 488,
+    49: 488,
+    50: 488,
+    51: 488,
+    52: 488,
+    53: 488,
+    54: 488,
+    55: 488,
+    56: 488,
+    57: 488,
+    58: 1,
+    59: 4,
+    60: 1,
+    61: 4,
+    62: 25,
+    63: 7,
+    64: 1,
+    65: 4,
+    66: 1,
+    67: 4
 }
+FILE_NAME_STANDIN_SPRITES = '.standin_sprites.json'
 
 
 class SpriteProvider:
@@ -133,6 +135,7 @@ class SpriteProvider:
         self._monster_bin: BinPack = self._project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
 
         self._stripes = Image.open(os.path.join(data_dir(), 'stripes.png'))
+        self._loaded_standins = None
 
         # init_loader MUST be called next!
 
@@ -167,17 +170,17 @@ class SpriteProvider:
             self._requests__actor_placeholders: List[str] = []
             self._requests__objects: List[str] = []
 
-    def get_actor_placeholder(self, name, direction_id: int, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+    def get_actor_placeholder(self, actor_id, direction_id: int, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
         """
-        Returns a placeholder sprite for the actor with the given name.
+        Returns a placeholder sprite for the actor with the given index (in the actor table).
         As long as the sprite is being loaded, the loader sprite is returned instead.
         """
         with sprite_provider_lock:
-            if (name, direction_id) in self._loaded__actor_placeholders:
-                return self._loaded__actor_placeholders[(name, direction_id)]
-            if (name, direction_id) not in self._requests__actor_placeholders:
-                self._requests__actor_placeholders.append((name, direction_id))
-                self._load_actor_placeholder(name, direction_id, after_load_cb)
+            if (actor_id, direction_id) in self._loaded__actor_placeholders:
+                return self._loaded__actor_placeholders[(actor_id, direction_id)]
+            if (actor_id, direction_id) not in self._requests__actor_placeholders:
+                self._requests__actor_placeholders.append((actor_id, direction_id))
+                self._load_actor_placeholder(actor_id, direction_id, after_load_cb)
         return self.get_loader()
 
     def get_monster(self, md_index, direction_id: int, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
@@ -219,13 +222,13 @@ class SpriteProvider:
                 self._load_object(name, after_load_cb)
         return self.get_loader()
 
-    def _load_actor_placeholder(self, name, direction_id: int, after_load_cb):
-        AsyncTaskRunner.instance().run_task(self._load_actor_placeholder__impl(name, direction_id, after_load_cb))
+    def _load_actor_placeholder(self, actor_id, direction_id: int, after_load_cb):
+        AsyncTaskRunner.instance().run_task(self._load_actor_placeholder__impl(actor_id, direction_id, after_load_cb))
 
-    async def _load_actor_placeholder__impl(self, name, direction_id: int, after_load_cb):
+    async def _load_actor_placeholder__impl(self, actor_id, direction_id: int, after_load_cb):
         md_index = FALLBACK_STANDIN_ENTITIY
-        if name in STANDIN_ENTITIES:
-            md_index = STANDIN_ENTITIES[name]
+        if actor_id in self.get_standin_entities():
+            md_index = self.get_standin_entities()[actor_id]
         try:
             sprite_img, cx, cy, w, h = self._retrieve_monster_sprite(md_index, direction_id)
 
@@ -258,11 +261,11 @@ class SpriteProvider:
 
             surf = pil_to_cairo_surface(out_sprite)
             loaded = surf, cx, cy, w, h
-        except RuntimeError:
+        except BaseException:
             loaded = self.get_error()
         with sprite_provider_lock:
-            self._loaded__actor_placeholders[(name, direction_id)] = loaded
-            self._requests__actor_placeholders.remove((name, direction_id))
+            self._loaded__actor_placeholders[(actor_id, direction_id)] = loaded
+            self._requests__actor_placeholders.remove((actor_id, direction_id))
         after_load_cb()
 
     def _load_monster(self, md_index, direction_id: int, after_load_cb):
@@ -273,7 +276,7 @@ class SpriteProvider:
             pil_img, cx, cy, w, h = self._retrieve_monster_sprite(md_index, direction_id)
             surf = pil_to_cairo_surface(pil_img)
             loaded = surf, cx, cy, w, h
-        except RuntimeError:
+        except BaseException:
             loaded = self.get_error()
         with sprite_provider_lock:
             self._loaded__monsters[(md_index, direction_id)] = loaded
@@ -298,7 +301,7 @@ class SpriteProvider:
 
             surf = pil_to_cairo_surface(im_outline)
             loaded = surf, cx, cy, w, h
-        except RuntimeError:
+        except BaseException:
             loaded = self.get_error()
         with sprite_provider_lock:
             self._loaded__monsters_outlines[(md_index, direction_id)] = loaded
@@ -312,7 +315,7 @@ class SpriteProvider:
             with self._monster_bin as monster_bin:
                 sprite = self._load_sprite_from_bin_pack(monster_bin, actor_sprite_id)
 
-                ani_group = sprite.get_animations_for_group(sprite.anim_groups[11])
+                ani_group = sprite.get_animations_for_group(sprite.anim_groups[0])
                 frame_id = direction_id - 1 if direction_id > 0 else 0
                 mfg_id = ani_group[frame_id].frames[0].frame_id
 
@@ -367,3 +370,26 @@ class SpriteProvider:
         """
         w, h = self._error_surface_dims
         return self._error_surface, int(w/2), h, w, h
+
+    def get_standin_entities(self):
+        if not self._loaded_standins:
+            self._loaded_standins = STANDIN_ENTITIES_DEFAULT
+            p = self._standin_entities_filepath()
+            if os.path.exists(p):
+                with open(p, 'r') as f:
+                    try:
+                        self._loaded_standins = {int(k): v for k, v in json.load(f).items()}
+                    except BaseException as err:
+                        logger.error(f"Failed to load standin sprites from {p}, falling back to default: {err}.")
+        return self._loaded_standins
+
+    def set_standin_entities(self, mappings):
+        with sprite_provider_lock:
+            self._loaded__actor_placeholders = {}
+        p = self._standin_entities_filepath()
+        with open(p, 'w') as f:
+            json.dump(mappings, f)
+        self._loaded_standins = mappings
+
+    def _standin_entities_filepath(self):
+        return os.path.join(self._project.get_project_file_manager().dir(), FILE_NAME_STANDIN_SPRITES)

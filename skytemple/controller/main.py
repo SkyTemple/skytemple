@@ -469,11 +469,12 @@ class MainController:
             # Add to the list of recent files and save
             new_recent_files = []
             for rf in self.recent_files:
-                if rf != filename:
-                    new_recent_files.append(filename)
+                if rf != filename and rf not in new_recent_files:
+                    new_recent_files.append(rf)
             new_recent_files.insert(0, filename)
             self.recent_files = new_recent_files
             self.settings.set_recent_files(self.recent_files)
+            # TODO: Update recent files store too!
             # Show loading spinner
             self._loading_dialog.run()
 

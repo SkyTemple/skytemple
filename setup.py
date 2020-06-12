@@ -55,6 +55,7 @@ setup(
         monster=      skytemple.module.monster.module:MonsterModule
         portrait=     skytemple.module.portrait.module:PortraitModule
         patch=        skytemple.module.patch.module:PatchModule
+        lists=        skytemple.module.lists.module:ListsModule
         [console_scripts]
         skytemple=skytemple.main:main
     ''',
