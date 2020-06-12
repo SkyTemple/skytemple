@@ -196,6 +196,6 @@ class MapBgModule(AbstractModule):
     def get_associated_script_map(self, item_id):
         """Returns the script map that is associated to this map bg item ID, or None if not found"""
         for level in self.project.get_rom_module().get_static_data().script_data.level_list__by_id.values():
-            if level.mapid - 1 == item_id:
+            if level.mapid == item_id:
                 return level
         return None
