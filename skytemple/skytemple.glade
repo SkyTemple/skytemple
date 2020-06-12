@@ -1081,74 +1081,12 @@ the top-right of the main window.</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkNotebook" id="item_utility">
+                  <object class="GtkLabel" id="todo">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkScrolledWindow">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">never</property>
-                        <property name="shadow_type">in</property>
-                        <child>
-                          <object class="GtkTreeView" id="utility_history_list">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="model">item_store</property>
-                            <property name="search_column">0</property>
-                            <child internal-child="selection">
-                              <object class="GtkTreeSelection"/>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child type="tab">
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">History</property>
-                      </object>
-                      <packing>
-                        <property name="tab_fill">False</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkScrolledWindow">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="hscrollbar_policy">never</property>
-                        <property name="shadow_type">in</property>
-                        <child>
-                          <object class="GtkTreeView" id="utility_bookmarks_list">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="model">item_store</property>
-                            <property name="search_column">0</property>
-                            <child internal-child="selection">
-                              <object class="GtkTreeSelection"/>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child type="tab">
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Bookmarks</property>
-                      </object>
-                      <packing>
-                        <property name="position">1</property>
-                        <property name="tab_fill">False</property>
-                      </packing>
-                    </child>
+                    <property name="can_focus">False</property>
                   </object>
                   <packing>
-                    <property name="resize">True</property>
+                    <property name="resize">False</property>
                     <property name="shrink">False</property>
                   </packing>
                 </child>
@@ -1204,7 +1142,7 @@ the top-right of the main window.</property>
                           <object class="GtkAlignment" id="recent_file_main_alignment">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xscale">0.30000001192092896</property>
+                            <property name="xscale">0.30000001192092895508</property>
                             <child>
                               <object class="GtkBox">
                                 <property name="visible">True</property>
@@ -1360,7 +1298,7 @@ the top-right of the main window.</property>
                           <object class="GtkAlignment">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xscale">0.80000001192092896</property>
+                            <property name="xscale">0.80000001192092895508</property>
                             <child>
                               <object class="GtkScrolledWindow" id="es_error_text_sw">
                                 <property name="visible">True</property>
@@ -1530,13 +1468,10 @@ the top-right of the main window.</property>
     <property name="comments" translatable="yes">Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US).</property>
     <property name="website">https://github.com/SkyTemple/skytemple</property>
     <property name="website_label" translatable="yes">https://github.com/SkyTemple/skytemple</property>
-    <property name="license" translatable="yes">Dieses Programm kommt OHNE JEDWEDE GARANTIE.
-Besuchen Sie &lt;a href="https://www.gnu.org/licenses/gpl-3.0.html"&gt;GNU General Public License, Version 3 oder neuer&lt;/a&gt; für weitere Informationen.</property>
     <property name="authors">Marco "Parakoopa" Köpcke
 &lt;TODO&gt;</property>
     <property name="translator_credits" translatable="yes" comments="TRANSLATORS: Replace this string with your names, one name per line.">translator-credits</property>
     <property name="logo_icon_name">skytemple</property>
-    <property name="wrap_license">True</property>
     <property name="license_type">gpl-3-0</property>
     <signal name="delete-event" handler="gtk_widget_hide_on_delete" swapped="no"/>
     <child internal-child="vbox">
