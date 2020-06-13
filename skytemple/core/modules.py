@@ -31,6 +31,10 @@ class Modules:
             entry_point.name:
                 entry_point.load() for entry_point in pkg_resources.iter_entry_points(MODULE_ENTRYPOINT_KEY)
         }
+        if len(cls._modules) < 1:
+            # PyInstaller under Windows has no idea what (custom) entrypoints are...
+            # TODO: Figure out a better way to do this...
+            cls._modules = cls._load_windows_modules()
         dependencies = {}
         for k, module in cls._modules.items():
             dependencies[k] = module.depends_on()
@@ -41,6 +45,27 @@ class Modules:
     def all(cls):
         """Returns a list of all loaded modules, ordered by dependencies"""
         return cls._modules
+
+    @classmethod
+    def _load_windows_modules(cls):
+        from skytemple.module.rom.module import RomModule
+        from skytemple.module.bgp.module import BgpModule
+        from skytemple.module.map_bg.module import MapBgModule
+        from skytemple.module.script.module import ScriptModule
+        from skytemple.module.monster.module import MonsterModule
+        from skytemple.module.portrait.module import PortraitModule
+        from skytemple.module.patch.module import PatchModule
+        from skytemple.module.lists.module import ListsModule
+        return {
+            "rom": RomModule,
+            "bgp": BgpModule,
+            "map_bg": MapBgModule,
+            "script": ScriptModule,
+            "monster": MonsterModule,
+            "portrait": PortraitModule,
+            "patch": PatchModule,
+            "lists": ListsModule
+        }
 
 
 def dep(arg):
