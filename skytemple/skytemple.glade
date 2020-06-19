@@ -70,8 +70,8 @@ the tool doesn't do a good job at reducing the colors in an efficient way, so th
 your images might be greatly reduced. You can use other tools to prepare the images and
  try changing some settings below to get better results.
 
-- The image will be reduced to NUM_PALS color palettes with 
-  NUM_COLORS colors each (+ 1 color for transparency).
+- The image will be reduced to 16 color palettes with 15 
+  colors each (+ 1 color for transparency).
 - Each 8x8 tile will only be able to use one palette.
 
 The images created by this tool can be imported for brackgrounds.</property>
