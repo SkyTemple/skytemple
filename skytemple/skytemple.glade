@@ -1470,9 +1470,21 @@ the top-right of the main window.</property>
     <property name="comments" translatable="yes">Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US).</property>
     <property name="website">https://github.com/SkyTemple/skytemple</property>
     <property name="website_label" translatable="yes">https://github.com/SkyTemple/skytemple</property>
-    <property name="authors">Marco "Parakoopa" Köpcke
-&lt;TODO&gt;</property>
+    <property name="authors">Project Lead:
+Marco "Parakoopa" Köpcke
+
+Contributors:
+marius851000 (via skytemple-rust)
+
+Reference Implementations + Research:
+psy_commando
+
+Researchers:
+MegaMinerd
+evandixon
+Nerketur</property>
     <property name="translator_credits" translatable="yes" comments="TRANSLATORS: Replace this string with your names, one name per line.">translator-credits</property>
+    <property name="artists">Charburst &lt;https://twitter.com/Charburst_&gt; (Logo)</property>
     <property name="logo_icon_name">skytemple</property>
     <property name="license_type">gpl-3-0</property>
     <signal name="delete-event" handler="gtk_widget_hide_on_delete" swapped="no"/>
