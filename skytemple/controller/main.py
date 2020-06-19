@@ -40,6 +40,7 @@ from gi.repository.Gtk import *
 main_thread = current_thread()
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
+COL_VISIBLE = 7
 
 
 class MainController:
@@ -365,7 +366,7 @@ class MainController:
     def on_main_item_list_search_search_changed(self, search: Gtk.SearchEntry):
         """Filter the main item view using the search field"""
         self._search_text = search.get_text()
-        self._main_item_filter.refilter()
+        self._filter__refresh_results()
 
     def on_settings_show_assistant_clicked(self, *args):
         assistant: Gtk.Assistant = self.builder.get_object('intro_dialog')
@@ -519,25 +520,60 @@ class MainController:
         self._main_item_list = main_item_list
 
         main_item_list.set_model(self._main_item_filter)
-        self._main_item_filter.set_visible_func(self._main_item_filter_func)
+        self._main_item_filter.set_visible_column(COL_VISIBLE)
 
         # TODO: Recent and Favorites
 
-    def _main_item_filter_func(self, model, iter, data):
-        return self._recursive_filter_func(self._search_text, model, iter)
+    # TODO: CODE DUPLICATION BETWEEN SKYTEMPLE AND SSB DEBUGGER -- If we ever make a common package, this must go into it!
+    def _filter__refresh_results(self):
+        """Filter the main item view"""
+        if self._search_text == "":
+            self._item_store.foreach(self._filter__reset_row, True)
+        else:
+            self._main_item_list.collapse_all()
+            self._item_store.foreach(self._filter__reset_row, False)
+            self._item_store.foreach(self._filter__show_matches)
+            self._main_item_filter.foreach(self._filter__expand_all_visible)
 
-    def _recursive_filter_func(self, search, model, iter):
-        if search is None:
-            return True
-        i_match = search.lower() in model[iter][1].lower()
-        if i_match:
-            return True
-        for child in model[iter].iterchildren():
-            child_match = self._recursive_filter_func(search, child.model, child.iter)
-            if child_match:
-                self._main_item_list.expand_row(child.parent.path, False)
-                return True
-        return False
+    def _filter__reset_row(self, model, path, iter, make_visible):
+        """Change the visibility of the given row"""
+        self._item_store[iter][COL_VISIBLE] = make_visible
+
+    def _filter__make_path_visible(self, model, iter):
+        """Make a row and its ancestors visible"""
+        while iter:
+            self._item_store[iter][COL_VISIBLE] = True
+            iter = model.iter_parent(iter)
+
+    def _filter__make_subtree_visible(self, model, iter):
+        """Make descendants of a row visible"""
+        for i in range(model.iter_n_children(iter)):
+            subtree = model.iter_nth_child(iter, i)
+            if model[subtree][COL_VISIBLE]:
+                # Subtree already visible
+                continue
+            self._item_store[subtree][COL_VISIBLE] = True
+            self._filter__make_subtree_visible(model, subtree)
+
+    def _filter__expand_all_visible(self, model: Gtk.TreeStore, path, iter):
+        """
+        This is super annoying. Because of the two different "views" on the model,
+        we can't do this in show_matches, because we have to use the filter model here!
+        """
+        search_query = self._search_text.lower()
+        text = model[iter][1].lower()
+        if search_query in text:
+            self._main_item_list.expand_to_path(path)
+
+    def _filter__show_matches(self, model: Gtk.TreeStore, path, iter):
+        search_query = self._search_text.lower()
+        text = model[iter][1].lower()
+        if search_query in text:
+            # Propagate visibility change up
+            self._filter__make_path_visible(model, iter)
+            # Propagate visibility change down
+            self._filter__make_subtree_visible(model, iter)
+    # END CODE DUPLICATION
 
     def _configure_error_view(self):
         sw: ScrolledWindow = self.builder.get_object('es_error_text_sw')

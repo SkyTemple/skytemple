@@ -873,6 +873,8 @@ the top-right of the main window.</property>
       <column type="gboolean"/>
       <!-- column-name final_label -->
       <column type="gchararray"/>
+      <!-- column-name visible -->
+      <column type="gboolean"/>
     </columns>
     <signal name="row-changed" handler="on_item_store_row_changed" swapped="no"/>
   </object>

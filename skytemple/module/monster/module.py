@@ -52,7 +52,7 @@ class MonsterModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
-            'system-users-symbolic', 'Pokémon', self, MainController, 0, False, ''
+            'system-users-symbolic', 'Pokémon', self, MainController, 0, False, '', True
         ])
         self._tree_model = item_store
         self._tree_iter__entity_roots = {}
@@ -89,13 +89,13 @@ class MonsterModule(AbstractModule):
     def _generate_entry__entity_root(self, entid, name):
         return [
             'user-info-symbolic', f'#{entid:03}: {name}',
-            self, EntityController, entid, False, ''
+            self, EntityController, entid, False, '', True
         ]
 
     def _generate_entry__entry(self, i, gender):
         return [
             'user-info-symbolic', f'${i:04}: {gender.name.capitalize()}',
-            self, MonsterController, i, False, ''
+            self, MonsterController, i, False, '', True
         ]
 
     def get_entry(self, item_id):
