@@ -16,7 +16,7 @@ additional_datas = [
     (os.path.join(site_packages, 'skytemple_ssb_debugger', '*.lang'), 'skytemple_ssb_debugger'),
     (os.path.join(site_packages, 'skytemple_ssb_debugger', 'controller', '*.glade'), 'skytemple_ssb_debugger/controller'),
     (os.path.join(site_packages, 'skytemple_files', '_resources'), 'skytemple_files/_resources'),
-    (os.path.join('.', 'armips.exe'), 'skytemple_files/_resources/armips.exe'),
+    (os.path.join('.', 'armips.exe'), 'skytemple_files/_resources'),
     (os.path.join(site_packages, 'desmume', 'frontend', 'control_ui', '*.glade'), 'desmume/frontend/control_ui'),
 ]
 # Add all module *.glade files.
