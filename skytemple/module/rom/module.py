@@ -18,6 +18,7 @@ import os
 from typing import Optional
 
 from gi.repository.Gtk import TreeStore, TreeIter
+from ndspy.rom import NintendoDSRom
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
@@ -40,6 +41,14 @@ class RomModule(AbstractModule):
         self.project = rom_project
         self._root_node: Optional[TreeIter] = None
         self._static_data: Optional[Pmd2Data] = None
+        self._rom = Optional[NintendoDSRom]
+
+    def set_rom(self, rom: NintendoDSRom):
+        self._rom = rom
+
+    def controller_get_rom(self):
+        """MAY ONLY BE USED BY THE CONTROLLER"""
+        return self._rom
 
     def get_root_node(self):
         return self._root_node

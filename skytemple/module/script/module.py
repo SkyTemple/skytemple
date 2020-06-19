@@ -30,9 +30,9 @@ from skytemple.module.script.controller.folder import FolderController
 from skytemple.module.script.controller.map import MapController
 from skytemple.module.script.controller.dialog.pos_mark_editor import PosMarkEditorController
 from skytemple.module.script.controller.ssa import SsaController
-from skytemple.module.script.controller.ssb import SsbController
+from skytemple.module.script.controller.ssb import SsbController, SCRIPT_SCRIPTS
 from skytemple.module.script.controller.lsd import LsdController
-from skytemple.module.script.controller.main import MainController
+from skytemple.module.script.controller.main import MainController, SCRIPT_SCENES
 from skytemple.module.script.controller.sub import SubController
 from skytemple_files.common.script_util import load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT
 from skytemple_files.common.types.file_types import FileType
@@ -65,42 +65,42 @@ class ScriptModule(AbstractModule):
     def load_tree_items(self, item_store: TreeStore, root_node):
         # -> Script [main]
         root = item_store.append(root_node, [
-            'folder-templates-symbolic', 'Script Scenes', self, MainController, 0, False, '', True
+            'folder-templates-symbolic', SCRIPT_SCENES, self, MainController, 0, False, '', True
         ])
 
         self._tree_model = item_store
 
         #    -> Common [common]
         item_store.append(root, [
-            'text-x-generic-symbolic', 'Scripts', self,  SsbController, 0, False, '', True
+            'text-x-generic-symbolic', SCRIPT_SCRIPTS, self,  SsbController, 0, False, '', True
         ])
 
         sub_nodes = {
             'S': item_store.append(root, [
-                'folder-symbolic', 'S - System', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'S - System', self, FolderController, 'S - System', False, '', True
             ]),
             'T': item_store.append(root, [
-                'folder-symbolic', 'T - Town', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'T - Town', self, FolderController, 'T - Town', False, '', True
             ]),
             'D': item_store.append(root, [
-                'folder-symbolic', 'D - Dungeon', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'D - Dungeon', self, FolderController, 'D - Dungeon', False, '', True
             ]),
             'G': item_store.append(root, [
-                'folder-symbolic', 'G - Guild', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'G - Guild', self, FolderController, 'G - Guild', False, '', True
             ]),
             'H': item_store.append(root, [
-                'folder-symbolic', 'H - Habitat', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'H - Habitat', self, FolderController, 'H - Habitat', False, '', True
             ]),
             'P': item_store.append(root, [
-                'folder-symbolic', 'P - Places', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'P - Places', self, FolderController, 'P - Places', False, '', True
             ]),
             'V': item_store.append(root, [
-                'folder-symbolic', 'V - Visual', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'V - Visual', self, FolderController, 'V - Visual', False, '', True
             ])
         }
         # Other
         other = item_store.append(root, [
-            'folder-symbolic', 'Other', self, FolderController, 0, False, '', True
+            'folder-symbolic', 'Other', self, FolderController, None, False, '', True
         ])
 
         for i, map_obj in enumerate(self.script_engine_file_tree['maps'].values()):
@@ -128,7 +128,7 @@ class ScriptModule(AbstractModule):
 
             #       -> Acting Scripts [lsd]
             acting_root = item_store.append(map_root, [
-                'folder-symbolic', 'Acting (ssa)', self,  LsdController, 0, False, '', True
+                'folder-symbolic', 'Acting (ssa)', self,  LsdController, map_obj['name'], False, '', True
             ])
             for ssa, ssb in map_obj['ssas']:
                 stem = ssa[:-len(SSA_EXT)]
@@ -146,7 +146,7 @@ class ScriptModule(AbstractModule):
 
             #       -> Sub Scripts [sub]
             sub_root = item_store.append(map_root, [
-                'folder-symbolic', 'Sub (sss)', self,  SubController, 0, False, '', True
+                'folder-symbolic', 'Sub (sss)', self,  SubController, map_obj['name'], False, '', True
             ])
             for sss, ssbs in map_obj['subscripts'].items():
                 stem = sss[:-len(SSS_EXT)]

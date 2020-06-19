@@ -19,7 +19,7 @@ from gi.repository.Gtk import TreeStore
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label
-from skytemple.module.lists.controller.main import MainController
+from skytemple.module.lists.controller.main import MainController, GROUND_LISTS
 from skytemple.module.lists.controller.actor_list import ActorListController
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.md.model import Md
@@ -46,7 +46,7 @@ class ListsModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
-            'view-list-symbolic', 'Ground Lists', self, MainController, 0, False, '', True
+            'view-list-symbolic', GROUND_LISTS, self, MainController, 0, False, '', True
         ])
         self._actor_tree_iter = item_store.append(root, [
             'view-list-symbolic', 'Actors', self, ActorListController, 0, False, '', True

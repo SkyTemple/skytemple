@@ -27,7 +27,7 @@ from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label
 from skytemple.module.map_bg.controller.bg import BgController
 from skytemple.module.map_bg.controller.folder import FolderController
-from skytemple.module.map_bg.controller.main import MainController
+from skytemple.module.map_bg.controller.main import MainController, MAPBG_NAME
 from skytemple.module.map_bg.script.add_created_with_logo import AddCreatedWithLogo
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.graphics.bg_list_dat.model import BgList
@@ -60,37 +60,37 @@ class MapBgModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
-            'folder-pictures-symbolic', 'Map Backgrounds', self, MainController, 0, False, '', True
+            'folder-pictures-symbolic', MAPBG_NAME, self, MainController, 0, False, '', True
         ])
         sub_nodes = {
             'S': item_store.append(root, [
-                'folder-symbolic', 'S - System', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'S - System', self, FolderController, 'S - System', False, '', True
             ]),
             'T': item_store.append(root, [
-                'folder-symbolic', 'T - Town', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'T - Town', self, FolderController, 'T - Town', False, '', True
             ]),
             'D': item_store.append(root, [
-                'folder-symbolic', 'D - Dungeon', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'D - Dungeon', self, FolderController, 'D - Dungeon', False, '', True
             ]),
             'G': item_store.append(root, [
-                'folder-symbolic', 'G - Guild', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'G - Guild', self, FolderController, 'G - Guild', False, '', True
             ]),
             'H': item_store.append(root, [
-                'folder-symbolic', 'H - Habitat', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'H - Habitat', self, FolderController, 'H - Habitat', False, '', True
             ]),
             'P': item_store.append(root, [
-                'folder-symbolic', 'P - Places', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'P - Places', self, FolderController, 'P - Places', False, '', True
             ]),
             'V': item_store.append(root, [
-                'folder-symbolic', 'V - Visual', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'V - Visual', self, FolderController, 'V - Visual', False, '', True
             ]),
             'W': item_store.append(root, [
-                'folder-symbolic', 'W - Weather', self, FolderController, 0, False, '', True
+                'folder-symbolic', 'W - Weather', self, FolderController, 'W - Weather', False, '', True
             ])
         }
         # Other
         other = item_store.append(root, [
-            'folder-symbolic', 'Other', self, FolderController, 0, False, '', True
+            'folder-symbolic', 'Other', self, FolderController, None, False, '', True
         ])
         self._tree_model = item_store
         self._tree_level_iter = []

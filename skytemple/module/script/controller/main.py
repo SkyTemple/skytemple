@@ -18,5 +18,24 @@
 from skytemple.core.module_controller import NotImplementedController
 
 
-class MainController(NotImplementedController):
-    pass
+from gi.repository import Gtk
+
+from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.module_controller import SimpleController
+
+SCRIPT_SCENES = 'Script Scenes'
+
+
+class MainController(SimpleController):
+    def __init__(self, module: AbstractModule, item_id: int):
+        pass
+
+    def get_title(self) -> str:
+        return SCRIPT_SCENES
+
+    def get_content(self) -> Gtk.Widget:
+        return self.generate_content_label(
+            "This section lets you edit overworld scenes in the game, so anything that happens outside of Dungeons.\n"
+            "This also includes cutscene visuals and some system related scenes, "
+            "like credits or the title screen logos."
+        )

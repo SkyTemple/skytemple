@@ -24,7 +24,7 @@ from skytemple.core.rom_project import RomProject
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.monster.controller.entity import EntityController
-from skytemple.module.monster.controller.main import MainController
+from skytemple.module.monster.controller.main import MainController, MONSTER_NAME
 from skytemple.module.monster.controller.monster import MonsterController
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.md.model import Md, MdEntry
@@ -52,7 +52,7 @@ class MonsterModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
-            'system-users-symbolic', 'Pokémon', self, MainController, 0, False, '', True
+            'system-users-symbolic', MONSTER_NAME, self, MainController, 0, False, '', True
         ])
         self._tree_model = item_store
         self._tree_iter__entity_roots = {}
@@ -89,7 +89,7 @@ class MonsterModule(AbstractModule):
     def _generate_entry__entity_root(self, entid, name):
         return [
             'user-info-symbolic', f'#{entid:03}: {name}',
-            self, EntityController, entid, False, '', True
+            self, EntityController, f'#{entid:03}: {name}', False, '', True
         ]
 
     def _generate_entry__entry(self, i, gender):

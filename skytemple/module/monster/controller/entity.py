@@ -15,8 +15,22 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-from skytemple.core.module_controller import NotImplementedController
+from gi.repository import Gtk
+
+from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.module_controller import SimpleController
 
 
-class EntityController(NotImplementedController):
-    pass
+class EntityController(SimpleController):
+    def __init__(self, module: AbstractModule, name):
+        self.name = name
+
+    def get_title(self) -> str:
+        return self.name
+
+    def get_content(self) -> Gtk.Widget:
+        return self.generate_content_label(
+            "Each Pokémon has two gender forms (even if it only has one gender).\n"
+            "This entry contains both of these forms. The first form is the main form, it is used "
+            "as a fallback in some cases, when the data for the second form doesn't exist."
+        )

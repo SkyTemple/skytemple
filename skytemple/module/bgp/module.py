@@ -21,7 +21,7 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.bgp.controller.bgp import BgpController
-from skytemple.module.bgp.controller.main import MainController
+from skytemple.module.bgp.controller.main import MainController, BACKGROUNDS_NAME
 from skytemple_files.common.types.file_types import FileType
 
 BGP_FILE_EXT = 'bgp'
@@ -46,7 +46,7 @@ class BgpModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
-            'folder-pictures-symbolic', 'Backgrounds', self, MainController, 0, False, '', True
+            'folder-pictures-symbolic', BACKGROUNDS_NAME, self, MainController, 0, False, '', True
         ])
         self._tree_model = item_store
         self._tree_level_iter = []

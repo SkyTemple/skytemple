@@ -15,8 +15,26 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-from skytemple.core.module_controller import NotImplementedController
+from gi.repository import Gtk
+
+from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.module_controller import SimpleController
 
 
-class FolderController(NotImplementedController):
-    pass
+class FolderController(SimpleController):
+    def __init__(self, module: AbstractModule, name):
+        self.name = name
+
+    def get_title(self) -> str:
+        if self.name is not None:
+            return f'Map Background category "{self.name}"'
+        return f'Map Backgrounds for other maps'
+
+    def get_content(self) -> Gtk.Widget:
+        if self.name is not None:
+            return self.generate_content_label(
+                f"This section contains all the map backgrounds, that start with the letter {self.name[0]}."
+            )
+        return self.generate_content_label(
+            f"This section contains all the map backgrounds, that don't fit in any of the other categories."
+        )
