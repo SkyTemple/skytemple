@@ -67,10 +67,11 @@ class MainController(AbstractController):
                 self._patcher.apply(name)
             except RuntimeError as err:
                 self._error(f"Error applying the patch:\n{err}")
+            else:
+                self._error(f"Patch was successfully applied. You should re-open the project, to make sure all data is "
+                            f"correctly loaded.", Gtk.MessageType.INFO)
             finally:
                 self.module.mark_as_modified()
-            self._error(f"Patch was successfully applied. You should re-open the project, to make sure all data is "
-                        f"correctly loaded.", Gtk.MessageType.INFO)
 
     def on_btn_refresh_clicked(self, *args):
         self.refresh()
