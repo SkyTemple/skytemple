@@ -17,7 +17,7 @@ build_pip python_igraph-*-cp38-cp38-mingw.whl
 
 # Install py-desmume
 echo "Installing py-desmume..."
-build_pip py-desmume-*-cp38-cp38-mingw.whl
+build_pip py_desmume-*-cp38-cp38-mingw.whl
 
 # Install skytemple_rust
 echo "Installing skytemple_rust..."
