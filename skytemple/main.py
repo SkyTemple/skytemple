@@ -23,6 +23,7 @@ import gi
 from skytemple.core.global_configuration import GlobalConfiguration
 from skytemple.core.modules import Modules
 from skytemple.core.ui_utils import data_dir
+from skytemple_files.common.platform_utils.win import win_set_error_mode
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_ssb_debugger.main import get_debugger_data_dir
 
@@ -53,6 +54,12 @@ def main():
     if sys.platform.startswith('win'):
         # Load theming under Windows
         _windows_load_theme()
+        # Solve issue #12
+        try:
+            win_set_error_mode()
+        except BaseException:
+            # This really shouldn't fail, but it's not important enough to crash over
+            pass
 
     itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
     itheme.append_search_path(os.path.abspath(os.path.join(data_dir(), "icons")))
