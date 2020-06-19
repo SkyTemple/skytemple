@@ -15,21 +15,18 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-import math
 import os
-from collections import OrderedDict
-from typing import Union, List
-from typing import OrderedDict as TypeOrderedDict
+from typing import Union, List, Dict
 
 from gi.repository import Gtk, Gdk
-from gi.repository.Gtk import ResponseType, IconView, ScrolledWindow
+from gi.repository.Gtk import ResponseType
 
 from skytemple_files.common.util import make_palette_colors_unique
 
 
 class PaletteEditorController:
     def __init__(
-        self, parent_window, palettes: TypeOrderedDict[str, List[int]],
+        self, parent_window, palettes: Dict[str, List[int]],
         disable_color0=True, allow_adding_removing=False, show_make_unique_button=True
     ):
         path = os.path.abspath(os.path.dirname(__file__))
