@@ -15,12 +15,14 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import sys
 from typing import Union, List, Optional
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.error_handler import display_error
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
@@ -178,13 +180,11 @@ class MapBgModule(AbstractModule):
                 row = self._tree_model[self._tree_level_iter[item_id]]
                 recursive_up_item_store_mark_as_modified(row)
         except BaseException as err:
-            logger.error("Logo add error", exc_info=err)
-            md = Gtk.MessageDialog(None,
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                   Gtk.ButtonsType.OK, str(err))
-            md.set_position(Gtk.WindowPosition.CENTER)
-            md.run()
-            md.destroy()
+            display_error(
+                sys.exc_info(),
+                str(err),
+                "Error adding the logo."
+            )
         else:
             md = Gtk.MessageDialog(None,
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,

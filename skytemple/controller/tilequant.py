@@ -16,8 +16,10 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import os
+import sys
 from functools import partial
 
+from skytemple.core.error_handler import display_error
 from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 from skytemple_tilequant.image_converter import ImageConverter
@@ -164,10 +166,7 @@ class TilequantController:
         md.destroy()
 
     def error(self, msg):
-        md = Gtk.MessageDialog(self.window,
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                               Gtk.ButtonsType.OK, msg,
-                               title="Error!")
-        md.set_position(Gtk.WindowPosition.CENTER)
-        md.run()
-        md.destroy()
+        display_error(
+            sys.exc_info(),
+            msg
+        )

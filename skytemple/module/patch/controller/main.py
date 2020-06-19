@@ -16,12 +16,14 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
 import pathlib
+import sys
 from glob import glob
 from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
 from gi.repository.Gio import AppInfo
 
+from skytemple.core.error_handler import display_error
 from skytemple.core.module_controller import AbstractController
 from skytemple_files.patch.patches import Patcher
 from skytemple.controller.main import MainController as MainAppController
@@ -66,7 +68,7 @@ class MainController(AbstractController):
             try:
                 self._patcher.apply(name)
             except RuntimeError as err:
-                self._error(f"Error applying the patch:\n{err}")
+                self._error(f"Error applying the patch:\n{err}", exc_info=sys.exc_info())
             else:
                 self._error(f"Patch was successfully applied. You should re-open the project, to make sure all data is "
                             f"correctly loaded.", Gtk.MessageType.INFO)
@@ -101,13 +103,19 @@ class MainController(AbstractController):
                 patch.name, patch.author, patch.description, applied_str
             ])
 
-    def _error(self, msg, type=Gtk.MessageType.ERROR):
-        md = Gtk.MessageDialog(MainAppController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, type,
-                               Gtk.ButtonsType.OK, msg)
-        md.set_position(Gtk.WindowPosition.CENTER)
-        md.run()
-        md.destroy()
+    def _error(self, msg, type=Gtk.MessageType.ERROR, exc_info=None):
+        if type == Gtk.MessageType.ERROR:
+            display_error(
+                exc_info,
+                msg
+            )
+        else:
+            md = Gtk.MessageDialog(MainAppController.window(),
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, type,
+                                   Gtk.ButtonsType.OK, msg)
+            md.set_position(Gtk.WindowPosition.CENTER)
+            md.run()
+            md.destroy()
 
     def patch_dir(self):
         return self.module.project.get_project_file_manager().dir(PATCH_DIR)

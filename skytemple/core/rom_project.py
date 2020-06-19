@@ -16,6 +16,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import sys
 from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Type, Tuple
 
 from gi.repository import GLib, Gtk
@@ -76,9 +77,10 @@ class RomProject:
             if main_controller:
                 GLib.idle_add(lambda: main_controller.on_file_opened())
         except BaseException as ex:
+            exc_info = sys.exc_info()
             cls._current = None
             if main_controller:
-                GLib.idle_add(lambda ex=ex: main_controller.on_file_opened_error(ex))
+                GLib.idle_add(lambda ex=ex: main_controller.on_file_opened_error(exc_info, ex))
 
     def __init__(self, filename: str, cb_open_view: Callable[[Gtk.TreeIter], None]):
         self.filename = filename
@@ -224,7 +226,8 @@ class RomProject:
 
         except Exception as err:
             if main_controller:
-                GLib.idle_add(lambda err=err: main_controller.on_file_saved_error(err))
+                exc_info = sys.exc_info()
+                GLib.idle_add(lambda err=err: main_controller.on_file_saved_error(exc_info, err))
 
     def prepare_save_model(self, name, assert_that=None):
         """

@@ -18,10 +18,12 @@
 import logging
 import os
 import re
+import sys
 from collections import OrderedDict
 from functools import partial
 from typing import TYPE_CHECKING
 
+from skytemple.core.error_handler import display_error
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.graphics.bg_list_dat.model import BPA_EXT, DIR
 from skytemple_files.graphics.bpa.model import BpaFrameInfo
@@ -286,14 +288,10 @@ class BgMenuController:
                             self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, Image.open(f1), Image.open(f2),
                                                      True, how_many_palettes_lower_layer=int(palettes_from_lower_layer))
             except Exception as err:
-                # TODO Better exception display
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                       Gtk.ButtonsType.OK, str(err),
-                                       title="SkyTemple - Error!")
-                md.set_position(Gtk.WindowPosition.CENTER)
-                md.run()
-                md.destroy()
+                display_error(
+                    sys.exc_info(),
+                    str(err)
+                )
             self.parent.reload_all()
             self.parent.mark_as_modified()
 
@@ -538,13 +536,10 @@ class BgMenuController:
                 md.destroy()
             except Exception as err:
                 logger.error("Error during BPA export", exc_info=err)
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                       Gtk.ButtonsType.OK, str(err),
-                                       title="SkyTemple - Error!")
-                md.set_position(Gtk.WindowPosition.CENTER)
-                md.run()
-                md.destroy()
+                display_error(
+                    sys.exc_info(),
+                    str(err)
+                )
 
     def on_dialog_tiles_animated_export_import_btn_clicked(self):
         bpa_select = self.parent.builder.get_object('dialog_tiles_animated_export_select_bpa')
@@ -600,13 +595,10 @@ class BgMenuController:
                 md.destroy()
             except Exception as err:
                 logger.error("Error during BPA import", exc_info=err)
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                       Gtk.ButtonsType.OK, str(err),
-                                       title="SkyTemple - Error!")
-                md.set_position(Gtk.WindowPosition.CENTER)
-                md.run()
-                md.destroy()
+                display_error(
+                    sys.exc_info(),
+                    str(err)
+                )
             self.parent.reload_all()
             self.parent.mark_as_modified()
 
@@ -771,14 +763,10 @@ class BgMenuController:
                         if chunks_import_palettes.get_active():
                             self.parent.bpl.palettes = palettes
             except Exception as err:
-                # TODO Better exception display
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                       Gtk.ButtonsType.OK, str(err),
-                                       title="SkyTemple - Error!")
-                md.set_position(Gtk.WindowPosition.CENTER)
-                md.run()
-                md.destroy()
+                display_error(
+                    sys.exc_info(),
+                    str(err)
+                )
             self.parent.reload_all()
             self.parent.mark_as_modified()
 
@@ -834,14 +822,10 @@ class BgMenuController:
                     with open(tiles_import_file.get_filename(), 'rb') as f:
                         self.parent.bpc.pil_to_tiles(layer, Image.open(f))
             except Exception as err:
-                # TODO Better exception display
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                       Gtk.ButtonsType.OK, str(err),
-                                       title="SkyTemple - Error!")
-                md.set_position(Gtk.WindowPosition.CENTER)
-                md.run()
-                md.destroy()
+                display_error(
+                    sys.exc_info(),
+                    str(err)
+                )
             self.parent.reload_all()
             self.parent.mark_as_modified()
 

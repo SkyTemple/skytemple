@@ -19,6 +19,7 @@ from typing import TYPE_CHECKING, Optional, List
 from gi.repository import Gtk
 
 from explorerscript.source_map import SourceMapPositionMark
+from skytemple.core.error_handler import display_error
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST_TYPE_SCENE_SSA, REQUEST_TYPE_SCENE_SSS, \
     REQUEST_TYPE_SCENE_SSE
 from skytemple.core.rom_project import RomProject
@@ -152,3 +153,6 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     @property
     def _project_fm(self):
         return RomProject.get_current().get_project_file_manager()
+
+    def display_error(self, exc_info, error_message, error_title='SkyTemple Script Engine Debugger - Error'):
+        display_error(exc_info, error_message, error_title, self._manager.get_window())

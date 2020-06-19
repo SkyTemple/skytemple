@@ -16,6 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 import os
+import sys
 import traceback
 from threading import current_thread
 
@@ -25,6 +26,7 @@ import logging
 from skytemple.controller.tilequant import TilequantController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.controller_loader import load_controller
+from skytemple.core.error_handler import display_error
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.settings import SkyTempleSettingsStore
@@ -227,7 +229,7 @@ class MainController:
             selection.select_path(self._item_store.get_path(root_node))
             self.load_view(self._item_store, root_node, self._main_item_list)
         except BaseException as ex:
-            self.on_file_opened_error(ex)
+            self.on_file_opened_error(sys.exc_info(), ex)
             return
 
         if self._loading_dialog is not None:
@@ -238,21 +240,18 @@ class MainController:
         if not self.settings.get_assistant_shown():
             self.on_settings_show_assistant_clicked()
 
-    def on_file_opened_error(self, exception):
+    def on_file_opened_error(self, exc_info, exception):
         """Handle errors during file openings."""
         assert current_thread() == main_thread
         logger.error('Error on file open.', exc_info=exception)
         if self._loading_dialog is not None:
             self._loading_dialog.hide()
             self._loading_dialog = None
-        # TODO: Better exception display
-        md = Gtk.MessageDialog(self.window,
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                               Gtk.ButtonsType.OK, str(exception),
-                               title="SkyTemple - Error!")
-        md.set_position(Gtk.WindowPosition.CENTER)
-        md.run()
-        md.destroy()
+        display_error(
+            exc_info,
+            str(exception),
+            "Error opening the ROM"
+        )
 
     def on_file_saved(self):
         if self._loading_dialog is not None:
@@ -263,22 +262,18 @@ class MainController:
         self._set_title(os.path.basename(rom.filename), False)
         recursive_down_item_store_mark_as_modified(self._item_store[self._item_store.get_iter_first()], False)
 
-    def on_file_saved_error(self, exception):
+    def on_file_saved_error(self, exc_info, exception):
         """Handle errors during file saving."""
         logger.error('Error on save open.', exc_info=exception)
 
         if self._loading_dialog is not None:
             self._loading_dialog.hide()
             self._loading_dialog = None
-
-        # TODO: Better exception display
-        md = Gtk.MessageDialog(self.window,
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                               Gtk.ButtonsType.OK, str(exception),
-                               title="SkyTemple - Error!")
-        md.set_position(Gtk.WindowPosition.CENTER)
-        md.run()
-        md.destroy()
+        display_error(
+            exc_info,
+            str(exception),
+            "Error saving the ROM"
+        )
 
     def on_main_item_list_button_press_event(self, tree: TreeView, event: Gdk.Event):
         """Handle click on item: Switch view"""

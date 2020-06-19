@@ -18,10 +18,14 @@ import logging
 import math
 import os
 import re
+import sys
 from functools import partial
 from typing import TYPE_CHECKING
 
 import cairo
+
+from skytemple.core.error_handler import display_error
+
 try:
     from PIL import Image
 except:
@@ -138,13 +142,11 @@ class PortraitController(AbstractController):
                 except Exception as err:
                     name = self._get_portrait_name(subindex)
                     logger.error(f"Failed importing image '{name}'.", exc_info=err)
-                    md = Gtk.MessageDialog(MainController.window(),
-                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                           Gtk.ButtonsType.OK, f'Failed importing image "{name}":\n{err}',
-                                           title=f"Error for '{name}'.")
-                    md.set_position(Gtk.WindowPosition.CENTER)
-                    md.run()
-                    md.destroy()
+                    display_error(
+                        sys.exc_info(),
+                        f'Failed importing image "{name}":\n{err}',
+                        f"Error for '{name}'."
+                    )
             # Re-render
             self._portrait_provider.reset()
             for draw in self._draws:

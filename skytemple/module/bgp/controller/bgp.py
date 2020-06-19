@@ -15,9 +15,13 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import sys
 from typing import TYPE_CHECKING
 
 import cairo
+
+from skytemple.core.error_handler import display_error
+
 try:
     from PIL import Image
 except:
@@ -88,14 +92,11 @@ class BgpController(AbstractController):
                 with open(path, 'rb') as f:
                     self.bgp.from_pil(Image.open(f), True)
             except Exception as err:
-                logger.error("BGP import error", exc_info=err)
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                       Gtk.ButtonsType.OK, str(err),
-                                       title="SkyTemple - Error!")
-                md.set_position(Gtk.WindowPosition.CENTER)
-                md.run()
-                md.destroy()
+                display_error(
+                    sys.exc_info(),
+                    str(err),
+                    "Error importing the image."
+                )
             self.module.mark_as_modified(self.item_id)
             self._reinit_image()
 
