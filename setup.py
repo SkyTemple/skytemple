@@ -22,7 +22,7 @@ def recursive_pkg_files(file_ext):
 
 setup(
     name='skytemple',
-    version='0.0.3.post1',
+    version='0.0.4',
     packages=find_packages(),
     description='GUI Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US)',
     long_description=long_description,
@@ -30,12 +30,12 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files >= 0.0.3',
+        'skytemple-files >= 0.0.4',
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
         'tilequant >= 0.0.1',
-        'skytemple-ssb-debugger >= 0.0.3'
+        'skytemple-ssb-debugger >= 0.0.4'
     ],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
