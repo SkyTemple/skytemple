@@ -404,9 +404,12 @@ class MainController:
             self.window.move(*window_position)
 
     def _configure_csd(self):
+        tb: Gtk.HeaderBar = self.window.get_titlebar()
+        # On macOS, the buttons need to be on the left.
+        if sys.platform.startswith('darwin'):
+            tb.set_decoration_layout("close,minimize,maximize,menu:")
         # TODO. Following code disables CSD.
         return
-        tb: HeaderBar = self.window.get_titlebar()
         self.window.set_titlebar(None)
         main_box: Box = self.window.get_child()
         main_box.add(tb)

@@ -61,6 +61,10 @@ def main():
             # This really shouldn't fail, but it's not important enough to crash over
             pass
 
+    if sys.platform.startswith('darwin'):
+        # Load theming under macOS
+        _macos_load_theme()
+
     itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
     itheme.append_search_path(os.path.abspath(os.path.join(data_dir(), "icons")))
     itheme.append_search_path(os.path.abspath(os.path.join(get_debugger_data_dir(), "icons")))
@@ -113,6 +117,16 @@ def _windows_load_theme():
     if not win_use_light_theme():
         settings.set_property("gtk-application-prefer-dark-theme", True)
         theme_name = 'Arc-Dark'
+    settings.set_property("gtk-theme-name", theme_name)
+
+
+def _macos_load_theme():
+    from skytemple_files.common.platform_utils.macos import macos_use_light_theme
+    settings = Gtk.Settings.get_default()
+    theme_name = 'Mojave-light'
+    if not macos_use_light_theme():
+        settings.set_property("gtk-application-prefer-dark-theme", True)
+        theme_name = 'Mojave-dark'
     settings.set_property("gtk-theme-name", theme_name)
 
 
