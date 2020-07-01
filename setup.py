@@ -56,6 +56,7 @@ setup(
         portrait=     skytemple.module.portrait.module:PortraitModule
         patch=        skytemple.module.patch.module:PatchModule
         lists=        skytemple.module.lists.module:ListsModule
+        misc_graphics=skytemple.module.misc_graphics.module:MiscGraphicsModule
         [console_scripts]
         skytemple=skytemple.main:main
     ''',
