@@ -73,7 +73,7 @@ class BgMenuController:
         )
         number_layers_adjustment.set_value(bma.number_of_layers)
         number_collision_adjustment.set_value(bma.number_of_collision_layers)
-        has_data_layer.set_active(bma.hitbox_h > 0)
+        has_data_layer.set_active(bma.unk6 > 0)
 
         resp = dialog.run()
         if resp == ResponseType.OK:
@@ -89,6 +89,7 @@ class BgMenuController:
                 has_a_change = True
                 bma.remove_upper_layer()
                 bpc.remove_upper_layer()
+                self.parent.module.remove_bpa_upper_layer(self.parent.item_id)
             number_col_layers = number_collision_adjustment.get_value()
             if number_col_layers > 1 and bma.number_of_collision_layers <= 0:
                 # COLLISION 1 WAS ADDED
@@ -111,15 +112,15 @@ class BgMenuController:
                 bma.number_of_collision_layers = 0
                 bma.collision = None
             has_data_layer_now = has_data_layer.get_active()
-            if has_data_layer_now and not bma.hitbox_h:
+            if has_data_layer_now and not bma.unk6:
                 # DATA LAYER WAS ADDED
                 has_a_change = True
-                bma.hitbox_h = True
+                bma.unk6 = True
                 bma.unknown_data_block = [0 for _ in range(0, bma.map_width_camera * bma.map_height_camera)]
-            if not has_data_layer_now and bma.hitbox_h:
+            if not has_data_layer_now and bma.unk6:
                 # DATA LAYER WAS REMOVED
                 has_a_change = True
-                bma.hitbox_h = False
+                bma.unk6 = False
                 bma.unknown_data_block = None
             
             if has_a_change:

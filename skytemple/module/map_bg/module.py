@@ -199,3 +199,12 @@ class MapBgModule(AbstractModule):
             if level.mapid == item_id:
                 return level
         return None
+
+    def remove_bpa_upper_layer(self, item_id):
+        """
+        A BPC layer was removed, change the BPAs for the entry item_id in the level list.
+        Replace 0-4 with 5-8 and set 5-8 to None.
+        """
+        l = self.bgs.level[item_id]
+        l.bpa_names = l.bpa_names[4:8] + [None, None, None, None]
+        self.mark_level_list_as_modified()

@@ -618,6 +618,7 @@ class BgController(AbstractController):
         """Reload all image related things"""
         if self.current_icon_view_renderer:
             self.current_icon_view_renderer.stop()
+        self.bpas = self.module.get_bpas(self.item_id)
         self._init_chunk_imgs()
         self.drawer.reset(self.bma, self.bpa_durations, self.pal_ani_durations, self.chunks_surfaces)
         self._init_tab(self.notebook.get_nth_page(self.notebook.get_current_page()))
