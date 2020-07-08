@@ -25,7 +25,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.data.md.model import Gender, PokeType, MovementType, IQGroup, Ability, EvolutionMethod, \
-    NUM_ENTITIES
+    NUM_ENTITIES, ShadowSize
 
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
@@ -223,6 +223,19 @@ class MonsterController(AbstractController):
         md.run()
         md.destroy()
 
+    def on_btn_help_hp_regeneration_clicked(self, w, *args):
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"The % of HP that this Pokémon regenerates at the end of "
+            f"each turn is equal to 1/(value * 2), before applying any modifiers.\n"
+            f"The final value is capped between 1/30 and 1/500",
+            title="HP Regeneration"
+        )
+        md.run()
+        md.destroy()
+
     def on_entry_exclusive_item1_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()
@@ -247,7 +260,7 @@ class MonsterController(AbstractController):
         self._update_from_entry(w)
         self.mark_as_modified()
 
-    def on_entry_unk1_changed(self, w, *args):
+    def on_entry_base_movement_speed_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()
 
@@ -259,15 +272,19 @@ class MonsterController(AbstractController):
         self._update_from_entry(w)
         self.mark_as_modified()
 
-    def on_entry_unk19_changed(self, w, *args):
+    def on_cb_shadow_size_changed(self, w, *args):
+        self._update_from_cb(w)
+        self.mark_as_modified()
+
+    def on_entry_hp_regeneration_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()
 
-    def on_entry_unk21_changed(self, w, *args):
+    def on_entry_unk21_h_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()
 
-    def on_entry_unk20_changed(self, w, *args):
+    def on_entry_chance_spawn_asleep_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()
 
@@ -325,6 +342,8 @@ class MonsterController(AbstractController):
         self._comboxbox_for_enum(['cb_ability_primary', 'cb_ability_secondary'], Ability)
         # Evolution Methods
         self._comboxbox_for_enum(['cb_evo_method'], EvolutionMethod)
+        # Shadow Size
+        self._comboxbox_for_enum(['cb_shadow_size'], ShadowSize)
 
     def _init_values(self):
         # Names
@@ -341,7 +360,7 @@ class MonsterController(AbstractController):
         # Stats
         self._set_entry('entry_unk31', self.entry.unk31)
         self._set_entry('entry_national_pokedex_number', self.entry.national_pokedex_number)
-        self._set_entry('entry_unk1', self.entry.unk1)
+        self._set_entry('entry_base_movement_speed', self.entry.base_movement_speed)
         self._set_entry('entry_pre_evo_index', self.entry.pre_evo_index)
         self._set_entry('entry_base_form_index', self.entry.base_form_index)
         self._set_cb('cb_evo_method', self.entry.evo_method.value)
@@ -368,9 +387,10 @@ class MonsterController(AbstractController):
         self._set_entry('entry_size', self.entry.size)
         self._set_entry('entry_unk17', self.entry.unk17)
         self._set_entry('entry_unk18', self.entry.unk18)
-        self._set_entry('entry_unk19', self.entry.unk19)
-        self._set_entry('entry_unk20', self.entry.unk20)
-        self._set_entry('entry_unk21', self.entry.unk21)
+        self._set_cb('cb_shadow_size', self.entry.shadow_size.value)
+        self._set_entry('entry_chance_spawn_asleep', self.entry.chance_spawn_asleep)
+        self._set_entry('entry_hp_regeneration', self.entry.hp_regeneration)
+        self._set_entry('entry_unk21_h', self.entry.unk21_h)
         self._set_entry('entry_exclusive_item1', self.entry.exclusive_item1)
         self._set_entry('entry_exclusive_item2', self.entry.exclusive_item2)
         self._set_entry('entry_exclusive_item3', self.entry.exclusive_item3)

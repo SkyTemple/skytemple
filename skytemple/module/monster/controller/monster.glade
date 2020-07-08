@@ -804,17 +804,6 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">2</property>
-                        <property name="top_attach">15</property>
-                        <property name="width">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <property name="halign">start</property>
                         <property name="margin_top">5</property>
                         <property name="label" translatable="yes">Evolution</property>
@@ -1062,18 +1051,6 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="entry_unk1">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="width_chars">10</property>
-                        <signal name="changed" handler="on_entry_unk1_changed" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">25</property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkEntry" id="entry_unk17">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -1098,35 +1075,11 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="entry_unk19">
+                      <object class="GtkEntry" id="entry_chance_spawn_asleep">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="width_chars">10</property>
-                        <signal name="changed" handler="on_entry_unk19_changed" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left_attach">3</property>
-                        <property name="top_attach">26</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkEntry" id="entry_unk21">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="width_chars">10</property>
-                        <signal name="changed" handler="on_entry_unk21_changed" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left_attach">3</property>
-                        <property name="top_attach">27</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkEntry" id="entry_unk20">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="width_chars">10</property>
-                        <signal name="changed" handler="on_entry_unk20_changed" swapped="no"/>
+                        <signal name="changed" handler="on_entry_chance_spawn_asleep_changed" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -1198,18 +1151,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">end</property>
-                        <property name="label" translatable="yes">Unk 1:</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">25</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="halign">end</property>
                         <property name="label" translatable="yes">Unk 17:</property>
                       </object>
                       <packing>
@@ -1234,7 +1175,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">end</property>
-                        <property name="label" translatable="yes">Unk 19:</property>
+                        <property name="label" translatable="yes">Shadow Size:</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -1246,7 +1187,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">end</property>
-                        <property name="label" translatable="yes">Unk 20:</property>
+                        <property name="label" translatable="yes">Chance to spawn asleep:</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -1258,7 +1199,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">end</property>
-                        <property name="label" translatable="yes">Unk 21:</property>
+                        <property name="label" translatable="yes">HP Regeneration:</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -1360,6 +1301,110 @@
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="top_attach">18</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBox" id="cb_shadow_size">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <signal name="changed" handler="on_cb_shadow_size_changed" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="top_attach">26</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="spacing">5</property>
+                        <child>
+                          <object class="GtkEntry" id="entry_hp_regeneration">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="width_chars">10</property>
+                            <signal name="changed" handler="on_entry_hp_regeneration_changed" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="btn_help_hp_regeneration">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="valign">center</property>
+                            <signal name="clicked" handler="on_btn_help_hp_regeneration_clicked" swapped="no"/>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="icon_name">help-about-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="top_attach">27</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">end</property>
+                        <property name="label" translatable="yes">Unk 21h:</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">25</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="entry_unk21_h">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="width_chars">10</property>
+                        <signal name="changed" handler="on_entry_unk21_h_changed" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">25</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">end</property>
+                        <property name="label" translatable="yes">Movement Speed:</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="top_attach">15</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="entry_base_movement_speed">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="width_chars">10</property>
+                        <signal name="changed" handler="on_entry_base_movement_speed_changed" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="top_attach">15</property>
                       </packing>
                     </child>
                   </object>
