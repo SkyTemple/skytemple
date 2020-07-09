@@ -29,6 +29,10 @@ SkyTemple
     :target: https://discord.gg/4e3X36f
     :alt: Discord
 
+.. |kofi| image:: https://www.ko-fi.com/img/githubbutton_sm.svg
+    :target: https://ko-fi.com/I2I81E5KH
+    :alt: Ko-Fi
+
 ROM hacking tool for Pokémon Mystery Dungeon Explorers of Sky.
 
 It is available for Linux, macOS and Windows.
@@ -40,6 +44,8 @@ Inside the debugger you can edit the game's scripts via the programming language
 .. _skytemple-files: https://github.com/SkyTemple/skytemple-files
 .. _skytemple-ssb-debugger: https://github.com/SkyTemple/skytemple-ssb-debugger
 .. _ExplorerScript: https://github.com/SkyTemple/ExplorerScript
+
+|kofi|
 
 Support and Features
 ~~~~~~~~~~~~~~~~~~~~
