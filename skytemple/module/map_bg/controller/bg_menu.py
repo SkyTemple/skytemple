@@ -38,10 +38,10 @@ from natsort import ns, natsorted
 
 from skytemple.controller.main import MainController
 from skytemple.core.ui_utils import add_dialog_gif_filter, add_dialog_png_filter
-from skytemple.module.map_bg.controller.bg_menu_dialogs.chunk_editor import ChunkEditorController
+from skytemple.module.tiled_img.dialog_controller.chunk_editor import ChunkEditorController
 from skytemple.module.map_bg.controller.bg_menu_dialogs.map_width_height import on_map_width_chunks_changed, \
     on_map_height_chunks_changed, on_map_wh_link_state_set
-from skytemple.module.map_bg.controller.bg_menu_dialogs.palette_editor import PaletteEditorController
+from skytemple.module.tiled_img.dialog_controller.palette_editor import PaletteEditorController
 from skytemple_files.graphics.bpl.model import BplAnimationSpec
 
 if TYPE_CHECKING:
