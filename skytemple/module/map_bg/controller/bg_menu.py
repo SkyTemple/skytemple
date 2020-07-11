@@ -21,12 +21,17 @@ import re
 import sys
 from collections import OrderedDict
 from functools import partial
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List, Optional, Tuple
 
 from skytemple.core.error_handler import display_error
+from skytemple.module.map_bg.chunk_editor_data_provider.tile_graphics_provider import MapBgStaticTileProvider, \
+    MapBgAnimatedTileProvider
+from skytemple.module.map_bg.chunk_editor_data_provider.tile_palettes_provider import MapBgPaletteProvider
+from skytemple_files.common.tiled_image import TilemapEntry
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.graphics.bg_list_dat.model import BPA_EXT, DIR
-from skytemple_files.graphics.bpa.model import BpaFrameInfo
+from skytemple_files.graphics.bpa.model import BpaFrameInfo, Bpa
+from skytemple_files.graphics.bpc.model import Bpc
 
 try:
     from PIL import Image
@@ -42,7 +47,7 @@ from skytemple.module.tiled_img.dialog_controller.chunk_editor import ChunkEdito
 from skytemple.module.map_bg.controller.bg_menu_dialogs.map_width_height import on_map_width_chunks_changed, \
     on_map_height_chunks_changed, on_map_wh_link_state_set
 from skytemple.module.tiled_img.dialog_controller.palette_editor import PaletteEditorController
-from skytemple_files.graphics.bpl.model import BplAnimationSpec
+from skytemple_files.graphics.bpl.model import BplAnimationSpec, Bpl
 
 if TYPE_CHECKING:
     from skytemple.module.map_bg.controller.bg import BgController
@@ -299,9 +304,12 @@ class BgMenuController:
     def on_men_chunks_layer1_edit_activate(self):
         # This is controlled by a separate controller
         bpc_layer_to_use = 0 if self.parent.bma.number_of_layers < 2 else 1
+        mappings, static_tiles_provider, animated_tiles_providers, palettes_provider = self._get_chunk_editor_provider(
+            bpc_layer_to_use, self.parent.bpc, self.parent.bpl, self.parent.bpas
+        )
         cntrl = ChunkEditorController(
-            MainController.window(), bpc_layer_to_use, self.parent.bpc, self.parent.bpl,
-            self.parent.bpas, self.parent.bpa_durations, self.parent.pal_ani_durations
+            MainController.window(), mappings, static_tiles_provider, palettes_provider, self.parent.pal_ani_durations,
+            animated_tiles_providers, self.parent.bpa_durations
         )
         edited_mappings = cntrl.show()
         if edited_mappings:
@@ -320,9 +328,12 @@ class BgMenuController:
             self._no_second_layer()
         else:
             bpc_layer_to_use = 0
+            mappings, static_tiles_provider, animated_tiles_providers, palettes_provider = self._get_chunk_editor_provider(
+                bpc_layer_to_use, self.parent.bpc, self.parent.bpl, self.parent.bpas
+            )
             cntrl = ChunkEditorController(
-                MainController.window(), bpc_layer_to_use, self.parent.bpc, self.parent.bpl,
-                self.parent.bpas, self.parent.bpa_durations, self.parent.pal_ani_durations
+                MainController.window(), mappings, static_tiles_provider, palettes_provider, self.parent.pal_ani_durations,
+                animated_tiles_providers, self.parent.bpa_durations
             )
             edited_mappings = cntrl.show()
 
@@ -841,3 +852,22 @@ class BgMenuController:
 
     def _get_bpa_export_name_pattern(self, bpa_number, frame_number):
         return f'{self.parent.module.bgs.level[self.parent.item_id].bma_name}_bpa{bpa_number}_{frame_number}.png'
+
+    def _get_chunk_editor_provider(
+        self, bpc_layer_to_use, bpc: Bpc, bpl: Bpl, bpas: List[Optional[Bpa]]
+    ) -> Tuple[
+        List[TilemapEntry], MapBgStaticTileProvider, List[Optional[MapBgAnimatedTileProvider]], MapBgPaletteProvider
+    ]:
+        palettes = MapBgPaletteProvider(bpl)
+        static_tiles = MapBgStaticTileProvider(bpc, bpc_layer_to_use)
+
+        bpa_start = 0 if bpc_layer_to_use == 0 else 4
+        bpas = bpas[bpa_start:bpa_start+4]
+        animated_tiles = []
+        for bpa in bpas:
+            if bpa is None:
+                animated_tiles.append(None)
+            else:
+                animated_tiles.append(MapBgAnimatedTileProvider(bpa))
+
+        return bpc.layers[bpc_layer_to_use].tilemap, static_tiles, animated_tiles, palettes

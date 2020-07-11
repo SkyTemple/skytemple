@@ -17,28 +17,31 @@
 
 import itertools
 import os
-from typing import Union, List
+from typing import Union, List, Optional
 
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType, IconView, ScrolledWindow
 
 from skytemple.core.img_utils import pil_to_cairo_surface
+from skytemple.module.tiled_img.chunk_editor_data_provider.tile_graphics_provider import AbstractTileGraphicsProvider
+from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import AbstractTilePalettesProvider
 from skytemple.module.tiled_img.drawer_tiled import DrawerTiledCellRenderer, DrawerTiled
 from skytemple_files.common.tiled_image import TilemapEntry
-from skytemple_files.graphics.bpa.model import Bpa
-from skytemple_files.graphics.bpc.model import Bpc, BPC_TILE_DIM
-from skytemple_files.graphics.bpl.model import Bpl
 bpa_views = [
     'icon_view_animated_tiles1', 'icon_view_animated_tiles2',
     'icon_view_animated_tiles3', 'icon_view_animated_tiles4'
 ]
+TILE_DIM = 8
 
 
 class ChunkEditorController:
     def __init__(self,
-                 parent_window, layer_number,
-                 bpc: Bpc, bpl: Bpl, bpas: List[Union[Bpa, None]],
-                 bpa_durations, pal_ani_durations):
+                 parent_window, incoming_mappings: List[TilemapEntry],
+                 tile_graphics: AbstractTileGraphicsProvider,
+                 palettes: AbstractTilePalettesProvider,
+                 pal_ani_durations: int,
+                 animated_tile_graphics: List[Optional[AbstractTileGraphicsProvider]] = None,
+                 animated_tile_durations=0):
         path = os.path.abspath(os.path.dirname(__file__))
 
         self.builder = Gtk.Builder()
@@ -48,13 +51,10 @@ class ChunkEditorController:
         self.dialog.set_attached_to(parent_window)
         self.dialog.set_transient_for(parent_window)
 
-        self.layer_number = layer_number
-
-        self.bpc = bpc
-        bpa_start = 0 if self.layer_number == 0 else 4
-        self.bpas = bpas[bpa_start:bpa_start+4]
-        self.bpl = bpl
-        self.bpa_durations = bpa_durations
+        self.tile_graphics = tile_graphics
+        self.animated_tile_graphics = animated_tile_graphics
+        self.palettes = palettes
+        self.animated_tile_durations = animated_tile_durations
         self.pal_ani_durations = pal_ani_durations
 
         self.current_tile_id = 0
@@ -63,65 +63,66 @@ class ChunkEditorController:
         self.switching_tile = False
 
         self.edited_mappings = []
-        for mapping in self.bpc.layers[self.layer_number].tilemap:
+        for mapping in incoming_mappings:
             self.edited_mappings.append(TilemapEntry.from_int(mapping.to_int()))
 
         self.tile_surfaces = []
         # For each palette
-        for pal in range(0, len(self.bpl.palettes)):
-            all_bpc_tiles_for_current_pal = self.bpc.tiles_to_pil(self.layer_number, self.bpl.palettes, 1, pal)
+        for pal in range(0, len(self.palettes.get())):
+            all_bpc_tiles_for_current_pal = self.tile_graphics.get_pil(self.palettes.get(), pal)
             tiles_current_pal = []
             self.tile_surfaces.append(tiles_current_pal)
 
-            has_pal_ani = self.bpl.is_palette_affected_by_animation(pal)
-            len_pal_ani = len(self.bpl.animation_palette) if has_pal_ani else 1
+            has_pal_ani = self.palettes.is_palette_affected_by_animation(pal)
+            len_pal_ani = self.palettes.animation_length() if has_pal_ani else 1
 
             # BPC tiles
             # For each tile...
-            for tile_idx in range(0, len(self.bpc.layers[self.layer_number].tiles)):
+            for tile_idx in range(0, self.tile_graphics.count()):
                 # For each frame of palette animation...
                 pal_ani_tile = []
                 tiles_current_pal.append(pal_ani_tile)
                 for pal_ani in range(0, len_pal_ani):
                     # Switch out the palette with that from the palette animation
                     if has_pal_ani:
-                        pal_for_frame = itertools.chain.from_iterable(self.bpl.apply_palette_animations(pal_ani))
+                        pal_for_frame = itertools.chain.from_iterable(self.palettes.apply_palette_animations(pal_ani))
                         all_bpc_tiles_for_current_pal.putpalette(pal_for_frame)
                     pal_ani_tile.append([pil_to_cairo_surface(
                         all_bpc_tiles_for_current_pal.crop(
-                            (0, tile_idx * BPC_TILE_DIM, BPC_TILE_DIM, tile_idx * BPC_TILE_DIM + BPC_TILE_DIM)
+                            (0, tile_idx * TILE_DIM, TILE_DIM, tile_idx * TILE_DIM + TILE_DIM)
                         ).convert('RGBA')
                     )])
             # BPA tiles
             # For each BPA...
-            for bpa in self.bpas:
-                if bpa is not None:
-                    all_bpa_tiles_for_current_pal = bpa.tiles_to_pil_separate(self.bpl.palettes[pal], 1)
-                    # For each tile...
-                    for tile_idx in range(0, bpa.number_of_tiles):
-                        pal_ani_tile = []
-                        tiles_current_pal.append(pal_ani_tile)
-                        # For each frame of palette animation...
-                        for pal_ani in range(0, len_pal_ani):
-                            bpa_ani_tile = []
-                            pal_ani_tile.append(bpa_ani_tile)
-                            # For each frame of BPA animation...
-                            for frame in all_bpa_tiles_for_current_pal:
-                                # Switch out the palette with that from the palette animation
-                                if has_pal_ani:
-                                    pal_for_frame = itertools.chain.from_iterable(self.bpl.apply_palette_animations(pal_ani))
-                                    all_bpc_tiles_for_current_pal.putpalette(pal_for_frame)
-                                bpa_ani_tile.append(pil_to_cairo_surface(
-                                    frame.crop(
-                                        (0, tile_idx * BPC_TILE_DIM, BPC_TILE_DIM, tile_idx * BPC_TILE_DIM + BPC_TILE_DIM)
-                                    ).convert('RGBA')
-                                ))
+            if self.animated_tile_graphics is not None:
+                for ani_tile_g in self.animated_tile_graphics:
+                    if ani_tile_g is not None:
+                        all_bpa_tiles_for_current_pal = ani_tile_g.get_pil(self.palettes.get(), pal)
+                        # For each tile...
+                        for tile_idx in range(0, ani_tile_g.count()):
+                            pal_ani_tile = []
+                            tiles_current_pal.append(pal_ani_tile)
+                            # For each frame of palette animation...
+                            for pal_ani in range(0, len_pal_ani):
+                                bpa_ani_tile = []
+                                pal_ani_tile.append(bpa_ani_tile)
+                                # For each frame of BPA animation...
+                                for frame in all_bpa_tiles_for_current_pal:
+                                    # Switch out the palette with that from the palette animation
+                                    if has_pal_ani:
+                                        pal_for_frame = itertools.chain.from_iterable(self.palettes.apply_palette_animations(pal_ani))
+                                        all_bpc_tiles_for_current_pal.putpalette(pal_for_frame)
+                                    bpa_ani_tile.append(pil_to_cairo_surface(
+                                        frame.crop(
+                                            (0, tile_idx * TILE_DIM, TILE_DIM, tile_idx * TILE_DIM + TILE_DIM)
+                                        ).convert('RGBA')
+                                    ))
 
             self.builder.connect_signals(self)
 
             self.dummy_tile_map = []
             self.current_tile_picker_palette = 0
-            for i in range(0, len(self.bpc.layers[self.layer_number].tiles)):
+            for i in range(0, self.tile_graphics.count()):
                 self.dummy_tile_map.append(TilemapEntry(
                     idx=i,
                     pal_idx=self.current_tile_picker_palette,
@@ -129,20 +130,21 @@ class ChunkEditorController:
                     flip_y=False
                 ))
 
-            self.bpa_starts_cursor = len(self.dummy_tile_map)
-            self.bpa_starts = [None, None, None, None]
-            for i, bpa in enumerate(self.bpas):
-                if bpa is not None:
-                    self.bpa_starts[i] = self.bpa_starts_cursor
-                    self.current_tile_picker_palette = 0
-                    for j in range(0, bpa.number_of_tiles):
-                        self.dummy_tile_map.append(TilemapEntry(
-                            idx=self.bpa_starts_cursor + j,
-                            pal_idx=self.current_tile_picker_palette,
-                            flip_x=False,
-                            flip_y=False
-                        ))
-                    self.bpa_starts_cursor += bpa.number_of_tiles
+            if self.animated_tile_graphics:
+                self.bpa_starts_cursor = len(self.dummy_tile_map)
+                self.bpa_starts = [None, None, None, None]
+                for i, ani_tile_g in enumerate(self.animated_tile_graphics):
+                    if ani_tile_g is not None:
+                        self.bpa_starts[i] = self.bpa_starts_cursor
+                        self.current_tile_picker_palette = 0
+                        for j in range(0, ani_tile_g.count()):
+                            self.dummy_tile_map.append(TilemapEntry(
+                                idx=self.bpa_starts_cursor + j,
+                                pal_idx=self.current_tile_picker_palette,
+                                flip_x=False,
+                                flip_y=False
+                            ))
+                        self.bpa_starts_cursor += ani_tile_g.count()
 
     def show(self):
         self._init_icon_view_static_tiles()
@@ -204,7 +206,7 @@ class ChunkEditorController:
             # Also update the selected tile
             self.switching_tile = True
             icon_view_static_tiles: IconView = self.builder.get_object(f'icon_view_static_tiles')
-            if mapping.idx < len(self.bpc.layers[self.layer_number].tiles):
+            if mapping.idx < self.tile_graphics.count():
                 store: Gtk.ListStore = icon_view_static_tiles.get_model()
                 for e in store:
                     if e[0] == mapping.idx:
@@ -220,7 +222,7 @@ class ChunkEditorController:
                 icon_view_static_tiles.unselect_all()
                 for i, bpa_view in enumerate(bpa_views):
                     obj = self.builder.get_object(bpa_view)
-                    if self.bpas[i]:
+                    if self.animated_tile_graphics[i]:
                         if obj and mapping.idx >= self.bpa_starts[i]:
                             store: Gtk.ListStore = obj.get_model()
                             for e in store:
@@ -251,7 +253,7 @@ class ChunkEditorController:
         icon_view: IconView = self.builder.get_object(f'icon_view_chunk')
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         renderer = DrawerTiledCellRenderer(
-            icon_view, self.bpa_durations, self.pal_ani_durations, True, self.edited_mappings, self.tile_surfaces, 1
+            icon_view, self.animated_tile_durations, self.pal_ani_durations, True, self.edited_mappings, self.tile_surfaces, 1
         )
 
         store = Gtk.ListStore(int)
@@ -271,7 +273,7 @@ class ChunkEditorController:
         icon_view: IconView = self.builder.get_object(f'icon_view_tiles_in_chunk')
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         renderer = DrawerTiledCellRenderer(
-            icon_view, self.bpa_durations, self.pal_ani_durations, False, self.edited_mappings, self.tile_surfaces, 3
+            icon_view, self.animated_tile_durations, self.pal_ani_durations, False, self.edited_mappings, self.tile_surfaces, 3
         )
 
         store = Gtk.ListStore(int)
@@ -286,12 +288,12 @@ class ChunkEditorController:
         current_tile: Gtk.DrawingArea = self.builder.get_object('current_tile')
 
         current_tile.set_size_request(
-            10 * BPC_TILE_DIM,
-            10 * BPC_TILE_DIM
+            10 * TILE_DIM,
+            10 * TILE_DIM
         )
 
         self.current_tile_drawer = DrawerTiled(
-            current_tile, [self.edited_mappings[0]], self.bpa_durations, self.pal_ani_durations, self.tile_surfaces
+            current_tile, [self.edited_mappings[0]], self.animated_tile_durations, self.pal_ani_durations, self.tile_surfaces
         )
         self.current_tile_drawer.scale = 10
         self.current_tile_drawer.start()
@@ -302,7 +304,7 @@ class ChunkEditorController:
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
 
         renderer = DrawerTiledCellRenderer(
-            icon_view, self.bpa_durations, self.pal_ani_durations, False, self.dummy_tile_map, self.tile_surfaces, 3
+            icon_view, self.animated_tile_durations, self.pal_ani_durations, False, self.dummy_tile_map, self.tile_surfaces, 3
         )
 
         store = Gtk.ListStore(int, str)
@@ -312,15 +314,18 @@ class ChunkEditorController:
         icon_view.set_text_column(1)
         icon_view.connect('selection-changed', self.on_icon_view_static_tiles_selection_changed)
 
-        for idx in range(0, len(self.bpc.layers[self.layer_number].tiles)):
+        for idx in range(0, self.tile_graphics.count()):
             store.append([idx, str(idx)])
 
         renderer.start()
 
     def _init_bpas(self):
-        for i, bpa in enumerate(self.bpas):
+        if self.animated_tile_graphics is None:
+            # TODO: Hide BPA panel
+            return
+        for i, ani_tile_g in enumerate(self.animated_tile_graphics):
             view: IconView = self.builder.get_object(bpa_views[i])
-            if bpa is None:
+            if ani_tile_g is None:
                 sw: ScrolledWindow = view.get_parent()
                 sw.remove(view)
                 label = Gtk.Label.new('BPA slot is empty.\n\nGo to Tiles > Animated Tiles to\nmanage animated tiles.')
@@ -330,7 +335,7 @@ class ChunkEditorController:
             else:
                 view.set_selection_mode(Gtk.SelectionMode.BROWSE)
                 renderer = DrawerTiledCellRenderer(
-                    view, self.bpa_durations, self.pal_ani_durations, False, self.dummy_tile_map, self.tile_surfaces, 3
+                    view, self.animated_tile_durations, self.pal_ani_durations, False, self.dummy_tile_map, self.tile_surfaces, 3
                 )
 
                 store = Gtk.ListStore(int, str)
@@ -340,7 +345,7 @@ class ChunkEditorController:
                 view.set_text_column(1)
                 view.connect('selection-changed', self.on_icon_view_static_tiles_selection_changed)
 
-                for idx in range(self.bpa_starts[i], self.bpa_starts[i] + bpa.number_of_tiles):
+                for idx in range(self.bpa_starts[i], self.bpa_starts[i] + ani_tile_g.count()):
                     store.append([idx, str(idx)])
 
                 renderer.start()
