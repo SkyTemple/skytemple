@@ -952,6 +952,7 @@ Use the menus above to edit chunks and tile graphics.</property>
                                             <property name="row_spacing">0</property>
                                             <property name="column_spacing">0</property>
                                             <property name="item_padding">2</property>
+                                            <signal name="selection-changed" handler="on_rules_main_2_selection_changed" swapped="no"/>
                                           </object>
                                         </child>
                                       </object>
@@ -998,6 +999,7 @@ Use the menus above to edit chunks and tile graphics.</property>
                                             <property name="row_spacing">0</property>
                                             <property name="column_spacing">0</property>
                                             <property name="item_padding">2</property>
+                                            <signal name="selection-changed" handler="on_rules_main_3_selection_changed" swapped="no"/>
                                           </object>
                                         </child>
                                       </object>
@@ -1071,6 +1073,7 @@ Use the menus above to edit chunks and tile graphics.</property>
                                             <property name="row_spacing">0</property>
                                             <property name="column_spacing">0</property>
                                             <property name="item_padding">2</property>
+                                            <signal name="selection-changed" handler="on_rules_extra_selection_changed" swapped="no"/>
                                           </object>
                                         </child>
                                       </object>

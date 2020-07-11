@@ -324,19 +324,39 @@ class TilesetController(AbstractController):
         self._rules_pos_toggle(8, widget.get_active())
 
     def on_rules_chunk_picker_selection_changed(self, icon_view: Gtk.IconView):
-        pass  # todo
+        pass
 
-    def on_rules_main_1_selection_changed(self, icon_view: Gtk.IconView):
-        pass  # todo
+    def on_rules_main_1_selection_changed(self, icon_view):
+        model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
+        if model is not None and treeiter is not None and treeiter != []:
+            self._rule_updated(model[treeiter][0], 0)
 
-    def on_rules_main_2_selection_changed(self, icon_view: Gtk.IconView):
-        pass  # todo
+    def on_rules_main_2_selection_changed(self, icon_view):
+        model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
+        if model is not None and treeiter is not None and treeiter != []:
+            self._rule_updated(model[treeiter][0], 1)
 
-    def on_rules_main_3_selection_changed(self, icon_view: Gtk.IconView):
-        pass  # todo
+    def on_rules_main_3_selection_changed(self, icon_view):
+        model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
+        if model is not None and treeiter is not None and treeiter != []:
+            self._rule_updated(model[treeiter][0], 2)
 
-    def on_rules_extra_selection_changed(self, icon_view: Gtk.IconView):
-        pass  # todo
+    def on_rules_extra_selection_changed(self, icon_view_extra):
+        model, treeiter = icon_view_extra.get_model(), icon_view_extra.get_selected_items()
+        if model is not None and treeiter is not None and treeiter != []:
+            i = model[treeiter][0]
+            icon_view_picker = self.builder.get_object('rules_chunk_picker')
+            model, treeiter = icon_view_picker.get_model(), icon_view_picker.get_selected_items()
+            if model is not None and treeiter is not None and treeiter != []:
+                edited_value = model[treeiter][1]
+                extra_type = DmaExtraType.FLOOR1
+                if i > 15:
+                    extra_type = DmaExtraType.WALL_OR_VOID
+                if i > 31:
+                    extra_type = DmaExtraType.FLOOR2
+                self.dma.set_extra(extra_type, i % 16, edited_value)
+                self.update_chunks_extra()
+                self.mark_as_modified()
 
     def mark_as_modified(self):
         self.module.mark_as_modified(self.item_id)
@@ -397,12 +417,12 @@ class TilesetController(AbstractController):
         """Fill the icon views for the three variations and the extra rules."""
         def init_main_rules_store(store):
             for idx in range(0, 9):
-                store.append([0])
+                store.append([idx, 0])
 
         def init_extra_rules_store(store):
             for extra_type in (DmaExtraType.FLOOR1, DmaExtraType.WALL_OR_VOID, DmaExtraType.FLOOR2):
-                for idx in self.dma.get_extra(extra_type):
-                    store.append([idx])
+                for idx, val in enumerate(self.dma.get_extra(extra_type)):
+                    store.append([idx + 16 * extra_type.value, val])
 
         for i, v_icon_view_name in enumerate(("rules_main_1", "rules_main_2", "rules_main_3")):
             self._init_an_icon_view(v_icon_view_name, init_main_rules_store, False)
@@ -415,19 +435,20 @@ class TilesetController(AbstractController):
         """Fill the icon view for the chunk picker"""
         def init_store(store):
             for idx in range(0, len(self.dpc.chunks)):
-                store.append([idx])
+                store.append([idx, idx])
 
         self._init_an_icon_view("rules_chunk_picker", init_store, True)
 
     def _init_an_icon_view(self, name: str, init_store: Callable[[Gtk.ListStore], None], selection_draw_solid):
         icon_view: Gtk.IconView = self.builder.get_object(name)
         if icon_view.get_model() == None:
-            store = Gtk.ListStore(int)
+            #                     id, val
+            store = Gtk.ListStore(int, int)
             icon_view.set_model(store)
             renderer = DungeonChunkCellDrawer(icon_view, self.pal_ani_durations, self.chunks_surfaces, selection_draw_solid)
             self.current_icon_view_renderers.append(renderer)
             icon_view.pack_start(renderer, True)
-            icon_view.add_attribute(renderer, 'chunkidx', 0)
+            icon_view.add_attribute(renderer, 'chunkidx', 1)
         else:
             store = icon_view.get_model()
             store.clear()
@@ -504,9 +525,33 @@ class TilesetController(AbstractController):
         for i, v_icon_view_name in enumerate(("rules_main_1", "rules_main_2", "rules_main_3")):
             icon_view_model: Gtk.ListStore = self.builder.get_object(v_icon_view_name).get_model()
             icon_view_model.clear()
-            for idxs in all_chunk_mapping_vars:
-                icon_view_model.append([idxs[i]])
+            for j, idxs in enumerate(all_chunk_mapping_vars):
+                icon_view_model.append([j, idxs[i]])
+
+    def update_chunks_extra(self):
+        store = self.builder.get_object('rules_extra').get_model()
+        store.clear()
+        for extra_type in (DmaExtraType.FLOOR1, DmaExtraType.WALL_OR_VOID, DmaExtraType.FLOOR2):
+            for idx, val in enumerate(self.dma.get_extra(extra_type)):
+                store.append([idx + 16 * extra_type.value, val])
 
     def _get_current_solid_type(self):
         combo_box: Gtk.ComboBoxText = self.builder.get_object("rules_active_type")
         return DmaType.WALL if combo_box.get_active_text() == 'Wall' else DmaType.WATER
+
+    def _rule_updated(self, i, variation):
+        icon_view = self.builder.get_object('rules_chunk_picker')
+        model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
+        if model is not None and treeiter is not None and treeiter != []:
+
+            x = i % 3
+            y = math.floor(i / 3)
+            edited_value = model[treeiter][1]
+            solid = bool(self.rules[x][y])
+            self.dma.set(
+                self._get_current_solid_type() if solid else DmaType.FLOOR,
+                Dma.get_tile_neighbors(self.rules, x, y, solid),
+                variation, edited_value
+            )
+            self.update_chunks_from_current_rules()
+            self.mark_as_modified()
