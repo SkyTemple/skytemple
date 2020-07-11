@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!--
+  ~ Copyright 2020 Parakoopa
+  ~
+  ~ This file is part of SkyTemple.
+  ~
+  ~ SkyTemple is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ SkyTemple is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<!-- Generated with glade 3.36.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkListStore" id="palette_ids">
@@ -7,56 +26,6 @@
       <!-- column-name palette -->
       <column type="gint"/>
     </columns>
-    <data>
-      <row>
-        <col id="0">1</col>
-      </row>
-      <row>
-        <col id="0">2</col>
-      </row>
-      <row>
-        <col id="0">3</col>
-      </row>
-      <row>
-        <col id="0">4</col>
-      </row>
-      <row>
-        <col id="0">5</col>
-      </row>
-      <row>
-        <col id="0">6</col>
-      </row>
-      <row>
-        <col id="0">7</col>
-      </row>
-      <row>
-        <col id="0">8</col>
-      </row>
-      <row>
-        <col id="0">9</col>
-      </row>
-      <row>
-        <col id="0">10</col>
-      </row>
-      <row>
-        <col id="0">11</col>
-      </row>
-      <row>
-        <col id="0">12</col>
-      </row>
-      <row>
-        <col id="0">13</col>
-      </row>
-      <row>
-        <col id="0">14</col>
-      </row>
-      <row>
-        <col id="0">15</col>
-      </row>
-      <row>
-        <col id="0">16</col>
-      </row>
-    </data>
   </object>
   <object class="GtkDialog" id="map_bg_chunk_editor">
     <property name="can_focus">False</property>
@@ -65,9 +34,6 @@
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
-    <child>
-      <placeholder/>
-    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -572,7 +538,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkBox">
+                      <object class="GtkBox" id="bpas">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="orientation">vertical</property>
@@ -774,5 +740,8 @@
       <action-widget response="-6">close</action-widget>
       <action-widget response="-5">ok</action-widget>
     </action-widgets>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
   </object>
 </interface>

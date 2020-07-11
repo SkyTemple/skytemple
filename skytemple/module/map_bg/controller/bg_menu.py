@@ -618,7 +618,7 @@ class BgMenuController:
         # This is controlled by a separate controller
         dict_pals = OrderedDict()
         for i, pal in enumerate(self.parent.bpl.palettes):
-            dict_pals[f'{i + 1}'] = pal.copy()
+            dict_pals[f'{i}'] = pal.copy()
 
         cntrl = PaletteEditorController(
             MainController.window(), dict_pals

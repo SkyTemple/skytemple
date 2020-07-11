@@ -23,6 +23,11 @@ from functools import partial
 from typing import TYPE_CHECKING, List, Iterable, Callable
 
 import cairo
+
+from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_graphics_provider import DungeonTilesProvider
+from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_palettes_provider import DungeonPalettesProvider
+from skytemple.module.tiled_img.dialog_controller.chunk_editor import ChunkEditorController
+
 try:
     from PIL import Image
 except ImportError:
@@ -38,7 +43,7 @@ from skytemple.module.dungeon_graphics.dungeon_chunk_drawer import DungeonChunkC
 from skytemple.module.tiled_img.dialog_controller.palette_editor import PaletteEditorController
 from skytemple_files.common.util import lcm, chunks
 from skytemple_files.graphics.dma.model import Dma, DmaExtraType, DmaType
-from skytemple_files.graphics.dpc.model import Dpc
+from skytemple_files.graphics.dpc.model import Dpc, DPC_TILING_DIM
 from skytemple_files.graphics.dpci.model import Dpci
 from skytemple_files.graphics.dpl.model import Dpl
 from skytemple_files.graphics.dpla.model import Dpla
@@ -82,21 +87,19 @@ class TilesetController(AbstractController):
         return self.builder.get_object('editor_dungeon_tilesets')
 
     def on_men_chunks_edit_activate(self, *args):
-        # TODO XXX
-        bpc_layer_to_use = 0 if self.parent.bma.number_of_layers < 2 else 1
+        all_tilemaps = list(itertools.chain.from_iterable(self.dpc.chunks))
+        static_tiles_provider = DungeonTilesProvider(self.dpci)
+        palettes_provider = DungeonPalettesProvider(self.dpl, self.dpla)
         cntrl = ChunkEditorController(
-            MainController.window(), bpc_layer_to_use, self.parent.bpc, self.parent.bpl,
-            self.parent.bpas, self.parent.bpa_durations, self.parent.pal_ani_durations
+            MainController.window(), all_tilemaps,
+            static_tiles_provider, palettes_provider,
+            self.pal_ani_durations
         )
         edited_mappings = cntrl.show()
         if edited_mappings:
-            # TODO: Hardcoded chunk size
-            new_chunk_size = int(len(edited_mappings) / 9)
-            if new_chunk_size > self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len:
-                self.parent.bpc.layers[bpc_layer_to_use].chunk_tilemap_len = new_chunk_size
-            self.parent.bpc.layers[bpc_layer_to_use].tilemap = edited_mappings.copy()
-            self.parent.reload_all()
-            self.parent.mark_as_modified()
+            self.dpc.chunks = list(chunks(edited_mappings, DPC_TILING_DIM * DPC_TILING_DIM))
+            self.reload_all()
+            self.mark_as_modified()
         del cntrl
 
     def on_men_chunks_export_activate(self, *args):
@@ -226,7 +229,7 @@ class TilesetController(AbstractController):
     def on_men_palettes_edit_activate(self, *args):
         dict_pals = OrderedDict()
         for i, pal in enumerate(self.dpl.palettes):
-            dict_pals[f'{i + 1}'] = pal.copy()
+            dict_pals[f'{i}'] = pal.copy()
 
         cntrl = PaletteEditorController(
             MainController.window(), dict_pals

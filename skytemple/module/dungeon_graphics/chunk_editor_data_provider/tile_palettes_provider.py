@@ -18,24 +18,36 @@ from abc import ABC
 from typing import List
 
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import AbstractTilePalettesProvider
+from skytemple_files.common.util import lcm
 from skytemple_files.graphics.bpl.model import Bpl
+from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import AbstractTilePalettesProvider
+from skytemple_files.graphics.dpl.model import Dpl
+from skytemple_files.graphics.dpla.model import Dpla
 
 
-class MapBgPaletteProvider(AbstractTilePalettesProvider):
-    def __init__(self, bpl: Bpl):
-        self.bpl = bpl
+class DungeonPalettesProvider(AbstractTilePalettesProvider):
+    def __init__(self, dpl: Dpl, dpla: Dpla):
+        self.dpl = dpl
+        self.dpla = dpla
 
     def get(self) -> List[List[int]]:
-        return self.bpl.palettes
+        return self.dpl.palettes
 
     def is_palette_affected_by_animation(self, pal_idx) -> bool:
-        return self.bpl.is_palette_affected_by_animation(pal_idx)
+        return pal_idx >= 10 and self.dpla.has_for_palette(pal_idx - 10)
 
     def animation_length(self):
-        return len(self.bpl.animation_palette)
+        ani_pal_lengths = [self.dpla.get_frame_count_for_palette(x) for x in (0, 1) if self.dpla.has_for_palette(x)]
+        if len(ani_pal_lengths) < 1:
+            return 0
+        if len(ani_pal_lengths) < 2:
+            len_pal_ani = ani_pal_lengths[0]
+        else:
+            len_pal_ani = lcm(*ani_pal_lengths)
+        return len_pal_ani
 
     def apply_palette_animations(self, frame: int) -> List[List[int]]:
-        return self.bpl.apply_palette_animations(frame)
+        return self.dpla.apply_palette_animations(self.dpl.palettes, frame)
 
     def number_of_palettes(self):
-        return 16
+        return 12

@@ -147,6 +147,13 @@ class ChunkEditorController:
                         self.bpa_starts_cursor += ani_tile_g.count()
 
     def show(self):
+
+        # Init palette store
+        store = self.builder.get_object('palette_ids')
+        for idx in range(0, self.palettes.number_of_palettes()):
+            store.append([idx])
+        self.builder.get_object('combo_box_palettes_preview').set_active(0)
+
         self._init_icon_view_static_tiles()
         self._init_bpas()
         self._init_current_tile()
@@ -321,7 +328,9 @@ class ChunkEditorController:
 
     def _init_bpas(self):
         if self.animated_tile_graphics is None:
-            # TODO: Hide BPA panel
+            bpas_box = self.builder.get_object('bpas')
+            parent = bpas_box.get_parent()
+            parent.remove(bpas_box)
             return
         for i, ani_tile_g in enumerate(self.animated_tile_graphics):
             view: IconView = self.builder.get_object(bpa_views[i])

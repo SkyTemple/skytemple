@@ -36,3 +36,7 @@ class AbstractTilePalettesProvider(ABC):
     @abstractmethod
     def apply_palette_animations(self, frame: int) -> List[List[int]]:
         """Applies palette animations and returns the resulting palettes."""
+
+    @abstractmethod
+    def number_of_palettes(self):
+        """How many palettes exist?"""
