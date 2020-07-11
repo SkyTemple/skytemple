@@ -50,21 +50,27 @@ class Modules:
     def _load_windows_modules(cls):
         from skytemple.module.rom.module import RomModule
         from skytemple.module.bgp.module import BgpModule
+        from skytemple.module.tiled_img.module import TiledImgModule
         from skytemple.module.map_bg.module import MapBgModule
         from skytemple.module.script.module import ScriptModule
         from skytemple.module.monster.module import MonsterModule
         from skytemple.module.portrait.module import PortraitModule
         from skytemple.module.patch.module import PatchModule
         from skytemple.module.lists.module import ListsModule
+        from skytemple.module.misc_graphics.module import MiscGraphicsModule
+        from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
         return {
             "rom": RomModule,
             "bgp": BgpModule,
+            "tiled_img": TiledImgModule,
             "map_bg": MapBgModule,
             "script": ScriptModule,
             "monster": MonsterModule,
             "portrait": PortraitModule,
             "patch": PatchModule,
-            "lists": ListsModule
+            "lists": ListsModule,
+            "misc_graphics": MiscGraphicsModule,
+            "dungeon_graphics": DungeonGraphicsModule,
         }
 
 
