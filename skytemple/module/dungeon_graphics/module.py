@@ -15,14 +15,11 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-import sys
-from typing import Union, List, Optional
+from typing import Optional
 
-from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.error_handler import display_error
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label
@@ -30,11 +27,11 @@ from skytemple.module.dungeon_graphics.controller.tileset import TilesetControll
 from skytemple.module.dungeon_graphics.controller.main import MainController, DUNGEON_GRAPHICS_NAME
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
-from skytemple_files.graphics.bg_list_dat.model import BgList
-from skytemple_files.graphics.bma.model import Bma
-from skytemple_files.graphics.bpa.model import Bpa
-from skytemple_files.graphics.bpc.model import Bpc
-from skytemple_files.graphics.bpl.model import Bpl
+from skytemple_files.graphics.dma.model import Dma
+from skytemple_files.graphics.dpc.model import Dpc
+from skytemple_files.graphics.dpci.model import Dpci
+from skytemple_files.graphics.dpl.model import Dpl
+from skytemple_files.graphics.dpla.model import Dpla
 
 # TODO: Not so great that this is hard-coded, but how else can we really do it? - Maybe at least in the dungeondata.xml?
 NUMBER_OF_TILESETS = 170
@@ -77,6 +74,24 @@ class DungeonGraphicsModule(AbstractModule):
 
         recursive_generate_item_store_row_label(self._tree_model[root])
 
+    def get_dma(self, item_id) -> Dma:
+        return self.dungeon_bin.get(f'dungeon{item_id}.dma')
+
+    def get_dpl(self, item_id) -> Dpl:
+        return self.dungeon_bin.get(f'dungeon{item_id}.dpl')
+
+    def get_dpla(self, item_id) -> Dpla:
+        return self.dungeon_bin.get(f'dungeon{item_id}.dpla')
+
+    def get_dpc(self, item_id) -> Dpc:
+        return self.dungeon_bin.get(f'dungeon{item_id}.dpc')
+
+    def get_dpci(self, item_id) -> Dpci:
+        return self.dungeon_bin.get(f'dungeon{item_id}.dpci')
+
     def mark_as_modified(self, item_id):
-        # TODO
-        pass
+        self.project.mark_as_modified(DUNGEON_BIN)
+
+        # Mark as modified in tree
+        row = self._tree_model[self._tree_level_iter[item_id]]
+        recursive_up_item_store_mark_as_modified(row)
