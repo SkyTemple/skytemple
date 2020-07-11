@@ -19,16 +19,14 @@ Tile based instead of chunk based.
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-from enum import Enum, auto
-from typing import List, Union, Tuple, Iterable
+from typing import List, Union
 
 from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
-from gi.repository.Gtk import Widget, CellRendererState
+from gi.repository.Gtk import Widget
 
 from skytemple.module.map_bg.animation_context import AnimationContext
 from skytemple_files.common.tiled_image import TilemapEntry
-from skytemple_files.graphics.bma.model import Bma
 import cairo
 
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM

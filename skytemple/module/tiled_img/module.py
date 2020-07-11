@@ -14,27 +14,10 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-import logging
-import sys
-from typing import Union, List, Optional
-
-from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.error_handler import display_error
 from skytemple.core.rom_project import RomProject
-from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
-    recursive_generate_item_store_row_label
-from skytemple.module.dungeon_graphics.controller.tileset import TilesetController
-from skytemple.module.dungeon_graphics.controller.main import MainController, DUNGEON_GRAPHICS_NAME
-from skytemple_files.common.types.file_types import FileType
-from skytemple_files.container.dungeon_bin.model import DungeonBinPack
-from skytemple_files.graphics.bg_list_dat.model import BgList
-from skytemple_files.graphics.bma.model import Bma
-from skytemple_files.graphics.bpa.model import Bpa
-from skytemple_files.graphics.bpc.model import Bpc
-from skytemple_files.graphics.bpl.model import Bpl
 
 
 class TiledImgModule(AbstractModule):

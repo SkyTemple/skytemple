@@ -23,10 +23,10 @@ from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType, IconView, ScrolledWindow
 
 from skytemple.core.img_utils import pil_to_cairo_surface
-from skytemple.module.map_bg.drawer_tiled import DrawerTiledCellRenderer, DrawerTiled
+from skytemple.module.tiled_img.drawer_tiled import DrawerTiledCellRenderer, DrawerTiled
 from skytemple_files.common.tiled_image import TilemapEntry
 from skytemple_files.graphics.bpa.model import Bpa
-from skytemple_files.graphics.bpc.model import BpcLayer, Bpc, BPC_TILE_DIM
+from skytemple_files.graphics.bpc.model import Bpc, BPC_TILE_DIM
 from skytemple_files.graphics.bpl.model import Bpl
 bpa_views = [
     'icon_view_animated_tiles1', 'icon_view_animated_tiles2',
