@@ -50,6 +50,7 @@ setup(
         [skytemple.module]
         rom=          skytemple.module.rom.module:RomModule
         bgp=          skytemple.module.bgp.module:BgpModule
+        tiled_img=    skytemple.module.tiled_img.module:TiledImgModule
         map_bg=       skytemple.module.map_bg.module:MapBgModule
         script=       skytemple.module.script.module:ScriptModule
         monster=      skytemple.module.monster.module:MonsterModule
@@ -57,6 +58,7 @@ setup(
         patch=        skytemple.module.patch.module:PatchModule
         lists=        skytemple.module.lists.module:ListsModule
         misc_graphics=skytemple.module.misc_graphics.module:MiscGraphicsModule
+        dungeon_graphics=skytemple.module.dungeon_graphics.module:DungeonGraphicsModule
         [console_scripts]
         skytemple=skytemple.main:main
     ''',

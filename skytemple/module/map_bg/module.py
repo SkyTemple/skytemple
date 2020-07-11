@@ -46,7 +46,7 @@ logger = logging.getLogger(__name__)
 class MapBgModule(AbstractModule):
     @classmethod
     def depends_on(cls):
-        return []
+        return ['tiled_img']
 
     @classmethod
     def sort_order(cls):
