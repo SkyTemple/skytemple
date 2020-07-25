@@ -20,6 +20,7 @@ import sys
 
 import gi
 
+from skytemple.core.events.manager import EventManager
 from skytemple.core.global_configuration import GlobalConfiguration
 from skytemple.core.modules import Modules
 from skytemple.core.ui_utils import data_dir
@@ -90,8 +91,17 @@ def main():
         Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
     )
 
-    # Load event thread
+    # Load async task runner thread
     AsyncTaskRunner.instance()
+
+    # Init. core events
+    event_manager = EventManager.instance()
+    try:
+        from skytemple.core.events.impl.discord import DiscordPresence
+        discord_listener = DiscordPresence()
+        event_manager.register_listener(discord_listener)
+    except ImportError:
+        pass
 
     # Load configuration
     GlobalConfiguration.load()

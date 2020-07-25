@@ -27,6 +27,8 @@ from skytemple.controller.tilequant import TilequantController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.controller_loader import load_controller
 from skytemple.core.error_handler import display_error
+from skytemple.core.events.events import EVT_VIEW_SWITCH, EVT_PROJECT_OPEN
+from skytemple.core.events.manager import EventManager
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.settings import SkyTempleSettingsStore
@@ -85,6 +87,7 @@ class MainController:
         self._current_view_item_id = None
         self._resize_timeout_id = None
         self._loaded_map_bg_module = None
+        self._current_breadcrumbs = []
 
         self._load_position_and_size()
         self._configure_csd()
@@ -197,6 +200,13 @@ class MainController:
         self.settings.set_window_size(self.window.get_size())
         self._resize_timeout_id = None
 
+    def on_main_window_state_event(self, w: Gtk.Window, evt: Gdk.EventWindowState):
+        if evt.changed_mask & Gdk.WindowState.FOCUSED:
+            if evt.new_window_state & Gdk.WindowState.FOCUSED:
+                EventManager.instance().main_window_has_focus()
+            else:
+                EventManager.instance().main_window_lost_focus()
+
     def on_file_opened(self):
         """Update the UI after a ROM file has been opened."""
         assert current_thread() == main_thread
@@ -223,6 +233,9 @@ class MainController:
                 if module.__class__.__name__ == 'MapBgModule':
                     self._loaded_map_bg_module = module
             # TODO: Load settings from ROM for history, bookmarks, etc? - separate module?
+
+            # Trigger event
+            EventManager.instance().trigger(EVT_PROJECT_OPEN, project=project)
 
             # Select & load main ROM item by default
             selection: TreeSelection = self._main_item_list.get_selection()
@@ -340,6 +353,8 @@ class MainController:
         self._editor_stack.set_visible_child(view)
         logger.debug('Unlocking view trees.')
         self._unlock_trees()
+        EventManager.instance().trigger(EVT_VIEW_SWITCH, module=module, controller=controller,
+                                        breadcrumbs=self._current_breadcrumbs)
 
     def on_view_loaded_error(self, ex: BaseException):
         """An error during module view load happened :("""
@@ -592,10 +607,13 @@ class MainController:
         """Update the subtitle / breadcrumb before switching views"""
         bc = ""
         parent = node
+        bc_array = []
         while parent:
             bc = f" > {parent[6]}" + bc
+            bc_array.append(parent[6])
             parent = parent.parent
         bc = bc[3:]
+        self._current_breadcrumbs = bc_array
         self.window.get_titlebar().set_subtitle(bc)
 
         # Check if files are modified

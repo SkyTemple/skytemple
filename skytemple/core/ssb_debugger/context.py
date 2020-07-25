@@ -20,6 +20,8 @@ from gi.repository import Gtk
 
 from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.error_handler import display_error
+from skytemple.core.events.events import EVT_DEBUGGER_SCRIPT_OPEN
+from skytemple.core.events.manager import EventManager
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST_TYPE_SCENE_SSA, REQUEST_TYPE_SCENE_SSS, \
     REQUEST_TYPE_SCENE_SSE
 from skytemple.core.rom_project import RomProject
@@ -48,6 +50,12 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
 
     def on_quit(self):
         self._manager.on_close()
+
+    def on_focus(self):
+        EventManager.instance().debugger_window_has_focus()
+
+    def on_blur(self):
+        EventManager.instance().debugger_window_lost_focus()
 
     def open_rom(self, filename: str):
         return NotImplementedError()
@@ -81,6 +89,9 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
                                                                        project_fm=self._project_fm)
         f.file_manager = ssb_file_manager
         return f
+
+    def on_script_edit(self, filename):
+        EventManager.instance().trigger(EVT_DEBUGGER_SCRIPT_OPEN, filename)
 
     def save_ssb(self, filename, ssb_model, ssb_file_manager: 'SsbFileManager'):
         project = RomProject.get_current()
