@@ -56,13 +56,19 @@ class TilequantController:
         any_filter.add_pattern("*")
 
         tq_input_file: Gtk.FileChooserButton = builder.get_object('tq_input_file')
-        tq_input_file.add_filter(jpg_filter)
         tq_input_file.add_filter(png_filter)
+        tq_input_file.add_filter(jpg_filter)
         tq_input_file.add_filter(any_filter)
+
+        tq_second_file: Gtk.FileChooserButton = builder.get_object('tq_second_file')
+        tq_second_file.add_filter(png_filter)
+        tq_second_file.add_filter(jpg_filter)
+        tq_second_file.add_filter(any_filter)
 
         builder.get_object('tq_number_palettes_help').connect('clicked', partial(
             self.show_help, 'The maximum number of palettes that can be used. For normal backgrounds, '
-                            'this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes.'
+                            'this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes '
+                            '(since the last 2 palettes are not rendered in game).'
         ))
         builder.get_object('tq_transparent_color_help').connect('clicked', partial(
             self.show_help, 'This exact color of the image will be imported as transparency (default: #12ab56).'
@@ -87,9 +93,15 @@ class TilequantController:
                             'sections of the image to a limited amount of colors, based on '
                             '"Color Limit per Tile".'
         ))
+        builder.get_object('tq_second_file_help').connect('clicked', partial(
+            self.show_help, 'You can use this to convert multiple images at once with the same palettes. '
+                            'This is useful for map backgrounds with multiple layers, that need to share the same'
+                            'palettes.'
+        ))
         builder.get_object('tq_convert').connect('clicked', self.convert)
         self.builder = builder
         self._previous_output_image = None
+        self._previous_second_output_image = None
 
     def run(self, num_pals=16, num_colors=16):
         """
@@ -102,8 +114,22 @@ class TilequantController:
 
     def convert(self, *args):
 
+        has_first_image = self.builder.get_object('tq_input_file').get_filename() is not None
+        has_second_image = self.builder.get_object('tq_second_file').get_filename() is not None
+
+        if not has_first_image:
+            self.error("Please select an input image.")
+            return
+        if has_second_image:
+            md = Gtk.MessageDialog(self.window,
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                   Gtk.ButtonsType.OK, "Since you selected two images to convert, you will be asked "
+                                                       "for both images where to save them to.")
+            md.run()
+            md.destroy()
+
         dialog = Gtk.FileChooserDialog(
-            "Save PNG as...",
+            "Save first image as (PNG)...",
             self.window,
             Gtk.FileChooserAction.SAVE,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
@@ -120,6 +146,27 @@ class TilequantController:
         if response != Gtk.ResponseType.OK:
             return
 
+        if has_second_image:
+            dialog = Gtk.FileChooserDialog(
+                "Save second image as (PNG)...",
+                self.window,
+                Gtk.FileChooserAction.SAVE,
+                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            )
+            if self._previous_second_output_image is not None:
+                dialog.set_filename(self._previous_second_output_image)
+            else:
+                dialog.set_filename(output_image)
+
+            add_dialog_png_filter(dialog)
+
+            response = dialog.run()
+            second_output_image = dialog.get_filename()
+            self._previous_second_output_image = second_output_image
+            dialog.destroy()
+            if response != Gtk.ResponseType.OK:
+                return
+
         try:
             num_pals = int(self.builder.get_object('tq_number_palettes').get_text())
             max_colors = int(self.builder.get_object('tq_max_colors').get_text())
@@ -128,6 +175,7 @@ class TilequantController:
             color_limit_per_tile = int(self.builder.get_object('tq_color_limit_per_tile').get_text())
             mosaic_limiting = self.builder.get_object('tq_mosaic_limiting').get_active()
             input_image = self.builder.get_object('tq_input_file').get_filename()
+            second_input_file = self.builder.get_object('tq_second_file').get_filename()
             transparent_color = self.builder.get_object('tq_transparent_color').get_color()
             transparent_color = (
                 int(transparent_color.red_float * 255),
@@ -140,9 +188,25 @@ class TilequantController:
             if not os.path.exists(input_image):
                 self.error("The input image does not exist.")
                 return
+            if has_second_image and not os.path.exists(second_input_file):
+                self.error("The second input image does not exist.")
+                return
             with open(input_image, 'rb') as input_file:
                 try:
-                    image = Image.open(input_file)
+                    if not has_second_image:
+                        # Only one image
+                        image = Image.open(input_file)
+                    else:
+                        # Two images: Merge them.
+                        image1 = Image.open(input_file)
+                        image2 = Image.open(second_input_file)
+                        image = Image.new(
+                            'RGB',
+                            (max(image1.width, image2.width), image1.height + image2.height),
+                            transparent_color
+                        )
+                        image.paste(image1, (0, 0))
+                        image.paste(image2, (0, image1.height))
                 except OSError:
                     self.error("The input image is not a supported format.")
                     return
@@ -154,7 +218,13 @@ class TilequantController:
                                             color_steps=color_steps,
                                             color_limit_per_tile=color_limit_per_tile,
                                             mosaic_limiting=mosaic_limiting)
-                    img.save(output_image)
+                    if not has_second_image:
+                        # Only one image
+                        img.save(output_image)
+                    else:
+                        # Two images: Un-merge them.
+                        img.crop((0, 0, image1.width, image1.height)).save(output_image)
+                        img.crop((0, image1.height, image2.width, image1.height + image2.height)).save(second_output_image)
                 except BaseException as err:
                     logger.error("Tilequant error.", exc_info=err)
                     self.error(str(err))
