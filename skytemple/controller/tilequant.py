@@ -60,6 +60,10 @@ class TilequantController:
         tq_input_file.add_filter(png_filter)
         tq_input_file.add_filter(any_filter)
 
+        builder.get_object('tq_number_palettes_help').connect('clicked', partial(
+            self.show_help, 'The maximum number of palettes that can be used. For normal backgrounds, '
+                            'this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes.'
+        ))
         builder.get_object('tq_transparent_color_help').connect('clicked', partial(
             self.show_help, 'This exact color of the image will be imported as transparency (default: #12ab56).'
         ))
@@ -76,8 +80,7 @@ class TilequantController:
         ))
         builder.get_object('tq_color_limit_per_tile_help').connect('clicked', partial(
             self.show_help, 'Limit the tiles to a specific amount of colors they should use before '
-                            'starting. This may help '
-                            'increase the number of total colors in the image.'
+                            'starting. This may help increase the number of total colors in the image.'
         ))
         builder.get_object('tq_mosaic_limiting_help').connect('clicked', partial(
             self.show_help, 'Toggle mosaic limiting, enabling it will limit increasingly bigger '
@@ -92,6 +95,8 @@ class TilequantController:
         """
         Shows the tilequant dialog. Doesn't return anything.
         """
+        self.builder.get_object('tq_number_palettes').set_text(str(num_pals))
+        self.builder.get_object('tq_color_limit_per_tile').set_text(str(num_colors - 1))
         self.window.run()
         self.window.hide()
 
@@ -116,6 +121,7 @@ class TilequantController:
             return
 
         try:
+            num_pals = int(self.builder.get_object('tq_number_palettes').get_text())
             max_colors = int(self.builder.get_object('tq_max_colors').get_text())
             color_steps = int(self.builder.get_object('tq_color_steps').get_text())
             low_to_high = False if self.builder.get_object('tq_direction').get_active_text() == 'Down' else True
@@ -142,7 +148,8 @@ class TilequantController:
                     return
                 try:
                     converter = ImageConverter(image, BPC_TILE_DIM, BPC_TILE_DIM, transparent_color)
-                    img = converter.convert(low_to_high=low_to_high,
+                    img = converter.convert(num_palettes=num_pals,
+                                            low_to_high=low_to_high,
                                             max_colors=max_colors,
                                             color_steps=color_steps,
                                             color_limit_per_tile=color_limit_per_tile,
