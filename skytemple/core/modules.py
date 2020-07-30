@@ -59,6 +59,7 @@ class Modules:
         from skytemple.module.lists.module import ListsModule
         from skytemple.module.misc_graphics.module import MiscGraphicsModule
         from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
+        from skytemple.module.strings.module import StringsModule
         return {
             "rom": RomModule,
             "bgp": BgpModule,
@@ -71,6 +72,7 @@ class Modules:
             "lists": ListsModule,
             "misc_graphics": MiscGraphicsModule,
             "dungeon_graphics": DungeonGraphicsModule,
+            "strings": StringsModule,
         }
 
 
