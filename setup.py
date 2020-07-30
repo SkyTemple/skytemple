@@ -37,6 +37,9 @@ setup(
         'tilequant >= 0.0.1',
         'skytemple-ssb-debugger >= 0.0.4'
     ],
+    extras_require={
+        'discord':  ["pypresence >= 4.0.0"]
+    },
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Programming Language :: Python',
