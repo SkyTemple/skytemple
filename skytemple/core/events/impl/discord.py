@@ -177,6 +177,16 @@ class DiscordPresence(AbstractListener):
                 StringType.POKEMON_NAMES, controller.item_id % NUM_ENTITIES
             )
 
+    def on_view_switch__StringsModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
+        from skytemple.module.strings.module import StringsModule
+        from skytemple.module.strings.controller.strings import StringsController
+        module: StringsModule
+
+        self.module_info = 'Editing Text Strings'
+        self.module_state = self.rom_name
+        if isinstance(controller, StringsController):
+            self.module_state = controller.langname
+
     def on_debugger_script_open(self, script_name: str):
         self.debugger_script_name = script_name.replace(self.project.get_project_file_manager().dir(), '')
         self._update_current_presence()

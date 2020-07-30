@@ -19,18 +19,19 @@ from gi.repository import Gtk
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
 
+TEXT_STRINGS = 'Text Strings'
 
-class SubController(SimpleController):
-    def __init__(self, module: AbstractModule, name):
-        self.name = name
+
+class MainController(SimpleController):
+    def __init__(self, module: AbstractModule, item_id: int):
+        pass
 
     def get_title(self) -> str:
-        return f'Sub Scenes for "{self.name}"'
+        return TEXT_STRINGS
 
     def get_content(self) -> Gtk.Widget:
-        # TODO: Adding and removing the sub scenes.
         return self.generate_content_label(
-            f'This section contains all sub scenes for the map {self.name}.\n\n'
-            f'These scenes can be loaded on top of the "Enter" scene,\n'
-            f'depending on the current story progress.'
+            "This section lets you edit the text strings in the game. Please note that some of these strings "
+            "can also be edited in other places in the UI (eg. the Pokémon names under Pokémon).\n"
+            "Not included are the strings of the game's scripts."
         )

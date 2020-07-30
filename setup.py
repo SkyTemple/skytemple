@@ -62,6 +62,7 @@ setup(
         lists=        skytemple.module.lists.module:ListsModule
         misc_graphics=skytemple.module.misc_graphics.module:MiscGraphicsModule
         dungeon_graphics=skytemple.module.dungeon_graphics.module:DungeonGraphicsModule
+        strings      =skytemple.module.strings.module:StringsModule
         [console_scripts]
         skytemple=skytemple.main:main
     ''',
