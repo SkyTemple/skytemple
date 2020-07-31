@@ -42,6 +42,10 @@ logger = logging.getLogger(__name__)
 
 class DiscordPresence(AbstractListener):
     def __init__(self):
+        """
+        Tries to initialize the connection with Discord.
+        :raises: ConnectionRefusedError
+        """
         self.rpc: Presence = Presence(CLIENT_ID)
         self.rpc.connect()
         self._idle_timeout_id = None
@@ -58,6 +62,7 @@ class DiscordPresence(AbstractListener):
     def on_main_window_focus(self):
         if self._idle_timeout_id is not None:
             GLib.source_remove(self._idle_timeout_id)
+            self._idle_timeout_id = None
         if self.current_presence == 'idle':
             self._reset_playtime()
         self.current_presence = 'main'
@@ -66,6 +71,7 @@ class DiscordPresence(AbstractListener):
     def on_debugger_window_focus(self):
         if self._idle_timeout_id is not None:
             GLib.source_remove(self._idle_timeout_id)
+            self._idle_timeout_id = None
         self.current_presence = 'debugger'
         if self.current_presence == 'idle':
             self._reset_playtime()

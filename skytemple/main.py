@@ -104,8 +104,9 @@ def main():
             from skytemple.core.events.impl.discord import DiscordPresence
             discord_listener = DiscordPresence()
             event_manager.register_listener(discord_listener)
-        except ImportError:
+        except (ImportError, ConnectionRefusedError):
             pass
+
 
     # Load modules
     Modules.load()
