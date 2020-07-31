@@ -23,6 +23,7 @@ from threading import current_thread
 import gi
 import logging
 
+from skytemple.controller.settings import SettingsController
 from skytemple.controller.tilequant import TilequantController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.controller_loader import load_controller
@@ -61,12 +62,12 @@ class MainController:
         """Utility method to get debugger manager from modules"""
         return cls._instance._debugger_manager
 
-    def __init__(self, builder: Builder, window: Window):
+    def __init__(self, builder: Builder, window: Window, settings: SkyTempleSettingsStore):
         self.builder = builder
         self.window = window
         self.__class__._instance = self
 
-        self.settings = SkyTempleSettingsStore()
+        self.settings = settings
         self.recent_files = self.settings.get_recent_files()
 
         # Created on demand
@@ -99,6 +100,7 @@ class MainController:
         self._debugger_manager = DebuggerManager()
 
         self.tilequant_controller = TilequantController(self.window, self.builder)
+        self.settings_controller = SettingsController(self.window, self.builder, self.settings)
 
     def on_destroy(self, *args):
         logger.debug('Window destroyed. Ending task runner.')
@@ -385,6 +387,9 @@ class MainController:
         assistant.set_transient_for(self.window)
         assistant.set_attached_to(self.window)
         assistant.show_all()
+
+    def on_settings_open_settings_clicked(self, *args):
+        self.settings_controller.run()
 
     def on_intro_dialog_created_with_clicked(self, *args):
         if RomProject.get_current() is None or self._loaded_map_bg_module is None:

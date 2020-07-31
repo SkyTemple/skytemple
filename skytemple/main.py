@@ -21,8 +21,8 @@ import sys
 import gi
 
 from skytemple.core.events.manager import EventManager
-from skytemple.core.global_configuration import GlobalConfiguration
 from skytemple.core.modules import Modules
+from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple.core.ui_utils import data_dir
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_ssb_debugger.main import get_debugger_data_dir
@@ -94,23 +94,24 @@ def main():
     # Load async task runner thread
     AsyncTaskRunner.instance()
 
+    # Load settings
+    settings = SkyTempleSettingsStore()
+
     # Init. core events
     event_manager = EventManager.instance()
-    try:
-        from skytemple.core.events.impl.discord import DiscordPresence
-        discord_listener = DiscordPresence()
-        event_manager.register_listener(discord_listener)
-    except ImportError:
-        pass
-
-    # Load configuration
-    GlobalConfiguration.load()
+    if settings.get_integration_discord_enabled():
+        try:
+            from skytemple.core.events.impl.discord import DiscordPresence
+            discord_listener = DiscordPresence()
+            event_manager.register_listener(discord_listener)
+        except ImportError:
+            pass
 
     # Load modules
     Modules.load()
 
     # Load main window + controller
-    MainController(builder, main_window)
+    MainController(builder, main_window, settings)
 
     main_window.present()
     main_window.set_icon_name('skytemple')

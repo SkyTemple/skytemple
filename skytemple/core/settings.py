@@ -26,6 +26,7 @@ CONFIG_FILE_NAME = 'config.ini'
 SECT_GENERAL = 'General'
 SECT_WINDOW = 'Window'
 SECT_RECENT_FILES = 'Recent'
+SECT_INTEGRATION_DISCORD = 'Discord'
 
 KEY_RECENT_1 = 'file1'
 KEY_RECENT_2 = 'file2'
@@ -39,6 +40,8 @@ KEY_WINDOW_SIZE_X = 'width'
 KEY_WINDOW_SIZE_Y = 'height'
 KEY_WINDOW_POS_X = 'pos_x'
 KEY_WINDOW_POS_Y = 'pos_y'
+
+KEY_INTEGRATION_DISCORD_DISCORD_ENABLED = 'enabled'
 
 
 class SkyTempleSettingsStore:
@@ -118,6 +121,18 @@ class SkyTempleSettingsStore:
             self.loaded_config[SECT_WINDOW] = {}
         self.loaded_config[SECT_WINDOW][KEY_WINDOW_POS_X] = str(pos[0])
         self.loaded_config[SECT_WINDOW][KEY_WINDOW_POS_Y] = str(pos[1])
+        self._save()
+
+    def get_integration_discord_enabled(self) -> bool:
+        if SECT_INTEGRATION_DISCORD in self.loaded_config:
+            if KEY_INTEGRATION_DISCORD_DISCORD_ENABLED in self.loaded_config[SECT_INTEGRATION_DISCORD]:
+                return int(self.loaded_config[SECT_INTEGRATION_DISCORD][KEY_INTEGRATION_DISCORD_DISCORD_ENABLED]) > 0
+        return True  # default is enabled.
+
+    def set_integration_discord_enabled(self, value: bool):
+        if SECT_INTEGRATION_DISCORD not in self.loaded_config:
+            self.loaded_config[SECT_INTEGRATION_DISCORD] = {}
+        self.loaded_config[SECT_INTEGRATION_DISCORD][KEY_INTEGRATION_DISCORD_DISCORD_ENABLED] = '1' if value else '0'
         self._save()
 
     def _save(self):
