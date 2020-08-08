@@ -183,6 +183,20 @@ class DiscordPresence(AbstractListener):
             else:
                 self.module_state = f'{breadcrumbs[2]} / {breadcrumbs[0]}'
 
+    def on_view_switch__DungeonModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
+        from skytemple.module.dungeon.module import DungeonModule
+        from skytemple.module.dungeon.controller.dungeon import DungeonController
+        from skytemple.module.dungeon.controller.floor import FloorController
+        # todo: fixed floors
+        module: DungeonModule
+
+        self.module_info = 'Editing dungeons'
+        self.module_state = self.rom_name
+        if isinstance(controller, DungeonController):
+            self.module_state = controller.dungeon_name
+        if isinstance(controller, FloorController):
+            pass  # todo
+
     def on_view_switch__MonsterModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
         from skytemple.module.monster.module import MonsterModule
         from skytemple.module.monster.controller.monster import MonsterController
