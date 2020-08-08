@@ -63,12 +63,12 @@ setup(
         patch=        skytemple.module.patch.module:PatchModule
         lists=        skytemple.module.lists.module:ListsModule
         misc_graphics=skytemple.module.misc_graphics.module:MiscGraphicsModule
+        dungeon=      skytemple.module.dungeon.module:DungeonModule
         dungeon_graphics=skytemple.module.dungeon_graphics.module:DungeonGraphicsModule
         strings      =skytemple.module.strings.module:StringsModule
         [console_scripts]
         skytemple=skytemple.main:main
     ''',
-    #dungeon=      skytemple.module.dungeon.module:DungeonModule
     #item=         skytemple.module.item.module:ItemModule
     #music=        skytemple.module.music.module:MusicModule
     #sprite=       skytemple.module.sprite.module:SpriteModule
