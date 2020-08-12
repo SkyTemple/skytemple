@@ -710,7 +710,7 @@ class MainController:
     def _load_support_images(self):
         # Load the Discord badge
         try:
-            url = 'http://img.shields.io/discord/710190644152369162?label=Discord'
+            url = 'https://raster.shields.io/discord/710190644152369162?label=Discord'
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             input_stream = Gio.MemoryInputStream.new_from_data(urllib.request.urlopen(req).read(), None)
             pixbuf = Pixbuf.new_from_stream(input_stream, None)
@@ -736,12 +736,12 @@ class MainController:
             # Kofi
             image = Gtk.Image()
             image.show()
-            image.set_from_file(os.path.join(data_dir(), "kofi.svg"))
+            image.set_from_file(os.path.join(data_dir(), "kofi.png"))
             self.builder.get_object('suppot_us_kofi_parakoopa_container').add(image)
             # Kofi 2
             image = Gtk.Image()
             image.show()
-            image.set_from_file(os.path.join(data_dir(), "kofi.svg"))
+            image.set_from_file(os.path.join(data_dir(), "kofi.png"))
             self.builder.get_object('suppot_us_kofi_psy_container').add(image)
         except BaseException:
             # We are not crashing over some images...
