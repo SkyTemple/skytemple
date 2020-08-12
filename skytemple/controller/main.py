@@ -18,10 +18,15 @@
 import os
 import sys
 import traceback
+import urllib
+import webbrowser
 from threading import current_thread
+from urllib.request import urlopen
 
 import gi
 import logging
+
+from gi.repository.GdkPixbuf import Pixbuf
 
 from skytemple.controller.settings import SettingsController
 from skytemple.controller.tilequant import TilequantController
@@ -35,17 +40,18 @@ from skytemple.core.rom_project import RomProject
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple.core.ssb_debugger.manager import DebuggerManager
 from skytemple_files.common.task_runner import AsyncTaskRunner
-from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified
+from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir
 
 gi.require_version('Gtk', '3.0')
 
-from gi.repository import Gtk, Gdk, GLib
+from gi.repository import Gtk, Gdk, GLib, Gio
 from gi.repository.Gtk import *
 
 main_thread = current_thread()
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 COL_VISIBLE = 7
+DISCORD_INVITE_LINK = 'https://discord.gg/4e3X36f'
 
 
 class MainController:
@@ -69,6 +75,8 @@ class MainController:
 
         self.settings = settings
         self.recent_files = self.settings.get_recent_files()
+
+        self._load_support_images()
 
         # Created on demand
         self._loading_dialog: Dialog = None
@@ -131,6 +139,37 @@ class MainController:
     def on_intro_dialog_close(self, assistant: Gtk.Assistant, *args):
         self.settings.set_assistant_shown(True)
         assistant.hide()
+
+    def on__enter_notify_event__pointer(self, w: Gtk.Widget, evt: Gdk.EventCrossing):
+        w.get_window().set_cursor(Gdk.Cursor.new_from_name(w.get_display(), 'pointer'))
+
+    def on__leave_notify_event__pointer(self, w: Gtk.Widget, evt: Gdk.EventCrossing):
+        w.get_window().set_cursor(Gdk.Cursor.new_from_name(w.get_display(), 'default'))
+
+    def on_discord_icon_container_button_release_event(self, w: Gtk.Widget, evt: Gdk.Event):
+        if evt.button == 1:
+            webbrowser.open(DISCORD_INVITE_LINK)
+
+    def on_button_support_us_clicked(self, *args):
+        diag = self.builder.get_object('suppot_us_dialog')
+        diag.run()
+        diag.hide()
+
+    def on_suppot_us_discord_container_button_release_event(self, w: Gtk.Widget, evt: Gdk.Event):
+        if evt.button == 1:
+            webbrowser.open(DISCORD_INVITE_LINK)
+
+    def on_suppot_us_github_container_button_release_event(self, w: Gtk.Widget, evt: Gdk.Event):
+        if evt.button == 1:
+            webbrowser.open("https://github.com/SkyTemple")
+
+    def on_suppot_us_kofi_parakoopa_container_button_release_event(self, w: Gtk.Widget, evt: Gdk.Event):
+        if evt.button == 1:
+            webbrowser.open("https://ko-fi.com/parakoopa")
+
+    def on_suppot_us_kofi_psy_container_button_release_event(self, w: Gtk.Widget, evt: Gdk.Event):
+        if evt.button == 1:
+            webbrowser.open("https://ko-fi.com/psycomm")
 
     def on_key_press_event(self, wdg, event):
         ctrl = (event.state & Gdk.ModifierType.CONTROL_MASK)
@@ -668,3 +707,42 @@ class MainController:
         dialog.destroy()
         return response
 
+    def _load_support_images(self):
+        # Load the Discord badge
+        try:
+            url = 'http://img.shields.io/discord/710190644152369162?label=Discord'
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            input_stream = Gio.MemoryInputStream.new_from_data(urllib.request.urlopen(req).read(), None)
+            pixbuf = Pixbuf.new_from_stream(input_stream, None)
+            image = Gtk.Image()
+            image.show()
+            image.set_from_pixbuf(pixbuf)
+            self.builder.get_object('discord_icon_container').add(image)
+        except BaseException:
+            # We are not crashing over a Discord badge...
+            pass
+        # Load the support us images
+        try:
+            # Discord
+            image = Gtk.Image()
+            image.show()
+            image.set_from_file(os.path.join(data_dir(), "discord.png"))
+            self.builder.get_object('suppot_us_discord_container').add(image)
+            # Github
+            image = Gtk.Image()
+            image.show()
+            image.set_from_file(os.path.join(data_dir(), "github.png"))
+            self.builder.get_object('suppot_us_github_container').add(image)
+            # Kofi
+            image = Gtk.Image()
+            image.show()
+            image.set_from_file(os.path.join(data_dir(), "kofi.svg"))
+            self.builder.get_object('suppot_us_kofi_parakoopa_container').add(image)
+            # Kofi 2
+            image = Gtk.Image()
+            image.show()
+            image.set_from_file(os.path.join(data_dir(), "kofi.svg"))
+            self.builder.get_object('suppot_us_kofi_psy_container').add(image)
+        except BaseException:
+            # We are not crashing over some images...
+            pass
