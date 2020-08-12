@@ -47,7 +47,6 @@ ActorSpriteKey = Tuple[Union[str, int], int]
 sprite_provider_lock = threading.Lock()
 logger = logging.getLogger(__name__)
 
-# TODO: Make configurable in list editing instead and save to a config file:
 FALLBACK_STANDIN_ENTITIY = 1
 STANDIN_ENTITIES_DEFAULT = {
     0: 1,

@@ -1718,22 +1718,22 @@ the top-right of the main window.</property>
     <property name="website">https://github.com/SkyTemple/skytemple</property>
     <property name="website_label" translatable="yes">https://github.com/SkyTemple/skytemple</property>
     <property name="authors">Project Lead:
-Marco "Parakoopa" Köpcke &lt;http://github.com/parakoopa&gt;
+Marco "Parakoopa" Köpcke http://github.com/parakoopa
 
 Contributors:
 marius851000 (via skytemple-rust)
 
 Reference Implementations + Research:
-psy_commando &lt;http://github.com/psyCommando&gt;
+psy_commando http://github.com/psyCommando
 
 Researchers:
 MegaMinerd
 evandixon
 Nerketur
 End45
-UsernameFodder &lt;http://reddit.com/u/UsernameFodder&gt;</property>
+UsernameFodder http://reddit.com/u/UsernameFodder</property>
     <property name="translator_credits" translatable="yes" comments="TRANSLATORS: Replace this string with your names, one name per line.">translator-credits</property>
-    <property name="artists">Charburst &lt;https://twitter.com/Charburst_&gt; (Logo)</property>
+    <property name="artists">Charburst (Logo) https://twitter.com/Charburst_</property>
     <property name="logo_icon_name">skytemple</property>
     <property name="license_type">gpl-3-0</property>
     <signal name="delete-event" handler="gtk_widget_hide_on_delete" swapped="no"/>
