@@ -50,7 +50,7 @@ class MonsterController(AbstractController):
         self._portrait_provider.reset()
 
         self._init_language_labels()
-        self._init_entity_id()
+        self._init_entid()
         self._init_stores()
         self._init_sub_pages()
 
@@ -78,6 +78,7 @@ class MonsterController(AbstractController):
         ctx.scale(1 / scale, 1 / scale)
         if widget.get_size_request() != (IMG_DIM * scale, IMG_DIM * scale):
             widget.set_size_request(IMG_DIM * scale, IMG_DIM * scale)
+        return True
 
     def on_draw_sprite_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
         if self.entry.entid > 0:
@@ -90,6 +91,7 @@ class MonsterController(AbstractController):
         ctx.paint()
         if widget.get_size_request() != (w, h):
             widget.set_size_request(w, h)
+        return True
 
     def on_cb_type_primary_changed(self, w, *args):
         self._update_from_cb(w)
@@ -102,6 +104,16 @@ class MonsterController(AbstractController):
     def on_entry_national_pokedex_number_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()
+
+    def on_entry_entid_changed(self, w, *args):
+        self._update_from_entry(w)
+        self.mark_as_modified()
+
+    def on_entry_sprite_index_changed(self, w, *args):
+        self._update_from_entry(w)
+        self.mark_as_modified()
+        self._sprite_provider.reset()
+        self.builder.get_object('draw_sprite').queue_draw()
 
     def on_cb_gender_changed(self, w, *args):
         self._update_from_cb(w)
@@ -323,9 +335,8 @@ class MonsterController(AbstractController):
                 gui_label.set_text("")
                 gui_entry.set_sensitive(False)
 
-    def _init_entity_id(self):
+    def _init_entid(self):
         self.builder.get_object(f'label_base_id').set_text(f'#{self.entry.md_index_base:03}')
-        self.builder.get_object(f'label_ent_id').set_text(f'{self.entry.entid:03}')
         name = self._string_provider.get_value(StringType.POKEMON_NAMES, self.entry.md_index_base)
         self.builder.get_object('label_id_name').set_text(f'${self.entry.md_index:04d}: {name}')
 
@@ -360,6 +371,8 @@ class MonsterController(AbstractController):
         # Stats
         self._set_entry('entry_unk31', self.entry.unk31)
         self._set_entry('entry_national_pokedex_number', self.entry.national_pokedex_number)
+        self._set_entry('entry_entid', self.entry.entid)
+        self._set_entry('entry_sprite_index', self.entry.sprite_index)
         self._set_entry('entry_base_movement_speed', self.entry.base_movement_speed)
         self._set_entry('entry_pre_evo_index', self.entry.pre_evo_index)
         self._set_entry('entry_base_form_index', self.entry.base_form_index)

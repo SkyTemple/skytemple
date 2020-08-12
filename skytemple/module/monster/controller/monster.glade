@@ -62,7 +62,7 @@
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">6</property>
+            <property name="top_attach">7</property>
           </packing>
         </child>
         <child>
@@ -73,7 +73,7 @@
           </object>
           <packing>
             <property name="left_attach">1</property>
-            <property name="top_attach">6</property>
+            <property name="top_attach">7</property>
           </packing>
         </child>
         <child>
@@ -84,7 +84,7 @@
           </object>
           <packing>
             <property name="left_attach">2</property>
-            <property name="top_attach">6</property>
+            <property name="top_attach">7</property>
           </packing>
         </child>
         <child>
@@ -96,7 +96,7 @@
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">5</property>
+            <property name="top_attach">6</property>
           </packing>
         </child>
         <child>
@@ -108,7 +108,7 @@
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">4</property>
+            <property name="top_attach">5</property>
           </packing>
         </child>
         <child>
@@ -120,7 +120,7 @@
           </object>
           <packing>
             <property name="left_attach">1</property>
-            <property name="top_attach">4</property>
+            <property name="top_attach">5</property>
             <property name="width">2</property>
           </packing>
         </child>
@@ -132,7 +132,7 @@
           </object>
           <packing>
             <property name="left_attach">1</property>
-            <property name="top_attach">5</property>
+            <property name="top_attach">6</property>
             <property name="width">2</property>
           </packing>
         </child>
@@ -176,15 +176,40 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label_ent_id">
+          <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">#&lt;Entity ID&gt;</property>
+            <property name="halign">end</property>
+            <property name="label" translatable="yes">Sprite ID:</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="entry_entid">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="width_chars">3</property>
+            <signal name="changed" handler="on_entry_entid_changed" swapped="no"/>
           </object>
           <packing>
             <property name="left_attach">1</property>
             <property name="top_attach">3</property>
+            <property name="width">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="entry_sprite_index">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="width_chars">3</property>
+            <signal name="changed" handler="on_entry_sprite_index_changed" swapped="no"/>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">4</property>
             <property name="width">2</property>
           </packing>
         </child>
