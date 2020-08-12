@@ -68,6 +68,7 @@ class PortraitController(AbstractController):
         return self.builder.get_object('box_main')
 
     def on_draw(self, subindex: int, widget: Gtk.DrawingArea, ctx: cairo.Context):
+        print("redraw")
         scale = 2
         portrait = self._portrait_provider.get(self.item_id, subindex,
                                                lambda: GLib.idle_add(widget.queue_draw), False)
@@ -79,6 +80,7 @@ class PortraitController(AbstractController):
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
         ctx.paint()
         ctx.scale(1 / scale, 1 / scale)
+        return True
 
     def on_export_clicked(self, *args):
         dialog = Gtk.FileChooserDialog(
@@ -160,8 +162,9 @@ class PortraitController(AbstractController):
             yield r.match(name), name
 
     def _get_portrait_name(self, subindex):
-        portrait_name = self.module.project.get_string_provider().get_value(StringType.PORTRAIT_NAMES,
-                                                                            math.floor(subindex / 2))
+        portrait_name = self.module.project.get_rom_module().get_static_data().script_data.face_names__by_id[
+            math.floor(subindex / 2)
+        ].name.replace('-', '_')
         portrait_name = f'{subindex}: {portrait_name}'
         if subindex % 2 != 0:
             portrait_name += ' (flip)'
