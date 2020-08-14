@@ -117,7 +117,7 @@ class StringsController(AbstractController):
         if self._active_category is not None:
             if not (self._active_category.begin <= model[iter][0] < self._active_category.end):
                 return False
-        if self._search_text is not "":
+        if self._search_text != "":
             if self._search_text not in model[iter][1]:
                 return False
         return True

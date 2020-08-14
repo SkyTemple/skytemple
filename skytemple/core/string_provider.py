@@ -38,6 +38,11 @@ class StringType(Enum):
     ABILITY_NAMES = auto(), 'Ability Names'
     ABILITY_DESCRIPTIONS = auto(), 'Ability Descriptions'
     PORTRAIT_NAMES = auto(), 'Portrait Names'
+    GROUND_MAP_NAMES = auto(), 'Ground Map Names'
+    DUNGEON_NAMES_MAIN = auto(), 'Dungeon Names (Main)'
+    DUNGEON_NAMES_SELECTION = auto(), 'Dungeon Names (Selection)'
+    DUNGEON_NAMES_SET_DUNGEON_BANNER = auto(), 'Dungeon Names (SetDungeonBanner)'
+    DUNGEON_NAMES_BANNER = auto(), 'Dungeon Names (Banner)'
 
     def __new__(cls, *args, **kwargs):
         obj = object.__new__(cls)

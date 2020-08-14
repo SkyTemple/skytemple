@@ -17,6 +17,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import sys
+from enum import Enum, auto
 from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Type, Tuple
 
 from gi.repository import GLib, Gtk
@@ -28,12 +29,13 @@ from skytemple.core.open_request import OpenRequest
 from skytemple.core.model_context import ModelContext
 from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.string_provider import StringProvider
+from skytemple_files.common.ppmdu_config.data import Pmd2Binary
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
-    get_ppmdu_config_for_rom
+    get_ppmdu_config_for_rom, get_binary_from_rom_ppmdu, set_binary_in_rom_ppmdu
 from skytemple_files.container.sir0.sir0_serializable import Sir0Serializable
 from skytemple_files.patch.patches import Patcher
 
@@ -51,6 +53,33 @@ except ImportError:  # < Python 3.7
     @contextmanager
     def nullcontext(enter_result=None):
         yield enter_result
+
+
+class BinaryName(Enum):
+    """This enum maps to binary names of the pmd2data.xml."""
+    ARM9 = auto(), 'arm9.bin'
+    OVERLAY_10 = auto(), 'overlay/overlay_0010.bin'
+    OVERLAY_11 = auto(), 'overlay/overlay_0011.bin'
+    OVERLAY_13 = auto(), 'overlay/overlay_0013.bin'
+
+    def __new__(cls, *args, **kwargs):
+        obj = object.__new__(cls)
+        obj._value_ = args[0]
+        return obj
+
+    # ignore the first param since it's already set by __new__
+    def __init__(self, _: str, xml_name: str = None):
+        self._xml_name_ = xml_name
+
+    def __str__(self):
+        return self._xml_name_
+
+    def __repr__(self):
+        return f'BinaryName.{self.name}'
+
+    @property
+    def xml_name(self):
+        return self._xml_name_
 
 
 class RomProject:
@@ -213,6 +242,14 @@ class RomProject:
         """Save the rom. The main controller will be informed about this, if given."""
         AsyncTaskRunner().instance().run_task(self._save_impl(main_controller))
 
+    def save_file_manually(self, filename: str, data: bytes):
+        """
+        Manually save a file in the ROM. This should generally not be used,
+        please use a combination of open_file_in_rom and mark_as_modified instead. This should only be used
+        for re-generated files which are otherwise not read by SkyTemple (only saved), such as the mappa_gs.bin file.
+        """
+        self._rom.setFileByName(filename, data)
+
     async def _save_impl(self, main_controller: Optional['MainController']):
         try:
             for name in self._modified_files:
@@ -299,3 +336,17 @@ class RomProject:
 
     def create_patcher(self):
         return Patcher(self._rom, self.get_rom_module().get_static_data())
+
+    def get_binary(self, binary: Union[Pmd2Binary, BinaryName, str]) -> bytes:
+        if not isinstance(binary, Pmd2Binary):
+            binary = self.get_rom_module().get_static_data().binaries[str(binary)]
+        return get_binary_from_rom_ppmdu(self._rom, binary)
+
+    def modify_binary(self, binary: Union[Pmd2Binary, BinaryName, str], modify_cb: Callable[[bytearray], None]):
+        """Modify one of the binaries (such as arm9 or overlay) and save it to the ROM"""
+        if not isinstance(binary, Pmd2Binary):
+            binary = self.get_rom_module().get_static_data().binaries[str(binary)]
+        data = bytearray(self.get_binary(binary))
+        modify_cb(data)
+        set_binary_in_rom_ppmdu(self._rom, binary, data)
+        self.force_mark_as_modified()

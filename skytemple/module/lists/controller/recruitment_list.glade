@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.36.0 -->
+<interface>
+  <requires lib="gtk+" version="3.22"/>
+  <object class="GtkListStore" id="list_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="gchararray"/>
+      <!-- column-name level -->
+      <column type="gchararray"/>
+      <!-- column-name location_id -->
+      <column type="gchararray"/>
+      <!-- column-name ent_icon -->
+      <column type="GdkPixbuf"/>
+      <!-- column-name entid -->
+      <column type="gint"/>
+      <!-- column-name location_name -->
+      <column type="gchararray"/>
+      <!-- column-name ent_name -->
+      <column type="gchararray"/>
+    </columns>
+    <signal name="row-changed" handler="on_list_store_row_changed" swapped="no"/>
+  </object>
+  <object class="GtkBox" id="box_list">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkAlignment">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="xscale">0.80000001192092895508</property>
+        <property name="yscale">0.80000001192092895508</property>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">64</property>
+                <property name="label" translatable="yes">Recruitment List</property>
+                <style>
+                  <class name="skytemple-view-main-label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">5</property>
+                <property name="label" translatable="yes">You can add Pokémon from this list to the team via Script Engine commands.</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="margin_top">20</property>
+                <property name="margin_bottom">20</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkTreeView" id="tree">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="model">list_store</property>
+                    <property name="search_column">0</property>
+                    <child internal-child="selection">
+                      <object class="GtkTreeSelection"/>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn">
+                        <property name="title" translatable="yes">ID</property>
+                        <child>
+                          <object class="GtkCellRendererText"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn">
+                        <property name="resizable">True</property>
+                        <property name="title" translatable="yes">Pokémon</property>
+                        <child>
+                          <object class="GtkCellRendererPixbuf"/>
+                          <attributes>
+                            <attribute name="pixbuf">3</attribute>
+                          </attributes>
+                        </child>
+                        <child>
+                          <object class="GtkCellRendererText" id="cr_entity">
+                            <property name="editable">True</property>
+                            <signal name="edited" handler="on_cr_entity_edited" swapped="no"/>
+                            <signal name="editing-started" handler="on_cr_entity_editing_started" swapped="no"/>
+                          </object>
+                          <attributes>
+                            <attribute name="text">6</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn">
+                        <property name="resizable">True</property>
+                        <property name="title" translatable="yes">Level</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cr_level">
+                            <property name="editable">True</property>
+                            <signal name="edited" handler="on_cr_level_edited" swapped="no"/>
+                          </object>
+                          <attributes>
+                            <attribute name="text">1</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn">
+                        <property name="resizable">True</property>
+                        <property name="title" translatable="yes">Location of Recruiment</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cr_location">
+                            <property name="editable">True</property>
+                            <signal name="edited" handler="on_cr_location_edited" swapped="no"/>
+                            <signal name="editing-started" handler="on_cr_location_editing_started" swapped="no"/>
+                          </object>
+                          <attributes>
+                            <attribute name="text">5</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="valign">baseline</property>
+                    <property name="margin_start">5</property>
+                    <property name="margin_end">5</property>
+                    <property name="margin_top">5</property>
+                    <property name="margin_bottom">5</property>
+                    <property name="label" translatable="yes">To add them to the team right away:
+ProcessSpecial(PROCESS_SPECIAL_ADD_RECRUITABLE_TO_TEAM, XX, 0);
+
+To add them to team while asking the player about it* and prompting them for a nickname:
+ProcessSpecial(PROCESS_SPECIAL_PREPARE_MENU_ACCEPT_TEAM_MEMBER, XX, 0);
+message_Menu(MENU_ACCEPT_TEAM_MEMBER);
+
+The menu returns 1 if the player said yes and 0 if they said no.
+* Please note that for entry no. 16 the player will not be asked, it will always be added to the team.</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
+  <object class="GtkListStore" id="location_store">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_locations">
+    <property name="model">location_store</property>
+    <property name="text_column">0</property>
+    <signal name="match-selected" handler="on_completion_locations_match_selected" swapped="no"/>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+  <object class="GtkListStore" id="monster_store">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_entities">
+    <property name="model">monster_store</property>
+    <property name="text_column">0</property>
+    <signal name="match-selected" handler="on_completion_entities_match_selected" swapped="no"/>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+</interface>
