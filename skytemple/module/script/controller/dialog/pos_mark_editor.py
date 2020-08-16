@@ -223,10 +223,6 @@ class PosMarkEditorController:
         if self.drawer:
             self.drawer.set_scale(self._scale_factor)
 
-        self.window.set_size_request(
-            self._map_bg_width * self._scale_factor + 64, self._map_bg_height * self._scale_factor + 64
-        )
-
         self._w_ssa_draw.queue_draw()
 
     @staticmethod

@@ -173,6 +173,7 @@ class Drawer:
         x, y, w, h = self._handle_drag_and_place_modes()
         self.selection_plugin.set_size(w, h)
         self.selection_plugin.draw(ctx, size_w, size_h, x, y, ignore_obb=True)
+        return True
 
     def selection_draw_callback(self, ctx: cairo.Context, x: int, y: int):
         if self.interaction_mode == InteractionMode.SELECT:

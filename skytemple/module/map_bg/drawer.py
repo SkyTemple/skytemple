@@ -263,6 +263,7 @@ class Drawer:
         # Chunk Grid
         if self.draw_chunk_grid:
             self.chunk_grid_plugin.draw(ctx, size_w, size_h, self.mouse_x, self.mouse_y)
+        return True
 
     def selection_draw_callback(self, ctx: cairo.Context, x: int, y: int):
         if self.interaction_mode == DrawerInteraction.CHUNKS:

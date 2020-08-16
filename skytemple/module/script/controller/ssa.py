@@ -690,7 +690,7 @@ class SsaController(AbstractController):
     def on_po_actor_dir_changed(self, widget: Gtk.ComboBox, *args):
         model, cbiter = widget.get_model(), widget.get_active_iter()
         if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
-            self._currently_selected_entity.pos.direction = self.static_data.script_data.directions__by_id[model[cbiter][0]]
+            self._currently_selected_entity.pos.direction = self.static_data.script_data.directions__by_ssa_id[model[cbiter][0]]
             self._refresh_for_selected()
 
     def on_po_actor_delete_clicked(self, widget: Gtk.ComboBox, *args):
@@ -751,7 +751,7 @@ class SsaController(AbstractController):
     def on_po_object_dir_changed(self, widget: Gtk.ComboBox, *args):
         model, cbiter = widget.get_model(), widget.get_active_iter()
         if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
-            self._currently_selected_entity.pos.direction = self.static_data.script_data.directions__by_id[model[cbiter][0]]
+            self._currently_selected_entity.pos.direction = self.static_data.script_data.directions__by_ssa_id[model[cbiter][0]]
             self._refresh_for_selected()
 
     def on_po_object_delete_clicked(self, widget: Gtk.ComboBox, *args):
@@ -805,7 +805,7 @@ class SsaController(AbstractController):
     def on_po_performer_dir_changed(self, widget: Gtk.ComboBox, *args):
         model, cbiter = widget.get_model(), widget.get_active_iter()
         if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
-            self._currently_selected_entity.pos.direction = self.static_data.script_data.directions__by_id[model[cbiter][0]]
+            self._currently_selected_entity.pos.direction = self.static_data.script_data.directions__by_ssa_id[model[cbiter][0]]
             self._refresh_for_selected()
 
     def on_po_performer_delete_clicked(self, widget: Gtk.ComboBox, *args):
