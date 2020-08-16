@@ -23,6 +23,10 @@ build_pip py_desmume-*-cp38-cp38-mingw.whl
 echo "Installing skytemple_rust..."
 build_pip skytemple_rust-*-cp38-cp38-mingw.whl
 
+# Install tilequant
+echo "Installing tilequant..."
+build_pip tilequant-*-cp38-cp38-mingw.whl
+
 # Installing Stage 2
 echo "Installing Stage 2 requirements..."
 build_pip -r requirements-stage-2.txt

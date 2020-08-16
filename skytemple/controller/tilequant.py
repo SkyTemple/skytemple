@@ -21,8 +21,7 @@ from functools import partial
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.ui_utils import add_dialog_png_filter
-from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
-from skytemple_tilequant.image_converter import ImageConverter
+from skytemple_tilequant.aikku.image_converter import AikkuImageConverter
 
 try:
     from PIL import Image
@@ -73,26 +72,6 @@ class TilequantController:
         builder.get_object('tq_transparent_color_help').connect('clicked', partial(
             self.show_help, 'This exact color of the image will be imported as transparency (default: #12ab56).'
         ))
-        builder.get_object('tq_max_colors_help').connect('clicked', partial(
-            self.show_help, 'Highest overall amount of colors to test.'
-        ))
-        builder.get_object('tq_color_steps_help').connect('clicked', partial(
-            self.show_help, 'By how much to reduce the number of colors in the image, '
-                            'until a valid image is found.'
-        ))
-        builder.get_object('tq_direction_help').connect('clicked', partial(
-            self.show_help, 'Either start with the lowest amount of colors and go up to "Max number of colors" '
-                            '(Up), or the other way around (Down). Up is much faster, Down might have better quality.'
-        ))
-        builder.get_object('tq_color_limit_per_tile_help').connect('clicked', partial(
-            self.show_help, 'Limit the tiles to a specific amount of colors they should use before '
-                            'starting. This may help increase the number of total colors in the image.'
-        ))
-        builder.get_object('tq_mosaic_limiting_help').connect('clicked', partial(
-            self.show_help, 'Toggle mosaic limiting, enabling it will limit increasingly bigger '
-                            'sections of the image to a limited amount of colors, based on '
-                            '"Color Limit per Tile".'
-        ))
         builder.get_object('tq_second_file_help').connect('clicked', partial(
             self.show_help, 'You can use this to convert multiple images at once with the same palettes. '
                             'This is useful for map backgrounds with multiple layers, that need to share the same'
@@ -108,7 +87,6 @@ class TilequantController:
         Shows the tilequant dialog. Doesn't return anything.
         """
         self.builder.get_object('tq_number_palettes').set_text(str(num_pals))
-        self.builder.get_object('tq_color_limit_per_tile').set_text(str(num_colors - 1))
         self.window.run()
         self.window.hide()
 
@@ -169,11 +147,6 @@ class TilequantController:
 
         try:
             num_pals = int(self.builder.get_object('tq_number_palettes').get_text())
-            max_colors = int(self.builder.get_object('tq_max_colors').get_text())
-            color_steps = int(self.builder.get_object('tq_color_steps').get_text())
-            low_to_high = False if self.builder.get_object('tq_direction').get_active_text() == 'Down' else True
-            color_limit_per_tile = int(self.builder.get_object('tq_color_limit_per_tile').get_text())
-            mosaic_limiting = self.builder.get_object('tq_mosaic_limiting').get_active()
             input_image = self.builder.get_object('tq_input_file').get_filename()
             second_input_file = self.builder.get_object('tq_second_file').get_filename()
             transparent_color = self.builder.get_object('tq_transparent_color').get_color()
@@ -211,13 +184,8 @@ class TilequantController:
                     self.error("The input image is not a supported format.")
                     return
                 try:
-                    converter = ImageConverter(image, BPC_TILE_DIM, BPC_TILE_DIM, transparent_color)
-                    img = converter.convert(num_palettes=num_pals,
-                                            low_to_high=low_to_high,
-                                            max_colors=max_colors,
-                                            color_steps=color_steps,
-                                            color_limit_per_tile=color_limit_per_tile,
-                                            mosaic_limiting=mosaic_limiting)
+                    converter = AikkuImageConverter(image, transparent_color)
+                    img = converter.convert(num_pals)
                     if not has_second_image:
                         # Only one image
                         img.save(output_image)

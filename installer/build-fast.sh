@@ -9,7 +9,7 @@ pip uninstall skytemple skytemple-files skytemple-ssb-debugger explorerscript py
 pip install python_igraph-*-cp38-cp38-mingw.whl
 pip install py_desmume-*-cp38-cp38-mingw.whl
 pip install skytemple_rust-*-cp38-cp38-mingw.whl
+pip install tilequant-*-cp38-cp38-mingw.whl
 pip install ../../explorerscript
-pip install ../../tilequant
 pip install ../../files
 pip install ../../ssb_debugger

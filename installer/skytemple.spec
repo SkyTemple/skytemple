@@ -18,6 +18,7 @@ additional_datas = [
     (os.path.join(site_packages, 'skytemple_files', '_resources'), 'skytemple_files/_resources'),
     (os.path.join('.', 'armips.exe'), 'skytemple_files/_resources'),
     (os.path.join(site_packages, 'desmume', 'frontend', 'control_ui', '*.glade'), 'desmume/frontend/control_ui'),
+    (os.path.join(site_packages, "skytemple_tilequant", "tilequant.exe"), "skytemple_tilequant"),
 ]
 # Add all module *.glade files.
 paths = []
