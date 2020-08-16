@@ -67,8 +67,8 @@ class StringsController(AbstractController):
         return self.builder.get_object('main_box')
 
     def on_cr_string_edited(self, widget, path, text):
-        self._list_store[path][1] = text
-        self._str.strings[self._list_store[path][0]] = text
+        self._filter[path][1] = text
+        self._str.strings[self._filter[path][0]] = text
         self.module.mark_as_modified(self.filename)
 
     def refresh_cats(self):
