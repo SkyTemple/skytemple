@@ -434,7 +434,7 @@ class MonsterController(AbstractController):
     def _enum_entry_to_str(self, entry):
         if hasattr(entry, 'print_name'):
             return entry.print_name
-        return entry.name.capitalize()
+        return entry.name.capitalize().replace('_', ' ')
 
     def _set_entry(self, entry_name, text):
         self.builder.get_object(entry_name).set_text(str(text))
