@@ -24,8 +24,10 @@ from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, ge
 from skytemple.module.lists.controller.main import MainController, GROUND_LISTS
 from skytemple.module.lists.controller.actor_list import ActorListController
 from skytemple.module.lists.controller.recruitment_list import RecruitmentListController
+from skytemple.module.lists.controller.world_map import WorldMapController
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.md.model import Md
+from skytemple_files.hardcoded.dungeons import MapMarkerPlacement, HardcodedDungeons
 from skytemple_files.hardcoded.recruitment_tables import HardcodedRecruitmentTables
 from skytemple_files.list.actor.model import ActorListBin
 
@@ -36,7 +38,7 @@ class ListsModule(AbstractModule):
     """Module to modify lists."""
     @classmethod
     def depends_on(cls):
-        return ['monster']
+        return ['monster', 'map_bg']
 
     @classmethod
     def sort_order(cls):
@@ -48,6 +50,7 @@ class ListsModule(AbstractModule):
         self._tree_model = None
         self._actor_tree_iter = None
         self._recruitment_tree_iter = None
+        self._world_map_tree_iter = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
@@ -59,9 +62,13 @@ class ListsModule(AbstractModule):
         self._recruitment_tree_iter = item_store.append(root, [
             'view-list-symbolic', 'Recruitment List', self, RecruitmentListController, 0, False, '', True
         ])
+        self._world_map_tree_iter = item_store.append(root, [
+            'view-list-symbolic', 'World Map Markers', self, WorldMapController, 0, False, '', True
+        ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])
         generate_item_store_row_label(item_store[self._recruitment_tree_iter])
+        generate_item_store_row_label(item_store[self._world_map_tree_iter])
         self._tree_model = item_store
 
     def has_actor_list(self):
@@ -99,4 +106,21 @@ class ListsModule(AbstractModule):
         self.project.modify_binary(BinaryName.OVERLAY_11, update)
 
         row = self._tree_model[self._recruitment_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+
+    def get_world_map_markers(self) -> List[MapMarkerPlacement]:
+        """Returns the world map markers"""
+        arm9bin = self.project.get_binary(BinaryName.ARM9)
+        static_data = self.project.get_rom_module().get_static_data()
+        markers = HardcodedDungeons.get_marker_placements(arm9bin, static_data)
+        return markers
+
+    def set_world_map_markers(self, markers: List[MapMarkerPlacement]):
+        """Sets the world map markers"""
+        def update(arm9bin):
+            static_data = self.project.get_rom_module().get_static_data()
+            HardcodedDungeons.set_marker_placements(markers, arm9bin, static_data)
+        self.project.modify_binary(BinaryName.ARM9, update)
+
+        row = self._tree_model[self._world_map_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
