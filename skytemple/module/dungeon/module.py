@@ -30,8 +30,10 @@ from skytemple.module.dungeon.controller.fixed_rooms import FIXED_ROOMS_NAME, Fi
 from skytemple.module.dungeon.controller.floor import FloorController
 from skytemple.module.dungeon.controller.group import GroupController
 from skytemple.module.dungeon.controller.main import MainController, DUNGEONS_NAME
-from skytemple_files.hardcoded.dungeons import HardcodedDungeons
-
+from skytemple_files.common.types.file_types import FileType
+from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
+from skytemple_files.dungeon_data.mappa_g_bin.mappa_converter import convert_mappa_to_mappag
+from skytemple_files.hardcoded.dungeons import HardcodedDungeons, DungeonDefinition
 
 # TODO: Add this to dungeondata.xml?
 DOJO_DUNGEONS_FIRST = 0xB4
@@ -44,6 +46,8 @@ ICON_FIXED_ROOMS = 'folder-symbolic'
 ICON_GROUP = 'folder-open-symbolic'
 ICON_DUNGEON = 'folder-documents-symbolic'
 ICON_FLOOR = 'text-x-generic-symbolic'
+MAPPA_PATH = 'BALANCE/mappa_s.bin'
+MAPPAG_PATH = 'BALANCE/mappa_gs.bin'
 logger = logging.getLogger(__name__)
 
 
@@ -64,6 +68,9 @@ class DungeonGroup:
         self.base_dungeon_id = base_dungeon_id
         self.dungeon_ids = dungeon_ids
         self.start_ids = start_ids
+
+    def __int__(self):
+        return self.base_dungeon_id
 
 
 class DungeonModule(AbstractModule):
@@ -93,7 +100,7 @@ class DungeonModule(AbstractModule):
         dungeons_root = item_store.append(root, [
             ICON_DUNGEONS, DUNGEONS_NAME, self, MainController, 0, False, '', True
         ])
-        for dungeon_or_group in self._load_dungeons():
+        for dungeon_or_group in self.load_dungeons():
             if isinstance(dungeon_or_group, DungeonGroup):
                 # Group
                 group = item_store.append(dungeons_root, [
@@ -121,15 +128,34 @@ class DungeonModule(AbstractModule):
 
         recursive_generate_item_store_row_label(self._tree_model[root])
 
+    def get_mappa(self) -> MappaBin:
+        return self.project.open_file_in_rom(MAPPA_PATH, FileType.MAPPA_BIN)
+
+    def get_dungeon_list(self) -> List[DungeonDefinition]:
+        # TODO: Cache?
+        return HardcodedDungeons.get_dungeon_list(
+            self.project.get_binary(BinaryName.ARM9), self.project.get_rom_module().get_static_data()
+        )
+
     def mark_dungeon_as_modified(self, dungeon_id, modified_mappa=True):
         self.project.get_string_provider().mark_as_modified()
         if modified_mappa:
-            self.project.mark_as_modified('BALANCE/mappa_s.bin')
-            self.project.mark_as_modified('BALANCE/mappa_gs.bin')
+            self._save_mappa()
 
         # Mark as modified in tree
         row = self._tree_model[self._dungeon_iters[dungeon_id]]
         recursive_up_item_store_mark_as_modified(row)
+
+    def save_dungeon_list(self, dungeons: List[DungeonDefinition]):
+        self.project.modify_binary(BinaryName.ARM9, lambda binary: HardcodedDungeons.set_dungeon_list(
+            dungeons, binary, self.project.get_rom_module().get_static_data()
+        ))
+
+    def _save_mappa(self):
+        self.project.mark_as_modified(MAPPA_PATH)
+        self.project.save_file_manually(MAPPAG_PATH, FileType.MAPPA_G_BIN.serialize(
+            convert_mappa_to_mappag(self.get_mappa())
+        ))
 
     def _add_dungeon_to_tree(self, root_node, item_store, idx, previous_floor_id):
         dungeon_info = DungeonViewInfo(idx, idx < DOJO_DUNGEONS_FIRST)
@@ -144,12 +170,12 @@ class DungeonModule(AbstractModule):
             ])
         return dungeon
 
-    def _load_dungeons(self) -> Iterable[Union[DungeonGroup, int]]:
+    def load_dungeons(self) -> Iterable[Union[DungeonGroup, int]]:
         """
-        Returns the dungeons, grouped by the sanem mappa_index. The dungeons and groups are overall sorted
+        Returns the dungeons, grouped by the same mappa_index. The dungeons and groups are overall sorted
         by their IDs.
         """
-        lst = self._get_dungeon_list()
+        lst = self.get_dungeon_list()
         groups = {}
         yielded = set()
         for idx, dungeon in enumerate(lst):
@@ -175,8 +201,19 @@ class DungeonModule(AbstractModule):
                         lst[idx].start_after for idx in groups[dungeon.mappa_index]
                     ])
 
+    def regroup_dungeons(self, new_groups: Iterable[Union[DungeonGroup, int]]):
+        """
+        Apply new dungeon groups.
+        This updates the dungeon list file, the mappa files and the UI tree.
+        start_ids of the DungeonGroups may be empty, it is ignored and calculated from the current dungeons instead.
+        INVALID_DUNGEON_IDS will not be modified. Otherwise the list MUST contain all other regular dungeons
+        (before DOJO_DUNGEONS_FIRST), just like self.load_dungeons would return it.
+        """
+        # DONT'T FORGET ABOUT INVALID_DUNGEON_IDS AND DOJO_DUNGEONS_FIRST
+        raise NotImplementedError()
+
     def generate_group_label(self, base_dungeon_id) -> str:
-        dname = self.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_SELECTION, base_dungeon_id)
+        dname = self.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, base_dungeon_id)
         return f'"{dname}" Group'
 
     def _generate_dungeon_label(self, idx) -> str:
@@ -203,10 +240,4 @@ class DungeonModule(AbstractModule):
             return 1
         if idx == DOJO_DUNGEONS_LAST:
             return 0x30
-        return self._get_dungeon_list()[idx].number_floors
-
-    def _get_dungeon_list(self):
-        # TODO: Cache?
-        return HardcodedDungeons.get_dungeon_list(
-            self.project.get_binary(BinaryName.ARM9), self.project.get_rom_module().get_static_data()
-        )
+        return self.get_dungeon_list()[idx].number_floors
