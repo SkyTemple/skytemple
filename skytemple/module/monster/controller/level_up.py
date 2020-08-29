@@ -207,6 +207,8 @@ class LevelUpController(AbstractController):
 
         response = dialog.run()
         fn = dialog.get_filename()
+        if '.' not in fn:
+            fn += '.csv'
         dialog.destroy()
 
         if response == Gtk.ResponseType.OK:

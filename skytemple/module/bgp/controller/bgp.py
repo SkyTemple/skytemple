@@ -21,6 +21,7 @@ from typing import TYPE_CHECKING
 import cairo
 
 from skytemple.core.error_handler import display_error
+from skytemple.core.ui_utils import add_dialog_png_filter
 
 try:
     from PIL import Image
@@ -69,8 +70,12 @@ class BgpController(AbstractController):
                 (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
             )
 
+            add_dialog_png_filter(dialog)
+
             response = dialog.run()
             fn = dialog.get_filename()
+            if '.' not in fn:
+                fn += '.png'
             dialog.destroy()
 
             if response == Gtk.ResponseType.OK:

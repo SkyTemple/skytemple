@@ -79,6 +79,8 @@ class W16Controller(AbstractController):
 
         response = dialog.run()
         fn = dialog.get_filename()
+        if '.' not in fn:
+            fn += '.png'
         dialog.destroy()
 
         if response == Gtk.ResponseType.OK:

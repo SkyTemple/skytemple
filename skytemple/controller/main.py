@@ -198,6 +198,8 @@ class MainController:
 
         response = dialog.run()
         fn = dialog.get_filename()
+        if '.' not in fn:
+            fn += '.nds'
         dialog.destroy()
 
         if response == Gtk.ResponseType.OK:

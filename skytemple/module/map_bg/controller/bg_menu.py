@@ -206,6 +206,8 @@ class BgMenuController:
 
         response = dialog.run()
         fn = dialog.get_filename()
+        if '.' not in fn:
+            fn += '.gif'
         dialog.destroy()
 
         duration = 1000
@@ -737,6 +739,8 @@ class BgMenuController:
 
             response = dialog.run()
             fn = dialog.get_filename()
+            if '.' not in fn:
+                fn += '.png'
             dialog.destroy()
 
             if response == Gtk.ResponseType.OK:
@@ -801,6 +805,8 @@ class BgMenuController:
 
             response = dialog.run()
             fn = dialog.get_filename()
+            if '.' not in fn:
+                fn += '.png'
             dialog.destroy()
 
             if response == Gtk.ResponseType.OK:

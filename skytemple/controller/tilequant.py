@@ -119,6 +119,8 @@ class TilequantController:
 
         response = dialog.run()
         output_image = dialog.get_filename()
+        if '.' not in output_image:
+            output_image += '.png'
         self._previous_output_image = output_image
         dialog.destroy()
         if response != Gtk.ResponseType.OK:
@@ -140,6 +142,8 @@ class TilequantController:
 
             response = dialog.run()
             second_output_image = dialog.get_filename()
+            if '.' not in second_output_image:
+                second_output_image += '.png'
             self._previous_second_output_image = second_output_image
             dialog.destroy()
             if response != Gtk.ResponseType.OK:
