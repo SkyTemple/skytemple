@@ -118,3 +118,4 @@ class BgpController(AbstractController):
             ctx.set_source_surface(self.surface, 0, 0)
             ctx.get_source().set_filter(cairo.Filter.NEAREST)
             ctx.paint()
+        return True

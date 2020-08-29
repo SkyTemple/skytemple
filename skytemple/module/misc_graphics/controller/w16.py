@@ -79,8 +79,6 @@ class W16Controller(AbstractController):
 
         response = dialog.run()
         fn = dialog.get_filename()
-        if '.' not in fn:
-            fn += '.png'
         dialog.destroy()
 
         if response == Gtk.ResponseType.OK:
@@ -174,7 +172,6 @@ class W16Controller(AbstractController):
     def _reset(self):
         grid: Gtk.Grid = self.builder.get_object('grid')
         self._surfaces = []
-        # TODO: Currently reloading doesn't work, the grid stays empty.
         for child in grid:
             grid.remove(child)
         for index, image_c in enumerate(self.w16):
@@ -196,6 +193,7 @@ class W16Controller(AbstractController):
         box.pack_start(draw_area, False, True, 0)
         box.pack_start(label, False, True, 0)
         grid.attach(box, x, y, 1, 1)
+        box.show_all()
         return draw_area
 
     def _get_surface(self, img: Image.Image):
