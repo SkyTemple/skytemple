@@ -43,6 +43,7 @@ class StringType(Enum):
     DUNGEON_NAMES_SELECTION = auto(), 'Dungeon Names (Selection)'
     DUNGEON_NAMES_SET_DUNGEON_BANNER = auto(), 'Dungeon Names (SetDungeonBanner)'
     DUNGEON_NAMES_BANNER = auto(), 'Dungeon Names (Banner)'
+    DEFAULT_TEAM_NAMES = auto(), 'Default Team Names'
 
     def __new__(cls, *args, **kwargs):
         obj = object.__new__(cls)

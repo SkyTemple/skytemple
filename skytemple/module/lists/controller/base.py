@@ -18,7 +18,7 @@ import re
 from abc import ABC, abstractmethod
 from functools import partial
 from itertools import zip_longest
-from typing import TYPE_CHECKING, Optional, Dict
+from typing import TYPE_CHECKING, Optional, Dict, List, Union
 
 import cairo
 from gi.repository import Gtk, GLib, GdkPixbuf
@@ -42,7 +42,6 @@ class ListBaseController(AbstractController, ABC):
         self._refresh_timer = None
         self._ent_names: Dict[int, str] = {}
         self._tree_iters_by_idx: Dict[int, Gtk.TreeIter] = {}
-        self._tmp_path = None
         self._list_store: Optional[Gtk.ListStore] = None
         self._loading = False
 
@@ -80,25 +79,28 @@ class ListBaseController(AbstractController, ABC):
 
     def on_cr_entity_editing_started(self, renderer, editable, path):
         editable.set_completion(self.builder.get_object('completion_entities'))
-        self._tmp_path = path
 
     @abstractmethod
     def refresh_list(self):
         pass
 
     @abstractmethod
-    def get_tree(self):
+    def get_tree(self) -> Union[List[Gtk.TreeView], Gtk.TreeView]:
         pass
 
     def can_be_placeholder(self):
         return False
 
-    def _get_icon(self, entid, idx, force_placeholder=False):
+    def _get_icon(self, entid, idx, force_placeholder=False, store=None, store_iters=None):
+        if store is None:
+            store = self._list_store
+        if store_iters is None:
+            store_iters = self._tree_iters_by_idx
         was_loading = self._loading
         if entid <= 0 or force_placeholder:
             sprite, x, y, w, h = self._sprite_provider.get_actor_placeholder(idx, 0,
                                                                              lambda: GLib.idle_add(
-                                                                                 partial(self._reload_icon, 0, idx, was_loading)
+                                                                                 partial(self._reload_icon, 0, idx, store, store_iters, was_loading)
                                                                              ))
             ctx = cairo.Context(sprite)
             ctx.set_source_rgb(*ORANGE_RGB)
@@ -110,7 +112,7 @@ class ListBaseController(AbstractController, ABC):
         else:
             sprite, x, y, w, h = self._sprite_provider.get_monster(entid, 0,
                                                                    lambda: GLib.idle_add(
-                                                                       partial(self._reload_icon, entid, idx, was_loading)
+                                                                       partial(self._reload_icon, entid, idx, store, store_iters, was_loading)
                                                                    ))
             target = entid
         data = bytes(sprite.get_data())
@@ -123,25 +125,37 @@ class ListBaseController(AbstractController, ABC):
         )
         return self._icon_pixbufs[target]
 
-    def _reload_icon(self, entid, idx, was_loading):
+    def _reload_icon(self, entid, idx, store, store_iters, was_loading):
         if not self._loading and not was_loading:
-            row = self._list_store[self._tree_iters_by_idx[idx]]
-            row[3] = self._get_icon(entid, idx, row[8] == ORANGE if self.can_be_placeholder() else False)
+            row = store[store_iters[idx]]
+            row[self._get_store_icon_id()] = self._get_icon(entid, idx, row[8] == ORANGE if self.can_be_placeholder() else False)
             return
         if self._refresh_timer is not None:
             GLib.source_remove(self._refresh_timer)
         self._refresh_timer = GLib.timeout_add_seconds(0.5, self._reload_icons_in_tree)
 
     def _reload_icons_in_tree(self):
-        tree: Gtk.TreeView = self.get_tree()
-        model: Gtk.ListStore = tree.get_model()
-        self._loading = True
-        for entry in model:
-            # If the color is orange, this is a spcial actor and we render a placeholder instead.
-            # TODO: it's a bit weird doing this over the color
-            entry[3] = self._get_icon(entry[4], int(entry[0]), entry[8] == ORANGE if self.can_be_placeholder() else False)
+        trees = self.get_tree()
+        if not isinstance(trees, list):
+            trees = [trees]
+        for tree in trees:
+            model: Gtk.ListStore = tree.get_model()
+            self._loading = True
+            for entry in model:
+                # If the color is orange, this is a spcial actor and we render a placeholder instead.
+                # TODO: it's a bit weird doing this over the color
+                entry[self._get_store_icon_id()] = self._get_icon(
+                    entry[self._get_store_entid_id()], int(entry[0]),
+                    entry[8] == ORANGE if self.can_be_placeholder() else False
+                )
         self._loading = False
         self._refresh_timer = None
+
+    def _get_store_icon_id(self):
+        return 3
+
+    def _get_store_entid_id(self):
+        return 4
 
 
 def grouper(iterable, n, fillvalue=None):

@@ -23,11 +23,12 @@ from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label
 from skytemple.module.lists.controller.main import MainController, GROUND_LISTS
 from skytemple.module.lists.controller.actor_list import ActorListController
+from skytemple.module.lists.controller.starters_list import StartersListController
 from skytemple.module.lists.controller.recruitment_list import RecruitmentListController
 from skytemple.module.lists.controller.world_map import WorldMapController
-from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.md.model import Md
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement, HardcodedDungeons
+from skytemple_files.hardcoded.personality_test_starters import HardcodedPersonalityTestStarters
 from skytemple_files.hardcoded.recruitment_tables import HardcodedRecruitmentTables
 from skytemple_files.list.actor.model import ActorListBin
 
@@ -49,6 +50,7 @@ class ListsModule(AbstractModule):
 
         self._tree_model = None
         self._actor_tree_iter = None
+        self._starters_tree_iter = None
         self._recruitment_tree_iter = None
         self._world_map_tree_iter = None
 
@@ -59,6 +61,9 @@ class ListsModule(AbstractModule):
         self._actor_tree_iter = item_store.append(root, [
             'view-list-symbolic', 'Actors', self, ActorListController, 0, False, '', True
         ])
+        self._starters_tree_iter = item_store.append(root, [
+            'view-list-symbolic', 'Starters', self, StartersListController, 0, False, '', True
+        ])
         self._recruitment_tree_iter = item_store.append(root, [
             'view-list-symbolic', 'Recruitment List', self, RecruitmentListController, 0, False, '', True
         ])
@@ -67,6 +72,7 @@ class ListsModule(AbstractModule):
         ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])
+        generate_item_store_row_label(item_store[self._starters_tree_iter])
         generate_item_store_row_label(item_store[self._recruitment_tree_iter])
         generate_item_store_row_label(item_store[self._world_map_tree_iter])
         self._tree_model = item_store
@@ -84,8 +90,32 @@ class ListsModule(AbstractModule):
         row = self._tree_model[self._actor_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
 
+    def mark_str_as_modified(self):
+        self.project.get_string_provider().mark_as_modified()
+        # Mark as modified in tree
+        row = self._tree_model[self._starters_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+
     def get_monster_md(self) -> Md:
         return self.project.get_module('monster').monster_md
+
+    def get_starter_ids(self) -> Tuple[List[int], List[int]]:
+        """Returns players & partner starters"""
+        ov13 = self.project.get_binary(BinaryName.OVERLAY_13)
+        static_data = self.project.get_rom_module().get_static_data()
+        player = HardcodedPersonalityTestStarters.get_player_md_ids(ov13, static_data)
+        partner = HardcodedPersonalityTestStarters.get_partner_md_ids(ov13, static_data)
+        return player, partner
+
+    def set_starter_ids(self, player, partner):
+        def update(ov13):
+            static_data = self.project.get_rom_module().get_static_data()
+            HardcodedPersonalityTestStarters.set_player_md_ids(player, ov13, static_data)
+            HardcodedPersonalityTestStarters.set_partner_md_ids(partner, ov13, static_data)
+        self.project.modify_binary(BinaryName.OVERLAY_13, update)
+
+        row = self._tree_model[self._starters_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
 
     def get_recruitment_list(self) -> Tuple[List[int], List[int], List[int]]:
         """Returns the recruitment lists: species, levels, locations"""
