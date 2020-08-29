@@ -97,6 +97,15 @@ class StringProvider:
         # TODO: We should probably also check the end offset (overflow check).
         return self._get_string_block(string_type).begin + index
 
+    def get_all(self, string_type: StringType, language: LanguageLike = None) -> List[str]:
+        """
+        Returns all strings of the given type.
+        If language is not set, the default ROM language is used.
+        """
+        model = self.get_model(language)
+        string_block = self._get_string_block(string_type)
+        return model.strings[string_block.begin:string_block.end]
+
     def get_model(self, language: LanguageLike = None) -> Str:
         """
         Returns the string table model for the given language.

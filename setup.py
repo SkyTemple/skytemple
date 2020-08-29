@@ -35,7 +35,9 @@ setup(
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
         'tilequant >= 0.1.0',
-        'skytemple-ssb-debugger >= 0.1.0a5'
+        'skytemple-ssb-debugger >= 0.1.0a5',
+        'pygal >= 2.4.0',
+        'CairoSVG >= 2.4.2'
     ],
     extras_require={
         'discord':  ["pypresence >= 4.0.0"]

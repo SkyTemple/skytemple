@@ -68,7 +68,6 @@ class PortraitController(AbstractController):
         return self.builder.get_object('box_main')
 
     def on_draw(self, subindex: int, widget: Gtk.DrawingArea, ctx: cairo.Context):
-        print("redraw")
         scale = 2
         portrait = self._portrait_provider.get(self.item_id, subindex,
                                                lambda: GLib.idle_add(widget.queue_draw), False)

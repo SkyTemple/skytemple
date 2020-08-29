@@ -80,3 +80,9 @@ def add_dialog_png_filter(dialog):
 
 def data_dir():
     return os.path.join(os.path.dirname(__file__), '..', 'data')
+
+
+def is_dark_theme(widget):
+    style_ctx = widget.get_style_context()
+    color = style_ctx.get_background_color(Gtk.StateFlags.NORMAL)
+    return 0.2126 * color.red + 0.7152 * color.green + 0.0722 * color.blue < 0.5

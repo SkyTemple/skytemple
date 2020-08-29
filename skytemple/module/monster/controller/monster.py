@@ -32,6 +32,8 @@ if TYPE_CHECKING:
 
 
 class MonsterController(AbstractController):
+    _last_open_tab_id = 0
+
     def __init__(self, module: 'MonsterModule', item_id: int):
         self.module = module
         self.item_id = item_id
@@ -64,8 +66,14 @@ class MonsterController(AbstractController):
         self.builder.connect_signals(self)
         self.builder.get_object('draw_sprite').queue_draw()
 
+        notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
+        notebook.set_current_page(self.__class__._last_open_tab_id)
+
         self.builder.get_object('settings_grid').check_resize()
         return self.builder.get_object('box_main')
+
+    def on_main_notebook_switch_page(self, notebook, page, page_num):
+        self.__class__._last_open_tab_id = page_num
 
     def on_draw_portrait_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
         scale = 2
@@ -415,7 +423,7 @@ class MonsterController(AbstractController):
 
     def mark_as_modified(self):
         if not self._is_loading:
-            self.module.mark_as_modified(self.item_id)
+            self.module.mark_md_as_modified(self.item_id)
 
     def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum]):
         store = Gtk.ListStore(int, str)  # id, name
@@ -474,6 +482,8 @@ class MonsterController(AbstractController):
 
     def _init_sub_pages(self):
         notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
+        tab_label: Gtk.Label = Gtk.Label.new('Stats and Moves')
+        notebook.append_page(self.module.get_level_up_view(self.item_id), tab_label)
         tab_label: Gtk.Label = Gtk.Label.new('Portraits')
         notebook.append_page(self.module.get_portrait_view(self.item_id), tab_label)
 
