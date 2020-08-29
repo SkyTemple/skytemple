@@ -11,3 +11,4 @@ rm dist/skytemple/share/themes/* -rf
 
 # Install additional themes
 cp -a bundling/themes/* dist/skytemple/share/themes/
+

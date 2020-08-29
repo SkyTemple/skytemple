@@ -19,6 +19,11 @@ additional_datas = [
     (os.path.join('.', 'armips.exe'), 'skytemple_files/_resources'),
     (os.path.join(site_packages, 'desmume', 'frontend', 'control_ui', '*.glade'), 'desmume/frontend/control_ui'),
     (os.path.join(site_packages, "skytemple_tilequant", "tilequant.exe"), "skytemple_tilequant"),
+    (os.path.join(site_packages, "cairocffi", "VERSION"), "cairocffi"),
+    (os.path.join(site_packages, "cssselect2", "VERSION"), "cssselect2"),
+    (os.path.join(site_packages, "tinycss2", "VERSION"), "tinycss2"),
+    (os.path.join(site_packages, "cairosvg", "VERSION"), "."),
+    (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
 ]
 # Add all module *.glade files.
 paths = []

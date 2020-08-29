@@ -1,5 +1,5 @@
 !define PRODUCT_NAME "SkyTemple"
-!define PRODUCT_VERSION "0.1.0a6"
+!define PRODUCT_VERSION "0.1.0a7"
 
 !define DIST_DIR "dist\skytemple"
 !define APPEXE "skytemple.exe"
