@@ -103,12 +103,15 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__MiscGraphicsModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
         from skytemple.module.misc_graphics.module import MiscGraphicsModule
         from skytemple.module.misc_graphics.controller.w16 import W16Controller
+        from skytemple.module.misc_graphics.controller.wte_wtu import WteWtuController
         module: MiscGraphicsModule
 
         self.module_info = 'Editing graphics'
         self.module_state = self.rom_name
         if isinstance(controller, W16Controller):
             self.module_state = module.list_of_w16s[controller.item_id]
+        if isinstance(controller, WteWtuController):
+            self.module_state = controller.item.wte_filename
 
     def on_view_switch__DungeonGraphicsModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
         from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
@@ -137,12 +140,21 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__ListsModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
         from skytemple.module.lists.module import ListsModule
         from skytemple.module.lists.controller.actor_list import ActorListController
+        from skytemple.module.lists.controller.starters_list import StartersListController
+        from skytemple.module.lists.controller.recruitment_list import RecruitmentListController
+        from skytemple.module.lists.controller.world_map import WorldMapController
         module: ListsModule
 
         self.module_info = 'Editing lists'
         self.module_state = self.rom_name
         if isinstance(controller, ActorListController):
             self.module_info = 'Editing the actor list'
+        if isinstance(controller, StartersListController):
+            self.module_info = 'Editing the starters list'
+        if isinstance(controller, RecruitmentListController):
+            self.module_info = 'Editing the recruitment list'
+        if isinstance(controller, WorldMapController):
+            self.module_info = 'Editing the world map'
 
     def on_view_switch__PatchModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
         self.module_info = 'Editing patches'
