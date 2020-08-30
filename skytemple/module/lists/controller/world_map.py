@@ -192,9 +192,12 @@ class WorldMapController(AbstractController):
                 dialog.set_title(f'Edit Marker {idx}')
             dialog.set_transient_for(MainController.window())
             dialog.set_attached_to(MainController.window())
-            screen: Gdk.Screen = dialog.get_screen()
-            monitor = screen.get_monitor_geometry(screen.get_monitor_at_window(screen.get_active_window()))
-            dialog.resize(monitor.width * 0.75, monitor.height * 0.75)
+            try:
+                screen: Gdk.Screen = dialog.get_screen()
+                monitor = screen.get_monitor_geometry(screen.get_monitor_at_window(screen.get_active_window()))
+                dialog.resize(monitor.width * 0.75, monitor.height * 0.75)
+            except BaseException:
+                dialog.resize(1015, 865)
 
             # Map combobox
             cb_map: Gtk.ComboBox = self.builder.get_object('cb_map')
