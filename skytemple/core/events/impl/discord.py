@@ -195,7 +195,10 @@ class DiscordPresence(AbstractListener):
         if isinstance(controller, DungeonController):
             self.module_state = controller.dungeon_name
         if isinstance(controller, FloorController):
-            pass  # todo
+            dungeon_name = module.project.get_string_provider().get_value(
+                StringType.DUNGEON_NAMES_MAIN, controller.item.dungeon.dungeon_id
+            )
+            self.module_state = f'{dungeon_name} - Floor {controller.item.floor_id + 1}'
 
     def on_view_switch__MonsterModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
         from skytemple.module.monster.module import MonsterModule

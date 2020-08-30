@@ -31,6 +31,7 @@ from skytemple.module.dungeon.controller.floor import FloorController
 from skytemple.module.dungeon.controller.group import GroupController
 from skytemple.module.dungeon.controller.main import MainController, DUNGEONS_NAME
 from skytemple_files.common.types.file_types import FileType
+from skytemple_files.dungeon_data.mappa_bin.floor import MappaFloor
 from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
 from skytemple_files.dungeon_data.mappa_g_bin.mappa_converter import convert_mappa_to_mappag
 from skytemple_files.hardcoded.dungeons import HardcodedDungeons, DungeonDefinition
@@ -88,6 +89,7 @@ class DungeonModule(AbstractModule):
         self._tree_model = None
         self._root_iter = None
         self._dungeon_iters = {}
+        self._dungeon_floor_iters = {}
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
@@ -131,6 +133,18 @@ class DungeonModule(AbstractModule):
     def get_mappa(self) -> MappaBin:
         return self.project.open_file_in_rom(MAPPA_PATH, FileType.MAPPA_BIN)
 
+    def get_mappa_floor(self, item: FloorViewInfo) -> MappaFloor:
+        """Returns the correct mappa floor based on the given dungeon ID and floor number"""
+        dungeon = self.get_dungeon_list()[item.dungeon.dungeon_id]
+        return self.get_mappa().floor_lists[dungeon.mappa_index][item.floor_id]
+
+    def mark_floor_as_modified(self, item: FloorViewInfo):
+        # TODO: Regenerate mappa_g.
+        self.project.mark_as_modified(MAPPA_PATH)
+        # Mark as modified in tree
+        row = self._tree_model[self._dungeon_floor_iters[item.dungeon.dungeon_id][item.floor_id]]
+        recursive_up_item_store_mark_as_modified(row)
+
     def get_dungeon_list(self) -> List[DungeonDefinition]:
         # TODO: Cache?
         return HardcodedDungeons.get_dungeon_list(
@@ -163,10 +177,12 @@ class DungeonModule(AbstractModule):
             ICON_DUNGEON, self._generate_dungeon_label(idx), self, DungeonController,
             dungeon_info, False, '', True
         ])
+        if idx not in self._dungeon_floor_iters:
+            self._dungeon_floor_iters[idx] = {}
         for floor_i in range(0, self.get_number_floors(idx)):
-            item_store.append(dungeon, [
+            self._dungeon_floor_iters[idx][previous_floor_id + floor_i] = item_store.append(dungeon, [
                 ICON_DUNGEON, self._generate_floor_label(floor_i + previous_floor_id), self, FloorController,
-                FloorViewInfo(floor_i, dungeon_info), False, '', True
+                FloorViewInfo(previous_floor_id + floor_i, dungeon_info), False, '', True
             ])
         return dungeon
 
