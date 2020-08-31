@@ -33,6 +33,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import is_dark_theme
 from skytemple.module.monster.level_up_graph import LevelUpGraphProvider
+from skytemple_files.common.util import open_utf8
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry
 from skytemple_files.data.waza_p.model import WazaP, MoveLearnset, LevelUpMove
 
@@ -218,7 +219,7 @@ class LevelUpController(AbstractController):
                     rows.append([i + 1, level.experience_required, level.hp_growth,
                                  level.attack_growth, level.special_attack_growth,
                                  level.defense_growth, level.special_defense_growth])
-                with open(fn, 'w', newline='') as file:
+                with open_utf8(fn, 'w', newline='') as file:
                     writer = csv.writer(file)
                     writer.writerows(rows)
             except BaseException as err:
@@ -244,7 +245,7 @@ class LevelUpController(AbstractController):
 
         if response == Gtk.ResponseType.OK:
             try:
-                with open(fn, mode='r') as csv_file:
+                with open_utf8(fn, mode='r') as csv_file:
                     content = list(csv.DictReader(csv_file))
                     if CSV_LEVEL not in content[0]:
                         raise ValueError(f'{CSV_LEVEL} is missing in the CSV.')
@@ -486,7 +487,7 @@ class LevelUpController(AbstractController):
             disable_xml_declaration=True
         ).render()
 
-        with open(self.get_tmp_html_path(), 'w') as f:
+        with open_utf8(self.get_tmp_html_path(), 'w') as f:
             f.write(render_graph_template(
                 f'{self._string_provider.get_value(StringType.POKEMON_NAMES, self.item_id)} Stats Graph (SkyTemple)',
                 svg
