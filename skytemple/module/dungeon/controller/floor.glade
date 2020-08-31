@@ -769,27 +769,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="btn_help_room_density">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <signal name="clicked" handler="on_btn_help_room_density_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">help-about-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">5</property>
-                <property name="top_attach">1</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkComboBox" id="cb_structure">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -981,6 +960,7 @@
               <object class="GtkEntry" id="entry_water_density">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <signal name="changed" handler="on_entry_water_density_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -1190,30 +1170,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">end</property>
-                <property name="label" translatable="yes">Hidden Stairs:</property>
-              </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">17</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">end</property>
-                <property name="label" translatable="yes">Shop item positions:</property>
-              </object>
-              <packing>
-                <property name="left_attach">3</property>
-                <property name="top_attach">14</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">end</property>
                 <property name="label" translatable="yes">Empty Monster House:</property>
               </object>
               <packing>
@@ -1237,18 +1193,6 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="halign">end</property>
-                <property name="label" translatable="yes">Unk Hidden Stairs:</property>
-              </object>
-              <packing>
-                <property name="left_attach">3</property>
-                <property name="top_attach">17</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="halign">start</property>
                 <property name="margin_top">5</property>
                 <property name="label" translatable="yes">IQ and Misc</property>
@@ -1258,7 +1202,7 @@
               </object>
               <packing>
                 <property name="left_attach">0</property>
-                <property name="top_attach">18</property>
+                <property name="top_attach">17</property>
                 <property name="width">6</property>
               </packing>
             </child>
@@ -1271,7 +1215,7 @@
               </object>
               <packing>
                 <property name="left_attach">0</property>
-                <property name="top_attach">19</property>
+                <property name="top_attach">18</property>
               </packing>
             </child>
             <child>
@@ -1283,7 +1227,7 @@
               </object>
               <packing>
                 <property name="left_attach">3</property>
-                <property name="top_attach">19</property>
+                <property name="top_attach">18</property>
               </packing>
             </child>
             <child>
@@ -1295,7 +1239,7 @@
               </object>
               <packing>
                 <property name="left_attach">0</property>
-                <property name="top_attach">20</property>
+                <property name="top_attach">19</property>
               </packing>
             </child>
             <child>
@@ -1307,18 +1251,6 @@
               <packing>
                 <property name="left_attach">3</property>
                 <property name="top_attach">12</property>
-                <property name="width">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">end</property>
-              </object>
-              <packing>
-                <property name="left_attach">3</property>
-                <property name="top_attach">20</property>
                 <property name="width">3</property>
               </packing>
             </child>
@@ -1534,59 +1466,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="btn_help_kecleon_shop_item_positions">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <signal name="clicked" handler="on_btn_help_kecleon_shop_item_positions_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">help-about-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">5</property>
-                <property name="top_attach">14</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="btn_help_unk_hidden_stairs">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <signal name="clicked" handler="on_btn_help_unk_hidden_stairs_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">help-about-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">5</property>
-                <property name="top_attach">17</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry_unk_hidden_stairs">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <signal name="changed" handler="on_entry_unk_hidden_stairs_changed" swapped="no"/>
-              </object>
-              <packing>
-                <property name="left_attach">4</property>
-                <property name="top_attach">17</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkButton" id="btn_help_iq_booster_enabled">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -1604,7 +1483,7 @@
               </object>
               <packing>
                 <property name="left_attach">2</property>
-                <property name="top_attach">20</property>
+                <property name="top_attach">19</property>
               </packing>
             </child>
             <child>
@@ -1625,7 +1504,7 @@
               </object>
               <packing>
                 <property name="left_attach">5</property>
-                <property name="top_attach">19</property>
+                <property name="top_attach">18</property>
               </packing>
             </child>
             <child>
@@ -1636,7 +1515,7 @@
               </object>
               <packing>
                 <property name="left_attach">4</property>
-                <property name="top_attach">19</property>
+                <property name="top_attach">18</property>
               </packing>
             </child>
             <child>
@@ -1647,7 +1526,7 @@
               </object>
               <packing>
                 <property name="left_attach">1</property>
-                <property name="top_attach">20</property>
+                <property name="top_attach">19</property>
               </packing>
             </child>
             <child>
@@ -1658,7 +1537,7 @@
               </object>
               <packing>
                 <property name="left_attach">1</property>
-                <property name="top_attach">19</property>
+                <property name="top_attach">18</property>
                 <property name="width">2</property>
               </packing>
             </child>
@@ -1694,18 +1573,6 @@
               <packing>
                 <property name="left_attach">4</property>
                 <property name="top_attach">2</property>
-                <property name="width">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry_kecleon_shop_item_positions">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <signal name="changed" handler="on_entry_kecleon_shop_item_positions_changed" swapped="no"/>
-              </object>
-              <packing>
-                <property name="left_attach">4</property>
-                <property name="top_attach">14</property>
               </packing>
             </child>
             <child>
@@ -1722,7 +1589,6 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">14</property>
-                <property name="width">2</property>
               </packing>
             </child>
             <child>
@@ -1739,7 +1605,6 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">15</property>
-                <property name="width">2</property>
               </packing>
             </child>
             <child>
@@ -1756,24 +1621,6 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">16</property>
-                <property name="width">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkScale" id="scale_hidden_stairs_spawn_chance">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="adjustment">adjustment_hidden_stairs_change</property>
-                <property name="fill_level">100</property>
-                <property name="round_digits">0</property>
-                <property name="digits">0</property>
-                <property name="value_pos">right</property>
-                <signal name="value-changed" handler="on_scale_hidden_stairs_spawn_chance_value_changed" swapped="no"/>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">17</property>
-                <property name="width">2</property>
               </packing>
             </child>
             <child>
@@ -1790,7 +1637,6 @@
               <packing>
                 <property name="left_attach">4</property>
                 <property name="top_attach">15</property>
-                <property name="width">2</property>
               </packing>
             </child>
             <child>
@@ -1807,8 +1653,212 @@
               <packing>
                 <property name="left_attach">4</property>
                 <property name="top_attach">16</property>
-                <property name="width">2</property>
               </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">Shop item positions:</property>
+              </object>
+              <packing>
+                <property name="left_attach">3</property>
+                <property name="top_attach">19</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="entry_kecleon_shop_item_positions">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <signal name="changed" handler="on_entry_kecleon_shop_item_positions_changed" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left_attach">4</property>
+                <property name="top_attach">19</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_help_kecleon_shop_item_positions">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_btn_help_kecleon_shop_item_positions_clicked" swapped="no"/>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">help-about-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">5</property>
+                <property name="top_attach">19</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">Unk Hidden Stairs:</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">20</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="entry_unk_hidden_stairs">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <signal name="changed" handler="on_entry_unk_hidden_stairs_changed" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">20</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_help_unk_hidden_stairs">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_btn_help_unk_hidden_stairs_clicked" swapped="no"/>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">help-about-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">2</property>
+                <property name="top_attach">20</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">Hidden Stairs:</property>
+              </object>
+              <packing>
+                <property name="left_attach">3</property>
+                <property name="top_attach">14</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScale" id="scale_hidden_stairs_spawn_chance">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="adjustment">adjustment_hidden_stairs_change</property>
+                <property name="fill_level">100</property>
+                <property name="round_digits">0</property>
+                <property name="digits">0</property>
+                <property name="value_pos">right</property>
+                <signal name="value-changed" handler="on_scale_hidden_stairs_spawn_chance_value_changed" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left_attach">4</property>
+                <property name="top_attach">14</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="left_attach">3</property>
+                <property name="top_attach">20</property>
+                <property name="width">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_help_room_density">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_btn_help_room_density_clicked" swapped="no"/>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">help-about-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">5</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_help_dead_ends">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_btn_help_dead_ends_clicked" swapped="no"/>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">help-about-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">5</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_help_empty_monster_house">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_btn_help_empty_monster_house_clicked" swapped="no"/>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">help-about-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">5</property>
+                <property name="top_attach">15</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
             </child>
           </object>
         </child>
