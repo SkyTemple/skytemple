@@ -14,15 +14,21 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import re
+from decimal import Decimal, ROUND_DOWN
 from enum import Enum
+from functools import partial
+from itertools import zip_longest
 from typing import TYPE_CHECKING, List, Type
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib, GdkPixbuf
 
+from skytemple.core.error_handler import display_error
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple_files.dungeon_data.mappa_bin.floor_layout import MappaFloorStructureType, MappaFloorSecondaryTerrainType, \
     MappaFloorDarknessLevel, MappaFloorWeather
+from skytemple_files.dungeon_data.mappa_bin.monster import DUMMY_MD_INDEX, MappaMonster
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, FloorViewInfo
@@ -31,11 +37,14 @@ if TYPE_CHECKING:
 COUNT_VALID_TILESETS = 199
 COUNT_VALID_BGM = 117
 COUNT_VALID_FIXED_FLOORS = 256
+KECLEON_MD_INDEX = 383
 CB = 'cb_'
 CB_TERRAIN_SETTINGS = 'cb_terrain_settings__'
 ENTRY = 'entry_'
 ENTRY_TERRAIN_SETTINGS = 'entry_terrain_settings__'
 SCALE = 'scale_'
+PATTERN_MD_ENTRY = re.compile(r'.*\(#(\d+)\).*')
+CSS_HEADER_COLOR = 'dungeon_editor_column_header_invalid'
 
 
 class FloorController(AbstractController):
@@ -47,19 +56,25 @@ class FloorController(AbstractController):
         self.entry = self.module.get_mappa_floor(item)
 
         self.builder = None
-        self._is_loading = False
+        self._refresh_timer = None
+        self._loading = False
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
+
+        self._ent_names = {}
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'floor.glade')
 
+        self._loading = True
         self._init_labels()
         self._init_layout_stores()
 
-        self._is_loading = True
+        self._init_monster_spawns()
+        self._recalculate_monster_spawn_total_chances()
+
         self._init_layout_values()
-        self._is_loading = False
+        self._loading = False
 
         self.builder.connect_signals(self)
         # TODO: Dungeon mini preview
@@ -106,6 +121,13 @@ class FloorController(AbstractController):
     def on_cb_structure_changed(self, w, *args):
         self._update_from_widget(w)
         self.mark_as_modified()
+
+    def on_cb_dead_ends_changed(self, w, *args):
+        self._update_from_widget(w)
+        self.mark_as_modified()
+
+    def on_btn_help_dead_ends_clicked(self, *args):
+        pass  # todo
 
     def on_entry_floor_connectivity_changed(self, w, *args):
         self._update_from_widget(w)
@@ -209,6 +231,9 @@ class FloorController(AbstractController):
         self._update_from_widget(w)
         self.mark_as_modified()
 
+    def on_btn_help_empty_monster_house_clicked(self, *args):
+        pass  # todo
+
     def on_scale_sticky_item_chance_value_changed(self, w, *args):
         self._update_from_widget(w)
         self.mark_as_modified()
@@ -246,22 +271,83 @@ class FloorController(AbstractController):
     # <editor-fold desc="HANDLERS MONSTERS" defaultstate="collapsed">
 
     def on_cr_monster_spawns_entity_edited(self, widget, path, text):
-        pass  # todo
+        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+        match = PATTERN_MD_ENTRY.match(text)
+        if match is None:
+            return
+        try:
+            entid = int(match.group(1))
+        except ValueError:
+            return
+
+        if entid == KECLEON_MD_INDEX or entid >= DUMMY_MD_INDEX:
+            display_error(
+                None,
+                f"You can not spawn Kecleons or the Decoy Pokémon or any Pokémon above #{DUMMY_MD_INDEX}.",
+                "SkyTemple: Invalid Pokémon"
+            )
+            return
+
+        store[path][0] = entid
+        # ent_icon:
+        # If color is orange it's special.
+        store[path][1] = self._get_icon(entid, path)
+        # ent_name:
+        store[path][2] = self._ent_names[entid]
+        self._save_monster_spawn_rates()
 
     def on_cr_monster_spawns_entity_editing_started(self, renderer, editable, path):
-        pass  # todo
+        editable.set_completion(self.builder.get_object('completion_monsters'))
 
     def on_cr_monster_spawns_chance_edited(self, widget, path, text):
-        pass  # todo
+        # Dirty fix for places where the decimal separator is ,
+        text = text.replace(',', '.')
+        try:
+            float(text)
+        except:
+            return
+        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+        store[path][4] = text
+
+        # Collect the total values of all chances and change the header
+        self._recalculate_monster_spawn_total_chances()
+
+        self._save_monster_spawn_rates()
 
     def on_cr_monster_spawns_level_edited(self, widget, path, text):
-        pass  # todo
+        try:
+            int(text)
+        except:
+            return
+        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+        store[path][3] = text
+        self._save_monster_spawn_rates()
 
     def on_monster_spawns_add_clicked(self, *args):
-        pass  # todo
+        store: Gtk.ListStore = self.builder.get_object('monster_spawns_store')
+        store.append([
+            1, self._get_icon(1, len(store)), self._ent_names[1],
+            "1", "0.00", self._new_adjustment(0)
+        ])
+        self._save_monster_spawn_rates()
 
     def on_monster_spawns_remove_clicked(self, *args):
-        pass  # todo
+        tree: Gtk.TreeView = self.builder.get_object('monster_spawns_tree')
+        model, treeiter = tree.get_selection().get_selected()
+        if model is not None and treeiter is not None:
+            model.remove(treeiter)
+        self._save_monster_spawn_rates()
+
+    def on_kecleon_level_entry_changed(self, w: Gtk.Entry, *args):
+        try:
+            level = int(w.get_text())
+        except:
+            return
+        for i, monster in enumerate(self.entry.monsters):
+            if monster.md_index == KECLEON_MD_INDEX:
+                monster.level = level
+                break
+        self.mark_as_modified()
 
     # </editor-fold>
 
@@ -524,8 +610,140 @@ class FloorController(AbstractController):
                 val_key = w_name[len(SCALE):]
                 self._set_scale(w_name, getattr(self.entry.layout, val_key))
 
+    def _init_monster_spawns(self):
+        self._init_monster_completion_store()
+        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+        # Add existing Pokémon
+        chances = self._calculate_chances([x.weight for x in self.entry.monsters])
+        for i, monster in enumerate(self.entry.monsters):
+            chance = float(chances[i] * 100)
+            if monster.md_index == KECLEON_MD_INDEX:
+                self.builder.get_object('kecleon_level_entry').set_text(str(monster.level))
+                continue
+            if monster.md_index == DUMMY_MD_INDEX:
+                continue
+            store.append([
+                monster.md_index, self._get_icon(monster.md_index, i), self._ent_names[monster.md_index],
+                str(monster.level), str(chance), self._new_adjustment(chance)
+            ])
+
+    def _init_monster_completion_store(self):
+        monster_md = self.module.get_monster_md()
+        monster_store: Gtk.ListStore = self.builder.get_object('completion_monsters_store')
+        for idx, entry in enumerate(monster_md.entries[0:DUMMY_MD_INDEX]):
+            if idx == 0:
+                continue
+            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, entry.md_index_base)
+            self._ent_names[idx] = f'{name} (#{idx:03})'
+            monster_store.append([self._ent_names[idx]])
+
+    def _calculate_chances(self, list_of_weights: List[int]) -> List[Decimal]:
+        chances = []
+        for i in range(0, len(list_of_weights)):
+            lower_bound = 0
+            higher_bound = list_of_weights[i]
+            if higher_bound == 0:
+                chances.append(Decimal(0))
+                continue
+            if i > 0:
+                j = i
+                while lower_bound == 0:
+                    if j < 0:
+                        raise ValueError("No previous valid value found while trying to calculate chances.")
+                    lower_bound = list_of_weights[j - 1]
+                    j -= 1
+            chances.append(Decimal(higher_bound - lower_bound) / Decimal(10000))
+        return chances
+
+    def _recalculate_monster_spawn_total_chances(self) -> bool:
+        store: Gtk.ListStore = self.builder.get_object('monster_spawns_store')
+        sum_of_all = Decimal(0)
+        for row in store:
+            chance = Decimal(row[4]).quantize(Decimal('.01'), rounding=ROUND_DOWN)
+            sum_of_all += chance
+
+        lbl: Gtk.Label = self.builder.get_object('monster_spawns_chance_label')
+        lbl.set_text(f'Chances ({sum_of_all}%)')
+        style_context: Gtk.StyleContext = lbl.get_style_context()
+        if sum_of_all != 100:
+            if not style_context.has_class(CSS_HEADER_COLOR):
+                style_context.add_class(CSS_HEADER_COLOR)
+        else:
+            if style_context.has_class(CSS_HEADER_COLOR):
+                style_context.remove_class(CSS_HEADER_COLOR)
+
+        return sum_of_all == 100
+
+    # TODO: Generalize this with the base classs for lists
+    def _get_icon(self, entid, idx):
+        was_loading = self._loading
+        sprite, x, y, w, h = self._sprite_provider.get_monster(entid, 0,
+                                                               lambda: GLib.idle_add(
+                                                                   partial(self._reload_icon, entid, idx, was_loading)
+                                                               ))
+        target = entid
+        data = bytes(sprite.get_data())
+        # this is painful.
+        new_data = bytearray()
+        for b, g, r, a in grouper(data, 4):
+            new_data += bytes([r, g, b, a])
+        return GdkPixbuf.Pixbuf.new_from_data(
+            new_data, GdkPixbuf.Colorspace.RGB, True, 8, w, h, sprite.get_stride()
+        )
+
+    def _reload_icon(self, entid, idx, was_loading):
+        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+        if not self._loading and not was_loading:
+            row = store[idx]
+            row[1] = self._get_icon(entid, idx)
+            return
+        if self._refresh_timer is not None:
+            GLib.source_remove(self._refresh_timer)
+        self._refresh_timer = GLib.timeout_add_seconds(0.5, self._reload_icons_in_tree)
+
+    def _reload_icons_in_tree(self):
+        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+        self._loading = True
+        for i, entry in enumerate(store):
+            entry[1] = self._get_icon(entry[0], i)
+        self._loading = False
+        self._refresh_timer = None
+
+    def _save_monster_spawn_rates(self):
+        store: Gtk.ListStore = self.builder.get_object('monster_spawns_store')
+        original_kecleon_level = 0
+        for monster in self.entry.monsters:
+            if monster.md_index == KECLEON_MD_INDEX:
+                original_kecleon_level = monster.level
+                break
+        self.entry.monsters = []
+        rows = []
+        for row in store:
+            rows.append(row[:])
+        rows.append([KECLEON_MD_INDEX, None, None, str(original_kecleon_level), "0", None])
+        rows.append([DUMMY_MD_INDEX, None, None, "1", "0", None])
+        rows.sort(key=lambda e: e[0])
+
+        sum_of_chances = sum((Decimal(row[4]) for row in rows))
+        max_weight = int(sum_of_chances * 100)
+
+        last_weight = 0
+        for i, row in enumerate(rows):
+            weight = 0
+            chance = row[4]
+            if chance != "0":
+                weight = last_weight + round(Decimal(chance) / 100 * max_weight)
+                last_weight = weight
+            self.entry.monsters.append(MappaMonster(
+                md_index=row[0],
+                level=int(row[3]),
+                weight=weight,
+                weight2=weight
+            ))
+        self.mark_as_modified()
+
     def mark_as_modified(self):
-        if not self._is_loading:
+        if not self._loading:
             self.module.mark_floor_as_modified(self.item)
 
     def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum]):
@@ -640,3 +858,13 @@ class FloorController(AbstractController):
         attr_name = w_name[len(SCALE):]
         val = int(w.get_value())
         setattr(obj, attr_name, val)
+
+    def _new_adjustment(self, chance):
+        return Gtk.Adjustment.new(
+            chance, 0, 100, 1, 0, 0
+        )
+
+
+def grouper(iterable, n, fillvalue=None):
+    args = [iter(iterable)] * n
+    return ((bytes(bytearray(x))) for x in zip_longest(fillvalue=fillvalue, *args))
