@@ -31,6 +31,7 @@ from skytemple.module.dungeon.controller.floor import FloorController
 from skytemple.module.dungeon.controller.group import GroupController
 from skytemple.module.dungeon.controller.main import MainController, DUNGEONS_NAME
 from skytemple_files.common.types.file_types import FileType
+from skytemple_files.data.md.model import Md
 from skytemple_files.dungeon_data.mappa_bin.floor import MappaFloor
 from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
 from skytemple_files.dungeon_data.mappa_g_bin.mappa_converter import convert_mappa_to_mappag
@@ -257,3 +258,6 @@ class DungeonModule(AbstractModule):
         if idx == DOJO_DUNGEONS_LAST:
             return 0x30
         return self.get_dungeon_list()[idx].number_floors
+
+    def get_monster_md(self) -> Md:
+        return self.project.get_module('monster').monster_md

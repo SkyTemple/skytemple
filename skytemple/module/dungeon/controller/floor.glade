@@ -2,6 +2,11 @@
 <!-- Generated with glade 3.36.0 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
+  <object class="GtkAdjustment" id="adjustment1">
+    <property name="upper">100</property>
+    <property name="value">0.25000000000000000000</property>
+    <property name="step_increment">0.01000000000000000021</property>
+  </object>
   <object class="GtkAdjustment" id="adjustment_empty_monster_house_change">
     <property name="upper">100</property>
     <property name="page_increment">10</property>
@@ -162,11 +167,11 @@
   </object>
   <object class="GtkEntryCompletion" id="completion_monsters">
     <property name="model">completion_monsters_store</property>
-    <property name="text_column">1</property>
+    <property name="text_column">0</property>
     <child>
       <object class="GtkCellRendererText"/>
       <attributes>
-        <attribute name="text">1</attribute>
+        <attribute name="text">0</attribute>
       </attributes>
     </child>
   </object>
@@ -295,6 +300,11 @@
       <!-- column-name chance_adjustment -->
       <column type="GtkAdjustment"/>
     </columns>
+  </object>
+  <object class="GtkLabel" id="monster_spawns_chance_label">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="label" translatable="yes">Chance</property>
   </object>
   <object class="GtkListStore" id="monster_spawns_store">
     <columns>
@@ -1569,6 +1579,7 @@
               <object class="GtkComboBox" id="cb_dead_ends">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <signal name="changed" handler="on_cb_dead_ends_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">4</property>
@@ -1922,8 +1933,11 @@
                         <child>
                           <object class="GtkTreeViewColumn">
                             <property name="title" translatable="yes">Chance</property>
+                            <property name="widget">monster_spawns_chance_label</property>
                             <child>
                               <object class="GtkCellRendererSpin" id="cr_monster_spawns_chance">
+                                <property name="editable">True</property>
+                                <property name="digits">2</property>
                                 <signal name="edited" handler="on_cr_monster_spawns_chance_edited" swapped="no"/>
                               </object>
                               <attributes>
@@ -1938,6 +1952,7 @@
                             <property name="title" translatable="yes">Level</property>
                             <child>
                               <object class="GtkCellRendererText" id="cr_monster_spawns_level">
+                                <property name="editable">True</property>
                                 <signal name="edited" handler="on_cr_monster_spawns_level_edited" swapped="no"/>
                               </object>
                               <attributes>
@@ -1952,15 +1967,27 @@
                   <packing>
                     <property name="expand">True</property>
                     <property name="fill">True</property>
-                    <property name="position">0</property>
+                    <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="halign">end</property>
                     <property name="spacing">10</property>
+                    <child>
+                      <object class="GtkEntry" id="kecleon_level_entry">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="width_chars">4</property>
+                        <signal name="changed" handler="on_kecleon_level_entry_changed" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
                     <child>
                       <object class="GtkButton" id="monster_spawns_add">
                         <property name="visible">True</property>
@@ -1978,6 +2005,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
+                        <property name="pack_type">end</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
@@ -1998,14 +2026,27 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
+                        <property name="pack_type">end</property>
                         <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Kecleon Level </property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">1</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
               </object>
