@@ -305,6 +305,10 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="label" translatable="yes">Chance</property>
+    <attributes>
+      <attribute name="style" value="italic"/>
+      <attribute name="weight" value="thin"/>
+    </attributes>
   </object>
   <object class="GtkListStore" id="monster_spawns_store">
     <columns>
@@ -318,8 +322,8 @@
       <column type="gchararray"/>
       <!-- column-name chance -->
       <column type="gchararray"/>
-      <!-- column-name chance_adjustment -->
-      <column type="GtkAdjustment"/>
+      <!-- column-name weight -->
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkListStore" id="trap_spawns_store">
@@ -330,9 +334,18 @@
       <column type="gchararray"/>
       <!-- column-name chance -->
       <column type="gchararray"/>
-      <!-- column-name chance_adjustment -->
-      <column type="GtkAdjustment"/>
+      <!-- column-name weight -->
+      <column type="gchararray"/>
     </columns>
+  </object>
+  <object class="GtkLabel" id="trap_spawns_tree_chance_label">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="label" translatable="yes">Chance</property>
+    <attributes>
+      <attribute name="style" value="italic"/>
+      <attribute name="weight" value="thin"/>
+    </attributes>
   </object>
   <object class="GtkBox" id="box_editor">
     <property name="visible">True</property>
@@ -1932,23 +1945,6 @@
                         </child>
                         <child>
                           <object class="GtkTreeViewColumn">
-                            <property name="title" translatable="yes">Chance</property>
-                            <property name="widget">monster_spawns_chance_label</property>
-                            <child>
-                              <object class="GtkCellRendererSpin" id="cr_monster_spawns_chance">
-                                <property name="editable">True</property>
-                                <property name="digits">2</property>
-                                <signal name="edited" handler="on_cr_monster_spawns_chance_edited" swapped="no"/>
-                              </object>
-                              <attributes>
-                                <attribute name="text">4</attribute>
-                                <attribute name="adjustment">5</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkTreeViewColumn">
                             <property name="title" translatable="yes">Level</property>
                             <child>
                               <object class="GtkCellRendererText" id="cr_monster_spawns_level">
@@ -1957,6 +1953,32 @@
                               </object>
                               <attributes>
                                 <attribute name="text">3</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="title" translatable="yes">Weight</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cr_monster_spawns_weight">
+                                <property name="editable">True</property>
+                                <signal name="edited" handler="on_cr_monster_spawns_weight_edited" swapped="no"/>
+                              </object>
+                              <attributes>
+                                <attribute name="text">5</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="title" translatable="yes">Chance</property>
+                            <property name="widget">monster_spawns_chance_label</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cr_monster_spawns_chance"/>
+                              <attributes>
+                                <attribute name="text">4</attribute>
                               </attributes>
                             </child>
                           </object>
@@ -1976,6 +1998,65 @@
                     <property name="can_focus">False</property>
                     <property name="spacing">10</property>
                     <child>
+                      <object class="GtkButton" id="btn_help_monster_spawn_table">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="margin_end">10</property>
+                        <signal name="clicked" handler="on_btn_help__spawn_tables__clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="spacing">5</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="icon_name">help-about-symbolic</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Help</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Kecleon Level </property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="GtkEntry" id="kecleon_level_entry">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -1985,7 +2066,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                     <child>
@@ -2006,7 +2087,7 @@
                         <property name="expand">False</property>
                         <property name="fill">True</property>
                         <property name="pack_type">end</property>
-                        <property name="position">0</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                     <child>
@@ -2027,19 +2108,7 @@
                         <property name="expand">False</property>
                         <property name="fill">True</property>
                         <property name="pack_type">end</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Kecleon Level </property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
+                        <property name="position">4</property>
                       </packing>
                     </child>
                   </object>
@@ -2098,16 +2167,7 @@
                             <property name="resizable">True</property>
                             <property name="title" translatable="yes">Trap</property>
                             <child>
-                              <object class="GtkCellRendererPixbuf"/>
-                              <attributes>
-                                <attribute name="pixbuf">1</attribute>
-                              </attributes>
-                            </child>
-                            <child>
-                              <object class="GtkCellRendererText" id="cr_trap_spawns_trap">
-                                <property name="editable">True</property>
-                                <signal name="edited" handler="on_cr_trap_spawns_trap_edited" swapped="no"/>
-                              </object>
+                              <object class="GtkCellRendererText" id="cr_trap_spawns_trap"/>
                               <attributes>
                                 <attribute name="text">1</attribute>
                               </attributes>
@@ -2116,14 +2176,26 @@
                         </child>
                         <child>
                           <object class="GtkTreeViewColumn">
-                            <property name="title" translatable="yes">Chance</property>
+                            <property name="title" translatable="yes">Weight</property>
                             <child>
-                              <object class="GtkCellRendererSpin" id="cr_trap_spawns_chance">
-                                <signal name="edited" handler="on_cr_trap_spawns_chance_edited" swapped="no"/>
+                              <object class="GtkCellRendererText" id="cr_trap_spawns_weight">
+                                <property name="editable">True</property>
+                                <signal name="edited" handler="on_cr_trap_spawns_weight_edited" swapped="no"/>
                               </object>
                               <attributes>
+                                <attribute name="text">3</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="title" translatable="yes">Chance</property>
+                            <property name="widget">trap_spawns_tree_chance_label</property>
+                            <child>
+                              <object class="GtkCellRendererText"/>
+                              <attributes>
                                 <attribute name="text">2</attribute>
-                                <attribute name="adjustment">3</attribute>
                               </attributes>
                             </child>
                           </object>
@@ -2135,6 +2207,65 @@
                     <property name="expand">True</property>
                     <property name="fill">True</property>
                     <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkButton" id="btn_help_trap_spawn_table">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="margin_right">10</property>
+                        <property name="margin_end">10</property>
+                        <signal name="clicked" handler="on_btn_help__spawn_tables__clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="spacing">5</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="icon_name">help-about-symbolic</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">Help</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
                   </packing>
                 </child>
               </object>

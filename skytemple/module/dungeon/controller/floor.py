@@ -15,10 +15,10 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import re
-from decimal import Decimal, ROUND_DOWN
 from enum import Enum
-from functools import partial
+from functools import partial, reduce
 from itertools import zip_longest
+from math import gcd
 from typing import TYPE_CHECKING, List, Type
 
 from gi.repository import Gtk, GLib, GdkPixbuf
@@ -26,9 +26,11 @@ from gi.repository import Gtk, GLib, GdkPixbuf
 from skytemple.core.error_handler import display_error
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple_files.common.util import lcm
 from skytemple_files.dungeon_data.mappa_bin.floor_layout import MappaFloorStructureType, MappaFloorSecondaryTerrainType, \
     MappaFloorDarknessLevel, MappaFloorWeather
 from skytemple_files.dungeon_data.mappa_bin.monster import DUMMY_MD_INDEX, MappaMonster
+from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType, MappaTrapList
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, FloorViewInfo
@@ -71,7 +73,10 @@ class FloorController(AbstractController):
         self._init_layout_stores()
 
         self._init_monster_spawns()
-        self._recalculate_monster_spawn_total_chances()
+        self._recalculate_spawn_chances('monster_spawns_store', 5, 4)
+
+        self._init_trap_spawns()
+        self._recalculate_spawn_chances('trap_spawns_store', 3, 2)
 
         self._init_layout_values()
         self._loading = False
@@ -299,19 +304,16 @@ class FloorController(AbstractController):
     def on_cr_monster_spawns_entity_editing_started(self, renderer, editable, path):
         editable.set_completion(self.builder.get_object('completion_monsters'))
 
-    def on_cr_monster_spawns_chance_edited(self, widget, path, text):
-        # Dirty fix for places where the decimal separator is ,
-        text = text.replace(',', '.')
+    def on_cr_monster_spawns_weight_edited(self, widget, path, text):
         try:
-            float(text)
+            v = int(text)
+            assert v >= 0
         except:
             return
         store: Gtk.Store = self.builder.get_object('monster_spawns_store')
-        store[path][4] = text
+        store[path][5] = text
 
-        # Collect the total values of all chances and change the header
-        self._recalculate_monster_spawn_total_chances()
-
+        self._recalculate_spawn_chances('monster_spawns_store', 5, 4)
         self._save_monster_spawn_rates()
 
     def on_cr_monster_spawns_level_edited(self, widget, path, text):
@@ -327,7 +329,7 @@ class FloorController(AbstractController):
         store: Gtk.ListStore = self.builder.get_object('monster_spawns_store')
         store.append([
             1, self._get_icon(1, len(store)), self._ent_names[1],
-            "1", "0.00", self._new_adjustment(0)
+            "1", "0%", "0"
         ])
         self._save_monster_spawn_rates()
 
@@ -353,11 +355,17 @@ class FloorController(AbstractController):
 
     # <editor-fold desc="HANDLERS TRAPS" defaultstate="collapsed">
 
-    def on_cr_trap_spawns_trap_edited(self, widget, path, text):
-        pass  # todo
+    def on_cr_trap_spawns_weight_edited(self, widget, path, text):
+        try:
+            v = int(text)
+            assert v >= 0
+        except:
+            return
+        store: Gtk.Store = self.builder.get_object('trap_spawns_store')
+        store[path][3] = text
 
-    def on_cr_trap_spawns_chance_edited(self, widget, path, text):
-        pass  # todo
+        self._recalculate_spawn_chances('trap_spawns_store', 3, 2)
+        self._save_trap_spawn_rates()
 
     # </editor-fold>
 
@@ -524,6 +532,9 @@ class FloorController(AbstractController):
 
     # </editor-fold>
 
+    def on_btn_help__spawn_tables__clicked(self, *args):
+        pass  # todo
+
     def _init_labels(self):
         dungeon_name = self._string_provider.get_value(StringType.DUNGEON_NAMES_MAIN, self.item.dungeon.dungeon_id)
         self.builder.get_object(f'label_dungeon_name').set_text(
@@ -614,9 +625,11 @@ class FloorController(AbstractController):
         self._init_monster_completion_store()
         store: Gtk.Store = self.builder.get_object('monster_spawns_store')
         # Add existing Pokémon
-        chances = self._calculate_chances([x.weight for x in self.entry.monsters])
+        relative_weights = self._calculate_relative_weights([x.weight for x in self.entry.monsters])
+        sum_of_all_weights = sum(relative_weights)
         for i, monster in enumerate(self.entry.monsters):
-            chance = float(chances[i] * 100)
+            relative_weight = relative_weights[i]
+            chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
             if monster.md_index == KECLEON_MD_INDEX:
                 self.builder.get_object('kecleon_level_entry').set_text(str(monster.level))
                 continue
@@ -624,7 +637,7 @@ class FloorController(AbstractController):
                 continue
             store.append([
                 monster.md_index, self._get_icon(monster.md_index, i), self._ent_names[monster.md_index],
-                str(monster.level), str(chance), self._new_adjustment(chance)
+                str(monster.level), chance, str(relative_weight)
             ])
 
     def _init_monster_completion_store(self):
@@ -637,42 +650,45 @@ class FloorController(AbstractController):
             self._ent_names[idx] = f'{name} (#{idx:03})'
             monster_store.append([self._ent_names[idx]])
 
-    def _calculate_chances(self, list_of_weights: List[int]) -> List[Decimal]:
-        chances = []
+    def _init_trap_spawns(self):
+        store: Gtk.Store = self.builder.get_object('trap_spawns_store')
+        # Add all traps
+        relative_weights = self._calculate_relative_weights([x for x in self.entry.traps.weights.values()])
+        sum_of_all_weights = sum(relative_weights)
+        for i, (trap, weight) in enumerate(self.entry.traps.weights.items()):
+            trap: MappaTrapType
+            relative_weight = relative_weights[i]
+            chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
+            name = ' '.join([x.capitalize() for x in trap.name.split('_')])
+            store.append([
+                trap.value, name, chance, str(relative_weight)
+            ])
+
+    def _calculate_relative_weights(self, list_of_weights: List[int]) -> List[int]:
+        weights = []
         for i in range(0, len(list_of_weights)):
             lower_bound = 0
             higher_bound = list_of_weights[i]
             if higher_bound == 0:
-                chances.append(Decimal(0))
+                weights.append(0)
                 continue
             if i > 0:
                 j = i
-                while lower_bound == 0:
-                    if j < 0:
-                        raise ValueError("No previous valid value found while trying to calculate chances.")
+                while lower_bound == 0 and j >= 0:
                     lower_bound = list_of_weights[j - 1]
                     j -= 1
-            chances.append(Decimal(higher_bound - lower_bound) / Decimal(10000))
-        return chances
+            weights.append(higher_bound - lower_bound)
+        weights_lcm = reduce(gcd, (w for w in weights if w != 0))
+        return [int(w / weights_lcm) for w in weights]
 
-    def _recalculate_monster_spawn_total_chances(self) -> bool:
-        store: Gtk.ListStore = self.builder.get_object('monster_spawns_store')
-        sum_of_all = Decimal(0)
+    def _recalculate_spawn_chances(self, store_name, weight_idx, chance_idx):
+        store: Gtk.ListStore = self.builder.get_object(store_name)
+        sum_of_all_weights = sum(int(row[weight_idx]) for row in store)
         for row in store:
-            chance = Decimal(row[4]).quantize(Decimal('.01'), rounding=ROUND_DOWN)
-            sum_of_all += chance
-
-        lbl: Gtk.Label = self.builder.get_object('monster_spawns_chance_label')
-        lbl.set_text(f'Chances ({sum_of_all}%)')
-        style_context: Gtk.StyleContext = lbl.get_style_context()
-        if sum_of_all != 100:
-            if not style_context.has_class(CSS_HEADER_COLOR):
-                style_context.add_class(CSS_HEADER_COLOR)
-        else:
-            if style_context.has_class(CSS_HEADER_COLOR):
-                style_context.remove_class(CSS_HEADER_COLOR)
-
-        return sum_of_all == 100
+            if sum_of_all_weights == 0:
+                row[chance_idx] = '0.000%'
+            else:
+                row[chance_idx] = f'{int(row[weight_idx]) / sum_of_all_weights * 100:.3f}%'
 
     # TODO: Generalize this with the base classs for lists
     def _get_icon(self, entid, idx):
@@ -720,26 +736,53 @@ class FloorController(AbstractController):
         rows = []
         for row in store:
             rows.append(row[:])
-        rows.append([KECLEON_MD_INDEX, None, None, str(original_kecleon_level), "0", None])
-        rows.append([DUMMY_MD_INDEX, None, None, "1", "0", None])
+        rows.append([KECLEON_MD_INDEX, None, None, str(original_kecleon_level), None, "0"])
+        rows.append([DUMMY_MD_INDEX, None, None, "1", None, "0"])
         rows.sort(key=lambda e: e[0])
 
-        sum_of_chances = sum((Decimal(row[4]) for row in rows))
-        max_weight = int(sum_of_chances * 100)
+        sum_of_weights = sum((int(row[5]) for row in rows))
 
         last_weight = 0
+        last_weight_set_idx = 0
         for i, row in enumerate(rows):
             weight = 0
-            chance = row[4]
-            if chance != "0":
-                weight = last_weight + round(Decimal(chance) / 100 * max_weight)
+            if row[5] != "0":
+                weight = last_weight + int(10000 * (int(row[5]) / sum_of_weights))
                 last_weight = weight
+                last_weight_set_idx = i
             self.entry.monsters.append(MappaMonster(
                 md_index=row[0],
                 level=int(row[3]),
                 weight=weight,
                 weight2=weight
             ))
+        if last_weight != 0 and last_weight != 10000:
+            # We did not sum up to exactly 10000, so the values we entered are not evenly
+            # divisible. Find the last non-zero we set and set it to 10000.
+            self.entry.monsters[last_weight_set_idx].weight = 10000
+            self.entry.monsters[last_weight_set_idx].weight2 = 10000
+        self.mark_as_modified()
+
+    def _save_trap_spawn_rates(self):
+        store: Gtk.ListStore = self.builder.get_object('trap_spawns_store')
+
+        sum_of_weights = sum((int(row[3]) for row in store))
+
+        last_weight = 0
+        last_weight_set_idx = 0
+        weights = []
+        for i, row in enumerate(store):
+            weight = 0
+            if row[3] != "0":
+                weight = last_weight + int(10000 * (int(row[3]) / sum_of_weights))
+                last_weight = weight
+                last_weight_set_idx = i
+            weights.append(weight)
+        if last_weight != 0 and last_weight != 10000:
+            # We did not sum up to exactly 10000, so the values we entered are not evenly
+            # divisible. Find the last non-zero we set and set it to 10000.
+            weights[last_weight_set_idx] = 10000
+        self.entry.traps = MappaTrapList(weights)
         self.mark_as_modified()
 
     def mark_as_modified(self):
@@ -858,11 +901,6 @@ class FloorController(AbstractController):
         attr_name = w_name[len(SCALE):]
         val = int(w.get_value())
         setattr(obj, attr_name, val)
-
-    def _new_adjustment(self, chance):
-        return Gtk.Adjustment.new(
-            chance, 0, 100, 1, 0, 0
-        )
 
 
 def grouper(iterable, n, fillvalue=None):
