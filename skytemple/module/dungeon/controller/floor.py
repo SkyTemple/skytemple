@@ -19,16 +19,20 @@ from enum import Enum
 from functools import partial, reduce
 from itertools import zip_longest
 from math import gcd
-from typing import TYPE_CHECKING, List, Type
+from typing import TYPE_CHECKING, List, Type, Dict
 
 from gi.repository import Gtk, GLib, GdkPixbuf
 
+from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem
 from skytemple_files.common.util import lcm
 from skytemple_files.dungeon_data.mappa_bin.floor_layout import MappaFloorStructureType, MappaFloorSecondaryTerrainType, \
     MappaFloorDarknessLevel, MappaFloorWeather
+from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList, Probability, GUARANTEED, MappaItemCategory, \
+    MAX_ITEM_ID
 from skytemple_files.dungeon_data.mappa_bin.monster import DUMMY_MD_INDEX, MappaMonster
 from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType, MappaTrapList
 
@@ -47,10 +51,42 @@ ENTRY_TERRAIN_SETTINGS = 'entry_terrain_settings__'
 SCALE = 'scale_'
 PATTERN_MD_ENTRY = re.compile(r'.*\(#(\d+)\).*')
 CSS_HEADER_COLOR = 'dungeon_editor_column_header_invalid'
+VALID_ITEM_CATEGORY_NAMES = {
+    MappaItemCategory.THROWN_PIERCE: 'Thrown - Pierce',
+    MappaItemCategory.THROWN_ROCK: 'Thrown - Rock',
+    MappaItemCategory.BERRIES_SEEDS_VITAMINS: 'Berries, Seeds, Vitamins',
+    MappaItemCategory.FOODS_GUMMIES: 'Foods, Gummies',
+    MappaItemCategory.HOLD: 'Hold',
+    MappaItemCategory.TMS: 'TMs, HMs',
+    MappaItemCategory.POKE: 'Poké (Money)',
+    MappaItemCategory.OTHER: 'Other',
+    MappaItemCategory.ORBS: 'Orbs',
+    MappaItemCategory.LINK_BOX: 'Link Box'
+}
+CATEGORIES_FOR_STORES = {
+    'item_cat_thrown_pierce_store': MappaItemCategory.THROWN_PIERCE,
+    'item_cat_thrown_rock_store': MappaItemCategory.THROWN_ROCK,
+    'item_cat_berries_store': MappaItemCategory.BERRIES_SEEDS_VITAMINS,
+    'item_cat_foods_store': MappaItemCategory.FOODS_GUMMIES,
+    'item_cat_hold_store': MappaItemCategory.HOLD,
+    'item_cat_tms_store': MappaItemCategory.TMS,
+    'item_cat_orbs_store': MappaItemCategory.ORBS,
+    'item_cat_others_store': MappaItemCategory.OTHER
+}
+
+
+class FloorEditItemList(Enum):
+    FLOOR = 0
+    SHOP = 1
+    MONSTER_HOUSE = 2
+    BURIED = 3
+    UNK1 = 4
+    UNK2 = 5
 
 
 class FloorController(AbstractController):
     _last_open_tab_id = 0
+    _last_open_tab_item_lists = FloorEditItemList.FLOOR
 
     def __init__(self, module: 'DungeonModule', item: 'FloorViewInfo'):
         self.module = module
@@ -63,7 +99,10 @@ class FloorController(AbstractController):
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
 
+        self._item_list_edit_active = self.__class__._last_open_tab_item_lists
+
         self._ent_names = {}
+        self._item_names = {}
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'floor.glade')
@@ -78,6 +117,17 @@ class FloorController(AbstractController):
         self._init_trap_spawns()
         self._recalculate_spawn_chances('trap_spawns_store', 3, 2)
 
+        self._init_item_spawns()
+        self._recalculate_spawn_chances('item_categories_store', 4, 3)
+        self._recalculate_spawn_chances('item_cat_thrown_pierce_store', 4, 3)
+        self._recalculate_spawn_chances('item_cat_thrown_rock_store', 4, 3)
+        self._recalculate_spawn_chances('item_cat_berries_store', 4, 3)
+        self._recalculate_spawn_chances('item_cat_foods_store', 4, 3)
+        self._recalculate_spawn_chances('item_cat_hold_store', 4, 3)
+        self._recalculate_spawn_chances('item_cat_tms_store', 4, 3)
+        self._recalculate_spawn_chances('item_cat_orbs_store', 4, 3)
+        self._recalculate_spawn_chances('item_cat_others_store', 4, 3)
+
         self._init_layout_values()
         self._loading = False
 
@@ -86,6 +136,9 @@ class FloorController(AbstractController):
 
         notebook: Gtk.Notebook = self.builder.get_object('floor_notebook')
         notebook.set_current_page(self.__class__._last_open_tab_id)
+
+        item_list_notebook: Gtk.Notebook = self.builder.get_object('item_list_notebook')
+        item_list_notebook.set_current_page(self._item_list_edit_active.value)
 
         self.builder.get_object('layout_grid').check_resize()
         return self.builder.get_object('box_editor')
@@ -371,169 +424,316 @@ class FloorController(AbstractController):
 
     # <editor-fold desc="ITEM HANDLERS" defaultstate="collapsed">
 
-    def on_cr_items_cat_name_changed(self, widget, path, new_iter):
-        pass  # todo
+    def on_cr_items_cat_weight_edited(self, widget, path, text):
+        try:
+            v = int(text)
+            assert v >= 0
+        except:
+            return
+        store: Gtk.Store = self.builder.get_object('item_categories_store')
+        store[path][4] = text
 
-    def on_cr_items_cat_guaranteed_toggled(self, widget, path):
-        pass  # todo
-
-    def on_cr_items_cat_chance_edited(self, widget, path, text):
-        pass  # todo
+        self._recalculate_spawn_chances('item_categories_store', 4, 3)
+        self._save_item_spawn_rates()
 
     def on_item_categories_add_clicked(self, *args):
-        pass  # todo
+        store: Gtk.Store = self.builder.get_object('item_categories_store')
+        dialog: Gtk.Dialog = self.builder.get_object('dialog_category_add')
+        dialog.set_attached_to(MainController.window())
+        dialog.set_transient_for(MainController.window())
+
+        # Init available categories
+        available_categories = [
+            cat for cat in VALID_ITEM_CATEGORY_NAMES.keys()
+            if cat not in self.get_current_item_list().categories.keys()
+        ]
+        # Show error if no categories available
+        if len(available_categories) < 1:
+            display_error(
+                None,
+                'All categories are already in the list.',
+                'Can not add category'
+            )
+            return
+        # Init combobox
+        cb: Gtk.ComboBoxText = self.builder.get_object('category_add_cb')
+        cb_store: Gtk.ListStore = self.builder.get_object('category_add_store')
+        cb_store.clear()
+        for cat in available_categories:
+            cb_store.append([cat.value, VALID_ITEM_CATEGORY_NAMES[cat]])
+        cb.set_active_iter(cb_store.get_iter_first())
+
+        resp = dialog.run()
+        dialog.hide()
+        if resp == Gtk.ResponseType.APPLY:
+            row = cb_store[cb.get_active_iter()]
+            store.append([
+                row[0], row[1],
+                False, "0%", "0"
+            ])
+            self._save_item_spawn_rates()
 
     def on_item_categories_remove_clicked(self, *args):
-        pass  # todo
+        tree: Gtk.TreeView = self.builder.get_object('item_categories_tree')
+        model, treeiter = tree.get_selection().get_selected()
+        if len(model) < 2:
+            display_error(
+                None,
+                "The last category can not be removed.",
+                "Can't remove category."
+            )
+            return
+        if model is not None and treeiter is not None:
+            model.remove(treeiter)
+        self._save_item_spawn_rates()
 
     def on_cr_items_cat_thrown_pierce_item_name_edited(self, widget, path, text):
-        pass  # todo
+        self._on_cat_item_name_changed('item_cat_thrown_pierce_store', path, text)
 
     def on_cr_items_cat_thrown_pierce_item_name_editing_started(self, renderer, editable, path):
-        pass  # todo
+        editable.set_completion(self.builder.get_object('completion_item_thrown_pierce'))
 
     def on_cr_items_cat_thrown_pierce_guaranteed_toggled(self, widget, path):
-        pass  # todo
+        self._on_cat_item_guaranteed_toggled('item_cat_thrown_pierce_store', path, widget.get_active())
 
-    def on_cr_items_cat_thrown_pierce_chance_edited(self, widget, path, text):
-        pass  # todo
+    def on_cr_items_cat_thrown_pierce_weight_edited(self, widget, path, text):
+        self._on_cat_item_weight_changed('item_cat_thrown_pierce_store', path, text)
 
     def on_item_cat_thrown_pierce_add_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_add_clicked('item_cat_thrown_pierce_store')
 
     def on_item_cat_thrown_pierce_remove_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_remove_clicked('item_cat_thrown_pierce_tree')
 
     def on_cr_items_cat_thrown_rock_item_name_edited(self, widget, path, text):
-        pass  # todo
+        self._on_cat_item_name_changed('item_cat_thrown_rock_store', path, text)
 
     def on_cr_items_cat_thrown_rock_item_name_editing_started(self, renderer, editable, path):
-        pass  # todo
+        editable.set_completion(self.builder.get_object('completion_item_thrown_rock'))
 
     def on_cr_items_cat_thrown_rock_guaranteed_toggled(self, widget, path):
-        pass  # todo
+        self._on_cat_item_guaranteed_toggled('item_cat_thrown_rock_store', path, widget.get_active())
 
-    def on_cr_items_cat_thrown_rock_chance_edited(self, widget, path, text):
-        pass  # todo
+    def on_cr_items_cat_thrown_rock_weight_edited(self, widget, path, text):
+        self._on_cat_item_weight_changed('item_cat_thrown_rock_store', path, text)
 
     def on_item_cat_thrown_rock_add_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_add_clicked('item_cat_thrown_rock_store')
 
     def on_item_cat_thrown_rock_remove_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_remove_clicked('item_cat_thrown_rock_tree')
 
     def on_cr_items_cat_berries_item_name_edited(self, widget, path, text):
-        pass  # todo
+        self._on_cat_item_name_changed('item_cat_berries_store', path, text)
 
     def on_cr_items_cat_berries_item_name_editing_started(self, renderer, editable, path):
-        pass  # todo
+        editable.set_completion(self.builder.get_object('completion_item_berries'))
 
-    def on_cr_items_berries_rock_guaranteed_toggled(self, widget, path):
-        pass  # todo
+    def on_cr_items_cat_berries_guaranteed_toggled(self, widget, path):
+        self._on_cat_item_guaranteed_toggled('item_cat_berries_store', path, widget.get_active())
 
-    def on_cr_items_cat_berries_chance_edited(self, widget, path, text):
-        pass  # todo
+    def on_cr_items_cat_berries_weight_edited(self, widget, path, text):
+        self._on_cat_item_weight_changed('item_cat_berries_store', path, text)
 
     def on_item_cat_berries_add_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_add_clicked('item_cat_berries_store')
 
     def on_item_cat_berries_remove_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_remove_clicked('item_cat_berries_tree')
 
     def on_cr_items_cat_foods_item_name_edited(self, widget, path, text):
-        pass  # todo
+        self._on_cat_item_name_changed('item_cat_foods_store', path, text)
 
     def on_cr_items_cat_foods_item_name_editing_started(self, renderer, editable, path):
-        pass  # todo
+        editable.set_completion(self.builder.get_object('completion_item_foods'))
 
     def on_cr_items_cat_foods_guaranteed_toggled(self, widget, path):
-        pass  # todo
+        self._on_cat_item_guaranteed_toggled('item_cat_foods_store', path, widget.get_active())
 
-    def on_cr_items_cat_foods_chance_edited(self, widget, path, text):
-        pass  # todo
+    def on_cr_items_cat_foods_weight_edited(self, widget, path, text):
+        self._on_cat_item_weight_changed('item_cat_foods_store', path, text)
 
     def on_item_cat_foods_add_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_add_clicked('item_cat_foods_store')
 
     def on_item_cat_foods_remove_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_remove_clicked('item_cat_foods_tree')
 
     def on_cr_items_cat_hold_item_name_edited(self, widget, path, text):
-        pass  # todo
+        self._on_cat_item_name_changed('item_cat_hold_store', path, text)
 
     def on_cr_items_cat_hold_item_name_editing_started(self, renderer, editable, path):
-        pass  # todo
+        editable.set_completion(self.builder.get_object('completion_item_hold'))
 
     def on_cr_items_cat_hold_guaranteed_toggled(self, widget, path):
-        pass  # todo
+        self._on_cat_item_guaranteed_toggled('item_cat_hold_store', path, widget.get_active())
 
-    def on_cr_items_cat_hold_chance_edited(self, widget, path, text):
-        pass  # todo
+    def on_cr_items_cat_hold_weight_edited(self, widget, path, text):
+        self._on_cat_item_weight_changed('item_cat_hold_store', path, text)
 
     def on_item_cat_hold_add_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_add_clicked('item_cat_hold_store')
 
     def on_item_cat_hold_remove_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_remove_clicked('item_cat_hold_tree')
 
     def on_cr_items_cat_tms_item_name_edited(self, widget, path, text):
-        pass  # todo
+        self._on_cat_item_name_changed('item_cat_tms_store', path, text)
 
     def on_cr_items_cat_tms_item_name_editing_started(self, renderer, editable, path):
-        pass  # todo
+        editable.set_completion(self.builder.get_object('completion_item_tms'))
 
     def on_cr_items_cat_tms_guaranteed_toggled(self, widget, path):
-        pass  # todo
+        self._on_cat_item_guaranteed_toggled('item_cat_tms_store', path, widget.get_active())
 
-    def on_cr_items_cat_tms_chance_edited(self, widget, path, text):
-        pass  # todo
+    def on_cr_items_cat_tms_weight_edited(self, widget, path, text):
+        self._on_cat_item_weight_changed('item_cat_tms_store', path, text)
 
     def on_item_cat_tms_add_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_add_clicked('item_cat_tms_store')
 
     def on_item_cat_tms_remove_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_remove_clicked('item_cat_tms_tree')
 
     def on_cr_items_cat_orbs_item_name_edited(self, widget, path, text):
-        pass  # todo
+        self._on_cat_item_name_changed('item_cat_orbs_store', path, text)
 
     def on_cr_items_cat_orbs_item_name_editing_started(self, renderer, editable, path):
-        pass  # todo
+        editable.set_completion(self.builder.get_object('completion_item_orbs'))
 
     def on_cr_items_cat_orbs_guaranteed_toggled(self, widget, path):
-        pass  # todo
+        self._on_cat_item_guaranteed_toggled('item_cat_orbs_store', path, widget.get_active())
 
-    def on_cr_items_cat_orbs_chance_edited(self, widget, path, text):
-        pass  # todo
+    def on_cr_items_cat_orbs_weight_edited(self, widget, path, text):
+        self._on_cat_item_weight_changed('item_cat_orbs_store', path, text)
 
     def on_item_cat_orbs_add_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_add_clicked('item_cat_orbs_store')
 
     def on_item_cat_orbs_remove_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_remove_clicked('item_cat_orbs_tree')
 
     def on_cr_items_cat_others_item_name_edited(self, widget, path, text):
-        pass  # todo
+        self._on_cat_item_name_changed('item_cat_others_store', path, text)
 
     def on_cr_items_cat_others_item_name_editing_started(self, renderer, editable, path):
-        pass  # todo
+        editable.set_completion(self.builder.get_object('completion_item_others'))
 
     def on_cr_items_cat_others_guaranteed_toggled(self, widget, path):
-        pass  # todo
+        self._on_cat_item_guaranteed_toggled('item_cat_others_store', path, widget.get_active())
 
-    def on_cr_items_cat_others_chance_edited(self, widget, path, text):
-        pass  # todo
+    def on_cr_items_cat_others_weight_edited(self, widget, path, text):
+        self._on_cat_item_weight_changed('item_cat_others_store', path, text)
 
     def on_item_cat_others_add_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_add_clicked('item_cat_others_store')
 
     def on_item_cat_others_remove_clicked(self, *args):
-        pass  # todo
+        self._on_cat_item_remove_clicked('item_cat_others_tree')
+
+    def _on_cat_item_name_changed(self, store_name: str, path, text: str):
+        store: Gtk.Store = self.builder.get_object(store_name)
+        match = PATTERN_MD_ENTRY.match(text)
+        if match is None:
+            return
+
+        item_ids_already_in = []
+        for row in store:
+            item_ids_already_in.append(int(row[0]))
+
+        try:
+            entid = int(match.group(1))
+        except ValueError:
+            return
+
+        if entid not in CATEGORIES_FOR_STORES[store_name].item_ids():
+            display_error(
+                None,
+                'This item does not belong in this category. Please chose another item.',
+                'Invalid item id'
+            )
+            return
+
+        if entid in item_ids_already_in:
+            display_error(
+                None,
+                'This item is already in the list.',
+                'Can not use this item'
+            )
+            return
+
+        store[path][0] = entid
+        store[path][1] = self._item_names[entid]
+        self._save_item_spawn_rates()
+
+    def _on_cat_item_guaranteed_toggled(self, store_name: str, path, old_state: bool):
+        store: Gtk.Store = self.builder.get_object(store_name)
+        store[path][2] = not old_state
+        if not old_state:
+            store[path][4] = "0"
+        self._recalculate_spawn_chances(store_name, 4, 3)
+        self._save_item_spawn_rates()
+
+    def _on_cat_item_weight_changed(self, store_name: str, path, text: str):
+        try:
+            v = int(text)
+            assert v >= 0
+        except:
+            return
+        store: Gtk.Store = self.builder.get_object(store_name)
+        if store[path][2]:
+            return
+        store[path][4] = text
+
+        self._recalculate_spawn_chances(store_name, 4, 3)
+        self._save_item_spawn_rates()
+
+    def _on_cat_item_add_clicked(self, store_name: str):
+        store: Gtk.ListStore = self.builder.get_object(store_name)
+
+        item_ids_already_in = []
+        for row in store:
+            item_ids_already_in.append(int(row[0]))
+
+        i = 0
+        all_item_ids = CATEGORIES_FOR_STORES[store_name].item_ids()
+        while True:
+            first_item_id = all_item_ids[i]
+            if first_item_id not in item_ids_already_in:
+                break
+            i += 1
+            if i >= len(all_item_ids):
+                display_error(
+                    None,
+                    'All items are already in the list',
+                    'Can not add item.'
+                )
+                return
+        store.append([
+            first_item_id, self._item_names[first_item_id],
+            False, "0%", "0"
+        ])
+        self._save_item_spawn_rates()
+
+    def _on_cat_item_remove_clicked(self, tree_name: str):
+        tree: Gtk.TreeView = self.builder.get_object(tree_name)
+        model, treeiter = tree.get_selection().get_selected()
+        if model is not None and treeiter is not None:
+            model.remove(treeiter)
+        self._save_item_spawn_rates()
 
     # </editor-fold>
 
     def on_btn_help__spawn_tables__clicked(self, *args):
         pass  # todo
+
+    def on_item_list_notebook_switch_page(self, w: Gtk.Notebook, page: Gtk.Box, page_num: int, *args):
+        self._item_list_edit_active = FloorEditItemList(page_num)
+        self.__class__._last_open_tab_item_lists = FloorEditItemList(page_num)
+        sw: Gtk.ScrolledWindow = self.builder.get_object('sw_item_editor')
+        sw.get_parent().remove(sw)
+        page.pack_start(sw, True, True, 0)
+        self._init_item_spawns()
 
     def _init_labels(self):
         dungeon_name = self._string_provider.get_value(StringType.DUNGEON_NAMES_MAIN, self.item.dungeon.dungeon_id)
@@ -664,8 +864,111 @@ class FloorController(AbstractController):
                 trap.value, name, chance, str(relative_weight)
             ])
 
+    def _init_item_spawns(self):
+        self._init_item_completion_store()
+
+        item_categories_store: Gtk.ListStore = self.builder.get_object('item_categories_store')
+        item_cat_thrown_pierce_store: Gtk.ListStore = self.builder.get_object('item_cat_thrown_pierce_store')
+        item_cat_thrown_rock_store: Gtk.ListStore = self.builder.get_object('item_cat_thrown_rock_store')
+        item_cat_berries_store: Gtk.ListStore = self.builder.get_object('item_cat_berries_store')
+        item_cat_foods_store: Gtk.ListStore = self.builder.get_object('item_cat_foods_store')
+        item_cat_hold_store: Gtk.ListStore = self.builder.get_object('item_cat_hold_store')
+        item_cat_tms_store: Gtk.ListStore = self.builder.get_object('item_cat_tms_store')
+        item_cat_orbs_store: Gtk.ListStore = self.builder.get_object('item_cat_orbs_store')
+        item_cat_others_store: Gtk.ListStore = self.builder.get_object('item_cat_others_store')
+        item_stores = {
+            MappaItemCategory.THROWN_PIERCE: item_cat_thrown_pierce_store,
+            MappaItemCategory.THROWN_ROCK: item_cat_thrown_rock_store,
+            MappaItemCategory.BERRIES_SEEDS_VITAMINS: item_cat_berries_store,
+            MappaItemCategory.FOODS_GUMMIES: item_cat_foods_store,
+            MappaItemCategory.HOLD: item_cat_hold_store,
+            MappaItemCategory.TMS: item_cat_tms_store,
+            MappaItemCategory.ORBS: item_cat_orbs_store,
+            MappaItemCategory.OTHER: item_cat_others_store
+        }
+
+        # Clear everything
+        for s in [item_categories_store] + list(item_stores.values()):
+            s.clear()
+
+        il = self.get_current_item_list()
+
+        # Add item categories
+        relative_weights = self._calculate_relative_weights(list(il.categories.values()))
+        sum_of_all_weights = sum(relative_weights)
+        for i, (category, chance) in enumerate(il.categories.items()):
+            relative_weight = relative_weights[i]
+            if category not in VALID_ITEM_CATEGORY_NAMES:
+                continue  # TODO: Support editing unknown / unused item categories?
+            name = VALID_ITEM_CATEGORY_NAMES[category]
+            chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
+            item_categories_store.append([
+                category.value, name, False,
+                chance, str(relative_weight)
+            ])
+
+        # Add items
+        items_by_category = self._split_items_in_list_in_cats(il.items)
+        for j, (category, store) in enumerate(item_stores.items()):
+            cat_items = items_by_category[category]
+            relative_weights = self._calculate_relative_weights([v for v in cat_items.values() if v != GUARANTEED])
+            sum_of_all_weights = sum(relative_weights)
+            i = 0
+            for item, stored_weight in cat_items.items():
+                relative_weight = 0
+                if stored_weight != GUARANTEED:
+                    relative_weight = relative_weights[i]
+                    i += 1
+                name = self._item_names[item.id]
+                chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
+                store.append([
+                    item.id, name, stored_weight == GUARANTEED,
+                    chance, str(relative_weight)
+                ])
+
+    def _split_items_in_list_in_cats(
+            self, items: Dict[Pmd2DungeonItem, Probability]
+    ) -> Dict[MappaItemCategory, Dict[Pmd2DungeonItem, Probability]]:
+        out_items = {}
+        for cat in VALID_ITEM_CATEGORY_NAMES.keys():
+            out_items[cat] = {}
+            for item, probability in items.items():
+                if cat.is_item_in_cat(item.id):
+                    out_items[cat][item] = probability
+        return out_items
+
+    def _init_item_completion_store(self):
+        completion_item_thrown_pierce_store: Gtk.ListStore = self.builder.get_object('completion_item_thrown_pierce_store')
+        completion_item_thrown_rock_store: Gtk.ListStore = self.builder.get_object('completion_item_thrown_rock_store')
+        completion_item_berries_store: Gtk.ListStore = self.builder.get_object('completion_item_berries_store')
+        completion_item_foods_store: Gtk.ListStore = self.builder.get_object('completion_item_foods_store')
+        completion_item_hold_store: Gtk.ListStore = self.builder.get_object('completion_item_hold_store')
+        completion_item_tms_store: Gtk.ListStore = self.builder.get_object('completion_item_tms_store')
+        completion_item_orbs_store: Gtk.ListStore = self.builder.get_object('completion_item_orbs_store')
+        completion_item_others_store: Gtk.ListStore = self.builder.get_object('completion_item_others_store')
+        completion_stores = {
+            MappaItemCategory.THROWN_PIERCE: completion_item_thrown_pierce_store,
+            MappaItemCategory.THROWN_ROCK: completion_item_thrown_rock_store,
+            MappaItemCategory.BERRIES_SEEDS_VITAMINS: completion_item_berries_store,
+            MappaItemCategory.FOODS_GUMMIES: completion_item_foods_store,
+            MappaItemCategory.HOLD: completion_item_hold_store,
+            MappaItemCategory.TMS: completion_item_tms_store,
+            MappaItemCategory.ORBS: completion_item_orbs_store,
+            MappaItemCategory.OTHER: completion_item_others_store
+        }
+
+        for i in range(0, MAX_ITEM_ID):
+            name = self.module.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
+            self._item_names[i] = f'{name} (#{i:03})'
+
+        for category, store in completion_stores.items():
+            for item in category.item_ids():
+                store.append([self._item_names[item]])
+
     def _calculate_relative_weights(self, list_of_weights: List[int]) -> List[int]:
         weights = []
+        if len(list_of_weights) < 1:
+            return []
         for i in range(0, len(list_of_weights)):
             lower_bound = 0
             higher_bound = list_of_weights[i]
@@ -686,9 +989,9 @@ class FloorController(AbstractController):
         sum_of_all_weights = sum(int(row[weight_idx]) for row in store)
         for row in store:
             if sum_of_all_weights == 0:
-                row[chance_idx] = '0.000%'
+                row[chance_idx] = '0.00%'
             else:
-                row[chance_idx] = f'{int(row[weight_idx]) / sum_of_all_weights * 100:.3f}%'
+                row[chance_idx] = f'{int(row[weight_idx]) / sum_of_all_weights * 100:.2f}%'
 
     # TODO: Generalize this with the base classs for lists
     def _get_icon(self, entid, idx):
@@ -697,7 +1000,6 @@ class FloorController(AbstractController):
                                                                lambda: GLib.idle_add(
                                                                    partial(self._reload_icon, entid, idx, was_loading)
                                                                ))
-        target = entid
         data = bytes(sprite.get_data())
         # this is painful.
         new_data = bytearray()
@@ -783,6 +1085,76 @@ class FloorController(AbstractController):
             # divisible. Find the last non-zero we set and set it to 10000.
             weights[last_weight_set_idx] = 10000
         self.entry.traps = MappaTrapList(weights)
+        self.mark_as_modified()
+
+    def _save_item_spawn_rates(self):
+        item_stores = {
+            None: self.builder.get_object('item_categories_store'),
+            MappaItemCategory.THROWN_PIERCE: self.builder.get_object('item_cat_thrown_pierce_store'),
+            MappaItemCategory.THROWN_ROCK: self.builder.get_object('item_cat_thrown_rock_store'),
+            MappaItemCategory.BERRIES_SEEDS_VITAMINS: self.builder.get_object('item_cat_berries_store'),
+            MappaItemCategory.FOODS_GUMMIES: self.builder.get_object('item_cat_foods_store'),
+            MappaItemCategory.HOLD: self.builder.get_object('item_cat_hold_store'),
+            MappaItemCategory.TMS: self.builder.get_object('item_cat_tms_store'),
+            MappaItemCategory.ORBS: self.builder.get_object('item_cat_orbs_store'),
+            MappaItemCategory.OTHER: self.builder.get_object('item_cat_others_store')
+        }
+
+        category_weights = {}
+        item_weights = {}
+        for (cat, store) in item_stores.items():
+
+            rows = []
+            for row in store:
+                rows.append(row[:])
+            rows.sort(key=lambda e: e[0])
+
+            sum_of_weights = sum((int(row[4]) for row in store if row[2] is False))
+
+            last_weight = 0
+            last_weight_set_idx = None
+            for i, row in enumerate(rows):
+
+                # Add Poké and Link Box items for those categories
+                if not cat:
+                    if i == MappaItemCategory.POKE.value:
+                        item_weights[Pmd2DungeonItem(MappaItemCategory.POKE.item_ids()[0], '')] = 10000
+                    if i == MappaItemCategory.LINK_BOX.value:
+                        item_weights[Pmd2DungeonItem(MappaItemCategory.LINK_BOX.item_ids()[0], '')] = 10000
+                was_set = False
+                weight = 0
+                if row[2]:
+                    weight = GUARANTEED
+                else:
+                    if row[4] != "0":
+                        weight = last_weight + int(10000 * (int(row[4]) / sum_of_weights))
+                        last_weight = weight
+                        was_set = True
+                if cat is None:
+                    set_idx = MappaItemCategory(row[0])
+                    category_weights[set_idx] = weight
+                    if was_set:
+                        last_weight_set_idx = set_idx
+                else:
+                    set_idx = Pmd2DungeonItem(row[0], '')
+                    item_weights[Pmd2DungeonItem(row[0], '')] = weight
+                    if was_set:
+                        last_weight_set_idx = set_idx
+            if last_weight_set_idx is not None:
+                if last_weight != 0 and last_weight != 10000:
+                    # We did not sum up to exactly 10000, so the values we entered are not evenly
+                    # divisible. Find the last non-zero we set and set it to 10000.
+                    if cat is None:
+                        category_weights[last_weight_set_idx] = 10000
+                    else:
+                        item_weights[last_weight_set_idx] = 10000
+
+        item_weights = {k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0].id)}
+
+        il = self.get_current_item_list()
+        il.categories = category_weights
+        il.items = item_weights
+
         self.mark_as_modified()
 
     def mark_as_modified(self):
@@ -901,6 +1273,20 @@ class FloorController(AbstractController):
         attr_name = w_name[len(SCALE):]
         val = int(w.get_value())
         setattr(obj, attr_name, val)
+
+    def get_current_item_list(self) -> MappaItemList:
+        if self._item_list_edit_active == FloorEditItemList.FLOOR:
+            return self.entry.floor_items
+        if self._item_list_edit_active == FloorEditItemList.SHOP:
+            return self.entry.shop_items
+        if self._item_list_edit_active == FloorEditItemList.MONSTER_HOUSE:
+            return self.entry.monster_house_items
+        if self._item_list_edit_active == FloorEditItemList.BURIED:
+            return self.entry.buried_items
+        if self._item_list_edit_active == FloorEditItemList.UNK1:
+            return self.entry.unk_items1
+        if self._item_list_edit_active == FloorEditItemList.UNK2:
+            return self.entry.unk_items2
 
 
 def grouper(iterable, n, fillvalue=None):
