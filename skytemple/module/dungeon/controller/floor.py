@@ -391,6 +391,7 @@ class FloorController(AbstractController):
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
             model.remove(treeiter)
+        self._recalculate_spawn_chances('monster_spawns_store', 5, 4)
         self._save_monster_spawn_rates()
 
     def on_kecleon_level_entry_changed(self, w: Gtk.Entry, *args):
@@ -485,6 +486,7 @@ class FloorController(AbstractController):
             return
         if model is not None and treeiter is not None:
             model.remove(treeiter)
+        self._recalculate_spawn_chances('item_categories_store', 4, 3)
         self._save_item_spawn_rates()
 
     def on_cr_items_cat_thrown_pierce_item_name_edited(self, widget, path, text):
@@ -720,6 +722,7 @@ class FloorController(AbstractController):
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
             model.remove(treeiter)
+        self._recalculate_spawn_chances(Gtk.Buildable.get_name(tree.get_model()), 4, 3)
         self._save_item_spawn_rates()
 
     # </editor-fold>
