@@ -35,7 +35,7 @@ from skytemple_files.data.md.model import Md
 from skytemple_files.dungeon_data.mappa_bin.floor import MappaFloor
 from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
 from skytemple_files.dungeon_data.mappa_g_bin.mappa_converter import convert_mappa_to_mappag
-from skytemple_files.hardcoded.dungeons import HardcodedDungeons, DungeonDefinition
+from skytemple_files.hardcoded.dungeons import HardcodedDungeons, DungeonDefinition, DungeonRestriction
 
 # TODO: Add this to dungeondata.xml?
 DOJO_DUNGEONS_FIRST = 0xB4
@@ -152,6 +152,12 @@ class DungeonModule(AbstractModule):
             self.project.get_binary(BinaryName.ARM9), self.project.get_rom_module().get_static_data()
         )
 
+    def get_dungeon_restrictions(self) -> List[DungeonRestriction]:
+        # TODO: Cache?
+        return HardcodedDungeons.get_dungeon_restrictions(
+            self.project.get_binary(BinaryName.ARM9), self.project.get_rom_module().get_static_data()
+        )
+
     def mark_dungeon_as_modified(self, dungeon_id, modified_mappa=True):
         self.project.get_string_provider().mark_as_modified()
         if modified_mappa:
@@ -164,6 +170,16 @@ class DungeonModule(AbstractModule):
     def save_dungeon_list(self, dungeons: List[DungeonDefinition]):
         self.project.modify_binary(BinaryName.ARM9, lambda binary: HardcodedDungeons.set_dungeon_list(
             dungeons, binary, self.project.get_rom_module().get_static_data()
+        ))
+
+    def update_dungeon_restrictions(self, dungeon_id: int, restrictions: DungeonRestriction):
+        all_restrictions = self.get_dungeon_restrictions()
+        all_restrictions[dungeon_id] = restrictions
+        self.save_dungeon_restrictions(all_restrictions)
+
+    def save_dungeon_restrictions(self, restrictions: List[DungeonRestriction]):
+        self.project.modify_binary(BinaryName.ARM9, lambda binary: HardcodedDungeons.set_dungeon_restrictions(
+            restrictions, binary, self.project.get_rom_module().get_static_data()
         ))
 
     def _save_mappa(self):
