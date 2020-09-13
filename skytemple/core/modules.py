@@ -58,6 +58,7 @@ class Modules:
         from skytemple.module.patch.module import PatchModule
         from skytemple.module.lists.module import ListsModule
         from skytemple.module.misc_graphics.module import MiscGraphicsModule
+        from skytemple.module.dungeon.module import DungeonModule
         from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
         from skytemple.module.strings.module import StringsModule
         return {
@@ -71,6 +72,7 @@ class Modules:
             "patch": PatchModule,
             "lists": ListsModule,
             "misc_graphics": MiscGraphicsModule,
+            "dungeon": DungeonModule,
             "dungeon_graphics": DungeonGraphicsModule,
             "strings": StringsModule,
         }

@@ -96,7 +96,7 @@ class DungeonController(AbstractController):
 
     def _init_dungeon_restrictions(self):
         self.builder.get_object('cb_direction').set_active(int(self.restrictions.direction.value))
-        self.builder.get_object('switch_unknown_defeat_check').set_active(self.restrictions.unknown_defeat_check)
+        self.builder.get_object('switch_enemies_evolve_when_team_member_koed').set_active(self.restrictions.enemies_evolve_when_team_member_koed)
         self.builder.get_object('switch_enemies_grant_exp').set_active(self.restrictions.enemies_grant_exp)
         self.builder.get_object('switch_recruiting_allowed').set_active(self.restrictions.recruiting_allowed)
         self.builder.get_object('switch_level_reset').set_active(self.restrictions.level_reset)
@@ -206,8 +206,8 @@ class DungeonController(AbstractController):
         self.restrictions.direction = DungeonRestrictionDirection(int(w.get_active_id()))
         self._save_dungeon_restrictions()
 
-    def on_switch_unknown_defeat_check_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.restrictions.unknown_defeat_check = state
+    def on_switch_enemies_evolve_when_team_member_koed_state_set(self, w: Gtk.Switch, state: bool, *args):
+        self.restrictions.enemies_evolve_when_team_member_koed = state
         self._save_dungeon_restrictions()
 
     def on_switch_enemies_grant_exp_state_set(self, w: Gtk.Switch, state: bool, *args):

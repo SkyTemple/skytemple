@@ -28,8 +28,8 @@
       <object class="GtkAlignment">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xscale">0.80000001192092895508</property>
-        <property name="yscale">0.80000001192092895508</property>
+        <property name="xscale">0,80000001192092895508</property>
+        <property name="yscale">0,80000001192092895508</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
@@ -473,10 +473,10 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkSwitch" id="switch_unknown_defeat_check">
+                  <object class="GtkSwitch" id="switch_enemies_evolve_when_team_member_koed">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <signal name="state-set" handler="on_switch_unknown_defeat_check_state_set" swapped="no"/>
+                    <signal name="state-set" handler="on_switch_enemies_evolve_when_team_member_koed_state_set" swapped="no"/>
                   </object>
                   <packing>
                     <property name="left_attach">3</property>
@@ -522,7 +522,7 @@
                     <property name="can_focus">False</property>
                     <property name="halign">end</property>
                     <property name="margin_right">5</property>
-                    <property name="label" translatable="yes">Unk. K.O. check:</property>
+                    <property name="label" translatable="yes">Enemies evolve w. KOed:</property>
                     <property name="justify">right</property>
                   </object>
                   <packing>

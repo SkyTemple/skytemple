@@ -19,7 +19,6 @@ from itertools import chain
 from typing import TYPE_CHECKING, Optional, List, Union
 
 from gi.repository import Gtk, Gdk
-from gi.repository.GdkX11 import X11DragContext
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.module_controller import AbstractController
@@ -118,7 +117,7 @@ class MainController(AbstractController):
         if not was_group:
             selection.set(selection.get_target(), 8, bytes(dungeon_id, 'utf-8'))
 
-    def on_tree_grouped_drag_data_received(self, w: Gtk.TreeView, context: X11DragContext, x, y, selection: Gtk.SelectionData, info, etime):
+    def on_tree_grouped_drag_data_received(self, w: Gtk.TreeView, context, x, y, selection: Gtk.SelectionData, info, etime):
         model: Gtk.TreeStore = w.get_model()
         dungeon_id = int(str(selection.get_data(), 'utf-8'))
         dungeon_iter = self._find_dungeon_iter(model, dungeon_id)
