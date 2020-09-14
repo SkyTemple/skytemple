@@ -973,17 +973,14 @@ class FloorController(AbstractController):
         if len(list_of_weights) < 1:
             return []
         for i in range(0, len(list_of_weights)):
-            lower_bound = 0
-            higher_bound = list_of_weights[i]
-            if higher_bound == 0:
-                weights.append(0)
-                continue
-            if i > 0:
-                j = i
-                while lower_bound == 0 and j >= 0:
-                    lower_bound = list_of_weights[j - 1]
-                    j -= 1
-            weights.append(higher_bound - lower_bound)
+            weight = list_of_weights[i]
+            if weight != 0:
+                last_nonzero = i - 1
+                while last_nonzero >= 0 && list_of_weights[last_nonzero] == 0:
+                    last_nonzero -= 1
+                if last_nonzero != -1:
+                    weight -= list_of_weights[last_nonzero]
+            weights.append(weight)
         weights_lcm = reduce(gcd, (w for w in weights if w != 0))
         return [int(w / weights_lcm) for w in weights]
 
