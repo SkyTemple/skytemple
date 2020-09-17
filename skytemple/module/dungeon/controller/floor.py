@@ -830,6 +830,8 @@ class FloorController(AbstractController):
         # Add existing Pokémon
         relative_weights = self._calculate_relative_weights([x.weight for x in self.entry.monsters])
         sum_of_all_weights = sum(relative_weights)
+        if sum_of_all_weights <= 0:
+            sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
         for i, monster in enumerate(self.entry.monsters):
             relative_weight = relative_weights[i]
             chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
@@ -858,6 +860,8 @@ class FloorController(AbstractController):
         # Add all traps
         relative_weights = self._calculate_relative_weights([x for x in self.entry.traps.weights.values()])
         sum_of_all_weights = sum(relative_weights)
+        if sum_of_all_weights <= 0:
+            sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
         for i, (trap, weight) in enumerate(self.entry.traps.weights.items()):
             trap: MappaTrapType
             relative_weight = relative_weights[i]
@@ -899,6 +903,8 @@ class FloorController(AbstractController):
         # Add item categories
         relative_weights = self._calculate_relative_weights(list(il.categories.values()))
         sum_of_all_weights = sum(relative_weights)
+        if sum_of_all_weights <= 0:
+            sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
         for i, (category, chance) in enumerate(il.categories.items()):
             relative_weight = relative_weights[i]
             if category not in VALID_ITEM_CATEGORY_NAMES:
@@ -916,6 +922,8 @@ class FloorController(AbstractController):
             cat_items = items_by_category[category]
             relative_weights = self._calculate_relative_weights([v for v in cat_items.values() if v != GUARANTEED])
             sum_of_all_weights = sum(relative_weights)
+            if sum_of_all_weights <= 0:
+                sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
             i = 0
             for item, stored_weight in cat_items.items():
                 relative_weight = 0
@@ -990,6 +998,8 @@ class FloorController(AbstractController):
     def _recalculate_spawn_chances(self, store_name, weight_idx, chance_idx):
         store: Gtk.ListStore = self.builder.get_object(store_name)
         sum_of_all_weights = sum(int(row[weight_idx]) for row in store)
+        if sum_of_all_weights <= 0:
+            sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
         for row in store:
             if sum_of_all_weights == 0:
                 row[chance_idx] = '0.00%'
