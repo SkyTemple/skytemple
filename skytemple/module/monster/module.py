@@ -138,7 +138,7 @@ class MonsterModule(AbstractModule):
         if item_id >= NUM_ENTITIES:
             return Gtk.Label.new("Stats and moves are only editable for base forms.")
         controller = LevelUpController(self, item_id)
-        return controller.get_view()
+        return controller.get_view(), controller
 
     def mark_md_as_modified(self, item_id):
         """Mark as modified"""

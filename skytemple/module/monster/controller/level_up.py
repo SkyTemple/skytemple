@@ -312,7 +312,7 @@ class LevelUpController(AbstractController):
             level_entry.special_attack_growth = sp_atk
             level_entry.defense_growth = defense
             level_entry.special_defense_growth = sp_def
-        self._render_graph()
+        self.render_graph()
         self._mark_stats_as_modified()
 
     def _rebuild_level_up(self):
@@ -321,7 +321,7 @@ class LevelUpController(AbstractController):
         learn_set.level_up_moves = []
         for row in store:
             learn_set.level_up_moves.append(LevelUpMove(int(row[1]), int(row[0])))
-        self._render_graph()
+        self.render_graph()
         self._mark_moves_as_modified()
 
     def _rebuild_hmtm(self):
@@ -470,9 +470,9 @@ class LevelUpController(AbstractController):
                 graph_box.remove(child)
             graph_box.pack_start(Gtk.Label.new('This Pokémon has no stats.'), True, True, 0)
         else:
-            self._render_graph()
+            self.render_graph()
 
-    def _render_graph(self):
+    def render_graph(self):
         stack: Gtk.Stack = self.builder.get_object('graph_stack')
         if self.item_id < len(self._waza_p.learnsets):
             learnset = self._waza_p.learnsets[self.item_id]

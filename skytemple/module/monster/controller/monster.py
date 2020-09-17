@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from enum import Enum
-from typing import TYPE_CHECKING, Type, List
+from typing import TYPE_CHECKING, Type, List, Optional
 
 import cairo
 from gi.repository import Gtk, GLib
@@ -23,6 +23,7 @@ from gi.repository import Gtk, GLib
 from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple.module.monster.controller.level_up import LevelUpController
 from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.data.md.model import Gender, PokeType, MovementType, IQGroup, Ability, EvolutionMethod, \
     NUM_ENTITIES, ShadowSize
@@ -44,6 +45,7 @@ class MonsterController(AbstractController):
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
         self._portrait_provider = module.project.get_module('portrait').get_portrait_provider()
+        self._level_up_controller: Optional[LevelUpController] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'monster.glade')
@@ -183,6 +185,7 @@ class MonsterController(AbstractController):
 
     def on_entry_base_hp_changed(self, w, *args):
         self._update_from_entry(w)
+        self._level_up_controller.render_graph()
         self.mark_as_modified()
 
     def on_entry_weight_changed(self, w, *args):
@@ -191,18 +194,22 @@ class MonsterController(AbstractController):
 
     def on_entry_base_atk_changed(self, w, *args):
         self._update_from_entry(w)
+        self._level_up_controller.render_graph()
         self.mark_as_modified()
 
     def on_entry_base_sp_atk_changed(self, w, *args):
         self._update_from_entry(w)
+        self._level_up_controller.render_graph()
         self.mark_as_modified()
 
     def on_entry_base_def_changed(self, w, *args):
         self._update_from_entry(w)
+        self._level_up_controller.render_graph()
         self.mark_as_modified()
 
     def on_entry_base_sp_def_changed(self, w, *args):
         self._update_from_entry(w)
+        self._level_up_controller.render_graph()
         self.mark_as_modified()
 
     def on_entry_size_changed(self, w, *args):
@@ -483,7 +490,8 @@ class MonsterController(AbstractController):
     def _init_sub_pages(self):
         notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
         tab_label: Gtk.Label = Gtk.Label.new('Stats and Moves')
-        notebook.append_page(self.module.get_level_up_view(self.item_id), tab_label)
+        level_up_view, self._level_up_controller = self.module.get_level_up_view(self.item_id)
+        notebook.append_page(level_up_view, tab_label)
         tab_label: Gtk.Label = Gtk.Label.new('Portraits')
         notebook.append_page(self.module.get_portrait_view(self.item_id), tab_label)
 
