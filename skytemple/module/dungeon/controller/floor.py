@@ -425,6 +425,14 @@ class FloorController(AbstractController):
 
     # <editor-fold desc="ITEM HANDLERS" defaultstate="collapsed">
 
+    def on_cr_items_cat_name_changed(self, widget, path, new_iter, *args):
+        store: Gtk.Store = self.builder.get_object('item_categories_store')
+        cb_store: Gtk.Store = self.builder.get_object('cr_item_cat_name_store')
+        store[path][0] = cb_store[new_iter][0]
+        store[path][1] = cb_store[new_iter][1]
+        self._save_item_spawn_rates()
+        self._update_cr_item_cat_name_store()
+
     def on_cr_items_cat_weight_edited(self, widget, path, text):
         try:
             v = int(text)
@@ -444,10 +452,9 @@ class FloorController(AbstractController):
         dialog.set_transient_for(MainController.window())
 
         # Init available categories
-        available_categories = [
-            cat for cat in VALID_ITEM_CATEGORY_NAMES.keys()
-            if cat not in self.get_current_item_list().categories.keys()
-        ]
+        cb_store: Gtk.ListStore = self.builder.get_object('category_add_store')
+        cb: Gtk.ComboBoxText = self.builder.get_object('category_add_cb')
+        available_categories = self._fill_available_categories_into_store(cb_store)
         # Show error if no categories available
         if len(available_categories) < 1:
             display_error(
@@ -456,12 +463,6 @@ class FloorController(AbstractController):
                 'Can not add category'
             )
             return
-        # Init combobox
-        cb: Gtk.ComboBoxText = self.builder.get_object('category_add_cb')
-        cb_store: Gtk.ListStore = self.builder.get_object('category_add_store')
-        cb_store.clear()
-        for cat in available_categories:
-            cb_store.append([cat.value, VALID_ITEM_CATEGORY_NAMES[cat]])
         cb.set_active_iter(cb_store.get_iter_first())
 
         resp = dialog.run()
@@ -473,6 +474,7 @@ class FloorController(AbstractController):
                 False, "0%", "0"
             ])
             self._save_item_spawn_rates()
+            self._update_cr_item_cat_name_store()
 
     def on_item_categories_remove_clicked(self, *args):
         tree: Gtk.TreeView = self.builder.get_object('item_categories_tree')
@@ -936,6 +938,7 @@ class FloorController(AbstractController):
                     item.id, name, stored_weight == GUARANTEED,
                     chance, str(relative_weight)
                 ])
+        self._update_cr_item_cat_name_store()
 
     def _split_items_in_list_in_cats(
             self, items: Dict[Pmd2DungeonItem, Probability]
@@ -1099,6 +1102,21 @@ class FloorController(AbstractController):
             weights[last_weight_set_idx] = 10000
         self.entry.traps = MappaTrapList(weights)
         self.mark_as_modified()
+
+    def _fill_available_categories_into_store(self, cb_store):
+        available_categories = [
+            cat for cat in VALID_ITEM_CATEGORY_NAMES.keys()
+            if cat not in self.get_current_item_list().categories.keys()
+        ]
+        # Init combobox
+        cb_store.clear()
+        for cat in available_categories:
+            cb_store.append([cat.value, VALID_ITEM_CATEGORY_NAMES[cat]])
+        return available_categories
+
+    def _update_cr_item_cat_name_store(self):
+        store = self.builder.get_object('cr_item_cat_name_store')
+        self._fill_available_categories_into_store(store)
 
     def _save_item_spawn_rates(self):
         item_stores = {

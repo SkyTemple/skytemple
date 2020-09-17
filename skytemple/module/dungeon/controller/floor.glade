@@ -372,6 +372,14 @@
       </attributes>
     </child>
   </object>
+  <object class="GtkListStore" id="cr_item_cat_name_store">
+    <columns>
+      <!-- column-name category_id -->
+      <column type="gint"/>
+      <!-- column-name category_name -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkListStore" id="item_cat_berries_store">
     <columns>
       <!-- column-name item_id -->
@@ -2554,7 +2562,12 @@
                                                       <object class="GtkTreeViewColumn">
                                                         <property name="title" translatable="yes">Category</property>
                                                         <child>
-                                                          <object class="GtkCellRendererCombo" id="cr_items_cat_name"/>
+                                                          <object class="GtkCellRendererCombo" id="cr_items_cat_name">
+                                                            <property name="editable">True</property>
+                                                            <property name="model">cr_item_cat_name_store</property>
+                                                            <property name="text_column">1</property>
+                                                            <signal name="changed" handler="on_cr_items_cat_name_changed" swapped="no"/>
+                                                          </object>
                                                           <attributes>
                                                             <attribute name="text">1</attribute>
                                                           </attributes>
