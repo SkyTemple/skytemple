@@ -40,8 +40,8 @@ if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, FloorViewInfo
 
 
-COUNT_VALID_TILESETS = 199
-COUNT_VALID_BGM = 117
+COUNT_VALID_TILESETS = 200
+COUNT_VALID_BGM = 118
 COUNT_VALID_FIXED_FLOORS = 256
 KECLEON_MD_INDEX = 383
 CB = 'cb_'

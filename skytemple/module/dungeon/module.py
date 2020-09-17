@@ -40,6 +40,7 @@ from skytemple_files.hardcoded.dungeons import HardcodedDungeons, DungeonDefinit
 # TODO: Add this to dungeondata.xml?
 DOJO_DUNGEONS_FIRST = 0xB4
 DOJO_DUNGEONS_LAST = 0xBF
+DOJO_MAPPA_ENTRY = 0x35
 # Those are not actual dungeons and share mappa floor data with Temporal Tower future.
 INVALID_DUNGEON_IDS = [175, 176, 177, 178]
 ICON_ROOT = 'folder-symbolic'
@@ -136,8 +137,17 @@ class DungeonModule(AbstractModule):
 
     def get_mappa_floor(self, item: FloorViewInfo) -> MappaFloor:
         """Returns the correct mappa floor based on the given dungeon ID and floor number"""
-        dungeon = self.get_dungeon_list()[item.dungeon.dungeon_id]
-        return self.get_mappa().floor_lists[dungeon.mappa_index][item.floor_id]
+        did = item.dungeon.dungeon_id
+        # if ID >= 0xB4 && ID <= 0xBD {
+        if DOJO_DUNGEONS_FIRST <= did <= DOJO_DUNGEONS_FIRST + 9:
+            return self.get_mappa().floor_lists[DOJO_MAPPA_ENTRY][item.floor_id + (did - DOJO_DUNGEONS_FIRST) * 5]
+        elif did == DOJO_DUNGEONS_FIRST + 10:
+            return self.get_mappa().floor_lists[DOJO_MAPPA_ENTRY][item.floor_id + 0x32]
+        elif DOJO_DUNGEONS_FIRST + 11 <= did <= 0xD3:
+            return self.get_mappa().floor_lists[DOJO_MAPPA_ENTRY][item.floor_id + 0x33]
+        else:
+            dungeon = self.get_dungeon_list()[item.dungeon.dungeon_id]
+            return self.get_mappa().floor_lists[dungeon.mappa_index][item.floor_id]
 
     def mark_floor_as_modified(self, item: FloorViewInfo):
         # TODO: Regenerate mappa_g.
