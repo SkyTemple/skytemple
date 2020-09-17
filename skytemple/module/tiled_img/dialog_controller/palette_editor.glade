@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.36.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkImage" id="img_add">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="icon_name">add</property>
+    <property name="icon_name">list-add-symbolic</property>
   </object>
   <object class="GtkImage" id="img_remove">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="icon_name">remove</property>
+    <property name="icon_name">list-remove-symbolic</property>
   </object>
   <object class="GtkDialog" id="map_bg_palettes">
     <property name="can_focus">False</property>
@@ -19,9 +19,6 @@
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
-    <child>
-      <placeholder/>
-    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -127,7 +124,7 @@
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="stock">gtk-about</property>
+                            <property name="icon_name">help-about-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -214,5 +211,8 @@
       <action-widget response="-6">dialog_palettes_edit_btn_close</action-widget>
       <action-widget response="-5">dialog_palettes_edit_btn_ok</action-widget>
     </action-widgets>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
   </object>
 </interface>

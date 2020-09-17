@@ -66,7 +66,7 @@ class MonsterModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
-            'system-users-symbolic', MONSTER_NAME, self, MainController, 0, False, '', True
+            'skytemple-e-monster-symbolic', MONSTER_NAME, self, MainController, 0, False, '', True
         ])
         self._tree_model = item_store
         self._tree_iter__entity_roots = {}
@@ -102,13 +102,13 @@ class MonsterModule(AbstractModule):
 
     def generate_entry__entity_root(self, entid, name):
         return [
-            'user-info-symbolic', f'#{entid:03}: {name}',
+            'skytemple-e-monster-base-symbolic', f'#{entid:03}: {name}',
             self, EntityController, f'#{entid:03}: {name}', False, '', True
         ]
 
     def generate_entry__entry(self, i, gender):
         return [
-            'user-info-symbolic', f'${i:04}: {gender.name.capitalize()}',
+            'skytemple-e-monster-symbolic', f'${i:04}: {gender.name.capitalize()}',
             self, MonsterController, i, False, '', True
         ]
 

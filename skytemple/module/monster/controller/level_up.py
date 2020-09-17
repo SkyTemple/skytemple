@@ -428,9 +428,9 @@ class LevelUpController(AbstractController):
                 hmtm_box.remove(child)
             for child in egg_box:
                 egg_box.remove(child)
-            level_up_box.pack_start(Gtk.Label.new('This Pokémon has moves.'), True, True, 0)
-            hmtm_box.pack_start(Gtk.Label.new('This Pokémon has moves.'), True, True, 0)
-            egg_box.pack_start(Gtk.Label.new('This Pokémon has moves.'), True, True, 0)
+            level_up_box.pack_start(Gtk.Label.new('This Pokémon has no moves.'), True, True, 0)
+            hmtm_box.pack_start(Gtk.Label.new('This Pokémon has no moves.'), True, True, 0)
+            egg_box.pack_start(Gtk.Label.new('This Pokémon has no moves.'), True, True, 0)
         else:
             entry = self._waza_p.learnsets[self.item_id]
             # Level up

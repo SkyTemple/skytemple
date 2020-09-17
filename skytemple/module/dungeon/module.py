@@ -45,12 +45,12 @@ DOJO_DUNGEONS_LAST = 0xBF
 DOJO_MAPPA_ENTRY = 0x35
 # Those are not actual dungeons and share mappa floor data with Temporal Tower future.
 INVALID_DUNGEON_IDS = [175, 176, 177, 178]
-ICON_ROOT = 'folder-symbolic'
-ICON_DUNGEONS = 'folder-symbolic'
-ICON_FIXED_ROOMS = 'folder-symbolic'
+ICON_ROOT = 'skytemple-e-dungeon-symbolic'
+ICON_DUNGEONS = 'folder-symbolic'  # TODO: Remove.
+ICON_FIXED_ROOMS = 'skytemple-e-dungeon-fixed-floor-symbolic'
 ICON_GROUP = 'folder-open-symbolic'
-ICON_DUNGEON = 'folder-documents-symbolic'
-ICON_FLOOR = 'text-x-generic-symbolic'
+ICON_DUNGEON = 'skytemple-e-dungeon-symbolic'
+ICON_FLOOR = 'skytemple-e-dungeon-floor-symbolic'
 MAPPA_PATH = 'BALANCE/mappa_s.bin'
 MAPPAG_PATH = 'BALANCE/mappa_gs.bin'
 logger = logging.getLogger(__name__)

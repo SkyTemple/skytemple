@@ -62,16 +62,16 @@ class ListsModule(AbstractModule):
             'view-list-symbolic', GROUND_LISTS, self, MainController, 0, False, '', True
         ])
         self._actor_tree_iter = item_store.append(root, [
-            'view-list-symbolic', 'Actors', self, ActorListController, 0, False, '', True
+            'skytemple-e-actor-symbolic', 'Actors', self, ActorListController, 0, False, '', True
         ])
         self._starters_tree_iter = item_store.append(root, [
-            'view-list-symbolic', 'Starters', self, StartersListController, 0, False, '', True
+            'skytemple-e-monster-symbolic', 'Starters', self, StartersListController, 0, False, '', True
         ])
         self._recruitment_tree_iter = item_store.append(root, [
-            'view-list-symbolic', 'Recruitment List', self, RecruitmentListController, 0, False, '', True
+            'skytemple-e-monster-symbolic', 'Recruitment List', self, RecruitmentListController, 0, False, '', True
         ])
         self._world_map_tree_iter = item_store.append(root, [
-            'view-list-symbolic', 'World Map Markers', self, WorldMapController, 0, False, '', True
+            'skytemple-e-worldmap-symbolic', 'World Map Markers', self, WorldMapController, 0, False, '', True
         ])
         self._rank_list_tree_iter = item_store.append(root, [
             'view-list-symbolic', 'Rank List', self, RankListController, 0, False, '', True

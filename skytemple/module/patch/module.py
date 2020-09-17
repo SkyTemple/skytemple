@@ -40,7 +40,7 @@ class PatchModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         self._tree_iter = item_store.append(root_node, [
-            'document-send-symbolic', 'ASM Patches', self, MainController, 0, False, '', True
+            'skytemple-e-patch-symbolic', 'ASM Patches', self, MainController, 0, False, '', True
         ])
         generate_item_store_row_label(item_store[self._tree_iter])
         self._tree_model = item_store

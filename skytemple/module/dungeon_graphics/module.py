@@ -64,14 +64,14 @@ class DungeonGraphicsModule(AbstractModule):
         )
 
         root = item_store.append(root_node, [
-            'folder-pictures-symbolic', DUNGEON_GRAPHICS_NAME, self, MainController, 0, False, '', True
+            'skytemple-e-dungeon-tileset-symbolic', DUNGEON_GRAPHICS_NAME, self, MainController, 0, False, '', True
         ])
         self._tree_model = item_store
         self._tree_level_iter = []
         for i in range(0, NUMBER_OF_TILESETS):
             self._tree_level_iter.append(
                 item_store.append(root, [
-                    'image-x-generic-symbolic', f"Tileset {i}", self,  TilesetController, i, False, '', True
+                    'skytemple-e-dungeon-tileset-symbolic', f"Tileset {i}", self,  TilesetController, i, False, '', True
                 ])
             )
         for i in range(0, NUMBER_OF_BACKGROUNDS):

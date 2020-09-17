@@ -17,7 +17,7 @@
             <property name="is_important">True</property>
             <property name="label" translatable="yes">Export</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">document-open-symbolic</property>
+            <property name="icon_name">skytemple-export-symbolic</property>
             <signal name="clicked" handler="on_export_clicked" swapped="no"/>
             <child type="menu">
               <object class="GtkMenu">
@@ -56,7 +56,7 @@
             <property name="is_important">True</property>
             <property name="label" translatable="yes">Import</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">document-save-symbolic</property>
+            <property name="icon_name">skytemple-import-symbolic</property>
             <signal name="clicked" handler="on_import_clicked" swapped="no"/>
             <child type="menu">
               <object class="GtkMenu">

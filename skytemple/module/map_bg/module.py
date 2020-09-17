@@ -62,7 +62,7 @@ class MapBgModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
-            'folder-pictures-symbolic', MAPBG_NAME, self, MainController, 0, False, '', True
+            'skytemple-e-mapbg-symbolic', MAPBG_NAME, self, MainController, 0, False, '', True
         ])
         sub_nodes = {
             'S': item_store.append(root, [
@@ -103,7 +103,7 @@ class MapBgModule(AbstractModule):
             self._tree_level_iter.append(
                 item_store.append(parent, [
                     # TODO: Name from Strings
-                    'image-x-generic-symbolic', level.bma_name, self,  BgController, i, False, '', True
+                    'skytemple-e-mapbg-symbolic', level.bma_name, self,  BgController, i, False, '', True
                 ])
             )
 

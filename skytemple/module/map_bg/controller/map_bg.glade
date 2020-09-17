@@ -17,7 +17,7 @@
             <property name="tooltip_text" translatable="yes">Zoom In</property>
             <property name="label" translatable="yes">Zoom +</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">zoom-in</property>
+            <property name="icon_name">zoom-in-symbolic</property>
             <signal name="clicked" handler="on_tb_zoom_in_clicked" swapped="no"/>
           </object>
           <packing>
@@ -32,7 +32,7 @@
             <property name="tooltip_text" translatable="yes">Zoom Out</property>
             <property name="label" translatable="yes">Zoom-</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">zoom-out</property>
+            <property name="icon_name">zoom-out-symbolic</property>
             <signal name="clicked" handler="on_tb_zoom_out_clicked" swapped="no"/>
           </object>
           <packing>
@@ -58,7 +58,7 @@
             <property name="is_important">True</property>
             <property name="label" translatable="yes">Chunks</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">view-grid</property>
+            <property name="icon_name">view-grid-symbolic</property>
             <property name="active">True</property>
             <signal name="toggled" handler="on_tb_chunk_grid_toggled" swapped="no"/>
           </object>
@@ -75,7 +75,7 @@
             <property name="is_important">True</property>
             <property name="label" translatable="yes">Tiles</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">view-grid</property>
+            <property name="icon_name">view-grid-symbolic</property>
             <property name="active">True</property>
             <signal name="toggled" handler="on_tb_tile_grid_toggled" swapped="no"/>
           </object>
@@ -117,7 +117,7 @@
             <property name="is_important">True</property>
             <property name="label" translatable="yes">BG Color</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">color-select-symbolic</property>
+            <property name="icon_name">skytemple-mapbg-color-symbolic</property>
             <signal name="toggled" handler="on_tb_bg_color_toggled" swapped="no"/>
           </object>
           <packing>

@@ -50,7 +50,7 @@ class PortraitProvider:
         icon_theme: Gtk.IconTheme = Gtk.IconTheme.get_for_screen(screen)
         # Loader icon
         loader_icon: GdkPixbuf.Pixbuf = icon_theme.load_icon(
-            'image-loading', IMG_DIM, Gtk.IconLookupFlags.FORCE_SIZE
+            'image-loading-symbolic', IMG_DIM, Gtk.IconLookupFlags.FORCE_SIZE
         ).copy()
         self._loader_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, IMG_DIM, IMG_DIM)
         ctx = cairo.Context(self._loader_surface)
@@ -58,7 +58,7 @@ class PortraitProvider:
         ctx.paint()
         # Error icon
         error_icon: GdkPixbuf.Pixbuf = icon_theme.load_icon(
-            'action-unavailable-symbolic', IMG_DIM, Gtk.IconLookupFlags.FORCE_SIZE
+            'skytemple-img-load-error-symbolic', IMG_DIM, Gtk.IconLookupFlags.FORCE_SIZE
         ).copy()
         self._error_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, IMG_DIM, IMG_DIM)
         ctx = cairo.Context(self._error_surface)
