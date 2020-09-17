@@ -68,7 +68,7 @@ class StringsController(AbstractController):
 
     def on_cr_string_edited(self, widget, path, text):
         self._filter[path][1] = text
-        self._str.strings[self._filter[path][0]] = text
+        self._str.strings[self._filter[path][0] - 1] = text
         self.module.mark_as_modified(self.filename)
 
     def refresh_cats(self):
@@ -86,7 +86,7 @@ class StringsController(AbstractController):
         renderer_editabletext = CellRendererTextView()
         renderer_editabletext.set_property('editable', True)
         column_editabletext = Gtk.TreeViewColumn(
-            "String", renderer_editabletext, text=1, editable=3
+            "String", renderer_editabletext, text=1, editable=2
         )
         tree.append_column(column_editabletext)
         renderer_editabletext.connect('edited', self.on_cr_string_edited)
@@ -95,7 +95,7 @@ class StringsController(AbstractController):
         self._list_store.clear()
         # Iterate strings
         for idx, entry in enumerate(self._str.strings):
-            self._list_store.append([idx, entry, True, None])
+            self._list_store.append([idx + 1, entry, True, None])
 
         # Apply filter
         self._filter: TreeModelFilter = self._list_store.filter_new()
@@ -115,7 +115,7 @@ class StringsController(AbstractController):
 
     def _visibility_func(self, model, iter, *args):
         if self._active_category is not None:
-            if not (self._active_category.begin <= model[iter][0] < self._active_category.end):
+            if not (self._active_category.begin <= model[iter][0] - 1 < self._active_category.end):
                 return False
         if self._search_text != "":
             if self._search_text not in model[iter][1]:
