@@ -984,8 +984,11 @@ class FloorController(AbstractController):
                     lower_bound = list_of_weights[j - 1]
                     j -= 1
             weights.append(higher_bound - lower_bound)
-        weights_lcm = reduce(gcd, (w for w in weights if w != 0))
-        return [int(w / weights_lcm) for w in weights]
+        weights_nonzero = [w for w in weights if w != 0]
+        weights_gcd = 1
+        if len(weights_nonzero) > 0:
+            weights_gcd = reduce(gcd, weights_nonzero)
+        return [int(w / weights_gcd) for w in weights]
 
     def _recalculate_spawn_chances(self, store_name, weight_idx, chance_idx):
         store: Gtk.ListStore = self.builder.get_object(store_name)
