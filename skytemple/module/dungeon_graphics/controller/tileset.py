@@ -126,7 +126,14 @@ class TilesetController(AbstractController):
             dialog.destroy()
 
             if response == Gtk.ResponseType.OK:
-                self.dpc.chunks_to_pil(self.dpci, self.dpl.palettes, 16).save(fn)
+                try:
+                    self.dpc.chunks_to_pil(self.dpci, self.dpl.palettes, 16).save(fn)
+                except BaseException as err:
+                    display_error(
+                        sys.exc_info(),
+                        str(err),
+                        "Error exporting the tileset."
+                    )
 
     def on_men_chunks_import_activate(self, *args):
         dialog: Gtk.Dialog = self.builder.get_object('dialog_chunks_import')
@@ -164,7 +171,8 @@ class TilesetController(AbstractController):
             except Exception as err:
                 display_error(
                     sys.exc_info(),
-                    str(err)
+                    str(err),
+                    "Error importing the tileset."
                 )
             self.reload_all()
             self.mark_as_modified()
@@ -193,7 +201,14 @@ class TilesetController(AbstractController):
             dialog.destroy()
 
             if response == Gtk.ResponseType.OK:
-                self.dpci.tiles_to_pil(self.dpl.palettes, 16).save(fn)
+                try:
+                    self.dpci.tiles_to_pil(self.dpl.palettes, 16).save(fn)
+                except BaseException as err:
+                    display_error(
+                        sys.exc_info(),
+                        str(err),
+                        "Error exporting the tileset."
+                    )
 
     def on_men_tiles_import_activate(self, *args):
         dialog: Gtk.Dialog = self.builder.get_object('dialog_tiles_import')
@@ -225,7 +240,8 @@ class TilesetController(AbstractController):
             except Exception as err:
                 display_error(
                     sys.exc_info(),
-                    str(err)
+                    str(err),
+                    "Error importing the tileset."
                 )
             self.reload_all()
             self.mark_as_modified()
