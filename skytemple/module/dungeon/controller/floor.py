@@ -976,7 +976,7 @@ class FloorController(AbstractController):
             weight = list_of_weights[i]
             if weight != 0:
                 last_nonzero = i - 1
-                while last_nonzero >= 0 && list_of_weights[last_nonzero] == 0:
+                while last_nonzero >= 0 and list_of_weights[last_nonzero] == 0:
                     last_nonzero -= 1
                 if last_nonzero != -1:
                     weight -= list_of_weights[last_nonzero]
