@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import math
 from enum import Enum
 from typing import TYPE_CHECKING, Type, List, Optional
 
@@ -25,8 +26,9 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.module.monster.controller.level_up import LevelUpController
 from skytemple.module.portrait.portrait_provider import IMG_DIM
+from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.md.model import Gender, PokeType, MovementType, IQGroup, Ability, EvolutionMethod, \
-    NUM_ENTITIES, ShadowSize
+    NUM_ENTITIES, ShadowSize, MONSTER_BIN
 
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
@@ -39,6 +41,8 @@ class MonsterController(AbstractController):
         self.module = module
         self.item_id = item_id
         self.entry = self.module.get_entry(self.item_id)
+
+        self._monster_bin = self.module.project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
 
         self.builder = None
         self._is_loading = False
@@ -72,6 +76,9 @@ class MonsterController(AbstractController):
         notebook.set_current_page(self.__class__._last_open_tab_id)
 
         self.builder.get_object('settings_grid').check_resize()
+
+        self._check_sprite_size(True)
+
         return self.builder.get_object('box_main')
 
     def on_main_notebook_switch_page(self, notebook, page, page_num):
@@ -123,6 +130,7 @@ class MonsterController(AbstractController):
         self._update_from_entry(w)
         self.mark_as_modified()
         self._sprite_provider.reset()
+        self._check_sprite_size(False)
         self.builder.get_object('draw_sprite').queue_draw()
 
     def on_cb_gender_changed(self, w, *args):
@@ -518,3 +526,36 @@ class MonsterController(AbstractController):
             label.set_text(f'${entry.md_index:04d}: {name} ({entry.gender.name[0]})')
         except BaseException:
             label.set_text(f'??? Enter a valid Entry ID ($)')
+
+    def _check_sprite_size(self, show_warning):
+        """
+        Check that the data in the unknown Pokémon sprite-related metadata
+        table matches the currently selected sprite of the Pokémon. If not, change
+        the value and save it.
+        """
+        with self._monster_bin as sprites:
+            sprite_bin = sprites[self.entry.sprite_index]
+            sprite = FileType.WAN.deserialize(FileType.PKDPX.deserialize(sprite_bin).decompress())
+        sprite_size_table = self.module.get_pokemon_sprite_data_table()
+        check_value = sprite_size_table[self.entry.md_index_base].sprite_tile_slots
+        max_tile_slots_needed = max(
+            (f.unk2 & 0x3FF) + math.ceil(f.resolution.x * f.resolution.y / 256)
+            for f in sprite.model.meta_frame_store.meta_frames
+        )
+        max_tile_slots_needed = max((6, max_tile_slots_needed + 2))
+        if check_value != max_tile_slots_needed:
+            sprite_size_table[self.entry.md_index_base].sprite_tile_slots = max_tile_slots_needed
+            self.module.set_pokemon_sprite_data_table(sprite_size_table)
+
+            if show_warning:
+                md = Gtk.MessageDialog(MainController.window(),
+                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                       Gtk.ButtonsType.OK,
+                                       "The sprite memory size of this Pokémon was too low "
+                                       "for this Pokémon's assigned sprite.\n"
+                                       "SkyTemple automatically corrected it.")
+                md.set_position(Gtk.WindowPosition.CENTER)
+                md.run()
+                md.destroy()
+
+            self.mark_as_modified()

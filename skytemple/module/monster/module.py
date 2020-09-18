@@ -20,7 +20,7 @@ from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.rom_project import RomProject
+from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.monster.controller.entity import EntityController
@@ -32,6 +32,7 @@ from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry
 from skytemple_files.data.md.model import Md, MdEntry, NUM_ENTITIES
 from skytemple_files.data.waza_p.model import WazaP
+from skytemple_files.hardcoded.monster_sprite_data_table import HardcodedMonsterSpriteDataTable
 
 MONSTER_MD_FILE = 'BALANCE/monster.md'
 M_LEVEL_BIN = 'BALANCE/m_level.bin'
@@ -154,3 +155,15 @@ class MonsterModule(AbstractModule):
     def _mark_as_modified_in_tree(self, item_id):
         row = self._tree_model[self._tree_iter__entries[item_id]]
         recursive_up_item_store_mark_as_modified(row)
+
+    def get_pokemon_sprite_data_table(self):
+        """Returns the recruitment lists: species, levels, locations"""
+        arm9 = self.project.get_binary(BinaryName.ARM9)
+        static_data = self.project.get_rom_module().get_static_data()
+        return HardcodedMonsterSpriteDataTable.get(arm9, static_data)
+
+    def set_pokemon_sprite_data_table(self, values):
+        def update(arm9):
+            static_data = self.project.get_rom_module().get_static_data()
+            HardcodedMonsterSpriteDataTable.set(values, arm9, static_data)
+        self.project.modify_binary(BinaryName.ARM9, update)
