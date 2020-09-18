@@ -23,12 +23,14 @@ from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label
 from skytemple.module.lists.controller.main import MainController, GROUND_LISTS
 from skytemple.module.lists.controller.actor_list import ActorListController
+from skytemple.module.lists.controller.rank_list import RankListController
 from skytemple.module.lists.controller.starters_list import StartersListController
 from skytemple.module.lists.controller.recruitment_list import RecruitmentListController
 from skytemple.module.lists.controller.world_map import WorldMapController
 from skytemple_files.data.md.model import Md
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement, HardcodedDungeons
 from skytemple_files.hardcoded.personality_test_starters import HardcodedPersonalityTestStarters
+from skytemple_files.hardcoded.rank_up_table import Rank, HardcodedRankUpTable
 from skytemple_files.hardcoded.recruitment_tables import HardcodedRecruitmentTables
 from skytemple_files.list.actor.model import ActorListBin
 
@@ -53,6 +55,7 @@ class ListsModule(AbstractModule):
         self._starters_tree_iter = None
         self._recruitment_tree_iter = None
         self._world_map_tree_iter = None
+        self._rank_list_tree_iter = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
@@ -70,11 +73,15 @@ class ListsModule(AbstractModule):
         self._world_map_tree_iter = item_store.append(root, [
             'view-list-symbolic', 'World Map Markers', self, WorldMapController, 0, False, '', True
         ])
+        self._rank_list_tree_iter = item_store.append(root, [
+            'view-list-symbolic', 'Rank List', self, RankListController, 0, False, '', True
+        ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])
         generate_item_store_row_label(item_store[self._starters_tree_iter])
         generate_item_store_row_label(item_store[self._recruitment_tree_iter])
         generate_item_store_row_label(item_store[self._world_map_tree_iter])
+        generate_item_store_row_label(item_store[self._rank_list_tree_iter])
         self._tree_model = item_store
 
     def has_actor_list(self):
@@ -153,4 +160,20 @@ class ListsModule(AbstractModule):
         self.project.modify_binary(BinaryName.ARM9, update)
 
         row = self._tree_model[self._world_map_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+
+    def get_rank_list(self) -> List[Rank]:
+        """Returns the rank up table."""
+        arm9bin = self.project.get_binary(BinaryName.ARM9)
+        static_data = self.project.get_rom_module().get_static_data()
+        return HardcodedRankUpTable.get_rank_up_table(arm9bin, static_data)
+
+    def set_rank_list(self, values: List[Rank]):
+        """Sets the rank up table."""
+        def update(arm9bin):
+            static_data = self.project.get_rom_module().get_static_data()
+            HardcodedRankUpTable.set_rank_up_table(values, arm9bin, static_data)
+        self.project.modify_binary(BinaryName.ARM9, update)
+
+        row = self._tree_model[self._rank_list_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
