@@ -193,7 +193,8 @@ class MonsterController(AbstractController):
 
     def on_entry_base_hp_changed(self, w, *args):
         self._update_from_entry(w)
-        self._level_up_controller.render_graph()
+        if self._level_up_controller is not None:
+            self._level_up_controller.render_graph()
         self.mark_as_modified()
 
     def on_entry_weight_changed(self, w, *args):
@@ -202,22 +203,26 @@ class MonsterController(AbstractController):
 
     def on_entry_base_atk_changed(self, w, *args):
         self._update_from_entry(w)
-        self._level_up_controller.render_graph()
+        if self._level_up_controller is not None:
+            self._level_up_controller.render_graph()
         self.mark_as_modified()
 
     def on_entry_base_sp_atk_changed(self, w, *args):
         self._update_from_entry(w)
-        self._level_up_controller.render_graph()
+        if self._level_up_controller is not None:
+            self._level_up_controller.render_graph()
         self.mark_as_modified()
 
     def on_entry_base_def_changed(self, w, *args):
         self._update_from_entry(w)
-        self._level_up_controller.render_graph()
+        if self._level_up_controller is not None:
+            self._level_up_controller.render_graph()
         self.mark_as_modified()
 
     def on_entry_base_sp_def_changed(self, w, *args):
         self._update_from_entry(w)
-        self._level_up_controller.render_graph()
+        if self._level_up_controller is not None:
+            self._level_up_controller.render_graph()
         self.mark_as_modified()
 
     def on_entry_size_changed(self, w, *args):
