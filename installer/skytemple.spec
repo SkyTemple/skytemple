@@ -18,7 +18,6 @@ additional_datas = [
     (os.path.join(site_packages, 'skytemple_files', '_resources'), 'skytemple_files/_resources'),
     (os.path.join('.', 'armips.exe'), 'skytemple_files/_resources'),
     (os.path.join(site_packages, 'desmume', 'frontend', 'control_ui', '*.glade'), 'desmume/frontend/control_ui'),
-    (os.path.join(site_packages, "skytemple_tilequant", "tilequant.exe"), "skytemple_tilequant"),
     (os.path.join(site_packages, "cairocffi", "VERSION"), "cairocffi"),
     (os.path.join(site_packages, "cssselect2", "VERSION"), "cssselect2"),
     (os.path.join(site_packages, "tinycss2", "VERSION"), "tinycss2"),
@@ -36,6 +35,7 @@ for (path, directories, filenames) in os.walk(os.path.join(pkg_path, 'module')):
 additional_binaries = [
     (os.path.join(site_packages, "desmume", "libdesmume.dll"), "."),
     (os.path.join(site_packages, "desmume", "SDL.dll"), "."),
+    (os.path.join(site_packages, "skytemple_tilequant", "aikku", "libtilequant.dll"), "skytemple_tilequant/aikku"),
 ]
 
 block_cipher = None
