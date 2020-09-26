@@ -19,7 +19,8 @@ from enum import Enum
 from functools import partial, reduce
 from itertools import zip_longest
 from math import gcd
-from typing import TYPE_CHECKING, List, Type, Dict
+from typing import TYPE_CHECKING, List, Type, Dict, Tuple, Optional
+from xml.etree import ElementTree
 
 from gi.repository import Gtk, GLib, GdkPixbuf
 
@@ -27,18 +28,22 @@ from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import add_dialog_file_filters, add_dialog_xml_filter
+from skytemple.module.dungeon.controller.dojos import DOJOS_NAME
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem
 from skytemple_files.common.util import lcm
+from skytemple_files.common.xml_util import prettify
 from skytemple_files.dungeon_data.mappa_bin.floor_layout import MappaFloorStructureType, MappaFloorSecondaryTerrainType, \
     MappaFloorDarknessLevel, MappaFloorWeather
 from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList, Probability, GUARANTEED, MappaItemCategory, \
     MAX_ITEM_ID
+from skytemple_files.dungeon_data.mappa_bin.mappa_xml import mappa_floor_xml_export
 from skytemple_files.dungeon_data.mappa_bin.monster import DUMMY_MD_INDEX, MappaMonster
 from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType, MappaTrapList
+from skytemple.controller.main import MainController as SkyTempleMainController
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, FloorViewInfo
-
 
 COUNT_VALID_TILESETS = 200
 COUNT_VALID_BGM = 118
@@ -162,12 +167,6 @@ class FloorController(AbstractController):
     def on_cb_fixed_floor_id_changed(self, w, *args):
         self._update_from_widget(w)
         self.mark_as_modified()
-
-    def on_btn_export_clicked(self, *args):
-        pass  # todo
-
-    def on_btn_import_clicked(self, *args):
-        pass  # todo
 
     def on_entry_room_density_changed(self, w, *args):
         self._update_from_widget(w)
@@ -732,6 +731,149 @@ class FloorController(AbstractController):
     def on_btn_help__spawn_tables__clicked(self, *args):
         pass  # todo
 
+    def on_btn_export_clicked(self, *args):
+        from skytemple.module.dungeon.module import DungeonGroup, ICON_GROUP, \
+            ICON_DUNGEONS, DOJO_DUNGEONS_FIRST, DOJO_DUNGEONS_LAST
+        dialog: Gtk.Dialog = self.builder.get_object('export_dialog')
+        dialog.resize(460, 560)
+        dialog.set_attached_to(SkyTempleMainController.window())
+        dialog.set_transient_for(SkyTempleMainController.window())
+
+        # Fill dungeon tree
+        store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')
+        store.clear()
+        for dungeon_or_group in self.module.load_dungeons():
+            if isinstance(dungeon_or_group, DungeonGroup):
+                # Group
+                group = store.append(None, [
+                    -1, -1, False, ICON_GROUP,
+                    self.module.generate_group_label(dungeon_or_group.base_dungeon_id), False, False
+                ])
+                for dungeon, start_id in zip(dungeon_or_group.dungeon_ids, dungeon_or_group.start_ids):
+                    self._add_dungeon_to_export_dialog_tree(group, store, dungeon, start_id)
+            else:
+                # Dungeon
+                self._add_dungeon_to_export_dialog_tree(None, store, dungeon_or_group, 0)
+
+        # Dojo dungeons
+        dojo_root = store.append(None, [
+            -1, -1, False, ICON_DUNGEONS,
+            DOJOS_NAME, False, False
+        ])
+        for i in range(DOJO_DUNGEONS_FIRST, DOJO_DUNGEONS_LAST + 1):
+            self._add_dungeon_to_export_dialog_tree(dojo_root, store, i, 0)
+
+        resp = dialog.run()
+        dialog.hide()
+
+        if resp == Gtk.ResponseType.APPLY:
+            # Create output XML
+            xml = mappa_floor_xml_export(
+                self.entry,
+                export_layout=self.builder.get_object('export_type_layout').get_active(),
+                export_monsters=self.builder.get_object('export_type_monsters').get_active(),
+                export_traps=self.builder.get_object('export_type_traps').get_active(),
+                export_floor_items=self.builder.get_object('export_type_floor_items').get_active(),
+                export_shop_items=self.builder.get_object('export_type_shop_items').get_active(),
+                export_monster_house_items=self.builder.get_object('export_type_monster_house_items').get_active(),
+                export_buried_items=self.builder.get_object('export_type_buried_items').get_active(),
+                export_unk1_items=self.builder.get_object('export_type_unk_items1').get_active(),
+                export_unk2_items=self.builder.get_object('export_type_unk_items2').get_active()
+            )
+
+            # 1. Export to file
+            if self.builder.get_object('export_file_switch').get_active():
+                save_diag = Gtk.FileChooserDialog(
+                    "Export floor as...",
+                    SkyTempleMainController.window(),
+                    Gtk.FileChooserAction.SAVE,
+                    (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+                )
+
+                add_dialog_xml_filter(save_diag)
+                response = save_diag.run()
+                fn = save_diag.get_filename()
+                if '.' not in fn:
+                    fn += '.xml'
+                save_diag.destroy()
+
+                if response == Gtk.ResponseType.OK:
+                    with open(fn, 'w') as f:
+                        f.write(prettify(xml))
+                else:
+                    md = Gtk.MessageDialog(SkyTempleMainController.window(),
+                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                           Gtk.ButtonsType.OK, "Export was canceled.")
+                    md.set_position(Gtk.WindowPosition.CENTER)
+                    md.run()
+                    md.destroy()
+                    return
+
+            # 2. Import to selected floors
+            selected_floors: List[Tuple[int, int]] = []
+            def collect_floors_recurse(titer: Optional[Gtk.TreeIter]):
+                for i in range(store.iter_n_children(titer)):
+                    child = store.iter_nth_child(titer, i)
+                    if store[child][2] and store[child][5]:  # is floor and is selected
+                        selected_floors.append((store[child][0], store[child][1]))
+                    collect_floors_recurse(child)
+
+            collect_floors_recurse(None)
+            self.module.import_from_xml(selected_floors, xml)
+
+    def on_btn_import_clicked(self, *args):
+        save_diag = Gtk.FileChooserDialog(
+            "Import floor from...",
+            SkyTempleMainController.window(),
+            Gtk.FileChooserAction.OPEN,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+        )
+
+        add_dialog_xml_filter(save_diag)
+        response = save_diag.run()
+        fn = save_diag.get_filename()
+        save_diag.destroy()
+
+        if response == Gtk.ResponseType.OK:
+            self.module.import_from_xml([(self.item.dungeon.dungeon_id, self.item.floor_id)],
+                                        ElementTree.parse(fn).getroot())
+            SkyTempleMainController.reload_view()
+
+    def on_cr_export_selected_toggled(self, w: Gtk.CellRendererToggle, path, *args):
+        store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')
+        is_active = not w.get_active()
+        store[path][5] = is_active
+        store[path][6] = False
+        # Update inconsistent state for all parents
+        def mark_inconsistent_recurse(titer: Gtk.TreeIter, force_inconstent=False):
+            parent = store.iter_parent(titer)
+            if parent is not None:
+                should_be_inconsistent = force_inconstent
+                if not should_be_inconsistent:
+                    # Look at children to see if should be marked inconsistent
+                    children = []
+                    for i in range(store.iter_n_children(parent)):
+                        child = store.iter_nth_child(parent, i)
+                        children.append(child)
+                    states = [store[child][5] for child in children]
+                    should_be_inconsistent = any([store[child][6] for child in children]) or not states.count(states[0]) == len(states)
+                store[parent][6] = should_be_inconsistent
+                if should_be_inconsistent:
+                    store[parent][5] = False
+                else:
+                    store[parent][5] = states[0]
+                mark_inconsistent_recurse(parent, should_be_inconsistent)
+
+        mark_inconsistent_recurse(store.get_iter(path))
+        # Update state for all children
+        def mark_active_recurse(titer: Gtk.TreeIter):
+            for i in range(store.iter_n_children(titer)):
+                child = store.iter_nth_child(titer, i)
+                store[child][5] = is_active
+                store[child][6] = False
+                mark_active_recurse(child)
+        mark_active_recurse(store.get_iter(path))
+
     def on_item_list_notebook_switch_page(self, w: Gtk.Notebook, page: Gtk.Box, page_num: int, *args):
         self._item_list_edit_active = FloorEditItemList(page_num)
         self.__class__._last_open_tab_item_lists = FloorEditItemList(page_num)
@@ -739,6 +881,19 @@ class FloorController(AbstractController):
         sw.get_parent().remove(sw)
         page.pack_start(sw, True, True, 0)
         self._init_item_spawns()
+
+    def _add_dungeon_to_export_dialog_tree(self, root_node, item_store, idx, previous_floor_id):
+        from skytemple.module.dungeon.module import ICON_DUNGEON
+        dungeon = item_store.append(root_node, [
+            -1, -1, False, ICON_DUNGEON,
+            self.module.generate_dungeon_label(idx), False, False
+        ])
+        for floor_i in range(0, self.module.get_number_floors(idx)):
+            item_store.append(dungeon, [
+                idx, previous_floor_id + floor_i, True, ICON_DUNGEON,
+                self.module.generate_floor_label(floor_i + previous_floor_id), False, False
+            ])
+        return dungeon
 
     def _init_labels(self):
         dungeon_name = self._string_provider.get_value(StringType.DUNGEON_NAMES_MAIN, self.item.dungeon.dungeon_id)

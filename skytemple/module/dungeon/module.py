@@ -15,7 +15,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import Optional, List, Union, Iterable
+from typing import Optional, List, Union, Iterable, Tuple
+from xml.etree.ElementTree import Element
 
 from gi.repository.Gtk import TreeStore
 
@@ -33,6 +34,7 @@ from skytemple.module.dungeon.controller.main import MainController, DUNGEONS_NA
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.md.model import Md
 from skytemple_files.dungeon_data.mappa_bin.floor import MappaFloor
+from skytemple_files.dungeon_data.mappa_bin.mappa_xml import mappa_floor_xml_import
 from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
 from skytemple_files.dungeon_data.mappa_g_bin.mappa_converter import convert_mappa_to_mappag
 from skytemple_files.hardcoded.dungeons import HardcodedDungeons, DungeonDefinition, DungeonRestriction
@@ -101,13 +103,10 @@ class DungeonModule(AbstractModule):
         self._root_iter = root
 
         # Regular dungeons
-        dungeons_root = item_store.append(root, [
-            ICON_DUNGEONS, DUNGEONS_NAME, self, MainController, 0, False, '', True
-        ])
         for dungeon_or_group in self.load_dungeons():
             if isinstance(dungeon_or_group, DungeonGroup):
                 # Group
-                group = item_store.append(dungeons_root, [
+                group = item_store.append(root, [
                     ICON_GROUP, self.generate_group_label(dungeon_or_group.base_dungeon_id), self, GroupController,
                     dungeon_or_group.base_dungeon_id, False, '', True
                 ])
@@ -115,7 +114,7 @@ class DungeonModule(AbstractModule):
                     self._dungeon_iters[dungeon] = self._add_dungeon_to_tree(group, item_store, dungeon, start_id)
             else:
                 # Dungeon
-                self._dungeon_iters[dungeon_or_group] = self._add_dungeon_to_tree(dungeons_root, item_store, dungeon_or_group, 0)
+                self._dungeon_iters[dungeon_or_group] = self._add_dungeon_to_tree(root, item_store, dungeon_or_group, 0)
 
         # Dojo dungeons
         dojo_root = item_store.append(root, [
@@ -125,12 +124,13 @@ class DungeonModule(AbstractModule):
             self._dungeon_iters[i] = self._add_dungeon_to_tree(dojo_root, item_store, i, 0)
 
         # Fixed rooms
-        fixed_rooms = item_store.append(root, [
+        fixed_rooms = item_store.append(root_node, [
             ICON_FIXED_ROOMS, FIXED_ROOMS_NAME, self, FixedRoomsController, 0, False, '', True
         ])
         # TODO Fixed rooms
 
         recursive_generate_item_store_row_label(self._tree_model[root])
+        recursive_generate_item_store_row_label(self._tree_model[fixed_rooms])
 
     def get_mappa(self) -> MappaBin:
         return self.project.open_file_in_rom(MAPPA_PATH, FileType.MAPPA_BIN)
@@ -201,14 +201,14 @@ class DungeonModule(AbstractModule):
     def _add_dungeon_to_tree(self, root_node, item_store, idx, previous_floor_id):
         dungeon_info = DungeonViewInfo(idx, idx < DOJO_DUNGEONS_FIRST)
         dungeon = item_store.append(root_node, [
-            ICON_DUNGEON, self._generate_dungeon_label(idx), self, DungeonController,
+            ICON_DUNGEON, self.generate_dungeon_label(idx), self, DungeonController,
             dungeon_info, False, '', True
         ])
         if idx not in self._dungeon_floor_iters:
             self._dungeon_floor_iters[idx] = {}
         for floor_i in range(0, self.get_number_floors(idx)):
             self._dungeon_floor_iters[idx][previous_floor_id + floor_i] = item_store.append(dungeon, [
-                ICON_DUNGEON, self._generate_floor_label(floor_i + previous_floor_id), self, FloorController,
+                ICON_DUNGEON, self.generate_floor_label(floor_i + previous_floor_id), self, FloorController,
                 FloorViewInfo(previous_floor_id + floor_i, dungeon_info), False, '', True
             ])
         return dungeon
@@ -259,10 +259,10 @@ class DungeonModule(AbstractModule):
         dname = self.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, base_dungeon_id)
         return f'"{dname}" Group'
 
-    def _generate_dungeon_label(self, idx) -> str:
+    def generate_dungeon_label(self, idx) -> str:
         return f'{idx}: {self.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, idx)}'
 
-    def _generate_floor_label(self, floor_i) -> str:
+    def generate_floor_label(self, floor_i) -> str:
         return f'Floor {floor_i + 1}'
 
     def get_number_floors(self, idx) -> int:
@@ -287,3 +287,10 @@ class DungeonModule(AbstractModule):
 
     def get_monster_md(self) -> Md:
         return self.project.get_module('monster').monster_md
+
+    def import_from_xml(self, selected_floors: List[Tuple[int, int]], xml: Element):
+        for dungeon_id, floor_id in selected_floors:
+            floor_info = FloorViewInfo(floor_id, DungeonViewInfo(dungeon_id, False))
+            floor = self.get_mappa_floor(floor_info)
+            mappa_floor_xml_import(xml, floor)
+            self.mark_floor_as_modified(floor_info)
