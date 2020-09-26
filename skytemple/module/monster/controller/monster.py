@@ -16,7 +16,8 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import math
 from enum import Enum
-from typing import TYPE_CHECKING, Type, List, Optional
+from typing import TYPE_CHECKING, Type, List, Optional, Dict
+from xml.etree import ElementTree
 
 import cairo
 from gi.repository import Gtk, GLib
@@ -24,11 +25,15 @@ from gi.repository import Gtk, GLib
 from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import add_dialog_xml_filter
 from skytemple.module.monster.controller.level_up import LevelUpController
 from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.common.types.file_types import FileType
+from skytemple_files.common.xml_util import prettify
 from skytemple_files.data.md.model import Gender, PokeType, MovementType, IQGroup, Ability, EvolutionMethod, \
-    NUM_ENTITIES, ShadowSize, MONSTER_BIN
+    NUM_ENTITIES, ShadowSize, MONSTER_BIN, MdEntry
+from skytemple.controller.main import MainController as SkyTempleMainController
+from skytemple_files.data.monster_xml import monster_xml_export
 
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
@@ -348,6 +353,203 @@ class MonsterController(AbstractController):
         self._update_from_entry(w)
         self._update_base_form_label()
         self.mark_as_modified()
+
+    def on_btn_export_clicked(self, *args):
+        dialog: Gtk.Dialog = self.builder.get_object('export_dialog')
+        dialog.resize(640, 560)
+        dialog.set_attached_to(SkyTempleMainController.window())
+        dialog.set_transient_for(SkyTempleMainController.window())
+
+        # Fill Pokémon tree
+        store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')
+        store.clear()
+        monster_entries_by_base_id: Dict[int, List[MdEntry]] = {}
+        for entry in self.module.monster_md.entries:
+            if entry.md_index_base not in monster_entries_by_base_id:
+                monster_entries_by_base_id[entry.md_index_base] = []
+            monster_entries_by_base_id[entry.md_index_base].append(entry)
+
+        for baseid, entry_list in monster_entries_by_base_id.items():
+            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, baseid)
+            entry_main_tree = self.module.generate_entry__entity_root(baseid, name)
+            ent_root = store.append(None, [
+                -1, -1, False, entry_main_tree[0],
+                entry_main_tree[1], False, False
+            ])
+
+            for entry in entry_list:
+                entry_main_tree = self.module.generate_entry__entry(entry.md_index, entry.gender)
+                store.append(
+                    ent_root, [
+                        entry_main_tree[4], -1, True, entry_main_tree[0],
+                        entry_main_tree[1], False, False
+                    ]
+                )
+
+        names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2 = self.module.get_export_data(self.entry)
+        we_are_gender1 = md_gender1 == self.entry
+
+        if md_gender2 is None:
+            sw: Gtk.Switch = self.builder.get_object('export_type_other_gender')
+            sw.set_active(False)
+            sw.set_sensitive(False)
+
+        if portraits is None:
+            sw: Gtk.Switch = self.builder.get_object('export_type_portraits_current_gender')
+            sw.set_active(False)
+            sw.set_sensitive(False)
+
+        if portraits2 is None:
+            sw: Gtk.Switch = self.builder.get_object('export_type_portraits_other_gender')
+            sw.set_active(False)
+            sw.set_sensitive(False)
+
+        if stats is None:
+            sw: Gtk.Switch = self.builder.get_object('export_type_stats')
+            sw.set_active(False)
+            sw.set_sensitive(False)
+
+        if moveset is None:
+            sw: Gtk.Switch = self.builder.get_object('export_type_moveset1')
+            sw.set_active(False)
+            sw.set_sensitive(False)
+
+        if moveset2 is None:
+            sw: Gtk.Switch = self.builder.get_object('export_type_moveset2')
+            sw.set_active(False)
+            sw.set_sensitive(False)
+
+        resp = dialog.run()
+        dialog.hide()
+
+        if resp == Gtk.ResponseType.APPLY:
+            # Create output XML
+
+            if not self.builder.get_object('export_type_current_gender').get_active():
+                if we_are_gender1:
+                    md_gender1 = None
+                else:
+                    md_gender2 = None
+            if not self.builder.get_object('export_type_other_gender').get_active():
+                if not we_are_gender1:
+                    md_gender1 = None
+                else:
+                    md_gender2 = None
+            if not self.builder.get_object('export_type_names').get_active():
+                names = None
+            if not self.builder.get_object('export_type_stats').get_active():
+                stats = None
+            if not self.builder.get_object('export_type_moveset1').get_active():
+                moveset = None
+            if not self.builder.get_object('export_type_moveset2').get_active():
+                moveset2 = None
+            if not self.builder.get_object('export_type_portraits_current_gender').get_active():
+                if we_are_gender1:
+                    portraits = None
+                else:
+                    portraits2 = None
+            if not self.builder.get_object('export_type_portraits_other_gender').get_active():
+                if not we_are_gender1:
+                    portraits = None
+                else:
+                    portraits2 = None
+
+            xml = monster_xml_export(
+                self.module.project.get_rom_module().get_static_data().game_version,
+                md_gender1, md_gender2, names, moveset, moveset2, stats, portraits, portraits2
+            )
+
+            # 1. Export to file
+            if self.builder.get_object('export_file_switch').get_active():
+                save_diag = Gtk.FileChooserDialog(
+                    "Export Pokémon as...",
+                    SkyTempleMainController.window(),
+                    Gtk.FileChooserAction.SAVE,
+                    (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+                )
+
+                add_dialog_xml_filter(save_diag)
+                response = save_diag.run()
+                fn = save_diag.get_filename()
+                if '.' not in fn:
+                    fn += '.xml'
+                save_diag.destroy()
+
+                if response == Gtk.ResponseType.OK:
+                    with open(fn, 'w') as f:
+                        f.write(prettify(xml))
+                else:
+                    md = Gtk.MessageDialog(SkyTempleMainController.window(),
+                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                           Gtk.ButtonsType.OK, "Export was canceled.")
+                    md.set_position(Gtk.WindowPosition.CENTER)
+                    md.run()
+                    md.destroy()
+                    return
+
+            # 2. Import to selected Pokémon
+            selected_monsters: List[int] = []
+            def collect_monsters_recurse(titer: Optional[Gtk.TreeIter]):
+                for i in range(store.iter_n_children(titer)):
+                    child = store.iter_nth_child(titer, i)
+                    if store[child][2] and store[child][5]:  # is floor and is selected
+                        selected_monsters.append(store[child][0])
+                    collect_monsters_recurse(child)
+
+            collect_monsters_recurse(None)
+            self.module.import_from_xml(selected_monsters, xml)
+
+    def on_btn_import_clicked(self, *args):
+        save_diag = Gtk.FileChooserDialog(
+            "Import Pokémon from...",
+            SkyTempleMainController.window(),
+            Gtk.FileChooserAction.OPEN,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+        )
+
+        add_dialog_xml_filter(save_diag)
+        response = save_diag.run()
+        fn = save_diag.get_filename()
+        save_diag.destroy()
+
+        if response == Gtk.ResponseType.OK:
+            self.module.import_from_xml([self.entry.md_index], ElementTree.parse(fn).getroot())
+            SkyTempleMainController.reload_view()
+
+    def on_cr_export_selected_toggled(self, w: Gtk.CellRendererToggle, path, *args):
+        store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')
+        is_active = not w.get_active()
+        store[path][5] = is_active
+        store[path][6] = False
+        # Update inconsistent state for all parents
+        def mark_inconsistent_recurse(titer: Gtk.TreeIter, force_inconstent=False):
+            parent = store.iter_parent(titer)
+            if parent is not None:
+                should_be_inconsistent = force_inconstent
+                if not should_be_inconsistent:
+                    # Look at children to see if should be marked inconsistent
+                    children = []
+                    for i in range(store.iter_n_children(parent)):
+                        child = store.iter_nth_child(parent, i)
+                        children.append(child)
+                    states = [store[child][5] for child in children]
+                    should_be_inconsistent = any([store[child][6] for child in children]) or not states.count(states[0]) == len(states)
+                store[parent][6] = should_be_inconsistent
+                if should_be_inconsistent:
+                    store[parent][5] = False
+                else:
+                    store[parent][5] = states[0]
+                mark_inconsistent_recurse(parent, should_be_inconsistent)
+
+        mark_inconsistent_recurse(store.get_iter(path))
+        # Update state for all children
+        def mark_active_recurse(titer: Gtk.TreeIter):
+            for i in range(store.iter_n_children(titer)):
+                child = store.iter_nth_child(titer, i)
+                store[child][5] = is_active
+                store[child][6] = False
+                mark_active_recurse(child)
+        mark_active_recurse(store.get_iter(path))
 
     def _init_language_labels(self):
         langs = self._string_provider.get_languages()
