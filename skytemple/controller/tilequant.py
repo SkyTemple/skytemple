@@ -178,7 +178,7 @@ class TilequantController:
                         image1 = Image.open(input_file)
                         image2 = Image.open(second_input_file)
                         image = Image.new(
-                            'RGB',
+                            'RGBA',
                             (max(image1.width, image2.width), image1.height + image2.height),
                             transparent_color
                         )
