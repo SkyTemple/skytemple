@@ -91,7 +91,7 @@
             <property name="tooltip_text" translatable="yes">Hide Other Layers</property>
             <property name="label" translatable="yes">Hide Other</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">view-reveal-symbolic</property>
+            <property name="icon_name">skytemple-view-reveal-symbolic</property>
             <signal name="toggled" handler="on_tb_hide_other_toggled" swapped="no"/>
           </object>
           <packing>

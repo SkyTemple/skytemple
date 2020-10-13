@@ -208,7 +208,7 @@ class DungeonModule(AbstractModule):
             self._dungeon_floor_iters[idx] = {}
         for floor_i in range(0, self.get_number_floors(idx)):
             self._dungeon_floor_iters[idx][previous_floor_id + floor_i] = item_store.append(dungeon, [
-                ICON_DUNGEON, self.generate_floor_label(floor_i + previous_floor_id), self, FloorController,
+                ICON_FLOOR, self.generate_floor_label(floor_i + previous_floor_id), self, FloorController,
                 FloorViewInfo(previous_floor_id + floor_i, dungeon_info), False, '', True
             ])
         return dungeon
