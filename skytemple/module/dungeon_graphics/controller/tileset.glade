@@ -174,7 +174,7 @@ be able to re-import the chunks!</property>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Enable Palette Animations for Palette 11</property>
+                    <property name="label" translatable="yes">Enable Palette Animations for Palette 10</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -240,7 +240,7 @@ be able to re-import the chunks!</property>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Enable Palette Animations for Palette 12</property>
+                    <property name="label" translatable="yes">Enable Palette Animations for Palette 11</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -536,7 +536,7 @@ be able to re-import the tiles!</property>
                   <object class="GtkMenuItem" id="men_palettes_ani_edit_11">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Edit Animation Palette 11</property>
+                    <property name="label" translatable="yes">Edit Animation Palette 10</property>
                     <property name="use_underline">True</property>
                     <signal name="activate" handler="on_men_palettes_ani_edit_11_activate" swapped="no"/>
                   </object>
@@ -545,7 +545,7 @@ be able to re-import the tiles!</property>
                   <object class="GtkMenuItem" id="men_palettes_ani_edit_12">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Edit Animation Palette 12</property>
+                    <property name="label" translatable="yes">Edit Animation Palette 11</property>
                     <property name="use_underline">True</property>
                     <signal name="activate" handler="on_men_palettes_ani_edit_12_activate" swapped="no"/>
                   </object>

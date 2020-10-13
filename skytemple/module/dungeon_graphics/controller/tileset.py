@@ -84,6 +84,7 @@ class TilesetController(AbstractController):
         self._init_rule_icon_views()
         self._init_chunk_picker_icon_view()
         self.builder.connect_signals(self)
+        self.builder.get_object('label_tileset_name').set_text(f'Dungeon Tileset {self.item_id} Rules')
         return self.builder.get_object('editor_dungeon_tilesets')
 
     def on_men_chunks_edit_activate(self, *args):
