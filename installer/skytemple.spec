@@ -11,6 +11,7 @@ additional_datas = [
     (os.path.join(pkg_path, 'data'), 'skytemple/data'),
     (os.path.join(pkg_path, '*.glade'), '.'),
     (os.path.join(pkg_path, '*.css'), '.'),
+    (os.path.join(site_packages, 'skytemple_icons', 'hicolor'), 'skytemple_icons/hicolor'),
     (os.path.join(site_packages, 'skytemple_ssb_debugger', 'data'), 'skytemple_ssb_debugger/data'),
     (os.path.join(site_packages, 'skytemple_ssb_debugger', '*.glade'), 'skytemple_ssb_debugger'),
     (os.path.join(site_packages, 'skytemple_ssb_debugger', '*.lang'), 'skytemple_ssb_debugger'),

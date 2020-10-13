@@ -31,6 +31,7 @@ setup(
     install_requires=[
         'ndspy >= 3.0.0',
         'skytemple-files >= 0.1.0a12',
+        'skytemple-icons >= 0.1.0',
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
