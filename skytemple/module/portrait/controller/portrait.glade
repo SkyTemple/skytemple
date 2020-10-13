@@ -11,7 +11,7 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
-          <object class="GtkToolButton" id="export">
+          <object class="GtkMenuToolButton" id="export">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="is_important">True</property>
@@ -19,6 +19,30 @@
             <property name="use_underline">True</property>
             <property name="icon_name">document-open-symbolic</property>
             <signal name="clicked" handler="on_export_clicked" swapped="no"/>
+            <child type="menu">
+              <object class="GtkMenu">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkMenuItem" id="separate_export">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">... as separate images</property>
+                    <property name="use_underline">True</property>
+                    <signal name="activate" handler="on_separate_export_activate" swapped="no"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkMenuItem" id="spritebot_export">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">... as one sheet (SpriteBot format)</property>
+                    <property name="use_underline">True</property>
+                    <signal name="activate" handler="on_spritebot_export_activate" swapped="no"/>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -26,7 +50,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkToolButton" id="import">
+          <object class="GtkMenuToolButton" id="import">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="is_important">True</property>
@@ -34,6 +58,30 @@
             <property name="use_underline">True</property>
             <property name="icon_name">document-save-symbolic</property>
             <signal name="clicked" handler="on_import_clicked" swapped="no"/>
+            <child type="menu">
+              <object class="GtkMenu">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkMenuItem" id="separate_import">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">... from separate images</property>
+                    <property name="use_underline">True</property>
+                    <signal name="activate" handler="on_separate_import_activate" swapped="no"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkMenuItem" id="spritebot_import">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">... from one sheet (SpriteBot format)</property>
+                    <property name="use_underline">True</property>
+                    <signal name="activate" handler="on_spritebot_import_activate" swapped="no"/>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -44,7 +92,7 @@
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="position">0</property>
+        <property name="position">1</property>
       </packing>
     </child>
     <child>
@@ -116,7 +164,7 @@
                     <property name="margin_bottom">10</property>
                     <property name="label" translatable="yes">If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.
 IIf that is also missing, the behaviour is undefined.
-Flipped versions of the images are unusued(?), because the game flips the portraits itself.</property>
+If flipped versions are empty, the game will automatically flip the image.</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -1653,7 +1701,7 @@ Flipped versions of the images are unusued(?), because the game flips the portra
       <packing>
         <property name="expand">True</property>
         <property name="fill">True</property>
-        <property name="position">1</property>
+        <property name="position">2</property>
       </packing>
     </child>
   </object>
