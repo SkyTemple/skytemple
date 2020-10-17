@@ -22,7 +22,7 @@ from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
 from gi.repository.Gtk import Widget
 
-from skytemple.module.map_bg.animation_context import AnimationContext
+from skytemple.module.tiled_img.animation_context import AnimationContext
 import cairo
 
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM

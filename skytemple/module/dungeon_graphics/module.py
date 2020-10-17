@@ -23,10 +23,12 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label
+from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController
 from skytemple.module.dungeon_graphics.controller.tileset import TilesetController
 from skytemple.module.dungeon_graphics.controller.main import MainController, DUNGEON_GRAPHICS_NAME
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
+from skytemple_files.graphics.dbg.model import Dbg
 from skytemple_files.graphics.dma.model import Dma
 from skytemple_files.graphics.dpc.model import Dpc
 from skytemple_files.graphics.dpci.model import Dpci
@@ -35,6 +37,7 @@ from skytemple_files.graphics.dpla.model import Dpla
 
 # TODO: Not so great that this is hard-coded, but how else can we really do it? - Maybe at least in the dungeondata.xml?
 NUMBER_OF_TILESETS = 170
+NUMBER_OF_BACKGROUNDS = 29
 DUNGEON_BIN = 'DUNGEON/dungeon.bin'
 logger = logging.getLogger(__name__)
 
@@ -71,6 +74,13 @@ class DungeonGraphicsModule(AbstractModule):
                     'image-x-generic-symbolic', f"Tileset {i}", self,  TilesetController, i, False, '', True
                 ])
             )
+        for i in range(0, NUMBER_OF_BACKGROUNDS):
+            self._tree_level_iter.append(
+                item_store.append(root, [
+                    'image-x-generic-symbolic', f"Background {i + NUMBER_OF_TILESETS}",
+                    self,  DungeonBgController, i, False, '', True
+                ])
+            )
 
         recursive_generate_item_store_row_label(self._tree_model[root])
 
@@ -89,9 +99,26 @@ class DungeonGraphicsModule(AbstractModule):
     def get_dpci(self, item_id) -> Dpci:
         return self.dungeon_bin.get(f'dungeon{item_id}.dpci')
 
-    def mark_as_modified(self, item_id):
+    def get_bg_dbg(self, item_id) -> Dbg:
+        return self.dungeon_bin.get(f'dungeon_bg{item_id}.dbg')
+
+    def get_bg_dpl(self, item_id) -> Dpl:
+        return self.dungeon_bin.get(f'dungeon_bg{item_id}.dpl')
+
+    def get_bg_dpla(self, item_id) -> Dpla:
+        return self.dungeon_bin.get(f'dungeon_bg{item_id}.dpla')
+
+    def get_bg_dpc(self, item_id) -> Dpc:
+        return self.dungeon_bin.get(f'dungeon_bg{item_id}.dpc')
+
+    def get_bg_dpci(self, item_id) -> Dpci:
+        return self.dungeon_bin.get(f'dungeon_bg{item_id}.dpci')
+
+    def mark_as_modified(self, item_id, is_background):
         self.project.mark_as_modified(DUNGEON_BIN)
 
         # Mark as modified in tree
+        if is_background:
+            item_id += NUMBER_OF_TILESETS
         row = self._tree_model[self._tree_level_iter[item_id]]
         recursive_up_item_store_mark_as_modified(row)

@@ -25,7 +25,7 @@ from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
 from gi.repository.Gtk import Widget
 
-from skytemple.module.map_bg.animation_context import AnimationContext
+from skytemple.module.tiled_img.animation_context import AnimationContext
 from skytemple_files.common.tiled_image import TilemapEntry
 import cairo
 

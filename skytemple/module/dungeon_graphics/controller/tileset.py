@@ -26,6 +26,7 @@ import cairo
 
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_graphics_provider import DungeonTilesProvider
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_palettes_provider import DungeonPalettesProvider
+from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
 from skytemple.module.tiled_img.dialog_controller.chunk_editor import ChunkEditorController
 
 try:
@@ -78,6 +79,8 @@ class TilesetController(AbstractController):
 
         self._init_chunk_imgs()
 
+        self.menu_controller = BgMenuController(self)
+
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'tileset.glade')
         self._init_rules()
@@ -88,228 +91,31 @@ class TilesetController(AbstractController):
         return self.builder.get_object('editor_dungeon_tilesets')
 
     def on_men_chunks_edit_activate(self, *args):
-        all_tilemaps = list(itertools.chain.from_iterable(self.dpc.chunks))
-        static_tiles_provider = DungeonTilesProvider(self.dpci)
-        palettes_provider = DungeonPalettesProvider(self.dpl, self.dpla)
-        cntrl = ChunkEditorController(
-            MainController.window(), all_tilemaps,
-            static_tiles_provider, palettes_provider,
-            self.pal_ani_durations
-        )
-        edited_mappings = cntrl.show()
-        if edited_mappings:
-            self.dpc.chunks = list(chunks(edited_mappings, DPC_TILING_DIM * DPC_TILING_DIM))
-            self.reload_all()
-            self.mark_as_modified()
-        del cntrl
+        self.menu_controller.on_men_chunks_layer1_edit_activate()
 
     def on_men_chunks_export_activate(self, *args):
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_chunks_export')
-        dialog.set_attached_to(MainController.window())
-        dialog.set_transient_for(MainController.window())
-
-        resp = dialog.run()
-        dialog.hide()
-        if resp == Gtk.ResponseType.OK:
-            dialog = Gtk.FileChooserDialog(
-                "Export PNG of chunks...",
-                MainController.window(),
-                Gtk.FileChooserAction.SAVE,
-                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
-            )
-
-            add_dialog_png_filter(dialog)
-
-            response = dialog.run()
-            fn = dialog.get_filename()
-            if '.' not in fn:
-                fn += '.png'
-            dialog.destroy()
-
-            if response == Gtk.ResponseType.OK:
-                try:
-                    self.dpc.chunks_to_pil(self.dpci, self.dpl.palettes, 16).save(fn)
-                except BaseException as err:
-                    display_error(
-                        sys.exc_info(),
-                        str(err),
-                        "Error exporting the tileset."
-                    )
+        self.menu_controller.on_men_chunks_layer1_export_activate()
 
     def on_men_chunks_import_activate(self, *args):
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_chunks_import')
-        dialog.set_attached_to(MainController.window())
-        dialog.set_transient_for(MainController.window())
-
-        # Set dialog settings to map settings
-        chunks_import_file: Gtk.FileChooserButton = self.builder.get_object(
-            'chunks_import_file'
-        )
-        chunks_import_palettes: Gtk.Switch = self.builder.get_object(
-            'chunks_import_palettes'
-        )
-        chunks_import_file.unselect_all()
-
-        resp = dialog.run()
-        dialog.hide()
-
-        if resp == Gtk.ResponseType.OK:
-            try:
-                if chunks_import_file.get_filename() is None:
-                    md = Gtk.MessageDialog(MainController.window(),
-                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                           Gtk.ButtonsType.OK, "An image must be selected.",
-                                           title="Error!")
-                    md.set_position(Gtk.WindowPosition.CENTER)
-                    md.run()
-                    md.destroy()
-                else:
-                    with open(chunks_import_file.get_filename(), 'rb') as f:
-                        tiles, palettes = self.dpc.pil_to_chunks(Image.open(f))
-                        self.dpci.tiles = tiles
-                        if chunks_import_palettes.get_active():
-                            self.dpl.palettes = palettes
-            except Exception as err:
-                display_error(
-                    sys.exc_info(),
-                    str(err),
-                    "Error importing the tileset."
-                )
-            self.reload_all()
-            self.mark_as_modified()
+        self.menu_controller.on_men_chunks_layer1_import_activate()
 
     def on_men_tiles_export_activate(self, *args):
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_tiles_export')
-        dialog.set_attached_to(MainController.window())
-        dialog.set_transient_for(MainController.window())
-
-        resp = dialog.run()
-        dialog.hide()
-        if resp == Gtk.ResponseType.OK:
-            dialog = Gtk.FileChooserDialog(
-                "Export PNG of tiles...",
-                MainController.window(),
-                Gtk.FileChooserAction.SAVE,
-                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
-            )
-
-            add_dialog_png_filter(dialog)
-
-            response = dialog.run()
-            fn = dialog.get_filename()
-            if '.' not in fn:
-                fn += '.png'
-            dialog.destroy()
-
-            if response == Gtk.ResponseType.OK:
-                try:
-                    self.dpci.tiles_to_pil(self.dpl.palettes, 16).save(fn)
-                except BaseException as err:
-                    display_error(
-                        sys.exc_info(),
-                        str(err),
-                        "Error exporting the tileset."
-                    )
+        self.menu_controller.on_men_tiles_layer1_export_activate()
 
     def on_men_tiles_import_activate(self, *args):
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_tiles_import')
-        dialog.set_attached_to(MainController.window())
-        dialog.set_transient_for(MainController.window())
-
-        # Set dialog settings to map settings
-        tiles_import_file: Gtk.FileChooserButton = self.builder.get_object(
-            'tiles_import_file'
-        )
-        tiles_import_file.unselect_all()
-
-        resp = dialog.run()
-        dialog.hide()
-
-        if resp == Gtk.ResponseType.OK:
-            try:
-                if tiles_import_file.get_filename() is None:
-                    md = Gtk.MessageDialog(MainController.window(),
-                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                           Gtk.ButtonsType.OK, "An image must be selected.",
-                                           title="Error!")
-                    md.set_position(Gtk.WindowPosition.CENTER)
-                    md.run()
-                    md.destroy()
-                else:
-                    with open(tiles_import_file.get_filename(), 'rb') as f:
-                        self.dpci.pil_to_tiles(Image.open(f))
-            except Exception as err:
-                display_error(
-                    sys.exc_info(),
-                    str(err),
-                    "Error importing the tileset."
-                )
-            self.reload_all()
-            self.mark_as_modified()
+        self.menu_controller.on_men_tiles_layer1_import_activate()
 
     def on_men_palettes_edit_activate(self, *args):
-        dict_pals = OrderedDict()
-        for i, pal in enumerate(self.dpl.palettes):
-            dict_pals[f'{i}'] = pal.copy()
-
-        cntrl = PaletteEditorController(
-            MainController.window(), dict_pals
-        )
-        edited_palettes = cntrl.show()
-        if edited_palettes:
-            self.dpl.palettes = edited_palettes
-            self.reload_all()
-            self.mark_as_modified()
-        del cntrl
+        self.menu_controller.on_men_palettes_edit_activate()
 
     def on_men_palettes_ani_settings_activate(self, *args):
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_palettes_animated_settings')
-        dialog.set_attached_to(MainController.window())
-        dialog.set_transient_for(MainController.window())
-
-        self.builder.get_object('palette_animation11_enabled').set_active(self.dpla.has_for_palette(0))
-        self.builder.get_object('palette_animation12_enabled').set_active(self.dpla.has_for_palette(1))
-
-        self.builder.get_object(f'palette_animation11_frame_time').set_text(str(self.dpla.get_duration_for_palette(0)))
-        self.builder.get_object(f'palette_animation12_frame_time').set_text(str(self.dpla.get_duration_for_palette(1)))
-
-        response = dialog.run()
-        dialog.hide()
-
-        if response == Gtk.ResponseType.OK:
-            had_errors = False
-            for palid, enabled, frame_time in ((0, 'palette_animation11_enabled', 'palette_animation11_frame_time'), (1, 'palette_animation12_enabled', 'palette_animation12_frame_time')):
-                if self.builder.get_object(enabled).get_active():
-                    # Has palette animations!
-                    self.dpla.enable_for_palette(palid)
-                else:
-                    # Doesn't have
-                    self.dpla.disable_for_palette(palid)
-                try:
-                    time = int(self.builder.get_object(frame_time).get_text())
-                except:
-                    time = 0
-                    had_errors = True
-                self.dpla.set_duration_for_palette(palid, time)
-
-            if had_errors:
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                       Gtk.ButtonsType.OK, "Some values were invalid (not a number). "
-                                                           "They were replaced with 0.",
-                                       title="Warning!")
-                md.set_position(Gtk.WindowPosition.CENTER)
-                md.run()
-                md.destroy()
-
-            self.reload_all()
-            self.mark_as_modified()
+        self.menu_controller.on_men_palettes_ani_settings_activate()
 
     def on_men_palettes_ani_edit_11_activate(self, *args):
-        self._edit_palette_ani(0)
+        self.menu_controller.edit_palette_ani(0)
 
     def on_men_palettes_ani_edit_12_activate(self, *args):
-        self._edit_palette_ani(1)
+        self.menu_controller.edit_palette_ani(1)
 
     def on_men_tools_tilequant_activate(self, *args):
         MainController.show_tilequant_dialog(12, 16)
@@ -484,44 +290,6 @@ class TilesetController(AbstractController):
         icon_view.select_path(store.get_path(store.get_iter_first()))
         if renderer is not None:
             renderer.start()
-
-    def _edit_palette_ani(self, ani_pal_id):
-        if not self.dpla.has_for_palette(ani_pal_id):
-            md = Gtk.MessageDialog(MainController.window(),
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                   Gtk.ButtonsType.OK, "Palette Animation is not enabled for this palette.",
-                                   title="Warning!")
-            md.set_position(Gtk.WindowPosition.CENTER)
-            md.run()
-            md.destroy()
-            return
-        # This is controlled by a separate controller
-        dict_pals = OrderedDict()
-
-        list_of_colors = self.dpla.colors[ani_pal_id*16:(ani_pal_id+1)*16]
-        # We need to transpose the list to instead have a list of frames.
-        list_of_frames = list([] for _ in range(0, int(len(list_of_colors[0]) / 3)))
-        for color in list_of_colors:
-            for frame_idx, c in enumerate(chunks(color, 3)):
-                list_of_frames[frame_idx] += c
-        for i, pal in enumerate(list_of_frames):
-            dict_pals[f'F{i + 1}'] = pal.copy()
-
-        cntrl = PaletteEditorController(
-            MainController.window(), dict_pals, False, True, False
-        )
-        edited_palettes = cntrl.show()
-        if edited_palettes:
-            # Transpose back
-            edited_colors = list([] for _ in range(0, int(len(edited_palettes[0]) / 3)))
-            for palette in edited_palettes:
-                for color_idx, c in enumerate(chunks(palette, 3)):
-                    edited_colors[color_idx] += c
-
-            self.dpla.colors[ani_pal_id*16:(ani_pal_id+1)*16] = edited_colors
-            self.reload_all()
-            self.mark_as_modified()
-        del cntrl
 
     def _rules_pos_toggle(self, i, state):
         y = i % 3
