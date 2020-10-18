@@ -31,7 +31,8 @@ class PaletteEditorController:
     ):
         path = os.path.abspath(os.path.dirname(__file__))
 
-        self.disable_color0 = disable_color0
+        # Deprecated, this option doesn't do anything anymore. color0 is always editable.
+        self.disable_color0 = False
         self.allow_adding_removing = allow_adding_removing
         self.show_make_unique_button = show_make_unique_button
 
