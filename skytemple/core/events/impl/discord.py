@@ -114,14 +114,17 @@ class DiscordPresence(AbstractListener):
             self.module_state = controller.item.wte_filename
 
     def on_view_switch__DungeonGraphicsModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
-        from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
+        from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule, NUMBER_OF_TILESETS
         from skytemple.module.dungeon_graphics.controller.tileset import TilesetController
+        from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController
         module: DungeonGraphicsModule
 
         self.module_info = 'Editing dungeon tilesets'
         self.module_state = self.rom_name
         if isinstance(controller, TilesetController):
             self.module_state = f'Tileset {controller.item_id}'
+        if isinstance(controller, DungeonBgController):
+            self.module_state = f'Background {NUMBER_OF_TILESETS + controller.item_id}'
 
     def on_view_switch__BgpModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
         from skytemple.module.bgp.module import BgpModule
