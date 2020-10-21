@@ -59,7 +59,7 @@ class ListsModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
-            'view-list-symbolic', GROUND_LISTS, self, MainController, 0, False, '', True
+            'skytemple-view-list-symbolic', GROUND_LISTS, self, MainController, 0, False, '', True
         ])
         self._actor_tree_iter = item_store.append(root, [
             'skytemple-e-actor-symbolic', 'Actors', self, ActorListController, 0, False, '', True
@@ -74,7 +74,7 @@ class ListsModule(AbstractModule):
             'skytemple-e-worldmap-symbolic', 'World Map Markers', self, WorldMapController, 0, False, '', True
         ])
         self._rank_list_tree_iter = item_store.append(root, [
-            'view-list-symbolic', 'Rank List', self, RankListController, 0, False, '', True
+            'skytemple-view-list-symbolic', 'Rank List', self, RankListController, 0, False, '', True
         ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])

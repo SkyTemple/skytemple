@@ -142,7 +142,7 @@ class SpriteProvider:
         icon_theme: Gtk.IconTheme = Gtk.IconTheme.get_for_screen(screen)
         # Loader icon
         loader_icon: GdkPixbuf.Pixbuf = icon_theme.load_icon(
-            'image-loading-symbolic', 24, Gtk.IconLookupFlags.FORCE_SIZE
+            'skytemple-image-loading-symbolic', 24, Gtk.IconLookupFlags.FORCE_SIZE
         ).copy()
         self._loader_surface_dims = loader_icon.get_width(), loader_icon.get_height()
         self._loader_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, *self._loader_surface_dims)

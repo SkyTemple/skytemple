@@ -50,7 +50,7 @@ class PortraitProvider:
         icon_theme: Gtk.IconTheme = Gtk.IconTheme.get_for_screen(screen)
         # Loader icon
         loader_icon: GdkPixbuf.Pixbuf = icon_theme.load_icon(
-            'image-loading-symbolic', IMG_DIM, Gtk.IconLookupFlags.FORCE_SIZE
+            'skytemple-image-loading-symbolic', IMG_DIM, Gtk.IconLookupFlags.FORCE_SIZE
         ).copy()
         self._loader_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, IMG_DIM, IMG_DIM)
         ctx = cairo.Context(self._loader_surface)
