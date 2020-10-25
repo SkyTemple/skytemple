@@ -35,7 +35,7 @@ setup(
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
         'tilequant >= 0.3.0',
-        'skytemple-ssb-debugger >= 0.1.0a5',
+        'skytemple-ssb-debugger >= 0.1.0a13',
         'pygal >= 2.4.0',
         'CairoSVG >= 2.4.2'
     ],

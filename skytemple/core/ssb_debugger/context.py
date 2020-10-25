@@ -57,6 +57,9 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     def on_blur(self):
         EventManager.instance().debugger_window_lost_focus()
 
+    def show_ssb_script_editor(self) -> bool:
+        return False
+
     def open_rom(self, filename: str):
         return NotImplementedError()
 
