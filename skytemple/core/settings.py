@@ -35,6 +35,7 @@ KEY_RECENT_4 = 'file4'
 KEY_RECENT_5 = 'file5'
 
 KEY_ASSISTANT_SHOWN = 'assistant_shown'
+KEY_GTK_THEME = 'gtk_theme'
 
 KEY_WINDOW_SIZE_X = 'width'
 KEY_WINDOW_SIZE_Y = 'height'
@@ -97,6 +98,19 @@ class SkyTempleSettingsStore:
         self.loaded_config[SECT_GENERAL][KEY_ASSISTANT_SHOWN] = '1' if value else '0'
         self._save()
 
+    def get_gtk_theme(self, default=None) -> str:
+        if SECT_GENERAL in self.loaded_config:
+            if KEY_GTK_THEME in self.loaded_config[SECT_GENERAL]:
+                return self.loaded_config[SECT_GENERAL][KEY_GTK_THEME]
+        return default
+
+    def set_gtk_theme(self, value: str):
+        if SECT_GENERAL not in self.loaded_config:
+            self.loaded_config[SECT_GENERAL] = {}
+        self.loaded_config[SECT_GENERAL][KEY_GTK_THEME] = value
+        self._save()
+
+
     def get_window_size(self) -> Optional[Tuple[int, int]]:
         if SECT_WINDOW in self.loaded_config:
             if KEY_WINDOW_SIZE_X in self.loaded_config[SECT_WINDOW] and KEY_WINDOW_SIZE_Y in self.loaded_config[SECT_WINDOW]:
@@ -138,3 +152,4 @@ class SkyTempleSettingsStore:
     def _save(self):
         with open_utf8(self.config_file, 'w') as f:
             self.loaded_config.write(f)
+
