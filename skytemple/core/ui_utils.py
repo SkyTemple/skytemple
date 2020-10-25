@@ -78,6 +78,14 @@ def add_dialog_png_filter(dialog):
         dialog.add_filter(filter)
 
 
+def add_dialog_xml_filter(dialog):
+        filter = Gtk.FileFilter()
+        filter.set_name("XML document (*.xml)")
+        filter.add_mime_type("application/xml")
+        filter.add_pattern("*.xml")
+        dialog.add_filter(filter)
+
+
 def data_dir():
     return os.path.join(os.path.dirname(__file__), '..', 'data')
 

@@ -114,14 +114,17 @@ class DiscordPresence(AbstractListener):
             self.module_state = controller.item.wte_filename
 
     def on_view_switch__DungeonGraphicsModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
-        from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
+        from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule, NUMBER_OF_TILESETS
         from skytemple.module.dungeon_graphics.controller.tileset import TilesetController
+        from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController
         module: DungeonGraphicsModule
 
         self.module_info = 'Editing dungeon tilesets'
         self.module_state = self.rom_name
         if isinstance(controller, TilesetController):
             self.module_state = f'Tileset {controller.item_id}'
+        if isinstance(controller, DungeonBgController):
+            self.module_state = f'Background {NUMBER_OF_TILESETS + controller.item_id}'
 
     def on_view_switch__BgpModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
         from skytemple.module.bgp.module import BgpModule
@@ -182,6 +185,23 @@ class DiscordPresence(AbstractListener):
                 self.module_state = f'{breadcrumbs[1]} / {breadcrumbs[0]}'
             else:
                 self.module_state = f'{breadcrumbs[2]} / {breadcrumbs[0]}'
+
+    def on_view_switch__DungeonModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
+        from skytemple.module.dungeon.module import DungeonModule
+        from skytemple.module.dungeon.controller.dungeon import DungeonController
+        from skytemple.module.dungeon.controller.floor import FloorController
+        # todo: fixed floors
+        module: DungeonModule
+
+        self.module_info = 'Editing dungeons'
+        self.module_state = self.rom_name
+        if isinstance(controller, DungeonController):
+            self.module_state = controller.dungeon_name
+        if isinstance(controller, FloorController):
+            dungeon_name = module.project.get_string_provider().get_value(
+                StringType.DUNGEON_NAMES_MAIN, controller.item.dungeon.dungeon_id
+            )
+            self.module_state = f'{dungeon_name} - Floor {controller.item.floor_id + 1}'
 
     def on_view_switch__MonsterModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
         from skytemple.module.monster.module import MonsterModule

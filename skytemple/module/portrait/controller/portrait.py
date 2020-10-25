@@ -25,6 +25,8 @@ from typing import TYPE_CHECKING
 import cairo
 
 from skytemple.core.error_handler import display_error
+from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple.module.portrait.sprite_bot_sheet import SpriteBotSheet
 
 try:
     from PIL import Image
@@ -81,7 +83,13 @@ class PortraitController(AbstractController):
         ctx.scale(1 / scale, 1 / scale)
         return True
 
-    def on_export_clicked(self, *args):
+    def on_export_clicked(self, w: Gtk.MenuToolButton):
+        w.get_menu().popup(None, None, None, None, 0, Gtk.get_current_event_time())
+
+    def on_import_clicked(self, w: Gtk.MenuToolButton):
+        w.get_menu().popup(None, None, None, None, 0, Gtk.get_current_event_time())
+
+    def on_separate_export_activate(self, *args):
         dialog = Gtk.FileChooserDialog(
             "Export all portraits as PNGs...",
             MainController.window(),
@@ -102,7 +110,7 @@ class PortraitController(AbstractController):
                     img = kao.get()
                     img.save(filename)
 
-    def on_import_clicked(self, *args):
+    def on_separate_import_activate(self, *args):
         md = Gtk.MessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
@@ -148,6 +156,64 @@ class PortraitController(AbstractController):
                         f'Failed importing image "{name}":\n{err}',
                         f"Error for '{name}'."
                     )
+            # Re-render
+            self._portrait_provider.reset()
+            for draw in self._draws:
+                draw.queue_draw()
+            # Mark as modified
+            self.module.mark_as_modified()
+            self._mark_as_modified_cb()
+
+    def on_spritebot_export_activate(self, *args):
+        dialog = Gtk.FileChooserDialog(
+            "Export portrait as PNG sheet...",
+            MainController.window(),
+            Gtk.FileChooserAction.SAVE,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+        )
+
+        add_dialog_png_filter(dialog)
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+        if '.' not in fn:
+            fn += '.png'
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.OK:
+            SpriteBotSheet.create(self.kao, self.item_id).save(fn)
+
+    def on_spritebot_import_activate(self, *args):
+        dialog = Gtk.FileChooserDialog(
+            "Import portraits from PNG sheet...",
+            MainController.window(),
+            Gtk.FileChooserAction.OPEN,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+        )
+
+        add_dialog_png_filter(dialog)
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.OK:
+            try:
+                for subindex, image in SpriteBotSheet.load(fn, self._get_portrait_name):
+                    kao = self.kao.get(self.item_id, subindex)
+                    if kao:
+                        # Replace
+                        kao.set(image)
+                    else:
+                        # New
+                        self.kao.set(self.item_id, subindex, KaoImage.new(image))
+            except Exception as err:
+                logger.error(f"Failed importing portraits: {err}", exc_info=err)
+                display_error(
+                    sys.exc_info(),
+                    f'Failed importing portraits:\n{err}',
+                    f"Could not import."
+                )
             # Re-render
             self._portrait_provider.reset()
             for draw in self._draws:

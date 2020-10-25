@@ -18,8 +18,9 @@ import logging
 import os
 import sys
 from functools import partial
+from glob import glob
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 
 from skytemple.core.settings import SkyTempleSettingsStore
 
@@ -41,11 +42,27 @@ class SettingsController:
         """
         Shows the settings dialog and processes settings changes. Doesn't return anything.
         """
+        gtk_settings = Gtk.Settings.get_default()
 
         # Discord enabled state
         discord_enabled_previous = self.settings.get_integration_discord_enabled()
         settings_discord_enable = self.builder.get_object('setting_discord_enable')
         settings_discord_enable.set_active(discord_enabled_previous)
+
+        # Gtk Theme
+        if not sys.platform.startswith('linux'):
+            store: Gtk.ListStore = Gtk.ListStore.new([str])
+            cb: Gtk.ComboBox = self.builder.get_object('setting_gtk_theme')
+            active = None
+            for id, theme in enumerate(self._list_gtk_themes()):
+                store.append([theme])
+                if theme == gtk_settings.get_property("gtk-theme-name"):
+                    active = id
+            cb.set_model(store)
+            if active is not None:
+                cb.set_active(active)
+        else:
+            self.builder.get_object('frame_setting_gtk_theme').hide()
 
         response = self.window.run()
 
@@ -58,6 +75,13 @@ class SettingsController:
                 self.settings.set_integration_discord_enabled(discord_enabled)
                 have_to_restart = True
 
+            # Gtk Theme
+            if not sys.platform.startswith('linux'):
+                cb: Gtk.ComboBox = self.builder.get_object('setting_gtk_theme')
+                theme_name = cb.get_model()[cb.get_active_iter()][0]
+                gtk_settings.set_property("gtk-theme-name", theme_name)
+                self.settings.set_gtk_theme(theme_name)
+
         self.window.hide()
 
         if have_to_restart:
@@ -67,3 +91,19 @@ class SettingsController:
                                    title="SkyTemple")
             md.run()
             md.destroy()
+
+    def _list_gtk_themes(self):
+        dirs = [
+            Gtk.rc_get_theme_dir(),
+            os.path.join(GLib.get_user_data_dir(), 'themes'),
+            os.path.join(GLib.get_home_dir(), '.themes')
+        ]
+        for dir in GLib.get_system_data_dirs():
+            dirs.append(os.path.join(dir, 'themes'))
+
+        themes = set()
+        for dir in dirs:
+            for f in glob(os.path.join(dir, '*', 'index.theme')):
+                themes.add(f.split(os.path.sep)[-2])
+
+        return themes

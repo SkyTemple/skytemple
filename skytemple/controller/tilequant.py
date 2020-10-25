@@ -17,11 +17,13 @@
 import logging
 import os
 import sys
+from enum import Enum
 from functools import partial
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.ui_utils import add_dialog_png_filter
-from skytemple_tilequant.aikku.image_converter import AikkuImageConverter
+from skytemple_tilequant.aikku.image_converter import AikkuImageConverter, DitheringMode
+from skytemple_tilequant.image_converter import ImageConverter
 
 try:
     from PIL import Image
@@ -29,6 +31,12 @@ except ImportError:
     from pil import Image
 from gi.repository import Gtk
 logger = logging.getLogger(__name__)
+
+
+class ImageConversionMode(Enum):
+    DITHERING = 0
+    NO_DITHERING = 1
+    JUST_REORGANIZE = 2
 
 
 class TilequantController:
@@ -77,6 +85,17 @@ class TilequantController:
                             'This is useful for map backgrounds with multiple layers, that need to share the same'
                             'palettes.'
         ))
+        builder.get_object('tq_mode_help').connect('clicked', partial(
+            self.show_help,
+            'Dithering: Colors will be reorganized and reduced if necessary. Colors will be changed so that they '
+            '"blend into" each other. This will make the image look like it contains more colors but also might '
+            'decrease the overall visual quality.\n\n'
+            'No Dithering: Color will be reorganized and reduced if necessary. No dithering will be performed.\n\n'
+            'Reorganize colors only: Colors will be reorganized so that they fit the game\'s format. SkyTemple will '
+            'not attempt to reduce the amount of overall colors to make this work, so you will get an error, if it\'s '
+            'not possible with the current amount. However if it does work, the output image will look identical to '
+            'the original image.'
+        ))
         builder.get_object('tq_convert').connect('clicked', self.convert)
         self.builder = builder
         self._previous_output_image = None
@@ -92,6 +111,8 @@ class TilequantController:
 
     def convert(self, *args):
 
+        mode_cb: Gtk.ComboBox = self.builder.get_object('tq_mode')
+        mode = ImageConversionMode(mode_cb.get_model()[mode_cb.get_active_iter()][0])
         has_first_image = self.builder.get_object('tq_input_file').get_filename() is not None
         has_second_image = self.builder.get_object('tq_second_file').get_filename() is not None
 
@@ -178,7 +199,7 @@ class TilequantController:
                         image1 = Image.open(input_file)
                         image2 = Image.open(second_input_file)
                         image = Image.new(
-                            'RGB',
+                            'RGBA',
                             (max(image1.width, image2.width), image1.height + image2.height),
                             transparent_color
                         )
@@ -188,8 +209,7 @@ class TilequantController:
                     self.error("The input image is not a supported format.")
                     return
                 try:
-                    converter = AikkuImageConverter(image, transparent_color)
-                    img = converter.convert(num_pals)
+                    img = self._convert(image, transparent_color, mode, num_pals)
                     if not has_second_image:
                         # Only one image
                         img.save(output_image)
@@ -218,4 +238,15 @@ class TilequantController:
         display_error(
             sys.exc_info(),
             msg
+        )
+
+    def _convert(self, image, transparent_color, mode, num_pals):
+        if mode == ImageConversionMode.JUST_REORGANIZE:
+            converter = ImageConverter(image, transparent_color=transparent_color)
+            return converter.convert(num_pals, colors_per_palette=16, color_steps=-1, max_colors=256,
+                                     low_to_high=False, mosaic_limiting=False)
+        converter = AikkuImageConverter(image, transparent_color)
+        return converter.convert(
+            num_pals,
+            dithering_mode=DitheringMode.ORDERED if mode == ImageConversionMode.DITHERING else DitheringMode.NONE
         )

@@ -22,7 +22,7 @@ def recursive_pkg_files(file_ext):
 
 setup(
     name='skytemple',
-    version='0.1.0a7',
+    version='0.1.0a12',
     packages=find_packages(),
     description='GUI Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US)',
     long_description=long_description,
@@ -30,12 +30,12 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files >= 0.1.0a7',
+        'skytemple-files >= 0.1.0a12',
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
-        'tilequant >= 0.1.0',
-        'skytemple-ssb-debugger >= 0.1.0a5',
+        'tilequant >= 0.3.0',
+        'skytemple-ssb-debugger >= 0.1.0a13',
         'pygal >= 2.4.0',
         'CairoSVG >= 2.4.2'
     ],
@@ -63,12 +63,12 @@ setup(
         patch=        skytemple.module.patch.module:PatchModule
         lists=        skytemple.module.lists.module:ListsModule
         misc_graphics=skytemple.module.misc_graphics.module:MiscGraphicsModule
+        dungeon=      skytemple.module.dungeon.module:DungeonModule
         dungeon_graphics=skytemple.module.dungeon_graphics.module:DungeonGraphicsModule
         strings      =skytemple.module.strings.module:StringsModule
         [console_scripts]
         skytemple=skytemple.main:main
     ''',
-    #dungeon=      skytemple.module.dungeon.module:DungeonModule
     #item=         skytemple.module.item.module:ItemModule
     #music=        skytemple.module.music.module:MusicModule
     #sprite=       skytemple.module.sprite.module:SpriteModule

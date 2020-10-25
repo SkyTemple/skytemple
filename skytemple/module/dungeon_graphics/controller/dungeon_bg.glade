@@ -57,22 +57,16 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">This will export all chunks. 
-Chunks are the 24x24px images that make up the
-graphics of one dungeon tile. 
-The consist of 3x3 8x8px tiles.
+            <property name="label" translatable="yes">This will export all chunks.
 
 You can edit and import the chunks again.
 
 Please note the following about the format of the files:
 - The images are 256-color indexed PNGs.
-- The 256 colors are divided into 12 16 color palettes.
+- The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
-  one of these 12 palettes.
+  one of these 16 palettes.
 - The first color in each palette is transparency.
-
-For technical reasons, the exported image will have 
-256 colors, only the first 12 palettes are valid.
 
 Some image editors have problems when working with indexed
 images, that contain the same color multiple times. You can
@@ -93,6 +87,96 @@ be able to re-import the chunks!</property>
     <action-widgets>
       <action-widget response="-6">dialog_chunks_export_btn_close</action-widget>
       <action-widget response="-5">dialog_chunks_export_btn_ok</action-widget>
+    </action-widgets>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+  </object>
+  <object class="GtkDialog" id="dialog_map_export">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Background Export</property>
+    <property name="modal">True</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="type_hint">dialog</property>
+    <property name="skip_taskbar_hint">True</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="dialog_map_export_btn_close">
+                <property name="label">gtk-cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="dialog_map_export_btn_ok">
+                <property name="label">gtk-ok</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">This will export the entire bakground an image.
+
+You can edit and import the background again.
+
+Please note the following about the format of the files:
+- The images are 256-color indexed PNGs.
+- The 256 colors are divided into 16 16 color palettes.
+- Each 8x8 tile in the image MUST only use colors from
+  one of these 16 palettes.
+- The first color in each palette is transparency.
+
+Some image editors have problems when working with indexed
+images, that contain the same color multiple times. You can
+make all colors on the map unique before exporting at
+Palettes &gt; Edit Palettes.
+
+Only if you follow these fomat restrictions, you will
+be able to re-import the background!</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="-6">dialog_map_export_btn_close</action-widget>
+      <action-widget response="-5">dialog_map_export_btn_ok</action-widget>
     </action-widgets>
     <child type="titlebar">
       <placeholder/>
@@ -198,6 +282,7 @@ be able to re-import the chunks!</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">end</property>
+                    <property name="margin_left">20</property>
                     <property name="margin_start">20</property>
                     <property name="label" translatable="yes">Frame Time</property>
                   </object>
@@ -264,6 +349,7 @@ be able to re-import the chunks!</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">end</property>
+                    <property name="margin_left">20</property>
                     <property name="margin_start">20</property>
                     <property name="label" translatable="yes">Frame Time</property>
                   </object>
@@ -379,22 +465,19 @@ be able to re-import the chunks!</property>
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">This will export all tiles. Tiles are 8x8px images.
-3x3 tiles can be grouped together to form a chunk,
-see the "Chunk Editor" for more information.
+            <property name="label" translatable="yes">This will export all tiles.
 
-You can edit and import the tiles again.
+You can edit and import the chunks again.
 
 Please note the following about the format of the files:
 - The images are 256-color indexed PNGs.
-- The 256 colors are divided into 12 16 color palettes.
+- The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
-  one of these 12 palettes.
+  one of these 16 palettes.
 - The first color in each palette is transparency.
-- All tiles are exported with using the colors of palette 0.
-
-For technical reasons, the exported image will have 
-256 colors, only the first 12 palettes are valid.
+- The exported palettes are only for your convenience.
+  They are based on the first time the tile is used in a 
+  chunk mapping (Chunks &gt; Edit Chunks).
 
 Only if you follow these fomat restrictions, you will
 be able to re-import the tiles!</property>
@@ -415,7 +498,7 @@ be able to re-import the tiles!</property>
       <placeholder/>
     </child>
   </object>
-  <object class="GtkBox" id="editor_dungeon_tilesets">
+  <object class="GtkBox" id="editor_map_bg">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="orientation">vertical</property>
@@ -427,18 +510,49 @@ be able to re-import the tiles!</property>
           <object class="GtkMenuItem">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Background</property>
+            <child type="submenu">
+              <object class="GtkMenu">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkMenuItem" id="men_map_export">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Export Background to Image...</property>
+                    <property name="use_underline">True</property>
+                    <signal name="activate" handler="on_men_map_export_activate" swapped="no"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkMenuItem" id="men_map_import">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Import Background from Image...</property>
+                    <property name="use_underline">True</property>
+                    <signal name="activate" handler="on_men_map_import_activate" swapped="no"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkMenuItem">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <property name="label" translatable="yes">Chunks</property>
             <child type="submenu">
               <object class="GtkMenu">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
-                  <object class="GtkMenuItem" id="men_chunks_edit">
+                  <object class="GtkMenuItem" id="men_chunks_layer1_edit">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Edit Chunks</property>
                     <property name="use_underline">True</property>
-                    <signal name="activate" handler="on_men_chunks_edit_activate" swapped="no"/>
+                    <signal name="activate" handler="on_men_chunks_layer1_edit_activate" swapped="no"/>
                   </object>
                 </child>
                 <child>
@@ -448,21 +562,21 @@ be able to re-import the tiles!</property>
                   </object>
                 </child>
                 <child>
-                  <object class="GtkMenuItem" id="men_chunks_export">
+                  <object class="GtkMenuItem" id="men_chunks_layer1_export">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Export to Image...</property>
                     <property name="use_underline">True</property>
-                    <signal name="activate" handler="on_men_chunks_export_activate" swapped="no"/>
+                    <signal name="activate" handler="on_men_chunks_layer1_export_activate" swapped="no"/>
                   </object>
                 </child>
                 <child>
-                  <object class="GtkMenuItem" id="men_chunks_import">
+                  <object class="GtkMenuItem" id="men_chunks_layer1_import">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Import from Image...</property>
                     <property name="use_underline">True</property>
-                    <signal name="activate" handler="on_men_chunks_import_activate" swapped="no"/>
+                    <signal name="activate" handler="on_men_chunks_layer1_import_activate" swapped="no"/>
                   </object>
                 </child>
               </object>
@@ -479,21 +593,21 @@ be able to re-import the tiles!</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
-                  <object class="GtkMenuItem" id="men_tiles_export">
+                  <object class="GtkMenuItem" id="men_tiles_layer1_export">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Export to Image...</property>
+                    <property name="label" translatable="yes">Export Tiles to Image...</property>
                     <property name="use_underline">True</property>
-                    <signal name="activate" handler="on_men_tiles_export_activate" swapped="no"/>
+                    <signal name="activate" handler="on_men_tiles_layer1_export_activate" swapped="no"/>
                   </object>
                 </child>
                 <child>
-                  <object class="GtkMenuItem" id="men_tiles_import">
+                  <object class="GtkMenuItem" id="men_tiles_layer1_import">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Import from Image...</property>
+                    <property name="label" translatable="yes">Import Tiles from Image...</property>
                     <property name="use_underline">True</property>
-                    <signal name="activate" handler="on_men_tiles_import_activate" swapped="no"/>
+                    <signal name="activate" handler="on_men_tiles_layer1_import_activate" swapped="no"/>
                   </object>
                 </child>
               </object>
@@ -529,6 +643,7 @@ be able to re-import the tiles!</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Animation Settings</property>
+                    <property name="use_underline">True</property>
                     <signal name="activate" handler="on_men_palettes_ani_settings_activate" swapped="no"/>
                   </object>
                 </child>
@@ -546,7 +661,6 @@ be able to re-import the tiles!</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Edit Animation Palette 11</property>
-                    <property name="use_underline">True</property>
                     <signal name="activate" handler="on_men_palettes_ani_edit_12_activate" swapped="no"/>
                   </object>
                 </child>
@@ -590,381 +704,181 @@ be able to re-import the tiles!</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkPaned">
+          <object class="GtkBox" id="bg_layer1">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
-            <property name="wide_handle">True</property>
             <child>
-              <object class="GtkFrame">
+              <object class="GtkBox" id="bg_layers">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_start">5</property>
-                <property name="margin_end">10</property>
-                <property name="margin_bottom">10</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">none</property>
+                <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkAlignment">
+                  <object class="GtkToolbar">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
                     <child>
-                      <object class="GtkBox">
+                      <object class="GtkToolButton" id="tb_zoom_in">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Zoom In</property>
+                        <property name="label" translatable="yes">Zoom +</property>
+                        <property name="use_underline">True</property>
+                        <property name="icon_name">zoom-in</property>
+                        <signal name="clicked" handler="on_tb_zoom_in_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkToolButton" id="tb_zoom_out">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Zoom Out</property>
+                        <property name="label" translatable="yes">Zoom-</property>
+                        <property name="use_underline">True</property>
+                        <property name="icon_name">zoom-out</property>
+                        <signal name="clicked" handler="on_tb_zoom_out_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorToolItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkToggleToolButton" id="tb_chunk_grid">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Show Chunks Grid</property>
+                        <property name="is_important">True</property>
+                        <property name="label" translatable="yes">Chunks</property>
+                        <property name="use_underline">True</property>
+                        <property name="icon_name">view-grid</property>
+                        <property name="active">True</property>
+                        <signal name="toggled" handler="on_tb_chunk_grid_toggled" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkToggleToolButton" id="tb_tile_grid">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Show Tiles Grid</property>
+                        <property name="is_important">True</property>
+                        <property name="label" translatable="yes">Tiles</property>
+                        <property name="use_underline">True</property>
+                        <property name="icon_name">view-grid</property>
+                        <property name="active">True</property>
+                        <signal name="toggled" handler="on_tb_tile_grid_toggled" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorToolItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkToggleToolButton" id="tb_bg_color">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Toggle Background Color</property>
+                        <property name="is_important">True</property>
+                        <property name="label" translatable="yes">BG Color</property>
+                        <property name="use_underline">True</property>
+                        <property name="icon_name">color-select-symbolic</property>
+                        <signal name="toggled" handler="on_tb_bg_color_toggled" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="homogeneous">True</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkPaned">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <child>
+                      <object class="GtkScrolledWindow" id="bg_draw_sw">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="shadow_type">in</property>
+                      </object>
+                      <packing>
+                        <property name="resize">True</property>
+                        <property name="shrink">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="bg_layers_toolbox">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="orientation">vertical</property>
-                        <property name="spacing">10</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="GtkBox" id="bg_layers_toolbox_layers">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="spacing">10</property>
-                            <child>
-                              <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="orientation">vertical</property>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="margin_bottom">5</property>
-                                    <property name="label" translatable="yes">Active Type</property>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkComboBoxText" id="rules_active_type">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="active">0</property>
-                                    <items>
-                                      <item id="Wall" translatable="yes">Wall</item>
-                                      <item id="Water / Lava" translatable="yes">Water / Lava</item>
-                                    </items>
-                                    <signal name="changed" handler="on_rules_active_type_changed" swapped="no"/>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="orientation">vertical</property>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="margin_bottom">5</property>
-                                    <property name="label" translatable="yes">Has Liquid / Wall</property>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkGrid">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">center</property>
-                                    <property name="valign">center</property>
-                                    <property name="row_spacing">5</property>
-                                    <property name="column_spacing">5</property>
-                                    <child>
-                                      <object class="GtkCheckButton" id="rules_a0">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_rules_a0_toggled" swapped="no"/>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">0</property>
-                                        <property name="top_attach">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkCheckButton" id="rules_a1">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_rules_a1_toggled" swapped="no"/>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">1</property>
-                                        <property name="top_attach">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkCheckButton" id="rules_a2">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_rules_a2_toggled" swapped="no"/>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">2</property>
-                                        <property name="top_attach">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkCheckButton" id="rules_a3">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_rules_a3_toggled" swapped="no"/>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">0</property>
-                                        <property name="top_attach">1</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkCheckButton" id="rules_a4">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_rules_a4_toggled" swapped="no"/>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">1</property>
-                                        <property name="top_attach">1</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkCheckButton" id="rules_a5">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_rules_a5_toggled" swapped="no"/>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">2</property>
-                                        <property name="top_attach">1</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkCheckButton" id="rules_a6">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_rules_a6_toggled" swapped="no"/>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">0</property>
-                                        <property name="top_attach">2</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkCheckButton" id="rules_a7">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_rules_a7_toggled" swapped="no"/>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">1</property>
-                                        <property name="top_attach">2</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkCheckButton" id="rules_a8">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">False</property>
-                                        <property name="active">True</property>
-                                        <property name="draw_indicator">True</property>
-                                        <signal name="toggled" handler="on_rules_a8_toggled" swapped="no"/>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="left_attach">2</property>
-                                        <property name="top_attach">2</property>
-                                      </packing>
-                                    </child>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">True</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
+                            <property name="orientation">vertical</property>
                             <child>
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="halign">start</property>
-                                <property name="label" translatable="yes">Here you can edit what chunks get rendered for which dungeon field configuration. Select the configuration you want to edit, select a chunk from the "Chunk Picker" to use and then click on the dungeon field you want to edit.
-Use the menus above to edit chunks and tile graphics.</property>
-                                <property name="wrap">True</property>
+                                <property name="margin_bottom">2</property>
+                                <property name="label" translatable="yes">Chunks</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">2</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkFrame">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">none</property>
-                                <child>
-                                  <object class="GtkAlignment">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="left_padding">12</property>
-                                    <child>
-                                      <object class="GtkScrolledWindow">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="shadow_type">in</property>
-                                        <child>
-                                          <object class="GtkIconView" id="rules_main_1">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="margin">6</property>
-                                            <property name="columns">3</property>
-                                            <property name="row_spacing">0</property>
-                                            <property name="column_spacing">0</property>
-                                            <property name="item_padding">2</property>
-                                            <signal name="selection-changed" handler="on_rules_main_1_selection_changed" swapped="no"/>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child type="label">
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="margin_bottom">5</property>
-                                    <property name="label" translatable="yes">Field Variations #1</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">True</property>
                                 <property name="fill">True</property>
                                 <property name="position">0</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkFrame">
+                              <object class="GtkScrolledWindow">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">none</property>
+                                <property name="can_focus">True</property>
+                                <property name="shadow_type">in</property>
+                                <property name="propagate_natural_height">True</property>
                                 <child>
-                                  <object class="GtkAlignment">
+                                  <object class="GtkIconView" id="bg_chunks_view">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="left_padding">12</property>
-                                    <child>
-                                      <object class="GtkScrolledWindow">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="shadow_type">in</property>
-                                        <child>
-                                          <object class="GtkIconView" id="rules_main_2">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="margin">6</property>
-                                            <property name="columns">3</property>
-                                            <property name="row_spacing">0</property>
-                                            <property name="column_spacing">0</property>
-                                            <property name="item_padding">2</property>
-                                            <signal name="selection-changed" handler="on_rules_main_2_selection_changed" swapped="no"/>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child type="label">
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="margin_bottom">5</property>
-                                    <property name="label" translatable="yes">Field Variations #2</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="margin">6</property>
+                                    <property name="hscroll_policy">natural</property>
+                                    <property name="vscroll_policy">natural</property>
+                                    <property name="row_spacing">0</property>
+                                    <property name="column_spacing">0</property>
+                                    <property name="item_padding">2</property>
                                   </object>
                                 </child>
                               </object>
@@ -974,201 +888,31 @@ Use the menus above to edit chunks and tile graphics.</property>
                                 <property name="position">1</property>
                               </packing>
                             </child>
-                            <child>
-                              <object class="GtkFrame">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="label_xalign">0</property>
-                                <property name="shadow_type">none</property>
-                                <child>
-                                  <object class="GtkAlignment">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="left_padding">12</property>
-                                    <child>
-                                      <object class="GtkScrolledWindow">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="shadow_type">in</property>
-                                        <child>
-                                          <object class="GtkIconView" id="rules_main_3">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="margin">6</property>
-                                            <property name="columns">3</property>
-                                            <property name="row_spacing">0</property>
-                                            <property name="column_spacing">0</property>
-                                            <property name="item_padding">2</property>
-                                            <signal name="selection-changed" handler="on_rules_main_3_selection_changed" swapped="no"/>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child type="label">
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="margin_bottom">5</property>
-                                    <property name="label" translatable="yes">Field Variations #3</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">True</property>
-                                <property name="fill">True</property>
-                                <property name="position">2</property>
-                              </packing>
-                            </child>
                           </object>
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkFrame">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label_xalign">0</property>
-                            <property name="shadow_type">none</property>
-                            <child>
-                              <object class="GtkAlignment">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="left_padding">12</property>
-                                <child>
-                                  <object class="GtkBox">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="orientation">vertical</property>
-                                    <child>
-                                      <object class="GtkLabel">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="halign">start</property>
-                                        <property name="margin_bottom">5</property>
-                                        <property name="label" translatable="yes">These are extra rules. The purpose of them is currently unknown, so be careful when you edit them.</property>
-                                        <property name="wrap">True</property>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">True</property>
-                                        <property name="position">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkScrolledWindow">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="shadow_type">in</property>
-                                        <child>
-                                          <object class="GtkIconView" id="rules_extra">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="margin">6</property>
-                                            <property name="columns">16</property>
-                                            <property name="row_spacing">0</property>
-                                            <property name="column_spacing">0</property>
-                                            <property name="item_padding">2</property>
-                                            <signal name="selection-changed" handler="on_rules_extra_selection_changed" swapped="no"/>
-                                          </object>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">True</property>
-                                        <property name="fill">True</property>
-                                        <property name="position">1</property>
-                                      </packing>
-                                    </child>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <child type="label">
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_bottom">5</property>
-                                <property name="label" translatable="yes">Extra Rules</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
-                            <property name="position">3</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                       </object>
+                      <packing>
+                        <property name="resize">True</property>
+                        <property name="shrink">True</property>
+                      </packing>
                     </child>
                   </object>
-                </child>
-                <child type="label">
-                  <object class="GtkLabel" id="label_tileset_name">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">5</property>
-                    <property name="margin_bottom">5</property>
-                    <property name="label" translatable="yes">Dungeon Tileset X Rules</property>
-                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
                 </child>
               </object>
               <packing>
-                <property name="resize">True</property>
-                <property name="shrink">False</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkFrame">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_start">5</property>
-                <property name="margin_end">10</property>
-                <property name="margin_bottom">10</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">none</property>
-                <child>
-                  <object class="GtkAlignment">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
-                    <child>
-                      <object class="GtkScrolledWindow">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="shadow_type">in</property>
-                        <child>
-                          <object class="GtkIconView" id="rules_chunk_picker">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="margin">6</property>
-                            <property name="selection_mode">browse</property>
-                            <property name="row_spacing">0</property>
-                            <property name="column_spacing">0</property>
-                            <property name="item_padding">2</property>
-                            <signal name="selection-changed" handler="on_rules_chunk_picker_selection_changed" swapped="no"/>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child type="label">
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">5</property>
-                    <property name="margin_bottom">5</property>
-                    <property name="label" translatable="yes">Chunk Picker</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="resize">True</property>
-                <property name="shrink">True</property>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
               </packing>
             </child>
           </object>
@@ -1255,23 +999,20 @@ Use the menus above to edit chunks and tile graphics.</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_bottom">10</property>
-                <property name="label" translatable="yes">This will import the chunks. 
+                <property name="label" translatable="yes">This will import the chunks.
 The existing mappings are replaced.
 
 The file is expected to have the following format:
 - The images consists of 3x3 clusters (chunks) of 8x8 tiles.
-- The images are indexed PNGs.
-- The colors are divided into 12 16 color palettes
-  (additional colors are ignored).
+- The images are 256-color indexed PNGs.
+- The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
-  one of these 12 palettes.
+  one of these 16 palettes.
 - The first color of each palette will be
   imported as transparency.
 
 Colors that are in the wrong palette are replaced wth
-transparency.
-
-Palette animation settings are not changed.</property>
+transparency.</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1372,6 +1113,143 @@ Palette animation settings are not changed.</property>
       <placeholder/>
     </child>
   </object>
+  <object class="GtkDialog" id="dialog_map_import">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Background Import</property>
+    <property name="modal">True</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="type_hint">dialog</property>
+    <property name="skip_taskbar_hint">True</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="dialog_map_import_btn_close">
+                <property name="label">gtk-cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="dialog_map_import_btn_ok">
+                <property name="label">gtk-ok</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_bottom">10</property>
+                <property name="label" translatable="yes">This will import the entire background.
+
+The files is expected in the following format:
+- The image has the dimensions 768x768.
+- The images consists of 3x3 clusters (chunks) of 8x8 tiles.
+- The images are 256-color indexed PNGs.
+- The 256 colors are divided into 16 16 color palettes.
+- Each 8x8 tile in the image MUST only use colors from
+  one of these 16 palettes.
+- The first color of each palette will be
+  imported as transparency.
+
+Colors that are in the wrong palette are replaced wth
+transparency.</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButtonBox" id="map_import_layer1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_bottom">10</property>
+                <property name="layout_style">start</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Input Image</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFileChooserButton" id="map_import_layer1_file">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="filter">png_filter</property>
+                    <property name="title" translatable="yes"/>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="-6">dialog_map_import_btn_close</action-widget>
+      <action-widget response="-5">dialog_map_import_btn_ok</action-widget>
+    </action-widgets>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+  </object>
   <object class="GtkDialog" id="dialog_tiles_import">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Tiles Import</property>
@@ -1437,11 +1315,10 @@ Palette animation settings are not changed.</property>
 
 The file is expected to have the following format:
 - The images consists of 8x8 tiles.
-- The images are indexed PNGs.
-- The colors are divided into 12 16 color palettes
-  (additional colors are ignored).
+- The images are 256-color indexed PNGs.
+- The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
-  one of these 12 palettes.
+  one of these 16 palettes.
 - The first color of each palette will be
   imported as transparency.</property>
               </object>

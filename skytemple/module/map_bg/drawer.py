@@ -17,15 +17,15 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 from enum import Enum, auto
-from typing import List, Union, Tuple, Iterable
+from typing import List, Union, Iterable
 
 from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
-from gi.repository.Gtk import Widget, CellRendererState
+from gi.repository.Gtk import Widget
 
 from skytemple.core.mapbg_util.drawer_plugin.grid import GridDrawerPlugin
 from skytemple.core.mapbg_util.drawer_plugin.selection import SelectionDrawerPlugin
-from skytemple.module.map_bg.animation_context import AnimationContext
+from skytemple.module.tiled_img.animation_context import AnimationContext
 from skytemple_files.graphics.bma.model import Bma
 import cairo
 

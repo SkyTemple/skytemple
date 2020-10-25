@@ -269,9 +269,6 @@ class BgController(AbstractController):
     def on_men_map_import_activate(self, *args):
         self.menu_controller.on_men_map_import_activate()
 
-    def on_men_chunks_edit_activate(self, *args):
-        self.menu_controller.on_men_chunks_edit_activate()
-
     def on_men_chunks_layer1_export_activate(self, *args):
         self.menu_controller.on_men_chunks_layer1_export_activate()
 

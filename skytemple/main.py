@@ -51,9 +51,12 @@ def main():
     # TODO: Gtk.Application: https://python-gtk-3-tutorial.readthedocs.io/en/latest/application.html
     path = os.path.abspath(os.path.dirname(__file__))
 
+    # Load settings
+    settings = SkyTempleSettingsStore()
+
     if sys.platform.startswith('win'):
         # Load theming under Windows
-        _windows_load_theme()
+        _windows_load_theme(settings)
         # Solve issue #12
         try:
             from skytemple_files.common.platform_utils.win import win_set_error_mode
@@ -64,7 +67,7 @@ def main():
 
     if sys.platform.startswith('darwin'):
         # Load theming under macOS
-        _macos_load_theme()
+        _macos_load_theme(settings)
 
     itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
     itheme.append_search_path(os.path.abspath(os.path.join(data_dir(), "icons")))
@@ -94,9 +97,6 @@ def main():
     # Load async task runner thread
     AsyncTaskRunner.instance()
 
-    # Load settings
-    settings = SkyTempleSettingsStore()
-
     # Init. core events
     event_manager = EventManager.instance()
     if settings.get_integration_discord_enabled():
@@ -122,24 +122,14 @@ def main():
         AsyncTaskRunner.end()
 
 
-def _windows_load_theme():
-    from skytemple_files.common.platform_utils.win import win_use_light_theme
-    settings = Gtk.Settings.get_default()
-    theme_name = 'Arc'
-    if not win_use_light_theme():
-        settings.set_property("gtk-application-prefer-dark-theme", True)
-        theme_name = 'Arc-Dark'
-    settings.set_property("gtk-theme-name", theme_name)
+def _windows_load_theme(settings: SkyTempleSettingsStore):
+    gtk_settings = Gtk.Settings.get_default()
+    gtk_settings.set_property("gtk-theme-name", settings.get_gtk_theme(default='Arc-Dark'))
 
 
-def _macos_load_theme():
-    from skytemple_files.common.platform_utils.macos import macos_use_light_theme
-    settings = Gtk.Settings.get_default()
-    theme_name = 'Mojave-light'
-    if not macos_use_light_theme():
-        settings.set_property("gtk-application-prefer-dark-theme", True)
-        theme_name = 'Mojave-dark'
-    settings.set_property("gtk-theme-name", theme_name)
+def _macos_load_theme(settings: SkyTempleSettingsStore):
+    gtk_settings = Gtk.Settings.get_default()
+    gtk_settings.set_property("gtk-theme-name", settings.get_gtk_theme(default='Mojave-dark'))
 
 
 if __name__ == '__main__':

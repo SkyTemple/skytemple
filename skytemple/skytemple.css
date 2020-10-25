@@ -35,3 +35,7 @@
 .open_doc_tree:hover:selected {
     background-color: @theme_selected_bg_color;
 }
+
+.dungeon_editor_column_header_invalid {
+    color: #cc2929;
+}

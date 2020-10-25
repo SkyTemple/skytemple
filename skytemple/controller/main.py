@@ -68,6 +68,11 @@ class MainController:
         """Utility method to get debugger manager from modules"""
         return cls._instance._debugger_manager
 
+    @classmethod
+    def reload_view(cls):
+        cls._instance.load_view(cls._instance._last_selected_view_model, cls._instance._last_selected_view_iter,
+                                cls._instance._main_item_list)
+
     def __init__(self, builder: Builder, window: Window, settings: SkyTempleSettingsStore):
         self.builder = builder
         self.window = window
@@ -82,6 +87,8 @@ class MainController:
         self._loading_dialog: Dialog = None
         self._main_item_list: TreeView = None
         self._main_item_filter: TreeModel = None
+        self._last_selected_view_model = None
+        self._last_selected_view_iter = None
 
         self._recent_files_store: ListStore = self.builder.get_object('recent_files_store')
         self._item_store: TreeStore = builder.get_object('item_store')
@@ -366,6 +373,8 @@ class MainController:
         # Scroll node into view
         if scroll_into_view:
             tree.scroll_to_cell(path, None, True, 0.5, 0.5)
+        self._last_selected_view_model = model
+        self._last_selected_view_iter = treeiter
 
     def on_view_loaded(
             self, module: AbstractModule, controller: AbstractController, item_id: int

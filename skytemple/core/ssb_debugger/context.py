@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from threading import Lock
 from typing import TYPE_CHECKING, Optional, List
 
 from gi.repository import Gtk
@@ -31,11 +32,14 @@ from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.script_util import ScriptFiles, load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT, SSB_EXT
 from skytemple_ssb_debugger.context.abstract import AbstractDebuggerControlContext
+from skytemple_ssb_debugger.threadsafe import synchronized_now
 
 if TYPE_CHECKING:
     from skytemple_ssb_debugger.model.ssb_files.file_manager import SsbFileManager
     from skytemple.core.ssb_debugger.manager import DebuggerManager
     from skytemple_ssb_debugger.model.ssb_files.file import SsbLoadedFile
+file_load_lock = Lock()
+save_lock = Lock()
 
 
 class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
@@ -56,6 +60,9 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
 
     def on_blur(self):
         EventManager.instance().debugger_window_lost_focus()
+
+    def show_ssb_script_editor(self) -> bool:
+        return False
 
     def open_rom(self, filename: str):
         return NotImplementedError()
@@ -82,6 +89,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     def get_project_filemanager(self) -> ProjectFileManager:
         return self._project_fm
 
+    @synchronized_now(file_load_lock)
     def get_ssb(self, filename, ssb_file_manager: 'SsbFileManager') -> 'SsbLoadedFile':
         f: 'SsbLoadedFile' = RomProject.get_current().open_file_in_rom(filename, SsbLoadedFileHandler,
                                                                        filename=filename,
@@ -93,6 +101,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     def on_script_edit(self, filename):
         EventManager.instance().trigger(EVT_DEBUGGER_SCRIPT_OPEN, filename)
 
+    @synchronized_now(save_lock)
     def save_ssb(self, filename, ssb_model, ssb_file_manager: 'SsbFileManager'):
         project = RomProject.get_current()
         ssb_loaded_file = self.get_ssb(filename, ssb_file_manager)

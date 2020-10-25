@@ -135,7 +135,7 @@ class StringProvider:
             language = string_index_data.languages[0]
         else:
             for lang in self.get_languages():
-                if lang.locale == language_locale:
+                if lang.locale == language_locale or lang.name == language_locale:
                     language = lang
 
         if language is None:
