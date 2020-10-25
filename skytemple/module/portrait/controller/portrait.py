@@ -73,7 +73,7 @@ class PortraitController(AbstractController):
         scale = 2
         portrait = self._portrait_provider.get(self.item_id, subindex,
                                                lambda: GLib.idle_add(widget.queue_draw), False)
-        ctx.set_source_rgb(0, 0, 0)
+        ctx.set_source_rgb(1, 1, 1)
         ctx.rectangle(0, 0, *widget.get_size_request())
         ctx.fill()
         ctx.scale(scale, scale)

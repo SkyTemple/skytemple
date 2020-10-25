@@ -10,6 +10,7 @@
       <object class="GtkToolbar">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="icon_size">2</property>
         <child>
           <object class="GtkToolButton" id="tb_zoom_in">
             <property name="visible">True</property>
@@ -17,7 +18,7 @@
             <property name="tooltip_text" translatable="yes">Zoom In</property>
             <property name="label" translatable="yes">Zoom +</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">zoom-in</property>
+            <property name="icon_name">skytemple-zoom-in-symbolic</property>
             <signal name="clicked" handler="on_tb_zoom_in_clicked" swapped="no"/>
           </object>
           <packing>
@@ -32,7 +33,7 @@
             <property name="tooltip_text" translatable="yes">Zoom Out</property>
             <property name="label" translatable="yes">Zoom-</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">zoom-out</property>
+            <property name="icon_name">skytemple-zoom-out-symbolic</property>
             <signal name="clicked" handler="on_tb_zoom_out_clicked" swapped="no"/>
           </object>
           <packing>
@@ -58,7 +59,7 @@
             <property name="is_important">True</property>
             <property name="label" translatable="yes">Chunks</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">view-grid</property>
+            <property name="icon_name">skytemple-view-grid-symbolic</property>
             <property name="active">True</property>
             <signal name="toggled" handler="on_tb_chunk_grid_toggled" swapped="no"/>
           </object>
@@ -75,7 +76,7 @@
             <property name="is_important">True</property>
             <property name="label" translatable="yes">Tiles</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">view-grid</property>
+            <property name="icon_name">skytemple-view-grid-symbolic</property>
             <property name="active">True</property>
             <signal name="toggled" handler="on_tb_tile_grid_toggled" swapped="no"/>
           </object>
@@ -91,7 +92,7 @@
             <property name="tooltip_text" translatable="yes">Hide Other Layers</property>
             <property name="label" translatable="yes">Hide Other</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">view-reveal-symbolic</property>
+            <property name="icon_name">skytemple-view-reveal-symbolic</property>
             <signal name="toggled" handler="on_tb_hide_other_toggled" swapped="no"/>
           </object>
           <packing>
@@ -117,7 +118,7 @@
             <property name="is_important">True</property>
             <property name="label" translatable="yes">BG Color</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">color-select-symbolic</property>
+            <property name="icon_name">skytemple-mapbg-color-symbolic</property>
             <signal name="toggled" handler="on_tb_bg_color_toggled" swapped="no"/>
           </object>
           <packing>
@@ -143,7 +144,7 @@
             <property name="is_important">True</property>
             <property name="label" translatable="yes">Go to Scenes</property>
             <property name="use_underline">True</property>
-            <property name="icon_name">go-next-symbolic</property>
+            <property name="icon_name">skytemple-go-next-symbolic</property>
             <signal name="clicked" handler="on_tb_goto_scene_clicked" swapped="no"/>
           </object>
           <packing>

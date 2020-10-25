@@ -45,12 +45,12 @@ class StringsModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
-            'document-edit-symbolic', TEXT_STRINGS, self, MainController, 0, False, '', True
+            'skytemple-e-string-symbolic', TEXT_STRINGS, self, MainController, 0, False, '', True
         ])
         config = self.project.get_rom_module().get_static_data()
         for language in config.string_index_data.languages:
             self._tree_iters[language.filename] = item_store.append(root, [
-                'document-edit-symbolic', language.name, self, StringsController, language, False, '', True
+                'skytemple-e-string-symbolic', language.name, self, StringsController, language, False, '', True
             ])
         self._tree_model = item_store
         recursive_generate_item_store_row_label(self._tree_model[root])

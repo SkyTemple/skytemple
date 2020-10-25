@@ -55,7 +55,7 @@ class RomModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node: TreeIter):
         self._root_node = item_store.append(root_node, [
-            'folder-documents-symbolic', os.path.basename(self.project.filename), self,
+            'skytemple-e-rom-symbolic', os.path.basename(self.project.filename), self,
             MainController, 0, False, '', True
         ])
         generate_item_store_row_label(item_store[self._root_node])

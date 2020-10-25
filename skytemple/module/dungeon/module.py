@@ -45,12 +45,12 @@ DOJO_DUNGEONS_LAST = 0xBF
 DOJO_MAPPA_ENTRY = 0x35
 # Those are not actual dungeons and share mappa floor data with Temporal Tower future.
 INVALID_DUNGEON_IDS = [175, 176, 177, 178]
-ICON_ROOT = 'folder-symbolic'
-ICON_DUNGEONS = 'folder-symbolic'
-ICON_FIXED_ROOMS = 'folder-symbolic'
-ICON_GROUP = 'folder-open-symbolic'
-ICON_DUNGEON = 'folder-documents-symbolic'
-ICON_FLOOR = 'text-x-generic-symbolic'
+ICON_ROOT = 'skytemple-e-dungeon-symbolic'
+ICON_DUNGEONS = 'skytemple-folder-symbolic'  # TODO: Remove.
+ICON_FIXED_ROOMS = 'skytemple-e-dungeon-fixed-floor-symbolic'
+ICON_GROUP = 'skytemple-folder-open-symbolic'
+ICON_DUNGEON = 'skytemple-e-dungeon-symbolic'
+ICON_FLOOR = 'skytemple-e-dungeon-floor-symbolic'
 MAPPA_PATH = 'BALANCE/mappa_s.bin'
 MAPPAG_PATH = 'BALANCE/mappa_gs.bin'
 logger = logging.getLogger(__name__)
@@ -208,7 +208,7 @@ class DungeonModule(AbstractModule):
             self._dungeon_floor_iters[idx] = {}
         for floor_i in range(0, self.get_number_floors(idx)):
             self._dungeon_floor_iters[idx][previous_floor_id + floor_i] = item_store.append(dungeon, [
-                ICON_DUNGEON, self.generate_floor_label(floor_i + previous_floor_id), self, FloorController,
+                ICON_FLOOR, self.generate_floor_label(floor_i + previous_floor_id), self, FloorController,
                 FloorViewInfo(previous_floor_id + floor_i, dungeon_info), False, '', True
             ])
         return dungeon

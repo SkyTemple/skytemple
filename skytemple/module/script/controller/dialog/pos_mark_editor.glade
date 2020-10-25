@@ -88,7 +88,7 @@
                         <property name="tooltip_text" translatable="yes">Zoom In</property>
                         <property name="label" translatable="yes">Zoom +</property>
                         <property name="use_underline">True</property>
-                        <property name="icon_name">zoom-in</property>
+                        <property name="icon_name">skytemple-zoom-in-symbolic</property>
                         <signal name="clicked" handler="on_tool_scene_zoom_in_clicked" swapped="no"/>
                       </object>
                       <packing>
@@ -103,7 +103,7 @@
                         <property name="tooltip_text" translatable="yes">Zoom Out</property>
                         <property name="label" translatable="yes">Zoom -</property>
                         <property name="use_underline">True</property>
-                        <property name="icon_name">zoom-out</property>
+                        <property name="icon_name">skytemple-zoom-out-symbolic</property>
                         <signal name="clicked" handler="on_tool_scene_zoom_out_clicked" swapped="no"/>
                       </object>
                       <packing>
@@ -118,7 +118,7 @@
                         <property name="tooltip_text" translatable="yes">Show Tiles Grid</property>
                         <property name="label" translatable="yes">Tile Grid</property>
                         <property name="use_underline">True</property>
-                        <property name="icon_name">view-grid</property>
+                        <property name="icon_name">skytemple-view-grid-symbolic</property>
                         <property name="active">True</property>
                         <signal name="toggled" handler="on_tool_scene_grid_toggled" swapped="no"/>
                       </object>

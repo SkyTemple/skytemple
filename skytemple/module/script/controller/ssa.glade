@@ -265,8 +265,9 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="margin_right">15</property>
-        <property name="icon_name">user-available-symbolic</property>
-        <property name="icon_size">1</property>
+        <property name="pixel_size">16</property>
+        <property name="icon_name">skytemple-e-actor-symbolic</property>
+        <property name="icon_size">2</property>
       </object>
       <packing>
         <property name="index">-1</property>
@@ -278,8 +279,9 @@
         <property name="can_focus">False</property>
         <property name="halign">end</property>
         <property name="valign">center</property>
+        <property name="margin_top">3</property>
         <property name="pixel_size">12</property>
-        <property name="icon_name">list-add-symbolic</property>
+        <property name="icon_name">skytemple-list-add-symbolic</property>
         <property name="icon_size">2</property>
       </object>
       <packing>
@@ -295,8 +297,10 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="margin_right">15</property>
-        <property name="icon_name">package-x-generic-symbolic</property>
-        <property name="icon_size">1</property>
+        <property name="margin_top">1</property>
+        <property name="pixel_size">16</property>
+        <property name="icon_name">skytemple-e-object-symbolic</property>
+        <property name="icon_size">2</property>
       </object>
       <packing>
         <property name="index">-1</property>
@@ -308,8 +312,9 @@
         <property name="can_focus">False</property>
         <property name="halign">end</property>
         <property name="valign">center</property>
+        <property name="margin_top">3</property>
         <property name="pixel_size">12</property>
-        <property name="icon_name">list-add-symbolic</property>
+        <property name="icon_name">skytemple-list-add-symbolic</property>
         <property name="icon_size">2</property>
       </object>
       <packing>
@@ -325,8 +330,9 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="margin_right">15</property>
-        <property name="icon_name">input-gaming-symbolic</property>
-        <property name="icon_size">1</property>
+        <property name="pixel_size">16</property>
+        <property name="icon_name">skytemple-e-performer-symbolic</property>
+        <property name="icon_size">2</property>
       </object>
       <packing>
         <property name="index">-1</property>
@@ -338,8 +344,9 @@
         <property name="can_focus">False</property>
         <property name="halign">end</property>
         <property name="valign">center</property>
+        <property name="margin_top">3</property>
         <property name="pixel_size">12</property>
-        <property name="icon_name">list-add-symbolic</property>
+        <property name="icon_name">skytemple-list-add-symbolic</property>
         <property name="icon_size">2</property>
       </object>
       <packing>
@@ -355,8 +362,10 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="margin_right">15</property>
-        <property name="icon_name">dialog-information-symbolic</property>
-        <property name="icon_size">1</property>
+        <property name="margin_top">4</property>
+        <property name="pixel_size">16</property>
+        <property name="icon_name">skytemple-e-event-symbolic</property>
+        <property name="icon_size">2</property>
       </object>
       <packing>
         <property name="index">-1</property>
@@ -368,8 +377,9 @@
         <property name="can_focus">False</property>
         <property name="halign">end</property>
         <property name="valign">center</property>
+        <property name="margin_top">3</property>
         <property name="pixel_size">12</property>
-        <property name="icon_name">list-add-symbolic</property>
+        <property name="icon_name">skytemple-list-add-symbolic</property>
         <property name="icon_size">2</property>
       </object>
       <packing>
@@ -397,7 +407,6 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="position">450</property>
-        <property name="position_set">True</property>
         <signal name="notify::position" handler="on_ssa_paned_position_notify" swapped="no"/>
         <child>
           <object class="GtkNotebook" id="ssa_notebook">
@@ -417,6 +426,7 @@
                       <object class="GtkToolbar">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="icon_size">2</property>
                         <child>
                           <object class="GtkToolButton" id="tool_scene_zoom_in">
                             <property name="visible">True</property>
@@ -424,7 +434,7 @@
                             <property name="tooltip_text" translatable="yes">Zoom In</property>
                             <property name="label" translatable="yes">Zoom +</property>
                             <property name="use_underline">True</property>
-                            <property name="icon_name">zoom-in</property>
+                            <property name="icon_name">skytemple-zoom-in-symbolic</property>
                             <signal name="clicked" handler="on_tool_scene_zoom_in_clicked" swapped="no"/>
                           </object>
                           <packing>
@@ -439,7 +449,7 @@
                             <property name="tooltip_text" translatable="yes">Zoom Out</property>
                             <property name="label" translatable="yes">Zoom -</property>
                             <property name="use_underline">True</property>
-                            <property name="icon_name">zoom-out</property>
+                            <property name="icon_name">skytemple-zoom-out-symbolic</property>
                             <signal name="clicked" handler="on_tool_scene_zoom_out_clicked" swapped="no"/>
                           </object>
                           <packing>
@@ -454,7 +464,7 @@
                             <property name="tooltip_text" translatable="yes">Show Tiles Grid</property>
                             <property name="label" translatable="yes">Tile Grid</property>
                             <property name="use_underline">True</property>
-                            <property name="icon_name">view-grid</property>
+                            <property name="icon_name">skytemple-view-grid-symbolic</property>
                             <property name="active">True</property>
                             <signal name="toggled" handler="on_tool_scene_grid_toggled" swapped="no"/>
                           </object>
@@ -480,7 +490,7 @@
                             <property name="tooltip_text" translatable="yes">Move / Select</property>
                             <property name="label" translatable="yes">Move</property>
                             <property name="use_underline">True</property>
-                            <property name="icon_name">go-bottom-symbolic</property>
+                            <property name="icon_name">skytemple-move-symbolic</property>
                             <property name="active">True</property>
                             <signal name="toggled" handler="on_tool_scene_move_toggled" swapped="no"/>
                           </object>
@@ -607,7 +617,7 @@
                             <property name="is_important">True</property>
                             <property name="label" translatable="yes">Go to BG</property>
                             <property name="use_underline">True</property>
-                            <property name="icon_name">go-next-symbolic</property>
+                            <property name="icon_name">skytemple-go-next-symbolic</property>
                             <signal name="clicked" handler="on_tool_scene_goto_bg_clicked" swapped="no"/>
                           </object>
                           <packing>
@@ -691,7 +701,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Edit</property>
                         <property name="use_underline">True</property>
-                        <property name="icon_name">document-edit-symbolic</property>
+                        <property name="icon_name">skytemple-document-edit-symbolic</property>
                         <signal name="clicked" handler="on_tool_events_edit_clicked" swapped="no"/>
                       </object>
                       <packing>
@@ -715,7 +725,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Add</property>
                         <property name="use_underline">True</property>
-                        <property name="icon_name">list-add-symbolic-symbolic</property>
+                        <property name="icon_name">skytemple-list-add-symbolic</property>
                         <signal name="clicked" handler="on_tool_events_add_clicked" swapped="no"/>
                       </object>
                       <packing>
@@ -729,7 +739,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Remove</property>
                         <property name="use_underline">True</property>
-                        <property name="icon_name">list-remove-symbolic</property>
+                        <property name="icon_name">skytemple-list-remove-symbolic</property>
                         <signal name="clicked" handler="on_tool_events_remove_clicked" swapped="no"/>
                       </object>
                       <packing>
@@ -840,7 +850,7 @@
                                     <property name="can_focus">False</property>
                                     <property name="label" translatable="yes">Add</property>
                                     <property name="use_underline">True</property>
-                                    <property name="icon_name">list-add-symbolic-symbolic</property>
+                                    <property name="icon_name">skytemple-list-add-symbolic</property>
                                     <signal name="clicked" handler="on_tool_sector_add_clicked" swapped="no"/>
                                   </object>
                                   <packing>
@@ -854,7 +864,7 @@
                                     <property name="can_focus">False</property>
                                     <property name="label" translatable="yes">Remove</property>
                                     <property name="use_underline">True</property>
-                                    <property name="icon_name">list-remove-symbolic</property>
+                                    <property name="icon_name">skytemple-list-remove-symbolic</property>
                                     <signal name="clicked" handler="on_tool_sector_remove_clicked" swapped="no"/>
                                   </object>
                                   <packing>
@@ -940,7 +950,7 @@
                                     <property name="can_focus">False</property>
                                     <property name="label" translatable="yes">Edit Script</property>
                                     <property name="use_underline">True</property>
-                                    <property name="icon_name">document-edit-symbolic</property>
+                                    <property name="icon_name">skytemple-document-edit-symbolic</property>
                                     <signal name="clicked" handler="on_tool_script_edit_clicked" swapped="no"/>
                                   </object>
                                   <packing>
@@ -964,7 +974,7 @@
                                     <property name="can_focus">False</property>
                                     <property name="label" translatable="yes">Add</property>
                                     <property name="use_underline">True</property>
-                                    <property name="icon_name">list-add-symbolic-symbolic</property>
+                                    <property name="icon_name">skytemple-list-add-symbolic</property>
                                     <signal name="clicked" handler="on_tool_script_add_clicked" swapped="no"/>
                                   </object>
                                   <packing>
@@ -978,7 +988,7 @@
                                     <property name="can_focus">False</property>
                                     <property name="label" translatable="yes">Remove</property>
                                     <property name="use_underline">True</property>
-                                    <property name="icon_name">list-remove-symbolic</property>
+                                    <property name="icon_name">skytemple-list-remove-symbolic</property>
                                     <signal name="clicked" handler="on_tool_script_remove_clicked" swapped="no"/>
                                   </object>
                                   <packing>
@@ -1164,7 +1174,7 @@
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="icon_name">user-available-symbolic</property>
+                            <property name="icon_name">skytemple-e-actor-symbolic</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -1273,7 +1283,7 @@
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="icon_name">package-x-generic-symbolic</property>
+                            <property name="icon_name">skytemple-e-object-symbolic</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -1382,7 +1392,7 @@
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="icon_name">input-gaming-symbolic</property>
+                            <property name="icon_name">skytemple-e-performer-symbolic</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -1491,7 +1501,7 @@
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="icon_name">dialog-information-symbolic</property>
+                            <property name="icon_name">skytemple-e-event-symbolic</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -1542,7 +1552,7 @@
           </object>
           <packing>
             <property name="resize">False</property>
-            <property name="shrink">True</property>
+            <property name="shrink">False</property>
           </packing>
         </child>
       </object>
@@ -1572,7 +1582,7 @@
             <property name="can_focus">False</property>
             <property name="margin_top">5</property>
             <property name="margin_bottom">5</property>
-            <property name="icon_name">user-available-symbolic</property>
+            <property name="icon_name">skytemple-e-actor-symbolic</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -1679,7 +1689,7 @@
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="icon_name">edit-delete-symbolic</property>
+                <property name="icon_name">skytemple-edit-delete-symbolic</property>
               </object>
             </child>
           </object>
@@ -1723,7 +1733,7 @@
             <property name="valign">end</property>
             <property name="margin_top">5</property>
             <property name="margin_bottom">5</property>
-            <property name="icon_name">package-x-generic-symbolic</property>
+            <property name="icon_name">skytemple-e-object-symbolic</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -1829,7 +1839,7 @@
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="icon_name">edit-delete-symbolic</property>
+                <property name="icon_name">skytemple-edit-delete-symbolic</property>
               </object>
             </child>
           </object>
@@ -1936,7 +1946,7 @@
             <property name="valign">center</property>
             <property name="margin_top">5</property>
             <property name="margin_bottom">5</property>
-            <property name="icon_name">input-gaming-symbolic</property>
+            <property name="icon_name">skytemple-e-performer-symbolic</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -2004,7 +2014,7 @@
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="icon_name">edit-delete-symbolic</property>
+                <property name="icon_name">skytemple-edit-delete-symbolic</property>
               </object>
             </child>
           </object>
@@ -2124,7 +2134,7 @@
             <property name="valign">center</property>
             <property name="margin_top">5</property>
             <property name="margin_bottom">5</property>
-            <property name="icon_name">dialog-information-symbolic</property>
+            <property name="icon_name">skytemple-e-event-symbolic</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -2218,7 +2228,7 @@
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="icon_name">edit-delete-symbolic</property>
+                <property name="icon_name">skytemple-edit-delete-symbolic</property>
               </object>
             </child>
           </object>

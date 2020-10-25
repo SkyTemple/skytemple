@@ -237,7 +237,7 @@
                       <object class="GtkImage">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="stock">gtk-missing-image</property>
+                        <property name="icon_name">skytemple-export-symbolic</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -282,7 +282,7 @@
                       <object class="GtkImage">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="stock">gtk-missing-image</property>
+                        <property name="icon_name">skytemple-import-symbolic</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -1054,7 +1054,7 @@
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="icon_name">help-about-symbolic</property>
+                            <property name="icon_name">skytemple-help-about-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -1474,7 +1474,7 @@
                               <object class="GtkImage">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="icon_name">help-about-symbolic</property>
+                                <property name="icon_name">skytemple-help-about-symbolic</property>
                               </object>
                             </child>
                           </object>
@@ -1561,6 +1561,24 @@
         <property name="position">1</property>
       </packing>
     </child>
+  </object>
+  <object class="GtkTreeStore" id="export_dialog_store">
+    <columns>
+      <!-- column-name md_idx -->
+      <column type="gint"/>
+      <!-- column-name unusued -->
+      <column type="gint"/>
+      <!-- column-name is_monster_form -->
+      <column type="gboolean"/>
+      <!-- column-name icon -->
+      <column type="gchararray"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+      <!-- column-name selected -->
+      <column type="gboolean"/>
+      <!-- column-name inconsistent -->
+      <column type="gboolean"/>
+    </columns>
   </object>
   <object class="GtkDialog" id="export_dialog">
     <property name="can_focus">False</property>
@@ -2065,23 +2083,5 @@ If you choose to export both genders, upon import the matching gender entry will
     <child type="titlebar">
       <placeholder/>
     </child>
-  </object>
-  <object class="GtkTreeStore" id="export_dialog_store">
-    <columns>
-      <!-- column-name md_idx -->
-      <column type="gint"/>
-      <!-- column-name unusued -->
-      <column type="gint"/>
-      <!-- column-name is_monster_form -->
-      <column type="gboolean"/>
-      <!-- column-name icon -->
-      <column type="gchararray"/>
-      <!-- column-name name -->
-      <column type="gchararray"/>
-      <!-- column-name selected -->
-      <column type="gboolean"/>
-      <!-- column-name inconsistent -->
-      <column type="gboolean"/>
-    </columns>
   </object>
 </interface>

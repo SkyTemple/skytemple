@@ -74,7 +74,7 @@ class MiscGraphicsModule(AbstractModule):
         self.list_of_wtus_dungeon_bin = self.dungeon_bin.get_files_with_ext(WTU_FILE_EXT)
 
         root = item_store.append(root_node, [
-            'folder-pictures-symbolic', MISC_GRAPHICS, self, MainController, 0, False, '', True
+            'skytemple-e-graphics-symbolic', MISC_GRAPHICS, self, MainController, 0, False, '', True
         ])
         self._tree_model = item_store
         self._tree_level_iter = {}
@@ -90,7 +90,7 @@ class MiscGraphicsModule(AbstractModule):
         for i, (name, is_wte) in enumerate(sorted_entries.items()):
             if not is_wte:
                 self._tree_level_iter[name] = item_store.append(root, [
-                    'image-x-generic-symbolic', name, self,  W16Controller,
+                    'skytemple-e-graphics-symbolic', name, self,  W16Controller,
                     self.list_of_w16s.index(name), False, '', True
                 ])
             else:
@@ -98,7 +98,7 @@ class MiscGraphicsModule(AbstractModule):
                 if name[:-3] + WTU_FILE_EXT not in self.list_of_wtus:
                     wtu_name = None
                 self._tree_level_iter[name] = item_store.append(root, [
-                    'image-x-generic-symbolic', name, self,  WteWtuController, WteOpenSpec(
+                    'skytemple-e-graphics-symbolic', name, self,  WteWtuController, WteOpenSpec(
                         name, wtu_name, False
                     ), False, '', True
                 ])
@@ -109,7 +109,7 @@ class MiscGraphicsModule(AbstractModule):
             if name[:-3] + WTU_FILE_EXT not in self.list_of_wtus_dungeon_bin:
                 wtu_name = None
             self._tree_level_dungeon_iter[name] = item_store.append(root, [
-                'image-x-generic-symbolic', 'dungeon.bin:' + name, self,  WteWtuController, WteOpenSpec(
+                'skytemple-e-graphics-symbolic', 'dungeon.bin:' + name, self,  WteWtuController, WteOpenSpec(
                     name, wtu_name, True
                 ), False, '', True
             ])

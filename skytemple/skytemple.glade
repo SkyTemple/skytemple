@@ -523,7 +523,7 @@ the top-right of the main window.</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="margin_end">5</property>
-    <property name="icon_name">skytemple-kofi</property>
+    <property name="icon_name">skytemple-support-symbolic</property>
   </object>
   <object class="GtkWindow" id="main_window">
     <property name="can_focus">False</property>
@@ -557,7 +557,7 @@ the top-right of the main window.</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
-                        <property name="primary_icon_name">edit-find-symbolic</property>
+                        <property name="primary_icon_name">skytemple-edit-find-symbolic</property>
                         <property name="primary_icon_activatable">False</property>
                         <property name="primary_icon_sensitive">False</property>
                         <signal name="search-changed" handler="on_main_item_list_search_search_changed" swapped="no"/>
@@ -828,7 +828,7 @@ the top-right of the main window.</property>
                             <property name="can_focus">False</property>
                             <property name="margin_top">64</property>
                             <property name="pixel_size">110</property>
-                            <property name="icon_name">error</property>
+                            <property name="icon_name">skytemple-dialog-error-symbolic</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -1366,7 +1366,7 @@ You can also join the Discord server if you have any questions.</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="margin_end">10</property>
-                        <property name="icon_name">skytemple-kofi</property>
+                        <property name="icon_name">skytemple-support-symbolic</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -1646,7 +1646,7 @@ Developer of ppmdu.</property>
                 <property name="margin_top">5</property>
                 <property name="margin_bottom">5</property>
                 <property name="label" translatable="yes">This tool converts any image into the image format required by Explorers of Sky.
-Please note that the game has pretty strict color restrictions. 
+Please note that the game has pretty strict color restrictions.
 
 Each 8x8 tile will only be able to use one palette.
 
@@ -1692,7 +1692,7 @@ The images created by this tool can be imported for backgrounds.</property>
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="icon_name">help-about-symbolic</property>
+                            <property name="icon_name">skytemple-help-about-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -1767,7 +1767,7 @@ The images created by this tool can be imported for backgrounds.</property>
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="icon_name">help-about-symbolic</property>
+                            <property name="icon_name">skytemple-help-about-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -1843,7 +1843,7 @@ The images created by this tool can be imported for backgrounds.</property>
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="icon_name">help-about-symbolic</property>
+                            <property name="icon_name">skytemple-help-about-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -1975,7 +1975,7 @@ The images created by this tool can be imported for backgrounds.</property>
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="icon_name">help-about-symbolic</property>
+                            <property name="icon_name">skytemple-help-about-symbolic</property>
                           </object>
                         </child>
                       </object>
