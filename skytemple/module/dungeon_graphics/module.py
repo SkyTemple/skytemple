@@ -77,7 +77,7 @@ class DungeonGraphicsModule(AbstractModule):
         for i in range(0, NUMBER_OF_BACKGROUNDS):
             self._tree_level_iter.append(
                 item_store.append(root, [
-                    'image-x-generic-symbolic', f"Background {i + NUMBER_OF_TILESETS}",
+                    'skytemple-e-mapbg-symbolic', f"Background {i + NUMBER_OF_TILESETS}",
                     self,  DungeonBgController, i, False, '', True
                 ])
             )
