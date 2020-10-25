@@ -56,6 +56,8 @@ class MonsterController(AbstractController):
         self._portrait_provider = module.project.get_module('portrait').get_portrait_provider()
         self._level_up_controller: Optional[LevelUpController] = None
 
+        self._render_graph_on_tab_change = True
+
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'monster.glade')
 
@@ -88,6 +90,9 @@ class MonsterController(AbstractController):
 
     def on_main_notebook_switch_page(self, notebook, page, page_num):
         self.__class__._last_open_tab_id = page_num
+        if self._render_graph_on_tab_change:
+            self._render_graph_on_tab_change = False
+            self._level_up_controller.render_graph()
 
     def on_draw_portrait_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
         scale = 2
@@ -199,7 +204,8 @@ class MonsterController(AbstractController):
     def on_entry_base_hp_changed(self, w, *args):
         self._update_from_entry(w)
         if self._level_up_controller is not None:
-            self._level_up_controller.render_graph()
+            self._level_up_controller.queue_render_graph()
+            self._render_graph_on_tab_change = True
         self.mark_as_modified()
 
     def on_entry_weight_changed(self, w, *args):
@@ -209,25 +215,29 @@ class MonsterController(AbstractController):
     def on_entry_base_atk_changed(self, w, *args):
         self._update_from_entry(w)
         if self._level_up_controller is not None:
-            self._level_up_controller.render_graph()
+            self._level_up_controller.queue_render_graph()
+            self._render_graph_on_tab_change = True
         self.mark_as_modified()
 
     def on_entry_base_sp_atk_changed(self, w, *args):
         self._update_from_entry(w)
         if self._level_up_controller is not None:
-            self._level_up_controller.render_graph()
+            self._level_up_controller.queue_render_graph()
+            self._render_graph_on_tab_change = True
         self.mark_as_modified()
 
     def on_entry_base_def_changed(self, w, *args):
         self._update_from_entry(w)
         if self._level_up_controller is not None:
-            self._level_up_controller.render_graph()
+            self._level_up_controller.queue_render_graph()
+            self._render_graph_on_tab_change = True
         self.mark_as_modified()
 
     def on_entry_base_sp_def_changed(self, w, *args):
         self._update_from_entry(w)
         if self._level_up_controller is not None:
-            self._level_up_controller.render_graph()
+            self._level_up_controller.queue_render_graph()
+            self._render_graph_on_tab_change = True
         self.mark_as_modified()
 
     def on_entry_size_changed(self, w, *args):

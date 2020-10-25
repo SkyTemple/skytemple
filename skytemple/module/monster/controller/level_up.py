@@ -101,6 +101,7 @@ class LevelUpController(AbstractController):
         self._waza_p: WazaP = self.module.get_waza_p()
         self._support_webview = False
         self._webview = None
+        self._render_graph = True
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'level_up.glade')
@@ -119,6 +120,8 @@ class LevelUpController(AbstractController):
 
     def on_level_up_notebook_switch_page(self, notebook, page, page_num):
         self.__class__._last_open_tab_id = page_num
+        if page_num == 0 and self._render_graph:
+            self.render_graph()
 
     def on_open_browser_clicked(self, *args):
         webbrowser.open_new_tab(pathlib.Path(self.get_tmp_html_path()).as_uri())
@@ -312,7 +315,7 @@ class LevelUpController(AbstractController):
             level_entry.special_attack_growth = sp_atk
             level_entry.defense_growth = defense
             level_entry.special_defense_growth = sp_def
-        self.render_graph()
+        self.queue_render_graph()
         self._mark_stats_as_modified()
 
     def _rebuild_level_up(self):
@@ -321,7 +324,7 @@ class LevelUpController(AbstractController):
         learn_set.level_up_moves = []
         for row in store:
             learn_set.level_up_moves.append(LevelUpMove(int(row[1]), int(row[0])))
-        self.render_graph()
+        self.queue_render_graph()
         self._mark_moves_as_modified()
 
     def _rebuild_hmtm(self):
@@ -396,6 +399,7 @@ class LevelUpController(AbstractController):
             stats_box: Gtk.Box = self.builder.get_object('stats_box')
             for child in stats_box:
                 stats_box.remove(child)
+            self._render_graph = False
             stats_box.pack_start(Gtk.Label.new('This Pokémon has no stats.'), True, True, 0)
         else:
             self._level_bin_entry = self.module.get_m_level_bin_entry(entry_id)
@@ -470,9 +474,15 @@ class LevelUpController(AbstractController):
                 graph_box.remove(child)
             graph_box.pack_start(Gtk.Label.new('This Pokémon has no stats.'), True, True, 0)
         else:
-            self.render_graph()
+            self.queue_render_graph()
+
+    def queue_render_graph(self):
+        self._render_graph = True
 
     def render_graph(self):
+        self._render_graph = False
+        if self._level_bin_entry is None:
+            return
         stack: Gtk.Stack = self.builder.get_object('graph_stack')
         if self.item_id < len(self._waza_p.learnsets):
             learnset = self._waza_p.learnsets[self.item_id]
