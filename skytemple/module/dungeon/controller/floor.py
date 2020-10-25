@@ -194,6 +194,10 @@ class FloorController(AbstractController):
         self._update_from_widget(w)
         self.mark_as_modified()
 
+    def on_entry_extra_hallway_density_changed(self, w, *args):
+        self._update_from_widget(w)
+        self.mark_as_modified()
+
     def on_btn_help_floor_connectivity_clicked(self, *args):
         pass  # todo
 

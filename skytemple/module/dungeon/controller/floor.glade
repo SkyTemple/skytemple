@@ -1595,6 +1595,7 @@
               <object class="GtkEntry" id="entry_extra_hallway_density">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <signal name="changed" handler="on_entry_extra_hallway_density_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
