@@ -324,6 +324,7 @@ class LevelUpController(AbstractController):
         learn_set.level_up_moves = []
         for row in store:
             learn_set.level_up_moves.append(LevelUpMove(int(row[1]), int(row[0])))
+        learn_set.level_up_moves.sort(key=lambda l: l.level_id)
         self.queue_render_graph()
         self._mark_moves_as_modified()
 
