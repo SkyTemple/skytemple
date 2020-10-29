@@ -18,6 +18,7 @@ import logging
 from typing import Optional, List, Union, Iterable, Tuple
 from xml.etree.ElementTree import Element
 
+from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
@@ -111,17 +112,17 @@ class DungeonModule(AbstractModule):
                     dungeon_or_group.base_dungeon_id, False, '', True
                 ])
                 for dungeon, start_id in zip(dungeon_or_group.dungeon_ids, dungeon_or_group.start_ids):
-                    self._dungeon_iters[dungeon] = self._add_dungeon_to_tree(group, item_store, dungeon, start_id)
+                    self._add_dungeon_to_tree(group, item_store, dungeon, start_id)
             else:
                 # Dungeon
-                self._dungeon_iters[dungeon_or_group] = self._add_dungeon_to_tree(root, item_store, dungeon_or_group, 0)
+                self._add_dungeon_to_tree(root, item_store, dungeon_or_group, 0)
 
         # Dojo dungeons
         dojo_root = item_store.append(root, [
             ICON_DUNGEONS, DOJOS_NAME, self, DojosController, 0, False, '', True
         ])
         for i in range(DOJO_DUNGEONS_FIRST, DOJO_DUNGEONS_LAST + 1):
-            self._dungeon_iters[i] = self._add_dungeon_to_tree(dojo_root, item_store, i, 0)
+            self._add_dungeon_to_tree(dojo_root, item_store, i, 0)
 
         # Fixed rooms
         fixed_rooms = item_store.append(root_node, [
@@ -150,7 +151,6 @@ class DungeonModule(AbstractModule):
             return self.get_mappa().floor_lists[dungeon.mappa_index][item.floor_id]
 
     def mark_floor_as_modified(self, item: FloorViewInfo):
-        # TODO: Regenerate mappa_g.
         self.project.mark_as_modified(MAPPA_PATH)
         # Mark as modified in tree
         row = self._tree_model[self._dungeon_floor_iters[item.dungeon.dungeon_id][item.floor_id]]
@@ -200,18 +200,27 @@ class DungeonModule(AbstractModule):
 
     def _add_dungeon_to_tree(self, root_node, item_store, idx, previous_floor_id):
         dungeon_info = DungeonViewInfo(idx, idx < DOJO_DUNGEONS_FIRST)
-        dungeon = item_store.append(root_node, [
+        self._dungeon_iters[idx] = item_store.append(root_node, [
             ICON_DUNGEON, self.generate_dungeon_label(idx), self, DungeonController,
             dungeon_info, False, '', True
         ])
-        if idx not in self._dungeon_floor_iters:
-            self._dungeon_floor_iters[idx] = {}
+        self._regenerate_dungeon_floors(idx, previous_floor_id)
+
+    def _regenerate_dungeon_floors(self, idx, previous_floor_id):
+        dungeon = self._dungeon_iters[idx]
+        item_store: Gtk.TreeStore = self._tree_model
+        dungeon_info = self._tree_model[dungeon][4]
+        self._dungeon_floor_iters[idx] = {}
+        iter = item_store.iter_children(dungeon)
+        while iter is not None:
+            nxt = item_store.iter_next(iter)
+            item_store.remove(iter)
+            iter = nxt
         for floor_i in range(0, self.get_number_floors(idx)):
             self._dungeon_floor_iters[idx][previous_floor_id + floor_i] = item_store.append(dungeon, [
                 ICON_FLOOR, self.generate_floor_label(floor_i + previous_floor_id), self, FloorController,
                 FloorViewInfo(previous_floor_id + floor_i, dungeon_info), False, '', True
             ])
-        return dungeon
 
     def load_dungeons(self) -> Iterable[Union[DungeonGroup, int]]:
         """
@@ -284,6 +293,75 @@ class DungeonModule(AbstractModule):
         if idx == DOJO_DUNGEONS_LAST:
             return 0x30
         return self.get_dungeon_list()[idx].number_floors
+
+    def change_floor_count(self, dungeon_id, number_floors_new):
+        """
+        This will update the floor count for the given dungeon:
+        - Will add or remove floors from the dungeon's mappa entry, starting at the end of this dungeon's floor
+          based on the current floor count for this dungeon
+        - Update the dungeon's data entry (floor count + total floor count in group)
+        - For all other dungeons in the same group: Update data entries (total floor count + start offset)
+        - Regenerate the UI in SkyTemple (dungeon tree)
+        """
+
+        dungeon_definitions = self.get_dungeon_list()
+
+        is_group: Union[False, DungeonGroup] = False
+        for dungeon_or_group in self.load_dungeons():
+            if dungeon_or_group == dungeon_id:
+                break
+            elif isinstance(dungeon_or_group, DungeonGroup):
+                if dungeon_id in dungeon_or_group.dungeon_ids:
+                    is_group = dungeon_or_group
+                    break
+
+        mappa_index = dungeon_definitions[dungeon_id].mappa_index
+        floor_offset = dungeon_definitions[dungeon_id].start_after
+        number_floors_old = dungeon_definitions[dungeon_id].number_floors
+        floor_list = self.get_mappa().floor_lists[mappa_index]
+
+        floors_added = number_floors_new - number_floors_old
+
+        # Update Mappa
+        if floors_added == 0:
+            return  # nothing to do
+        if floors_added < 0:
+            # We removed floors
+            for _ in range(0, -floors_added):
+                del floor_list[floor_offset + number_floors_new]
+        else:
+            # We added floors
+            last_floor_xml = floor_list[floor_offset + number_floors_old - 1].to_xml()
+            for i in range(0, floors_added):
+                floor_list.insert(floor_offset + number_floors_old + i, MappaFloor.from_xml(last_floor_xml))
+
+        # Update dungeon data
+        dungeon_definitions[dungeon_id].number_floors = number_floors_new
+        if is_group:
+            new_total_floor_count = sum([dungeon_definitions[x].number_floors for x in is_group.dungeon_ids])
+            dungeon_definitions[dungeon_id].number_floors_in_group = new_total_floor_count
+
+            for dungeon_in_group in (x for x in is_group.dungeon_ids if x != dungeon_id):
+                # Update dungeon data of group floors
+                if dungeon_definitions[dungeon_in_group].start_after > dungeon_definitions[dungeon_id].start_after:
+                    dungeon_definitions[dungeon_in_group].start_after += floors_added
+                dungeon_definitions[dungeon_in_group].number_floors_in_group = new_total_floor_count
+        else:
+            dungeon_definitions[dungeon_id].number_floors_in_group = number_floors_new
+
+        # Re-count floors
+        for i, floor in enumerate(floor_list):
+            floor.layout.floor_number = i + 1
+
+        # Mark as changed
+        self.mark_dungeon_as_modified(dungeon_id, True)
+        self.save_dungeon_list(dungeon_definitions)
+        if is_group:
+            for dungeon_in_group in is_group.dungeon_ids:
+                self._regenerate_dungeon_floors(dungeon_in_group, dungeon_definitions[dungeon_in_group].start_after)
+        else:
+            self._regenerate_dungeon_floors(dungeon_id, floor_offset)
+        recursive_generate_item_store_row_label(self._tree_model[self._root_iter])
 
     def get_monster_md(self) -> Md:
         return self.project.get_module('monster').monster_md

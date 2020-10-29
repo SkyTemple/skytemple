@@ -17,7 +17,9 @@
 from typing import TYPE_CHECKING
 
 from gi.repository import Gtk
+from gi.repository.Gtk import ResponseType
 
+from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple_files.hardcoded.dungeons import DungeonRestrictionDirection
@@ -112,7 +114,23 @@ class DungeonController(AbstractController):
         self.builder.get_object('entry_turn_limit').set_text(str(self.restrictions.turn_limit))
 
     def on_edit_floor_count_clicked(self, *args):
-        pass  # todo
+        dialog: Gtk.Dialog = self.builder.get_object('dialog_adjust_floor_count')
+        dialog.set_attached_to(MainController.window())
+        dialog.set_transient_for(MainController.window())
+
+        current_floor_count = self.module.get_number_floors(self.dungeon_info.dungeon_id)
+
+        label_floor_count_in_dialog: Gtk.Label = self.builder.get_object('label_floor_count_in_dialog')
+        spin_floor_count: Gtk.SpinButton = self.builder.get_object('spin_floor_count')
+
+        label_floor_count_in_dialog.set_text(f'This dungeon currently has {current_floor_count} floors.')
+        spin_floor_count.set_value(current_floor_count)
+
+        resp = dialog.run()
+        dialog.hide()
+        if resp == ResponseType.APPLY:
+            self.module.change_floor_count(self.dungeon_info.dungeon_id, int(spin_floor_count.get_value()))
+
 
     # <editor-fold desc="HANDLERS NAMES" defaultstate="collapsed">
 

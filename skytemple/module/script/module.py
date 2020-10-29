@@ -65,7 +65,7 @@ class ScriptModule(AbstractModule):
     def load_tree_items(self, item_store: TreeStore, root_node):
         # -> Script [main]
         root = item_store.append(root_node, [
-            'skytemple-e-scene-symbolic', SCRIPT_SCENES, self, MainController, 0, False, '', True
+            'skytemple-e-ground-symbolic', SCRIPT_SCENES, self, MainController, 0, False, '', True
         ])
 
         self._tree_model = item_store
@@ -118,7 +118,7 @@ class ScriptModule(AbstractModule):
             if map_obj['enter_sse'] is not None:
                 #          -> Enter [sse]
                 self._map_sse[map_obj['name']] = item_store.append(map_root, [
-                    'skytemple-e-scene-symbolic', 'Enter (sse)', self,  SsaController, {
+                    'skytemple-e-ground-symbolic', 'Enter (sse)', self,  SsaController, {
                         'map': map_obj['name'],
                         'file': f"{SCRIPT_DIR}/{map_obj['name']}/{map_obj['enter_sse']}",
                         'type': 'sse',
@@ -135,7 +135,7 @@ class ScriptModule(AbstractModule):
                 #             -> Scene [ssa]
                 filename = f"{SCRIPT_DIR}/{map_obj['name']}/{ssa}"
                 self._map_ssas[map_obj['name']][filename] = item_store.append(acting_root, [
-                    'skytemple-e-scene-symbolic', stem,
+                    'skytemple-e-ground-symbolic', stem,
                     self, SsaController, {
                         'map': map_obj['name'],
                         'file': filename,
@@ -153,7 +153,7 @@ class ScriptModule(AbstractModule):
                 #             -> Scene [sss]
                 filename = f"{SCRIPT_DIR}/{map_obj['name']}/{sss}"
                 self._map_ssss[map_obj['name']][filename] = item_store.append(sub_root, [
-                    'skytemple-e-scene-symbolic', stem,
+                    'skytemple-e-ground-symbolic', stem,
                     self, SsaController, {
                         'map': map_obj['name'],
                         'file': filename,
