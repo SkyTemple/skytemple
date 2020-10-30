@@ -30,7 +30,7 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files >= 0.1.0a13',
+        'skytemple-files >= 0.1.0a14',
         'skytemple-icons >= 0.1.0a1',
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
