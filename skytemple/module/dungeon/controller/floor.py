@@ -28,10 +28,10 @@ from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import add_dialog_file_filters, add_dialog_xml_filter
+from skytemple.core.ui_utils import add_dialog_xml_filter
+from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG
 from skytemple.module.dungeon.controller.dojos import DOJOS_NAME
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem
-from skytemple_files.common.util import lcm
 from skytemple_files.common.xml_util import prettify
 from skytemple_files.dungeon_data.mappa_bin.floor_layout import MappaFloorStructureType, MappaFloorSecondaryTerrainType, \
     MappaFloorDarknessLevel, MappaFloorWeather
@@ -45,7 +45,6 @@ from skytemple.controller.main import MainController as SkyTempleMainController
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, FloorViewInfo
 
-COUNT_VALID_TILESETS = 199
 COUNT_VALID_BGM = 118
 COUNT_VALID_FIXED_FLOORS = 256
 KECLEON_MD_INDEX = 383
@@ -1366,10 +1365,12 @@ class FloorController(AbstractController):
             self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     def _comboxbox_for_tileset_id(self, names: List[str]):
-        # TODO: For tilesets > 169(?) show names of map bgs.
         store = Gtk.ListStore(int, str)  # id, name
         for i in range(0, COUNT_VALID_TILESETS):
-            store.append([i, f"Tileset {i}"])
+            if i >= TILESET_FIRST_BG:
+                store.append([i, f"Background {i}"])
+            else:
+                store.append([i, f"Tileset {i}"])
         for name in names:
             self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 

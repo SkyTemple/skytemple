@@ -15,9 +15,11 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import os
 from typing import Optional, List, Union, Iterable, Tuple
 from xml.etree.ElementTree import Element
 
+from PIL import Image
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
@@ -25,19 +27,27 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
-    recursive_generate_item_store_row_label
+    recursive_generate_item_store_row_label, data_dir
 from skytemple.module.dungeon.controller.dojos import DOJOS_NAME, DojosController
 from skytemple.module.dungeon.controller.dungeon import DungeonController
+from skytemple.module.dungeon.controller.fixed import FixedController
 from skytemple.module.dungeon.controller.fixed_rooms import FIXED_ROOMS_NAME, FixedRoomsController
 from skytemple.module.dungeon.controller.floor import FloorController
 from skytemple.module.dungeon.controller.group import GroupController
 from skytemple.module.dungeon.controller.main import MainController, DUNGEONS_NAME
 from skytemple_files.common.types.file_types import FileType
+from skytemple_files.container.dungeon_bin.model import DungeonBinPack
 from skytemple_files.data.md.model import Md
+from skytemple_files.dungeon_data.fixed_bin.model import FixedBin
 from skytemple_files.dungeon_data.mappa_bin.floor import MappaFloor
 from skytemple_files.dungeon_data.mappa_bin.mappa_xml import mappa_floor_xml_import
 from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
 from skytemple_files.dungeon_data.mappa_g_bin.mappa_converter import convert_mappa_to_mappag
+from skytemple_files.graphics.dbg.model import Dbg
+from skytemple_files.graphics.dma.model import Dma
+from skytemple_files.graphics.dpc.model import Dpc
+from skytemple_files.graphics.dpci.model import Dpci
+from skytemple_files.graphics.dpl.model import Dpl
 from skytemple_files.hardcoded.dungeons import HardcodedDungeons, DungeonDefinition, DungeonRestriction
 
 # TODO: Add this to dungeondata.xml?
@@ -54,6 +64,8 @@ ICON_DUNGEON = 'skytemple-e-dungeon-symbolic'
 ICON_FLOOR = 'skytemple-e-dungeon-floor-symbolic'
 MAPPA_PATH = 'BALANCE/mappa_s.bin'
 MAPPAG_PATH = 'BALANCE/mappa_gs.bin'
+FIXED_PATH = 'BALANCE/fixed.bin'
+DUNGEON_BIN = 'DUNGEON/dungeon.bin'
 logger = logging.getLogger(__name__)
 
 
@@ -95,6 +107,8 @@ class DungeonModule(AbstractModule):
         self._root_iter = None
         self._dungeon_iters = {}
         self._dungeon_floor_iters = {}
+        self._fixed_floor_data: Optional[FixedBin] = None
+        self._dungeon_bin: Optional[DungeonBinPack] = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
@@ -102,6 +116,16 @@ class DungeonModule(AbstractModule):
         ])
         self._tree_model = item_store
         self._root_iter = root
+
+        static_data = self.project.get_rom_module().get_static_data()
+        self._fixed_floor_data = self.project.open_file_in_rom(
+            FIXED_PATH, FileType.FIXED_BIN,
+            static_data=static_data
+        )
+        self._dungeon_bin: DungeonBinPack = self.project.open_file_in_rom(
+            DUNGEON_BIN, FileType.DUNGEON_BIN,
+            static_data=static_data
+        )
 
         # Regular dungeons
         for dungeon_or_group in self.load_dungeons():
@@ -128,7 +152,11 @@ class DungeonModule(AbstractModule):
         fixed_rooms = item_store.append(root_node, [
             ICON_FIXED_ROOMS, FIXED_ROOMS_NAME, self, FixedRoomsController, 0, False, '', True
         ])
-        # TODO Fixed rooms
+        for i in range(0, len(self._fixed_floor_data.fixed_floors)):
+            item_store.append(fixed_rooms, [
+                ICON_FIXED_ROOMS, f'Fixed Room {i}', self, FixedController,
+                i, False, '', True
+            ])
 
         recursive_generate_item_store_row_label(self._tree_model[root])
         recursive_generate_item_store_row_label(self._tree_model[fixed_rooms])
@@ -149,6 +177,9 @@ class DungeonModule(AbstractModule):
         else:
             dungeon = self.get_dungeon_list()[item.dungeon.dungeon_id]
             return self.get_mappa().floor_lists[dungeon.mappa_index][item.floor_id]
+
+    def get_fixed_floor(self, floor_id):
+        return self._fixed_floor_data.fixed_floors[floor_id]
 
     def mark_floor_as_modified(self, item: FloorViewInfo):
         self.project.mark_as_modified(MAPPA_PATH)
@@ -372,3 +403,27 @@ class DungeonModule(AbstractModule):
             floor = self.get_mappa_floor(floor_info)
             mappa_floor_xml_import(xml, floor)
             self.mark_floor_as_modified(floor_info)
+
+    def get_dungeon_tileset(self, tileset_id) -> Tuple[Dma, Dpci, Dpc, Dpl]:
+        return (
+            self._dungeon_bin.get(f'dungeon{tileset_id}.dma'),
+            self._dungeon_bin.get(f'dungeon{tileset_id}.dpci'),
+            self._dungeon_bin.get(f'dungeon{tileset_id}.dpc'),
+            self._dungeon_bin.get(f'dungeon{tileset_id}.dpl'),
+        )
+
+    def get_dungeon_background(self, background_id) -> Tuple[Dbg, Dpci, Dpc, Dpl]:
+        return (
+            self._dungeon_bin.get(f'dungeon_bg{background_id}.dbg'),
+            self._dungeon_bin.get(f'dungeon_bg{background_id}.dpci'),
+            self._dungeon_bin.get(f'dungeon_bg{background_id}.dpc'),
+            self._dungeon_bin.get(f'dungeon_bg{background_id}.dpl'),
+        )
+
+    def get_dummy_tileset(self) -> [Dma, Image.Image]:
+        with open(os.path.join(data_dir(), 'fixed_floor', 'dummy.dma'), 'rb') as f:
+            dma = FileType.DMA.deserialize(f.read())
+        return (
+            dma,
+            Image.open(os.path.join(data_dir(), 'fixed_floor', 'dummy.png'))
+        )

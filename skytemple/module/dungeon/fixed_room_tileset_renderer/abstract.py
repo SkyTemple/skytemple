@@ -14,6 +14,19 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from abc import ABC, abstractmethod
+from typing import Optional, List
 
-COUNT_VALID_TILESETS = 199
-TILESET_FIRST_BG = 170
+import cairo
+
+from skytemple_files.graphics.dma.model import DmaType
+
+
+class AbstractTilesetRenderer(ABC):
+    @abstractmethod
+    def get_background(self) -> Optional[cairo.Surface]:
+        """Returns the background as a surface"""
+
+    @abstractmethod
+    def get_dungeon(self, rules: List[List[DmaType]]) -> cairo.Surface:
+        """Returns the rendered dungeon tiles for the rules."""

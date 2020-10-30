@@ -15,5 +15,3 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-COUNT_VALID_TILESETS = 199
-TILESET_FIRST_BG = 170
