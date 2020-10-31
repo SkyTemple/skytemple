@@ -1572,6 +1572,12 @@ Developer of ppmdu.</property>
       <placeholder/>
     </child>
   </object>
+  <object class="GtkAdjustment" id="tq_dither_level_scale">
+    <property name="upper">1</property>
+    <property name="value">1</property>
+    <property name="step_increment">0.01000000000000000021</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkListStore" id="tq_mode_store">
     <columns>
       <!-- column-name mode_id -->
@@ -1582,14 +1588,18 @@ Developer of ppmdu.</property>
     <data>
       <row>
         <col id="0">0</col>
-        <col id="1" translatable="yes">Dithering</col>
+        <col id="1" translatable="yes">Dither: Ordered</col>
       </row>
       <row>
         <col id="0">1</col>
-        <col id="1" translatable="yes">No Dithering</col>
+        <col id="1" translatable="yes">Dither: Floyd Steinberg</col>
       </row>
       <row>
         <col id="0">2</col>
+        <col id="1" translatable="yes">No Dithering</col>
+      </row>
+      <row>
+        <col id="0">3</col>
         <col id="1" translatable="yes">Reorganize colors only</col>
       </row>
     </data>
@@ -1898,6 +1908,80 @@ The images created by this tool can be imported for backgrounds.</property>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="spacing">10</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">Dithering Level</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="tq_dither_level_help">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="valign">center</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="icon_name">skytemple-help-about-symbolic</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="pack_type">end</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScale" id="tq_dither_level">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="adjustment">tq_dither_level_scale</property>
+                    <property name="round_digits">1</property>
+                    <property name="digits">2</property>
+                    <property name="value_pos">left</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="spacing">10</property>
+                <property name="homogeneous">True</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="spacing">10</property>
                     <child>
@@ -1938,7 +2022,7 @@ The images created by this tool can be imported for backgrounds.</property>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">9</property>
+                <property name="position">10</property>
               </packing>
             </child>
             <child>
@@ -2011,7 +2095,7 @@ The images created by this tool can be imported for backgrounds.</property>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">12</property>
+                <property name="position">13</property>
               </packing>
             </child>
             <child>
@@ -2075,7 +2159,7 @@ The images created by this tool can be imported for backgrounds.</property>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">13</property>
+                <property name="position">14</property>
               </packing>
             </child>
           </object>

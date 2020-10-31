@@ -34,9 +34,10 @@ logger = logging.getLogger(__name__)
 
 
 class ImageConversionMode(Enum):
-    DITHERING = 0
-    NO_DITHERING = 1
-    JUST_REORGANIZE = 2
+    DITHERING_ORDERED = 0
+    DITHERING_FLOYDSTEINBERG = 1
+    NO_DITHERING = 2
+    JUST_REORGANIZE = 3
 
 
 class TilequantController:
@@ -87,14 +88,18 @@ class TilequantController:
         ))
         builder.get_object('tq_mode_help').connect('clicked', partial(
             self.show_help,
-            'Dithering: Colors will be reorganized and reduced if necessary. Colors will be changed so that they '
+            'Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they '
             '"blend into" each other. This will make the image look like it contains more colors but also might '
-            'decrease the overall visual quality.\n\n'
+            'decrease the overall visual quality. Two different algorithms are available.\n\n'
             'No Dithering: Color will be reorganized and reduced if necessary. No dithering will be performed.\n\n'
             'Reorganize colors only: Colors will be reorganized so that they fit the game\'s format. SkyTemple will '
             'not attempt to reduce the amount of overall colors to make this work, so you will get an error, if it\'s '
             'not possible with the current amount. However if it does work, the output image will look identical to '
             'the original image.'
+        ))
+        builder.get_object('tq_dither_level_help').connect('clicked', partial(
+            self.show_help,
+            'Only relevant if dithering is enabled: This controls the amount of dithering applied.'
         ))
         builder.get_object('tq_convert').connect('clicked', self.convert)
         self.builder = builder
@@ -113,6 +118,7 @@ class TilequantController:
 
         mode_cb: Gtk.ComboBox = self.builder.get_object('tq_mode')
         mode = ImageConversionMode(mode_cb.get_model()[mode_cb.get_active_iter()][0])
+        dither_level = self.builder.get_object('tq_dither_level').get_value()
         has_first_image = self.builder.get_object('tq_input_file').get_filename() is not None
         has_second_image = self.builder.get_object('tq_second_file').get_filename() is not None
 
@@ -209,7 +215,7 @@ class TilequantController:
                     self.error("The input image is not a supported format.")
                     return
                 try:
-                    img = self._convert(image, transparent_color, mode, num_pals)
+                    img = self._convert(image, transparent_color, mode, num_pals, dither_level)
                     if not has_second_image:
                         # Only one image
                         img.save(output_image)
@@ -240,13 +246,19 @@ class TilequantController:
             msg
         )
 
-    def _convert(self, image, transparent_color, mode, num_pals):
+    def _convert(self, image, transparent_color, mode, num_pals, dither_level):
         if mode == ImageConversionMode.JUST_REORGANIZE:
             converter = ImageConverter(image, transparent_color=transparent_color)
             return converter.convert(num_pals, colors_per_palette=16, color_steps=-1, max_colors=256,
                                      low_to_high=False, mosaic_limiting=False)
         converter = AikkuImageConverter(image, transparent_color)
+        dither_mode = DitheringMode.NONE
+        if mode == ImageConversionMode.DITHERING_ORDERED:
+            dither_mode = DitheringMode.ORDERED
+        elif mode == ImageConversionMode.DITHERING_FLOYDSTEINBERG:
+            dither_mode = DitheringMode.FLOYDSTEINBERG
         return converter.convert(
             num_pals,
-            dithering_mode=DitheringMode.ORDERED if mode == ImageConversionMode.DITHERING else DitheringMode.NONE
+            dithering_mode=dither_mode,
+            dithering_level=dither_level
         )
