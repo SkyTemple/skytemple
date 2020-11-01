@@ -50,12 +50,12 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
-            <property name="spacing">10</property>
             <child>
               <object class="GtkToolbar">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="show_arrow">False</property>
+                <property name="icon_size">2</property>
                 <child>
                   <object class="GtkToolButton" id="export">
                     <property name="visible">True</property>
@@ -185,6 +185,7 @@
               <object class="GtkGrid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="margin_top">10</property>
                 <property name="row_spacing">5</property>
                 <property name="column_spacing">5</property>
                 <child>
@@ -424,7 +425,7 @@ assigned to it.</property>
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="stock">gtk-add</property>
+                            <property name="icon_name">skytemple-list-add-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -446,7 +447,7 @@ assigned to it.</property>
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="stock">gtk-remove</property>
+                            <property name="icon_name">skytemple-list-remove-symbolic</property>
                           </object>
                         </child>
                       </object>
