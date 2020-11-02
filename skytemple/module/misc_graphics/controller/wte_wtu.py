@@ -22,7 +22,7 @@ import cairo
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.ui_utils import add_dialog_png_filter
-from skytemple_files.graphics.wte.model import Wte
+from skytemple_files.graphics.wte.model import Wte, ColorDepth
 from skytemple_files.graphics.wtu.model import Wtu, WtuEntry
 
 try:
@@ -67,9 +67,12 @@ class WteWtuController(AbstractController):
         self.builder.get_object('draw').connect('draw', self.draw)
         return self.builder.get_object('editor')
 
-    def on_export_clicked(self, *args):
+    def on_export_clicked(self, w: Gtk.MenuToolButton):
+        w.get_menu().popup(None, None, None, None, 0, Gtk.get_current_event_time())
+        
+    def on_palette_export_clicked(self, *args):
         dialog = Gtk.FileChooserDialog(
-            "Export as PNG...",
+            "Export palette as PNG...",
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
@@ -79,19 +82,19 @@ class WteWtuController(AbstractController):
 
         response = dialog.run()
         fn = dialog.get_filename()
-        if '.' not in fn:
-            fn += '.png'
         dialog.destroy()
 
         if response == Gtk.ResponseType.OK:
-            self.wte.to_pil().save(fn)
-
-    def on_import_clicked(self, *args):
+            if '.' not in fn:
+                fn += '.png'
+            self.wte.to_pil_palette().save(fn)
+            
+    def on_image_export_clicked(self, *args):
         dialog = Gtk.FileChooserDialog(
-            "Import PNG...",
+            "Export image as PNG...",
             MainController.window(),
-            Gtk.FileChooserAction.OPEN,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+            Gtk.FileChooserAction.SAVE,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
         )
 
         add_dialog_png_filter(dialog)
@@ -101,24 +104,56 @@ class WteWtuController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.OK:
-            try:
-                with open(fn, 'rb') as f:
-                    self.wte.from_pil(Image.open(f))
-            except Exception as err:
-                display_error(
-                    sys.exc_info(),
-                    str(err),
-                    "Error importing the image."
-                )
+            if '.' not in fn:
+                fn += '.png'
+            self.wte.to_pil_canvas(0).save(fn)
+
+    def on_import_clicked(self, *args):
+        dialog: Gtk.Dialog = self.builder.get_object('dialog_import_settings')
+        dialog.set_attached_to(MainController.window())
+        dialog.set_transient_for(MainController.window())
+
+        resp = dialog.run()
+        dialog.hide()
+        if resp == ResponseType.APPLY:
+            img_fn : Optional[str] = dialog.get_object('image_path_setting').get_filename()
+            pal_fn : Optional[str] = dialog.get_object('palette_path_setting').get_filename()
+            img_pil : Optional[Image.Image] = None
+            if img_fn!=None:
+                try:
+                    img_pil = Image.open(img_fn, 'r')
+                except Exception as err:
+                    display_error(
+                        sys.exc_info(),
+                        str(err),
+                        "Error importing the image."
+                    )
+            if pal_fn!=None:
+                try:
+                    img_pil = Image.open(pal_fn, 'r')
+                except Exception as err:
+                    display_error(
+                        sys.exc_info(),
+                        str(err),
+                        "Error importing the palette."
+                    )
+            self.wte.from_pil(img_fn, pal_fn, ColorDepth.COLOR_4BPP)
             self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
             self._reinit_image()
+            if self.wtu:
+                self.wtu.image_mode = self.wte.get_mode()
 
     def _init_wte(self):
         info_weird: Gtk.InfoBar = self.builder.get_object('info_weird')
         info_weird.set_revealed(self.wte.is_weird)
         info_weird.set_message_type(Gtk.MessageType.WARNING)
 
-        self.builder.get_object('wte_identifier').set_text(str(self.wte.identifier))
+        self.builder.get_object('wte_variation').set_text(str(0))
+        self.builder.get_object('wte_variation').set_increments(1,1)
+        self.builder.get_object('wte_variation').set_range(0, self.wte.max_variation()-1)
+        
+        self.builder.get_object('wte_canvas_width').set_text(str(self.wte.width))
+        self.builder.get_object('wte_canvas_height').set_text(str(self.wte.height))
 
     def _init_wtu(self):
         wtu_stack: Gtk.Stack = self.builder.get_object('wtu_stack')
@@ -126,30 +161,47 @@ class WteWtuController(AbstractController):
             wtu_stack.set_visible_child(self.builder.get_object('no_wtu_label'))
         else:
             wtu_stack.set_visible_child(self.builder.get_object('wtu_editor'))
-            self.builder.get_object('wtu_identifier').set_text(str(self.wtu.identifier))
             self.builder.get_object('wtu_unkc').set_text(str(self.wtu.unkC))
             wtu_store: Gtk.ListStore = self.builder.get_object('wtu_store')
             for entry in self.wtu.entries:
                 wtu_store.append([str(entry.unk0), str(entry.unk1), str(entry.unk2), str(entry.unk3)])
 
     def _reinit_image(self):
-        self.surface = pil_to_cairo_surface(self.wte.to_pil().convert('RGBA'))
+        try:
+            val = int(self.builder.get_object('wte_variation').get_text())
+        except ValueError:
+            val = 0
+        self.surface = pil_to_cairo_surface(self.wte.to_pil(val).convert('RGBA'))
         self.builder.get_object('draw').queue_draw()
 
-    def on_wte_identifier_changed(self, widget):
+    def on_wte_variation_changed(self, widget):
+        try:
+            val = int(widget.get_text())
+        except ValueError:
+            val = -1
+        
+        if val<0:
+            val = 0
+            widget.set_text(str(val))
+        elif val>=self.wte.max_variation():
+            val=self.wte.max_variation()-1
+            widget.set_text(str(val))
+        self._reinit_image()
+        
+    def on_wte_canvas_width_changed(self, widget):
         try:
             val = int(widget.get_text())
         except ValueError:
             return
-        self.wte.identifier = val
+        self.wte.width = val
         self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
 
-    def on_wtu_identifier_changed(self, widget):
+    def on_wte_canvas_height_changed(self, widget):
         try:
             val = int(widget.get_text())
         except ValueError:
             return
-        self.wtu.identifier = val
+        self.wte.height = val
         self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
 
     def on_wtu_unkc_changed(self, widget):
