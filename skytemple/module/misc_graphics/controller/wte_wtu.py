@@ -110,15 +110,18 @@ class WteWtuController(AbstractController):
 
     def on_import_clicked(self, *args):
         dialog: Gtk.Dialog = self.builder.get_object('dialog_import_settings')
+        self.builder.get_object('image_path_setting').unselect_all()
+        self.builder.get_object('palette_path_setting').unselect_all()
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         resp = dialog.run()
         dialog.hide()
-        if resp == ResponseType.APPLY:
-            img_fn : Optional[str] = dialog.get_object('image_path_setting').get_filename()
-            pal_fn : Optional[str] = dialog.get_object('palette_path_setting').get_filename()
+        if resp == ResponseType.OK:
+            img_fn : Optional[str] = self.builder.get_object('image_path_setting').get_filename()
+            pal_fn : Optional[str] = self.builder.get_object('palette_path_setting').get_filename()
             img_pil : Optional[Image.Image] = None
+            pal_pil : Optional[Image.Image] = None
             if img_fn!=None:
                 try:
                     img_pil = Image.open(img_fn, 'r')
@@ -130,15 +133,16 @@ class WteWtuController(AbstractController):
                     )
             if pal_fn!=None:
                 try:
-                    img_pil = Image.open(pal_fn, 'r')
+                    pal_pil = Image.open(pal_fn, 'r')
                 except Exception as err:
                     display_error(
                         sys.exc_info(),
                         str(err),
                         "Error importing the palette."
                     )
-            self.wte.from_pil(img_fn, pal_fn, ColorDepth.COLOR_4BPP)
+            self.wte.from_pil(img_pil, pal_pil, ColorDepth.COLOR_4BPP)
             self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
+            self._init_wte()
             self._reinit_image()
             if self.wtu:
                 self.wtu.image_mode = self.wte.get_mode()
