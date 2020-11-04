@@ -112,6 +112,13 @@ class WteWtuController(AbstractController):
         dialog: Gtk.Dialog = self.builder.get_object('dialog_import_settings')
         self.builder.get_object('image_path_setting').unselect_all()
         self.builder.get_object('palette_path_setting').unselect_all()
+        
+        # Init available categories
+        cb_store: Gtk.ListStore = self.builder.get_object('color_depth_store')
+        cb: Gtk.ComboBoxText = self.builder.get_object('color_depth_setting')
+        self._fill_available_color_depths_into_store(cb_store)
+        cb.set_active_iter(cb_store.get_iter_first())
+        
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
@@ -140,7 +147,21 @@ class WteWtuController(AbstractController):
                         str(err),
                         "Error importing the palette."
                     )
-            self.wte.from_pil(img_pil, pal_pil, ColorDepth.COLOR_4BPP)
+            depth = cb_store[cb.get_active_iter()][0]
+            try:
+                self.wte.from_pil(img_pil, pal_pil, ColorDepth(depth))
+            except ValueError as err:
+                display_error(
+                    sys.exc_info(),
+                    str(err),
+                    "The imported image size is too big (over 1024x1024)."
+                )
+            except AttributeError as err:
+                display_error(
+                    sys.exc_info(),
+                    str(err),
+                    "You must specify at least an image or a palette."
+                )
             self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
             self._init_wte()
             self._reinit_image()
@@ -261,7 +282,16 @@ class WteWtuController(AbstractController):
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
             model.remove(treeiter)
-
+    
+    def _fill_available_color_depths_into_store(self, cb_store):
+        color_depths = [
+            v for v in ColorDepth
+        ]
+        # Init combobox
+        cb_store.clear()
+        for depth in color_depths:
+            cb_store.append([depth.value, depth.explanation])
+    
     def _regenerate_wtu(self):
         wtu_store: Gtk.ListStore = self.builder.get_object('wtu_store')
         self.wtu.entries = []
