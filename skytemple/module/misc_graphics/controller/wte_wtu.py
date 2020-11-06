@@ -227,7 +227,7 @@ class WteWtuController(AbstractController):
             val = int(self.builder.get_object('wte_variation').get_text())
         except ValueError:
             val = 0
-        self.surface = pil_to_cairo_surface(self.wte.to_pil(val).convert('RGBA'))
+        self.surface = pil_to_cairo_surface(self.wte.to_pil_canvas(val).convert('RGBA'))
         self.builder.get_object('draw').queue_draw()
 
     def on_wte_variation_changed(self, widget):
