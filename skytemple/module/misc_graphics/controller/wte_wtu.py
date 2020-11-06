@@ -23,7 +23,7 @@ import cairo
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.ui_utils import add_dialog_png_filter
-from skytemple_files.graphics.wte.model import Wte, ColorDepth
+from skytemple_files.graphics.wte.model import Wte, WteImageType
 from skytemple_files.graphics.wtu.model import Wtu, WtuEntry
 
 try:
@@ -111,7 +111,7 @@ class WteWtuController(AbstractController):
 
     def on_all_export_clicked(self, *args):
         dialog = Gtk.FileChooserDialog(
-            "Export image and palette as PNGs...",
+            "Export image and palette as PNGs in folder...",
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
@@ -134,13 +134,13 @@ class WteWtuController(AbstractController):
         self.builder.get_object('image_path_setting').unselect_all()
         self.builder.get_object('palette_path_setting').unselect_all()
         # Init available categories
-        cb_store: Gtk.ListStore = self.builder.get_object('color_depth_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('color_depth_setting')
-        self._fill_available_color_depths_into_store(cb_store)
+        cb_store: Gtk.ListStore = self.builder.get_object('image_type_store')
+        cb: Gtk.ComboBoxText = self.builder.get_object('image_type_setting')
+        self._fill_available_image_types_into_store(cb_store)
 
         # Set current WTE file settings by default
         for i, depth in  enumerate(cb_store):
-            if self.wte.color_depth.value==depth[0]:
+            if self.wte.image_type.value==depth[0]:
                 cb.set_active(i)
         self.builder.get_object('chk_discard_palette').set_active(not self.wte.has_palette())
         
@@ -175,7 +175,7 @@ class WteWtuController(AbstractController):
             depth : int = cb_store[cb.get_active_iter()][0]
             discard : bool = self.builder.get_object('chk_discard_palette').get_active()
             try:
-                self.wte.from_pil(img_pil, pal_pil, ColorDepth(depth), discard)
+                self.wte.from_pil(img_pil, pal_pil, WteImageType(depth), discard)
             except ValueError as err:
                 display_error(
                     sys.exc_info(),
@@ -202,12 +202,12 @@ class WteWtuController(AbstractController):
         info_image_only.set_revealed(not self.wte.has_palette())
         info_image_only.set_message_type(Gtk.MessageType.WARNING)
 
-        self.builder.get_object('wte_variation').set_text(str(0))
-        self.builder.get_object('wte_variation').set_increments(1,1)
-        self.builder.get_object('wte_variation').set_range(0, self.wte.max_variation()-1)
+        self.builder.get_object('wte_palette_variant').set_text(str(0))
+        self.builder.get_object('wte_palette_variant').set_increments(1,1)
+        self.builder.get_object('wte_palette_variant').set_range(0, self.wte.nb_palette_variants()-1)
         
         self.builder.get_object('lbl_canvas_size').set_text(f"{self.wte.width}x{self.wte.height}")
-        self.builder.get_object('lbl_image_type').set_text(self.wte.color_depth.explanation)
+        self.builder.get_object('lbl_image_type').set_text(self.wte.image_type.explanation)
         
         self.builder.get_object('image_export').set_sensitive(self.wte.has_image())
 
@@ -224,7 +224,7 @@ class WteWtuController(AbstractController):
 
     def _reinit_image(self):
         try:
-            val = int(self.builder.get_object('wte_variation').get_text())
+            val = int(self.builder.get_object('wte_palette_variant').get_text())
         except ValueError:
             val = 0
         self.surface = pil_to_cairo_surface(self.wte.to_pil_canvas(val).convert('RGBA'))
@@ -239,8 +239,8 @@ class WteWtuController(AbstractController):
         if val<0:
             val = 0
             widget.set_text(str(val))
-        elif val>=self.wte.max_variation():
-            val=self.wte.max_variation()-1
+        elif val>=self.wte.nb_palette_variants():
+            val=self.wte.nb_palette_variants()-1
             widget.set_text(str(val))
         self._reinit_image()
 
@@ -302,14 +302,14 @@ class WteWtuController(AbstractController):
         self.builder.get_object('image_path_setting').unselect_all()
     def on_clear_palette_path_clicked(self, *args):
         self.builder.get_object('palette_path_setting').unselect_all()
-    def _fill_available_color_depths_into_store(self, cb_store):
-        color_depths = [
-            v for v in ColorDepth
+    def _fill_available_image_types_into_store(self, cb_store):
+        image_types = [
+            v for v in WteImageType
         ]
         # Init combobox
         cb_store.clear()
-        for depth in color_depths:
-            cb_store.append([depth.value, depth.explanation])
+        for img_type in image_types:
+            cb_store.append([img_type.value, img_type.explanation])
     
     def _regenerate_wtu(self):
         wtu_store: Gtk.ListStore = self.builder.get_object('wtu_store')
