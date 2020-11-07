@@ -190,10 +190,6 @@
 pixel value and to define palette variants for this WTE Image.
 The image file must use the same colors as in
 the first variant defined in the palette file.
-- If no palette is specified, it will be automatically
-generated from the image file provided.
-Note that it is strongly not recommended to do so since 
-there is no way to know which color to use for transparency.
 - If no image is specified, the WTE file will
 automatically be considered as a palette-only file.</property>
               </object>
@@ -233,7 +229,7 @@ automatically be considered as a palette-only file.</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
-                <property name="label" translatable="yes">WTE Image Type</property>
+                <property name="label" translatable="yes">WTE Image Type: </property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -261,7 +257,7 @@ automatically be considered as a palette-only file.</property>
             </child>
             <child>
               <object class="GtkCheckButton" id="chk_discard_palette">
-                <property name="label" translatable="yes">Discard palette</property>
+                <property name="label" translatable="yes">Discard Palette</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
@@ -281,7 +277,9 @@ automatically be considered as a palette-only file.</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
                 <property name="label" translatable="yes">If ticked, the WTE file will not contain the palette data.
-This is for files that use another file's palette data. </property>
+This is for files that use another file's palette data. 
+The palette will be used, however, to assign the correct pixel
+value to each color in the image data.</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -466,9 +464,9 @@ This is for files that use another file's palette data. </property>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Warning: This WTE file doesn't contain any palette data.
+                            <property name="label" translatable="yes">Warning: this WTE file doesn't contain any palette data.
 The palette data used for this file may be in another WTE file.
-A grayscale palette has been generated in order to distinct the different color indices.</property>
+A default grayscale palette has been generated in order to distinct the different color indices.</property>
                             <property name="wrap">True</property>
                           </object>
                           <packing>
@@ -520,7 +518,7 @@ A grayscale palette has been generated in order to distinct the different color 
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Warning: This WTE file doesn't contain any image data.
+                            <property name="label" translatable="yes">Warning: this WTE file doesn't contain any image data.
 Thus, only the palette can be exported from this file, and the palette is displayed instead of the image.</property>
                             <property name="wrap">True</property>
                           </object>

@@ -205,8 +205,12 @@ class WteWtuController(AbstractController):
         self.builder.get_object('wte_palette_variant').set_text(str(0))
         self.builder.get_object('wte_palette_variant').set_increments(1,1)
         self.builder.get_object('wte_palette_variant').set_range(0, self.wte.nb_palette_variants()-1)
-        
-        self.builder.get_object('lbl_canvas_size').set_text(f"{self.wte.width}x{self.wte.height}")
+
+        dimensions : Tuple[int, int] = self.wte.actual_dimensions()
+        if self.wte.has_image():
+            self.builder.get_object('lbl_canvas_size').set_text(f"{self.wte.width}x{self.wte.height} [{dimensions[0]}x{dimensions[1]}]")
+        else:
+            self.builder.get_object('lbl_canvas_size').set_text(f"{self.wte.width}x{self.wte.height} [No image data]")
         self.builder.get_object('lbl_image_type').set_text(self.wte.image_type.explanation)
         
         self.builder.get_object('image_export').set_sensitive(self.wte.has_image())
