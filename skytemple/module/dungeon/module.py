@@ -51,8 +51,8 @@ from skytemple_files.graphics.dpl.model import Dpl
 from skytemple_files.hardcoded.dungeons import HardcodedDungeons, DungeonDefinition, DungeonRestriction
 
 # TODO: Add this to dungeondata.xml?
-from skytemple_files.hardcoded.fixed_floor_entities import EntitySpawnEntry, ItemSpawn, MonsterSpawn, TileSpawn, \
-    MonsterSpawnStats, HardcodedFixedFloorEntityTables
+from skytemple_files.hardcoded.fixed_floor import EntitySpawnEntry, ItemSpawn, MonsterSpawn, TileSpawn, \
+    MonsterSpawnStats, HardcodedFixedFloorTables, FixedFloorProperties
 
 DOJO_DUNGEONS_FIRST = 0xB4
 DOJO_DUNGEONS_LAST = 0xBF
@@ -110,6 +110,7 @@ class DungeonModule(AbstractModule):
         self._root_iter = None
         self._dungeon_iters = {}
         self._dungeon_floor_iters = {}
+        self._fixed_floor_iters = []
         self._fixed_floor_data: Optional[FixedBin] = None
         self._dungeon_bin: Optional[DungeonBinPack] = None
 
@@ -156,10 +157,10 @@ class DungeonModule(AbstractModule):
             ICON_FIXED_ROOMS, FIXED_ROOMS_NAME, self, FixedRoomsController, 0, False, '', True
         ])
         for i in range(0, len(self._fixed_floor_data.fixed_floors)):
-            item_store.append(fixed_rooms, [
+            self._fixed_floor_iters.append(item_store.append(fixed_rooms, [
                 ICON_FIXED_ROOMS, f'Fixed Room {i}', self, FixedController,
                 i, False, '', True
-            ])
+            ]))
 
         recursive_generate_item_store_row_label(self._tree_model[root])
         recursive_generate_item_store_row_label(self._tree_model[fixed_rooms])
@@ -428,11 +429,11 @@ class DungeonModule(AbstractModule):
         ov29 = self.project.get_binary(BinaryName.OVERLAY_29)
         ov10 = self.project.get_binary(BinaryName.OVERLAY_10)
         return (
-            HardcodedFixedFloorEntityTables.get_entity_spawn_table(ov29, config),
-            HardcodedFixedFloorEntityTables.get_item_spawn_list(ov29, config),
-            HardcodedFixedFloorEntityTables.get_monster_spawn_list(ov29, config),
-            HardcodedFixedFloorEntityTables.get_tile_spawn_list(ov29, config),
-            HardcodedFixedFloorEntityTables.get_monster_spawn_stats_table(ov10, config),
+            HardcodedFixedFloorTables.get_entity_spawn_table(ov29, config),
+            HardcodedFixedFloorTables.get_item_spawn_list(ov29, config),
+            HardcodedFixedFloorTables.get_monster_spawn_list(ov29, config),
+            HardcodedFixedFloorTables.get_tile_spawn_list(ov29, config),
+            HardcodedFixedFloorTables.get_monster_spawn_stats_table(ov10, config),
         )
 
     def get_dummy_tileset(self) -> [Dma, Image.Image]:
@@ -449,3 +450,33 @@ class DungeonModule(AbstractModule):
                 if floor.layout.fixed_floor_id == floor_id:
                     return floor.layout.tileset_id
         return 0
+
+    def get_fixed_floor_properties(self) -> List[FixedFloorProperties]:
+        ov10 = self.project.get_binary(BinaryName.OVERLAY_10)
+        config = self.project.get_rom_module().get_static_data()
+        return HardcodedFixedFloorTables.get_fixed_floor_properties(ov10, config)
+
+    def get_fixed_floor_overrides(self) -> List[int]:
+        ov29 = self.project.get_binary(BinaryName.OVERLAY_29)
+        config = self.project.get_rom_module().get_static_data()
+        return HardcodedFixedFloorTables.get_fixed_floor_overrides(ov29, config)
+
+    def save_fixed_floor_properties(self, floor_id, new_properties):
+        properties = self.get_fixed_floor_properties()
+        properties[floor_id] = new_properties
+        self.project.modify_binary(
+            BinaryName.OVERLAY_10, lambda binary: HardcodedFixedFloorTables.set_fixed_floor_properties(
+                binary, properties, self.project.get_rom_module().get_static_data()
+        ))
+        row = self._tree_model[self._fixed_floor_iters[floor_id]]
+        recursive_up_item_store_mark_as_modified(row)
+
+    def save_fixed_floor_override(self, floor_id, override_id):
+        overrides = self.get_fixed_floor_overrides()
+        overrides[floor_id] = override_id
+        self.project.modify_binary(
+            BinaryName.OVERLAY_29, lambda binary: HardcodedFixedFloorTables.set_fixed_floor_overrides(
+                binary, overrides, self.project.get_rom_module().get_static_data()
+        ))
+        row = self._tree_model[self._fixed_floor_iters[floor_id]]
+        recursive_up_item_store_mark_as_modified(row)

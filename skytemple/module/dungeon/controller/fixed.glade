@@ -1157,16 +1157,6 @@ Tile Properties (ID):</property>
               </packing>
             </child>
             <child>
-              <object class="GtkComboBox" id="settings_music">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">1</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkButton" id="btn_help_moves">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -1189,6 +1179,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_moves">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <signal name="notify::active" handler="on_settings_moves_active_notify" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -1268,9 +1259,10 @@ Tile Properties (ID):</property>
               </packing>
             </child>
             <child>
-              <object class="GtkSwitch" id="settings_obs">
+              <object class="GtkSwitch" id="settings_orbs">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <signal name="notify::active" handler="on_settings_orbs_active_notify" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -1281,6 +1273,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_unk4">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <signal name="notify::active" handler="on_settings_unk4_active_notify" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -1291,6 +1284,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_unk5">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <signal name="notify::active" handler="on_settings_unk5_active_notify" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -1301,6 +1295,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_unk8">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <signal name="notify::active" handler="on_settings_unk8_active_notify" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -1311,6 +1306,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_unk9">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <signal name="notify::active" handler="on_settings_unk9_active_notify" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -1321,6 +1317,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_unk10">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <signal name="notify::active" handler="on_settings_unk10_active_notify" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -1417,6 +1414,7 @@ if dungeon is cleared:</property>
               <object class="GtkComboBox" id="settings_override">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <signal name="changed" handler="on_settings_override_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -1440,6 +1438,18 @@ if dungeon is cleared:</property>
               <packing>
                 <property name="left_attach">2</property>
                 <property name="top_attach">10</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="settings_music">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">3</property>
+                <signal name="changed" handler="on_settings_music_changed" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">1</property>
               </packing>
             </child>
             <child>

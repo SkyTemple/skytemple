@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from typing import List, Optional, Tuple
 
-from skytemple_files.hardcoded.fixed_floor_entities import EntitySpawnEntry, ItemSpawn, MonsterSpawn, TileSpawn, \
+from skytemple_files.hardcoded.fixed_floor import EntitySpawnEntry, ItemSpawn, MonsterSpawn, TileSpawn, \
     MonsterSpawnStats
 
 

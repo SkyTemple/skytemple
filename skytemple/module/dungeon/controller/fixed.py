@@ -53,6 +53,9 @@ class FixedController(AbstractController):
             *self.module.get_fixed_floor_entity_lists()
         )
 
+        self.properties = self.module.get_fixed_floor_properties()[self.floor_id]
+        self.override_id = self.module.get_fixed_floor_overrides()[self.floor_id]
+
         self.floor: Optional[FixedFloor] = None
         self._draw = None
 
@@ -62,6 +65,7 @@ class FixedController(AbstractController):
 
         self._init_comboboxes()
         self._auto_select_tileset()
+        self._load_settings()
         self._init_fixed_floor()
         self._init_drawer()
         self._init_tileset()
@@ -152,8 +156,52 @@ class FixedController(AbstractController):
         self._scale_factor /= 2
         self._update_scales()
 
+    # EDIT SETTINGS
+
+    def on_settings_music_changed(self, w):
+        try:
+            self.properties.music_track = int(w.get_text())
+        except ValueError:
+            return
+        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+
+    def on_settings_moves_active_notify(self, w, *args):
+        self.properties.moves_enabled = w.get_active()
+        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+
+    def on_settings_orbs_active_notify(self, w, *args):
+        self.properties.orbs_enabled = w.get_active()
+        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+
+    def on_settings_unk4_active_notify(self, w, *args):
+        self.properties.unk4 = w.get_active()
+        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+
+    def on_settings_unk5_active_notify(self, w, *args):
+        self.properties.unk5 = w.get_active()
+        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+
+    def on_settings_unk8_active_notify(self, w, *args):
+        self.properties.unk6 = w.get_active()
+        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+
+    def on_settings_unk9_active_notify(self, w, *args):
+        self.properties.unk9 = w.get_active()
+        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+
+    def on_settings_unk10_active_notify(self, w, *args):
+        self.properties.unk10 = w.get_active()
+        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+
+    def on_settings_override_changed(self, w: Gtk.ComboBox, *args):
+        self.override_id = w.get_active()
+        self.module.save_fixed_floor_override(self.floor_id, self.override_id)
+
+    # END EDIT SETTINGS
+
     def _init_comboboxes(self):
         self._init_tileset_chooser()
+        self._init_override_dropdown()
 
     def _init_tileset_chooser(self):
         store = Gtk.ListStore(int, str)  # id, name
@@ -163,6 +211,13 @@ class FixedController(AbstractController):
             else:
                 store.append([i, f"Tileset {i}"])
         self._fast_set_comboxbox_store(self.builder.get_object('tool_choose_tileset_cb'), store, 1)
+
+    def _init_override_dropdown(self):
+        store = Gtk.ListStore(int, str)  # id, name
+        store.append([0, "No override"])
+        for i in range(1, 256):
+            store.append([i, f"No. {i}"])
+        self._fast_set_comboxbox_store(self.builder.get_object('settings_override'), store, 1)
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):
@@ -175,6 +230,17 @@ class FixedController(AbstractController):
         cb: Gtk.ComboBox = self.builder.get_object('tool_choose_tileset_cb')
         self.tileset_id = self.module.get_default_tileset_for_fixed_floor(self.floor_id)
         cb.set_active(self.tileset_id)
+
+    def _load_settings(self):
+        self.builder.get_object('settings_music').set_text(str(self.properties.music_track))
+        self.builder.get_object('settings_moves').set_active(self.properties.moves_enabled)
+        self.builder.get_object('settings_orbs').set_active(self.properties.orbs_enabled)
+        self.builder.get_object('settings_unk4').set_active(self.properties.unk4)
+        self.builder.get_object('settings_unk5').set_active(self.properties.unk5)
+        self.builder.get_object('settings_unk8').set_active(self.properties.unk8)
+        self.builder.get_object('settings_unk9').set_active(self.properties.unk9)
+        self.builder.get_object('settings_unk10').set_active(self.properties.unk10)
+        self.builder.get_object('settings_override').set_active(self.override_id)
 
     def _init_fixed_floor(self):
         # Fixed floor data
