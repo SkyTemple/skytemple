@@ -52,7 +52,7 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
     def get_dungeon(self, rules: List[List[DmaType]]) -> cairo.Surface:
         # TODO: If rules change only update the parts that need to be updated
         if rules != self._cached_rules:
-            mappings = self.dma_drawer.get_mappings_for_rules(rules, treat_outside_as_wall=True)
+            mappings = self.dma_drawer.get_mappings_for_rules(rules, treat_outside_as_wall=True, variation_index=0)
             self._cached_dungeon_surface = pil_to_cairo_surface(
                 self._draw_dungeon(mappings)
             )

@@ -21,7 +21,8 @@ from gi.repository.Gtk import Widget
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG
-from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer
+from skytemple.module.dungeon.entity_rule_container import EntityRuleContainer
+from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer, InfoLayer
 from skytemple.module.dungeon.fixed_room_tileset_renderer.bg import FixedFloorDrawerBackground
 from skytemple.module.dungeon.fixed_room_tileset_renderer.tileset import FixedFloorDrawerTileset
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor
@@ -48,6 +49,9 @@ class FixedController(AbstractController):
             self._scale_factor = 1
 
         self.drawer: Optional[FixedRoomDrawer] = None
+        self.entity_rule_container: EntityRuleContainer = EntityRuleContainer(
+            *self.module.get_fixed_floor_entity_lists()
+        )
 
         self.floor: Optional[FixedFloor] = None
         self._draw = None
@@ -111,14 +115,42 @@ class FixedController(AbstractController):
     def on_tool_scene_move_toggled(self, *args):
         """ TODO """
 
-    def on_tool_scene_grid_toggled(self, *args):
-        """ TODO """
+    def on_tool_scene_grid_toggled(self, w: Gtk.ToggleButton):
+        if self.drawer:
+            self.drawer.set_draw_tile_grid(w.get_active())
 
-    def on_tool_scene_zoom_out_clicked(self, *args):
-        """ TODO """
+    def on_tb_info_layer_none_toggled(self, *args):
+        if self.drawer:
+            self.drawer.set_info_layer(None)
+        self.builder.get_object('legend_stack').set_visible_child(self.builder.get_object('info_none'))
+
+    def on_tb_info_layer_tiles_toggled(self, *args):
+        if self.drawer:
+            self.drawer.set_info_layer(InfoLayer.TILE)
+        self.builder.get_object('legend_stack').set_visible_child(self.builder.get_object('info_tiles'))
+
+    def on_tb_info_layer_items_toggled(self, *args):
+        if self.drawer:
+            self.drawer.set_info_layer(InfoLayer.ITEM)
+        self.builder.get_object('legend_stack').set_visible_child(self.builder.get_object('info_items'))
+
+    def on_tb_info_layer_monsters_toggled(self, *args):
+        if self.drawer:
+            self.drawer.set_info_layer(InfoLayer.MONSTER)
+        self.builder.get_object('legend_stack').set_visible_child(self.builder.get_object('info_monsters'))
+
+    def on_tb_info_layer_traps_toggled(self, *args):
+        if self.drawer:
+            self.drawer.set_info_layer(InfoLayer.TRAP)
+        self.builder.get_object('legend_stack').set_visible_child(self.builder.get_object('info_traps'))
 
     def on_tool_scene_zoom_in_clicked(self, *args):
-        """ TODO """
+        self._scale_factor *= 2
+        self._update_scales()
+
+    def on_tool_scene_zoom_out_clicked(self, *args):
+        self._scale_factor /= 2
+        self._update_scales()
 
     def _init_comboboxes(self):
         self._init_tileset_chooser()
@@ -140,10 +172,9 @@ class FixedController(AbstractController):
         cb.add_attribute(renderer_text, "text", col)
 
     def _auto_select_tileset(self):
-        # TODO. We just use a fixed value for now
         cb: Gtk.ComboBox = self.builder.get_object('tool_choose_tileset_cb')
-        cb.set_active(0)
-        self.tileset_id = 0
+        self.tileset_id = self.module.get_default_tileset_for_fixed_floor(self.floor_id)
+        cb.set_active(self.tileset_id)
 
     def _init_fixed_floor(self):
         # Fixed floor data
@@ -164,7 +195,9 @@ class FixedController(AbstractController):
         self._draw.queue_draw()
 
     def _init_drawer(self):
-        self.drawer = FixedRoomDrawer(self._draw, self.floor, self.module.project.get_sprite_provider())
+        self.drawer = FixedRoomDrawer(self._draw, self.floor, self.module.project.get_sprite_provider(),
+                                      self.entity_rule_container,
+                                      self.module.project.get_string_provider())
         self.drawer.start()
 
         self.drawer.set_draw_tile_grid(self.builder.get_object(f'tool_scene_grid').get_active())

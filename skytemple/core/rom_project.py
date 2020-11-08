@@ -61,6 +61,7 @@ class BinaryName(Enum):
     OVERLAY_10 = auto(), 'overlay/overlay_0010.bin'
     OVERLAY_11 = auto(), 'overlay/overlay_0011.bin'
     OVERLAY_13 = auto(), 'overlay/overlay_0013.bin'
+    OVERLAY_29 = auto(), 'overlay/overlay_0029.bin'
 
     def __new__(cls, *args, **kwargs):
         obj = object.__new__(cls)

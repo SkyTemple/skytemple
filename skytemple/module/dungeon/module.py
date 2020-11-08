@@ -51,6 +51,9 @@ from skytemple_files.graphics.dpl.model import Dpl
 from skytemple_files.hardcoded.dungeons import HardcodedDungeons, DungeonDefinition, DungeonRestriction
 
 # TODO: Add this to dungeondata.xml?
+from skytemple_files.hardcoded.fixed_floor_entities import EntitySpawnEntry, ItemSpawn, MonsterSpawn, TileSpawn, \
+    MonsterSpawnStats, HardcodedFixedFloorEntityTables
+
 DOJO_DUNGEONS_FIRST = 0xB4
 DOJO_DUNGEONS_LAST = 0xBF
 DOJO_MAPPA_ENTRY = 0x35
@@ -420,6 +423,18 @@ class DungeonModule(AbstractModule):
             self._dungeon_bin.get(f'dungeon_bg{background_id}.dpl'),
         )
 
+    def get_fixed_floor_entity_lists(self) -> Tuple[List[EntitySpawnEntry], List[ItemSpawn], List[MonsterSpawn], List[TileSpawn], List[MonsterSpawnStats]]:
+        config = self.project.get_rom_module().get_static_data()
+        ov29 = self.project.get_binary(BinaryName.OVERLAY_29)
+        ov10 = self.project.get_binary(BinaryName.OVERLAY_10)
+        return (
+            HardcodedFixedFloorEntityTables.get_entity_spawn_table(ov29, config),
+            HardcodedFixedFloorEntityTables.get_item_spawn_list(ov29, config),
+            HardcodedFixedFloorEntityTables.get_monster_spawn_list(ov29, config),
+            HardcodedFixedFloorEntityTables.get_tile_spawn_list(ov29, config),
+            HardcodedFixedFloorEntityTables.get_monster_spawn_stats_table(ov10, config),
+        )
+
     def get_dummy_tileset(self) -> [Dma, Image.Image]:
         with open(os.path.join(data_dir(), 'fixed_floor', 'dummy.dma'), 'rb') as f:
             dma = FileType.DMA.deserialize(f.read())
@@ -427,3 +442,10 @@ class DungeonModule(AbstractModule):
             dma,
             Image.open(os.path.join(data_dir(), 'fixed_floor', 'dummy.png'))
         )
+
+    def get_default_tileset_for_fixed_floor(self, floor_id):
+        for floor_list in self.get_mappa().floor_lists:
+            for floor in floor_list:
+                if floor.layout.fixed_floor_id == floor_id:
+                    return floor.layout.tileset_id
+        return 0

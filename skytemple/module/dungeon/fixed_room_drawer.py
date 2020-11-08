@@ -14,17 +14,22 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import math
 from enum import auto, Enum
-from typing import Tuple, Union, Optional
+from typing import Union, Optional
 
 import cairo
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 
 from skytemple.core.mapbg_util.drawer_plugin.grid import GridDrawerPlugin
 from skytemple.core.mapbg_util.drawer_plugin.selection import SelectionDrawerPlugin
 from skytemple.core.sprite_provider import SpriteProvider
+from skytemple.core.string_provider import StringProvider, StringType
+from skytemple.module.dungeon.entity_rule_container import EntityRuleContainer
 from skytemple.module.dungeon.fixed_room_tileset_renderer.abstract import AbstractTilesetRenderer
-from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRule, TileRuleType, FloorType
+from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRule, TileRuleType, FloorType, EntityRule, \
+    RoomType
+from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
 from skytemple_files.graphics.dma.model import DmaType
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
 from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
@@ -32,8 +37,16 @@ from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
 
 ALPHA_T = 0.3
 Num = Union[int, float]
-Color = Tuple[Num, Num, Num]
 OFFSET = DPCI_TILE_DIM * DPC_TILING_DIM * 5
+COLOR_TRAP = (0, 1, 0.3, 1)
+COLOR_ITEM = (0, 0.3, 1, 1)
+COLOR_OUTLINE = (0, 0, 0, 1)
+COLOR_KEY_WALL = (1, 0.3, 0, 1)
+COLOR_WARP_ZONE = (1, 0, 0.3, 1)
+COLOR_RED = (1, 0, 0, 1)
+COLOR_YELLOW = (1, 1, 0, 1)
+COLOR_GREEN = (0, 1, 0, 1)
+COLOR_WHITE = (1, 1, 1, 1)
 
 
 class InteractionMode(Enum):
@@ -43,10 +56,18 @@ class InteractionMode(Enum):
     COPY = auto()
 
 
+class InfoLayer(Enum):
+    TILE = auto()
+    ITEM = auto()
+    MONSTER = auto()
+    TRAP = auto()
+
+
 class FixedRoomDrawer:
     def __init__(
             self, draw_area: Gtk.Widget, fixed_floor: FixedFloor,
-            sprite_provider: SpriteProvider
+            sprite_provider: SpriteProvider, entity_rule_container: EntityRuleContainer,
+            string_provider: StringProvider
     ):
         self.draw_area = draw_area
 
@@ -54,6 +75,8 @@ class FixedRoomDrawer:
         self.tileset_renderer: Optional[AbstractTilesetRenderer] = None
 
         self.draw_tile_grid = False
+        self.info_layer_active = None
+        self.entity_rule_container = entity_rule_container
 
         # Interaction
         self.interaction_mode = InteractionMode.SELECT
@@ -61,6 +84,7 @@ class FixedRoomDrawer:
         self.mouse_y = 99999
 
         self.sprite_provider = sprite_provider
+        self.string_provider = string_provider
 
         self._selected = None
 
@@ -129,7 +153,11 @@ class FixedRoomDrawer:
                     elif action.tr_type.floor_type == FloorType.FLOOR_OR_WALL:
                         row.append(DmaType.WALL)
                 else:
-                    row.append(DmaType.FLOOR)
+                    item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
+                    if tile.is_secondary_terrain():
+                        row.append(DmaType.WATER)
+                    else:
+                        row.append(DmaType.FLOOR)
                 ridx += 1
             row += [outside, outside, outside, outside, outside]
         rules.append([outside] * (self.fixed_floor.width + 10))
@@ -147,7 +175,132 @@ class FixedRoomDrawer:
         if self.draw_tile_grid:
             self.tile_grid_plugin.draw(ctx, size_w - OFFSET, size_h - OFFSET, self.mouse_x, self.mouse_y)
 
-        # TODO: Draw Pokémon, items, traps, etc.
+        # Black out non-editable area
+        ctx.set_source_rgba(0, 0, 0, 0.5)
+        ctx.rectangle(0, 0,
+                      size_w, DPCI_TILE_DIM * DPC_TILING_DIM * 5)
+        ctx.fill()
+        ctx.set_source_rgba(0, 0, 0, 0.5)
+        ctx.rectangle(0, DPCI_TILE_DIM * DPC_TILING_DIM * (self.fixed_floor.height + 5),
+                      size_w, DPCI_TILE_DIM * DPC_TILING_DIM * 5)
+        ctx.fill()
+        ctx.set_source_rgba(0, 0, 0, 0.5)
+        ctx.rectangle(0, DPCI_TILE_DIM * DPC_TILING_DIM * 5,
+                      DPCI_TILE_DIM * DPC_TILING_DIM * 5, DPCI_TILE_DIM * DPC_TILING_DIM * self.fixed_floor.height)
+        ctx.fill()
+        ctx.set_source_rgba(0, 0, 0, 0.5)
+        ctx.rectangle(DPCI_TILE_DIM * DPC_TILING_DIM * (self.fixed_floor.width + 5), DPCI_TILE_DIM * DPC_TILING_DIM * 5,
+                      DPCI_TILE_DIM * DPC_TILING_DIM * 5, DPCI_TILE_DIM * DPC_TILING_DIM * self.fixed_floor.height)
+        ctx.fill()
+
+        # Draw Pokémon, items, traps, etc.
+        ridx = 0
+        for y in range(0, self.fixed_floor.height):
+            y += 5
+            for x in range(0, self.fixed_floor.width):
+                x += 5
+                action = self.fixed_floor.actions[ridx]
+                sx = DPCI_TILE_DIM * DPC_TILING_DIM * x
+                sy = DPCI_TILE_DIM * DPC_TILING_DIM * y
+                if isinstance(action, EntityRule):
+                    item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
+                    # Has trap?
+                    if tile.trap_id < 25:
+                        ctx.rectangle(sx + 5, sy + 5, DPCI_TILE_DIM * DPC_TILING_DIM - 10, DPCI_TILE_DIM * DPC_TILING_DIM - 10)
+                        ctx.set_source_rgba(*COLOR_TRAP)
+                        ctx.fill_preserve()
+                        ctx.set_source_rgba(*COLOR_OUTLINE)
+                        ctx.set_line_width(1)
+                        ctx.stroke()
+                    # Has item?
+                    if item.item_id > 0:
+                        ctx.arc(sx + DPCI_TILE_DIM * DPC_TILING_DIM / 2, sy + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
+                                DPCI_TILE_DIM * DPC_TILING_DIM / 2, 0, 2 * math.pi)
+                        ctx.set_source_rgba(*COLOR_ITEM)
+                        ctx.fill_preserve()
+                        ctx.set_source_rgba(*COLOR_OUTLINE)
+                        ctx.set_line_width(1)
+                        ctx.stroke()
+                    # Has Pokémon?
+                    if monster.md_idx > 0:
+                        sprite, cx, cy, w, h = self.sprite_provider.get_monster(
+                            monster.md_idx,
+                            action.direction.ssa_id if action.direction is not None else 0,
+                            lambda: GLib.idle_add(self._redraw)
+                        )
+                        ctx.translate(sx, sy)
+                        ctx.set_source_surface(
+                            sprite,
+                            -cx + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
+                            -cy + DPCI_TILE_DIM * DPC_TILING_DIM * 0.75
+                        )
+                        ctx.get_source().set_filter(cairo.Filter.NEAREST)
+                        ctx.paint()
+                        ctx.translate(-sx, -sy)
+                else:
+                    # Leader spawn tile
+                    if action.tr_type == TileRuleType.LEADER_SPAWN:
+                        self._draw_placeholder(0, sx, sy, action.direction, ctx)
+                    # Attendant1 spawn tile
+                    if action.tr_type == TileRuleType.ATTENDANT1_SPAWN:
+                        self._draw_placeholder(10, sx, sy, action.direction, ctx)
+                    # Attendant2 spawn tile
+                    if action.tr_type == TileRuleType.ATTENDANT2_SPAWN:
+                        self._draw_placeholder(11, sx, sy, action.direction, ctx)
+                    # Attendant3 spawn tile
+                    if action.tr_type == TileRuleType.ATTENDANT3_SPAWN:
+                        self._draw_placeholder(15, sx, sy, action.direction, ctx)
+                    # Key walls
+                    if action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0C or action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0D:
+                        ctx.rectangle(sx + 5, sy + 5, DPCI_TILE_DIM * DPC_TILING_DIM - 10, DPCI_TILE_DIM * DPC_TILING_DIM - 10)
+                        ctx.set_source_rgba(*COLOR_KEY_WALL)
+                        ctx.fill_preserve()
+                        ctx.set_source_rgba(*COLOR_OUTLINE)
+                        ctx.set_line_width(1)
+                        ctx.stroke()
+                    # Warp zone
+                    if action.tr_type == TileRuleType.WARP_ZONE or action.tr_type == TileRuleType.WARP_ZONE_2:
+                        ctx.rectangle(sx + 5, sy + 5, DPCI_TILE_DIM * DPC_TILING_DIM - 10, DPCI_TILE_DIM * DPC_TILING_DIM - 10)
+                        ctx.set_source_rgba(*COLOR_WARP_ZONE)
+                        ctx.fill_preserve()
+                        ctx.set_source_rgba(*COLOR_OUTLINE)
+                        ctx.set_line_width(1)
+                        ctx.stroke()
+                ridx += 1
+
+        # Draw info layer
+        if self.info_layer_active:
+            # Black out bg a bit
+            ctx.set_source_rgba(0, 0, 0, 0.5)
+            ctx.rectangle(0, 0, size_w, size_h)
+            ctx.fill()
+            ridx = 0
+            for y in range(0, self.fixed_floor.height):
+                y += 5
+                for x in range(0, self.fixed_floor.width):
+                    x += 5
+                    action = self.fixed_floor.actions[ridx]
+                    sx = DPCI_TILE_DIM * DPC_TILING_DIM * x
+                    sy = DPCI_TILE_DIM * DPC_TILING_DIM * y
+                    if isinstance(action, EntityRule):
+                        item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
+                        # Has trap?
+                        if tile.trap_id < 25 and self.info_layer_active == InfoLayer.TRAP:
+                            self._draw_info_trap(sx, sy, ctx, self._trap_name(tile.trap_id),
+                                                 tile.can_be_broken(), tile.trap_is_visible())
+                        # Has item?
+                        if item.item_id > 0 and self.info_layer_active == InfoLayer.ITEM:
+                            self._draw_info_item(sx, sy, ctx, self._item_name(item.item_id))
+                        # Has Pokémon?
+                        if monster.md_idx > 0 and self.info_layer_active == InfoLayer.MONSTER:
+                            self._draw_info_monster(sx, sy, ctx, monster.enemy_settings)
+                        if self.info_layer_active == InfoLayer.TILE:
+                            self._draw_info_tile(sx, sy, ctx, tile.room_id, False, False)
+                    elif self.info_layer_active == InfoLayer.TILE:
+                        self._draw_info_tile(sx, sy, ctx, 
+                                             0 if action.tr_type.room_type == RoomType.ROOM else -1, 
+                                             action.tr_type.impassable, action.tr_type.absolute_mover)
+                    ridx += 1
 
         # Cursor / Active selected / Place mode
         #self._handle_selection(ctx)
@@ -166,6 +319,10 @@ class FixedRoomDrawer:
     def set_draw_tile_grid(self, v):
         self.draw_tile_grid = v
 
+    def set_info_layer(self, v: Optional[InfoLayer]):
+        self.info_layer_active = v
+        self.draw_area.queue_draw()
+
     def set_scale(self, v):
         self.scale = v
 
@@ -176,3 +333,74 @@ class FixedRoomDrawer:
         if self.draw_area is None or self.draw_area.get_parent() is None:
             return
         self.draw_area.queue_draw()
+
+    def _draw_placeholder(self, actor_id, sx, sy, direction, ctx):
+        sprite, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(
+            actor_id,
+            direction.ssa_id if direction is not None else 0,
+            lambda: GLib.idle_add(self._redraw)
+        )
+        ctx.translate(sx, sy)
+        ctx.set_source_surface(
+            sprite,
+            -cx + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
+            -cy + DPCI_TILE_DIM * DPC_TILING_DIM * 0.75
+        )
+        ctx.get_source().set_filter(cairo.Filter.NEAREST)
+        ctx.paint()
+        ctx.translate(-sx, -sy)
+
+    def _draw_info_trap(self, sx, sy, ctx, name, can_be_broken, visible):
+        self._draw_name(ctx, sx, sy, name, COLOR_WHITE)
+        if can_be_broken:
+            self._draw_bottom_left(ctx, sx, sy, COLOR_RED, 'B')
+        if visible:
+            self._draw_bottom_right(ctx, sx, sy, COLOR_YELLOW, 'V')
+
+    def _draw_info_item(self, sx, sy, ctx, name):
+        self._draw_name(ctx, sx, sy, name, COLOR_WHITE)
+
+    def _draw_info_monster(self, sx, sy, ctx, enemy_settings):
+        if enemy_settings == 0xA:
+            self._draw_bottom_left(ctx, sx, sy, COLOR_GREEN, 'A')
+        if enemy_settings == 6:
+            self._draw_bottom_left(ctx, sx, sy, COLOR_RED, 'E')
+        if enemy_settings == 9:
+            self._draw_bottom_right(ctx, sx, sy, COLOR_YELLOW, 'I')
+
+    def _draw_info_tile(self, sx, sy, ctx, room_id, impassable, absolute_mover):
+        if room_id > -1:
+            self._draw_top_right(ctx, sx, sy, COLOR_RED, str(room_id))
+        if impassable:
+            self._draw_bottom_left(ctx, sx, sy, COLOR_YELLOW, 'I')
+        if absolute_mover:
+            self._draw_bottom_right(ctx, sx, sy, COLOR_GREEN, 'A')
+
+    def _trap_name(self, trap_id):
+        return MappaTrapType(trap_id).name
+
+    def _item_name(self, item_id):
+        return self.string_provider.get_value(StringType.ITEM_NAMES, item_id)
+
+    def _draw_name(self, ctx, sx, sy, name, color):
+        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.set_source_rgba(*color)
+        ctx.set_font_size(12)
+        ctx.move_to(sx, sy - 10)
+        ctx.show_text(name)
+
+    def _draw_top_right(self, ctx, sx, sy, color, text):
+        self._draw_little_text(ctx, sx + 20, sy + 8, color, text)
+
+    def _draw_bottom_left(self, ctx, sx, sy, color, text):
+        self._draw_little_text(ctx, sx + 2, sy + 22, color, text)
+
+    def _draw_bottom_right(self, ctx, sx, sy, color, text):
+        self._draw_little_text(ctx, sx + 20, sy + 22, color, text)
+
+    def _draw_little_text(self, ctx, sx, sy, color, text):
+        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.set_source_rgba(*color)
+        ctx.set_font_size(8)
+        ctx.move_to(sx, sy)
+        ctx.show_text(text)
