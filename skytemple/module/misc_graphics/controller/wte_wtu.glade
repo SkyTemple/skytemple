@@ -303,13 +303,13 @@ value to each color in the image data.</property>
   </object>
   <object class="GtkListStore" id="wtu_store">
     <columns>
-      <!-- column-name unk0 -->
+      <!-- column-name x -->
       <column type="gchararray"/>
-      <!-- column-name unk1 -->
+      <!-- column-name y -->
       <column type="gchararray"/>
-      <!-- column-name unk2 -->
+      <!-- column-name width -->
       <column type="gchararray"/>
-      <!-- column-name unk3 -->
+      <!-- column-name height -->
       <column type="gchararray"/>
     </columns>
   </object>
@@ -690,43 +690,6 @@ assigned to it.</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">10</property>
                 <child>
-                  <object class="GtkGrid">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="row_spacing">5</property>
-                    <property name="column_spacing">5</property>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">UnkC:</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkEntry" id="wtu_unkc">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="width_chars">5</property>
-                        <signal name="changed" handler="on_wtu_unkc_changed" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">0</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkScrolledWindow">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -736,16 +699,21 @@ assigned to it.</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="model">wtu_store</property>
+                        <signal name="cursor-changed" handler="on_wtu_tree_selection_changed" swapped="no"/>
+                        <signal name="select-all" handler="on_wtu_tree_selection_changed" swapped="no"/>
+                        <signal name="unselect-all" handler="on_wtu_tree_selection_changed" swapped="no"/>
                         <child internal-child="selection">
-                          <object class="GtkTreeSelection"/>
+                          <object class="GtkTreeSelection">
+                            <property name="mode">multiple</property>
+                          </object>
                         </child>
                         <child>
                           <object class="GtkTreeViewColumn">
-                            <property name="title" translatable="yes">Unk0</property>
+                            <property name="title" translatable="yes">x</property>
                             <child>
-                              <object class="GtkCellRendererText" id="wtu_unk0">
+                              <object class="GtkCellRendererText" id="wtu_x">
                                 <property name="editable">True</property>
-                                <signal name="edited" handler="on_wtu_unk0_edited" swapped="no"/>
+                                <signal name="edited" handler="on_wtu_x_edited" swapped="no"/>
                               </object>
                               <attributes>
                                 <attribute name="text">0</attribute>
@@ -755,11 +723,11 @@ assigned to it.</property>
                         </child>
                         <child>
                           <object class="GtkTreeViewColumn">
-                            <property name="title" translatable="yes">Unk1</property>
+                            <property name="title" translatable="yes">y</property>
                             <child>
-                              <object class="GtkCellRendererText" id="wtu_unk1">
+                              <object class="GtkCellRendererText" id="wtu_y">
                                 <property name="editable">True</property>
-                                <signal name="edited" handler="on_wtu_unk1_edited" swapped="no"/>
+                                <signal name="edited" handler="on_wtu_y_edited" swapped="no"/>
                               </object>
                               <attributes>
                                 <attribute name="text">1</attribute>
@@ -769,11 +737,11 @@ assigned to it.</property>
                         </child>
                         <child>
                           <object class="GtkTreeViewColumn">
-                            <property name="title" translatable="yes">Unk2</property>
+                            <property name="title" translatable="yes">width</property>
                             <child>
-                              <object class="GtkCellRendererText" id="wtu_unk2">
+                              <object class="GtkCellRendererText" id="wtu_width">
                                 <property name="editable">True</property>
-                                <signal name="edited" handler="on_wtu_unk2_edited" swapped="no"/>
+                                <signal name="edited" handler="on_wtu_width_edited" swapped="no"/>
                               </object>
                               <attributes>
                                 <attribute name="text">2</attribute>
@@ -783,11 +751,11 @@ assigned to it.</property>
                         </child>
                         <child>
                           <object class="GtkTreeViewColumn">
-                            <property name="title" translatable="yes">Unk3</property>
+                            <property name="title" translatable="yes">height</property>
                             <child>
-                              <object class="GtkCellRendererText" id="wtu_unk3">
+                              <object class="GtkCellRendererText" id="wtu_height">
                                 <property name="editable">True</property>
-                                <signal name="edited" handler="on_wtu_unk3_edited" swapped="no"/>
+                                <signal name="edited" handler="on_wtu_height_edited" swapped="no"/>
                               </object>
                               <attributes>
                                 <attribute name="text">3</attribute>

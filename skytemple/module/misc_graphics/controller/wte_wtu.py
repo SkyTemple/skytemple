@@ -221,10 +221,9 @@ class WteWtuController(AbstractController):
             wtu_stack.set_visible_child(self.builder.get_object('no_wtu_label'))
         else:
             wtu_stack.set_visible_child(self.builder.get_object('wtu_editor'))
-            self.builder.get_object('wtu_unkc').set_text(str(self.wtu.unkC))
             wtu_store: Gtk.ListStore = self.builder.get_object('wtu_store')
             for entry in self.wtu.entries:
-                wtu_store.append([str(entry.unk0), str(entry.unk1), str(entry.unk2), str(entry.unk3)])
+                wtu_store.append([str(entry.x), str(entry.y), str(entry.width), str(entry.height)])
 
     def _reinit_image(self):
         try:
@@ -248,15 +247,7 @@ class WteWtuController(AbstractController):
             widget.set_text(str(val))
         self._reinit_image()
 
-    def on_wtu_unkc_changed(self, widget):
-        try:
-            val = int(widget.get_text())
-        except ValueError:
-            return
-        self.wtu.unkC = val
-        self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
-
-    def on_wtu_unk0_edited(self, widget, path, text):
+    def on_wtu_x_edited(self, widget, path, text):
         try:
             int(text)
         except ValueError:
@@ -265,7 +256,7 @@ class WteWtuController(AbstractController):
         wtu_store[path][0] = text
         self._regenerate_wtu()
 
-    def on_wtu_unk1_edited(self, widget, path, text):
+    def on_wtu_y_edited(self, widget, path, text):
         try:
             int(text)
         except ValueError:
@@ -274,7 +265,7 @@ class WteWtuController(AbstractController):
         wtu_store[path][1] = text
         self._regenerate_wtu()
 
-    def on_wtu_unk2_edited(self, widget, path, text):
+    def on_wtu_width_edited(self, widget, path, text):
         try:
             int(text)
         except ValueError:
@@ -283,7 +274,7 @@ class WteWtuController(AbstractController):
         wtu_store[path][2] = text
         self._regenerate_wtu()
 
-    def on_wtu_unk3_edited(self, widget, path, text):
+    def on_wtu_height_edited(self, widget, path, text):
         try:
             int(text)
         except ValueError:
@@ -295,13 +286,19 @@ class WteWtuController(AbstractController):
     def on_btn_add_clicked(self, *args):
         store: Gtk.ListStore = self.builder.get_object('wtu_store')
         store.append(["0", "0", "0", "0"])
+        self._regenerate_wtu()
 
     def on_btn_remove_clicked(self, *args):
-        tree: Gtk.TreeView = self.builder.get_object('wtu_store')
-        model, treeiter = tree.get_selection().get_selected()
-        if model is not None and treeiter is not None:
-            model.remove(treeiter)
+        # Deletes all selected WTU entries
+        # Allows multiple deletions
+        active_rows : List[Gtk.TreePath] = self.builder.get_object('wtu_tree').get_selection().get_selected_rows()[1]
+        store: Gtk.ListStore = self.builder.get_object('wtu_store')
+        for x in reversed(sorted(active_rows, key=lambda x:x.get_indices())):
+            del store[x.get_indices()[0]]
+        self._regenerate_wtu()
 
+    def on_wtu_tree_selection_changed(self, *args):
+        self._reinit_image()
     def on_clear_image_path_clicked(self, *args):
         self.builder.get_object('image_path_setting').unselect_all()
     def on_clear_palette_path_clicked(self, *args):
@@ -330,4 +327,18 @@ class WteWtuController(AbstractController):
             ctx.set_source_surface(self.surface, 0, 0)
             ctx.get_source().set_filter(cairo.Filter.NEAREST)
             ctx.paint()
+            # Draw rectangles on the WTE image represented by the selected WTU entries
+            # Allows multiple selections
+            active_rows : List[Gtk.TreePath] = self.builder.get_object('wtu_tree').get_selection().get_selected_rows()[1]
+            store: Gtk.ListStore = self.builder.get_object('wtu_store')
+            for x in active_rows:
+                row = store[x.get_indices()[0]]
+                ctx.set_line_width(4)
+                ctx.set_source_rgba(1,1,1, 1)
+                ctx.rectangle(int(row[0]), int(row[1]), int(row[2]), int(row[3]))
+                ctx.stroke()
+                ctx.set_line_width(2)
+                ctx.set_source_rgba(0,0,0, 1)
+                ctx.rectangle(int(row[0]), int(row[1]), int(row[2]), int(row[3]))
+                ctx.stroke()
         return True
