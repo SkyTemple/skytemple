@@ -114,10 +114,8 @@ class WteWtuController(AbstractController):
             "Export image and palette as PNGs in folder...",
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
         )
-
-        add_dialog_png_filter(dialog)
 
         response = dialog.run()
         fn = dialog.get_filename()
@@ -327,7 +325,7 @@ class WteWtuController(AbstractController):
             ctx.set_source_surface(self.surface, 0, 0)
             ctx.get_source().set_filter(cairo.Filter.NEAREST)
             ctx.paint()
-            # Draw rectangles on the WTE image represented by the selected WTU entries
+            # Draw rectangles on the WTE image representing the selected WTU entries
             # Allows multiple selections
             active_rows : List[Gtk.TreePath] = self.builder.get_object('wtu_tree').get_selection().get_selected_rows()[1]
             store: Gtk.ListStore = self.builder.get_object('wtu_store')
