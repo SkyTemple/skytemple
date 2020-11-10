@@ -14,18 +14,20 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Callable, Mapping
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import Widget
 
 from skytemple.core.module_controller import AbstractController
-from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG
+from skytemple.core.string_provider import StringType
+from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG, MAX_ITEM_ID, SPECIAL_MONSTERS
 from skytemple.module.dungeon.entity_rule_container import EntityRuleContainer
-from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer, InfoLayer
+from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer, InfoLayer, InteractionMode
 from skytemple.module.dungeon.fixed_room_tileset_renderer.bg import FixedFloorDrawerBackground
 from skytemple.module.dungeon.fixed_room_tileset_renderer.tileset import FixedFloorDrawerTileset
-from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor
+from skytemple_files.data.md.model import NUM_ENTITIES
+from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRuleType, TileRule, EntityRule
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
 from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
 
@@ -56,8 +58,36 @@ class FixedController(AbstractController):
         self.properties = self.module.get_fixed_floor_properties()[self.floor_id]
         self.override_id = self.module.get_fixed_floor_overrides()[self.floor_id]
 
+        # TODO: Duplicated code
+        self.enemy_settings_name = [f"{i}" for i in range(0, 256)]
+        self.enemy_settings_name[6] = "Enemy"
+        self.enemy_settings_name[9] = "Ally"
+        self.enemy_settings_name[10] = "Invalid?"
+        self.long_enemy_settings_name = [f"{i}: ???" for i in range(0, 256)]
+        self.long_enemy_settings_name[6] = "6: Enemy"
+        self.long_enemy_settings_name[9] = "9: Ally"
+        self.long_enemy_settings_name[10] = "10: Invalid?"
+
+        self.monster_names = {}
+        self.long_monster_names = {}
+        length = len(self.module.get_monster_md().entries)
+        for i, entry in enumerate(self.module.get_monster_md().entries):
+            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i % NUM_ENTITIES)
+            self.monster_names[i] = f'{name}'
+            self.long_monster_names[i] = f'{name} ({entry.gender.name.capitalize()}) (${i:04})'
+        for i in range(length, length + SPECIAL_MONSTERS):
+            self.monster_names[i] = f'(Special?)'
+            self.long_monster_names[i] = f'(Special?) (${i:04})'
+
         self.floor: Optional[FixedFloor] = None
         self._draw = None
+
+        self._bg_draw_is_clicked__press_active = False
+        self._bg_draw_is_clicked__drag_active = False
+        self._bg_draw_is_clicked__location = None
+        self._currently_selected = None
+
+        self.script_data = self.module.project.get_rom_module().get_static_data().script_data
 
     def get_view(self) -> Widget:
         self.builder = self._get_builder(__file__, 'fixed.glade')
@@ -75,29 +105,125 @@ class FixedController(AbstractController):
 
         return self.builder.get_object('editor')
 
-    def on_fixed_draw_event_button_press_event(self, *args):
-        """ TODO """
+    def on_fixed_draw_event_button_press_event(self, box, button: Gdk.EventButton):
+        if not self.drawer:
+            return
+        correct_mouse_x = int((button.x - 4) / self._scale_factor)
+        correct_mouse_y = int((button.y - 4) / self._scale_factor)
+        if button.button == 1:
+            self._bg_draw_is_clicked__press_active = True
+            self._bg_draw_is_clicked__drag_active = False
+            self._bg_draw_is_clicked__location = (int(button.x), int(button.y))
+            self.drawer.set_mouse_position(correct_mouse_x, correct_mouse_y)
 
-    def on_fixed_draw_event_button_release_event(self, *args):
-        """ TODO """
+            self.drawer.end_drag()
+            # PLACE
+            self._place()
 
-    def on_fixed_draw_event_motion_notify_event(self, *args):
-        """ TODO """
+            # COPY
+            if self.drawer.interaction_mode == InteractionMode.COPY:
+                if self.drawer.get_cursor_is_in_bounds(
+                        self.floor.width, self.floor.height, True
+                ):
+                    x, y = self.drawer.get_cursor_pos_in_grid(True)
+                    action_to_copy = self.floor.actions[y * self.floor.width + x]
+                    if isinstance(action_to_copy, TileRule):
+                        self.builder.get_object('tool_scene_add_tile').set_active(True)
+                        self._select_combobox('utility_tile_type',
+                                              lambda row: row[0] == action_to_copy.tr_type.value)
+                        self._select_combobox('utility_tile_direction',
+                                              lambda row: row[0] == action_to_copy.direction.ssa_id
+                                              if action_to_copy.direction is not None else 0)
+                    else:
+                        self.builder.get_object('tool_scene_add_entity').set_active(True)
+                        self._select_combobox('utility_entity_type',
+                                              lambda row: row[0] == action_to_copy.entity_rule_id)
+                        self._select_combobox('utility_entity_direction',
+                                              lambda row: row[0] == action_to_copy.direction.ssa_id
+                                              if action_to_copy.direction is not None else 0)
+
+            # SELECT
+            elif self.drawer.interaction_mode == InteractionMode.SELECT:
+                if self.drawer.get_cursor_is_in_bounds(
+                        self.floor.width, self.floor.height, True
+                ):
+                    self._currently_selected = self.drawer.get_cursor_pos_in_grid(True)
+
+        self._draw.queue_draw()
+
+    def on_fixed_draw_event_button_release_event(self, box, button: Gdk.EventButton):
+        if button.button == 1 and self.drawer is not None:
+            self._bg_draw_is_clicked__press_active = False
+            # SELECT / DRAG
+            if self._currently_selected is not None:
+                if self._bg_draw_is_clicked__drag_active:
+                    # END DRAG / UPDATE POSITION
+                    tile_x, tile_y = self.drawer.get_cursor_pos_in_grid(True)
+                    # Out of bounds failsafe:
+                    if tile_x < 0:
+                        tile_x = 0
+                    if tile_y < 0:
+                        tile_y = 0
+                    if tile_x >= self.floor.width:
+                        tile_x = self.floor.width - 1
+                    if tile_y >= self.floor.height:
+                        tile_y = self.floor.height - 1
+                    # Place at new position
+                    old_x, old_y = self.drawer.get_selected()
+                    self.floor.actions[tile_y * self.floor.width + tile_x] = self.floor.actions[old_y * self.floor.width + old_x]
+                    # Insert floor at old position
+                    self.floor.actions[old_y * self.floor.width + old_x] = TileRule(TileRuleType.FLOOR_ROOM, None)
+                    self.module.mark_fixed_floor_as_modified(self.floor_id)
+        self._currently_selected = None
+        self._bg_draw_is_clicked__location = None
+        self._bg_draw_is_clicked__drag_active = False
+        self.drawer.end_drag()
+        self._draw.queue_draw()
+
+    def on_fixed_draw_event_motion_notify_event(self, box, motion: Gdk.EventMotion):
+        correct_mouse_x = int((motion.x - 4) / self._scale_factor)
+        correct_mouse_y = int((motion.y - 4) / self._scale_factor)
+        if self.drawer:
+            self.drawer.set_mouse_position(correct_mouse_x, correct_mouse_y)
+
+            # PLACE
+            self._place()
+
+            if self._currently_selected is not None:
+                this_x, this_y = motion.get_coords()
+                if self._bg_draw_is_clicked__location is not None:
+                    start_x, start_y = self._bg_draw_is_clicked__location
+                    # Start drag & drop if mouse moved at least one tile.
+                    if not self._bg_draw_is_clicked__drag_active and (
+                            abs(start_x - this_x) > (DPC_TILING_DIM * DPCI_TILE_DIM * 0.7) * self._scale_factor
+                            or abs(start_y - this_y) >  (DPC_TILING_DIM * DPCI_TILE_DIM * 0.7) * self._scale_factor
+                    ):
+                        start_x /= self._scale_factor
+                        start_y /= self._scale_factor
+                        if self.drawer.get_pos_is_in_bounds(start_x, start_y, self.floor.width, self.floor.height, True):
+                            self.drawer.set_selected(self.drawer.get_pos_in_grid(start_x, start_y, True))
+                            self._bg_draw_is_clicked__drag_active = True
+                            self.drawer.set_drag_position(
+                                int((start_x - 4) / self._scale_factor) - self._currently_selected[0],
+                                int((start_y - 4) / self._scale_factor) - self._currently_selected[1]
+                            )
+
+            self._draw.queue_draw()
 
     def on_utility_entity_direction_changed(self, *args):
-        """ TODO """
+        self._reapply_selected_entity()
 
     def on_utility_entity_type_changed(self, *args):
-        """ TODO """
+        self._reapply_selected_entity()
 
     def on_btn_goto_entity_editor_clicked(self, *args):
         """ TODO """
 
     def on_utility_tile_direction_changed(self, *args):
-        """ TODO """
+        self._reapply_selected_tile()
 
     def on_utility_tile_type_changed(self, *args):
-        """ TODO """
+        self._reapply_selected_tile()
 
     def on_tool_scene_goto_tileset_clicked(self, *args):
         """ TODO """
@@ -108,16 +234,22 @@ class FixedController(AbstractController):
         self._init_tileset()
 
     def on_tool_scene_copy_toggled(self, *args):
-        """ TODO """
+        self._enable_copy_or_move_mode()
+        if self.drawer:
+            self.drawer.interaction_mode = InteractionMode.COPY
 
     def on_tool_scene_add_entity_toggled(self, *args):
-        """ TODO """
+        self._enable_entity_editing()
+        self._reapply_selected_entity()
 
     def on_tool_scene_add_tile_toggled(self, *args):
-        """ TODO """
+        self._enable_tile_editing()
+        self._reapply_selected_tile()
 
     def on_tool_scene_move_toggled(self, *args):
-        """ TODO """
+        self._enable_copy_or_move_mode()
+        if self.drawer:
+            self.drawer.interaction_mode = InteractionMode.SELECT
 
     def on_tool_scene_grid_toggled(self, w: Gtk.ToggleButton):
         if self.drawer:
@@ -208,6 +340,9 @@ class FixedController(AbstractController):
     def _init_comboboxes(self):
         self._init_tileset_chooser()
         self._init_override_dropdown()
+        self._init_entity_combobox()
+        self._init_tile_combobox()
+        self._init_direction_combobox()
 
     def _init_tileset_chooser(self):
         store = Gtk.ListStore(int, str)  # id, name
@@ -224,6 +359,58 @@ class FixedController(AbstractController):
         for i in range(1, 256):
             store.append([i, f"No. {i}"])
         self._fast_set_comboxbox_store(self.builder.get_object('settings_override'), store, 1)
+
+    def _init_entity_combobox(self):
+        store = Gtk.ListStore(int, str)  # id, name
+        for i, (item_spawn, monster_spawn, tile_spawn, stats) in enumerate(self.entity_rule_container):
+            store.append([i, self._desc(i, item_spawn, monster_spawn, tile_spawn)])
+        w = self.builder.get_object('utility_entity_type')
+        self._fast_set_comboxbox_store(w, store, 1)
+        w.set_active(0)
+
+    def _init_tile_combobox(self):
+        store = Gtk.ListStore(int, str)  # id, name
+        for rule in TileRuleType:
+            store.append([rule.value, f"{rule.value}: " + rule.explanation])
+        w = self.builder.get_object('utility_tile_type')
+        self._fast_set_comboxbox_store(w, store, 1)
+        w.set_active(0)
+
+    def _init_direction_combobox(self):
+        store_tile = Gtk.ListStore(int, str)  # id, name
+        store_entity = Gtk.ListStore(int, str)  # id, name
+        store_tile.append([0, 'None'])
+        store_entity.append([0, 'None'])
+        for idx, dir in self.script_data.directions__by_ssa_id.items():
+            store_tile.append([idx, dir.name])
+            store_entity.append([idx, dir.name])
+        w1 = self.builder.get_object('utility_tile_direction')
+        w2 = self.builder.get_object('utility_entity_direction')
+        self._fast_set_comboxbox_store(w1, store_tile, 1)
+        self._fast_set_comboxbox_store(w2, store_entity, 1)
+        w1.set_active(0)
+        w2.set_active(0)
+
+    def _desc(self, i, item_spawn, monster_spawn, tile_spawn):
+        desc = f"{i}: " + self.module.desc_fixed_floor_tile(tile_spawn)
+        if item_spawn.item_id > 0:
+            desc += ", " + self.module.desc_fixed_floor_item(item_spawn.item_id)
+        if monster_spawn.md_idx > 0:
+            desc += ", " + self.module.desc_fixed_floor_monster(
+                monster_spawn.md_idx, monster_spawn.enemy_settings, self.monster_names, self.enemy_settings_name,
+                short=True
+            )
+        return desc
+
+    def _place(self):
+        if self._bg_draw_is_clicked__press_active and self.drawer.get_cursor_is_in_bounds(
+                self.floor.width, self.floor.height, True
+        ):
+            x, y = self.drawer.get_cursor_pos_in_grid(True)
+            if self.drawer.interaction_mode == InteractionMode.PLACE_TILE \
+                    or self.drawer.interaction_mode == InteractionMode.PLACE_ENTITY:
+                self.floor.actions[y * self.floor.width + x] = self.drawer.get_selected()
+                self.module.mark_fixed_floor_as_modified(self.floor_id)
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):
@@ -283,3 +470,73 @@ class FixedController(AbstractController):
             self.drawer.set_scale(self._scale_factor)
 
         self._draw.queue_draw()
+
+    def _enable_entity_editing(self):
+        stack: Gtk.Stack = self.builder.get_object('utility_stack')
+        stack.set_visible_child(self.builder.get_object('utility_entity_frame'))
+        if self.drawer:
+            self.drawer.interaction_mode = InteractionMode.PLACE_ENTITY
+
+    def _enable_tile_editing(self):
+        stack: Gtk.Stack = self.builder.get_object('utility_stack')
+        stack.set_visible_child(self.builder.get_object('utility_tile_frame'))
+        if self.drawer:
+            self.drawer.interaction_mode = InteractionMode.PLACE_TILE
+
+    def _enable_copy_or_move_mode(self):
+        stack: Gtk.Stack = self.builder.get_object('utility_stack')
+        stack.set_visible_child(self.builder.get_object('utility_default'))
+
+    def _reapply_selected_entity(self):
+        dir = None
+        dir_id = self.builder.get_object('utility_entity_direction').get_active()
+        if dir_id > 0:
+            dir = self.script_data.directions__by_ssa_id[dir_id]
+        w = self.builder.get_object('utility_entity_type')
+        entity_id = w.get_model()[w.get_active_iter()][0]
+        self.drawer.set_selected(EntityRule(
+            entity_id,
+            dir
+        ))
+        entity = self.entity_rule_container.entities[entity_id]
+        item_spawn, monster_spawn, tile_spawn, stats = self.entity_rule_container.get(entity_id)
+        self.builder.get_object('utility_entity_frame_desc_label').set_markup(
+            f"<b>Pokémon ({entity.monster_id})</b>:\n"
+            f"{self.module.desc_fixed_floor_monster(monster_spawn.md_idx, monster_spawn.enemy_settings, self.long_monster_names, self.long_enemy_settings_name)}\n\n"
+            f"<b>Stats ({monster_spawn.stats_entry})</b>:\n"
+            f"{self.module.desc_fixed_floor_stats(stats)}\n\n"
+            f"<b>Item ({entity.item_id})</b>:\n"
+            f"{self.module.desc_fixed_floor_item(item_spawn.item_id)}\n\n"
+            f"<b>Tile Properties ({entity.tile_id})</b>:\n"
+            f"{self.module.desc_fixed_floor_tile(tile_spawn)}"
+        )
+
+    def _reapply_selected_tile(self):
+        dir = None
+        dir_id = self.builder.get_object('utility_tile_direction').get_active()
+        if dir_id > 0:
+            dir = self.script_data.directions__by_ssa_id[dir_id]
+        w = self.builder.get_object('utility_tile_type')
+        tile_rule = TileRuleType(w.get_model()[w.get_active_iter()][0])
+        self.drawer.set_selected(TileRule(
+            tile_rule,
+            dir
+        ))
+        self.builder.get_object('utility_tile_frame_desc_label').set_markup(
+            f"<b>{tile_rule.explanation}</b>\n"
+            f"Type: {tile_rule.floor_type.name.capitalize()}\n"
+            f"{tile_rule.room_type.name.capitalize()}\n"
+            f"Impassable: {'Yes' if tile_rule.impassable else 'No'}\n"
+            f"Affected by Absolute Mover: {'Yes' if tile_rule.absolute_mover else 'No'}\n"
+            f"\n"
+            f"{tile_rule.notes}"
+        )
+
+    def _select_combobox(self, cb_name: str, callback: Callable[[Mapping], bool]):
+        cb: Gtk.ComboBox = self.builder.get_object(cb_name)
+        l_iter = cb.get_model().get_iter_first()
+        while l_iter is not None:
+            if callback(cb.get_model()[l_iter]):
+                cb.set_active_iter(l_iter)
+                return
+            l_iter = cb.get_model().iter_next(l_iter)

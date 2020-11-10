@@ -435,7 +435,7 @@
               <object class="GtkPaned">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="position">200</property>
+                <property name="position">350</property>
                 <child>
                   <object class="GtkScrolledWindow">
                     <property name="visible">True</property>
@@ -460,7 +460,8 @@
                                     <property name="sensitive">False</property>
                                     <property name="can_focus">False</property>
                                     <property name="label" translatable="yes">Select a tile 
-or entity to edit</property>
+or entity to 
+edit or copy.</property>
                                     <property name="justify">center</property>
                                   </object>
                                   <packing>
@@ -502,7 +503,7 @@ or entity to edit</property>
                                                     <property name="can_focus">False</property>
                                                     <property name="left_padding">12</property>
                                                     <child>
-                                                      <object class="GtkLabel">
+                                                      <object class="GtkLabel" id="utility_tile_frame_desc_label">
                                                         <property name="visible">True</property>
                                                         <property name="can_focus">False</property>
                                                         <property name="halign">start</property>
@@ -599,7 +600,7 @@ All tiles outside of defined room are made the tileset\'s defined secondary terr
                                       </object>
                                     </child>
                                     <child type="label">
-                                      <object class="GtkLabel">
+                                      <object class="GtkLabel" id="utility_tile_frame_label">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="margin_bottom">5</property>
@@ -653,7 +654,7 @@ All tiles outside of defined room are made the tileset\'s defined secondary terr
                                                         <property name="orientation">vertical</property>
                                                         <property name="spacing">10</property>
                                                         <child>
-                                                          <object class="GtkLabel">
+                                                          <object class="GtkLabel" id="utility_entity_frame_desc_label">
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">False</property>
                                                             <property name="halign">start</property>
@@ -681,6 +682,7 @@ Tile Properties (ID):</property>
                                                             <property name="visible">True</property>
                                                             <property name="can_focus">True</property>
                                                             <property name="receives_default">True</property>
+                                                            <property name="halign">start</property>
                                                             <property name="valign">center</property>
                                                             <signal name="clicked" handler="on_btn_goto_entity_editor_clicked" swapped="no"/>
                                                             <child>
@@ -789,7 +791,7 @@ Tile Properties (ID):</property>
                                       </object>
                                     </child>
                                     <child type="label">
-                                      <object class="GtkLabel">
+                                      <object class="GtkLabel" id="utility_entity_frame_label">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="margin_bottom">5</property>

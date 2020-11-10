@@ -28,6 +28,7 @@ from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label, data_dir
+from skytemple.module.dungeon import MAX_ITEM_ID
 from skytemple.module.dungeon.controller.dojos import DOJOS_NAME, DojosController
 from skytemple.module.dungeon.controller.dungeon import DungeonController
 from skytemple.module.dungeon.controller.fixed import FixedController
@@ -42,6 +43,7 @@ from skytemple_files.dungeon_data.fixed_bin.model import FixedBin
 from skytemple_files.dungeon_data.mappa_bin.floor import MappaFloor
 from skytemple_files.dungeon_data.mappa_bin.mappa_xml import mappa_floor_xml_import
 from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
+from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
 from skytemple_files.dungeon_data.mappa_g_bin.mappa_converter import convert_mappa_to_mappag
 from skytemple_files.graphics.dbg.model import Dbg
 from skytemple_files.graphics.dma.model import Dma
@@ -468,8 +470,7 @@ class DungeonModule(AbstractModule):
             BinaryName.OVERLAY_10, lambda binary: HardcodedFixedFloorTables.set_fixed_floor_properties(
                 binary, properties, self.project.get_rom_module().get_static_data()
         ))
-        row = self._tree_model[self._fixed_floor_iters[floor_id]]
-        recursive_up_item_store_mark_as_modified(row)
+        self.mark_floor_as_modified(floor_id)
 
     def save_fixed_floor_override(self, floor_id, override_id):
         overrides = self.get_fixed_floor_overrides()
@@ -478,5 +479,39 @@ class DungeonModule(AbstractModule):
             BinaryName.OVERLAY_29, lambda binary: HardcodedFixedFloorTables.set_fixed_floor_overrides(
                 binary, overrides, self.project.get_rom_module().get_static_data()
         ))
+        self.mark_floor_as_modified(floor_id)
+
+    def mark_fixed_floor_as_modified(self, floor_id):
+        self.project.mark_as_modified(FIXED_PATH)
         row = self._tree_model[self._fixed_floor_iters[floor_id]]
         recursive_up_item_store_mark_as_modified(row)
+
+    @staticmethod
+    def desc_fixed_floor_tile(tile):
+        attrs = []
+        attrs.append("Floor" if not tile.is_secondary_terrain() else "Secondary")
+        if tile.trap_id < 25:
+            trap = MappaTrapType(tile.trap_id)
+            attrs.append(' '.join([x.capitalize() for x in trap.name.split('_')]))
+        if tile.trap_is_visible():
+            attrs.append("Vis.")
+        if not tile.can_be_broken():
+            attrs.append("Unb.")
+        return ", ".join(attrs)
+
+    def desc_fixed_floor_item(self, item_id):
+        return self.project.get_string_provider().get_value(
+            StringType.ITEM_NAMES, item_id
+        ) if item_id < MAX_ITEM_ID else "(Special?)"
+
+    @staticmethod
+    def desc_fixed_floor_monster(monster_id, enemy_settings, monster_names, enemy_settings_names, short=False):
+        if monster_id == 0:
+            return "Nothing"
+        if short:
+            return monster_names[monster_id]
+        return monster_names[monster_id] + " (" + enemy_settings_names[enemy_settings] + ")"
+
+    def desc_fixed_floor_stats(self, stats):
+        return "TODO"  # todo
+

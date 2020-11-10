@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import math
 from enum import auto, Enum
-from typing import Union, Optional
+from typing import Union, Optional, Tuple
 
 import cairo
 from gi.repository import Gtk, GLib
@@ -29,7 +29,7 @@ from skytemple.module.dungeon import MAX_ITEM_ID
 from skytemple.module.dungeon.entity_rule_container import EntityRuleContainer
 from skytemple.module.dungeon.fixed_room_tileset_renderer.abstract import AbstractTilesetRenderer
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRule, TileRuleType, FloorType, EntityRule, \
-    RoomType
+    RoomType, FixedFloorActionRule
 from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
 from skytemple_files.graphics.dma.model import DmaType
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
@@ -87,7 +87,9 @@ class FixedRoomDrawer:
         self.sprite_provider = sprite_provider
         self.string_provider = string_provider
 
-        self._selected = None
+        # Depending on the mode this is either a coordinate tuple or a FixedFloorActionRule to place.
+        self._selected: Optional[Union[Tuple[int, int], FixedFloorActionRule]] = None
+        self._selected__drag = None
 
         self.selection_plugin = SelectionDrawerPlugin(
             DPCI_TILE_DIM * DPC_TILING_DIM, DPCI_TILE_DIM * DPC_TILING_DIM, self.selection_draw_callback
@@ -203,70 +205,7 @@ class FixedRoomDrawer:
                 action = self.fixed_floor.actions[ridx]
                 sx = DPCI_TILE_DIM * DPC_TILING_DIM * x
                 sy = DPCI_TILE_DIM * DPC_TILING_DIM * y
-                if isinstance(action, EntityRule):
-                    item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
-                    # Has trap?
-                    if tile.trap_id < 25:
-                        ctx.rectangle(sx + 5, sy + 5, DPCI_TILE_DIM * DPC_TILING_DIM - 10, DPCI_TILE_DIM * DPC_TILING_DIM - 10)
-                        ctx.set_source_rgba(*COLOR_TRAP)
-                        ctx.fill_preserve()
-                        ctx.set_source_rgba(*COLOR_OUTLINE)
-                        ctx.set_line_width(1)
-                        ctx.stroke()
-                    # Has item?
-                    if item.item_id > 0:
-                        ctx.arc(sx + DPCI_TILE_DIM * DPC_TILING_DIM / 2, sy + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
-                                DPCI_TILE_DIM * DPC_TILING_DIM / 2, 0, 2 * math.pi)
-                        ctx.set_source_rgba(*COLOR_ITEM)
-                        ctx.fill_preserve()
-                        ctx.set_source_rgba(*COLOR_OUTLINE)
-                        ctx.set_line_width(1)
-                        ctx.stroke()
-                    # Has Pokémon?
-                    if monster.md_idx > 0:
-                        sprite, cx, cy, w, h = self.sprite_provider.get_monster(
-                            monster.md_idx,
-                            action.direction.ssa_id if action.direction is not None else 0,
-                            lambda: GLib.idle_add(self._redraw)
-                        )
-                        ctx.translate(sx, sy)
-                        ctx.set_source_surface(
-                            sprite,
-                            -cx + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
-                            -cy + DPCI_TILE_DIM * DPC_TILING_DIM * 0.75
-                        )
-                        ctx.get_source().set_filter(cairo.Filter.NEAREST)
-                        ctx.paint()
-                        ctx.translate(-sx, -sy)
-                else:
-                    # Leader spawn tile
-                    if action.tr_type == TileRuleType.LEADER_SPAWN:
-                        self._draw_placeholder(0, sx, sy, action.direction, ctx)
-                    # Attendant1 spawn tile
-                    if action.tr_type == TileRuleType.ATTENDANT1_SPAWN:
-                        self._draw_placeholder(10, sx, sy, action.direction, ctx)
-                    # Attendant2 spawn tile
-                    if action.tr_type == TileRuleType.ATTENDANT2_SPAWN:
-                        self._draw_placeholder(11, sx, sy, action.direction, ctx)
-                    # Attendant3 spawn tile
-                    if action.tr_type == TileRuleType.ATTENDANT3_SPAWN:
-                        self._draw_placeholder(15, sx, sy, action.direction, ctx)
-                    # Key walls
-                    if action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0C or action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0D:
-                        ctx.rectangle(sx + 5, sy + 5, DPCI_TILE_DIM * DPC_TILING_DIM - 10, DPCI_TILE_DIM * DPC_TILING_DIM - 10)
-                        ctx.set_source_rgba(*COLOR_KEY_WALL)
-                        ctx.fill_preserve()
-                        ctx.set_source_rgba(*COLOR_OUTLINE)
-                        ctx.set_line_width(1)
-                        ctx.stroke()
-                    # Warp zone
-                    if action.tr_type == TileRuleType.WARP_ZONE or action.tr_type == TileRuleType.WARP_ZONE_2:
-                        ctx.rectangle(sx + 5, sy + 5, DPCI_TILE_DIM * DPC_TILING_DIM - 10, DPCI_TILE_DIM * DPC_TILING_DIM - 10)
-                        ctx.set_source_rgba(*COLOR_WARP_ZONE)
-                        ctx.fill_preserve()
-                        ctx.set_source_rgba(*COLOR_OUTLINE)
-                        ctx.set_line_width(1)
-                        ctx.stroke()
+                self._draw_action(ctx, action, sx, sy)
                 ridx += 1
 
         # Draw info layer
@@ -304,21 +243,39 @@ class FixedRoomDrawer:
                     ridx += 1
 
         # Cursor / Active selected / Place mode
-        #self._handle_selection(ctx)
         x, y, w, h = self.mouse_x, self.mouse_y, DPCI_TILE_DIM * DPC_TILING_DIM, DPCI_TILE_DIM * DPC_TILING_DIM
         self.selection_plugin.set_size(w, h)
-        self.selection_plugin.draw(ctx, size_w, size_h, x, y, ignore_obb=True)
+        xg, yg = self.get_cursor_pos_in_grid()
+        xg *= DPCI_TILE_DIM * DPC_TILING_DIM
+        yg *= DPCI_TILE_DIM * DPC_TILING_DIM
+        self.selection_plugin.draw(ctx, size_w, size_h, xg, yg, ignore_obb=True)
         return True
 
     def selection_draw_callback(self, ctx: cairo.Context, x: int, y: int):
-        pass
+        sx = DPCI_TILE_DIM * DPC_TILING_DIM * x
+        sy = DPCI_TILE_DIM * DPC_TILING_DIM * y
+        if self.interaction_mode == InteractionMode.SELECT:
+            if self._selected is not None and self._selected__drag is not None:
+                # Draw dragged:
+                selected_x, selected_y = self._selected
+                selected = self.fixed_floor.actions[self.fixed_floor.width * selected_y + selected_x]
+                self._draw_single_tile(ctx, selected, x, y)
+                self._draw_action(ctx, selected, x, y)
+        # Tool modes
+        elif self.interaction_mode == InteractionMode.PLACE_TILE or self.interaction_mode == InteractionMode.PLACE_ENTITY:
+            self._draw_single_tile(ctx, self._selected, x, y)
+            self._draw_action(ctx, self._selected, x, y)
 
     def set_mouse_position(self, x, y):
         self.mouse_x = x
         self.mouse_y = y
 
+    def end_drag(self):
+        self._selected__drag = None
+
     def set_draw_tile_grid(self, v):
         self.draw_tile_grid = v
+        self._redraw()
 
     def set_info_layer(self, v: Optional[InfoLayer]):
         self.info_layer_active = v
@@ -329,6 +286,35 @@ class FixedRoomDrawer:
 
     def set_tileset_renderer(self, renderer: AbstractTilesetRenderer):
         self.tileset_renderer = renderer
+
+    def set_selected(self, selected):
+        self._selected = selected
+        self._redraw()
+
+    def get_selected(self):
+        return self._selected
+
+    def set_drag_position(self, x: int, y: int):
+        """Start dragging. x/y is the offset on the entity, where the dragging was started."""
+        self._selected__drag = (x, y)
+
+    def get_cursor_is_in_bounds(self, w, h, real_offset=False):
+        return self.get_pos_is_in_bounds(self.mouse_x, self.mouse_y, w, h, real_offset)
+
+    def get_cursor_pos_in_grid(self, real_offset=False):
+        return self.get_pos_in_grid(self.mouse_x, self.mouse_y, real_offset)
+
+    def get_pos_is_in_bounds(self, x, y, w, h, real_offset=False):
+        x, y = self.get_pos_in_grid(x, y, real_offset)
+        return x > -1 and y > - 1 and x < w and y < h
+
+    def get_pos_in_grid(self, x, y, real_offset=False):
+        x = int(x / (DPC_TILING_DIM * DPCI_TILE_DIM))
+        y = int(y / (DPC_TILING_DIM * DPCI_TILE_DIM))
+        if real_offset:
+            x -= 5
+            y -= 5
+        return x, y
 
     def _redraw(self):
         if self.draw_area is None or self.draw_area.get_parent() is None:
@@ -405,3 +391,92 @@ class FixedRoomDrawer:
         ctx.set_font_size(8)
         ctx.move_to(sx, sy)
         ctx.show_text(text)
+
+    def _draw_action(self, ctx, action, sx, sy):
+        if isinstance(action, EntityRule):
+            item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
+            # Has trap?
+            if tile.trap_id < 25:
+                ctx.rectangle(sx + 5, sy + 5, DPCI_TILE_DIM * DPC_TILING_DIM - 10, DPCI_TILE_DIM * DPC_TILING_DIM - 10)
+                ctx.set_source_rgba(*COLOR_TRAP)
+                ctx.fill_preserve()
+                ctx.set_source_rgba(*COLOR_OUTLINE)
+                ctx.set_line_width(1)
+                ctx.stroke()
+            # Has item?
+            if item.item_id > 0:
+                ctx.arc(sx + DPCI_TILE_DIM * DPC_TILING_DIM / 2, sy + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
+                        DPCI_TILE_DIM * DPC_TILING_DIM / 2, 0, 2 * math.pi)
+                ctx.set_source_rgba(*COLOR_ITEM)
+                ctx.fill_preserve()
+                ctx.set_source_rgba(*COLOR_OUTLINE)
+                ctx.set_line_width(1)
+                ctx.stroke()
+            # Has Pokémon?
+            if monster.md_idx > 0:
+                sprite, cx, cy, w, h = self.sprite_provider.get_monster(
+                    monster.md_idx,
+                    action.direction.ssa_id if action.direction is not None else 0,
+                    lambda: GLib.idle_add(self._redraw)
+                )
+                ctx.translate(sx, sy)
+                ctx.set_source_surface(
+                    sprite,
+                    -cx + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
+                    -cy + DPCI_TILE_DIM * DPC_TILING_DIM * 0.75
+                )
+                ctx.get_source().set_filter(cairo.Filter.NEAREST)
+                ctx.paint()
+                ctx.translate(-sx, -sy)
+        else:
+            # Leader spawn tile
+            if action.tr_type == TileRuleType.LEADER_SPAWN:
+                self._draw_placeholder(0, sx, sy, action.direction, ctx)
+            # Attendant1 spawn tile
+            if action.tr_type == TileRuleType.ATTENDANT1_SPAWN:
+                self._draw_placeholder(10, sx, sy, action.direction, ctx)
+            # Attendant2 spawn tile
+            if action.tr_type == TileRuleType.ATTENDANT2_SPAWN:
+                self._draw_placeholder(11, sx, sy, action.direction, ctx)
+            # Attendant3 spawn tile
+            if action.tr_type == TileRuleType.ATTENDANT3_SPAWN:
+                self._draw_placeholder(15, sx, sy, action.direction, ctx)
+            # Key walls
+            if action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0C or action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0D:
+                ctx.rectangle(sx + 5, sy + 5, DPCI_TILE_DIM * DPC_TILING_DIM - 10, DPCI_TILE_DIM * DPC_TILING_DIM - 10)
+                ctx.set_source_rgba(*COLOR_KEY_WALL)
+                ctx.fill_preserve()
+                ctx.set_source_rgba(*COLOR_OUTLINE)
+                ctx.set_line_width(1)
+                ctx.stroke()
+            # Warp zone
+            if action.tr_type == TileRuleType.WARP_ZONE or action.tr_type == TileRuleType.WARP_ZONE_2:
+                ctx.rectangle(sx + 5, sy + 5, DPCI_TILE_DIM * DPC_TILING_DIM - 10, DPCI_TILE_DIM * DPC_TILING_DIM - 10)
+                ctx.set_source_rgba(*COLOR_WARP_ZONE)
+                ctx.fill_preserve()
+                ctx.set_source_rgba(*COLOR_OUTLINE)
+                ctx.set_line_width(1)
+                ctx.stroke()
+
+    def _draw_single_tile(self, ctx, action, x, y):
+        type = DmaType.FLOOR
+        if isinstance(action, TileRule):
+            if action.tr_type.floor_type == FloorType.WALL:
+                type = DmaType.WALL
+            elif action.tr_type.floor_type == FloorType.SECONDARY:
+                type = DmaType.WATER
+            elif action.tr_type.floor_type == FloorType.FLOOR_OR_WALL:
+                type = DmaType.WALL
+        else:
+            item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
+            if tile.is_secondary_terrain():
+                type = DmaType.WATER
+
+        surf = self.tileset_renderer.get_single_tile(type)
+        ctx.translate(x, y)
+        ctx.set_source_surface(
+            surf, 0, 0
+        )
+        ctx.get_source().set_filter(cairo.Filter.NEAREST)
+        ctx.paint()
+        ctx.translate(-x, -y)

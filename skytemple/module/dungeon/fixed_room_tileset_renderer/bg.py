@@ -41,6 +41,11 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
         self._cached_bg = None
         self._cached_rules = None
         self._cached_dungeon_surface = None
+        self.single_tiles = {
+            DmaType.FLOOR: self._single_tile(DmaType.FLOOR),
+            DmaType.WALL: self._single_tile(DmaType.WALL),
+            DmaType.WATER: self._single_tile(DmaType.WATER),
+        }
 
     def get_background(self) -> Optional[cairo.Surface]:
         if not self._cached_bg:
@@ -58,6 +63,19 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
             )
             self._cached_rules = rules
         return self._cached_dungeon_surface
+
+    def get_single_tile(self, tile: DmaType) -> cairo.Surface:
+        return self.single_tiles[tile]
+
+    def _single_tile(self, type):
+        index = self.dma.get(type, False)[0]
+        chunk_dim = DPC_TILING_DIM * DPCI_TILE_DIM
+        chunk_width = int(self.chunks.width / chunk_dim)
+        cy = int(index / chunk_width) * chunk_dim
+        cx = index % chunk_width * chunk_dim
+        return pil_to_cairo_surface(
+            self.chunks.crop((cx, cy, cx + chunk_dim, cy + chunk_dim))
+        )
 
     def _draw_dungeon(self, mappings: List[List[int]]) -> Image.Image:
         chunk_dim = DPCI_TILE_DIM * DPC_TILING_DIM

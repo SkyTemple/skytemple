@@ -151,9 +151,14 @@ class FixedRoomsController(AbstractController):
         # Init Entities Store
         store: Gtk.ListStore = self.builder.get_object('model_entities')
         for idx, entity in enumerate(self.lst_entity):
+            monster = self.lst_monster[entity.monster_id]
             store.append([
                 str(idx), f"Tile {entity.tile_id}", f"Item {entity.item_id}", f"Pokémon {entity.monster_id}",
-                self._desc_tile(entity.tile_id), self._desc_item(entity.item_id), self._desc_monster(entity.monster_id)
+                self.module.desc_fixed_floor_tile(self.lst_tile[entity.tile_id]),
+                self.module.desc_fixed_floor_item(self.lst_item[entity.item_id].item_id),
+                self.module.desc_fixed_floor_monster(
+                    monster.md_idx, monster.enemy_settings, self.monster_names, self.enemy_settings_name
+                )
             ])
 
     def _init_tiles(self):
@@ -214,29 +219,3 @@ class FixedRoomsController(AbstractController):
                 str(idx), monster.md_idx, self.monster_names[monster.md_idx], monster.enemy_settings,
                 self.enemy_settings_name[monster.enemy_settings]
             ])
-
-    def _desc_tile(self, tile_id):
-        tile = self.lst_tile[tile_id]
-        attrs = []
-        attrs.append("Floor" if not tile.is_secondary_terrain() else "Secondary")
-        if tile.trap_id < 25:
-            trap = MappaTrapType(tile.trap_id)
-            attrs.append(' '.join([x.capitalize() for x in trap.name.split('_')]))
-        if tile.trap_is_visible():
-            attrs.append("Vis.")
-        if not tile.can_be_broken():
-            attrs.append("Unb.")
-        return ", ".join(attrs)
-
-    def _desc_item(self, item_id):
-        item_id = self.lst_item[item_id].item_id
-        return self.module.project.get_string_provider().get_value(
-            StringType.ITEM_NAMES, item_id
-        ) if item_id < MAX_ITEM_ID else "(Special?)"
-
-    def _desc_monster(self, monster_id):
-        if monster_id == 0:
-            return "Nothing"
-        monster = self.lst_monster[monster_id]
-        monster_id = monster.md_idx
-        return self.monster_names[monster_id] + " (" + self.enemy_settings_name[monster.enemy_settings] + ")"

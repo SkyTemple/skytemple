@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import List, Optional, Tuple
+from typing import List, Optional, Tuple, Generator
 
 from skytemple_files.hardcoded.fixed_floor import EntitySpawnEntry, ItemSpawn, MonsterSpawn, TileSpawn, \
     MonsterSpawnStats
@@ -37,3 +37,10 @@ class EntityRuleContainer:
             self.tiles[entity.tile_id],
             self.stats[self.monsters[entity.monster_id].stats_entry]
         )
+
+    def __len__(self):
+        return len(self.entities)
+
+    def __iter__(self) -> Generator[Tuple[ItemSpawn, MonsterSpawn, TileSpawn, MonsterSpawnStats], None, None]:
+        for i in range(0, len(self)):
+            yield self.get(i)

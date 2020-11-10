@@ -30,3 +30,7 @@ class AbstractTilesetRenderer(ABC):
     @abstractmethod
     def get_dungeon(self, rules: List[List[DmaType]]) -> cairo.Surface:
         """Returns the rendered dungeon tiles for the rules."""
+
+    @abstractmethod
+    def get_single_tile(self, tile: DmaType) -> cairo.Surface:
+        """Returns a single tile image (wall/water/floor)."""
