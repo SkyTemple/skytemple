@@ -190,7 +190,7 @@
 pixel value and to define palette variants for this WTE Image.
 The image file must use the same colors as in
 the first variant defined in the palette file.
-- If no image is specified, the WTE file will
+If no image is specified, the WTE file will
 automatically be considered as a palette-only file.</property>
               </object>
               <packing>
@@ -613,7 +613,7 @@ Thus, only the palette can be exported from this file, and the palette is displa
                     <property name="halign">start</property>
                     <property name="climb_rate">0.0099999997764825821</property>
                     <property name="numeric">True</property>
-                    <signal name="changed" handler="on_wte_variation_changed" swapped="no"/>
+                    <signal name="changed" handler="on_wte_variant_changed" swapped="no"/>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
