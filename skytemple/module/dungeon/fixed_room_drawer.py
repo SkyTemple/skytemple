@@ -25,6 +25,7 @@ from skytemple.core.mapbg_util.drawer_plugin.grid import GridDrawerPlugin
 from skytemple.core.mapbg_util.drawer_plugin.selection import SelectionDrawerPlugin
 from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.string_provider import StringProvider, StringType
+from skytemple.module.dungeon import MAX_ITEM_ID
 from skytemple.module.dungeon.entity_rule_container import EntityRuleContainer
 from skytemple.module.dungeon.fixed_room_tileset_renderer.abstract import AbstractTilesetRenderer
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRule, TileRuleType, FloorType, EntityRule, \
@@ -380,7 +381,7 @@ class FixedRoomDrawer:
         return MappaTrapType(trap_id).name
 
     def _item_name(self, item_id):
-        return self.string_provider.get_value(StringType.ITEM_NAMES, item_id)
+        return self.string_provider.get_value(StringType.ITEM_NAMES, item_id) if item_id < MAX_ITEM_ID else "(Special?)"
 
     def _draw_name(self, ctx, sx, sy, name, color):
         ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)

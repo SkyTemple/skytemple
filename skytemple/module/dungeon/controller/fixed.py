@@ -197,6 +197,12 @@ class FixedController(AbstractController):
         self.override_id = w.get_active()
         self.module.save_fixed_floor_override(self.floor_id, self.override_id)
 
+    def on_settings_width_changed(self, w, *args):
+        pass  # todo
+
+    def on_settings_height_changed(self, w, *args):
+        pass  # todo
+
     # END EDIT SETTINGS
 
     def _init_comboboxes(self):
