@@ -15,6 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import os
 import sys
 from typing import TYPE_CHECKING, Optional
 
@@ -22,7 +23,7 @@ import cairo
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.ui_utils import add_dialog_png_filter
-from skytemple_files.graphics.wte.model import Wte
+from skytemple_files.graphics.wte.model import Wte, WteImageType
 from skytemple_files.graphics.wtu.model import Wtu, WtuEntry
 
 try:
@@ -67,9 +68,9 @@ class WteWtuController(AbstractController):
         self.builder.get_object('draw').connect('draw', self.draw)
         return self.builder.get_object('editor')
 
-    def on_export_clicked(self, *args):
+    def on_export_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserDialog(
-            "Export as PNG...",
+            "Export image as PNG...",
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
@@ -79,46 +80,86 @@ class WteWtuController(AbstractController):
 
         response = dialog.run()
         fn = dialog.get_filename()
-        if '.' not in fn:
-            fn += '.png'
         dialog.destroy()
 
         if response == Gtk.ResponseType.OK:
-            self.wte.to_pil().save(fn)
-
+            if '.' not in fn:
+                fn += '.png'
+            if self.wte.has_image():
+                self.wte.to_pil_canvas().save(fn)
+            else:
+                self.wte.to_pil_palette().save(fn)
+            
     def on_import_clicked(self, *args):
-        dialog = Gtk.FileChooserDialog(
-            "Import PNG...",
-            MainController.window(),
-            Gtk.FileChooserAction.OPEN,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
-        )
+        dialog: Gtk.Dialog = self.builder.get_object('dialog_import_settings')
+        self.builder.get_object('image_path_setting').unselect_all()
+        # Init available categories
+        cb_store: Gtk.ListStore = self.builder.get_object('image_type_store')
+        cb: Gtk.ComboBoxText = self.builder.get_object('image_type_setting')
+        self._fill_available_image_types_into_store(cb_store)
 
-        add_dialog_png_filter(dialog)
+        # Set current WTE file settings by default
+        for i, depth in  enumerate(cb_store):
+            if self.wte.image_type.value==depth[0]:
+                cb.set_active(i)
+        self.builder.get_object('chk_discard_palette').set_active(not self.wte.has_palette())
+        
+        dialog.set_attached_to(MainController.window())
+        dialog.set_transient_for(MainController.window())
 
-        response = dialog.run()
-        fn = dialog.get_filename()
-        dialog.destroy()
-
-        if response == Gtk.ResponseType.OK:
+        resp = dialog.run()
+        dialog.hide()
+        if resp == ResponseType.OK:
+            img_fn : str = self.builder.get_object('image_path_setting').get_filename()
             try:
-                with open(fn, 'rb') as f:
-                    self.wte.from_pil(Image.open(f))
+                img_pil = Image.open(img_fn, 'r')
             except Exception as err:
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing the image."
+                    "Filename not specified."
                 )
-            self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
-            self._reinit_image()
+            if img_fn is not None:
+                depth : int = cb_store[cb.get_active_iter()][0]
+                discard : bool = self.builder.get_object('chk_discard_palette').get_active()
+                try:
+                    self.wte.from_pil(img_pil, WteImageType(depth), discard)
+                except ValueError as err:
+                    display_error(
+                        sys.exc_info(),
+                        str(err),
+                        "Imported image size too big."
+                    )
+                except AttributeError as err:
+                    display_error(
+                        sys.exc_info(),
+                        str(err),
+                        "Not an indexed image."
+                    )
+                self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
+                self._init_wte()
+                self._reinit_image()
+                if self.wtu:
+                    self.wtu.image_mode = self.wte.get_mode()
 
     def _init_wte(self):
-        info_weird: Gtk.InfoBar = self.builder.get_object('info_weird')
-        info_weird.set_revealed(self.wte.is_weird)
-        info_weird.set_message_type(Gtk.MessageType.WARNING)
+        info_palette_only: Gtk.InfoBar = self.builder.get_object('info_palette_only')
+        info_palette_only.set_revealed(not self.wte.has_image())
+        info_palette_only.set_message_type(Gtk.MessageType.WARNING)
+        info_image_only: Gtk.InfoBar = self.builder.get_object('info_image_only')
+        info_image_only.set_revealed(not self.wte.has_palette())
+        info_image_only.set_message_type(Gtk.MessageType.WARNING)
 
-        self.builder.get_object('wte_identifier').set_text(str(self.wte.identifier))
+        self.builder.get_object('wte_palette_variant').set_text(str(0))
+        self.builder.get_object('wte_palette_variant').set_increments(1,1)
+        self.builder.get_object('wte_palette_variant').set_range(0, self.wte.nb_palette_variants()-1)
+
+        dimensions : Tuple[int, int] = self.wte.actual_dimensions()
+        if self.wte.has_image():
+            self.builder.get_object('lbl_canvas_size').set_text(f"{self.wte.width}x{self.wte.height} [{dimensions[0]}x{dimensions[1]}]")
+        else:
+            self.builder.get_object('lbl_canvas_size').set_text(f"{self.wte.width}x{self.wte.height} [No image data]")
+        self.builder.get_object('lbl_image_type').set_text(self.wte.image_type.explanation)
 
     def _init_wtu(self):
         wtu_stack: Gtk.Stack = self.builder.get_object('wtu_stack')
@@ -126,41 +167,33 @@ class WteWtuController(AbstractController):
             wtu_stack.set_visible_child(self.builder.get_object('no_wtu_label'))
         else:
             wtu_stack.set_visible_child(self.builder.get_object('wtu_editor'))
-            self.builder.get_object('wtu_identifier').set_text(str(self.wtu.identifier))
-            self.builder.get_object('wtu_unkc').set_text(str(self.wtu.unkC))
             wtu_store: Gtk.ListStore = self.builder.get_object('wtu_store')
             for entry in self.wtu.entries:
-                wtu_store.append([str(entry.unk0), str(entry.unk1), str(entry.unk2), str(entry.unk3)])
+                wtu_store.append([str(entry.x), str(entry.y), str(entry.width), str(entry.height)])
 
     def _reinit_image(self):
-        self.surface = pil_to_cairo_surface(self.wte.to_pil().convert('RGBA'))
+        try:
+            val = int(self.builder.get_object('wte_palette_variant').get_text())
+        except ValueError:
+            val = 0
+        self.surface = pil_to_cairo_surface(self.wte.to_pil_canvas(val).convert('RGBA'))
         self.builder.get_object('draw').queue_draw()
 
-    def on_wte_identifier_changed(self, widget):
+    def on_wte_variant_changed(self, widget):
         try:
             val = int(widget.get_text())
         except ValueError:
-            return
-        self.wte.identifier = val
-        self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
+            val = -1
+        
+        if val<0:
+            val = 0
+            widget.set_text(str(val))
+        elif val>=self.wte.nb_palette_variants():
+            val=self.wte.nb_palette_variants()-1
+            widget.set_text(str(val))
+        self._reinit_image()
 
-    def on_wtu_identifier_changed(self, widget):
-        try:
-            val = int(widget.get_text())
-        except ValueError:
-            return
-        self.wtu.identifier = val
-        self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
-
-    def on_wtu_unkc_changed(self, widget):
-        try:
-            val = int(widget.get_text())
-        except ValueError:
-            return
-        self.wtu.unkC = val
-        self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
-
-    def on_wtu_unk0_edited(self, widget, path, text):
+    def on_wtu_x_edited(self, widget, path, text):
         try:
             int(text)
         except ValueError:
@@ -169,7 +202,7 @@ class WteWtuController(AbstractController):
         wtu_store[path][0] = text
         self._regenerate_wtu()
 
-    def on_wtu_unk1_edited(self, widget, path, text):
+    def on_wtu_y_edited(self, widget, path, text):
         try:
             int(text)
         except ValueError:
@@ -178,7 +211,7 @@ class WteWtuController(AbstractController):
         wtu_store[path][1] = text
         self._regenerate_wtu()
 
-    def on_wtu_unk2_edited(self, widget, path, text):
+    def on_wtu_width_edited(self, widget, path, text):
         try:
             int(text)
         except ValueError:
@@ -187,7 +220,7 @@ class WteWtuController(AbstractController):
         wtu_store[path][2] = text
         self._regenerate_wtu()
 
-    def on_wtu_unk3_edited(self, widget, path, text):
+    def on_wtu_height_edited(self, widget, path, text):
         try:
             int(text)
         except ValueError:
@@ -199,13 +232,31 @@ class WteWtuController(AbstractController):
     def on_btn_add_clicked(self, *args):
         store: Gtk.ListStore = self.builder.get_object('wtu_store')
         store.append(["0", "0", "0", "0"])
+        self._regenerate_wtu()
 
     def on_btn_remove_clicked(self, *args):
-        tree: Gtk.TreeView = self.builder.get_object('wtu_store')
-        model, treeiter = tree.get_selection().get_selected()
-        if model is not None and treeiter is not None:
-            model.remove(treeiter)
+        # Deletes all selected WTU entries
+        # Allows multiple deletions
+        active_rows : List[Gtk.TreePath] = self.builder.get_object('wtu_tree').get_selection().get_selected_rows()[1]
+        store: Gtk.ListStore = self.builder.get_object('wtu_store')
+        for x in reversed(sorted(active_rows, key=lambda x:x.get_indices())):
+            del store[x.get_indices()[0]]
+        self._regenerate_wtu()
 
+    def on_wtu_tree_selection_changed(self, *args):
+        self._reinit_image()
+    def on_clear_image_path_clicked(self, *args):
+        self.builder.get_object('image_path_setting').unselect_all()
+    
+    def _fill_available_image_types_into_store(self, cb_store):
+        image_types = [
+            v for v in WteImageType
+        ]
+        # Init combobox
+        cb_store.clear()
+        for img_type in image_types:
+            cb_store.append([img_type.value, img_type.explanation])
+    
     def _regenerate_wtu(self):
         wtu_store: Gtk.ListStore = self.builder.get_object('wtu_store')
         self.wtu.entries = []
@@ -221,4 +272,18 @@ class WteWtuController(AbstractController):
             ctx.set_source_surface(self.surface, 0, 0)
             ctx.get_source().set_filter(cairo.Filter.NEAREST)
             ctx.paint()
+            # Draw rectangles on the WTE image representing the selected WTU entries
+            # Allows multiple selections
+            active_rows : List[Gtk.TreePath] = self.builder.get_object('wtu_tree').get_selection().get_selected_rows()[1]
+            store: Gtk.ListStore = self.builder.get_object('wtu_store')
+            for x in active_rows:
+                row = store[x.get_indices()[0]]
+                ctx.set_line_width(4)
+                ctx.set_source_rgba(1,1,1, 1)
+                ctx.rectangle(int(row[0]), int(row[1]), int(row[2]), int(row[3]))
+                ctx.stroke()
+                ctx.set_line_width(2)
+                ctx.set_source_rgba(0,0,0, 1)
+                ctx.rectangle(int(row[0]), int(row[1]), int(row[2]), int(row[3]))
+                ctx.stroke()
         return True
