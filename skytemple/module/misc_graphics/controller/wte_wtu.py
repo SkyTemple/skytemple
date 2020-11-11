@@ -69,28 +69,6 @@ class WteWtuController(AbstractController):
         return self.builder.get_object('editor')
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
-        w.get_menu().popup(None, None, None, None, 0, Gtk.get_current_event_time())
-        
-    def on_palette_export_clicked(self, *args):
-        dialog = Gtk.FileChooserDialog(
-            "Export palette as PNG...",
-            MainController.window(),
-            Gtk.FileChooserAction.SAVE,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
-        )
-
-        add_dialog_png_filter(dialog)
-
-        response = dialog.run()
-        fn = dialog.get_filename()
-        dialog.destroy()
-
-        if response == Gtk.ResponseType.OK:
-            if '.' not in fn:
-                fn += '.png'
-            self.wte.to_pil_palette().save(fn)
-            
-    def on_image_export_clicked(self, *args):
         dialog = Gtk.FileChooserDialog(
             "Export image as PNG...",
             MainController.window(),
@@ -107,30 +85,14 @@ class WteWtuController(AbstractController):
         if response == Gtk.ResponseType.OK:
             if '.' not in fn:
                 fn += '.png'
-            self.wte.to_pil_canvas(0).save(fn)
-
-    def on_all_export_clicked(self, *args):
-        dialog = Gtk.FileChooserDialog(
-            "Export image and palette as PNGs in folder...",
-            MainController.window(),
-            Gtk.FileChooserAction.SELECT_FOLDER,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
-        )
-
-        response = dialog.run()
-        fn = dialog.get_filename()
-        dialog.destroy()
-
-        if response == Gtk.ResponseType.OK:
-            if '.' not in fn:
-                if self.wte.has_image():
-                    self.wte.to_pil_canvas(0).save(os.path.join(fn, 'image.png'))
-                self.wte.to_pil_palette().save(os.path.join(fn, 'palette.png'))
+            if self.wte.has_image():
+                self.wte.to_pil_canvas().save(fn)
+            else:
+                self.wte.to_pil_palette().save(fn)
             
     def on_import_clicked(self, *args):
         dialog: Gtk.Dialog = self.builder.get_object('dialog_import_settings')
         self.builder.get_object('image_path_setting').unselect_all()
-        self.builder.get_object('palette_path_setting').unselect_all()
         # Init available categories
         cb_store: Gtk.ListStore = self.builder.get_object('image_type_store')
         cb: Gtk.ComboBoxText = self.builder.get_object('image_type_setting')
@@ -148,49 +110,37 @@ class WteWtuController(AbstractController):
         resp = dialog.run()
         dialog.hide()
         if resp == ResponseType.OK:
-            img_fn : Optional[str] = self.builder.get_object('image_path_setting').get_filename()
-            pal_fn : Optional[str] = self.builder.get_object('palette_path_setting').get_filename()
-            img_pil : Optional[Image.Image] = None
-            pal_pil : Optional[Image.Image] = None
-            if img_fn!=None:
-                try:
-                    img_pil = Image.open(img_fn, 'r')
-                except Exception as err:
-                    display_error(
-                        sys.exc_info(),
-                        str(err),
-                        "Error importing the image"
-                    )
-            if pal_fn!=None:
-                try:
-                    pal_pil = Image.open(pal_fn, 'r')
-                except Exception as err:
-                    display_error(
-                        sys.exc_info(),
-                        str(err),
-                        "Error importing the palette"
-                    )
-            depth : int = cb_store[cb.get_active_iter()][0]
-            discard : bool = self.builder.get_object('chk_discard_palette').get_active()
+            img_fn : str = self.builder.get_object('image_path_setting').get_filename()
             try:
-                self.wte.from_pil(img_pil, pal_pil, WteImageType(depth), discard)
-            except ValueError as err:
+                img_pil = Image.open(img_fn, 'r')
+            except Exception as err:
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Imported image size too big"
+                    "Filename not specified."
                 )
-            except AttributeError as err:
-                display_error(
-                    sys.exc_info(),
-                    str(err),
-                    "No image/palette file selected"
-                )
-            self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
-            self._init_wte()
-            self._reinit_image()
-            if self.wtu:
-                self.wtu.image_mode = self.wte.get_mode()
+            if img_fn is not None:
+                depth : int = cb_store[cb.get_active_iter()][0]
+                discard : bool = self.builder.get_object('chk_discard_palette').get_active()
+                try:
+                    self.wte.from_pil(img_pil, WteImageType(depth), discard)
+                except ValueError as err:
+                    display_error(
+                        sys.exc_info(),
+                        str(err),
+                        "Imported image size too big."
+                    )
+                except AttributeError as err:
+                    display_error(
+                        sys.exc_info(),
+                        str(err),
+                        "Not an indexed image."
+                    )
+                self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
+                self._init_wte()
+                self._reinit_image()
+                if self.wtu:
+                    self.wtu.image_mode = self.wte.get_mode()
 
     def _init_wte(self):
         info_palette_only: Gtk.InfoBar = self.builder.get_object('info_palette_only')
@@ -210,8 +160,6 @@ class WteWtuController(AbstractController):
         else:
             self.builder.get_object('lbl_canvas_size').set_text(f"{self.wte.width}x{self.wte.height} [No image data]")
         self.builder.get_object('lbl_image_type').set_text(self.wte.image_type.explanation)
-        
-        self.builder.get_object('image_export').set_sensitive(self.wte.has_image())
 
     def _init_wtu(self):
         wtu_stack: Gtk.Stack = self.builder.get_object('wtu_stack')
@@ -299,8 +247,7 @@ class WteWtuController(AbstractController):
         self._reinit_image()
     def on_clear_image_path_clicked(self, *args):
         self.builder.get_object('image_path_setting').unselect_all()
-    def on_clear_palette_path_clicked(self, *args):
-        self.builder.get_object('palette_path_setting').unselect_all()
+    
     def _fill_available_image_types_into_store(self, cb_store):
         image_types = [
             v for v in WteImageType
