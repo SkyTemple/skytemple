@@ -470,7 +470,7 @@ class DungeonModule(AbstractModule):
             BinaryName.OVERLAY_10, lambda binary: HardcodedFixedFloorTables.set_fixed_floor_properties(
                 binary, properties, self.project.get_rom_module().get_static_data()
         ))
-        self.mark_floor_as_modified(floor_id)
+        self.mark_fixed_floor_as_modified(floor_id)
 
     def save_fixed_floor_override(self, floor_id, override_id):
         overrides = self.get_fixed_floor_overrides()
@@ -479,7 +479,7 @@ class DungeonModule(AbstractModule):
             BinaryName.OVERLAY_29, lambda binary: HardcodedFixedFloorTables.set_fixed_floor_overrides(
                 binary, overrides, self.project.get_rom_module().get_static_data()
         ))
-        self.mark_floor_as_modified(floor_id)
+        self.mark_fixed_floor_as_modified(floor_id)
 
     def mark_fixed_floor_as_modified(self, floor_id):
         self.project.mark_as_modified(FIXED_PATH)
