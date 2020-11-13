@@ -30,6 +30,7 @@ from skytemple_files.data.md.model import NUM_ENTITIES
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRuleType, TileRule, EntityRule
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
 from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
+from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule
@@ -60,13 +61,10 @@ class FixedController(AbstractController):
 
         # TODO: Duplicated code
         self.enemy_settings_name = [f"{i}" for i in range(0, 256)]
-        self.enemy_settings_name[6] = "Enemy"
-        self.enemy_settings_name[9] = "Ally"
-        self.enemy_settings_name[10] = "Invalid?"
         self.long_enemy_settings_name = [f"{i}: ???" for i in range(0, 256)]
-        self.long_enemy_settings_name[6] = "6: Enemy"
-        self.long_enemy_settings_name[9] = "9: Ally"
-        self.long_enemy_settings_name[10] = "10: Invalid?"
+        for spawn_type in MonsterSpawnType:
+            self.enemy_settings_name[spawn_type.value] = f"{spawn_type.description}"
+            self.long_enemy_settings_name[spawn_type.value] = f"{spawn_type.value}: {spawn_type.description}"
 
         self.monster_names = {}
         self.long_monster_names = {}
@@ -305,6 +303,10 @@ class FixedController(AbstractController):
         self.properties.orbs_enabled = w.get_active()
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
+    def on_settings_defeat_enemies_active_notify(self, w, *args):
+        self.properties.exit_floor_when_defeating_enemies = w.get_active()
+        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+
     def on_settings_unk4_active_notify(self, w, *args):
         self.properties.unk4 = w.get_active()
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
@@ -314,15 +316,11 @@ class FixedController(AbstractController):
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
     def on_settings_unk8_active_notify(self, w, *args):
-        self.properties.unk6 = w.get_active()
+        self.properties.unk8 = w.get_active()
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
     def on_settings_unk9_active_notify(self, w, *args):
         self.properties.unk9 = w.get_active()
-        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
-
-    def on_settings_unk10_active_notify(self, w, *args):
-        self.properties.unk10 = w.get_active()
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
     def on_settings_override_changed(self, w: Gtk.ComboBox, *args):
@@ -397,7 +395,7 @@ class FixedController(AbstractController):
             desc += ", " + self.module.desc_fixed_floor_item(item_spawn.item_id)
         if monster_spawn.md_idx > 0:
             desc += ", " + self.module.desc_fixed_floor_monster(
-                monster_spawn.md_idx, monster_spawn.enemy_settings, self.monster_names, self.enemy_settings_name,
+                monster_spawn.md_idx, monster_spawn.enemy_settings.value, self.monster_names, self.enemy_settings_name,
                 short=True
             )
         return desc
@@ -428,11 +426,11 @@ class FixedController(AbstractController):
         self.builder.get_object('settings_music').set_text(str(self.properties.music_track))
         self.builder.get_object('settings_moves').set_active(self.properties.moves_enabled)
         self.builder.get_object('settings_orbs').set_active(self.properties.orbs_enabled)
+        self.builder.get_object('settings_defeat_enemies').set_active(self.properties.exit_floor_when_defeating_enemies)
         self.builder.get_object('settings_unk4').set_active(self.properties.unk4)
         self.builder.get_object('settings_unk5').set_active(self.properties.unk5)
         self.builder.get_object('settings_unk8').set_active(self.properties.unk8)
         self.builder.get_object('settings_unk9').set_active(self.properties.unk9)
-        self.builder.get_object('settings_unk10').set_active(self.properties.unk10)
         self.builder.get_object('settings_override').set_active(self.override_id)
 
     def _init_fixed_floor(self):
@@ -502,7 +500,7 @@ class FixedController(AbstractController):
         item_spawn, monster_spawn, tile_spawn, stats = self.entity_rule_container.get(entity_id)
         self.builder.get_object('utility_entity_frame_desc_label').set_markup(
             f"<b>Pokémon ({entity.monster_id})</b>:\n"
-            f"{self.module.desc_fixed_floor_monster(monster_spawn.md_idx, monster_spawn.enemy_settings, self.long_monster_names, self.long_enemy_settings_name)}\n\n"
+            f"{self.module.desc_fixed_floor_monster(monster_spawn.md_idx, monster_spawn.enemy_settings.value, self.long_monster_names, self.long_enemy_settings_name)}\n\n"
             f"<b>Stats ({monster_spawn.stats_entry})</b>:\n"
             f"{self.module.desc_fixed_floor_stats(stats)}\n\n"
             f"<b>Item ({entity.item_id})</b>:\n"

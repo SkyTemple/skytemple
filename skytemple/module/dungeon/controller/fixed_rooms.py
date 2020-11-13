@@ -24,6 +24,7 @@ from skytemple.core.string_provider import StringType
 from skytemple.module.dungeon import MAX_ITEM_ID, SPECIAL_ITEMS, SPECIAL_MONSTERS
 from skytemple_files.data.md.model import NUM_ENTITIES
 from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
+from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule
@@ -39,9 +40,8 @@ class FixedRoomsController(AbstractController):
             module.get_fixed_floor_entity_lists()
 
         self.enemy_settings_name = [f"{i}: ???" for i in range(0, 256)]
-        self.enemy_settings_name[6] = "6: Enemy"
-        self.enemy_settings_name[9] = "9: Ally"
-        self.enemy_settings_name[10] = "10: Invalid?"
+        for spawn_type in MonsterSpawnType:
+            self.enemy_settings_name[spawn_type.value] = f"{spawn_type.value}: {spawn_type.description}"
 
         self.monster_names = {}
         length = len(self.module.get_monster_md().entries)
@@ -157,7 +157,7 @@ class FixedRoomsController(AbstractController):
                 self.module.desc_fixed_floor_tile(self.lst_tile[entity.tile_id]),
                 self.module.desc_fixed_floor_item(self.lst_item[entity.item_id].item_id),
                 self.module.desc_fixed_floor_monster(
-                    monster.md_idx, monster.enemy_settings, self.monster_names, self.enemy_settings_name
+                    monster.md_idx, monster.enemy_settings.value, self.monster_names, self.enemy_settings_name
                 )
             ])
 
@@ -216,6 +216,6 @@ class FixedRoomsController(AbstractController):
         store: Gtk.ListStore = self.builder.get_object('model_monsters')
         for idx, monster in enumerate(self.lst_monster):
             store.append([
-                str(idx), monster.md_idx, self.monster_names[monster.md_idx], monster.enemy_settings,
-                self.enemy_settings_name[monster.enemy_settings]
+                str(idx), monster.md_idx, self.monster_names[monster.md_idx], monster.enemy_settings.value,
+                self.enemy_settings_name[monster.enemy_settings.value]
             ])
