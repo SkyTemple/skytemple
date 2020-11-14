@@ -113,6 +113,7 @@ class DungeonModule(AbstractModule):
         self._dungeon_iters = {}
         self._dungeon_floor_iters = {}
         self._fixed_floor_iters = []
+        self._fixed_floor_root_iter = None
         self._fixed_floor_data: Optional[FixedBin] = None
         self._dungeon_bin: Optional[DungeonBinPack] = None
 
@@ -155,17 +156,17 @@ class DungeonModule(AbstractModule):
             self._add_dungeon_to_tree(dojo_root, item_store, i, 0)
 
         # Fixed rooms
-        fixed_rooms = item_store.append(root_node, [
+        self._fixed_floor_root_iter = item_store.append(root_node, [
             ICON_FIXED_ROOMS, FIXED_ROOMS_NAME, self, FixedRoomsController, 0, False, '', True
         ])
         for i in range(0, len(self._fixed_floor_data.fixed_floors)):
-            self._fixed_floor_iters.append(item_store.append(fixed_rooms, [
+            self._fixed_floor_iters.append(item_store.append(self._fixed_floor_root_iter, [
                 ICON_FIXED_ROOMS, f'Fixed Room {i}', self, FixedController,
                 i, False, '', True
             ]))
 
         recursive_generate_item_store_row_label(self._tree_model[root])
-        recursive_generate_item_store_row_label(self._tree_model[fixed_rooms])
+        recursive_generate_item_store_row_label(self._tree_model[self._fixed_floor_root_iter])
 
     def get_mappa(self) -> MappaBin:
         return self.project.open_file_in_rom(MAPPA_PATH, FileType.MAPPA_BIN)
@@ -437,6 +438,27 @@ class DungeonModule(AbstractModule):
             HardcodedFixedFloorTables.get_tile_spawn_list(ov29, config),
             HardcodedFixedFloorTables.get_monster_spawn_stats_table(ov10, config),
         )
+
+    def save_fixed_floor_entity_lists(self, entities, items, monsters, tiles, stats):
+
+        config = self.project.get_rom_module().get_static_data()
+
+        def update_ov29(binary):
+            HardcodedFixedFloorTables.set_entity_spawn_table(binary, entities, config)
+            HardcodedFixedFloorTables.set_item_spawn_list(binary, items, config)
+            HardcodedFixedFloorTables.set_monster_spawn_list(binary, monsters, config)
+            HardcodedFixedFloorTables.set_tile_spawn_list(binary, tiles, config)
+
+        self.project.modify_binary(
+            BinaryName.OVERLAY_29, update_ov29
+        )
+        self.project.modify_binary(
+            BinaryName.OVERLAY_10, lambda binary: HardcodedFixedFloorTables.set_monster_spawn_stats_table(
+                binary, stats, config
+            )
+        )
+        row = self._tree_model[self._fixed_floor_root_iter]
+        recursive_up_item_store_mark_as_modified(row)
 
     def get_dummy_tileset(self) -> [Dma, Image.Image]:
         with open(os.path.join(data_dir(), 'fixed_floor', 'dummy.dma'), 'rb') as f:

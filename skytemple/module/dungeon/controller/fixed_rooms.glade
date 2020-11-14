@@ -68,6 +68,20 @@
       <column type="gint"/>
       <!-- column-name type_name -->
       <column type="gchararray"/>
+      <!-- column-name stats_id -->
+      <column type="gint"/>
+      <!-- column-name stats_name -->
+      <column type="gchararray"/>
+      <!-- column-name stats_enabled -->
+      <column type="gboolean"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="model_monsters__stats">
+    <columns>
+      <!-- column-name id -->
+      <column type="gint"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkListStore" id="model_monsters__type">
@@ -75,6 +89,28 @@
       <!-- column-name id -->
       <column type="gint"/>
       <!-- column-name name -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="model_stats">
+    <columns>
+      <!-- column-name id -->
+      <column type="gchararray"/>
+      <!-- column-name level -->
+      <column type="gchararray"/>
+      <!-- column-name hp -->
+      <column type="gchararray"/>
+      <!-- column-name exp_yield -->
+      <column type="gchararray"/>
+      <!-- column-name attack -->
+      <column type="gchararray"/>
+      <!-- column-name special_attack -->
+      <column type="gchararray"/>
+      <!-- column-name defense -->
+      <column type="gchararray"/>
+      <!-- column-name special_defense -->
+      <column type="gchararray"/>
+      <!-- column-name unka -->
       <column type="gchararray"/>
     </columns>
   </object>
@@ -208,9 +244,10 @@ They are usually used for boss fights or other special floors.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkNotebook">
+                          <object class="GtkNotebook" id="nb_sl">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <signal name="switch-page" handler="on_nb_sl_switch_page" swapped="no"/>
                             <child>
                               <object class="GtkBox">
                                 <property name="visible">True</property>
@@ -337,6 +374,7 @@ They are usually used for boss fights or other special floors.</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="valign">center</property>
+                                        <signal name="clicked" handler="on_btn_entities_goto_monster_clicked" swapped="no"/>
                                         <child>
                                           <object class="GtkBox">
                                             <property name="visible">True</property>
@@ -382,6 +420,7 @@ They are usually used for boss fights or other special floors.</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="valign">center</property>
+                                        <signal name="clicked" handler="on_btn_entities_goto_item_clicked" swapped="no"/>
                                         <child>
                                           <object class="GtkBox">
                                             <property name="visible">True</property>
@@ -427,6 +466,7 @@ They are usually used for boss fights or other special floors.</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="valign">center</property>
+                                        <signal name="clicked" handler="on_btn_entities_goto_tile_clicked" swapped="no"/>
                                         <child>
                                           <object class="GtkBox">
                                             <property name="visible">True</property>
@@ -886,6 +926,23 @@ They are usually used for boss fights or other special floors.</property>
                                             </child>
                                           </object>
                                         </child>
+                                        <child>
+                                          <object class="GtkTreeViewColumn">
+                                            <property name="title" translatable="yes">Stats</property>
+                                            <child>
+                                              <object class="GtkCellRendererCombo" id="cr_monsters_stats">
+                                                <property name="editable">True</property>
+                                                <property name="model">model_monsters__stats</property>
+                                                <property name="text_column">1</property>
+                                                <signal name="changed" handler="on_cr_monsters_stats_changed" swapped="no"/>
+                                              </object>
+                                              <attributes>
+                                                <attribute name="sensitive">7</attribute>
+                                                <attribute name="text">6</attribute>
+                                              </attributes>
+                                            </child>
+                                          </object>
+                                        </child>
                                       </object>
                                     </child>
                                   </object>
@@ -908,6 +965,7 @@ They are usually used for boss fights or other special floors.</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="valign">center</property>
+                                        <signal name="clicked" handler="on_btn_monsters_goto_stats_clicked" swapped="no"/>
                                         <child>
                                           <object class="GtkBox">
                                             <property name="visible">True</property>
@@ -980,10 +1038,133 @@ They are usually used for boss fights or other special floors.</property>
                                   <object class="GtkTreeView" id="tree_stats">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="model">model_entities</property>
+                                    <property name="model">model_stats</property>
                                     <property name="search_column">0</property>
                                     <child internal-child="selection">
                                       <object class="GtkTreeSelection"/>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">ID</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cr_stats_id"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">Level</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cr_stats_level">
+                                            <property name="editable">True</property>
+                                            <signal name="edited" handler="on_cr_stats_level_edited" swapped="no"/>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="text">1</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">HP</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cr_stats_hp">
+                                            <property name="editable">True</property>
+                                            <signal name="edited" handler="on_cr_stats_hp_edited" swapped="no"/>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="text">2</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">Exp. Yield</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cr_stats_exp_yield">
+                                            <property name="editable">True</property>
+                                            <signal name="edited" handler="on_cr_stats_exp_yield_edited" swapped="no"/>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="text">3</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">Atk.</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cr_stats_atk">
+                                            <property name="editable">True</property>
+                                            <signal name="edited" handler="on_cr_stats_atk_edited" swapped="no"/>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="text">4</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">Sp. Atk.</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cr_stats_sp_atk">
+                                            <property name="editable">True</property>
+                                            <signal name="edited" handler="on_cr_stats_sp_atk_edited" swapped="no"/>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="text">5</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">Def.</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cr_stats_def">
+                                            <property name="editable">True</property>
+                                            <signal name="edited" handler="on_cr_stats_def_edited" swapped="no"/>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="text">6</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">Sp. Def.</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cr_stats_sp_def">
+                                            <property name="editable">True</property>
+                                            <signal name="edited" handler="on_cr_stats_sp_def_edited" swapped="no"/>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="text">7</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">UnkA</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cr_stats_unka">
+                                            <property name="editable">True</property>
+                                            <signal name="edited" handler="on_cr_stats_unka_edited" swapped="no"/>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="text">8</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
                                     </child>
                                   </object>
                                 </child>

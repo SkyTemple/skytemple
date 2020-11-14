@@ -51,10 +51,17 @@ class FixedRoomsController(AbstractController):
         for i in range(length, length + SPECIAL_MONSTERS):
             self.monster_names[i] = f'(Special?) (${i:04})'
 
+        self.item_names = {}
+        for i in range(0, MAX_ITEM_ID):
+            name = self.module.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
+            self.item_names[i] = f'{name} (#{i:04})'
+        for i in range(MAX_ITEM_ID, MAX_ITEM_ID + SPECIAL_ITEMS):
+            self.item_names[i] = f'(Special?) (#{i:04})'
+
     def get_view(self) -> Widget:
         self.builder = self._get_builder(__file__, 'fixed_rooms.glade')
 
-        self._init_entities()
+        self._fill_entities()
         self._init_tiles()
         self._init_items()
         self._init_monsters()
@@ -63,14 +70,94 @@ class FixedRoomsController(AbstractController):
 
         return self.builder.get_object('box_list')
 
-    def on_cr_entities_tile_id_changed(self, *args):
-        pass  # todo
+    def on_nb_sl_switch_page(self, n: Gtk.Notebook, p, pnum, *args):
+        if pnum == 0:
+            self._fill_entities()
+        elif pnum == 1:
+            self._fill_tiles()
+        elif pnum == 2:
+            self._fill_items()
+        elif pnum == 3:
+            self._fill_monsters()
+        else:
+            self._fill_stats()
 
-    def on_cr_entities_item_id_changed(self, *args):
-        pass  # todo
+    def on_cr_entities_tile_id_changed(self, widget, path, new_iter, *args):
+        store: Gtk.Store = self.builder.get_object('model_entities')
+        cb_store: Gtk.Store = self.builder.get_object('model_entities__tiles')
+        store[path][1] = f'Tile {cb_store[new_iter][0]}'
+        self.lst_entity[int(store[path][0])].tile_id = cb_store[new_iter][0]
+        store[path][4] = self.module.desc_fixed_floor_tile(self.lst_tile[cb_store[new_iter][0]])
+        self._save()
 
-    def on_cr_entities_monster_id_changed(self, *args):
-        pass  # todo
+    def on_cr_entities_item_id_changed(self, widget, path, new_iter, *args):
+        store: Gtk.Store = self.builder.get_object('model_entities')
+        cb_store: Gtk.Store = self.builder.get_object('model_entities__items')
+        store[path][2] = f'Item {cb_store[new_iter][0]}'
+        self.lst_entity[int(store[path][0])].item_id = cb_store[new_iter][0]
+        store[path][5] = self.module.desc_fixed_floor_item(self.lst_item[cb_store[new_iter][0]].item_id)
+        self._save()
+
+    def on_cr_entities_monster_id_changed(self, widget, path, new_iter, *args):
+        store: Gtk.Store = self.builder.get_object('model_entities')
+        cb_store: Gtk.Store = self.builder.get_object('model_entities__monsters')
+        store[path][3] = f'Monster {cb_store[new_iter][0]}'
+        self.lst_entity[int(store[path][0])].monster_id = cb_store[new_iter][0]
+        monster = self.lst_monster[cb_store[new_iter][0]]
+        store[path][6] = self.module.desc_fixed_floor_monster(
+            monster.md_idx, monster.enemy_settings.value, self.monster_names, self.enemy_settings_name
+        )
+        self._save()
+
+    def on_btn_entities_goto_monster_clicked(self, *args):
+        tree: Gtk.TreeView = self.builder.get_object('tree_entities')
+        model, treeiter = tree.get_selection().get_selected()
+        if model is not None and treeiter is not None:
+            notebook: Gtk.Notebook = self.builder.get_object('nb_sl')
+            notebook.set_current_page(3)
+            t: Gtk.TreeView = self.builder.get_object('tree_monsters')
+            s: Gtk.TreeSelection = t.get_selection()
+            p = t.get_model()[self.lst_entity[int(model[treeiter][0])].monster_id].path
+            s.select_path(p)
+            t.scroll_to_cell(p, use_align=True, row_align=0.5)
+
+    def on_btn_entities_goto_item_clicked(self, *args):
+        tree: Gtk.TreeView = self.builder.get_object('tree_entities')
+        model, treeiter = tree.get_selection().get_selected()
+        if model is not None and treeiter is not None:
+            notebook: Gtk.Notebook = self.builder.get_object('nb_sl')
+            notebook.set_current_page(2)
+            t: Gtk.TreeView = self.builder.get_object('tree_items')
+            s: Gtk.TreeSelection = t.get_selection()
+            p = t.get_model()[self.lst_entity[int(model[treeiter][0])].item_id].path
+            s.select_path(p)
+            t.scroll_to_cell(p, use_align=True, row_align=0.5)
+
+    def on_btn_entities_goto_tile_clicked(self, *args):
+        tree: Gtk.TreeView = self.builder.get_object('tree_entities')
+        model, treeiter = tree.get_selection().get_selected()
+        if model is not None and treeiter is not None:
+            notebook: Gtk.Notebook = self.builder.get_object('nb_sl')
+            notebook.set_current_page(1)
+            t: Gtk.TreeView = self.builder.get_object('tree_tiles')
+            s: Gtk.TreeSelection = t.get_selection()
+            p = t.get_model()[self.lst_entity[int(model[treeiter][0])].tile_id].path
+            s.select_path(p)
+            t.scroll_to_cell(p, use_align=True, row_align=0.5)
+
+    def on_btn_monsters_goto_stats_clicked(self, *args):
+        tree: Gtk.TreeView = self.builder.get_object('tree_monsters')
+        model, treeiter = tree.get_selection().get_selected()
+        if model is not None and treeiter is not None:
+            if not model[treeiter][7]:
+                return
+            notebook: Gtk.Notebook = self.builder.get_object('nb_sl')
+            notebook.set_current_page(4)
+            t: Gtk.TreeView = self.builder.get_object('tree_stats')
+            s: Gtk.TreeSelection = t.get_selection()
+            p = t.get_model()[self.lst_monster[int(model[treeiter][0])].stats_entry].path
+            s.select_path(p)
+            t.scroll_to_cell(p, use_align=True, row_align=0.5)
 
     def on_cr_tiles_trap_id_changed(self, *args):
         pass  # todo
@@ -135,30 +222,66 @@ class FixedRoomsController(AbstractController):
     def on_cr_monsters_type_changed(self, *args):
         pass  # todo
 
-    def _init_entities(self):
+    def on_cr_monsters_stats_changed(self, *args):
+        pass  # todo
+
+    def on_cr_stats_level_edited(self, *args):
+        pass  # todo
+
+    def on_cr_stats_hp_edited(self, *args):
+        pass  # todo
+
+    def on_cr_stats_exp_yield_edited(self, *args):
+        pass  # todo
+
+    def on_cr_stats_atk_edited(self, *args):
+        pass  # todo
+
+    def on_cr_stats_sp_atk_edited(self, *args):
+        pass  # todo
+
+    def on_cr_stats_def_edited(self, *args):
+        pass  # todo
+
+    def on_cr_stats_sp_def_edited(self, *args):
+        pass  # todo
+
+    def on_cr_stats_unka_edited(self, *args):
+        pass  # todo
+
+    def _fill_entities(self):
         # Init Tiles Store
         store: Gtk.ListStore = self.builder.get_object('model_entities__tiles')
+        store.clear()
         for i in range(0, len(self.lst_tile)):
-            store.append([i, f"Tile {i}"])
+            store.append([i, f"Tile {i} ({self.module.desc_fixed_floor_tile(self.lst_tile[i])})"])
         # Init Monsters Store
         store: Gtk.ListStore = self.builder.get_object('model_entities__monsters')
+        store.clear()
         for i in range(0, len(self.lst_monster)):
-            store.append([i, f"Pokémon {i}"])
+            monster = self.lst_monster[i]
+            monster_desc = self.module.desc_fixed_floor_monster(
+                monster.md_idx, monster.enemy_settings.value, self.monster_names, self.enemy_settings_name
+            )
+            store.append([i, f"Pokémon {i} ({monster_desc})"])
         # Init Items Store
         store: Gtk.ListStore = self.builder.get_object('model_entities__items')
+        store.clear()
         for i in range(0, len(self.lst_item)):
-            store.append([i, f"Item {i}"])
+            store.append([i, f"Item {i} ({self.module.desc_fixed_floor_item(self.lst_item[i].item_id)})"])
+
         # Init Entities Store
         store: Gtk.ListStore = self.builder.get_object('model_entities')
+        store.clear()
         for idx, entity in enumerate(self.lst_entity):
             monster = self.lst_monster[entity.monster_id]
             store.append([
                 str(idx), f"Tile {entity.tile_id}", f"Item {entity.item_id}", f"Pokémon {entity.monster_id}",
-                self.module.desc_fixed_floor_tile(self.lst_tile[entity.tile_id]),
-                self.module.desc_fixed_floor_item(self.lst_item[entity.item_id].item_id),
-                self.module.desc_fixed_floor_monster(
+                "(" + self.module.desc_fixed_floor_tile(self.lst_tile[entity.tile_id]) + ")",
+                "(" + self.module.desc_fixed_floor_item(self.lst_item[entity.item_id].item_id) + ")",
+                "(" + self.module.desc_fixed_floor_monster(
                     monster.md_idx, monster.enemy_settings.value, self.monster_names, self.enemy_settings_name
-                )
+                ) + ")"
             ])
 
     def _init_tiles(self):
@@ -167,8 +290,11 @@ class FixedRoomsController(AbstractController):
         store.append([25, 'None'])
         for trap in MappaTrapType:
             store.append([trap.value, ' '.join([x.capitalize() for x in trap.name.split('_')])])
+
+    def _fill_tiles(self):
         # Init Tiles Store
         store: Gtk.ListStore = self.builder.get_object('model_tiles')
+        store.clear()
         for idx, tile in enumerate(self.lst_tile):
             name = 'None'
             if tile.trap_id < 25:
@@ -184,20 +310,16 @@ class FixedRoomsController(AbstractController):
         # Init Items Completion
         store: Gtk.ListStore = self.builder.get_object('store_completion_items')
 
-        item_names = {}
-        for i in range(0, MAX_ITEM_ID):
-            name = self.module.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
-            item_names[i] = f'{name} (#{i:04})'
-        for i in range(MAX_ITEM_ID, MAX_ITEM_ID + SPECIAL_ITEMS):
-            item_names[i] = f'(Special?) (#{i:04})'
-        for item in item_names.values():
+        for item in self.item_names.values():
             store.append([item])
 
+    def _fill_items(self):
         # Init Items Store
         store: Gtk.ListStore = self.builder.get_object('model_items')
+        store.clear()
         for idx, item in enumerate(self.lst_item):
             store.append([
-                str(idx), item.item_id, item_names[item.item_id]
+                str(idx), item.item_id, self.item_names[item.item_id]
             ])
 
     def _init_monsters(self):
@@ -212,10 +334,45 @@ class FixedRoomsController(AbstractController):
         for i, entry in enumerate(self.enemy_settings_name):
             store.append([i, entry])
 
+    def _fill_monsters(self):
+
+        # Init Monsters Stats
+        store: Gtk.ListStore = self.builder.get_object('model_monsters__stats')
+        store.clear()
+        for i, entry in enumerate(self.lst_stats):
+            store.append([i, self._generate_stats_label(i, entry)])
+
         # Init Monsters Store
         store: Gtk.ListStore = self.builder.get_object('model_monsters')
+        store.clear()
         for idx, monster in enumerate(self.lst_monster):
             store.append([
                 str(idx), monster.md_idx, self.monster_names[monster.md_idx], monster.enemy_settings.value,
-                self.enemy_settings_name[monster.enemy_settings.value]
+                self.enemy_settings_name[monster.enemy_settings.value], *self._generate_stats_store_entry(monster)
             ])
+
+    def _fill_stats(self):
+        # Init Stats Store
+        store: Gtk.ListStore = self.builder.get_object('model_stats')
+        store.clear()
+        for idx, item in enumerate(self.lst_stats):
+            store.append([
+                str(idx), str(item.level), str(item.hp), str(item.exp_yield),
+                str(item.attack), str(item.special_attack), str(item.defense), str(item.special_defense),
+                str(item.unkA)
+            ])
+
+    def _generate_stats_store_entry(self, monster):
+        if monster.enemy_settings == MonsterSpawnType.ENEMY_STRONG or monster.enemy_settings == MonsterSpawnType.ALLY_HELP:
+            return (monster.stats_entry,
+                    self._generate_stats_label(monster.stats_entry, self.lst_stats[monster.stats_entry]),
+                    True)
+        return 0, 'n/a', False
+
+    def _generate_stats_label(self, i, entry):
+        return f"{i} - Lvl: {entry.level}, Atk: {entry.attack}, Def: {entry.defense}, " \
+               f"Sp. Atk: {entry.special_attack}, Sp. Def: {entry.special_defense}, HP: {entry.hp}"
+
+    def _save(self):
+        self.module.save_fixed_floor_entity_lists(self.lst_entity, self.lst_item,
+                                                  self.lst_monster, self.lst_tile, self.lst_stats)

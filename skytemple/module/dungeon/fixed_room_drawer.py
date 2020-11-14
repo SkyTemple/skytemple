@@ -34,7 +34,7 @@ from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
 from skytemple_files.graphics.dma.model import DmaType
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
 from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
-
+from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
 
 ALPHA_T = 0.3
 Num = Union[int, float]
@@ -348,12 +348,12 @@ class FixedRoomDrawer:
         self._draw_name(ctx, sx, sy, name, COLOR_WHITE)
 
     def _draw_info_monster(self, sx, sy, ctx, enemy_settings):
-        if enemy_settings == 0xA:
+        if enemy_settings == MonsterSpawnType.ALLY_HELP:
             self._draw_bottom_left(ctx, sx, sy, COLOR_GREEN, 'A')
-        if enemy_settings == 6:
+        elif enemy_settings == MonsterSpawnType.ENEMY_STRONG:
             self._draw_bottom_left(ctx, sx, sy, COLOR_RED, 'E')
-        if enemy_settings == 9:
-            self._draw_bottom_right(ctx, sx, sy, COLOR_YELLOW, 'I')
+        else:
+            self._draw_bottom_right(ctx, sx, sy, COLOR_YELLOW, 'O')
 
     def _draw_info_tile(self, sx, sy, ctx, room_id, impassable, absolute_mover):
         if room_id > -1:

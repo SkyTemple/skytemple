@@ -190,18 +190,25 @@ class DiscordPresence(AbstractListener):
         from skytemple.module.dungeon.module import DungeonModule
         from skytemple.module.dungeon.controller.dungeon import DungeonController
         from skytemple.module.dungeon.controller.floor import FloorController
-        # todo: fixed floors
+        from skytemple.module.dungeon.controller.fixed_rooms import FixedRoomsController
+        from skytemple.module.dungeon.controller.fixed import FixedController
         module: DungeonModule
 
-        self.module_info = 'Editing dungeons'
         self.module_state = self.rom_name
         if isinstance(controller, DungeonController):
+            self.module_info = 'Editing Dungeons'
             self.module_state = controller.dungeon_name
-        if isinstance(controller, FloorController):
+        elif isinstance(controller, FloorController):
+            self.module_info = 'Editing Dungeons'
             dungeon_name = module.project.get_string_provider().get_value(
                 StringType.DUNGEON_NAMES_MAIN, controller.item.dungeon.dungeon_id
             )
             self.module_state = f'{dungeon_name} - Floor {controller.item.floor_id + 1}'
+        elif isinstance(controller, FixedRoomsController):
+            self.module_info = 'Editing Fixed Rooms'
+        elif isinstance(controller, FixedController):
+            self.module_info = 'Editing Fixed Rooms'
+            self.module_state = f'Fixed Room {controller.floor_id}'
 
     def on_view_switch__MonsterModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
         from skytemple.module.monster.module import MonsterModule

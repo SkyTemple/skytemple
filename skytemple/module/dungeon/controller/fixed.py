@@ -168,10 +168,12 @@ class FixedController(AbstractController):
                         tile_y = self.floor.height - 1
                     # Place at new position
                     old_x, old_y = self.drawer.get_selected()
-                    self.floor.actions[tile_y * self.floor.width + tile_x] = self.floor.actions[old_y * self.floor.width + old_x]
-                    # Insert floor at old position
-                    self.floor.actions[old_y * self.floor.width + old_x] = TileRule(TileRuleType.FLOOR_ROOM, None)
-                    self.module.mark_fixed_floor_as_modified(self.floor_id)
+                    # abort if dragging onto same tile
+                    if old_x != tile_x and old_y != tile_y:
+                        self.floor.actions[tile_y * self.floor.width + tile_x] = self.floor.actions[old_y * self.floor.width + old_x]
+                        # Insert floor at old position
+                        self.floor.actions[old_y * self.floor.width + old_x] = TileRule(TileRuleType.FLOOR_ROOM, None)
+                        self.module.mark_fixed_floor_as_modified(self.floor_id)
         self._currently_selected = None
         self._bg_draw_is_clicked__location = None
         self._bg_draw_is_clicked__drag_active = False
