@@ -15,6 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import math
+import re
 from enum import Enum
 from typing import TYPE_CHECKING, Type, List, Optional, Dict
 from xml.etree import ElementTree
@@ -37,6 +38,8 @@ from skytemple_files.data.monster_xml import monster_xml_export
 
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
+MAX_ITEM_ID = 1351
+PATTERN = re.compile(r'.*\(#(\d+)\).*')
 
 
 class MonsterController(AbstractController):
@@ -58,6 +61,11 @@ class MonsterController(AbstractController):
 
         self._render_graph_on_tab_change = True
 
+        self.item_names = {}
+        for i in range(0, MAX_ITEM_ID):
+            name = self.module.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
+            self.item_names[i] = f'{name} (#{i:04})'
+
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'monster.glade')
 
@@ -68,6 +76,12 @@ class MonsterController(AbstractController):
         self._init_entid()
         self._init_stores()
         self._init_sub_pages()
+
+        # Init Items Completion
+        store: Gtk.ListStore = self.builder.get_object('store_completion_items')
+
+        for item in self.item_names.values():
+            store.append([item])
 
         self._is_loading = True
         self._init_values()
@@ -292,19 +306,47 @@ class MonsterController(AbstractController):
         md.destroy()
 
     def on_entry_exclusive_item1_changed(self, w, *args):
-        self._update_from_entry(w)
+        match = PATTERN.match(w.get_text())
+        if match is None:
+            return
+        try:
+            val = int(match.group(1))
+        except ValueError:
+            return
+        setattr(self.entry, 'exclusive_item1', val)
         self.mark_as_modified()
 
     def on_entry_exclusive_item2_changed(self, w, *args):
-        self._update_from_entry(w)
+        match = PATTERN.match(w.get_text())
+        if match is None:
+            return
+        try:
+            val = int(match.group(1))
+        except ValueError:
+            return
+        setattr(self.entry, 'exclusive_item2', val)
         self.mark_as_modified()
 
     def on_entry_exclusive_item3_changed(self, w, *args):
-        self._update_from_entry(w)
+        match = PATTERN.match(w.get_text())
+        if match is None:
+            return
+        try:
+            val = int(match.group(1))
+        except ValueError:
+            return
+        setattr(self.entry, 'exclusive_item3', val)
         self.mark_as_modified()
 
     def on_entry_exclusive_item4_changed(self, w, *args):
-        self._update_from_entry(w)
+        match = PATTERN.match(w.get_text())
+        if match is None:
+            return
+        try:
+            val = int(match.group(1))
+        except ValueError:
+            return
+        setattr(self.entry, 'exclusive_item4', val)
         self.mark_as_modified()
 
     def on_entry_bitflag1_changed(self, w, *args):
@@ -644,10 +686,10 @@ class MonsterController(AbstractController):
         self._set_entry('entry_chance_spawn_asleep', self.entry.chance_spawn_asleep)
         self._set_entry('entry_hp_regeneration', self.entry.hp_regeneration)
         self._set_entry('entry_unk21_h', self.entry.unk21_h)
-        self._set_entry('entry_exclusive_item1', self.entry.exclusive_item1)
-        self._set_entry('entry_exclusive_item2', self.entry.exclusive_item2)
-        self._set_entry('entry_exclusive_item3', self.entry.exclusive_item3)
-        self._set_entry('entry_exclusive_item4', self.entry.exclusive_item4)
+        self._set_entry('entry_exclusive_item1', self.item_names[self.entry.exclusive_item1])
+        self._set_entry('entry_exclusive_item2', self.item_names[self.entry.exclusive_item2])
+        self._set_entry('entry_exclusive_item3', self.item_names[self.entry.exclusive_item3])
+        self._set_entry('entry_exclusive_item4', self.item_names[self.entry.exclusive_item4])
         self._set_entry('entry_unk27', self.entry.unk27)
         self._set_entry('entry_unk28', self.entry.unk28)
         self._set_entry('entry_unk29', self.entry.unk29)
