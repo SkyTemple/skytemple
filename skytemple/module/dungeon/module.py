@@ -24,7 +24,8 @@ from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR
+from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR, \
+    REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
@@ -172,6 +173,9 @@ class DungeonModule(AbstractModule):
     def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
         if request.type == REQUEST_TYPE_DUNGEON_FIXED_FLOOR:
             return self._fixed_floor_iters[request.identifier]
+        if request.type == REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY:
+            FixedRoomsController.focus_entity_on_open = request.identifier
+            return self._fixed_floor_root_iter
 
     def get_mappa(self) -> MappaBin:
         return self.project.open_file_in_rom(MAPPA_PATH, FileType.MAPPA_BIN)

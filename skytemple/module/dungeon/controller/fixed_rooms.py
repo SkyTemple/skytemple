@@ -35,6 +35,9 @@ PATTERN = re.compile(r'.*\([#$](\d+)\).*')
 
 
 class FixedRoomsController(AbstractController):
+    # If set, this entity will be focused on first load
+    focus_entity_on_open = None
+
     def __init__(self, module: 'DungeonModule', item_id: int):
         self.module = module
         self.builder = None
@@ -64,6 +67,14 @@ class FixedRoomsController(AbstractController):
         self.builder = self._get_builder(__file__, 'fixed_rooms.glade')
 
         self._fill_entities()
+        if self.__class__.focus_entity_on_open:
+            t: Gtk.TreeView = self.builder.get_object('tree_entities')
+            s: Gtk.TreeSelection = t.get_selection()
+            p = t.get_model()[self.__class__.focus_entity_on_open].path
+            s.select_path(p)
+            t.scroll_to_cell(p, use_align=True, row_align=0.5)
+            self.__class__.focus_entity_on_open = None
+
         self._init_tiles()
         self._init_items()
         self._init_monsters()

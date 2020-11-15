@@ -24,6 +24,7 @@ REQUEST_TYPE_SCENE_SSS = 'sss'     # identifier is (map name, file name). (file 
 REQUEST_TYPE_SCENE_SSA = 'ssa'     # identifier is (map name, file name). (file name != path)
 REQUEST_TYPE_DUNGEON_TILESET = 'dungeon_tileset'  # identifier is the tileset id
 REQUEST_TYPE_DUNGEON_FIXED_FLOOR = 'dungeon_fixed_floor'  # identifier is the fixed floor id
+REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY = 'dungeon_fixed_floor_entity'  # identifier is the entity id to highlight
 
 
 class OpenRequest:

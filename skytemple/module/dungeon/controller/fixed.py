@@ -20,6 +20,8 @@ from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import Widget
 
 from skytemple.core.module_controller import AbstractController
+from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, \
+    REQUEST_TYPE_DUNGEON_TILESET
 from skytemple.core.string_provider import StringType
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG, MAX_ITEM_ID, SPECIAL_MONSTERS
 from skytemple.module.dungeon.entity_rule_container import EntityRuleContainer
@@ -217,7 +219,10 @@ class FixedController(AbstractController):
         self._reapply_selected_entity()
 
     def on_btn_goto_entity_editor_clicked(self, *args):
-        """ TODO """
+        idx = self.builder.get_object('utility_entity_type').get_active()
+        self.module.project.request_open(OpenRequest(
+            REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, idx
+        ))
 
     def on_utility_tile_direction_changed(self, *args):
         self._reapply_selected_tile()
@@ -226,7 +231,9 @@ class FixedController(AbstractController):
         self._reapply_selected_tile()
 
     def on_tool_scene_goto_tileset_clicked(self, *args):
-        """ TODO """
+        self.module.project.request_open(OpenRequest(
+            REQUEST_TYPE_DUNGEON_TILESET, self.tileset_id
+        ))
 
     def on_tool_choose_tileset_cb_changed(self, w: Gtk.ComboBox):
         idx = w.get_active()
