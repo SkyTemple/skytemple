@@ -17,9 +17,11 @@
 import logging
 from typing import Optional
 
+from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label
@@ -83,6 +85,10 @@ class DungeonGraphicsModule(AbstractModule):
             )
 
         recursive_generate_item_store_row_label(self._tree_model[root])
+
+    def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
+        if request.type == REQUEST_TYPE_DUNGEON_TILESET:
+            return self._tree_level_iter[request.identifier]
 
     def get_dma(self, item_id) -> Dma:
         return self.dungeon_bin.get(f'dungeon{item_id}.dma')

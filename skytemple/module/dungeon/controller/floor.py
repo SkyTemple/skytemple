@@ -27,6 +27,7 @@ from gi.repository import Gtk, GLib, GdkPixbuf
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.module_controller import AbstractController
+from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET, REQUEST_TYPE_DUNGEON_FIXED_FLOOR
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import add_dialog_xml_filter
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG
@@ -279,6 +280,9 @@ class FloorController(AbstractController):
         self._update_from_widget(w)
         self.mark_as_modified()
 
+    def on_btn_help_unusued_chance_clicked(self, *args):
+        pass  # todo
+
     def on_scale_hidden_stairs_spawn_chance_value_changed(self, w, *args):
         self._update_from_widget(w)
         self.mark_as_modified()
@@ -321,10 +325,17 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_goto_tileset_clicked(self, *args):
-        pass
+        idx = self.builder.get_object('cb_tileset_id').get_active()
+        self.module.project.request_open(OpenRequest(
+            REQUEST_TYPE_DUNGEON_TILESET, idx
+        ))
 
     def on_btn_goto_fixed_floor_clicked(self, *args):
-        pass
+        idx = self.builder.get_object('cb_fixed_floor_id').get_active()
+        if idx > 0:
+            self.module.project.request_open(OpenRequest(
+                REQUEST_TYPE_DUNGEON_FIXED_FLOOR, idx
+            ))
 
     # </editor-fold>
 
@@ -1378,7 +1389,7 @@ class FloorController(AbstractController):
         # TODO: Music Name
         store = Gtk.ListStore(int, str)  # id, name
         for i in range(0, COUNT_VALID_BGM):
-            store.append([i, f"{i} - NAME"])
+            store.append([i, f"No. {i}"])
         for name in names:
             self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
