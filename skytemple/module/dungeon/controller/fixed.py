@@ -370,6 +370,32 @@ class FixedController(AbstractController):
             self.module.mark_fixed_floor_as_modified(self.floor_id)
             MainController.reload_view()
 
+    def on_btn_help_music_clicked(self, *args):
+        self._help("If not set, the track ID specified on the floor this fixed floor is assigned to will be used "
+                   "instead.")
+
+    def on_btn_help_moves_clicked(self, *args):
+        self._help("Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will not "
+                   "attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled)")
+
+    def on_btn_help_orbs_clicked(self, *args):
+        self._help("If the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed.")
+
+    def on_btn_help_defeat_enemies_clicked(self, *args):
+        self._help("If enabled, the floor is exited after all the enemies have been defeated")
+
+    def on_btn_help_unk8_clicked(self, *args):
+        self._help("If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled.")
+
+    def on_btn_help_unk9_clicked(self, *args):
+        self._help("If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled.")
+
+    def on_btn_help_override_clicked(self, *args):
+        self._help("If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will "
+                   "be used instead.\nThis is used in dungeons where the content of a fixed floor varies depending on "
+                   "the story progress, such as in most of the dungeons with a legendary pokémon at the end "
+                   "(first visit vs rematch).")
+
     # END EDIT SETTINGS
 
     def _init_comboboxes(self):
@@ -577,3 +603,10 @@ class FixedController(AbstractController):
                 cb.set_active_iter(l_iter)
                 return
             l_iter = cb.get_model().iter_next(l_iter)
+
+    def _help(self, msg):
+        md = Gtk.MessageDialog(MainController.window(),
+                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                               Gtk.ButtonsType.OK, msg)
+        md.run()
+        md.destroy()

@@ -1427,6 +1427,9 @@
         <child>
           <placeholder/>
         </child>
+        <child>
+          <placeholder/>
+        </child>
       </object>
       <packing>
         <property name="expand">False</property>
@@ -1719,6 +1722,7 @@
                 <property name="receives_default">True</property>
                 <property name="halign">start</property>
                 <property name="valign">center</property>
+                <signal name="clicked" handler="on_btn_help_water_density_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage">
                     <property name="visible">True</property>
@@ -2055,27 +2059,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="btn_help_item_density">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <signal name="clicked" handler="on_btn_help_item_density_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">skytemple-help-about-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">2</property>
-                <property name="top_attach">10</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkButton" id="btn_help_trap_density">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -2094,48 +2077,6 @@
               <packing>
                 <property name="left_attach">2</property>
                 <property name="top_attach">11</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="btn_help_initial_enemy_density">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <signal name="clicked" handler="on_btn_help_initial_enemy_density_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">skytemple-help-about-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">2</property>
-                <property name="top_attach">12</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="btn_help_buried_item_density">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <signal name="clicked" handler="on_btn_help_buried_item_density_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">skytemple-help-about-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">5</property>
-                <property name="top_attach">10</property>
               </packing>
             </child>
             <child>
@@ -2229,27 +2170,6 @@
               <packing>
                 <property name="left_attach">2</property>
                 <property name="top_attach">19</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="btn_help_enemy_iq">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <signal name="clicked" handler="on_btn_help_enemy_iq_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">skytemple-help-about-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">5</property>
-                <property name="top_attach">18</property>
               </packing>
             </child>
             <child>
@@ -2611,6 +2531,18 @@
                 <property name="left_attach">2</property>
                 <property name="top_attach">16</property>
               </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
             </child>
             <child>
               <placeholder/>

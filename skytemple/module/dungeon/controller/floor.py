@@ -173,7 +173,7 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_room_density_clicked(self, *args):
-        pass  # todo
+        self._help("The game randomly adds a number between 0 and 2 to obtain the final value.")
 
     def on_cb_structure_changed(self, w, *args):
         self._update_from_widget(w)
@@ -184,7 +184,10 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_dead_ends_clicked(self, *args):
-        pass  # todo
+        self._help("Also used in the first phase of the map generation, after connecting the vertices.\n"
+                   "If this flag is disabled, the game will look for any cell which is only connected in one direction "
+                   "and create a path in one of the other three.\n"
+                   "The process is repeated until there are no dead ends in the starting graph.")
 
     def on_entry_floor_connectivity_changed(self, w, *args):
         self._update_from_widget(w)
@@ -194,15 +197,26 @@ class FloorController(AbstractController):
         self._update_from_widget(w)
         self.mark_as_modified()
 
+    def on_btn_help_water_density_clicked(self, *args):
+        self._help("Controls the amount of walls randomly replaced by water structures. "
+                   "How this works exactly isn't researched yet.")
+
     def on_entry_extra_hallway_density_changed(self, w, *args):
         self._update_from_widget(w)
         self.mark_as_modified()
 
     def on_btn_help_floor_connectivity_clicked(self, *args):
-        pass  # todo
+        self._help("Floor connectivity (Min 1, if it's 0 a valid map can't be generated and you will get the default "
+                   "single room that it's also a monster house).\n\n"
+                   "This is the amount of connections between cells that will be generated when the map is first "
+                   "created. More will be added later to ensure that all the rooms can be accessed.\n"
+                   "A cell is a point in the initial grid used to generate the map. It will end up being a room or a "
+                   "crossroad once the full map is generated.")
 
     def on_btn_help_extra_hallway_density_clicked(self, *args):
-        pass  # todo
+        self._help("Used to generate additional hallways in the map (those \"donuts\" that lead to nowhere, multiple "
+                   "entrances to the same room, room exits connected to the same room, those dead ends that come out "
+                   "of a room, make a couple of twists and also lead to nowhere)")
 
     def on_cb_terrain_settings__has_secondary_terrain_changed(self, w, *args):
         self._update_from_widget(w)
@@ -244,29 +258,22 @@ class FloorController(AbstractController):
         self._update_from_widget(w)
         self.mark_as_modified()
 
-    def on_btn_help_item_density_clicked(self, *args):
-        pass  # todo
-
     def on_btn_help_trap_density_clicked(self, *args):
-        pass  # todo
-
-    def on_btn_help_initial_enemy_density_clicked(self, *args):
-        pass  # todo
-
-    def on_btn_help_buried_item_density_clicked(self, *args):
-        pass  # todo
+        self._help("The final value is randomized between density and density/2.")
 
     def on_btn_help_max_coin_amount_clicked(self, *args):
-        pass  # todo
+        self._help("The value stored in the ROM is actually the value divided by 5. Because of this the saved value "
+                   "will be rounded to the next multiple of 5.")
 
     def on_btn_help_chances_clicked(self, *args):
-        pass  # todo
+        self._help("These sliders control how likely it is (in %) for certain things to generate on this floor.")
 
     def on_btn_help_kecleon_shop_item_positions_clicked(self, *args):
-        pass  # todo
+        self._help("Every Kecleon shop has a minimum amount of guaranteed items.\n"
+                   "This value controls where in the shop they will be placed.")
 
     def on_btn_help_unk_hidden_stairs_clicked(self, *args):
-        pass  # todo
+        self._help("Seems to affect the content of the hidden stairs.")
 
     def on_scale_kecleon_shop_chance_value_changed(self, w, *args):
         self._update_from_widget(w)
@@ -281,7 +288,10 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_unusued_chance_clicked(self, *args):
-        pass  # todo
+        self._help("Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from "
+                   "\"ASM Patches.\"\nIf patched, the game will turn a random room into a maze room made of wall tiles "
+                   "instead of the usual water (although water can later replace some of the walls once the water "
+                   "generation takes place).")
 
     def on_scale_hidden_stairs_spawn_chance_value_changed(self, w, *args):
         self._update_from_widget(w)
@@ -296,7 +306,9 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_empty_monster_house_clicked(self, *args):
-        pass  # todo
+        self._help("It was added in explorers of sky, so right now it's only used in the sky exclusive dungeons.\n"
+                   "If a monster house spawns in the floor, this is the chance of it being empty (no items will be "
+                   "generated inside).")
 
     def on_scale_sticky_item_chance_value_changed(self, w, *args):
         self._update_from_widget(w)
@@ -311,10 +323,7 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_iq_booster_enabled_clicked(self, *args):
-        pass  # todo
-
-    def on_btn_help_enemy_iq_clicked(self, *args):
-        pass  # todo
+        self._help("If enabled, the IQ booster increases IQ on this floor.")
 
     def on_entry_enemy_iq_changed(self, w, *args):
         self._update_from_widget(w)
@@ -743,7 +752,14 @@ class FloorController(AbstractController):
     # </editor-fold>
 
     def on_btn_help__spawn_tables__clicked(self, *args):
-        pass  # todo
+        self._help("Change the chances of Pokémon, traps or items spawning.\nThe spawn chance depends on the weight of "
+                   "an entry. The higher an entry's weight is, the more likely it is to spawn.\n"
+                   "Please note for Pokémon, that weights for Pokémon that can not be spawned (eg. legendaries"
+                   "without having their items) will be added to the next Pokémon entry in the list when the game "
+                   "decides what to spawn.\n"
+                   "Please note for items, that the game first decides what category to spawn for an item and then "
+                   "chooses an entry for that category.\n"
+                   "All spawn entries are always saved to the game sorted by their (Pokémon, item, trap) ID.")
 
     def on_btn_export_clicked(self, *args):
         from skytemple.module.dungeon.module import DungeonGroup, ICON_GROUP, \
@@ -1489,6 +1505,13 @@ class FloorController(AbstractController):
             return self.entry.unk_items1
         if self._item_list_edit_active == FloorEditItemList.UNK2:
             return self.entry.unk_items2
+
+    def _help(self, msg):
+        md = Gtk.MessageDialog(MainController.window(),
+                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                               Gtk.ButtonsType.OK, msg)
+        md.run()
+        md.destroy()
 
 
 def grouper(iterable, n, fillvalue=None):
