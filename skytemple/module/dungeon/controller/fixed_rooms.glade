@@ -2,8 +2,6 @@
 <!-- Generated with glade 3.36.0 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
-  <object class="GtkEntryCompletion" id="completion_items"/>
-  <object class="GtkEntryCompletion" id="completion_monsters"/>
   <object class="GtkListStore" id="model_entities">
     <columns>
       <!-- column-name id -->
@@ -553,7 +551,7 @@ They are usually used for boss fights or other special floors.</property>
                                     </child>
                                     <child>
                                       <object class="GtkTreeViewColumn">
-                                        <property name="title" translatable="yes">Trap ID</property>
+                                        <property name="title" translatable="yes">Trap</property>
                                         <child>
                                           <object class="GtkCellRendererCombo" id="cr_tiles_trap_id">
                                             <property name="editable">True</property>
@@ -839,6 +837,7 @@ They are usually used for boss fights or other special floors.</property>
                                           <object class="GtkCellRendererText" id="cr_items_item_name">
                                             <property name="editable">True</property>
                                             <signal name="edited" handler="on_cr_items_item_name_edited" swapped="no"/>
+                                            <signal name="editing-started" handler="on_cr_items_item_name_editing_started" swapped="no"/>
                                           </object>
                                           <attributes>
                                             <attribute name="text">2</attribute>
@@ -903,6 +902,7 @@ They are usually used for boss fights or other special floors.</property>
                                               <object class="GtkCellRendererText" id="cr_monsters_monster">
                                                 <property name="editable">True</property>
                                                 <signal name="edited" handler="on_cr_monsters_monster_edited" swapped="no"/>
+                                                <signal name="editing-started" handler="on_cr_monsters_monster_editing_started" swapped="no"/>
                                               </object>
                                               <attributes>
                                                 <attribute name="text">2</attribute>
@@ -1225,10 +1225,30 @@ They are usually used for boss fights or other special floors.</property>
       <column type="gchararray"/>
     </columns>
   </object>
+  <object class="GtkEntryCompletion" id="completion_items">
+    <property name="model">store_completion_items</property>
+    <property name="text_column">0</property>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
   <object class="GtkListStore" id="store_completion_monsters">
     <columns>
       <!-- column-name label -->
       <column type="gchararray"/>
     </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_monsters">
+    <property name="model">store_completion_monsters</property>
+    <property name="text_column">0</property>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
   </object>
 </interface>

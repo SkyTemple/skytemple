@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import re
 from typing import TYPE_CHECKING
 
 from gi.repository import Gtk
@@ -30,6 +31,7 @@ if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule
 
 FIXED_ROOMS_NAME = 'Fixed Rooms'
+PATTERN = re.compile(r'.*\([#$](\d+)\).*')
 
 
 class FixedRoomsController(AbstractController):
@@ -159,95 +161,218 @@ class FixedRoomsController(AbstractController):
             s.select_path(p)
             t.scroll_to_cell(p, use_align=True, row_align=0.5)
 
-    def on_cr_tiles_trap_id_changed(self, *args):
-        pass  # todo
+    def on_cr_tiles_trap_id_changed(self, widget, path, new_iter, *args):
+        store: Gtk.Store = self.builder.get_object('model_tiles')
+        cb_store: Gtk.Store = self.builder.get_object('model_tiles__traps')
+        store[path][1] = cb_store[new_iter][1]
+        self.lst_tile[int(store[path][0])].trap_id = cb_store[new_iter][0]
+        self._save()
 
-    def on_cr_tiles_bf1_0_toggled(self, *args):
-        pass  # todo
+    def _set_tiles_trap_data_bitflag(self, idx, value, path):
+        store: Gtk.Store = self.builder.get_object('model_tiles')
+        store[path][idx + 2] = value
+        if value:  # TRUE
+            self.lst_tile[int(store[path][0])].trap_data |= 1 << idx
+        else:  # FALSE
+            self.lst_tile[int(store[path][0])].trap_data &= ~(1 << idx)
+        self._save()
 
-    def on_cr_tiles_bf1_1_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf1_0_toggled(self, widget, path):
+        self._set_tiles_trap_data_bitflag(0, not widget.get_active(), path)
 
-    def on_cr_tiles_bf1_2_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf1_1_toggled(self, widget, path):
+        self._set_tiles_trap_data_bitflag(1, not widget.get_active(), path)
 
-    def on_cr_tiles_bf1_3_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf1_2_toggled(self, widget, path):
+        self._set_tiles_trap_data_bitflag(2, not widget.get_active(), path)
 
-    def on_cr_tiles_bf1_4_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf1_3_toggled(self, widget, path):
+        self._set_tiles_trap_data_bitflag(3, not widget.get_active(), path)
 
-    def on_cr_tiles_bf1_5_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf1_4_toggled(self, widget, path):
+        self._set_tiles_trap_data_bitflag(4, not widget.get_active(), path)
 
-    def on_cr_tiles_bf1_6_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf1_5_toggled(self, widget, path):
+        self._set_tiles_trap_data_bitflag(5, not widget.get_active(), path)
 
-    def on_cr_tiles_bf1_7_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf1_6_toggled(self, widget, path):
+        self._set_tiles_trap_data_bitflag(6, not widget.get_active(), path)
 
-    def on_cr_tiles_room_id_edited(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf1_7_toggled(self, widget, path):
+        self._set_tiles_trap_data_bitflag(7, not widget.get_active(), path)
 
-    def on_cr_tiles_bf2_0_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_room_id_edited(self, widget, path, text):
+        store: Gtk.Store = self.builder.get_object('model_tiles')
+        try:
+            v = int(text)
+        except:
+            return
+        store[path][10] = text
+        self.lst_tile[int(store[path][0])].room_id = v
+        self._save()
 
-    def on_cr_tiles_bf2_1_toggled(self, *args):
-        pass  # todo
+    def _set_tiles_flags_data_bitflag(self, idx, value, path):
+        store: Gtk.Store = self.builder.get_object('model_tiles')
+        store[path][idx + 11] = value
+        if value:  # TRUE
+            self.lst_tile[int(store[path][0])].flags |= 1 << idx
+        else:  # FALSE
+            self.lst_tile[int(store[path][0])].flags &= ~(1 << idx)
+        self._save()
 
-    def on_cr_tiles_bf2_2_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf2_0_toggled(self, widget, path):
+        self._set_tiles_flags_data_bitflag(0, not widget.get_active(), path)
 
-    def on_cr_tiles_bf2_3_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf2_1_toggled(self, widget, path):
+        self._set_tiles_flags_data_bitflag(1, not widget.get_active(), path)
 
-    def on_cr_tiles_bf2_4_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf2_2_toggled(self, widget, path):
+        self._set_tiles_flags_data_bitflag(2, not widget.get_active(), path)
 
-    def on_cr_tiles_bf2_5_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf2_3_toggled(self, widget, path):
+        self._set_tiles_flags_data_bitflag(3, not widget.get_active(), path)
 
-    def on_cr_tiles_bf2_6_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf2_4_toggled(self, widget, path):
+        self._set_tiles_flags_data_bitflag(4, not widget.get_active(), path)
 
-    def on_cr_tiles_bf2_7_toggled(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf2_5_toggled(self, widget, path):
+        self._set_tiles_flags_data_bitflag(5, not widget.get_active(), path)
 
-    def on_cr_items_item_name_edited(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf2_6_toggled(self, widget, path):
+        self._set_tiles_flags_data_bitflag(6, not widget.get_active(), path)
 
-    def on_cr_monsters_monster_edited(self, *args):
-        pass  # todo
+    def on_cr_tiles_bf2_7_toggled(self, widget, path):
+        self._set_tiles_flags_data_bitflag(7, not widget.get_active(), path)
 
-    def on_cr_monsters_type_changed(self, *args):
-        pass  # todo
+    def on_cr_items_item_name_editing_started(self, renderer, editable, path):
+        editable.set_completion(self.builder.get_object('completion_items'))
 
-    def on_cr_monsters_stats_changed(self, *args):
-        pass  # todo
+    def on_cr_items_item_name_edited(self, widget, path, text):
+        store: Gtk.Store = self.builder.get_object('model_items')
+        match = PATTERN.match(text)
+        if match is None:
+            return
+        try:
+            idx = int(match.group(1))
+        except ValueError:
+            return
+        store[path][1] = idx
+        store[path][2] = self.item_names[idx]
+        self.lst_item[int(store[path][0])].item_id = idx
+        self._save()
 
-    def on_cr_stats_level_edited(self, *args):
-        pass  # todo
+    def on_cr_monsters_monster_editing_started(self, renderer, editable, path):
+        editable.set_completion(self.builder.get_object('completion_monsters'))
 
-    def on_cr_stats_hp_edited(self, *args):
-        pass  # todo
+    def on_cr_monsters_monster_edited(self, widget, path, text):
+        store: Gtk.Store = self.builder.get_object('model_monsters')
+        match = PATTERN.match(text)
+        if match is None:
+            return
+        try:
+            idx = int(match.group(1))
+        except ValueError:
+            return
+        store[path][1] = idx
+        store[path][2] = self.monster_names[idx]
+        self.lst_monster[int(store[path][0])].md_idx = idx
+        self._save()
 
-    def on_cr_stats_exp_yield_edited(self, *args):
-        pass  # todo
+    def on_cr_monsters_type_changed(self, widget, path, new_iter, *args):
+        store: Gtk.Store = self.builder.get_object('model_monsters')
+        cb_store: Gtk.Store = self.builder.get_object('model_monsters__type')
+        store[path][3] = cb_store[new_iter][0]
+        store[path][4] = cb_store[new_iter][1]
+        self.lst_monster[int(store[path][0])].enemy_settings = MonsterSpawnType(cb_store[new_iter][0])
+        self._save()
 
-    def on_cr_stats_atk_edited(self, *args):
-        pass  # todo
+    def on_cr_monsters_stats_changed(self, widget, path, new_iter, *args):
+        store: Gtk.Store = self.builder.get_object('model_monsters')
+        cb_store: Gtk.Store = self.builder.get_object('model_monsters__stats')
+        store[path][5] = cb_store[new_iter][0]
+        store[path][6] = cb_store[new_iter][1]
+        self.lst_monster[int(store[path][0])].stats_entry = cb_store[new_iter][0]
+        self._save()
 
-    def on_cr_stats_sp_atk_edited(self, *args):
-        pass  # todo
+    def on_cr_stats_level_edited(self, widget, path, text):
+        store: Gtk.Store = self.builder.get_object('model_stats')
+        try:
+            v = int(text)
+        except:
+            return
+        store[path][1] = text
+        self.lst_stats[int(store[path][0])].level = v
+        self._save()
 
-    def on_cr_stats_def_edited(self, *args):
-        pass  # todo
+    def on_cr_stats_hp_edited(self, widget, path, text):
+        store: Gtk.Store = self.builder.get_object('model_stats')
+        try:
+            v = int(text)
+        except:
+            return
+        store[path][2] = text
+        self.lst_stats[int(store[path][0])].hp = v
+        self._save()
 
-    def on_cr_stats_sp_def_edited(self, *args):
-        pass  # todo
+    def on_cr_stats_exp_yield_edited(self, widget, path, text):
+        store: Gtk.Store = self.builder.get_object('model_stats')
+        try:
+            v = int(text)
+        except:
+            return
+        store[path][3] = text
+        self.lst_stats[int(store[path][0])].exp_yield = v
+        self._save()
 
-    def on_cr_stats_unka_edited(self, *args):
-        pass  # todo
+    def on_cr_stats_atk_edited(self, widget, path, text):
+        store: Gtk.Store = self.builder.get_object('model_stats')
+        try:
+            v = int(text)
+        except:
+            return
+        store[path][4] = text
+        self.lst_stats[int(store[path][0])].attack = v
+        self._save()
+
+    def on_cr_stats_sp_atk_edited(self, widget, path, text):
+        store: Gtk.Store = self.builder.get_object('model_stats')
+        try:
+            v = int(text)
+        except:
+            return
+        store[path][5] = text
+        self.lst_stats[int(store[path][0])].special_attack = v
+        self._save()
+
+    def on_cr_stats_def_edited(self, widget, path, text):
+        store: Gtk.Store = self.builder.get_object('model_stats')
+        try:
+            v = int(text)
+        except:
+            return
+        store[path][6] = text
+        self.lst_stats[int(store[path][0])].defense = v
+        self._save()
+
+    def on_cr_stats_sp_def_edited(self, widget, path, text):
+        store: Gtk.Store = self.builder.get_object('model_stats')
+        try:
+            v = int(text)
+        except:
+            return
+        store[path][7] = text
+        self.lst_stats[int(store[path][0])].special_defense = v
+        self._save()
+
+    def on_cr_stats_unka_edited(self, widget, path, text):
+        store: Gtk.Store = self.builder.get_object('model_stats')
+        try:
+            v = int(text)
+        except:
+            return
+        store[path][8] = text
+        self.lst_stats[int(store[path][0])].unkA = v
+        self._save()
 
     def _fill_entities(self):
         # Init Tiles Store
@@ -335,7 +460,6 @@ class FixedRoomsController(AbstractController):
             store.append([i, entry])
 
     def _fill_monsters(self):
-
         # Init Monsters Stats
         store: Gtk.ListStore = self.builder.get_object('model_monsters__stats')
         store.clear()
