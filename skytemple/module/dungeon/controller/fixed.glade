@@ -1242,7 +1242,7 @@ Tile Properties (ID):</property>
               </object>
               <packing>
                 <property name="left_attach">0</property>
-                <property name="top_attach">12</property>
+                <property name="top_attach">13</property>
                 <property name="width">3</property>
               </packing>
             </child>
@@ -1256,7 +1256,7 @@ if dungeon is cleared:</property>
               </object>
               <packing>
                 <property name="left_attach">0</property>
-                <property name="top_attach">13</property>
+                <property name="top_attach">14</property>
               </packing>
             </child>
             <child>
@@ -1267,7 +1267,7 @@ if dungeon is cleared:</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
-                <property name="top_attach">13</property>
+                <property name="top_attach">14</property>
               </packing>
             </child>
             <child>
@@ -1286,7 +1286,7 @@ if dungeon is cleared:</property>
               </object>
               <packing>
                 <property name="left_attach">2</property>
-                <property name="top_attach">13</property>
+                <property name="top_attach">14</property>
               </packing>
             </child>
             <child>
@@ -1536,6 +1536,24 @@ if dungeon is cleared:</property>
                 <property name="left_attach">2</property>
                 <property name="top_attach">4</property>
               </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_apply_size">
+                <property name="label" translatable="yes">Apply new size</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="halign">end</property>
+                <signal name="clicked" handler="on_btn_apply_size_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">12</property>
+                <property name="width">2</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
             </child>
             <child>
               <placeholder/>

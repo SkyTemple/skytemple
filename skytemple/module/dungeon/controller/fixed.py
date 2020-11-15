@@ -14,11 +14,14 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import sys
 from typing import TYPE_CHECKING, Optional, Callable, Mapping
 
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import Widget
 
+from skytemple.controller.main import MainController
+from skytemple.core.error_handler import display_error
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, \
     REQUEST_TYPE_DUNGEON_TILESET
@@ -95,8 +98,8 @@ class FixedController(AbstractController):
 
         self._init_comboboxes()
         self._auto_select_tileset()
-        self._load_settings()
         self._init_fixed_floor()
+        self._load_settings()
         self._init_drawer()
         self._init_tileset()
         self._update_scales()
@@ -336,11 +339,36 @@ class FixedController(AbstractController):
         self.override_id = w.get_active()
         self.module.save_fixed_floor_override(self.floor_id, self.override_id)
 
-    def on_settings_width_changed(self, w, *args):
-        pass  # todo
+    def on_btn_apply_size_clicked(self, *args):
+        try:
+            width = int(self.builder.get_object('settings_width').get_text())
+            height = int(self.builder.get_object('settings_height').get_text())
+            assert width > 0 and height > 0
+        except (ValueError, AssertionError):
+            display_error(
+                sys.exc_info(),
+                "Width and height must be numbers > 0.",
+                "Invalid values."
+            )
+            return
 
-    def on_settings_height_changed(self, w, *args):
-        pass  # todo
+        confirm = True
+        if width < self.floor.width or height < self.floor.height:
+            md = Gtk.MessageDialog(
+                MainController.window(),
+                Gtk.DialogFlags.MODAL,
+                Gtk.MessageType.WARNING,
+                Gtk.ButtonsType.YES_NO,
+                f"You are about to reduce the size of the room. This will delete tiles. Do you want to continue?",
+                title="Warning!"
+            )
+            response = md.run()
+            md.destroy()
+            confirm = response == Gtk.ResponseType.YES
+        if confirm:
+            self.floor.resize(width, height)
+            self.module.mark_fixed_floor_as_modified(self.floor_id)
+            MainController.reload_view()
 
     # END EDIT SETTINGS
 
@@ -441,6 +469,8 @@ class FixedController(AbstractController):
         self.builder.get_object('settings_unk8').set_active(self.properties.unk8)
         self.builder.get_object('settings_unk9').set_active(self.properties.unk9)
         self.builder.get_object('settings_override').set_active(self.override_id)
+        self.builder.get_object('settings_width').set_text(str(self.floor.width))
+        self.builder.get_object('settings_height').set_text(str(self.floor.height))
 
     def _init_fixed_floor(self):
         # Fixed floor data
