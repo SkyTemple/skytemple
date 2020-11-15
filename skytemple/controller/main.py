@@ -16,6 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 import os
+import ssl
 import sys
 import traceback
 import urllib
@@ -723,7 +724,11 @@ class MainController:
         try:
             url = 'https://raster.shields.io/discord/710190644152369162?label=Discord'
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-            input_stream = Gio.MemoryInputStream.new_from_data(urllib.request.urlopen(req).read(), None)
+            # Some weird issue on Windows with PyInstaller...:
+            ctx = ssl.create_default_context()
+            ctx.check_hostname = False
+            ctx.verify_mode = ssl.CERT_NONE
+            input_stream = Gio.MemoryInputStream.new_from_data(urllib.request.urlopen(req, context=ctx).read(), None)
             pixbuf = Pixbuf.new_from_stream(input_stream, None)
             image = Gtk.Image()
             image.show()
@@ -731,7 +736,7 @@ class MainController:
             self.builder.get_object('discord_icon_container').add(image)
         except BaseException:
             # We are not crashing over a Discord badge...
-            pass
+            logger.error("Failed loading the Discord badge.", exc_info=sys.exc_info())
         # Load the support us images
         try:
             # Discord
