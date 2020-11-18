@@ -15,6 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import sys
+import textwrap
 from itertools import chain
 from typing import TYPE_CHECKING, Optional, List, Union
 
@@ -24,6 +25,10 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.module_controller import AbstractController
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple.core.string_provider import StringType
+from skytemple_files.dungeon_data.mappa_bin.validator.exception import DungeonTotalFloorCountInvalidError, \
+    DungeonValidatorError, InvalidFloorListReferencedError, InvalidFloorReferencedError, FloorReusedError, \
+    DungeonMissingFloorError
+from skytemple_files.hardcoded.dungeons import DungeonDefinition
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, DungeonGroup
@@ -53,7 +58,50 @@ class MainController(AbstractController):
         self.builder.connect_signals(self)
         return self.builder.get_object('main_box')
 
+    def on_fix_dungeons_clicked(self, *args):
+        dialog: Gtk.Dialog = self.builder.get_object('dialog_fix_dungeon_errors')
+        dialog.set_attached_to(SkyTempleMainController.window())
+        dialog.set_transient_for(SkyTempleMainController.window())
+        dialog.resize(900, 520)
+
+        dungeon_list = self.module.get_dungeon_list()
+        validator = self.module.get_validator()
+        validator.validate()
+        store: Gtk.Store = self.builder.get_object('store_dungeon_errors')
+        store.clear()
+        validator.errors.sort(key=lambda e: e.dungeon_id)
+        for e in validator.errors:
+            if not isinstance(e, DungeonTotalFloorCountInvalidError):
+                if isinstance(e, FloorReusedError):
+                    i = e.reused_of_dungeon_with_id
+                    e.reused_of_dungeon_name = f'dungeon {i} ({self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, i)})'
+                dungeon_name = f'{e.dungeon_id}: {self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, e.dungeon_id)}'
+                store.append([
+                    True,  # selected
+                    dungeon_name,  # dungeon_name
+                    e.dungeon_id,  # dungeon_id
+                    textwrap.fill(e.name, 40),  # error_name
+                    textwrap.fill(str(e), 40),  # error_description
+                    textwrap.fill(self._get_solution_text(dungeon_list, e), 40),  # solution
+                    e,  # error
+                ])
+
+        resp = dialog.run()
+        dialog.hide()
+        if resp == Gtk.ResponseType.APPLY:
+            pass
+
+    def on_cr_errors_fix_toggled(self, widget, path):
+        store: Gtk.Store = self.builder.get_object('store_dungeon_errors')
+        store[path][0] = not widget.get_active()
+
     def on_edit_groups_clicked(self, *args):
+        if not self.module.get_validator().validate():
+            display_error(
+                None,
+                "The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first."
+            )
+            return
         dialog: Gtk.Dialog = self.builder.get_object('dialog_groups')
         dialog.set_attached_to(SkyTempleMainController.window())
         dialog.set_transient_for(SkyTempleMainController.window())
@@ -309,3 +357,21 @@ class MainController(AbstractController):
 
             treeiter = model.iter_next(treeiter)
         return dungeons
+
+    def _get_solution_text(self, dungeons: List[DungeonDefinition], e: DungeonValidatorError):
+        if isinstance(e, InvalidFloorListReferencedError):
+            return 'Create a new floor list with one empty floor for this dungeon.'
+        if isinstance(e, InvalidFloorReferencedError):
+            return 'Create one new empty floor for this dungeon.'
+        if isinstance(e, FloorReusedError):
+            return 'Create a new floor list with one empty floor for this dungeon.'
+        if isinstance(e, DungeonMissingFloorError):
+            # Special case for Regigigas Chamber
+            if self._is_regigias_special_case(dungeons, e):
+                return 'Remove the unused floor.'
+            return f'Add the remaining floors to the dungeon.'
+        return '???'
+
+    def _is_regigias_special_case(self, dungeons, e):
+        return e.dungeon_id == 61 and dungeons[e.dungeon_id].mappa_index == 52 and \
+                    dungeons[e.dungeon_id].start_after == 18 and e.floors_in_mappa_not_referenced == [19]

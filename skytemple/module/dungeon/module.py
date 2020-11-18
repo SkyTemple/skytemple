@@ -25,7 +25,7 @@ from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR, \
-    REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY
+    REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, REQUEST_TYPE_DUNGEONS
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
@@ -37,6 +37,7 @@ from skytemple.module.dungeon.controller.fixed import FixedController
 from skytemple.module.dungeon.controller.fixed_rooms import FIXED_ROOMS_NAME, FixedRoomsController
 from skytemple.module.dungeon.controller.floor import FloorController
 from skytemple.module.dungeon.controller.group import GroupController
+from skytemple.module.dungeon.controller.invalid import InvalidDungeonController
 from skytemple.module.dungeon.controller.main import MainController, DUNGEONS_NAME
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
@@ -46,6 +47,7 @@ from skytemple_files.dungeon_data.mappa_bin.floor import MappaFloor
 from skytemple_files.dungeon_data.mappa_bin.mappa_xml import mappa_floor_xml_import
 from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
 from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
+from skytemple_files.dungeon_data.mappa_bin.validator.validator import DungeonValidator
 from skytemple_files.dungeon_data.mappa_g_bin.mappa_converter import convert_mappa_to_mappag
 from skytemple_files.graphics.dbg.model import Dbg
 from skytemple_files.graphics.dma.model import Dma
@@ -61,8 +63,6 @@ from skytemple_files.hardcoded.fixed_floor import EntitySpawnEntry, ItemSpawn, M
 DOJO_DUNGEONS_FIRST = 0xB4
 DOJO_DUNGEONS_LAST = 0xBF
 DOJO_MAPPA_ENTRY = 0x35
-# Those are not actual dungeons and share mappa floor data with Temporal Tower future.
-INVALID_DUNGEON_IDS = [175, 176, 177, 178]
 ICON_ROOT = 'skytemple-e-dungeon-symbolic'
 ICON_DUNGEONS = 'skytemple-folder-symbolic'  # TODO: Remove.
 ICON_FIXED_ROOMS = 'skytemple-e-dungeon-fixed-floor-symbolic'
@@ -119,7 +119,12 @@ class DungeonModule(AbstractModule):
         self._fixed_floor_data: Optional[FixedBin] = None
         self._dungeon_bin: Optional[DungeonBinPack] = None
 
+        # Preload mappa
+        self.get_mappa()
+        self._validator = None
+
     def load_tree_items(self, item_store: TreeStore, root_node):
+        self._validator = DungeonValidator(self.get_dungeon_list(), self.get_mappa().floor_lists)
         root = item_store.append(root_node, [
             ICON_ROOT, DUNGEONS_NAME, self, MainController, 0, False, '', True
         ])
@@ -135,6 +140,8 @@ class DungeonModule(AbstractModule):
             DUNGEON_BIN, FileType.DUNGEON_BIN,
             static_data=static_data
         )
+
+        self._validator.validate()
 
         # Regular dungeons
         for dungeon_or_group in self.load_dungeons():
@@ -171,11 +178,16 @@ class DungeonModule(AbstractModule):
         recursive_generate_item_store_row_label(self._tree_model[self._fixed_floor_root_iter])
 
     def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
+        if request.type == REQUEST_TYPE_DUNGEONS:
+            return self._root_iter
         if request.type == REQUEST_TYPE_DUNGEON_FIXED_FLOOR:
             return self._fixed_floor_iters[request.identifier]
         if request.type == REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY:
             FixedRoomsController.focus_entity_on_open = request.identifier
             return self._fixed_floor_root_iter
+
+    def get_validator(self) -> DungeonValidator:
+        return self._validator
 
     def get_mappa(self) -> MappaBin:
         return self.project.open_file_in_rom(MAPPA_PATH, FileType.MAPPA_BIN)
@@ -246,12 +258,14 @@ class DungeonModule(AbstractModule):
         ))
 
     def _add_dungeon_to_tree(self, root_node, item_store, idx, previous_floor_id):
+        clazz = DungeonController if idx not in self._validator.invalid_dungeons else InvalidDungeonController
         dungeon_info = DungeonViewInfo(idx, idx < DOJO_DUNGEONS_FIRST)
         self._dungeon_iters[idx] = item_store.append(root_node, [
-            ICON_DUNGEON, self.generate_dungeon_label(idx), self, DungeonController,
+            ICON_DUNGEON, self.generate_dungeon_label(idx), self, clazz,
             dungeon_info, False, '', True
         ])
-        self._regenerate_dungeon_floors(idx, previous_floor_id)
+        if clazz == DungeonController:
+            self._regenerate_dungeon_floors(idx, previous_floor_id)
 
     def _regenerate_dungeon_floors(self, idx, previous_floor_id):
         dungeon = self._dungeon_iters[idx]
@@ -278,14 +292,10 @@ class DungeonModule(AbstractModule):
         groups = {}
         yielded = set()
         for idx, dungeon in enumerate(lst):
-            if idx in INVALID_DUNGEON_IDS:
-                continue
             if dungeon.mappa_index not in groups:
                 groups[dungeon.mappa_index] = []
             groups[dungeon.mappa_index].append(idx)
         for idx, dungeon in enumerate(lst):
-            if idx in INVALID_DUNGEON_IDS:
-                continue
             if dungeon.mappa_index not in yielded:
                 yielded.add(dungeon.mappa_index)
                 if len(groups[dungeon.mappa_index]) < 2:

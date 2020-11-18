@@ -22,6 +22,7 @@ REQUEST_TYPE_MAP_BG    = 'map_bg'  # identifier is the map bg id.
 REQUEST_TYPE_SCENE_SSE = 'sse'     # identifier is the map name.
 REQUEST_TYPE_SCENE_SSS = 'sss'     # identifier is (map name, file name). (file name != path)
 REQUEST_TYPE_SCENE_SSA = 'ssa'     # identifier is (map name, file name). (file name != path)
+REQUEST_TYPE_DUNGEONS  = "dungeon_list" # no identifier
 REQUEST_TYPE_DUNGEON_TILESET = 'dungeon_tileset'  # identifier is the tileset id
 REQUEST_TYPE_DUNGEON_FIXED_FLOOR = 'dungeon_fixed_floor'  # identifier is the fixed floor id
 REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY = 'dungeon_fixed_floor_entity'  # identifier is the entity id to highlight
