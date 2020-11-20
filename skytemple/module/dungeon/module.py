@@ -66,7 +66,7 @@ DOJO_MAPPA_ENTRY = 0x35
 ICON_ROOT = 'skytemple-e-dungeon-symbolic'
 ICON_DUNGEONS = 'skytemple-folder-symbolic'  # TODO: Remove.
 ICON_FIXED_ROOMS = 'skytemple-e-dungeon-fixed-floor-symbolic'
-ICON_GROUP = 'skytemple-folder-open-symbolic'
+ICON_GROUP = 'skytemple-folder-symbolic'
 ICON_DUNGEON = 'skytemple-e-dungeon-symbolic'
 ICON_FLOOR = 'skytemple-e-dungeon-floor-symbolic'
 MAPPA_PATH = 'BALANCE/mappa_s.bin'
@@ -110,7 +110,7 @@ class DungeonModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self._tree_model = None
+        self._tree_model: Optional[Gtk.TreeModel] = None
         self._root_iter = None
         self._dungeon_iters = {}
         self._dungeon_floor_iters = {}
@@ -124,7 +124,7 @@ class DungeonModule(AbstractModule):
         self._validator = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
-        self._validator = DungeonValidator(self.get_dungeon_list(), self.get_mappa().floor_lists)
+        self._validator = DungeonValidator(self.get_mappa().floor_lists)
         root = item_store.append(root_node, [
             ICON_ROOT, DUNGEONS_NAME, self, MainController, 0, False, '', True
         ])
@@ -141,28 +141,9 @@ class DungeonModule(AbstractModule):
             static_data=static_data
         )
 
-        self._validator.validate()
+        self._validator.validate(self.get_dungeon_list())
 
-        # Regular dungeons
-        for dungeon_or_group in self.load_dungeons():
-            if isinstance(dungeon_or_group, DungeonGroup):
-                # Group
-                group = item_store.append(root, [
-                    ICON_GROUP, self.generate_group_label(dungeon_or_group.base_dungeon_id), self, GroupController,
-                    dungeon_or_group.base_dungeon_id, False, '', True
-                ])
-                for dungeon, start_id in zip(dungeon_or_group.dungeon_ids, dungeon_or_group.start_ids):
-                    self._add_dungeon_to_tree(group, item_store, dungeon, start_id)
-            else:
-                # Dungeon
-                self._add_dungeon_to_tree(root, item_store, dungeon_or_group, 0)
-
-        # Dojo dungeons
-        dojo_root = item_store.append(root, [
-            ICON_DUNGEONS, DOJOS_NAME, self, DojosController, 0, False, '', True
-        ])
-        for i in range(DOJO_DUNGEONS_FIRST, DOJO_DUNGEONS_LAST + 1):
-            self._add_dungeon_to_tree(dojo_root, item_store, i, 0)
+        self._fill_dungeon_tree()
 
         # Fixed rooms
         self._fixed_floor_root_iter = item_store.append(root_node, [
@@ -176,6 +157,34 @@ class DungeonModule(AbstractModule):
 
         recursive_generate_item_store_row_label(self._tree_model[root])
         recursive_generate_item_store_row_label(self._tree_model[self._fixed_floor_root_iter])
+
+    def rebuild_dungeon_tree(self):
+        # Collect modified of _dungeon_iters and _dungeon_floor_iters
+        modified_dungeons = {x: self._tree_model[y][5] for x, y in self._dungeon_iters.items()}
+        modified_floors = {}
+        for dungeon, floors in self._dungeon_floor_iters.items():
+            modified_floors[dungeon] = {x: self._tree_model[y][5] for x, y in floors.items()}
+        # Delete everything under _root_iter
+        child = self._tree_model.iter_children(self._root_iter)
+        while child is not None:
+            nxt = self._tree_model.iter_next(child)
+            self._tree_model.remove(child)
+            child = nxt
+        self._dungeon_iters = {}
+        self._dungeon_floor_iters = {}
+        # _fill_dungeon_tree
+        self._fill_dungeon_tree()
+        # Apply modified of _dungeon_iters and _dungeon_floor_iters
+        for dungeon, modified in modified_dungeons.items():
+            if dungeon in self._dungeon_iters:
+                self._tree_model[self._dungeon_iters[dungeon]][5] = modified
+        for dungeon, floors in modified_floors.items():
+            if dungeon in self._dungeon_floor_iters:
+                for floor, modified in floors.items():
+                    if floor in self._dungeon_floor_iters[dungeon]:
+                        self._tree_model[self._dungeon_floor_iters[dungeon][floor]][5] = modified
+        # Re-generate label
+        recursive_generate_item_store_row_label(self._tree_model[self._root_iter])
 
     def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
         if request.type == REQUEST_TYPE_DUNGEONS:
@@ -230,10 +239,15 @@ class DungeonModule(AbstractModule):
     def mark_dungeon_as_modified(self, dungeon_id, modified_mappa=True):
         self.project.get_string_provider().mark_as_modified()
         if modified_mappa:
-            self._save_mappa()
+            self.save_mappa()
 
         # Mark as modified in tree
         row = self._tree_model[self._dungeon_iters[dungeon_id]]
+        recursive_up_item_store_mark_as_modified(row)
+
+    def mark_root_as_modified(self):
+        # Mark as modified in tree
+        row = self._tree_model[self._root_iter]
         recursive_up_item_store_mark_as_modified(row)
 
     def save_dungeon_list(self, dungeons: List[DungeonDefinition]):
@@ -251,11 +265,36 @@ class DungeonModule(AbstractModule):
             restrictions, binary, self.project.get_rom_module().get_static_data()
         ))
 
-    def _save_mappa(self):
+    def save_mappa(self):
         self.project.mark_as_modified(MAPPA_PATH)
         self.project.save_file_manually(MAPPAG_PATH, FileType.MAPPA_G_BIN.serialize(
             convert_mappa_to_mappag(self.get_mappa())
         ))
+
+    def _fill_dungeon_tree(self):
+        item_store = self._tree_model
+        root = self._root_iter
+
+        # Regular dungeons
+        for dungeon_or_group in self.load_dungeons():
+            if isinstance(dungeon_or_group, DungeonGroup):
+                # Group
+                group = item_store.append(root, [
+                    ICON_GROUP, self.generate_group_label(dungeon_or_group.base_dungeon_id), self, GroupController,
+                    dungeon_or_group.base_dungeon_id, False, '', True
+                ])
+                for dungeon, start_id in zip(dungeon_or_group.dungeon_ids, dungeon_or_group.start_ids):
+                    self._add_dungeon_to_tree(group, item_store, dungeon, start_id)
+            else:
+                # Dungeon
+                self._add_dungeon_to_tree(root, item_store, dungeon_or_group, 0)
+
+        # Dojo dungeons
+        dojo_root = item_store.append(root, [
+            ICON_DUNGEONS, DOJOS_NAME, self, DojosController, 0, False, '', True
+        ])
+        for i in range(DOJO_DUNGEONS_FIRST, DOJO_DUNGEONS_LAST + 1):
+            self._add_dungeon_to_tree(dojo_root, item_store, i, 0)
 
     def _add_dungeon_to_tree(self, root_node, item_store, idx, previous_floor_id):
         clazz = DungeonController if idx not in self._validator.invalid_dungeons else InvalidDungeonController
@@ -553,6 +592,18 @@ class DungeonModule(AbstractModule):
             return monster_names[monster_id]
         return monster_names[monster_id] + " (" + enemy_settings_names[enemy_settings] + ")"
 
-    def desc_fixed_floor_stats(self, stats):
-        return "TODO"  # todo
+    def desc_fixed_floor_stats(self, i, entry):
+        return f"{i} - Lvl: {entry.level}, Atk: {entry.attack}, Def: {entry.defense}, " \
+               f"Sp. Atk: {entry.special_attack}, Sp. Def: {entry.special_defense}, HP: {entry.hp}"
+
+    def mappa_generate_and_insert_new_floor_list(self):
+        mappa = self.get_mappa()
+        index = len(mappa.floor_lists)
+        mappa.floor_lists.append([self.mappa_generate_new_floor()])
+        return index
+
+    def mappa_generate_new_floor(self) -> MappaFloor:
+        """Copies the first floor of test dungeon and returns it"""
+        return MappaFloor.from_xml(self.get_mappa().floor_lists[0][0].to_xml())
+
 

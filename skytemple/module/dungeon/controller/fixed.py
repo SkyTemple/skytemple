@@ -567,7 +567,7 @@ class FixedController(AbstractController):
             f"<b>Pokémon ({entity.monster_id})</b>:\n"
             f"{self.module.desc_fixed_floor_monster(monster_spawn.md_idx, monster_spawn.enemy_settings.value, self.long_monster_names, self.long_enemy_settings_name)}\n\n"
             f"<b>Stats ({monster_spawn.stats_entry})</b>:\n"
-            f"{self.module.desc_fixed_floor_stats(stats)}\n\n"
+            f"{self.module.desc_fixed_floor_stats(monster_spawn.stats_entry, stats)}\n\n"
             f"<b>Item ({entity.item_id})</b>:\n"
             f"{self.module.desc_fixed_floor_item(item_spawn.item_id)}\n\n"
             f"<b>Tile Properties ({entity.tile_id})</b>:\n"

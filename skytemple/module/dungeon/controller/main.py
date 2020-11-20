@@ -29,6 +29,7 @@ from skytemple_files.dungeon_data.mappa_bin.validator.exception import DungeonTo
     DungeonValidatorError, InvalidFloorListReferencedError, InvalidFloorReferencedError, FloorReusedError, \
     DungeonMissingFloorError
 from skytemple_files.hardcoded.dungeons import DungeonDefinition
+from skytemple.controller.main import MainController as MainSkyTempleController
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, DungeonGroup
@@ -66,7 +67,7 @@ class MainController(AbstractController):
 
         dungeon_list = self.module.get_dungeon_list()
         validator = self.module.get_validator()
-        validator.validate()
+        validator.validate(dungeon_list)
         store: Gtk.Store = self.builder.get_object('store_dungeon_errors')
         store.clear()
         validator.errors.sort(key=lambda e: e.dungeon_id)
@@ -89,14 +90,46 @@ class MainController(AbstractController):
         resp = dialog.run()
         dialog.hide()
         if resp == Gtk.ResponseType.APPLY:
-            pass
+            # Step 1, fix all selected errors
+            for row in store:
+                if row[0]:  # selected
+                    self._fix_error(dungeon_list, row[6])
+            # Step 2, fix all open DungeonTotalFloorCountInvalidError
+            validator.validate(dungeon_list)
+            for error in validator.errors:
+                if isinstance(error, DungeonTotalFloorCountInvalidError):
+                    self._fix_error(dungeon_list, error)
+            # Step 3 report status
+            if not validator.validate(dungeon_list):
+                md = Gtk.MessageDialog(
+                    MainSkyTempleController.window(),
+                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                    Gtk.ButtonsType.OK,
+                    f"Dungeon Errors were fixed.\nHowever there are still errors left. "
+                    f"Re-open the dialog to fix the rest. If they are still not fixed, please report a bug!",
+                    title="Fix Dungeon Errors"
+                )
+            else:
+                md = Gtk.MessageDialog(
+                    MainSkyTempleController.window(),
+                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                    Gtk.ButtonsType.OK,
+                    f"Dungeon Errors were successfully fixed.",
+                    title="Fix Dungeon Errors"
+                )
+            md.run()
+            md.destroy()
+            self.module.save_dungeon_list(dungeon_list)
+            self.module.save_mappa()
+            self.module.mark_root_as_modified()
+            self.module.rebuild_dungeon_tree()
 
     def on_cr_errors_fix_toggled(self, widget, path):
         store: Gtk.Store = self.builder.get_object('store_dungeon_errors')
         store[path][0] = not widget.get_active()
 
     def on_edit_groups_clicked(self, *args):
-        if not self.module.get_validator().validate():
+        if not self.module.get_validator().validate(self.module.get_dungeon_list()):
             display_error(
                 None,
                 "The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first."
@@ -362,7 +395,7 @@ class MainController(AbstractController):
         if isinstance(e, InvalidFloorListReferencedError):
             return 'Create a new floor list with one empty floor for this dungeon.'
         if isinstance(e, InvalidFloorReferencedError):
-            return 'Create one new empty floor for this dungeon.'
+            return 'Correct the floor count for this dungeon. If no floor exists, generate one.'
         if isinstance(e, FloorReusedError):
             return 'Create a new floor list with one empty floor for this dungeon.'
         if isinstance(e, DungeonMissingFloorError):
@@ -375,3 +408,39 @@ class MainController(AbstractController):
     def _is_regigias_special_case(self, dungeons, e):
         return e.dungeon_id == 61 and dungeons[e.dungeon_id].mappa_index == 52 and \
                     dungeons[e.dungeon_id].start_after == 18 and e.floors_in_mappa_not_referenced == [19]
+
+    def _fix_error(self, dungeons: List[DungeonDefinition], e: DungeonValidatorError):
+        mappa = self.module.get_mappa()
+        if isinstance(e, DungeonTotalFloorCountInvalidError):
+            dungeons[e.dungeon_id].number_floors_in_group = e.expected_floor_count_in_group
+        elif isinstance(e, InvalidFloorListReferencedError) or isinstance(e, FloorReusedError):
+            dungeons[e.dungeon_id].mappa_index = self.module.mappa_generate_and_insert_new_floor_list()
+            dungeons[e.dungeon_id].start_after = 0
+            dungeons[e.dungeon_id].number_floors = 1
+            dungeons[e.dungeon_id].number_floors_in_group = 1
+        elif isinstance(e, InvalidFloorReferencedError):
+            valid_floors = len(mappa.floor_lists[e.dungeon.mappa_index]) - e.dungeon.start_after
+            if valid_floors > 0:
+                dungeons[e.dungeon_id].number_floors = valid_floors
+            else:
+                mappa.floor_lists[e.dungeon.mappa_index].append(self.module.mappa_generate_new_floor())
+                dungeons[e.dungeon_id].number_floors = 1
+        elif isinstance(e, DungeonMissingFloorError):
+            # Special case for Regigigas Chamber
+            if self._is_regigias_special_case(dungeons, e):
+                # Remove additional floors
+                mappa.floor_lists[e.dungeon.mappa_index] = [
+                    f for i, f in enumerate(mappa.floor_lists[e.dungeon.mappa_index])
+                    if i not in e.floors_in_mappa_not_referenced
+                ]
+            else:
+                # Add additional floors
+                # TODO: Raise error or warning if we can't fix it? It should really always be consecutive.
+                if min(e.floors_in_mappa_not_referenced) == e.dungeon.start_after + e.dungeon.number_floors:
+                    if check_consecutive(e.floors_in_mappa_not_referenced):
+                        max_floor_id = max(e.floors_in_mappa_not_referenced)
+                        dungeons[e.dungeon_id].number_floors = max_floor_id - dungeons[e.dungeon_id].start_after + 1
+
+
+def check_consecutive(l):
+    return sorted(l) == list(range(min(l), max(l)+1))

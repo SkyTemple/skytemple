@@ -505,8 +505,7 @@ class FixedRoomsController(AbstractController):
         return 0, 'n/a', False
 
     def _generate_stats_label(self, i, entry):
-        return f"{i} - Lvl: {entry.level}, Atk: {entry.attack}, Def: {entry.defense}, " \
-               f"Sp. Atk: {entry.special_attack}, Sp. Def: {entry.special_defense}, HP: {entry.hp}"
+        return self.module.desc_fixed_floor_stats(i, entry)
 
     def _save(self):
         self.module.save_fixed_floor_entity_lists(self.lst_entity, self.lst_item,
