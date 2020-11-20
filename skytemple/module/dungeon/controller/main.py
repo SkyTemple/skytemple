@@ -200,7 +200,10 @@ class MainController(AbstractController):
 
     def on_tree_grouped_drag_data_received(self, w: Gtk.TreeView, context, x, y, selection: Gtk.SelectionData, info, etime):
         model: Gtk.TreeStore = w.get_model()
-        dungeon_id = int(str(selection.get_data(), 'utf-8'))
+        dungeon_id_str = str(selection.get_data(), 'utf-8')
+        if dungeon_id_str == '':
+            return
+        dungeon_id = int(dungeon_id_str)
         dungeon_iter = self._find_dungeon_iter(model, dungeon_id)
         assert dungeon_iter is not None
 
@@ -225,9 +228,14 @@ class MainController(AbstractController):
                     before_iter = model.iter_previous(iter)
                     assert iter is not None
                     model.remove(iter)
-                    new_iter = model.insert_after(model.iter_parent(before_iter), before_iter, self._generate_group_row(
-                        dungeon_id_insert
-                    ))
+                    if before_iter is None:
+                        new_iter = model.insert(None, 0, self._generate_group_row(
+                            dungeon_id_insert
+                        ))
+                    else:
+                        new_iter = model.insert_after(model.iter_parent(before_iter), before_iter, self._generate_group_row(
+                            dungeon_id_insert
+                        ))
                     model.append(new_iter, self._generate_dungeon_row(dungeon_id_insert))
                     model.append(new_iter, self._generate_dungeon_row(dungeon_id))
                     w.expand_row(model.get_path(new_iter), False)

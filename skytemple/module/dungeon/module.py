@@ -334,6 +334,11 @@ class DungeonModule(AbstractModule):
             if dungeon.mappa_index not in groups:
                 groups[dungeon.mappa_index] = []
             groups[dungeon.mappa_index].append(idx)
+        groups_sorted = {}
+        for idx, entries in groups.items():
+            groups_sorted[idx] = sorted(entries, key=lambda dun_idx: lst[dun_idx].start_after)
+        groups = groups_sorted
+
         for idx, dungeon in enumerate(lst):
             if dungeon.mappa_index not in yielded:
                 yielded.add(dungeon.mappa_index)
@@ -354,11 +359,62 @@ class DungeonModule(AbstractModule):
         Apply new dungeon groups.
         This updates the dungeon list file, the mappa files and the UI tree.
         start_ids of the DungeonGroups may be empty, it is ignored and calculated from the current dungeons instead.
-        INVALID_DUNGEON_IDS will not be modified. Otherwise the list MUST contain all other regular dungeons
-        (before DOJO_DUNGEONS_FIRST), just like self.load_dungeons would return it.
+        The the list MUST contain all regular dungeons (before DOJO_DUNGEONS_FIRST), just like self.load_dungeons
+        would return it.
         """
-        # DONT'T FORGET ABOUT INVALID_DUNGEON_IDS AND DOJO_DUNGEONS_FIRST
-        raise NotImplementedError()
+        mappa = self.get_mappa()
+        old_floor_lists = mappa.floor_lists
+        dojo_floors = old_floor_lists[DOJO_MAPPA_ENTRY]
+        new_floor_lists = []
+        dungeons = self.get_dungeon_list()
+        # Sanity check list.
+        dungeons_not_visited = set((i for i in range(0, len(dungeons))))
+
+        # TODO Build new floor lists and update dungeon entries. Insert dojo dungeons at DOJO_MAPPA_ENTRY
+        for group_or_dungeon in new_groups:
+            # At DOJO_MAPPA_ENTRY insert the dojo:
+            if len(new_floor_lists) == DOJO_MAPPA_ENTRY:
+                new_floor_lists.append(dojo_floors)
+            # Process this entry
+            next_index = len(new_floor_lists)
+            new_floor_list = []
+            if isinstance(group_or_dungeon, DungeonGroup):
+                group = group_or_dungeon.dungeon_ids
+            else:
+                group = [group_or_dungeon]
+            floor_count_in_group = sum(dungeons[i].number_floors for i in group)
+            for i in group:
+                dungeons_not_visited.remove(i)
+                old_first = dungeons[i].start_after
+                old_last = old_first + dungeons[i].number_floors
+                new_floors = old_floor_lists[dungeons[i].mappa_index][old_first:old_last]
+                floor_i = len(new_floor_list)
+                for floor in new_floors:
+                    floor.layout.floor_number = floor_i
+                    floor_i += 1
+                dungeons[i].number_floors_in_group = floor_count_in_group
+                dungeons[i].mappa_index = next_index
+                dungeons[i].start_after = len(new_floor_list)
+                new_floor_list += new_floors
+            new_floor_lists.append(new_floor_list)
+
+        assert len(dungeons_not_visited) == 0, "Some dungeons were missing in the new group list. " \
+                                               "This is a bug."
+
+        # If we haven't inserted the dojo dungeon floor list yet, do it now and pad with empty lists.
+        if len(new_floor_lists) < DOJO_MAPPA_ENTRY:
+            for i in range(len(new_floor_lists), DOJO_MAPPA_ENTRY + 1):
+                if i == DOJO_MAPPA_ENTRY:
+                    new_floor_lists.append(dojo_floors)
+                else:
+                    new_floor_lists.append([])
+
+        mappa.floor_lists = new_floor_lists
+        self._validator.floors = new_floor_lists
+        self.mark_root_as_modified()
+        self.save_mappa()
+        self.save_dungeon_list(dungeons)
+        self.rebuild_dungeon_tree()
 
     def generate_group_label(self, base_dungeon_id) -> str:
         dname = self.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, base_dungeon_id)

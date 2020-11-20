@@ -1350,7 +1350,6 @@ if dungeon is cleared:</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="width_chars">3</property>
-                <signal name="changed" handler="on_settings_height_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -1362,7 +1361,6 @@ if dungeon is cleared:</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="width_chars">3</property>
-                <signal name="changed" handler="on_settings_width_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
