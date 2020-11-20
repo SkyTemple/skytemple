@@ -19,6 +19,7 @@ import os
 import sys
 
 import gi
+gi.require_version('Gtk', '3.0')
 
 from skytemple.core.events.manager import EventManager
 from skytemple.core.modules import Modules
@@ -28,7 +29,6 @@ from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_icons import icons
 from skytemple_ssb_debugger.main import get_debugger_data_dir
 
-gi.require_version('Gtk', '3.0')
 try:
     gi.require_foreign("cairo")
 except ImportError:
@@ -43,7 +43,7 @@ except ImportError:
     md.destroy()
     exit(1)
 
-from gi.repository import Gtk, Gdk, GLib, Gio
+from gi.repository import Gtk, Gdk, GLib
 from gi.repository.Gtk import Window
 from skytemple.controller.main import MainController
 
