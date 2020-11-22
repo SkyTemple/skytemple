@@ -688,3 +688,19 @@ class BgController(AbstractController):
         if self.module.project.file_exists(try_rom_filename):
             return self._find_new_name(try_name, ext)
         return try_name, try_rom_filename
+    
+
+    def on_btn_about_palettes_clicked(self, w, *args):
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"Map backgrounds can be used as primary or secondary.\n"
+            f"When used as primary, the background can have up to 14 palettes, using slots from 0 to 13.\n"
+            f"When used as secondary, the background can only have 1 palette, using slot 14, and every palette value will have a new value of (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
+            f"It is still possible to use palette values above those limits, but this is only in cases where a background needs to reference a palette from the other background.\n"
+            f"Note: in the original game, almost every background is used as primary, the exceptions being mainly the weather (W) backgrounds.\n",
+            title="Background Palettes"
+        )
+        md.run()
+        md.destroy()
