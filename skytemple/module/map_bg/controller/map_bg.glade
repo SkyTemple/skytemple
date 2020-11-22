@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.36.0 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkBox" id="bg_layers">
@@ -385,6 +385,9 @@
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -469,9 +472,6 @@ be able to re-import the chunks!</property>
       <action-widget response="-6">dialog_chunks_export_btn_close</action-widget>
       <action-widget response="-5">dialog_chunks_export_btn_ok</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
   </object>
   <object class="GtkDialog" id="dialog_map_export">
     <property name="can_focus">False</property>
@@ -480,6 +480,9 @@ be able to re-import the chunks!</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -561,9 +564,6 @@ be able to re-import the map!</property>
       <action-widget response="-6">dialog_map_export_btn_close</action-widget>
       <action-widget response="-5">dialog_map_export_btn_ok</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
   </object>
   <object class="GtkAdjustment" id="dialog_map_import_adjustment">
     <property name="upper">16</property>
@@ -578,6 +578,9 @@ be able to re-import the map!</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -2538,9 +2541,6 @@ specified in the "Edit Palette Animation" section can lead to undefined behavior
       <action-widget response="-6">dialog_palettes_animated_settings_btn_close</action-widget>
       <action-widget response="-5">dialog_palettes_animated_settings_btn_ok</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
   </object>
   <object class="GtkAdjustment" id="dialog_settings_number_collision_adjustment">
     <property name="upper">2</property>
@@ -2562,6 +2562,9 @@ specified in the "Edit Palette Animation" section can lead to undefined behavior
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -2783,9 +2786,6 @@ all tiles and chunks of the upper layer.</property>
       <action-widget response="-6">dialog_settings_btn_close</action-widget>
       <action-widget response="-5">dialog_settings_btn_ok</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
   </object>
   <object class="GtkDialog" id="dialog_tiles_animated_export">
     <property name="can_focus">False</property>
@@ -2794,6 +2794,9 @@ all tiles and chunks of the upper layer.</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -3082,9 +3085,6 @@ the last frame is copied.</property>
     <action-widgets>
       <action-widget response="-7">dialog_tiles_animated_export_btn_ok</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
   </object>
   <object class="GtkDialog" id="dialog_tiles_animated_settings">
     <property name="can_focus">False</property>
@@ -3093,6 +3093,9 @@ the last frame is copied.</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -4151,9 +4154,6 @@ If the map has two layers:
       <action-widget response="-6">dialog_tiles_animated_settings_btn_close</action-widget>
       <action-widget response="-5">dialog_tiles_animated_settings_btn_ok</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
   </object>
   <object class="GtkDialog" id="dialog_tiles_export">
     <property name="can_focus">False</property>
@@ -4162,6 +4162,9 @@ If the map has two layers:
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -4241,9 +4244,6 @@ be able to re-import the tiles!</property>
       <action-widget response="-6">dialog_tiles_export_btn_close</action-widget>
       <action-widget response="-5">dialog_tiles_export_btn_ok</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
   </object>
   <object class="GtkDialog" id="dialog_width_height">
     <property name="can_focus">False</property>
@@ -4252,6 +4252,9 @@ be able to re-import the tiles!</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -4572,9 +4575,6 @@ are used for the image data on Layer 1 and 2.</property>
       <action-widget response="-6">dialog_width_height_btn_close</action-widget>
       <action-widget response="-5">dialog_width_height_btn_ok</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
   </object>
   <object class="GtkBox" id="editor_map_bg">
     <property name="visible">True</property>
@@ -5443,6 +5443,76 @@ are used for the image data on Layer 1 and 2.</property>
             <property name="position">1</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkInfoBar" id="editor_warning_palette">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child internal-child="action_area">
+              <object class="GtkButtonBox">
+                <property name="can_focus">False</property>
+                <property name="spacing">6</property>
+                <property name="layout_style">end</property>
+                <child>
+                  <object class="GtkButton" id="btn_about_palettes">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="icon_name">skytemple-help-about-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child internal-child="content_area">
+              <object class="GtkBox">
+                <property name="can_focus">False</property>
+                <property name="spacing">16</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_top">5</property>
+                    <property name="margin_bottom">5</property>
+                    <property name="label" translatable="yes">This background uses weird palette values for some chunks, so the game will not render this background the same as it is displayed here.
+You should click on the help button get more information before continuing.
+If this is intentional and you know what you are doing, you can ignore  this.</property>
+                    <property name="wrap">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
       </object>
       <packing>
         <property name="expand">True</property>
@@ -5466,6 +5536,9 @@ are used for the image data on Layer 1 and 2.</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -5639,9 +5712,6 @@ to be (re-)assigned to chunks after the import.</property>
       <action-widget response="-6">dialog_chunks_import_btn_close</action-widget>
       <action-widget response="-5">dialog_chunks_import_btn_ok</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
   </object>
   <object class="GtkDialog" id="dialog_map_import">
     <property name="can_focus">False</property>
@@ -5650,6 +5720,9 @@ to be (re-)assigned to chunks after the import.</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -5884,9 +5957,6 @@ and also applied to the Layer 2 image.</property>
       <action-widget response="-6">dialog_map_import_btn_close</action-widget>
       <action-widget response="-5">dialog_map_import_btn_ok</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
   </object>
   <object class="GtkDialog" id="dialog_tiles_import">
     <property name="can_focus">False</property>
@@ -5895,6 +5965,9 @@ and also applied to the Layer 2 image.</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -6020,8 +6093,5 @@ Animated tiles are not imported.</property>
       <action-widget response="-6">dialog_tiles_import_btn_close</action-widget>
       <action-widget response="-5">dialog_tiles_import_btn_ok</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
   </object>
 </interface>
