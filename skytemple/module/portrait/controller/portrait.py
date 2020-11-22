@@ -200,18 +200,27 @@ class PortraitController(AbstractController):
         if response == Gtk.ResponseType.OK:
             try:
                 for subindex, image in SpriteBotSheet.load(fn, self._get_portrait_name):
-                    kao = self.kao.get(self.item_id, subindex)
-                    if kao:
-                        # Replace
-                        kao.set(image)
-                    else:
-                        # New
-                        self.kao.set(self.item_id, subindex, KaoImage.new(image))
+                    try:
+                        kao = self.kao.get(self.item_id, subindex)
+                        if kao:
+                            # Replace
+                            kao.set(image)
+                        else:
+                            # New
+                            self.kao.set(self.item_id, subindex, KaoImage.new(image))
+                    except Exception as err:
+                        name = self._get_portrait_name(subindex)
+                        logger.error(f"Failed importing image '{name}'.", exc_info=err)
+                        display_error(
+                            sys.exc_info(),
+                            f'Failed importing image "{name}":\n{err}',
+                            f"Error for '{name}'."
+                        )
             except Exception as err:
-                logger.error(f"Failed importing portraits: {err}", exc_info=err)
+                logger.error(f"Failed importing portraits sheet: {err}", exc_info=err)
                 display_error(
                     sys.exc_info(),
-                    f'Failed importing portraits:\n{err}',
+                    f'Failed importing portraits sheet:\n{err}',
                     f"Could not import."
                 )
             # Re-render
