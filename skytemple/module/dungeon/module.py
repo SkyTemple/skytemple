@@ -220,6 +220,8 @@ class DungeonModule(AbstractModule):
 
     def mark_floor_as_modified(self, item: FloorViewInfo, modified_mappag = False):
         if modified_mappag:
+            # This is slow, since it builds the entire mappa_g file from scratch. 
+            # It would be better to only modify the floor attributes changed
             self.save_mappa()
         else:
             self.project.mark_as_modified(MAPPA_PATH)
