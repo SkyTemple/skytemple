@@ -34,6 +34,7 @@ from skytemple_files.common.types.file_types import FileType
 from skytemple_files.graphics.bg_list_dat.model import BMA_EXT, BPC_EXT, BPL_EXT, BPA_EXT, DIR
 from skytemple_files.graphics.bma.model import MASK_PAL
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
+from skytemple_files.graphics.bpl.model import BPL_NORMAL_MAX_PAL
 
 if TYPE_CHECKING:
     from skytemple.module.map_bg.module import MapBgModule
@@ -85,6 +86,7 @@ class BgController(AbstractController):
 
     def get_view(self) -> Widget:
         self.builder = self._get_builder(__file__, 'map_bg.glade')
+        self.set_warning_palette()
         self.notebook = self.builder.get_object('bg_notebook')
         self._init_drawer()
         self._init_tab(self.notebook.get_nth_page(self.notebook.get_current_page()))
@@ -326,8 +328,16 @@ class BgController(AbstractController):
     def on_men_tools_tilequant_activate(self, *args):
         MainController.show_tilequant_dialog(14, 16)
 
+    def set_warning_palette(self):
+        if self.builder:
+            self.builder.get_object('editor_warning_palette').set_revealed(self.weird_palette)
+        
     def _init_chunk_imgs(self):
         """(Re)-draw the chunk images"""
+
+        # Set the weird palette warning to false
+        self.weird_palette = False
+        
         if self.bpc.number_of_layers > 1:
             layer_idxs_bpc = [1, 0]
         else:
@@ -347,6 +357,15 @@ class BgController(AbstractController):
 
                 chunk_data = self.bpc.get_chunk(layer_idx_bpc, chunk_idx)
                 chunk_images = self.bpc.single_chunk_animated_to_pil(layer_idx_bpc, chunk_idx, self.bpl.palettes, self.bpas)
+                if not self.weird_palette:
+                    for x in chunk_images:
+                        for n in x.tobytes("raw", "P"):
+                            n//=16
+                            if n>=self.bpl.number_palettes or n>=BPL_NORMAL_MAX_PAL:
+                                # If one chunk uses weird palette values, display the warning
+                                self.weird_palette = True
+                                break
+                        if self.weird_palette:break 
                 has_pal_ani = any(self.bpl.is_palette_affected_by_animation(chunk.pal_idx) for chunk in chunk_data)
                 len_pal_ani = len(self.bpl.animation_palette) if has_pal_ani else 1
 
@@ -379,7 +398,7 @@ class BgController(AbstractController):
             self.pal_ani_durations = 0
             if self.bpl.has_palette_animation:
                 self.pal_ani_durations = max(spec.duration_per_frame for spec in self.bpl.animation_specs)
-
+        self.set_warning_palette()
     def _init_drawer(self):
         """(Re)-initialize the main drawing area"""
         bg_draw_sw: ScrolledWindow = self.builder.get_object('bg_draw_sw')
@@ -669,3 +688,19 @@ class BgController(AbstractController):
         if self.module.project.file_exists(try_rom_filename):
             return self._find_new_name(try_name, ext)
         return try_name, try_rom_filename
+    
+
+    def on_btn_about_palettes_clicked(self, w, *args):
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"Map backgrounds can be used as primary or secondary.\n"
+            f"When used as primary, the background can have up to 14 palettes, using slots from 0 to 13.\n"
+            f"When used as secondary, the background can only have 1 palette, using slot 14, and every palette value will have a new value of (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
+            f"It is still possible to use palette values above those limits, but this is only in cases where a background needs to reference a palette from the other background.\n"
+            f"Note: in the original game, almost every background is used as primary, the exceptions being mainly the weather (W) backgrounds.\n",
+            title="Background Palettes"
+        )
+        md.run()
+        md.destroy()

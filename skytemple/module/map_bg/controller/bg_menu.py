@@ -619,7 +619,7 @@ class BgMenuController:
     def on_men_palettes_edit_activate(self):
         # This is controlled by a separate controller
         dict_pals = OrderedDict()
-        for i, pal in enumerate(self.parent.bpl.palettes):
+        for i, pal in enumerate(self.parent.bpl.get_real_palettes()):
             dict_pals[f'{i}'] = pal.copy()
 
         cntrl = PaletteEditorController(
@@ -627,7 +627,7 @@ class BgMenuController:
         )
         edited_palettes = cntrl.show()
         if edited_palettes:
-            self.parent.bpl.palettes = edited_palettes
+            self.parent.bpl.set_palettes(edited_palettes)
             self.parent.reload_all()
             self.parent.mark_as_modified()
         del cntrl
