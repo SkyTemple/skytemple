@@ -186,7 +186,7 @@ class TilesetController(AbstractController):
                 self.mark_as_modified()
 
     def mark_as_modified(self):
-        self.module.mark_as_modified(self.item_id)
+        self.module.mark_as_modified(self.item_id, False)
 
     def reload_all(self):
         """Reload all image related things"""

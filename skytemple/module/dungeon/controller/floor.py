@@ -158,7 +158,7 @@ class FloorController(AbstractController):
 
     def on_cb_tileset_id_changed(self, w, *args):
         self._update_from_widget(w)
-        self.mark_as_modified()
+        self.mark_as_modified(modified_mappag=True)
 
     def on_cb_music_id_changed(self, w, *args):
         self._update_from_widget(w)
@@ -166,7 +166,7 @@ class FloorController(AbstractController):
 
     def on_cb_fixed_floor_id_changed(self, w, *args):
         self._update_from_widget(w)
-        self.mark_as_modified()
+        self.mark_as_modified(modified_mappag=True)
 
     def on_entry_room_density_changed(self, w, *args):
         self._update_from_widget(w)
@@ -1373,9 +1373,9 @@ class FloorController(AbstractController):
 
         self.mark_as_modified()
 
-    def mark_as_modified(self):
+    def mark_as_modified(self, modified_mappag = False):
         if not self._loading:
-            self.module.mark_floor_as_modified(self.item)
+            self.module.mark_floor_as_modified(self.item, modified_mappag)
 
     def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum]):
         store = Gtk.ListStore(int, str)  # id, name
