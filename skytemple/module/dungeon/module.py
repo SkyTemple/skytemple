@@ -218,8 +218,13 @@ class DungeonModule(AbstractModule):
     def get_fixed_floor(self, floor_id):
         return self._fixed_floor_data.fixed_floors[floor_id]
 
-    def mark_floor_as_modified(self, item: FloorViewInfo):
-        self.project.mark_as_modified(MAPPA_PATH)
+    def mark_floor_as_modified(self, item: FloorViewInfo, modified_mappag = False):
+        if modified_mappag:
+            # This is slow, since it builds the entire mappa_g file from scratch. 
+            # It would be better to only modify the floor attributes changed
+            self.save_mappa()
+        else:
+            self.project.mark_as_modified(MAPPA_PATH)
         # Mark as modified in tree
         row = self._tree_model[self._dungeon_floor_iters[item.dungeon.dungeon_id][item.floor_id]]
         recursive_up_item_store_mark_as_modified(row)
