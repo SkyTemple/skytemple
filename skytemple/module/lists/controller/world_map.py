@@ -51,7 +51,7 @@ class WorldMapController(AbstractController):
         self._markers: Optional[List[MapMarkerPlacement]] = []
         self._config: Optional[Pmd2Data] = None
         self._tree_iters_by_idx = {}
-        self._mapbg_id = None
+        self._level_id = None
         self._edited_marker = None
         self._edited_pos = None
 
@@ -73,7 +73,7 @@ class WorldMapController(AbstractController):
 
         self._init_list()
         self._init_drawer()
-        self._mapbg_id = WORLD_MAP_DEFAULT_ID
+        self._level_id = WORLD_MAP_DEFAULT_ID
         self._change_map_bg(WORLD_MAP_DEFAULT_ID, self.builder.get_object('draw'), self.drawer)
         self.builder.connect_signals(self)
         return lst
@@ -111,8 +111,8 @@ class WorldMapController(AbstractController):
             if map_name != '':
                 #TODO: Use the list from the game when available
                 ll_by_name = self._config.script_data.level_list__by_name
-                if self._mapbg_id != ll_by_name[map_name].id:
-                    self._mapbg_id = ll_by_name[map_name].id
+                if self._level_id != ll_by_name[map_name].id:
+                    self._level_id = ll_by_name[map_name].id
                     self._change_map_bg(ll_by_name[map_name].id, self.builder.get_object('draw'), self.drawer)
 
     def on_draw_event_button_press_event(self, box, button: Gdk.EventButton):
@@ -132,7 +132,7 @@ class WorldMapController(AbstractController):
 
     def on_edit_map_bg_clicked(self, *args):
         self.module.project.request_open(OpenRequest(
-            REQUEST_TYPE_MAP_BG, self._mapbg_id
+            REQUEST_TYPE_MAP_BG, self._level_id
         ))
 
     def _init_drawer(self):
@@ -144,16 +144,16 @@ class WorldMapController(AbstractController):
         self.dialog_drawer = WorldMapDrawer(draw, self._markers, self._get_dungeon_name, SCALE)
         self.dialog_drawer.start()
 
-    def _change_map_bg(self, map_id: int, draw, drawer):
-        bma = self.map_bg_module.get_bma(self._get_map_id(map_id))
-        bpl = self.map_bg_module.get_bpl(self._get_map_id(map_id))
-        bpc = self.map_bg_module.get_bpc(self._get_map_id(map_id))
-        bpas = self.map_bg_module.get_bpas(self._get_map_id(map_id))
+    def _change_map_bg(self, level_id: int, draw, drawer):
+        bma = self.map_bg_module.get_bma(self._get_map_id(level_id))
+        bpl = self.map_bg_module.get_bpl(self._get_map_id(level_id))
+        bpc = self.map_bg_module.get_bpc(self._get_map_id(level_id))
+        bpas = self.map_bg_module.get_bpas(self._get_map_id(level_id))
         surface = pil_to_cairo_surface(
             bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[0].convert('RGBA')
         )
         if drawer:
-            if map_id == WORLD_MAP_DEFAULT_ID:
+            if level_id == WORLD_MAP_DEFAULT_ID:
                 draw.set_size_request(504 * SCALE, 336 * SCALE)
             else:
                 bma_width = bma.map_width_camera * BPC_TILE_DIM
@@ -161,22 +161,22 @@ class WorldMapController(AbstractController):
                 draw.set_size_request(
                     bma_width * SCALE, bma_height * SCALE
                 )
-            drawer.map_bg_id = map_id
+            drawer.level_id = level_id
             drawer.map_bg = surface
             draw.queue_draw()
 
     ## TODO: The 2 following methods should use the actual level list from the game when it will be implemented
     def _get_map_name(self, entry: MapMarkerPlacement):
-        if entry.map_id < 0:
+        if entry.level_id < 0:
             return ''
-        return self._config.script_data.level_list__by_id[entry.map_id].name
-    def _get_map_id(self, map_id: int):
-        if map_id < 0:
+        return self._config.script_data.level_list__by_id[entry.level_id].name
+    def _get_map_id(self, level_id: int):
+        if level_id < 0:
             return ''
-        return int(self._config.script_data.level_list__by_id[map_id].mapid)
+        return int(self._config.script_data.level_list__by_id[level_id].mapid)
 
     def _get_position(self, entry: MapMarkerPlacement):
-        if entry.map_id < 0:
+        if entry.level_id < 0:
             return '<Not on map>'
         if entry.reference_id > -1:
             return f'<Uses marker of entry {entry.reference_id}>'
@@ -223,7 +223,7 @@ class WorldMapController(AbstractController):
             selected_map_iter = map_store.append([-1, "<Don't show on map>"])
             for level in self._config.script_data.level_list: #TODO: Use the list from the game when available
                 iiter = map_store.append([level.id, level.name])
-                if level.id == self._markers[idx].map_id:
+                if level.id == self._markers[idx].level_id:
                     selected_map_iter = iiter
             cb_map.set_active_iter(selected_map_iter)
 
@@ -260,7 +260,7 @@ class WorldMapController(AbstractController):
                 self.builder.get_object('radio_pos').set_active(True)
 
             # Drawer
-            self._change_map_bg(self._markers[idx].map_id, self.builder.get_object('diag_draw'), self.dialog_drawer)
+            self._change_map_bg(self._markers[idx].level_id, self.builder.get_object('diag_draw'), self.dialog_drawer)
 
             self._edited_marker = self._markers[idx]
             self._edited_pos = (self._edited_marker.x, self._edited_marker.y)
@@ -296,17 +296,17 @@ class WorldMapController(AbstractController):
                         )
                         return
                 if map_id_selected == -1:
-                    marker.map_id = -1
+                    marker.level_id = -1
                     marker.reference_id = -1
                     marker.x = -1
                     marker.y = -1
                 elif use_reference:
-                    marker.map_id = map_id_selected
+                    marker.level_id = map_id_selected
                     marker.reference_id = reference_id_selected
                     marker.x = 0
                     marker.y = 0
                 else:
-                    marker.map_id = map_id_selected
+                    marker.level_id = map_id_selected
                     marker.reference_id = -1
                     marker.x = int(self._edited_pos[0])
                     marker.y = int(self._edited_pos[1])
@@ -316,9 +316,9 @@ class WorldMapController(AbstractController):
                     str(idx), self._get_map_name(marker),
                     self._get_position(marker), self._get_dungeon_name(idx)
                 ]
-                if marker.map_id != self._mapbg_id:
-                    self._mapbg_id = marker.map_id
-                    self._change_map_bg(marker.map_id, self.builder.get_object('draw'), self.drawer)
+                if marker.level_id != self._level_id:
+                    self._level_id = marker.level_id
+                    self._change_map_bg(marker.level_id, self.builder.get_object('draw'), self.drawer)
                 else:
                     self.drawer.draw_area.queue_draw()
 
