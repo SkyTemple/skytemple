@@ -47,7 +47,7 @@ class WorldMapController(AbstractController):
         self.builder = None
         self.drawer: Optional[WorldMapDrawer] = None
         self.dialog_drawer: Optional[WorldMapDrawer] = None
-        self._dungeon_names: Dict[int, str] = {}
+        self._location_names: Dict[int, str] = {}
         self._markers: Optional[List[MapMarkerPlacement]] = []
         self._config: Optional[Pmd2Data] = None
         self._tree_iters_by_idx = {}
@@ -61,9 +61,15 @@ class WorldMapController(AbstractController):
         self._markers = self.module.get_world_map_markers()
         self._config = self.module.project.get_rom_module().get_static_data()
 
-        for idx in range(0, 192):
-            name = self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, idx)
-            self._dungeon_names[idx+1] = name
+        # Build the location names list
+        self._location_names[0] = self.module.project.get_string_provider().get_value(StringType.GROUND_MAP_NAMES, 0)
+        for idx in range(0, 180):
+            name = self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_SELECTION, idx)
+            self._location_names[idx+1] = name
+        
+        for idx in range(0, len(self._markers)-181):
+            name = self.module.project.get_string_provider().get_value(StringType.GROUND_MAP_NAMES, idx+1)
+            self._location_names[idx+181] = name
 
         self._init_list()
         self._init_drawer()
@@ -103,6 +109,7 @@ class WorldMapController(AbstractController):
             self.drawer.set_selected(self._markers[int(idx)])
             map_name = model[treeiter][1]
             if map_name != '':
+                #TODO: Use the list from the game when available
                 ll_by_name = self._config.script_data.level_list__by_name
                 if self._mapbg_id != ll_by_name[map_name].id:
                     self._mapbg_id = ll_by_name[map_name].id
@@ -138,10 +145,10 @@ class WorldMapController(AbstractController):
         self.dialog_drawer.start()
 
     def _change_map_bg(self, map_id: int, draw, drawer):
-        bma = self.map_bg_module.get_bma(map_id)
-        bpl = self.map_bg_module.get_bpl(map_id)
-        bpc = self.map_bg_module.get_bpc(map_id)
-        bpas = self.map_bg_module.get_bpas(map_id)
+        bma = self.map_bg_module.get_bma(self._get_map_id(map_id))
+        bpl = self.map_bg_module.get_bpl(self._get_map_id(map_id))
+        bpc = self.map_bg_module.get_bpc(self._get_map_id(map_id))
+        bpas = self.map_bg_module.get_bpas(self._get_map_id(map_id))
         surface = pil_to_cairo_surface(
             bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[0].convert('RGBA')
         )
@@ -158,10 +165,15 @@ class WorldMapController(AbstractController):
             drawer.map_bg = surface
             draw.queue_draw()
 
+    ## TODO: The 2 following methods should use the actual level list from the game when it will be implemented
     def _get_map_name(self, entry: MapMarkerPlacement):
         if entry.map_id < 0:
             return ''
         return self._config.script_data.level_list__by_id[entry.map_id].name
+    def _get_map_id(self, map_id: int):
+        if map_id < 0:
+            return ''
+        return int(self._config.script_data.level_list__by_id[map_id].mapid)
 
     def _get_position(self, entry: MapMarkerPlacement):
         if entry.map_id < 0:
@@ -171,10 +183,8 @@ class WorldMapController(AbstractController):
         return f'({entry.x}, {entry.y})'
 
     def _get_dungeon_name(self, idx):
-        if idx == 0:
-            return '(Treasure Town?)'
-        if idx in self._dungeon_names:
-            return self._dungeon_names[idx]
+        if idx in self._location_names:
+            return self._location_names[idx]
         return ''
 
     # -- Dialog -- #
@@ -211,7 +221,7 @@ class WorldMapController(AbstractController):
             else:
                 map_store.clear()
             selected_map_iter = map_store.append([-1, "<Don't show on map>"])
-            for level in self._config.script_data.level_list:
+            for level in self._config.script_data.level_list: #TODO: Use the list from the game when available
                 iiter = map_store.append([level.id, level.name])
                 if level.id == self._markers[idx].map_id:
                     selected_map_iter = iiter
