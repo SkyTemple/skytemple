@@ -43,7 +43,7 @@ class WorldMapDrawer:
         self.markers: List[MapMarkerPlacement] = markers
         self.markers_at_pos: Dict[Tuple[int, int], List[MapMarkerPlacement]] = {}
         self.map_bg = None
-        self.map_bg_id = None
+        self.level_id = None
 
         self.draw_tile_grid = True
 
@@ -77,7 +77,7 @@ class WorldMapDrawer:
         ctx.scale(self.scale, self.scale)
         # Background
         if self.map_bg is not None:
-            if self.map_bg_id == WORLD_MAP_DEFAULT_ID:
+            if self.level_id == WORLD_MAP_DEFAULT_ID:
                 # We display the bottom right of the map.
                 ctx.set_source_surface(self.map_bg, -504, -1008)
             else:
@@ -99,7 +99,7 @@ class WorldMapDrawer:
         # RENDER MARKERS
         self.markers_at_pos = {}
         for i, marker in enumerate(self.markers):
-            if marker != self._editing and marker != self._hide and marker.map_id == self.map_bg_id and marker.reference_id <= -1:
+            if marker != self._editing and marker != self._hide and marker.level_id == self.level_id and marker.reference_id <= -1:
                 self._draw_marker(ctx, marker)
 
         if self._editing:
@@ -121,7 +121,7 @@ class WorldMapDrawer:
         Returns the first marker under the mouse position, if any.
         """
         for i, marker in enumerate(self.markers):
-            if marker.map_id == self.map_bg_id and marker.reference_id <= -1:
+            if marker.level_id == self.level_id and marker.reference_id <= -1:
                 bb = (marker.x - RAD * 2, marker.y - RAD * 2, RAD * 4, RAD * 4)
                 if self._is_in_bb(*bb, self.mouse_x, self.mouse_y):
                     return marker
@@ -169,7 +169,7 @@ class WorldMapDrawer:
     def _handle_selection(self, ctx: cairo.Context):
         if self._selected is None:
             return
-        if self._selected.map_id != self.map_bg_id:
+        if self._selected.level_id != self.level_id:
             return
         x, y = self._get_marker_xy(self._selected)
         x, y, w, h = (x - RAD * 2, y - RAD * 2,
