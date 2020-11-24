@@ -174,7 +174,7 @@ class FixedController(AbstractController):
                     # Place at new position
                     old_x, old_y = self.drawer.get_selected()
                     # abort if dragging onto same tile
-                    if old_x != tile_x and old_y != tile_y:
+                    if old_x != tile_x or old_y != tile_y:
                         self.floor.actions[tile_y * self.floor.width + tile_x] = self.floor.actions[old_y * self.floor.width + old_x]
                         # Insert floor at old position
                         self.floor.actions[old_y * self.floor.width + old_x] = TileRule(TileRuleType.FLOOR_ROOM, None)
