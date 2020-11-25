@@ -453,11 +453,11 @@ class LevelUpController(AbstractController):
     def _init_webview(self):
         try:
             import gi
-            gi.require_version('WebKit', '3.0')
-            from gi.repository import WebKit
+            gi.require_version('WebKit2', '4.0')
+            from gi.repository import WebKit2
             graph_webkit_box: Gtk.Box = self.builder.get_object('graph_webkit_box')
 
-            self._webview: WebKit.WebView = WebKit.WebView()
+            self._webview: WebKit2.WebView = WebKit2.WebView()
             self._webview.load_uri(pathlib.Path(self.get_tmp_html_path()).as_uri())
             scrolled_window: Gtk.ScrolledWindow = Gtk.ScrolledWindow.new()
             scrolled_window.add(self._webview)
