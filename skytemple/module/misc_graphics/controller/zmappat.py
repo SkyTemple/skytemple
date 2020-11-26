@@ -57,8 +57,33 @@ class ZMappaTController(AbstractController):
         return self.builder.get_object('editor')
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
+        w.get_menu().popup(None, None, None, None, 0, Gtk.get_current_event_time())
+            
+    def on_import_clicked(self, w: Gtk.MenuToolButton):
+        w.get_menu().popup(None, None, None, None, 0, Gtk.get_current_event_time())
+    
+    def on_export_minimized_activate(self, *args):
         dialog = Gtk.FileChooserDialog(
-            "Export zmappat in folder...",
+            "Export zmappat minimized in folder...",
+            MainController.window(),
+            Gtk.FileChooserAction.SELECT_FOLDER,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+        )
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.OK:
+            for v in ZMappaTVariation:
+                fn_tiles = os.path.join(fn, f'zmappat-{v.filename}-tiles.min.png')
+                fn_masks = os.path.join(fn, f'zmappat-{v.filename}-masks.min.png')
+                surface = self.zmappat.to_pil_tiles_minimized(v).save(fn_tiles, "PNG")
+                mask = self.zmappat.to_pil_masks_minimized(v).save(fn_masks, "PNG")
+
+    def on_export_full_activate(self, *args):
+        dialog = Gtk.FileChooserDialog(
+            "Export full zmappat in folder...",
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
@@ -72,13 +97,77 @@ class ZMappaTController(AbstractController):
             for v in ZMappaTVariation:
                 fn_tiles = os.path.join(fn, f'zmappat-{v.filename}-tiles.png')
                 fn_masks = os.path.join(fn, f'zmappat-{v.filename}-masks.png')
-                surface = self.zmappat.to_pil_tiles_minimized(v).save(fn_tiles, "PNG")
-                mask = self.zmappat.to_pil_masks_minimized(v).save(fn_masks, "PNG")
-        pass
-            
-    def on_import_clicked(self, *args):
+                surface = self.zmappat.to_pil_tiles(v).save(fn_tiles, "PNG")
+                mask = self.zmappat.to_pil_masks(v).save(fn_masks, "PNG")
+        
+    def on_import_minimized_activate(self, *args):
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"To import, select a folder containing all the image files that were created when exporting the minimized version.",
+            title="Import Minimized Version"
+        )
+        md.run()
+        md.destroy()
         dialog = Gtk.FileChooserDialog(
-            "Import zmappat from folder...",
+            "Import zmappat minimized from folder...",
+            MainController.window(),
+            Gtk.FileChooserAction.SELECT_FOLDER,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+        )
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.OK:
+            try:
+                imgs = [None]*ZMAPPAT_NB_VARIATIONS
+                masks = [None]*ZMAPPAT_NB_VARIATIONS
+                for v in ZMappaTVariation:
+                    fn_tiles = os.path.join(fn, f'zmappat-{v.filename}-tiles.min.png')
+                    fn_masks = os.path.join(fn, f'zmappat-{v.filename}-masks.min.png')
+                    imgs[v.value] = Image.open(fn_tiles, 'r')
+                    masks[v.value] = Image.open(fn_masks, 'r')
+                self.zmappat.from_pil_minimized(imgs, masks)
+                self.module.mark_zmappat_as_modified(self.zmappat, self.filename)
+            except Exception as err:
+                display_error(
+                    sys.exc_info(),
+                    str(err),
+                    "Error importing minimized zmappat."
+                )
+            self._reinit_image()
+        
+    def on_minimized_info_clicked(self, *args):
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"The game uses 4x4 'mini-tiles' tiles to render the map.\n"
+            f"However, as the system only uses 8x8 tiles, the game render each 8x8 tile by applying 4 mini-tiles with their respective masks.\n"
+            f"To do this, all mini-tiles have been duplicated to cover the 4 possibilites for placing the mini-tile in 8x8 tiles (top left, top right, bottom left, bottom right).\n"
+            f"The mask is then used to apply the mini-tile only on the correct part of the resulting 8x8 tile.\n"
+            f"The minimized version reduces the tileset to only 4x4 mini-tiles and handles the duplication when importing.\n"
+            f"But remember that the full tileset allows more exploits as you can render tiles differently depending on where they are placed.",
+            title="Minimized Version Info"
+        )
+        md.run()
+        md.destroy()
+        
+    def on_import_full_activate(self, *args):
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"To import, select a folder containing all the image files that were created when exporting the full tileset.",
+            title="Import Full Tileset"
+        )
+        md.run()
+        md.destroy()
+        dialog = Gtk.FileChooserDialog(
+            "Import full zmappat from folder...",
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
@@ -97,13 +186,13 @@ class ZMappaTController(AbstractController):
                     fn_masks = os.path.join(fn, f'zmappat-{v.filename}-masks.png')
                     imgs[v.value] = Image.open(fn_tiles, 'r')
                     masks[v.value] = Image.open(fn_masks, 'r')
-                self.zmappat.from_pil_minimized(imgs, masks)
+                self.zmappat.from_pil(imgs, masks)
                 self.module.mark_zmappat_as_modified(self.zmappat, self.filename)
             except Exception as err:
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing zmappat."
+                    "Error importing full zmappat."
                 )
             self._reinit_image()
             
@@ -149,6 +238,7 @@ class ZMappaTController(AbstractController):
     
     def draw_tiles(self, wdg, ctx: cairo.Context, *args):
         if self.surface:
+            wdg.set_size_request(self.surface.get_width(), self.surface.get_height())
             ctx.fill()
             ctx.set_source_surface(self.surface, 0, 0)
             ctx.get_source().set_filter(cairo.Filter.NEAREST)
@@ -156,6 +246,7 @@ class ZMappaTController(AbstractController):
         return True
     def draw_masks(self, wdg, ctx: cairo.Context, *args):
         if self.mask:
+            wdg.set_size_request(self.mask.get_width(), self.mask.get_height())
             ctx.fill()
             ctx.set_source_surface(self.mask, 0, 0)
             ctx.get_source().set_filter(cairo.Filter.NEAREST)
