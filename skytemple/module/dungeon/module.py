@@ -528,7 +528,7 @@ class DungeonModule(AbstractModule):
             floor_info = FloorViewInfo(floor_id, DungeonViewInfo(dungeon_id, False))
             floor = self.get_mappa_floor(floor_info)
             mappa_floor_xml_import(xml, floor)
-            self.mark_floor_as_modified(floor_info)
+            self.mark_floor_as_modified(floor_info, modified_mappag=True)
 
     def get_dungeon_tileset(self, tileset_id) -> Tuple[Dma, Dpci, Dpc, Dpl]:
         return (

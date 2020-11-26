@@ -166,36 +166,36 @@ class BgController(AbstractController):
         if self.drawer:
             chunk_x = int(mouse_x / (self.bma.tiling_width * BPC_TILE_DIM))
             chunk_y = int(mouse_y / (self.bma.tiling_height * BPC_TILE_DIM))
-            chunk_mapping_idx = int(chunk_y * self.bma.map_width_chunks + chunk_x)
-            # Set chunk at current position
-            self.mark_as_modified()
-            if self.current_chunks_icon_layer == 0 and chunk_mapping_idx <= len(self.bma.layer0):
-                self.bma.layer0[chunk_mapping_idx] = self.drawer.get_selected_chunk_id()
-            elif self.current_chunks_icon_layer == 1 and chunk_mapping_idx <= len(self.bma.layer1):
-                self.bma.layer1[chunk_mapping_idx] = self.drawer.get_selected_chunk_id()
+            if 0 <= chunk_x < self.bma.map_width_chunks and 0 <= chunk_y < self.bma.map_height_chunks:
+                chunk_mapping_idx = int(chunk_y * self.bma.map_width_chunks + chunk_x)
+                # Set chunk at current position
+                self.mark_as_modified()
+                if self.current_chunks_icon_layer == 0:
+                    self.bma.layer0[chunk_mapping_idx] = self.drawer.get_selected_chunk_id()
+                elif self.current_chunks_icon_layer == 1:
+                    self.bma.layer1[chunk_mapping_idx] = self.drawer.get_selected_chunk_id()
 
     def _set_col_at_pos(self, mouse_x, mouse_y):
         if self.drawer:
             tile_x = int(mouse_x / BPC_TILE_DIM)
             tile_y = int(mouse_y / BPC_TILE_DIM)
-            tile_idx = int(tile_y * self.bma.map_width_camera + tile_x)
-            max_tile = self.bma.map_width_camera * self.bma.map_height_camera
-            # Set collision at current position
-            self.mark_as_modified()
-            if self.drawer.get_edited_collision() == 0 and tile_idx <= max_tile:
-                self.bma.collision[tile_idx] = self.drawer.get_interaction_col_solid()
-            elif self.drawer.get_edited_collision() == 1 and tile_idx <= max_tile:
-                self.bma.collision2[tile_idx] = self.drawer.get_interaction_col_solid()
+            if 0 <= tile_x < self.bma.map_width_camera and 0 <= tile_y < self.bma.map_height_camera:
+                tile_idx = int(tile_y * self.bma.map_width_camera + tile_x)
+                # Set collision at current position
+                self.mark_as_modified()
+                if self.drawer.get_edited_collision() == 0:
+                    self.bma.collision[tile_idx] = self.drawer.get_interaction_col_solid()
+                elif self.drawer.get_edited_collision() == 1:
+                    self.bma.collision2[tile_idx] = self.drawer.get_interaction_col_solid()
 
     def _set_data_at_pos(self, mouse_x, mouse_y):
         if self.drawer:
             tile_x = int(mouse_x / BPC_TILE_DIM)
             tile_y = int(mouse_y / BPC_TILE_DIM)
-            tile_idx = int(tile_y * self.bma.map_width_camera + tile_x)
-            max_tile = self.bma.map_width_camera * self.bma.map_height_camera
-            # Set data value at current position
-            self.mark_as_modified()
-            if tile_idx <= max_tile:
+            if 0 <= tile_x < self.bma.map_width_camera and 0 <= tile_y < self.bma.map_height_camera:
+                tile_idx = int(tile_y * self.bma.map_width_camera + tile_x)
+                # Set data value at current position
+                self.mark_as_modified()
                 self.bma.unknown_data_block[tile_idx] = self.drawer.get_interaction_dat_value()
 
     def on_current_icon_view_selection_changed(self, icon_view: IconView):

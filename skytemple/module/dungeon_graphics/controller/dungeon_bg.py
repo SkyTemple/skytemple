@@ -102,10 +102,11 @@ class DungeonBgController(AbstractController):
         if self.drawer:
             chunk_x = int(mouse_x / (DBG_TILING_DIM * DPCI_TILE_DIM))
             chunk_y = int(mouse_y / (DBG_TILING_DIM * DPCI_TILE_DIM))
-            chunk_mapping_idx = int(chunk_y * DBG_WIDTH_AND_HEIGHT + chunk_x)
-            # Set chunk at current position
-            self.mark_as_modified()
-            self.dbg.mappings[chunk_mapping_idx] = self.drawer.get_selected_chunk_id()
+            if 0 <= chunk_x < DBG_WIDTH_AND_HEIGHT and 0 <= chunk_y < DBG_WIDTH_AND_HEIGHT:
+                chunk_mapping_idx = int(chunk_y * DBG_WIDTH_AND_HEIGHT + chunk_x)
+                # Set chunk at current position
+                self.mark_as_modified()
+                self.dbg.mappings[chunk_mapping_idx] = self.drawer.get_selected_chunk_id()
 
     def on_current_icon_view_selection_changed(self, icon_view: IconView):
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
