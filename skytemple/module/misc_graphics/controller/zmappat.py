@@ -38,6 +38,9 @@ from skytemple.core.module_controller import AbstractController
 
 logger = logging.getLogger(__name__)
 
+if TYPE_CHECKING:
+    from skytemple.module.misc_graphics.module import MiscGraphicsModule
+
 
 class ZMappaTController(AbstractController):
     def __init__(self, module: 'MiscGraphicsModule', item: str):
