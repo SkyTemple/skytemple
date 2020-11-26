@@ -23,15 +23,18 @@ from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.misc_graphics.controller.w16 import W16Controller
 from skytemple.module.misc_graphics.controller.wte_wtu import WteWtuController
+from skytemple.module.misc_graphics.controller.zmappat import ZMappaTController
 from skytemple.module.misc_graphics.controller.main import MainController, MISC_GRAPHICS
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
 from skytemple_files.graphics.wte.model import Wte
 from skytemple_files.graphics.wtu.model import Wtu
+from skytemple_files.graphics.zmappat.model import ZMappaT
 
 W16_FILE_EXT = 'w16'
 WTE_FILE_EXT = 'wte'
 WTU_FILE_EXT = 'wtu'
+ZMAPPAT_FILE_EXT = 'zmappat'
 DUNGEON_BIN_PATH = 'DUNGEON/dungeon.bin'
 
 
@@ -60,6 +63,7 @@ class MiscGraphicsModule(AbstractModule):
         self.dungeon_bin: Optional[DungeonBinPack] = None
         self.list_of_wtes_dungeon_bin = None
         self.list_of_wtus_dungeon_bin = None
+        self.list_of_zmappats_dungeon_bin = None
 
         self._tree_model = None
         self._tree_level_iter = {}
@@ -72,6 +76,7 @@ class MiscGraphicsModule(AbstractModule):
         )
         self.list_of_wtes_dungeon_bin = self.dungeon_bin.get_files_with_ext(WTE_FILE_EXT)
         self.list_of_wtus_dungeon_bin = self.dungeon_bin.get_files_with_ext(WTU_FILE_EXT)
+        self.list_of_zmappats_dungeon_bin = self.dungeon_bin.get_files_with_ext(ZMAPPAT_FILE_EXT)
 
         root = item_store.append(root_node, [
             'skytemple-e-graphics-symbolic', MISC_GRAPHICS, self, MainController, 0, False, '', True
@@ -113,6 +118,12 @@ class MiscGraphicsModule(AbstractModule):
                     name, wtu_name, True
                 ), False, '', True
             ])
+            
+        # zmappat at the end:
+        for i, name in enumerate(self.list_of_zmappats_dungeon_bin):
+            self._tree_level_dungeon_iter[name] = item_store.append(root, [
+                'skytemple-e-graphics-symbolic', 'dungeon.bin:' + name, self,  ZMappaTController, name, False, '', True
+            ])
 
         recursive_generate_item_store_row_label(self._tree_model[root])
 
@@ -137,6 +148,13 @@ class MiscGraphicsModule(AbstractModule):
     def get_dungeon_bin_file(self, fn):
         return self.dungeon_bin.get(fn)
 
+    def mark_zmappat_as_modified(self, zmappat, fn):
+        self.dungeon_bin.set(fn, zmappat)
+        self.project.mark_as_modified(DUNGEON_BIN_PATH)
+        # Mark as modified in tree
+        row = self._tree_model[self._tree_level_dungeon_iter[fn]]
+        recursive_up_item_store_mark_as_modified(row)
+        
     def mark_wte_as_modified(self, item: WteOpenSpec, wte, wtu):
         if item.in_dungeon_bin:
             self.dungeon_bin.set(item.wte_filename, wte)
