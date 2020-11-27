@@ -22,7 +22,7 @@ from gi.repository.Gtk import Widget
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.module.dungeon import MAX_ITEM_ID, SPECIAL_ITEMS, SPECIAL_MONSTERS
+from skytemple.module.dungeon import MAX_ITEMS, SPECIAL_ITEMS, SPECIAL_MONSTERS
 from skytemple_files.data.md.model import NUM_ENTITIES
 from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
@@ -57,10 +57,10 @@ class FixedRoomsController(AbstractController):
             self.monster_names[i] = f'(Special?) (${i:04})'
 
         self.item_names = {}
-        for i in range(0, MAX_ITEM_ID):
+        for i in range(0, MAX_ITEMS):
             name = self.module.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
             self.item_names[i] = f'{name} (#{i:04})'
-        for i in range(MAX_ITEM_ID, MAX_ITEM_ID + SPECIAL_ITEMS):
+        for i in range(MAX_ITEMS, MAX_ITEMS + SPECIAL_ITEMS):
             self.item_names[i] = f'(Special?) (#{i:04})'
 
     def get_view(self) -> Widget:

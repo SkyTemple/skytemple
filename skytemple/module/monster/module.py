@@ -41,7 +41,7 @@ MONSTER_MD_FILE = 'BALANCE/monster.md'
 M_LEVEL_BIN = 'BALANCE/m_level.bin'
 WAZA_P_BIN = 'BALANCE/waza_p.bin'
 WAZA_P2_BIN = 'BALANCE/waza_p2.bin'
-
+PORTRAIT_FILE = 'FONT/kaomado.kao'
 
 class MonsterModule(AbstractModule):
     """Module to edit the monster.md and other Pokémon related data."""
@@ -94,7 +94,7 @@ class MonsterModule(AbstractModule):
         entry = self.monster_md.entries[item_id]
         name = self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, entry.md_index_base)
         self._tree_model[self._tree_iter__entity_roots[entry.md_index_base]][:] = self.generate_entry__entity_root(
-            entry.entid, name
+            entry.md_index_base, name
         )
         self._tree_model[self._tree_iter__entries[item_id]][:] = self.generate_entry__entry(
             entry.md_index, entry.gender
@@ -281,3 +281,4 @@ class MonsterModule(AbstractModule):
             self.project.mark_as_modified(WAZA_P_BIN)
             self.project.mark_as_modified(WAZA_P2_BIN)
             self.project.get_string_provider().mark_as_modified()
+            self.project.mark_as_modified(PORTRAIT_FILE)

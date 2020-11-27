@@ -30,7 +30,7 @@ from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label, data_dir
-from skytemple.module.dungeon import MAX_ITEM_ID
+from skytemple.module.dungeon import MAX_ITEMS
 from skytemple.module.dungeon.controller.dojos import DOJOS_NAME, DojosController
 from skytemple.module.dungeon.controller.dungeon import DungeonController
 from skytemple.module.dungeon.controller.fixed import FixedController
@@ -643,7 +643,7 @@ class DungeonModule(AbstractModule):
     def desc_fixed_floor_item(self, item_id):
         return self.project.get_string_provider().get_value(
             StringType.ITEM_NAMES, item_id
-        ) if item_id < MAX_ITEM_ID else "(Special?)"
+        ) if item_id < MAX_ITEMS else "(Special?)"
 
     @staticmethod
     def desc_fixed_floor_monster(monster_id, enemy_settings, monster_names, enemy_settings_names, short=False):
