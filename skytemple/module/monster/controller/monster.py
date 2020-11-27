@@ -38,7 +38,7 @@ from skytemple_files.data.monster_xml import monster_xml_export
 
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
-MAX_ITEM_ID = 1351
+MAX_ITEMS = 1352
 PATTERN = re.compile(r'.*\(#(\d+)\).*')
 
 
@@ -62,7 +62,7 @@ class MonsterController(AbstractController):
         self._render_graph_on_tab_change = True
 
         self.item_names = {}
-        for i in range(0, MAX_ITEM_ID):
+        for i in range(0, MAX_ITEMS):
             name = self.module.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
             self.item_names[i] = f'{name} (#{i:04})'
 

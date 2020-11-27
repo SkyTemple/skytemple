@@ -26,7 +26,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, \
     REQUEST_TYPE_DUNGEON_TILESET
 from skytemple.core.string_provider import StringType
-from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG, MAX_ITEM_ID, SPECIAL_MONSTERS
+from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG, SPECIAL_MONSTERS
 from skytemple.module.dungeon.entity_rule_container import EntityRuleContainer
 from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer, InfoLayer, InteractionMode
 from skytemple.module.dungeon.fixed_room_tileset_renderer.bg import FixedFloorDrawerBackground
