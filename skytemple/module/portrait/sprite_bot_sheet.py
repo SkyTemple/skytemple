@@ -88,7 +88,7 @@ class SpriteBotSheet:
         if img.size[0] > max_size[0] or img.size[1] > max_size[1]:
             raise ValueError(f"Portrait has an invalid size of {img.size}, exceeding max of {max_size}")
 
-        in_data = img.getdata()
+        in_data = img.convert('RGBA').getdata()
         occupied = [[]] * PORTRAIT_TILE_X
         for ii in range(PORTRAIT_TILE_X):
             occupied[ii] = [None] * PORTRAIT_TILE_Y
