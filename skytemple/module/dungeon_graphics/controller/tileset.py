@@ -18,6 +18,7 @@
 import itertools
 import math
 import os
+import shutil
 import sys
 import webbrowser
 from collections import OrderedDict
@@ -32,6 +33,7 @@ from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_graphics_
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_palettes_provider import DungeonPalettesProvider
 from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
 from skytemple.module.tiled_img.dialog_controller.chunk_editor import ChunkEditorController
+from skytemple_dtef import get_template_file
 from skytemple_dtef.explorers_dtef import ExplorersDtef, VAR0_FN, VAR2_FN, VAR1_FN
 from skytemple_dtef.explorers_dtef_importer import ExplorersDtefImporter
 from skytemple_files.common.xml_util import prettify
@@ -192,6 +194,7 @@ class TilesetController(AbstractController):
                 var1.save(os.path.join(fn, var1fn))
                 var2.save(os.path.join(fn, var2fn))
                 rest.save(os.path.join(fn, restfn))
+                shutil.copy(get_template_file(), os.path.join(fn, 'template.png'))
 
                 md = Gtk.MessageDialog(MainController.window(),
                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
