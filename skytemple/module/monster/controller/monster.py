@@ -159,6 +159,8 @@ class MonsterController(AbstractController):
 
     def on_cb_gender_changed(self, w, *args):
         self._update_from_cb(w)
+        #Changing the gender should also refresh the tree, as the gender is marked here.
+        self.module.refresh(self.item_id)
         self.mark_as_modified()
 
     def on_entry_lang1_changed(self, w, *args):
@@ -801,7 +803,10 @@ class MonsterController(AbstractController):
             (f.unk2 & 0x3FF) + math.ceil(f.resolution.x * f.resolution.y / 256)
             for f in sprite.model.meta_frame_store.meta_frames
         )
-        max_tile_slots_needed = max((6, max_tile_slots_needed + 2))
+        # There isn't those 2 blocks buffer! Doing this would cause some problems in the long term.
+        # Also, this should use the Unk#6 field in the animation info block (see psy's docs about wan files)
+        # instead of the calculation above, as it's exactly the result of that
+        max_tile_slots_needed = max((6, max_tile_slots_needed))
         if check_value != max_tile_slots_needed:
             sprite_size_table[self.entry.md_index_base].sprite_tile_slots = max_tile_slots_needed
             self.module.set_pokemon_sprite_data_table(sprite_size_table)
