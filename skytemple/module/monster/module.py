@@ -276,7 +276,7 @@ class MonsterModule(AbstractModule):
                     else:
                         # TODO: Support removing portraits
                         pass
-
+            self.refresh(monster_id)
             self.mark_md_as_modified(monster_id)
             self.project.mark_as_modified(WAZA_P_BIN)
             self.project.mark_as_modified(WAZA_P2_BIN)
