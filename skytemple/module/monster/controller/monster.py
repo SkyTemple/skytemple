@@ -634,7 +634,7 @@ class MonsterController(AbstractController):
         # IQ Groups
         self._comboxbox_for_enum(['cb_iq_group'], IQGroup)
         # Abilities
-        self._comboxbox_for_enum(['cb_ability_primary', 'cb_ability_secondary'], Ability)
+        self._comboxbox_for_enum(['cb_ability_primary', 'cb_ability_secondary'], Ability, True)
         # Evolution Methods
         self._comboxbox_for_enum(['cb_evo_method'], EvolutionMethod)
         # Shadow Size
@@ -701,8 +701,10 @@ class MonsterController(AbstractController):
         if not self._is_loading:
             self.module.mark_md_as_modified(self.item_id)
 
-    def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum]):
+    def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum], sort_by_name = False):
         store = Gtk.ListStore(int, str)  # id, name
+        if sort_by_name:
+            enum = sorted(enum, key=lambda x:self._enum_entry_to_str(x))
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
