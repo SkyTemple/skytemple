@@ -388,9 +388,9 @@ class TilesetController(AbstractController):
             for idx in range(0, len(self.dpc.chunks)):
                 store.append([idx, idx])
 
-        self._init_an_icon_view("rules_chunk_picker", init_store, True)
+        self._init_an_icon_view("rules_chunk_picker", init_store, True, True)
 
-    def _init_an_icon_view(self, name: str, init_store: Callable[[Gtk.ListStore], None], selection_draw_solid):
+    def _init_an_icon_view(self, name: str, init_store: Callable[[Gtk.ListStore], None], selection_draw_solid, select_first=False):
         icon_view: Gtk.IconView = self.builder.get_object(name)
         if icon_view.get_model() == None:
             #                     id, val
@@ -410,8 +410,8 @@ class TilesetController(AbstractController):
                     break
 
         init_store(store)
-
-        icon_view.select_path(store.get_path(store.get_iter_first()))
+        if select_first:
+            icon_view.select_path(store.get_path(store.get_iter_first()))
 
     def _rules_pos_toggle(self, i, state):
         y = i % 3
