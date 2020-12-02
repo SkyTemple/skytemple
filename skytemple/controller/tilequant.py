@@ -229,7 +229,7 @@ class TilequantController:
                 else:
                     md = Gtk.MessageDialog(self.window,
                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                           Gtk.ButtonsType.OK, "Image was conveted.")
+                                           Gtk.ButtonsType.OK, "Image was converted.")
                     md.run()
                     md.destroy()
 
