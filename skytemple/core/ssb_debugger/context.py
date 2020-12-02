@@ -15,10 +15,11 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from threading import Lock
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING, Optional, List, Iterable
 
 from gi.repository import Gtk
 
+from explorerscript.pygments.expslexer import KEYWORDS
 from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.error_handler import display_error
 from skytemple.core.events.events import EVT_DEBUGGER_SCRIPT_OPEN
@@ -27,10 +28,12 @@ from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST
     REQUEST_TYPE_SCENE_SSE
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHandler
+from skytemple.core.string_provider import StringType
 from skytemple.module.script.controller.dialog.pos_mark_editor import PosMarkEditorController
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.script_util import ScriptFiles, load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT, SSB_EXT
+from skytemple_files.script.ssb.constants import SsbConstant
 from skytemple_ssb_debugger.context.abstract import AbstractDebuggerControlContext
 from skytemple_ssb_debugger.threadsafe import synchronized_now
 
@@ -176,3 +179,10 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
 
     def display_error(self, exc_info, error_message, error_title='SkyTemple Script Engine Debugger - Error'):
         display_error(exc_info, error_message, error_title, self._manager.get_window())
+
+    def get_special_words(self) -> Iterable[str]:
+        pro = RomProject.get_current()
+        yield from self.get_static_data().script_data.op_codes__by_name.keys()
+        yield from (x.name.replace('$', '') for x in SsbConstant.collect_all(self.get_static_data().script_data))
+        yield from KEYWORDS
+        yield from pro.get_string_provider().get_all(StringType.POKEMON_NAMES)
