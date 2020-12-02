@@ -19,7 +19,6 @@ from typing import TYPE_CHECKING, Optional, List, Iterable
 
 from gi.repository import Gtk
 
-from explorerscript.pygments.expslexer import KEYWORDS
 from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.error_handler import display_error
 from skytemple.core.events.events import EVT_DEBUGGER_SCRIPT_OPEN
@@ -34,7 +33,7 @@ from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.script_util import ScriptFiles, load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT, SSB_EXT
 from skytemple_files.script.ssb.constants import SsbConstant
-from skytemple_ssb_debugger.context.abstract import AbstractDebuggerControlContext
+from skytemple_ssb_debugger.context.abstract import AbstractDebuggerControlContext, EXPS_KEYWORDS
 from skytemple_ssb_debugger.threadsafe import synchronized_now
 
 if TYPE_CHECKING:
@@ -48,6 +47,7 @@ save_lock = Lock()
 class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     def __init__(self, manager: 'DebuggerManager'):
         self._manager = manager
+        self._special_words_cache = None
 
     def allows_interactive_file_management(self) -> bool:
         return False
@@ -181,8 +181,18 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         display_error(exc_info, error_message, error_title, self._manager.get_window())
 
     def get_special_words(self) -> Iterable[str]:
+        def q():
+            for x in self._get_special_words_uncached():
+                yield from x.split('_')
+
+        if self._special_words_cache is None:
+            self._special_words_cache = set(q())
+        return self._special_words_cache
+
+    def _get_special_words_uncached(self):
         pro = RomProject.get_current()
         yield from self.get_static_data().script_data.op_codes__by_name.keys()
         yield from (x.name.replace('$', '') for x in SsbConstant.collect_all(self.get_static_data().script_data))
-        yield from KEYWORDS
+        yield from EXPS_KEYWORDS
         yield from pro.get_string_provider().get_all(StringType.POKEMON_NAMES)
+
