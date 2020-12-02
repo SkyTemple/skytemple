@@ -114,7 +114,7 @@ class FixedRoomsController(AbstractController):
     def on_cr_entities_monster_id_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('model_entities')
         cb_store: Gtk.Store = self.builder.get_object('model_entities__monsters')
-        store[path][3] = f'Monster {cb_store[new_iter][0]}'
+        store[path][3] = f'Pokémono {cb_store[new_iter][0]}'
         self.lst_entity[int(store[path][0])].monster_id = cb_store[new_iter][0]
         monster = self.lst_monster[cb_store[new_iter][0]]
         store[path][6] = self.module.desc_fixed_floor_monster(

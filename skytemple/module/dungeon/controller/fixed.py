@@ -423,7 +423,11 @@ class FixedController(AbstractController):
 
     def _init_entity_combobox(self):
         store = Gtk.ListStore(int, str)  # id, name
+        reserved_ids = [x.value for x in TileRuleType]
         for i, (item_spawn, monster_spawn, tile_spawn, stats) in enumerate(self.entity_rule_container):
+            # Make sure we are not allowing entities which would turn into tile rules upon saving!
+            if i + 16 in reserved_ids:
+                continue
             store.append([i, self._desc(i, item_spawn, monster_spawn, tile_spawn)])
         w = self.builder.get_object('utility_entity_type')
         self._fast_set_comboxbox_store(w, store, 1)
