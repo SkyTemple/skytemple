@@ -22,6 +22,7 @@ import traceback
 import urllib
 import webbrowser
 from threading import current_thread
+from typing import Optional
 from urllib.request import urlopen
 
 import gi
@@ -41,7 +42,8 @@ from skytemple.core.rom_project import RomProject
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple.core.ssb_debugger.manager import DebuggerManager
 from skytemple_files.common.task_runner import AsyncTaskRunner
-from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir
+from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir, \
+    version
 
 gi.require_version('Gtk', '3.0')
 
@@ -455,7 +457,13 @@ class MainController:
 
 
     def on_settings_about_clicked(self, *args):
-        self.builder.get_object("about_dialog").run()
+        about: Gtk.AboutDialog = self.builder.get_object("about_dialog")
+        header_bar: Optional[Gtk.HeaderBar] = about.get_header_bar()
+        if header_bar is not None:
+            # Cool bug??? And it only works on the left as well, wtf?
+            header_bar.set_decoration_layout('close')
+        about.set_version(version())
+        about.run()
 
     def gtk_widget_hide_on_delete(self, w: Gtk.Widget, *args):
         w.hide_on_delete()

@@ -17,6 +17,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
 
+import pkg_resources
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeModelRow
 
@@ -94,3 +95,15 @@ def is_dark_theme(widget):
     style_ctx = widget.get_style_context()
     color = style_ctx.get_background_color(Gtk.StateFlags.NORMAL)
     return 0.2126 * color.red + 0.7152 * color.green + 0.0722 * color.blue < 0.5
+
+
+def version():
+    try:
+        return pkg_resources.get_distribution("skytemple").version
+    except pkg_resources.DistributionNotFound:
+        # Try reading from a VERISON file instead
+        version_file = os.path.join(data_dir(), 'VERSION')
+        if os.path.exists(version_file):
+            with open(version_file) as f:
+                return f.read()
+        return 'unknown'
