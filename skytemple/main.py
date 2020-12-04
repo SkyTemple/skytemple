@@ -71,6 +71,10 @@ def main():
         # Load theming under macOS
         _macos_load_theme(settings)
 
+        # The search path is wrong if SkyTemple is executed as an .app bundle
+        if getattr(sys, 'frozen', False):
+            path = os.path.dirname(sys.executable)
+
     itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
     itheme.append_search_path(os.path.abspath(icons()))
     itheme.append_search_path(os.path.abspath(os.path.join(data_dir(), "icons")))

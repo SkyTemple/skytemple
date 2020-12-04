@@ -16,6 +16,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
+import sys
 
 import pkg_resources
 from gi.repository import Gtk
@@ -88,8 +89,11 @@ def add_dialog_xml_filter(dialog):
 
 
 def data_dir():
+    if sys.platform.startswith('darwin'):
+        if getattr(sys, 'frozen', False):
+            return os.path.join(os.path.dirname(sys.executable), 'data')
+    
     return os.path.join(os.path.dirname(__file__), '..', 'data')
-
 
 def is_dark_theme(widget):
     style_ctx = widget.get_style_context()
