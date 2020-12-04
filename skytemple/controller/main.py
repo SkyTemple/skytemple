@@ -21,6 +21,7 @@ import sys
 import traceback
 import urllib
 import webbrowser
+from gettext import gettext
 from threading import current_thread
 from typing import Optional
 from urllib.request import urlopen
@@ -458,6 +459,13 @@ class MainController:
 
     def on_settings_about_clicked(self, *args):
         about: Gtk.AboutDialog = self.builder.get_object("about_dialog")
+        about.connect("response", lambda d, r: d.hide())
+
+        def activate_link(l, uri, *args):
+            webbrowser.open_new_tab(uri)
+            return True
+
+        about.connect("activate-link", activate_link)
         header_bar: Optional[Gtk.HeaderBar] = about.get_header_bar()
         if header_bar is not None:
             # Cool bug??? And it only works on the left as well, wtf?
