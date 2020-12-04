@@ -25,6 +25,7 @@ from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
 from gi.repository.Gtk import Widget
 
+from skytemple.core.events.manager import EventManager
 from skytemple.module.tiled_img.animation_context import AnimationContext
 from skytemple_files.common.tiled_image import TilemapEntry
 import cairo
@@ -94,7 +95,8 @@ class DrawerTiled:
             self.draw_area.destroy()
             return False
         self.animation_context.advance()
-        self.draw_area.queue_draw()
+        if EventManager.instance().get_if_main_window_has_fous():
+            self.draw_area.queue_draw()
         return self.drawing_is_active
 
     def draw(self, wdg, ctx: cairo.Context):

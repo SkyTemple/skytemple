@@ -70,6 +70,9 @@ class EventManager:
             self._main_window_focus = True
             self.trigger(EVT_MAIN_WINDOW_FOCUS)
 
+    def get_if_main_window_has_fous(self):
+        return self._main_window_focus
+
     def main_window_lost_focus(self):
         self._main_window_focus = False
         if not self._will_check_focus:

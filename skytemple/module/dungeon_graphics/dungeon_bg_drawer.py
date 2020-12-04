@@ -22,6 +22,7 @@ from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
 from gi.repository.Gtk import Widget
 
+from skytemple.core.events.manager import EventManager
 from skytemple.core.mapbg_util.drawer_plugin.grid import GridDrawerPlugin
 from skytemple.core.mapbg_util.drawer_plugin.selection import SelectionDrawerPlugin
 from skytemple.module.tiled_img.animation_context import AnimationContext
@@ -104,7 +105,8 @@ class Drawer:
             self.draw_area.destroy()
             return False
         self.animation_context.advance()
-        self.draw_area.queue_draw()
+        if EventManager.instance().get_if_main_window_has_fous():
+            self.draw_area.queue_draw()
         return self.drawing_is_active
 
     def draw(self, wdg, ctx: cairo.Context, do_translates=True):
