@@ -42,7 +42,8 @@ setup(
         'CairoSVG >= 2.4.2'
     ],
     extras_require={
-        'discord':  ["pypresence >= 4.0.0"]
+        'discord':  ["pypresence >= 4.0.0"],
+        'eventserver': ["skytemple-eventserver >= 0.1.0rc2"]
     },
     classifiers=[
         'Development Status :: 3 - Alpha',
