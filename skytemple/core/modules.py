@@ -40,6 +40,8 @@ class Modules:
             dependencies[k] = module.depends_on()
         resolved_deps = dep(dependencies)
         cls._modules = dict(sorted(cls._modules.items(), key=lambda x: resolved_deps.index(x[0])))
+        for module in cls._modules.values():
+            module.load()
 
     @classmethod
     def all(cls):

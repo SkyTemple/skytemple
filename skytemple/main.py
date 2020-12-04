@@ -46,6 +46,7 @@ except ImportError:
 from gi.repository import Gtk, Gdk, GLib
 from gi.repository.Gtk import Window
 from skytemple.controller.main import MainController
+SKYTEMPLE_LOGLEVEL = logging.DEBUG
 
 
 def main():
@@ -136,5 +137,5 @@ def _macos_load_theme(settings: SkyTempleSettingsStore):
 if __name__ == '__main__':
     # TODO: At the moment doesn't support any cli arguments.
     logging.basicConfig()
-    logging.getLogger().setLevel(logging.DEBUG)
+    logging.getLogger().setLevel(SKYTEMPLE_LOGLEVEL)
     main()

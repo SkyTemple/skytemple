@@ -30,6 +30,13 @@ class AbstractModule(ABC):
     A SkyTemple module. First parameter of __init__ is RomProject.
     """
     @classmethod
+    def load(cls):
+        """
+        An optional module init function. Called when the module itself is first loaded
+        on UI load.
+        """
+
+    @classmethod
     @abstractmethod
     def depends_on(cls) -> List[str]:
         """
