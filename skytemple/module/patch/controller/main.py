@@ -55,8 +55,17 @@ class MainController(AbstractController):
             name = model[treeiter][0]
             try:
                 if self._patcher.is_applied(name):
-                    self._error("This patch is already applied.")
-                    return
+                    md = Gtk.MessageDialog(MainAppController.window(),
+                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                           Gtk.ButtonsType.OK_CANCEL, "This patch is already applied. "
+                                                                      "Some patches support applying them again, "
+                                                                      "but you might also run into problems with some. "
+                                                                      "Proceed with care.")
+                    md.set_position(Gtk.WindowPosition.CENTER)
+                    response = md.run()
+                    md.destroy()
+                    if response != Gtk.ResponseType.OK:
+                        return
             except NotImplementedError:
                 self._error("The current ROM is not supported by this patch.")
                 return
