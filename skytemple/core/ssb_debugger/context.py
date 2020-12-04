@@ -21,7 +21,7 @@ from gi.repository import Gtk
 
 from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.error_handler import display_error
-from skytemple.core.events.events import EVT_DEBUGGER_SCRIPT_OPEN
+from skytemple.core.events.events import EVT_DEBUGGER_SCRIPT_OPEN, EVT_DEBUGGER_SELECTED_STRING_CHANGED
 from skytemple.core.events.manager import EventManager
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST_TYPE_SCENE_SSA, REQUEST_TYPE_SCENE_SSS, \
     REQUEST_TYPE_SCENE_SSE
@@ -63,6 +63,9 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
 
     def on_blur(self):
         EventManager.instance().debugger_window_lost_focus()
+
+    def on_selected_string_changed(self, string: str):
+        EventManager.instance().trigger(EVT_DEBUGGER_SELECTED_STRING_CHANGED, string)
 
     def show_ssb_script_editor(self) -> bool:
         return False
