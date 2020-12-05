@@ -83,6 +83,11 @@ jobs:
             mingw-w64-x86_64-hunspell-en
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Rewrite version for dev if not tag
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        shell: msys2 {0}
+        run: |
+          perl -i -pe "s/__version__\s*=\s*'(.*?)(rc.*|a.*|post.*)?'/__version__='\1.dev${GITHUB_SHA::8}'/" setup.py
       - name: Note version
         shell: msys2 {0}
         run: |
@@ -129,6 +134,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Rewrite version for dev if not tag
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        run: |
+          perl -i -pe "s/__version__\s*=\s*'(.*?)(rc.*|a.*|post.*)?'/__version__='\1.dev${GITHUB_SHA::8}'/" setup.py
       - name: Note version
         run: |
           echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV

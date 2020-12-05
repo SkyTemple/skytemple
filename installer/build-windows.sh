@@ -32,4 +32,3 @@ rm dist/skytemple/share/man/* -rf
 version=$1 || $(python3 -c "import pkg_resources; print(pkg_resources.get_distribution(\"skytemple\").version)")
 
 echo $version > dist/VERSION
-echo $version > dist/skytemple/data/VERSION
