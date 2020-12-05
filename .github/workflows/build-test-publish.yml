@@ -81,6 +81,7 @@ jobs:
             mingw-w64-x86_64-python-pillow
             mingw-w64-x86_64-enchant
             mingw-w64-x86_64-hunspell-en
+            mingw-w64-x86_64-python-cairo
       - name: Checkout
         uses: actions/checkout@v2
       - name: Rewrite version for dev if not tag
