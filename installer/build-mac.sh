@@ -34,11 +34,6 @@ rm -rf skytemple.iconset
 # Build the app
 pyinstaller skytemple-mac.spec --noconfirm
 
-# Remove unnecessary things
-rm dist/skytemple/share/doc/* -rf
-rm dist/skytemple/share/gtk-doc/* -rf
-rm dist/skytemple/share/man/* -rf
-
 rm skytemple.icns
 
 # Since the library search path for the app is wrong, execute a shell script that sets is correctly
