@@ -85,18 +85,6 @@ you want to add in the table: </property>
       <action-widget response="-6">btn_cancel</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkListStore" id="entry_store">
-    <columns>
-      <!-- column-name entry_1 -->
-      <column type="gint"/>
-      <!-- column-name entry_2 -->
-      <column type="gint"/>
-      <!-- column-name entry_3 -->
-      <column type="gint"/>
-      <!-- column-name entry_4 -->
-      <column type="gint"/>
-    </columns>
-  </object>
   <object class="GtkListStore" id="table_store">
     <columns>
       <!-- column-name id -->
@@ -216,7 +204,6 @@ you want to add in the table: </property>
                           <object class="GtkTreeView" id="entry_tree">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="model">entry_store</property>
                             <property name="search_column">0</property>
                             <signal name="cursor-changed" handler="on_entry_tree_selection_changed" swapped="no"/>
                             <signal name="select-all" handler="on_entry_tree_selection_changed" swapped="no"/>
