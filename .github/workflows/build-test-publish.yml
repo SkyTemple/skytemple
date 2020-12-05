@@ -83,6 +83,9 @@ jobs:
             mingw-w64-x86_64-hunspell-en
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Note version
+        run: |
+          echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
       - name: Install and package
         shell: msys2 {0}
         run: |
@@ -125,6 +128,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Note version
+        run: |
+          echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
       - name: Install and package
         run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" # install Homebrew
