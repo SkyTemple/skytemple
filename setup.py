@@ -1,3 +1,4 @@
+__version__ = '0.1.0rc1'
 import os
 
 from setuptools import setup, find_packages
@@ -22,7 +23,7 @@ def recursive_pkg_files(file_ext):
 
 setup(
     name='skytemple',
-    version='0.1.0rc1',
+    version=__version__,
     packages=find_packages(),
     description='GUI Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US)',
     long_description=long_description,

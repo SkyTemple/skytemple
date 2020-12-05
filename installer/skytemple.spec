@@ -26,6 +26,10 @@ additional_datas = [
     (os.path.join(site_packages, "pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
     (os.path.join("C:/", "msys64", "mingw64", "share", "hunspell", "*"), 'share/hunspell')
+
+    # Themes
+    ('Arc', 'share/themes/Arc'),
+    ('Arc-Dark', 'share/themes/Arc-Dark')
 ]
 # Add all module *.glade files.
 paths = []
