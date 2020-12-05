@@ -91,11 +91,11 @@ jobs:
           ./download-windows-dependencies.sh
 
           # Download and prepare the Arc theme
-          curl -K https://skytemple.org/build_deps/Arc.zip -O
+          curl https://skytemple.org/build_deps/Arc.zip -O
           unzip Arc.zip
 
           # Install NSIS
-          curl -K https://skytemple.org/build_deps/nsis.zip -O
+          curl https://skytemple.org/build_deps/nsis.zip -O
           unzip nsis.zip -d "/c/Program Files (x86)/NSIS"
 
           # Install PyInstaller
