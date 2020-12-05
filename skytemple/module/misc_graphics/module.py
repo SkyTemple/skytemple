@@ -24,20 +24,32 @@ from skytemple.core.ui_utils import recursive_generate_item_store_row_label, rec
 from skytemple.module.misc_graphics.controller.w16 import W16Controller
 from skytemple.module.misc_graphics.controller.wte_wtu import WteWtuController
 from skytemple.module.misc_graphics.controller.zmappat import ZMappaTController
+from skytemple.module.misc_graphics.controller.font import FontController
 from skytemple.module.misc_graphics.controller.main import MainController, MISC_GRAPHICS
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
 from skytemple_files.graphics.wte.model import Wte
 from skytemple_files.graphics.wtu.model import Wtu
-from skytemple_files.graphics.zmappat.model import ZMappaT
+from skytemple_files.graphics.fonts import *
+from skytemple_files.graphics.fonts.abstract import AbstractFont
+from skytemple_files.graphics.fonts.font_dat.model import FontDat
+from skytemple_files.graphics.fonts.font_sir0.model import FontSir0
 
 W16_FILE_EXT = 'w16'
 WTE_FILE_EXT = 'wte'
 WTU_FILE_EXT = 'wtu'
+DAT_FILE_EXT = 'dat'
 ZMAPPAT_FILE_EXT = 'zmappat'
 DUNGEON_BIN_PATH = 'DUNGEON/dungeon.bin'
+VALID_FONT_DAT_FILES = set(['FONT/kanji_rd.dat', 'FONT/unkno_rd.dat'])
+VALID_FONT_SIR0_FILES = set(['FONT/kanji.dat', 'FONT/kanji_b.dat', 'FONT/unknown.dat'])
 
 
+class FontOpenSpec:
+    def __init__(self, font_filename: str, font_type: FontType):
+        self.font_filename = font_filename
+        self.font_type = font_type
+        
 class WteOpenSpec:
     def __init__(self, wte_filename: str, wtu_filename: str = None, in_dungeon_bin=False):
         self.wte_filename = wte_filename
@@ -60,6 +72,8 @@ class MiscGraphicsModule(AbstractModule):
         self.list_of_w16s = self.project.get_files_with_ext(W16_FILE_EXT)
         self.list_of_wtes = self.project.get_files_with_ext(WTE_FILE_EXT)
         self.list_of_wtus = self.project.get_files_with_ext(WTU_FILE_EXT)
+        self.list_of_font_dats = list(set(self.project.get_files_with_ext(DAT_FILE_EXT)) & VALID_FONT_DAT_FILES)
+        self.list_of_font_sir0s = list(set(self.project.get_files_with_ext(DAT_FILE_EXT)) & VALID_FONT_SIR0_FILES)
         self.dungeon_bin: Optional[DungeonBinPack] = None
         self.list_of_wtes_dungeon_bin = None
         self.list_of_wtus_dungeon_bin = None
@@ -108,6 +122,18 @@ class MiscGraphicsModule(AbstractModule):
                     ), False, '', True
                 ])
 
+        # fonts at the end:
+        for i, name in enumerate(self.list_of_font_dats):
+            self._tree_level_iter[name] = item_store.append(root, [
+                'skytemple-e-graphics-symbolic', name, self,  FontController, FontOpenSpec(name, FontType.FONT_DAT), False, '', True
+            ])
+        
+        # fonts at the end:
+        for i, name in enumerate(self.list_of_font_sir0s):
+            self._tree_level_iter[name] = item_store.append(root, [
+                'skytemple-e-graphics-symbolic', name, self,  FontController, FontOpenSpec(name, FontType.FONT_SIR0), False, '', True
+            ])
+            
         # dungeon bin entries at the end:
         for i, name in enumerate(self.list_of_wtes_dungeon_bin):
             wtu_name = name[:-3] + WTU_FILE_EXT
@@ -118,7 +144,6 @@ class MiscGraphicsModule(AbstractModule):
                     name, wtu_name, True
                 ), False, '', True
             ])
-            
         # zmappat at the end:
         for i, name in enumerate(self.list_of_zmappats_dungeon_bin):
             self._tree_level_dungeon_iter[name] = item_store.append(root, [
@@ -145,9 +170,24 @@ class MiscGraphicsModule(AbstractModule):
     def get_wtu(self, fn) -> Wtu:
         return self.project.open_file_in_rom(fn, FileType.WTU)
 
+    def get_font(self, spec: FontOpenSpec) -> Optional[AbstractFont]:
+        if spec.font_type == FontType.FONT_DAT:
+            return self.project.open_file_in_rom(spec.font_filename, FileType.FONT_DAT)
+        elif spec.font_type == FontType.FONT_SIR0:
+            return self.project.open_file_in_rom(spec.font_filename, FileType.FONT_SIR0)
+        else:
+            return None
+
     def get_dungeon_bin_file(self, fn):
         return self.dungeon_bin.get(fn)
 
+    def mark_font_as_modified(self, item: FontOpenSpec):
+        """Mark a specific font as modified"""
+        self.project.mark_as_modified(item.font_filename)
+        # Mark as modified in tree
+        row = self._tree_model[self._tree_level_iter[item.font_filename]]
+        recursive_up_item_store_mark_as_modified(row)
+        
     def mark_zmappat_as_modified(self, zmappat, fn):
         self.dungeon_bin.set(fn, zmappat)
         self.project.mark_as_modified(DUNGEON_BIN_PATH)
