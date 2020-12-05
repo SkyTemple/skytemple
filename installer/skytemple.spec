@@ -27,6 +27,14 @@ additional_datas = [
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
     (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "share", "hunspell", "*"), 'share/hunspell'),
 
+    # These aren't auto dectected for some reason :(
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'fontconfig'), 'share/fontconfig'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'glib-2.0'), 'share/glib-2.0'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'gtksourceview-3.0'), 'share/gtksourceview-3.0'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'icons'), 'share/icons'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'locale'), 'share/locale'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'themes'), 'share/themes'),
+
     # Themes
     ('Arc', 'share/themes/Arc'),
     ('Arc-Dark', 'share/themes/Arc-Dark')
