@@ -74,6 +74,7 @@ jobs:
           msystem: MINGW64
           install: >-
             mingw-w64-x86_64-curl
+            unzip
             mingw-w64-x86_64-python
             mingw-w64-x86_64-python-pip
             mingw-w64-x86_64-gtksourceview4
@@ -96,7 +97,7 @@ jobs:
 
           # Install NSIS
           curl https://skytemple.org/build_deps/nsis.zip -O
-          unzip nsis.zip -d "/c/Program Files (x86)/NSIS"
+          unzip -o nsis.zip -d "/c/Program Files (x86)/NSIS"
 
           # Install PyInstaller
           pip3 install pyinstaller
