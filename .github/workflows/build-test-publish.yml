@@ -118,7 +118,7 @@ jobs:
       - name: Create installer
         uses: joncloud/makensis-action@v3.4
         with:
-          script-file: skytemple.nsi
+          script-file: installer/skytemple.nsi
           arguments: "/DPRODUCT_VERSION=$PACKAGE_VERSION"
 
       - name: Upload artifacts
@@ -126,7 +126,7 @@ jobs:
         with:
           name: skytemple-windows-app
           path: |
-            installer/skytemple-*-install.exe
+            skytemple-*-install.exe
 
   package-mac:
     needs: build
