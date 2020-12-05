@@ -84,6 +84,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Note version
+        shell: msys2 {0}
         run: |
           echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
       - name: Install and package

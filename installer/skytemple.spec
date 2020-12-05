@@ -25,7 +25,7 @@ additional_datas = [
     (os.path.join(site_packages, "cairosvg", "VERSION"), "."),
     (os.path.join(site_packages, "pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
-    (os.path.join("C:/", "msys64", "mingw64", "share", "hunspell", "*"), 'share/hunspell')
+    (os.path.join("C:/", "msys64", "mingw64", "share", "hunspell", "*"), 'share/hunspell'),
 
     # Themes
     ('Arc', 'share/themes/Arc'),
