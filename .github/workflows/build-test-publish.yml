@@ -77,7 +77,7 @@ jobs:
             unzip
             mingw-w64-x86_64-python
             mingw-w64-x86_64-python-pip
-            mingw-w64-x86_64-gtksourceview4
+            mingw-w64-x86_64-gtksourceview3
             mingw-w64-x86_64-python-pillow
             mingw-w64-x86_64-enchant
             mingw-w64-x86_64-hunspell-en
@@ -85,6 +85,9 @@ jobs:
             mingw-w64-x86_64-gtk3
             mingw-w64-x86_64-python3-gobject
             mingw-w64-x86_64-python-cffi
+            mingw-w64-x86_64-hunspell
+            mingw-w64-x86_64-hunspell-en
+            mingw-w64-x86_64-openssl
       - name: Checkout
         uses: actions/checkout@v2
       - name: Rewrite version for dev if not tag
@@ -122,14 +125,14 @@ jobs:
         uses: joncloud/makensis-action@v3.4
         with:
           script-file: installer/skytemple.nsi
-          arguments: "/DPRODUCT_VERSION=$PACKAGE_VERSION"
+          arguments: "/DPRODUCT_VERSION=${{ env.PACKAGE_VERSION }}"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: skytemple-windows-app
           path: |
-            skytemple-*-install.exe
+            installer/skytemple-*-install.exe
 
   package-mac:
     needs: build

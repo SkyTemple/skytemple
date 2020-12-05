@@ -20,12 +20,12 @@ additional_datas = [
     (os.path.join('.', 'armips.exe'), 'skytemple_files/_resources'),
     (os.path.join(site_packages, 'desmume', 'frontend', 'control_ui', '*.glade'), 'desmume/frontend/control_ui'),
     (os.path.join(site_packages, "cairocffi", "VERSION"), "cairocffi"),
-    (os.path.join(site_packages, "cssselect2", "VERSION"), "cssselect2"),
-    (os.path.join(site_packages, "tinycss2", "VERSION"), "tinycss2"),
+    #(os.path.join(site_packages, "cssselect2", "VERSION"), "cssselect2"),
+    #(os.path.join(site_packages, "tinycss2", "VERSION"), "tinycss2"),
     (os.path.join(site_packages, "cairosvg", "VERSION"), "."),
     (os.path.join(site_packages, "pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
-    (os.path.join("C:/", "msys64", "mingw64", "share", "hunspell", "*"), 'share/hunspell'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "share", "hunspell", "*"), 'share/hunspell'),
 
     # Themes
     ('Arc', 'share/themes/Arc'),
