@@ -43,11 +43,11 @@ additional_binaries = [
     (os.path.join(site_packages, "desmume", "libdesmume.dll"), "."),
     (os.path.join(site_packages, "desmume", "SDL.dll"), "."),
     (os.path.join(site_packages, "skytemple_tilequant", "aikku", "libtilequant.dll"), "skytemple_tilequant/aikku"),
-    (os.path.join("C:/", "msys64", "mingw64", "bin", "libenchant-2.dll"), 'enchant/data/mingw64/bin'),
-    (os.path.join("C:/", "msys64", "mingw64", "bin", "libglib-2.0-0.dll"), 'enchant/data/mingw64/bin'),
-    (os.path.join("C:/", "msys64", "mingw64", "bin", "libgmodule-2.0-0.dll"), 'enchant/data/mingw64/bin'),
-    (os.path.join("C:/", "msys64", "mingw64", "lib", "enchant-2", "enchant_hunspell.dll"), 'lib/enchant-2'),
-    (os.path.join("C:/", "msys64", "mingw64", "bin", "libhunspell-1.7-0.dll"), '.'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libenchant-2.dll"), 'enchant/data/mingw64/bin'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libglib-2.0-0.dll"), 'enchant/data/mingw64/bin'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libgmodule-2.0-0.dll"), 'enchant/data/mingw64/bin'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "lib", "enchant-2", "enchant_hunspell.dll"), 'lib/enchant-2'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libhunspell-1.7-0.dll"), '.'),
 ]
 
 block_cipher = None
