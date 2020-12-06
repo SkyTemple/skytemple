@@ -53,13 +53,13 @@ See the `Project Pokémon forums page`_.
 
 .. _Project Pokémon forums page: https://projectpokemon.org/home/forums/topic/57303-pmd2-skytemple-rom-editor-maps-scripts-debugger/
 
-Windows
-~~~~~~~
-To download SkyTemple for Windows head over to the `Project Pokémon`_ page.
+Windows & macOS
+~~~~~~~~~~~~~~~
+To download SkyTemple for Windows and macOS head over to the `Project Pokémon`_ page.
 
 .. _Project Pokémon: https://projectpokemon.org/home/files/file/4193-skytemple-pmd2-rom-edtior/
 
-If you want to set up SkyTemple for development, see the "BUILDING_WINDOWS.md" file.
+If you want to set up SkyTemple for development, see the "BUILDING_WINDOWS.md" or "BUILDING_MACOS.md" file.
 
 Linux
 ~~~~~
@@ -86,8 +86,3 @@ Are you a package maintainer for a distribution like Ubuntu or Arch Linux? Get i
 
 If you want to set up SkyTemple for development, clone the repos and install in editable
 mode instead. See the steps 4 and onward in "BUILDING_WINDOWS.md".
-
-macOS
-~~~~~
-For macOS the installation procedure is explained in "BUILDING_MACOS.md".
-Please note that we can offer only very limited support for macOS.
