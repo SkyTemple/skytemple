@@ -100,7 +100,8 @@ class FontController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"To import, select a folder containing all the files that were created when exporting the font.",
+            f"To import, select a folder containing all the files that were created when exporting the font.\n"
+            f"IMPORTANT: All image files must be indexed PNGs!",
             title="Import Font"
         )
         md.run()

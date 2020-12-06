@@ -108,7 +108,8 @@ class ZMappaTController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"To import, select a folder containing all the image files that were created when exporting the minimized version.",
+            f"To import, select a folder containing all the image files that were created when exporting the minimized version.\n"
+            f"IMPORTANT: All image files must be indexed PNGs and use the same palette!",
             title="Import Minimized Version"
         )
         md.run()
