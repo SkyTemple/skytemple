@@ -45,9 +45,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: wheels
-      - name: Unzip wheels
-        run: |
-          unzip wheels.zip
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
