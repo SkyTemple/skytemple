@@ -1,3 +1,4 @@
+__version__ = '0.1.0rc2'
 import os
 
 from setuptools import setup, find_packages
@@ -22,7 +23,7 @@ def recursive_pkg_files(file_ext):
 
 setup(
     name='skytemple',
-    version='0.1.0rc1',
+    version=__version__,
     packages=find_packages(),
     description='GUI Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US)',
     long_description=long_description,
@@ -30,14 +31,14 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files >= 0.1.0rc1',
-        'skytemple-dtef >= 0.1.0rc1',
+        'skytemple-files >= 0.1.0rc4',
+        'skytemple-dtef >= 0.1.0rc2',
         'skytemple-icons >= 0.1.0',
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
         'tilequant >= 0.4.0',
-        'skytemple-ssb-debugger >= 0.1.0rc1',
+        'skytemple-ssb-debugger >= 0.1.0rc2',
         'pygal >= 2.4.0',
         'CairoSVG >= 2.4.2'
     ],

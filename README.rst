@@ -7,8 +7,8 @@ SkyTemple
 
 .. |logo| image:: https://raw.githubusercontent.com/SkyTemple/skytemple/master/skytemple/data/icons/hicolor/256x256/apps/skytemple.png
 
-.. |build| image:: https://jenkins.riptide.parakoopa.de/buildStatus/icon?job=skytemple%2Fmaster
-    :target: https://jenkins.riptide.parakoopa.de/blue/organizations/jenkins/skytemple/activity
+.. |build| image:: https://img.shields.io/github/workflow/status/SkyTemple/skytemple/Build,%20test%20and%20publish
+    :target: https://pypi.org/project/skytemple/
     :alt: Build Status
 
 .. |pypi-version| image:: https://img.shields.io/pypi/v/skytemple

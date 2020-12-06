@@ -20,12 +20,24 @@ additional_datas = [
     (os.path.join('.', 'armips.exe'), 'skytemple_files/_resources'),
     (os.path.join(site_packages, 'desmume', 'frontend', 'control_ui', '*.glade'), 'desmume/frontend/control_ui'),
     (os.path.join(site_packages, "cairocffi", "VERSION"), "cairocffi"),
-    (os.path.join(site_packages, "cssselect2", "VERSION"), "cssselect2"),
-    (os.path.join(site_packages, "tinycss2", "VERSION"), "tinycss2"),
+    #(os.path.join(site_packages, "cssselect2", "VERSION"), "cssselect2"),
+    #(os.path.join(site_packages, "tinycss2", "VERSION"), "tinycss2"),
     (os.path.join(site_packages, "cairosvg", "VERSION"), "."),
     (os.path.join(site_packages, "pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
-    (os.path.join("C:/", "msys64", "mingw64", "share", "hunspell", "*"), 'share/hunspell')
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "share", "hunspell", "*"), 'share/hunspell'),
+
+    # These aren't auto dectected for some reason :(
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'fontconfig'), 'share/fontconfig'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'glib-2.0'), 'share/glib-2.0'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'gtksourceview-3.0'), 'share/gtksourceview-3.0'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'icons'), 'share/icons'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'locale'), 'share/locale'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'themes'), 'share/themes'),
+
+    # Themes
+    ('Arc', 'share/themes/Arc'),
+    ('Arc-Dark', 'share/themes/Arc-Dark')
 ]
 # Add all module *.glade files.
 paths = []
@@ -39,11 +51,13 @@ additional_binaries = [
     (os.path.join(site_packages, "desmume", "libdesmume.dll"), "."),
     (os.path.join(site_packages, "desmume", "SDL.dll"), "."),
     (os.path.join(site_packages, "skytemple_tilequant", "aikku", "libtilequant.dll"), "skytemple_tilequant/aikku"),
-    (os.path.join("C:/", "msys64", "mingw64", "bin", "libenchant-2.dll"), 'enchant/data/mingw64/bin'),
-    (os.path.join("C:/", "msys64", "mingw64", "bin", "libglib-2.0-0.dll"), 'enchant/data/mingw64/bin'),
-    (os.path.join("C:/", "msys64", "mingw64", "bin", "libgmodule-2.0-0.dll"), 'enchant/data/mingw64/bin'),
-    (os.path.join("C:/", "msys64", "mingw64", "lib", "enchant-2", "enchant_hunspell.dll"), 'lib/enchant-2'),
-    (os.path.join("C:/", "msys64", "mingw64", "bin", "libhunspell-1.7-0.dll"), '.'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libenchant-2.dll"), 'enchant/data/mingw64/bin'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libglib-2.0-0.dll"), 'enchant/data/mingw64/bin'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libgmodule-2.0-0.dll"), 'enchant/data/mingw64/bin'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "lib", "enchant-2", "enchant_hunspell.dll"), 'lib/enchant-2'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libhunspell-1.7-0.dll"), '.'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libcrypto-1_1-x64.dll"), '.'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libssl-1_1-x64.dll"), '.'),
 ]
 
 block_cipher = None

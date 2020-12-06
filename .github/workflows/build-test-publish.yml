@@ -1,0 +1,189 @@
+# Builds on all branches & PRs and packages for MacOS and Windows.
+# Deploys to PyPi for tags.
+name: Build, test and publish
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    name: Build the Python wheel
+    steps:
+      # For tags we assume the version in setup.py is correct!
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Rewrite version for dev if not tag
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        run: |
+          perl -i -pe "s/__version__\s*=\s*'(.*?)(rc.*|a.*|post.*)?'/__version__='\1.dev${GITHUB_SHA::8}'/" setup.py
+      - name: Note version
+        run: |
+          echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Upgrade pip
+        run: |
+          python -m pip install --upgrade pip
+      - name: Build Python wheels
+        uses: RalfG/python-wheels-manylinux-build@v0.3.3-manylinux2010_x86_64
+        with:
+          python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38 cp39-cp39'
+      - name: Upload wheels
+        uses: actions/upload-artifact@v2
+        with:
+          name: wheels
+          path: dist/*.whl
+  deploy:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-18.04
+    name: Deploy wheels to PyPI
+    steps:
+      - name: Download wheels
+        uses: actions/download-artifact@v2
+        with:
+          name: wheels
+      - name: Unzip wheels
+        run: |
+          unzip wheels.zip
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Upgrade pip
+        run: |
+          python -m pip install --upgrade pip
+          pip install twine
+      - name: Publish wheels to PyPI
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: |
+          twine upload *.whl
+  package-windows:
+    needs: build
+    runs-on: windows-2019
+    name: Build and package for Windows
+    steps:
+      - name: Install MSys2 and dependencies
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          msystem: MINGW64
+          install: >-
+            mingw-w64-x86_64-curl
+            unzip
+            mingw-w64-x86_64-python
+            mingw-w64-x86_64-python-pip
+            mingw-w64-x86_64-gtksourceview3
+            mingw-w64-x86_64-python-pillow
+            mingw-w64-x86_64-enchant
+            mingw-w64-x86_64-hunspell-en
+            mingw-w64-x86_64-python-cairo
+            mingw-w64-x86_64-gtk3
+            mingw-w64-x86_64-python3-gobject
+            mingw-w64-x86_64-python-cffi
+            mingw-w64-x86_64-hunspell
+            mingw-w64-x86_64-hunspell-en
+            mingw-w64-x86_64-openssl
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Rewrite version for dev if not tag
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        shell: msys2 {0}
+        run: |
+          perl -i -pe "s/__version__\s*=\s*'(.*?)(rc.*|a.*|post.*)?'/__version__='\1.dev${GITHUB_SHA::8}'/" setup.py
+      - name: Note version
+        shell: msys2 {0}
+        run: |
+          echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
+      - name: Install and package
+        shell: msys2 {0}
+        run: |
+          cd installer
+
+          # Download armips and other binary depedencies
+          ./download-windows-dependencies.sh
+
+          # Download and prepare the Arc theme
+          curl https://skytemple.org/build_deps/Arc.zip -O
+          unzip Arc.zip
+
+          # Install NSIS
+          curl https://skytemple.org/build_deps/nsis.zip -O
+          unzip -o nsis.zip -d "/c/Program Files (x86)/NSIS"
+
+          # Install PyInstaller
+          pip3 install pyinstaller
+
+          # Package
+          ./build-windows.sh $PACKAGE_VERSION
+
+      - name: Create installer
+        uses: joncloud/makensis-action@v3.4
+        with:
+          script-file: installer/skytemple.nsi
+          arguments: "/DPRODUCT_VERSION=${{ env.PACKAGE_VERSION }}"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: skytemple-windows-app
+          path: |
+            installer/skytemple-*-install.exe
+
+  package-mac:
+    needs: build
+    runs-on: macos-10.15
+    name: Build and package for Mac OS
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Rewrite version for dev if not tag
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        run: |
+          perl -i -pe "s/__version__\s*=\s*'(.*?)(rc.*|a.*|post.*)?'/__version__='\1.dev${GITHUB_SHA::8}'/" setup.py
+      - name: Note version
+        run: |
+          echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
+      - name: Install and package
+        run: |
+          brew install enchant # This installs Python 3.9 for some reason, which we don't want
+          brew uninstall --ignore-dependencies python@3.9
+          brew install git pygobject3 gtk+3 python@3.8 gtksourceview3 adwaita-icon-theme sdl cmake
+          PATH=/usr/local/opt/python@3.8/bin:/usr/local/bin:$PATH
+
+          # Install armips
+          git clone --recursive https://github.com/Kingcom/armips.git
+          mkdir armips/build && cd armips/build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          cmake --build .
+          cd - # Go back to the SkyTemple directory
+          cp armips/build/armips ./installer/armips
+
+          # Install other dependencies and SkyTemple itself
+          pip3 install py-desmume skytemple-rust pyinstaller
+          pip3 install -r requirements-mac-windows.txt
+          pip3 install .
+
+          # Install the McMojave theme
+          cd installer
+          curl https://cdn.discordapp.com/attachments/712341699292037121/784474569884303380/McMojave.zip -o McMojave.zip
+          unzip McMojave.zip > /dev/null
+
+          pip3 install pyinstaller
+
+          # Package
+          ./build-mac.sh $PACKAGE_VERSION
+
+          # Creating a zip makes the artifact upload much faster since there are so many files
+          zip -r skytemple-mac.zip dist/SkyTemple.app > /dev/null
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: skytemple-mac-app
+          path: |
+            installer/skytemple-mac.zip
