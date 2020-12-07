@@ -92,6 +92,7 @@ jobs:
         shell: msys2 {0}
         run: |
           perl -i -pe "s/__version__\s*=\s*'(.*?)(rc.*|a.*|post.*)?'/__version__='\1.dev${GITHUB_SHA::8}'/" setup.py
+          echo "IS_DEV_BUILD=1" >> $GITHUB_ENV
       - name: Note version
         shell: msys2 {0}
         run: |
@@ -142,6 +143,7 @@ jobs:
         if: "!startsWith(github.ref, 'refs/tags/')"
         run: |
           perl -i -pe "s/__version__\s*=\s*'(.*?)(rc.*|a.*|post.*)?'/__version__='\1.dev${GITHUB_SHA::8}'/" setup.py
+          echo "IS_DEV_BUILD=1" >> $GITHUB_ENV
       - name: Note version
         run: |
           echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
@@ -164,6 +166,9 @@ jobs:
           pip3 install py-desmume skytemple-rust pyinstaller
           pip3 install -r requirements-mac-windows.txt
           pip3 install .
+          if [ -n "$IS_DEV_BUILD" ]; then
+            installer/install-skytemple-components-from-git.sh
+          fi
 
           # Install the McMojave theme
           cd installer

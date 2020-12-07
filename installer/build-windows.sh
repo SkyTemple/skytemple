@@ -16,6 +16,11 @@ pip install tilequant-*-mingw.whl
 pip3 install -r ../requirements-mac-windows.txt
 pip3 install ..
 
+
+if [ -n "$IS_DEV_BUILD" ]; then
+  ./install-skytemple-components-from-git.sh
+fi
+
 pyinstaller skytemple.spec
 
 # Remove unnecessary things
