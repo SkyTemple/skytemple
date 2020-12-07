@@ -88,7 +88,7 @@ class FontController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             xml, tables = self.font.export_to_xml()
             with open(os.path.join(fn, f'char_tables.xml'), 'w') as f:
                 f.write(prettify(xml))
@@ -116,8 +116,8 @@ class FontController(AbstractController):
         response = dialog.run()
         fn = dialog.get_filename()
         dialog.destroy()
-
-        if response == Gtk.ResponseType.OK:
+        
+        if response == Gtk.ResponseType.ACCEPT:
             try:
                 xml = ElementTree().parse(os.path.join(fn, f'char_tables.xml'))
                 tables = dict()

@@ -77,7 +77,7 @@ class BgMenuController:
                 fn += '.png'
             dialog.destroy()
 
-            if response == Gtk.ResponseType.OK:
+            if response == Gtk.ResponseType.ACCEPT:
                 img = self.parent.dbg.to_pil(self.parent.dpc, self.parent.dpci, self.parent.dpl.palettes)
                 img.save(fn)
 
@@ -146,7 +146,7 @@ class BgMenuController:
                 fn += '.png'
             dialog.destroy()
 
-            if response == Gtk.ResponseType.OK:
+            if response == Gtk.ResponseType.ACCEPT:
                 try:
                     self.parent.dpc.chunks_to_pil(self.parent.dpci, self.parent.dpl.palettes, 16).save(fn)
                 except BaseException as err:
@@ -221,7 +221,7 @@ class BgMenuController:
                 fn += '.png'
             dialog.destroy()
 
-            if response == Gtk.ResponseType.OK:
+            if response == Gtk.ResponseType.ACCEPT:
                 try:
                     self.parent.dpci.tiles_to_pil(self.parent.dpl.palettes, 16).save(fn)
                 except BaseException as err:

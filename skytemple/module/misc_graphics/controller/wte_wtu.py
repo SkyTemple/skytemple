@@ -82,7 +82,7 @@ class WteWtuController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             if '.' not in fn:
                 fn += '.png'
             if self.wte.has_image():

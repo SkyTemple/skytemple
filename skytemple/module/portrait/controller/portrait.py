@@ -101,7 +101,7 @@ class PortraitController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             base_filename = os.path.join(fn, f'{self.item_id + 1}')
             for subindex in range(0, SUBENTRIES):
                 kao = self.kao.get(self.item_id, subindex)
@@ -132,7 +132,7 @@ class PortraitController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             r = re.compile(rf"{self.item_id + 1}_(\d+)\.png", re.IGNORECASE)
             imgs = {int(match[1]): name
                     for match, name in self._try_match_import(r, os.listdir(fn))
@@ -180,7 +180,7 @@ class PortraitController(AbstractController):
             fn += '.png'
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             SpriteBotSheet.create(self.kao, self.item_id).save(fn)
 
     def on_spritebot_import_activate(self, *args):
@@ -197,7 +197,7 @@ class PortraitController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             try:
                 for subindex, image in SpriteBotSheet.load(fn, self._get_portrait_name):
                     try:

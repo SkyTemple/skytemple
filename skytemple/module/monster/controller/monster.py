@@ -529,7 +529,7 @@ class MonsterController(AbstractController):
                     fn += '.xml'
                 save_diag.destroy()
 
-                if response == Gtk.ResponseType.OK:
+                if response == Gtk.ResponseType.ACCEPT:
                     with open(fn, 'w') as f:
                         f.write(prettify(xml))
                 else:
@@ -566,7 +566,7 @@ class MonsterController(AbstractController):
         fn = save_diag.get_filename()
         save_diag.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             self.module.import_from_xml([self.entry.md_index], ElementTree.parse(fn).getroot())
             SkyTempleMainController.reload_view()
 
