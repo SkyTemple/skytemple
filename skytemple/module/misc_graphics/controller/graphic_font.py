@@ -25,7 +25,7 @@ from skytemple_files.common.xml_util import prettify
 import cairo
 
 from skytemple.core.error_handler import display_error
-from skytemple_files.graphics.fonts.abstract import AbstractFont
+from skytemple_files.graphics.fonts.graphic_font.model import GraphicFont
 
 try:
     from PIL import Image
@@ -50,7 +50,7 @@ class GraphicFontController(AbstractController):
     def __init__(self, module: 'MiscGraphicsModule', item: 'FontOpenSpec'):
         self.module = module
         self.spec = item
-        self.font: Optional[AbstractFont] = self.module.get_font(self.spec)
+        self.font: Optional[GraphicFont] = self.module.get_graphic_font(self.spec)
         
         self.builder = None
 
