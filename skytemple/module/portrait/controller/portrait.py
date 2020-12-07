@@ -90,11 +90,11 @@ class PortraitController(AbstractController):
         w.get_menu().popup(None, None, None, None, 0, Gtk.get_current_event_time())
 
     def on_separate_export_activate(self, *args):
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Export all portraits as PNGs...",
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            "_Save", None
         )
 
         response = dialog.run()
@@ -121,11 +121,11 @@ class PortraitController(AbstractController):
         )
         md.run()
         md.destroy()
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Import portraits from PNGs...",
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+            None, None
         )
 
         response = dialog.run()
@@ -165,11 +165,11 @@ class PortraitController(AbstractController):
             self._mark_as_modified_cb()
 
     def on_spritebot_export_activate(self, *args):
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Export portrait as PNG sheet...",
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            None, None
         )
 
         add_dialog_png_filter(dialog)
@@ -184,11 +184,11 @@ class PortraitController(AbstractController):
             SpriteBotSheet.create(self.kao, self.item_id).save(fn)
 
     def on_spritebot_import_activate(self, *args):
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Import portraits from PNG sheet...",
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+            None, None
         )
 
         add_dialog_png_filter(dialog)

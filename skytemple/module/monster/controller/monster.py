@@ -515,11 +515,11 @@ class MonsterController(AbstractController):
 
             # 1. Export to file
             if self.builder.get_object('export_file_switch').get_active():
-                save_diag = Gtk.FileChooserDialog(
+                save_diag = Gtk.FileChooserNative.new(
                     "Export Pokémon as...",
                     SkyTempleMainController.window(),
                     Gtk.FileChooserAction.SAVE,
-                    (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+                    None, None
                 )
 
                 add_dialog_xml_filter(save_diag)
@@ -554,11 +554,11 @@ class MonsterController(AbstractController):
             self.module.import_from_xml(selected_monsters, xml)
 
     def on_btn_import_clicked(self, *args):
-        save_diag = Gtk.FileChooserDialog(
+        save_diag = Gtk.FileChooserNative.new(
             "Import Pokémon from...",
             SkyTempleMainController.window(),
             Gtk.FileChooserAction.OPEN,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+            None, None
         )
 
         add_dialog_xml_filter(save_diag)

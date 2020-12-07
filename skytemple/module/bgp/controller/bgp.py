@@ -63,11 +63,11 @@ class BgpController(AbstractController):
         resp = dialog.run()
         dialog.hide()
         if resp == ResponseType.OK:
-            dialog = Gtk.FileChooserDialog(
+            dialog = Gtk.FileChooserNative.new(
                 "Export as PNG...",
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
-                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+                None, None
             )
 
             add_dialog_png_filter(dialog)

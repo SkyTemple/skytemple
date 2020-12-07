@@ -200,11 +200,11 @@ class LevelUpController(AbstractController):
         editable.set_completion(self.builder.get_object('completion_moves'))
 
     def on_stats_export_clicked(self, *args):
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Save CSV...",
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            None, None
         )
 
         self._add_dialog_file_filters(dialog)
@@ -233,11 +233,11 @@ class LevelUpController(AbstractController):
                 )
 
     def on_stats_import_clicked(self, *args):
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Import CSV...",
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+            None, None
         )
 
         self._add_dialog_file_filters(dialog)

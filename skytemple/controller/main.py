@@ -197,11 +197,11 @@ class MainController:
     def on_save_as_button_clicked(self, wdg):
         project = RomProject.get_current()
 
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Save As...",
             self.window,
             Gtk.FileChooserAction.SAVE,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            None, None
         )
         dialog.set_filename(project.filename)
 
@@ -219,11 +219,11 @@ class MainController:
 
     def on_open_more_clicked(self, button: Button):
         """Dialog to open a file"""
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Open ROM...",
             self.window,
             Gtk.FileChooserAction.OPEN,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+            None, None
         )
 
         add_dialog_file_filters(dialog)
