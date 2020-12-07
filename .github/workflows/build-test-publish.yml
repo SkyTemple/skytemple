@@ -71,6 +71,7 @@ jobs:
           msystem: MINGW64
           install: >-
             mingw-w64-x86_64-curl
+            git
             unzip
             mingw-w64-x86_64-python
             mingw-w64-x86_64-python-pip
