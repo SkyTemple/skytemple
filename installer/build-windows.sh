@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Call with build-windows.sh [version number]
+# Call with "PACKAGE_VERSION=[version number] ./build-windows.sh"
 # The version from the current pip install of SkyTemple is used if no version number is set.
 set -e
 
@@ -29,7 +29,7 @@ rm dist/skytemple/share/gtk-doc/* -rf
 rm dist/skytemple/share/man/* -rf
 
 # Write the version number to files that are read at runtime
-version=$1 || $(python3 -c "import pkg_resources; print(pkg_resources.get_distribution(\"skytemple\").version)")
+version=$PACKAGE_VERSION || $(python3 -c "import pkg_resources; print(pkg_resources.get_distribution(\"skytemple\").version)")
 
 echo $version > dist/skytemple/VERSION
 echo $version > dist/skytemple/skytemple/data/VERSION

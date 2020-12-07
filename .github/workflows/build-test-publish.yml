@@ -155,13 +155,6 @@ jobs:
           brew install git pygobject3 gtk+3 python@3.8 gtksourceview3 adwaita-icon-theme sdl cmake
           PATH=/usr/local/opt/python@3.8/bin:/usr/local/bin:$PATH
 
-          # Install armips
-          git clone --recursive https://github.com/Kingcom/armips.git
-          mkdir armips/build && cd armips/build
-          cmake -DCMAKE_BUILD_TYPE=Release ..
-          cmake --build .
-          cd - # Go back to the SkyTemple directory
-          cp armips/build/armips ./installer/armips
 
           # Install other dependencies and SkyTemple itself
           pip3 install py-desmume skytemple-rust pyinstaller
@@ -171,12 +164,16 @@ jobs:
             installer/install-skytemple-components-from-git.sh
           fi
 
-          # Install the McMojave theme
           cd installer
-          curl https://cdn.discordapp.com/attachments/712341699292037121/784474569884303380/McMojave.zip -o McMojave.zip
-          unzip McMojave.zip > /dev/null
 
-          pip3 install pyinstaller
+          # Install themes
+          curl https://skytemple.org/build_deps/mac/McMojave.zip -O
+          unzip McMojave.zip > /dev/null
+          curl https://skytemple.org/build_deps/Arc.zip -O
+          unzip Arc.zip > /dev/null
+
+          # Download armips
+          curl https://skytemple.org/build_deps/mac/armips -O
 
           # Package
           ./build-mac.sh $PACKAGE_VERSION
@@ -184,9 +181,25 @@ jobs:
           # Creating a zip makes the artifact upload much faster since there are so many files
           zip -r skytemple-mac.zip dist/SkyTemple.app > /dev/null
 
-      - name: Upload artifacts
+      - name: Upload .app
         uses: actions/upload-artifact@v2
         with:
           name: skytemple-mac-app
           path: |
             installer/skytemple-mac.zip
+
+      - name: Create installer
+        run: |
+          # See https://github.com/sindresorhus/create-dmg
+          # create-dmg automatically generates an installer icon if imagemagick is installed
+          brew install graphicsmagick imagemagick
+
+          # This tool returns exit code 2 if the DMG was created but code signing failed for some reason
+          npx create-dmg --dmg-title=SkyTemple installer/dist/SkyTemple.app installer || true
+
+      - name: Upload .dmg
+        uses: actions/upload-artifact@v2
+        with:
+          name: skytemple-mac-dmg
+          path: |
+            installer/SkyTemple*.dmg

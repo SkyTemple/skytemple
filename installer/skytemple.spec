@@ -100,4 +100,5 @@ coll = COLLECT(exe,
                strip=False,
                upx=True,
                upx_exclude=[],
+               version=os.getenv('PACKAGE_VERSION', '0.0.0'),
                name='skytemple')
