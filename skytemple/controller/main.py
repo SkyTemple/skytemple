@@ -213,7 +213,7 @@ class MainController:
             fn += '.nds'
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             project.filename = fn
             self._save(True)
 
@@ -232,7 +232,7 @@ class MainController:
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             self._open_file(fn)
 
     def on_open_tree_selection_changed(self, selection: TreeSelection):

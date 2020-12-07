@@ -827,7 +827,7 @@ class FloorController(AbstractController):
                     fn += '.xml'
                 save_diag.destroy()
 
-                if response == Gtk.ResponseType.OK:
+                if response == Gtk.ResponseType.ACCEPT:
                     with open(fn, 'w') as f:
                         f.write(prettify(xml))
                 else:

@@ -75,7 +75,7 @@ class GraphicFontController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             for i in range(self.font.get_nb_entries()):
                 e = self.font.get_entry(i)
                 if e:
@@ -104,7 +104,7 @@ class GraphicFontController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             dialog: Gtk.Dialog = self.builder.get_object('dialog_import')
 
             self.builder.get_object('nb_entries_import').set_increments(1,1)

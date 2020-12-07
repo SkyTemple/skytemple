@@ -215,7 +215,7 @@ class LevelUpController(AbstractController):
             fn += '.csv'
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             try:
                 rows = [[CSV_LEVEL, CSV_EXP_POINTS, CSV_HP, CSV_ATK, CSV_SP_ATK, CSV_DEF, CSV_SP_DEF]]
                 for i, level in enumerate(self._level_bin_entry.levels):
@@ -246,7 +246,7 @@ class LevelUpController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             try:
                 with open_utf8(fn, mode='r') as csv_file:
                     content = list(csv.DictReader(csv_file))

@@ -143,7 +143,7 @@ class TilesetController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             try:
                 dirname = os.path.dirname(fn)
                 fn_xml = fn
@@ -182,7 +182,7 @@ class TilesetController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             try:
                 # Write XML
                 with open(os.path.join(fn, 'tileset.dtef.xml'), 'w') as f:

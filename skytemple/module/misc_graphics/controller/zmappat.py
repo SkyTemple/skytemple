@@ -77,7 +77,7 @@ class ZMappaTController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             for v in ZMappaTVariation:
                 fn_tiles = os.path.join(fn, f'zmappat-{v.filename}-tiles.min.png')
                 fn_masks = os.path.join(fn, f'zmappat-{v.filename}-masks.min.png')
@@ -96,7 +96,7 @@ class ZMappaTController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             for v in ZMappaTVariation:
                 fn_tiles = os.path.join(fn, f'zmappat-{v.filename}-tiles.png')
                 fn_masks = os.path.join(fn, f'zmappat-{v.filename}-masks.png')
@@ -125,7 +125,7 @@ class ZMappaTController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             try:
                 imgs = [None]*ZMAPPAT_NB_VARIATIONS
                 masks = [None]*ZMAPPAT_NB_VARIATIONS
@@ -181,7 +181,7 @@ class ZMappaTController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             try:
                 imgs = [None]*ZMAPPAT_NB_VARIATIONS
                 masks = [None]*ZMAPPAT_NB_VARIATIONS

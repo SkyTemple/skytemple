@@ -78,7 +78,7 @@ class BgpController(AbstractController):
                 fn += '.png'
             dialog.destroy()
 
-            if response == Gtk.ResponseType.OK:
+            if response == Gtk.ResponseType.ACCEPT:
                 self.bgp.to_pil().save(fn)
 
     def on_men_bg_import_activate(self, *args):

@@ -216,7 +216,7 @@ class BgMenuController:
             # Assuming the game runs 60 FPS.
             duration = round(1000 / 60 * non_none_bpas[0].frame_info[0].duration_per_frame)
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             frames = self.parent.bma.to_pil(self.parent.bpc, self.parent.bpl, self.parent.bpas, False, False)
             frames[0].save(
                 fn,
@@ -246,7 +246,7 @@ class BgMenuController:
             fn = dialog.get_filename()
             dialog.destroy()
 
-            if response == Gtk.ResponseType.OK:
+            if response == Gtk.ResponseType.ACCEPT:
                 base_filename = os.path.join(fn, f'{self.parent.module.bgs.level[self.parent.item_id].bma_name}_layer')
 
                 layer1 = self.parent.bma.to_pil_single_layer(self.parent.bpc, self.parent.bpl.palettes, self.parent.bpas, 0)
@@ -533,7 +533,7 @@ class BgMenuController:
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             # TODO: Support specifying palette
             pal = self.parent.bpl.palettes[0]
             try:
@@ -575,7 +575,7 @@ class BgMenuController:
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             try:
                 if is_single_mode:
                     filenames_base = [os.path.basename(fn)]
@@ -743,7 +743,7 @@ class BgMenuController:
                 fn += '.png'
             dialog.destroy()
 
-            if response == Gtk.ResponseType.OK:
+            if response == Gtk.ResponseType.ACCEPT:
                 self.parent.bpc.chunks_to_pil(layer, self.parent.bpl.palettes, 20).save(fn)
 
     def _import_chunks(self, layer):
@@ -809,7 +809,7 @@ class BgMenuController:
                 fn += '.png'
             dialog.destroy()
 
-            if response == Gtk.ResponseType.OK:
+            if response == Gtk.ResponseType.ACCEPT:
                 self.parent.bpc.tiles_to_pil(layer, self.parent.bpl.palettes, 20).save(fn)
 
     def _import_tiles(self, layer):

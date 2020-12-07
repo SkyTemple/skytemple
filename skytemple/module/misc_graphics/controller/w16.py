@@ -81,7 +81,7 @@ class W16Controller(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             for index, image in enumerate(self.w16):
                 filename = os.path.join(fn, f'{index}.png')
                 img = image.get()
@@ -109,7 +109,7 @@ class W16Controller(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             r = re.compile(rf"(\d+)\.png", re.IGNORECASE)
             imgs_dict = {int(match[1]): name
                          for match, name in self._try_match_import(r, os.listdir(fn))
