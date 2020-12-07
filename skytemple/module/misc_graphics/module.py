@@ -25,6 +25,7 @@ from skytemple.module.misc_graphics.controller.w16 import W16Controller
 from skytemple.module.misc_graphics.controller.wte_wtu import WteWtuController
 from skytemple.module.misc_graphics.controller.zmappat import ZMappaTController
 from skytemple.module.misc_graphics.controller.font import FontController
+from skytemple.module.misc_graphics.controller.graphic_font import GraphicFontController
 from skytemple.module.misc_graphics.controller.main import MainController, MISC_GRAPHICS
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
@@ -39,15 +40,18 @@ W16_FILE_EXT = 'w16'
 WTE_FILE_EXT = 'wte'
 WTU_FILE_EXT = 'wtu'
 DAT_FILE_EXT = 'dat'
+PAL_FILE_EXT = 'pal'
 ZMAPPAT_FILE_EXT = 'zmappat'
 DUNGEON_BIN_PATH = 'DUNGEON/dungeon.bin'
 VALID_FONT_DAT_FILES = set(['FONT/kanji_rd.dat', 'FONT/unkno_rd.dat'])
+VALID_GRAPHIC_FONT_FILES = set(['FONT/staffont.dat', 'FONT/markfont.dat'])
 VALID_FONT_SIR0_FILES = set(['FONT/kanji.dat', 'FONT/kanji_b.dat', 'FONT/unknown.dat'])
 
 
 class FontOpenSpec:
-    def __init__(self, font_filename: str, font_type: FontType):
+    def __init__(self, font_filename: str, pal_filename: str, font_type: FontType):
         self.font_filename = font_filename
+        self.pal_filename = pal_filename
         self.font_type = font_type
         
 class WteOpenSpec:
@@ -74,6 +78,8 @@ class MiscGraphicsModule(AbstractModule):
         self.list_of_wtus = self.project.get_files_with_ext(WTU_FILE_EXT)
         self.list_of_font_dats = list(set(self.project.get_files_with_ext(DAT_FILE_EXT)) & VALID_FONT_DAT_FILES)
         self.list_of_font_sir0s = list(set(self.project.get_files_with_ext(DAT_FILE_EXT)) & VALID_FONT_SIR0_FILES)
+        self.list_of_graphic_fonts = list(set(self.project.get_files_with_ext(DAT_FILE_EXT)) & VALID_GRAPHIC_FONT_FILES)
+        self.list_of_pals = self.project.get_files_with_ext(PAL_FILE_EXT)
         self.dungeon_bin: Optional[DungeonBinPack] = None
         self.list_of_wtes_dungeon_bin = None
         self.list_of_wtus_dungeon_bin = None
@@ -114,7 +120,7 @@ class MiscGraphicsModule(AbstractModule):
                 ])
             else:
                 wtu_name = name[:-3] + WTU_FILE_EXT
-                if name[:-3] + WTU_FILE_EXT not in self.list_of_wtus:
+                if wtu_name not in self.list_of_wtus:
                     wtu_name = None
                 self._tree_level_iter[name] = item_store.append(root, [
                     'skytemple-e-graphics-symbolic', name, self,  WteWtuController, WteOpenSpec(
@@ -125,13 +131,20 @@ class MiscGraphicsModule(AbstractModule):
         # fonts at the end:
         for i, name in enumerate(self.list_of_font_dats):
             self._tree_level_iter[name] = item_store.append(root, [
-                'skytemple-e-graphics-symbolic', name, self,  FontController, FontOpenSpec(name, FontType.FONT_DAT), False, '', True
+                'skytemple-e-graphics-symbolic', name, self,  FontController, FontOpenSpec(name, None, FontType.FONT_DAT), False, '', True
             ])
         
-        # fonts at the end:
         for i, name in enumerate(self.list_of_font_sir0s):
             self._tree_level_iter[name] = item_store.append(root, [
-                'skytemple-e-graphics-symbolic', name, self,  FontController, FontOpenSpec(name, FontType.FONT_SIR0), False, '', True
+                'skytemple-e-graphics-symbolic', name, self,  FontController, FontOpenSpec(name, None, FontType.FONT_SIR0), False, '', True
+            ])
+            
+        for i, name in enumerate(self.list_of_graphic_fonts):
+            pal_name = name[:-3] + PAL_FILE_EXT
+            if pal_name not in self.list_of_pals:
+                pal_name = None
+            self._tree_level_iter[name] = item_store.append(root, [
+                'skytemple-e-graphics-symbolic', name, self,  GraphicFontController, FontOpenSpec(name, pal_name, FontType.GRAPHIC_FONT), False, '', True
             ])
             
         # dungeon bin entries at the end:
@@ -175,6 +188,11 @@ class MiscGraphicsModule(AbstractModule):
             return self.project.open_file_in_rom(spec.font_filename, FileType.FONT_DAT)
         elif spec.font_type == FontType.FONT_SIR0:
             return self.project.open_file_in_rom(spec.font_filename, FileType.FONT_SIR0)
+        elif spec.font_type == FontType.GRAPHIC_FONT:
+            font = self.project.open_file_in_rom(spec.font_filename, FileType.GRAPHIC_FONT)
+            if spec.pal_filename:
+                font.set_palette(self.project.open_file_in_rom(spec.pal_filename, FileType.PAL))
+            return font
         else:
             return None
 
@@ -184,6 +202,8 @@ class MiscGraphicsModule(AbstractModule):
     def mark_font_as_modified(self, item: FontOpenSpec):
         """Mark a specific font as modified"""
         self.project.mark_as_modified(item.font_filename)
+        if item.pal_filename:
+            self.project.mark_as_modified(item.pal_filename)
         # Mark as modified in tree
         row = self._tree_model[self._tree_level_iter[item.font_filename]]
         recursive_up_item_store_mark_as_modified(row)
