@@ -64,11 +64,11 @@ class BgMenuController:
         resp = dialog.run()
         dialog.hide()
         if resp == ResponseType.OK:
-            dialog = Gtk.FileChooserDialog(
+            dialog = Gtk.FileChooserNative.new(
                 "Export PNG of map...",
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
-                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+                None, None
             )
 
             response = dialog.run()
@@ -131,11 +131,11 @@ class BgMenuController:
         resp = dialog.run()
         dialog.hide()
         if resp == Gtk.ResponseType.OK:
-            dialog = Gtk.FileChooserDialog(
+            dialog = Gtk.FileChooserNative.new(
                 "Export PNG of chunks...",
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
-                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+                None, None
             )
 
             add_dialog_png_filter(dialog)
@@ -206,11 +206,11 @@ class BgMenuController:
         resp = dialog.run()
         dialog.hide()
         if resp == Gtk.ResponseType.OK:
-            dialog = Gtk.FileChooserDialog(
+            dialog = Gtk.FileChooserNative.new(
                 "Export PNG of tiles...",
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
-                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+                None, None
             )
 
             add_dialog_png_filter(dialog)

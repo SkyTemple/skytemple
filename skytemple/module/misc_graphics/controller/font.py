@@ -77,11 +77,11 @@ class FontController(AbstractController):
         return self.builder.get_object('editor')
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Export font in folder...",
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            '_Save', None
         )
 
         response = dialog.run()
@@ -106,11 +106,11 @@ class FontController(AbstractController):
         )
         md.run()
         md.destroy()
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Import font from folder...",
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+            None, None
         )
 
         response = dialog.run()

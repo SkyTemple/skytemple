@@ -69,11 +69,11 @@ class WteWtuController(AbstractController):
         return self.builder.get_object('editor')
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Export image as PNG...",
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            "_Save", None
         )
 
         add_dialog_png_filter(dialog)

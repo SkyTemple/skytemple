@@ -195,11 +195,11 @@ class BgMenuController:
         dialog.hide()
 
     def on_men_map_export_gif_activate(self):
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Save GIF of map...",
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            None, None
         )
 
         add_dialog_gif_filter(dialog)
@@ -235,11 +235,11 @@ class BgMenuController:
         resp = dialog.run()
         dialog.hide()
         if resp == ResponseType.OK:
-            dialog = Gtk.FileChooserDialog(
+            dialog = Gtk.FileChooserNative.new(
                 "Export PNGs of map...",
                 MainController.window(),
                 Gtk.FileChooserAction.SELECT_FOLDER,
-                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+                "_Save", None
             )
 
             response = dialog.run()
@@ -519,11 +519,11 @@ class BgMenuController:
         active_bpa = self.parent.bpas[active_bpa_index]
         is_single_mode = self.parent.builder.get_object('dialog_tiles_animated_export_radio_single').get_active()
         file_chooser_mode = Gtk.FileChooserAction.SAVE if is_single_mode else Gtk.FileChooserAction.SELECT_FOLDER
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Export animated tiles (BPA)",
             MainController.window(),
             file_chooser_mode,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            None, None
         )
 
         if is_single_mode:
@@ -561,11 +561,11 @@ class BgMenuController:
         active_bpa = self.parent.bpas[active_bpa_index]
         is_single_mode = self.parent.builder.get_object('dialog_tiles_animated_export_radio_single').get_active()
         file_chooser_mode = Gtk.FileChooserAction.OPEN if is_single_mode else Gtk.FileChooserAction.SELECT_FOLDER
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Import animated tiles (BPA)",
             MainController.window(),
             file_chooser_mode,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+            None, None
         )
 
         if is_single_mode:
@@ -728,11 +728,11 @@ class BgMenuController:
         resp = dialog.run()
         dialog.hide()
         if resp == ResponseType.OK:
-            dialog = Gtk.FileChooserDialog(
+            dialog = Gtk.FileChooserNative.new(
                 "Export PNG of chunks...",
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
-                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+                None, None
             )
 
             add_dialog_png_filter(dialog)
@@ -794,11 +794,11 @@ class BgMenuController:
         resp = dialog.run()
         dialog.hide()
         if resp == ResponseType.OK:
-            dialog = Gtk.FileChooserDialog(
+            dialog = Gtk.FileChooserNative.new(
                 "Export PNG of tiles...",
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
-                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+                None, None
             )
 
             add_dialog_png_filter(dialog)

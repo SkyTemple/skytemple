@@ -133,11 +133,11 @@ class TilequantController:
             md.run()
             md.destroy()
 
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Save first image as (PNG)...",
             self.window,
             Gtk.FileChooserAction.SAVE,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            None, None
         )
         if self._previous_output_image is not None:
             dialog.set_filename(self._previous_output_image)
@@ -154,11 +154,11 @@ class TilequantController:
             return
 
         if has_second_image:
-            dialog = Gtk.FileChooserDialog(
+            dialog = Gtk.FileChooserNative.new(
                 "Save second image as (PNG)...",
                 self.window,
                 Gtk.FileChooserAction.SAVE,
-                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+                None, None
             )
             if self._previous_second_output_image is not None:
                 dialog.set_filename(self._previous_second_output_image)

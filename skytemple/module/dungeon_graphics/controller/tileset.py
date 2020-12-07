@@ -126,11 +126,11 @@ class TilesetController(AbstractController):
         md.run()
         md.destroy()
 
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Import dungeon tileset...",
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+            None, None
         )
 
         filter = Gtk.FileFilter()
@@ -171,11 +171,11 @@ class TilesetController(AbstractController):
                 )
 
     def on_btn_export_clicked(self, *args):
-        dialog = Gtk.FileChooserDialog(
+        dialog = Gtk.FileChooserNative.new(
             "Export dungeon tileset...",
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            None, None
         )
 
         response = dialog.run()
