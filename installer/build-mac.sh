@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Call with build-mac.sh [version number]
+# Call with "PACKAGE_VERSION=[version number] ./build-mac.sh"
 # The version from the current pip install of SkyTemple is used if no version number is set.
 set -e
 
@@ -44,11 +44,11 @@ appdir=dist/SkyTemple.app/Contents/MacOS
 sed -i '' 's/run_skytemple/pre_run_skytemple/' dist/SkyTemple.app/Contents/Info.plist
 
 # Create a shell script that sets LD_LIBRARY_PATH and launches SkyTemple
-printf '#!/bin/sh\nLD_LIBRARY_PATH=$(dirname $0) $(dirname $0)/run_skytemple\n' > $appdir/pre_run_skytemple
+printf '#!/bin/sh\nLD_LIBRARY_PATH="$(dirname $0)" "$(dirname $0)/run_skytemple"\n' > $appdir/pre_run_skytemple
 chmod +x $appdir/pre_run_skytemple
 
 # Write the version number to files that are read at runtime
-version=$1 || $(python3 -c "import pkg_resources; print(pkg_resources.get_distribution(\"skytemple\").version)")
+version=$PACKAGE_VERSION || $(python3 -c "import pkg_resources; print(pkg_resources.get_distribution(\"skytemple\").version)")
 
 echo $version > $appdir/VERSION
 echo $version > $appdir/data/VERSION

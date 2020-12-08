@@ -25,11 +25,14 @@ additional_datas = [
     (os.path.join(site_packages, "cssselect2", "VERSION"), "cssselect2"),
     (os.path.join(site_packages, "tinycss2", "VERSION"), "tinycss2"),
     (os.path.join(site_packages, "cairosvg", "VERSION"), "cairosvg"),
+    (os.path.join(site_packages, "pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
 
     # Themes
     ('Mojave-dark', 'share/themes/Mojave-dark'),
     ('Mojave-light', 'share/themes/Mojave-light'),
+    ('Arc', 'share/themes/Arc'),
+    ('Arc-Dark', 'share/themes/Arc-Dark'),
 ]
 
 additional_binaries = [
@@ -88,5 +91,6 @@ coll = COLLECT(exe,
 app = BUNDLE(coll,
              name='SkyTemple.app',
              icon='skytemple.icns',
+             version=os.getenv('PACKAGE_VERSION', '0.0.0'),
              bundle_identifier='de.parakoopa.skytemple')
 
