@@ -101,7 +101,8 @@ class FontController(AbstractController):
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
             f"To import, select a folder containing all the files that were created when exporting the font.\n"
-            f"IMPORTANT: All image files must be indexed PNGs!",
+            f"IMPORTANT: All image files must be indexed PNGs!\n"
+            f"For banner fonts, all images must have the same palette.",
             title="Import Font"
         )
         md.run()
@@ -272,8 +273,18 @@ class FontController(AbstractController):
             active_rows : List[Gtk.TreePath] = entry_tree.get_selection().get_selected_rows()[1]
             for x in active_rows:
                 prop = self.entries[x.get_indices()[0]].get_properties()
-                ctx.set_line_width(1)
-                ctx.set_source_rgba(1,0,0, 1)
-                ctx.rectangle((prop["char"]%16)*12*IMAGE_ZOOM, (prop["char"]//16)*12*IMAGE_ZOOM, prop["width"]*IMAGE_ZOOM, 12*IMAGE_ZOOM)
+                if self.font.get_entry_image_size()>12:
+                    ctx.set_line_width(4)
+                    ctx.set_source_rgba(0,0,0, 1)
+                    ctx.rectangle((prop["char"]%16)*self.font.get_entry_image_size()*IMAGE_ZOOM, \
+                                  (prop["char"]//16)*self.font.get_entry_image_size()*IMAGE_ZOOM, prop["width"]*IMAGE_ZOOM, self.font.get_entry_image_size()*IMAGE_ZOOM)
+                    ctx.stroke()
+                ctx.set_line_width(2)
+                if self.font.get_entry_image_size()>12:
+                    ctx.set_source_rgba(1,1,1, 1)
+                else:
+                    ctx.set_source_rgba(1,0,0, 1)
+                ctx.rectangle((prop["char"]%16)*self.font.get_entry_image_size()*IMAGE_ZOOM, \
+                              (prop["char"]//16)*self.font.get_entry_image_size()*IMAGE_ZOOM, prop["width"]*IMAGE_ZOOM, self.font.get_entry_image_size()*IMAGE_ZOOM)
                 ctx.stroke()
         return True
