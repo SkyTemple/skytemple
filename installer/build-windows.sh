@@ -9,10 +9,10 @@ export XDG_DATA_DIRS="${BUILD_ROOT}/${MINGW}/share"
 rm build -rf || true
 rm dist -rf || true
 
-pip install python_igraph-*-mingw.whl
-pip install py_desmume-*-mingw.whl
-pip install skytemple_rust-*-mingw.whl
-pip install tilequant-*-mingw.whl
+pip3 install python_igraph-*-mingw.whl
+pip3 install py_desmume-*-mingw.whl
+pip3 install skytemple_rust-*-mingw.whl
+pip3 install tilequant-*-mingw.whl
 pip3 install -r ../requirements-mac-windows.txt
 pip3 install ..
 
@@ -22,11 +22,6 @@ if [ -n "$IS_DEV_BUILD" ]; then
 fi
 
 pyinstaller skytemple.spec
-
-# Remove unnecessary things
-rm dist/skytemple/share/doc/* -rf
-rm dist/skytemple/share/gtk-doc/* -rf
-rm dist/skytemple/share/man/* -rf
 
 # Write the version number to files that are read at runtime
 version=$PACKAGE_VERSION || $(python3 -c "import pkg_resources; print(pkg_resources.get_distribution(\"skytemple\").version)")
