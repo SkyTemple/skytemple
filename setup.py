@@ -1,4 +1,4 @@
-__version__ = '0.1.0rc2'
+__version__ = '1.0.0'
 import os
 
 from setuptools import setup, find_packages
@@ -31,28 +31,29 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files >= 0.1.0rc5',
-        'skytemple-dtef >= 0.1.0rc2',
+        'skytemple-files >= 1.0.0',
+        'skytemple-dtef >= 1.0.0',
         'skytemple-icons >= 0.1.0',
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
         'tilequant >= 0.4.0',
-        'skytemple-ssb-debugger >= 0.1.0rc2',
+        'skytemple-ssb-debugger >= 1.0.0',
         'pygal >= 2.4.0',
         'CairoSVG >= 2.4.2'
     ],
     extras_require={
         'discord':  ["pypresence >= 4.0.0"],
-        'eventserver': ["skytemple-eventserver >= 0.1.0rc2"]
+        'eventserver': ["skytemple-eventserver >= 1.0.0"]
     },
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Programming Language :: Python',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8'
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9'
     ],
     package_data={'skytemple': ['*.css', 'data/*/*/*/*/*', 'data/*', 'data/fixed_floor/*'] + recursive_pkg_files('.glade')},
     entry_points='''
@@ -73,8 +74,4 @@ setup(
         [console_scripts]
         skytemple=skytemple.main:main
     ''',
-    #item=         skytemple.module.item.module:ItemModule
-    #music=        skytemple.module.music.module:MusicModule
-    #sprite=       skytemple.module.sprite.module:SpriteModule
-    #stats=        skytemple.module.stats.module:StatsModule
 )
