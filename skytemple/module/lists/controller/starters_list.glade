@@ -1,7 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.36.0 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
+  <object class="GtkListStore" id="monster_store">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_entities">
+    <property name="model">monster_store</property>
+    <property name="text_column">0</property>
+    <signal name="match-selected" handler="on_completion_entities_match_selected" swapped="no"/>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_entities1">
+    <property name="model">monster_store</property>
+    <property name="text_column">0</property>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_entities2">
+    <property name="model">monster_store</property>
+    <property name="text_column">0</property>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+  <object class="GtkListStore" id="partner_list_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="gchararray"/>
+      <!-- column-name ent_icon -->
+      <column type="GdkPixbuf"/>
+      <!-- column-name entid -->
+      <column type="gint"/>
+      <!-- column-name ent_name -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="player_list_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="gchararray"/>
+      <!-- column-name ent_icon -->
+      <column type="GdkPixbuf"/>
+      <!-- column-name entid -->
+      <column type="gint"/>
+      <!-- column-name ent_name -->
+      <column type="gchararray"/>
+      <!-- column-name nature -->
+      <column type="gchararray"/>
+      <!-- column-name gender -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkBox" id="box">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -10,8 +75,8 @@
       <object class="GtkAlignment">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="xscale">0.80000001192092895508</property>
-        <property name="yscale">0.80000001192092895508</property>
+        <property name="xscale">0.80000001192092896</property>
+        <property name="yscale">0.80000001192092896</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
@@ -44,7 +109,8 @@
                   <object class="GtkAlignment">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
+                    <property name="left_padding">10</property>
+                    <property name="right_padding">10</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
@@ -76,10 +142,12 @@
                                           <object class="GtkEntry" id="default_player_species">
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
-                                            <property name="width_chars">12</property>
+                                            <property name="width_chars">10</property>
+                                            <property name="completion">completion_entities1</property>
+                                            <signal name="changed" handler="on_default_player_species_changed" swapped="no"/>
                                           </object>
                                           <packing>
-                                            <property name="expand">False</property>
+                                            <property name="expand">True</property>
                                             <property name="fill">True</property>
                                             <property name="position">0</property>
                                           </packing>
@@ -88,7 +156,7 @@
                                           <object class="GtkEntry" id="default_player_name">
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
-                                            <property name="width_chars">12</property>
+                                            <property name="width_chars">10</property>
                                             <signal name="changed" handler="on_default_player_name_changed" swapped="no"/>
                                           </object>
                                           <packing>
@@ -111,7 +179,7 @@
                                 </child>
                               </object>
                               <packing>
-                                <property name="expand">False</property>
+                                <property name="expand">True</property>
                                 <property name="fill">True</property>
                                 <property name="position">0</property>
                               </packing>
@@ -136,10 +204,12 @@
                                           <object class="GtkEntry" id="default_partner_species">
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
-                                            <property name="width_chars">12</property>
+                                            <property name="width_chars">10</property>
+                                            <property name="completion">completion_entities2</property>
+                                            <signal name="changed" handler="on_default_partner_species_changed" swapped="no"/>
                                           </object>
                                           <packing>
-                                            <property name="expand">False</property>
+                                            <property name="expand">True</property>
                                             <property name="fill">True</property>
                                             <property name="position">0</property>
                                           </packing>
@@ -148,7 +218,7 @@
                                           <object class="GtkEntry" id="default_partner_name">
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
-                                            <property name="width_chars">12</property>
+                                            <property name="width_chars">10</property>
                                             <signal name="changed" handler="on_default_partner_name_changed" swapped="no"/>
                                           </object>
                                           <packing>
@@ -171,7 +241,7 @@
                                 </child>
                               </object>
                               <packing>
-                                <property name="expand">False</property>
+                                <property name="expand">True</property>
                                 <property name="fill">True</property>
                                 <property name="position">1</property>
                               </packing>
@@ -238,8 +308,7 @@
                             <property name="halign">start</property>
                             <property name="label" translatable="yes">You can apply the default team using the script command
 "ProcessSpecial(PROCESS_SPECIAL_INIT_MAIN_TEAM_AFTER_QUIZ, 0. 0)" 
-(without going through the personality test first). 
-It is currently not possible to change the species of the default starters.</property>
+(without going through the personality test first). </property>
                             <property name="wrap">True</property>
                           </object>
                           <packing>
@@ -484,50 +553,5 @@ to the player. You can find that in the "Personality Quiz result strings" catego
         <property name="position">1</property>
       </packing>
     </child>
-  </object>
-  <object class="GtkListStore" id="monster_store">
-    <columns>
-      <!-- column-name label -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkEntryCompletion" id="completion_entities">
-    <property name="model">monster_store</property>
-    <property name="text_column">0</property>
-    <signal name="match-selected" handler="on_completion_entities_match_selected" swapped="no"/>
-    <child>
-      <object class="GtkCellRendererText"/>
-      <attributes>
-        <attribute name="text">0</attribute>
-      </attributes>
-    </child>
-  </object>
-  <object class="GtkListStore" id="partner_list_store">
-    <columns>
-      <!-- column-name id -->
-      <column type="gchararray"/>
-      <!-- column-name ent_icon -->
-      <column type="GdkPixbuf"/>
-      <!-- column-name entid -->
-      <column type="gint"/>
-      <!-- column-name ent_name -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkListStore" id="player_list_store">
-    <columns>
-      <!-- column-name id -->
-      <column type="gchararray"/>
-      <!-- column-name ent_icon -->
-      <column type="GdkPixbuf"/>
-      <!-- column-name entid -->
-      <column type="gint"/>
-      <!-- column-name ent_name -->
-      <column type="gchararray"/>
-      <!-- column-name nature -->
-      <column type="gchararray"/>
-      <!-- column-name gender -->
-      <column type="gchararray"/>
-    </columns>
   </object>
 </interface>
