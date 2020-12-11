@@ -184,10 +184,9 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_dead_ends_clicked(self, *args):
-        self._help("Also used in the first phase of the map generation, after connecting the vertices.\n"
-                   "If this flag is disabled, the game will look for any cell which is only connected in one direction "
-                   "and create a path in one of the other three.\n"
-                   "The process is repeated until there are no dead ends in the starting graph.")
+        self._help("Controls whether dead end hallways can be generated in the floor. "
+                   "Dead ends can still appear in the map even if they are disabled due to a bug in the "
+                   "map generator and because extra hallways can also produce them.")
 
     def on_entry_floor_connectivity_changed(self, w, *args):
         self._update_from_widget(w)
@@ -198,8 +197,7 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_water_density_clicked(self, *args):
-        self._help("Controls the amount of walls randomly replaced by water structures. "
-                   "How this works exactly isn't researched yet.")
+        self._help("This is the amount of lakes that will be generated during the water generation phase.")
 
     def on_entry_extra_hallway_density_changed(self, w, *args):
         self._update_from_widget(w)
@@ -754,7 +752,7 @@ class FloorController(AbstractController):
     def on_btn_help__spawn_tables__clicked(self, *args):
         self._help("Change the chances of Pokémon, traps or items spawning.\nThe spawn chance depends on the weight of "
                    "an entry. The higher an entry's weight is, the more likely it is to spawn.\n"
-                   "Please note for Pokémon, that weights for Pokémon that can not be spawned (eg. legendaries"
+                   "Please note for Pokémon, that weights for Pokémon that can not be spawned (eg. legendaries "
                    "without having their items) will be added to the next Pokémon entry in the list when the game "
                    "decides what to spawn.\n"
                    "Please note for items, that the game first decides what category to spawn for an item and then "
@@ -1411,7 +1409,7 @@ class FloorController(AbstractController):
 
     def _comboxbox_for_fixed_floor_id(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
-        store.append([0, f"No fixed floor"])
+        store.append([0, f"No fixed room"])
         for i in range(1, COUNT_VALID_FIXED_FLOORS):
             store.append([i, f"No. {i}"])
         for name in names:
