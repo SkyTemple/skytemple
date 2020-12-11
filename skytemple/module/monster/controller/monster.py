@@ -38,7 +38,7 @@ from skytemple_files.data.monster_xml import monster_xml_export
 
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
-MAX_ITEMS = 1352
+MAX_ITEMS = 1400
 PATTERN = re.compile(r'.*\(#(\d+)\).*')
 
 
