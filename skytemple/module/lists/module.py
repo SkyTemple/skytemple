@@ -30,6 +30,7 @@ from skytemple.module.lists.controller.world_map import WorldMapController
 from skytemple_files.data.md.model import Md
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement, HardcodedDungeons
 from skytemple_files.hardcoded.personality_test_starters import HardcodedPersonalityTestStarters
+from skytemple_files.hardcoded.default_starters import HardcodedDefaultStarters
 from skytemple_files.hardcoded.rank_up_table import Rank, HardcodedRankUpTable
 from skytemple_files.hardcoded.recruitment_tables import HardcodedRecruitmentTables
 from skytemple_files.list.actor.model import ActorListBin
@@ -106,6 +107,25 @@ class ListsModule(AbstractModule):
     def get_monster_md(self) -> Md:
         return self.project.get_module('monster').monster_md
 
+    def get_starter_default_ids(self) -> Tuple[int, int]:
+        """Returns players & partner default starters"""
+        arm9 = self.project.get_binary(BinaryName.ARM9)
+        static_data = self.project.get_rom_module().get_static_data()
+        player = HardcodedDefaultStarters.get_player_md_id(arm9, static_data)
+        partner = HardcodedDefaultStarters.get_partner_md_id(arm9, static_data)
+        return player, partner
+
+    def set_starter_default_ids(self, player, partner):
+        """Sets players & partner default starters"""
+        def update(arm9):
+            static_data = self.project.get_rom_module().get_static_data()
+            HardcodedDefaultStarters.set_player_md_id(player, arm9, static_data)
+            HardcodedDefaultStarters.set_partner_md_id(partner, arm9, static_data)
+        self.project.modify_binary(BinaryName.ARM9, update)
+
+        row = self._tree_model[self._starters_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+    
     def get_starter_ids(self) -> Tuple[List[int], List[int]]:
         """Returns players & partner starters"""
         ov13 = self.project.get_binary(BinaryName.OVERLAY_13)

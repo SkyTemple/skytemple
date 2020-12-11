@@ -65,6 +65,7 @@ class StartersListController(ListBaseController):
     def __init__(self, module: 'ListsModule', *args):
         super().__init__(module, *args)
         self._player, self._partner = self.module.get_starter_ids()
+        self._default_player, self._default_partner = self.module.get_starter_default_ids()
         self._player_iters = {}
         self._partner_iters = {}
         self.string_provider = self.module.project.get_string_provider()
@@ -82,14 +83,36 @@ class StartersListController(ListBaseController):
         self.load()
 
         default_player_species: Gtk.Entry = self.builder.get_object('default_player_species')
-        default_player_species.set_text(self._ent_names[4])
-        default_player_species.set_sensitive(False)
+        default_player_species.set_text(self._ent_names[self._default_player])
         default_partner_species: Gtk.Entry = self.builder.get_object('default_partner_species')
-        default_partner_species.set_text(self._ent_names[1])
-        default_partner_species.set_sensitive(False)
+        default_partner_species.set_text(self._ent_names[self._default_partner])
 
         return self.builder.get_object('box')
 
+    def on_default_player_species_changed(self, w, *args):
+        match = PATTERN_MD_ENTRY.match(w.get_text())
+        if match is None:
+            return
+        try:
+            val = int(match.group(1))
+        except ValueError:
+            return
+        if self._default_player != val:
+            self._default_player = val
+            self.module.set_starter_default_ids(self._default_player, self._default_partner)
+        
+    def on_default_partner_species_changed(self, w, *args):
+        match = PATTERN_MD_ENTRY.match(w.get_text())
+        if match is None:
+            return
+        try:
+            val = int(match.group(1))
+        except ValueError:
+            return
+        if self._default_partner != val:
+            self._default_partner = val
+            self.module.set_starter_default_ids(self._default_player, self._default_partner)
+    
     def on_default_player_name_changed(self, w: Gtk.Entry):
         for lang in self.string_provider.get_languages():
             self.string_provider.get_model(lang).strings[
