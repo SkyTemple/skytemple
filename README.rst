@@ -66,7 +66,7 @@ Linux
 The Linux version can be installed via Pip. For this Python 3.6+ must be installed and GTK+
 (which you most likely both have)::
 
-    pip install --upgrade skytemple
+    pip install --upgrade skytemple[eventserver,discord]
 
 You may need to run pip3 instead and/or need to update pip by running::
 
