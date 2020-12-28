@@ -166,8 +166,6 @@ jobs:
           cd installer
 
           # Install themes
-          curl https://skytemple.org/build_deps/mac/McMojave.zip -O
-          unzip McMojave.zip > /dev/null
           curl https://skytemple.org/build_deps/Arc.zip -O
           unzip Arc.zip > /dev/null
 

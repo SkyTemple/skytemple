@@ -30,15 +30,13 @@ additional_datas = [
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
 
     # Themes
-    ('Mojave-dark', 'share/themes/Mojave-dark'),
-    ('Mojave-light', 'share/themes/Mojave-light'),
     ('Arc', 'share/themes/Arc'),
     ('Arc-Dark', 'share/themes/Arc-Dark'),
 ]
 
 additional_binaries = [
     (os.path.join(site_packages, "desmume", "libdesmume.so"), "."),
-    (os.path.join(os.sep, "usr", "local", "lib", "libSDL.dylib"), "."), # Must be installed with Homebrew
+    (os.path.join(os.sep, "usr", "local", "lib", "libSDL-1.2.0.dylib"), "."), # Must be installed with Homebrew
     (os.path.join(os.sep, "usr", "local", "lib", "libenchant-2.dylib"), "."), # Must be installed with Homebrew
     (os.path.join(os.sep, "usr", "local", "lib", "libaspell.15.dylib"), "."), # Gets installed with Enchant
     (os.path.join(os.sep, "usr", "local", "lib", "enchant-2", "enchant_applespell.so"), "."), # Gets installed with Enchant

@@ -109,7 +109,11 @@ class MainController:
         self._loaded_map_bg_module = None
         self._current_breadcrumbs = []
 
-        self._load_position_and_size()
+        if not sys.platform.startswith('darwin'):
+            # Don't load the window position on macOS to prevent
+            # the window from getting stuck on a disconnected screen
+            self._load_position_and_size()
+
         self._configure_csd()
         self._load_icon()
         self._load_recent_files()
