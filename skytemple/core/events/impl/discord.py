@@ -38,6 +38,7 @@ from skytemple_files.data.md.model import NUM_ENTITIES
 CLIENT_ID = "736538698719690814"
 IDLE_TIMEOUT = 5 * 60
 logger = logging.getLogger(__name__)
+SHOW_ROM_NAME = False
 
 
 class DiscordPresence(AbstractListener):
@@ -88,7 +89,10 @@ class DiscordPresence(AbstractListener):
 
     def on_project_open(self, project: RomProject):
         self.project = project
-        self.rom_name = os.path.basename(project.filename)
+        if SHOW_ROM_NAME:
+            self.rom_name = os.path.basename(project.filename)
+        else:
+            self.rom_name = ""
         self._update_current_presence()
 
     def on_view_switch(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
