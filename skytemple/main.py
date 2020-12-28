@@ -58,7 +58,7 @@ def main():
 
     if sys.platform.startswith('win'):
         # Load theming under Windows
-        _windows_load_theme(settings)
+        _load_theme(settings)
         # Solve issue #12
         try:
             from skytemple_files.common.platform_utils.win import win_set_error_mode
@@ -69,7 +69,7 @@ def main():
 
     if sys.platform.startswith('darwin'):
         # Load theming under macOS
-        _macos_load_theme(settings)
+        _load_theme(settings)
 
         # The search path is wrong if SkyTemple is executed as an .app bundle
         if getattr(sys, 'frozen', False):
@@ -128,15 +128,9 @@ def main():
         AsyncTaskRunner.end()
 
 
-def _windows_load_theme(settings: SkyTempleSettingsStore):
+def _load_theme(settings: SkyTempleSettingsStore):
     gtk_settings = Gtk.Settings.get_default()
     gtk_settings.set_property("gtk-theme-name", settings.get_gtk_theme(default='Arc-Dark'))
-
-
-def _macos_load_theme(settings: SkyTempleSettingsStore):
-    gtk_settings = Gtk.Settings.get_default()
-    gtk_settings.set_property("gtk-theme-name", settings.get_gtk_theme(default='Mojave-dark'))
-
 
 if __name__ == '__main__':
     # TODO: At the moment doesn't support any cli arguments.
