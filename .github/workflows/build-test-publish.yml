@@ -173,6 +173,7 @@ jobs:
 
           # Download armips
           curl https://skytemple.org/build_deps/mac/armips -O
+          chmod +x armips
 
           # Package
           ./build-mac.sh $PACKAGE_VERSION
