@@ -26,7 +26,7 @@ import cairo
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.ui_utils import add_dialog_png_filter
-from skytemple.module.portrait.sprite_bot_sheet import SpriteBotSheet
+from skytemple_files.graphics.kao.sprite_bot_sheet import SpriteBotSheet
 
 try:
     from PIL import Image
@@ -36,7 +36,6 @@ from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.string_provider import StringType
 from skytemple_files.graphics.kao.model import SUBENTRIES, KaoImage
 
 if TYPE_CHECKING:
