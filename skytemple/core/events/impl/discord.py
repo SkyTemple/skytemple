@@ -92,7 +92,7 @@ class DiscordPresence(AbstractListener):
         if SHOW_ROM_NAME:
             self.rom_name = os.path.basename(project.filename)
         else:
-            self.rom_name = ""
+            self.rom_name = "SkyTemple"
         self._update_current_presence()
 
     def on_view_switch(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
