@@ -136,6 +136,14 @@ class MainController(AbstractController):
         self.module.mark_tbl_talk_as_modified()
         self._refresh_list()
         
+    def on_spec_personality_edited(self, widget, path, text):
+        try:
+            tree_store: Gtk.ListStore = self.builder.get_object('special_personalities_tree_store')
+            tree_store[path][1] = int(text)
+            self.module.set_special_personality(int(path), int(text))
+        except ValueError:
+            return
+        
     def on_id_text_edited(self, widget, path, text):
         try:
             tree_store: Gtk.ListStore = self.builder.get_object('group_text_tree_store')

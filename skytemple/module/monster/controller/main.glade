@@ -2,6 +2,38 @@
 <!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
+  <object class="GtkListStore" id="cb_store_lang">
+    <columns>
+      <!-- column-name locale -->
+      <column type="gchararray"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="cb_store_types">
+    <columns>
+      <!-- column-name id_type -->
+      <column type="guint"/>
+      <!-- column-name description -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="group_text_tree_store">
+    <columns>
+      <!-- column-name id_text -->
+      <column type="guint"/>
+      <!-- column-name string_text -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="special_personalities_tree_store">
+    <columns>
+      <!-- column-name actor -->
+      <column type="gchararray"/>
+      <!-- column-name personality -->
+      <column type="guint"/>
+    </columns>
+  </object>
   <object class="GtkBox" id="box_list">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -412,6 +444,7 @@ This includes stats and the portrait images.</property>
                                 <child>
                                   <object class="GtkCellRendererText" id="spec_personality">
                                     <property name="editable">True</property>
+                                    <signal name="edited" handler="on_spec_personality_edited" swapped="no"/>
                                   </object>
                                   <attributes>
                                     <attribute name="text">1</attribute>
@@ -460,37 +493,5 @@ This includes stats and the portrait images.</property>
         <property name="position">1</property>
       </packing>
     </child>
-  </object>
-  <object class="GtkListStore" id="cb_store_lang">
-    <columns>
-      <!-- column-name locale -->
-      <column type="gchararray"/>
-      <!-- column-name name -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkListStore" id="cb_store_types">
-    <columns>
-      <!-- column-name id_type -->
-      <column type="guint"/>
-      <!-- column-name description -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkListStore" id="group_text_tree_store">
-    <columns>
-      <!-- column-name id_text -->
-      <column type="guint"/>
-      <!-- column-name string_text -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkListStore" id="special_personalities_tree_store">
-    <columns>
-      <!-- column-name actor -->
-      <column type="gchararray"/>
-      <!-- column-name personality -->
-      <column type="guint"/>
-    </columns>
   </object>
 </interface>
