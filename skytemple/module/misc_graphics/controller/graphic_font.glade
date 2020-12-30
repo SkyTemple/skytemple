@@ -230,7 +230,7 @@ will be in the list: </property>
                   <object class="GtkSpinButton" id="entry_id">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <signal name="changed" handler="on_entry_id_changed" swapped="no"/>
+                    <signal name="value-changed" handler="on_entry_id_changed" swapped="no"/>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

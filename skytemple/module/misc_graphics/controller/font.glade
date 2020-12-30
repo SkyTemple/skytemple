@@ -70,7 +70,7 @@ you want to add in the table: </property>
           <object class="GtkSpinButton" id="entry_char_id">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <signal name="changed" handler="on_entry_char_id_changed" swapped="no"/>
+            <signal name="value-changed" handler="on_entry_char_id_changed" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>

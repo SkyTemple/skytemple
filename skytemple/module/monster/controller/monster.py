@@ -150,6 +150,12 @@ class MonsterController(AbstractController):
         self._update_from_entry(w)
         self.mark_as_modified()
 
+    def on_entry_personality_changed(self, w, *args):
+        try:
+            self.module.set_personality(self.item_id, int(w.get_text()))
+        except ValueError:
+            pass
+        
     def on_entry_sprite_index_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()
@@ -653,6 +659,7 @@ class MonsterController(AbstractController):
                                                                    langs[lang_id]))
 
         # Stats
+        self._set_entry('entry_personality', self.module.get_personality(self.item_id))
         self._set_entry('entry_unk31', self.entry.unk31)
         self._set_entry('entry_national_pokedex_number', self.entry.national_pokedex_number)
         self._set_entry('entry_entid', self.entry.entid)
