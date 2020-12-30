@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.2 -->
+<!-- Generated with glade 3.38.1 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkListStore" id="cb_store_lang">
@@ -36,24 +36,24 @@
   </object>
   <object class="GtkBox" id="box_list">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkAlignment">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xscale">0.80000001192092896</property>
-        <property name="yscale">0.80000001192092896</property>
+        <property name="can-focus">False</property>
+        <property name="xscale">0.800000011920929</property>
+        <property name="yscale">0.800000011920929</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">64</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">64</property>
                 <property name="label" translatable="yes">Pokémon</property>
                 <style>
                   <class name="skytemple-view-main-label"/>
@@ -68,8 +68,8 @@
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">5</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">5</property>
                 <property name="label" translatable="yes">This section lets you edit data for Pokémon in the game.
 This includes stats and the portrait images.</property>
                 <property name="justify">center</property>
@@ -83,19 +83,24 @@ This includes stats and the portrait images.</property>
             <child>
               <object class="GtkNotebook">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can-focus">True</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
                     <property name="orientation">vertical</property>
+                    <property name="spacing">5</property>
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_top">5</property>
-                        <property name="margin_bottom">5</property>
+                        <property name="margin-top">5</property>
+                        <property name="margin-bottom">5</property>
                         <property name="label" translatable="yes">Here you can edit the different personality groups.</property>
                         <property name="wrap">True</property>
                       </object>
@@ -106,59 +111,62 @@ This includes stats and the portrait images.</property>
                       </packing>
                     </child>
                     <child>
+                      <!-- n-columns=7 n-rows=3 -->
                       <object class="GtkGrid">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
+                        <property name="row-spacing">5</property>
+                        <property name="column-spacing">5</property>
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">end</property>
                             <property name="label" translatable="yes">Group: </property>
                           </object>
                           <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">0</property>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkSpinButton" id="spin_group_nb">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
+                            <property name="can-focus">True</property>
                             <signal name="value-changed" handler="on_value_changed" swapped="no"/>
                           </object>
                           <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">0</property>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                           </object>
                           <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">2</property>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">2</property>
                             <property name="width">6</property>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkScrolledWindow">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
+                            <property name="can-focus">True</property>
                             <property name="hexpand">True</property>
                             <property name="vexpand">True</property>
-                            <property name="shadow_type">in</property>
+                            <property name="shadow-type">in</property>
                             <child>
                               <object class="GtkTreeView" id="group_text_tree">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
+                                <property name="can-focus">True</property>
                                 <property name="model">group_text_tree_store</property>
-                                <property name="rules_hint">True</property>
-                                <property name="search_column">0</property>
+                                <property name="rules-hint">True</property>
+                                <property name="search-column">0</property>
                                 <child internal-child="selection">
                                   <object class="GtkTreeSelection">
                                     <property name="mode">multiple</property>
@@ -196,15 +204,15 @@ This includes stats and the portrait images.</property>
                             </child>
                           </object>
                           <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">1</property>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">1</property>
                             <property name="width">7</property>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="cb_lang">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="model">cb_store_lang</property>
                             <signal name="changed" handler="on_lang_changed" swapped="no"/>
                             <child>
@@ -215,26 +223,26 @@ This includes stats and the portrait images.</property>
                             </child>
                           </object>
                           <packing>
-                            <property name="left_attach">6</property>
-                            <property name="top_attach">0</property>
+                            <property name="left-attach">6</property>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">end</property>
                             <property name="label" translatable="yes">Language: </property>
                           </object>
                           <packing>
-                            <property name="left_attach">5</property>
-                            <property name="top_attach">0</property>
+                            <property name="left-attach">5</property>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkComboBox" id="cb_types">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="model">cb_store_types</property>
                             <signal name="changed" handler="on_value_changed" swapped="no"/>
                             <child>
@@ -245,40 +253,40 @@ This includes stats and the portrait images.</property>
                             </child>
                           </object>
                           <packing>
-                            <property name="left_attach">4</property>
-                            <property name="top_attach">0</property>
+                            <property name="left-attach">4</property>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">end</property>
                             <property name="label" translatable="yes">Type: </property>
                           </object>
                           <packing>
-                            <property name="left_attach">3</property>
-                            <property name="top_attach">0</property>
+                            <property name="left-attach">3</property>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="spacing">5</property>
                             <child>
                               <object class="GtkButton" id="btn_remove_group">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
-                                <property name="tooltip_text" translatable="yes">Reload</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Remove Group</property>
                                 <signal name="clicked" handler="on_btn_remove_group_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="icon_name">skytemple-list-remove-symbolic</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-list-remove-symbolic</property>
                                   </object>
                                 </child>
                               </object>
@@ -291,15 +299,15 @@ This includes stats and the portrait images.</property>
                             <child>
                               <object class="GtkButton" id="btn_add_group">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
-                                <property name="tooltip_text" translatable="yes">Reload</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Add Group</property>
                                 <signal name="clicked" handler="on_btn_add_group_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="icon_name">skytemple-list-add-symbolic</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-list-add-symbolic</property>
                                   </object>
                                 </child>
                               </object>
@@ -311,63 +319,63 @@ This includes stats and the portrait images.</property>
                             </child>
                           </object>
                           <packing>
-                            <property name="left_attach">2</property>
-                            <property name="top_attach">0</property>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="spacing">5</property>
                             <child>
                               <object class="GtkButton" id="btn_add_dialogue">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
-                                <property name="tooltip_text" translatable="yes">Reload</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Reload</property>
                                 <signal name="clicked" handler="on_btn_add_dialogue_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="icon_name">skytemple-list-add-symbolic</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-list-add-symbolic</property>
                                   </object>
                                 </child>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="pack_type">end</property>
+                                <property name="pack-type">end</property>
                                 <property name="position">0</property>
                               </packing>
                             </child>
                             <child>
                               <object class="GtkButton" id="btn_remove_dialogue">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
-                                <property name="tooltip_text" translatable="yes">Reload</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Reload</property>
                                 <signal name="clicked" handler="on_btn_remove_dialogue_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="icon_name">skytemple-list-remove-symbolic</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-list-remove-symbolic</property>
                                   </object>
                                 </child>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="pack_type">end</property>
+                                <property name="pack-type">end</property>
                                 <property name="position">1</property>
                               </packing>
                             </child>
                           </object>
                           <packing>
-                            <property name="left_attach">6</property>
-                            <property name="top_attach">2</property>
+                            <property name="left-attach">6</property>
+                            <property name="top-attach">2</property>
                           </packing>
                         </child>
                       </object>
@@ -382,25 +390,25 @@ This includes stats and the portrait images.</property>
                 <child type="tab">
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Personality Groups</property>
                   </object>
                   <packing>
-                    <property name="tab_fill">False</property>
+                    <property name="tab-fill">False</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
-                        <property name="margin_top">5</property>
-                        <property name="margin_bottom">5</property>
+                        <property name="margin-top">5</property>
+                        <property name="margin-bottom">5</property>
                         <property name="label" translatable="yes">Here you can edit special personalities, used by unique actors.</property>
                         <property name="wrap">True</property>
                       </object>
@@ -413,15 +421,15 @@ This includes stats and the portrait images.</property>
                     <child>
                       <object class="GtkScrolledWindow">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="shadow_type">in</property>
+                        <property name="can-focus">True</property>
+                        <property name="shadow-type">in</property>
                         <child>
                           <object class="GtkTreeView" id="special_personalities_tree">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
+                            <property name="can-focus">True</property>
                             <property name="model">special_personalities_tree_store</property>
-                            <property name="rules_hint">True</property>
-                            <property name="search_column">0</property>
+                            <property name="rules-hint">True</property>
+                            <property name="search-column">0</property>
                             <child internal-child="selection">
                               <object class="GtkTreeSelection">
                                 <property name="mode">multiple</property>
@@ -469,12 +477,12 @@ This includes stats and the portrait images.</property>
                 <child type="tab">
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Special Personalities</property>
                   </object>
                   <packing>
                     <property name="position">1</property>
-                    <property name="tab_fill">False</property>
+                    <property name="tab-fill">False</property>
                   </packing>
                 </child>
               </object>
