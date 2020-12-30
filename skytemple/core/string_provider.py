@@ -45,6 +45,12 @@ class StringType(Enum):
     DUNGEON_NAMES_BANNER = auto(), 'Dungeon Names (Banner)'
     DEFAULT_TEAM_NAMES = auto(), 'Default Team Names'
     RANK_NAMES = auto(), 'Explorer Ranks Names'
+    DIALOGUE_LEVEL_UP = auto(), "Pokemon LEVEL_UP Dialogue"
+    DIALOGUE_WAIT = auto(), "Pokemon WAIT Dialogue"
+    DIALOGUE_HEALTHY = auto(), "Pokemon HEALTHY Dialogue"
+    DIALOGUE_HALF_LIFE = auto(), "Pokemon HALF_LIFE Dialogue"
+    DIALOGUE_PINCH = auto(), "Pokemon PINCH Dialogue"
+    DIALOGUE_GROUND_WAIT = auto(), "Pokemon GROUND_WAIT Dialogue"
 
     def __new__(cls, *args, **kwargs):
         obj = object.__new__(cls)

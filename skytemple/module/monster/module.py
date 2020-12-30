@@ -31,6 +31,7 @@ from skytemple.module.monster.controller.monster import MonsterController
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry
+from skytemple_files.data.tbl_talk.model import TblTalk, TalkType
 from skytemple_files.data.md.model import Md, MdEntry, NUM_ENTITIES
 from skytemple_files.data.monster_xml import monster_xml_import
 from skytemple_files.data.waza_p.model import WazaP
@@ -42,6 +43,7 @@ M_LEVEL_BIN = 'BALANCE/m_level.bin'
 WAZA_P_BIN = 'BALANCE/waza_p.bin'
 WAZA_P2_BIN = 'BALANCE/waza_p2.bin'
 PORTRAIT_FILE = 'FONT/kaomado.kao'
+TBL_TALK_FILE = 'MESSAGE/tbl_talk.tlk'
 
 class MonsterModule(AbstractModule):
     """Module to edit the monster.md and other Pokémon related data."""
@@ -59,13 +61,14 @@ class MonsterModule(AbstractModule):
         self.m_level_bin: BinPack = self.project.open_file_in_rom(M_LEVEL_BIN, FileType.BIN_PACK)
         self.waza_p_bin: WazaP = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
         self.waza_p2_bin: WazaP = self.project.open_file_in_rom(WAZA_P2_BIN, FileType.WAZA_P)
+        self.tbl_talk: TblTalk = self.project.open_file_in_rom(TBL_TALK_FILE, FileType.TBL_TALK)
 
         self._tree_model = None
         self._tree_iter__entity_roots = {}
         self._tree_iter__entries = []
 
     def load_tree_items(self, item_store: TreeStore, root_node):
-        root = item_store.append(root_node, [
+        self._root = item_store.append(root_node, [
             'skytemple-e-monster-symbolic', MONSTER_NAME, self, MainController, 0, False, '', True
         ])
         self._tree_model = item_store
@@ -80,7 +83,7 @@ class MonsterModule(AbstractModule):
 
         for baseid, entry_list in monster_entries_by_base_id.items():
             name = self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, baseid)
-            ent_root = item_store.append(root, self.generate_entry__entity_root(baseid, name))
+            ent_root = item_store.append(self._root, self.generate_entry__entity_root(baseid, name))
             self._tree_iter__entity_roots[baseid] = ent_root
 
             for entry in entry_list:
@@ -88,7 +91,7 @@ class MonsterModule(AbstractModule):
                     ent_root, self.generate_entry__entry(entry.md_index, entry.gender)
                 )
 
-        recursive_generate_item_store_row_label(self._tree_model[root])
+        recursive_generate_item_store_row_label(self._tree_model[self._root])
 
     def refresh(self, item_id):
         entry = self.monster_md.entries[item_id]
@@ -183,6 +186,50 @@ class MonsterModule(AbstractModule):
         controller = LevelUpController(self, item_id)
         return controller.get_view(), controller
 
+    def set_personality(self, item_id, value):
+        """Set personality value of the monster"""
+        self.tbl_talk.set_monster_personality(item_id, value)
+        self.project.mark_as_modified(TBL_TALK_FILE)
+        self._mark_as_modified_in_tree(item_id)
+
+    def get_special_personality(self, spec_id):
+        """Get special personality value"""
+        return self.tbl_talk.get_special_personality(spec_id)
+    
+    def set_special_personality(self, spec_id, value):
+        """Set special personality value"""
+        self.tbl_talk.set_special_personality(spec_id, value)
+        self.mark_tbl_talk_as_modified()
+    
+    def get_personality(self, item_id):
+        """Get personality value of the monster"""
+        return self.tbl_talk.get_monster_personality(item_id)
+    
+    def get_nb_personality_groups(self):
+        return self.tbl_talk.get_nb_groups()
+    
+    def add_personality_group(self):
+        return self.tbl_talk.add_group()
+    
+    def remove_personality_group(self, group: int):
+        return self.tbl_talk.remove_group(group)
+    
+    def get_personality_dialogues(self, group: int, dialogue_types: TalkType):
+        return self.tbl_talk.get_dialogues(group, dialogue_types)
+    
+    def set_personality_dialogues(self, group: int, dialogue_types: TalkType, dialogues: List[int]):
+        return self.tbl_talk.set_dialogues(group, dialogue_types, dialogues)
+
+    def mark_string_as_modified(self):
+        """Mark as modified"""
+        self.project.get_string_provider().mark_as_modified()
+        recursive_up_item_store_mark_as_modified(self._tree_model[self._root])
+        
+    def mark_tbl_talk_as_modified(self):
+        """Mark as modified"""
+        self.project.mark_as_modified(TBL_TALK_FILE)
+        recursive_up_item_store_mark_as_modified(self._tree_model[self._root])
+        
     def mark_md_as_modified(self, item_id):
         """Mark as modified"""
         self.project.get_string_provider().mark_as_modified()
