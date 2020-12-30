@@ -435,7 +435,7 @@ class MainController:
 
     def on_main_item_list_search_search_changed(self, search: Gtk.SearchEntry):
         """Filter the main item view using the search field"""
-        self._search_text = search.get_text()
+        self._search_text = search.get_text().strip()
         self._filter__refresh_results()
 
     def on_settings_show_assistant_clicked(self, *args):
