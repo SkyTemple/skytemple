@@ -88,7 +88,7 @@ class DungeonGraphicsModule(AbstractModule):
             )
         self._tree_level_iter.append(
             item_store.append(root, [
-                'skytemple-e-mapbg-symbolic', f"Color Map",
+                'skytemple-e-dungeon-tileset-symbolic', f"Color Map",
                 self, ColvecController, i, False, '', True
             ])
         )
