@@ -26,6 +26,7 @@ from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label
 from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController
+from skytemple.module.dungeon_graphics.controller.colvec import ColvecController
 from skytemple.module.dungeon_graphics.controller.tileset import TilesetController
 from skytemple.module.dungeon_graphics.controller.main import MainController, DUNGEON_GRAPHICS_NAME
 from skytemple_files.common.types.file_types import FileType
@@ -36,6 +37,7 @@ from skytemple_files.graphics.dpc.model import Dpc
 from skytemple_files.graphics.dpci.model import Dpci
 from skytemple_files.graphics.dpl.model import Dpl
 from skytemple_files.graphics.dpla.model import Dpla
+from skytemple_files.graphics.colvec.model import Colvec
 
 # TODO: Not so great that this is hard-coded, but how else can we really do it? - Maybe at least in the dungeondata.xml?
 NUMBER_OF_TILESETS = 170
@@ -59,6 +61,7 @@ class DungeonGraphicsModule(AbstractModule):
         self.dungeon_bin: Optional[DungeonBinPack] = None
         self._tree_model = None
         self._tree_level_iter = []
+        self._colvec_pos = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         self.dungeon_bin: DungeonBinPack = self.project.open_file_in_rom(
@@ -83,13 +86,22 @@ class DungeonGraphicsModule(AbstractModule):
                     self,  DungeonBgController, i, False, '', True
                 ])
             )
-
+        self._tree_level_iter.append(
+            item_store.append(root, [
+                'skytemple-e-dungeon-tileset-symbolic', f"Color Map",
+                self, ColvecController, i, False, '', True
+            ])
+        )
+        self._colvec_pos = len(self._tree_level_iter)-1
         recursive_generate_item_store_row_label(self._tree_model[root])
 
     def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
         if request.type == REQUEST_TYPE_DUNGEON_TILESET:
             return self._tree_level_iter[request.identifier]
 
+    def get_colvec(self) -> Colvec:
+        return self.dungeon_bin.get(f'colormap.colvec')
+    
     def get_dma(self, item_id) -> Dma:
         return self.dungeon_bin.get(f'dungeon{item_id}.dma')
 
@@ -128,3 +140,12 @@ class DungeonGraphicsModule(AbstractModule):
             item_id += NUMBER_OF_TILESETS
         row = self._tree_model[self._tree_level_iter[item_id]]
         recursive_up_item_store_mark_as_modified(row)
+    
+    def mark_colvec_as_modified(self):
+        self.project.mark_as_modified(DUNGEON_BIN)
+        # Mark as modified in tree
+        row = self._tree_model[self._tree_level_iter[self._colvec_pos]]
+        recursive_up_item_store_mark_as_modified(row)
+
+    def nb_tilesets(self):
+        return NUMBER_OF_TILESETS
