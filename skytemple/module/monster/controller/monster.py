@@ -96,8 +96,6 @@ class MonsterController(AbstractController):
         notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
         notebook.set_current_page(self.__class__._last_open_tab_id)
 
-        self.builder.get_object('settings_grid').check_resize()
-
         self._check_sprite_size(True)
 
         return self.builder.get_object('box_main')
