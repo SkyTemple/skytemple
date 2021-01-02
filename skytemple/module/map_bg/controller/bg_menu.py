@@ -280,7 +280,7 @@ class BgMenuController:
             try:
                 img1_path = map_import_layer1_file.get_filename()
                 img2_path = map_import_layer2_file.get_filename()
-                palettes_from_lower_layer = self.parent.builder.get_object('dialog_map_import_palette_config').get_value()
+                palettes_from_lower_layer = 16  # self.parent.builder.get_object('dialog_map_import_palette_config').get_value()
                 if self.parent.bma.number_of_layers < 2 and img1_path is not None:
                     with open(img1_path, 'rb') as f:
                         self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, Image.open(f), None, True)

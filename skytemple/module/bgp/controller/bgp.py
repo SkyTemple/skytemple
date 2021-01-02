@@ -37,6 +37,14 @@ from skytemple.core.module_controller import AbstractController
 if TYPE_CHECKING:
     from skytemple.module.bgp.module import BgpModule
 
+INFO_IMEXPORT_ENTIRE = """- The image is a 256-color indexed PNG.
+- The 256 colors are divided into 16 16 color palettes.
+- Each 8x8 tile in the image MUST only use colors from
+  one of these 16 palettes.
+- The first color in each palette is transparency.
+- Each import must result in a maximum of 1024 unique 8x8 tiles 
+  (=not existing with another palette or flipped or rotated)."""
+
 logger = logging.getLogger(__name__)
 
 
@@ -104,6 +112,17 @@ class BgpController(AbstractController):
                 )
             self.module.mark_as_modified(self.item_id)
             self._reinit_image()
+
+    def on_format_details_entire_clicked(self, *args):
+        md = Gtk.MessageDialog(MainController.window(),
+                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                               Gtk.ButtonsType.OK, INFO_IMEXPORT_ENTIRE)
+        md.set_position(Gtk.WindowPosition.CENTER)
+        md.run()
+        md.destroy()
+
+    def on_converter_tool_clicked(self, *args):
+        MainController.show_tilequant_dialog(16, 16)
 
     def on_men_tools_tilequant_activate(self, *args):
         MainController.show_tilequant_dialog(16, 16)

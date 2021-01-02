@@ -37,6 +37,46 @@ if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
 
 
+INFO_IMEXPORT_TILES = """- The image consists of 8x8 tiles.
+- The image is a 256-color indexed PNG.
+- The 256 colors are divided into 16 16 color palettes.
+- Each 8x8 tile in the image MUST only use colors from
+  one of these 16 palettes.
+- The first color in each palette is transparency.
+- The exported palettes are only for your convenience.
+  They are based on the first time the tile is used in a 
+  chunk mapping (Chunks > Edit Chunks).
+- Each import must result in a maximum of 1024 unique 8x8 tiles 
+  (=not existing with another palette or flipped or rotated).
+"""
+
+INFO_IMEXPORT_CHUNK = """- The image is a 256-color indexed PNG.
+- The 256 colors are divided into 16 16 color palettes.
+- Each 8x8 tile in the image MUST only use colors from
+  one of these 16 palettes.
+- The first color in each palette is transparency.
+- Each import must result in a maximum of 1024 unique 8x8 tiles 
+  (=not existing with another palette or flipped or rotated).
+
+Some image editors have problems when working with indexed
+images, that contain the same color multiple times. You can
+make all colors on the map unique before exporting at
+Palettes > Edit Palettes."""
+
+INFO_IMEXPORT_ENTIRE = """- The images is a 256-color indexed PNG.
+- The 256 colors are divided into 16 16 color palettes.
+- Each 8x8 tile in the image MUST only use colors from
+  one of these 16 palettes.
+- The first color in each palette is transparency.
+- Each import must result in a maximum of 1024 unique 8x8 tiles 
+  (=not existing with another palette or flipped or rotated).
+
+Some image editors have problems when working with indexed
+images, that contain the same color multiple times. You can
+make all colors on the map unique before exporting at
+Palettes > Edit Palettes."""
+
+
 class DungeonBgController(AbstractController):
     def __init__(self, module: 'DungeonGraphicsModule', item_id: int):
         self.module = module
@@ -169,6 +209,33 @@ class DungeonBgController(AbstractController):
 
     def on_men_palettes_ani_edit_12_activate(self, *args):
         self.menu_controller.edit_palette_ani(1)
+
+    def on_format_details_entire_clicked(self, *args):
+        md = Gtk.MessageDialog(MainController.window(),
+                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                               Gtk.ButtonsType.OK, INFO_IMEXPORT_ENTIRE)
+        md.set_position(Gtk.WindowPosition.CENTER)
+        md.run()
+        md.destroy()
+
+    def on_format_details_chunks_clicked(self, *args):
+        md = Gtk.MessageDialog(MainController.window(),
+                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                               Gtk.ButtonsType.OK, INFO_IMEXPORT_CHUNK)
+        md.set_position(Gtk.WindowPosition.CENTER)
+        md.run()
+        md.destroy()
+
+    def on_format_details_tiles_clicked(self, *args):
+        md = Gtk.MessageDialog(MainController.window(),
+                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                               Gtk.ButtonsType.OK, INFO_IMEXPORT_TILES)
+        md.set_position(Gtk.WindowPosition.CENTER)
+        md.run()
+        md.destroy()
+
+    def on_converter_tool_clicked(self, *args):
+        MainController.show_tilequant_dialog(DPL_MAX_PAL, DPL_PAL_LEN)
 
     def on_men_tools_tilequant_activate(self, *args):
         MainController.show_tilequant_dialog(DPL_MAX_PAL, DPL_PAL_LEN)

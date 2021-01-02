@@ -40,6 +40,73 @@ if TYPE_CHECKING:
     from skytemple.module.map_bg.module import MapBgModule
 
 
+INFO_IMEXPORT_TILES = """- The image consists of 8x8 tiles.
+- The image is a 256-color indexed PNG.
+- The 256 colors are divided into 16 16 color palettes.
+- Each 8x8 tile in the image MUST only use colors from
+  one of these 16 palettes.
+- The first color in each palette is transparency.
+- The exported palettes are only for your convenience.
+  They are based on the first time the tile is used in a 
+  chunk mapping (Chunks > Edit Chunks).
+- Each import must result in a maximum of 1024 unique 8x8 tiles 
+  (=not existing with another palette or flipped or rotated).
+
+Animated tiles are not imported."""
+
+INFO_IMEXPORT_CHUNK = """- The image consists of 8x8 tiles.
+- The image is a 256-color indexed PNG.
+- The 256 colors are divided into 16 16 color palettes.
+- Each 8x8 tile in the image MUST only use colors from
+  one of these 16 palettes.
+- The first color in each palette is transparency.
+- Animated tiles are NOT exported or imported. In the export they
+  are replaced with blank tiles. On import the mappings to 
+  animated tiles will be lost, so make sure you note them down 
+  to manually re-assign  them on import. To change animated tiles, 
+  go to Tiles > Animated Tiles.
+- Each import must result in a maximum of 1024 unique 8x8 tiles 
+  (=not existing with another palette or flipped or rotated).
+
+Some image editors have problems when working with indexed
+images, that contain the same color multiple times. You can
+make all colors on the map unique before exporting at
+Palettes > Edit Palettes. Alternatively use the converter.
+
+Please note, that chunks can not use colors from 
+the last two palettes. They should not be used by any tile.
+
+Colors that are in the wrong palette are replaced wth
+transparency.
+
+Static tiles, chunks and palettes are replaced on import. 
+Animated tiles and palette animation settings are not changed.
+"""
+
+INFO_IMEXPORT_ENTIRE = """- The image is a 256-color indexed PNG.
+- The 256 colors are divided into 16 16 color palettes.
+- Each 8x8 tile in the image MUST only use colors from
+  one of these 16 palettes.
+- The first color in each palette is transparency.
+- Animated tiles are exported as static tiles.
+- Each import must result in a maximum of 1024 unique 8x8 tiles 
+  (=not existing with another palette or flipped or rotated).
+
+Some image editors have problems when working with indexed
+images, that contain the same color multiple times. You can
+make all colors on the map unique before exporting at
+Palettes > Edit Palettes.
+
+Colors that are in the wrong palette are replaced wth
+transparency.
+
+Static tiles are replaced on import.
+Animated tiles and palette animation settings are not changed.
+
+Since no animated tiles are imported, they need
+to be (re-)assigned to chunks after the import."""
+
+
 class BgController(AbstractController):
     def __init__(self, module: 'MapBgModule', item_id: int):
         self.module = module
@@ -324,6 +391,33 @@ class BgController(AbstractController):
 
     def on_men_palettes_ani_edit_activate(self, *args):
         self.menu_controller.on_men_palettes_ani_edit_activate()
+
+    def on_format_details_entire_clicked(self, *args):
+        md = Gtk.MessageDialog(MainController.window(),
+                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                               Gtk.ButtonsType.OK, INFO_IMEXPORT_ENTIRE)
+        md.set_position(Gtk.WindowPosition.CENTER)
+        md.run()
+        md.destroy()
+
+    def on_format_details_chunks_clicked(self, *args):
+        md = Gtk.MessageDialog(MainController.window(),
+                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                               Gtk.ButtonsType.OK, INFO_IMEXPORT_CHUNK)
+        md.set_position(Gtk.WindowPosition.CENTER)
+        md.run()
+        md.destroy()
+
+    def on_format_details_tiles_clicked(self, *args):
+        md = Gtk.MessageDialog(MainController.window(),
+                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                               Gtk.ButtonsType.OK, INFO_IMEXPORT_TILES)
+        md.set_position(Gtk.WindowPosition.CENTER)
+        md.run()
+        md.destroy()
+
+    def on_converter_tool_clicked(self, *args):
+        MainController.show_tilequant_dialog(14, 16)
 
     def on_men_tools_tilequant_activate(self, *args):
         MainController.show_tilequant_dialog(14, 16)
