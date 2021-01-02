@@ -88,12 +88,21 @@ def add_dialog_xml_filter(dialog):
         dialog.add_filter(filter)
 
 
+def add_dialog_csv_filter(dialog):
+        filter = Gtk.FileFilter()
+        filter.set_name("CSV file (*.csv)")
+        filter.add_mime_type("text/csv")
+        filter.add_pattern("*.csv")
+        dialog.add_filter(filter)
+
+
 def data_dir():
     if sys.platform.startswith('darwin'):
         if getattr(sys, 'frozen', False):
             return os.path.join(os.path.dirname(sys.executable), 'data')
     
     return os.path.join(os.path.dirname(__file__), '..', 'data')
+
 
 def is_dark_theme(widget):
     style_ctx = widget.get_style_context()

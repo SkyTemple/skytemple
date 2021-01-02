@@ -862,7 +862,7 @@ class FloorController(AbstractController):
         fn = save_diag.get_filename()
         save_diag.destroy()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             self.module.import_from_xml([(self.item.dungeon.dungeon_id, self.item.floor_id)],
                                         ElementTree.parse(fn).getroot())
             SkyTempleMainController.reload_view()

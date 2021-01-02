@@ -14,21 +14,23 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import csv
 import logging
 import re
-from functools import partial
-from itertools import zip_longest
+import sys
 from typing import TYPE_CHECKING, Optional, Dict
 
-import cairo
-from gi.repository import Gtk, GLib, GdkPixbuf
-from gi.repository.Gtk import TreeModel, TreeModelFilter, TreeSelection
+from gi.repository import Gtk
+from gi.repository.Gtk import TreeModelFilter, TreeSelection
 
 from skytemple.controller.main import MainController
+from skytemple.core.error_handler import display_error
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.third_party_util.cellrenderercustomtext import CustomEditable, CellRendererTextView
+from skytemple.core.third_party_util.cellrenderercustomtext import CellRendererTextView
+from skytemple.core.ui_utils import add_dialog_csv_filter
 from skytemple_files.common.ppmdu_config.data import Pmd2Language, Pmd2StringBlock
-from skytemple_files.data.str.model import Str
+from skytemple_files.data.str.model import Str, open_utf8
+
 if TYPE_CHECKING:
     from skytemple.module.strings.module import StringsModule
 
@@ -112,6 +114,79 @@ class StringsController(AbstractController):
     def on_search_search_changed(self, search: Gtk.SearchEntry):
         self._search_text = search.get_text()
         self._filter.refilter()
+
+    def on_btn_import_clicked(self, *args):
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"Import is done from a CSV file with the following specifications:\n"
+            f"- Has to contain all strings in order, one per row\n"
+            f"- Strings may be quoted with: \" and escaped with doube-quotes."
+        )
+        md.run()
+        md.destroy()
+        save_diag = Gtk.FileChooserNative.new(
+            "Import strings from...",
+            MainController.window(),
+            Gtk.FileChooserAction.OPEN,
+            None, None
+        )
+
+        add_dialog_csv_filter(save_diag)
+        response = save_diag.run()
+        fn = save_diag.get_filename()
+        save_diag.destroy()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            try:
+                with open_utf8(fn) as csv_file:
+                    csv_reader = csv.reader(csv_file, delimiter=',')
+                    strings = []
+                    for row in csv_reader:
+                        strings.append(row[0])
+                    if len(self._str.strings) != len(strings):
+                        raise ValueError(f"The CSV file must contain exactly {len(self._str.strings)} strings, has {len(strings)}.")
+                    self._str.strings = strings
+                self.module.mark_as_modified(self.filename)
+                MainController.reload_view()
+            except BaseException as err:
+                display_error(
+                    sys.exc_info(),
+                    str(err),
+                    "Error exporting the strings."
+                )
+
+    def on_btn_export_clicked(self, *args):
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"Export is done to a CSV file with the following specifications:\n"
+            f"- Contains all strings in order, one per row\n"
+            f"- Strings may be quoted with: \" and escaped with doube-quotes."
+        )
+        md.run()
+        md.destroy()
+
+        save_diag = Gtk.FileChooserNative.new(
+            "Export strings as...",
+            MainController.window(),
+            Gtk.FileChooserAction.SAVE,
+            None, None
+        )
+
+        add_dialog_csv_filter(save_diag)
+        response = save_diag.run()
+        fn = save_diag.get_filename()
+        if '.' not in fn:
+            fn += '.csv'
+        save_diag.destroy()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            with open_utf8(fn, 'w') as result_file:
+                wr = csv.writer(result_file)
+                wr.writerows([[x] for x in self._str.strings])
 
     def _visibility_func(self, model, iter, *args):
         if self._active_category is not None:
