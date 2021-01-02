@@ -298,6 +298,22 @@ class MonsterController(AbstractController):
         md.run()
         md.destroy()
 
+    def on_btn_help_recruit_rate_clicked(self, w, *args):
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"The values are actually percentages.\n"
+            f"10 -> 1.0%,\n"
+            f"100 -> 10.0%,\n"
+            f"1000 -> 100%, etc.\n\n"
+            f"The first recruit rate is used if the player chose they didn't play Explorers of Time or Darkness during the Personality Test.\n"
+            f"The second rate is used, if the player chose that they played one of those games.",
+            title="Recruit Rate"
+        )
+        md.run()
+        md.destroy()
+
     def on_btn_help_hp_regeneration_clicked(self, w, *args):
         md = Gtk.MessageDialog(
             MainController.window(),
