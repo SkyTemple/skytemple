@@ -1,5 +1,5 @@
 """Signal handlers for the map width / height dialog boxes"""
-#  Copyright 2020 Parakoopa
+#  Copyright 2020-2021 Parakoopa and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #

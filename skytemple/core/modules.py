@@ -1,5 +1,5 @@
 """Module that manages and loads modules"""
-#  Copyright 2020 Parakoopa
+#  Copyright 2020-2021 Parakoopa and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
