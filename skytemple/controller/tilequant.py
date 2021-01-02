@@ -111,6 +111,8 @@ class TilequantController:
         Shows the tilequant dialog. Doesn't return anything.
         """
         self.builder.get_object('tq_number_palettes').set_text(str(num_pals))
+        self.builder.get_object('tq_input_file').unselect_all()
+        self.builder.get_object('tq_second_file').unselect_all()
         self.window.run()
         self.window.hide()
 
