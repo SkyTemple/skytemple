@@ -343,11 +343,13 @@ class FixedController(AbstractController):
         try:
             width = int(self.builder.get_object('settings_width').get_text())
             height = int(self.builder.get_object('settings_height').get_text())
-            assert width > 0 and height > 0
+            if width == 0 or height == 0: # 0x0 rooms are allowed to be consistent with the fact that they exist
+                width = height = 0
+            assert width >= 0 and height >= 0
         except (ValueError, AssertionError):
             display_error(
                 sys.exc_info(),
-                "Width and height must be numbers > 0.",
+                "Width and height must be numbers >= 0.",
                 "Invalid values."
             )
             return
