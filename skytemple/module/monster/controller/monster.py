@@ -327,6 +327,41 @@ class MonsterController(AbstractController):
         md.run()
         md.destroy()
 
+    def on_btn_help_can_move_clicked(self, w, *args):
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"Whether or not the enemy or ally AI will move the Pokémon in dungeons.",
+            title="Can Move?"
+        )
+        md.run()
+        md.destroy()
+
+    def on_btn_help_can_evolve_clicked(self, w, *args):
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"Whether or not the Pokémon can evolve at Luminous Spring (If it's off, it will never be allowed to "
+            f"evolve even if it has an evolution).",
+            title="Can Evolve?"
+        )
+        md.run()
+        md.destroy()
+
+    def on_btn_help_item_required_for_spawning_clicked(self, w, *args):
+        md = Gtk.MessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"Wheher or not you need to have a special item in the bag (mystery part/secret slab) for "
+            f"the Pokémon to spawn in dungeons",
+            title="Item Required for spawning?"
+        )
+        md.run()
+        md.destroy()
+
     def on_entry_exclusive_item1_changed(self, w, *args):
         match = PATTERN.match(w.get_text())
         if match is None:
@@ -369,10 +404,6 @@ class MonsterController(AbstractController):
         except ValueError:
             return
         setattr(self.entry, 'exclusive_item4', val)
-        self.mark_as_modified()
-
-    def on_entry_bitflag1_changed(self, w, *args):
-        self._update_from_entry(w)
         self.mark_as_modified()
 
     def on_entry_unk31_changed(self, w, *args):
@@ -426,6 +457,38 @@ class MonsterController(AbstractController):
     def on_entry_base_form_index_changed(self, w, *args):
         self._update_from_entry(w)
         self._update_base_form_label()
+        self.mark_as_modified()
+
+    def on_switch_bitfield1_0_state_set(self, w, *args):
+        self._update_from_switch(w)
+        self.mark_as_modified()
+
+    def on_switch_bitfield1_1_state_set(self, w, *args):
+        self._update_from_switch(w)
+        self.mark_as_modified()
+
+    def on_switch_bitfield1_2_state_set(self, w, *args):
+        self._update_from_switch(w)
+        self.mark_as_modified()
+
+    def on_switch_bitfield1_3_state_set(self, w, *args):
+        self._update_from_switch(w)
+        self.mark_as_modified()
+
+    def on_switch_can_move_state_set(self, w, *args):
+        self._update_from_switch(w)
+        self.mark_as_modified()
+
+    def on_switch_bitfield1_5_state_set(self, w, *args):
+        self._update_from_switch(w)
+        self.mark_as_modified()
+
+    def on_switch_can_evolve_state_set(self, w, *args):
+        self._update_from_switch(w)
+        self.mark_as_modified()
+
+    def on_switch_item_required_for_spawning_state_set(self, w, *args):
+        self._update_from_switch(w)
         self.mark_as_modified()
 
     def on_btn_export_clicked(self, *args):
@@ -692,7 +755,14 @@ class MonsterController(AbstractController):
         self._set_cb('cb_iq_group', self.entry.iq_group.value)
         self._set_cb('cb_ability_primary', self.entry.ability_primary.value)
         self._set_cb('cb_ability_secondary', self.entry.ability_secondary.value)
-        self._set_entry('entry_bitflag1', self.entry.bitflag1)
+        self._set_switch('switch_bitfield1_0', self.entry.bitfield1_0)
+        self._set_switch('switch_bitfield1_1', self.entry.bitfield1_1)
+        self._set_switch('switch_bitfield1_2', self.entry.bitfield1_2)
+        self._set_switch('switch_bitfield1_3', self.entry.bitfield1_3)
+        self._set_switch('switch_can_move', self.entry.can_move)
+        self._set_switch('switch_bitfield1_5', self.entry.bitfield1_5)
+        self._set_switch('switch_can_evolve', self.entry.can_evolve)
+        self._set_switch('switch_item_required_for_spawning', self.entry.item_required_for_spawning)
         self._set_entry('entry_exp_yield', self.entry.exp_yield)
         self._set_entry('entry_recruit_rate1', self.entry.recruit_rate1)
         self._set_entry('entry_base_hp', self.entry.base_hp)
@@ -756,6 +826,9 @@ class MonsterController(AbstractController):
                 return
             l_iter = cb.get_model().iter_next(l_iter)
 
+    def _set_switch(self, switch_name, value):
+        self.builder.get_object(switch_name).set_active(value)
+
     def _update_from_entry(self, w: Gtk.Entry):
         attr_name = Gtk.Buildable.get_name(w)[6:]
         try:
@@ -763,6 +836,10 @@ class MonsterController(AbstractController):
         except ValueError:
             return
         setattr(self.entry, attr_name, val)
+
+    def _update_from_switch(self, w: Gtk.Entry):
+        attr_name = Gtk.Buildable.get_name(w)[7:]
+        setattr(self.entry, attr_name, w.get_active())
 
     def _update_from_cb(self, w: Gtk.ComboBox):
         attr_name = Gtk.Buildable.get_name(w)[3:]
