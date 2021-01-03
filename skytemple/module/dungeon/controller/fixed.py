@@ -388,7 +388,8 @@ class FixedController(AbstractController):
         self._help("If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled.")
 
     def on_btn_help_unk9_clicked(self, *args):
-        self._help("If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled.")
+        self._help("Prevents any kind of item pulling (such as with the Trawl Orb)."
+                   "\nIf the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled.")
 
     def on_btn_help_override_clicked(self, *args):
         self._help("If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will "
