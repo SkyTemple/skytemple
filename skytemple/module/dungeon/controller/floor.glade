@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.1 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkAdjustment" id="adjustment1">
@@ -2367,7 +2367,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
-                <property name="label" translatable="yes">Unk Hidden Stairs:</property>
+                <property name="label" translatable="yes">Hidden Stairs Type:</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
@@ -2569,8 +2569,8 @@
           <object class="GtkAlignment">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="xscale">0.800000011920929</property>
-            <property name="yscale">0.800000011920929</property>
+            <property name="xscale">0.8000000119209289</property>
+            <property name="yscale">0.8000000119209289</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
@@ -2809,8 +2809,8 @@
           <object class="GtkAlignment">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="xscale">0.800000011920929</property>
-            <property name="yscale">0.800000011920929</property>
+            <property name="xscale">0.8000000119209289</property>
+            <property name="yscale">0.8000000119209289</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>

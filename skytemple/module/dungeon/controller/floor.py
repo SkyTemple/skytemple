@@ -271,7 +271,10 @@ class FloorController(AbstractController):
                    "This value controls where in the shop they will be placed.")
 
     def on_btn_help_unk_hidden_stairs_clicked(self, *args):
-        self._help("Seems to affect the content of the hidden stairs.")
+        self._help("0 --> 100% secret bazaar\n"
+                   "1 --> 100% secret room\n"
+                   "255 --> 50% secret bazaar, 50% secret room\n"
+                   "Other values: 0% secret bazaar, 0% secret room (you just go to the next floor like normal stairs).")
 
     def on_scale_kecleon_shop_chance_value_changed(self, w, *args):
         self._update_from_widget(w)
