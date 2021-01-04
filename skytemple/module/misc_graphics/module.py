@@ -19,13 +19,15 @@ from typing import Optional
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.rom_project import RomProject
+from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.misc_graphics.controller.w16 import W16Controller
 from skytemple.module.misc_graphics.controller.wte_wtu import WteWtuController
 from skytemple.module.misc_graphics.controller.zmappat import ZMappaTController
 from skytemple.module.misc_graphics.controller.font import FontController
 from skytemple.module.misc_graphics.controller.graphic_font import GraphicFontController
+from skytemple.module.misc_graphics.controller.chr import ChrController
+from skytemple.module.misc_graphics.controller.cart_removed import CartRemovedController
 from skytemple.module.misc_graphics.controller.main import MainController, MISC_GRAPHICS
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
@@ -37,6 +39,13 @@ from skytemple_files.graphics.fonts.font_dat.model import FontDat
 from skytemple_files.graphics.fonts.font_sir0.model import FontSir0
 from skytemple_files.graphics.fonts.banner_font.model import BannerFont
 from skytemple_files.graphics.fonts.graphic_font.model import GraphicFont
+from skytemple_files.graphics.chr.model import Chr
+from skytemple_files.hardcoded.cart_removed import HardcodedCartRemoved
+
+try:
+    from PIL import Image
+except:
+    from pil import Image
 
 W16_FILE_EXT = 'w16'
 WTE_FILE_EXT = 'wte'
@@ -44,7 +53,9 @@ WTU_FILE_EXT = 'wtu'
 DAT_FILE_EXT = 'dat'
 BIN_FILE_EXT = 'bin'
 PAL_FILE_EXT = 'pal'
+CHR_FILE_EXT = 'chr'
 ZMAPPAT_FILE_EXT = 'zmappat'
+CART_REMOVED_NAME = "cart_removed.at4px"
 DUNGEON_BIN_PATH = 'DUNGEON/dungeon.bin'
 VALID_FONT_DAT_FILES = set(['FONT/kanji_rd.dat', 'FONT/unkno_rd.dat'])
 VALID_GRAPHIC_FONT_FILES = set(['FONT/staffont.dat', 'FONT/markfont.dat'])
@@ -95,6 +106,7 @@ class MiscGraphicsModule(AbstractModule):
         self.list_of_graphic_fonts = sorted(list(set(self.project.get_files_with_ext(DAT_FILE_EXT)) & VALID_GRAPHIC_FONT_FILES))
         self.list_of_bins = self.project.get_files_with_ext(BIN_FILE_EXT)
         self.list_of_pals = self.project.get_files_with_ext(PAL_FILE_EXT)
+        self.list_of_chrs = self.project.get_files_with_ext(CHR_FILE_EXT)
         self.list_of_banner_fonts = sorted(list(set(self.list_of_bins) & VALID_BANNER_FONT_FILES))
         self.dungeon_bin: Optional[DungeonBinPack] = None
         self.list_of_wtes_dungeon_bin = None
@@ -121,6 +133,12 @@ class MiscGraphicsModule(AbstractModule):
         self._tree_level_iter = {}
         self._tree_level_dungeon_iter = {}
 
+        # chr at the beginning:
+        for i, name in enumerate(self.list_of_chrs):
+            self._tree_level_iter[name] = item_store.append(root, [
+                'skytemple-e-graphics-symbolic', name, self,  ChrController, name, False, '', True
+            ])
+        
         sorted_entries = {}
         for name in self.list_of_w16s:
             sorted_entries[name] = False
@@ -196,6 +214,11 @@ class MiscGraphicsModule(AbstractModule):
             self._tree_level_dungeon_iter[name] = item_store.append(root, [
                 'skytemple-e-graphics-symbolic', 'dungeon.bin:' + name, self,  ZMappaTController, name, False, '', True
             ])
+        
+        # cart removed at the end:
+        self._tree_level_iter[CART_REMOVED_NAME] = item_store.append(root, [
+            'skytemple-e-graphics-symbolic', CART_REMOVED_NAME, self,  CartRemovedController, CART_REMOVED_NAME, False, '', True
+        ])
 
         recursive_generate_item_store_row_label(self._tree_model[root])
 
@@ -239,6 +262,28 @@ class MiscGraphicsModule(AbstractModule):
         else:
             return None
 
+    def get_chr(self, fn: str) -> Chr:
+        chr_file = self.project.open_file_in_rom(fn, FileType.CHR)
+        if fn[:-4]+".pal" in self.list_of_pals:
+            pal = self.project.open_file_in_rom(fn[:-4]+".pal", FileType.PAL)
+            chr_file.set_palette(pal)
+        return chr_file
+
+    def get_cart_removed_data(self) -> Image.Image:
+        arm9 = self.project.get_binary(BinaryName.ARM9)
+        static_data = self.project.get_rom_module().get_static_data()
+        return HardcodedCartRemoved.get_cart_removed_data(arm9, static_data)
+    
+    def set_cart_removed_data(self, img: Image.Image):
+        """Sets cart removed data"""
+        def update(arm9):
+            static_data = self.project.get_rom_module().get_static_data()
+            HardcodedCartRemoved.set_cart_removed_data(img, arm9, static_data)
+        self.project.modify_binary(BinaryName.ARM9, update)
+
+        row = self._tree_model[self._tree_level_iter[CART_REMOVED_NAME]]
+        recursive_up_item_store_mark_as_modified(row)
+        
     def get_dungeon_bin_file(self, fn):
         return self.dungeon_bin.get(fn)
 
@@ -269,6 +314,14 @@ class MiscGraphicsModule(AbstractModule):
         self.project.mark_as_modified(DUNGEON_BIN_PATH)
         # Mark as modified in tree
         row = self._tree_model[self._tree_level_dungeon_iter[fn]]
+        recursive_up_item_store_mark_as_modified(row)
+        
+    def mark_chr_as_modified(self, fn):
+        """Mark a specific chr as modified"""
+        self.project.mark_as_modified(fn)
+        if fn[:-4]+".pal" in self.list_of_pals:
+             self.project.mark_as_modified(fn[:-4]+".pal")
+        row = self._tree_model[self._tree_level_iter[fn]]
         recursive_up_item_store_mark_as_modified(row)
         
     def mark_wte_as_modified(self, item: WteOpenSpec, wte, wtu):
