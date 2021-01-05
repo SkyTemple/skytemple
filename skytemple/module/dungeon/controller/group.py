@@ -36,3 +36,9 @@ class GroupController(SimpleController):
             'Dungeon groups contain multiple dungeon to create one big continuous dungeon.\n'
             'You can edit groups under "Dungeons".'
         )
+
+    def get_icon(self) -> str:
+        return None
+
+    def get_back_illust(self) -> str:
+        return 'dungeons'

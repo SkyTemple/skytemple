@@ -34,3 +34,9 @@ class SubController(SimpleController):
             f'These scenes can be loaded on top of the "Enter" scene,\n'
             f'depending on the current story progress.'
         )
+
+    def get_icon(self) -> str:
+        return None
+
+    def get_back_illust(self) -> str:
+        return 'map'

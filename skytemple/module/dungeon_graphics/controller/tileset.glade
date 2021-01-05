@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.1 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkDialog" id="dialog_chunks_export">
@@ -414,7 +414,6 @@ be able to re-import the tiles!</property>
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="halign">center</property>
         <property name="margin-top">64</property>
         <property name="orientation">vertical</property>
         <property name="spacing">15</property>
@@ -614,6 +613,10 @@ by switching to the Advanced Mode.</property>
             <property name="position">3</property>
           </packing>
         </child>
+        <style>
+          <class name="back_illust"/>
+          <class name="dungeon_tileset"/>
+        </style>
       </object>
     </child>
     <child type="tab">
@@ -1391,6 +1394,10 @@ Use the menus above to edit chunks and tile graphics.</property>
                 <property name="position">0</property>
               </packing>
             </child>
+            <style>
+              <class name="back_illust"/>
+              <class name="dungeon_tileset"/>
+            </style>
           </object>
           <packing>
             <property name="expand">True</property>

@@ -168,6 +168,10 @@
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="shadow-type">in</property>
+            <style>
+              <class name="back_illust"/>
+              <class name="map"/>
+            </style>
           </object>
           <packing>
             <property name="resize">True</property>
@@ -5108,6 +5112,10 @@ are used for the image data on Layer 1 and 2.</property>
                 <child>
                   <placeholder/>
                 </child>
+                <style>
+                  <class name="back_illust"/>
+                  <class name="map"/>
+                </style>
               </object>
               <packing>
                 <property name="position">5</property>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.36.0 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkListStore" id="model_entities">
@@ -164,28 +164,27 @@
   </object>
   <object class="GtkBox" id="box_list">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkAlignment">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xscale">0.80000001192092895508</property>
-        <property name="yscale">0.80000001192092895508</property>
+        <property name="can-focus">False</property>
+        <property name="xscale">0.8000000119209289</property>
+        <property name="yscale">0.8000000119209289</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">64</property>
-                <property name="label" translatable="yes">Fixed Rooms</property>
-                <style>
-                  <class name="skytemple-view-main-label"/>
-                </style>
+                <property name="can-focus">False</property>
+                <property name="margin-top">20</property>
+                <property name="pixel-size">127</property>
+                <property name="icon-name">skytemple-illust-fixed_rooms</property>
+                <property name="icon_size">3</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -196,11 +195,12 @@
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">5</property>
-                <property name="label" translatable="yes">This section lets you edit fixed rooms. Fixed rooms can be configured to appear on dungeon floors.
-They are usually used for boss fights or other special floors.</property>
-                <property name="justify">center</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">20</property>
+                <property name="label" translatable="yes">Fixed Rooms</property>
+                <style>
+                  <class name="skytemple-view-main-label"/>
+                </style>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -209,29 +209,44 @@ They are usually used for boss fights or other special floors.</property>
               </packing>
             </child>
             <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">5</property>
+                <property name="label" translatable="yes">This section lets you edit fixed rooms. Fixed rooms can be configured to appear on dungeon floors.
+They are usually used for boss fights or other special floors.</property>
+                <property name="justify">center</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkFrame">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">20</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">none</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">20</property>
+                <property name="label-xalign">0</property>
+                <property name="shadow-type">none</property>
                 <child>
                   <object class="GtkAlignment">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
+                    <property name="can-focus">False</property>
+                    <property name="left-padding">12</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin_top">5</property>
-                            <property name="margin_bottom">5</property>
+                            <property name="margin-top">5</property>
+                            <property name="margin-bottom">5</property>
                             <property name="label" translatable="yes">Here you can edit the entities that can be placed in fixed rooms. Entities are a combination of tile properties (+traps), Pokémon and items.</property>
                             <property name="wrap">True</property>
                           </object>
@@ -244,26 +259,26 @@ They are usually used for boss fights or other special floors.</property>
                         <child>
                           <object class="GtkNotebook" id="nb_sl">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
+                            <property name="can-focus">True</property>
                             <signal name="switch-page" handler="on_nb_sl_switch_page" swapped="no"/>
                             <child>
                               <object class="GtkBox">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_bottom">10</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-bottom">10</property>
                                 <property name="orientation">vertical</property>
                                 <property name="spacing">10</property>
                                 <child>
                                   <object class="GtkScrolledWindow">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="shadow_type">in</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
                                       <object class="GtkTreeView" id="tree_entities">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
+                                        <property name="can-focus">True</property>
                                         <property name="model">model_entities</property>
-                                        <property name="search_column">0</property>
+                                        <property name="search-column">0</property>
                                         <child internal-child="selection">
                                           <object class="GtkTreeSelection"/>
                                         </child>
@@ -285,7 +300,7 @@ They are usually used for boss fights or other special floors.</property>
                                               <object class="GtkCellRendererCombo" id="cr_entities_tile_id">
                                                 <property name="editable">True</property>
                                                 <property name="model">model_entities__tiles</property>
-                                                <property name="text_column">1</property>
+                                                <property name="text-column">1</property>
                                                 <signal name="changed" handler="on_cr_entities_tile_id_changed" swapped="no"/>
                                               </object>
                                               <attributes>
@@ -294,7 +309,7 @@ They are usually used for boss fights or other special floors.</property>
                                             </child>
                                             <child>
                                               <object class="GtkCellRendererText" id="cr_entities_tile_desc">
-                                                <property name="size_points">8</property>
+                                                <property name="size-points">8</property>
                                               </object>
                                               <attributes>
                                                 <attribute name="text">4</attribute>
@@ -309,7 +324,7 @@ They are usually used for boss fights or other special floors.</property>
                                               <object class="GtkCellRendererCombo" id="cr_entities_item_id">
                                                 <property name="editable">True</property>
                                                 <property name="model">model_entities__items</property>
-                                                <property name="text_column">1</property>
+                                                <property name="text-column">1</property>
                                                 <signal name="changed" handler="on_cr_entities_item_id_changed" swapped="no"/>
                                               </object>
                                               <attributes>
@@ -318,7 +333,7 @@ They are usually used for boss fights or other special floors.</property>
                                             </child>
                                             <child>
                                               <object class="GtkCellRendererText" id="cr_entities_item_desc">
-                                                <property name="size_points">8</property>
+                                                <property name="size-points">8</property>
                                               </object>
                                               <attributes>
                                                 <attribute name="text">5</attribute>
@@ -333,7 +348,7 @@ They are usually used for boss fights or other special floors.</property>
                                               <object class="GtkCellRendererCombo" id="cr_entities_monster_id">
                                                 <property name="editable">True</property>
                                                 <property name="model">model_entities__monsters</property>
-                                                <property name="text_column">1</property>
+                                                <property name="text-column">1</property>
                                                 <signal name="changed" handler="on_cr_entities_monster_id_changed" swapped="no"/>
                                               </object>
                                               <attributes>
@@ -342,7 +357,7 @@ They are usually used for boss fights or other special floors.</property>
                                             </child>
                                             <child>
                                               <object class="GtkCellRendererText" id="cr_entities_monster_desc">
-                                                <property name="size_points">8</property>
+                                                <property name="size-points">8</property>
                                               </object>
                                               <attributes>
                                                 <attribute name="text">6</attribute>
@@ -362,26 +377,26 @@ They are usually used for boss fights or other special floors.</property>
                                 <child>
                                   <object class="GtkBox">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="margin_right">10</property>
-                                    <property name="margin_end">10</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-right">10</property>
+                                    <property name="margin-end">10</property>
                                     <property name="spacing">10</property>
                                     <child>
                                       <object class="GtkButton" id="btn_entities_goto_monster">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="receives-default">True</property>
                                         <property name="valign">center</property>
                                         <signal name="clicked" handler="on_btn_entities_goto_monster_clicked" swapped="no"/>
                                         <child>
                                           <object class="GtkBox">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
+                                            <property name="can-focus">False</property>
                                             <property name="spacing">5</property>
                                             <child>
                                               <object class="GtkLabel">
                                                 <property name="visible">True</property>
-                                                <property name="can_focus">False</property>
+                                                <property name="can-focus">False</property>
                                                 <property name="label" translatable="yes">Go To Pokémon</property>
                                               </object>
                                               <packing>
@@ -393,8 +408,8 @@ They are usually used for boss fights or other special floors.</property>
                                             <child>
                                               <object class="GtkImage">
                                                 <property name="visible">True</property>
-                                                <property name="can_focus">False</property>
-                                                <property name="icon_name">skytemple-go-next-symbolic</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="icon-name">skytemple-go-next-symbolic</property>
                                               </object>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -408,26 +423,26 @@ They are usually used for boss fights or other special floors.</property>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
-                                        <property name="pack_type">end</property>
+                                        <property name="pack-type">end</property>
                                         <property name="position">0</property>
                                       </packing>
                                     </child>
                                     <child>
                                       <object class="GtkButton" id="btn_entities_goto_item">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="receives-default">True</property>
                                         <property name="valign">center</property>
                                         <signal name="clicked" handler="on_btn_entities_goto_item_clicked" swapped="no"/>
                                         <child>
                                           <object class="GtkBox">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
+                                            <property name="can-focus">False</property>
                                             <property name="spacing">5</property>
                                             <child>
                                               <object class="GtkLabel">
                                                 <property name="visible">True</property>
-                                                <property name="can_focus">False</property>
+                                                <property name="can-focus">False</property>
                                                 <property name="label" translatable="yes">Go To Item</property>
                                               </object>
                                               <packing>
@@ -439,8 +454,8 @@ They are usually used for boss fights or other special floors.</property>
                                             <child>
                                               <object class="GtkImage">
                                                 <property name="visible">True</property>
-                                                <property name="can_focus">False</property>
-                                                <property name="icon_name">skytemple-go-next-symbolic</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="icon-name">skytemple-go-next-symbolic</property>
                                               </object>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -454,26 +469,26 @@ They are usually used for boss fights or other special floors.</property>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
-                                        <property name="pack_type">end</property>
+                                        <property name="pack-type">end</property>
                                         <property name="position">1</property>
                                       </packing>
                                     </child>
                                     <child>
                                       <object class="GtkButton" id="btn_entities_goto_tile">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="receives-default">True</property>
                                         <property name="valign">center</property>
                                         <signal name="clicked" handler="on_btn_entities_goto_tile_clicked" swapped="no"/>
                                         <child>
                                           <object class="GtkBox">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
+                                            <property name="can-focus">False</property>
                                             <property name="spacing">5</property>
                                             <child>
                                               <object class="GtkLabel">
                                                 <property name="visible">True</property>
-                                                <property name="can_focus">False</property>
+                                                <property name="can-focus">False</property>
                                                 <property name="label" translatable="yes">Go To Tile</property>
                                               </object>
                                               <packing>
@@ -485,8 +500,8 @@ They are usually used for boss fights or other special floors.</property>
                                             <child>
                                               <object class="GtkImage">
                                                 <property name="visible">True</property>
-                                                <property name="can_focus">False</property>
-                                                <property name="icon_name">skytemple-go-next-symbolic</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="icon-name">skytemple-go-next-symbolic</property>
                                               </object>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -500,7 +515,7 @@ They are usually used for boss fights or other special floors.</property>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
-                                        <property name="pack_type">end</property>
+                                        <property name="pack-type">end</property>
                                         <property name="position">2</property>
                                       </packing>
                                     </child>
@@ -508,7 +523,7 @@ They are usually used for boss fights or other special floors.</property>
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
-                                    <property name="pack_type">end</property>
+                                    <property name="pack-type">end</property>
                                     <property name="position">1</property>
                                   </packing>
                                 </child>
@@ -517,24 +532,24 @@ They are usually used for boss fights or other special floors.</property>
                             <child type="tab">
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
+                                <property name="can-focus">False</property>
                                 <property name="label" translatable="yes">Entities</property>
                               </object>
                               <packing>
-                                <property name="tab_fill">False</property>
+                                <property name="tab-fill">False</property>
                               </packing>
                             </child>
                             <child>
                               <object class="GtkScrolledWindow">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="shadow_type">in</property>
+                                <property name="can-focus">True</property>
+                                <property name="shadow-type">in</property>
                                 <child>
                                   <object class="GtkTreeView" id="tree_tiles">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
+                                    <property name="can-focus">True</property>
                                     <property name="model">model_tiles</property>
-                                    <property name="search_column">0</property>
+                                    <property name="search-column">0</property>
                                     <child internal-child="selection">
                                       <object class="GtkTreeSelection"/>
                                     </child>
@@ -556,7 +571,7 @@ They are usually used for boss fights or other special floors.</property>
                                           <object class="GtkCellRendererCombo" id="cr_tiles_trap_id">
                                             <property name="editable">True</property>
                                             <property name="model">model_tiles__traps</property>
-                                            <property name="text_column">1</property>
+                                            <property name="text-column">1</property>
                                             <signal name="changed" handler="on_cr_tiles_trap_id_changed" swapped="no"/>
                                           </object>
                                           <attributes>
@@ -797,25 +812,25 @@ They are usually used for boss fights or other special floors.</property>
                             <child type="tab">
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
+                                <property name="can-focus">False</property>
                                 <property name="label" translatable="yes">Tiles</property>
                               </object>
                               <packing>
                                 <property name="position">1</property>
-                                <property name="tab_fill">False</property>
+                                <property name="tab-fill">False</property>
                               </packing>
                             </child>
                             <child>
                               <object class="GtkScrolledWindow">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="shadow_type">in</property>
+                                <property name="can-focus">True</property>
+                                <property name="shadow-type">in</property>
                                 <child>
                                   <object class="GtkTreeView" id="tree_items">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
+                                    <property name="can-focus">True</property>
                                     <property name="model">model_items</property>
-                                    <property name="search_column">0</property>
+                                    <property name="search-column">0</property>
                                     <child internal-child="selection">
                                       <object class="GtkTreeSelection"/>
                                     </child>
@@ -855,32 +870,32 @@ They are usually used for boss fights or other special floors.</property>
                             <child type="tab">
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
+                                <property name="can-focus">False</property>
                                 <property name="label" translatable="yes">Items</property>
                               </object>
                               <packing>
                                 <property name="position">2</property>
-                                <property name="tab_fill">False</property>
+                                <property name="tab-fill">False</property>
                               </packing>
                             </child>
                             <child>
                               <object class="GtkBox">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_bottom">10</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-bottom">10</property>
                                 <property name="orientation">vertical</property>
                                 <property name="spacing">10</property>
                                 <child>
                                   <object class="GtkScrolledWindow">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="shadow_type">in</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="shadow-type">in</property>
                                     <child>
                                       <object class="GtkTreeView" id="tree_monsters">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
+                                        <property name="can-focus">True</property>
                                         <property name="model">model_monsters</property>
-                                        <property name="search_column">0</property>
+                                        <property name="search-column">0</property>
                                         <child internal-child="selection">
                                           <object class="GtkTreeSelection"/>
                                         </child>
@@ -917,7 +932,7 @@ They are usually used for boss fights or other special floors.</property>
                                               <object class="GtkCellRendererCombo" id="cr_monsters_type">
                                                 <property name="editable">True</property>
                                                 <property name="model">model_monsters__type</property>
-                                                <property name="text_column">1</property>
+                                                <property name="text-column">1</property>
                                                 <signal name="changed" handler="on_cr_monsters_type_changed" swapped="no"/>
                                               </object>
                                               <attributes>
@@ -933,7 +948,7 @@ They are usually used for boss fights or other special floors.</property>
                                               <object class="GtkCellRendererCombo" id="cr_monsters_stats">
                                                 <property name="editable">True</property>
                                                 <property name="model">model_monsters__stats</property>
-                                                <property name="text_column">1</property>
+                                                <property name="text-column">1</property>
                                                 <signal name="changed" handler="on_cr_monsters_stats_changed" swapped="no"/>
                                               </object>
                                               <attributes>
@@ -955,26 +970,26 @@ They are usually used for boss fights or other special floors.</property>
                                 <child>
                                   <object class="GtkBox">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="margin_right">10</property>
-                                    <property name="margin_end">10</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-right">10</property>
+                                    <property name="margin-end">10</property>
                                     <property name="spacing">10</property>
                                     <child>
                                       <object class="GtkButton" id="btn_monsters_goto_stats">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="receives-default">True</property>
                                         <property name="valign">center</property>
                                         <signal name="clicked" handler="on_btn_monsters_goto_stats_clicked" swapped="no"/>
                                         <child>
                                           <object class="GtkBox">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
+                                            <property name="can-focus">False</property>
                                             <property name="spacing">5</property>
                                             <child>
                                               <object class="GtkLabel">
                                                 <property name="visible">True</property>
-                                                <property name="can_focus">False</property>
+                                                <property name="can-focus">False</property>
                                                 <property name="label" translatable="yes">Go To Stats</property>
                                               </object>
                                               <packing>
@@ -986,8 +1001,8 @@ They are usually used for boss fights or other special floors.</property>
                                             <child>
                                               <object class="GtkImage">
                                                 <property name="visible">True</property>
-                                                <property name="can_focus">False</property>
-                                                <property name="icon_name">skytemple-go-next-symbolic</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="icon-name">skytemple-go-next-symbolic</property>
                                               </object>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -1001,7 +1016,7 @@ They are usually used for boss fights or other special floors.</property>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">True</property>
-                                        <property name="pack_type">end</property>
+                                        <property name="pack-type">end</property>
                                         <property name="position">2</property>
                                       </packing>
                                     </child>
@@ -1009,7 +1024,7 @@ They are usually used for boss fights or other special floors.</property>
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
-                                    <property name="pack_type">end</property>
+                                    <property name="pack-type">end</property>
                                     <property name="position">1</property>
                                   </packing>
                                 </child>
@@ -1021,25 +1036,25 @@ They are usually used for boss fights or other special floors.</property>
                             <child type="tab">
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
+                                <property name="can-focus">False</property>
                                 <property name="label" translatable="yes">Pokémon</property>
                               </object>
                               <packing>
                                 <property name="position">3</property>
-                                <property name="tab_fill">False</property>
+                                <property name="tab-fill">False</property>
                               </packing>
                             </child>
                             <child>
                               <object class="GtkScrolledWindow">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="shadow_type">in</property>
+                                <property name="can-focus">True</property>
+                                <property name="shadow-type">in</property>
                                 <child>
                                   <object class="GtkTreeView" id="tree_stats">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
+                                    <property name="can-focus">True</property>
                                     <property name="model">model_stats</property>
-                                    <property name="search_column">0</property>
+                                    <property name="search-column">0</property>
                                     <child internal-child="selection">
                                       <object class="GtkTreeSelection"/>
                                     </child>
@@ -1176,12 +1191,12 @@ They are usually used for boss fights or other special floors.</property>
                             <child type="tab">
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
+                                <property name="can-focus">False</property>
                                 <property name="label" translatable="yes">Pokémon Stats</property>
                               </object>
                               <packing>
                                 <property name="position">4</property>
-                                <property name="tab_fill">False</property>
+                                <property name="tab-fill">False</property>
                               </packing>
                             </child>
                           </object>
@@ -1198,7 +1213,7 @@ They are usually used for boss fights or other special floors.</property>
                 <child type="label">
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Spawn Lists</property>
                   </object>
                 </child>
@@ -1206,7 +1221,7 @@ They are usually used for boss fights or other special floors.</property>
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>
@@ -1227,7 +1242,7 @@ They are usually used for boss fights or other special floors.</property>
   </object>
   <object class="GtkEntryCompletion" id="completion_items">
     <property name="model">store_completion_items</property>
-    <property name="text_column">0</property>
+    <property name="text-column">0</property>
     <child>
       <object class="GtkCellRendererText"/>
       <attributes>
@@ -1243,7 +1258,7 @@ They are usually used for boss fights or other special floors.</property>
   </object>
   <object class="GtkEntryCompletion" id="completion_monsters">
     <property name="model">store_completion_monsters</property>
-    <property name="text_column">0</property>
+    <property name="text-column">0</property>
     <child>
       <object class="GtkCellRendererText"/>
       <attributes>

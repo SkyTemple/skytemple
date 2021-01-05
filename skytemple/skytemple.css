@@ -36,6 +36,68 @@
     background-color: @theme_selected_bg_color;
 }
 
-.dungeon_editor_column_header_invalid {
-    color: #cc2929;
+.no_bg, .no_bg text {
+   background: transparent;
+}
+
+.back_illust {
+    background-repeat: no-repeat;
+   background-size: auto 80%;
+   background-position: bottom left;
+}
+
+.back_illust.fixed_rooms {
+   background-image: url("data/back_illust/fixed_rooms.png");
+}
+
+.back_illust.dungeon_tileset {
+   background-image: url("data/back_illust/dungeon_tileset.png");
+}
+
+.back_illust.background {
+   background-image: url("data/back_illust/background.png");
+}
+
+.back_illust.misc_graphics {
+   background-image: url("data/back_illust/misc_graphics.png");
+}
+
+.back_illust.music {
+   background-image: url("data/back_illust/music.png");
+}
+
+.back_illust.script {
+   background-image: url("data/back_illust/script.png");
+}
+
+.back_illust.scenes {
+   background-image: url("data/back_illust/scenes.png");
+}
+
+.back_illust.rom {
+   background-image: url("data/back_illust/rom.png");
+}
+
+.back_illust.patch {
+   background-image: url("data/back_illust/patch.png");
+}
+
+.back_illust.text {
+   background-image: url("data/back_illust/text.png");
+}
+
+.back_illust.monsters {
+   background-image: url("data/back_illust/monsters.png");
+}
+
+.back_illust.dungeons {
+   background-image: url("data/back_illust/dungeons.png");
+}
+
+.back_illust.map {
+   background-image: url("data/back_illust/map.png");
+}
+
+.back_illust.bboard {
+   background-image: url("data/back_illust/bboard.png");
 }

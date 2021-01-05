@@ -38,3 +38,9 @@ class FolderController(SimpleController):
         return self.generate_content_label(
             f"This section contains all the map backgrounds, that don't fit in any of the other categories."
         )
+
+    def get_icon(self) -> str:
+        return None
+
+    def get_back_illust(self) -> str:
+        return 'map'

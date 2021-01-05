@@ -35,3 +35,6 @@ class MainController(SimpleController):
             "can also be edited in other places in the UI (eg. the Pokémon names under Pokémon).\n"
             "Not included are the strings of the game's scripts."
         )
+
+    def get_icon(self) -> str:
+        return 'skytemple-illust-text'

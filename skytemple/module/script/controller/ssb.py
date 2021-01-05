@@ -47,3 +47,6 @@ class SsbController(SimpleController):
         box.pack_start(label, False, False, 0)
         box.pack_start(button_box, False, False, 0)
         return box
+
+    def get_icon(self) -> str:
+        return 'skytemple-illust-script'

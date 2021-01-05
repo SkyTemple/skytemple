@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.1 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkListStore" id="cb_direction_store">
@@ -28,8 +28,8 @@
       <object class="GtkAlignment">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="xscale">0.800000011920929</property>
-        <property name="yscale">0.800000011920929</property>
+        <property name="xscale">0.8000000119209289</property>
+        <property name="yscale">0.8000000119209289</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
@@ -142,6 +142,10 @@ After fixing the dungeon, you will be able to edit it.</property>
         <property name="position">1</property>
       </packing>
     </child>
+    <style>
+      <class name="back_illust"/>
+      <class name="dungeons"/>
+    </style>
   </object>
   <object class="GtkAdjustment" id="spin_floor_count_adjument">
     <property name="lower">1</property>

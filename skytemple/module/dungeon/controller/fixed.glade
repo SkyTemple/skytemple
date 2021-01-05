@@ -620,6 +620,9 @@ All tiles outside of defined room are made the tileset\'s defined secondary terr
                                         <property name="label" translatable="yes">Add new tile</property>
                                       </object>
                                     </child>
+                                    <style>
+                                      <class name="no_bg"/>
+                                    </style>
                                   </object>
                                   <packing>
                                     <property name="name">page0</property>
@@ -821,6 +824,9 @@ Tile Properties (ID):</property>
                                         <property name="label" translatable="yes">Add new entity</property>
                                       </object>
                                     </child>
+                                    <style>
+                                      <class name="no_bg"/>
+                                    </style>
                                   </object>
                                   <packing>
                                     <property name="name">page1</property>
@@ -828,6 +834,9 @@ Tile Properties (ID):</property>
                                     <property name="position">2</property>
                                   </packing>
                                 </child>
+                                <style>
+                                  <class name="no_bg"/>
+                                </style>
                               </object>
                               <packing>
                                 <property name="expand">True</property>
@@ -889,6 +898,9 @@ Tile Properties (ID):</property>
                                         <property name="label" translatable="yes">Tile Layer Legend</property>
                                       </object>
                                     </child>
+                                    <style>
+                                      <class name="no_bg"/>
+                                    </style>
                                   </object>
                                   <packing>
                                     <property name="name">page1</property>
@@ -932,6 +944,9 @@ Tile Properties (ID):</property>
                                         <property name="label" translatable="yes">Item Layer Legend</property>
                                       </object>
                                     </child>
+                                    <style>
+                                      <class name="no_bg"/>
+                                    </style>
                                   </object>
                                   <packing>
                                     <property name="name">page0</property>
@@ -977,6 +992,9 @@ Tile Properties (ID):</property>
                                         <property name="label" translatable="yes">Pokémon Layer Legend</property>
                                       </object>
                                     </child>
+                                    <style>
+                                      <class name="no_bg"/>
+                                    </style>
                                   </object>
                                   <packing>
                                     <property name="name">page1</property>
@@ -1022,6 +1040,9 @@ Tile Properties (ID):</property>
                                         <property name="label" translatable="yes">Trap Layer Legend</property>
                                       </object>
                                     </child>
+                                    <style>
+                                      <class name="no_bg"/>
+                                    </style>
                                   </object>
                                   <packing>
                                     <property name="name">page2</property>
@@ -1029,6 +1050,9 @@ Tile Properties (ID):</property>
                                     <property name="position">4</property>
                                   </packing>
                                 </child>
+                                <style>
+                                  <class name="no_bg"/>
+                                </style>
                               </object>
                               <packing>
                                 <property name="expand">True</property>
@@ -1040,6 +1064,10 @@ Tile Properties (ID):</property>
                         </child>
                       </object>
                     </child>
+                    <style>
+                      <class name="back_illust"/>
+                      <class name="fixed_rooms"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="resize">True</property>
