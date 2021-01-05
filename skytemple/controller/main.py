@@ -126,15 +126,6 @@ class MainController:
         self.tilequant_controller = TilequantController(self.window, self.builder)
         self.settings_controller = SettingsController(self.window, self.builder, self.settings)
 
-        dialog = SkyTempleMessageDialog(
-            self.window,
-            Gtk.DialogFlags.MODAL,
-            Gtk.MessageType.WARNING,
-            Gtk.ButtonsType.OK, f"test"
-        )
-        dialog.run()
-        dialog.destroy()
-
     def on_destroy(self, *args):
         logger.debug('Window destroyed. Ending task runner.')
         AsyncTaskRunner.end()
