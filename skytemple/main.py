@@ -20,10 +20,9 @@ import sys
 
 import gi
 
-from skytemple.core.message_dialog import SkyTempleMessageDialog
-
 gi.require_version('Gtk', '3.0')
 
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.events.manager import EventManager
 from skytemple.core.modules import Modules
 from skytemple.core.settings import SkyTempleSettingsStore
