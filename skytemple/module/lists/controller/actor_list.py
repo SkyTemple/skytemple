@@ -21,6 +21,7 @@ from typing import TYPE_CHECKING, Optional
 from gi.repository import Gtk
 
 from skytemple.controller.main import MainController
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.module.lists.controller.base import ListBaseController, ORANGE, PATTERN_MD_ENTRY
 from skytemple_files.list.actor.model import ActorListBin
 if TYPE_CHECKING:
@@ -53,7 +54,7 @@ class ActorListController(ListBaseController):
 
     def on_btn_remove_clicked(self, *args):
         # TODO
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
             Gtk.ButtonsType.OK,
@@ -64,7 +65,7 @@ class ActorListController(ListBaseController):
 
     def on_btn_add_clicked(self, *args):
         # TODO
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
             Gtk.ButtonsType.OK,

@@ -26,6 +26,8 @@ from tempfile import NamedTemporaryFile
 
 from gi.repository import Gtk
 
+from skytemple.core.message_dialog import SkyTempleMessageDialog
+
 logger = logging.getLogger(__name__)
 
 
@@ -51,11 +53,11 @@ def show_error_web(exc_info):
                     webbrowser.open_new_tab(Path(tmp_file.name).as_uri())
             except BaseException:
                 # Yikes!
-                md = Gtk.MessageDialog(None,
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                       Gtk.ButtonsType.OK,
-                                       "Trying to display the error failed. Wow!",
-                                       title=":(")
+                md = SkyTempleMessageDialog(None,
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                            Gtk.ButtonsType.OK,
+                                            "Trying to display the error failed. Wow!",
+                                            title=":(")
                 md.run()
                 md.destroy()
 
@@ -70,11 +72,11 @@ def display_error(exc_info, error_message, error_title='SkyTemple - Error', wind
         from skytemple.controller.main import MainController
         window = MainController.window()
     logger.error(error_message, exc_info=exc_info)
-    md = Gtk.MessageDialog(window,
-                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                           Gtk.ButtonsType.OK,
-                           error_message,
-                           title=error_title)
+    md = SkyTempleMessageDialog(window,
+                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                Gtk.ButtonsType.OK,
+                                error_message,
+                                title=error_title)
     if exc_info is not None:
         button: Gtk.Button = Gtk.Button.new_with_label("Error Details")
         button.connect('clicked', lambda *args: show_error_web(exc_info))

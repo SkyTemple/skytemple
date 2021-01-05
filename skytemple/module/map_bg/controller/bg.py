@@ -26,6 +26,7 @@ from gi.repository.Gtk import *
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE
 from skytemple.module.map_bg.controller.bg_menu import BgMenuController
@@ -168,13 +169,13 @@ class BgController(AbstractController):
         except ImportError:
             pass
         if self._was_asset_copied:
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                       Gtk.ButtonsType.OK, f"This map background shared some asset files with other "
-                                                           f"map backgrounds.\n"
-                                                           f"SkyTemple can't edit shared files, so "
-                                                           f"those assets were copied.",
-                                       title="SkyTemple - Notice")
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                            Gtk.ButtonsType.OK, f"This map background shared some asset files with other "
+                                                                f"map backgrounds.\n"
+                                                                f"SkyTemple can't edit shared files, so "
+                                                                f"those assets were copied.",
+                                            title="SkyTemple - Notice")
                 md.run()
                 md.destroy()
                 self.module.mark_as_modified(self.item_id)
@@ -315,11 +316,11 @@ class BgController(AbstractController):
                 REQUEST_TYPE_SCENE, associated.name
             ), True)
         except ValueError:
-            md = Gtk.MessageDialog(MainController.window(),
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                   Gtk.ButtonsType.OK, f"A script map with the same name as "
-                                                       f"this background does not exist.",
-                                   title="No Scenes Found")
+            md = SkyTempleMessageDialog(MainController.window(),
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                        Gtk.ButtonsType.OK, f"A script map with the same name as "
+                                                            f"this background does not exist.",
+                                        title="No Scenes Found")
             md.run()
             md.destroy()
 
@@ -393,25 +394,25 @@ class BgController(AbstractController):
         self.menu_controller.on_men_palettes_ani_edit_activate()
 
     def on_format_details_entire_clicked(self, *args):
-        md = Gtk.MessageDialog(MainController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, INFO_IMEXPORT_ENTIRE)
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_ENTIRE)
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
 
     def on_format_details_chunks_clicked(self, *args):
-        md = Gtk.MessageDialog(MainController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, INFO_IMEXPORT_CHUNK)
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_CHUNK)
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
 
     def on_format_details_tiles_clicked(self, *args):
-        md = Gtk.MessageDialog(MainController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, INFO_IMEXPORT_TILES)
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_TILES)
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
@@ -785,7 +786,7 @@ class BgController(AbstractController):
     
 
     def on_btn_about_palettes_clicked(self, w, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,

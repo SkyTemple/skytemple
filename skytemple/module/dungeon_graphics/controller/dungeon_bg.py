@@ -23,6 +23,7 @@ from gi.repository.Gtk import *
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
 from skytemple.module.dungeon_graphics.dungeon_bg_drawer import Drawer, DrawerCellRenderer
@@ -211,25 +212,25 @@ class DungeonBgController(AbstractController):
         self.menu_controller.edit_palette_ani(1)
 
     def on_format_details_entire_clicked(self, *args):
-        md = Gtk.MessageDialog(MainController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, INFO_IMEXPORT_ENTIRE)
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_ENTIRE)
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
 
     def on_format_details_chunks_clicked(self, *args):
-        md = Gtk.MessageDialog(MainController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, INFO_IMEXPORT_CHUNK)
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_CHUNK)
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
 
     def on_format_details_tiles_clicked(self, *args):
-        md = Gtk.MessageDialog(MainController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, INFO_IMEXPORT_TILES)
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_TILES)
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()

@@ -25,6 +25,7 @@ from gi.repository.Gtk import TreeModelFilter, TreeSelection
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.third_party_util.cellrenderercustomtext import CellRendererTextView
 from skytemple.core.ui_utils import add_dialog_csv_filter
@@ -116,7 +117,7 @@ class StringsController(AbstractController):
         self._filter.refilter()
 
     def on_btn_import_clicked(self, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
@@ -158,7 +159,7 @@ class StringsController(AbstractController):
                 )
 
     def on_btn_export_clicked(self, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,

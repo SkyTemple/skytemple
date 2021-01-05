@@ -21,6 +21,7 @@ from typing import Union, List, Dict
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import ResponseType
 
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple_files.common.util import make_palette_colors_unique
 
 
@@ -89,17 +90,17 @@ class PaletteEditorController:
         ]
 
     def on_make_unique_info_button_clicked(self, *args):
-        md = Gtk.MessageDialog(self.dialog,
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK,
-                               f"Some images editors have problems when editing indexed images that contain\n"
-                               f"the same color multiple times (they mis-match the actual color index).\n"
-                               f"Since the import expects all 8x8 tiles to only use one 16-color palette, this\n"
-                               f"can lead to issues.\n\n"
-                               f"To solve this, you can make all colors in the palettes unique. This is done by\n"
-                               f"slightly shifting the color values of duplicate colors (not visible for the\n"
-                               f"human eye).",
-                               title="Make Colors Unique")
+        md = SkyTempleMessageDialog(self.dialog,
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK,
+                                    f"Some images editors have problems when editing indexed images that contain\n"
+                                    f"the same color multiple times (they mis-match the actual color index).\n"
+                                    f"Since the import expects all 8x8 tiles to only use one 16-color palette, this\n"
+                                    f"can lead to issues.\n\n"
+                                    f"To solve this, you can make all colors in the palettes unique. This is done by\n"
+                                    f"slightly shifting the color values of duplicate colors (not visible for the\n"
+                                    f"human eye).",
+                                    title="Make Colors Unique")
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
@@ -107,11 +108,11 @@ class PaletteEditorController:
     def on_make_unique_button_clicked(self, *args):
         self.palettes = make_palette_colors_unique(self.palettes)
         self._init_page(self.notebook.get_current_page())
-        md = Gtk.MessageDialog(self.dialog,
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK,
-                               f"Made colors unique.",
-                               title="Palette Editor")
+        md = SkyTempleMessageDialog(self.dialog,
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK,
+                                    f"Made colors unique.",
+                                    title="Palette Editor", is_success=True)
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
@@ -134,10 +135,10 @@ class PaletteEditorController:
 
     def on_palette_remove_clicked(self, wdg):
         if self.notebook.get_n_pages() < 2:
-            md = Gtk.MessageDialog(self.dialog,
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                   Gtk.ButtonsType.OK, "You can not remove the last palette.",
-                                   title="Error!")
+            md = SkyTempleMessageDialog(self.dialog,
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                        Gtk.ButtonsType.OK, "You can not remove the last palette.",
+                                        title="Error!")
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()

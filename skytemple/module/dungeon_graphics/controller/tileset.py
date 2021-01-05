@@ -28,6 +28,7 @@ from typing import TYPE_CHECKING, List, Iterable, Callable
 import cairo
 
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_xml_filter
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_graphics_provider import DungeonTilesProvider
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_palettes_provider import DungeonPalettesProvider
@@ -118,11 +119,11 @@ class TilesetController(AbstractController):
     # SIMPLE MODE
 
     def on_btn_import_clicked(self, *args):
-        md = Gtk.MessageDialog(MainController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, "To import select the XML file in the DTEF tileset package. If it "
-                                                   "is still zipped, unzip it first.",
-                               title="SkyTemple")
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, "To import select the XML file in the DTEF tileset package. If it "
+                                                        "is still zipped, unzip it first.",
+                                    title="SkyTemple")
         md.run()
         md.destroy()
 
@@ -155,10 +156,10 @@ class TilesetController(AbstractController):
                     dirname, fn_xml, fn_var0, fn_var1, fn_var2
                 )
 
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                       Gtk.ButtonsType.OK, "The tileset was successfully imported.",
-                                       title="Success!")
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                            Gtk.ButtonsType.OK, "The tileset was successfully imported.",
+                                            title="Success!", is_success=True)
                 md.run()
                 md.destroy()
                 self.mark_as_modified()
@@ -196,10 +197,10 @@ class TilesetController(AbstractController):
                 rest.save(os.path.join(fn, restfn))
                 shutil.copy(get_template_file(), os.path.join(fn, 'template.png'))
 
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                       Gtk.ButtonsType.OK, "The tileset was successfully exported.",
-                                       title="Success!")
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                            Gtk.ButtonsType.OK, "The tileset was successfully exported.",
+                                            title="Success!", is_success=True)
                 md.run()
                 md.destroy()
             except BaseException as e:

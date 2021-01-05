@@ -38,6 +38,7 @@ from skytemple.core.controller_loader import load_controller
 from skytemple.core.error_handler import display_error
 from skytemple.core.events.events import EVT_VIEW_SWITCH, EVT_PROJECT_OPEN
 from skytemple.core.events.manager import EventManager
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.settings import SkyTempleSettingsStore
@@ -124,6 +125,15 @@ class MainController:
 
         self.tilequant_controller = TilequantController(self.window, self.builder)
         self.settings_controller = SettingsController(self.window, self.builder, self.settings)
+
+        dialog = SkyTempleMessageDialog(
+            self.window,
+            Gtk.DialogFlags.MODAL,
+            Gtk.MessageType.WARNING,
+            Gtk.ButtonsType.OK, f"test"
+        )
+        dialog.run()
+        dialog.destroy()
 
     def on_destroy(self, *args):
         logger.debug('Window destroyed. Ending task runner.')
@@ -451,9 +461,9 @@ class MainController:
 
     def on_intro_dialog_created_with_clicked(self, *args):
         if RomProject.get_current() is None or self._loaded_map_bg_module is None:
-            md = Gtk.MessageDialog(MainController.window(),
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                   Gtk.ButtonsType.OK, "A project must be opened to use this.")
+            md = SkyTempleMessageDialog(MainController.window(),
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                        Gtk.ButtonsType.OK, "A project must be opened to use this.")
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()
@@ -724,7 +734,7 @@ class MainController:
             self._loading_dialog.run()
 
     def _show_are_you_sure(self, rom):
-        dialog: MessageDialog = Gtk.MessageDialog(
+        dialog: MessageDialog = SkyTempleMessageDialog(
             self.window,
             Gtk.DialogFlags.MODAL,
             Gtk.MessageType.WARNING,

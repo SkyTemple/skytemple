@@ -24,6 +24,7 @@ from functools import partial
 from typing import TYPE_CHECKING, List, Optional, Tuple
 
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.module.map_bg.chunk_editor_data_provider.tile_graphics_provider import MapBgStaticTileProvider, \
     MapBgAnimatedTileProvider
 from skytemple.module.map_bg.chunk_editor_data_provider.tile_palettes_provider import MapBgPaletteProvider
@@ -181,10 +182,10 @@ class BgMenuController:
                     int(map_width_tiles.get_text()), int(map_height_tiles.get_text()),
                 )
             except ValueError:
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                       Gtk.ButtonsType.OK, "Please only enter numbers for the map size.",
-                                       title="Error!")
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                            Gtk.ButtonsType.OK, "Please only enter numbers for the map size.",
+                                            title="Error!")
                 md.set_position(Gtk.WindowPosition.CENTER)
                 md.run()
                 md.destroy()
@@ -474,11 +475,11 @@ class BgMenuController:
                     bpa.frame_info = new_frame_info
 
             if had_errors:
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                       Gtk.ButtonsType.OK, "Some values were invalid (not a number). "
-                                                           "They were replaced with 0.",
-                                       title="Warning!")
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                            Gtk.ButtonsType.OK, "Some values were invalid (not a number). "
+                                                                "They were replaced with 0.",
+                                            title="Warning!")
                 md.set_position(Gtk.WindowPosition.CENTER)
                 md.run()
                 md.destroy()
@@ -542,10 +543,10 @@ class BgMenuController:
                 else:
                     for i, img in enumerate(active_bpa.tiles_to_pil_separate(pal, 20)):
                         img.save(os.path.join(fn, self._get_bpa_export_name_pattern(active_bpa_index+1, i)))
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                       Gtk.ButtonsType.OK, "The animated tiles were successfully exported.",
-                                       title="SkyTemple - Success!")
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                            Gtk.ButtonsType.OK, "The animated tiles were successfully exported.",
+                                            title="SkyTemple - Success!", is_success=True)
                 md.run()
                 md.destroy()
             except Exception as err:
@@ -600,11 +601,11 @@ class BgMenuController:
                 bpa_relative_idx = active_bpa_index % 4
                 bpc_layer_for_bpa = 0 if active_bpa_index < 4 else 1
                 self.parent.bpc.layers[bpc_layer_for_bpa].bpas[bpa_relative_idx] = active_bpa.number_of_tiles
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                       Gtk.ButtonsType.OK, f"The animated tiles were successfully imported, using the files: "
-                                                           f"{', '.join(filenames_base)}.",
-                                       title="SkyTemple - Success!")
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                            Gtk.ButtonsType.OK, f"The animated tiles were successfully imported, using the files: "
+                                                                f"{', '.join(filenames_base)}.",
+                                            title="SkyTemple - Success!", is_success=True)
                 md.run()
                 md.destroy()
             except Exception as err:
@@ -677,11 +678,11 @@ class BgMenuController:
                 self.parent.bpl.animation_specs = None
 
             if had_errors:
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                       Gtk.ButtonsType.OK, "Some values were invalid (not a number). "
-                                                           "They were replaced with 0.",
-                                       title="Warning!")
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                            Gtk.ButtonsType.OK, "Some values were invalid (not a number). "
+                                                                "They were replaced with 0.",
+                                            title="Warning!")
                 md.set_position(Gtk.WindowPosition.CENTER)
                 md.run()
                 md.destroy()
@@ -696,10 +697,10 @@ class BgMenuController:
 
     def on_men_palettes_ani_edit_activate(self):
         if not self.parent.bpl.has_palette_animation:
-            md = Gtk.MessageDialog(MainController.window(),
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                   Gtk.ButtonsType.OK, "Palette Animation is not enabled.",
-                                   title="Warning!")
+            md = SkyTempleMessageDialog(MainController.window(),
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                        Gtk.ButtonsType.OK, "Palette Animation is not enabled.",
+                                        title="Warning!")
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()
@@ -766,10 +767,10 @@ class BgMenuController:
         if resp == ResponseType.OK:
             try:
                 if chunks_import_file.get_filename() is None:
-                    md = Gtk.MessageDialog(MainController.window(),
-                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                           Gtk.ButtonsType.OK, "An image must be selected.",
-                                           title="Error!")
+                    md = SkyTempleMessageDialog(MainController.window(),
+                                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                                Gtk.ButtonsType.OK, "An image must be selected.",
+                                                title="Error!")
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
                     md.destroy()
@@ -829,10 +830,10 @@ class BgMenuController:
         if resp == ResponseType.OK:
             try:
                 if tiles_import_file.get_filename() is None:
-                    md = Gtk.MessageDialog(MainController.window(),
-                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                           Gtk.ButtonsType.OK, "An image must be selected.",
-                                           title="Error!")
+                    md = SkyTempleMessageDialog(MainController.window(),
+                                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                                Gtk.ButtonsType.OK, "An image must be selected.",
+                                                title="Error!")
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
                     md.destroy()
@@ -848,10 +849,10 @@ class BgMenuController:
             self.parent.mark_as_modified()
 
     def _no_second_layer(self):
-        md = Gtk.MessageDialog(MainController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                               Gtk.ButtonsType.OK, "This map has no second layer.",
-                               title="Error!")
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                    Gtk.ButtonsType.OK, "This map has no second layer.",
+                                    title="Error!")
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()

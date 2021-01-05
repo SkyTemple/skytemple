@@ -22,6 +22,7 @@ from gi.repository.Gtk import Widget
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, \
     REQUEST_TYPE_DUNGEON_TILESET
@@ -356,7 +357,7 @@ class FixedController(AbstractController):
 
         confirm = True
         if width < self.floor.width or height < self.floor.height:
-            md = Gtk.MessageDialog(
+            md = SkyTempleMessageDialog(
                 MainController.window(),
                 Gtk.DialogFlags.MODAL,
                 Gtk.MessageType.WARNING,
@@ -612,8 +613,8 @@ class FixedController(AbstractController):
             l_iter = cb.get_model().iter_next(l_iter)
 
     def _help(self, msg):
-        md = Gtk.MessageDialog(MainController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, msg)
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, msg)
         md.run()
         md.destroy()

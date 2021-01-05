@@ -25,6 +25,7 @@ import cairo
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.img_utils import pil_to_cairo_surface
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple_files.graphics.w16.model import W16, W16At4pxImage, W16TocEntry, W16At4pnImage
 
 try:
@@ -88,7 +89,7 @@ class W16Controller(AbstractController):
                 img.save(filename)
 
     def on_import_clicked(self, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,

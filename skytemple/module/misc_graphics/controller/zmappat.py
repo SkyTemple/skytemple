@@ -22,6 +22,7 @@ from typing import TYPE_CHECKING, Optional
 import cairo
 
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple_files.graphics.zmappat.model import ZMappaT, ZMappaTVariation
 from skytemple_files.graphics.zmappat import *
 
@@ -104,7 +105,7 @@ class ZMappaTController(AbstractController):
                 mask = self.zmappat.to_pil_masks(v).save(fn_masks, "PNG")
         
     def on_import_minimized_activate(self, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
@@ -145,7 +146,7 @@ class ZMappaTController(AbstractController):
             self._reinit_image()
         
     def on_minimized_info_clicked(self, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
@@ -161,7 +162,7 @@ class ZMappaTController(AbstractController):
         md.destroy()
         
     def on_import_full_activate(self, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,

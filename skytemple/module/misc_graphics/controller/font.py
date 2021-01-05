@@ -20,6 +20,8 @@ import sys
 from typing import TYPE_CHECKING, Optional, Dict
 
 from xml.etree.ElementTree import Element, ElementTree
+
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple_files.common.xml_util import prettify
 
 import cairo
@@ -96,7 +98,7 @@ class FontController(AbstractController):
                 table.save(os.path.join(fn, f'table-{i}.png'))
             
     def on_import_clicked(self, w: Gtk.MenuToolButton):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,

@@ -23,6 +23,7 @@ from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.error_handler import display_error
 from skytemple.core.events.events import EVT_DEBUGGER_SCRIPT_OPEN, EVT_DEBUGGER_SELECTED_STRING_CHANGED
 from skytemple.core.events.manager import EventManager
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST_TYPE_SCENE_SSA, REQUEST_TYPE_SCENE_SSS, \
     REQUEST_TYPE_SCENE_SSE
 from skytemple.core.rom_project import RomProject
@@ -45,6 +46,7 @@ save_lock = Lock()
 
 
 class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
+
     def __init__(self, manager: 'DebuggerManager'):
         self._manager = manager
         self._special_words_cache = None
@@ -134,10 +136,10 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
                 raise ValueError()
             self._manager.main_window.present()
         except ValueError:
-            md = Gtk.MessageDialog(self._manager.get_window(),
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                   Gtk.ButtonsType.OK, f"A scene for this script was not found.",
-                                   title="No Scenes Found")
+            md = SkyTempleMessageDialog(self._manager.get_window(),
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                        Gtk.ButtonsType.OK, f"A scene for this script was not found.",
+                                        title="No Scenes Found")
             md.run()
             md.destroy()
 
@@ -148,10 +150,10 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
             ), True)
             self._manager.main_window.present()
         except ValueError:
-            md = Gtk.MessageDialog(self._manager.get_window(),
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                   Gtk.ButtonsType.OK, f"A scene for this script was not found.",
-                                   title="No Scenes Found")
+            md = SkyTempleMessageDialog(self._manager.get_window(),
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                        Gtk.ButtonsType.OK, f"A scene for this script was not found.",
+                                        title="No Scenes Found")
             md.run()
             md.destroy()
 
@@ -163,16 +165,16 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
             )
             return cntrl.run() == Gtk.ResponseType.OK
         except IndexError:
-            md = Gtk.MessageDialog(self._manager.get_window(),
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                   Gtk.ButtonsType.OK, f"SkyTemple is missing the 'script' "
-                                                       f"module to handle this request.")
+            md = SkyTempleMessageDialog(self._manager.get_window(),
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                        Gtk.ButtonsType.OK, f"SkyTemple is missing the 'script' "
+                                                            f"module to handle this request.")
             md.run()
             md.destroy()
         except ValueError as err:
-            md = Gtk.MessageDialog(self._manager.get_window(),
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                   Gtk.ButtonsType.OK, str(err))
+            md = SkyTempleMessageDialog(self._manager.get_window(),
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                        Gtk.ButtonsType.OK, str(err))
             md.run()
             md.destroy()
 
@@ -199,3 +201,6 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         yield from EXPS_KEYWORDS
         yield from pro.get_string_provider().get_all(StringType.POKEMON_NAMES)
 
+    @staticmethod
+    def message_dialog_cls():
+        return SkyTempleMessageDialog

@@ -24,6 +24,7 @@ from collections import OrderedDict
 from typing import TYPE_CHECKING, List, Optional, Tuple, Union
 
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_graphics_provider import DungeonTilesProvider
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_palettes_provider import DungeonPalettesProvider
 from skytemple_files.common.tiled_image import TilemapEntry
@@ -176,10 +177,10 @@ class BgMenuController:
         if resp == Gtk.ResponseType.OK:
             try:
                 if chunks_import_file.get_filename() is None:
-                    md = Gtk.MessageDialog(MainController.window(),
-                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                           Gtk.ButtonsType.OK, "An image must be selected.",
-                                           title="Error!")
+                    md = SkyTempleMessageDialog(MainController.window(),
+                                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                                Gtk.ButtonsType.OK, "An image must be selected.",
+                                                title="Error!")
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
                     md.destroy()
@@ -248,10 +249,10 @@ class BgMenuController:
         if resp == Gtk.ResponseType.OK:
             try:
                 if tiles_import_file.get_filename() is None:
-                    md = Gtk.MessageDialog(MainController.window(),
-                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                           Gtk.ButtonsType.OK, "An image must be selected.",
-                                           title="Error!")
+                    md = SkyTempleMessageDialog(MainController.window(),
+                                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                                Gtk.ButtonsType.OK, "An image must be selected.",
+                                                title="Error!")
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
                     md.destroy()
@@ -313,11 +314,11 @@ class BgMenuController:
                 self.parent.dpla.set_duration_for_palette(palid, time)
 
             if had_errors:
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                       Gtk.ButtonsType.OK, "Some values were invalid (not a number). "
-                                                           "They were replaced with 0.",
-                                       title="Warning!")
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                            Gtk.ButtonsType.OK, "Some values were invalid (not a number). "
+                                                                "They were replaced with 0.",
+                                            title="Warning!")
                 md.set_position(Gtk.WindowPosition.CENTER)
                 md.run()
                 md.destroy()
@@ -327,10 +328,10 @@ class BgMenuController:
 
     def edit_palette_ani(self, ani_pal_id):
         if not self.parent.dpla.has_for_palette(ani_pal_id):
-            md = Gtk.MessageDialog(MainController.window(),
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                   Gtk.ButtonsType.OK, "Palette Animation is not enabled for this palette.",
-                                   title="Warning!")
+            md = SkyTempleMessageDialog(MainController.window(),
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                        Gtk.ButtonsType.OK, "Palette Animation is not enabled for this palette.",
+                                        title="Warning!")
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()

@@ -19,6 +19,9 @@ import os
 import sys
 
 import gi
+
+from skytemple.core.message_dialog import SkyTempleMessageDialog
+
 gi.require_version('Gtk', '3.0')
 
 from skytemple.core.events.manager import EventManager
@@ -34,10 +37,10 @@ try:
 except ImportError:
     from gi.repository import Gtk
 
-    md = Gtk.MessageDialog(None,
-                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                           Gtk.ButtonsType.OK, "PyGObject compiled without Cairo support. Can't start!",
-                           title="SkyTemple - Error!")
+    md = SkyTempleMessageDialog(None,
+                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                Gtk.ButtonsType.OK, "PyGObject compiled without Cairo support. Can't start!",
+                                title="SkyTemple - Error!")
     md.set_position(Gtk.WindowPosition.CENTER)
     md.run()
     md.destroy()

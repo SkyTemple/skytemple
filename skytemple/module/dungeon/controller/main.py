@@ -22,6 +22,7 @@ from typing import TYPE_CHECKING, Optional, List, Union
 from gi.repository import Gtk, Gdk
 
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple.core.string_provider import StringType
@@ -101,7 +102,7 @@ class MainController(AbstractController):
                     self._fix_error(dungeon_list, error)
             # Step 3 report status
             if not validator.validate(dungeon_list):
-                md = Gtk.MessageDialog(
+                md = SkyTempleMessageDialog(
                     MainSkyTempleController.window(),
                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
                     Gtk.ButtonsType.OK,
@@ -110,12 +111,12 @@ class MainController(AbstractController):
                     title="Fix Dungeon Errors"
                 )
             else:
-                md = Gtk.MessageDialog(
+                md = SkyTempleMessageDialog(
                     MainSkyTempleController.window(),
                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
                     Gtk.ButtonsType.OK,
                     f"Dungeon Errors were successfully fixed.",
-                    title="Fix Dungeon Errors"
+                    title="Fix Dungeon Errors", is_success=True
                 )
             md.run()
             md.destroy()

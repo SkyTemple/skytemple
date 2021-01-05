@@ -24,6 +24,7 @@ from gi.repository.Gtk import TreeViewColumn
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import REQUEST_TYPE_MAP_BG, OpenRequest, REQUEST_TYPE_SCENE_SSE, \
     REQUEST_TYPE_SCENE_SSA, REQUEST_TYPE_SCENE_SSS
@@ -463,7 +464,7 @@ class SsaController(AbstractController):
 
     def on_tool_sector_remove_clicked(self, *args):
         # Confirmation dialog
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
             Gtk.ButtonsType.YES_NO,
@@ -570,7 +571,7 @@ class SsaController(AbstractController):
 
     def on_tool_script_add_clicked(self, *args):
         if self.type == 'ssa':
-            md = Gtk.MessageDialog(
+            md = SkyTempleMessageDialog(
                 MainController.window(),
                 Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,
@@ -586,7 +587,7 @@ class SsaController(AbstractController):
         try:
             number = int(number)
         except ValueError:
-            md = Gtk.MessageDialog(
+            md = SkyTempleMessageDialog(
                 MainController.window(),
                 Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,
@@ -599,7 +600,7 @@ class SsaController(AbstractController):
         ssb_path = f'{self.filename[:-4]}{number:02d}{SSB_EXT}'
         # Check if already exists
         if self.module.project.file_exists(ssb_path):
-            md = Gtk.MessageDialog(
+            md = SkyTempleMessageDialog(
                 MainController.window(),
                 Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,
@@ -636,7 +637,7 @@ class SsaController(AbstractController):
 
     def on_tool_script_remove_clicked(self, *args):
         if self.type == 'ssa':
-            md = Gtk.MessageDialog(
+            md = SkyTempleMessageDialog(
                 MainController.window(),
                 Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,
@@ -646,7 +647,7 @@ class SsaController(AbstractController):
             md.destroy()
             return
         # TODO
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
             Gtk.ButtonsType.OK,

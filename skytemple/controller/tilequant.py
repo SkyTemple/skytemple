@@ -21,6 +21,7 @@ from enum import Enum
 from functools import partial
 
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple_tilequant.aikku.image_converter import AikkuImageConverter, DitheringMode
 from skytemple_tilequant.image_converter import ImageConverter
@@ -128,10 +129,10 @@ class TilequantController:
             self.error("Please select an input image.")
             return
         if has_second_image:
-            md = Gtk.MessageDialog(self.window,
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                   Gtk.ButtonsType.OK, "Since you selected two images to convert, you will be asked "
-                                                       "for both images where to save them to.")
+            md = SkyTempleMessageDialog(self.window,
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                        Gtk.ButtonsType.OK, "Since you selected two images to convert, you will be asked "
+                                                            "for both images where to save them to.")
             md.run()
             md.destroy()
 
@@ -229,16 +230,16 @@ class TilequantController:
                     logger.error("Tilequant error.", exc_info=err)
                     self.error(str(err))
                 else:
-                    md = Gtk.MessageDialog(self.window,
-                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                           Gtk.ButtonsType.OK, "Image was converted.")
+                    md = SkyTempleMessageDialog(self.window,
+                                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                                Gtk.ButtonsType.OK, "Image was converted.", is_success=True)
                     md.run()
                     md.destroy()
 
     def show_help(self, info, *args):
-        md = Gtk.MessageDialog(self.window,
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, info)
+        md = SkyTempleMessageDialog(self.window,
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, info)
         md.run()
         md.destroy()
 
