@@ -35,7 +35,7 @@ from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
-    get_ppmdu_config_for_rom, get_binary_from_rom_ppmdu, set_binary_in_rom_ppmdu
+    get_ppmdu_config_for_rom, get_binary_from_rom_ppmdu, set_binary_in_rom_ppmdu, get_files_from_folder_with_extension
 from skytemple_files.container.sir0.sir0_serializable import Sir0Serializable
 from skytemple_files.patch.patches import Patcher
 
@@ -243,13 +243,23 @@ class RomProject:
         """Save the rom. The main controller will be informed about this, if given."""
         AsyncTaskRunner().instance().run_task(self._save_impl(main_controller))
 
+    def open_file_manually(self, filename: str):
+        """Returns the raw bytes of a file. GENERALLY NOT RECOMMENDED."""
+        return self._rom.getFileByName(filename)
+
     def save_file_manually(self, filename: str, data: bytes):
         """
         Manually save a file in the ROM. This should generally not be used,
         please use a combination of open_file_in_rom and mark_as_modified instead. This should only be used
         for re-generated files which are otherwise not read by SkyTemple (only saved), such as the mappa_gs.bin file.
+        THIS INVALIDATES THE CURRENTLY LOADED FILE (via open_file_in_rom; it will return a new model now).
         """
+        if filename in self._opened_files:
+            del self._opened_files[filename]
+        if filename in self._opened_files_contexts:
+            del self._opened_files_contexts[filename]
         self._rom.setFileByName(filename, data)
+        self.force_mark_as_modified()
 
     async def _save_impl(self, main_controller: Optional['MainController']):
         try:
@@ -290,8 +300,11 @@ class RomProject:
         """Simply save the current ROM to disk."""
         self._rom.saveToFile(self.filename)
 
-    def get_files_with_ext(self, ext):
-        return get_files_from_rom_with_extension(self._rom, ext)
+    def get_files_with_ext(self, ext, folder_name: Optional[str] = None):
+        if folder_name is None:
+            return get_files_from_rom_with_extension(self._rom, ext)
+        else:
+            return get_files_from_folder_with_extension(self._rom.filenames.subfolder(folder_name), ext)
 
     def get_rom_folder(self, path):
         return get_rom_folder(self._rom, path)
