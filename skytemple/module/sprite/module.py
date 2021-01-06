@@ -16,11 +16,13 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import webbrowser
 
+from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
+from skytemple.module.sprite.controller.monster_sprite import MonsterSpriteController
 from skytemple.module.sprite.controller.object import ObjectController
 from skytemple.module.sprite.controller.object_main import OBJECT_SPRTIES, ObjectMainController
 
@@ -59,6 +61,11 @@ class SpriteModule(AbstractModule):
 
         recursive_generate_item_store_row_label(self._tree_model[root])
 
+    def get_monster_sprite_editor(self, sprite_id: int, modified_callback) -> Gtk.Widget:
+        """Returns the view for one portrait slots"""
+        controller = MonsterSpriteController(self, sprite_id, modified_callback)
+        return controller.get_view()
+
     def get_object_sprite_raw(self, filename):
         assert filename in self.list_of_obj_sprites
         return self.project.open_file_manually(GROUND_DIR + '/' + filename)
@@ -72,6 +79,9 @@ class SpriteModule(AbstractModule):
 
     def get_sprite_provider(self):
         return self.project.get_sprite_provider()
+
+    def open_spritebot_explanation(self):
+        pass  # TODO
 
     def open_gfxcrunch_page(self):
         webbrowser.open_new_tab('https://projectpokemon.org/home/forums/topic/31407-pokemon-mystery-dungeon-2-psy_commandos-tools-and-research-notes/')

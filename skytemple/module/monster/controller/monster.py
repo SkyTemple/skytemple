@@ -59,6 +59,7 @@ class MonsterController(AbstractController):
         self._sprite_provider = module.project.get_sprite_provider()
         self._portrait_provider = module.project.get_module('portrait').get_portrait_provider()
         self._level_up_controller: Optional[LevelUpController] = None
+        self._cached_sprite_page = None
 
         self._render_graph_on_tab_change = True
 
@@ -161,6 +162,7 @@ class MonsterController(AbstractController):
         self._sprite_provider.reset()
         self._check_sprite_size(False)
         self.builder.get_object('draw_sprite').queue_draw()
+        self._reload_sprite_page()
 
     def on_cb_gender_changed(self, w, *args):
         self._update_from_cb(w)
@@ -864,6 +866,17 @@ class MonsterController(AbstractController):
         notebook.append_page(level_up_view, tab_label)
         tab_label: Gtk.Label = Gtk.Label.new('Portraits')
         notebook.append_page(self.module.get_portrait_view(self.item_id), tab_label)
+        self._reload_sprite_page()
+
+    def _reload_sprite_page(self):
+        notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
+        if self._cached_sprite_page:
+            notebook.remove_page(self._cached_sprite_page)
+        tab_label: Gtk.Label = Gtk.Label.new('Sprites')
+        tab_label.show()
+        self._cached_sprite_page = notebook.append_page(
+            self.module.get_sprite_view(self.entry.sprite_index, self.item_id), tab_label
+        )
 
     def _update_base_form_label(self):
         label: Gtk.Label = self.builder.get_object('label_base_form_index')
@@ -895,6 +908,8 @@ class MonsterController(AbstractController):
         table matches the currently selected sprite of the Pokémon. If not, change
         the value and save it.
         """
+        if self.entry.sprite_index < 0:
+            return
         with self._monster_bin as sprites:
             sprite_bin = sprites[self.entry.sprite_index]
             sprite = FileType.WAN.deserialize(FileType.PKDPX.deserialize(sprite_bin).decompress())

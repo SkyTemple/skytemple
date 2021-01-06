@@ -311,6 +311,8 @@ class SpriteProvider:
         try:
             with self._monster_md as monster_md:
                 actor_sprite_id = monster_md[md_index].sprite_index
+            if actor_sprite_id < 0:
+                raise ValueError("Invalid Sprite index")
             with self._monster_bin as monster_bin:
                 sprite = self._load_sprite_from_bin_pack(monster_bin, actor_sprite_id)
 
