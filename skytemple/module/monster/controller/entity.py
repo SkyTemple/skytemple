@@ -34,3 +34,9 @@ class EntityController(SimpleController):
             "This entry contains both of these forms. The first form is the main form, it is used "
             "as a fallback in some cases, when the data for the second form doesn't exist."
         )
+
+    def get_icon(self) -> str:
+        return None
+
+    def get_back_illust(self) -> str:
+        return 'monsters'

@@ -21,6 +21,7 @@ from typing import TYPE_CHECKING
 import cairo
 
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_png_filter
 
 try:
@@ -114,9 +115,9 @@ class BgpController(AbstractController):
             self._reinit_image()
 
     def on_format_details_entire_clicked(self, *args):
-        md = Gtk.MessageDialog(MainController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, INFO_IMEXPORT_ENTIRE)
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_ENTIRE)
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()

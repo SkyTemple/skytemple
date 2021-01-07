@@ -34,3 +34,6 @@ class MainController(SimpleController):
         return self.generate_content_label(
             "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged."
         )
+
+    def get_icon(self) -> str:
+        return 'skytemple-illust-dungeon_tileset'

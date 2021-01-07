@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.36.0 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkListStore" id="list_store">
@@ -23,24 +23,24 @@
   </object>
   <object class="GtkBox" id="box_list">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkAlignment">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xscale">0.80000001192092895508</property>
-        <property name="yscale">0.80000001192092895508</property>
+        <property name="can-focus">False</property>
+        <property name="xscale">0.8000000119209289</property>
+        <property name="yscale">0.8000000119209289</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">64</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">64</property>
                 <property name="label" translatable="yes">Recruitment List</property>
                 <style>
                   <class name="skytemple-view-main-label"/>
@@ -55,8 +55,8 @@
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">5</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">5</property>
                 <property name="label" translatable="yes">You can add Pokémon from this list to the team via Script Engine commands.</property>
               </object>
               <packing>
@@ -68,16 +68,16 @@
             <child>
               <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="margin_top">20</property>
-                <property name="margin_bottom">20</property>
-                <property name="shadow_type">in</property>
+                <property name="can-focus">True</property>
+                <property name="margin-top">20</property>
+                <property name="margin-bottom">20</property>
+                <property name="shadow-type">in</property>
                 <child>
                   <object class="GtkTreeView" id="tree">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
+                    <property name="can-focus">True</property>
                     <property name="model">list_store</property>
-                    <property name="search_column">0</property>
+                    <property name="search-column">0</property>
                     <child internal-child="selection">
                       <object class="GtkTreeSelection"/>
                     </child>
@@ -157,18 +157,18 @@
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">baseline</property>
-                    <property name="margin_start">5</property>
-                    <property name="margin_end">5</property>
-                    <property name="margin_top">5</property>
-                    <property name="margin_bottom">5</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
                     <property name="label" translatable="yes">To add them to the team right away:
 ProcessSpecial(PROCESS_SPECIAL_ADD_RECRUITABLE_TO_TEAM, XX, 0);
 
@@ -201,6 +201,10 @@ The menu returns 1 if the player said yes and 0 if they said no.
         <property name="position">1</property>
       </packing>
     </child>
+    <style>
+      <class name="back_illust"/>
+      <class name="monsters"/>
+    </style>
   </object>
   <object class="GtkListStore" id="location_store">
     <columns>
@@ -210,7 +214,7 @@ The menu returns 1 if the player said yes and 0 if they said no.
   </object>
   <object class="GtkEntryCompletion" id="completion_locations">
     <property name="model">location_store</property>
-    <property name="text_column">0</property>
+    <property name="text-column">0</property>
     <signal name="match-selected" handler="on_completion_locations_match_selected" swapped="no"/>
     <child>
       <object class="GtkCellRendererText"/>
@@ -227,7 +231,7 @@ The menu returns 1 if the player said yes and 0 if they said no.
   </object>
   <object class="GtkEntryCompletion" id="completion_entities">
     <property name="model">monster_store</property>
-    <property name="text_column">0</property>
+    <property name="text-column">0</property>
     <signal name="match-selected" handler="on_completion_entities_match_selected" swapped="no"/>
     <child>
       <object class="GtkCellRendererText"/>

@@ -2,6 +2,572 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
+  <object class="GtkTreeStore" id="export_dialog_store">
+    <columns>
+      <!-- column-name md_idx -->
+      <column type="gint"/>
+      <!-- column-name unusued -->
+      <column type="gint"/>
+      <!-- column-name is_monster_form -->
+      <column type="gboolean"/>
+      <!-- column-name icon -->
+      <column type="gchararray"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+      <!-- column-name selected -->
+      <column type="gboolean"/>
+      <!-- column-name inconsistent -->
+      <column type="gboolean"/>
+    </columns>
+  </object>
+  <object class="GtkDialog" id="export_dialog">
+    <property name="can-focus">False</property>
+    <property name="title" translatable="yes">Export Pokémon</property>
+    <property name="type-hint">dialog</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
+            <child>
+              <object class="GtkButton" id="button4">
+                <property name="label">gtk-cancel</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button3">
+                <property name="label">gtk-save</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-left">5</property>
+            <property name="margin-right">5</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">10</property>
+            <child>
+              <object class="GtkFrame">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label-xalign">0</property>
+                <property name="shadow-type">none</property>
+                <child>
+                  <object class="GtkAlignment">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="left-padding">12</property>
+                    <child>
+                      <!-- n-columns=4 n-rows=6 -->
+                      <object class="GtkGrid">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="row-spacing">2</property>
+                        <property name="column-spacing">2</property>
+                        <child>
+                          <object class="GtkSwitch" id="export_type_current_gender">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="active">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="export_type_other_gender">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="active">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="export_type_names">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="active">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="export_type_moveset1">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="active">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="export_type_moveset2">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="active">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin-right">10</property>
+                            <property name="margin-end">10</property>
+                            <property name="label" translatable="yes">Current Gender Form Settings*</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin-right">10</property>
+                            <property name="margin-end">10</property>
+                            <property name="label" translatable="yes">Other Gender Form Settings*</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">3</property>
+                            <property name="top-attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin-right">10</property>
+                            <property name="margin-end">10</property>
+                            <property name="label" translatable="yes">Names</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin-right">10</property>
+                            <property name="margin-end">10</property>
+                            <property name="label" translatable="yes">Moveset EoS</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin-right">10</property>
+                            <property name="margin-end">10</property>
+                            <property name="label" translatable="yes">Moveset EoT / EoD**</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">3</property>
+                            <property name="top-attach">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">&lt;i&gt;*If you choose to export only one gender, the data of this gender will be used when importing again.
+If you choose to export both genders, upon import the matching gender entry will be used (second gender will be imported using the second gender entry).&lt;/i&gt;</property>
+                            <property name="use-markup">True</property>
+                            <property name="wrap">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">4</property>
+                            <property name="width">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">** This data is not editable in SkyTemple, but you can export and import it.</property>
+                            <attributes>
+                              <attribute name="style" value="italic"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">5</property>
+                            <property name="width">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin-right">10</property>
+                            <property name="margin-end">10</property>
+                            <property name="label" translatable="yes">Portraits of other Gender Form*</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">3</property>
+                            <property name="top-attach">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin-right">10</property>
+                            <property name="margin-end">10</property>
+                            <property name="label" translatable="yes">Stat Growth</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">3</property>
+                            <property name="top-attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="export_type_portraits_other_gender">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="active">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="export_type_stats">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="active">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin-right">10</property>
+                            <property name="margin-end">10</property>
+                            <property name="label" translatable="yes">Portraits of current Gender Form*</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="export_type_portraits_current_gender">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="active">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">3</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child type="label">
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="label" translatable="yes">1. Choose what to export</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkFrame">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label-xalign">0</property>
+                    <property name="shadow-type">none</property>
+                    <child>
+                      <object class="GtkAlignment">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="left-padding">12</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkSwitch" id="export_file_switch">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes"> Export to file</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-top">5</property>
+                        <property name="margin-bottom">5</property>
+                        <property name="label" translatable="yes">2a. Export to file</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFrame">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="vexpand">True</property>
+                    <property name="label-xalign">0</property>
+                    <property name="shadow-type">none</property>
+                    <child>
+                      <object class="GtkAlignment">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="vexpand">True</property>
+                        <property name="left-padding">12</property>
+                        <child>
+                          <object class="GtkScrolledWindow">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="shadow-type">in</property>
+                            <child>
+                              <object class="GtkTreeView">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="vexpand">True</property>
+                                <property name="model">export_dialog_store</property>
+                                <property name="search-column">0</property>
+                                <child internal-child="selection">
+                                  <object class="GtkTreeSelection"/>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">S</property>
+                                    <child>
+                                      <object class="GtkCellRendererToggle" id="cr_export_selected">
+                                        <signal name="toggled" handler="on_cr_export_selected_toggled" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="active">5</attribute>
+                                        <attribute name="inconsistent">6</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Pokémon</property>
+                                    <child>
+                                      <object class="GtkCellRendererPixbuf"/>
+                                      <attributes>
+                                        <attribute name="icon-name">3</attribute>
+                                      </attributes>
+                                    </child>
+                                    <child>
+                                      <object class="GtkCellRendererText"/>
+                                      <attributes>
+                                        <attribute name="text">4</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-top">5</property>
+                        <property name="margin-bottom">5</property>
+                        <property name="label" translatable="yes">(and/or) &lt;b&gt;2b. Copy to other Pokémon&lt;/b&gt;</property>
+                        <property name="use-markup">True</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="-6">button4</action-widget>
+      <action-widget response="-10">button3</action-widget>
+    </action-widgets>
+  </object>
+  <object class="GtkListStore" id="store_completion_items">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_items">
+    <property name="model">store_completion_items</property>
+    <property name="text-column">0</property>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_items1">
+    <property name="model">store_completion_items</property>
+    <property name="text-column">0</property>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_items2">
+    <property name="model">store_completion_items</property>
+    <property name="text-column">0</property>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_items3">
+    <property name="model">store_completion_items</property>
+    <property name="text-column">0</property>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
   <object class="GtkBox" id="box_main">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -319,6 +885,10 @@
             <property name="width">3</property>
           </packing>
         </child>
+        <style>
+          <class name="back_illust"/>
+          <class name="monsters"/>
+        </style>
       </object>
       <packing>
         <property name="expand">False</property>
@@ -1865,572 +2435,6 @@
         <property name="fill">True</property>
         <property name="position">1</property>
       </packing>
-    </child>
-  </object>
-  <object class="GtkTreeStore" id="export_dialog_store">
-    <columns>
-      <!-- column-name md_idx -->
-      <column type="gint"/>
-      <!-- column-name unusued -->
-      <column type="gint"/>
-      <!-- column-name is_monster_form -->
-      <column type="gboolean"/>
-      <!-- column-name icon -->
-      <column type="gchararray"/>
-      <!-- column-name name -->
-      <column type="gchararray"/>
-      <!-- column-name selected -->
-      <column type="gboolean"/>
-      <!-- column-name inconsistent -->
-      <column type="gboolean"/>
-    </columns>
-  </object>
-  <object class="GtkDialog" id="export_dialog">
-    <property name="can-focus">False</property>
-    <property name="title" translatable="yes">Export Pokémon</property>
-    <property name="type-hint">dialog</property>
-    <child internal-child="vbox">
-      <object class="GtkBox">
-        <property name="can-focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox">
-            <property name="can-focus">False</property>
-            <property name="layout-style">end</property>
-            <child>
-              <object class="GtkButton" id="button4">
-                <property name="label">gtk-cancel</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="use-stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="button3">
-                <property name="label">gtk-save</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="use-stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="margin-left">5</property>
-            <property name="margin-right">5</property>
-            <property name="margin-start">5</property>
-            <property name="margin-end">5</property>
-            <property name="margin-top">5</property>
-            <property name="margin-bottom">5</property>
-            <property name="orientation">vertical</property>
-            <property name="spacing">10</property>
-            <child>
-              <object class="GtkFrame">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="label-xalign">0</property>
-                <property name="shadow-type">none</property>
-                <child>
-                  <object class="GtkAlignment">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="left-padding">12</property>
-                    <child>
-                      <!-- n-columns=4 n-rows=6 -->
-                      <object class="GtkGrid">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="row-spacing">2</property>
-                        <property name="column-spacing">2</property>
-                        <child>
-                          <object class="GtkSwitch" id="export_type_current_gender">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="active">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="export_type_other_gender">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="active">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="export_type_names">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="active">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="export_type_moveset1">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="active">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="export_type_moveset2">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="active">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="margin-right">10</property>
-                            <property name="margin-end">10</property>
-                            <property name="label" translatable="yes">Current Gender Form Settings*</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="margin-right">10</property>
-                            <property name="margin-end">10</property>
-                            <property name="label" translatable="yes">Other Gender Form Settings*</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">3</property>
-                            <property name="top-attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="margin-right">10</property>
-                            <property name="margin-end">10</property>
-                            <property name="label" translatable="yes">Names</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="margin-right">10</property>
-                            <property name="margin-end">10</property>
-                            <property name="label" translatable="yes">Moveset EoS</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="margin-right">10</property>
-                            <property name="margin-end">10</property>
-                            <property name="label" translatable="yes">Moveset EoT / EoD**</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">3</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="label" translatable="yes">&lt;i&gt;*If you choose to export only one gender, the data of this gender will be used when importing again.
-If you choose to export both genders, upon import the matching gender entry will be used (second gender will be imported using the second gender entry).&lt;/i&gt;</property>
-                            <property name="use-markup">True</property>
-                            <property name="wrap">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">4</property>
-                            <property name="width">4</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="label" translatable="yes">** This data is not editable in SkyTemple, but you can export and import it.</property>
-                            <attributes>
-                              <attribute name="style" value="italic"/>
-                            </attributes>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">5</property>
-                            <property name="width">4</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="margin-right">10</property>
-                            <property name="margin-end">10</property>
-                            <property name="label" translatable="yes">Portraits of other Gender Form*</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">3</property>
-                            <property name="top-attach">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="margin-right">10</property>
-                            <property name="margin-end">10</property>
-                            <property name="label" translatable="yes">Stat Growth</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">3</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="export_type_portraits_other_gender">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="active">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="export_type_stats">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="active">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="margin-right">10</property>
-                            <property name="margin-end">10</property>
-                            <property name="label" translatable="yes">Portraits of current Gender Form*</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">3</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="export_type_portraits_current_gender">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="active">True</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">3</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child type="label">
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="margin-top">5</property>
-                    <property name="margin-bottom">5</property>
-                    <property name="label" translatable="yes">1. Choose what to export</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="GtkFrame">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label-xalign">0</property>
-                    <property name="shadow-type">none</property>
-                    <child>
-                      <object class="GtkAlignment">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="left-padding">12</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <child>
-                              <object class="GtkSwitch" id="export_file_switch">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="label" translatable="yes"> Export to file</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child type="label">
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-top">5</property>
-                        <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">2a. Export to file</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkFrame">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="vexpand">True</property>
-                    <property name="label-xalign">0</property>
-                    <property name="shadow-type">none</property>
-                    <child>
-                      <object class="GtkAlignment">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="vexpand">True</property>
-                        <property name="left-padding">12</property>
-                        <child>
-                          <object class="GtkScrolledWindow">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="shadow-type">in</property>
-                            <child>
-                              <object class="GtkTreeView">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="vexpand">True</property>
-                                <property name="model">export_dialog_store</property>
-                                <property name="search-column">0</property>
-                                <child internal-child="selection">
-                                  <object class="GtkTreeSelection"/>
-                                </child>
-                                <child>
-                                  <object class="GtkTreeViewColumn">
-                                    <property name="title" translatable="yes">S</property>
-                                    <child>
-                                      <object class="GtkCellRendererToggle" id="cr_export_selected">
-                                        <signal name="toggled" handler="on_cr_export_selected_toggled" swapped="no"/>
-                                      </object>
-                                      <attributes>
-                                        <attribute name="active">5</attribute>
-                                        <attribute name="inconsistent">6</attribute>
-                                      </attributes>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkTreeViewColumn">
-                                    <property name="title" translatable="yes">Pokémon</property>
-                                    <child>
-                                      <object class="GtkCellRendererPixbuf"/>
-                                      <attributes>
-                                        <attribute name="icon-name">3</attribute>
-                                      </attributes>
-                                    </child>
-                                    <child>
-                                      <object class="GtkCellRendererText"/>
-                                      <attributes>
-                                        <attribute name="text">4</attribute>
-                                      </attributes>
-                                    </child>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child type="label">
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-top">5</property>
-                        <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">(and/or) &lt;b&gt;2b. Copy to other Pokémon&lt;/b&gt;</property>
-                        <property name="use-markup">True</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-    <action-widgets>
-      <action-widget response="-6">button4</action-widget>
-      <action-widget response="-10">button3</action-widget>
-    </action-widgets>
-  </object>
-  <object class="GtkListStore" id="store_completion_items">
-    <columns>
-      <!-- column-name label -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkEntryCompletion" id="completion_items">
-    <property name="model">store_completion_items</property>
-    <property name="text-column">0</property>
-    <child>
-      <object class="GtkCellRendererText"/>
-      <attributes>
-        <attribute name="text">0</attribute>
-      </attributes>
-    </child>
-  </object>
-  <object class="GtkEntryCompletion" id="completion_items1">
-    <property name="model">store_completion_items</property>
-    <property name="text-column">0</property>
-    <child>
-      <object class="GtkCellRendererText"/>
-      <attributes>
-        <attribute name="text">0</attribute>
-      </attributes>
-    </child>
-  </object>
-  <object class="GtkEntryCompletion" id="completion_items2">
-    <property name="model">store_completion_items</property>
-    <property name="text-column">0</property>
-    <child>
-      <object class="GtkCellRendererText"/>
-      <attributes>
-        <attribute name="text">0</attribute>
-      </attributes>
-    </child>
-  </object>
-  <object class="GtkEntryCompletion" id="completion_items3">
-    <property name="model">store_completion_items</property>
-    <property name="text-column">0</property>
-    <child>
-      <object class="GtkCellRendererText"/>
-      <attributes>
-        <attribute name="text">0</attribute>
-      </attributes>
     </child>
   </object>
 </interface>

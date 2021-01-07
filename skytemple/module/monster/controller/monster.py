@@ -24,6 +24,7 @@ import cairo
 from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import add_dialog_xml_filter
@@ -282,7 +283,7 @@ class MonsterController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_evo_params_clicked(self, w, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
@@ -299,7 +300,7 @@ class MonsterController(AbstractController):
         md.destroy()
 
     def on_btn_help_recruit_rate_clicked(self, w, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
@@ -315,7 +316,7 @@ class MonsterController(AbstractController):
         md.destroy()
 
     def on_btn_help_hp_regeneration_clicked(self, w, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
@@ -328,7 +329,7 @@ class MonsterController(AbstractController):
         md.destroy()
 
     def on_btn_help_can_move_clicked(self, w, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
@@ -339,7 +340,7 @@ class MonsterController(AbstractController):
         md.destroy()
 
     def on_btn_help_can_evolve_clicked(self, w, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
@@ -351,7 +352,7 @@ class MonsterController(AbstractController):
         md.destroy()
 
     def on_btn_help_item_required_for_spawning_clicked(self, w, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
@@ -616,9 +617,9 @@ class MonsterController(AbstractController):
                     with open(fn, 'w') as f:
                         f.write(prettify(xml))
                 else:
-                    md = Gtk.MessageDialog(SkyTempleMainController.window(),
-                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                           Gtk.ButtonsType.OK, "Export was canceled.")
+                    md = SkyTempleMessageDialog(SkyTempleMainController.window(),
+                                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                                Gtk.ButtonsType.OK, "Export was canceled.")
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
                     md.destroy()
@@ -912,12 +913,12 @@ class MonsterController(AbstractController):
             self.module.set_pokemon_sprite_data_table(sprite_size_table)
 
             if show_warning:
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                       Gtk.ButtonsType.OK,
-                                       "The sprite memory size of this Pokémon was too low "
-                                       "for this Pokémon's assigned sprite.\n"
-                                       "SkyTemple automatically corrected it.")
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                            Gtk.ButtonsType.OK,
+                                            "The sprite memory size of this Pokémon was too low "
+                                            "for this Pokémon's assigned sprite.\n"
+                                            "SkyTemple automatically corrected it.")
                 md.set_position(Gtk.WindowPosition.CENTER)
                 md.run()
                 md.destroy()

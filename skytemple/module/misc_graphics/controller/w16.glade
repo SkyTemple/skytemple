@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.1 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkBox" id="box_main">
@@ -121,5 +121,9 @@ Imported image dimensions must be a multiple of 8.</property>
         <property name="position">1</property>
       </packing>
     </child>
+    <style>
+      <class name="back_illust"/>
+      <class name="misc_graphics"/>
+    </style>
   </object>
 </interface>

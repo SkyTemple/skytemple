@@ -36,3 +36,6 @@ class MainController(SimpleController):
             "loaded by the game for scenes and serve many purposes (actual backgrounds for maps, "
             "title screen backgrounds, cutscenes, etc.)."
         )
+
+    def get_icon(self) -> str:
+        return 'skytemple-illust-map'

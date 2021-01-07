@@ -33,3 +33,9 @@ class DojosController(SimpleController):
         return self.generate_content_label(
             "Dojo Dungeons are the dungeons used in the Marowak Dojo.\nYou can not change the number of floors for Dojo Dungeons."
         )
+
+    def get_icon(self) -> str:
+        return None
+
+    def get_back_illust(self) -> str:
+        return 'dungeons'

@@ -562,6 +562,10 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="shadow-type">in</property>
+                        <style>
+                          <class name="back_illust"/>
+                          <class name="dungeon_tileset"/>
+                        </style>
                       </object>
                       <packing>
                         <property name="resize">True</property>

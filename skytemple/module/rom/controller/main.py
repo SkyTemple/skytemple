@@ -37,3 +37,6 @@ class MainController(SimpleController):
         # TODO: Might want to show some more ROM info here later and make it editable.
         return self.generate_content_label("Select something to edit in the ROM from the tree on the left \n"
                                            "or start the debugger by clicking the bug icon on the top right.")
+
+    def get_icon(self) -> str:
+        return 'skytemple-illust-rom'

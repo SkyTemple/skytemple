@@ -16,6 +16,8 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
 
+from skytemple.core.message_dialog import SkyTempleMessageDialog
+
 try:
     from PIL import Image
 except:
@@ -64,7 +66,7 @@ class AddCreatedWithLogo:
         self.bpl.palettes[6:14] = palettes[0:8]
 
     def _error(self, error_msg):
-        md = Gtk.MessageDialog(None,
+        md = SkyTempleMessageDialog(None,
                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
                                Gtk.ButtonsType.OK, error_msg)
         md.set_position(Gtk.WindowPosition.CENTER)

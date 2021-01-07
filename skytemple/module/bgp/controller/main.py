@@ -33,3 +33,6 @@ class MainController(SimpleController):
         return self.generate_content_label(
             "This section lets you edit static backgrounds used in various places of the game."
         )
+
+    def get_icon(self) -> str:
+        return 'skytemple-illust-background'

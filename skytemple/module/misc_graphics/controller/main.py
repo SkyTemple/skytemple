@@ -33,3 +33,6 @@ class MainController(SimpleController):
         return self.generate_content_label(
             "This section lets you edit miscellaneous graphics."
         )
+
+    def get_icon(self) -> str:
+        return 'skytemple-illust-misc_graphics'

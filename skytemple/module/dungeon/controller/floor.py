@@ -26,6 +26,7 @@ from gi.repository import Gtk, GLib, GdkPixbuf
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET, REQUEST_TYPE_DUNGEON_FIXED_FLOOR
 from skytemple.core.string_provider import StringType
@@ -832,9 +833,9 @@ class FloorController(AbstractController):
                     with open(fn, 'w') as f:
                         f.write(prettify(xml))
                 else:
-                    md = Gtk.MessageDialog(SkyTempleMainController.window(),
-                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                           Gtk.ButtonsType.OK, "Export was canceled.")
+                    md = SkyTempleMessageDialog(SkyTempleMainController.window(),
+                                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                                Gtk.ButtonsType.OK, "Export was canceled.")
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
                     md.destroy()
@@ -1508,9 +1509,9 @@ class FloorController(AbstractController):
             return self.entry.unk_items2
 
     def _help(self, msg):
-        md = Gtk.MessageDialog(MainController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, msg)
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, msg)
         md.run()
         md.destroy()
 

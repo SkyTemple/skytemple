@@ -22,6 +22,7 @@ from typing import TYPE_CHECKING, Optional
 import cairo
 
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple_files.graphics.colvec.model import Colvec
 from skytemple_files.graphics.colvec import *
 from skytemple_dtef.explorers_dtef import ExplorersDtef
@@ -52,11 +53,11 @@ class ColvecController(AbstractController):
         self.filename = item
         self.colvec: Colvec = self.module.get_colvec()
         
-        self.dma: Dma = None
-        self.dpl: Dpl = None
-        self.dpla: Dpla = None
-        self.dpc: Dpc = None
-        self.dpci: Dpci = None
+        self.dma = None
+        self.dpl = None
+        self.dpla = None
+        self.dpc = None
+        self.dpci = None
 
         self.builder = None
 
@@ -129,7 +130,7 @@ class ColvecController(AbstractController):
         self.dpci: Dpci = self.module.get_dpci(v)
         
     def on_colvec_info_clicked(self, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,

@@ -25,6 +25,7 @@ from typing import TYPE_CHECKING
 import cairo
 
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple_files.graphics.kao.sprite_bot_sheet import SpriteBotSheet
 
@@ -110,7 +111,7 @@ class PortraitController(AbstractController):
                     img.save(filename)
 
     def on_separate_import_activate(self, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,

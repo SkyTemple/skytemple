@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.36.0 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkDialog" id="diag_edit">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="modal">True</property>
-    <property name="destroy_with_parent">True</property>
-    <property name="type_hint">dialog</property>
+    <property name="destroy-with-parent">True</property>
+    <property name="type-hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox">
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="button1">
                 <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -34,9 +34,9 @@
               <object class="GtkButton" id="button2">
                 <property name="label">gtk-apply</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -54,55 +54,56 @@
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <property name="spacing">10</property>
             <child>
+              <!-- n-columns=3 n-rows=3 -->
               <object class="GtkGrid">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_start">5</property>
-                <property name="margin_end">5</property>
-                <property name="margin_top">5</property>
-                <property name="margin_bottom">5</property>
-                <property name="row_spacing">5</property>
-                <property name="column_spacing">5</property>
+                <property name="can-focus">False</property>
+                <property name="margin-start">5</property>
+                <property name="margin-end">5</property>
+                <property name="margin-top">5</property>
+                <property name="margin-bottom">5</property>
+                <property name="row-spacing">5</property>
+                <property name="column-spacing">5</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">end</property>
                     <property name="label" translatable="yes">Map:</property>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">0</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="cb_map">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <signal name="changed" handler="on_cb_map_changed" swapped="no"/>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">0</property>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkRadioButton" id="radio_reference">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">False</property>
                     <property name="valign">start</property>
                     <property name="active">True</property>
-                    <property name="draw_indicator">True</property>
+                    <property name="draw-indicator">True</property>
                     <signal name="toggled" handler="on_radio_reference_toggled" swapped="no"/>
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="label" translatable="yes">Reference / Use another marker</property>
                         <attributes>
@@ -112,23 +113,23 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">1</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkRadioButton" id="radio_pos">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">False</property>
                     <property name="valign">start</property>
                     <property name="active">True</property>
-                    <property name="draw_indicator">True</property>
+                    <property name="draw-indicator">True</property>
                     <property name="group">radio_reference</property>
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="label" translatable="yes">Select the position on the map</property>
                         <attributes>
@@ -138,20 +139,20 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">2</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">2</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <property name="spacing">5</property>
                     <child>
                       <object class="GtkComboBox" id="cb_reference">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <signal name="changed" handler="on_cb_reference_changed" swapped="no"/>
                       </object>
                       <packing>
@@ -163,7 +164,7 @@
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="label" translatable="yes">Please don't select a marker that already references another marker.
 The behavior for this is undefined.</property>
@@ -176,9 +177,18 @@ The behavior for this is undefined.</property>
                     </child>
                   </object>
                   <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">1</property>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">1</property>
                   </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
                 </child>
                 <child>
                   <placeholder/>
@@ -193,21 +203,21 @@ The behavior for this is undefined.</property>
             <child>
               <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="shadow_type">in</property>
+                <property name="can-focus">True</property>
+                <property name="shadow-type">in</property>
                 <child>
                   <object class="GtkViewport">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkEventBox" id="diag_draw_event">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <signal name="button-press-event" handler="on_diag_draw_event_button_press_event" swapped="no"/>
                         <child>
                           <object class="GtkDrawingArea" id="diag_draw">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                           </object>
                         </child>
                       </object>
@@ -234,9 +244,6 @@ The behavior for this is undefined.</property>
       <action-widget response="-6">button1</action-widget>
       <action-widget response="-10">button2</action-widget>
     </action-widgets>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
   </object>
   <object class="GtkListStore" id="list_store">
     <columns>
@@ -252,25 +259,25 @@ The behavior for this is undefined.</property>
   </object>
   <object class="GtkBox" id="box_list">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkAlignment">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="xscale">0.80000001192092895508</property>
-        <property name="yscale">0.94999998807907104492</property>
+        <property name="can-focus">False</property>
+        <property name="xscale">0.8000000119209289</property>
+        <property name="yscale">0.949999988079071</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <property name="spacing">10</property>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">5</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">5</property>
                 <property name="label" translatable="yes">World Map Markers</property>
                 <style>
                   <class name="skytemple-view-main-label"/>
@@ -285,39 +292,39 @@ The behavior for this is undefined.</property>
             <child>
               <object class="GtkFrame">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">none</property>
+                <property name="can-focus">False</property>
+                <property name="label-xalign">0</property>
+                <property name="shadow-type">none</property>
                 <child>
                   <object class="GtkAlignment">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">5</property>
-                    <property name="left_padding">12</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">5</property>
+                    <property name="left-padding">12</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="orientation">vertical</property>
                         <property name="spacing">5</property>
                         <child>
                           <object class="GtkScrolledWindow">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="shadow_type">in</property>
+                            <property name="can-focus">True</property>
+                            <property name="shadow-type">in</property>
                             <child>
                               <object class="GtkViewport">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
+                                <property name="can-focus">False</property>
                                 <child>
                                   <object class="GtkEventBox" id="draw_event">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
+                                    <property name="can-focus">False</property>
                                     <signal name="button-press-event" handler="on_draw_event_button_press_event" swapped="no"/>
                                     <child>
                                       <object class="GtkDrawingArea" id="draw">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
+                                        <property name="can-focus">False</property>
                                       </object>
                                     </child>
                                   </object>
@@ -335,8 +342,8 @@ The behavior for this is undefined.</property>
                           <object class="GtkButton" id="edit_map_bg">
                             <property name="label" translatable="yes">Edit Map Background</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
                             <property name="halign">start</property>
                             <signal name="clicked" handler="on_edit_map_bg_clicked" swapped="no"/>
                           </object>
@@ -353,7 +360,7 @@ The behavior for this is undefined.</property>
                 <child type="label">
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Preview</property>
                   </object>
                 </child>
@@ -367,14 +374,14 @@ The behavior for this is undefined.</property>
             <child>
               <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="shadow_type">in</property>
+                <property name="can-focus">True</property>
+                <property name="shadow-type">in</property>
                 <child>
                   <object class="GtkTreeView" id="tree">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
+                    <property name="can-focus">True</property>
                     <property name="model">list_store</property>
-                    <property name="search_column">0</property>
+                    <property name="search-column">0</property>
                     <signal name="button-press-event" handler="on_tree_button_press_event" swapped="no"/>
                     <signal name="key-press-event" handler="on_tree_key_press_event" swapped="no"/>
                     <child internal-child="selection">
@@ -440,25 +447,24 @@ The behavior for this is undefined.</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">baseline</property>
-                        <property name="margin_left">5</property>
-                        <property name="margin_right">5</property>
-                        <property name="margin_start">5</property>
-                        <property name="margin_end">5</property>
-                        <property name="margin_top">5</property>
-                        <property name="margin_bottom">5</property>
-                        <property name="label" translatable="yes"/>
+                        <property name="margin-left">5</property>
+                        <property name="margin-right">5</property>
+                        <property name="margin-start">5</property>
+                        <property name="margin-end">5</property>
+                        <property name="margin-top">5</property>
+                        <property name="margin-bottom">5</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -477,8 +483,8 @@ The behavior for this is undefined.</property>
                   <object class="GtkButton" id="edit_selected">
                     <property name="label" translatable="yes">Edit Selected</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
                     <property name="halign">end</property>
                     <property name="valign">start</property>
                     <signal name="clicked" handler="on_edit_selected_clicked" swapped="no"/>
@@ -505,5 +511,9 @@ The behavior for this is undefined.</property>
         <property name="position">1</property>
       </packing>
     </child>
+    <style>
+      <class name="back_illust"/>
+      <class name="map"/>
+    </style>
   </object>
 </interface>

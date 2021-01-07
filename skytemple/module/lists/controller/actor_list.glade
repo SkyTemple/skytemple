@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.36.0 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkListStore" id="list_store">
@@ -27,28 +27,28 @@
   </object>
   <object class="GtkStack" id="list_stack">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <child>
       <object class="GtkBox" id="box_na">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkAlignment">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="xscale">0.80000001192092895508</property>
-            <property name="yscale">0.80000001192092895508</property>
+            <property name="can-focus">False</property>
+            <property name="xscale">0.8000000119209289</property>
+            <property name="yscale">0.8000000119209289</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">64</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">64</property>
                     <property name="label" translatable="yes">Actor List</property>
                     <style>
                       <class name="skytemple-view-main-label"/>
@@ -63,8 +63,8 @@
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">5</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">5</property>
                     <property name="label" translatable="yes">The entries in this list can be placed on maps and used in scripts.</property>
                   </object>
                   <packing>
@@ -76,8 +76,8 @@
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">40</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">40</property>
                     <property name="label" translatable="yes">&lt;Not available&gt;
 
 To view and edit this list, please apply the "ActorAndLevelLoader" 
@@ -108,24 +108,24 @@ ASM patch from the "ASM Patches" menu.</property>
     <child>
       <object class="GtkBox" id="box_list">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkAlignment">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="xscale">0.80000001192092895508</property>
-            <property name="yscale">0.80000001192092895508</property>
+            <property name="can-focus">False</property>
+            <property name="xscale">0.8000000119209289</property>
+            <property name="yscale">0.8000000119209289</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">64</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">64</property>
                     <property name="label" translatable="yes">Actor List</property>
                     <style>
                       <class name="skytemple-view-main-label"/>
@@ -140,8 +140,8 @@ ASM patch from the "ASM Patches" menu.</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">5</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">5</property>
                     <property name="label" translatable="yes">The entries in this list can be placed on maps and used in scripts.</property>
                   </object>
                   <packing>
@@ -153,16 +153,16 @@ ASM patch from the "ASM Patches" menu.</property>
                 <child>
                   <object class="GtkScrolledWindow">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="margin_top">20</property>
-                    <property name="margin_bottom">20</property>
-                    <property name="shadow_type">in</property>
+                    <property name="can-focus">True</property>
+                    <property name="margin-top">20</property>
+                    <property name="margin-bottom">20</property>
+                    <property name="shadow-type">in</property>
                     <child>
                       <object class="GtkTreeView" id="actor_tree">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="model">list_store</property>
-                        <property name="search_column">0</property>
+                        <property name="search-column">0</property>
                         <child internal-child="selection">
                           <object class="GtkTreeSelection"/>
                         </child>
@@ -277,50 +277,50 @@ ASM patch from the "ASM Patches" menu.</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_bottom">20</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-bottom">20</property>
                     <property name="spacing">5</property>
                     <child>
                       <object class="GtkButton" id="btn_add">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Reload</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="tooltip-text" translatable="yes">Reload</property>
                         <signal name="clicked" handler="on_btn_add_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="icon_name">skytemple-list-add-symbolic</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">skytemple-list-add-symbolic</property>
                           </object>
                         </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="pack_type">end</property>
+                        <property name="pack-type">end</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkButton" id="btn_remove">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Reload</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="tooltip-text" translatable="yes">Reload</property>
                         <signal name="clicked" handler="on_btn_remove_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="icon_name">skytemple-list-remove-symbolic</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">skytemple-list-remove-symbolic</property>
                           </object>
                         </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="pack_type">end</property>
+                        <property name="pack-type">end</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -334,19 +334,19 @@ ASM patch from the "ASM Patches" menu.</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">baseline</property>
-                            <property name="margin_top">5</property>
+                            <property name="margin-top">5</property>
                             <property name="label" translatable="yes">Actors with outlines </property>
                           </object>
                           <packing>
@@ -358,7 +358,7 @@ ASM patch from the "ASM Patches" menu.</property>
                         <child>
                           <object class="GtkDrawingArea" id="draw_example_placeholder">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">baseline</property>
                             <signal name="draw" handler="on_draw_example_placeholder_draw" swapped="no"/>
@@ -372,12 +372,12 @@ ASM patch from the "ASM Patches" menu.</property>
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">baseline</property>
-                            <property name="margin_top">5</property>
+                            <property name="margin-top">5</property>
                             <property name="label" translatable="yes"> as sprites are &lt;span foreground="orange"&gt;special&lt;/span&gt; and replaced with another Pokémon when the game is running.</property>
-                            <property name="use_markup">True</property>
+                            <property name="use-markup">True</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -395,10 +395,10 @@ ASM patch from the "ASM Patches" menu.</property>
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">baseline</property>
-                        <property name="margin_top">5</property>
+                        <property name="margin-top">5</property>
                         <property name="label" translatable="yes">By changing the 'Pokémon' entry for these actors, you will only change which outline is rendered in SkyTemple.</property>
                       </object>
                       <packing>
@@ -430,6 +430,10 @@ ASM patch from the "ASM Patches" menu.</property>
         <property name="position">1</property>
       </packing>
     </child>
+    <style>
+      <class name="back_illust"/>
+      <class name="monsters"/>
+    </style>
   </object>
   <object class="GtkListStore" id="monster_store">
     <columns>
@@ -439,7 +443,7 @@ ASM patch from the "ASM Patches" menu.</property>
   </object>
   <object class="GtkEntryCompletion" id="completion_entities">
     <property name="model">monster_store</property>
-    <property name="text_column">0</property>
+    <property name="text-column">0</property>
     <signal name="match-selected" handler="on_completion_entities_match_selected" swapped="no"/>
     <child>
       <object class="GtkCellRendererText"/>

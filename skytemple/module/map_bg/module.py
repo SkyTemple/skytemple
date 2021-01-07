@@ -23,6 +23,7 @@ from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
@@ -186,9 +187,9 @@ class MapBgModule(AbstractModule):
                 "Error adding the logo."
             )
         else:
-            md = Gtk.MessageDialog(None,
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                   Gtk.ButtonsType.OK, "Logo added successfully. Thank you!")
+            md = SkyTempleMessageDialog(None,
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                        Gtk.ButtonsType.OK, "Logo added successfully. Thank you!", is_success=True)
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()

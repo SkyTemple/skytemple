@@ -34,3 +34,9 @@ class LsdController(SimpleController):
             f'These scenes are used for cutscenes.\n'
             f'The player can usually not move the character in them.'
         )
+
+    def get_icon(self) -> str:
+        return None
+
+    def get_back_illust(self) -> str:
+        return 'map'

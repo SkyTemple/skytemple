@@ -39,3 +39,9 @@ class MapController(SimpleController):
             f'depending on the current story progress.\n\n'
             f'Currently new scenes can not be added via SkyTemple.'
         )
+
+    def get_icon(self) -> str:
+        return None
+
+    def get_back_illust(self) -> str:
+        return 'map'

@@ -35,3 +35,6 @@ class MainController(SimpleController):
             "These lists store various information, such as available actors and objects that can "
             "be placed on maps and also a list of maps itself."
         )
+
+    def get_icon(self) -> str:
+        return 'skytemple-illust-bboard'

@@ -39,3 +39,6 @@ class MainController(SimpleController):
             "This also includes cutscene visuals and some system related scenes, "
             "like credits or the title screen logos."
         )
+
+    def get_icon(self) -> str:
+        return 'skytemple-illust-scenes'

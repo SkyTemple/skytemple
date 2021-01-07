@@ -22,6 +22,7 @@ from typing import TYPE_CHECKING, Optional, Dict
 import cairo
 
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_png_filter
 
 try:
@@ -56,7 +57,7 @@ class CartRemovedController(AbstractController):
         return self.builder.get_object('editor')
 
     def on_cart_removed_info_clicked(self, *args):
-        md = Gtk.MessageDialog(
+        md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,

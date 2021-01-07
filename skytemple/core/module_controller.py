@@ -17,6 +17,7 @@
 
 import os
 from abc import ABC, abstractmethod
+from typing import Optional
 
 from gi.repository import Gtk, Pango
 from gi.repository.Gtk import Widget
@@ -58,13 +59,30 @@ class SimpleController(AbstractController, ABC):
         content_box: Gtk.Box = Gtk.Box.new(Gtk.Orientation.VERTICAL, 0)
         align.add(content_box)
 
+        icon_name = self.get_icon()
+        if icon_name:
+            icon: Gtk.Image = Gtk.Image.new_from_icon_name(icon_name, Gtk.IconSize.LARGE_TOOLBAR)
+            icon.set_pixel_size(127)
         title_label: Gtk.Label = Gtk.Label.new(self.get_title())
         content: Gtk.Widget = self.get_content()
         title_label.get_style_context().add_class('skytemple-view-main-label')
-        title_label.set_margin_top(64)
+        if icon_name:
+            icon.set_margin_top(20)
+            title_label.set_margin_top(20)
+        else:
+            title_label.set_margin_top(64)
         content.set_margin_top(40)
+        if icon_name:
+            content_box.pack_start(icon, False, True, 0)
         content_box.pack_start(title_label, False, True, 0)
         content_box.pack_start(content, False, True, 0)
+        back_illust = self.get_back_illust()
+        if back_illust:
+            style: Gtk.StyleContext = main_box.get_style_context()
+            style.add_class('back_illust')
+            style.add_class(back_illust)
+            style: Gtk.StyleContext = content_box.get_style_context()
+            style.add_class('no_bg')
 
         main_box.show_all()
         return main_box
@@ -76,6 +94,13 @@ class SimpleController(AbstractController, ABC):
     @abstractmethod
     def get_content(self) -> Widget:
         pass
+
+    @abstractmethod
+    def get_icon(self) -> Optional[str]:
+        pass
+
+    def get_back_illust(self) -> Optional[str]:
+        return None
 
     def generate_content_label(self, text: str) -> Gtk.Label:
         label = Gtk.Label(text)

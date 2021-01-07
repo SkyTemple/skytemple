@@ -24,6 +24,7 @@ from gi.repository import Gtk
 from gi.repository.Gio import AppInfo
 
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple_files.patch.patches import Patcher
 from skytemple.controller.main import MainController as MainAppController
@@ -55,12 +56,12 @@ class MainController(AbstractController):
             name = model[treeiter][0]
             try:
                 if self._patcher.is_applied(name):
-                    md = Gtk.MessageDialog(MainAppController.window(),
-                                           Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                           Gtk.ButtonsType.OK_CANCEL, "This patch is already applied. "
-                                                                      "Some patches support applying them again, "
-                                                                      "but you might also run into problems with some. "
-                                                                      "Proceed with care.")
+                    md = SkyTempleMessageDialog(MainAppController.window(),
+                                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                                Gtk.ButtonsType.OK_CANCEL, "This patch is already applied. "
+                                                                           "Some patches support applying them again, "
+                                                                           "but you might also run into problems with some. "
+                                                                           "Proceed with care.")
                     md.set_position(Gtk.WindowPosition.CENTER)
                     response = md.run()
                     md.destroy()
@@ -80,7 +81,7 @@ class MainController(AbstractController):
                 self._error(f"Error applying the patch:\n{err}", exc_info=sys.exc_info())
             else:
                 self._error(f"Patch was successfully applied. You should re-open the project, to make sure all data is "
-                            f"correctly loaded.", Gtk.MessageType.INFO)
+                            f"correctly loaded.", Gtk.MessageType.INFO, is_success=True)
             finally:
                 self.module.mark_as_modified()
 
@@ -112,16 +113,16 @@ class MainController(AbstractController):
                 patch.name, patch.author, patch.description, applied_str
             ])
 
-    def _error(self, msg, type=Gtk.MessageType.ERROR, exc_info=None):
+    def _error(self, msg, type=Gtk.MessageType.ERROR, exc_info=None, is_success=False):
         if type == Gtk.MessageType.ERROR:
             display_error(
                 exc_info,
                 msg
             )
         else:
-            md = Gtk.MessageDialog(MainAppController.window(),
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT, type,
-                                   Gtk.ButtonsType.OK, msg)
+            md = SkyTempleMessageDialog(MainAppController.window(),
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, type,
+                                        Gtk.ButtonsType.OK, msg, is_success=is_success)
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()
