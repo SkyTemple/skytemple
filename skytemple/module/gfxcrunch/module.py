@@ -14,4 +14,32 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from gi.repository.Gtk import TreeStore
 
+from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.rom_project import RomProject
+
+
+class GfxcrunchModule(AbstractModule):
+    @classmethod
+    def depends_on(cls):
+        return []
+
+    @classmethod
+    def sort_order(cls):
+        return 0  # n/a
+
+    def __init__(self, rom_project: RomProject):
+        pass
+
+    def load_tree_items(self, item_store: TreeStore, root_node):
+        pass   # n/a
+
+    def is_available(self):
+        return True  # todo
+
+    def import_sprite(self, dir_fn: str) -> bytes:
+        pass  # todo
+
+    def export_sprite(self, wan: bytes, dir_fn: str):
+        pass  # todo

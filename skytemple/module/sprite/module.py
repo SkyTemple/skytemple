@@ -14,12 +14,16 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import sys
 import webbrowser
+from typing import TYPE_CHECKING, Union
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
+from skytemple.controller.main import MainController
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.error_handler import display_error
 from skytemple.core.model_context import ModelContext
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
@@ -30,6 +34,9 @@ from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import MONSTER_BIN
 from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.graphics.chara_wan.model import WanFile
+if TYPE_CHECKING:
+    from skytemple.module.gfxcrunch.module import GfxcrunchModule
+
 
 GROUND_DIR = 'GROUND'
 WAN_FILE_EXT = 'wan'
@@ -40,7 +47,7 @@ ATTACK_BIN = 'MONSTER/m_attack.bin'
 class SpriteModule(AbstractModule):
     @classmethod
     def depends_on(cls):
-        return []
+        return ['gfxcrunch']
 
     @classmethod
     def sort_order(cls):
@@ -86,10 +93,117 @@ class SpriteModule(AbstractModule):
     def get_sprite_provider(self):
         return self.project.get_sprite_provider()
 
+    def get_gfxcrunch(self) -> 'GfxcrunchModule':
+        return self.project.get_module('gfxcrunch')
+
+    def import_a_sprite(self) -> bytes:
+        if self.get_gfxcrunch().is_available():
+            return self.import_a_sprite__gfxcrunch()
+        return self.import_a_sprite__wan()
+
+    def export_a_sprite(self, sprite: bytes):
+        if self.get_gfxcrunch().is_available():
+            return self.export_a_sprite__gfxcrunch(sprite)
+        return self.export_a_sprite__wan(sprite)
+
+    def import_a_sprite__wan(self) -> bytes:
+        dialog = Gtk.FileChooserNative.new(
+            "Import WAN sprite...",
+            MainController.window(),
+            Gtk.FileChooserAction.OPEN,
+            None, None
+        )
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            if '.' not in fn:
+                fn += '.wan'
+            with open(fn, 'rb') as f:
+                return f.read()
+
+    def export_a_sprite__wan(self, sprite: bytes):
+        dialog = Gtk.FileChooserNative.new(
+            "Export WAN sprite...",
+            MainController.window(),
+            Gtk.FileChooserAction.SAVE,
+            None, None
+        )
+        filter = Gtk.FileFilter()
+        filter.set_name("WAN sprite (*.wan)")
+        filter.add_pattern("*.wan")
+        dialog.add_filter(filter)
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            if '.' not in fn:
+                fn += '.wan'
+            with open(fn, 'wb') as f:
+                f.write(sprite)
+
+    def import_a_sprite__gfxcrunch(self) -> bytes:
+        md = Gtk.MessageDialog(MainController.window(),
+                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                               Gtk.ButtonsType.OK, "To import select the directory of the sprite export. If it "
+                                                   "is still zipped, unzip it first.",
+                               title="SkyTemple")
+        md.run()
+        md.destroy()
+
+        dialog = Gtk.FileChooserNative.new(
+            "Import gfxcrunch sprite...",
+            MainController.window(),
+            Gtk.FileChooserAction.SELECT_FOLDER,
+            None, None
+        )
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            try:
+                pass  # todo
+            except BaseException as e:
+                display_error(
+                    sys.exc_info(),
+                    str(e),
+                    "Error exporting the sprite."
+                )
+
+    def export_a_sprite__gfxcrunch(self, sprite: bytes):
+        dialog = Gtk.FileChooserNative.new(
+            "Export gfxcrunch sprite...",
+            MainController.window(),
+            Gtk.FileChooserAction.SELECT_FOLDER,
+            '_Save', None
+        )
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            try:
+                pass  # todo
+            except BaseException as e:
+                display_error(
+                    sys.exc_info(),
+                    str(e),
+                    "Error import the sprite."
+                )
+
     def open_spritebot_explanation(self):
         pass  # TODO
 
     def open_gfxcrunch_page(self):
+        # TODO
         webbrowser.open_new_tab('https://projectpokemon.org/home/forums/topic/31407-pokemon-mystery-dungeon-2-psy_commandos-tools-and-research-notes/')
 
     def get_monster_bin_ctx(self) -> ModelContext[BinPack]:
@@ -101,29 +215,43 @@ class SpriteModule(AbstractModule):
     def get_attack_bin_ctx(self) -> ModelContext[BinPack]:
         return self.project.open_file_in_rom(ATTACK_BIN, FileType.BIN_PACK, threadsafe=True)
 
-    def get_monster_monster_sprite_raw(self, id) -> WanFile:
+    def get_monster_monster_sprite_chara(self, id, raw=False) -> Union[bytes, WanFile]:
         with self.get_monster_bin_ctx() as bin_pack:
-            return FileType.WAN.CHARA.deserialize(FileType.PKDPX.deserialize(bin_pack[id]).decompress())
+            decompressed = FileType.PKDPX.deserialize(bin_pack[id]).decompress()
+            if raw:
+                return decompressed
+            return FileType.WAN.CHARA.deserialize(decompressed)
 
-    def get_monster_ground_sprite_raw(self, id) -> WanFile:
+    def get_monster_ground_sprite_chara(self, id, raw=False) -> Union[bytes, WanFile]:
         with self.get_ground_bin_ctx() as bin_pack:
+            if raw:
+                return bin_pack[id]
             return FileType.WAN.CHARA.deserialize(bin_pack[id])
 
-    def get_monster_attack_sprite_raw(self, id) -> WanFile:
+    def get_monster_attack_sprite_chara(self, id, raw=False) -> Union[bytes, WanFile]:
         with self.get_attack_bin_ctx() as bin_pack:
-            return FileType.WAN.CHARA.deserialize(FileType.PKDPX.deserialize(bin_pack[id]).decompress())
+            decompressed = FileType.PKDPX.deserialize(bin_pack[id]).decompress()
+            if raw:
+                return decompressed
+            return FileType.WAN.CHARA.deserialize(decompressed)
 
-    def save_monster_monster_sprite(self, id, chara_wan: WanFile):
+    def save_monster_monster_sprite(self, id, data: Union[bytes, WanFile], raw=False):
         with self.get_monster_bin_ctx() as bin_pack:
-            bin_pack[id] = FileType.PKDPX.serialize(FileType.PKDPX.compress(FileType.WAN.CHARA.serialize(chara_wan)))
+            if not raw:
+                data = FileType.WAN.CHARA.serialize(data)
+            bin_pack[id] = FileType.PKDPX.serialize(FileType.PKDPX.compress(data))
         self.project.mark_as_modified(MONSTER_BIN)
 
-    def save_monster_ground_sprite(self, id, chara_wan: WanFile):
+    def save_monster_ground_sprite(self, id, data: Union[bytes, WanFile], raw=False):
         with self.get_ground_bin_ctx() as bin_pack:
-            bin_pack[id] = FileType.WAN.CHARA.serialize(chara_wan)
+            if not raw:
+                data = FileType.WAN.CHARA.serialize(data)
+            bin_pack[id] = data
         self.project.mark_as_modified(GROUND_BIN)
 
-    def save_monster_attack_sprite(self, id, chara_wan: WanFile):
+    def save_monster_attack_sprite(self, id, data: Union[bytes, WanFile], raw=False):
         with self.get_attack_bin_ctx() as bin_pack:
-            bin_pack[id] = FileType.WAN.CHARA.serialize(FileType.PKDPX.compress(FileType.WAN.CHARA.serialize(chara_wan)))
+            if not raw:
+                data = FileType.WAN.CHARA.serialize(data)
+            bin_pack[id] = FileType.PKDPX.serialize(FileType.PKDPX.compress(data))
         self.project.mark_as_modified(ATTACK_BIN)

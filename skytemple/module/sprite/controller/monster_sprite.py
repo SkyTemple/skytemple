@@ -63,6 +63,10 @@ class MonsterSpriteController(AbstractController):
             return Gtk.Label.new('Invalid Sprite ID.')
         self.builder = self._get_builder(__file__, 'monster_sprite.glade')
         self._draw_area = self.builder.get_object('draw_sprite')
+        if self.module.get_gfxcrunch().is_available():
+            self.builder.get_object('explanation_text2').set_markup("""Alternatively you can export the sprite files 
+in the gfxcrunch format and edit them manually.
+Warning: SkyTemple does not validate the files you import.""")
         self.builder.connect_signals(self)
 
         self._load_frames()
@@ -118,9 +122,9 @@ class MonsterSpriteController(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT:
             try:
-                monster = self.module.get_monster_monster_sprite_raw(self.item_id)
-                ground = self.module.get_monster_ground_sprite_raw(self.item_id)
-                attack = self.module.get_monster_attack_sprite_raw(self.item_id)
+                monster = self.module.get_monster_monster_sprite_chara(self.item_id)
+                ground = self.module.get_monster_ground_sprite_chara(self.item_id)
+                attack = self.module.get_monster_attack_sprite_chara(self.item_id)
                 merged = FileType.WAN.CHARA.merge_wan(monster, ground, attack)
                 FileType.WAN.CHARA.export_sheets(fn, merged)
 
@@ -140,7 +144,7 @@ class MonsterSpriteController(AbstractController):
     def on_import_clicked(self, w: Gtk.MenuToolButton):
         md = Gtk.MessageDialog(MainController.window(),
                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, "To import select the directory of the spritesheets.If it "
+                               Gtk.ButtonsType.OK, "To import select the directory of the spritesheets. If it "
                                                    "is still zipped, unzip it first.",
                                title="SkyTemple")
         md.run()
@@ -181,22 +185,31 @@ class MonsterSpriteController(AbstractController):
                 )
 
     def on_export_ground_clicked(self, w: Gtk.MenuToolButton):
-        pass  # todo
+        self.module.export_a_sprite(self.module.get_monster_ground_sprite_chara(self.item_id, raw=True))
 
     def on_import_ground_clicked(self, w: Gtk.MenuToolButton):
-        pass  # todo
+        sprite = self.module.import_a_sprite()
+        self.module.save_monster_ground_sprite(self.item_id, sprite, raw=True)
+        self._mark_as_modified_cb()
+        MainController.reload_view()
 
     def on_export_dungeon_clicked(self, w: Gtk.MenuToolButton):
-        pass  # todo
+        self.module.export_a_sprite(self.module.get_monster_monster_sprite_chara(self.item_id, raw=True))
 
     def on_import_dungeon_clicked(self, w: Gtk.MenuToolButton):
-        pass  # todo
+        sprite = self.module.import_a_sprite()
+        self.module.save_monster_monster_sprite(self.item_id, sprite, raw=True)
+        self._mark_as_modified_cb()
+        MainController.reload_view()
 
     def on_export_attack_clicked(self, w: Gtk.MenuToolButton):
-        pass  # todo
+        self.module.export_a_sprite(self.module.get_monster_attack_sprite_chara(self.item_id, raw=True))
 
     def on_import_attack_clicked(self, w: Gtk.MenuToolButton):
-        pass  # todo
+        sprite = self.module.import_a_sprite()
+        self.module.save_monster_attack_sprite(self.item_id, sprite, raw=True)
+        self._mark_as_modified_cb()
+        MainController.reload_view()
 
     def on_explanation_text_activate_link(self, *args):
         self.module.open_spritebot_explanation()

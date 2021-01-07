@@ -55,6 +55,10 @@ class ObjectController(AbstractController):
         self.builder.connect_signals(self)
         self._sprite_provider.reset()
         self.builder.get_object('file_name').set_text(self.item_id)
+        if self.module.get_gfxcrunch().is_available():
+            self.builder.get_object('explanation_text').set_markup("""SkyTemple can not edit sprites. 
+However you can export the sprite in the gfxcrunch format and import it back again.
+Warning: SkyTemple does not validate the files you import.""")
 
         return self.builder.get_object('main_box')
 
@@ -73,44 +77,9 @@ class ObjectController(AbstractController):
         return True
 
     def on_export_clicked(self, *args):
-        pass  # todo
-        dialog = Gtk.FileChooserNative.new(
-            "Export WAN sprite...",
-            MainController.window(),
-            Gtk.FileChooserAction.SAVE,
-            None, None
-        )
-        filter = Gtk.FileFilter()
-        filter.set_name("WAN sprite (*.wan)")
-        filter.add_pattern("*.wan")
-        dialog.add_filter(filter)
-
-        response = dialog.run()
-        fn = dialog.get_filename()
-
-        dialog.destroy()
-
-        if response == Gtk.ResponseType.ACCEPT:
-            if '.' not in fn:
-                fn += '.wan'
-            with open(fn, 'wb') as f:
-                f.write(self.module.get_object_sprite_raw(self.item_id))
+        self.module.export_a_sprite(self.module.get_object_sprite_raw(self.item_id))
 
     def on_import_clicked(self, *args):
-        dialog = Gtk.FileChooserNative.new(
-            "Import WAN sprite...",
-            MainController.window(),
-            Gtk.FileChooserAction.OPEN,
-            None, None
-        )
-
-        response = dialog.run()
-        fn = dialog.get_filename()
-        dialog.destroy()
-
-        if response == Gtk.ResponseType.ACCEPT:
-            if '.' not in fn:
-                fn += '.wan'
-            with open(fn, 'rb') as f:
-                self.module.save_object_sprite(self.item_id, f.read())
-            MainController.reload_view()
+        sprite = self.module.import_a_sprite()
+        self.module.save_object_sprite(self.item_id, sprite)
+        MainController.reload_view()
