@@ -189,6 +189,8 @@ Warning: SkyTemple does not validate the files you import.""")
 
     def on_import_ground_clicked(self, w: Gtk.MenuToolButton):
         sprite = self.module.import_a_sprite()
+        if sprite is None:
+            return
         self.module.save_monster_ground_sprite(self.item_id, sprite, raw=True)
         self._mark_as_modified_cb()
         MainController.reload_view()
@@ -198,6 +200,8 @@ Warning: SkyTemple does not validate the files you import.""")
 
     def on_import_dungeon_clicked(self, w: Gtk.MenuToolButton):
         sprite = self.module.import_a_sprite()
+        if sprite is None:
+            return
         self.module.save_monster_monster_sprite(self.item_id, sprite, raw=True)
         self._mark_as_modified_cb()
         MainController.reload_view()
@@ -207,6 +211,8 @@ Warning: SkyTemple does not validate the files you import.""")
 
     def on_import_attack_clicked(self, w: Gtk.MenuToolButton):
         sprite = self.module.import_a_sprite()
+        if sprite is None:
+            return
         self.module.save_monster_attack_sprite(self.item_id, sprite, raw=True)
         self._mark_as_modified_cb()
         MainController.reload_view()

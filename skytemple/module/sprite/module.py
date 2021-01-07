@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import sys
 import webbrowser
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING, Union, Optional
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
@@ -96,7 +96,7 @@ class SpriteModule(AbstractModule):
     def get_gfxcrunch(self) -> 'GfxcrunchModule':
         return self.project.get_module('gfxcrunch')
 
-    def import_a_sprite(self) -> bytes:
+    def import_a_sprite(self) -> Optional[bytes]:
         if self.get_gfxcrunch().is_available():
             return self.import_a_sprite__gfxcrunch()
         return self.import_a_sprite__wan()
@@ -147,7 +147,7 @@ class SpriteModule(AbstractModule):
             with open(fn, 'wb') as f:
                 f.write(sprite)
 
-    def import_a_sprite__gfxcrunch(self) -> bytes:
+    def import_a_sprite__gfxcrunch(self) -> Optional[bytes]:
         md = Gtk.MessageDialog(MainController.window(),
                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
                                Gtk.ButtonsType.OK, "To import select the directory of the sprite export. If it "
@@ -169,13 +169,14 @@ class SpriteModule(AbstractModule):
 
         if response == Gtk.ResponseType.ACCEPT:
             try:
-                pass  # todo
+                return self.get_gfxcrunch().import_sprite(fn)
             except BaseException as e:
                 display_error(
                     sys.exc_info(),
                     str(e),
-                    "Error exporting the sprite."
+                    "Error importing the sprite."
                 )
+                return None
 
     def export_a_sprite__gfxcrunch(self, sprite: bytes):
         dialog = Gtk.FileChooserNative.new(
@@ -191,20 +192,19 @@ class SpriteModule(AbstractModule):
 
         if response == Gtk.ResponseType.ACCEPT:
             try:
-                pass  # todo
+                self.get_gfxcrunch().export_sprite(sprite, fn)
             except BaseException as e:
                 display_error(
                     sys.exc_info(),
                     str(e),
-                    "Error import the sprite."
+                    "Error exporting the sprite."
                 )
 
     def open_spritebot_explanation(self):
         pass  # TODO
 
     def open_gfxcrunch_page(self):
-        # TODO
-        webbrowser.open_new_tab('https://projectpokemon.org/home/forums/topic/31407-pokemon-mystery-dungeon-2-psy_commandos-tools-and-research-notes/')
+        self.get_gfxcrunch().open_gfxcrunch_page()
 
     def get_monster_bin_ctx(self) -> ModelContext[BinPack]:
         return self.project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)

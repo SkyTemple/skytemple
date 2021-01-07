@@ -14,10 +14,22 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import os
+import sys
+import webbrowser
+from shutil import which
+from typing import Tuple, List
+
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
+from skytemple.core.ui_utils import data_dir
+from skytemple.module.gfxcrunch.controller.gfxcrunch import GfxcrunchController
+
+GFXCRUNCH_BIN = 'ppmd_gfxcrunch.exe'
+WINE_BIN = 'wine'
+ENABLE_GFXCRUNCH = True
 
 
 class GfxcrunchModule(AbstractModule):
@@ -36,10 +48,31 @@ class GfxcrunchModule(AbstractModule):
         pass   # n/a
 
     def is_available(self):
-        return True  # todo
+        if not ENABLE_GFXCRUNCH:
+            return False
+
+        path = os.path.join(data_dir(), GFXCRUNCH_BIN)
+        if not os.path.exists(path):
+            return False
+
+        if not sys.platform.startswith('win'):
+            if which(WINE_BIN) is None:
+                return False
+
+        return True
+
+    def get_gfxcrunch_cmd(self) -> Tuple[str, List[str], bool]:
+        """Returns the CMD for gfxcrunch and the base argument list and if shell=True"""
+        if sys.platform.startswith('win'):
+            return os.path.join(data_dir(), GFXCRUNCH_BIN), [], False
+        return WINE_BIN, [os.path.join(data_dir(), GFXCRUNCH_BIN)], False
 
     def import_sprite(self, dir_fn: str) -> bytes:
-        pass  # todo
+        return GfxcrunchController(self).import_sprite(dir_fn)
 
     def export_sprite(self, wan: bytes, dir_fn: str):
-        pass  # todo
+        return GfxcrunchController(self).export_sprite(wan, dir_fn)
+
+    def open_gfxcrunch_page(self):
+        # TODO
+        webbrowser.open_new_tab('https://projectpokemon.org/home/forums/topic/31407-pokemon-mystery-dungeon-2-psy_commandos-tools-and-research-notes/')

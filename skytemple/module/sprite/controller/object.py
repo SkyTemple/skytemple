@@ -66,14 +66,18 @@ Warning: SkyTemple does not validate the files you import.""")
         self.module.open_gfxcrunch_page()
 
     def on_draw_sprite_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
+        scale = 2
         sprite, x, y, w, h = self._sprite_provider.get_for_object(
             self.item_id[:-4], lambda: GLib.idle_add(widget.queue_draw)
         )
+        ctx.scale(scale, scale)
         ctx.set_source_surface(sprite)
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
         ctx.paint()
-        if widget.get_size_request() != (w, h):
-            widget.set_size_request(w, h)
+        ww, wh = widget.get_size_request()
+        if ww < w or wh < h:
+            widget.set_size_request(w * scale, h * scale)
+        ctx.scale(1 / scale, 1 / scale)
         return True
 
     def on_export_clicked(self, *args):
@@ -81,5 +85,7 @@ Warning: SkyTemple does not validate the files you import.""")
 
     def on_import_clicked(self, *args):
         sprite = self.module.import_a_sprite()
+        if sprite is None:
+            return
         self.module.save_object_sprite(self.item_id, sprite)
         MainController.reload_view()
