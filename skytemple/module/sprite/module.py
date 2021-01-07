@@ -20,14 +20,21 @@ from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.model_context import ModelContext
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.sprite.controller.monster_sprite import MonsterSpriteController
 from skytemple.module.sprite.controller.object import ObjectController
 from skytemple.module.sprite.controller.object_main import OBJECT_SPRTIES, ObjectMainController
+from skytemple_files.common.types.file_types import FileType
+from skytemple_files.common.util import MONSTER_BIN
+from skytemple_files.container.bin_pack.model import BinPack
+from skytemple_files.graphics.chara_wan.model import WanFile
 
 GROUND_DIR = 'GROUND'
 WAN_FILE_EXT = 'wan'
+GROUND_BIN = 'MONSTER/m_ground.bin'
+ATTACK_BIN = 'MONSTER/m_attack.bin'
 
 
 class SpriteModule(AbstractModule):
@@ -71,7 +78,6 @@ class SpriteModule(AbstractModule):
         return self.project.open_file_manually(GROUND_DIR + '/' + filename)
 
     def save_object_sprite(self, filename, data: bytes):
-        """Mark a specific w16 as modified"""
         assert filename in self.list_of_obj_sprites
         self.project.save_file_manually(GROUND_DIR + '/' + filename, data)
         row = self._tree_model[self._tree_level_iter[filename]]
@@ -85,3 +91,39 @@ class SpriteModule(AbstractModule):
 
     def open_gfxcrunch_page(self):
         webbrowser.open_new_tab('https://projectpokemon.org/home/forums/topic/31407-pokemon-mystery-dungeon-2-psy_commandos-tools-and-research-notes/')
+
+    def get_monster_bin_ctx(self) -> ModelContext[BinPack]:
+        return self.project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
+
+    def get_ground_bin_ctx(self) -> ModelContext[BinPack]:
+        return self.project.open_file_in_rom(GROUND_BIN, FileType.BIN_PACK, threadsafe=True)
+
+    def get_attack_bin_ctx(self) -> ModelContext[BinPack]:
+        return self.project.open_file_in_rom(ATTACK_BIN, FileType.BIN_PACK, threadsafe=True)
+
+    def get_monster_monster_sprite_raw(self, id) -> WanFile:
+        with self.get_monster_bin_ctx() as bin_pack:
+            return FileType.WAN.CHARA.deserialize(FileType.PKDPX.deserialize(bin_pack[id]).decompress())
+
+    def get_monster_ground_sprite_raw(self, id) -> WanFile:
+        with self.get_ground_bin_ctx() as bin_pack:
+            return FileType.WAN.CHARA.deserialize(bin_pack[id])
+
+    def get_monster_attack_sprite_raw(self, id) -> WanFile:
+        with self.get_attack_bin_ctx() as bin_pack:
+            return FileType.WAN.CHARA.deserialize(FileType.PKDPX.deserialize(bin_pack[id]).decompress())
+
+    def save_monster_monster_sprite(self, id, chara_wan: WanFile):
+        with self.get_monster_bin_ctx() as bin_pack:
+            bin_pack[id] = FileType.PKDPX.serialize(FileType.PKDPX.compress(FileType.WAN.CHARA.serialize(chara_wan)))
+        self.project.mark_as_modified(MONSTER_BIN)
+
+    def save_monster_ground_sprite(self, id, chara_wan: WanFile):
+        with self.get_ground_bin_ctx() as bin_pack:
+            bin_pack[id] = FileType.WAN.CHARA.serialize(chara_wan)
+        self.project.mark_as_modified(GROUND_BIN)
+
+    def save_monster_attack_sprite(self, id, chara_wan: WanFile):
+        with self.get_attack_bin_ctx() as bin_pack:
+            bin_pack[id] = FileType.WAN.CHARA.serialize(FileType.PKDPX.compress(FileType.WAN.CHARA.serialize(chara_wan)))
+        self.project.mark_as_modified(ATTACK_BIN)

@@ -15,14 +15,17 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import sys
 from typing import TYPE_CHECKING
 
 import cairo
 
+from skytemple.controller.main import MainController
+from skytemple.core.error_handler import display_error
 from skytemple.core.events.manager import EventManager
 from skytemple.core.img_utils import pil_to_cairo_surface
+from skytemple.core.model_context import ModelContext
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.common.util import MONSTER_BIN
 from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.graphics.wan_wat.model import Wan
 
@@ -50,7 +53,7 @@ class MonsterSpriteController(AbstractController):
         self._anim_counter = 0
         self._drawing_is_active = 0
         self._draw_area = None
-        self._monster_bin: BinPack = self.module.project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
+        self._monster_bin: ModelContext[BinPack] = self.module.get_monster_bin_ctx()
         self._rendered_frame_info = []
 
         self.builder = None
@@ -102,10 +105,80 @@ class MonsterSpriteController(AbstractController):
         return True
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
-        pass  # todo
+        dialog = Gtk.FileChooserNative.new(
+            "Export spritesheet...",
+            MainController.window(),
+            Gtk.FileChooserAction.SELECT_FOLDER,
+            '_Save', None
+        )
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            try:
+                monster = self.module.get_monster_monster_sprite_raw(self.item_id)
+                ground = self.module.get_monster_ground_sprite_raw(self.item_id)
+                attack = self.module.get_monster_attack_sprite_raw(self.item_id)
+                merged = FileType.WAN.CHARA.merge_wan(monster, ground, attack)
+                FileType.WAN.CHARA.export_sheets(fn, merged)
+
+                md = Gtk.MessageDialog(MainController.window(),
+                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                       Gtk.ButtonsType.OK, "The spritesheet was successfully exported.",
+                                       title="Success!", is_success=True)
+                md.run()
+                md.destroy()
+            except BaseException as e:
+                display_error(
+                    sys.exc_info(),
+                    str(e),
+                    "Error exporting the spritesheet."
+                )
 
     def on_import_clicked(self, w: Gtk.MenuToolButton):
-        pass  # todo
+        md = Gtk.MessageDialog(MainController.window(),
+                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                               Gtk.ButtonsType.OK, "To import select the directory of the spritesheets.If it "
+                                                   "is still zipped, unzip it first.",
+                               title="SkyTemple")
+        md.run()
+        md.destroy()
+
+        dialog = Gtk.FileChooserNative.new(
+            "Import spritesheet...",
+            MainController.window(),
+            Gtk.FileChooserAction.SELECT_FOLDER,
+            None, None
+        )
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            try:
+                wan = FileType.WAN.CHARA.import_sheets(fn)
+                monster, ground, attack = FileType.WAN.CHARA.split_wan(wan)
+
+                md = Gtk.MessageDialog(MainController.window(),
+                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                       Gtk.ButtonsType.OK, "The spritesheet was successfully imported.",
+                                       title="Success!", is_success=True)
+                md.run()
+                md.destroy()
+                self.module.save_monster_monster_sprite(self.item_id, monster)
+                self.module.save_monster_ground_sprite(self.item_id, ground)
+                self.module.save_monster_attack_sprite(self.item_id, attack)
+                self._mark_as_modified_cb()
+                MainController.reload_view()
+            except BaseException as e:
+                display_error(
+                    sys.exc_info(),
+                    str(e),
+                    "Error importing the spritesheet."
+                )
 
     def on_export_ground_clicked(self, w: Gtk.MenuToolButton):
         pass  # todo
