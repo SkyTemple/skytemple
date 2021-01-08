@@ -24,7 +24,6 @@ from typing import TYPE_CHECKING, List
 from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
-from skytemple.core.message_dialog import IMG_NEUTRAL, IMG_HAPPY, IMG_SAD
 from skytemple.core.ui_utils import data_dir
 from skytemple_files.common.task_runner import AsyncTaskRunner
 
@@ -39,6 +38,9 @@ class GfxcrunchStatus(Enum):
     SUCCESS = auto()
 
 
+IMG_NEUTRAL = 'poochy_neutral.png'
+IMG_HAPPY = 'poochy_happy.png'
+IMG_SAD = 'poochy_sad.png'
 IMGS = {
     GfxcrunchStatus.RUNNING: IMG_NEUTRAL,
     GfxcrunchStatus.ERROR: IMG_SAD,
