@@ -74,5 +74,4 @@ class GfxcrunchModule(AbstractModule):
         return GfxcrunchController(self).export_sprite(wan, dir_fn)
 
     def open_gfxcrunch_page(self):
-        # TODO
         webbrowser.open_new_tab('https://projectpokemon.org/home/forums/topic/31407-pokemon-mystery-dungeon-2-psy_commandos-tools-and-research-notes/')

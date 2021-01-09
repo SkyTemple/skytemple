@@ -24,6 +24,7 @@ from gi.repository.Gtk import TreeStore
 from skytemple.controller.main import MainController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.model_context import ModelContext
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
@@ -148,11 +149,11 @@ class SpriteModule(AbstractModule):
                 f.write(sprite)
 
     def import_a_sprite__gfxcrunch(self) -> Optional[bytes]:
-        md = Gtk.MessageDialog(MainController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, "To import select the directory of the sprite export. If it "
-                                                   "is still zipped, unzip it first.",
-                               title="SkyTemple")
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, "To import select the directory of the sprite export. If it "
+                                                        "is still zipped, unzip it first.",
+                                    title="SkyTemple")
         md.run()
         md.destroy()
 
@@ -201,7 +202,7 @@ class SpriteModule(AbstractModule):
                 )
 
     def open_spritebot_explanation(self):
-        pass  # TODO
+        webbrowser.open_new_tab('https://docs.google.com/document/d/1EceEEjyeoFwoKXdNj4vpXdoYRWp8CID64e-ZqY954_Q/edit')
 
     def open_gfxcrunch_page(self):
         self.get_gfxcrunch().open_gfxcrunch_page()

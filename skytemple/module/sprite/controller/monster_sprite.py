@@ -24,6 +24,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.events.manager import EventManager
 from skytemple.core.img_utils import pil_to_cairo_surface
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.model_context import ModelContext
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.bin_pack.model import BinPack
@@ -126,12 +127,14 @@ Warning: SkyTemple does not validate the files you import.""")
                 ground = self.module.get_monster_ground_sprite_chara(self.item_id)
                 attack = self.module.get_monster_attack_sprite_chara(self.item_id)
                 merged = FileType.WAN.CHARA.merge_wan(monster, ground, attack)
-                FileType.WAN.CHARA.export_sheets(fn, merged)
+                FileType.WAN.CHARA.export_sheets(
+                    fn, merged, self.module.project.get_rom_module().get_static_data().animation_names
+                )
 
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                       Gtk.ButtonsType.OK, "The spritesheet was successfully exported.",
-                                       title="Success!", is_success=True)
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                            Gtk.ButtonsType.OK, "The spritesheet was successfully exported.",
+                                            title="Success!", is_success=True)
                 md.run()
                 md.destroy()
             except BaseException as e:
@@ -142,11 +145,11 @@ Warning: SkyTemple does not validate the files you import.""")
                 )
 
     def on_import_clicked(self, w: Gtk.MenuToolButton):
-        md = Gtk.MessageDialog(MainController.window(),
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, "To import select the directory of the spritesheets. If it "
-                                                   "is still zipped, unzip it first.",
-                               title="SkyTemple")
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, "To import select the directory of the spritesheets. If it "
+                                                        "is still zipped, unzip it first.",
+                                    title="SkyTemple")
         md.run()
         md.destroy()
 
@@ -166,10 +169,10 @@ Warning: SkyTemple does not validate the files you import.""")
                 wan = FileType.WAN.CHARA.import_sheets(fn)
                 monster, ground, attack = FileType.WAN.CHARA.split_wan(wan)
 
-                md = Gtk.MessageDialog(MainController.window(),
-                                       Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                       Gtk.ButtonsType.OK, "The spritesheet was successfully imported.",
-                                       title="Success!", is_success=True)
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                            Gtk.ButtonsType.OK, "The spritesheet was successfully imported.",
+                                            title="Success!", is_success=True)
                 md.run()
                 md.destroy()
                 self.module.save_monster_monster_sprite(self.item_id, monster)
