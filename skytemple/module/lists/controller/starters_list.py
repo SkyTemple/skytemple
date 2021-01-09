@@ -80,6 +80,11 @@ class StartersListController(ListBaseController):
         default_partner_name.set_text(self.string_provider.get_value(StringType.DEFAULT_TEAM_NAMES, 1))
         default_team_name.set_text(self.string_provider.get_value(StringType.DEFAULT_TEAM_NAMES, 2))
 
+        player_start_level: Gtk.Entry = self.builder.get_object('player_start_level')
+        player_start_level.set_text(str(self.module.get_starter_level_player()))
+        partner_start_level: Gtk.Entry = self.builder.get_object('partner_start_level')
+        partner_start_level.set_text(str(self.module.get_starter_level_partner()))
+
         self.load()
 
         default_player_species: Gtk.Entry = self.builder.get_object('default_player_species')
@@ -133,6 +138,20 @@ class StartersListController(ListBaseController):
                 self.string_provider.get_index(StringType.DEFAULT_TEAM_NAMES, 2)
             ] = w.get_text()
         self.module.mark_str_as_modified()
+
+    def on_player_start_level_changed(self, w: Gtk.Entry):
+        try:
+            val = int(w.get_text())
+        except ValueError:
+            return
+        self.module.set_starter_level_player(val)
+
+    def on_partner_start_level_changed(self, w: Gtk.Entry):
+        try:
+            val = int(w.get_text())
+        except ValueError:
+            return
+        self.module.set_starter_level_partner(val)
 
     def on_player_species_edited(self, widget, path, text):
         self._on_species_edited('player_list_store', self._player_iters, path, text)

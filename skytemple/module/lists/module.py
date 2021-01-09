@@ -143,6 +143,34 @@ class ListsModule(AbstractModule):
 
         row = self._tree_model[self._starters_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
+    
+    def get_starter_level_player(self) -> int:
+        arm9 = self.project.get_binary(BinaryName.ARM9)
+        static_data = self.project.get_rom_module().get_static_data()
+        return HardcodedDefaultStarters.get_player_level(arm9, static_data)
+
+    def set_starter_level_player(self, level: int):
+        def update(arm9):
+            static_data = self.project.get_rom_module().get_static_data()
+            HardcodedDefaultStarters.set_player_level(level, arm9, static_data)
+        self.project.modify_binary(BinaryName.ARM9, update)
+
+        row = self._tree_model[self._starters_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+    
+    def get_starter_level_partner(self) -> int:
+        arm9 = self.project.get_binary(BinaryName.ARM9)
+        static_data = self.project.get_rom_module().get_static_data()
+        return HardcodedDefaultStarters.get_partner_level(arm9, static_data)
+
+    def set_starter_level_partner(self, level: int):
+        def update(arm9):
+            static_data = self.project.get_rom_module().get_static_data()
+            HardcodedDefaultStarters.set_partner_level(level, arm9, static_data)
+        self.project.modify_binary(BinaryName.ARM9, update)
+
+        row = self._tree_model[self._starters_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
 
     def get_recruitment_list(self) -> Tuple[List[int], List[int], List[int]]:
         """Returns the recruitment lists: species, levels, locations"""
