@@ -18,6 +18,7 @@ additional_datas = [
     (os.path.join(site_packages, 'skytemple_ssb_debugger', '*.lang'), 'skytemple_ssb_debugger'),
     (os.path.join(site_packages, 'skytemple_ssb_debugger', 'controller', '*.glade'), 'skytemple_ssb_debugger/controller'),
     (os.path.join(site_packages, 'skytemple_files', '_resources'), 'skytemple_files/_resources'),
+    (os.path.join(site_packages, 'skytemple_files', 'graphics', 'chara_wan', 'Shadow.png'), 'skytemple_files/graphics/chara_wan/Shadow.png'),
     (os.path.join(site_packages, 'skytemple_dtef', 'template.png'), 'skytemple_dtef/template.png'),
     (os.path.join('.', 'armips'), 'skytemple_files/_resources'),
     (os.path.join(site_packages, 'desmume', 'frontend', 'control_ui', '*.glade'), 'desmume/frontend/control_ui'),
