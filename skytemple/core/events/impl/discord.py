@@ -33,6 +33,7 @@ from pypresence import Presence
 import time
 
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import version
 from skytemple_files.data.md.model import NUM_ENTITIES
 
 CLIENT_ID = "736538698719690814"
@@ -92,7 +93,7 @@ class DiscordPresence(AbstractListener):
         if SHOW_ROM_NAME:
             self.rom_name = os.path.basename(project.filename)
         else:
-            self.rom_name = "SkyTemple"
+            self.rom_name = "Version " + version()
         self._update_current_presence()
 
     def on_view_switch(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
