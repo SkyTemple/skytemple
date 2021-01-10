@@ -120,7 +120,7 @@ if __name__ == '__main__':
         # The level_bin has no entry for monster 0.
         for monster, lbinentry_bin, waza_entry in zip(monster_md.entries[1:], level_bin, waza_p.learnsets[1:]):
             level_bin_entry = FileType.LEVEL_BIN_ENTRY.deserialize(
-                FileType.PKDPX.deserialize(FileType.SIR0.deserialize(lbinentry_bin).content).decompress()
+                FileType.COMMON_AT.deserialize(FileType.SIR0.deserialize(lbinentry_bin).content).decompress()
             )
             graph_provider = LevelUpGraphProvider(monster, level_bin_entry, waza_entry, move_strings)
             g = graph_provider.provide(

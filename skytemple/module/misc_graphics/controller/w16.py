@@ -26,7 +26,7 @@ import cairo
 from skytemple.core.error_handler import display_error
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple_files.graphics.w16.model import W16, W16At4pxImage, W16TocEntry, W16At4pnImage
+from skytemple_files.graphics.w16.model import W16, W16AtImage, W16TocEntry
 
 try:
     from PIL import Image
@@ -133,8 +133,6 @@ class W16Controller(AbstractController):
                     f"No images found."
                 )
                 return
-            # If we add new images, we will just use the container of the first
-            container_is_at4px = None
             for index, image_fn in enumerate(imgs):
                 try:
                     with open(os.path.join(fn, image_fn), 'rb') as f:
@@ -142,16 +140,8 @@ class W16Controller(AbstractController):
                         if len(self.w16) > index:
                             # Existing image, update
                             self.w16[index].set(image)
-                            if container_is_at4px is None:
-                                container_is_at4px = isinstance(self.w16[index], W16At4pxImage)
                         else:
-                            # New - TODO: Do we need to set index...?
-                            if container_is_at4px:
-                                # AT4PX
-                                self.w16.append(W16At4pxImage.new(W16TocEntry(0, 0, 0, 0), image))
-                            else:
-                                # AT4PN
-                                self.w16.append(W16At4pnImage.new(W16TocEntry(0, 0, 0, 0), image))
+                            self.w16.append(W16AtImage.new(W16TocEntry(0, 0, 0, 0), image))
                 except Exception as err:
                     logger.error(f"Failed importing image '{index}'.", exc_info=err)
                     display_error(

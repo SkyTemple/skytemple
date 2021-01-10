@@ -38,6 +38,7 @@ from skytemple_files.common.util import get_files_from_rom_with_extension, get_r
     get_ppmdu_config_for_rom, get_binary_from_rom_ppmdu, set_binary_in_rom_ppmdu, get_files_from_folder_with_extension
 from skytemple_files.container.sir0.sir0_serializable import Sir0Serializable
 from skytemple_files.patch.patches import Patcher
+from skytemple_files.compression_container.common_at.handler import CommonAtType
 
 logger = logging.getLogger(__name__)
 
@@ -364,3 +365,16 @@ class RomProject:
         modify_cb(data)
         set_binary_in_rom_ppmdu(self._rom, binary, data)
         self.force_mark_as_modified()
+
+    def init_patch_properties(self):
+        """ Initialize patch-specific properties of the rom. """
+        patcher = self.create_patcher()
+        
+        # Allow ATUPX files if the ProvideATUPXSupport patch is applied
+        try:
+            if patcher.is_applied("ProvideATUPXSupport"):
+                FileType.COMMON_AT.allow(CommonAtType.ATUPX)
+            else:
+                FileType.COMMON_AT.disallow(CommonAtType.ATUPX)
+        except NotImplementedError:
+            FileType.COMMON_AT.disallow(CommonAtType.ATUPX)
