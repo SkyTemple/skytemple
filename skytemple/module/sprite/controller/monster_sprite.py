@@ -128,7 +128,7 @@ Warning: SkyTemple does not validate the files you import.""")
                 attack = self.module.get_monster_attack_sprite_chara(self.item_id)
                 merged = FileType.WAN.CHARA.merge_wan(monster, ground, attack)
                 FileType.WAN.CHARA.export_sheets(
-                    fn, merged, self.module.project.get_rom_module().get_static_data().animation_names
+                    fn, merged, self.module.project.get_rom_module().get_static_data().animation_names[self.item_id]
                 )
 
                 md = SkyTempleMessageDialog(MainController.window(),
