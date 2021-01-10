@@ -63,6 +63,8 @@ setup(
         tiled_img=    skytemple.module.tiled_img.module:TiledImgModule
         map_bg=       skytemple.module.map_bg.module:MapBgModule
         script=       skytemple.module.script.module:ScriptModule
+        gfxcrunch=    skytemple.module.gfxcrunch.module:GfxcrunchModule
+        sprite=       skytemple.module.sprite.module:SpriteModule
         monster=      skytemple.module.monster.module:MonsterModule
         portrait=     skytemple.module.portrait.module:PortraitModule
         patch=        skytemple.module.patch.module:PatchModule

@@ -749,7 +749,7 @@ class MainController:
             ctx = ssl.create_default_context()
             ctx.check_hostname = False
             ctx.verify_mode = ssl.CERT_NONE
-            input_stream = Gio.MemoryInputStream.new_from_data(urllib.request.urlopen(req, context=ctx).read(), None)
+            input_stream = Gio.MemoryInputStream.new_from_data(urllib.request.urlopen(req, context=ctx, timeout=1).read(), None)
             pixbuf = Pixbuf.new_from_stream(input_stream, None)
             image = Gtk.Image()
             image.show()

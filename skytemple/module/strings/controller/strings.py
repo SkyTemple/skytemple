@@ -180,11 +180,11 @@ class StringsController(AbstractController):
         add_dialog_csv_filter(save_diag)
         response = save_diag.run()
         fn = save_diag.get_filename()
-        if '.' not in fn:
-            fn += '.csv'
         save_diag.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
+            if '.' not in fn:
+                fn += '.csv'
             with open_utf8(fn, 'w') as result_file:
                 wr = csv.writer(result_file)
                 wr.writerows([[x] for x in self._str.strings])

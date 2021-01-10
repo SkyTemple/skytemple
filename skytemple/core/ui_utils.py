@@ -97,10 +97,8 @@ def add_dialog_csv_filter(dialog):
 
 
 def data_dir():
-    if sys.platform.startswith('darwin'):
-        if getattr(sys, 'frozen', False):
-            return os.path.join(os.path.dirname(sys.executable), 'data')
-    
+    if getattr(sys, 'frozen', False):
+        return os.path.join(os.path.dirname(sys.executable), 'data')
     return os.path.join(os.path.dirname(__file__), '..', 'data')
 
 

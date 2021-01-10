@@ -49,7 +49,7 @@ class MonsterModule(AbstractModule):
     """Module to edit the monster.md and other Pokémon related data."""
     @classmethod
     def depends_on(cls):
-        return ['portrait']
+        return ['portrait', 'sprite']
 
     @classmethod
     def sort_order(cls):
@@ -162,6 +162,11 @@ class MonsterModule(AbstractModule):
         if item_id == 0:
             return Gtk.Label.new("This entry has no portraits.")
         return self.project.get_module('portrait').get_editor(item_id - 1, lambda: self.mark_md_as_modified(item_id))
+
+    def get_sprite_view(self, sprite_id, item_id):
+        v = self.project.get_module('sprite').get_monster_sprite_editor(sprite_id, lambda: self.mark_md_as_modified(item_id))
+        v.show_all()
+        return v
 
     def get_portraits_for_export(self, item_id) -> Tuple[Optional[List[KaoImage]], Optional[List[KaoImage]]]:
         portraits = None

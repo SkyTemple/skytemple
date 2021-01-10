@@ -9,7 +9,6 @@ pkg_path = os.path.abspath(os.path.join('..', 'skytemple'))
 site_packages = next(p for p in sys.path if 'site-packages' in p)
 
 additional_datas = [
-    (os.path.join(pkg_path, 'data'), 'skytemple/data'),
     (os.path.join(pkg_path, 'data'), 'data'),
     (os.path.join(pkg_path, '*.glade'), '.'),
     (os.path.join(pkg_path, '*.css'), '.'),
