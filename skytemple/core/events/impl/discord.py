@@ -237,6 +237,14 @@ class DiscordPresence(AbstractListener):
         if isinstance(controller, StringsController):
             self.module_state = controller.langname
 
+    def on_view_switch__SpriteModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
+        from skytemple.module.sprite.controller.object import ObjectController
+
+        self.module_info = 'Editing spritess'
+        self.module_state = self.rom_name
+        if isinstance(controller, ObjectController):
+            self.module_state = breadcrumbs[0]
+
     def on_debugger_script_open(self, script_name: str):
         self.debugger_script_name = script_name.replace(self.project.get_project_file_manager().dir(), '')
         self._update_current_presence()
