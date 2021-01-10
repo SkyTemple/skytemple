@@ -27,4 +27,4 @@ pyinstaller skytemple.spec
 version=$PACKAGE_VERSION || $(python3 -c "import pkg_resources; print(pkg_resources.get_distribution(\"skytemple\").version)")
 
 echo $version > dist/skytemple/VERSION
-echo $version > dist/skytemple/skytemple/VERSION
+echo $version > dist/skytemple/data/VERSION
