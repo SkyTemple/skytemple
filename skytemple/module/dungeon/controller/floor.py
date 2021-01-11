@@ -15,6 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import re
+import sys
 from enum import Enum
 from functools import partial, reduce
 from itertools import zip_longest
@@ -867,9 +868,16 @@ class FloorController(AbstractController):
         save_diag.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
-            self.module.import_from_xml([(self.item.dungeon.dungeon_id, self.item.floor_id)],
-                                        ElementTree.parse(fn).getroot())
-            SkyTempleMainController.reload_view()
+            try:
+                self.module.import_from_xml([(self.item.dungeon.dungeon_id, self.item.floor_id)],
+                                            ElementTree.parse(fn).getroot())
+                SkyTempleMainController.reload_view()
+            except BaseException as err:
+                display_error(
+                    sys.exc_info(),
+                    str(err),
+                    "Error importing the floor."
+                )
 
     def on_cr_export_selected_toggled(self, w: Gtk.CellRendererToggle, path, *args):
         store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')
