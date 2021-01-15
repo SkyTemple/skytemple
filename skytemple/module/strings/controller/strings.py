@@ -142,10 +142,11 @@ class StringsController(AbstractController):
         if response == Gtk.ResponseType.ACCEPT:
             try:
                 with open_utf8(fn) as csv_file:
-                    csv_reader = csv.reader(csv_file, delimiter=',')
+                    csv_reader = csv.reader(csv_file)
                     strings = []
                     for row in csv_reader:
-                        strings.append(row[0])
+                        if len(row) > 0:
+                            strings.append(row[0])
                     if len(self._str.strings) != len(strings):
                         raise ValueError(f"The CSV file must contain exactly {len(self._str.strings)} strings, has {len(strings)}.")
                     self._str.strings = strings
