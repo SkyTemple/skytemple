@@ -89,7 +89,10 @@ class MainController(AbstractController):
         self.refresh()
 
     def on_btn_open_patch_dir_clicked(self, *args):
-        AppInfo.launch_default_for_uri(pathlib.Path(self.patch_dir()).as_uri())
+        if sys.platform == 'win32':
+            os.startfile(self.patch_dir())
+        else:
+            AppInfo.launch_default_for_uri(pathlib.Path(self.patch_dir()).as_uri())
 
     def refresh(self):
         tree: Gtk.TreeView = self.builder.get_object('patch_tree')
