@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import logging
 import math
 import re
 from enum import Enum
@@ -41,6 +42,7 @@ if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
 MAX_ITEMS = 1400
 PATTERN = re.compile(r'.*\(#(\d+)\).*')
+logger = logging.getLogger(__name__)
 
 
 class MonsterController(AbstractController):
@@ -908,34 +910,37 @@ class MonsterController(AbstractController):
         table matches the currently selected sprite of the Pokémon. If not, change
         the value and save it.
         """
-        if self.entry.sprite_index < 0:
-            return
-        with self._monster_bin as sprites:
-            sprite_bin = sprites[self.entry.sprite_index]
-            sprite = FileType.WAN.deserialize(FileType.PKDPX.deserialize(sprite_bin).decompress())
-        sprite_size_table = self.module.get_pokemon_sprite_data_table()
-        check_value = sprite_size_table[self.entry.md_index_base].sprite_tile_slots
-        max_tile_slots_needed = max(
-            (f.unk2 & 0x3FF) + math.ceil(f.resolution.x * f.resolution.y / 256)
-            for f in sprite.model.meta_frame_store.meta_frames
-        )
-        # There isn't those 2 blocks buffer! Doing this would cause some problems in the long term.
-        # Also, this should use the Unk#6 field in the animation info block (see psy's docs about wan files)
-        # instead of the calculation above, as it's exactly the result of that
-        max_tile_slots_needed = max((6, max_tile_slots_needed))
-        if check_value != max_tile_slots_needed:
-            sprite_size_table[self.entry.md_index_base].sprite_tile_slots = max_tile_slots_needed
-            self.module.set_pokemon_sprite_data_table(sprite_size_table)
+        try:
+            if self.entry.sprite_index < 0:
+                return
+            with self._monster_bin as sprites:
+                sprite_bin = sprites[self.entry.sprite_index]
+                sprite = FileType.WAN.deserialize(FileType.PKDPX.deserialize(sprite_bin).decompress())
+            sprite_size_table = self.module.get_pokemon_sprite_data_table()
+            check_value = sprite_size_table[self.entry.md_index_base].sprite_tile_slots
+            max_tile_slots_needed = max(
+                (f.unk2 & 0x3FF) + math.ceil(f.resolution.x * f.resolution.y / 256)
+                for f in sprite.model.meta_frame_store.meta_frames
+            )
+            # There isn't those 2 blocks buffer! Doing this would cause some problems in the long term.
+            # Also, this should use the Unk#6 field in the animation info block (see psy's docs about wan files)
+            # instead of the calculation above, as it's exactly the result of that
+            max_tile_slots_needed = max((6, max_tile_slots_needed))
+            if check_value != max_tile_slots_needed:
+                sprite_size_table[self.entry.md_index_base].sprite_tile_slots = max_tile_slots_needed
+                self.module.set_pokemon_sprite_data_table(sprite_size_table)
 
-            if show_warning:
-                md = SkyTempleMessageDialog(MainController.window(),
-                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                            Gtk.ButtonsType.OK,
-                                            "The sprite memory size of this Pokémon was too low "
-                                            "for this Pokémon's assigned sprite.\n"
-                                            "SkyTemple automatically corrected it.")
-                md.set_position(Gtk.WindowPosition.CENTER)
-                md.run()
-                md.destroy()
+                if show_warning:
+                    md = SkyTempleMessageDialog(MainController.window(),
+                                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                                Gtk.ButtonsType.OK,
+                                                "The sprite memory size of this Pokémon was too low "
+                                                "for this Pokémon's assigned sprite.\n"
+                                                "SkyTemple automatically corrected it.")
+                    md.set_position(Gtk.WindowPosition.CENTER)
+                    md.run()
+                    md.destroy()
 
-            self.mark_as_modified()
+                self.mark_as_modified()
+        except BaseException as ex:
+            logger.error("Failed to check Pokémon sprite size.", exc_info=ex)
