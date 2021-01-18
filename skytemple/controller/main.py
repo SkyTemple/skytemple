@@ -43,9 +43,10 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple.core.ssb_debugger.manager import DebuggerManager
+from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir, \
-    version
+    version, open_dir
 
 gi.require_version('Gtk', '3.0')
 
@@ -461,6 +462,8 @@ class MainController:
             return
         self._loaded_map_bg_module.add_created_with_logo()
 
+    def on_settings_dir_clicked(self, *args):
+        open_dir(ProjectFileManager.shared_config_dir())
 
     def on_settings_about_clicked(self, *args):
         about: Gtk.AboutDialog = self.builder.get_object("about_dialog")

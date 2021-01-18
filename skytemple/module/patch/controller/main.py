@@ -15,17 +15,16 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-import pathlib
 import sys
 from glob import glob
 from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
-from gi.repository.Gio import AppInfo
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
+from skytemple.core.ui_utils import open_dir
 from skytemple_files.patch.patches import Patcher
 from skytemple.controller.main import MainController as MainAppController
 
@@ -89,10 +88,7 @@ class MainController(AbstractController):
         self.refresh()
 
     def on_btn_open_patch_dir_clicked(self, *args):
-        if sys.platform == 'win32':
-            os.startfile(self.patch_dir())
-        else:
-            AppInfo.launch_default_for_uri(pathlib.Path(self.patch_dir()).as_uri())
+        open_dir(self.patch_dir())
 
     def refresh(self):
         tree: Gtk.TreeView = self.builder.get_object('patch_tree')

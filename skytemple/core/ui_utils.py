@@ -16,10 +16,12 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
+import pathlib
 import sys
 
 import pkg_resources
 from gi.repository import Gtk
+from gi.repository.Gio import AppInfo
 from gi.repository.Gtk import TreeModelRow
 
 
@@ -106,6 +108,14 @@ def is_dark_theme(widget):
     style_ctx = widget.get_style_context()
     color = style_ctx.get_background_color(Gtk.StateFlags.NORMAL)
     return 0.2126 * color.red + 0.7152 * color.green + 0.0722 * color.blue < 0.5
+
+
+def open_dir(directory):
+    """Cross-platform open directory"""
+    if sys.platform == 'win32':
+        os.startfile(directory)
+    else:
+        AppInfo.launch_default_for_uri(pathlib.Path(directory).as_uri())
 
 
 def version():
