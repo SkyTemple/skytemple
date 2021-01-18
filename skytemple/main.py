@@ -14,6 +14,9 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from skytemple.core.logger import setup_logging
+setup_logging()
+
 import logging
 import os
 import sys
