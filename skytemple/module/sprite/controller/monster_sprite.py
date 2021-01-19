@@ -45,11 +45,12 @@ FPS = 30
 
 
 class MonsterSpriteController(AbstractController):
-    def __init__(self, module: 'SpriteModule', item_id: int, mark_as_modified_cb):
+    def __init__(self, module: 'SpriteModule', item_id: int, mark_as_modified_cb, assign_new_sprite_id_cb):
         self.module = module
         self.item_id = item_id
         self._sprite_provider = self.module.get_sprite_provider()
         self._mark_as_modified_cb = mark_as_modified_cb
+        self._assign_new_sprite_id_cb = assign_new_sprite_id_cb
         self._frame_counter = 0
         self._anim_counter = 0
         self._drawing_is_active = 0
@@ -152,7 +153,26 @@ Warning: SkyTemple does not validate the files you import.""")
                                     title="SkyTemple")
         md.run()
         md.destroy()
+        self.do_import(self.item_id)
 
+    def on_import_new_clicked(self, w: Gtk.MenuToolButton):
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK_CANCEL,
+                                    "This will insert a completely new sprite into the game's sprite file and "
+                                    "assign the new ID to the Pokémon.\n"
+                                    "If you want to instead replace the currently assigned sprite, choose 'Import'."
+                                    "\n\nTo import select the directory of the spritesheets. If it "
+                                    "is still zipped, unzip it first.",
+                                    title="SkyTemple")
+        response = md.run()
+        md.destroy()
+        if response == Gtk.ResponseType.OK:
+            new_item_id = self.module.get_monster_sprite_count()
+            if new_item_id > -1:
+                self.do_import(new_item_id, lambda: self._assign_new_sprite_id_cb(new_item_id))
+
+    def do_import(self, item_id: int, cb=lambda: None):
         dialog = Gtk.FileChooserNative.new(
             "Import spritesheet...",
             MainController.window(),
@@ -175,9 +195,10 @@ Warning: SkyTemple does not validate the files you import.""")
                                             title="Success!", is_success=True)
                 md.run()
                 md.destroy()
-                self.module.save_monster_monster_sprite(self.item_id, monster)
-                self.module.save_monster_ground_sprite(self.item_id, ground)
-                self.module.save_monster_attack_sprite(self.item_id, attack)
+                self.module.save_monster_monster_sprite(item_id, monster)
+                self.module.save_monster_ground_sprite(item_id, ground)
+                self.module.save_monster_attack_sprite(item_id, attack)
+                cb()
                 self._mark_as_modified_cb()
                 MainController.reload_view()
             except BaseException as e:

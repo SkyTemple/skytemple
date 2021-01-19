@@ -76,9 +76,9 @@ class SpriteModule(AbstractModule):
 
         recursive_generate_item_store_row_label(self._tree_model[root])
 
-    def get_monster_sprite_editor(self, sprite_id: int, modified_callback) -> Gtk.Widget:
+    def get_monster_sprite_editor(self, sprite_id: int, modified_callback, assign_new_sprite_id_cb) -> Gtk.Widget:
         """Returns the view for one portrait slots"""
-        controller = MonsterSpriteController(self, sprite_id, modified_callback)
+        controller = MonsterSpriteController(self, sprite_id, modified_callback, assign_new_sprite_id_cb)
         return controller.get_view()
 
     def get_object_sprite_raw(self, filename):
@@ -236,23 +236,44 @@ class SpriteModule(AbstractModule):
                 return decompressed
             return FileType.WAN.CHARA.deserialize(decompressed)
 
+    def get_monster_sprite_count(self):
+        with self.get_monster_bin_ctx() as monster_bin, \
+                self.get_attack_bin_ctx() as attack_bin, \
+                self.get_ground_bin_ctx() as ground_bin:
+            if len(monster_bin) != len(attack_bin) or len(attack_bin) != len(ground_bin):
+                display_error(None, "Error with sprite files: They don't have the same length!")
+                return -1
+            return len(monster_bin)
+
+
     def save_monster_monster_sprite(self, id, data: Union[bytes, WanFile], raw=False):
         with self.get_monster_bin_ctx() as bin_pack:
             if not raw:
                 data = FileType.WAN.CHARA.serialize(data)
-            bin_pack[id] = FileType.PKDPX.serialize(FileType.PKDPX.compress(data))
+            data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data))
+            if id == len(bin_pack):
+                bin_pack.append(data)
+            else:
+                bin_pack[id] = data
         self.project.mark_as_modified(MONSTER_BIN)
 
     def save_monster_ground_sprite(self, id, data: Union[bytes, WanFile], raw=False):
         with self.get_ground_bin_ctx() as bin_pack:
             if not raw:
                 data = FileType.WAN.CHARA.serialize(data)
-            bin_pack[id] = data
+            if id == len(bin_pack):
+                bin_pack.append(data)
+            else:
+                bin_pack[id] = data
         self.project.mark_as_modified(GROUND_BIN)
 
     def save_monster_attack_sprite(self, id, data: Union[bytes, WanFile], raw=False):
         with self.get_attack_bin_ctx() as bin_pack:
             if not raw:
                 data = FileType.WAN.CHARA.serialize(data)
-            bin_pack[id] = FileType.PKDPX.serialize(FileType.PKDPX.compress(data))
+            data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data))
+            if id == len(bin_pack):
+                bin_pack.append(data)
+            else:
+                bin_pack[id] = data
         self.project.mark_as_modified(ATTACK_BIN)

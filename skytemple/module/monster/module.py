@@ -164,7 +164,14 @@ class MonsterModule(AbstractModule):
         return self.project.get_module('portrait').get_editor(item_id - 1, lambda: self.mark_md_as_modified(item_id))
 
     def get_sprite_view(self, sprite_id, item_id):
-        v = self.project.get_module('sprite').get_monster_sprite_editor(sprite_id, lambda: self.mark_md_as_modified(item_id))
+        def set_new_sprite_id(new_sprite_id):
+            self.get_entry(item_id).sprite_index = new_sprite_id
+
+        v = self.project.get_module('sprite').get_monster_sprite_editor(
+            sprite_id,
+            lambda: self.mark_md_as_modified(item_id),
+            set_new_sprite_id
+        )
         v.show_all()
         return v
 
