@@ -29,6 +29,7 @@ import cairo
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
+from skytemple.core.rom_project import BinaryName
 from skytemple.core.ui_utils import add_dialog_xml_filter
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_graphics_provider import DungeonTilesProvider
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_palettes_provider import DungeonPalettesProvider
@@ -38,6 +39,7 @@ from skytemple_dtef import get_template_file
 from skytemple_dtef.explorers_dtef import ExplorersDtef, VAR0_FN, VAR2_FN, VAR1_FN
 from skytemple_dtef.explorers_dtef_importer import ExplorersDtefImporter
 from skytemple_files.common.xml_util import prettify
+from skytemple_files.hardcoded.dungeons import SecondaryTerrainTableEntry, HardcodedDungeons
 
 try:
     from PIL import Image
@@ -98,13 +100,15 @@ class TilesetController(AbstractController):
         self._init_rules()
         self._init_rule_icon_views()
         self._init_chunk_picker_icon_view()
+        self._init_secondary_terrain()
         self.builder.connect_signals(self)
+        editor = self.builder.get_object('editor')
         root = self.builder.get_object('editor_root')
         root.set_current_page(self.__class__._last_open_tab_id)
         self.on_editor_root_switch_page(None, None, self.__class__._last_open_tab_id)
         self.builder.get_object('label_tileset_name').set_text(f'Dungeon Tileset {self.item_id} Rules')
         self.builder.get_object('label_tileset_name2').set_text(f'Dungeon Tileset {self.item_id}')
-        return root
+        return editor
 
     def on_editor_root_switch_page(self, w, p, pnum, *args):
         self.__class__._last_open_tab_id = pnum
@@ -277,6 +281,20 @@ class TilesetController(AbstractController):
 
     def on_rules_chunk_picker_selection_changed(self, icon_view: Gtk.IconView):
         pass
+
+    def on_secondary_terrain_type_changed(self, w: Gtk.ComboBox):
+        idx = w.get_active()
+        static = self.module.project.get_rom_module().get_static_data()
+        secondary_terrains = HardcodedDungeons.get_secondary_terrains(
+            self.module.project.get_binary(BinaryName.ARM9), static
+        )
+        secondary_terrains[self.item_id] = SecondaryTerrainTableEntry(idx)
+
+        def update(arm9):
+            HardcodedDungeons.set_secondary_terrains(secondary_terrains, arm9, static)
+        self.module.project.modify_binary(BinaryName.ARM9, update)
+
+        self.mark_as_modified()
 
     def on_rules_main_1_selection_changed(self, icon_view):
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
@@ -476,3 +494,15 @@ class TilesetController(AbstractController):
         image: Gtk.Image = Gtk.Image.new_from_surface(pil_to_cairo_surface(self.dtef.get_tiles()[0].convert('RGBA')))
         box.pack_start(image, True, True, 0)
         box.show_all()
+
+    def _init_secondary_terrain(self):
+        w: Gtk.ComboBox = self.builder.get_object('secondary_terrain_type')
+        s: Gtk.ListStore = w.get_model()
+        for v in SecondaryTerrainTableEntry:
+            s.append([v.value, v.name.capitalize()])
+
+        secondary_terrain = HardcodedDungeons.get_secondary_terrains(
+            self.module.project.get_binary(BinaryName.ARM9), self.module.project.get_rom_module().get_static_data()
+        )[self.item_id]
+        w.set_active(secondary_terrain.value)
+
