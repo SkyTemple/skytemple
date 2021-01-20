@@ -312,8 +312,9 @@ class MonsterController(AbstractController):
             f"10 -> 1.0%,\n"
             f"100 -> 10.0%,\n"
             f"1000 -> 100%, etc.\n\n"
-            f"The first recruit rate is used if the player chose they didn't play Explorers of Time or Darkness during the Personality Test.\n"
-            f"The second rate is used, if the player chose that they played one of those games.",
+            f"If you answered yes to the question asking if you played EoT or EoD in the personality test and you "
+            f"haven't recruited this Pokémon yet, the second recruit rate is used instead.\n"
+            f"If you have recruited this Pokémon already, its recruit rate is halved (only if it's positive).",
             title="Recruit Rate"
         )
         md.run()
@@ -363,6 +364,39 @@ class MonsterController(AbstractController):
             f"Wheher or not you need to have a special item in the bag (mystery part/secret slab) for "
             f"the Pokémon to spawn in dungeons",
             title="Item Required for spawning?"
+        )
+        md.run()
+        md.destroy()
+
+    def on_btn_help_unk21_h_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"If the current $SCENARIO_BALANCE_FLAG value is lower than this number, the pokémon won't spawn in dungeons.",
+            title="Spawn Threshold"
+        )
+        md.run()
+        md.destroy()
+
+    def on_btn_help_weight_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"Affects the damage the pokémon takes when attacked with Grass Knot.",
+            title="Weight"
+        )
+        md.run()
+        md.destroy()
+
+    def on_btn_help_size_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            f"Affects the damage the pokémon takes when attacked with a Sizebust Orb.",
+            title="Size"
         )
         md.run()
         md.destroy()

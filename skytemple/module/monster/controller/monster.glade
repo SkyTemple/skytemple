@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.38.1 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkTreeStore" id="export_dialog_store">
@@ -1302,7 +1302,7 @@ If you choose to export both genders, upon import the matching gender entry will
                       </packing>
                     </child>
                     <child>
-                      <!-- n-columns=2 n-rows=8 -->
+                      <!-- n-columns=3 n-rows=8 -->
                       <object class="GtkGrid">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
@@ -1420,6 +1420,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           <packing>
                             <property name="left-attach">1</property>
                             <property name="top-attach">0</property>
+                            <property name="width">2</property>
                           </packing>
                         </child>
                         <child>
@@ -1444,6 +1445,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           <packing>
                             <property name="left-attach">1</property>
                             <property name="top-attach">2</property>
+                            <property name="width">2</property>
                           </packing>
                         </child>
                         <child>
@@ -1456,6 +1458,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           <packing>
                             <property name="left-attach">1</property>
                             <property name="top-attach">3</property>
+                            <property name="width">2</property>
                           </packing>
                         </child>
                         <child>
@@ -1468,6 +1471,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           <packing>
                             <property name="left-attach">1</property>
                             <property name="top-attach">4</property>
+                            <property name="width">2</property>
                           </packing>
                         </child>
                         <child>
@@ -1480,6 +1484,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           <packing>
                             <property name="left-attach">1</property>
                             <property name="top-attach">5</property>
+                            <property name="width">2</property>
                           </packing>
                         </child>
                         <child>
@@ -1504,6 +1509,47 @@ If you choose to export both genders, upon import the matching gender entry will
                           <packing>
                             <property name="left-attach">1</property>
                             <property name="top-attach">7</property>
+                            <property name="width">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="btn_help_weight">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="valign">center</property>
+                            <signal name="clicked" handler="on_btn_help_weight_clicked" swapped="no"/>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">skytemple-help-about-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="btn_help_size">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="valign">center</property>
+                            <signal name="clicked" handler="on_btn_help_size_clicked" swapped="no"/>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">skytemple-help-about-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">6</property>
                           </packing>
                         </child>
                       </object>
@@ -1887,7 +1933,7 @@ If you choose to export both genders, upon import the matching gender entry will
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
-                            <property name="label" translatable="yes">Unk 21h:</property>
+                            <property name="label" translatable="yes">Spawn Threshold:</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
@@ -1904,7 +1950,6 @@ If you choose to export both genders, upon import the matching gender entry will
                           <packing>
                             <property name="left-attach">1</property>
                             <property name="top-attach">9</property>
-                            <property name="width">2</property>
                           </packing>
                         </child>
                         <child>
@@ -2380,6 +2425,26 @@ If you choose to export both genders, upon import the matching gender entry will
                           <packing>
                             <property name="left-attach">1</property>
                             <property name="top-attach">7</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="btn_help_unk21_h">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="valign">center</property>
+                            <signal name="clicked" handler="on_btn_help_unk21_h_clicked" swapped="no"/>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">skytemple-help-about-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">9</property>
                           </packing>
                         </child>
                         <child>
