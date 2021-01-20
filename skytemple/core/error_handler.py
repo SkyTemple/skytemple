@@ -62,7 +62,7 @@ def show_error_web(exc_info):
                 md.destroy()
 
 
-def display_error(exc_info, error_message, error_title='SkyTemple - Error', window=None):
+def display_error(exc_info, error_message, error_title='SkyTemple - Error', window=None, log=True):
     # In case the current working directory is corrupted. Yes, this may happen.
     try:
         os.getcwd()
@@ -71,7 +71,8 @@ def display_error(exc_info, error_message, error_title='SkyTemple - Error', wind
     if window is None:
         from skytemple.controller.main import MainController
         window = MainController.window()
-    logger.error(error_message, exc_info=exc_info)
+    if log:
+        logger.error(error_message, exc_info=exc_info)
     md = SkyTempleMessageDialog(window,
                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
                                 Gtk.ButtonsType.OK,
