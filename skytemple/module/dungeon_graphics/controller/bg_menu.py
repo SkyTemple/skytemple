@@ -291,27 +291,31 @@ class BgMenuController:
         self.parent.builder.get_object('palette_animation11_enabled').set_active(self.parent.dpla.has_for_palette(0))
         self.parent.builder.get_object('palette_animation12_enabled').set_active(self.parent.dpla.has_for_palette(1))
 
-        self.parent.builder.get_object(f'palette_animation11_frame_time').set_text(str(self.parent.dpla.get_duration_for_palette(0)))
-        self.parent.builder.get_object(f'palette_animation12_frame_time').set_text(str(self.parent.dpla.get_duration_for_palette(1)))
+        for aidx, offset in (11, 0), (12, 16):
+            for cidx in range(0, 16):
+                self.parent.builder.get_object(f'palette_animation{aidx}_frame_time{cidx}').set_text(
+                    str(self.parent.dpla.durations_per_frame_for_colors[offset + cidx])
+                )
 
         response = dialog.run()
         dialog.hide()
 
         if response == Gtk.ResponseType.OK:
             had_errors = False
-            for palid, enabled, frame_time in ((0, 'palette_animation11_enabled', 'palette_animation11_frame_time'), (1, 'palette_animation12_enabled', 'palette_animation12_frame_time')):
-                if self.parent.builder.get_object(enabled).get_active():
+            for palid, aidx, offset in ((0, 11, 0), (1, 12, 16)):
+                if self.parent.builder.get_object(f'palette_animation{aidx}_enabled').get_active():
                     # Has palette animations!
                     self.parent.dpla.enable_for_palette(palid)
                 else:
                     # Doesn't have
                     self.parent.dpla.disable_for_palette(palid)
-                try:
-                    time = int(self.parent.builder.get_object(frame_time).get_text())
-                except:
-                    time = 0
-                    had_errors = True
-                self.parent.dpla.set_duration_for_palette(palid, time)
+                for cidx in range(0, 16):
+                    try:
+                        time = int(self.parent.builder.get_object(f'palette_animation{aidx}_frame_time{cidx}').get_text())
+                    except:
+                        time = 0
+                        had_errors = True
+                    self.parent.dpla.durations_per_frame_for_colors[offset + cidx] = time
 
             if had_errors:
                 md = SkyTempleMessageDialog(MainController.window(),
