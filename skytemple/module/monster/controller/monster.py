@@ -108,7 +108,8 @@ class MonsterController(AbstractController):
         self.__class__._last_open_tab_id = page_num
         if self._render_graph_on_tab_change:
             self._render_graph_on_tab_change = False
-            self._level_up_controller.render_graph()
+            if self._level_up_controller is not None:
+                self._level_up_controller.render_graph()
 
     def on_draw_portrait_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
         scale = 2
