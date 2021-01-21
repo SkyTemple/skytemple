@@ -36,6 +36,8 @@ from skytemple_files.script.ssa_sse_sss.position import ACTOR_DEFAULT_HITBOX_W, 
 
 ALPHA_T = 0.3
 COLOR_ACTORS = (1.0, 0, 1.0)
+COLOR_WHITE = (1.0, 1.0, 1.0)
+COLOR_BLACK = (0, 0, 0)
 COLOR_OBJECTS = (1.0, 0.627, 0)
 COLOR_PERFORMER = (0, 1.0, 1.0)
 COLOR_EVENTS = (0, 0, 1.0)
@@ -173,6 +175,31 @@ class Drawer:
         x, y, w, h = self._handle_drag_and_place_modes()
         self.selection_plugin.set_size(w, h)
         self.selection_plugin.draw(ctx, size_w, size_h, x, y, ignore_obb=True)
+
+        # Position
+        ctx.scale(1 / self.scale, 1 / self.scale)
+        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.set_source_rgb(*COLOR_WHITE)
+        ctx.set_font_size(18)
+        try:
+            sw: Gtk.ScrolledWindow = self.draw_area.get_parent().get_parent().get_parent()
+            s = sw.get_allocated_size()
+            ctx.move_to(sw.get_hadjustment().get_value() + 30, s[0].height + sw.get_vadjustment().get_value() - 30)
+            if self._selected__drag is not None:
+                sx, sy = self.get_current_drag_entity_pos()
+            else:
+                sx, sy = self._snap_pos(self.mouse_x, self.mouse_y)
+            sx /= BPC_TILE_DIM
+            sy /= BPC_TILE_DIM
+            ctx.text_path(f"X: {sx}, Y: {sy}")
+            ctx.set_source_rgb(*COLOR_BLACK)
+            ctx.set_line_width(0.3)
+            ctx.set_source_rgb(*COLOR_WHITE)
+            ctx.fill_preserve()
+            ctx.stroke()
+        except BaseException:
+            pass
+
         return True
 
     def selection_draw_callback(self, ctx: cairo.Context, x: int, y: int):
