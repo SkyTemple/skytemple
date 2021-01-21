@@ -26,7 +26,11 @@ RequestExecutionLevel admin
 Name "${PRODUCT_NAME} - ${PRODUCT_VERSION}"
 Icon "skytemple.ico"
 OutFile "skytemple-${PRODUCT_VERSION}-install.exe"
+!ifdef THIRTY_TWO
+InstallDir "$PROGRAMFILES32\${PRODUCT_NAME}"
+!else
 InstallDir "$PROGRAMFILES64\${PRODUCT_NAME}"
+!endif
 ShowInstDetails show
 
 Section "install"

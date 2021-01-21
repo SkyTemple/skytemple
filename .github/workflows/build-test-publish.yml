@@ -62,7 +62,7 @@ jobs:
   package-windows:
     needs: build
     runs-on: windows-2019
-    name: Build and package for Windows
+    name: Build and package for Windows 64bit
     steps:
       - name: Install MSys2 and dependencies
         uses: msys2/setup-msys2@v2
@@ -132,7 +132,81 @@ jobs:
           name: skytemple-windows-app
           path: |
             installer/skytemple-*-install.exe
+  package-windows-x86:
+    needs: build
+    runs-on: windows-2019
+    name: Build and package for Windows 32bit
+    steps:
+      - name: Install MSys2 and dependencies
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          msystem: MINGW32
+          install: >-
+            mingw-w64-i686-curl
+            git
+            unzip
+            mingw-w64-i686-python
+            mingw-w64-i686-python-pip
+            mingw-w64-i686-gtksourceview3
+            mingw-w64-i686-python-pillow
+            mingw-w64-i686-enchant
+            mingw-w64-i686-hunspell-en
+            mingw-w64-i686-python-cairo
+            mingw-w64-i686-gtk3
+            mingw-w64-i686-python3-gobject
+            mingw-w64-i686-python-cffi
+            mingw-w64-i686-hunspell
+            mingw-w64-i686-hunspell-en
+            mingw-w64-i686-openssl
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Rewrite version for dev if not tag
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        shell: msys2 {0}
+        run: |
+          perl -i -pe "s/__version__\s*=\s*'(.*?)(rc.*|a.*|post.*)?'/__version__='\1.dev${GITHUB_SHA::8}'/" setup.py
+          echo "IS_DEV_BUILD=1" >> $GITHUB_ENV
+      - name: Note version
+        shell: msys2 {0}
+        run: |
+          echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
+      - name: Install and package
+        shell: msys2 {0}
+        run: |
+          cd installer
 
+          # Download armips and other binary depedencies
+          ./download-windows-dependencies-x86.sh
+
+          # Download and prepare the Arc theme
+          curl https://skytemple.org/build_deps/Arc.zip -O
+          unzip Arc.zip
+
+          # Install NSIS
+          curl https://skytemple.org/build_deps/nsis.zip -O
+          unzip -o nsis.zip -d "/c/Program Files (x86)/NSIS"
+
+          # Install PyInstaller
+          pip3 install pyinstaller
+
+          # Package
+          ./build-windows.sh $PACKAGE_VERSION
+        env:
+          SKYTEMPLE_BUILD_ARCH: "32"
+
+      - name: Create installer
+        uses: joncloud/makensis-action@v3.4
+        with:
+          script-file: installer/skytemple.nsi
+          arguments: "/DPRODUCT_VERSION=${{ env.PACKAGE_VERSION }} /DTHIRTY_TWO=1"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: skytemple-windows-app
+          path: |
+            installer/skytemple-*-install-32bit.exe
   package-mac:
     needs: build
     runs-on: macos-10.15

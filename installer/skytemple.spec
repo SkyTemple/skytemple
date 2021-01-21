@@ -6,6 +6,8 @@ from pathlib import PurePosixPath, Path
 pkg_path = os.path.abspath(os.path.join('..', 'skytemple'))
 site_packages = next(p for p in sys.path if 'site-packages' in p)
 
+ARCH = os.getenv("SKYTEMPLE_BUILD_ARCH", "64")
+
 additional_files = []
 additional_datas = [
     (os.path.join(pkg_path, 'data'), 'data'),
@@ -27,15 +29,15 @@ additional_datas = [
     (os.path.join(site_packages, "cairosvg", "VERSION"), "cairosvg"),
     (os.path.join(site_packages, "pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "share", "hunspell", "*"), 'share/hunspell'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, "share", "hunspell", "*"), 'share/hunspell'),
 
     # These aren't auto dectected for some reason :(
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'fontconfig'), 'share/fontconfig'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'glib-2.0'), 'share/glib-2.0'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'gtksourceview-3.0'), 'share/gtksourceview-3.0'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'icons'), 'share/icons'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'locale'), 'share/locale'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", 'share', 'themes'), 'share/themes'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, 'share', 'fontconfig'), 'share/fontconfig'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, 'share', 'glib-2.0'), 'share/glib-2.0'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, 'share', 'gtksourceview-3.0'), 'share/gtksourceview-3.0'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, 'share', 'icons'), 'share/icons'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, 'share', 'locale'), 'share/locale'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, 'share', 'themes'), 'share/themes'),
 
     # Themes
     ('Arc', 'share/themes/Arc'),
@@ -53,13 +55,13 @@ additional_binaries = [
     (os.path.join(site_packages, "desmume", "libdesmume.dll"), "."),
     (os.path.join(site_packages, "desmume", "SDL.dll"), "."),
     (os.path.join(site_packages, "skytemple_tilequant", "aikku", "libtilequant.dll"), "skytemple_tilequant/aikku"),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libenchant-2.dll"), 'enchant/data/mingw64/bin'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libglib-2.0-0.dll"), 'enchant/data/mingw64/bin'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libgmodule-2.0-0.dll"), 'enchant/data/mingw64/bin'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "lib", "enchant-2", "enchant_hunspell.dll"), 'lib/enchant-2'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libhunspell-1.7-0.dll"), '.'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libcrypto-1_1-x64.dll"), '.'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", "mingw64", "bin", "libssl-1_1-x64.dll"), '.'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, "bin", "libenchant-2.dll"), f'enchant/data/mingw{ARCH}/bin'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, "bin", "libglib-2.0-0.dll"), f'enchant/data/mingw{ARCH}/bin'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, "bin", "libgmodule-2.0-0.dll"), f'enchant/data/mingw{ARCH}/bin'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, "lib", "enchant-2", "enchant_hunspell.dll"), 'lib/enchant-2'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, "bin", "libhunspell-1.7-0.dll"), '.'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, "bin", f"libcrypto-1_1-x{ARCH}.dll"), '.'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys" + ARCH, "mingw" + ARCH, "bin", f"libssl-1_1-x{ARCH}.dll"), '.'),
 ]
 
 block_cipher = None
