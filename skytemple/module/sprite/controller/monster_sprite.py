@@ -15,8 +15,10 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import os
 import sys
 from typing import TYPE_CHECKING
+from xml.etree import ElementTree
 
 import cairo
 
@@ -45,12 +47,15 @@ FPS = 30
 
 
 class MonsterSpriteController(AbstractController):
-    def __init__(self, module: 'SpriteModule', item_id: int, mark_as_modified_cb, assign_new_sprite_id_cb):
+    def __init__(self, module: 'SpriteModule', item_id: int,
+                 mark_as_modified_cb, assign_new_sprite_id_cb, get_shadow_size_cb, set_shadow_size_cb):
         self.module = module
         self.item_id = item_id
         self._sprite_provider = self.module.get_sprite_provider()
         self._mark_as_modified_cb = mark_as_modified_cb
         self._assign_new_sprite_id_cb = assign_new_sprite_id_cb
+        self._get_shadow_size_cb = get_shadow_size_cb
+        self._set_shadow_size_cb = set_shadow_size_cb
         self._frame_counter = 0
         self._anim_counter = 0
         self._drawing_is_active = 0
@@ -128,8 +133,14 @@ Warning: SkyTemple does not validate the files you import.""")
                 ground = self.module.get_monster_ground_sprite_chara(self.item_id)
                 attack = self.module.get_monster_attack_sprite_chara(self.item_id)
                 merged = FileType.WAN.CHARA.merge_wan(monster, ground, attack)
+                merged.sdwSize = self._get_shadow_size_cb()
+                try:
+                    animation_names = self.module.project.get_rom_module().get_static_data().animation_names[self.item_id]
+                except KeyError:
+                    # Fall back to Bulbasaur
+                    animation_names = self.module.project.get_rom_module().get_static_data().animation_names[0]
                 FileType.WAN.CHARA.export_sheets(
-                    fn, merged, self.module.project.get_rom_module().get_static_data().animation_names[self.item_id]
+                    fn, merged, animation_names
                 )
 
                 md = SkyTempleMessageDialog(MainController.window(),
@@ -198,6 +209,11 @@ Warning: SkyTemple does not validate the files you import.""")
                 self.module.save_monster_monster_sprite(item_id, monster)
                 self.module.save_monster_ground_sprite(item_id, ground)
                 self.module.save_monster_attack_sprite(item_id, attack)
+
+                # Shadow size
+                tree = ElementTree.parse(os.path.join(fn, 'AnimData.xml'))
+                self._set_shadow_size_cb(int(tree.getroot().find('ShadowSize').text))
+
                 cb()
                 self._mark_as_modified_cb()
                 MainController.reload_view()

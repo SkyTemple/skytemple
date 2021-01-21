@@ -76,9 +76,13 @@ class SpriteModule(AbstractModule):
 
         recursive_generate_item_store_row_label(self._tree_model[root])
 
-    def get_monster_sprite_editor(self, sprite_id: int, modified_callback, assign_new_sprite_id_cb) -> Gtk.Widget:
+    def get_monster_sprite_editor(self, sprite_id: int,
+                                  modified_callback, assign_new_sprite_id_cb,
+                                  get_shadow_size_cb, set_shadow_size_cb) -> Gtk.Widget:
         """Returns the view for one portrait slots"""
-        controller = MonsterSpriteController(self, sprite_id, modified_callback, assign_new_sprite_id_cb)
+        controller = MonsterSpriteController(self, sprite_id,
+                                             modified_callback, assign_new_sprite_id_cb,
+                                             get_shadow_size_cb, set_shadow_size_cb)
         return controller.get_view()
 
     def get_object_sprite_raw(self, filename):

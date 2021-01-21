@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import logging
 from typing import List, Dict, Optional, Tuple
 from xml.etree.ElementTree import Element
 
@@ -32,7 +33,7 @@ from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry
 from skytemple_files.data.tbl_talk.model import TblTalk, TalkType
-from skytemple_files.data.md.model import Md, MdEntry, NUM_ENTITIES
+from skytemple_files.data.md.model import Md, MdEntry, NUM_ENTITIES, ShadowSize
 from skytemple_files.data.monster_xml import monster_xml_import
 from skytemple_files.data.waza_p.model import WazaP
 from skytemple_files.graphics.kao.model import KaoImage, SUBENTRIES, Kao
@@ -44,6 +45,7 @@ WAZA_P_BIN = 'BALANCE/waza_p.bin'
 WAZA_P2_BIN = 'BALANCE/waza_p2.bin'
 PORTRAIT_FILE = 'FONT/kaomado.kao'
 TBL_TALK_FILE = 'MESSAGE/tbl_talk.tlk'
+logger = logging.getLogger(__name__)
 
 class MonsterModule(AbstractModule):
     """Module to edit the monster.md and other Pokémon related data."""
@@ -167,10 +169,18 @@ class MonsterModule(AbstractModule):
         def set_new_sprite_id(new_sprite_id):
             self.get_entry(item_id).sprite_index = new_sprite_id
 
+        def set_shadow_size(shadow_size_id):
+            try:
+                self.get_entry(item_id).shadow_size = ShadowSize(shadow_size_id)
+            except BaseException as ex:
+                logger.warning("Failed to set shadow size", exc_info=ex)
+
         v = self.project.get_module('sprite').get_monster_sprite_editor(
             sprite_id,
             lambda: self.mark_md_as_modified(item_id),
-            set_new_sprite_id
+            set_new_sprite_id,
+            lambda: self.get_entry(item_id).shadow_size.value,
+            set_shadow_size
         )
         v.show_all()
         return v
