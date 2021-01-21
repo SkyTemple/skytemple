@@ -280,10 +280,15 @@ class MainController:
             project = RomProject.get_current()
             rom_module = project.get_rom_module()
             rom_module.load_rom_data()
+            
+            # Initialize patch-specific properties for this rom project
+            project.init_patch_properties()
+            
             logger.info(f'Loaded ROM {project.filename} ({rom_module.get_static_data().game_edition})')
             rom_module.load_tree_items(self._item_store, None)
             root_node = rom_module.get_root_node()
 
+            
             # Tell the debugger
             self._debugger_manager.handle_project_change()
 

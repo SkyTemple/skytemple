@@ -950,7 +950,7 @@ class MonsterController(AbstractController):
                 return
             with self._monster_bin as sprites:
                 sprite_bin = sprites[self.entry.sprite_index]
-                sprite = FileType.WAN.deserialize(FileType.PKDPX.deserialize(sprite_bin).decompress())
+                sprite = FileType.WAN.deserialize(FileType.COMMON_AT.deserialize(sprite_bin).decompress())
             sprite_size_table = self.module.get_pokemon_sprite_data_table()
             check_value = sprite_size_table[self.entry.md_index_base].sprite_tile_slots
             max_tile_slots_needed = max(

@@ -353,7 +353,7 @@ class SpriteProvider:
 
     def _load_sprite_from_bin_pack(self, bin_pack: BinPack, file_id) -> Wan:
         # TODO: Support of bin_pack item management via the RomProject instead?
-        return FileType.WAN.deserialize(FileType.PKDPX.deserialize(bin_pack[file_id]).decompress())
+        return FileType.WAN.deserialize(FileType.COMMON_AT.deserialize(bin_pack[file_id]).decompress())
 
     def _load_sprite_from_rom(self, path: str) -> ModelContext[Wan]:
         return self._project.open_file_in_rom(path, FileType.WAN, threadsafe=True)
