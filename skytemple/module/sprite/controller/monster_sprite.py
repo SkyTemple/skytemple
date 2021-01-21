@@ -76,8 +76,11 @@ in the gfxcrunch format and edit them manually.
 Warning: SkyTemple does not validate the files you import.""")
         self.builder.connect_signals(self)
 
-        self._load_frames()
-        self.start_sprite_drawing()
+        try:
+            self._load_frames()
+            self.start_sprite_drawing()
+        except BaseException as ex:
+            logger.error("Failed rendering sprite preview", exc_info=ex)
 
         return self.builder.get_object('main_box')
 
@@ -103,6 +106,8 @@ Warning: SkyTemple does not validate the files you import.""")
         return self._drawing_is_active
 
     def on_draw_sprite_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
+        if not self._drawing_is_active:
+            return True
         scale = 4
         sprite, x, y, w, h = self._get_sprite_anim()
         ctx.scale(scale, scale)
