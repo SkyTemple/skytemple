@@ -119,6 +119,8 @@ def open_dir(directory):
 
 
 def version():
+    if os.path.exists(os.path.abspath(os.path.join(data_dir(), '..', '..', '.git'))):
+        return 'dev'
     try:
         return pkg_resources.get_distribution("skytemple").version
     except pkg_resources.DistributionNotFound:
