@@ -109,7 +109,11 @@ class MonsterController(AbstractController):
         if self._render_graph_on_tab_change:
             self._render_graph_on_tab_change = False
             if self._level_up_controller is not None:
-                self._level_up_controller.render_graph()
+                try:
+                    self._level_up_controller.render_graph()
+                except AttributeError:
+                    # ??? Sometimes it's None but still runs into here?
+                    pass
 
     def on_draw_portrait_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
         scale = 2
