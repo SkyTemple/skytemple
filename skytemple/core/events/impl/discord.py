@@ -250,28 +250,31 @@ class DiscordPresence(AbstractListener):
         self._update_current_presence()
 
     def _update_current_presence(self):
-        if self.current_presence == 'main':
-            self._update_presence(
-                state=self.module_state,
-                details=self.module_info,
-                start=self.start,
-                large_text=self.rom_name
-            )
-        elif self.current_presence == 'debugger':
-            self._update_presence(
-                state=self.debugger_script_name,
-                details="In the debugger" if self.debugger_script_name is None else "Editing script",
-                start=self.start,
-                large_text=self.rom_name,
-                small_image="bug"
-            )
-        else:  # idle
-            self._update_presence(
-                state=None,
-                details="Idle",
-                start=None,
-                large_text=self.rom_name
-            )
+        try:
+            if self.current_presence == 'main':
+                self._update_presence(
+                    state=self.module_state,
+                    details=self.module_info,
+                    start=self.start,
+                    large_text=self.rom_name
+                )
+            elif self.current_presence == 'debugger':
+                self._update_presence(
+                    state=self.debugger_script_name,
+                    details="In the debugger" if self.debugger_script_name is None else "Editing script",
+                    start=self.start,
+                    large_text=self.rom_name,
+                    small_image="bug"
+                )
+            else:  # idle
+                self._update_presence(
+                    state=None,
+                    details="Idle",
+                    start=None,
+                    large_text=self.rom_name
+                )
+        except BaseException as ex:
+            logger.error("Updating the presence failed: ", exc_info=ex)
 
     def _update_presence(
             self, state, details, start,
