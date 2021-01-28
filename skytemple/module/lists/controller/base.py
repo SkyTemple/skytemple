@@ -141,13 +141,14 @@ class ListBaseController(AbstractController, ABC):
         for tree in trees:
             model: Gtk.ListStore = tree.get_model()
             self._loading = True
-            for entry in model:
-                # If the color is orange, this is a spcial actor and we render a placeholder instead.
-                # TODO: it's a bit weird doing this over the color
-                entry[self._get_store_icon_id()] = self._get_icon(
-                    entry[self._get_store_entid_id()], int(entry[0]),
-                    entry[8] == ORANGE if self.can_be_placeholder() else False
-                )
+            if model is not None:
+                for entry in model:
+                    # If the color is orange, this is a spcial actor and we render a placeholder instead.
+                    # TODO: it's a bit weird doing this over the color
+                    entry[self._get_store_icon_id()] = self._get_icon(
+                        entry[self._get_store_entid_id()], int(entry[0]),
+                        entry[8] == ORANGE if self.can_be_placeholder() else False
+                    )
         self._loading = False
         self._refresh_timer = None
 
