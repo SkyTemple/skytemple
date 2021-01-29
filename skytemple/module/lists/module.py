@@ -24,6 +24,8 @@ from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, ge
 from skytemple.module.lists.controller.main import MainController, GROUND_LISTS
 from skytemple.module.lists.controller.actor_list import ActorListController
 from skytemple.module.lists.controller.rank_list import RankListController
+from skytemple.module.lists.controller.menu_list import MenuListController
+from skytemple.module.lists.controller.item_lists import ItemListsController
 from skytemple.module.lists.controller.starters_list import StartersListController
 from skytemple.module.lists.controller.recruitment_list import RecruitmentListController
 from skytemple.module.lists.controller.world_map import WorldMapController
@@ -33,10 +35,13 @@ from skytemple_files.hardcoded.personality_test_starters import HardcodedPersona
 from skytemple_files.hardcoded.default_starters import HardcodedDefaultStarters
 from skytemple_files.hardcoded.rank_up_table import Rank, HardcodedRankUpTable
 from skytemple_files.hardcoded.recruitment_tables import HardcodedRecruitmentTables
+from skytemple_files.hardcoded.menus import HardcodedMenus, MenuEntry, MenuType
 from skytemple_files.list.actor.model import ActorListBin
+from skytemple_files.list.items.handler import ItemListHandler
+from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList
 
+ITEM_LISTS = 'TABLEDAT/list_%02d.bin'
 ACTOR_LIST = 'BALANCE/actor_list.bin'
-
 
 class ListsModule(AbstractModule):
     """Module to modify lists."""
@@ -57,6 +62,8 @@ class ListsModule(AbstractModule):
         self._recruitment_tree_iter = None
         self._world_map_tree_iter = None
         self._rank_list_tree_iter = None
+        self._menu_list_tree_iter = None
+        self._item_lists_tree_iter = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
@@ -77,20 +84,42 @@ class ListsModule(AbstractModule):
         self._rank_list_tree_iter = item_store.append(root, [
             'skytemple-view-list-symbolic', 'Rank List', self, RankListController, 0, False, '', True
         ])
+        self._item_lists_tree_iter = item_store.append(root, [
+            'skytemple-view-list-symbolic', 'Item Lists', self, ItemListsController, 0, False, '', True
+        ])
+        self._menu_list_tree_iter = item_store.append(root, [
+            'skytemple-view-list-symbolic', 'Menu List', self, MenuListController, 0, False, '', True
+        ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])
         generate_item_store_row_label(item_store[self._starters_tree_iter])
         generate_item_store_row_label(item_store[self._recruitment_tree_iter])
         generate_item_store_row_label(item_store[self._world_map_tree_iter])
         generate_item_store_row_label(item_store[self._rank_list_tree_iter])
+        generate_item_store_row_label(item_store[self._menu_list_tree_iter])
+        generate_item_store_row_label(item_store[self._item_lists_tree_iter])
         self._tree_model = item_store
 
+    def has_item_lists(self):
+        return self.project.file_exists(ITEM_LISTS%0)
+
+    def get_item_list(self, list_id) -> MappaItemList:
+        static_data = self.project.get_rom_module().get_static_data()
+        return self.project.open_file_in_rom(ITEM_LISTS%list_id, ItemListHandler, items=static_data.dungeon_data.items)
+    
+    def mark_item_list_as_modified(self, list_id):
+        """Mark as modified"""
+        self.project.mark_as_modified(ITEM_LISTS%list_id)
+        # Mark as modified in tree
+        row = self._tree_model[self._item_lists_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+    
     def has_actor_list(self):
         return self.project.file_exists(ACTOR_LIST)
 
     def get_actor_list(self) -> ActorListBin:
         return self.project.open_sir0_file_in_rom(ACTOR_LIST, ActorListBin)
-
+    
     def mark_actors_as_modified(self):
         """Mark as modified"""
         self.project.mark_as_modified(ACTOR_LIST)
@@ -225,3 +254,24 @@ class ListsModule(AbstractModule):
 
         row = self._tree_model[self._rank_list_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
+    
+    def get_menu(self, menu_id) -> List[MenuEntry]:
+        """Returns the rank up table."""
+        binary = self.project.get_binary(MenuType(menu_id).binary)
+        static_data = self.project.get_rom_module().get_static_data()
+        return HardcodedMenus.get_menu(MenuType(menu_id), binary, static_data)
+
+    def set_menu(self, menu_id, values: List[MenuEntry]):
+        """Sets the rank up table."""
+        def update(binary):
+            static_data = self.project.get_rom_module().get_static_data()
+            HardcodedMenus.set_menu(MenuType(menu_id), values, binary, static_data)
+        
+        self.project.modify_binary(MenuType(menu_id).binary, update)
+
+        row = self._tree_model[self._menu_list_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+    
+    def mark_string_as_modified(self):
+        """Mark as modified"""
+        self.project.get_string_provider().mark_as_modified()
