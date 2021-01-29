@@ -179,7 +179,9 @@ class SsaController(AbstractController):
             if selected is not None:
                 tree, l_iter = self._get_list_tree_and_iter_for(selected)
                 self._selected_by_map_click = True
-                tree.get_selection().select_iter(l_iter)
+                if l_iter is not None:
+                    # This really shouldn't be None but okay?
+                    tree.get_selection().select_iter(l_iter)
                 self._selected_by_map_click = False
 
         self._w_ssa_draw.queue_draw()
