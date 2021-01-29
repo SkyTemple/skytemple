@@ -70,8 +70,10 @@ class StringsController(AbstractController):
         return self.builder.get_object('main_box')
 
     def on_cr_string_edited(self, widget, path, text):
+        idx = self._filter[path][0] - 1
+        logger.debug(f'String edited - {idx} - {path} - {self._str.strings[idx]} -> {text}')
         self._filter[path][1] = text
-        self._str.strings[self._filter[path][0] - 1] = text
+        self._str.strings[idx] = text
         self.module.mark_as_modified(self.filename)
 
     def refresh_cats(self):
