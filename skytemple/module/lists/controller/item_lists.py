@@ -22,6 +22,7 @@ from gi.repository import Gtk
 
 from functools import partial, reduce
 from math import gcd
+from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.string_provider import StringType
 from skytemple.core.message_dialog import SkyTempleMessageDialog

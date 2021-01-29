@@ -21,6 +21,8 @@ from typing import TYPE_CHECKING, Optional, List
 from gi.repository import Gtk
 
 from skytemple.core.module_controller import AbstractController
+from skytemple.controller.main import MainController
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.string_provider import StringType
 from skytemple_files.hardcoded.menus import MenuEntry, MenuType
 
@@ -71,6 +73,22 @@ class MenuListController(AbstractController):
         cb: Gtk.ComboBoxText = self.builder.get_object('cb_menu')
 
         return cb_store[cb.get_active_iter()][0]
+
+    def on_btn_help_clicked(self, *args):
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK,
+                                    "Menus are hardcoded so you can't add any option, but you can edit a few things.\n"
+                                    "However, there are some rules: \n"
+                                    " - Only the Game Main & Sub menus can have descriptions. \n"
+                                    " - The action code tells the game what to do when selecting this menu. \n"
+                                    "The meaning of the code values depends on the menu. \n"
+                                    "It is also used to determine if a menu should be disabled (or hidden in the main menu).\n"
+                                    " - The end of the menu is detected by the game with an entry in which the Name ID is set to 0. \n"
+                                    "Also, the action code of that entry is used when pressing the B button (if the game allows it for this menu). \n"
+                                    " - Editing a string with a specific ID will result of all strings using that ID to be changed. ")
+        md.run()
+        md.destroy()
 
     def on_lang_changed(self, *args):
         cb_store: Gtk.ListStore = self.builder.get_object('cb_store_lang')
