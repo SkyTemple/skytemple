@@ -1,4 +1,4 @@
-__version__ = '1.1.1'
+__version__ = '1.1.2'
 import os
 
 from setuptools import setup, find_packages
@@ -31,14 +31,14 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files >= 1.1.1',
+        'skytemple-files >= 1.1.2',
         'skytemple-dtef >= 1.1.1',
         'skytemple-icons >= 1.1.0',
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
         'tilequant >= 0.4.0',
-        'skytemple-ssb-debugger >= 1.1.0',
+        'skytemple-ssb-debugger >= 1.1.2',
         'pygal >= 2.4.0',
         'CairoSVG >= 2.4.2'
     ],
