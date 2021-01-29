@@ -78,7 +78,12 @@ class DebuggerManager:
 
     def is_opened(self):
         """Returns whether or not the debugger is opened."""
-        return self._context is not None
+        should_be_opened = self._context is not None
+        if should_be_opened:
+            if self._opened_main_window not in Gtk.Window.list_toplevels():
+                self.on_close()
+                return False
+        return should_be_opened
 
     def handle_project_change(self):
         """
