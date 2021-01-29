@@ -1,4 +1,4 @@
-__version__ = '1.1.2'
+__version__ = '1.1.2.post0'
 import os
 
 from setuptools import setup, find_packages
@@ -31,7 +31,7 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files >= 1.1.2',
+        'skytemple-files >= 1.1.2.post0',
         'skytemple-dtef >= 1.1.1',
         'skytemple-icons >= 1.1.0',
         'pygobject >= 3.26.0',
