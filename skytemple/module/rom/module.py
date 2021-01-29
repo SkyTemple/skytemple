@@ -39,6 +39,7 @@ class RomModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         """Main ROM metadata management module."""
         self.project = rom_project
+        self._item_store = None
         self._root_node: Optional[TreeIter] = None
         self._static_data: Optional[Pmd2Data] = None
         self._rom = Optional[NintendoDSRom]
@@ -54,11 +55,16 @@ class RomModule(AbstractModule):
         return self._root_node
 
     def load_tree_items(self, item_store: TreeStore, root_node: TreeIter):
+        self._item_store = item_store
         self._root_node = item_store.append(root_node, [
             'skytemple-e-rom-symbolic', os.path.basename(self.project.filename), self,
             MainController, 0, False, '', True
         ])
         generate_item_store_row_label(item_store[self._root_node])
+
+    def update_filename(self):
+        self._item_store[self._root_node][1] = os.path.basename(self.project.filename)
+        generate_item_store_row_label(self._item_store[self._root_node])
 
     def load_rom_data(self):
         self._static_data = self.project.load_rom_data()

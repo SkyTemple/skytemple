@@ -222,6 +222,11 @@ class MainController:
         if response == Gtk.ResponseType.ACCEPT:
             project.filename = fn
             self._save(True)
+            project.get_rom_module().update_filename()
+
+            self._update_recent_files(fn)
+
+            self.reload_view()
 
     def on_open_more_clicked(self, button: Button):
         """Dialog to open a file"""
@@ -566,14 +571,7 @@ class MainController:
             logger.debug(f'Opening {filename}.')
             RomProject.open(filename, self)
             # Add to the list of recent files and save
-            new_recent_files = []
-            for rf in self.recent_files:
-                if rf != filename and rf not in new_recent_files:
-                    new_recent_files.append(rf)
-            new_recent_files.insert(0, filename)
-            self.recent_files = new_recent_files
-            self.settings.set_recent_files(self.recent_files)
-            # TODO: Update recent files store too!
+            self._update_recent_files(filename)
             # Show loading spinner
             self._loading_dialog.run()
 
@@ -690,20 +688,23 @@ class MainController:
 
     def _init_window_before_view_load(self, node: TreeModelRow):
         """Update the subtitle / breadcrumb before switching views"""
-        bc = ""
-        parent = node
-        bc_array = []
-        while parent:
-            bc = f" > {parent[6]}" + bc
-            bc_array.append(parent[6])
-            parent = parent.parent
-        bc = bc[3:]
-        self._current_breadcrumbs = bc_array
-        self.window.get_titlebar().set_subtitle(bc)
+        try:
+            bc = ""
+            parent = node
+            bc_array = []
+            while parent:
+                bc = f" > {parent[6]}" + bc
+                bc_array.append(parent[6])
+                parent = parent.parent
+            bc = bc[3:]
+            self._current_breadcrumbs = bc_array
+            self.window.get_titlebar().set_subtitle(bc)
 
-        # Check if files are modified
-        if RomProject.get_current().has_modifications():
-            self._set_title(os.path.basename(RomProject.get_current().filename), True)
+            # Check if files are modified
+            if RomProject.get_current().has_modifications():
+                self._set_title(os.path.basename(RomProject.get_current().filename), True)
+        except BaseException as ex:
+            logger.warning("Failed updating window titles.", exc_info=ex)
 
     def _set_title(self, rom_name, is_modified):
         # TODO: Titlebar for Non-CSD situation
@@ -791,3 +792,13 @@ class MainController:
         except BaseException:
             # We are not crashing over some images...
             pass
+
+    def _update_recent_files(self, fn):
+        new_recent_files = []
+        for rf in self.recent_files:
+            if rf != fn and rf not in new_recent_files:
+                new_recent_files.append(rf)
+        new_recent_files.insert(0, fn)
+        self.recent_files = new_recent_files
+        self.settings.set_recent_files(self.recent_files)
+        # TODO Update recent files store too!
