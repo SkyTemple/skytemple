@@ -23,6 +23,9 @@ import pkg_resources
 from gi.repository import Gtk
 from gi.repository.Gio import AppInfo
 from gi.repository.Gtk import TreeModelRow
+from skytemple_files.common.i18n_util import _
+
+APP = 'skytemple'
 
 
 def recursive_up_item_store_mark_as_modified(row: TreeModelRow, modified=True):
@@ -55,20 +58,20 @@ def recursive_generate_item_store_row_label(row: TreeModelRow):
 
 def add_dialog_file_filters(dialog):
         filter_nds = Gtk.FileFilter()
-        filter_nds.set_name("Nintendo DS ROMs (*.nds)")
+        filter_nds.set_name(_("Nintendo DS ROMs (*.nds)"))
         filter_nds.add_mime_type("application/x-nintendo-ds-rom")
         filter_nds.add_pattern("*.nds")
         dialog.add_filter(filter_nds)
 
         filter_any = Gtk.FileFilter()
-        filter_any.set_name("Any files")
+        filter_any.set_name(_("Any files"))
         filter_any.add_pattern("*")
         dialog.add_filter(filter_any)
 
 
 def add_dialog_gif_filter(dialog):
         filter = Gtk.FileFilter()
-        filter.set_name("GIF image (*.gif)")
+        filter.set_name(_("GIF image (*.gif)"))
         filter.add_mime_type("image/gif")
         filter.add_pattern("*.gif")
         dialog.add_filter(filter)
@@ -76,7 +79,7 @@ def add_dialog_gif_filter(dialog):
 
 def add_dialog_png_filter(dialog):
         filter = Gtk.FileFilter()
-        filter.set_name("PNG image (*.png)")
+        filter.set_name(_("PNG image (*.png)"))
         filter.add_mime_type("image/png")
         filter.add_pattern("*.png")
         dialog.add_filter(filter)
@@ -84,7 +87,7 @@ def add_dialog_png_filter(dialog):
 
 def add_dialog_xml_filter(dialog):
         filter = Gtk.FileFilter()
-        filter.set_name("XML document (*.xml)")
+        filter.set_name(_("XML document (*.xml)"))
         filter.add_mime_type("application/xml")
         filter.add_pattern("*.xml")
         dialog.add_filter(filter)
@@ -92,7 +95,7 @@ def add_dialog_xml_filter(dialog):
 
 def add_dialog_csv_filter(dialog):
         filter = Gtk.FileFilter()
-        filter.set_name("CSV file (*.csv)")
+        filter.set_name(_("CSV file (*.csv)"))
         filter.add_mime_type("text/csv")
         filter.add_pattern("*.csv")
         dialog.add_filter(filter)

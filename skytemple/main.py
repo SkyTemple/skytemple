@@ -14,22 +14,32 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from skytemple.core.logger import setup_logging
-setup_logging()
-
 import logging
 import os
 import sys
+import locale
+import gettext
 
 import gi
+from skytemple.core.ui_utils import data_dir, APP
+from skytemple_files.common.i18n_util import _
 
 gi.require_version('Gtk', '3.0')
+
+# Setup locale
+LOCALE_DIR = os.path.join(data_dir(), 'locale')
+locale.setlocale(locale.LC_ALL, '')
+locale.bindtextdomain(APP, LOCALE_DIR)
+gettext.bindtextdomain(APP, LOCALE_DIR)
+gettext.textdomain(APP)
+
+from skytemple.core.logger import setup_logging
+setup_logging()
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.events.manager import EventManager
 from skytemple.core.modules import Modules
 from skytemple.core.settings import SkyTempleSettingsStore
-from skytemple.core.ui_utils import data_dir
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_icons import icons
 from skytemple_ssb_debugger.main import get_debugger_data_dir
@@ -41,8 +51,8 @@ except ImportError:
 
     md = SkyTempleMessageDialog(None,
                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                Gtk.ButtonsType.OK, "PyGObject compiled without Cairo support. Can't start!",
-                                title="SkyTemple - Error!")
+                                Gtk.ButtonsType.OK, _("PyGObject compiled without Cairo support. Can't start!"),
+                                title=_("SkyTemple - Error!"))
     md.set_position(Gtk.WindowPosition.CENTER)
     md.run()
     md.destroy()
@@ -88,6 +98,7 @@ def main():
 
     # Load Builder and Window
     builder = Gtk.Builder()
+    builder.set_translation_domain(APP)
     builder.add_from_file(os.path.join(path, "skytemple.glade"))
     main_window: Window = builder.get_object("main_window")
     main_window.set_role("SkyTemple")

@@ -21,6 +21,15 @@ def recursive_pkg_files(file_ext):
     return paths
 
 
+def recursive_pkg_files_in(xpath):
+    directory = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'skytemple', xpath)
+    paths = []
+    for (path, directories, filenames) in os.walk(directory):
+        for filename in filenames:
+            paths.append(os.path.relpath(os.path.join('..', path, filename), os.path.join(os.path.abspath(os.path.dirname(__file__)), 'skytemple')))
+    return paths
+
+
 setup(
     name='skytemple',
     version=__version__,
@@ -55,7 +64,7 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9'
     ],
-    package_data={'skytemple': ['*.css', 'data/*/*/*/*/*', 'data/*', 'data/fixed_floor/*', 'data/back_illust/*'] + recursive_pkg_files('.glade')},
+    package_data={'skytemple': ['*.css'] + recursive_pkg_files('.glade') + recursive_pkg_files_in('data/')},
     entry_points='''
         [skytemple.module]
         rom=          skytemple.module.rom.module:RomModule

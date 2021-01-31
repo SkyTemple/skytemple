@@ -18,6 +18,7 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import f, _
 
 
 class SubController(SimpleController):
@@ -25,14 +26,14 @@ class SubController(SimpleController):
         self.name = name
 
     def get_title(self) -> str:
-        return f'Sub Scenes for "{self.name}"'
+        return f(_('Sub Scenes for "{self.name}"'))
 
     def get_content(self) -> Gtk.Widget:
         # TODO: Adding and removing the sub scenes.
         return self.generate_content_label(
-            f'This section contains all sub scenes for the map {self.name}.\n\n'
-            f'These scenes can be loaded on top of the "Enter" scene,\n'
-            f'depending on the current story progress.'
+            f(_('This section contains all sub scenes for the map {self.name}.\n\n'
+                'These scenes can be loaded on top of the "Enter" scene,\n'
+                'depending on the current story progress.'))
         )
 
     def get_icon(self) -> str:

@@ -33,6 +33,7 @@ from skytemple_files.common.types.file_types import FileType
 from skytemple_files.graphics.bg_list_dat.model import BPA_EXT, DIR
 from skytemple_files.graphics.bpa.model import BpaFrameInfo, Bpa
 from skytemple_files.graphics.bpc.model import Bpc
+from skytemple_files.common.i18n_util import _
 
 try:
     from PIL import Image
@@ -184,8 +185,7 @@ class BgMenuController:
             except ValueError:
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                            Gtk.ButtonsType.OK, "Please only enter numbers for the map size.",
-                                            title="Error!")
+                                            Gtk.ButtonsType.OK, _("Please only enter numbers for the map size."))
                 md.set_position(Gtk.WindowPosition.CENTER)
                 md.run()
                 md.destroy()
@@ -197,7 +197,7 @@ class BgMenuController:
 
     def on_men_map_export_gif_activate(self):
         dialog = Gtk.FileChooserNative.new(
-            "Save GIF of map...",
+            _("Save GIF of map..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
             None, None
@@ -237,10 +237,10 @@ class BgMenuController:
         dialog.hide()
         if resp == ResponseType.OK:
             dialog = Gtk.FileChooserNative.new(
-                "Export PNGs of map...",
+                _("Export PNGs of map..."),
                 MainController.window(),
                 Gtk.FileChooserAction.SELECT_FOLDER,
-                "_Save", None
+                _("_Save"), None
             )
 
             response = dialog.run()
@@ -409,8 +409,8 @@ class BgMenuController:
             for child in bpa_duration_box:
                 bpa_duration_box.remove(child)
             if bpa is None or len(bpa.frame_info) < 1:
-                l = Gtk.Label.new("This BPA has no frames.\n"
-                                  "Enable the BPA and import images for a BPA to add frames.")
+                l = Gtk.Label.new(_("This BPA has no frames.\n"
+                                    "Enable the BPA and import images for a BPA to add frames."))
                 l.show()
                 bpa_duration_box.add(l)
             else:
@@ -477,9 +477,9 @@ class BgMenuController:
             if had_errors:
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                            Gtk.ButtonsType.OK, "Some values were invalid (not a number). "
-                                                                "They were replaced with 0.",
-                                            title="Warning!")
+                                            Gtk.ButtonsType.OK, _("Some values were invalid (not a number). "
+                                                                  "They were replaced with 0."),
+                                            title=_("Warning!"))
                 md.set_position(Gtk.WindowPosition.CENTER)
                 md.run()
                 md.destroy()
@@ -521,7 +521,7 @@ class BgMenuController:
         is_single_mode = self.parent.builder.get_object('dialog_tiles_animated_export_radio_single').get_active()
         file_chooser_mode = Gtk.FileChooserAction.SAVE if is_single_mode else Gtk.FileChooserAction.SELECT_FOLDER
         dialog = Gtk.FileChooserNative.new(
-            "Export animated tiles (BPA)",
+            _("Export animated tiles (BPA)"),
             MainController.window(),
             file_chooser_mode,
             None, None
@@ -545,12 +545,12 @@ class BgMenuController:
                         img.save(os.path.join(fn, self._get_bpa_export_name_pattern(active_bpa_index+1, i)))
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                            Gtk.ButtonsType.OK, "The animated tiles were successfully exported.",
-                                            title="SkyTemple - Success!", is_success=True)
+                                            Gtk.ButtonsType.OK, _("The animated tiles were successfully exported."),
+                                            title=_("SkyTemple - Success!"), is_success=True)
                 md.run()
                 md.destroy()
             except Exception as err:
-                logger.error("Error during BPA export", exc_info=err)
+                logger.error(_("Error during BPA export"), exc_info=err)
                 display_error(
                     sys.exc_info(),
                     str(err)
@@ -563,7 +563,7 @@ class BgMenuController:
         is_single_mode = self.parent.builder.get_object('dialog_tiles_animated_export_radio_single').get_active()
         file_chooser_mode = Gtk.FileChooserAction.OPEN if is_single_mode else Gtk.FileChooserAction.SELECT_FOLDER
         dialog = Gtk.FileChooserNative.new(
-            "Import animated tiles (BPA)",
+            _("Import animated tiles (BPA)"),
             MainController.window(),
             file_chooser_mode,
             None, None
@@ -603,13 +603,13 @@ class BgMenuController:
                 self.parent.bpc.layers[bpc_layer_for_bpa].bpas[bpa_relative_idx] = active_bpa.number_of_tiles
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                            Gtk.ButtonsType.OK, f"The animated tiles were successfully imported, using the files: "
-                                                                f"{', '.join(filenames_base)}.",
-                                            title="SkyTemple - Success!", is_success=True)
+                                            Gtk.ButtonsType.OK, _("The animated tiles were successfully imported, using the files: ")
+                                                                + ', '.join(filenames_base) + ".",
+                                            title=_("SkyTemple - Success!"), is_success=True)
                 md.run()
                 md.destroy()
             except Exception as err:
-                logger.error("Error during BPA import", exc_info=err)
+                logger.error(_("Error during BPA import"), exc_info=err)
                 display_error(
                     sys.exc_info(),
                     str(err)
@@ -680,9 +680,9 @@ class BgMenuController:
             if had_errors:
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                            Gtk.ButtonsType.OK, "Some values were invalid (not a number). "
-                                                                "They were replaced with 0.",
-                                            title="Warning!")
+                                            Gtk.ButtonsType.OK, _("Some values were invalid (not a number). "
+                                                                  "They were replaced with 0."),
+                                            title=_("Warning!"))
                 md.set_position(Gtk.WindowPosition.CENTER)
                 md.run()
                 md.destroy()
@@ -699,8 +699,8 @@ class BgMenuController:
         if not self.parent.bpl.has_palette_animation:
             md = SkyTempleMessageDialog(MainController.window(),
                                         Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                        Gtk.ButtonsType.OK, "Palette Animation is not enabled.",
-                                        title="Warning!")
+                                        Gtk.ButtonsType.OK, _("Palette Animation is not enabled."),
+                                        title=_("Warning!"))
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()
@@ -730,7 +730,7 @@ class BgMenuController:
         dialog.hide()
         if resp == ResponseType.OK:
             dialog = Gtk.FileChooserNative.new(
-                "Export PNG of chunks...",
+                _("Export PNG of chunks..."),
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
                 None, None
@@ -769,8 +769,7 @@ class BgMenuController:
                 if chunks_import_file.get_filename() is None:
                     md = SkyTempleMessageDialog(MainController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                                Gtk.ButtonsType.OK, "An image must be selected.",
-                                                title="Error!")
+                                                Gtk.ButtonsType.OK, _("An image must be selected."))
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
                     md.destroy()
@@ -796,7 +795,7 @@ class BgMenuController:
         dialog.hide()
         if resp == ResponseType.OK:
             dialog = Gtk.FileChooserNative.new(
-                "Export PNG of tiles...",
+                _("Export PNG of tiles..."),
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
                 None, None
@@ -832,8 +831,7 @@ class BgMenuController:
                 if tiles_import_file.get_filename() is None:
                     md = SkyTempleMessageDialog(MainController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                                Gtk.ButtonsType.OK, "An image must be selected.",
-                                                title="Error!")
+                                                Gtk.ButtonsType.OK, _("An image must be selected."))
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
                     md.destroy()
@@ -851,8 +849,7 @@ class BgMenuController:
     def _no_second_layer(self):
         md = SkyTempleMessageDialog(MainController.window(),
                                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                    Gtk.ButtonsType.OK, "This map has no second layer.",
-                                    title="Error!")
+                                    Gtk.ButtonsType.OK, _("This map has no second layer."))
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()

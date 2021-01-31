@@ -35,11 +35,13 @@ from gi.repository.Gtk import ResponseType
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
+from skytemple_files.common.i18n_util import f, _
 
 logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
     from skytemple.module.misc_graphics.module import MiscGraphicsModule
+
 
 class ChrController(AbstractController):
     def __init__(self, module: 'MiscGraphicsModule', filename: str):
@@ -60,10 +62,10 @@ class ChrController(AbstractController):
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(
-            "Export image as PNG...",
+            _("Export image as PNG..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
-            "_Save", None
+            _("_Save"), None
         )
 
         add_dialog_png_filter(dialog)
@@ -79,10 +81,10 @@ class ChrController(AbstractController):
 
     def on_import_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(
-            "Import image as indexed PNG...",
+            _("Import image as indexed PNG..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
-            "_Open", None
+            _("_Open"), None
         )
 
         add_dialog_png_filter(dialog)
@@ -99,7 +101,7 @@ class ChrController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing chr image."
+                    _("Error importing chr image.")
                 )
             self.module.mark_chr_as_modified(self.filename)
             self._reinit_image()

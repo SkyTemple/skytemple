@@ -18,8 +18,9 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import _
 
-DOJOS_NAME = 'Dojo Dungeons'
+DOJOS_NAME = _('Dojo Dungeons')
 
 
 class DojosController(SimpleController):
@@ -31,7 +32,7 @@ class DojosController(SimpleController):
 
     def get_content(self) -> Gtk.Widget:
         return self.generate_content_label(
-            "Dojo Dungeons are the dungeons used in the Marowak Dojo.\nYou can not change the number of floors for Dojo Dungeons."
+            _("Dojo Dungeons are the dungeons used in the Marowak Dojo.\nYou can not change the number of floors for Dojo Dungeons.")
         )
 
     def get_icon(self) -> str:

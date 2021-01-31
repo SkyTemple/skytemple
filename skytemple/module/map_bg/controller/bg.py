@@ -36,12 +36,13 @@ from skytemple_files.graphics.bg_list_dat.model import BMA_EXT, BPC_EXT, BPL_EXT
 from skytemple_files.graphics.bma.model import MASK_PAL
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 from skytemple_files.graphics.bpl.model import BPL_NORMAL_MAX_PAL
+from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
     from skytemple.module.map_bg.module import MapBgModule
 
 
-INFO_IMEXPORT_TILES = """- The image consists of 8x8 tiles.
+INFO_IMEXPORT_TILES = _("""- The image consists of 8x8 tiles.
 - The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
@@ -53,9 +54,9 @@ INFO_IMEXPORT_TILES = """- The image consists of 8x8 tiles.
 - Each import must result in a maximum of 1024 unique 8x8 tiles 
   (=not existing with another palette or flipped or rotated).
 
-Animated tiles are not imported."""
+Animated tiles are not imported.""")
 
-INFO_IMEXPORT_CHUNK = """- The image consists of 8x8 tiles.
+INFO_IMEXPORT_CHUNK = _("""- The image consists of 8x8 tiles.
 - The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
@@ -82,9 +83,9 @@ transparency.
 
 Static tiles, chunks and palettes are replaced on import. 
 Animated tiles and palette animation settings are not changed.
-"""
+""")
 
-INFO_IMEXPORT_ENTIRE = """- The image is a 256-color indexed PNG.
+INFO_IMEXPORT_ENTIRE = _("""- The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
   one of these 16 palettes.
@@ -105,7 +106,7 @@ Static tiles are replaced on import.
 Animated tiles and palette animation settings are not changed.
 
 Since no animated tiles are imported, they need
-to be (re-)assigned to chunks after the import."""
+to be (re-)assigned to chunks after the import.""")
 
 
 class BgController(AbstractController):
@@ -171,11 +172,11 @@ class BgController(AbstractController):
         if self._was_asset_copied:
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                            Gtk.ButtonsType.OK, f"This map background shared some asset files with other "
-                                                                f"map backgrounds.\n"
-                                                                f"SkyTemple can't edit shared files, so "
-                                                                f"those assets were copied.",
-                                            title="SkyTemple - Notice")
+                                            Gtk.ButtonsType.OK, _("This map background shared some asset files with "
+                                                                  "other map backgrounds.\n"
+                                                                  "SkyTemple can't edit shared files, so "
+                                                                  "those assets were copied."),
+                                            title=_("SkyTemple - Notice"))
                 md.run()
                 md.destroy()
                 self.module.mark_as_modified(self.item_id)
@@ -318,9 +319,9 @@ class BgController(AbstractController):
         except ValueError:
             md = SkyTempleMessageDialog(MainController.window(),
                                         Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                        Gtk.ButtonsType.OK, f"A script map with the same name as "
-                                                            f"this background does not exist.",
-                                        title="No Scenes Found")
+                                        Gtk.ButtonsType.OK, _("A script map with the same name as "
+                                                              "this background does not exist."),
+                                        title=_("No Scenes Found"))
             md.run()
             md.destroy()
 
@@ -590,7 +591,7 @@ class BgController(AbstractController):
             store = Gtk.ListStore(str, int)
             for i in range(0, 256):
                 if i == 0:
-                    store.append([f'None', i])
+                    store.append([_('None'), i])
                 else:
                     store.append([f'0x{i:02x}', i])
             cb.set_model(store)
@@ -620,8 +621,8 @@ class BgController(AbstractController):
         if page_name == 'bg_layer2' and self.bma.number_of_layers < 2:
             # Layer 2: Does not exist
             label: Gtk.Label = Gtk.Label.new(
-                'This map only has one layer.\n'
-                'You can add a second layer at Map > Settings.'
+                _('This map only has one layer.\n'
+                  'You can add a second layer at Map > Settings.')
             )
             label.set_vexpand(True)
             label.show()
@@ -641,8 +642,8 @@ class BgController(AbstractController):
         elif page_name == 'bg_col1' and self.bma.number_of_collision_layers < 1:
             # Collision 1: Does not exist
             label: Gtk.Label = Gtk.Label.new(
-                'This map has no collision.\n'
-                'You can add collision at Map > Settings.'
+                _('This map has no collision.\n'
+                  'You can add collision at Map > Settings.')
             )
             label.set_vexpand(True)
             label.show()
@@ -650,8 +651,8 @@ class BgController(AbstractController):
         elif page_name == 'bg_col2' and self.bma.number_of_collision_layers < 2:
             # Collision 2: Does not exist
             label: Gtk.Label = Gtk.Label.new(
-                'This map has no second collision layer.\n'
-                'You can add a second collision layer at Map > Settings.'
+                _('This map has no second collision layer.\n'
+                  'You can add a second collision layer at Map > Settings.')
             )
             label.set_vexpand(True)
             label.show()
@@ -670,8 +671,8 @@ class BgController(AbstractController):
         elif page_name == 'bg_data' and self.bma.unk6 < 1:
             # Data Layer: Does not exist
             label: Gtk.Label = Gtk.Label.new(
-                'This map has no data layer.\n'
-                'You can add a data layer at Map > Settings.'
+                _('This map has no data layer.\n'
+                  'You can add a data layer at Map > Settings.')
             )
             label.set_vexpand(True)
             label.show()
@@ -790,12 +791,12 @@ class BgController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"Map backgrounds can be used as primary or secondary.\n"
-            f"When used as primary, the background can have up to 14 palettes, using slots from 0 to 13.\n"
-            f"When used as secondary, the background can only have 1 palette, using slot 14, and every palette value will have a new value of (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
-            f"It is still possible to use palette values above those limits, but this is only in cases where a background needs to reference a palette from the other background.\n"
-            f"Note: in the original game, almost every background is used as primary, the exceptions being mainly the weather (W) backgrounds.\n",
-            title="Background Palettes"
+            _("Map backgrounds can be used as primary or secondary.\n"
+              "When used as primary, the background can have up to 14 palettes, using slots from 0 to 13.\n"
+              "When used as secondary, the background can only have 1 palette, using slot 14, and every palette value will have a new value of (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
+              "It is still possible to use palette values above those limits, but this is only in cases where a background needs to reference a palette from the other background.\n"
+              "Note: in the original game, almost every background is used as primary, the exceptions being mainly the weather (W) backgrounds.\n"),
+            title=_("Background Palettes")
         )
         md.run()
         md.destroy()

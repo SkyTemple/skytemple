@@ -35,6 +35,7 @@ from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import MONSTER_BIN
 from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.graphics.chara_wan.model import WanFile
+from skytemple_files.common.i18n_util import f, _
 if TYPE_CHECKING:
     from skytemple.module.gfxcrunch.module import GfxcrunchModule
 
@@ -113,7 +114,7 @@ class SpriteModule(AbstractModule):
 
     def import_a_sprite__wan(self) -> bytes:
         dialog = Gtk.FileChooserNative.new(
-            "Import WAN sprite...",
+            _("Import WAN sprite..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
             None, None
@@ -131,13 +132,13 @@ class SpriteModule(AbstractModule):
 
     def export_a_sprite__wan(self, sprite: bytes):
         dialog = Gtk.FileChooserNative.new(
-            "Export WAN sprite...",
+            _("Export WAN sprite..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
             None, None
         )
         filter = Gtk.FileFilter()
-        filter.set_name("WAN sprite (*.wan)")
+        filter.set_name(_("WAN sprite (*.wan)"))
         filter.add_pattern("*.wan")
         dialog.add_filter(filter)
 
@@ -155,14 +156,13 @@ class SpriteModule(AbstractModule):
     def import_a_sprite__gfxcrunch(self) -> Optional[bytes]:
         md = SkyTempleMessageDialog(MainController.window(),
                                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, "To import select the directory of the sprite export. If it "
-                                                        "is still zipped, unzip it first.",
-                                    title="SkyTemple")
+                                    Gtk.ButtonsType.OK, _("To import select the directory of the sprite export. If it "
+                                                          "is still zipped, unzip it first."))
         md.run()
         md.destroy()
 
         dialog = Gtk.FileChooserNative.new(
-            "Import gfxcrunch sprite...",
+            _("Import gfxcrunch sprite..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
             None, None
@@ -179,7 +179,7 @@ class SpriteModule(AbstractModule):
                 display_error(
                     sys.exc_info(),
                     str(e),
-                    "Error importing the sprite."
+                    _("Error importing the sprite.")
                 )
                 return None
 
@@ -188,7 +188,7 @@ class SpriteModule(AbstractModule):
             "Export gfxcrunch sprite...",
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            '_Save', None
+            _('_Save'), None
         )
 
         response = dialog.run()
@@ -202,7 +202,7 @@ class SpriteModule(AbstractModule):
                 display_error(
                     sys.exc_info(),
                     str(e),
-                    "Error exporting the sprite."
+                    _("Error exporting the sprite.")
                 )
 
     def open_spritebot_explanation(self):
@@ -245,7 +245,7 @@ class SpriteModule(AbstractModule):
                 self.get_attack_bin_ctx() as attack_bin, \
                 self.get_ground_bin_ctx() as ground_bin:
             if len(monster_bin) != len(attack_bin) or len(attack_bin) != len(ground_bin):
-                display_error(None, "Error with sprite files: They don't have the same length!")
+                display_error(None, _("Error with sprite files: They don't have the same length!"))
                 return -1
             return len(monster_bin)
 

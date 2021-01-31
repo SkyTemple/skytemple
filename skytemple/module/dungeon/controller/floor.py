@@ -44,6 +44,7 @@ from skytemple_files.dungeon_data.mappa_bin.mappa_xml import mappa_floor_xml_exp
 from skytemple_files.dungeon_data.mappa_bin.monster import DUMMY_MD_INDEX, MappaMonster
 from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType, MappaTrapList
 from skytemple.controller.main import MainController as SkyTempleMainController
+from skytemple_files.common.i18n_util import _, f
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, FloorViewInfo
@@ -59,16 +60,16 @@ SCALE = 'scale_'
 PATTERN_MD_ENTRY = re.compile(r'.*\(#(\d+)\).*')
 CSS_HEADER_COLOR = 'dungeon_editor_column_header_invalid'
 VALID_ITEM_CATEGORY_NAMES = {
-    MappaItemCategory.THROWN_PIERCE: 'Thrown - Pierce',
-    MappaItemCategory.THROWN_ROCK: 'Thrown - Rock',
-    MappaItemCategory.BERRIES_SEEDS_VITAMINS: 'Berries, Seeds, Vitamins',
-    MappaItemCategory.FOODS_GUMMIES: 'Foods, Gummies',
-    MappaItemCategory.HOLD: 'Hold',
-    MappaItemCategory.TMS: 'TMs, HMs',
-    MappaItemCategory.POKE: 'Poké (Money)',
-    MappaItemCategory.OTHER: 'Other',
-    MappaItemCategory.ORBS: 'Orbs',
-    MappaItemCategory.LINK_BOX: 'Link Box'
+    MappaItemCategory.THROWN_PIERCE: _('Thrown - Pierce'),
+    MappaItemCategory.THROWN_ROCK: _('Thrown - Rock'),
+    MappaItemCategory.BERRIES_SEEDS_VITAMINS: _('Berries, Seeds, Vitamins'),
+    MappaItemCategory.FOODS_GUMMIES: _('Foods, Gummies'),
+    MappaItemCategory.HOLD: _('Hold'),
+    MappaItemCategory.TMS: _('TMs, HMs'),
+    MappaItemCategory.POKE: _('Poké (Money)'),
+    MappaItemCategory.OTHER: _('Other'),
+    MappaItemCategory.ORBS: _('Orbs'),
+    MappaItemCategory.LINK_BOX: _('Link Box')
 }
 CATEGORIES_FOR_STORES = {
     'item_cat_thrown_pierce_store': MappaItemCategory.THROWN_PIERCE,
@@ -755,14 +756,14 @@ class FloorController(AbstractController):
     # </editor-fold>
 
     def on_btn_help__spawn_tables__clicked(self, *args):
-        self._help("Change the chances of Pokémon, traps or items spawning.\nThe spawn chance depends on the weight of "
-                   "an entry. The higher an entry's weight is, the more likely it is to spawn.\n"
-                   "Please note for Pokémon, that weights for Pokémon that can not be spawned (eg. legendaries "
-                   "without having their items) will be added to the next Pokémon entry in the list when the game "
-                   "decides what to spawn.\n"
-                   "Please note for items, that the game first decides what category to spawn for an item and then "
-                   "chooses an entry for that category.\n"
-                   "All spawn entries are always saved to the game sorted by their (Pokémon, item, trap) ID.")
+        self._help(_("Change the chances of Pokémon, traps or items spawning.\nThe spawn chance depends on the weight "
+                     "of an entry. The higher an entry's weight is, the more likely it is to spawn.\n"
+                     "Please note for Pokémon, that weights for Pokémon that can not be spawned (eg. legendaries "
+                     "without having their items) will be added to the next Pokémon entry in the list when the game "
+                     "decides what to spawn.\n"
+                     "Please note for items, that the game first decides what category to spawn for an item and then "
+                     "chooses an entry for that category.\n"
+                     "All spawn entries are always saved to the game sorted by their (Pokémon, item, trap) ID."))
 
     def on_btn_export_clicked(self, *args):
         from skytemple.module.dungeon.module import DungeonGroup, ICON_GROUP, \
@@ -817,7 +818,7 @@ class FloorController(AbstractController):
             # 1. Export to file
             if self.builder.get_object('export_file_switch').get_active():
                 save_diag = Gtk.FileChooserNative.new(
-                    "Export floor as...",
+                    _("Export floor as..."),
                     SkyTempleMainController.window(),
                     Gtk.FileChooserAction.SAVE,
                     None, None
@@ -836,7 +837,7 @@ class FloorController(AbstractController):
                 else:
                     md = SkyTempleMessageDialog(SkyTempleMainController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                                Gtk.ButtonsType.OK, "Export was canceled.")
+                                                Gtk.ButtonsType.OK, _("Export was canceled."))
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
                     md.destroy()
@@ -856,7 +857,7 @@ class FloorController(AbstractController):
 
     def on_btn_import_clicked(self, *args):
         save_diag = Gtk.FileChooserNative.new(
-            "Import floor from...",
+            _("Import floor from..."),
             SkyTempleMainController.window(),
             Gtk.FileChooserAction.OPEN,
             None, None
@@ -876,7 +877,7 @@ class FloorController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing the floor."
+                    _("Error importing the floor.")
                 )
 
     def on_cr_export_selected_toggled(self, w: Gtk.CellRendererToggle, path, *args):
@@ -938,9 +939,9 @@ class FloorController(AbstractController):
     def _init_labels(self):
         dungeon_name = self._string_provider.get_value(StringType.DUNGEON_NAMES_MAIN, self.item.dungeon.dungeon_id)
         self.builder.get_object(f'label_dungeon_name').set_text(
-            f'Dungeon {self.item.dungeon.dungeon_id}\n{dungeon_name}'
+            f'{"Dungeon"} {self.item.dungeon.dungeon_id}\n{dungeon_name}'
         )
-        self.builder.get_object('label_floor_number').set_text(f'Floor {self.item.floor_id + 1}')
+        self.builder.get_object('label_floor_number').set_text(f'{"Floor"} {self.item.floor_id + 1}')
 
     def _init_layout_stores(self):
         # cb_structure
@@ -1396,8 +1397,8 @@ class FloorController(AbstractController):
 
     def _comboxbox_for_boolean(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
-        store.append([0, "No"])
-        store.append([1, "Yes"])
+        store.append([0, _("No")])
+        store.append([1, _("Yes")])
         for name in names:
             self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
@@ -1405,9 +1406,9 @@ class FloorController(AbstractController):
         store = Gtk.ListStore(int, str)  # id, name
         for i in range(0, COUNT_VALID_TILESETS):
             if i >= TILESET_FIRST_BG:
-                store.append([i, f"Background {i}"])
+                store.append([i, f"{'Background'} {i}"])
             else:
-                store.append([i, f"Tileset {i}"])
+                store.append([i, f"{'Tileset'} {i}"])
         for name in names:
             self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
@@ -1415,15 +1416,15 @@ class FloorController(AbstractController):
         # TODO: Music Name
         store = Gtk.ListStore(int, str)  # id, name
         for i in range(0, COUNT_VALID_BGM):
-            store.append([i, f"No. {i}"])
+            store.append([i, f(_("No. {i}"))])  # TRANSLATORS: Number {i}
         for name in names:
             self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     def _comboxbox_for_fixed_floor_id(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
-        store.append([0, f"No fixed room"])
+        store.append([0, _("No fixed room")])
         for i in range(1, COUNT_VALID_FIXED_FLOORS):
-            store.append([i, f"No. {i}"])
+            store.append([i, f(_("No. {i}"))])  # TRANSLATORS: Number {i}
         for name in names:
             self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 

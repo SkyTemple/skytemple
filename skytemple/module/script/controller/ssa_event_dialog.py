@@ -20,6 +20,7 @@ from gi.repository import Gtk
 
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine, Pmd2ScriptData
 from skytemple_files.script.ssa_sse_sss.trigger import SsaTrigger
+from skytemple_files.common.i18n_util import f, _
 
 
 class SsaEventDialogController:
@@ -37,17 +38,18 @@ class SsaEventDialogController:
         self.window.set_transient_for(main_window)
         self.window.set_attached_to(main_window)
         if self.edit is not None:
-            self.title = f'Edit {self.talk_script_names[self.edit.script_id]} ' \
-                         f'/ {self.scriptdata.common_routine_info__by_id[self.edit.coroutine.id].name}'
+            # noinspection PyUnusedLocal
+            script_name = self.talk_script_names[self.edit.script_id]
+            self.title = f(_('Edit {script_name}')) + f' / {self.scriptdata.common_routine_info__by_id[self.edit.coroutine.id].name}'
         else:
-            self.title = 'New Event'
+            self.title = _('New Event')
 
     def run(self):
         """Run the dialog and return the response. If it's OK, the new model can be retrieved via get_event()"""
         self.window.set_title(self.title)
         # Fill Script IDs Combobox
         script_store = Gtk.ListStore(int, str)  # ID, name
-        script_store.append([-1, 'None'])
+        script_store.append([-1, _('None')])
         for sid, sname in self.talk_script_names.items():
             script_store.append([sid, sname])
         script_cb: Gtk.ComboBox = self.builder.get_object('event_script')

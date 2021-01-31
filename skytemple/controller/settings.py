@@ -24,6 +24,7 @@ from gi.repository import Gtk, GLib
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.settings import SkyTempleSettingsStore
+from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
 
@@ -88,7 +89,8 @@ class SettingsController:
         if have_to_restart:
             md = SkyTempleMessageDialog(self.parent_window,
                                         Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                        Gtk.ButtonsType.OK, f"You need to restart SkyTemple to apply some of the settings.",
+                                        Gtk.ButtonsType.OK, _("You need to restart SkyTemple to "
+                                                              "apply some of the settings."),
                                         title="SkyTemple")
             md.run()
             md.destroy()

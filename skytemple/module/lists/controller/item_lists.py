@@ -30,6 +30,7 @@ from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem
 from skytemple.core.module_controller import AbstractController
 from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList, Probability, MappaItemCategory, \
     MAX_ITEM_ID
+from skytemple_files.common.i18n_util import _
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 
@@ -38,16 +39,16 @@ logger = logging.getLogger(__name__)
 PATTERN_MD_ENTRY = re.compile(r'.*\(#(\d+)\).*')
 
 VALID_ITEM_CATEGORY_NAMES = {
-    MappaItemCategory.THROWN_PIERCE: 'Thrown - Pierce',
-    MappaItemCategory.THROWN_ROCK: 'Thrown - Rock',
-    MappaItemCategory.BERRIES_SEEDS_VITAMINS: 'Berries, Seeds, Vitamins',
-    MappaItemCategory.FOODS_GUMMIES: 'Foods, Gummies',
-    MappaItemCategory.HOLD: 'Hold',
-    MappaItemCategory.TMS: 'TMs, HMs',
-    MappaItemCategory.POKE: 'Poké (Money)',
-    MappaItemCategory.OTHER: 'Other',
-    MappaItemCategory.ORBS: 'Orbs',
-    MappaItemCategory.LINK_BOX: 'Link Box'
+    MappaItemCategory.THROWN_PIERCE: _('Thrown - Pierce'),
+    MappaItemCategory.THROWN_ROCK: _('Thrown - Rock'),
+    MappaItemCategory.BERRIES_SEEDS_VITAMINS: _('Berries, Seeds, Vitamins'),
+    MappaItemCategory.FOODS_GUMMIES: _('Foods, Gummies'),
+    MappaItemCategory.HOLD: _('Hold'),
+    MappaItemCategory.TMS: _('TMs, HMs'),
+    MappaItemCategory.POKE: _('Poké (Money)'),
+    MappaItemCategory.OTHER: _('Other'),
+    MappaItemCategory.ORBS: _('Orbs'),
+    MappaItemCategory.LINK_BOX: _('Link Box')
 }
 CATEGORIES_FOR_STORES = {
     'item_cat_thrown_pierce_store': MappaItemCategory.THROWN_PIERCE,
@@ -60,32 +61,32 @@ CATEGORIES_FOR_STORES = {
     'item_cat_others_store': MappaItemCategory.OTHER
 }
 
-ITEM_LISTS = ["E Floors Rewards",
-              "D Floors Rewards",
-              "C Floors Rewards",
-              "B Floors Rewards",
-              "A Floors Rewards",
-              "S Floors Rewards",
-              "★1 Floors Rewards",
-              "★2 Floors Rewards",
-              "★3 Floors Rewards",
-              "★4 Floors Rewards",
-              "★5 Floors Rewards",
-              "★6 Floors Rewards",
-              "★7 Floors Rewards",
-              "★8 Floors Rewards",
-              "★9 Floors Rewards",
-              "Kecleon Shop 1",
-              "Kecleon Orbs/TMs 1",
-              "Kecleon Shop 2",
-              "Kecleon Orbs/TMs 2",
-              "Kecleon Shop 3",
-              "Kecleon Orbs/TMs 3",
-              "Kecleon Shop 4",
-              "Kecleon Orbs/TMs 4",
-              "Unknown 1",
-              "Unknown 2",
-              "Unknown 3"]
+ITEM_LISTS = [_("E Floors Rewards"),
+              _("D Floors Rewards"),
+              _("C Floors Rewards"),
+              _("B Floors Rewards"),
+              _("A Floors Rewards"),
+              _("S Floors Rewards"),
+              _("★1 Floors Rewards"),
+              _("★2 Floors Rewards"),
+              _("★3 Floors Rewards"),
+              _("★4 Floors Rewards"),
+              _("★5 Floors Rewards"),
+              _("★6 Floors Rewards"),
+              _("★7 Floors Rewards"),
+              _("★8 Floors Rewards"),
+              _("★9 Floors Rewards"),
+              _("Kecleon Shop 1"),
+              _("Kecleon Orbs/TMs 1"),
+              _("Kecleon Shop 2"),
+              _("Kecleon Orbs/TMs 2"),
+              _("Kecleon Shop 3"),
+              _("Kecleon Orbs/TMs 3"),
+              _("Kecleon Shop 4"),
+              _("Kecleon Orbs/TMs 4"),
+              _("Unknown 1"),
+              _("Unknown 2"),
+              _("Unknown 3")]
 
 class ItemListsController(AbstractController):
     def __init__(self, module: 'ListsModule', *args):

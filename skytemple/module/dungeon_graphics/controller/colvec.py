@@ -32,13 +32,13 @@ try:
 except:
     from pil import Image
 from gi.repository import Gtk
-from gi.repository.Gtk import ResponseType
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.ui_utils import add_dialog_png_filter
-from skytemple.core.string_provider import StringProvider, StringType
+from skytemple.core.string_provider import StringType
 from skytemple.core.module_controller import AbstractController
+from skytemple_files.common.i18n_util import f, _
 
 logger = logging.getLogger(__name__)
 
@@ -73,10 +73,10 @@ class ColvecController(AbstractController):
     def on_export_clicked(self, *args):
         cb_store: Gtk.ListStore = self.builder.get_object('cb_weather_store')
         cb: Gtk.ComboBoxText = self.builder.get_object('cb_weather')
-        v : int = cb_store[cb.get_active_iter()][0]
+        v: int = cb_store[cb.get_active_iter()][0]
         
         dialog = Gtk.FileChooserNative.new(
-            "Export current colormap as PNG...",
+            _("Export current colormap as PNG..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
             "_Save", None
@@ -96,10 +96,10 @@ class ColvecController(AbstractController):
     def on_import_clicked(self, *args):
         cb_store: Gtk.ListStore = self.builder.get_object('cb_weather_store')
         cb: Gtk.ComboBoxText = self.builder.get_object('cb_weather')
-        v : int = cb_store[cb.get_active_iter()][0]
+        v: int = cb_store[cb.get_active_iter()][0]
         
         dialog = Gtk.FileChooserNative.new(
-            "Import current colormap from PNG...",
+            _("Import current colormap from PNG..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
             None, None
@@ -118,25 +118,25 @@ class ColvecController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing colormap."
+                    _("Error importing colormap.")
                 )
             self._reinit_image()
 
     def _load_tileset(self, v):
-        self.dma: Dma = self.module.get_dma(v)
-        self.dpl: Dpl = self.module.get_dpl(v)
-        self.dpla: Dpla = self.module.get_dpla(v)
-        self.dpc: Dpc = self.module.get_dpc(v)
-        self.dpci: Dpci = self.module.get_dpci(v)
+        self.dma = self.module.get_dma(v)
+        self.dpl = self.module.get_dpl(v)
+        self.dpla = self.module.get_dpla(v)
+        self.dpc = self.module.get_dpc(v)
+        self.dpci = self.module.get_dpci(v)
         
     def on_colvec_info_clicked(self, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"This colormap defines color palette transformations used by the game during dungeons (for weather effects).\n"
-            f"Each color color component (RGB) is changed to the corresponding color component of the n-th color map entry (where n is the old color component value).\n"
-            f"This transformation also applies to monsters and items sprites."
+            _("This colormap defines color palette transformations used by the game during dungeons (for weather effects).\n"
+              "Each color color component (RGB) is changed to the corresponding color component of the n-th color map entry (where n is the old color component value).\n"
+              "This transformation also applies to monsters and items sprites.")
         )
         md.run()
         md.destroy()

@@ -27,8 +27,9 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.ui_utils import open_dir
 from skytemple_files.patch.patches import Patcher
 from skytemple.controller.main import MainController as MainAppController
+from skytemple_files.common.i18n_util import f, _
 
-PATCH_DIR = 'Patches'
+PATCH_DIR = _('Patches')
 if TYPE_CHECKING:
     from skytemple.module.patch.module import PatchModule
 
@@ -57,30 +58,30 @@ class MainController(AbstractController):
                 if self._patcher.is_applied(name):
                     md = SkyTempleMessageDialog(MainAppController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                                Gtk.ButtonsType.OK_CANCEL, "This patch is already applied. "
-                                                                           "Some patches support applying them again, "
-                                                                           "but you might also run into problems with some. "
-                                                                           "Proceed with care.")
+                                                Gtk.ButtonsType.OK_CANCEL, _("This patch is already applied. "
+                                                                             "Some patches support applying them again, "
+                                                                             "but you might also run into problems with some. "
+                                                                             "Proceed with care."))
                     md.set_position(Gtk.WindowPosition.CENTER)
                     response = md.run()
                     md.destroy()
                     if response != Gtk.ResponseType.OK:
                         return
             except NotImplementedError:
-                self._error("The current ROM is not supported by this patch.")
+                self._error(_("The current ROM is not supported by this patch."))
                 return
 
             if self.module.project.has_modifications():
-                self._error("Please save the ROM before applying the patch.")
+                self._error(_("Please save the ROM before applying the patch."))
                 return
 
             try:
                 self._patcher.apply(name)
             except RuntimeError as err:
-                self._error(f"Error applying the patch:\n{err}", exc_info=sys.exc_info())
+                self._error(f(_("Error applying the patch:\n{err}")), exc_info=sys.exc_info())
             else:
-                self._error(f"Patch was successfully applied. You should re-open the project, to make sure all data is "
-                            f"correctly loaded.", Gtk.MessageType.INFO, is_success=True)
+                self._error(_("Patch was successfully applied. You should re-open the project, to make sure all data "
+                              "is correctly loaded."), Gtk.MessageType.INFO, is_success=True)
             finally:
                 self.module.mark_as_modified()
 
@@ -100,12 +101,12 @@ class MainController(AbstractController):
             try:
                 self._patcher.add_pkg(fname)
             except BaseException as err:
-                self._error(f"Error loading patch package {os.path.basename(fname)}:\n{err}")
+                self._error(f(_("Error loading patch package {os.path.basename(fname)}:\n{err}")))
         # List patches:
         for patch in self._patcher.list():
-            applied_str = 'Not compatible'
+            applied_str = _('Not compatible')
             try:
-                applied_str = 'Applied' if self._patcher.is_applied(patch.name) else 'Compatible'
+                applied_str = _('Applied') if self._patcher.is_applied(patch.name) else _('Compatible')
             except NotImplementedError:
                 pass
             model.append([

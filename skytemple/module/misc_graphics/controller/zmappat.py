@@ -36,6 +36,7 @@ from gi.repository.Gtk import ResponseType
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
+from skytemple_files.common.i18n_util import f, _
 
 logger = logging.getLogger(__name__)
 
@@ -68,10 +69,10 @@ class ZMappaTController(AbstractController):
     
     def on_export_minimized_activate(self, *args):
         dialog = Gtk.FileChooserNative.new(
-            "Export zmappat minimized in folder...",
+            _("Export zmappat minimized in folder..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            "_Save", None
+            _("_Save"), None
         )
 
         response = dialog.run()
@@ -87,10 +88,10 @@ class ZMappaTController(AbstractController):
 
     def on_export_full_activate(self, *args):
         dialog = Gtk.FileChooserNative.new(
-            "Export full zmappat in folder...",
+            _("Export full zmappat in folder..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            "_Save", None
+            _("_Save"), None
         )
 
         response = dialog.run()
@@ -109,14 +110,14 @@ class ZMappaTController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"To import, select a folder containing all the image files that were created when exporting the minimized version.\n"
-            f"IMPORTANT: All image files must be indexed PNGs and use the same palette!",
-            title="Import Minimized Version"
+            _("To import, select a folder containing all the image files that were created when exporting the minimized version.\n"
+              "IMPORTANT: All image files must be indexed PNGs and use the same palette!"),
+            title=_("Import Minimized Version")
         )
         md.run()
         md.destroy()
         dialog = Gtk.FileChooserNative.new(
-            "Import zmappat minimized from folder...",
+            _("Import zmappat minimized from folder..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
             None, None
@@ -141,7 +142,7 @@ class ZMappaTController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing minimized zmappat."
+                    _("Error importing minimized zmappat.")
                 )
             self._reinit_image()
         
@@ -150,13 +151,13 @@ class ZMappaTController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"The game uses 4x4 'mini-tiles' tiles to render the map.\n"
-            f"However, as the system only uses 8x8 tiles, the game render each 8x8 tile by applying 4 mini-tiles with their respective masks.\n"
-            f"To do this, all mini-tiles have been duplicated to cover the 4 possibilites for placing the mini-tile in 8x8 tiles (top left, top right, bottom left, bottom right).\n"
-            f"The mask is then used to apply the mini-tile only on the correct part of the resulting 8x8 tile.\n"
-            f"The minimized version reduces the tileset to only 4x4 mini-tiles and handles the duplication when importing.\n"
-            f"But remember that the full tileset allows more exploits as you can render tiles differently depending on where they are placed.",
-            title="Minimized Version Info"
+            _("The game uses 4x4 'mini-tiles' tiles to render the map.\n"
+              "However, as the system only uses 8x8 tiles, the game render each 8x8 tile by applying 4 mini-tiles with their respective masks.\n"
+              "To do this, all mini-tiles have been duplicated to cover the 4 possibilites for placing the mini-tile in 8x8 tiles (top left, top right, bottom left, bottom right).\n"
+              "The mask is then used to apply the mini-tile only on the correct part of the resulting 8x8 tile.\n"
+              "The minimized version reduces the tileset to only 4x4 mini-tiles and handles the duplication when importing.\n"
+              "But remember that the full tileset allows more exploits as you can render tiles differently depending on where they are placed."),
+            title=_("Minimized Version Info")
         )
         md.run()
         md.destroy()
@@ -166,13 +167,13 @@ class ZMappaTController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"To import, select a folder containing all the image files that were created when exporting the full tileset.",
-            title="Import Full Tileset"
+            _("To import, select a folder containing all the image files that were created when exporting the full tileset."),
+            title=_("Import Full Tileset")
         )
         md.run()
         md.destroy()
         dialog = Gtk.FileChooserNative.new(
-            "Import full zmappat from folder...",
+            _("Import full zmappat from folder..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
             None, None
@@ -197,7 +198,7 @@ class ZMappaTController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing full zmappat."
+                    _("Error importing full zmappat.")
                 )
             self._reinit_image()
             

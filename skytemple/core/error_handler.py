@@ -24,9 +24,13 @@ from os.path import expanduser
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 
+import gi
+
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
+from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
 
@@ -56,13 +60,15 @@ def show_error_web(exc_info):
                 md = SkyTempleMessageDialog(None,
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
                                             Gtk.ButtonsType.OK,
-                                            "Trying to display the error failed. Wow!",
+                                            _("Trying to display the error failed. Wow!"),
                                             title=":(")
                 md.run()
                 md.destroy()
 
 
-def display_error(exc_info, error_message, error_title='SkyTemple - Error', window=None, log=True):
+def display_error(exc_info, error_message, error_title=None, window=None, log=True):
+    if error_title is None:
+        error_title = _('SkyTemple - Error!')
     # In case the current working directory is corrupted. Yes, this may happen.
     try:
         os.getcwd()

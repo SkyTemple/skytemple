@@ -31,6 +31,7 @@ from skytemple.module.lists.world_map_drawer import WorldMapDrawer
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement
+from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
@@ -177,9 +178,9 @@ class WorldMapController(AbstractController):
 
     def _get_position(self, entry: MapMarkerPlacement):
         if entry.level_id < 0:
-            return '<Not on map>'
+            return _('<Not on map>')
         if entry.reference_id > -1:
-            return f'<Uses marker of entry {entry.reference_id}>'
+            return f(_('<Uses marker of entry {entry.reference_id}>'))
         return f'({entry.x}, {entry.y})'
 
     def _get_dungeon_name(self, idx):
@@ -197,9 +198,9 @@ class WorldMapController(AbstractController):
             dialog: Gtk.Dialog = self.builder.get_object('diag_edit')
             dlabel = self._get_dungeon_name(idx)
             if dlabel != '':
-                dialog.set_title(f'Edit Marker {idx} ({dlabel})')
+                dialog.set_title(f'{_("Edit Marker")} {idx} ({dlabel})')
             else:
-                dialog.set_title(f'Edit Marker {idx}')
+                dialog.set_title(f'{_("Edit Marker")} {idx}')
             dialog.set_transient_for(MainController.window())
             dialog.set_attached_to(MainController.window())
             try:
@@ -220,7 +221,7 @@ class WorldMapController(AbstractController):
                 cb_map.add_attribute(renderer_text, "text", 1)
             else:
                 map_store.clear()
-            selected_map_iter = map_store.append([-1, "<Don't show on map>"])
+            selected_map_iter = map_store.append([-1, _("<Don't show on map>")])
             for level in self._config.script_data.level_list: #TODO: Use the list from the game when available
                 iiter = map_store.append([level.id, level.name])
                 if level.id == self._markers[idx].level_id:
@@ -279,7 +280,7 @@ class WorldMapController(AbstractController):
                 else:
                     display_error(
                         None,
-                        f'You need to select a map.'
+                        _('You need to select a map.')
                     )
                     return
                 use_reference = self.builder.get_object('radio_reference').get_active()
@@ -292,7 +293,7 @@ class WorldMapController(AbstractController):
                     else:
                         display_error(
                             None,
-                            f'You need to select a reference.'
+                            _('You need to select a reference.')
                         )
                         return
                 if map_id_selected == -1:

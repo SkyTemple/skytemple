@@ -26,12 +26,14 @@ from gi.repository import Gtk, Gdk
 from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.sprite_provider import SpriteProvider
+from skytemple.core.ui_utils import APP
 from skytemple.module.script.drawer import Drawer, InteractionMode
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevel
 from skytemple_files.graphics.bg_list_dat.model import BgList
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 from skytemple_files.script.ssa_sse_sss.model import Ssa
 from skytemple_files.script.ssa_sse_sss.trigger import SsaTrigger
+from skytemple_files.common.i18n_util import f, _
 
 SIZE_REQUEST_NONE = 500
 
@@ -43,6 +45,7 @@ class PosMarkEditorController:
         """A controller for a dialog for editing position marks for an Ssb file."""
         path = os.path.abspath(os.path.dirname(__file__))
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(APP)
         self.builder.add_from_file(os.path.join(path, 'pos_mark_editor.glade'))
         self.sprite_provider = sprite_provider
         self.ssa: Ssa = ssa
@@ -70,7 +73,7 @@ class PosMarkEditorController:
         self.window: Gtk.Dialog = self.builder.get_object('dialog')
         self.window.set_transient_for(parent_window)
         self.window.set_attached_to(parent_window)
-        self.title = f'Edit Position Marks'
+        self.title = _('Edit Position Marks')
 
         self.builder.connect_signals(self)
 
@@ -189,7 +192,7 @@ class PosMarkEditorController:
         map_bg_list: BgList = self.map_bg_module.bgs
         tool_choose_map_bg_cb: Gtk.ComboBox = self.builder.get_object('tool_choose_map_bg_cb')
         map_bg_store = Gtk.ListStore(int, str)  # ID, BMA name
-        default_bg = map_bg_store.append([-1, "None"])
+        default_bg = map_bg_store.append([-1, _("None")])
         for i, entry in enumerate(map_bg_list.level):
             bg_iter = map_bg_store.append([i, entry.bma_name])
             if i == self.mapbg_id:

@@ -35,6 +35,7 @@ from gi.repository.Gtk import ResponseType
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
+from skytemple_files.common.i18n_util import f, _
 
 logger = logging.getLogger(__name__)
 
@@ -61,20 +62,20 @@ class CartRemovedController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"This is what the game shows when the cartridge is removed while playing.\n"
-            f"IMPORTANT! The game stores this compressed in the ARM9, so this is limited in space.\n"
-            f"It is recommended to only edit this to change the text color/content.",
-            title="Cartridge Removed Image Info"
+            _("This is what the game shows when the cartridge is removed while playing.\n"
+              "IMPORTANT! The game stores this compressed in the ARM9, so this is limited in space.\n"
+              f"It is recommended to only edit this to change the text color/content."),
+            title=_("Cartridge Removed Image Info")
         )
         md.run()
         md.destroy()
     
     def on_export_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(
-            "Export image as PNG...",
+            _("Export image as PNG..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
-            "_Save", None
+            _("_Save"), None
         )
 
         add_dialog_png_filter(dialog)
@@ -89,10 +90,10 @@ class CartRemovedController(AbstractController):
             self.module.get_cart_removed_data().save(fn)
     def on_import_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(
-            "Import image as PNG...",
+            _("Import image as PNG..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
-            "_Open", None
+            _("_Open"), None
         )
 
         add_dialog_png_filter(dialog)
@@ -109,9 +110,10 @@ class CartRemovedController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing cart removed image."
+                    _("Error importing cart removed image.")
                 )
             self._reinit_image()
+
     def _reinit_image(self):
         surface = self.module.get_cart_removed_data()
         self.surface = pil_to_cairo_surface(surface.convert('RGBA'))

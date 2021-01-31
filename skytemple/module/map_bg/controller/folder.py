@@ -19,6 +19,7 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import f, _
 
 
 class FolderController(SimpleController):
@@ -27,16 +28,16 @@ class FolderController(SimpleController):
 
     def get_title(self) -> str:
         if self.name is not None:
-            return f'Map Background category "{self.name}"'
-        return f'Map Backgrounds for other maps'
+            return f(_('Map Background category "{self.name}"'))
+        return _('Map Backgrounds for other maps')
 
     def get_content(self) -> Gtk.Widget:
         if self.name is not None:
             return self.generate_content_label(
-                f"This section contains all the map backgrounds, that start with the letter {self.name[0]}."
+                f(_("This section contains all the map backgrounds, that start with the letter {self.name[0]}."))
             )
         return self.generate_content_label(
-            f"This section contains all the map backgrounds, that don't fit in any of the other categories."
+            _("This section contains all the map backgrounds, that don't fit in any of the other categories.")
         )
 
     def get_icon(self) -> str:

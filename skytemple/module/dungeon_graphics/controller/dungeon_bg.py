@@ -33,12 +33,13 @@ from skytemple_files.graphics.dpc.model import Dpc
 from skytemple_files.graphics.dpci.model import Dpci, DPCI_TILE_DIM
 from skytemple_files.graphics.dpl.model import Dpl, DPL_MAX_PAL, DPL_PAL_LEN
 from skytemple_files.graphics.dpla.model import Dpla
+from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
 
 
-INFO_IMEXPORT_TILES = """- The image consists of 8x8 tiles.
+INFO_IMEXPORT_TILES = _("""- The image consists of 8x8 tiles.
 - The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
@@ -49,9 +50,9 @@ INFO_IMEXPORT_TILES = """- The image consists of 8x8 tiles.
   chunk mapping (Chunks > Edit Chunks).
 - Each import must result in a maximum of 1024 unique 8x8 tiles 
   (=not existing with another palette or flipped or rotated).
-"""
+""")
 
-INFO_IMEXPORT_CHUNK = """- The image is a 256-color indexed PNG.
+INFO_IMEXPORT_CHUNK = _("""- The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
   one of these 16 palettes.
@@ -62,9 +63,9 @@ INFO_IMEXPORT_CHUNK = """- The image is a 256-color indexed PNG.
 Some image editors have problems when working with indexed
 images, that contain the same color multiple times. You can
 make all colors on the map unique before exporting at
-Palettes > Edit Palettes."""
+Palettes > Edit Palettes.""")
 
-INFO_IMEXPORT_ENTIRE = """- The images is a 256-color indexed PNG.
+INFO_IMEXPORT_ENTIRE = _("""- The images is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
   one of these 16 palettes.
@@ -75,7 +76,7 @@ INFO_IMEXPORT_ENTIRE = """- The images is a 256-color indexed PNG.
 Some image editors have problems when working with indexed
 images, that contain the same color multiple times. You can
 make all colors on the map unique before exporting at
-Palettes > Edit Palettes."""
+Palettes > Edit Palettes.""")
 
 
 class DungeonBgController(AbstractController):

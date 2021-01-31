@@ -15,23 +15,19 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-# TODO
 import itertools
 import logging
-import os
 import sys
 from collections import OrderedDict
-from typing import TYPE_CHECKING, List, Optional, Tuple, Union
+from typing import TYPE_CHECKING, Union
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_graphics_provider import DungeonTilesProvider
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_palettes_provider import DungeonPalettesProvider
-from skytemple_files.common.tiled_image import TilemapEntry
 from skytemple_files.common.util import chunks
-from skytemple_files.graphics.bpa.model import Bpa
-from skytemple_files.graphics.bpc.model import Bpc
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
+from skytemple_files.common.i18n_util import f, _
 
 try:
     from PIL import Image
@@ -44,7 +40,6 @@ from skytemple.controller.main import MainController
 from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple.module.tiled_img.dialog_controller.chunk_editor import ChunkEditorController
 from skytemple.module.tiled_img.dialog_controller.palette_editor import PaletteEditorController
-from skytemple_files.graphics.bpl.model import BplAnimationSpec, Bpl
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController
@@ -66,7 +61,7 @@ class BgMenuController:
         dialog.hide()
         if resp == ResponseType.OK:
             dialog = Gtk.FileChooserNative.new(
-                "Export PNG of map...",
+                _("Export PNG of map..."),
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
                 None, None
@@ -133,7 +128,7 @@ class BgMenuController:
         dialog.hide()
         if resp == Gtk.ResponseType.OK:
             dialog = Gtk.FileChooserNative.new(
-                "Export PNG of chunks...",
+                _("Export PNG of chunks..."),
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
                 None, None
@@ -154,7 +149,7 @@ class BgMenuController:
                     display_error(
                         sys.exc_info(),
                         str(err),
-                        "Error exporting the tileset."
+                        _("Error exporting the tileset.")
                     )
 
     def on_men_chunks_layer1_import_activate(self):
@@ -179,8 +174,7 @@ class BgMenuController:
                 if chunks_import_file.get_filename() is None:
                     md = SkyTempleMessageDialog(MainController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                                Gtk.ButtonsType.OK, "An image must be selected.",
-                                                title="Error!")
+                                                Gtk.ButtonsType.OK, _("An image must be selected."))
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
                     md.destroy()
@@ -194,7 +188,7 @@ class BgMenuController:
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing the tileset."
+                    _("Error importing the tileset.")
                 )
             self.parent.reload_all()
             self.parent.mark_as_modified()
@@ -208,7 +202,7 @@ class BgMenuController:
         dialog.hide()
         if resp == Gtk.ResponseType.OK:
             dialog = Gtk.FileChooserNative.new(
-                "Export PNG of tiles...",
+                _("Export PNG of tiles..."),
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
                 None, None
@@ -229,7 +223,7 @@ class BgMenuController:
                     display_error(
                         sys.exc_info(),
                         str(err),
-                        "Error exporting the tileset."
+                        _("Error exporting the tileset.")
                     )
 
     def on_men_tiles_layer1_import_activate(self):
@@ -251,8 +245,7 @@ class BgMenuController:
                 if tiles_import_file.get_filename() is None:
                     md = SkyTempleMessageDialog(MainController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                                Gtk.ButtonsType.OK, "An image must be selected.",
-                                                title="Error!")
+                                                Gtk.ButtonsType.OK, _("An image must be selected."))
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
                     md.destroy()
@@ -263,7 +256,7 @@ class BgMenuController:
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing the tileset."
+                    _("Error importing the tileset.")
                 )
             self.parent.reload_all()
             self.parent.mark_as_modified()
@@ -320,9 +313,9 @@ class BgMenuController:
             if had_errors:
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                            Gtk.ButtonsType.OK, "Some values were invalid (not a number). "
-                                                                "They were replaced with 0.",
-                                            title="Warning!")
+                                            Gtk.ButtonsType.OK, _("Some values were invalid (not a number). "
+                                                                  "They were replaced with 0."),
+                                            title=_("Warning!"))
                 md.set_position(Gtk.WindowPosition.CENTER)
                 md.run()
                 md.destroy()
@@ -334,8 +327,8 @@ class BgMenuController:
         if not self.parent.dpla.has_for_palette(ani_pal_id):
             md = SkyTempleMessageDialog(MainController.window(),
                                         Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                        Gtk.ButtonsType.OK, "Palette Animation is not enabled for this palette.",
-                                        title="Warning!")
+                                        Gtk.ButtonsType.OK, _("Palette Animation is not enabled for this palette."),
+                                        title=_("Warning!"))
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()

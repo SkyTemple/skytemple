@@ -17,7 +17,7 @@
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, Optional, Dict
+from typing import TYPE_CHECKING, Optional, Dict, List
 
 from xml.etree.ElementTree import Element, ElementTree
 
@@ -39,6 +39,7 @@ from gi.repository.Gtk import ResponseType
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
+from skytemple_files.common.i18n_util import f, _
 
 logger = logging.getLogger(__name__)
 
@@ -47,7 +48,8 @@ if TYPE_CHECKING:
 
 
 IMAGE_ZOOM = 2
-COLUMN_TITLE = {"char": "Char ID", "width": "Width", "bprow": "Bytes per row", "cat": "Category", "padding": "Padding"}
+COLUMN_TITLE = {"char": _("Char ID"), "width": _("Width"),
+                "bprow": _("Bytes per row"), "cat": _("Category"), "padding": _("Padding")}
 class FontController(AbstractController):
     def __init__(self, module: 'MiscGraphicsModule', item: 'FontOpenSpec'):
         self.module = module
@@ -80,7 +82,7 @@ class FontController(AbstractController):
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(
-            "Export font in folder...",
+            _("Export font in folder..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
             '_Save', None
@@ -102,15 +104,15 @@ class FontController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"To import, select a folder containing all the files that were created when exporting the font.\n"
-            f"IMPORTANT: All image files must be indexed PNGs!\n"
-            f"For banner fonts, all images must have the same palette.",
-            title="Import Font"
+            _("To import, select a folder containing all the files that were created when exporting the font.\n"
+              "IMPORTANT: All image files must be indexed PNGs!\n"
+              "For banner fonts, all images must have the same palette."),
+            title=_("Import Font")
         )
         md.run()
         md.destroy()
         dialog = Gtk.FileChooserNative.new(
-            "Import font from folder...",
+            _("Import font from folder..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
             None, None
@@ -135,7 +137,7 @@ class FontController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing font."
+                    _("Error importing font.")
                 )
             self._init_font()
         
@@ -207,7 +209,7 @@ class FontController(AbstractController):
             try:
                 for e in self.entries:
                     if e.get_properties()["char"]==char:
-                        raise ValueError(f"Character {char} already exists in the table!")
+                        raise ValueError(f(_("Character {char} already exists in the table!")))
                 entry = self.font.create_entry_for_table(v)
                 entry.set_properties({"char": char})
                 self.entries.append(entry)
@@ -220,7 +222,7 @@ class FontController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error adding character."
+                    _("Error adding character.")
                 )
     
     def on_btn_remove_clicked(self, widget):

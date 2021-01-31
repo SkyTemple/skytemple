@@ -36,6 +36,7 @@ from skytemple_files.common.script_util import ScriptFiles, load_script_files, S
 from skytemple_files.script.ssb.constants import SsbConstant
 from skytemple_ssb_debugger.context.abstract import AbstractDebuggerControlContext, EXPS_KEYWORDS
 from skytemple_ssb_debugger.threadsafe import synchronized_now
+from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
     from skytemple_ssb_debugger.model.ssb_files.file_manager import SsbFileManager
@@ -138,8 +139,8 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         except ValueError:
             md = SkyTempleMessageDialog(self._manager.get_window(),
                                         Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                        Gtk.ButtonsType.OK, f"A scene for this script was not found.",
-                                        title="No Scenes Found")
+                                        Gtk.ButtonsType.OK, _("A scene for this script was not found."),
+                                        title=_("No Scenes Found"))
             md.run()
             md.destroy()
 
@@ -152,8 +153,8 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         except ValueError:
             md = SkyTempleMessageDialog(self._manager.get_window(),
                                         Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                        Gtk.ButtonsType.OK, f"A scene for this script was not found.",
-                                        title="No Scenes Found")
+                                        Gtk.ButtonsType.OK, _("A scene for this script was not found."),
+                                        title=_("No Scenes Found"))
             md.run()
             md.destroy()
 
@@ -182,7 +183,9 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     def _project_fm(self):
         return RomProject.get_current().get_project_file_manager()
 
-    def display_error(self, exc_info, error_message, error_title='SkyTemple Script Engine Debugger - Error'):
+    def display_error(self, exc_info, error_message, error_title=None):
+        if error_title is None:
+            error_title = _('SkyTemple Script Engine Debugger - Error!')
         display_error(exc_info, error_message, error_title, self._manager.get_window())
 
     def get_special_words(self) -> Iterable[str]:

@@ -18,6 +18,7 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import f, _
 
 
 class LsdController(SimpleController):
@@ -25,14 +26,14 @@ class LsdController(SimpleController):
         self.name = name
 
     def get_title(self) -> str:
-        return f'Acting Scenes for "{self.name}"'
+        return _('Acting Scenes for "{}').format(self.name)
 
     def get_content(self) -> Gtk.Widget:
         # TODO: Adding and removing the acting scenes.
         return self.generate_content_label(
-            f'This section contains all acting scenes for the map {self.name}.\n\n'
-            f'These scenes are used for cutscenes.\n'
-            f'The player can usually not move the character in them.'
+            f(_('This section contains all acting scenes for the map {self.name}.\n\n'
+                'These scenes are used for cutscenes.\n'
+                'The player can usually not move the character in them.'))
         )
 
     def get_icon(self) -> str:
