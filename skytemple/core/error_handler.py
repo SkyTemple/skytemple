@@ -24,6 +24,9 @@ from os.path import expanduser
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 
+import gi
+
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
