@@ -26,7 +26,7 @@ SkyTemple
     :alt: Supported Python versions
 
 .. |discord| image:: https://img.shields.io/discord/710190644152369162?label=Discord
-    :target: https://discord.gg/4e3X36f
+    :target: https://discord.gg/skytemple
     :alt: Discord
 
 .. |kofi| image:: https://www.ko-fi.com/img/githubbutton_sm.svg
