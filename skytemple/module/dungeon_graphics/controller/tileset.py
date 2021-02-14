@@ -27,6 +27,7 @@ from typing import TYPE_CHECKING, List, Iterable, Callable
 
 import cairo
 
+from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.rom_project import BinaryName
@@ -49,7 +50,7 @@ from gi.repository import Gtk
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
-from skytemple.core.module_controller import AbstractController
+from skytemple.core.module_controller import AbstractController, SimpleController
 from skytemple.module.dungeon_graphics.dungeon_chunk_drawer import DungeonChunkCellDrawer
 from skytemple_files.common.util import lcm, chunks
 from skytemple_files.graphics.dma.model import Dma, DmaExtraType, DmaType
@@ -64,6 +65,23 @@ if TYPE_CHECKING:
 
 
 URL_HELP = 'https://github.com/SkyTemple/skytemple-dtef/blob/main/docs/SkyTemple.rst'
+TILESETS_NAME = 'Tilesets'
+
+
+class TilesetMainController(SimpleController):
+    def __init__(self, module: AbstractModule, item_id: int):
+        pass
+
+    def get_title(self) -> str:
+        return TILESETS_NAME
+
+    def get_content(self) -> Gtk.Widget:
+        return self.generate_content_label(
+            "This section lets you edit the tilesets that are used for dungeons."
+        )
+
+    def get_icon(self) -> str:
+        return 'skytemple-illust-dungeon_tileset'
 
 
 class TilesetController(AbstractController):

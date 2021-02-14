@@ -21,7 +21,7 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
 from skytemple_files.common.i18n_util import f, _
 
-DUNGEON_GRAPHICS_NAME = _('Dungeon Tilesets')
+DUNGEON_GRAPHICS_NAME = _('Dungeon Graphics')
 
 
 class MainController(SimpleController):
