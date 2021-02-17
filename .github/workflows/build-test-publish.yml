@@ -115,7 +115,7 @@ jobs:
           unzip -o nsis.zip -d "/c/Program Files (x86)/NSIS"
 
           # Install PyInstaller
-          pip3 install pyinstaller
+          pip3 install pyinstaller==4.1
 
           # Package
           ./build-windows.sh $PACKAGE_VERSION
