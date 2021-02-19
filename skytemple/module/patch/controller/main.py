@@ -102,7 +102,7 @@ class MainController(AbstractController):
             except BaseException as err:
                 self._error(f"Error loading patch package {os.path.basename(fname)}:\n{err}")
         # List patches:
-        for patch in self._patcher.list():
+        for patch in sorted(self._patcher.list(), key=lambda p: p.name):
             applied_str = 'Not compatible'
             try:
                 applied_str = 'Applied' if self._patcher.is_applied(patch.name) else 'Compatible'
