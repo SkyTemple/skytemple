@@ -759,6 +759,7 @@ class MainController:
     def _load_support_images(self):
         # Load the Discord badge
         try:
+            raise Exception("Disabled for now.")
             url = 'https://raster.shields.io/discord/710190644152369162?label=Discord'
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             # Some weird issue on Windows with PyInstaller...:

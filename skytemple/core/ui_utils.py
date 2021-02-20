@@ -18,6 +18,9 @@
 import os
 import pathlib
 import sys
+import gi
+
+gi.require_version('Gtk', '3.0')
 
 import pkg_resources
 from gi.repository import Gtk
