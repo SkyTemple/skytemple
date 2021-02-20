@@ -91,24 +91,23 @@ class FloorEditItemList(Enum):
     UNK1 = 4
     UNK2 = 5
 
-# TODO: Multi-language support for this
 class FloorRanks(Enum):
-    INVALID = 0, "Invalid"
-    E_RANK = 1, "E Rank"
-    D_RANK = 2, "D Rank"
-    C_RANK = 3, "C Rank"
-    B_RANK = 4, "B Rank"
-    A_RANK = 5, "A Rank"
-    S_RANK = 6, "S Rank"
-    S1_RANK = 7, "★1 Rank"
-    S2_RANK = 8, "★2 Rank"
-    S3_RANK = 9, "★3 Rank"
-    S4_RANK = 10, "★4 Rank"
-    S5_RANK = 11, "★5 Rank"
-    S6_RANK = 12, "★6 Rank"
-    S7_RANK = 13, "★7 Rank"
-    S8_RANK = 14, "★8 Rank"
-    S9_RANK = 15, "★9 Rank"
+    INVALID = 0, _("Invalid")
+    E_RANK = 1, _("E Rank")
+    D_RANK = 2, _("D Rank")
+    C_RANK = 3, _("C Rank")
+    B_RANK = 4, _("B Rank")
+    A_RANK = 5, _("A Rank")
+    S_RANK = 6, _("S Rank")
+    S1_RANK = 7, _("★1 Rank")
+    S2_RANK = 8, _("★2 Rank")
+    S3_RANK = 9, _("★3 Rank")
+    S4_RANK = 10, _("★4 Rank")
+    S5_RANK = 11, _("★5 Rank")
+    S6_RANK = 12, _("★6 Rank")
+    S7_RANK = 13, _("★7 Rank")
+    S8_RANK = 14, _("★8 Rank")
+    S9_RANK = 15, _("★9 Rank")
 
     def __new__(cls, *args, **kwargs):
         obj = object.__new__(cls)
@@ -203,9 +202,9 @@ class FloorController(AbstractController):
             self.mark_as_modified()
 
     def on_btn_help_floor_ranks_clicked(self, *args):
-        self._help("This attribute is the base rank of this floor. \n"
-                   "The floor rank determines the item list used for mission rewards and treasure boxes content. \n"
-                   "Needs the 'ExtractDungeonData' patch to be applied to edit this attribute.")
+        self._help(_("This attribute is the base rank of this floor. \n"
+                     "The floor rank determines the item list used for mission rewards and treasure boxes content. \n"
+                     "Needs the 'ExtractDungeonData' patch to be applied to edit this attribute."))
         
     def on_cb_mission_forbidden_changed(self, w, *args):
         if self.module.has_floor_ranks():
@@ -214,8 +213,8 @@ class FloorController(AbstractController):
             self.mark_as_modified()
             
     def on_btn_help_mission_forbidden_clicked(self, *args):
-        self._help("If this attribute is set to 'Yes', no missions will be generated for this floor, and Wonder Mail S codes targetting this floor will be considered as invalid. \n"
-                   "Needs the 'ExtractDungeonData' patch to be applied to edit this attribute.")
+        self._help(_("If this attribute is set to 'Yes', no missions will be generated for this floor, and Wonder Mail S codes targetting this floor will be considered as invalid. \n"
+                     "Needs the 'ExtractDungeonData' patch to be applied to edit this attribute."))
         
     def on_cb_tileset_id_changed(self, w, *args):
         self._update_from_widget(w)
@@ -234,7 +233,7 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_room_density_clicked(self, *args):
-        self._help("The game randomly adds a number between 0 and 2 to obtain the final value.")
+        self._help(_("The game randomly adds a number between 0 and 2 to obtain the final value."))
 
     def on_cb_structure_changed(self, w, *args):
         self._update_from_widget(w)
@@ -245,9 +244,9 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_dead_ends_clicked(self, *args):
-        self._help("Controls whether dead end hallways can be generated in the floor. "
-                   "Dead ends can still appear in the map even if they are disabled due to a bug in the "
-                   "map generator and because extra hallways can also produce them.")
+        self._help(_("Controls whether dead end hallways can be generated in the floor. "
+                     "Dead ends can still appear in the map even if they are disabled due to a bug in the "
+                     "map generator and because extra hallways can also produce them."))
 
     def on_entry_floor_connectivity_changed(self, w, *args):
         self._update_from_widget(w)
@@ -258,24 +257,24 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_water_density_clicked(self, *args):
-        self._help("This is the amount of lakes that will be generated during the water generation phase.")
+        self._help(_("This is the amount of lakes that will be generated during the water generation phase."))
 
     def on_entry_extra_hallway_density_changed(self, w, *args):
         self._update_from_widget(w)
         self.mark_as_modified()
 
     def on_btn_help_floor_connectivity_clicked(self, *args):
-        self._help("Floor connectivity (Min 1, if it's 0 a valid map can't be generated and you will get the default "
-                   "single room that it's also a monster house).\n\n"
-                   "This is the amount of connections between cells that will be generated when the map is first "
-                   "created. More will be added later to ensure that all the rooms can be accessed.\n"
-                   "A cell is a point in the initial grid used to generate the map. It will end up being a room or a "
-                   "crossroad once the full map is generated.")
+        self._help(_("Floor connectivity (Min 1, if it's 0 a valid map can't be generated and you will get the default "
+                     "single room that it's also a monster house).\n\n"
+                     "This is the amount of connections between cells that will be generated when the map is first "
+                     "created. More will be added later to ensure that all the rooms can be accessed.\n"
+                     "A cell is a point in the initial grid used to generate the map. It will end up being a room or a "
+                     "crossroad once the full map is generated."))
 
     def on_btn_help_extra_hallway_density_clicked(self, *args):
-        self._help("Used to generate additional hallways in the map (those \"donuts\" that lead to nowhere, multiple "
-                   "entrances to the same room, room exits connected to the same room, those dead ends that come out "
-                   "of a room, make a couple of twists and also lead to nowhere)")
+        self._help(_("Used to generate additional hallways in the map (those \"donuts\" that lead to nowhere, multiple "
+                     "entrances to the same room, room exits connected to the same room, those dead ends that come out "
+                     "of a room, make a couple of twists and also lead to nowhere)"))
 
     def on_cb_terrain_settings__has_secondary_terrain_changed(self, w, *args):
         self._update_from_widget(w)
@@ -318,24 +317,24 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_trap_density_clicked(self, *args):
-        self._help("The final value is randomized between density and density/2.")
+        self._help(_("The final value is randomized between density and density/2."))
 
     def on_btn_help_max_coin_amount_clicked(self, *args):
-        self._help("The value stored in the ROM is actually the value divided by 5. Because of this the saved value "
-                   "will be rounded to the next multiple of 5.")
+        self._help(_("The value stored in the ROM is actually the value divided by 5. Because of this the saved value "
+                     "will be rounded to the next multiple of 5."))
 
     def on_btn_help_chances_clicked(self, *args):
-        self._help("These sliders control how likely it is (in %) for certain things to generate on this floor.")
+        self._help(_("These sliders control how likely it is (in %) for certain things to generate on this floor."))
 
     def on_btn_help_kecleon_shop_item_positions_clicked(self, *args):
-        self._help("Every Kecleon shop has a minimum amount of guaranteed items.\n"
-                   "This value controls where in the shop they will be placed.")
+        self._help(_("Every Kecleon shop has a minimum amount of guaranteed items.\n"
+                     "This value controls where in the shop they will be placed."))
 
     def on_btn_help_unk_hidden_stairs_clicked(self, *args):
-        self._help("0 --> 100% secret bazaar\n"
-                   "1 --> 100% secret room\n"
-                   "255 --> 50% secret bazaar, 50% secret room\n"
-                   "Other values: 0% secret bazaar, 0% secret room (you just go to the next floor like normal stairs).")
+        self._help(_("0 --> 100% secret bazaar\n"
+                     "1 --> 100% secret room\n"
+                     "255 --> 50% secret bazaar, 50% secret room\n"
+                     "Other values: 0% secret bazaar, 0% secret room (you just go to the next floor like normal stairs)."))
 
     def on_scale_kecleon_shop_chance_value_changed(self, w, *args):
         self._update_from_widget(w)
@@ -350,10 +349,10 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_unusued_chance_clicked(self, *args):
-        self._help("Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from "
-                   "\"ASM Patches.\"\nIf patched, the game will turn a random room into a maze room made of wall tiles "
-                   "instead of the usual water (although water can later replace some of the walls once the water "
-                   "generation takes place).")
+        self._help(_("Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from "
+                     "\"ASM Patches.\"\nIf patched, the game will turn a random room into a maze room made of wall tiles "
+                     "instead of the usual water (although water can later replace some of the walls once the water "
+                     "generation takes place)."))
 
     def on_scale_hidden_stairs_spawn_chance_value_changed(self, w, *args):
         self._update_from_widget(w)
@@ -368,9 +367,9 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_empty_monster_house_clicked(self, *args):
-        self._help("It was added in explorers of sky, so right now it's only used in the sky exclusive dungeons.\n"
-                   "If a monster house spawns in the floor, this is the chance of it being empty (no items will be "
-                   "generated inside).")
+        self._help(_("It was added in explorers of sky, so right now it's only used in the sky exclusive dungeons.\n"
+                     "If a monster house spawns in the floor, this is the chance of it being empty (no items will be "
+                     "generated inside)."))
 
     def on_scale_sticky_item_chance_value_changed(self, w, *args):
         self._update_from_widget(w)
@@ -385,7 +384,7 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_iq_booster_enabled_clicked(self, *args):
-        self._help("If enabled, the IQ booster increases IQ on this floor.")
+        self._help(_("If enabled, the IQ booster increases IQ on this floor."))
 
     def on_entry_enemy_iq_changed(self, w, *args):
         self._update_from_widget(w)
@@ -425,8 +424,8 @@ class FloorController(AbstractController):
         if entid == KECLEON_MD_INDEX or entid >= DUMMY_MD_INDEX:
             display_error(
                 None,
-                f"You can not spawn Kecleons or the Decoy Pokémon or any Pokémon above #{DUMMY_MD_INDEX}.",
-                "SkyTemple: Invalid Pokémon"
+                f(_("You can not spawn Kecleons or the Decoy Pokémon or any Pokémon above #{DUMMY_MD_INDEX}.")),
+                _("SkyTemple: Invalid Pokémon")
             )
             return
 
@@ -543,8 +542,8 @@ class FloorController(AbstractController):
         if len(available_categories) < 1:
             display_error(
                 None,
-                'All categories are already in the list.',
-                'Can not add category'
+                _('All categories are already in the list.'),
+                _('Can not add category')
             )
             return
         cb.set_active_iter(cb_store.get_iter_first())
@@ -566,8 +565,8 @@ class FloorController(AbstractController):
         if len(model) < 2:
             display_error(
                 None,
-                "The last category can not be removed.",
-                "Can't remove category."
+                _("The last category can not be removed."),
+                _("Can't remove category.")
             )
             return
         if model is not None and treeiter is not None:
@@ -737,16 +736,16 @@ class FloorController(AbstractController):
         if entid not in CATEGORIES_FOR_STORES[store_name].item_ids():
             display_error(
                 None,
-                'This item does not belong in this category. Please chose another item.',
-                'Invalid item id'
+                _('This item does not belong in this category. Please chose another item.'),
+                _('Invalid item id')
             )
             return
 
         if entid in item_ids_already_in:
             display_error(
                 None,
-                'This item is already in the list.',
-                'Can not use this item'
+                _('This item is already in the list.'),
+                _('Can not use this item')
             )
             return
 
@@ -793,8 +792,8 @@ class FloorController(AbstractController):
             if i >= len(all_item_ids):
                 display_error(
                     None,
-                    'All items are already in the list',
-                    'Can not add item.'
+                    _('All items are already in the list'),
+                    _('Can not add item.')
                 )
                 return
         store.append([
