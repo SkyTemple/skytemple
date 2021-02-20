@@ -33,6 +33,11 @@ from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement
 from skytemple_files.common.i18n_util import f, _
 
+try:
+    from PIL import Image
+except:
+    from pil import Image
+
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
     from skytemple.module.map_bg.module import MapBgModule
@@ -146,24 +151,33 @@ class WorldMapController(AbstractController):
         self.dialog_drawer.start()
 
     def _change_map_bg(self, level_id: int, draw, drawer):
-        bma = self.map_bg_module.get_bma(self._get_map_id(level_id))
-        bpl = self.map_bg_module.get_bpl(self._get_map_id(level_id))
-        bpc = self.map_bg_module.get_bpc(self._get_map_id(level_id))
-        bpas = self.map_bg_module.get_bpas(self._get_map_id(level_id))
-        surface = pil_to_cairo_surface(
-            bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[0].convert('RGBA')
-        )
-        if drawer:
-            if level_id == WORLD_MAP_DEFAULT_ID:
-                draw.set_size_request(504 * SCALE, 336 * SCALE)
-            else:
-                bma_width = bma.map_width_camera * BPC_TILE_DIM
-                bma_height = bma.map_height_camera * BPC_TILE_DIM
-                draw.set_size_request(
-                    bma_width * SCALE, bma_height * SCALE
-                )
-            drawer.level_id = level_id
+        if level_id!=-1:
+            bma = self.map_bg_module.get_bma(self._get_map_id(level_id))
+            bpl = self.map_bg_module.get_bpl(self._get_map_id(level_id))
+            bpc = self.map_bg_module.get_bpc(self._get_map_id(level_id))
+            bpas = self.map_bg_module.get_bpas(self._get_map_id(level_id))
+            surface = pil_to_cairo_surface(
+                bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[0].convert('RGBA')
+            )
+            if drawer:
+                if level_id == WORLD_MAP_DEFAULT_ID:
+                    draw.set_size_request(504 * SCALE, 336 * SCALE)
+                else:
+                    bma_width = bma.map_width_camera * BPC_TILE_DIM
+                    bma_height = bma.map_height_camera * BPC_TILE_DIM
+                    draw.set_size_request(
+                        bma_width * SCALE, bma_height * SCALE
+                    )
+                drawer.level_id = level_id
+                drawer.map_bg = surface
+                draw.queue_draw()
+        else:
+            surface = pil_to_cairo_surface(
+                Image.new(mode="RGBA", size=(1,1), color=(0,0,0,0))
+            )
+            drawer.level_id = -1
             drawer.map_bg = surface
+            draw.set_size_request(1,1)
             draw.queue_draw()
 
     ## TODO: The 2 following methods should use the actual level list from the game when it will be implemented
@@ -173,7 +187,7 @@ class WorldMapController(AbstractController):
         return self._config.script_data.level_list__by_id[entry.level_id].name
     def _get_map_id(self, level_id: int):
         if level_id < 0:
-            return ''
+            return -1
         return int(self._config.script_data.level_list__by_id[level_id].mapid)
 
     def _get_position(self, entry: MapMarkerPlacement):

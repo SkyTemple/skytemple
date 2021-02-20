@@ -58,7 +58,7 @@ main_thread = current_thread()
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 COL_VISIBLE = 7
-DISCORD_INVITE_LINK = 'https://discord.gg/4e3X36f'
+DISCORD_INVITE_LINK = 'https://discord.gg/skytemple'
 
 
 class MainController:

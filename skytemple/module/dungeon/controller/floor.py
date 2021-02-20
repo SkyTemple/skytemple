@@ -91,6 +91,43 @@ class FloorEditItemList(Enum):
     UNK1 = 4
     UNK2 = 5
 
+# TODO: Multi-language support for this
+class FloorRanks(Enum):
+    INVALID = 0, "Invalid"
+    E_RANK = 1, "E Rank"
+    D_RANK = 2, "D Rank"
+    C_RANK = 3, "C Rank"
+    B_RANK = 4, "B Rank"
+    A_RANK = 5, "A Rank"
+    S_RANK = 6, "S Rank"
+    S1_RANK = 7, "★1 Rank"
+    S2_RANK = 8, "★2 Rank"
+    S3_RANK = 9, "★3 Rank"
+    S4_RANK = 10, "★4 Rank"
+    S5_RANK = 11, "★5 Rank"
+    S6_RANK = 12, "★6 Rank"
+    S7_RANK = 13, "★7 Rank"
+    S8_RANK = 14, "★8 Rank"
+    S9_RANK = 15, "★9 Rank"
+
+    def __new__(cls, *args, **kwargs):
+        obj = object.__new__(cls)
+        obj._value_ = args[0]
+        return obj
+
+    # ignore the first param since it's already set by __new__
+    def __init__(self, _: str, print_name: str = None):
+        self._print_name_ = print_name
+
+    def __str__(self):
+        return self._print_name_
+
+    def __repr__(self):
+        return f'FloorRanks.{self.name}'
+
+    @property
+    def print_name(self):
+        return self._print_name_
 
 class FloorController(AbstractController):
     _last_open_tab_id = 0
@@ -159,6 +196,27 @@ class FloorController(AbstractController):
     def on_btn_preview_clicked(self, *args):
         pass  # todo
 
+    def on_cb_floor_ranks_changed(self, w, *args):
+        if self.module.has_floor_ranks():
+            cb = self.builder.get_object('cb_floor_ranks')
+            self.module.set_floor_rank(self.item.dungeon.dungeon_id, self.item.floor_id, cb.get_active())
+            self.mark_as_modified()
+
+    def on_btn_help_floor_ranks_clicked(self, *args):
+        self._help("This attribute is the base rank of this floor. \n"
+                   "The floor rank determines the item list used for mission rewards and treasure boxes content. \n"
+                   "Needs the 'ExtractDungeonData' patch to be applied to edit this attribute.")
+        
+    def on_cb_mission_forbidden_changed(self, w, *args):
+        if self.module.has_floor_ranks():
+            cb = self.builder.get_object('cb_mission_forbidden')
+            self.module.set_floor_mf(self.item.dungeon.dungeon_id, self.item.floor_id, cb.get_active())
+            self.mark_as_modified()
+            
+    def on_btn_help_mission_forbidden_clicked(self, *args):
+        self._help("If this attribute is set to 'Yes', no missions will be generated for this floor, and Wonder Mail S codes targetting this floor will be considered as invalid. \n"
+                   "Needs the 'ExtractDungeonData' patch to be applied to edit this attribute.")
+        
     def on_cb_tileset_id_changed(self, w, *args):
         self._update_from_widget(w)
         self.mark_as_modified(modified_mappag=True)
@@ -766,6 +824,7 @@ class FloorController(AbstractController):
                      "All spawn entries are always saved to the game sorted by their (Pokémon, item, trap) ID."))
 
     def on_btn_export_clicked(self, *args):
+        # TODO: Add export for Ranks and Forbidden Missions attributes
         from skytemple.module.dungeon.module import DungeonGroup, ICON_GROUP, \
             ICON_DUNGEONS, DOJO_DUNGEONS_FIRST, DOJO_DUNGEONS_LAST
         dialog: Gtk.Dialog = self.builder.get_object('export_dialog')
@@ -856,6 +915,8 @@ class FloorController(AbstractController):
             self.module.import_from_xml(selected_floors, xml)
 
     def on_btn_import_clicked(self, *args):
+        # TODO: Add import for Ranks and Forbidden Missions attributes
+        
         save_diag = Gtk.FileChooserNative.new(
             _("Import floor from..."),
             SkyTempleMainController.window(),
@@ -968,8 +1029,24 @@ class FloorController(AbstractController):
         self._comboxbox_for_music_id(['cb_music_id'])
         # cb_fixed_floor_id
         self._comboxbox_for_fixed_floor_id(['cb_fixed_floor_id'])
+        if self.module.has_floor_ranks():
+            # cb_floor_ranks
+            self._comboxbox_for_enum(['cb_floor_ranks'], FloorRanks)
+        else:
+            self.builder.get_object('cb_floor_ranks').set_sensitive(False)
+        if self.module.has_mission_forbidden():
+            # cb_mission_forbidden
+            self._comboxbox_for_boolean(['cb_mission_forbidden'])
+        else:
+            self.builder.get_object('cb_mission_forbidden').set_sensitive(False)
 
     def _init_layout_values(self):
+        if self.module.has_floor_ranks():
+            cb = self.builder.get_object('cb_floor_ranks')
+            cb.set_active(self.module.get_floor_rank(self.item.dungeon.dungeon_id, self.item.floor_id))
+        if self.module.has_mission_forbidden():
+            cb = self.builder.get_object('cb_mission_forbidden')
+            cb.set_active(self.module.get_floor_mf(self.item.dungeon.dungeon_id, self.item.floor_id))
         all_entries_and_cbs = [
             "cb_tileset_id",
             "cb_music_id",

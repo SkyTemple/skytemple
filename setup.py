@@ -52,7 +52,7 @@ setup(
         'CairoSVG >= 2.4.2'
     ],
     extras_require={
-        'discord':  ["pypresence >= 4.0.0"],
+        'discord':  ["pypresence >= 4.2.0"],
         'eventserver': ["skytemple-eventserver >= 1.0.0"]
     },
     classifiers=[

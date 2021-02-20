@@ -282,7 +282,8 @@ class DiscordPresence(AbstractListener):
             small_image=None, small_text=None
     ):
         result = self.rpc.update(state=state, details=details, start=start, large_image=large_image,
-                                 large_text=large_text, small_image=small_image, small_text=small_text)
+                                 large_text=large_text, small_image=small_image, small_text=small_text,
+                                 buttons=[{"label": "Get SkyTemple", "url": "https://skytemple.org"}])
         logger.debug(f"Presence update result: {result}")
 
     def _reset_playtime(self):
