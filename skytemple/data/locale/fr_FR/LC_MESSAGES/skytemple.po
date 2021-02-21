@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-21 18:47\n"
+"PO-Revision-Date: 2021-02-21 23:19\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -30,41 +30,41 @@ msgstr ""
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:87
 #, python-brace-format
 msgid "Invalid tileset. Tileset has chunk dimensions of {dim}px, but only {CHUNK_DIM}px are supported."
-msgstr ""
+msgstr "Jeu de tuiles invalide. Le jeu de tuiles possède des fragments de dimensions {dim} px, mais seuls les fragments de dimensions {CHUNK_DIM} px sont supportés."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:109
 msgid "Invalid animation: Animation is only supported for palettes 10 and 11."
-msgstr ""
+msgstr "Animation invalide : l'animation des couleurs n'est supportée que sur les palettes 10 et 11."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:123
 #, python-brace-format
 msgid "A required DTEF file is missing: {fn}. Please verify the DTEF package."
-msgstr ""
+msgstr "Un fichier DTEF requis manque : {fn}. Veuillez vérifier le paquetage DTEF."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:131
 #, python-brace-format
 msgid "Can not import image \"{basename}\" as dungeon tileset: Must be indexed image (=using a palette)"
-msgstr ""
+msgstr "Impossible d'importer l'image «{basename}» en tant que jeu de tuiles de donjon : l'image doit être indexée (c'est-à-dire utiliser une palette)."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:134
 #, python-brace-format
 msgid "Can not import image \"{basename}\" as dungeon tileset: Palette must contain  256 RGB colors."
-msgstr ""
+msgstr "Impossible d'importer l'image «{basename}» en tant que jeu de tuiles de donjon : la palette doit contenir 256 couleurs RVB."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:139
 #, python-brace-format
 msgid "Can not import images as dungeon tilesets: The palettes of the images do not match. First image read that didn't match: \"{basename}\""
-msgstr ""
+msgstr "Impossible d'importer les images en tant que jeu de tuiles de donjon : les palettes de ces images ne correspondent pas. La première image qui ne correspond pas est la suivante : «{basename}»."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:144
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:145
 #, python-brace-format
 msgid "Logic error: Tileset file {fn} was not loaded."
-msgstr ""
+msgstr "Erreur dans la logique d'importation : le fichier de jeu de tuiles {fn} n'a pas été chargé."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:148
 msgid "Image '{fn}' is too small ({tileset.width}x{tileset.height}px), must be at least {bx+w}x{by+h}px."
-msgstr ""
+msgstr "L'image «{fn}» est trop petite ({tileset.width}x{tileset.height} px), elle doit être au minimum de dimensions {bx+w}x{by+h} px."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:153
 msgid "A rule is missing in the import set"
@@ -82,181 +82,181 @@ msgstr ""
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:274
 msgid "Error in the XML: One of the animation frames doesn't have 16 colors. Each frame must have a value for each color."
-msgstr ""
+msgstr "Erreur dans le fichier XML : une des images de l'animation n'a pas 16 couleurs. Chaque image doit avoir une valeur pour chaque couleur."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:282
 msgid "Error in the XML: Durations for a palette or it's colors are not correctly defined."
-msgstr ""
+msgstr "Erreur dans le fichier XML : la durée et/ou les couleurs d'une palette ne sont pas correctement définies."
 
 #: dtef/skytemple_dtef/rules.py:118
 #, python-brace-format
 msgid "No match found for rule {orig_rule}. Input set correct?"
-msgstr ""
+msgstr "Aucune correspondance trouvée pour la règle {orig_rule}. L'entrée est-elle correcte ?"
 
 #: explorerscript/explorerscript/macro.py:85
 #, python-brace-format
 msgid "Value for macro variable {var_name} not provided."
-msgstr ""
+msgstr "Valeur pour la variable de macro {var_name} non fournie."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_adventure_log.py:42
 msgid "No value for adventure_log set."
-msgstr ""
+msgstr "Aucune valeur définie pour adventure_log."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_clear.py:42
 msgid "No variable for clear."
-msgstr ""
+msgstr "Aucune variable précisée pour clear."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:43
 msgid "No variable for dungeon_mode set."
-msgstr ""
+msgstr "Aucune variable définie pour dungeon_mode."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:45
 msgid "No value for dungeon_mode set."
-msgstr ""
+msgstr "Aucune valeur définie pour dungeon_mode."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_initial.py:42
 msgid "No variable for init."
-msgstr ""
+msgstr "Aucune variable définie pour init."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:48
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:46
 msgid "No variable for assignment."
-msgstr ""
+msgstr "Aucune variable définie pour l'affectation."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:50
 msgid "No operator set for assignment."
-msgstr ""
+msgstr "Aucun opérateur défini pour l'affectation."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:52
 msgid "No value set for assignment."
-msgstr ""
+msgstr "Aucune valeur définie pour l'affectation."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:58
 #, python-brace-format
 msgid "value(X) can not be used with index based assignments (line {self.ctx.start.line})."
-msgstr ""
+msgstr "value(X) ne peut pas être utilisé dans les affectations à index (ligne {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_reset.py:43
 msgid "No target for reset."
-msgstr ""
+msgstr "Aucune cible pour reset."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_scenario.py:43
 msgid "No variable for assignment set."
-msgstr ""
+msgstr "Aucune variable définie pour l'affectation."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/scn_var.py:41
 msgid "scn() without a variable."
-msgstr ""
+msgstr "scn() utilisé sans variable."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/value_of.py:41
 msgid "value() without a variable."
-msgstr ""
+msgstr "value() utilisé sans variable."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:52
 msgid "No target ID set for with(){} block."
-msgstr ""
+msgstr "Aucun ID cible défini pour le bloc with(){}."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:54
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:96
 msgid "A with(){} block needs exactly one statement."
-msgstr ""
+msgstr "Un bloc with(){} ne doit contenir qu'une seule instruction."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:64
 #, python-brace-format
 msgid "Invalid with(){{}} target type '{for_type}'."
-msgstr ""
+msgstr "Type de la cible du bloc with(){} «{for_type}» invalide."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:69
 msgid "A with(){} block needs exactly one binary operation. The handler for it generated multiple operations."
-msgstr ""
+msgstr "Un bloc with(){} ne peut contenir qu'une seule opération en binaire. Le gestionnaire pour ce bloc en a généré plusieurs."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:85
 msgid "A with(){} block can not contain labels."
-msgstr ""
+msgstr "Un bloc with(){} ne peut pas contenir d'étiquette."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:44
 msgid "No variable in if condition."
-msgstr ""
+msgstr "Aucune variable définie dans la condition du if."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:59
 #, python-brace-format
 msgid "The variable {var_target_name} can not be used with 'not' (line {self.ctx.start.line})."
-msgstr ""
+msgstr "La variable {var_target_name} ne peut pas être utilisée avec l'opérateur «not» (ligne {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:47
 msgid "No variable for if condition."
-msgstr ""
+msgstr "Aucune variable définie pour la condition du if."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:49
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:46
 msgid "No operator set for if condition."
-msgstr ""
+msgstr "Aucun opérateur défini pour la condition du if."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:51
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:43
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:48
 msgid "No value set for if condition."
-msgstr ""
+msgstr "Aucune valeur définie pour la condition du if."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:48
 #, python-brace-format
 msgid "The only supported operators for scn if conditions are ==,<,<=,>,>= (line {self.ctx.start.line})"
-msgstr ""
+msgstr "Les seuls opérateurs supportés pour les conditions if utilisant scn sont ==,<,<=,>,>= (ligne {self.ctx.start.line})"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:60
 msgid "Invalid content for an if-header"
-msgstr ""
+msgstr "Contenu invalide pour un en-tête de if."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:64
 #, python-brace-format
 msgid "Invalid operation for if condition: {op.op_code.name} (line {self.ctx.start.line})"
-msgstr ""
+msgstr "Opération invalide pour une condition de if : {op.op_code.name} (ligne {self.ctx.start.line})"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:78
 #, python-brace-format
 msgid "Unknown if operation in line {self.ctx.start.line})."
-msgstr ""
+msgstr "Opération de if inconnue à la ligne {self.ctx.start.line}."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:57
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:72
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:49
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:63
 msgid "Invalid message switch case call."
-msgstr ""
+msgstr "Appel à un case invalide pour un message_switch."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_header.py:58
 msgid "Unknown case operation."
-msgstr ""
+msgstr "Opération pour un case inconnue."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:55
 msgid "Invalid message switch."
-msgstr ""
+msgstr "message_switch invalide."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:59
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:72
 #, python-brace-format
 msgid "A message_ switch can only contain cases with strings (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Un message_switch ne peut contenir que des case avec des chaînes de caractères (ligne {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:63
 #, python-brace-format
 msgid "Invalid case type for message_ switch (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Type de case invalide pour un message_switch (ligne {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:84
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line}"
-msgstr ""
+msgstr "Un bloc switch ne peut continir qu'un seul default (ligne {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:75
 #, python-brace-format
 msgid "A switch case must contain a list of statements (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Un case de switch doit contenir une liste d'instructions (ligne {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:121
 #, python-brace-format
 msgid "Unexpected switch end (line {self.ctx.start.line})"
-msgstr ""
+msgstr "Fin de switch inattendue (ligne {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:134
 #, python-brace-format
