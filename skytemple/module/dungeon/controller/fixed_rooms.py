@@ -26,11 +26,12 @@ from skytemple.module.dungeon import MAX_ITEMS, SPECIAL_ITEMS, SPECIAL_MONSTERS
 from skytemple_files.data.md.model import NUM_ENTITIES
 from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
+from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule
 
-FIXED_ROOMS_NAME = 'Fixed Rooms'
+FIXED_ROOMS_NAME = _('Fixed Rooms')
 PATTERN = re.compile(r'.*\([#$](\d+)\).*')
 
 
@@ -54,14 +55,14 @@ class FixedRoomsController(AbstractController):
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i % NUM_ENTITIES)
             self.monster_names[i] = f'{name} ({entry.gender.name.capitalize()}) (${i:04})'
         for i in range(length, length + SPECIAL_MONSTERS):
-            self.monster_names[i] = f'(Special?) (${i:04})'
+            self.monster_names[i] = _('(Special?)') + f' (${i:04})'
 
         self.item_names = {}
         for i in range(0, MAX_ITEMS):
             name = self.module.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
             self.item_names[i] = f'{name} (#{i:04})'
         for i in range(MAX_ITEMS, MAX_ITEMS + SPECIAL_ITEMS):
-            self.item_names[i] = f'(Special?) (#{i:04})'
+            self.item_names[i] = _('(Special?)') + f' (#{i:04})'
 
     def get_view(self) -> Widget:
         self.builder = self._get_builder(__file__, 'fixed_rooms.glade')
@@ -98,7 +99,7 @@ class FixedRoomsController(AbstractController):
     def on_cr_entities_tile_id_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('model_entities')
         cb_store: Gtk.Store = self.builder.get_object('model_entities__tiles')
-        store[path][1] = f'Tile {cb_store[new_iter][0]}'
+        store[path][1] = f'{_("Tile")} {cb_store[new_iter][0]}'
         self.lst_entity[int(store[path][0])].tile_id = cb_store[new_iter][0]
         store[path][4] = self.module.desc_fixed_floor_tile(self.lst_tile[cb_store[new_iter][0]])
         self._save()
@@ -106,7 +107,7 @@ class FixedRoomsController(AbstractController):
     def on_cr_entities_item_id_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('model_entities')
         cb_store: Gtk.Store = self.builder.get_object('model_entities__items')
-        store[path][2] = f'Item {cb_store[new_iter][0]}'
+        store[path][2] = f'{_("Item")} {cb_store[new_iter][0]}'
         self.lst_entity[int(store[path][0])].item_id = cb_store[new_iter][0]
         store[path][5] = self.module.desc_fixed_floor_item(self.lst_item[cb_store[new_iter][0]].item_id)
         self._save()
@@ -114,7 +115,7 @@ class FixedRoomsController(AbstractController):
     def on_cr_entities_monster_id_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('model_entities')
         cb_store: Gtk.Store = self.builder.get_object('model_entities__monsters')
-        store[path][3] = f'Pokémono {cb_store[new_iter][0]}'
+        store[path][3] = f'Pokémon {cb_store[new_iter][0]}'
         self.lst_entity[int(store[path][0])].monster_id = cb_store[new_iter][0]
         monster = self.lst_monster[cb_store[new_iter][0]]
         store[path][6] = self.module.desc_fixed_floor_monster(
@@ -390,7 +391,7 @@ class FixedRoomsController(AbstractController):
         store: Gtk.ListStore = self.builder.get_object('model_entities__tiles')
         store.clear()
         for i in range(0, len(self.lst_tile)):
-            store.append([i, f"Tile {i} ({self.module.desc_fixed_floor_tile(self.lst_tile[i])})"])
+            store.append([i, f"{'Tile'} {i} ({self.module.desc_fixed_floor_tile(self.lst_tile[i])})"])
         # Init Monsters Store
         store: Gtk.ListStore = self.builder.get_object('model_entities__monsters')
         store.clear()
@@ -404,7 +405,7 @@ class FixedRoomsController(AbstractController):
         store: Gtk.ListStore = self.builder.get_object('model_entities__items')
         store.clear()
         for i in range(0, len(self.lst_item)):
-            store.append([i, f"Item {i} ({self.module.desc_fixed_floor_item(self.lst_item[i].item_id)})"])
+            store.append([i, f"{'Item'} {i} ({self.module.desc_fixed_floor_item(self.lst_item[i].item_id)})"])
 
         # Init Entities Store
         store: Gtk.ListStore = self.builder.get_object('model_entities')
@@ -412,7 +413,7 @@ class FixedRoomsController(AbstractController):
         for idx, entity in enumerate(self.lst_entity):
             monster = self.lst_monster[entity.monster_id]
             store.append([
-                str(idx), f"Tile {entity.tile_id}", f"Item {entity.item_id}", f"Pokémon {entity.monster_id}",
+                str(idx), f"{'Tile'} {entity.tile_id}", f"{'Item'} {entity.item_id}", f"Pokémon {entity.monster_id}",
                 "(" + self.module.desc_fixed_floor_tile(self.lst_tile[entity.tile_id]) + ")",
                 "(" + self.module.desc_fixed_floor_item(self.lst_item[entity.item_id].item_id) + ")",
                 "(" + self.module.desc_fixed_floor_monster(
@@ -423,7 +424,7 @@ class FixedRoomsController(AbstractController):
     def _init_tiles(self):
         # Init Traps Store
         store: Gtk.ListStore = self.builder.get_object('model_tiles__traps')
-        store.append([25, 'None'])
+        store.append([25, _('None')])
         for trap in MappaTrapType:
             store.append([trap.value, ' '.join([x.capitalize() for x in trap.name.split('_')])])
 
@@ -432,7 +433,7 @@ class FixedRoomsController(AbstractController):
         store: Gtk.ListStore = self.builder.get_object('model_tiles')
         store.clear()
         for idx, tile in enumerate(self.lst_tile):
-            name = 'None'
+            name = _('None')
             if tile.trap_id < 25:
                 trap = MappaTrapType(tile.trap_id)
                 name = ' '.join([x.capitalize() for x in trap.name.split('_')])
@@ -502,7 +503,7 @@ class FixedRoomsController(AbstractController):
             return (monster.stats_entry,
                     self._generate_stats_label(monster.stats_entry, self.lst_stats[monster.stats_entry]),
                     True)
-        return 0, 'n/a', False
+        return 0, _('n/a'), False
 
     def _generate_stats_label(self, i, entry):
         return self.module.desc_fixed_floor_stats(i, entry)

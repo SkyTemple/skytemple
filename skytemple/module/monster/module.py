@@ -38,6 +38,7 @@ from skytemple_files.data.monster_xml import monster_xml_import
 from skytemple_files.data.waza_p.model import WazaP
 from skytemple_files.graphics.kao.model import KaoImage, SUBENTRIES, Kao
 from skytemple_files.hardcoded.monster_sprite_data_table import HardcodedMonsterSpriteDataTable
+from skytemple_files.common.i18n_util import _
 
 MONSTER_MD_FILE = 'BALANCE/monster.md'
 M_LEVEL_BIN = 'BALANCE/m_level.bin'
@@ -46,6 +47,7 @@ WAZA_P2_BIN = 'BALANCE/waza_p2.bin'
 PORTRAIT_FILE = 'FONT/kaomado.kao'
 TBL_TALK_FILE = 'MESSAGE/tbl_talk.tlk'
 logger = logging.getLogger(__name__)
+
 
 class MonsterModule(AbstractModule):
     """Module to edit the monster.md and other Pokémon related data."""
@@ -162,7 +164,7 @@ class MonsterModule(AbstractModule):
 
     def get_portrait_view(self, item_id):
         if item_id == 0:
-            return Gtk.Label.new("This entry has no portraits.")
+            return Gtk.Label.new(_("This entry has no portraits."))
         return self.project.get_module('portrait').get_editor(item_id - 1, lambda: self.mark_md_as_modified(item_id))
 
     def get_sprite_view(self, sprite_id, item_id):
@@ -204,7 +206,7 @@ class MonsterModule(AbstractModule):
 
     def get_level_up_view(self, item_id):
         if item_id >= NUM_ENTITIES:
-            return Gtk.Label.new("Stats and moves are only editable for base forms."), None
+            return Gtk.Label.new(_("Stats and moves are only editable for base forms.")), None
         controller = LevelUpController(self, item_id)
         return controller.get_view(), controller
 

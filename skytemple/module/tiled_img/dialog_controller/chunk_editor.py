@@ -23,10 +23,12 @@ from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType, IconView, ScrolledWindow
 
 from skytemple.core.img_utils import pil_to_cairo_surface
+from skytemple.core.ui_utils import APP
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_graphics_provider import AbstractTileGraphicsProvider
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import AbstractTilePalettesProvider
 from skytemple.module.tiled_img.drawer_tiled import DrawerTiledCellRenderer, DrawerTiled
 from skytemple_files.common.tiled_image import TilemapEntry
+from skytemple_files.common.i18n_util import f, _
 bpa_views = [
     'icon_view_animated_tiles1', 'icon_view_animated_tiles2',
     'icon_view_animated_tiles3', 'icon_view_animated_tiles4'
@@ -45,6 +47,7 @@ class ChunkEditorController:
         path = os.path.abspath(os.path.dirname(__file__))
 
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(APP)
         self.builder.add_from_file(os.path.join(path, 'chunk_editor.glade'))
 
         self.dialog: Gtk.Dialog = self.builder.get_object('map_bg_chunk_editor')
@@ -337,7 +340,7 @@ class ChunkEditorController:
             if ani_tile_g is None:
                 sw: ScrolledWindow = view.get_parent()
                 sw.remove(view)
-                label = Gtk.Label.new('BPA slot is empty.\n\nGo to Tiles > Animated Tiles to\nmanage animated tiles.')
+                label = Gtk.Label.new(_('BPA slot is empty.\n\nGo to Tiles > Animated Tiles to\nmanage animated tiles.'))
                 label.set_vexpand(True)
                 label.show()
                 sw.add(label)

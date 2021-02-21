@@ -19,8 +19,9 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import f, _
 
-DUNGEON_GRAPHICS_NAME = 'Dungeon Tilesets'
+DUNGEON_GRAPHICS_NAME = _('Dungeon Tilesets')
 
 
 class MainController(SimpleController):
@@ -32,7 +33,7 @@ class MainController(SimpleController):
 
     def get_content(self) -> Gtk.Widget:
         return self.generate_content_label(
-            "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged."
+            _("This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged.")
         )
 
     def get_icon(self) -> str:

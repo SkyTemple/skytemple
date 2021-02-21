@@ -19,6 +19,7 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import _
 
 
 class EntityController(SimpleController):
@@ -30,9 +31,9 @@ class EntityController(SimpleController):
 
     def get_content(self) -> Gtk.Widget:
         return self.generate_content_label(
-            "Each Pokémon has two gender forms (even if it only has one gender).\n"
-            "This entry contains both of these forms. The first form is the main form, it is used "
-            "as a fallback in some cases, when the data for the second form doesn't exist."
+            _("Each Pokémon has two gender forms (even if it only has one gender).\n"
+              "This entry contains both of these forms. The first form is the main form, it is used "
+              "as a fallback in some cases, when the data for the second form doesn't exist.")
         )
 
     def get_icon(self) -> str:

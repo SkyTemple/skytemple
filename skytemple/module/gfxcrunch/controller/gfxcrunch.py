@@ -24,8 +24,9 @@ from typing import TYPE_CHECKING, List
 from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
-from skytemple.core.ui_utils import data_dir
+from skytemple.core.ui_utils import data_dir, APP
 from skytemple_files.common.task_runner import AsyncTaskRunner
+from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
     from skytemple.module.gfxcrunch.module import GfxcrunchModule
@@ -66,7 +67,7 @@ class GfxcrunchController:
                 with open(tmp_path, 'rb') as f:
                     return f.read()
             else:
-                raise RuntimeError("The gfxcrunch process failed.")
+                raise RuntimeError(_("The gfxcrunch process failed."))
 
     def export_sprite(self, wan: bytes, dir_fn: str):
         with tempfile.TemporaryDirectory() as tmp_path:
@@ -76,7 +77,7 @@ class GfxcrunchController:
             AsyncTaskRunner.instance().run_task(self._run_gfxcrunch([tmp_path, dir_fn]))
             self._run_window()
             if self.status != GfxcrunchStatus.SUCCESS:
-                raise RuntimeError("The gfxcrunch process failed.")
+                raise RuntimeError(_("The gfxcrunch process failed."))
 
     def _run_window(self):
         dialog: Gtk.Dialog = self.builder.get_object('dialog')
@@ -128,6 +129,7 @@ class GfxcrunchController:
     def _get_builder(pymodule_path: str, glade_file: str):
         path = os.path.abspath(os.path.dirname(pymodule_path))
         builder = Gtk.Builder()
+        builder.set_translation_domain(APP)
         builder.add_from_file(os.path.join(path, glade_file))
         return builder
 
@@ -140,7 +142,7 @@ class GfxcrunchController:
     def _done(self, return_code):
         self._update_status(GfxcrunchStatus.SUCCESS if return_code == 0 else GfxcrunchStatus.ERROR)
         if return_code != 0:
-            self._stderr(f'!! Process exited with error. Exit code: {return_code} !!')
+            self._stderr(f(_('!! Process exited with error. Exit code: {return_code} !!')))
         self.builder.get_object('spinner').stop()
         self.builder.get_object('close').set_sensitive(True)
 

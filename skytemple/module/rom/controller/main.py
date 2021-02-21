@@ -21,6 +21,7 @@ from gi.repository import Gtk
 from gi.repository.Gtk import Widget
 
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import f, _
 if TYPE_CHECKING:
     from skytemple.module.rom.module import RomModule
 
@@ -35,8 +36,8 @@ class MainController(SimpleController):
 
     def get_content(self) -> Widget:
         # TODO: Might want to show some more ROM info here later and make it editable.
-        return self.generate_content_label("Select something to edit in the ROM from the tree on the left \n"
-                                           "or start the debugger by clicking the bug icon on the top right.")
+        return self.generate_content_label(_("Select something to edit in the ROM from the tree on the left \n"
+                                             "or start the debugger by clicking the bug icon on the top right."))
 
     def get_icon(self) -> str:
         return 'skytemple-illust-rom'

@@ -35,6 +35,7 @@ from skytemple_files.graphics.dma.model import DmaType
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
 from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
+from skytemple_files.common.i18n_util import _
 
 ALPHA_T = 0.3
 Num = Union[int, float]
@@ -367,7 +368,7 @@ class FixedRoomDrawer:
         return MappaTrapType(trap_id).name
 
     def _item_name(self, item_id):
-        return self.string_provider.get_value(StringType.ITEM_NAMES, item_id) if item_id < MAX_ITEMS else "(Special?)"
+        return self.string_provider.get_value(StringType.ITEM_NAMES, item_id) if item_id < MAX_ITEMS else _("(Special?)")
 
     def _draw_name(self, ctx, sx, sy, name, color):
         ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)

@@ -1,3 +1,4 @@
+"""Module that contains GTK stock strings, just for source detection for i18n strings."""
 #  Copyright 2020-2021 Parakoopa and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
@@ -14,26 +15,41 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from gi.repository import Gtk
-
-from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.module_controller import SimpleController
 from skytemple_files.common.i18n_util import _
 
-MISC_GRAPHICS = _('Misc. Graphics')
-
-
-class MainController(SimpleController):
-    def __init__(self, module: AbstractModule, item_id: int):
-        pass
-
-    def get_title(self) -> str:
-        return MISC_GRAPHICS
-
-    def get_content(self) -> Gtk.Widget:
-        return self.generate_content_label(
-            _("This section lets you edit miscellaneous graphics.")
-        )
-
-    def get_icon(self) -> str:
-        return 'skytemple-illust-misc_graphics'
+# ".*?"|'.*?'|"""(.|\n)*?"""|'''(.|\n)*?'''
+_("_About")
+_("_Add")
+_("_Apply")
+_("_Cancel")
+_("_Close")
+_("_Copy")
+_("Cu_t")
+_("_Delete")
+_("_Forward")
+_("_Next")
+_("P_ause")
+_("_Play")
+_("_Stop")
+_("_New")
+_("_OK")
+_("No")
+_("_No")
+_("Yes")
+_("_Yes")
+_("_Open")
+_("_Paste")
+_("_Preferences")
+_("_Print")
+_("_Properties")
+_("_Quit")
+_("_Redo")
+_("_Refresh")
+_("_Remove")
+_("_Revert")
+_("_Save")
+_("Save _As")
+_("Select _All")
+_("_Undo")
+_("Zoom _In")
+_("Zoom _Out")

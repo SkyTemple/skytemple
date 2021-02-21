@@ -37,6 +37,7 @@ from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRuleTyp
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
 from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
+from skytemple_files.common.i18n_util import _, f
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule
@@ -80,8 +81,8 @@ class FixedController(AbstractController):
             self.monster_names[i] = f'{name}'
             self.long_monster_names[i] = f'{name} ({entry.gender.name.capitalize()}) (${i:04})'
         for i in range(length, length + SPECIAL_MONSTERS):
-            self.monster_names[i] = f'(Special?)'
-            self.long_monster_names[i] = f'(Special?) (${i:04})'
+            self.monster_names[i] = _('(Special?)')
+            self.long_monster_names[i] = _('(Special?)') + f' (${i:04})'
 
         self.floor: Optional[FixedFloor] = None
         self._draw = None
@@ -350,8 +351,8 @@ class FixedController(AbstractController):
         except (ValueError, AssertionError):
             display_error(
                 sys.exc_info(),
-                "Width and height must be numbers >= 0.",
-                "Invalid values."
+                _("Width and height must be numbers >= 0."),
+                _("Invalid values.")
             )
             return
 
@@ -362,8 +363,8 @@ class FixedController(AbstractController):
                 Gtk.DialogFlags.MODAL,
                 Gtk.MessageType.WARNING,
                 Gtk.ButtonsType.YES_NO,
-                f"You are about to reduce the size of the room. This will delete tiles. Do you want to continue?",
-                title="Warning!"
+                _("You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"),
+                title=_("Warning!")
             )
             response = md.run()
             md.destroy()
@@ -374,31 +375,32 @@ class FixedController(AbstractController):
             MainController.reload_view()
 
     def on_btn_help_music_clicked(self, *args):
-        self._help("If not set, the track ID specified on the floor this fixed floor is assigned to will be used "
-                   "instead.")
+        self._help(_("If not set, the track ID specified on the floor this fixed floor is assigned to will be used "
+                     "instead."))
 
     def on_btn_help_moves_clicked(self, *args):
-        self._help("Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will not "
-                   "attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled)")
+        self._help(_("Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will "
+                     "not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled"
+                     ")"))
 
     def on_btn_help_orbs_clicked(self, *args):
-        self._help("If the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed.")
+        self._help(_("If the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."))
 
     def on_btn_help_defeat_enemies_clicked(self, *args):
-        self._help("If enabled, the floor is exited after all the enemies have been defeated")
+        self._help(_("If enabled, the floor is exited after all the enemies have been defeated"))
 
     def on_btn_help_unk8_clicked(self, *args):
-        self._help("If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled.")
+        self._help(_("If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."))
 
     def on_btn_help_unk9_clicked(self, *args):
-        self._help("Prevents any kind of item pulling (such as with the Trawl Orb)."
-                   "\nIf the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled.")
+        self._help(_("Prevents any kind of item pulling (such as with the Trawl Orb)."
+                     "\nIf the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."))
 
     def on_btn_help_override_clicked(self, *args):
-        self._help("If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will "
-                   "be used instead.\nThis is used in dungeons where the content of a fixed floor varies depending on "
-                   "the story progress, such as in most of the dungeons with a legendary pokémon at the end "
-                   "(first visit vs rematch).")
+        self._help(_("If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will "
+                     "be used instead.\nThis is used in dungeons where the content of a fixed floor varies depending "
+                     "on the story progress, such as in most of the dungeons with a legendary Pokémon at the end "
+                     "(first visit vs rematch)."))
 
     # END EDIT SETTINGS
 
@@ -413,16 +415,16 @@ class FixedController(AbstractController):
         store = Gtk.ListStore(int, str)  # id, name
         for i in range(0, COUNT_VALID_TILESETS):
             if i >= TILESET_FIRST_BG:
-                store.append([i, f"Background {i}"])
+                store.append([i, f(_("Background {i}"))])
             else:
-                store.append([i, f"Tileset {i}"])
+                store.append([i, f(_("Tileset {i}"))])
         self._fast_set_comboxbox_store(self.builder.get_object('tool_choose_tileset_cb'), store, 1)
 
     def _init_override_dropdown(self):
         store = Gtk.ListStore(int, str)  # id, name
-        store.append([0, "No override"])
+        store.append([0, _("No override")])
         for i in range(1, 256):
-            store.append([i, f"No. {i}"])
+            store.append([i, f(_("No. {i}"))])  # TRANSLATORS: Number {i}
         self._fast_set_comboxbox_store(self.builder.get_object('settings_override'), store, 1)
 
     def _init_entity_combobox(self):
@@ -448,8 +450,8 @@ class FixedController(AbstractController):
     def _init_direction_combobox(self):
         store_tile = Gtk.ListStore(int, str)  # id, name
         store_entity = Gtk.ListStore(int, str)  # id, name
-        store_tile.append([0, 'None'])
-        store_entity.append([0, 'None'])
+        store_tile.append([0, _('None')])
+        store_entity.append([0, _('None')])
         for idx, dir in self.script_data.directions__by_ssa_id.items():
             store_tile.append([idx, dir.name])
             store_entity.append([idx, dir.name])
@@ -574,11 +576,11 @@ class FixedController(AbstractController):
         self.builder.get_object('utility_entity_frame_desc_label').set_markup(
             f"<b>Pokémon ({entity.monster_id})</b>:\n"
             f"{self.module.desc_fixed_floor_monster(monster_spawn.md_idx, monster_spawn.enemy_settings.value, self.long_monster_names, self.long_enemy_settings_name)}\n\n"
-            f"<b>Stats ({monster_spawn.stats_entry})</b>:\n"
+            f"<b>{_('Stats')} ({monster_spawn.stats_entry})</b>:\n"
             f"{self.module.desc_fixed_floor_stats(monster_spawn.stats_entry, stats)}\n\n"
-            f"<b>Item ({entity.item_id})</b>:\n"
+            f"<b>{_('Item')} ({entity.item_id})</b>:\n"
             f"{self.module.desc_fixed_floor_item(item_spawn.item_id)}\n\n"
-            f"<b>Tile Properties ({entity.tile_id})</b>:\n"
+            f"<b>{_('Tile Properties')} ({entity.tile_id})</b>:\n"
             f"{self.module.desc_fixed_floor_tile(tile_spawn)}"
         )
 
@@ -595,10 +597,10 @@ class FixedController(AbstractController):
         ))
         self.builder.get_object('utility_tile_frame_desc_label').set_markup(
             f"<b>{tile_rule.explanation}</b>\n"
-            f"Type: {tile_rule.floor_type.name.capitalize()}\n"
+            f"{_('Type')}: {tile_rule.floor_type.name.capitalize()}\n"
             f"{tile_rule.room_type.name.capitalize()}\n"
-            f"Impassable: {'Yes' if tile_rule.impassable else 'No'}\n"
-            f"Affected by Absolute Mover: {'Yes' if tile_rule.absolute_mover else 'No'}\n"
+            f"{_('Impassable')}: {_('Yes') if tile_rule.impassable else _('No')}\n"
+            f"Affected by Absolute Mover: {_('Yes') if tile_rule.absolute_mover else _('No')}\n"
             f"\n"
             f"{tile_rule.notes}"
         )

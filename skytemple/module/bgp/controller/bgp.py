@@ -34,17 +34,18 @@ from gi.repository.Gtk import ResponseType
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
+from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
     from skytemple.module.bgp.module import BgpModule
 
-INFO_IMEXPORT_ENTIRE = """- The image is a 256-color indexed PNG.
+INFO_IMEXPORT_ENTIRE = _("""- The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
   one of these 16 palettes.
 - The first color in each palette is transparency.
 - Each import must result in a maximum of 1024 unique 8x8 tiles 
-  (=not existing with another palette or flipped or rotated)."""
+  (=not existing with another palette or flipped or rotated).""")
 
 logger = logging.getLogger(__name__)
 
@@ -109,7 +110,7 @@ class BgpController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing the image."
+                    _("Error importing the image.")
                 )
             self.module.mark_as_modified(self.item_id)
             self._reinit_image()

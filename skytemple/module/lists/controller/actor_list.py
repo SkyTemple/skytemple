@@ -24,6 +24,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.module.lists.controller.base import ListBaseController, ORANGE, PATTERN_MD_ENTRY
 from skytemple_files.list.actor.model import ActorListBin
+from skytemple_files.common.i18n_util import _
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 
@@ -58,7 +59,7 @@ class ActorListController(ListBaseController):
             MainController.window(),
             Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
             Gtk.ButtonsType.OK,
-            f"Not implemented."
+            _("Not implemented.")
         )
         md.run()
         md.destroy()
@@ -69,7 +70,7 @@ class ActorListController(ListBaseController):
             MainController.window(),
             Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
             Gtk.ButtonsType.OK,
-            f"Not implemented."
+            _("Not implemented.")
         )
         md.run()
         md.destroy()

@@ -24,8 +24,14 @@ from gi.repository import Gtk, GLib
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.settings import SkyTempleSettingsStore
+from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
+LANGS = [
+    ('', _('Detect automatically')),
+    ('C', _('English')),
+    ('de_DE.utf8', _('German'))
+]
 
 
 class SettingsController:
@@ -65,6 +71,18 @@ class SettingsController:
         else:
             self.builder.get_object('frame_setting_gtk_theme').hide()
 
+        # Languages
+        cb: Gtk.ComboBox = self.builder.get_object('setting_language')
+        store: Gtk.ListStore = self.builder.get_object('lang_store')
+        store.clear()
+        active = None
+        for id, (code, name) in enumerate(LANGS):
+            store.append([code, name])
+            if code == self.settings.get_locale():
+                active = id
+        if active is not None:
+            cb.set_active(active)
+
         response = self.window.run()
 
         have_to_restart = False
@@ -83,12 +101,21 @@ class SettingsController:
                 gtk_settings.set_property("gtk-theme-name", theme_name)
                 self.settings.set_gtk_theme(theme_name)
 
+            # Languages
+            cb: Gtk.ComboBox = self.builder.get_object('setting_language')
+            lang_name = cb.get_model()[cb.get_active_iter()][0]
+            before = self.settings.get_locale()
+            if before != lang_name:
+                self.settings.set_locale(lang_name)
+                have_to_restart = True
+
         self.window.hide()
 
         if have_to_restart:
             md = SkyTempleMessageDialog(self.parent_window,
                                         Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                        Gtk.ButtonsType.OK, f"You need to restart SkyTemple to apply some of the settings.",
+                                        Gtk.ButtonsType.OK, _("You need to restart SkyTemple to "
+                                                              "apply some of the settings."),
                                         title="SkyTemple")
             md.run()
             md.destroy()

@@ -44,6 +44,7 @@ from skytemple_files.script.ssa_sse_sss.object import SsaObject
 from skytemple_files.script.ssa_sse_sss.performer import SsaPerformer
 from skytemple_files.script.ssa_sse_sss.position import SsaPosition
 from skytemple_files.script.ssa_sse_sss.trigger import SsaTrigger
+from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
     from skytemple.module.script.module import ScriptModule
@@ -458,7 +459,7 @@ class SsaController(AbstractController):
         self.ssa.layer_list.append(new_layer)
         # Add to popover comboboxes
         po_actor_sector: Gtk.ComboBox = self.builder.get_object('po_actor_sector')
-        po_actor_sector.get_model().append([new_index, f'Sector {new_index}'])
+        po_actor_sector.get_model().append([new_index, f(_('Sector {new_index}'))])
         # Tell drawer
         self.drawer.sector_added()
         # Mark as modified
@@ -470,10 +471,10 @@ class SsaController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
             Gtk.ButtonsType.YES_NO,
-            f"Are you sure you want to remove this sector?\n"
-            f"Removing the sector will re-number all following sectors (eg. if you remove Sector 70, sector 71 will become 70, 72 -> 71, etc.)\n"
-            f"Removing a sector may cause serious issues when the game tries to load the scene.",
-            title="Warning!"
+            _("Are you sure you want to remove this sector?\n"
+              "Removing the sector will re-number all following sectors (eg. if you remove Sector 70, sector 71 will become 70, 72 -> 71, etc.)\n"
+              "Removing a sector may cause serious issues when the game tries to load the scene."),
+            title=_("Warning!")
         )
 
         response = md.run()
@@ -583,7 +584,7 @@ class SsaController(AbstractController):
             md.destroy()
             return
         # Ask for number to add
-        response, number = self._show_generic_input('Script Number', 'Create Script')
+        response, number = self._show_generic_input(_('Script Number'), _('Create Script'))
         if response != Gtk.ResponseType.OK:
             return
         try:
@@ -593,7 +594,7 @@ class SsaController(AbstractController):
                 MainController.window(),
                 Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,
-                f"Please enter a valid number."
+                _("Please enter a valid number.")
             )
             md.run()
             md.destroy()
@@ -606,7 +607,7 @@ class SsaController(AbstractController):
                 MainController.window(),
                 Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,
-                f"This script already exists."
+                _("This script already exists.")
             )
             md.run()
             md.destroy()
@@ -643,7 +644,7 @@ class SsaController(AbstractController):
                 MainController.window(),
                 Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,
-                f"Acting scenes must have exactly one script assigned to them."
+                _("Acting scenes must have exactly one script assigned to them.")
             )
             md.run()
             md.destroy()
@@ -653,7 +654,7 @@ class SsaController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
             Gtk.ButtonsType.OK,
-            f"Not implemented."
+            _("Not implemented.")
         )
         md.run()
         md.destroy()
@@ -1180,7 +1181,7 @@ class SsaController(AbstractController):
         map_bg_list: BgList = self.map_bg_module.bgs
         tool_choose_map_bg_cb: Gtk.ComboBox = self.builder.get_object('tool_choose_map_bg_cb')
         map_bg_store = Gtk.ListStore(int, str)  # ID, BMA name
-        default_bg = map_bg_store.append([-1, "None"])
+        default_bg = map_bg_store.append([-1, _("None")])
         for i, entry in enumerate(map_bg_list.level):
             bg_iter = map_bg_store.append([i, entry.bma_name])
             if i == self.mapbg_id:
@@ -1192,10 +1193,10 @@ class SsaController(AbstractController):
         ssa_events: Gtk.TreeView = self.builder.get_object('ssa_events')
         # (obj, coroutine name, script name, unk2, unk3)
         events_list_store = Gtk.ListStore(object, str, str, int, int)
-        ssa_events.append_column(resizable(TreeViewColumn("Triggered Script", Gtk.CellRendererText(), text=2)))
-        ssa_events.append_column(resizable(TreeViewColumn("Coroutine", Gtk.CellRendererText(), text=1)))
-        ssa_events.append_column(resizable(TreeViewColumn("Unk2", Gtk.CellRendererText(), text=3)))
-        ssa_events.append_column(resizable(TreeViewColumn("Unk3", Gtk.CellRendererText(), text=4)))
+        ssa_events.append_column(resizable(TreeViewColumn(_("Triggered Script"), Gtk.CellRendererText(), text=2)))
+        ssa_events.append_column(resizable(TreeViewColumn(_("Coroutine"), Gtk.CellRendererText(), text=1)))
+        ssa_events.append_column(resizable(TreeViewColumn(_("Unk2"), Gtk.CellRendererText(), text=3)))
+        ssa_events.append_column(resizable(TreeViewColumn(_("Unk3"), Gtk.CellRendererText(), text=4)))
         ssa_events.set_model(events_list_store)
         for event in self.ssa.triggers:
             events_list_store.append(self._list_entry_generate_event(event))
@@ -1204,7 +1205,7 @@ class SsaController(AbstractController):
         ssa_scripts: Gtk.TreeView = self.builder.get_object('ssa_scripts')
         # (short path (relative to scene), display name)
         scripts_list_store = Gtk.ListStore(str, str)
-        ssa_scripts.append_column(resizable(TreeViewColumn("Name", Gtk.CellRendererText(), text=1)))
+        ssa_scripts.append_column(resizable(TreeViewColumn(_("Name"), Gtk.CellRendererText(), text=1)))
         ssa_scripts.set_model(scripts_list_store)
         for script in self.scripts:
             scripts_list_store.append([
@@ -1216,7 +1217,7 @@ class SsaController(AbstractController):
         ssa_scenes: Gtk.TreeView = self.builder.get_object('ssa_scenes')
         # (filename)
         scenes_list_store = Gtk.ListStore(str)
-        ssa_scenes.append_column(resizable(TreeViewColumn("Name", Gtk.CellRendererText(), text=0)))
+        ssa_scenes.append_column(resizable(TreeViewColumn(_("Name"), Gtk.CellRendererText(), text=0)))
         ssa_scenes.set_model(scenes_list_store)
         select_iter_current_scene = None
         for scene in self.module.get_scenes_for_map(self.mapname):
@@ -1232,34 +1233,34 @@ class SsaController(AbstractController):
         ssa_actors: Gtk.TreeView = self.builder.get_object('ssa_actors')
         # (layer, entity, kind, script name)
         actors_list_store = Gtk.ListStore(int, object, str, str)
-        ssa_actors.append_column(resizable(TreeViewColumn("Sector", Gtk.CellRendererText(), text=0)))
-        ssa_actors.append_column(resizable(TreeViewColumn("Kind", Gtk.CellRendererText(), text=2)))
-        ssa_actors.append_column(resizable(TreeViewColumn("Talk Script", Gtk.CellRendererText(), text=3)))
+        ssa_actors.append_column(resizable(TreeViewColumn(_("Sector"), Gtk.CellRendererText(), text=0)))
+        ssa_actors.append_column(resizable(TreeViewColumn(_("Kind"), Gtk.CellRendererText(), text=2)))
+        ssa_actors.append_column(resizable(TreeViewColumn(_("Talk Script"), Gtk.CellRendererText(), text=3)))
         ssa_actors.set_model(actors_list_store)
 
         # ssa_objects
         ssa_objects: Gtk.TreeView = self.builder.get_object('ssa_objects')
         # (layer, entity, kind, script name)
         objects_list_store = Gtk.ListStore(int, object, str, str)
-        ssa_objects.append_column(resizable(TreeViewColumn("Sector", Gtk.CellRendererText(), text=0)))
-        ssa_objects.append_column(resizable(TreeViewColumn("Kind", Gtk.CellRendererText(), text=2)))
-        ssa_objects.append_column(resizable(TreeViewColumn("Talk Script", Gtk.CellRendererText(), text=3)))
+        ssa_objects.append_column(resizable(TreeViewColumn(_("Sector"), Gtk.CellRendererText(), text=0)))
+        ssa_objects.append_column(resizable(TreeViewColumn(_("Kind"), Gtk.CellRendererText(), text=2)))
+        ssa_objects.append_column(resizable(TreeViewColumn(_("Talk Script"), Gtk.CellRendererText(), text=3)))
         ssa_objects.set_model(objects_list_store)
 
         # ssa_performers
         ssa_performers: Gtk.TreeView = self.builder.get_object('ssa_performers')
         # (layer, entity, kind)
         performers_list_store = Gtk.ListStore(int, object, str)
-        ssa_performers.append_column(resizable(TreeViewColumn("Sector", Gtk.CellRendererText(), text=0)))
-        ssa_performers.append_column(resizable(TreeViewColumn("Type", Gtk.CellRendererText(), text=2)))
+        ssa_performers.append_column(resizable(TreeViewColumn(_("Sector"), Gtk.CellRendererText(), text=0)))
+        ssa_performers.append_column(resizable(TreeViewColumn(_("Type"), Gtk.CellRendererText(), text=2)))
         ssa_performers.set_model(performers_list_store)
 
         # ssa_triggers
         ssa_triggers: Gtk.TreeView = self.builder.get_object('ssa_triggers')
         # (layer, entity, event coroutine name)
         triggers_list_store = Gtk.ListStore(int, object, str)
-        ssa_triggers.append_column(resizable(TreeViewColumn("Sector", Gtk.CellRendererText(), text=0)))
-        ssa_triggers.append_column(resizable(TreeViewColumn("Event Script", Gtk.CellRendererText(), text=2)))
+        ssa_triggers.append_column(resizable(TreeViewColumn(_("Sector"), Gtk.CellRendererText(), text=0)))
+        ssa_triggers.append_column(resizable(TreeViewColumn(_("Event Script"), Gtk.CellRendererText(), text=2)))
         ssa_triggers.set_model(triggers_list_store)
         
         # POPOVERS
@@ -1294,7 +1295,7 @@ class SsaController(AbstractController):
 
         # > PO - Talk Script
         po_script_store = Gtk.ListStore(int, str)  # ID, name
-        po_script_store.append([-1, 'None'])
+        po_script_store.append([-1, _('None')])
         for s_i, script in [(self._script_id(script, as_int=True), self._get_file_shortname(script)) for script in self.scripts]:
             po_script_store.append([s_i, script])
         
@@ -1326,7 +1327,7 @@ class SsaController(AbstractController):
         # TODO: Put into scriptdata when knowing what they do, also
         #       see SsaPerformer model.
         for performer_type in [0, 1, 2, 3, 4, 5]:
-            po_performer_kind_store.append([performer_type, f'Type {performer_type}'])
+            po_performer_kind_store.append([performer_type, f(_('Type {performer_type}'))])
 
         po_performer_kind: Gtk.ComboBox = self.builder.get_object('po_performer_kind')
         self._fast_set_comboxbox_store(po_performer_kind, po_performer_kind_store, 1)
@@ -1346,11 +1347,13 @@ class SsaController(AbstractController):
         layer_list_store = Gtk.ListStore(int, str, bool, bool)
         renderer_visible = Gtk.CellRendererToggle()
         renderer_visible.connect("toggled", partial(self.on_ssa_layers_visible_toggled, layer_list_store))
-        ssa_layers.append_column(column_with_tooltip("V", "Visible", renderer_visible, "active", 2))
+        ssa_layers.append_column(column_with_tooltip(_("V"),  # TRANSLATOR: First letter of 'Visible'
+                                                     _("Visible"), renderer_visible, "active", 2))
         renderer_solo = Gtk.CellRendererToggle()
         renderer_solo.connect("toggled", partial(self.on_ssa_layers_solo_toggled, layer_list_store))
-        ssa_layers.append_column(column_with_tooltip("S", "Solo", renderer_solo, "active", 3))
-        ssa_layers.append_column(resizable(TreeViewColumn("Name", Gtk.CellRendererText(), text=1)))
+        ssa_layers.append_column(column_with_tooltip(_("S"),  # TRANSLATOR: First letter of 'Solo'
+                                                     _("Solo"), renderer_solo, "active", 3))
+        ssa_layers.append_column(resizable(TreeViewColumn(_("Name"), Gtk.CellRendererText(), text=1)))
         ssa_layers.set_model(layer_list_store)
         for i, layer in enumerate(self.ssa.layer_list):
             layer_list_store.append(self._list_entry_generate_layer(i, layer))
@@ -1374,7 +1377,7 @@ class SsaController(AbstractController):
                 triggers_list_store.append(self._list_entry_generate_trigger(i, trigger))
                 
             # > PO - Sectors [DATA]
-            po_sector_store.append([i, f'Sector {i}'])
+            po_sector_store.append([i, f(_('Sector {i}'))])
 
         self._suppress_events = False
 
@@ -1461,12 +1464,12 @@ class SsaController(AbstractController):
 
     def _get_talk_script_name(self, script_id: int):
         if script_id == -1:
-            return 'None'
+            return _('None')
         if self.type == 'ssa':
             if len(self.scripts) < 1:
                 return '???'
             if script_id > 0:
-                return f'?INVALID? {script_id}'
+                return f(_('?INVALID? {script_id}'))
             return self.scripts[script_id]
         for script_name in self.scripts:
             if self._talk_script_matches(script_name, script_id):
@@ -1487,13 +1490,13 @@ class SsaController(AbstractController):
             return 'empty'
         ret_str = ''
         if len_actors > 0:
-            ret_str += f'{len_actors} acts, '
+            ret_str += f(_('{len_actors} acts, '))  # TRANSLATOR: actors
         if len_objects > 0:
-            ret_str += f'{len_objects} objs, '
+            ret_str += f(_('{len_objects} objs, '))  # TRANSLATOR: objects
         if len_performers > 0:
-            ret_str += f'{len_performers} prfs, '
+            ret_str += f(_('{len_performers} prfs, '))  # TRANSLATOR: performers
         if len_triggers > 0:
-            ret_str += f'{len_triggers} trgs'
+            ret_str += f(_('{len_triggers} trgs'))  # TRANSLATOR: triggers
 
         return ret_str.rstrip(', ')
 
@@ -1506,7 +1509,7 @@ class SsaController(AbstractController):
         return object.object.unique_name
 
     def _get_performer_name(self, performer: SsaPerformer):
-        return f'Type {performer.type}'
+        return f(_('Type {performer.type}'))
 
     def _get_event_script_name(self, events: List[SsaTrigger], event_id: int, short=False) -> str:
         if len(events) < event_id + 1:
@@ -1551,7 +1554,7 @@ class SsaController(AbstractController):
         entry: Gtk.Entry = self.builder.get_object('generic_input_dialog_entry')
         label: Gtk.Label = self.builder.get_object('generic_input_dialog_label')
         label.set_text(label_text)
-        btn_cancel = dialog.add_button("Cancel", Gtk.ResponseType.CANCEL)
+        btn_cancel = dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
         btn = dialog.add_button(ok_text, Gtk.ResponseType.OK)
         btn.set_can_default(True)
         btn.grab_default()

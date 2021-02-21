@@ -57,6 +57,7 @@ from skytemple_files.graphics.dpc.model import Dpc
 from skytemple_files.graphics.dpci.model import Dpci
 from skytemple_files.graphics.dpl.model import Dpl
 from skytemple_files.graphics.dpla.model import Dpla
+from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
@@ -106,8 +107,8 @@ class TilesetController(AbstractController):
         root = self.builder.get_object('editor_root')
         root.set_current_page(self.__class__._last_open_tab_id)
         self.on_editor_root_switch_page(None, None, self.__class__._last_open_tab_id)
-        self.builder.get_object('label_tileset_name').set_text(f'Dungeon Tileset {self.item_id} Rules')
-        self.builder.get_object('label_tileset_name2').set_text(f'Dungeon Tileset {self.item_id}')
+        self.builder.get_object('label_tileset_name').set_text(f(_('Dungeon Tileset {self.item_id} Rules')))
+        self.builder.get_object('label_tileset_name2').set_text(f(_('Dungeon Tileset {self.item_id}')))
         return editor
 
     def on_editor_root_switch_page(self, w, p, pnum, *args):
@@ -125,21 +126,21 @@ class TilesetController(AbstractController):
     def on_btn_import_clicked(self, *args):
         md = SkyTempleMessageDialog(MainController.window(),
                                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, "To import select the XML file in the DTEF tileset package. If it "
-                                                        "is still zipped, unzip it first.",
+                                    Gtk.ButtonsType.OK, _("To import select the XML file in the DTEF tileset package. If it "
+                                                          "is still zipped, unzip it first."),
                                     title="SkyTemple")
         md.run()
         md.destroy()
 
         dialog = Gtk.FileChooserNative.new(
-            "Import dungeon tileset...",
+            _("Import dungeon tileset..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
             None, None
         )
 
         filter = Gtk.FileFilter()
-        filter.set_name("DTEF XML document (*.dtef.xml)")
+        filter.set_name(_("DTEF XML document (*.dtef.xml)"))
         filter.add_pattern("*.dtef.xml")
         dialog.add_filter(filter)
         add_dialog_xml_filter(dialog)
@@ -162,8 +163,8 @@ class TilesetController(AbstractController):
 
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                            Gtk.ButtonsType.OK, "The tileset was successfully imported.",
-                                            title="Success!", is_success=True)
+                                            Gtk.ButtonsType.OK, _("The tileset was successfully imported."),
+                                            title=_("Success!"), is_success=True)
                 md.run()
                 md.destroy()
                 self.mark_as_modified()
@@ -172,12 +173,12 @@ class TilesetController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(e),
-                    "Error importing the tileset."
+                    _("Error importing the tileset.")
                 )
 
     def on_btn_export_clicked(self, *args):
         dialog = Gtk.FileChooserNative.new(
-            "Export dungeon tileset...",
+            _("Export dungeon tileset..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
             None, None
@@ -203,15 +204,15 @@ class TilesetController(AbstractController):
 
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                            Gtk.ButtonsType.OK, "The tileset was successfully exported.",
-                                            title="Success!", is_success=True)
+                                            Gtk.ButtonsType.OK, _("The tileset was successfully exported."),
+                                            title=_("Success!"), is_success=True)
                 md.run()
                 md.destroy()
             except BaseException as e:
                 display_error(
                     sys.exc_info(),
                     str(e),
-                    "Error exporting the tileset."
+                    _("Error exporting the tileset.")
                 )
 
     def on_btn_help_clicked(self, *args):

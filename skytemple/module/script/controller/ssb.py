@@ -19,8 +19,9 @@ from gi.repository import Gtk
 from skytemple.controller.main import MainController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import f, _
 
-SCRIPT_SCRIPTS = 'Scripts'
+SCRIPT_SCRIPTS = _('Scripts')
 
 
 class SsbController(SimpleController):
@@ -33,14 +34,14 @@ class SsbController(SimpleController):
     def get_content(self) -> Gtk.Widget:
         box: Gtk.Box = Gtk.Box.new(Gtk.Orientation.VERTICAL, 20)
         label = self.generate_content_label(
-            'Each of the scenes has at least one script assigned to them, which is run when the scene is loaded.\n'
-            'In addition to that, there is also "COMMON/unionall.ssb", which contains the game\'s coroutines '
-            '(main scripts).\n\n'
-            'To edit the game\'s scripts, open the Script Engine Debugger. You can also do this by clicking the bug icon '
-            'on the top right.\n'
+            _('Each of the scenes has at least one script assigned to them, which is run when the scene is loaded.\n'
+              'In addition to that, there is also "COMMON/unionall.ssb", which contains the game\'s coroutines '
+              '(main scripts).\n\n'
+              'To edit the game\'s scripts, open the Script Engine Debugger. You can also do this by clicking the bug '
+              'icon in the top right.\n')
         )
         button_box = Gtk.ButtonBox.new(Gtk.Orientation.VERTICAL)
-        button: Gtk.Button = Gtk.Button.new_with_label('Open Script Engine Debugger')
+        button: Gtk.Button = Gtk.Button.new_with_label(_('Open Script Engine Debugger'))
         button.connect('clicked', lambda *args: MainController.debugger_manager().open(MainController.window()))
         button_box.pack_start(button, False, False, 0)
 

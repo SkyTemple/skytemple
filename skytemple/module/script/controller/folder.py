@@ -18,6 +18,7 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import f, _
 
 
 class FolderController(SimpleController):
@@ -26,16 +27,16 @@ class FolderController(SimpleController):
 
     def get_title(self) -> str:
         if self.name is not None:
-            return f'Script Scenes for maps in category "{self.name}"'
-        return f'Script Scenes for other maps'
+            return f(_('Script Scenes for maps in category "{self.name}"'))
+        return _('Script Scenes for other maps')
 
     def get_content(self) -> Gtk.Widget:
         if self.name is not None:
             return self.generate_content_label(
-                f"This section contains all the script scenes of maps, that start with the letter {self.name[0]}."
+                f(_("This section contains all the script scenes of maps, that start with the letter {self.name[0]}."))
             )
         return self.generate_content_label(
-            f"This section contains all the script scenes of maps, that don't fit in any of the other categories."
+            _("This section contains all the script scenes of maps, that don't fit in any of the other categories.")
         )
 
     def get_icon(self) -> str:

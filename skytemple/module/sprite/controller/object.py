@@ -24,6 +24,7 @@ from typing import TYPE_CHECKING
 import cairo
 
 from skytemple.core.error_handler import display_error
+from skytemple_files.common.i18n_util import f, _
 
 try:
     from PIL import Image
@@ -56,9 +57,9 @@ class ObjectController(AbstractController):
         self._sprite_provider.reset()
         self.builder.get_object('file_name').set_text(self.item_id)
         if self.module.get_gfxcrunch().is_available():
-            self.builder.get_object('explanation_text').set_markup("""SkyTemple can not edit sprites. 
+            self.builder.get_object('explanation_text').set_markup(_("""SkyTemple can not edit sprites. 
 However you can export the sprite in the gfxcrunch format and import it back again.
-Warning: SkyTemple does not validate the files you import.""")
+Warning: SkyTemple does not validate the files you import."""))
 
         return self.builder.get_object('main_box')
 

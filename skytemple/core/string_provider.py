@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import locale
 from enum import Enum, auto
 from typing import TYPE_CHECKING, Optional, Union, List
 
@@ -139,7 +140,7 @@ class StringProvider:
         string_index_data = self._static_data.string_index_data
         language: Optional[Pmd2Language] = None
         if language_locale is None and len(string_index_data.languages) > 0:
-            language = string_index_data.languages[0]
+            language = self._get_locale_from_app_locale()
         else:
             for lang in self.get_languages():
                 if lang.locale == language_locale or lang.name == language_locale:
@@ -156,3 +157,11 @@ class StringProvider:
             raise ValueError(f"String mapping for {string_type} not found.")
 
         return string_index_data.string_blocks[string_type.xml_name]
+
+    def _get_locale_from_app_locale(self) -> LanguageLike:
+        current_locale = locale.getlocale()[0].split('_')[0]
+        for lang in self.get_languages():
+            lang_locale = lang.locale.split('-')[0]
+            if lang_locale == current_locale:
+                return lang
+        return self.get_languages()[0]

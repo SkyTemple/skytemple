@@ -37,6 +37,7 @@ from skytemple_files.data.md.model import Gender, PokeType, MovementType, IQGrou
     NUM_ENTITIES, ShadowSize, MONSTER_BIN, MdEntry
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.data.monster_xml import monster_xml_export
+from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
@@ -296,14 +297,14 @@ class MonsterController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"Values depend on Evolution Type:\n"
-            f"- None: n/a - n/a\n"
-            f"- Level: Level required to evolve - Optional evolutionary item ID\n"
-            f"- IQ: IQ required - Optional evolutionary item ID\n"
-            f"- Items: Regular Item ID - Optional evolutionary item ID\n"
-            f"- Unknown: ? - ?\n"
-            f"- Link Cable: 0 - 1",
-            title="Evolution Parameters"
+            _("Values depend on Evolution Type:\n"
+              "- None: n/a - n/a\n"
+              "- Level: Level required to evolve - Optional evolutionary item ID\n"
+              "- IQ: IQ required - Optional evolutionary item ID\n"
+              "- Items: Regular Item ID - Optional evolutionary item ID\n"
+              "- Unknown: ? - ?\n"
+              "- Link Cable: 0 - 1"),
+            title=_("Evolution Parameters")
         )
         md.run()
         md.destroy()
@@ -313,14 +314,14 @@ class MonsterController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"The values are actually percentages.\n"
-            f"10 -> 1.0%,\n"
-            f"100 -> 10.0%,\n"
-            f"1000 -> 100%, etc.\n\n"
-            f"If you answered yes to the question asking if you played EoT or EoD in the personality test and you "
-            f"haven't recruited this Pokémon yet, the second recruit rate is used instead.\n"
-            f"If you have recruited this Pokémon already, its recruit rate is halved (only if it's positive).",
-            title="Recruit Rate"
+            _("The values are actually percentages.\n"
+              "10 -> 1.0%,\n"
+              "100 -> 10.0%,\n"
+              "1000 -> 100%, etc.\n\n"
+              "If you answered yes to the question asking if you played EoT or EoD in the personality test and you "
+              "haven't recruited this Pokémon yet, the second recruit rate is used instead.\n"
+              "If you have recruited this Pokémon already, its recruit rate is halved (only if it's positive)."),
+            title=_("Recruit Rate")
         )
         md.run()
         md.destroy()
@@ -330,10 +331,10 @@ class MonsterController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"The % of HP that this Pokémon regenerates at the end of "
-            f"each turn is equal to 1/(value * 2), before applying any modifiers.\n"
-            f"The final value is capped between 1/30 and 1/500",
-            title="HP Regeneration"
+            _("The % of HP that this Pokémon regenerates at the end of "
+              "each turn is equal to 1/(value * 2), before applying any modifiers.\n"
+              "The final value is capped between 1/30 and 1/500"),
+            title=_("HP Regeneration")
         )
         md.run()
         md.destroy()
@@ -343,8 +344,8 @@ class MonsterController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"Whether or not the enemy or ally AI will move the Pokémon in dungeons.",
-            title="Can Move?"
+            _("Whether or not the enemy or ally AI will move the Pokémon in dungeons."),
+            title=_("Can Move?")
         )
         md.run()
         md.destroy()
@@ -354,9 +355,9 @@ class MonsterController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"Whether or not the Pokémon can evolve at Luminous Spring (If it's off, it will never be allowed to "
-            f"evolve even if it has an evolution).",
-            title="Can Evolve?"
+            _("Whether or not the Pokémon can evolve at Luminous Spring (If it's off, it will never be allowed to "
+              "evolve even if it has an evolution)."),
+            title=_("Can Evolve?")
         )
         md.run()
         md.destroy()
@@ -366,9 +367,9 @@ class MonsterController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"Wheher or not you need to have a special item in the bag (mystery part/secret slab) for "
-            f"the Pokémon to spawn in dungeons",
-            title="Item Required for spawning?"
+            _("Wheher or not you need to have a special item in the bag (mystery part/secret slab) for "
+              "the Pokémon to spawn in dungeons"),
+            title=_("Item Required for spawning?")
         )
         md.run()
         md.destroy()
@@ -378,8 +379,8 @@ class MonsterController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"If the current $SCENARIO_BALANCE_FLAG value is lower than this number, the pokémon won't spawn in dungeons.",
-            title="Spawn Threshold"
+            _("If the current $SCENARIO_BALANCE_FLAG value is lower than this number, the pokémon won't spawn in dungeons."),
+            title=_("Spawn Threshold")
         )
         md.run()
         md.destroy()
@@ -389,8 +390,8 @@ class MonsterController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"Affects the damage the pokémon takes when attacked with Grass Knot.",
-            title="Weight"
+            _("Affects the damage the Pokémon takes when attacked with Grass Knot."),
+            title=_("Weight")
         )
         md.run()
         md.destroy()
@@ -400,8 +401,8 @@ class MonsterController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"Affects the damage the pokémon takes when attacked with a Sizebust Orb.",
-            title="Size"
+            _("Affects the damage the Pokémon takes when attacked with a Sizebust Orb."),
+            title=_("Size")
         )
         md.run()
         md.destroy()
@@ -643,7 +644,7 @@ class MonsterController(AbstractController):
             # 1. Export to file
             if self.builder.get_object('export_file_switch').get_active():
                 save_diag = Gtk.FileChooserNative.new(
-                    "Export Pokémon as...",
+                    _("Export Pokémon as..."),
                     SkyTempleMainController.window(),
                     Gtk.FileChooserAction.SAVE,
                     None, None
@@ -682,7 +683,7 @@ class MonsterController(AbstractController):
 
     def on_btn_import_clicked(self, *args):
         save_diag = Gtk.FileChooserNative.new(
-            "Import Pokémon from...",
+            _("Import Pokémon from..."),
             SkyTempleMainController.window(),
             Gtk.FileChooserAction.OPEN,
             None, None
@@ -740,7 +741,7 @@ class MonsterController(AbstractController):
             gui_entry: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}')
             if lang_id < len(langs):
                 # We have this language
-                gui_label.set_text(langs[lang_id].name + ':')
+                gui_label.set_text(_(langs[lang_id].name) + ':')
             else:
                 # We don't.
                 gui_label.set_text("")
@@ -902,10 +903,10 @@ class MonsterController(AbstractController):
 
     def _init_sub_pages(self):
         notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
-        tab_label: Gtk.Label = Gtk.Label.new('Stats and Moves')
+        tab_label: Gtk.Label = Gtk.Label.new(_('Stats and Moves'))
         level_up_view, self._level_up_controller = self.module.get_level_up_view(self.item_id)
         notebook.append_page(level_up_view, tab_label)
-        tab_label: Gtk.Label = Gtk.Label.new('Portraits')
+        tab_label: Gtk.Label = Gtk.Label.new(_('Portraits'))
         notebook.append_page(self.module.get_portrait_view(self.item_id), tab_label)
         self._reload_sprite_page()
 
@@ -913,7 +914,7 @@ class MonsterController(AbstractController):
         notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
         if self._cached_sprite_page:
             notebook.remove_page(self._cached_sprite_page)
-        tab_label: Gtk.Label = Gtk.Label.new('Sprites')
+        tab_label: Gtk.Label = Gtk.Label.new(_('Sprites'))
         tab_label.show()
         self._cached_sprite_page = notebook.append_page(
             self.module.get_sprite_view(self.entry.sprite_index, self.item_id), tab_label
@@ -930,7 +931,7 @@ class MonsterController(AbstractController):
             name = self._string_provider.get_value(StringType.POKEMON_NAMES, entry.md_index_base)
             label.set_text(f'#{entry.md_index_base:03d}: {name}')
         except BaseException:
-            label.set_text(f'??? Enter a valid Base ID (#)')
+            label.set_text(_('??? Enter a valid Base ID (#)'))
 
     def _update_pre_evo_label(self):
         label: Gtk.Label = self.builder.get_object('label_pre_evo_index')
@@ -941,7 +942,7 @@ class MonsterController(AbstractController):
             name = self._string_provider.get_value(StringType.POKEMON_NAMES, entry.md_index_base)
             label.set_text(f'${entry.md_index:04d}: {name} ({entry.gender.name[0]})')
         except BaseException:
-            label.set_text(f'??? Enter a valid Entry ID ($)')
+            label.set_text(_('??? Enter a valid Entry ID ($)'))
 
     def _check_sprite_size(self, show_warning):
         """
@@ -973,9 +974,9 @@ class MonsterController(AbstractController):
                     md = SkyTempleMessageDialog(MainController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
                                                 Gtk.ButtonsType.OK,
-                                                "The sprite memory size of this Pokémon was too low "
-                                                "for this Pokémon's assigned sprite.\n"
-                                                "SkyTemple automatically corrected it.")
+                                                _("The sprite memory size of this Pokémon was too low "
+                                                  "for this Pokémon's assigned sprite.\n"
+                                                  "SkyTemple automatically corrected it."))
                     md.set_position(Gtk.WindowPosition.CENTER)
                     md.run()
                     md.destroy()

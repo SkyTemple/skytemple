@@ -20,6 +20,7 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label
 from skytemple.module.patch.controller.main import MainController
+from skytemple_files.common.i18n_util import _
 
 
 class PatchModule(AbstractModule):
@@ -40,7 +41,7 @@ class PatchModule(AbstractModule):
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         self._tree_iter = item_store.append(root_node, [
-            'skytemple-e-patch-symbolic', 'ASM Patches', self, MainController, 0, False, '', True
+            'skytemple-e-patch-symbolic', _('ASM Patches'), self, MainController, 0, False, '', True
         ])
         generate_item_store_row_label(item_store[self._tree_iter])
         self._tree_model = item_store

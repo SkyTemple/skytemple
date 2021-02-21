@@ -17,7 +17,7 @@
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Tuple, List
 
 import cairo
 
@@ -36,6 +36,8 @@ from gi.repository.Gtk import ResponseType
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
+from skytemple_files.common.i18n_util import f, _
+
 
 if TYPE_CHECKING:
     from skytemple.module.misc_graphics.module import MiscGraphicsModule, WteOpenSpec
@@ -70,10 +72,10 @@ class WteWtuController(AbstractController):
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(
-            "Export image as PNG...",
+            _("Export image as PNG..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
-            "_Save", None
+            _("_Save"), None
         )
 
         add_dialog_png_filter(dialog)
@@ -117,7 +119,7 @@ class WteWtuController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Filename not specified."
+                    _("Filename not specified.")
                 )
             if img_fn is not None:
                 depth : int = cb_store[cb.get_active_iter()][0]
@@ -128,13 +130,13 @@ class WteWtuController(AbstractController):
                     display_error(
                         sys.exc_info(),
                         str(err),
-                        "Imported image size too big."
+                        _("Imported image size too big.")
                     )
                 except AttributeError as err:
                     display_error(
                         sys.exc_info(),
                         str(err),
-                        "Not an indexed image."
+                        _("Not an indexed image.")
                     )
                 self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
                 self._init_wte()

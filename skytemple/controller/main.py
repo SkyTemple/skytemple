@@ -47,6 +47,7 @@ from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir, \
     version, open_dir
+from skytemple_files.common.i18n_util import _, f
 
 gi.require_version('Gtk', '3.0')
 
@@ -231,7 +232,7 @@ class MainController:
     def on_open_more_clicked(self, button: Button):
         """Dialog to open a file"""
         dialog = Gtk.FileChooserNative.new(
-            "Open ROM...",
+            _("Open ROM..."),
             self.window,
             Gtk.FileChooserAction.OPEN,
             None, None
@@ -333,7 +334,7 @@ class MainController:
         display_error(
             exc_info,
             str(exception),
-            "Error opening the ROM"
+            _("Error opening the ROM")
         )
 
     def on_file_saved(self):
@@ -355,7 +356,7 @@ class MainController:
         display_error(
             exc_info,
             str(exception),
-            "Error saving the ROM"
+            _("Error saving the ROM")
         )
 
     def on_main_item_list_button_press_event(self, tree: TreeView, event: Gdk.Event):
@@ -465,7 +466,7 @@ class MainController:
         if RomProject.get_current() is None or self._loaded_map_bg_module is None:
             md = SkyTempleMessageDialog(MainController.window(),
                                         Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                        Gtk.ButtonsType.OK, "A project must be opened to use this.")
+                                        Gtk.ButtonsType.OK, _("A project must be opened to use this."))
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()
@@ -542,8 +543,8 @@ class MainController:
             self.builder.get_object('recent_files_main_label').set_visible(False)
             self.builder.get_object('open_tree_main_sw').set_visible(False)
             self.builder.get_object('open_tree_sw').set_visible(False)
-            self.builder.get_object('open_more').set_label("Open a ROM")
-            self.builder.get_object('open_more_main').set_label("Open a ROM")
+            self.builder.get_object('open_more').set_label(_("Open a ROM"))
+            self.builder.get_object('open_more_main').set_label(_("Open a ROM"))
         else:
             for f in recent_file_list:
                 dir_name = os.path.dirname(f)
@@ -565,10 +566,12 @@ class MainController:
         """Open a file"""
         if self._check_open_file():
             self._loading_dialog = self.builder.get_object('file_opening_dialog')
+            # noinspection PyUnusedLocal
+            rom_name = os.path.basename(filename)
             self.builder.get_object('file_opening_dialog_label').set_label(
-                f'Loading ROM "{os.path.basename(filename)}"...'
+                f(_('Loading ROM "{rom_name}"...'))
             )
-            logger.debug(f'Opening {filename}.')
+            logger.debug(f(_('Opening {filename}.')))
             RomProject.open(filename, self)
             # Add to the list of recent files and save
             self._update_recent_files(filename)
@@ -724,27 +727,31 @@ class MainController:
 
         if rom.has_modifications() or force:
             self._loading_dialog = self.builder.get_object('file_opening_dialog')
+            # noinspection PyUnusedLocal
+            rom_name = os.path.basename(rom.filename)
             self.builder.get_object('file_opening_dialog_label').set_label(
-                f'Saving ROM "{os.path.basename(rom.filename)}"...'
+                f(_('Saving ROM "{rom_name}"...'))
             )
-            logger.debug(f'Saving {rom.filename}.')
+            logger.debug(f(_('Saving {rom.filename}.')))
 
             # This will trigger a signal.
             rom.save(self)
             self._loading_dialog.run()
 
     def _show_are_you_sure(self, rom):
+        # noinspection PyUnusedLocal
+        rom_name = os.path.basename(rom.filename)
         dialog: MessageDialog = SkyTempleMessageDialog(
             self.window,
             Gtk.DialogFlags.MODAL,
             Gtk.MessageType.WARNING,
-            Gtk.ButtonsType.NONE, f"Do you want to save changes to {os.path.basename(rom.filename)}?"
+            Gtk.ButtonsType.NONE, f(_("Do you want to save changes to {rom_name}?"))
         )
-        dont_save: Widget = dialog.add_button("Don't Save", 0)
+        dont_save: Widget = dialog.add_button(_("Don't Save"), 0)
         dont_save.get_style_context().add_class('destructive-action')
-        dialog.add_button("Cancel", Gtk.ResponseType.CANCEL)
-        dialog.add_button("Save", 1)
-        dialog.format_secondary_text(f"If you don't save, your changes will be lost.")
+        dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
+        dialog.add_button(_("Save"), 1)
+        dialog.format_secondary_text(_("If you don't save, your changes will be lost."))
         response = dialog.run()
         dialog.destroy()
         return response
@@ -752,6 +759,7 @@ class MainController:
     def _load_support_images(self):
         # Load the Discord badge
         try:
+            raise Exception("Disabled for now.")
             url = 'https://raster.shields.io/discord/710190644152369162?label=Discord'
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             # Some weird issue on Windows with PyInstaller...:

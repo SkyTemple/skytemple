@@ -37,6 +37,7 @@ KEY_RECENT_5 = 'file5'
 
 KEY_ASSISTANT_SHOWN = 'assistant_shown'
 KEY_GTK_THEME = 'gtk_theme'
+KEY_LOCALE = 'locale'
 
 KEY_WINDOW_SIZE_X = 'width'
 KEY_WINDOW_SIZE_Y = 'height'
@@ -115,6 +116,17 @@ class SkyTempleSettingsStore:
         self.loaded_config[SECT_GENERAL][KEY_GTK_THEME] = value
         self._save()
 
+    def get_locale(self, default='') -> str:
+        if SECT_GENERAL in self.loaded_config:
+            if KEY_LOCALE in self.loaded_config[SECT_GENERAL]:
+                return self.loaded_config[SECT_GENERAL][KEY_LOCALE]
+        return default
+
+    def set_locale(self, value: str):
+        if SECT_GENERAL not in self.loaded_config:
+            self.loaded_config[SECT_GENERAL] = {}
+        self.loaded_config[SECT_GENERAL][KEY_LOCALE] = value
+        self._save()
 
     def get_window_size(self) -> Optional[Tuple[int, int]]:
         if SECT_WINDOW in self.loaded_config:
