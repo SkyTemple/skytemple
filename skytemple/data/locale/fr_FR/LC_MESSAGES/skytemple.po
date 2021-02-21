@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-21 17:49\n"
+"PO-Revision-Date: 2021-02-21 18:47\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -2834,7 +2834,7 @@ msgstr "Valeurs invalides."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:366
 msgid "You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"
-msgstr ""
+msgstr "Vous êtes en train de réduire la taille de la salle. Cela va supprimer des tuiles. Voulez-vous continuer ?"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:367
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:318
@@ -2847,15 +2847,15 @@ msgstr ""
 #: ssb_debugger/skytemple_ssb_debugger/controller/main.py:1553
 #: ssb_debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:88
 msgid "Warning!"
-msgstr ""
+msgstr "Attention !"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:378
 msgid "If not set, the track ID specified on the floor this fixed floor is assigned to will be used instead."
-msgstr ""
+msgstr "S'il n'est pas défini, l'ID de la piste spécifiée par l'étage pour lequel cet étage statique est affecté sera utilisé à la place."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:382
 msgid "Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled)"
-msgstr ""
+msgstr "Détermine si les capacités peuvent être utilisées. Cela n'affecte pas l'attaque ordinaire. Si désactivé, les autres Pokémon n'attaqueront pas (ils n'utiliseront même pas l'attaque ordinaire, que l'aptitude Friand de Capacités ait été activé ou non)"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:387
 msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
