@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-21 16:40\n"
+"PO-Revision-Date: 2021-02-21 17:49\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1133,60 +1133,60 @@ msgstr "Habilitado (10)"
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:337
 #, python-brace-format
 msgid "Unexpected sub-node for {XML_FLOOR_LAYOUT}: {child.tag}"
-msgstr ""
+msgstr "Sub-node inesperado para {XML_FLOOR_LAYOUT}: {child.tag}"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:340
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__GENSET} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "{XML_FLOOR_LAYOUT__GENSET} faltando para {XML_FLOOR_LAYOUT}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:343
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__CHANCES} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "{XML_FLOOR_LAYOUT__CHANCES} faltando para {XML_FLOOR_LAYOUT}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:346
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__TERRAINSET} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "{XML_FLOOR_LAYOUT__TERRAINSET} faltando para {XML_FLOOR_LAYOUT}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:349
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__MISCSET} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "{XML_FLOOR_LAYOUT__MISCSET} faltando para {XML_FLOOR_LAYOUT}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:404
 msgid "Invalid structure type {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}"
-msgstr ""
+msgstr "Tipo de estrutura inválido {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:408
 msgid "Invalid weather type {ele.get(XML_FLOOR_LAYOUT__WEATHER)}"
-msgstr ""
+msgstr "Tipo de clima inválido {ele.get(XML_FLOOR_LAYOUT__WEATHER)}"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:412
 msgid "Invalid terrain type {terrain_settings.get(XML_FLOOR_LAYOUT__TERRAINSET__SECONDARY_TYPE)}"
-msgstr ""
+msgstr "Tipo de terreno inválido {terrain_settings.get(XML_FLOOR_LAYOUT__TERRAINSET__SECONDARY_TYPE)}"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:416
 msgid "Invalid darkness level type {ele.get(XML_FLOOR_LAYOUT__DARKNESS_LEVEL)}"
-msgstr ""
+msgstr "Nível de obscuridade inválido {ele.get(XML_FLOOR_LAYOUT__DARKNESS_LEVEL)}"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:104
 #, python-brace-format
 msgid "Unknown trap {name}."
-msgstr ""
+msgstr "Armadilha {name} desconhecida."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:109
 msgid "Trap lists need an entry for all of the 25 traps"
-msgstr ""
+msgstr "Listas de armadilhas precisam de um registro para todas as 25 armadilhas"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:37
 msgid "Invalid Floor List"
-msgstr ""
+msgstr "Lista de Andares Inválida"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:40
 msgid "References a dungeon floor list that doesn't exist."
-msgstr ""
+msgstr "Referencia uma lista de andares de calabouço que não existe."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:46
 msgid "Invalid Floor"
@@ -1309,16 +1309,16 @@ msgstr "O retrato tem um tamanho inválido de {img.size}, excedendo o máximo de
 #: files/skytemple_files/graphics/kao/sprite_bot_sheet.py:127
 #, python-brace-format
 msgid "Semi-transparent pixels found at: {rogue_pixels}"
-msgstr ""
+msgstr "Encontrados pixels semitransparentes em: {rogue_pixels}"
 
 #: files/skytemple_files/graphics/kao/sprite_bot_sheet.py:129
 #, python-brace-format
 msgid "The following emotions have transparent pixels: {rogue_tiles}"
-msgstr ""
+msgstr "As seguintes emoções têm pixels transparentes: {rogue_tiles}"
 
 #: files/skytemple_files/graphics/kao/sprite_bot_sheet.py:147
 msgid "File should have original and flipped versions of emotions: {str(flipped_tiles)}"
-msgstr ""
+msgstr "Arquivo deve ter versões originais e invertidas das emoções: {str(flipped_tiles)}"
 
 #: files/skytemple_files/graphics/wte/model.py:35
 msgid "Palette Only"
@@ -7979,7 +7979,7 @@ msgstr ""
 #: skytemple/skytemple/skytemple.glade:1180
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:3265
 msgid "translator-credits"
-msgstr ""
+msgstr "José Antônio dede6giu#4634"
 
 #: skytemple/skytemple/skytemple.glade:1254
 msgid "Loading ROM \"NAME\"..."
