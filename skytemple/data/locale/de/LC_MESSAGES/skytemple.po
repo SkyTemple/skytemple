@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SkyTemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-20 17:38+0100\n"
+"PO-Revision-Date: 2021-02-21 12:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: SkyTemple Contributors skytemple.org\n"
 "Language: de\n"
@@ -3154,6 +3154,8 @@ msgid ""
 "Fixed Room to load \n"
 "if dungeon is cleared:"
 msgstr ""
+"statischer Raum, falls\n"
+"Dungeon bezwungen:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1365
 msgid "Dimensions"
@@ -3224,7 +3226,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:355
 msgid "Invalid values."
-msgstr ""
+msgstr "Ungültige Werte."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:366
 msgid ""
@@ -3315,7 +3317,7 @@ msgstr "Nr. {i}"
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:200
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:34
 msgid "Fixed Rooms"
-msgstr ""
+msgstr "Statische Räume"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:216
 msgid ""
@@ -3702,7 +3704,7 @@ msgstr "Musik"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1158
 msgid "Fixed Room"
-msgstr ""
+msgstr "Statischer Raum"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1237
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:50
@@ -3757,11 +3759,11 @@ msgstr "Struktur-Typ:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1494
 msgid "Floor connectivity:"
-msgstr ""
+msgstr "Ebenen-Verbundenheit:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1529
 msgid "Dead Ends?:"
-msgstr ""
+msgstr "Sackgassen?:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1573
 msgid "Extra Hallway density:"
@@ -4233,36 +4235,28 @@ msgid "All categories are already in the list."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:546
-#, fuzzy
-#| msgid "Add category"
 msgid "Can not add category"
-msgstr "Kategorie hinzufügen"
+msgstr "Kann Kategorie nicht hinzufügen"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:568
-#, fuzzy
-#| msgid "This patch can not be re-applied."
 msgid "The last category can not be removed."
-msgstr "Dieser Patch kann nicht erneut angewendet werden."
+msgstr "Die letzte Kategorie kann nicht entfernt werden."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:569
 msgid "Can't remove category."
-msgstr ""
+msgstr "Kann Kategorie nicht entfernen."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:739
 msgid "This item does not belong in this category. Please chose another item."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:740
-#, fuzzy
-#| msgid "Invalid Floor List"
 msgid "Invalid item id"
-msgstr "Ungültige Ebenen-Liste"
+msgstr "Ungültige Item-ID"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:747
-#, fuzzy
-#| msgid "This script already exists."
 msgid "This item is already in the list."
-msgstr "Dieses Skript existiert bereits."
+msgstr "Dieses Item existiert bereits in der Liste."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:748
 msgid "Can not use this item"
@@ -4353,7 +4347,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:105
 msgid "Edit Groups"
-msgstr ""
+msgstr "Gruppen bearbeiten"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:235
 msgid "Fix"
@@ -5424,7 +5418,7 @@ msgstr "Unbekannt 3"
 
 #: skytemple/skytemple/module/lists/controller/main.py:23
 msgid "Ground Lists"
-msgstr ""
+msgstr "Ground Listen"
 
 #: skytemple/skytemple/module/lists/controller/main.py:35
 msgid ""
@@ -5436,7 +5430,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:55
 msgid "Menu Lists"
-msgstr ""
+msgstr "Menü-Listen"
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:76
 msgid "Menu: "
@@ -5488,7 +5482,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
 #: skytemple/skytemple/module/lists/module.py:86
 msgid "Rank List"
-msgstr ""
+msgstr "Rank-Liste"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:103
 msgid "Points for next Rank"
@@ -5505,7 +5499,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
 #: skytemple/skytemple/module/lists/module.py:80
 msgid "Recruitment List"
-msgstr ""
+msgstr "Anwerber-Liste"
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:60
 msgid ""
@@ -5533,22 +5527,22 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:91
 msgid "Starters List"
-msgstr ""
+msgstr "Starter-Liste"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:177
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:484
 #: ssb_debugger/skytemple_ssb_debugger/controller/variable.py:63
 msgid "Player"
-msgstr ""
+msgstr "Spieler"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:239
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:611
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:294
 msgid "Team Name"
-msgstr ""
+msgstr "Teamname"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:309
 msgid ""
@@ -5559,12 +5553,12 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:329
 msgid "Default Starters"
-msgstr ""
+msgstr "Standard Starter"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:370
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:521
 msgid "Starting Level:"
-msgstr ""
+msgstr "Start-Level:"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:423
 msgid "Nature"
@@ -5721,7 +5715,7 @@ msgstr "???"
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:76
 msgid "Map:"
-msgstr ""
+msgstr "Karte:"
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:108
 msgid "Reference / Use another marker"
