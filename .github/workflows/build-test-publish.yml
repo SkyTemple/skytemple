@@ -23,6 +23,8 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
+      - name: Install msgfmt
+        run: sudo apt-get install msgfmt
       - name: Upgrade pip
         run: |
           python -m pip install --upgrade pip
