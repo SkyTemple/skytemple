@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-21 17:49\n"
+"PO-Revision-Date: 2021-02-21 21:22\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -68,7 +68,7 @@ msgstr ""
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:153
 msgid "A rule is missing in the import set"
-msgstr ""
+msgstr "Falta una regla en el conjunto importado"
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:228
 #, python-brace-format
@@ -78,15 +78,15 @@ msgstr ""
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:232
 #, python-brace-format
 msgid "Invalid variation index {var_idx}."
-msgstr ""
+msgstr "Índice de variación inválido {var_idx}."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:274
 msgid "Error in the XML: One of the animation frames doesn't have 16 colors. Each frame must have a value for each color."
-msgstr ""
+msgstr "Error en el archivo XML: Uno de los fotogramas de la animación no tiene 16 colores. Cada fotograma debe tener un valor para cada color."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:282
 msgid "Error in the XML: Durations for a palette or it's colors are not correctly defined."
-msgstr ""
+msgstr "Error en el archivo XML: Las duraciones de una paleta o de sus colores no están correctamente definidas."
 
 #: dtef/skytemple_dtef/rules.py:118
 #, python-brace-format
@@ -108,7 +108,7 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:43
 msgid "No variable for dungeon_mode set."
-msgstr ""
+msgstr "No hay variable para dungeon_mode establecida."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:45
 msgid "No value for dungeon_mode set."
