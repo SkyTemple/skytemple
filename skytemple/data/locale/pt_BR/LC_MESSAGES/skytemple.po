@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-21 14:24\n"
+"PO-Revision-Date: 2021-02-21 16:40\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -30,16 +30,16 @@ msgstr ""
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:87
 #, python-brace-format
 msgid "Invalid tileset. Tileset has chunk dimensions of {dim}px, but only {CHUNK_DIM}px are supported."
-msgstr ""
+msgstr "Tileset inválido. Tileset possui dimensões de chunk de {dim}px, mas apenas {CHUNK_DIM}px são suportados."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:109
 msgid "Invalid animation: Animation is only supported for palettes 10 and 11."
-msgstr ""
+msgstr "Animação inválida: Animação só é suportada para as paletas 10 e 11."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:123
 #, python-brace-format
 msgid "A required DTEF file is missing: {fn}. Please verify the DTEF package."
-msgstr ""
+msgstr "Um arquivo DTEF está faltando: {fn}. Por favor, verifique o pacote DTEF."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:131
 #, python-brace-format
@@ -882,7 +882,7 @@ msgstr ""
 
 #: files/skytemple_files/data/md/model.py:173
 msgid "$$$"
-msgstr ""
+msgstr "$$$"
 
 #: files/skytemple_files/data/md/model.py:174
 msgid "Honey Gather"
@@ -914,11 +914,11 @@ msgstr ""
 
 #: files/skytemple_files/data/md/model.py:181
 msgid "NONE"
-msgstr ""
+msgstr "NADA"
 
 #: files/skytemple_files/data/md/model.py:182
 msgid "NULL"
-msgstr ""
+msgstr "NULO"
 
 #: files/skytemple_files/data/monster_xml.py:205
 #, python-brace-format
@@ -1111,24 +1111,24 @@ msgstr ""
 #: files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:72
 #, python-brace-format
 msgid "Floor parsing: Unexpected {child.tag}"
-msgstr ""
+msgstr "Análise de Andar: {child.tag} inesperado"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor.py:244
 #, python-brace-format
 msgid "Missing {k} for Floor data."
-msgstr ""
+msgstr "Falta {k} para dados de piso."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:62
 msgid "Disabled? (0)"
-msgstr ""
+msgstr "Desativado? (0)"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:63
 msgid "Enabled (1)"
-msgstr ""
+msgstr "Habilitado (1)"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:64
 msgid "Enabled (10)"
-msgstr ""
+msgstr "Habilitado (10)"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:337
 #, python-brace-format
@@ -1190,120 +1190,121 @@ msgstr ""
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:46
 msgid "Invalid Floor"
-msgstr ""
+msgstr "Andar Inválido"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:49
 msgid "References floor that is out of bounds in the floor list for this group."
-msgstr ""
+msgstr "Referencia andar que está fora dos limites na lista de andares desse grupo."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:60
 msgid "Re-uses Floor"
-msgstr ""
+msgstr "Reutiliza Andar"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:64
 #, python-brace-format
 msgid "Re-uses floors that are already used by {name}."
-msgstr ""
+msgstr "Reutiliza andares que já estão em uso por {name}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:85
 msgid "Unused Floors"
-msgstr ""
+msgstr "Andares Inutilizados"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:88
 msgid "Has {len(self.floors_in_mappa_not_referenced)} extra floors in it's floor list, which are not assigned to any dungeon."
-msgstr ""
+msgstr "Tem {len(self.floors_in_mappa_not_referenced)} andares extras em sua lista de andares, que não são atribuídos a nenhum calabouço."
 
 #: files/skytemple_files/graphics/bma/model.py:447
 #, python-brace-format
 msgid "Can not import map background: Width of both images must match the current map width: {expected_width}px"
-msgstr ""
+msgstr "Impossível importar imagem de fundo do mapa: Largura das duas imagens tem que corresponder à largura atual do mapa: {expected_width}px"
 
 #: files/skytemple_files/graphics/bma/model.py:451
 #, python-brace-format
 msgid "Can not import map background: Height of both images must match the current map height: {expected_height}px"
-msgstr ""
+msgstr "Impossível importar imagem de fundo do mapa: Altura das duas imagens tem que corresponder à altura atual do mapa: {expected_height}px"
 
 #: files/skytemple_files/graphics/bpa/model.py:168
 msgid "The dimensions of all images must be the same."
-msgstr ""
+msgstr "As dimensões de todas as imagens devem ser as mesmas."
 
 #: files/skytemple_files/graphics/chr/model.py:70
 msgid "Cannot convert PIL image to CHR: Must be indexed image (=using a palette)"
-msgstr ""
+msgstr "Impossível converter imagem PIL para CHR: Tem que ser uma imagem indexada (=usando uma paleta)"
 
 #: files/skytemple_files/graphics/chr/model.py:72
 #, python-brace-format
 msgid "Cannot convert PIL image to CHR: width and height must be a multiple of {CHR_TILE_WIDTH}"
-msgstr ""
+msgstr "Impossível converter imagem PIL para CHR: largura e altura devem ser um múltiplo de {CHR_TILE_WIDTH}"
 
 #: files/skytemple_files/graphics/dbg/model.py:85
 #, python-brace-format
 msgid "Can not import map background: Width of image must match the expected width: {expected_width}px"
-msgstr ""
+msgstr "Impossível importar imagem de fundo do mapa: Largura da imagem tem que corresponder à largura esperada: {expected_width}px"
 
 #: files/skytemple_files/graphics/dbg/model.py:88
 #, python-brace-format
 msgid "Can not import map background: Height of image must match the expected height: {expected_height}px"
-msgstr ""
+msgstr "Impossível importar imagem de fundo do mapa: Altura da imagem tem que corresponder à altura esperada: {expected_height}px"
 
 #: files/skytemple_files/graphics/dpc/model.py:93
 #, python-brace-format
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {tm.pal_idx}"
-msgstr ""
+msgstr "A imagem a ser importada só pode usar as primeiras 12 paletas. Tentou usar a paleta {tm.pal_idx}"
 
 #: files/skytemple_files/graphics/dpc/model.py:129
 msgid "A dungeon background or tilemap can not have more than 400 chunks."
-msgstr ""
+msgstr "Um fundo ou tilemap do calabouço não pode ter mais de 400 chunks."
 
 #: files/skytemple_files/graphics/dpla/model.py:90
 msgid "This palette has no animation."
-msgstr ""
+msgstr "Essa paleta não tem animação."
 
 #: files/skytemple_files/graphics/fonts/banner_font/model.py:70
 #: files/skytemple_files/graphics/fonts/font_dat/model.py:87
 #: files/skytemple_files/graphics/fonts/font_sir0/model.py:82
 msgid "This must be a color indexed image!"
-msgstr ""
+msgstr "Deve ser uma imagem indexada por cor!"
 
 #: files/skytemple_files/graphics/fonts/banner_font/model.py:205
 #, python-brace-format
 msgid "Font parsing: Unexpected {child.tag}"
-msgstr ""
+msgstr "Análise de fonte: {child.tag} inesperado"
 
 #: files/skytemple_files/graphics/fonts/font_dat/writer.py:38
 #, python-brace-format
 msgid "Character {e.char} in table {e.table} is defined multiple times in a font file!"
-msgstr ""
+msgstr "Caractere {e.char} na tabela {e.table} é definido múltiplas vezes num arquivo de fonte!"
 
 #: files/skytemple_files/graphics/fonts/font_sir0/writer.py:48
 #, python-brace-format
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
-msgstr ""
+msgstr "Caractere {e.char} na tabela {e.table} é definido múltiplas vezes num arquivo de fonte!"
 
 #: files/skytemple_files/graphics/kao/model.py:159
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
-msgstr ""
+msgstr "Não foi possível carregar KAO em {old_index},{old_subindex}: {ex}"
 
 #: files/skytemple_files/graphics/kao/model.py:215
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
-msgstr ""
+msgstr "Não é possível converter imagem PIL para KAO: Dimensões da imagem devem ser {img_dim}x{img_dim}px."
 
 #: files/skytemple_files/graphics/kao/model.py:252
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
-msgstr ""
+msgstr "Este retrato não compacta bem, o tamanho do resultado é maior que 800 bytes ({len(new_img_compressed)} bytes no total).\n"
+"Se você ainda não fez isso, tente aplicar o 'ProvideATUPXSupport' para instalar um algoritmo otimizado de compressão, que talvez seja capaz de melhor compactar essa imagem."
 
 #: files/skytemple_files/graphics/kao/sprite_bot_sheet.py:86
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, Not divisble by {PORTRAIT_SIZE}x{PORTRAIT_SIZE}"
-msgstr ""
+msgstr "O retrato tem um tamanho inválido de {img.size}, não divisível por {PORTRAIT_SIZE}x{PORTRAIT_SIZE}"
 
 #: files/skytemple_files/graphics/kao/sprite_bot_sheet.py:91
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, exceeding max of {max_size}"
-msgstr ""
+msgstr "O retrato tem um tamanho inválido de {img.size}, excedendo o máximo de {max_size}"
 
 #: files/skytemple_files/graphics/kao/sprite_bot_sheet.py:127
 #, python-brace-format
@@ -1321,19 +1322,19 @@ msgstr ""
 
 #: files/skytemple_files/graphics/wte/model.py:35
 msgid "Palette Only"
-msgstr ""
+msgstr "Apenas Paleta"
 
 #: files/skytemple_files/graphics/wte/model.py:36
 msgid "2 bits per pixel (4 colors)"
-msgstr ""
+msgstr "2 bits por pixel (4 cores)"
 
 #: files/skytemple_files/graphics/wte/model.py:37
 msgid "4 bits per pixel (16 colors)"
-msgstr ""
+msgstr "4 bits por pixel (16 cores)"
 
 #: files/skytemple_files/graphics/wte/model.py:38
 msgid "8 bits per pixel (256 colors)"
-msgstr ""
+msgstr "8 bits por pixel (256 cores)"
 
 #: files/skytemple_files/graphics/wte/model.py:189
 msgid "Can not convert PIL image to WTE: Must be indexed image (=using a palette)"
