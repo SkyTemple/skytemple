@@ -32,8 +32,7 @@ def create_mo_files():
             mo_files.append(str(mo.relative_to(prefix)))
 
         return mo_files
-    except Exception as ex:
-        print(f"Warning: Could not build translations. They will not be available. {ex}", file=sys.stderr)
+    except BaseException as ex:
         return []
 
 
