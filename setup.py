@@ -24,7 +24,6 @@ def create_mo_files():
         mo_files = []
         prefix = os.path.join(this_directory, 'skytemple')
 
-        print(str(pathlib.Path(prefix) / PO_FILES))
         for po_path in glob.glob(str(pathlib.Path(prefix) / PO_FILES)):
             mo = pathlib.Path(po_path.replace('.po', '.mo'))
 
