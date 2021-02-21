@@ -15,6 +15,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import os
 from typing import Optional
 
 from gi.repository import Gtk
@@ -24,7 +25,7 @@ from skytemple.core.ssb_debugger.context import SkyTempleMainDebuggerControlCont
 from skytemple.core.ui_utils import APP
 from skytemple_ssb_debugger.controller.main import MainController as DebuggerMainController
 from skytemple_ssb_debugger.emulator_thread import EmulatorThread
-from skytemple_ssb_debugger.main import get_debugger_builder
+from skytemple_ssb_debugger.main import get_debugger_builder, get_debugger_package_dir
 
 
 class DebuggerManager:
@@ -40,8 +41,10 @@ class DebuggerManager:
         if not self.is_opened():
             self._was_opened_once = True
             self._context = SkyTempleMainDebuggerControlContext(self)
-            builder = get_debugger_builder()
+
+            builder = Gtk.Builder()
             builder.set_translation_domain(APP)
+            builder.add_from_file(os.path.join(get_debugger_package_dir(), "debugger.glade"))
             self._opened_main_window: Gtk.Window = builder.get_object("main_window")
             self._opened_main_window.set_role("SkyTemple Script Engine Debugger")
             self._opened_main_window.set_title("SkyTemple Script Engine Debugger")
