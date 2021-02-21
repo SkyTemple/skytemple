@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-21 14:24\n"
+"PO-Revision-Date: 2021-02-21 16:40\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -1111,49 +1111,49 @@ msgstr ""
 #: files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:72
 #, python-brace-format
 msgid "Floor parsing: Unexpected {child.tag}"
-msgstr ""
+msgstr "Analyse de l'étage : {child.tag} inattendu"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor.py:244
 #, python-brace-format
 msgid "Missing {k} for Floor data."
-msgstr ""
+msgstr "Il manque l'attribut {k} dans les données de l'étage."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:62
 msgid "Disabled? (0)"
-msgstr ""
+msgstr "Desactivé ? (0)"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:63
 msgid "Enabled (1)"
-msgstr ""
+msgstr "Activé (1)"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:64
 msgid "Enabled (10)"
-msgstr ""
+msgstr "Activé (10)"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:337
 #, python-brace-format
 msgid "Unexpected sub-node for {XML_FLOOR_LAYOUT}: {child.tag}"
-msgstr ""
+msgstr "Sous-noeud inattendu pour la balise {XML_FLOOR_LAYOUT} : {child.tag}"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:340
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__GENSET} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "Attribut {XML_FLOOR_LAYOUT__GENSET} manquant pour la balise {XML_FLOOR_LAYOUT}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:343
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__CHANCES} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "Attribut {XML_FLOOR_LAYOUT__CHANCES} manquant pour la balise {XML_FLOOR_LAYOUT}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:346
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__TERRAINSET} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "Attribut {XML_FLOOR_LAYOUT__TERRAINSET} manquant pour la balise {XML_FLOOR_LAYOUT}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:349
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__MISCSET} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "Attribut {XML_FLOOR_LAYOUT__MISCSET} manquant pour la balise {XML_FLOOR_LAYOUT}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:404
 msgid "Invalid structure type {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}"
@@ -1161,57 +1161,57 @@ msgstr ""
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:408
 msgid "Invalid weather type {ele.get(XML_FLOOR_LAYOUT__WEATHER)}"
-msgstr ""
+msgstr "Météo invalide : {ele.get(XML_FLOOR_LAYOUT__WEATHER)}"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:412
 msgid "Invalid terrain type {terrain_settings.get(XML_FLOOR_LAYOUT__TERRAINSET__SECONDARY_TYPE)}"
-msgstr ""
+msgstr "Type de terrain invalide : {terrain_settings.get(XML_FLOOR_LAYOUT__TERRAINSET__SECONDARY_TYPE)}"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:416
 msgid "Invalid darkness level type {ele.get(XML_FLOOR_LAYOUT__DARKNESS_LEVEL)}"
-msgstr ""
+msgstr "Niveau d'obscurité invalide {ele.get(XML_FLOOR_LAYOUT__DARKNESS_LEVEL)}"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:104
 #, python-brace-format
 msgid "Unknown trap {name}."
-msgstr ""
+msgstr "Piège inconnu : {name}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:109
 msgid "Trap lists need an entry for all of the 25 traps"
-msgstr ""
+msgstr "Les listes de pièges doivent contenir une entrée pour chacun des 25 pièges."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:37
 msgid "Invalid Floor List"
-msgstr ""
+msgstr "Liste d'étages invalide"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:40
 msgid "References a dungeon floor list that doesn't exist."
-msgstr ""
+msgstr "Référence une liste d'étages de donjon qui n'existe pas."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:46
 msgid "Invalid Floor"
-msgstr ""
+msgstr "Étage invalide"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:49
 msgid "References floor that is out of bounds in the floor list for this group."
-msgstr ""
+msgstr "Référence des étages qui sont en dehors des limites de la liste d'étages pour ce groupe."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:60
 msgid "Re-uses Floor"
-msgstr ""
+msgstr "Réutilise des étages"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:64
 #, python-brace-format
 msgid "Re-uses floors that are already used by {name}."
-msgstr ""
+msgstr "Utilise des étages déjà utilisés par le donjon {name}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:85
 msgid "Unused Floors"
-msgstr ""
+msgstr "Étages non utilisés"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:88
 msgid "Has {len(self.floors_in_mappa_not_referenced)} extra floors in it's floor list, which are not assigned to any dungeon."
-msgstr ""
+msgstr "A {len(self.floors_in_mappa_not_referenced)} étages supplémentaires dans sa liste d'étages qui ne sont affectés à aucun donjon."
 
 #: files/skytemple_files/graphics/bma/model.py:447
 #, python-brace-format
@@ -1229,12 +1229,12 @@ msgstr ""
 
 #: files/skytemple_files/graphics/chr/model.py:70
 msgid "Cannot convert PIL image to CHR: Must be indexed image (=using a palette)"
-msgstr ""
+msgstr "Impossible de convertir l'image PIL en fichier CHR : l'image doit être indexée (c'est-à-dire utiliser une palette)"
 
 #: files/skytemple_files/graphics/chr/model.py:72
 #, python-brace-format
 msgid "Cannot convert PIL image to CHR: width and height must be a multiple of {CHR_TILE_WIDTH}"
-msgstr ""
+msgstr "Impossible de convertir l'image PIL en fichier CHR : la longueur et la hauteur doivent être un mulitple de {CHR_TILE_WIDTH}"
 
 #: files/skytemple_files/graphics/dbg/model.py:85
 #, python-brace-format
@@ -1249,7 +1249,7 @@ msgstr ""
 #: files/skytemple_files/graphics/dpc/model.py:93
 #, python-brace-format
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {tm.pal_idx}"
-msgstr ""
+msgstr "L'image à importer ne peut utiliser que les 12 premières palettes. La palette {tm.pal_idx} a été utilisée."
 
 #: files/skytemple_files/graphics/dpc/model.py:129
 msgid "A dungeon background or tilemap can not have more than 400 chunks."
@@ -1257,103 +1257,104 @@ msgstr ""
 
 #: files/skytemple_files/graphics/dpla/model.py:90
 msgid "This palette has no animation."
-msgstr ""
+msgstr "Cette palette n'a aucune animation."
 
 #: files/skytemple_files/graphics/fonts/banner_font/model.py:70
 #: files/skytemple_files/graphics/fonts/font_dat/model.py:87
 #: files/skytemple_files/graphics/fonts/font_sir0/model.py:82
 msgid "This must be a color indexed image!"
-msgstr ""
+msgstr "Cette image doit être à couleurs indexées !"
 
 #: files/skytemple_files/graphics/fonts/banner_font/model.py:205
 #, python-brace-format
 msgid "Font parsing: Unexpected {child.tag}"
-msgstr ""
+msgstr "Analyse de la police : {child.tag} inattendu"
 
 #: files/skytemple_files/graphics/fonts/font_dat/writer.py:38
 #, python-brace-format
 msgid "Character {e.char} in table {e.table} is defined multiple times in a font file!"
-msgstr ""
+msgstr "Le caractère {e.char} dans la table {e.table} est défini plusieurs fois dans un fichier de police !"
 
 #: files/skytemple_files/graphics/fonts/font_sir0/writer.py:48
 #, python-brace-format
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
-msgstr ""
+msgstr "Le caractère {e.char} dans la table {e.table} est défini plusieurs fois dans un fichier de police !"
 
 #: files/skytemple_files/graphics/kao/model.py:159
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
-msgstr ""
+msgstr "Impossible de charger l'entrée {old_index},{old_subindex} du fichier KAO : {ex}"
 
 #: files/skytemple_files/graphics/kao/model.py:215
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
-msgstr ""
+msgstr "Impossible de convertir l'image PIL pour le fichier KAO : les dimensions de l'image doivent être de {img_dim}x{img_dim}px."
 
 #: files/skytemple_files/graphics/kao/model.py:252
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
-msgstr ""
+msgstr "Ce portrait ne se compresse pas bien, la taille résultante est plus grande que 800 octets ({len(new_img_compressed)} au total).\n"
+"Si ce n'est pas encore fait, essayez d'appliquer le patch «ProvideATUPXSupport» pour installer un algorithme de compression plus optimisé, qui est susceptible de mieux compresser l'image."
 
 #: files/skytemple_files/graphics/kao/sprite_bot_sheet.py:86
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, Not divisble by {PORTRAIT_SIZE}x{PORTRAIT_SIZE}"
-msgstr ""
+msgstr "Le portrait a une taille invalide de {img.size}, non divisible par {PORTRAIT_SIZE}x{PORTRAIT_SIZE}"
 
 #: files/skytemple_files/graphics/kao/sprite_bot_sheet.py:91
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, exceeding max of {max_size}"
-msgstr ""
+msgstr "Le portrait a une taille invalide de {img.size}, ce qui excède la taille maximale de {max_size}"
 
 #: files/skytemple_files/graphics/kao/sprite_bot_sheet.py:127
 #, python-brace-format
 msgid "Semi-transparent pixels found at: {rogue_pixels}"
-msgstr ""
+msgstr "Pixels semi-transparents trouvés aux positions suivantes : {rogue_pixels}"
 
 #: files/skytemple_files/graphics/kao/sprite_bot_sheet.py:129
 #, python-brace-format
 msgid "The following emotions have transparent pixels: {rogue_tiles}"
-msgstr ""
+msgstr "Les émotions suivantes ont des pixels transparents : {rogue_tiles}"
 
 #: files/skytemple_files/graphics/kao/sprite_bot_sheet.py:147
 msgid "File should have original and flipped versions of emotions: {str(flipped_tiles)}"
-msgstr ""
+msgstr "Le fichier doit contenir les versions originales et retournées de ces émotions : {str(flipped_tiles)}"
 
 #: files/skytemple_files/graphics/wte/model.py:35
 msgid "Palette Only"
-msgstr ""
+msgstr "Palette Seulement"
 
 #: files/skytemple_files/graphics/wte/model.py:36
 msgid "2 bits per pixel (4 colors)"
-msgstr ""
+msgstr "2 bits par pixel (4 couleurs)"
 
 #: files/skytemple_files/graphics/wte/model.py:37
 msgid "4 bits per pixel (16 colors)"
-msgstr ""
+msgstr "4 bits par pixel (16 couleurs)"
 
 #: files/skytemple_files/graphics/wte/model.py:38
 msgid "8 bits per pixel (256 colors)"
-msgstr ""
+msgstr "8 bits par pixel (256 couleurs)"
 
 #: files/skytemple_files/graphics/wte/model.py:189
 msgid "Can not convert PIL image to WTE: Must be indexed image (=using a palette)"
-msgstr ""
+msgstr "Impossible de convertir l'image PIL en fichier WTE : l'image doit être indexée (c'est-à-dire utiliser une palette)"
 
 #: files/skytemple_files/graphics/wte/model.py:195
 msgid "This image is too big to fit into a WTE file."
-msgstr ""
+msgstr "Cette image est trop grande pour être contenue dans un fichier WTE."
 
 #: files/skytemple_files/graphics/zmappat/model.py:36
 msgid "Semi-Opaque"
-msgstr ""
+msgstr "Semi-Opaque"
 
 #: files/skytemple_files/graphics/zmappat/model.py:37
 msgid "Transparent"
-msgstr ""
+msgstr "Transparent"
 
 #: files/skytemple_files/graphics/zmappat/model.py:38
 msgid "Opaque"
-msgstr ""
+msgstr "Opaque"
 
 #: files/skytemple_files/graphics/zmappat/model.py:169
 #: files/skytemple_files/graphics/zmappat/model.py:190
@@ -1363,56 +1364,58 @@ msgstr ""
 #: files/skytemple_files/graphics/zmappat/model.py:174
 #: files/skytemple_files/graphics/zmappat/model.py:195
 msgid "Can not convert PIL image to ZMAPPAT: Must be indexed images (=using a palette)"
-msgstr ""
+msgstr "Impossible de convertir l'image en fichier ZMAPPAT : les images doivent être indexées (c'est-à-dire utiliser une palette)"
 
 #: files/skytemple_files/hardcoded/cart_removed.py:56
 #, python-brace-format
 msgid "The image must have dimensions {IMG_WIDTH}x{IMG_HEIGHT}."
-msgstr ""
+msgstr "L'image doit avoir les dimensions {IMG_WIDTH}x{IMG_HEIGHT}."
 
 #: files/skytemple_files/hardcoded/cart_removed.py:67
 msgid "This image must be compressed better to fit in the arm9 ({len(data)} > {block.end-block.begin})."
-msgstr ""
+msgstr "Cette image doit être mieux compressée pour être placée dans sa zone réservée dans l'arm9 ({len(data)} > {block.end-block.begin})."
 
 #: files/skytemple_files/patch/arm_patcher.py:130
 msgid "ARMIPS could not be found. Make sure, that 'armips' is inside your system's PATH."
-msgstr ""
+msgstr "ARMIPS introuvable. Assurez-vous que «armips» se trouve dans la variable path de votre système."
 
 #: files/skytemple_files/patch/arm_patcher.py:137
 msgid "ARMIPS reported an error while applying the patch."
-msgstr ""
+msgstr "ARMIPS a renvoyé une erreur lors de l'application du patch."
 
 #: files/skytemple_files/patch/arm_patcher.py:166
 #, python-brace-format
 msgid "Error while applying the patch: {ex}"
-msgstr ""
+msgstr "Erreur lors de l'application du patch : {ex}"
 
 #: files/skytemple_files/patch/handler/actor_and_level_loader.py:42
 msgid "Tells the game, to load the actor and level lists from a separate file. Extracts both files on applying the patch."
-msgstr ""
+msgstr "Indique au jeu de charger les listes d'acteurs et de niveaux à partir de fichiers séparés. Extrait les deux fichiers lors de l'application de ce patch."
 
 #: files/skytemple_files/patch/handler/actor_and_level_loader.py:69
 msgid "This patch can not be re-applied."
-msgstr ""
+msgstr "Ce patch ne peut pas être réappliqué."
 
 #: files/skytemple_files/patch/handler/actor_and_level_loader.py:75
 #: files/skytemple_files/patch/handler/actor_and_level_loader.py:83
 msgid "The source data specification was not found in the configuration."
-msgstr ""
+msgstr "La spécification des données source est introuvable dans la configuration."
 
 #: files/skytemple_files/patch/handler/actor_and_level_loader.py:94
 msgid "\n\n"
 "The list was extracted anyway.\n"
 "You can already edit it through SkyTemple, but it won't be used in game, until you successfully apply the patch."
-msgstr ""
+msgstr "\n\n"
+"Les listes ont tout de même été extraites.\n"
+"Vous pouvez les éditer via SkyTemple, mais elles ne seront pas utilisées par le jeu avant que le patch soit appliqué avec succès."
 
 #: files/skytemple_files/patch/handler/complete_team_control.py:74
 msgid "Pressing start in a dungeon toggles between automatic and manual mode. In manual mode, you can control your partners on their turns. You must apply the extra code overlay made by End45 before applying this patch."
-msgstr ""
+msgstr "Appuyer sur Start dans un donjon permet de basculer entre le mode automatique et le mode manuel. En mode manuel, vous pouvez contrôler vous partenaires pendant leurs tours. Vous devez appliquer le patch pour l'overlay de code supplémentaire de End45 avant d'appliquer ce patch."
 
 #: files/skytemple_files/patch/handler/disable_tips.py:39
 msgid "Disables the tip textboxes shown in dungeons at the beginning of the game."
-msgstr ""
+msgstr "Désactive les boîtes de dialogue d'aide affichées en donjon au début du jeu."
 
 #: files/skytemple_files/patch/handler/exp_share.py:43
 msgid "Implements shared experience points between all members (GtI style). \n"
