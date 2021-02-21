@@ -23,8 +23,6 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
-      - name: Install gettext
-        run: sudo apt-get install gettext
       - name: Upgrade pip
         run: |
           python -m pip install --upgrade pip
@@ -32,6 +30,7 @@ jobs:
         uses: RalfG/python-wheels-manylinux-build@v0.3.3-manylinux2010_x86_64
         with:
           python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38 cp39-cp39'
+          system_packages: 'gettext'
       - name: Upload wheels
         uses: actions/upload-artifact@v2
         with:
