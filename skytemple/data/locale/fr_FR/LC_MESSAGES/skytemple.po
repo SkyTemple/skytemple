@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-21 16:40\n"
+"PO-Revision-Date: 2021-02-21 17:49\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -1421,11 +1421,13 @@ msgstr "Désactive les boîtes de dialogue d'aide affichées en donjon au début
 msgid "Implements shared experience points between all members (GtI style). \n"
 "This is disabled during Special Episodes and dungeons with level 1 or no exp. restrictions. \n"
 "Needs the ExtractDungeonData patch to be applied to free some space used by this."
-msgstr ""
+msgstr "Implémente le partage des points d'expérience entre tous les membres (style Portes de l'Infini). \n"
+"Le partage est desactivé lors des Épisodes Spéciaux et dans les donjons avec les restrictions «niveau 1» ou «pas de gain d'expérience».\n"
+"Le patch ExtractDungeonData doit être appliqué pour libérer de l'espace utilisé par celui-ci."
 
 #: files/skytemple_files/patch/handler/extra_space.py:39
 msgid "This patch adds a new overlay 36 to the game, which is loaded at address 0x023A7080 and provides extra space for patches to place code and data in."
-msgstr ""
+msgstr "Ce patch ajoute un nouvel overlay (36) au jeu, qui est chargé à l'adresse 0x023A7080 et fournit de l'espace supplémentaire aux autres patch pour y placer du code et d'autres données."
 
 #: files/skytemple_files/patch/handler/extract_dungeon_data.py:53
 #| msgid ""
@@ -2114,61 +2116,62 @@ msgstr ""
 
 #: skytemple/skytemple/controller/tilequant.py:236
 msgid "Image was converted."
-msgstr ""
+msgstr "Image convertie."
 
 #: skytemple/skytemple/core/error_handler.py:63
 msgid "Trying to display the error failed. Wow!"
-msgstr ""
+msgstr "L'affichage de l'erreur a échoué. Incroyable !"
 
 #: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:73
 msgid "SkyTemple - Error!"
-msgstr ""
+msgstr "SkyTemple - Erreur !"
 
 #: skytemple/skytemple/core/logger.py:45
 #, python-brace-format
 msgid "An uncaught exception occurred! This shouldn't happen, please report it!\n\n"
 "{traceback_str}"
-msgstr ""
+msgstr "Une exception non gérée s'est produite ! Cela ne devrait pas arriver, merci de la signaler !\n\n"
+"{traceback_str}"
 
 #: skytemple/skytemple/core/logger.py:47
 msgid "SkyTemple - Uncaught error!"
-msgstr ""
+msgstr "SkyTemple - Erreur non gérée !"
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:142
 #: skytemple/skytemple/core/ssb_debugger/context.py:156
 msgid "A scene for this script was not found."
-msgstr ""
+msgstr "La scène utilisée pour ce script est introuvable."
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:143
 #: skytemple/skytemple/core/ssb_debugger/context.py:157
 #: skytemple/skytemple/module/map_bg/controller/bg.py:324
 msgid "No Scenes Found"
-msgstr ""
+msgstr "Aucune scène trouvée"
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:188
 msgid "SkyTemple Script Engine Debugger - Error!"
-msgstr ""
+msgstr "Débogueur de Scripts de SkyTemple - Erreur !"
 
 #: skytemple/skytemple/core/ui_utils.py:64
 #: ssb_debugger/skytemple_ssb_debugger/controller/main.py:151
 msgid "Nintendo DS ROMs (*.nds)"
-msgstr ""
+msgstr "ROM Nintendo DS (*.nds)"
 
 #: skytemple/skytemple/core/ui_utils.py:77
 msgid "GIF image (*.gif)"
-msgstr ""
+msgstr "Image GIF (*.gif)"
 
 #: skytemple/skytemple/core/ui_utils.py:93
 msgid "XML document (*.xml)"
-msgstr ""
+msgstr "Document XML (*.xml)"
 
 #: skytemple/skytemple/core/ui_utils.py:101
 msgid "CSV file (*.csv)"
-msgstr ""
+msgstr "Fichier CSV (*.csv)"
 
 #: skytemple/skytemple/main.py:72
 msgid "PyGObject compiled without Cairo support. Can't start!"
-msgstr ""
+msgstr "PyGObject a été compilé sans le support pour Cairo. Impossible de démarrer !"
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:35
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1090
@@ -2195,7 +2198,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1641
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4665
 msgid "Convert image to PMD2 indexed PNG..."
-msgstr ""
+msgstr "Convertir en image PNG indexée pour PDM2..."
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:141
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5398
@@ -2225,7 +2228,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6004
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6230
 msgid "Format Details"
-msgstr ""
+msgstr "Détails du format"
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:264
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5899
@@ -2246,11 +2249,11 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5987
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6213
 msgid "Converter"
-msgstr ""
+msgstr "Convertisseur"
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:407
 msgid "Image"
-msgstr ""
+msgstr "Image"
 
 #: skytemple/skytemple/module/bgp/controller/bgp.py:42
 msgid "- The image is a 256-color indexed PNG.\n"
@@ -2260,11 +2263,17 @@ msgid "- The image is a 256-color indexed PNG.\n"
 "- The first color in each palette is transparency.\n"
 "- Each import must result in a maximum of 1024 unique 8x8 tiles \n"
 "  (=not existing with another palette or flipped or rotated)."
-msgstr ""
+msgstr "- L'image est une image PNG indexée à 256 couleurs.\n"
+"- Les 256 couleurs sont divisées en 16 palettes de 16 couleurs.\n"
+"- Chaque tuile 8x8 dans l'image DOIT exclusivement utiliser les couleurs\n"
+" d'UNE des 16 palettes.\n"
+"- La première couleur de chaque palette représente la transparence.\n"
+"- Chaque importation d'image doit résulter d'un maximum de 1024 tuiles 8x8 uniques\n"
+" (c'est-à-dire non existante avec une autre palette ou en la retournant horizontalement et/ou verticalement)."
 
 #: skytemple/skytemple/module/bgp/controller/bgp.py:113
 msgid "Error importing the image."
-msgstr ""
+msgstr "Erreur lors de l'importation de l'image."
 
 #: skytemple/skytemple/module/bgp/controller/main.py:23
 msgid "Backgrounds"
@@ -2276,19 +2285,20 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/dojos.py:23
 msgid "Dojo Dungeons"
-msgstr ""
+msgstr "Dédales"
 
 #: skytemple/skytemple/module/dungeon/controller/dojos.py:35
 msgid "Dojo Dungeons are the dungeons used in the Marowak Dojo.\n"
 "You can not change the number of floors for Dojo Dungeons."
-msgstr ""
+msgstr "Les Dédales sont les donjons utilisés au Dojo Ossatueur.\n"
+"Vous ne pouvez pas changer le nombre d'étages pour les Dédales."
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:14
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:14
 #: skytemple/skytemple/module/misc_graphics/controller/chr.glade:116
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:395
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:18
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:18
@@ -2297,80 +2307,80 @@ msgstr ""
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:2777
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:2860
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:43
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:57
 #: skytemple/skytemple/module/sprite/controller/object.glade:30
 msgid "XXX"
-msgstr ""
+msgstr "XXX"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:128
 msgid "Main Name"
-msgstr ""
+msgstr "Nom Principal"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:139
 msgid "Selection Name"
-msgstr ""
+msgstr "Nom de Sélection"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:150
 msgid "back_SetDungeonBanner"
-msgstr ""
+msgstr "back_SetDungeonBanner"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:161
 msgid "Banner"
-msgstr ""
+msgstr "Bannière"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:420
 #: skytemple/skytemple/module/monster/controller/monster.glade:191
 msgid "Names"
-msgstr ""
+msgstr "Noms"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:450
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:578
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:799
 msgid "Direction:"
-msgstr ""
+msgstr "Sens : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:527
 msgid "Enemies evolve w. KOed:"
-msgstr ""
+msgstr "Ennemis évoluant lors d'un KO : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:662
 msgid "Exp. enabled:"
-msgstr ""
+msgstr "Gain d'expérience activé : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:675
 msgid "Recruting enabled:"
-msgstr ""
+msgstr "Recrutement activé : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:688
 msgid "Level Reset to 1:"
-msgstr ""
+msgstr "Niveau remis à 1 : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:701
 msgid "Money reset to 0:"
-msgstr ""
+msgstr "Argent remis à 0 :"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:714
 msgid "Leader can switch:"
-msgstr ""
+msgstr "Changement de meneur possible : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:727
 msgid "Force game save:"
-msgstr ""
+msgstr "Sauvegarde automatique : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:740
 msgid "IQ skills enabled:"
-msgstr ""
+msgstr "Aptitudes QI activées : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:753
 msgid "Reveal traps by attack:"
-msgstr ""
+msgstr "Pièges révélés par l'attaque : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:766
 msgid "Enemies drop chests:"
-msgstr ""
+msgstr "Ennemis donnant des coffres : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:779
 msgid "Max. rescue attempts\n"
@@ -2584,7 +2594,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1049
 #: skytemple/skytemple/skytemple.glade:988
 msgid "page2"
-msgstr ""
+msgstr "page2"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:512
 msgid "<b>NAME</b>\n"
@@ -2594,23 +2604,29 @@ msgid "<b>NAME</b>\n"
 "Affected by Absolute Mover: Yes\n\n"
 "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!). \n"
 "All tiles outside of defined room are made the tileset\\'s defined secondary terrain."
-msgstr ""
+msgstr "<b>NOM</b>\n"
+"Type : Mur\n"
+"Couloir\n"
+"Infranchissable : Oui\n"
+"Affecté par Bulldozer Tout-Terrain : Oui\n\n"
+"La tuile est considérée comme étant du «Vide» (mais tout de même affiché comme du terrain secondaire). \n"
+"Toutes les tuiles en dehors de la salle définie utilisent le terrain secondaire."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:531
 msgid "Selected Tile Type"
-msgstr ""
+msgstr "Type de Tuile Sélectionné"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:556
 msgid "Tile Type:"
-msgstr ""
+msgstr "Type de Tuile : "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:590
 msgid "The direction is only relevant for the leader spawn tile."
-msgstr ""
+msgstr "La direction n'est utile que pour la tuile qui place le meneur."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:620
 msgid "Add new tile"
-msgstr ""
+msgstr "Ajouter une nouvelle tuile"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:629
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:859
@@ -2623,7 +2639,7 @@ msgstr ""
 #: skytemple/skytemple/skytemple.glade:881
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:2992
 msgid "page0"
-msgstr ""
+msgstr "page0"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:679
 msgid "<b>Entity ID</b>\n\n"
@@ -2631,24 +2647,28 @@ msgid "<b>Entity ID</b>\n\n"
 "Stats (ID):\n\n"
 "Item (ID):\n\n"
 "Tile Properties (ID):"
-msgstr ""
+msgstr "<b>ID de l'entité</b>\n\n"
+"Pokémon (ID) :\n\n"
+"Stats (ID) :\n\n"
+"Objet (ID) :\n\n"
+"Propriétés de la tuile (ID) :"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:714
 #: skytemple/skytemple/module/script/controller/ssa.glade:716
 msgid "Edit"
-msgstr ""
+msgstr "Édition"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:752
 msgid "Selected Entity"
-msgstr ""
+msgstr "Entité Sélectionnée"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:777
 msgid "Entity:"
-msgstr ""
+msgstr "Entité : "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:824
 msgid "Add new entity"
-msgstr ""
+msgstr "Ajouter une nouvelle entité"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:833
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:907
@@ -2660,129 +2680,140 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/level_up.glade:121
 #: skytemple/skytemple/skytemple.glade:905
 msgid "page1"
-msgstr ""
+msgstr "page1"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:884
 msgid "<span foreground=\"#ff0000\">0</span>: Room 0\n"
 "<span foreground=\"#ff0000\">1</span>: Room 1\n"
 "<span foreground=\"#ffff00\">I</span>: Impassable\n"
 "<span foreground=\"#00ff00\">A</span>: Absolute Mover possible"
-msgstr ""
+msgstr "<span foreground=\"#ff0000\">0</span>: Salle 0\n"
+"<span foreground=\"#ff0000\">1</span>: Salle 1\n"
+"<span foreground=\"#ffff00\">I</span>: Infranchissable\n"
+"<span foreground=\"#00ff00\">A</span>: Bulldozer Tout-Terrain possible"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:898
 msgid "Tile Layer Legend"
-msgstr ""
+msgstr "Légende du calque des tuiles"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:933
 msgid "NAME: Item name"
-msgstr ""
+msgstr "NOM : Nom de l'objet"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:944
 msgid "Item Layer Legend"
-msgstr ""
+msgstr "Légende du calque des objets"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:979
 msgid "<span foreground=\"#00ff00\">A</span>: Ally\n"
 "<span foreground=\"#ff0000\">E</span>: Strong Enemy\n"
 "<span foreground=\"#ffff00\">O</span>: Other"
-msgstr ""
+msgstr "<span foreground=\"#00ff00\">A</span>: Allié\n"
+"<span foreground=\"#ff0000\">E</span>: Ennemi Fort\n"
+"<span foreground=\"#ffff00\">O</span>: Autre"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:992
 msgid "Pokémon Layer Legend"
-msgstr ""
+msgstr "Légende du calque des Pokémon"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1027
 msgid "NAME: Trap name\n"
 "<span foreground=\"#ff0000\">B</span>: Can be broken\n"
 "<span foreground=\"#ffff00\">V</span>: Is visible"
-msgstr ""
+msgstr "NOM: Nom du piège\n"
+"<span foreground=\"#ff0000\">B</span>: Destructible\n"
+"<span foreground=\"#ffff00\">V</span>: Visible"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1040
 msgid "Trap Layer Legend"
-msgstr ""
+msgstr "Légende du calque des pièges"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1130
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4580
 #: skytemple/skytemple/module/dungeon/module.py:737
 msgid "Floor"
-msgstr ""
+msgstr "Étage"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1159
 msgid "Music:"
-msgstr ""
+msgstr "Musique : "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1171
 msgid "Moves allowed:"
-msgstr ""
+msgstr "Capacités autorisées : "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1183
 #: skytemple/skytemple/module/monster/controller/monster.glade:1297
 #: skytemple/skytemple/skytemple.glade:300
 msgid "General"
-msgstr ""
+msgstr "Général"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1250
 msgid "Orbs allowed:"
-msgstr ""
+msgstr "Orbes autorisés : "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1293
 msgid "Overrides"
-msgstr ""
+msgstr "Remplace"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1309
 msgid "Fixed Room to load \n"
 "if dungeon is cleared:"
-msgstr ""
+msgstr "Salle statique à charger\n"
+"si le donjon a déjà été terminé : "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1365
 msgid "Dimensions"
-msgstr ""
+msgstr "Dimensions"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1381
 msgid "Width:"
-msgstr ""
+msgstr "Largeur : "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1393
 msgid "Height:"
-msgstr ""
+msgstr "Hauteur : "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1427
 msgid "Prevent \"Item Stealing\""
-msgstr ""
+msgstr "Empêcher le \"Vol d'objets\""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1439
 msgid "Disable all warp effects:"
-msgstr ""
+msgstr "Désactiver tous les effets de téléportation : "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1451
 msgid "Disable some traps:"
-msgstr ""
+msgstr "Désactiver certains pièges :"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1463
 msgid "Darkness disabled:"
-msgstr ""
+msgstr "Obscurité désactivée : "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1475
 msgid "Exit floor when defeating all enemies:"
-msgstr ""
+msgstr "Quitter l'étage lorsque tous les ennemis sont vaincus : "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1599
 msgid "Apply new size"
-msgstr ""
+msgstr "Appliquer une nouvelle taille"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1617
 msgid "PLEASE NOTE: \n"
 "The game is hardcoded to check for stairs or warp zones on fixed rooms with ID >= 110.\n"
 "For rooms with ID >= 165 the game tries to place them as a room in a normal floor layout.\n"
 "If the game fails to generate a floor, it will fall back to a one-room monster house."
-msgstr ""
+msgstr "PRENEZ NOTE : \n"
+"Le jeu est codé pour vérifier s'il y a des escaliers ou téléporteurs dans les salles statiques d'ID >= 110.\n"
+"Pour les salles avec un ID >= 165, le jeu essaie de les placer en tant que salle classique dans étage entier.\n"
+"Si le jeu n'arrive pas à générer un étage, il génèrera par défaut une salle unique contenant une maison de monstres."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1660
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4312
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4577
 #: skytemple/skytemple/module/monster/controller/monster.glade:2491
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:84
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:85
@@ -2791,15 +2822,15 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/fixed_room_drawer.py:371
 #: skytemple/skytemple/module/dungeon/module.py:750
 msgid "(Special?)"
-msgstr ""
+msgstr "(Spécial ?)"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:354
 msgid "Width and height must be numbers >= 0."
-msgstr ""
+msgstr "La largeur et la hauteur doivent être supérieur ou égal à 0."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:355
 msgid "Invalid values."
-msgstr ""
+msgstr "Valeurs invalides."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:366
 msgid "You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"
