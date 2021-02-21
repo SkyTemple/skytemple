@@ -1,5 +1,9 @@
 __version__ = '1.1.2.post0'
+
+import glob
 import os
+import pathlib
+import subprocess
 
 from setuptools import setup, find_packages
 
@@ -9,6 +13,23 @@ this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 # END README read-in
+
+
+PO_FILES = 'data/locale/*/LC_MESSAGES/skytemple.po'
+
+
+def create_mo_files():
+    mo_files = []
+    prefix = os.path.join(this_directory, 'skytemple')
+
+    print(str(pathlib.Path(prefix) / PO_FILES))
+    for po_path in glob.glob(str(pathlib.Path(prefix) / PO_FILES)):
+        mo = pathlib.Path(po_path.replace('.po', '.mo'))
+
+        subprocess.run(['msgfmt', '-o', str(mo), po_path], check=True)
+        mo_files.append(str(mo.relative_to(prefix)))
+
+    return mo_files
 
 
 def recursive_pkg_files(file_ext):
@@ -64,7 +85,7 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9'
     ],
-    package_data={'skytemple': ['*.css'] + recursive_pkg_files('.glade') + recursive_pkg_files_in('data/')},
+    package_data={'skytemple': ['*.css'] + recursive_pkg_files('.glade') + recursive_pkg_files_in('data/') + create_mo_files()},
     entry_points='''
         [skytemple.module]
         rom=          skytemple.module.rom.module:RomModule
