@@ -23,7 +23,7 @@ from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType, IconView, ScrolledWindow
 
 from skytemple.core.img_utils import pil_to_cairo_surface
-from skytemple.core.ui_utils import APP
+from skytemple.core.ui_utils import APP, make_builder
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_graphics_provider import AbstractTileGraphicsProvider
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import AbstractTilePalettesProvider
 from skytemple.module.tiled_img.drawer_tiled import DrawerTiledCellRenderer, DrawerTiled
@@ -46,9 +46,7 @@ class ChunkEditorController:
                  animated_tile_durations=0):
         path = os.path.abspath(os.path.dirname(__file__))
 
-        self.builder = Gtk.Builder()
-        self.builder.set_translation_domain(APP)
-        self.builder.add_from_file(os.path.join(path, 'chunk_editor.glade'))
+        self.builder = make_builder(os.path.join(path, 'chunk_editor.glade'))
 
         self.dialog: Gtk.Dialog = self.builder.get_object('map_bg_chunk_editor')
         self.dialog.set_attached_to(parent_window)

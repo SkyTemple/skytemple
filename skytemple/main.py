@@ -21,18 +21,35 @@ import locale
 import gettext
 from skytemple.core.ui_utils import data_dir, APP
 
-# Setup locale
+# Setup locale :(
 from skytemple.core.settings import SkyTempleSettingsStore
 LOCALE_DIR = os.path.abspath(os.path.join(data_dir(), 'locale'))
 settings = SkyTempleSettingsStore()
-
+if hasattr(locale, 'bindtextdomain'):
+    libintl = locale
+elif sys.platform.startswith('win'):
+    import ctypes
+    import ctypes.util
+    if os.getenv('LANG') is None:
+        lang, enc = locale.getdefaultlocale()
+        os.environ['LANG'] = lang
+        ctypes.cdll.msvcrt._putenv ("LANG=" + lang)
+    libintl = ctypes.cdll.LoadLibrary(ctypes.util.find_library('libintl-8'))
+elif sys.platform == 'darwin':
+    import ctypes
+    libintl = ctypes.cdll.LoadLibrary('libintl.dylib')
 if not os.getenv('LC_ALL'):
     try:
         os.environ['LC_ALL'] = settings.get_locale()
         locale.setlocale(locale.LC_ALL, settings.get_locale())
     except locale.Error as ex:
         logging.error("Failed setting locale", exc_info=ex)
-locale.bindtextdomain(APP, LOCALE_DIR)
+libintl.bindtextdomain(APP, LOCALE_DIR)
+try:
+    libintl.bind_textdomain_codeset(APP, 'UTF-8')
+    libintl.libintl_setlocale(0, settings.get_locale())
+except:
+    pass
 gettext.bindtextdomain(APP, LOCALE_DIR)
 gettext.textdomain(APP)
 try:
@@ -46,6 +63,9 @@ try:
 except Exception as ex:
     print("Faild setting up Python locale.")
     print(ex)
+from skytemple.core import ui_utils
+from importlib import reload
+reload(ui_utils)
 
 import gi
 from skytemple_files.common.i18n_util import _
@@ -61,6 +81,7 @@ from skytemple.core.modules import Modules
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_icons import icons
 from skytemple_ssb_debugger.main import get_debugger_data_dir
+from skytemple.core.ui_utils import make_builder
 
 try:
     gi.require_foreign("cairo")
@@ -115,9 +136,7 @@ def main():
     itheme.rescan_if_needed()
 
     # Load Builder and Window
-    builder = Gtk.Builder()
-    builder.set_translation_domain(APP)
-    builder.add_from_file(os.path.join(path, "skytemple.glade"))
+    builder = make_builder(os.path.join(path, "skytemple.glade"))
     main_window: Window = builder.get_object("main_window")
     main_window.set_role("SkyTemple")
     GLib.set_application_name("SkyTemple")

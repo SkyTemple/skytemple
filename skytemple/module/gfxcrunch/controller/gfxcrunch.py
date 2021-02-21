@@ -24,7 +24,7 @@ from typing import TYPE_CHECKING, List
 from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
-from skytemple.core.ui_utils import data_dir, APP
+from skytemple.core.ui_utils import data_dir, APP, make_builder
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.i18n_util import f, _
 
@@ -128,10 +128,7 @@ class GfxcrunchController:
     @staticmethod
     def _get_builder(pymodule_path: str, glade_file: str):
         path = os.path.abspath(os.path.dirname(pymodule_path))
-        builder = Gtk.Builder()
-        builder.set_translation_domain(APP)
-        builder.add_from_file(os.path.join(path, glade_file))
-        return builder
+        return make_builder(os.path.join(path, glade_file))
 
     def _stdout(self, line):
         self.buffer.insert_markup(self.buffer.get_end_iter(), line, -1)

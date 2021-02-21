@@ -26,7 +26,7 @@ from gi.repository import Gtk, Gdk
 from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.sprite_provider import SpriteProvider
-from skytemple.core.ui_utils import APP
+from skytemple.core.ui_utils import APP, make_builder
 from skytemple.module.script.drawer import Drawer, InteractionMode
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevel
 from skytemple_files.graphics.bg_list_dat.model import BgList
@@ -44,9 +44,7 @@ class PosMarkEditorController:
                  pos_marks: List[SourceMapPositionMark], pos_mark_to_edit: int):
         """A controller for a dialog for editing position marks for an Ssb file."""
         path = os.path.abspath(os.path.dirname(__file__))
-        self.builder = Gtk.Builder()
-        self.builder.set_translation_domain(APP)
-        self.builder.add_from_file(os.path.join(path, 'pos_mark_editor.glade'))
+        self.builder = make_builder(os.path.join(path, 'pos_mark_editor.glade'))
         self.sprite_provider = sprite_provider
         self.ssa: Ssa = ssa
         self.map_bg_module = map_bg_module

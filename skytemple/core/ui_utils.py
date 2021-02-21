@@ -18,6 +18,9 @@
 import os
 import pathlib
 import sys
+from io import BytesIO
+from xml.etree import ElementTree
+
 import gi
 
 gi.require_version('Gtk', '3.0')
@@ -136,3 +139,21 @@ def version():
             with open(version_file) as f:
                 return f.read()
         return 'unknown'
+
+
+def make_builder(gui_file) -> Gtk.Builder:
+    """GTK under Windows does not detect the locale. So we have to translate manually."""
+    if sys.platform == "win32":
+        tree = ElementTree.parse(gui_file)
+        for node in tree.iter():
+            if 'translatable' in node.attrib:
+                node.text = _(node.text)
+        temp_file = BytesIO()
+        tree.write(temp_file, encoding='utf-8', xml_declaration=True)
+        xml_text = temp_file.getvalue().decode()
+        return Gtk.Builder.new_from_string(xml_text, len(xml_text))
+    else:
+        builder = Gtk.Builder()
+        builder.set_translation_domain(APP)
+        builder.add_from_file(gui_file)
+        return builder

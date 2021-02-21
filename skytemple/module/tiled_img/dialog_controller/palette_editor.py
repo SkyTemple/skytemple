@@ -22,7 +22,7 @@ from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import ResponseType
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import APP
+from skytemple.core.ui_utils import APP, make_builder
 from skytemple_files.common.util import make_palette_colors_unique
 
 
@@ -38,9 +38,7 @@ class PaletteEditorController:
         self.allow_adding_removing = allow_adding_removing
         self.show_make_unique_button = show_make_unique_button
 
-        self.builder = Gtk.Builder()
-        self.builder.set_translation_domain(APP)
-        self.builder.add_from_file(os.path.join(path, 'palette_editor.glade'))
+        self.builder = make_builder(os.path.join(path, 'palette_editor.glade'))
 
         self.dialog: Gtk.Dialog = self.builder.get_object('map_bg_palettes')
         self.dialog.set_attached_to(parent_window)
