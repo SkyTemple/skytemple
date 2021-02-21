@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-21 21:22\n"
+"PO-Revision-Date: 2021-02-21 22:20\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -39,7 +39,7 @@ msgstr ""
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:123
 #, python-brace-format
 msgid "A required DTEF file is missing: {fn}. Please verify the DTEF package."
-msgstr ""
+msgstr "Falta un archivo DTEF necesario: {fn}. Por favor, comprueba el paquete DTEF."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:131
 #, python-brace-format
@@ -108,11 +108,11 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:43
 msgid "No variable for dungeon_mode set."
-msgstr "No hay variable para dungeon_mode establecida."
+msgstr "No hay ninguna variable establecida para dungeon_mode."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:45
 msgid "No value for dungeon_mode set."
-msgstr ""
+msgstr "No hay ningún valor establecido para dungeon_mode."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_initial.py:42
 msgid "No variable for init."
@@ -150,7 +150,7 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/value_of.py:41
 msgid "value() without a variable."
-msgstr ""
+msgstr "'value()' no necesita una variable."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:52
 msgid "No target ID set for with(){} block."
@@ -176,7 +176,7 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:44
 msgid "No variable in if condition."
-msgstr ""
+msgstr "No hay ninguna variable en la condición 'if'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:59
 #, python-brace-format
@@ -210,12 +210,12 @@ msgstr ""
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:64
 #, python-brace-format
 msgid "Invalid operation for if condition: {op.op_code.name} (line {self.ctx.start.line})"
-msgstr ""
+msgstr "Operación no válida para la condición 'if': {op.op_code.name} (línea {self.ctx.start.line})"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:78
 #, python-brace-format
 msgid "Unknown if operation in line {self.ctx.start.line})."
-msgstr ""
+msgstr "Operación 'if' desconocida en la línea {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:57
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:72
@@ -286,7 +286,7 @@ msgstr ""
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:50
 #, python-brace-format
 msgid "Index for scn() if condition must be 0 or 1 (line {self.ctx.start.line})."
-msgstr ""
+msgstr "El índice para la condición 'scn() if' debe ser 0 o 1 (línea {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/macro_call.py:46
 #, python-brace-format
@@ -354,11 +354,11 @@ msgstr ""
 
 #: files/skytemple_files/common/ppmdu_config/script_data.py:180
 msgid "This function has no description."
-msgstr ""
+msgstr "Esta función no tiene descripción."
 
 #: files/skytemple_files/common/tiled_image.py:39
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
-msgstr ""
+msgstr "No se puede procesar el mapeado de tiles. El número de tiles referenciado ({idx}) es mayor que el máximo ({0x3FF}). Si estás importando una imagen, por favor intenta tener menos tiles únicos."
 
 #: files/skytemple_files/common/tiled_image.py:97
 msgid "Only 4bpp and 8bpp images are supported."
@@ -417,7 +417,7 @@ msgstr ""
 #: files/skytemple_files/common/xml_util.py:49
 #, python-brace-format
 msgid "Invalid XML. Expected attribute {attrib} for XML tag {ele.tag}."
-msgstr ""
+msgstr "Archivo XML inválido. Se esperaba el atributo {attrib} para la etiqueta XML {ele.tag}."
 
 #: files/skytemple_files/data/md/model.py:58
 msgid "Stench"
@@ -882,7 +882,7 @@ msgstr "Muro Mágico"
 
 #: files/skytemple_files/data/md/model.py:173
 msgid "$$$"
-msgstr ""
+msgstr "$$$"
 
 #: files/skytemple_files/data/md/model.py:174
 msgid "Honey Gather"
@@ -985,7 +985,7 @@ msgstr ""
 
 #: files/skytemple_files/data/tbl_talk/model.py:25
 msgid "Healthy"
-msgstr ""
+msgstr "Saludable"
 
 #: files/skytemple_files/data/tbl_talk/model.py:26
 msgid "Half Life"
@@ -1278,7 +1278,7 @@ msgstr ""
 #: files/skytemple_files/graphics/fonts/font_sir0/writer.py:48
 #, python-brace-format
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
-msgstr ""
+msgstr "¡El caracter {e.char} en la tabla {e.table} se define varias veces en un archivo de fuentes!"
 
 #: files/skytemple_files/graphics/kao/model.py:159
 #, python-brace-format
@@ -1804,28 +1804,28 @@ msgstr ""
 
 #: skytemple/skytemple/_i18n.py:23
 msgid "_Apply"
-msgstr ""
+msgstr "_Aplicar"
 
 #: skytemple/skytemple/_i18n.py:24
 #: ssb_debugger/skytemple_ssb_debugger/controller/editor_notebook.py:324
 msgid "_Cancel"
-msgstr ""
+msgstr "_Cancelar"
 
 #: skytemple/skytemple/_i18n.py:25
 msgid "_Close"
-msgstr ""
+msgstr "_Cerrar"
 
 #: skytemple/skytemple/_i18n.py:26
 msgid "_Copy"
-msgstr ""
+msgstr "_Copiar"
 
 #: skytemple/skytemple/_i18n.py:27
 msgid "Cu_t"
-msgstr ""
+msgstr "Cor_tar"
 
 #: skytemple/skytemple/_i18n.py:28
 msgid "_Delete"
-msgstr ""
+msgstr "_Eliminar"
 
 #: skytemple/skytemple/_i18n.py:29
 msgid "_Forward"
@@ -2043,21 +2043,21 @@ msgstr ""
 #: skytemple/skytemple/controller/tilequant.py:54
 #: skytemple/skytemple/core/ui_utils.py:85
 msgid "PNG image (*.png)"
-msgstr ""
+msgstr "Imagen PNG (*.png)"
 
 #: skytemple/skytemple/controller/tilequant.py:59
 msgid "JPEG image (*.jpg, *.jpeg)"
-msgstr ""
+msgstr "Imagen JPEG (*.jpg, *.jpeg)"
 
 #: skytemple/skytemple/controller/tilequant.py:65
 #: skytemple/skytemple/core/ui_utils.py:70
 #: skytemple/skytemple/module/monster/controller/level_up.py:541
 msgid "Any files"
-msgstr ""
+msgstr "Cualquier archivo"
 
 #: skytemple/skytemple/controller/tilequant.py:79
 msgid "The maximum number of palettes that can be used. For normal backgrounds, this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes (since the last 2 palettes are not rendered in game)."
-msgstr ""
+msgstr "Es el número máximo de paletas que se pueden utilizar. Para fondos normales, puede ser un máximo de 16. Para fondos de mapa, ambas capas comparten en total 14 paletas (ya que las últimas 2 paletas no se renderizan en el juego)."
 
 #: skytemple/skytemple/controller/tilequant.py:84
 msgid "This exact color of the image will be imported as transparency (default: #12ab56)."
@@ -3032,7 +3032,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:77
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4494
 msgid "Tiles"
-msgstr ""
+msgstr "Tiles"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:874
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4553
@@ -4290,7 +4290,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1173
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5514
 msgid "Tiles Export"
-msgstr ""
+msgstr "Exportar tiles"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1597
 msgid "This will export all tiles.\n\n"
@@ -4476,7 +4476,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1294
 msgid "Tileset X"
-msgstr ""
+msgstr "Tileset X"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1309
 msgid "You can export and import the tiles from an easy-to-modify\n"
@@ -4551,7 +4551,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2369
 msgid "Tileset Settings"
-msgstr ""
+msgstr "Ajustes del tileset"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2449
 msgid "This will import the chunks. \n"
