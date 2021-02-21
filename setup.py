@@ -4,6 +4,7 @@ import glob
 import os
 import pathlib
 import subprocess
+import sys
 
 from setuptools import setup, find_packages
 
@@ -19,17 +20,21 @@ PO_FILES = 'data/locale/*/LC_MESSAGES/skytemple.po'
 
 
 def create_mo_files():
-    mo_files = []
-    prefix = os.path.join(this_directory, 'skytemple')
+    try:
+        mo_files = []
+        prefix = os.path.join(this_directory, 'skytemple')
 
-    print(str(pathlib.Path(prefix) / PO_FILES))
-    for po_path in glob.glob(str(pathlib.Path(prefix) / PO_FILES)):
-        mo = pathlib.Path(po_path.replace('.po', '.mo'))
+        print(str(pathlib.Path(prefix) / PO_FILES))
+        for po_path in glob.glob(str(pathlib.Path(prefix) / PO_FILES)):
+            mo = pathlib.Path(po_path.replace('.po', '.mo'))
 
-        subprocess.run(['msgfmt', '-o', str(mo), po_path], check=True)
-        mo_files.append(str(mo.relative_to(prefix)))
+            subprocess.run(['msgfmt', '-o', str(mo), po_path], check=True)
+            mo_files.append(str(mo.relative_to(prefix)))
 
-    return mo_files
+        return mo_files
+    except Exception as ex:
+        print(f"Warning: Could not build translations. They will not be available. {ex}", file=sys.stderr)
+        return []
 
 
 def recursive_pkg_files(file_ext):
