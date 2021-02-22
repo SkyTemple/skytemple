@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-21 16:40\n"
+"PO-Revision-Date: 2021-02-22 02:23\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -112,7 +112,7 @@ msgstr "沒有給dungeon_mode的變數。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:45
 msgid "No value for dungeon_mode set."
-msgstr ""
+msgstr "沒有給dungeon_mode的變數。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_initial.py:42
 msgid "No variable for init."
@@ -146,11 +146,11 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/scn_var.py:41
 msgid "scn() without a variable."
-msgstr ""
+msgstr "scn()沒有變數。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/value_of.py:41
 msgid "value() without a variable."
-msgstr ""
+msgstr "value()沒有變數。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:52
 msgid "No target ID set for with(){} block."
@@ -185,18 +185,18 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:47
 msgid "No variable for if condition."
-msgstr ""
+msgstr "if條件沒有變數。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:49
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:46
 msgid "No operator set for if condition."
-msgstr ""
+msgstr "沒有為if條件設置運算符。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:51
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:43
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:48
 msgid "No value set for if condition."
-msgstr ""
+msgstr "沒有為if條件設置值。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:48
 #, python-brace-format
@@ -421,47 +421,47 @@ msgstr ""
 
 #: files/skytemple_files/data/md/model.py:58
 msgid "Stench"
-msgstr ""
+msgstr "惡臭"
 
 #: files/skytemple_files/data/md/model.py:59
 msgid "Thick Fat"
-msgstr ""
+msgstr "厚脂肪"
 
 #: files/skytemple_files/data/md/model.py:60
 msgid "Rain Dish"
-msgstr ""
+msgstr "雨盤"
 
 #: files/skytemple_files/data/md/model.py:61
 msgid "Drizzle"
-msgstr ""
+msgstr "降雨"
 
 #: files/skytemple_files/data/md/model.py:62
 msgid "Arena Trap"
-msgstr ""
+msgstr "沙穴"
 
 #: files/skytemple_files/data/md/model.py:63
 msgid "Intimidate"
-msgstr ""
+msgstr "威嚇"
 
 #: files/skytemple_files/data/md/model.py:64
 msgid "Rock Head"
-msgstr ""
+msgstr "堅硬腦袋"
 
 #: files/skytemple_files/data/md/model.py:65
 msgid "Air Lock"
-msgstr ""
+msgstr "氣閘"
 
 #: files/skytemple_files/data/md/model.py:66
 msgid "Hyper Cutter"
-msgstr ""
+msgstr "怪力鉗"
 
 #: files/skytemple_files/data/md/model.py:67
 msgid "Shadow tag"
-msgstr ""
+msgstr "踩影"
 
 #: files/skytemple_files/data/md/model.py:68
 msgid "Speed Boost"
-msgstr ""
+msgstr "加速"
 
 #: files/skytemple_files/data/md/model.py:69
 msgid "Battle Armor"
@@ -485,7 +485,7 @@ msgstr ""
 
 #: files/skytemple_files/data/md/model.py:74
 msgid "Guts"
-msgstr ""
+msgstr "毅力"
 
 #: files/skytemple_files/data/md/model.py:75
 msgid "Rough Skin"
@@ -521,7 +521,7 @@ msgstr ""
 
 #: files/skytemple_files/data/md/model.py:83
 msgid "Overgrow"
-msgstr ""
+msgstr "茂盛"
 
 #: files/skytemple_files/data/md/model.py:84
 msgid "Swift Swim"
@@ -529,24 +529,24 @@ msgstr ""
 
 #: files/skytemple_files/data/md/model.py:85
 msgid "Sand Stream"
-msgstr ""
+msgstr "揚沙"
 
 #: files/skytemple_files/data/md/model.py:86
 msgid "Sand Veil"
-msgstr ""
+msgstr "沙隱"
 
 #: files/skytemple_files/data/md/model.py:87
 msgid "Keen Eye"
-msgstr ""
+msgstr "銳利目光"
 
 #: files/skytemple_files/data/md/model.py:88
 msgid "Inner Focus"
-msgstr ""
+msgstr "精神力"
 
 #: files/skytemple_files/data/md/model.py:89
 #: ssb_debugger/skytemple_ssb_debugger/controller/global_state.py:46
 msgid "Static"
-msgstr ""
+msgstr "靜電"
 
 #: files/skytemple_files/data/md/model.py:90
 msgid "Shed Skin"
@@ -562,11 +562,11 @@ msgstr ""
 
 #: files/skytemple_files/data/md/model.py:93
 msgid "Water Absorb"
-msgstr ""
+msgstr "儲水"
 
 #: files/skytemple_files/data/md/model.py:94
 msgid "Forecast"
-msgstr ""
+msgstr "陰晴不定"
 
 #: files/skytemple_files/data/md/model.py:95
 msgid "Serene Grace"
