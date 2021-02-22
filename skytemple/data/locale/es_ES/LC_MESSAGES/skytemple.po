@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-21 23:19\n"
+"PO-Revision-Date: 2021-02-22 01:20\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3228,7 +3228,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:841
 msgid "Dungeon / Floor"
-msgstr ""
+msgstr "Territorio / Piso"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:868
 msgid "(and/or) <b>2b. Copy to other floor(s)</b>"
@@ -3236,7 +3236,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1100
 msgid "Dungeon Name"
-msgstr ""
+msgstr "Nombre del territorio"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1113
 msgid "Floor Number"
@@ -3823,12 +3823,12 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:107
 msgid "Go To \"Dungeons\""
-msgstr ""
+msgstr "Ir a \"Territorios\""
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:53
 #: skytemple/skytemple/module/dungeon/controller/main.py:39
 msgid "Dungeons"
-msgstr ""
+msgstr "Territorios"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:69
 msgid "This section lets you edit the layouts of dungeons in the game."
@@ -3839,7 +3839,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/main.py:112
 #: skytemple/skytemple/module/dungeon/controller/main.py:120
 msgid "Fix Dungeon Errors"
-msgstr ""
+msgstr "Corregir errores del territorio"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:105
 msgid "Edit Groups"
@@ -3852,7 +3852,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/main.glade:248
 #: skytemple/skytemple/module/dungeon/controller/main.glade:428
 msgid "Dungeon"
-msgstr ""
+msgstr "Territorio"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:259
 msgid "Error"
@@ -3869,7 +3869,8 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/main.glade:304
 msgid "Clicking apply will fix all selected errors and additionally\n"
 "correct the floor counts of all dungeons."
-msgstr ""
+msgstr "Al hacer clic en 'Aplicar' se corregirán todos los errores seleccionados y además\n"
+"se corregirá el número de pisos de todos los territorios."
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:340
 msgid "Edit Dungeon Groups"
@@ -3910,7 +3911,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/main.py:406
 #: skytemple/skytemple/module/dungeon/controller/main.py:410
 msgid "Create a new floor list with one empty floor for this dungeon."
-msgstr ""
+msgstr "Crea una nueva lista de pisos con un piso vacío para este territorio."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:408
 msgid "Correct the floor count for this dungeon. If no floor exists, generate one."
@@ -3977,7 +3978,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:226
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:215
 msgid "Error exporting the tileset."
-msgstr ""
+msgstr "Error al exportar el tileset."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:177
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:248
@@ -3990,7 +3991,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:259
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:176
 msgid "Error importing the tileset."
-msgstr ""
+msgstr "Error al importar el tileset."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:205
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:798
@@ -4370,7 +4371,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2565
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6125
 msgid "Tiles Import"
-msgstr ""
+msgstr "Importar tiles"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2392
 msgid "This will import the tiles.\n\n"
@@ -4382,7 +4383,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2652
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6269
 msgid "Tiles Image"
-msgstr ""
+msgstr "Imagen de tiles"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:42
 msgid "- The image consists of 8x8 tiles.\n"
@@ -4428,7 +4429,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.py:24
 msgid "Dungeon Tilesets"
-msgstr ""
+msgstr "Tilesets de territorio"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.py:36
 msgid "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged."
@@ -4454,7 +4455,25 @@ msgid "This will export all chunks. \n"
 "Palettes > Edit Palettes.\n\n"
 "Only if you follow these fomat restrictions, you will\n"
 "be able to re-import the chunks!"
-msgstr ""
+msgstr "Esto exportará todos los chunks. \n"
+"Los chunks son las imágenes de 24x24px que componen los\n"
+"gráficos de un territorio. \n"
+"Están formados por 3x3 tiles de 8x8px.\n\n"
+"Puedes editar e importar los chunks de nuevo.\n\n"
+"Ten en cuenta lo siguiente sobre el formato de los archivos:\n"
+"- Las imágenes son PNGs indexadas de 256 colores.\n"
+"- Los 256 colores están divididos en 12 paletas de 16 colores.\n"
+"- Cada tile de 8x8 en la imagen DEBE usar colores de una de\n"
+"  una de estas 12 paletas.\n"
+"- El primer color de cada paleta es la transparencia.\n\n"
+"Por razones técnicas, la imagen exportada tendrá \n"
+"256 colores, y solo las 12 primeras paletas son válidas.\n\n"
+"Algunos editores de imágenes tienen problemas cuando trabajan con imágenes indexadas\n"
+"que contienen el mismo color varias veces. Puedes hacer\n"
+"que todos los colores del mapa sean únicos antes de exportar en\n"
+"Paletas > Editar paletas.\n\n"
+"Siguiendo estas restricciones de formato, ¡podrás\n"
+"reimportar los chunks!"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1226
 msgid "This will export all tiles. Tiles are 8x8px images.\n"
@@ -4599,7 +4618,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:136
 msgid "Import dungeon tileset..."
-msgstr ""
+msgstr "Importar tileset del territorio..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:143
 msgid "DTEF XML document (*.dtef.xml)"
@@ -7579,12 +7598,14 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:276
 msgid "Export\n"
 "Dungeon"
-msgstr ""
+msgstr "Exportar\n"
+"territorio"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:322
 msgid "Import\n"
 "Dungeon"
-msgstr ""
+msgstr "Importar\n"
+"territorio"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:370
 msgid "Alternatively you can export the raw WAN sprite files \n"
