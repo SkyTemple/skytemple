@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-22 00:24\n"
+"PO-Revision-Date: 2021-02-22 01:20\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -382,7 +382,7 @@ msgstr "Impossible de convertir l'image PIL en images tuiles pour PDM : les dime
 #: files/skytemple_files/common/tiled_image.py:269
 #: files/skytemple_files/common/tiled_image.py:277
 msgid "Can not convert PIL image to PMD tiled image: The color {pix} (from palette {math.floor(pix / single_palette_size)}) used by pixel {x+(idx % 2)}x{y} in tile {tile_id} ({tile_x}x{tile_y} is out of range. Expected are colors from palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
-msgstr "Impossible de convertir l'image PIL en images tuiles pour PDM : la couleur {pix} (de la palette {math.floor(pix / single_palette_size)}) utilisée par le pixel {x+(idx % 2)}x{y} dans la tuile {tile_id} ({tile_x}x{tile_y} est en dehors des limites autorisées. Seules les couleurs de la palette {tile_palette_indices[tile_id]} sont attendues ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
+msgstr "Impossible de convertir l'image PIL en images tuiles pour PDM : la couleur {pix} (de la palette {math.floor(pix / single_palette_size)}) utilisée par le pixel ({x+(idx % 2)}, {y}) dans la tuile {tile_id} ({tile_x}, {tile_y}) est en dehors des limites autorisées. Seules les couleurs de la palette {tile_palette_indices[tile_id]} sont attendues ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 
 #: files/skytemple_files/common/tiled_image.py:317
 #, python-brace-format
@@ -1453,52 +1453,53 @@ msgstr "Fait en sorte de toujours voir les coéquipiers quand ils utilisent des 
 
 #: files/skytemple_files/patch/handler/fix_evolution.py:38
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
-msgstr ""
+msgstr "Corrige le bug de l'évolution qui fait planter le jeu en essayant de faire évoluer un pokémon dont le nom comporte 10 caractères (bug présent dans la version américaine d'Explorateurs du Ciel)."
 
 #: files/skytemple_files/patch/handler/move_shortcuts.py:39
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y)."
-msgstr ""
+msgstr "Remplace la capacité en raccourci fixe (L+A) par un système de raccourci comme ceux présents dans les jeux suivants de la série (L+A/B/X/Y)."
 
 #: files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:41
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
-msgstr ""
+msgstr "Recommandé pour le patch «CompleteTeamControl». Sans ce patch, les coéquipiers ne peuvent pas déclencher de pièges. Cela rééquilibre le jeu, étant donné qu'il est facile de faire éviter les pièges aux coéquipiers en mode manuel. Mais ce n'est pas recommandé pour les mods qui utilisent les pièges trappe, ce qui mettrait instantanément KO les coéquipiers s'ils marchaient dessus."
 
 #: files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:41
 msgid "Reduces the amount of time the game pauses for before changing the PoV when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
-msgstr ""
+msgstr "Réduit le temps de pause lors du déplacement de la caméra pour voir les coéquipiers au loin, de 60 images à 12. Ce patch est déjà appliqué par le patch «CompleteTeamControl»."
 
 #: files/skytemple_files/patch/handler/same_type_partner.py:38
 msgid "Allows the partner to be of the same type as the player in the personality test."
-msgstr ""
+msgstr "Autorise le partenaire à être du même type que le joueur dans le test de personnalité."
 
 #: files/skytemple_files/patch/handler/support_atupx.py:45
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
 "Requires the ActorAndLevelLoader, as it frees the space needed to implement this."
-msgstr ""
+msgstr "Fournit le support pour les conteneurs ATUPX, qui utilisent un algorithme de compression différent de PX.\n"
+"Requiert le patch «ActorAndLevelLoader» qui libère de l'espace utile pour implanter ce patch."
 
 #: files/skytemple_files/patch/handler/unused_dungeon_chance.py:39
 msgid "Fixes the 'Unusued' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
-msgstr ""
+msgstr "Corrige le fonctionnement de la valeur chance pour l'attribut «Non Utilisé» des étages de donjons. Cela détermine maintenant la chance qu'une salle contienne aléatoirement des murs à l'intérieur, dont certains peuvent être remplacés par le terrain secondaire."
 
 #: files/skytemple_files/patch/patches.py:102
 #: files/skytemple_files/patch/patches.py:107
 #, python-brace-format
 msgid "The patch '{name}' was not found."
-msgstr ""
+msgstr "Le patch «{name}» est introuvable."
 
 #: files/skytemple_files/patch/patches.py:113
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
-msgstr ""
+msgstr "Le patch «{patch_name}» doit être appliqué avant d'appliquer le patch «{name}»."
 
 #: files/skytemple_files/patch/patches.py:116
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
-msgstr ""
+msgstr "Le patch «{patch_name}» doit être appliqué avant d'appliquer le patch «{name}». Ce patch est introuvable."
 
 #: files/skytemple_files/patch/patches.py:145
 msgid "config.xml missing in patch package."
-msgstr ""
+msgstr "Fichier config.xml manquant dans le paquetage du patch."
 
 #: files/skytemple_files/patch/patches.py:147
 msgid "Syntax error in the config.xml while reading patch package."
