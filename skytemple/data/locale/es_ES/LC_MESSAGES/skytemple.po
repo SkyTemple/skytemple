@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-22 01:20\n"
+"PO-Revision-Date: 2021-02-22 02:23\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -54,7 +54,7 @@ msgstr ""
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:139
 #, python-brace-format
 msgid "Can not import images as dungeon tilesets: The palettes of the images do not match. First image read that didn't match: \"{basename}\""
-msgstr ""
+msgstr "No se pueden importar las imágenes como tilesets de territorios: Las paletas de las imágenes no coinciden. Primera imagen leída que no coincide: \"{basename}\""
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:144
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:145
@@ -176,7 +176,7 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:44
 msgid "No variable in if condition."
-msgstr "No hay ninguna variable en la condición 'if'."
+msgstr "No se ha establecido ninguna variable para la condición 'if'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:59
 #, python-brace-format
@@ -196,7 +196,7 @@ msgstr ""
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/menu.py:43
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:48
 msgid "No value set for if condition."
-msgstr ""
+msgstr "No se ha establecido ningún valor para la condición 'if'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:48
 #, python-brace-format
@@ -1116,19 +1116,19 @@ msgstr ""
 #: files/skytemple_files/dungeon_data/mappa_bin/floor.py:244
 #, python-brace-format
 msgid "Missing {k} for Floor data."
-msgstr ""
+msgstr "Falta {k} para los datos del piso."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:62
 msgid "Disabled? (0)"
-msgstr ""
+msgstr "¿Desactivado? (0)"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:63
 msgid "Enabled (1)"
-msgstr ""
+msgstr "Activado (1)"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:64
 msgid "Enabled (10)"
-msgstr ""
+msgstr "Activado (10)"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:337
 #, python-brace-format
@@ -1138,43 +1138,43 @@ msgstr ""
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:340
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__GENSET} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "{XML_FLOOR_LAYOUT__GENSET} falta para {XML_FLOOR_LAYOUT}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:343
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__CHANCES} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "{XML_FLOOR_LAYOUT__CHANCES} falta para {XML_FLOOR_LAYOUT}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:346
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__TERRAINSET} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "{XML_FLOOR_LAYOUT__TERRAINSET} falta para {XML_FLOOR_LAYOUT}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:349
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__MISCSET} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "{XML_FLOOR_LAYOUT__MISCSET} falta para {XML_FLOOR_LAYOUT}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:404
 msgid "Invalid structure type {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}"
-msgstr ""
+msgstr "Tipo de estructura no válida: {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:408
 msgid "Invalid weather type {ele.get(XML_FLOOR_LAYOUT__WEATHER)}"
-msgstr ""
+msgstr "Tipo de clima no válido: {ele.get(XML_FLOOR_LAYOUT__WEATHER)}"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:412
 msgid "Invalid terrain type {terrain_settings.get(XML_FLOOR_LAYOUT__TERRAINSET__SECONDARY_TYPE)}"
-msgstr ""
+msgstr "Tipo de terreno no válido: {terrain_settings.get(XML_FLOOR_LAYOUT__TERRAINSET__SECONDARY_TYPE)}"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:416
 msgid "Invalid darkness level type {ele.get(XML_FLOOR_LAYOUT__DARKNESS_LEVEL)}"
-msgstr ""
+msgstr "Nivel de oscuridad no válido: {ele.get(XML_FLOOR_LAYOUT__DARKNESS_LEVEL)}"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:104
 #, python-brace-format
 msgid "Unknown trap {name}."
-msgstr ""
+msgstr "Trampa {name} desconocida."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:109
 msgid "Trap lists need an entry for all of the 25 traps"
@@ -1207,7 +1207,7 @@ msgstr ""
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:85
 msgid "Unused Floors"
-msgstr ""
+msgstr "Pisos no usados"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:88
 msgid "Has {len(self.floors_in_mappa_not_referenced)} extra floors in it's floor list, which are not assigned to any dungeon."
@@ -1263,7 +1263,7 @@ msgstr ""
 #: files/skytemple_files/graphics/fonts/font_dat/model.py:87
 #: files/skytemple_files/graphics/fonts/font_sir0/model.py:82
 msgid "This must be a color indexed image!"
-msgstr ""
+msgstr "¡Esta imagen debe tener un índice de color!"
 
 #: files/skytemple_files/graphics/fonts/banner_font/model.py:205
 #, python-brace-format
