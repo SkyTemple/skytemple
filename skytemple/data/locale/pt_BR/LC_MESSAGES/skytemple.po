@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-21 17:49\n"
+"PO-Revision-Date: 2021-02-22 18:04\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -44,23 +44,23 @@ msgstr "Um arquivo DTEF está faltando: {fn}. Por favor, verifique o pacote DTEF
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:131
 #, python-brace-format
 msgid "Can not import image \"{basename}\" as dungeon tileset: Must be indexed image (=using a palette)"
-msgstr ""
+msgstr "Não é possível importar a imagem \"{basename}\" como tileset do calabouço: Deve ser imagem indexada (=usando uma paleta)"
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:134
 #, python-brace-format
 msgid "Can not import image \"{basename}\" as dungeon tileset: Palette must contain  256 RGB colors."
-msgstr ""
+msgstr "Não é possível importar a imagem \"{basename}\" como tileset do calabouço: Paleta deve conter 256 cores RGB."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:139
 #, python-brace-format
 msgid "Can not import images as dungeon tilesets: The palettes of the images do not match. First image read that didn't match: \"{basename}\""
-msgstr ""
+msgstr "Não é possível importar as imagens como tilesets dos calabouços: As paletas das imagens não coincidem. Primeira imagem lida não correspondeu: \"{basename}\""
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:144
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:145
 #, python-brace-format
 msgid "Logic error: Tileset file {fn} was not loaded."
-msgstr ""
+msgstr "Erro de lógica: Arquivo de Tileset {fn} não foi carregado."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:148
 msgid "Image '{fn}' is too small ({tileset.width}x{tileset.height}px), must be at least {bx+w}x{by+h}px."
