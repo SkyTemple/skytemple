@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-22 08:53\n"
+"PO-Revision-Date: 2021-02-22 09:59\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -935,26 +935,26 @@ msgstr "XML invalide. «{XML_STRINGS__CATEGORY}» est manquant pour la langue {x
 #: files/skytemple_files/data/monster_xml.py:345
 #, python-brace-format
 msgid "Invalid XML. '{XML_GENENT_EXCLUSIVE_ITEMS}' needs four item IDs."
-msgstr "XML invalide. «{XML_GENENT_EXCLUSIVE_ITEMS}» à besoin de quatres identifiants d'objet."
+msgstr "XML invalide. «{XML_GENENT_EXCLUSIVE_ITEMS}» a besoin de quatre identifiants d'objet."
 
 #: files/skytemple_files/data/monster_xml.py:420
 #, python-brace-format
 msgid "Invalid XML. '{a}' missing for a {b}."
-msgstr ""
+msgstr "XML invalide. «{a}» manquant pour un {b}."
 
 #: files/skytemple_files/data/monster_xml.py:462
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET_LEVEL_UP__LEVEL}' missing for a level up moveset entry."
-msgstr ""
+msgstr "XML invalide. «{XML_MOVESET_LEVEL_UP__LEVEL}» manquant pour une capacité apprise par montée de niveau."
 
 #: files/skytemple_files/data/monster_xml.py:466
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET__MOVE_ID}' missing for a level up moveset entry."
-msgstr ""
+msgstr "XML invalide. «{XML_MOVESET__MOVE_ID}» manquant pour une capacité apprise par montée de niveau."
 
 #: files/skytemple_files/data/monster_xml.py:503
 msgid "Invalid XML. StatsGrowth must have exactly 100 levels."
-msgstr ""
+msgstr "XML invalide. «StatsGrowth» (augmentation des statistiques) doit avoir exactement 100 niveaux."
 
 #: files/skytemple_files/data/monster_xml.py:528
 #: files/skytemple_files/data/monster_xml.py:533
@@ -964,46 +964,46 @@ msgstr ""
 #: files/skytemple_files/data/monster_xml.py:553
 #, python-brace-format
 msgid "Invalid XML. '{x}' missing for a stats growth level entry."
-msgstr ""
+msgstr "XML invalide. «{x}» manquant pour une entrée d'augmentation des statistiques par niveau."
 
 #: files/skytemple_files/data/monster_xml.py:578
 msgid "Incompatible XML. The number of portraits don't match with the expected value of {len(value_to_update)}"
-msgstr ""
+msgstr "XML invalide. Le nombre de portraits ne correspond pas à la valeur attendue de {len(value_to_update)}."
 
 #: files/skytemple_files/data/monster_xml.py:592
 #, python-brace-format
 msgid "Invalid XML. '{XML_PORTRAITS_PORTRAIT__IMAGE}' missing for a portrait."
-msgstr ""
+msgstr "XML invalide. «{XML_PORTRAITS_PORTRAIT__IMAGE}» manquant pour un portrait."
 
 #: files/skytemple_files/data/monster_xml.py:596
 #, python-brace-format
 msgid "Invalid XML. '{XML_PORTRAITS_PORTRAIT__PALETTE}' missing for a portrait."
-msgstr ""
+msgstr "XML invalide. «{XML_PORTRAITS_PORTRAIT__PALETTE}» manquant pour un portrait."
 
 #: files/skytemple_files/data/monster_xml.py:604
 #, python-brace-format
 msgid "Invalid XML. The portrait data of one of the portraits is invalid: {err}"
-msgstr ""
+msgstr "XML invalide. Les données d'un des portraits sont invalides : {err}"
 
 #: files/skytemple_files/data/tbl_talk/model.py:25
 msgid "Healthy"
-msgstr ""
+msgstr "En bonne santé"
 
 #: files/skytemple_files/data/tbl_talk/model.py:26
 msgid "Half Life"
-msgstr ""
+msgstr "Dégâts Mineurs"
 
 #: files/skytemple_files/data/tbl_talk/model.py:27
 msgid "Pinch"
-msgstr ""
+msgstr "PV Bas"
 
 #: files/skytemple_files/data/tbl_talk/model.py:28
 msgid "Level Up"
-msgstr ""
+msgstr "Montée de niveau"
 
 #: files/skytemple_files/data/tbl_talk/model.py:29
 msgid "Wait"
-msgstr ""
+msgstr "En Attente"
 
 #: files/skytemple_files/data/tbl_talk/model.py:30
 msgid "Ground Wait"
@@ -1014,46 +1014,47 @@ msgstr ""
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:109
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:112
 msgid "Floor, Room"
-msgstr ""
+msgstr "Sol, Salle"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:46
 msgid "Wall, Hallway; Absolute Mover"
-msgstr ""
+msgstr "Mur, Couloir ; Bulldozer Tout-Terrain"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:49
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:88
 msgid "Wall, Hallway; Impassable"
-msgstr ""
+msgstr "Mur, Couloir ; Infranchissable"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:52
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:91
 msgid "Wall, Hallway"
-msgstr ""
+msgstr "Mur, Couloir"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:55
 msgid "Leader Spawn Floor"
-msgstr ""
+msgstr "Position du Meneur"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:58
 msgid "Secondary, Room"
-msgstr ""
+msgstr "Terrain Secondaire, Salle"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:61
 msgid "Chasm, Hallway"
-msgstr ""
+msgstr "Gouffre, Couloir"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:63
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:76
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!)."
-msgstr ""
+msgstr "La tuile est considérée comme étant du «Vide / Gouffre» (mais est tout de même affichée en jeu comme du terrain secondaire !)"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:64
 msgid "Chasm, Hallway; All Chasm"
-msgstr ""
+msgstr "Gouffre, Couloir ; Le reste devient Gouffre"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:66
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!). All tiles outside of defined room are made the tileset's defined secondary terrain."
-msgstr ""
+msgstr "La tuile est considérée comme étant du «Vide / Gouffre» (mais est tout de même affichée comme du terrain secondaire !)\n"
+"Toutes les tuiles en dehors de la salle définie utilisent le terrain secondaire."
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:68
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:106
@@ -1071,7 +1072,7 @@ msgstr ""
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:74
 msgid "Chasm, Hallway; Impassable"
-msgstr ""
+msgstr "Gouffre, Couloir ; Infranchissable"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:77
 msgid "Floor, Hallway; Flag 0xA"
@@ -1479,7 +1480,7 @@ msgstr "Fournit le support pour les conteneurs ATUPX, qui utilisent un algorithm
 
 #: files/skytemple_files/patch/handler/unused_dungeon_chance.py:39
 msgid "Fixes the 'Unusued' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
-msgstr "Corrige le fonctionnement de la valeur chance pour l'attribut «Non Utilisé» des étages de donjons. Cela détermine maintenant la chance qu'une salle contienne aléatoirement des murs à l'intérieur, dont certains peuvent être remplacés par le terrain secondaire."
+msgstr "Corrige le fonctionnement de la valeur chance pour l'attribut «Inutilisé» des étages de donjons. Cela détermine maintenant la chance qu'une salle contienne aléatoirement des murs à l'intérieur, dont certains peuvent être remplacés par le terrain secondaire."
 
 #: files/skytemple_files/patch/patches.py:102
 #: files/skytemple_files/patch/patches.py:107
@@ -1592,69 +1593,69 @@ msgstr ""
 
 #: py_desmume/desmume/controls.py:90
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:91
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:92
 msgid "Select"
-msgstr ""
+msgstr "Select"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:93
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:2300
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:94
 msgid "Right"
-msgstr ""
+msgstr "Droite"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:95
 msgid "Left"
-msgstr ""
+msgstr "Gauche"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:96
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:19
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:19
 msgid "Up"
-msgstr ""
+msgstr "Haut"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:97
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:15
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:15
 msgid "Down"
-msgstr ""
+msgstr "Bas"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:98
 msgid "R"
-msgstr ""
+msgstr "R"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:99
 msgid "L"
-msgstr ""
+msgstr "K"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:100
 #: ssb_debugger/skytemple_ssb_debugger/controller/ground_state.py:88
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:101
 #: ssb_debugger/skytemple_ssb_debugger/controller/ground_state.py:89
 msgid "Y"
-msgstr ""
+msgstr "Y"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:102
@@ -1679,22 +1680,22 @@ msgstr ""
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:112
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:800
 msgid "Y : "
-msgstr ""
+msgstr "Y : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:130
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:818
 msgid "X : "
-msgstr ""
+msgstr "X : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:148
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:836
 msgid "A : "
-msgstr ""
+msgstr "A : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:166
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:908
 msgid "Select : "
-msgstr ""
+msgstr "Select : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:184
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:890
@@ -1704,12 +1705,12 @@ msgstr ""
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:202
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:926
 msgid "L : "
-msgstr ""
+msgstr "L : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:217
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:976
 msgid "R : "
-msgstr ""
+msgstr "R : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:233
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:1060
@@ -1736,11 +1737,11 @@ msgstr ""
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:351
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:872
 msgid "B : "
-msgstr ""
+msgstr "X : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:427
 msgid "Press a button..."
-msgstr ""
+msgstr "Appuyer sur un bouton..."
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:443
 msgid "Key definition"
@@ -1748,19 +1749,19 @@ msgstr ""
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:506
 msgid "Press a key..."
-msgstr ""
+msgstr "Appuyer sur une touche..."
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:748
 msgid "Left : "
-msgstr ""
+msgstr "Gauche : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:764
 msgid "Up : "
-msgstr ""
+msgstr "Haut : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:782
 msgid "Right : "
-msgstr ""
+msgstr "Droite : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:854
 msgid "Down : "
@@ -1979,56 +1980,56 @@ msgstr ""
 #: skytemple/skytemple/controller/main.py:546
 #: skytemple/skytemple/controller/main.py:547
 msgid "Open a ROM"
-msgstr ""
+msgstr "Ouvrir une ROM"
 
 #: skytemple/skytemple/controller/main.py:572
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
-msgstr ""
+msgstr "Chargement de la ROM «{rom_name}»..."
 
 #: skytemple/skytemple/controller/main.py:574
 #, python-brace-format
 msgid "Opening {filename}."
-msgstr ""
+msgstr "Ouverture de {filename}."
 
 #: skytemple/skytemple/controller/main.py:733
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
-msgstr ""
+msgstr "Enregistrement de la ROM «{rom_name}»..."
 
 #: skytemple/skytemple/controller/main.py:735
 #, python-brace-format
 msgid "Saving {rom.filename}."
-msgstr ""
+msgstr "Sauvegarde de {rom.filename}."
 
 #: skytemple/skytemple/controller/main.py:748
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
-msgstr ""
+msgstr "Voulez vous enregistrer les changement vers {rom_name} ?"
 
 #: skytemple/skytemple/controller/main.py:750
 #: ssb_debugger/skytemple_ssb_debugger/controller/editor_notebook.py:322
 msgid "Don't Save"
-msgstr ""
+msgstr "Ne pas sauvegarder"
 
 #: skytemple/skytemple/controller/main.py:752
 #: skytemple/skytemple/module/script/controller/ssa.py:1557
 #: ssb_debugger/skytemple_ssb_debugger/controller/main.py:1614
 #: ssb_debugger/skytemple_ssb_debugger/controller/main.py:1625
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #: skytemple/skytemple/controller/main.py:753
 #: skytemple/skytemple/skytemple.glade:1080
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:1089
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:2762
 msgid "Save"
-msgstr ""
+msgstr "Sauvegarder"
 
 #: skytemple/skytemple/controller/main.py:754
 #: ssb_debugger/skytemple_ssb_debugger/controller/editor_notebook.py:326
 msgid "If you don't save, your changes will be lost."
-msgstr ""
+msgstr "Si vous n'enregistrez pas, vos modifications seront perdues."
 
 #: skytemple/skytemple/controller/settings.py:31
 msgid "Detect automatically"
@@ -2037,12 +2038,12 @@ msgstr ""
 #: skytemple/skytemple/controller/settings.py:32
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:527
 msgid "English"
-msgstr ""
+msgstr "Anglais"
 
 #: skytemple/skytemple/controller/settings.py:33
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:550
 msgid "German"
-msgstr ""
+msgstr "Allemand"
 
 #: skytemple/skytemple/controller/settings.py:117
 msgid "You need to restart SkyTemple to apply some of the settings."
@@ -2051,11 +2052,11 @@ msgstr ""
 #: skytemple/skytemple/controller/tilequant.py:54
 #: skytemple/skytemple/core/ui_utils.py:85
 msgid "PNG image (*.png)"
-msgstr ""
+msgstr "Image PNG (*.png)"
 
 #: skytemple/skytemple/controller/tilequant.py:59
 msgid "JPEG image (*.jpg, *.jpeg)"
-msgstr ""
+msgstr "Image JPG (*.jpg, *.jpeg)"
 
 #: skytemple/skytemple/controller/tilequant.py:65
 #: skytemple/skytemple/core/ui_utils.py:70
@@ -2408,15 +2409,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:866
 msgid "This dungeon has XXX floors."
-msgstr ""
+msgstr "Ce donjon a XXX étages."
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:904
 msgid "Change Floor Count"
-msgstr ""
+msgstr "Changer le nombre d'étage"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:965
 msgid "This dungeon currently has X floors."
-msgstr ""
+msgstr "Ce donjon compte X étages."
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:982
 msgid "New floor count:"
@@ -2425,17 +2426,18 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/dungeon.py:55
 msgid "\n"
 "Since this is a Dojo Dungeon, the floor count can not be changed."
-msgstr ""
+msgstr "\n"
+"Puisqu'il s'agit d'un donjon du Dojo, le nombre d'étages ne peut pas être changé."
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.py:63
 #, python-brace-format
 msgid "This dungeon has {floor_count} floors.{edit_text}"
-msgstr ""
+msgstr "Ce donjon dispose de {floor_count} étages.{edit_text}"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.py:129
 #, python-brace-format
 msgid "This dungeon currently has {current_floor_count} floors."
-msgstr ""
+msgstr "Ce donjon dispose de {current_floor_count} étages."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:110
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1301
@@ -2612,7 +2614,7 @@ msgstr "<b>NOM</b>\n"
 "Couloir\n"
 "Infranchissable : Oui\n"
 "Affecté par Bulldozer Tout-Terrain : Oui\n\n"
-"La tuile est considérée comme étant du «Vide» (mais tout de même affiché comme du terrain secondaire). \n"
+"La tuile est considérée comme étant du «Vide / Gouffre» (mais est tout de même affichée comme du terrain secondaire). \n"
 "Toutes les tuiles en dehors de la salle définie utilisent le terrain secondaire."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:531
@@ -2936,7 +2938,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:298
 msgid "Tile"
-msgstr ""
+msgstr "Tuile"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:322
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:850
@@ -3000,31 +3002,31 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:598
 msgid "Unk11"
-msgstr ""
+msgstr "Unk11"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:611
 msgid "Unk12"
-msgstr ""
+msgstr "Unk12"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:624
 msgid "Unk13"
-msgstr ""
+msgstr "Unk13"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:637
 msgid "Unk14"
-msgstr ""
+msgstr "Unk14"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:650
 msgid "Unk15"
-msgstr ""
+msgstr "Unk15"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:663
 msgid "Unk16"
-msgstr ""
+msgstr "Unk16"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:676
 msgid "Unk17"
-msgstr ""
+msgstr "Unk17"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:689
 msgid "Room"
@@ -3032,15 +3034,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:703
 msgid "Trap Visible?"
-msgstr ""
+msgstr "Piège visible ?"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:716
 msgid "Unk31"
-msgstr ""
+msgstr "Unk31"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:729
 msgid "Unk32"
-msgstr ""
+msgstr "Unk32"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:742
 msgid "Secondary Terrain?"
@@ -3048,19 +3050,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:755
 msgid "Unk34"
-msgstr ""
+msgstr "Unk34"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:768
 msgid "Unk35"
-msgstr ""
+msgstr "Unk35"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:781
 msgid "Unk36"
-msgstr ""
+msgstr "Unk36"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:794
 msgid "Unk37"
-msgstr ""
+msgstr "Unk37"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:816
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1167
@@ -3103,13 +3105,13 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/level_up.glade:416
 #: skytemple/skytemple/module/monster/controller/level_up.py:45
 msgid "Level"
-msgstr ""
+msgstr "Niveau"
 
 #. TRANSLATORS: Experience
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1088
 #: skytemple/skytemple/module/monster/level_up_graph.py:88
 msgid "HP"
-msgstr ""
+msgstr "PV"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1102
 msgid "Exp. Yield"
@@ -3117,7 +3119,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1116
 msgid "Atk."
-msgstr ""
+msgstr "Atq."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1130
 msgid "Sp. Atk."
@@ -3133,7 +3135,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1172
 msgid "UnkA"
-msgstr ""
+msgstr "UnkA"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1195
 msgid "Pokémon Stats"
@@ -3155,7 +3157,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:110
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:78
 msgid "Category:"
-msgstr ""
+msgstr "Catégorie :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:153
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:162
@@ -3245,17 +3247,17 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:719
 #: skytemple/skytemple/module/monster/controller/monster.glade:343
 msgid "1. Choose what to export"
-msgstr ""
+msgstr "1. Choisissez ce qu'il faut exporter"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:767
 #: skytemple/skytemple/module/monster/controller/monster.glade:391
 msgid " Export to file"
-msgstr ""
+msgstr " Exporter vers un fichier"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:785
 #: skytemple/skytemple/module/monster/controller/monster.glade:409
 msgid "2a. Export to file"
-msgstr ""
+msgstr "2a. Exporter vers un fichier"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:827
 #: skytemple/skytemple/module/monster/controller/monster.glade:452
@@ -3265,7 +3267,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:841
 msgid "Dungeon / Floor"
-msgstr ""
+msgstr "Donjon / Étage"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:868
 msgid "(and/or) <b>2b. Copy to other floor(s)</b>"
@@ -3392,15 +3394,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1820
 msgid "Floor item density:"
-msgstr ""
+msgstr "Densité des objets aux sol :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1832
 msgid "Buried item density:"
-msgstr ""
+msgstr "Densité des objets enterrés :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1844
 msgid "Trap density:"
-msgstr ""
+msgstr "Densité des pièges :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1856
 msgid "Max coin amount:"
@@ -3416,15 +3418,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1892
 msgid "Monster House:"
-msgstr ""
+msgstr "Maison de monstre :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1904
 msgid "Unusued:"
-msgstr ""
+msgstr "Inutilisé :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1916
 msgid "Empty Monster House:"
-msgstr ""
+msgstr "Maison de monstre vide :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1928
 msgid "Sticky Items:"
@@ -3469,7 +3471,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2567
 msgid "No Missions: "
-msgstr ""
+msgstr "Pas de mission : "
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2611
 msgid "Room Density:"
@@ -3589,15 +3591,15 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/module.py:97
 #: skytemple/skytemple/module/script/module.py:104
 msgid "Others"
-msgstr ""
+msgstr "Autres"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4609
 msgid "Shop"
-msgstr ""
+msgstr "Boutique"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4639
 msgid "Monster House"
-msgstr ""
+msgstr "Maison de monstre"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4669
 msgid "Buried"
@@ -3606,13 +3608,13 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4699
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:2278
 msgid "Unk1"
-msgstr ""
+msgstr "Unk1"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4729
 #: skytemple/skytemple/module/script/controller/ssa.py:1198
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:2289
 msgid "Unk2"
-msgstr ""
+msgstr "Unk2"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:69
 #: skytemple/skytemple/module/lists/controller/item_lists.py:48
@@ -3708,7 +3710,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:236
 msgid "The game randomly adds a number between 0 and 2 to obtain the final value."
-msgstr ""
+msgstr "Le jeu rajoute un nombre aléatoire entre 0 et 2 pour obtenir la valeur finale."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:247
 msgid "Controls whether dead end hallways can be generated in the floor. Dead ends can still appear in the map even if they are disabled due to a bug in the map generator and because extra hallways can also produce them."
@@ -3716,7 +3718,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:260
 msgid "This is the amount of lakes that will be generated during the water generation phase."
-msgstr ""
+msgstr "Il s'agit de la quantité de lacs qui seront générés pendant la phase de placement de l'eau."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:267
 msgid "Floor connectivity (Min 1, if it's 0 a valid map can't be generated and you will get the default single room that it's also a monster house).\n\n"
@@ -3826,11 +3828,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:879
 msgid "Export floor as..."
-msgstr ""
+msgstr "Exporter l'étage en tant que..."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:898
 msgid "Export was canceled."
-msgstr ""
+msgstr "Exportation annulé."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:920
 msgid "Import floor from..."
