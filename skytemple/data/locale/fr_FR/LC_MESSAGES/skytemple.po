@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-22 01:20\n"
+"PO-Revision-Date: 2021-02-22 08:53\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -925,17 +925,17 @@ msgstr "NULL"
 #: files/skytemple_files/data/monster_xml.py:205
 #, python-brace-format
 msgid "Invalid XML. '{XML_STRINGS__NAME}' missing for language {xml_lang.tag}."
-msgstr ""
+msgstr "XML invalide. «{XML_STRINGS__NAME}» est absent pour la langue «{xml_lang.tag}»."
 
 #: files/skytemple_files/data/monster_xml.py:207
 #, python-brace-format
 msgid "Invalid XML. '{XML_STRINGS__CATEGORY}' missing for language {xml_lang.tag}."
-msgstr ""
+msgstr "XML invalide. «{XML_STRINGS__CATEGORY}» est manquant pour la langue {xml_lang.tag}."
 
 #: files/skytemple_files/data/monster_xml.py:345
 #, python-brace-format
 msgid "Invalid XML. '{XML_GENENT_EXCLUSIVE_ITEMS}' needs four item IDs."
-msgstr ""
+msgstr "XML invalide. «{XML_GENENT_EXCLUSIVE_ITEMS}» à besoin de quatres identifiants d'objet."
 
 #: files/skytemple_files/data/monster_xml.py:420
 #, python-brace-format
