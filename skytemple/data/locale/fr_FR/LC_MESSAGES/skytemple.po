@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-22 09:59\n"
+"PO-Revision-Date: 2021-02-22 11:09\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -1059,16 +1059,16 @@ msgstr "La tuile est considérée comme étant du «Vide / Gouffre» (mais est t
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:68
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:106
 msgid "Warp Zone, Room"
-msgstr ""
+msgstr "Téléporteur, Salle"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:70
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:108
 msgid "Creates a Warp Zone."
-msgstr ""
+msgstr "Crée un Téléporteur."
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:71
 msgid "Floor, Hallway"
-msgstr ""
+msgstr "Sol, Couloir"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:74
 msgid "Chasm, Hallway; Impassable"
@@ -1076,39 +1076,39 @@ msgstr "Gouffre, Couloir ; Infranchissable"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:77
 msgid "Floor, Hallway; Flag 0xA"
-msgstr ""
+msgstr "Sol, Couloir ; Drapeau 0xA"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:79
 msgid "Tile flag 0xA is set to 1 (Unknown what this does)."
-msgstr ""
+msgstr "Le drapeau 0xA associé à la tuile est activé (ce que cela fait est inconnu)."
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:80
 msgid "F/W, Room; Key Door (0xC)"
-msgstr ""
+msgstr "S/M, Salle ; Porte fermée à Clé (0xC)"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:82
 msgid "Tile flag 0xC is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
-msgstr ""
+msgstr "Le drapeau 0xC associé à la tuile est activé et fait apparaître une Porte fermée à Clé. Le fait que la tuile soit un Mur ou du Sol dépend d'un facteur inconnu."
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:84
 msgid "F/W, Room; Key Door (0xD)"
-msgstr ""
+msgstr "S/M, Salle ; Porte fermée à Clé (0xD)"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:86
 msgid "Tile flag 0xD is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
-msgstr ""
+msgstr "Le drapeau 0xD associé à la tuile est activé et fait apparaître une Porte fermée à Clé. Le fait que la tuile soit un Mur ou du Sol dépend d'un facteur inconnu."
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:94
 msgid "Attendant1 Spawn Floor"
-msgstr ""
+msgstr "Position de l'Attendant 1"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:97
 msgid "Attendant2 Spawn Floor"
-msgstr ""
+msgstr "Position de l'Attendant 2"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:100
 msgid "Attendant3 Spawn Floor"
-msgstr ""
+msgstr "Position de l'Attendant 3"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor.py:240
 #: files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:72
@@ -1160,7 +1160,7 @@ msgstr "Attribut {XML_FLOOR_LAYOUT__MISCSET} manquant pour la balise {XML_FLOOR_
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:404
 msgid "Invalid structure type {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}"
-msgstr ""
+msgstr "Type de structure invalide : {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:408
 msgid "Invalid weather type {ele.get(XML_FLOOR_LAYOUT__WEATHER)}"
@@ -1362,7 +1362,7 @@ msgstr "Opaque"
 #: files/skytemple_files/graphics/zmappat/model.py:169
 #: files/skytemple_files/graphics/zmappat/model.py:190
 msgid "Tile and masks list must have exactly 3 items"
-msgstr ""
+msgstr "Les listes de tuiles et de masques doivent contenir exactement 3 éléments chacune."
 
 #: files/skytemple_files/graphics/zmappat/model.py:174
 #: files/skytemple_files/graphics/zmappat/model.py:195
@@ -3418,7 +3418,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1892
 msgid "Monster House:"
-msgstr "Maison de monstre :"
+msgstr "Maison de monstres :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1904
 msgid "Unusued:"
@@ -3426,7 +3426,7 @@ msgstr "Inutilisé :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1916
 msgid "Empty Monster House:"
-msgstr "Maison de monstre vide :"
+msgstr "Maison de monstres vide :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1928
 msgid "Sticky Items:"
@@ -3599,7 +3599,7 @@ msgstr "Boutique"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4639
 msgid "Monster House"
-msgstr "Maison de monstre"
+msgstr "Maison de monstres"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4669
 msgid "Buried"
@@ -3832,7 +3832,7 @@ msgstr "Exporter l'étage en tant que..."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:898
 msgid "Export was canceled."
-msgstr "Exportation annulé."
+msgstr "Exportation annulée."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:920
 msgid "Import floor from..."
