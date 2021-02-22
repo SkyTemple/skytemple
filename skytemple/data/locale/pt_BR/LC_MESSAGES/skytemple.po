@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-22 18:04\n"
+"PO-Revision-Date: 2021-02-22 19:19\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -64,47 +64,47 @@ msgstr "Erro de lógica: Arquivo de Tileset {fn} não foi carregado."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:148
 msgid "Image '{fn}' is too small ({tileset.width}x{tileset.height}px), must be at least {bx+w}x{by+h}px."
-msgstr ""
+msgstr "A imagem '{fn}' é muito pequena ({tileset.width}x{tileset.height}px), deve ser pelo menos {bx+w}x{by+h}px."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:153
 msgid "A rule is missing in the import set"
-msgstr ""
+msgstr "Está faltando uma regra no conjunto de importação"
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:228
 #, python-brace-format
 msgid "Error when importing mapping. Unknown type: '{mapping_type}'."
-msgstr ""
+msgstr "Erro ao importar mapeamento. Tipo desconhecido: '{mapping_type}'."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:232
 #, python-brace-format
 msgid "Invalid variation index {var_idx}."
-msgstr ""
+msgstr "Índice de variação {var_idx} inválido."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:274
 msgid "Error in the XML: One of the animation frames doesn't have 16 colors. Each frame must have a value for each color."
-msgstr ""
+msgstr "Erro na XML: Um dos quadros da animação não tem 16 cores. Cada frame deve ter um valor para cada cor."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:282
 msgid "Error in the XML: Durations for a palette or it's colors are not correctly defined."
-msgstr ""
+msgstr "Erro na XML: Durações para uma paleta ou suas cores não estão definidas corretamente."
 
 #: dtef/skytemple_dtef/rules.py:118
 #, python-brace-format
 msgid "No match found for rule {orig_rule}. Input set correct?"
-msgstr ""
+msgstr "Não foi encontrada nenhuma correspondência para a regra {orig_rule}. Input set correto?"
 
 #: explorerscript/explorerscript/macro.py:85
 #, python-brace-format
 msgid "Value for macro variable {var_name} not provided."
-msgstr ""
+msgstr "Valor para a variável {var_name} da macro não fornecido."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_adventure_log.py:42
 msgid "No value for adventure_log set."
-msgstr ""
+msgstr "Nenhum valor para adventure_log definido."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_clear.py:42
 msgid "No variable for clear."
-msgstr ""
+msgstr "Nenhuma variável para \"clear\"."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:43
 msgid "No variable for dungeon_mode set."
@@ -116,25 +116,25 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_initial.py:42
 msgid "No variable for init."
-msgstr ""
+msgstr "Nenhuma variável para init."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:48
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:46
 msgid "No variable for assignment."
-msgstr ""
+msgstr "Nenhuma variável definida para atribuição."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:50
 msgid "No operator set for assignment."
-msgstr ""
+msgstr "Nenhum operador definido para atribuição."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:52
 msgid "No value set for assignment."
-msgstr ""
+msgstr "Nenhum valor definido para atribuição."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:58
 #, python-brace-format
 msgid "value(X) can not be used with index based assignments (line {self.ctx.start.line})."
-msgstr ""
+msgstr "value(X) não pode ser usado com atribuições baseadas em índices (linha {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_reset.py:43
 msgid "No target for reset."
