@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-22 13:36\n"
+"PO-Revision-Date: 2021-02-22 16:48\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -2033,7 +2033,7 @@ msgstr "Si vous n'enregistrez pas, vos modifications seront perdues."
 
 #: skytemple/skytemple/controller/settings.py:31
 msgid "Detect automatically"
-msgstr ""
+msgstr "Détecter automatiquement"
 
 #: skytemple/skytemple/controller/settings.py:32
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:527
@@ -2047,7 +2047,7 @@ msgstr "Allemand"
 
 #: skytemple/skytemple/controller/settings.py:117
 msgid "You need to restart SkyTemple to apply some of the settings."
-msgstr ""
+msgstr "Vous devez redémarrer SkyTemple pour appliquer certains changements."
 
 #: skytemple/skytemple/controller/tilequant.py:54
 #: skytemple/skytemple/core/ui_utils.py:85
@@ -2062,7 +2062,7 @@ msgstr "Image JPG (*.jpg, *.jpeg)"
 #: skytemple/skytemple/core/ui_utils.py:70
 #: skytemple/skytemple/module/monster/controller/level_up.py:541
 msgid "Any files"
-msgstr ""
+msgstr "Tous les fichiers"
 
 #: skytemple/skytemple/controller/tilequant.py:79
 msgid "The maximum number of palettes that can be used. For normal backgrounds, this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes (since the last 2 palettes are not rendered in game)."
@@ -2070,7 +2070,7 @@ msgstr ""
 
 #: skytemple/skytemple/controller/tilequant.py:84
 msgid "This exact color of the image will be imported as transparency (default: #12ab56)."
-msgstr ""
+msgstr "Les pixels de cette couleur exacte seront considérés comme transparents lors de l'importation de l'image (par défaut : #12ab56)."
 
 #: skytemple/skytemple/controller/tilequant.py:87
 msgid "You can use this to convert multiple images at once with the same palettes. This is useful for map backgrounds with multiple layers, that need to share the samepalettes."
@@ -2080,43 +2080,45 @@ msgstr ""
 msgid "Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they \"blend into\" each other. This will make the image look like it contains more colors but also might decrease the overall visual quality. Two different algorithms are available.\n\n"
 "No Dithering: Color will be reorganized and reduced if necessary. No dithering will be performed.\n\n"
 "Reorganize colors only: Colors will be reorganized so that they fit the game's format. SkyTemple will not attempt to reduce the amount of overall colors to make this work, so you will get an error, if it's not possible with the current amount. However if it does work, the output image will look identical to the original image."
-msgstr ""
+msgstr "Tramage : les couleurs sont réorganisées et leur nombre est réduit si nécessaire. Les couleurs sont altérées pour qu'elles se «mélangent mieux». Cela donne l'impression que l'image contient plus de couleurs mais peut aussi dégrader l'aspect visuel global. Deux algorithmes de tramage sont proposés. \n\n"
+"Aucun tramage : les couleurs sont réorganisées et leur nombre est réduit si nécessaire. Aucune opération de tramage ne sera effectuée.\n\n"
+"Réorganiser les couleurs uniquement : les couleurs sont réorganisées pour être en adéquation avec le format utilisé par le jeu. SkyTemple ne tentera pas de réduire le nombre de couleurs pour que cela marche, donc il se peut qu'il y ait une erreur à cause du nombre de couleurs présentes. Cependant, si cela marche, l'image produite sera visuellement identique à l'original."
 
 #: skytemple/skytemple/controller/tilequant.py:104
 msgid "Only relevant if dithering is enabled: This controls the amount of dithering applied."
-msgstr ""
+msgstr "Utile uniquement si le tramage est activé : contrôle la force du tramage appliquée."
 
 #: skytemple/skytemple/controller/tilequant.py:130
 msgid "Please select an input image."
-msgstr ""
+msgstr "Veuillez sélectionner une image."
 
 #: skytemple/skytemple/controller/tilequant.py:135
 msgid "Since you selected two images to convert, you will be asked for both images where to save them to."
-msgstr ""
+msgstr "Comme vous avez sélectionné deux images à convertir, vous devrez spécifier où les sauvegarder."
 
 #: skytemple/skytemple/controller/tilequant.py:141
 msgid "Save first image as (PNG)..."
-msgstr ""
+msgstr "Enregistrer la première image sous (PNG)..."
 
 #: skytemple/skytemple/controller/tilequant.py:162
 msgid "Save second image as (PNG)..."
-msgstr ""
+msgstr "Enregistrer la seconde image sous (PNG)..."
 
 #: skytemple/skytemple/controller/tilequant.py:194
 msgid "You entered invalid numbers."
-msgstr ""
+msgstr "Vous avez entré des nombres invalides."
 
 #: skytemple/skytemple/controller/tilequant.py:197
 msgid "The input image does not exist."
-msgstr ""
+msgstr "L'image source n'existe pas."
 
 #: skytemple/skytemple/controller/tilequant.py:200
 msgid "The second input image does not exist."
-msgstr ""
+msgstr "La seconde image source n'existe pas."
 
 #: skytemple/skytemple/controller/tilequant.py:219
 msgid "The input image is not a supported format."
-msgstr ""
+msgstr "Le format de l'image source n'est pas pris en charge."
 
 #: skytemple/skytemple/controller/tilequant.py:236
 msgid "Image was converted."
@@ -2184,18 +2186,18 @@ msgstr ""
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:44
 msgid "Import..."
-msgstr ""
+msgstr "Importer..."
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:53
 msgid "Export..."
-msgstr ""
+msgstr "Exporter..."
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:66
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1252
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1631
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4655
 msgid "Tools"
-msgstr ""
+msgstr "Outils"
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:76
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1262
@@ -2389,23 +2391,24 @@ msgstr "Ennemis donnant des coffres : "
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:779
 msgid "Max. rescue attempts\n"
 "(-1 = unlimited):"
-msgstr ""
+msgstr "Nombre de sauvetages max.\n"
+"(-1 = illimité) : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:793
 msgid "Max items allowed:"
-msgstr ""
+msgstr "Nombre max. d'objets autorisés : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:806
 msgid "Max. party members:"
-msgstr ""
+msgstr "Nombre max. de membres d'équipe : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:819
 msgid "Turn limit:"
-msgstr ""
+msgstr "Limite de tours : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:848
 msgid "Add / Remove Floors"
-msgstr ""
+msgstr "Ajouter / Supprimer des Étages"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:866
 msgid "This dungeon has XXX floors."
@@ -2421,7 +2424,7 @@ msgstr "Ce donjon compte X étages."
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:982
 msgid "New floor count:"
-msgstr ""
+msgstr "Nouveau nombre d'étages :"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.py:55
 msgid "\n"
@@ -2445,7 +2448,7 @@ msgstr "Ce donjon dispose de {current_floor_count} étages."
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.glade:88
 #: skytemple/skytemple/module/script/controller/ssa.glade:441
 msgid "Zoom In"
-msgstr ""
+msgstr "Zoom Avant"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:111
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1302
@@ -2453,7 +2456,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.glade:89
 #: skytemple/skytemple/module/script/controller/ssa.glade:442
 msgid "Zoom +"
-msgstr ""
+msgstr "Zoom +"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:125
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1316
@@ -2461,13 +2464,13 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.glade:103
 #: skytemple/skytemple/module/script/controller/ssa.glade:456
 msgid "Zoom Out"
-msgstr ""
+msgstr "Zoom Arrière"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:126
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.glade:104
 #: skytemple/skytemple/module/script/controller/ssa.glade:457
 msgid "Zoom -"
-msgstr ""
+msgstr "Zoom -"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:140
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1358
@@ -2475,18 +2478,18 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.glade:118
 #: skytemple/skytemple/module/script/controller/ssa.glade:471
 msgid "Show Tiles Grid"
-msgstr ""
+msgstr "Montrer la Grille des Tuiles"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:141
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.glade:119
 #: skytemple/skytemple/module/script/controller/ssa.glade:472
 msgid "Tile Grid"
-msgstr ""
+msgstr "Grille des Tuiles"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:166
 #: skytemple/skytemple/module/script/controller/ssa.glade:497
 msgid "Move / Select"
-msgstr ""
+msgstr "Déplacer / Sélectionner"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:167
 #: skytemple/skytemple/module/monster/controller/level_up.glade:430
@@ -2494,7 +2497,7 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/level_up.glade:670
 #: skytemple/skytemple/module/script/controller/ssa.glade:498
 msgid "Move"
-msgstr ""
+msgstr "Déplacer"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:182
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:183
@@ -2917,7 +2920,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:250
 msgid "Here you can edit the entities that can be placed in fixed rooms. Entities are a combination of tile properties (+traps), Pokémon and items."
-msgstr ""
+msgstr "Vous pouvez ici éditer les entités qui peuvent être placées dans les salles statiques. Les entités sont des combinaisons de propriétés de tuiles (et pièges), Pokémon et objets présents."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:287
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:558
