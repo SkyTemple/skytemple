@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-21 16:40\n"
+"PO-Revision-Date: 2021-02-22 08:53\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -134,7 +134,7 @@ msgstr "Wert für Zuweisung fehlt."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:58
 #, python-brace-format
 msgid "value(X) can not be used with index based assignments (line {self.ctx.start.line})."
-msgstr "\"value(X)\" kann nicht mit index-basierten Zuweisungen verwendet werden (Zeile {self.ctx.start.line})."
+msgstr "\"value(X)\" kann nicht mit index basierten Zuweisungen verwendet werden (Zeile {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_reset.py:43
 msgid "No target for reset."
@@ -215,7 +215,7 @@ msgstr "Ungültige Operation für If-Bedingung: {op.op_code.name} (Zeile {self.c
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:78
 #, python-brace-format
 msgid "Unknown if operation in line {self.ctx.start.line})."
-msgstr "Unbekannte If-Operation in Zeile {self.ctx.start.line}."
+msgstr "Unbekannte If-Operation in Zeile {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:57
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_block.py:72
@@ -236,22 +236,22 @@ msgstr "Ungültiger \"Message Switch\"."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:72
 #, python-brace-format
 msgid "A message_ switch can only contain cases with strings (line {self.ctx.start.line})."
-msgstr "\"value(X)\" kann nicht mit index-basierten Zuweisungen verwendet werden (Zeile {self.ctx.start.line})."
+msgstr "Ein message_switch kann nur Fälle \"case\" mit Strings beinhalten (Zeile {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:63
 #, python-brace-format
 msgid "Invalid case type for message_ switch (line {self.ctx.start.line})."
-msgstr "\"value(X)\" kann nicht mit index-basierten Zuweisungen verwendet werden (Zeile {self.ctx.start.line})."
+msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:84
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line}"
-msgstr "Ein Switch-Block kann nur einen einzelnen \"Default Case\" haben (Zeile {self.ctx.start.line})"
+msgstr "Ein Switch-Block kann nur einen einzelnen \"Default Case\" haben (Zeile {self.ctx.start.line}"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:75
 #, python-brace-format
 msgid "A switch case must contain a list of statements (line {self.ctx.start.line})."
-msgstr "\"value(X)\" kann nicht mit index-basierten Zuweisungen verwendet werden (Zeile {self.ctx.start.line})."
+msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:121
 #, python-brace-format
@@ -261,7 +261,7 @@ msgstr "Unerwartetes Ende einer Switch-Anweisung (Zeile {self.ctx.start.line})"
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:134
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line})."
-msgstr "\"value(X)\" kann nicht mit index-basierten Zuweisungen verwendet werden (Zeile {self.ctx.start.line})."
+msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:63
 msgid "Invalid content for a switch-header"
@@ -277,16 +277,16 @@ msgstr "Wert für \"dungeon_mode\" fehlt."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/random.py:42
 msgid "No value set for random switch condition."
-msgstr "Kein Wert für If-Bedingung gesetzt."
+msgstr "Kein Wert für Switch-Bedingung gesetzt."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:43
 msgid "No variable set for scn switch condition."
-msgstr "Keine Variable für If-Bedingung gesetzt."
+msgstr "Keine Variable für Scn-Switch-Bedingung gesetzt."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:50
 #, python-brace-format
 msgid "Index for scn() if condition must be 0 or 1 (line {self.ctx.start.line})."
-msgstr "Die einzigen Operatoren, die für scn If-Bedingungen unterstützt werden sind ==,<,<=,>,>= (Zeile {self.ctx.start.line})"
+msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/macro_call.py:46
 #, python-brace-format
@@ -968,7 +968,7 @@ msgstr "Ungültiges XML. '{x}' fehlt für einen Statuswerts-Anstieg Eintrag."
 
 #: files/skytemple_files/data/monster_xml.py:578
 msgid "Incompatible XML. The number of portraits don't match with the expected value of {len(value_to_update)}"
-msgstr "Inkompatibles XML. Die Anzahl der Portraits stimmt nicht mit dem erwartetem Wert ({len(value_to_update)}) überein"
+msgstr "Inkompatibles XML. Die Anzahl der Portraits stimmt nicht mit dem erwartetem Wert {len(value_to_update)} überein"
 
 #: files/skytemple_files/data/monster_xml.py:592
 #, python-brace-format
@@ -1255,7 +1255,7 @@ msgstr "Das Bild darf nur die ersten 12 Paletten verwenden. Versuchte Palette {t
 
 #: files/skytemple_files/graphics/dpc/model.py:129
 msgid "A dungeon background or tilemap can not have more than 400 chunks."
-msgstr "Ein Dungeonhintergrund oder eine Tilemap kann nicht mehr 400 Blöcke beinhalten."
+msgstr "Ein Dungeon-Hintergrund oder eine Tilemap kann nicht mehr 400 Blöcke beinhalten."
 
 #: files/skytemple_files/graphics/dpla/model.py:90
 msgid "This palette has no animation."
@@ -1285,12 +1285,12 @@ msgstr "Zeichen {e.char} in der Tabelle {e.table} ist mehrfach definiert in eine
 #: files/skytemple_files/graphics/kao/model.py:159
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
-msgstr "Konte KAO bei Index {old_index},{old_subindex} nicht laden: {ex}"
+msgstr "Konnte KAO bei Index {old_index},{old_subindex} nicht laden: {ex}"
 
 #: files/skytemple_files/graphics/kao/model.py:215
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
-msgstr "Kann PIL Bild nicht in Kao umwandeln: Bilddimensionen müssen {img_dim}x{img_dim}px. sein."
+msgstr "Kann PIL Bild nicht in KAO umwandeln: Bilddimensionen müssen {img_dim}x{img_dim}px. sein."
 
 #: files/skytemple_files/graphics/kao/model.py:252
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
@@ -2338,7 +2338,7 @@ msgstr "Richtung:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:527
 msgid "Enemies evolve w. KOed:"
-msgstr "Gegner entwickeln sich w. K.O.:"
+msgstr "Gegner entwickeln sich w. KO:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:662
 msgid "Exp. enabled:"
@@ -2516,7 +2516,7 @@ msgstr "Ändere den Kartenhintergrund (nur Vorschau)"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:285
 msgid "Edit the currently selected tileset or background"
-msgstr "Ändere das aktuell ausgwählte Tileset oder den Hintergrund"
+msgstr "Ändere das aktuell ausgewählte Tileset oder den Hintergrund"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:287
 msgid "Go to Tileset"
@@ -2741,7 +2741,7 @@ msgstr "Überschreibungen"
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1309
 msgid "Fixed Room to load \n"
 "if dungeon is cleared:"
-msgstr "statischer Raum, falls\n"
+msgstr "Statischer Raum, falls\n"
 "Dungeon bezwungen:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1365
@@ -2758,7 +2758,7 @@ msgstr "Höhe:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1427
 msgid "Prevent \"Item Stealing\""
-msgstr "Item-Diebstahl verhindern:"
+msgstr "Item-Diebstahl verhindern"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1439
 msgid "Disable all warp effects:"
@@ -3008,7 +3008,7 @@ msgstr "Raum"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:703
 msgid "Trap Visible?"
-msgstr "Falle sichtabr?"
+msgstr "Falle sichtbar?"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:716
 msgid "Unk31"
@@ -4518,7 +4518,7 @@ msgstr "Wasser / Lava"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1745
 msgid "Has Liquid / Wall"
-msgstr "Hat Flüßigkeit / Wand"
+msgstr "Hat Flüssigkeit / Wand"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1933
 msgid "Here you can edit what chunks get rendered for which dungeon field configuration. Select the configuration you want to edit, select a chunk from the \"Chunk Picker\" to use and then click on the dungeon field you want to edit.\n"
@@ -4963,7 +4963,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:294
 msgid "Team Name"
-msgstr "Teamname"
+msgstr "Team-Name"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:309
 msgid "You can apply the default team using the script command\n"
@@ -5200,7 +5200,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.glade:1235
 #: ssb_debugger/skytemple_ssb_debugger/controller/ground_state.py:239
 msgid "Actors"
-msgstr "Akteuere"
+msgstr "Akteure"
 
 #: skytemple/skytemple/module/lists/module.py:77
 msgid "Starters"
@@ -6535,7 +6535,7 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/main.py:65
 #, python-format
 msgid "Unknown Actor %02d"
-msgstr "Unekannter Akreut %20d"
+msgstr "Unbekannter Akteur %02d"
 
 #: skytemple/skytemple/module/monster/controller/main.py:50
 msgid "Shaymin"
@@ -8650,7 +8650,7 @@ msgstr "Japanisch"
 
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:539
 msgid "French"
-msgstr "Franzözisch"
+msgstr "Französisch"
 
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:561
 msgid "Italian"
@@ -8772,7 +8772,7 @@ msgstr "Lokale Variablen"
 
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:1424
 msgid "Macro Variables"
-msgstr "Makrovariablen"
+msgstr "Makro-Variablen"
 
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:1518
 msgid "General Debug"
