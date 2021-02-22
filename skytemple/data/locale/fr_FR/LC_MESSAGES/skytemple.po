@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-21 23:19\n"
+"PO-Revision-Date: 2021-02-22 00:24\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -68,17 +68,17 @@ msgstr "L'image «{fn}» est trop petite ({tileset.width}x{tileset.height} px), 
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:153
 msgid "A rule is missing in the import set"
-msgstr ""
+msgstr "Une règle manque dans le paquetage importé."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:228
 #, python-brace-format
 msgid "Error when importing mapping. Unknown type: '{mapping_type}'."
-msgstr ""
+msgstr "Erreur lors de l'importation du mappage. Type inconnu : '{mapping_type}'."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:232
 #, python-brace-format
 msgid "Invalid variation index {var_idx}."
-msgstr ""
+msgstr "Index de variation invalide : {var_idx}."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:274
 msgid "Error in the XML: One of the animation frames doesn't have 16 colors. Each frame must have a value for each color."
@@ -261,664 +261,666 @@ msgstr "Fin de switch inattendue (ligne {self.ctx.start.line})."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:134
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Un bloc switch ne peut contenir qu'un seul default (ligne {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:63
 msgid "Invalid content for a switch-header"
-msgstr ""
+msgstr "Contenu invalide pour un en-tête de switch."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:72
 msgid "Unknown switch operation."
-msgstr ""
+msgstr "Opération pour switch inconnue."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/dungeon_mode.py:42
 msgid "No dungeon id set for dungeon_mode switch condition."
-msgstr ""
+msgstr "Aucun ID de donjon défini pour la condition de switch dungeon_mode."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/random.py:42
 msgid "No value set for random switch condition."
-msgstr ""
+msgstr "Aucune valeur définie pour la condition de switch random."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:43
 msgid "No variable set for scn switch condition."
-msgstr ""
+msgstr "Aucune variable définie pour la condition de switch scn."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:50
 #, python-brace-format
 msgid "Index for scn() if condition must be 0 or 1 (line {self.ctx.start.line})."
-msgstr ""
+msgstr "L'index pour la condition de if scn() doit être 0 ou 1 (ligne {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/macro_call.py:46
 #, python-brace-format
 msgid "Macro {name} not found."
-msgstr ""
+msgstr "Macro {name} introuvable."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:89
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:93
 msgid "Dependency cycle detected while trying to resolve macros (for macro '{v['name']}')."
-msgstr ""
+msgstr "Dépendance circulaire détectée lors de la tentative de résolution des macros (pour la macro '{v['name']}')."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_visitor.py:78
 msgid "Macros can not alias."
-msgstr ""
+msgstr "Les macros ne peuvent pas avoir d'alias."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:281
 msgid "Fatal compilation error: Unexpected compilation handler on stack."
-msgstr ""
+msgstr "Erreur de compilation fatale : gestionnaire de compilation inattendu sur la pile."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:282
 msgid "Fatal compilation error: Stack error."
-msgstr ""
+msgstr "Erreur de compilation fatale : erreur de pile."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:101
 #, python-brace-format
 msgid "Unexpected continue; in line {ctx.start.line}"
-msgstr ""
+msgstr "continue; inattendu à la ligne {ctx.start.line}."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:107
 #, python-brace-format
 msgid "Unexpected break_loop; in line {ctx.start.line}"
-msgstr ""
+msgstr "break_loop; inattendu à la ligne {ctx.start.line}."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:113
 #, python-brace-format
 msgid "Unexpected break; in line {ctx.start.line}"
-msgstr ""
+msgstr "break; inattendu à la ligne {ctx.start.line}."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:136
 #, python-brace-format
 msgid "Infinite recursion detected while trying to load an ExplorerScript file from {subfile_path}.\n"
 "Tried loading from: {file_name}."
-msgstr ""
+msgstr "Récursion infinie détectée lors de la tentative d'ouverture d'un fichier ExplorerScript à l'emplacement {subfile_path}.\n"
+"Tentative provenant du fichier suivant : {file_name}."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:162
 #, python-brace-format
 msgid "{fn}: Macro scripts must not contain any routines."
-msgstr ""
+msgstr "{fn} : les scripts de macro ne doivent pas contenir de routines."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:208
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:222
 #, python-brace-format
 msgid "The file to import ('{import_file}') was not found."
-msgstr ""
+msgstr "Fichier à importer («{import_file}») introuvable."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:214
 #, python-brace-format
 msgid "Invalid import: '{import_file}'. Non absolute/relative imports must not contain relative paths."
-msgstr ""
+msgstr "Importation invalide : «{import_file}». Les importations non absolues/relatives ne doivent pas contenir de chemins relatifs."
 
 #: explorerscript/explorerscript/syntax_error_listener.py:38
 #, python-brace-format
 msgid "line {self.line}:{self.column}: {self.msg}"
-msgstr ""
+msgstr "Ligne {self.line}:{self.column} : {self.msg}"
 
 #: files/skytemple_files/common/ppmdu_config/script_data.py:180
 msgid "This function has no description."
-msgstr ""
+msgstr "La fonction n'a pas de description."
 
 #: files/skytemple_files/common/tiled_image.py:39
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
-msgstr ""
+msgstr "Le mappage des tuiles ne peut pas être effectué. Le numéro de tuile référencé ({idx}) est plus grand que le maximum autorisé ({0x3FF}). Si vous essayez d'importer une image, faites en sorte qu'elle ait moins de tuiles uniques."
 
 #: files/skytemple_files/common/tiled_image.py:97
 msgid "Only 4bpp and 8bpp images are supported."
-msgstr ""
+msgstr "Seules les images à 4 bpp et 8 bpp sont supportées."
 
 #: files/skytemple_files/common/tiled_image.py:201
 msgid "Can not convert PIL image to PMD tiled image: Must be indexed image (=using a palette)"
-msgstr ""
+msgstr "Impossible de convertir l'image PIL en images tuiles pour PDM : l'image doit être indexée (c'est-à-dire utiliser une palette)."
 
 #: files/skytemple_files/common/tiled_image.py:205
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Palette must contain max {max_len_pal} RGB colors and be divisible by {single_palette_size}."
-msgstr ""
+msgstr "Impossible de convertir l'image PIL en images tuiles pour PDM : la palette doit contenir au maximum {max_len_pal} couleurs RVB et le nombre de couleurs doit être divisible par {single_palette_size}."
 
 #: files/skytemple_files/common/tiled_image.py:209
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Image dimensions must be {img_width}x{img_height}px."
-msgstr ""
+msgstr "Impossible de convertir l'image PIL en images tuiles pour PDM : les dimensions de l'image doivent être de {img_width}x{img_height} px."
 
 #: files/skytemple_files/common/tiled_image.py:269
 #: files/skytemple_files/common/tiled_image.py:277
 msgid "Can not convert PIL image to PMD tiled image: The color {pix} (from palette {math.floor(pix / single_palette_size)}) used by pixel {x+(idx % 2)}x{y} in tile {tile_id} ({tile_x}x{tile_y} is out of range. Expected are colors from palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
-msgstr ""
+msgstr "Impossible de convertir l'image PIL en images tuiles pour PDM : la couleur {pix} (de la palette {math.floor(pix / single_palette_size)}) utilisée par le pixel {x+(idx % 2)}x{y} dans la tuile {tile_id} ({tile_x}x{tile_y} est en dehors des limites autorisées. Seules les couleurs de la palette {tile_palette_indices[tile_id]} sont attendues ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 
 #: files/skytemple_files/common/tiled_image.py:317
 #, python-brace-format
 msgid "An image selected to import is too complex. It has too many unique tiles ({len_final_tiles}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
-msgstr ""
+msgstr "L'image sélectionnée pour l'importation est trop complexe. Elle contient trop de tuiles uniques ({len_final_tiles}, 1024 maximum sont autorisées).\n"
+"Veuillez faire en sorte qu'il y ait moins de tuiles uniques. Les tuiles uniques sont des portions de dimensions 8x8 de l'image d'origine qui sont identiques à aucune autre (qu'elles soient retournées ou qu'elles utilisent une sous-palette différente)."
 
 #: files/skytemple_files/common/util.py:310
 msgid "This ROM is not supported by SkyTemple."
-msgstr ""
+msgstr "Cette ROM n'est pas supportée par SkyTemple."
 
 #: files/skytemple_files/common/util.py:336
 #: files/skytemple_files/common/util.py:358
 #, python-brace-format
 msgid "Binary {binary.filepath} not found."
-msgstr ""
+msgstr "Fichier binaire {binary.filepath} introuvable."
 
 #: files/skytemple_files/common/util.py:368
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
-msgstr ""
+msgstr "Répertoire {dir_name} non existant."
 
 #: files/skytemple_files/common/util.py:371
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
-msgstr ""
+msgstr "Le fichier {file_name} existe déjà dans ce répertoire."
 
 #: files/skytemple_files/common/xml_util.py:43
 #, python-brace-format
 msgid "Invalid XML. Expected tag {tag}, got tag {ele.tag}."
-msgstr ""
+msgstr "XML invalide. Balise {tag} attendue, {ele.tag} trouvée."
 
 #: files/skytemple_files/common/xml_util.py:49
 #, python-brace-format
 msgid "Invalid XML. Expected attribute {attrib} for XML tag {ele.tag}."
-msgstr ""
+msgstr "XML invalide. Attribut {attrib} attendu pour la balise XML {ele.tag}."
 
 #: files/skytemple_files/data/md/model.py:58
 msgid "Stench"
-msgstr ""
+msgstr "Puanteur"
 
 #: files/skytemple_files/data/md/model.py:59
 msgid "Thick Fat"
-msgstr ""
+msgstr "Isograisse"
 
 #: files/skytemple_files/data/md/model.py:60
 msgid "Rain Dish"
-msgstr ""
+msgstr "Cuvette"
 
 #: files/skytemple_files/data/md/model.py:61
 msgid "Drizzle"
-msgstr ""
+msgstr "Crachin"
 
 #: files/skytemple_files/data/md/model.py:62
 msgid "Arena Trap"
-msgstr ""
+msgstr "Piège"
 
 #: files/skytemple_files/data/md/model.py:63
 msgid "Intimidate"
-msgstr ""
+msgstr "Intimidation"
 
 #: files/skytemple_files/data/md/model.py:64
 msgid "Rock Head"
-msgstr ""
+msgstr "Tête de Roc"
 
 #: files/skytemple_files/data/md/model.py:65
 msgid "Air Lock"
-msgstr ""
+msgstr "Air Lock"
 
 #: files/skytemple_files/data/md/model.py:66
 msgid "Hyper Cutter"
-msgstr ""
+msgstr "Hyper Cutter"
 
 #: files/skytemple_files/data/md/model.py:67
 msgid "Shadow tag"
-msgstr ""
+msgstr "Marque Ombre"
 
 #: files/skytemple_files/data/md/model.py:68
 msgid "Speed Boost"
-msgstr ""
+msgstr "Turbo"
 
 #: files/skytemple_files/data/md/model.py:69
 msgid "Battle Armor"
-msgstr ""
+msgstr "Armurbaston"
 
 #: files/skytemple_files/data/md/model.py:70
 msgid "Sturdy"
-msgstr ""
+msgstr "Fermeté"
 
 #: files/skytemple_files/data/md/model.py:71
 msgid "Suction Cups"
-msgstr ""
+msgstr "Ventouse"
 
 #: files/skytemple_files/data/md/model.py:72
 msgid "Clear Body"
-msgstr ""
+msgstr "Corps Sain"
 
 #: files/skytemple_files/data/md/model.py:73
 msgid "Torrent"
-msgstr ""
+msgstr "Torrent"
 
 #: files/skytemple_files/data/md/model.py:74
 msgid "Guts"
-msgstr ""
+msgstr "Cran"
 
 #: files/skytemple_files/data/md/model.py:75
 msgid "Rough Skin"
-msgstr ""
+msgstr "Peau Dure"
 
 #: files/skytemple_files/data/md/model.py:76
 msgid "Shell Armor"
-msgstr ""
+msgstr "Coque Armure"
 
 #: files/skytemple_files/data/md/model.py:77
 msgid "Natural Cure"
-msgstr ""
+msgstr "Médic Nature"
 
 #: files/skytemple_files/data/md/model.py:78
 msgid "Damp"
-msgstr ""
+msgstr "Moiteur"
 
 #: files/skytemple_files/data/md/model.py:79
 msgid "Limber"
-msgstr ""
+msgstr "Echauffement"
 
 #: files/skytemple_files/data/md/model.py:80
 msgid "Magnet Pull"
-msgstr ""
+msgstr "Magnépiège"
 
 #: files/skytemple_files/data/md/model.py:81
 msgid "White Smoke"
-msgstr ""
+msgstr "Ecran Fumée"
 
 #: files/skytemple_files/data/md/model.py:82
 msgid "Synchronize"
-msgstr ""
+msgstr "Synchro"
 
 #: files/skytemple_files/data/md/model.py:83
 msgid "Overgrow"
-msgstr ""
+msgstr "Engrais"
 
 #: files/skytemple_files/data/md/model.py:84
 msgid "Swift Swim"
-msgstr ""
+msgstr "Glissade"
 
 #: files/skytemple_files/data/md/model.py:85
 msgid "Sand Stream"
-msgstr ""
+msgstr "Sable Volant"
 
 #: files/skytemple_files/data/md/model.py:86
 msgid "Sand Veil"
-msgstr ""
+msgstr "Voile Sable"
 
 #: files/skytemple_files/data/md/model.py:87
 msgid "Keen Eye"
-msgstr ""
+msgstr "Regard Vif"
 
 #: files/skytemple_files/data/md/model.py:88
 msgid "Inner Focus"
-msgstr ""
+msgstr "Attention"
 
 #: files/skytemple_files/data/md/model.py:89
 #: ssb_debugger/skytemple_ssb_debugger/controller/global_state.py:46
 msgid "Static"
-msgstr ""
+msgstr "Statik"
 
 #: files/skytemple_files/data/md/model.py:90
 msgid "Shed Skin"
-msgstr ""
+msgstr "Mue"
 
 #: files/skytemple_files/data/md/model.py:91
 msgid "Huge Power"
-msgstr ""
+msgstr "Coloforce"
 
 #: files/skytemple_files/data/md/model.py:92
 msgid "Volt Absorb"
-msgstr ""
+msgstr "Absorb Volt"
 
 #: files/skytemple_files/data/md/model.py:93
 msgid "Water Absorb"
-msgstr ""
+msgstr "Absorb Eau"
 
 #: files/skytemple_files/data/md/model.py:94
 msgid "Forecast"
-msgstr ""
+msgstr "Météo"
 
 #: files/skytemple_files/data/md/model.py:95
 msgid "Serene Grace"
-msgstr ""
+msgstr "Sérénité"
 
 #: files/skytemple_files/data/md/model.py:96
 msgid "Poison Point"
-msgstr ""
+msgstr "Point Poison"
 
 #: files/skytemple_files/data/md/model.py:97
 msgid "Trace"
-msgstr ""
+msgstr "Calque"
 
 #: files/skytemple_files/data/md/model.py:98
 msgid "Oblivious"
-msgstr ""
+msgstr "Benêt"
 
 #: files/skytemple_files/data/md/model.py:99
 msgid "Truant"
-msgstr ""
+msgstr "Absentéisme"
 
 #: files/skytemple_files/data/md/model.py:100
 msgid "Run Away"
-msgstr ""
+msgstr "Fuite"
 
 #: files/skytemple_files/data/md/model.py:101
 msgid "Sticky Hold"
-msgstr ""
+msgstr "Glue"
 
 #: files/skytemple_files/data/md/model.py:102
 msgid "Cloud Nine"
-msgstr ""
+msgstr "Ciel Gris"
 
 #: files/skytemple_files/data/md/model.py:103
 msgid "Illuminate"
-msgstr ""
+msgstr "Lumiatirance"
 
 #: files/skytemple_files/data/md/model.py:104
 msgid "Early Bird"
-msgstr ""
+msgstr "Matinal"
 
 #: files/skytemple_files/data/md/model.py:105
 msgid "Hustle"
-msgstr ""
+msgstr "Agitation"
 
 #: files/skytemple_files/data/md/model.py:106
 msgid "Drought"
-msgstr ""
+msgstr "Sécheresse"
 
 #: files/skytemple_files/data/md/model.py:107
 msgid "LightningRod"
-msgstr ""
+msgstr "Paratonnerre"
 
 #: files/skytemple_files/data/md/model.py:108
 msgid "CompoundEyes"
-msgstr ""
+msgstr "Oeil Composé"
 
 #: files/skytemple_files/data/md/model.py:109
 msgid "Marvel Scale"
-msgstr ""
+msgstr "Ecaille Spé."
 
 #: files/skytemple_files/data/md/model.py:110
 msgid "Wonder Guard"
-msgstr ""
+msgstr "Garde Mystik"
 
 #: files/skytemple_files/data/md/model.py:111
 msgid "Insomnia"
-msgstr ""
+msgstr "Insomnia"
 
 #: files/skytemple_files/data/md/model.py:112
 msgid "Levitate"
-msgstr ""
+msgstr "Lévitation"
 
 #: files/skytemple_files/data/md/model.py:113
 msgid "Plus"
-msgstr ""
+msgstr "Plus"
 
 #: files/skytemple_files/data/md/model.py:114
 msgid "Pressure"
-msgstr ""
+msgstr "Pression"
 
 #: files/skytemple_files/data/md/model.py:115
 msgid "Liquid Ooze"
-msgstr ""
+msgstr "Suintement"
 
 #: files/skytemple_files/data/md/model.py:116
 msgid "Color Change"
-msgstr ""
+msgstr "Déguisement"
 
 #: files/skytemple_files/data/md/model.py:117
 msgid "Soundproof"
-msgstr ""
+msgstr "Anti-Bruit"
 
 #: files/skytemple_files/data/md/model.py:118
 msgid "Effect Spore"
-msgstr ""
+msgstr "Pose Spore"
 
 #: files/skytemple_files/data/md/model.py:119
 msgid "Flame Body"
-msgstr ""
+msgstr "Corps Ardent"
 
 #: files/skytemple_files/data/md/model.py:120
 msgid "Minus"
-msgstr ""
+msgstr "Minus"
 
 #: files/skytemple_files/data/md/model.py:121
 msgid "Own Tempo"
-msgstr ""
+msgstr "Tempo Perso"
 
 #: files/skytemple_files/data/md/model.py:122
 msgid "Magma Armor"
-msgstr ""
+msgstr "Armumagma"
 
 #: files/skytemple_files/data/md/model.py:123
 msgid "Water Veil"
-msgstr ""
+msgstr "Ignifu-Voile"
 
 #: files/skytemple_files/data/md/model.py:124
 msgid "Swarm"
-msgstr ""
+msgstr "Essaim"
 
 #: files/skytemple_files/data/md/model.py:125
 msgid "Cute Charm"
-msgstr ""
+msgstr "Joli Sourire"
 
 #: files/skytemple_files/data/md/model.py:126
 msgid "Immunity"
-msgstr ""
+msgstr "Vaccin"
 
 #: files/skytemple_files/data/md/model.py:127
 msgid "Blaze"
-msgstr ""
+msgstr "Brasier"
 
 #: files/skytemple_files/data/md/model.py:128
 msgid "Pickup"
-msgstr ""
+msgstr "Ramassage"
 
 #: files/skytemple_files/data/md/model.py:129
 msgid "Flash Fire"
-msgstr ""
+msgstr "Torche"
 
 #: files/skytemple_files/data/md/model.py:130
 msgid "Vital Spirit"
-msgstr ""
+msgstr "Esprit Vital"
 
 #: files/skytemple_files/data/md/model.py:131
 msgid "Chlorophyll"
-msgstr ""
+msgstr "Chlorophyle"
 
 #: files/skytemple_files/data/md/model.py:132
 msgid "Pure Power"
-msgstr ""
+msgstr "Force Pure"
 
 #: files/skytemple_files/data/md/model.py:133
 msgid "Shield Dust"
-msgstr ""
+msgstr "Ecran Poudre"
 
 #: files/skytemple_files/data/md/model.py:134
 msgid "Ice Body"
-msgstr ""
+msgstr "Corps Gel"
 
 #: files/skytemple_files/data/md/model.py:135
 msgid "Stall"
-msgstr ""
+msgstr "Frein"
 
 #: files/skytemple_files/data/md/model.py:136
 msgid "Anger Point"
-msgstr ""
+msgstr "Colérique"
 
 #: files/skytemple_files/data/md/model.py:137
 msgid "Tinted Lens"
-msgstr ""
+msgstr "Lentiteintée"
 
 #: files/skytemple_files/data/md/model.py:138
 msgid "Hydration"
-msgstr ""
+msgstr "Hydratation"
 
 #: files/skytemple_files/data/md/model.py:139
 msgid "Frisk"
-msgstr ""
+msgstr "Fouille"
 
 #: files/skytemple_files/data/md/model.py:140
 msgid "Mold Breaker"
-msgstr ""
+msgstr "Brise Moule"
 
 #: files/skytemple_files/data/md/model.py:141
 msgid "Unburden"
-msgstr ""
+msgstr "Délestage"
 
 #: files/skytemple_files/data/md/model.py:142
 msgid "Dry Skin"
-msgstr ""
+msgstr "Peau Sèche"
 
 #: files/skytemple_files/data/md/model.py:143
 msgid "Anticipation"
-msgstr ""
+msgstr "Anticipation"
 
 #: files/skytemple_files/data/md/model.py:144
 msgid "Scrappy"
-msgstr ""
+msgstr "Querelleur"
 
 #: files/skytemple_files/data/md/model.py:145
 msgid "Super Luck"
-msgstr ""
+msgstr "Chanceux"
 
 #: files/skytemple_files/data/md/model.py:146
 msgid "Gluttony"
-msgstr ""
+msgstr "Gloutonnerie"
 
 #: files/skytemple_files/data/md/model.py:147
 msgid "Solar Power"
-msgstr ""
+msgstr "Force Soleil"
 
 #: files/skytemple_files/data/md/model.py:148
 msgid "Skill Link"
-msgstr ""
+msgstr "Multi-Coups"
 
 #: files/skytemple_files/data/md/model.py:149
 msgid "Reckless"
-msgstr ""
+msgstr "Téméraire"
 
 #: files/skytemple_files/data/md/model.py:150
 msgid "Sniper"
-msgstr ""
+msgstr "Sniper"
 
 #: files/skytemple_files/data/md/model.py:151
 msgid "Slow Start"
-msgstr ""
+msgstr "Début Calme"
 
 #: files/skytemple_files/data/md/model.py:152
 msgid "Heatproof"
-msgstr ""
+msgstr "Ignifuge"
 
 #: files/skytemple_files/data/md/model.py:153
 msgid "Download"
-msgstr ""
+msgstr "Télécharge"
 
 #: files/skytemple_files/data/md/model.py:154
 msgid "Simple"
-msgstr ""
+msgstr "Simple"
 
 #: files/skytemple_files/data/md/model.py:155
 msgid "Tangled Feet"
-msgstr ""
+msgstr "Pieds Confus"
 
 #: files/skytemple_files/data/md/model.py:156
 msgid "Adaptability"
-msgstr ""
+msgstr "Adaptabilité"
 
 #: files/skytemple_files/data/md/model.py:157
 msgid "Technician"
-msgstr ""
+msgstr "Technicien"
 
 #: files/skytemple_files/data/md/model.py:158
 msgid "Iron Fist"
-msgstr ""
+msgstr "Poing de Fer"
 
 #: files/skytemple_files/data/md/model.py:159
 msgid "Motor Drive"
-msgstr ""
+msgstr "Motorisé"
 
 #: files/skytemple_files/data/md/model.py:160
 msgid "Unaware"
-msgstr ""
+msgstr "Inconscient"
 
 #: files/skytemple_files/data/md/model.py:161
 msgid "Rivalry"
-msgstr ""
+msgstr "Rivalité"
 
 #: files/skytemple_files/data/md/model.py:162
 msgid "Bad Dreams"
-msgstr ""
+msgstr "Mauvais Rêve"
 
 #: files/skytemple_files/data/md/model.py:163
 msgid "No Guard"
-msgstr ""
+msgstr "Annule Garde"
 
 #: files/skytemple_files/data/md/model.py:164
 msgid "Normalize"
-msgstr ""
+msgstr "Normalise"
 
 #: files/skytemple_files/data/md/model.py:165
 msgid "Solid Rock"
-msgstr ""
+msgstr "Solide Roc"
 
 #: files/skytemple_files/data/md/model.py:166
 msgid "Quick Feet"
-msgstr ""
+msgstr "Pied Véloce"
 
 #: files/skytemple_files/data/md/model.py:167
 msgid "Filter"
-msgstr ""
+msgstr "Filtre"
 
 #: files/skytemple_files/data/md/model.py:168
 msgid "Klutz"
-msgstr ""
+msgstr "Maladresse"
 
 #: files/skytemple_files/data/md/model.py:169
 msgid "Stedfast"
-msgstr ""
+msgstr "Impassible"
 
 #: files/skytemple_files/data/md/model.py:170
 msgid "Flower Gift"
-msgstr ""
+msgstr "Don Floral"
 
 #: files/skytemple_files/data/md/model.py:171
 msgid "Poision Heal"
-msgstr ""
+msgstr "Soin Poison"
 
 #: files/skytemple_files/data/md/model.py:172
 msgid "Magic Guard"
-msgstr ""
+msgstr "Garde Magik"
 
 #: files/skytemple_files/data/md/model.py:173
 msgid "$$$"
-msgstr ""
+msgstr "$$$"
 
 #: files/skytemple_files/data/md/model.py:174
 msgid "Honey Gather"
-msgstr ""
+msgstr "Cherche Miel"
 
 #: files/skytemple_files/data/md/model.py:175
 msgid "Aftermath"
-msgstr ""
+msgstr "Boom Final"
 
 #: files/skytemple_files/data/md/model.py:176
 msgid "Snow Cloak"
-msgstr ""
+msgstr "Rideau Neige"
 
 #: files/skytemple_files/data/md/model.py:177
 msgid "Snow Warning"
-msgstr ""
+msgstr "Alerte Neige"
 
 #: files/skytemple_files/data/md/model.py:178
 msgid "Forewarn"
-msgstr ""
+msgstr "Prédiction"
 
 #: files/skytemple_files/data/md/model.py:179
 msgid "Storm Drain"
-msgstr ""
+msgstr "Lavabo"
 
 #: files/skytemple_files/data/md/model.py:180
 msgid "Leaf Guard"
-msgstr ""
+msgstr "Feuil. Garde"
 
 #: files/skytemple_files/data/md/model.py:181
 msgid "NONE"
-msgstr ""
+msgstr "AUCUNE"
 
 #: files/skytemple_files/data/md/model.py:182
 msgid "NULL"
-msgstr ""
+msgstr "NULL"
 
 #: files/skytemple_files/data/monster_xml.py:205
 #, python-brace-format
@@ -1439,15 +1441,15 @@ msgstr ""
 
 #: files/skytemple_files/patch/handler/extract_item_lists.py:46
 msgid "Extracts the hardcoded item lists, used for mission rewards/treasure boxes content as well as Kecleon shop items, and put them in files. Provides support for reading them from the rom file system."
-msgstr ""
+msgstr "Extrait les listes d'objet codées en dur, utilisées pour les récompenses de mission et le contenu des coffres ainsi que les objets du magasin Kecleon, et les met dans des fichiers. Fournit le support pour lire les listes depuis le système de fichiers de la rom."
 
 #: files/skytemple_files/patch/handler/extract_item_lists.py:111
 msgid "Don't have enough space to put filenames! "
-msgstr ""
+msgstr "Pas assez d'espace pour mettre les noms de fichier ! "
 
 #: files/skytemple_files/patch/handler/far_off_pal_overdrive.py:41
 msgid "Makes the game always move the PoV to your partners when they use moves or are attacked, even if the partner is only one tile away, when far-off pals is enabled. Recommended for CTC since the PoV stays on your last pokemon at the end of a manual movement round without this, and CTC already reduces the amount of time the game pauses for between PoV changes."
-msgstr ""
+msgstr "Fait en sorte de toujours voir les coéquipiers quand ils utilisent des capacités ou sont attaqués, même s'ils sont à une case de distance, lorsque l'option pour voir les coéquipiers au loin est activée. Recommandé pour le patch «CompleteTeamControl» étant donné que la caméra reste sur le dernier pokémon ayant agi en mode manuel sans cela, et le patch «CompleteTeamControl» réduit le temps de pause lors du déplacement de la caméra."
 
 #: files/skytemple_files/patch/handler/fix_evolution.py:38
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
