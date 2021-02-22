@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-22 12:17\n"
+"PO-Revision-Date: 2021-02-22 13:36\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -1007,7 +1007,7 @@ msgstr "En Attente"
 
 #: files/skytemple_files/data/tbl_talk/model.py:30
 msgid "Ground Wait"
-msgstr ""
+msgstr "En Attente (Ground)"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:43
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:103
@@ -1508,88 +1508,88 @@ msgstr ""
 
 #: files/skytemple_files/patch/patches.py:157
 msgid "patch.py missing in patch package."
-msgstr ""
+msgstr "Fichier patch.py manquant dans le paquetage patch."
 
 #: files/skytemple_files/patch/patches.py:159
 msgid "The patch.py of the patch package contains a syntay error."
-msgstr ""
+msgstr "Il y a une erreur de syntaxe dans le fichier patch.py du paquetage patch."
 
 #: files/skytemple_files/patch/patches.py:164
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
-msgstr ""
+msgstr "Le fichier patch.py du paquetage patch ne contient pas de gestionnaire de patch («PatchHandler»)."
 
 #: files/skytemple_files/patch/patches.py:169
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
-msgstr ""
+msgstr "Le paquetage patch ne contient aucune entrée de configuration dans config.xml correspondant au nom du patch géré par ce gestionnaire."
 
 #: files/skytemple_files/patch/patches.py:175
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
-msgstr ""
+msgstr "Aucun patch trouvé dans la configuration pour le gestionnaire «{handler.name}»."
 
 #: files/skytemple_files/script/ssb/constants.py:75
 #, python-brace-format
 msgid "Invalid DungeonMode: {string}"
-msgstr ""
+msgstr "DungeonMode invalide : {string}"
 
 #: files/skytemple_files/script/ssb/constants.py:202
 #: files/skytemple_files/script/ssb/constants.py:203
 #, python-brace-format
 msgid "Unknown constant {constant_as_string}."
-msgstr ""
+msgstr "Constante inconnue : {constant_as_string}."
 
 #: files/skytemple_files/script/ssb/script_compiler.py:107
 msgid "The routine data lists for the decompiler must have the same lengths."
-msgstr ""
+msgstr "Les listes de données de routine doivent avoir la même taille pour le décompilateur."
 
 #: files/skytemple_files/script/ssb/script_compiler.py:120
 #, python-brace-format
 msgid "Routine {i} not found."
-msgstr ""
+msgstr "Routine {i} introuvable."
 
 #: files/skytemple_files/script/ssb/script_compiler.py:137
 msgid "The script must contain exactly {len(self.rom_data.script_data.common_routine_info)} coroutines."
-msgstr ""
+msgstr "Le script doit contenir exactement {len(self.rom_data.script_data.common_routine_info)} coroutines."
 
 #: files/skytemple_files/script/ssb/script_compiler.py:140
 msgid "The script must not contain any duplicate coroutines."
-msgstr ""
+msgstr "Le script ne doit pas contenir de coroutine dupliquée."
 
 #: files/skytemple_files/script/ssb/script_compiler.py:146
 #, python-brace-format
 msgid "Unknown coroutine {err}"
-msgstr ""
+msgstr "Coroutine inconnue : {err}"
 
 #: files/skytemple_files/script/ssb/script_compiler.py:161
 msgid "Coroutines and regular routines can not be mixed in a script file."
-msgstr ""
+msgstr "Coroutines et routines ordinaires ne peuvent pas être ensemble dans un même fichier de script."
 
 #: files/skytemple_files/script/ssb/script_compiler.py:173
 #, python-brace-format
 msgid "Unknown operation {in_op.op_code.name}."
-msgstr ""
+msgstr "Opération inconnue : {in_op.op_code.name}."
 
 #: files/skytemple_files/script/ssb/script_compiler.py:184
 msgid "The number of parameters for {normal_op_code.name} must be at least {normal_op_code.params}, is {self._correct_param_list_len(in_op.params)}."
-msgstr ""
+msgstr "Le nombre de paramètres pour {normal_op_code.name} doit être d'au moins {normal_op_code.params}, or il est de {self._correct_param_list_len(in_op.params)}."
 
 #: files/skytemple_files/script/ssb/script_compiler.py:198
 msgid "The number of parameters for {op_code.name} must be {op_code.params}, is {self._correct_param_list_len(in_op.params)}."
-msgstr ""
+msgstr "Le nombre de paramètres pour {op_code.name} doit être de {op_code.params}, or il est de {self._correct_param_list_len(in_op.params)}."
 
 #: files/skytemple_files/script/ssb/script_compiler.py:277
 #, python-brace-format
 msgid "Unknown language for string: {lang}"
-msgstr ""
+msgstr "Langue inconnue pour une chaîne de caractères : {lang}"
 
 #: files/skytemple_files/script/ssb/script_compiler.py:281
 #, python-brace-format
 msgid "Invalid parameter supplied for an operation: {param}"
-msgstr ""
+msgstr "Paramètre invalide pour une opération : {param}"
 
 #: files/skytemple_files/script/ssb/writer.py:134
 msgid "Could not compile script: All languages must have the same amount of strings."
-msgstr ""
+msgstr "Impossible de compiler le script : toutes les langues doivent avoir le même nombre de chaînes de caractères."
 
 #: py_desmume/desmume/controls.py:90
 msgid "A"
@@ -1665,7 +1665,7 @@ msgstr ""
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:103
 msgid "Boost"
-msgstr ""
+msgstr "Accélération"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:104
