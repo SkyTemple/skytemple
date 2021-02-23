@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-23 13:05\n"
+"PO-Revision-Date: 2021-02-23 14:11\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -34,7 +34,7 @@ msgstr "Ungültiges Tileset. Dieses Tileset hat ist die Maße {dim}px, aber es w
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:109
 msgid "Invalid animation: Animation is only supported for palettes 10 and 11."
-msgstr "Ungültige Animation: Animationen werden nur unterstützt für die Paletten 10 und 11."
+msgstr "Ungültige Animation: Animationen werden nur für die Paletten 10 und 11 unterstützt."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:123
 #, python-brace-format
@@ -49,12 +49,12 @@ msgstr "\"{basename}\" kann nicht als Dungeon Tileset importiert werden: Es muss
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:134
 #, python-brace-format
 msgid "Can not import image \"{basename}\" as dungeon tileset: Palette must contain  256 RGB colors."
-msgstr "\"{basename}\" kann nicht als Dungeon Tileset importiert werden: Die Palette muss 256 RGB Farben beinhalten."
+msgstr "\"{basename}\" kann nicht als Dungeon Tileset importiert werden: Die Palette muss 256 RGB-Farben beinhalten."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:139
 #, python-brace-format
 msgid "Can not import images as dungeon tilesets: The palettes of the images do not match. First image read that didn't match: \"{basename}\""
-msgstr "Bilddateien können nicht als Dungeon Tileset importiert werden: Die Paletten der Bilder stimmen nicht überein. Erstes Bild das nicht übereinstimmt: \"{basename}\""
+msgstr "Bilddateien können nicht als Dungeon Tileset importiert werden: Die Paletten der Bilder stimmen nicht überein. Erstes Bild, das nicht übereinstimmt: \"{basename}\""
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:144
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:145
@@ -86,7 +86,7 @@ msgstr "Fehler in der XML-Datei: Mindestens eine der \"Animation Frames\" hat ni
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:282
 msgid "Error in the XML: Durations for a palette or it's colors are not correctly defined."
-msgstr "Fehler in der XML-Datei: Dauer für eine Palette oder ihrer Farben sind nicht korrekt definiert."
+msgstr "Fehler in der XML-Datei: Dauer für eine Palette oder eine ihrer Farben ist nicht korrekt definiert."
 
 #: dtef/skytemple_dtef/rules.py:118
 #, python-brace-format
@@ -100,7 +100,7 @@ msgstr "Wert für die Makro-Variable {var_name} fehlt."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_adventure_log.py:42
 msgid "No value for adventure_log set."
-msgstr "Wert für \"adeventure_log\" fehlt."
+msgstr "Wert für \"adventure_log\" fehlt."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_clear.py:42
 msgid "No variable for clear."
@@ -134,7 +134,7 @@ msgstr "Wert für Zuweisung fehlt."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:58
 #, python-brace-format
 msgid "value(X) can not be used with index based assignments (line {self.ctx.start.line})."
-msgstr "\"value(X)\" kann nicht mit index basierten Zuweisungen verwendet werden (Zeile {self.ctx.start.line})."
+msgstr "\"value(X)\" kann nicht mit index-basierten Zuweisungen verwendet werden (Zeile {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_reset.py:43
 msgid "No target for reset."
@@ -226,7 +226,7 @@ msgstr "Ungültiger Aufruf für einen \"Message Switch\"."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_header.py:58
 msgid "Unknown case operation."
-msgstr "Unbekannte \"Case\" Operation."
+msgstr "Unbekannte \"Case\"-Operation."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:55
 msgid "Invalid message switch."
@@ -269,7 +269,7 @@ msgstr "Ungültiger Inhalt für einen Switch-Kopf"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:72
 msgid "Unknown switch operation."
-msgstr "Ungültige Switch Operation."
+msgstr "Ungültige Switch-Operation."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/dungeon_mode.py:42
 msgid "No dungeon id set for dungeon_mode switch condition."
@@ -286,7 +286,7 @@ msgstr "Keine Variable für Scn-Switch-Bedingung gesetzt."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:50
 #, python-brace-format
 msgid "Index for scn() if condition must be 0 or 1 (line {self.ctx.start.line})."
-msgstr "Index for scn()-If-Anweisung muss 0 oder 1 sein (Zeile {self.ctx.start.line})."
+msgstr "Index der scn()-If-Anweisung muss 0 oder 1 sein (Zeile {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/macro_call.py:46
 #, python-brace-format
@@ -296,7 +296,7 @@ msgstr "Das Makro {name} wurde nicht gefunden."
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:89
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:93
 msgid "Dependency cycle detected while trying to resolve macros (for macro '{v['name']}')."
-msgstr "Abhängigkeits-Zyklus entdeckt beim Versuch Markos aufzulösen (für Makro '{v['name']}')."
+msgstr "Abhängigkeitszyklus beim Versuch, Markos aufzulösen erkannt (für Makro '{v['name']}')."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_visitor.py:78
 msgid "Macros can not alias."
@@ -308,7 +308,7 @@ msgstr "Schwerwiegender Fehler bei der Kompilierung: Unerwarteter Kompilierungs-
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:282
 msgid "Fatal compilation error: Stack error."
-msgstr "Schwerwiegender Fehler bei der Kompilierung: Stack Fehler."
+msgstr "Schwerwiegender Fehler bei der Kompilierung: Stack-Fehler."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:101
 #, python-brace-format
@@ -329,13 +329,13 @@ msgstr "Unerwartetes \"break\"; in Zeile {ctx.start.line}"
 #, python-brace-format
 msgid "Infinite recursion detected while trying to load an ExplorerScript file from {subfile_path}.\n"
 "Tried loading from: {file_name}."
-msgstr "Endlose Rekursion festgestellt, während versucht wurde ein ExplorerScript Skript von {subfile_path} zu Laden.\n"
-"Versuchte dort folgende Datei zu Laden: {file_name}."
+msgstr "Endlose Rekursion festgestellt, während versucht wurde, ein ExplorerScript-Skript von {subfile_path} zu laden.\n"
+"Dateipfad: {file_name}."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:162
 #, python-brace-format
 msgid "{fn}: Macro scripts must not contain any routines."
-msgstr "{fn}: Makro Skripte dürfen keine Routinen beinhalten."
+msgstr "{fn}: Makroskripte dürfen keine Routinen beinhalten."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:208
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:222
@@ -359,11 +359,11 @@ msgstr "Diese Funktion hat keine Beschreibung."
 
 #: files/skytemple_files/common/tiled_image.py:39
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
-msgstr "Kachelzuordnung kann nicht verarbeitet werden. Die referenzierte Kachel ({idx}) ist größer als die maximale Kachelnummer ({0x3FF}). Falls du versucht ein Bild zu importieren, versuche weniger einmalige Kacheln zu haben."
+msgstr "Kachelzuordnung kann nicht verarbeitet werden. Die referenzierte Kachel ({idx}) ist größer als die maximale Kachelanzahl ({0x3FF}). Falls du versucht ein Bild zu importieren, versuche bitte, die Anzahl einmaliger Kacheln zu reduzieren."
 
 #: files/skytemple_files/common/tiled_image.py:97
 msgid "Only 4bpp and 8bpp images are supported."
-msgstr "Nur 4bpp und 8bpp Bilder werden unterstützt."
+msgstr "Nur 4bpp und 8bpp-Bilder werden unterstützt."
 
 #: files/skytemple_files/common/tiled_image.py:201
 msgid "Can not convert PIL image to PMD tiled image: Must be indexed image (=using a palette)"
@@ -1036,7 +1036,7 @@ msgstr "Anführer Spawn Boden"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:58
 msgid "Secondary, Room"
-msgstr "Sekundär, Raum"
+msgstr "Sekundäres Terrain, Raum"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:61
 msgid "Chasm, Hallway"
@@ -8103,7 +8103,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1876
 msgid "Transparent Color"
-msgstr ""
+msgstr "Transparente Farbe"
 
 #: skytemple/skytemple/skytemple.glade:1919
 msgid "Color"
