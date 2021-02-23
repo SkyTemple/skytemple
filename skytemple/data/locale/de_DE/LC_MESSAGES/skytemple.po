@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-23 15:21\n"
+"PO-Revision-Date: 2021-02-23 16:17\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3424,7 +3424,7 @@ msgstr "Gegner IQ:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1981
 msgid "IQ Booster enabled?:"
-msgstr "IQ-Booster aktiviert?:"
+msgstr "IQ-Steigerer aktiviert?:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2108
 msgid "Chances"
@@ -3747,12 +3747,12 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:387
 msgid "If enabled, the IQ booster increases IQ on this floor."
-msgstr ""
+msgstr "Wenn aktiviert, erhöht der IQ-Steigerer IQ auf dieser Ebene."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:427
 #, python-brace-format
 msgid "You can not spawn Kecleons or the Decoy Pokémon or any Pokémon above #{DUMMY_MD_INDEX}."
-msgstr ""
+msgstr "Du kannst keine Kecleon, das Köder Pokémon oder einen Pokémon über Index #{DUMMY_MD_INDEX} spawnen."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:428
 msgid "SkyTemple: Invalid Pokémon"
@@ -3888,7 +3888,8 @@ msgstr "Lösung"
 #: skytemple/skytemple/module/dungeon/controller/main.glade:304
 msgid "Clicking apply will fix all selected errors and additionally\n"
 "correct the floor counts of all dungeons."
-msgstr ""
+msgstr "Durch \"Anwenden\" werden alle ausgewählten Fehler behoben und\n"
+"zusätzlich wird die Anzahl aller Ebenen korrigiert."
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:340
 msgid "Edit Dungeon Groups"
@@ -3903,15 +3904,16 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/main.py:110
 msgid "Dungeon Errors were fixed.\n"
 "However there are still errors left. Re-open the dialog to fix the rest. If they are still not fixed, please report a bug!"
-msgstr ""
+msgstr "Dungeon-Fehler wurden behoben.\n"
+"Es sind aber noch Fehler übrig. Öffne den Dialog erneut, um den Rest zu beheben. Wenn sie danach immer noch nicht behoben sind, sende uns bitte einen Fehlerbericht!"
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:119
 msgid "Dungeon Errors were successfully fixed."
-msgstr ""
+msgstr "Dungeon-Fehler wurden erfolgreich behoben."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:137
 msgid "The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first."
-msgstr ""
+msgstr "Das Spiel enthält derzeit ungültige Dungeons. Bitte klicke zuerst auf 'Dungeon-Fehler beheben'."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:158
 msgid "Dungeons were missing in the list. This is a bug in SkyTemple! Please try again and report this!"
@@ -3937,11 +3939,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:414
 msgid "Remove the unused floor."
-msgstr ""
+msgstr "Unbenutzte Ebene entfernen."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:415
 msgid "Add the remaining floors to the dungeon."
-msgstr ""
+msgstr "Übrige Ebene zu Dungeon hinzufügen."
 
 #: skytemple/skytemple/module/dungeon/module.py:158
 #, python-brace-format
@@ -3950,7 +3952,7 @@ msgstr "Statischer Raum {i}"
 
 #: skytemple/skytemple/module/dungeon/module.py:418
 msgid "Some dungeons were missing in the new group list. This is a bug."
-msgstr ""
+msgstr "Einige Dungeons fehlten in der neuen Gruppenliste. Dies ist ein Fehler."
 
 #: skytemple/skytemple/module/dungeon/module.py:450
 #, python-brace-format
@@ -4610,7 +4612,7 @@ msgstr "Regeln für Dungeon Tileset {self.item_id}"
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:111
 #, python-brace-format
 msgid "Dungeon Tileset {self.item_id}"
-msgstr ""
+msgstr "Dungeon-Tileset {self.item_id}"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:129
 msgid "To import select the XML file in the DTEF tileset package. If it is still zipped, unzip it first."
@@ -4622,7 +4624,7 @@ msgstr "Dungeon Tileset importieren..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:143
 msgid "DTEF XML document (*.dtef.xml)"
-msgstr ""
+msgstr "DTEF XML-Dokument (*.dtef.xml)"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:166
 msgid "The tileset was successfully imported."
@@ -5414,7 +5416,7 @@ msgstr "Andere ausblenden"
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:143
 #: ssb_debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:143
 msgid "Edit the scene with the same name as the map background"
-msgstr ""
+msgstr "Bearbeite die Szene mit dem gleichen Namen wie der Kartenhintergrund"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:145
 msgid "Go to Scenes"
@@ -5598,7 +5600,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2741
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2779
 msgid "Using a single image"
-msgstr ""
+msgstr "Über ein einzelnes Bild"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2758
 msgid "Exports and imports using a single image.\n\n"
@@ -5615,7 +5617,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2817
 msgid "BPA to export or import:"
-msgstr ""
+msgstr "BPA zum Ex- oder Importieren:"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2899
 msgid "BPA Settings"
@@ -6032,7 +6034,7 @@ msgstr "Auffüllung"
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:85
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:71
 msgid "Export font in folder..."
-msgstr ""
+msgstr "Schrift exportieren..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:107
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
@@ -6163,7 +6165,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:204
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:530
 msgid "WTE Image Type: "
-msgstr ""
+msgstr "WTE Bildtyp: "
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:232
 msgid "Discard Palette"
