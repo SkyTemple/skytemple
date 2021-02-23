@@ -42,8 +42,7 @@ def handle_exception(exc_type, exc_value, exc_traceback):
         traceback_str = ''.join(traceback.format_exception(exc_type, exc_value, exc_traceback))
         GLib.idle_add(lambda: display_error(
             (exc_type, exc_value, exc_traceback),
-             f(_("An uncaught exception occurred! This shouldn't happen, please report it!\n\n"
-                 "{traceback_str}")),
+             f(_("An uncaught exception occurred! This shouldn't happen, please report it!")) + "\n\n" + traceback_str,
             _("SkyTemple - Uncaught error!"), log=False
         ))
     except:
