@@ -46,18 +46,18 @@ jobs:
           repository: skytemple/tilequant
           path: tilequant
       - name: Generate Strings
-        run: >-
-          find .
-              -type f
-              \(
-                  -name "*.py" -or
-                  -name "*.glade"
-              \)
-              ! -path "py_desmume/desmume/frontend/PyDeSmuMe.glade"
-          | xargs xgettext
-              -F --keyword='_' --no-wrap --foreign-user
-              --package-name=skytemple --msgid-bugs-address=https://translate.skytemple.org
-              --add-comments='TRANSLATORS:' --from-code=UTF-8
+        run: |
+          find . \
+              -type f \
+              \( \
+                  -name "*.py" -or \
+                  -name "*.glade" \
+              \) \
+              ! -path "py_desmume/desmume/frontend/PyDeSmuMe.glade" \
+          | xargs xgettext \
+              -F --keyword='_' --no-wrap --foreign-user \
+              --package-name=skytemple --msgid-bugs-address=https://translate.skytemple.org \
+              --add-comments='TRANSLATORS:' --from-code=UTF-8 \
               -o skytemple/skytemple/data/locale/skytemple.pot
       - name: Commit and Push
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version
