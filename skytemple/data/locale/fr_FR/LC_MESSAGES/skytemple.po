@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-23 18:09+0000\n"
-"PO-Revision-Date: 2021-02-23 20:24\n"
+"PO-Revision-Date: 2021-02-23 21:26\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -2183,7 +2183,9 @@ msgstr "Si vous n'enregistrez pas, vos modifications seront perdues."
 msgid "The file is still loaded in RAM! Currently you are still able to debug using the old cached information stored in the editor.\n"
 "If you close the editor, you won't be able to debug this file until it is reloaded in RAM.\n\n"
 "Do you still want to close this file?"
-msgstr ""
+msgstr "Le fichier est encore chargé dans la RAM ! Pour l'instant, vous pouvez toujours déboguer en utilisant les anciennes informations mises en cache par l'éditeur. \n"
+"Si vous fermez l'éditeur, vous ne pourrez pas déboguer ce fichier tant qu'il n'est pas rechargé dans la RAM.\n\n"
+"Êtes-vous sûr de vouloir fermer ce fichier ?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:340
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1553
@@ -2204,11 +2206,11 @@ msgstr "Fermer"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:45
 msgid "Free"
-msgstr ""
+msgstr "Libre"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:47
 msgid "Block"
-msgstr ""
+msgstr "Bloc"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:48
 msgid "Temporary"
@@ -2216,7 +2218,7 @@ msgstr "Temporaire"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:49
 msgid "Sub Table"
-msgstr ""
+msgstr "Sous-table"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:30
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:91
@@ -2264,7 +2266,7 @@ msgstr "ID"
 #: skytemple/skytemple/module/script/controller/ssa.py:1237
 #: skytemple/skytemple/module/script/controller/ssa.py:1246
 msgid "Kind"
-msgstr ""
+msgstr "Catégorie"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:90
 #: skytemple/skytemple/module/script/controller/ssa.glade:1630
@@ -2321,7 +2323,7 @@ msgstr "Objets"
 #: skytemple/skytemple/module/script/controller/ssa.glade:1425
 #: skytemple/skytemple/module/script/controller/ssa.glade:1453
 msgid "Performers"
-msgstr ""
+msgstr "Exécuteurs"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:290
 #: skytemple/skytemple/module/script/controller/ssa.glade:1534
@@ -2331,7 +2333,7 @@ msgstr "Déclencheurs"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:299
 msgid "Pos. Marks"
-msgstr ""
+msgstr "Marqueurs de Position"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:56
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:60
@@ -2345,12 +2347,12 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.py:1220
 #: skytemple/skytemple/module/script/controller/ssa.py:1356
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:57
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:61
 msgid "Value"
-msgstr ""
+msgstr "Valeur"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:151
 #: skytemple/skytemple/core/ui_utils.py:67
@@ -2440,17 +2442,17 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:846
 msgid "Name of the new script file:"
-msgstr ""
+msgstr "Nom du nouveau fichier de script : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:858
 #, python-brace-format
 msgid "Do you want to delete the directory {row[1]} with all of it's contents?"
-msgstr ""
+msgstr "Voulez-vous supprimer le répertoire {row[1]} ainsi que tout son contenu ?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:866
 #, python-brace-format
 msgid "Do you want to delete the script file {row[1]}?"
-msgstr ""
+msgstr "Voulez-vous vraiment supprimer le fichier de script {row[1]} ?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:903
 msgid "Common"
