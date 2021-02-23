@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-23 18:09+0000\n"
-"PO-Revision-Date: 2021-02-23 19:20\n"
+"PO-Revision-Date: 2021-02-23 20:24\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -96,7 +96,7 @@ msgstr "Un bloque 'with(){}' necesita exactamente una operación binaria. El man
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:87
 msgid "A with(){} block can not contain labels."
-msgstr ""
+msgstr "Un bloque with(){} no puede contener etiquetas."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:44
 msgid "No variable in if condition."
@@ -105,7 +105,7 @@ msgstr "No se ha definido ninguna variable en la condición 'if'."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:59
 #, python-brace-format
 msgid "The variable {var_target_name} can not be used with 'not' (line {self.ctx.start.line})."
-msgstr ""
+msgstr "La variable {var_target_name} no puede ser usada con 'not' (línea {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:47
 msgid "No variable for if condition."
@@ -560,7 +560,7 @@ msgstr ""
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:645
 msgid "Config"
-msgstr ""
+msgstr "Configuración"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:654
 msgid "_Saves"
@@ -736,7 +736,7 @@ msgstr ""
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:7
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:384
 msgid "Joystick Config"
-msgstr ""
+msgstr "Configuración del joystick"
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:112
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:800
@@ -2134,7 +2134,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:178
 msgid "Debugging disabled."
-msgstr ""
+msgstr "Depuración deshabilitada."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:320
 #, python-brace-format
@@ -2219,7 +2219,7 @@ msgstr "Script"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:64
 msgid "Path"
-msgstr ""
+msgstr "Ruta"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:70
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:87
@@ -2296,7 +2296,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:234
 msgid "<Global>"
-msgstr ""
+msgstr "<Global>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
 #: skytemple/skytemple/module/lists/module.py:74
@@ -2325,7 +2325,7 @@ msgstr "Desencadenantes"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:299
 msgid "Pos. Marks"
-msgstr ""
+msgstr "Marcas de pos."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:56
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:60
@@ -2367,7 +2367,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:326
 msgid "Error loading the emulator!"
-msgstr ""
+msgstr "¡Error al cargar el emulador!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:477
 msgid "Open..."
@@ -2385,27 +2385,27 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:639
 msgid "PNG Image (*.png)"
-msgstr ""
+msgstr "Imagen PNG (*.png)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:642
 msgid "Save Screenshot..."
-msgstr ""
+msgstr "Guardar captura de pantalla..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:795
 msgid "Open Scenes..."
-msgstr ""
+msgstr "Abrir escenas..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:802
 msgid "Open Scene..."
-msgstr ""
+msgstr "Abrir escena..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:811
 msgid "Create directory..."
-msgstr ""
+msgstr "Crear directorio..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:813
 msgid "Create new script file..."
-msgstr ""
+msgstr "Crear nuevo script..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:818
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:889
@@ -2414,11 +2414,11 @@ msgstr "Macros"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:821
 msgid "Delete directory..."
-msgstr ""
+msgstr "Eliminar directorio..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:829
 msgid "Delete script file..."
-msgstr ""
+msgstr "Eliminar script..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:838
 msgid "Create Directory"
@@ -2467,7 +2467,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:970
 msgid "Save dumped block..."
-msgstr ""
+msgstr "Guardar bloque volcado..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1191
 msgid "Unable to save savestate!"
@@ -2529,7 +2529,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:287
 msgid "Error saving the script."
-msgstr ""
+msgstr "Error al guardar el script."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:366
 #, python-brace-format
@@ -2540,7 +2540,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:377
 msgid "SSBScript is not available for this file."
-msgstr ""
+msgstr "SSBScript no está disponible para este archivo."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:466
 msgid "An old version of this script is still loaded in RAM, but breakpoints are not available.\n"
@@ -2562,7 +2562,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:918
 msgid "ExplorerScript is not available for this file."
-msgstr ""
+msgstr "ExplorerScript no está disponible para este archivo."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:939
 msgid "The ExplorerScript source code does not match the compiled script that is present in the ROM.\n"
@@ -2592,7 +2592,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:44
 msgid "Resume."
-msgstr ""
+msgstr "Reanudar."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:45
 msgid "Resume"
@@ -2731,7 +2731,7 @@ msgstr "Mapa del mundo"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:59
 msgid "Specific"
-msgstr ""
+msgstr "Específico"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:63
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:177
@@ -2750,7 +2750,7 @@ msgstr "Copia de seguridad"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:75
 msgid "Misc"
-msgstr ""
+msgstr "Misceláneo"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:259
 msgid "The variable must have a number as value."
@@ -2773,7 +2773,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:172
 msgid "Open ROM"
-msgstr ""
+msgstr "Abrir ROM"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:189
 msgid "Save Script"
@@ -2797,15 +2797,15 @@ msgstr "_Ver"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:357
 msgid "Color Schemes"
-msgstr ""
+msgstr "Esquemas de color"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:365
 msgid "Enable Spellcheck"
-msgstr ""
+msgstr "Activar corrector"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:378
 msgid "_Debugger"
-msgstr ""
+msgstr "_Depurador"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:388
 msgid "Disable Breakpoints"
@@ -2821,11 +2821,11 @@ msgstr "Ejecutar / Pausar"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:489
 msgid "Keyboard controls..."
-msgstr ""
+msgstr "Controles del teclado..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:498
 msgid "Joystick controls..."
-msgstr ""
+msgstr "Controles del joystick..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:507
 #: skytemple/skytemple/skytemple.glade:266
@@ -2862,15 +2862,15 @@ msgstr "Español"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:687
 msgid "Enable Audio"
-msgstr ""
+msgstr "Habilitar audio"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:697
 msgid "Screenshot..."
-msgstr ""
+msgstr "Captura de pantalla..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:710
 msgid "_Help"
-msgstr ""
+msgstr "_Ayuda"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:720
 msgid "ExplorerScript documentation"
@@ -2953,7 +2953,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1518
 msgid "General Debug"
-msgstr ""
+msgstr "Depuración general"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1533
 msgid "Draw Entity Debug Overlay"
@@ -3312,7 +3312,7 @@ msgstr "P_ausa"
 
 #: skytemple/skytemple/_i18n.py:32
 msgid "_Play"
-msgstr ""
+msgstr "_Ejecutar"
 
 #: skytemple/skytemple/_i18n.py:33
 msgid "_Stop"
@@ -3580,7 +3580,7 @@ msgstr ""
 
 #: skytemple/skytemple/core/ui_utils.py:104
 msgid "CSV file (*.csv)"
-msgstr ""
+msgstr "Archivo CSV (*.csv)"
 
 #: skytemple/skytemple/main.py:93
 msgid "PyGObject compiled without Cairo support. Can't start!"
@@ -3662,7 +3662,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5987
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6213
 msgid "Converter"
-msgstr ""
+msgstr "Convertidor"
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:407
 msgid "Image"
@@ -3680,11 +3680,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/bgp/controller/bgp.py:113
 msgid "Error importing the image."
-msgstr ""
+msgstr "Error al importar la imagen."
 
 #: skytemple/skytemple/module/bgp/controller/main.py:23
 msgid "Backgrounds"
-msgstr ""
+msgstr "Fondos"
 
 #: skytemple/skytemple/module/bgp/controller/main.py:35
 msgid "This section lets you edit static backgrounds used in various places of the game."
@@ -3715,7 +3715,7 @@ msgstr "Nombre de selección"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:150
 msgid "back_SetDungeonBanner"
-msgstr ""
+msgstr "back_SetDungeonBanner"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:161
 msgid "Banner"
@@ -3881,7 +3881,7 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/level_up.glade:670
 #: skytemple/skytemple/module/script/controller/ssa.glade:498
 msgid "Move"
-msgstr ""
+msgstr "Mover"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:182
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:183
@@ -4093,7 +4093,9 @@ msgstr "Leyenda de capa de Pokémon"
 msgid "NAME: Trap name\n"
 "<span foreground=\"#ff0000\">B</span>: Can be broken\n"
 "<span foreground=\"#ffff00\">V</span>: Is visible"
-msgstr ""
+msgstr "NOMBRE: Nombre de la trampa\n"
+"<span foreground=\"#ff0000\">B</span>: Se puede romper\n"
+"<span foreground=\"#ffff00\">V</span>: Es visible"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1040
 msgid "Trap Layer Legend"
@@ -4696,11 +4698,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1694
 msgid "Imperfect rooms?:"
-msgstr ""
+msgstr "¿Salas imperfectas?:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1739
 msgid "Weather and Conditions"
-msgstr ""
+msgstr "Clima y condiciones"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1755
 msgid "Darkness Level:"
@@ -4732,7 +4734,7 @@ msgstr "Cantidad máxima de monedas:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1868
 msgid "Initial enemy density:"
-msgstr ""
+msgstr "Densidad inicial de enemigos:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1880
 msgid "Kecleon Shop:"
@@ -5202,7 +5204,7 @@ msgstr "Editar grupos"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:235
 msgid "Fix"
-msgstr ""
+msgstr "Corregir"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:248
 #: skytemple/skytemple/module/dungeon/controller/main.glade:428
@@ -6324,7 +6326,7 @@ msgstr "Iniciales por defecto"
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:370
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:521
 msgid "Starting Level:"
-msgstr "Nivel Inicial:"
+msgstr "Nivel inicial:"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:423
 msgid "Nature"
@@ -8471,7 +8473,7 @@ msgstr "Importación fallida."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:245
 msgid " (flip)"
-msgstr " (girar)"
+msgstr " (invertido)"
 
 #: skytemple/skytemple/module/rom/controller/main.py:39
 msgid "Select something to edit in the ROM from the tree on the left \n"
