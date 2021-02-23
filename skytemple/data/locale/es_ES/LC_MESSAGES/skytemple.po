@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-23 18:09+0000\n"
-"PO-Revision-Date: 2021-02-23 18:14\n"
+"PO-Revision-Date: 2021-02-23 19:20\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -70,11 +70,11 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/scn_var.py:41
 msgid "scn() without a variable."
-msgstr "'scn()' no necesita una variable."
+msgstr "'scn()' necesita una variable."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/value_of.py:41
 msgid "value() without a variable."
-msgstr "'value()' no necesita una variable."
+msgstr "'value()' necesita una variable."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:53
 msgid "No target ID set for with(){} block."
@@ -378,7 +378,7 @@ msgstr "_Archivo"
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:119
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:593
 msgid "Save State"
-msgstr "Guardar Estado"
+msgstr "Guardar estado"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:128
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:250
@@ -443,7 +443,7 @@ msgstr ""
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:241
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:637
 msgid "Load State"
-msgstr "Cargar Estado"
+msgstr "Cargar estado"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:350
 msgid "From File..."
@@ -507,7 +507,7 @@ msgstr "1"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2792
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2875
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:524
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1134
@@ -515,7 +515,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2807
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2890
 msgid "3"
-msgstr ""
+msgstr "3"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:534
 msgid "4"
@@ -1875,15 +1875,15 @@ msgstr "Solo paleta"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:36
 msgid "2 bits per pixel (4 colors)"
-msgstr "2 bits por pixel (4 colores)"
+msgstr "2 bits por píxel (4 colores)"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:37
 msgid "4 bits per pixel (16 colors)"
-msgstr "4 bits por pixel (16 colores)"
+msgstr "4 bits por píxel (16 colores)"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:38
 msgid "8 bits per pixel (256 colors)"
-msgstr "8 bits por pixel (256 colores)"
+msgstr "8 bits por píxel (256 colores)"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:189
 msgid "Can not convert PIL image to WTE: Must be indexed image (=using a palette)"
@@ -2422,7 +2422,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:838
 msgid "Create Directory"
-msgstr "Crear Directorio"
+msgstr "Crear directorio"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:838
 msgid "Name of the directory:"
@@ -2430,7 +2430,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:846
 msgid "Create File"
-msgstr "Crear Archivo"
+msgstr "Crear archivo"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:846
 msgid "Name of the new script file:"
@@ -4063,7 +4063,7 @@ msgid "<span foreground=\"#ff0000\">0</span>: Room 0\n"
 msgstr "<span foreground=\"#ff0000\">0</span>: Sala 0\n"
 "<span foreground=\"#ff0000\">1</span>: Sala 1\n"
 "<span foreground=\"#ffff00\">I</span>: Intransitable\n"
-"<span foreground=\"#00ff00\">A</span>: Desplazamiento absoluto posible"
+"<span foreground=\"#00ff00\">A</span>: Híper-todoterreno posible"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:898
 msgid "Tile Layer Legend"
@@ -4240,7 +4240,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:418
 #, python-brace-format
 msgid "Background {i}"
-msgstr ""
+msgstr "Fondo {i}"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:420
 #, python-brace-format
@@ -4261,7 +4261,7 @@ msgstr "No. {i}"
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:200
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:34
 msgid "Fixed Rooms"
-msgstr ""
+msgstr "Salas fijas"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:216
 msgid "This section lets you edit fixed rooms. Fixed rooms can be configured to appear on dungeon floors.\n"
@@ -4361,7 +4361,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:689
 msgid "Room"
-msgstr ""
+msgstr "Sala"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:703
 msgid "Trap Visible?"
@@ -4526,7 +4526,7 @@ msgstr "Probabilidad"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:403
 msgid "Export Dungeon Floor"
-msgstr ""
+msgstr "Exportar piso del territorio"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:584
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2657
@@ -4704,7 +4704,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1755
 msgid "Darkness Level:"
-msgstr ""
+msgstr "Nivel de oscuridad:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1779
 msgid "Weather:"
