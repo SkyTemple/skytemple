@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-23 14:11\n"
+"PO-Revision-Date: 2021-02-23 15:21\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -945,12 +945,12 @@ msgstr "Ungültiges XML. '{a}' fehlt für {b}."
 #: files/skytemple_files/data/monster_xml.py:462
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET_LEVEL_UP__LEVEL}' missing for a level up moveset entry."
-msgstr "Ungültiges XML. '{XML_MOVESET_LEVEL_UP__LEVEL}' fehlt für einen Attackenset Eintrag."
+msgstr "Ungültiges XML. '{XML_MOVESET_LEVEL_UP__LEVEL}' fehlt für einen Attackenset-Eintrag."
 
 #: files/skytemple_files/data/monster_xml.py:466
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET__MOVE_ID}' missing for a level up moveset entry."
-msgstr "Ungültiges XML. '{XML_MOVESET__MOVE_ID}' fehlt für einen Attackenset Eintrag."
+msgstr "Ungültiges XML. '{XML_MOVESET__MOVE_ID}' fehlt für einen Attackenset-Eintrag."
 
 #: files/skytemple_files/data/monster_xml.py:503
 msgid "Invalid XML. StatsGrowth must have exactly 100 levels."
@@ -1049,7 +1049,7 @@ msgstr "Der Typ der Kachel wird auf \"Abgrund\" gesetzt (aber die Kachel wird we
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:64
 msgid "Chasm, Hallway; All Chasm"
-msgstr "Abgrund, Flur; Alles Flur"
+msgstr "Abgrund, Flur; Alles Abgrund"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:66
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!). All tiles outside of defined room are made the tileset's defined secondary terrain."
@@ -1087,7 +1087,7 @@ msgstr "B/W, Raum, Schlüssel-Tür (0xC)"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:82
 msgid "Tile flag 0xC is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
-msgstr "Kachel Eigenschaft 0xC wird auf 1 gesetzt und auf dem Feld wird eine Schlüssel-Tür platziert. Ob unter der Tür Wand oder Boden benutzt wird ist abhängig von einem unbekannten Faktor."
+msgstr "Kachel-Eigenschaft 0xC wird auf 1 gesetzt und auf dem Feld wird eine Schlüssel-Tür platziert. Ob unter der Tür ein Wand- oder Boden-Kachel benutzt wird, ist abhängig von einem unbekannten Faktor."
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:84
 msgid "F/W, Room; Key Door (0xD)"
@@ -1095,7 +1095,7 @@ msgstr "B/W, Raum, Schlüssel-Tür (0xD)"
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:86
 msgid "Tile flag 0xD is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
-msgstr "Kachel Eigenschaft 0xD wird auf 1 gesetzt und auf dem Feld wird eine Schlüssel-Tür platziert. Ob unter der Tür Wand oder Boden benutzt wird ist abhängig von einem unbekannten Faktor."
+msgstr "Kachel-Eigenschaft 0xC wird auf 1 gesetzt und auf dem Feld wird eine Schlüssel-Tür platziert. Ob unter der Tür ein Wand- oder Boden-Tile benutzt wird, ist abhängig von einem unbekannten Faktor."
 
 #: files/skytemple_files/dungeon_data/fixed_bin/model.py:94
 msgid "Attendant1 Spawn Floor"
@@ -1188,7 +1188,7 @@ msgstr "Ungültige Ebenen-Liste"
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:40
 msgid "References a dungeon floor list that doesn't exist."
-msgstr "Referenziert eine Dungeon Ebene, die nicht existiert."
+msgstr "Referenziert eine Dungeon-Ebene, die nicht existiert."
 
 #: files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:46
 msgid "Invalid Floor"
@@ -1218,7 +1218,7 @@ msgstr "Hat {len(self.floors_in_mappa_not_referenced)} zusätzliche Ebenen in se
 #: files/skytemple_files/graphics/bma/model.py:447
 #, python-brace-format
 msgid "Can not import map background: Width of both images must match the current map width: {expected_width}px"
-msgstr "Kartenhintergrund kann nicht importiert werden: Bereit von beiden Bildern muss mit der aktuellen Größe übereinstimmen: {expected_width}px"
+msgstr "Kartenhintergrund kann nicht importiert werden: Breite von beiden Bildern muss mit der aktuellen Größe übereinstimmen: {expected_width}px"
 
 #: files/skytemple_files/graphics/bma/model.py:451
 #, python-brace-format
@@ -1231,12 +1231,12 @@ msgstr "Die Maße aller Bilder müssen übereinstimmen."
 
 #: files/skytemple_files/graphics/chr/model.py:70
 msgid "Cannot convert PIL image to CHR: Must be indexed image (=using a palette)"
-msgstr "Kann PIL Bild nicht in CHR Datei umwandeln: Bild muss indiziert sein (=eine Palette nutzen)"
+msgstr "PIL-Bild kann nicht in CHR-Datei konvertiert werden: Bild muss indiziert sein (= eine Palette nutzen)"
 
 #: files/skytemple_files/graphics/chr/model.py:72
 #, python-brace-format
 msgid "Cannot convert PIL image to CHR: width and height must be a multiple of {CHR_TILE_WIDTH}"
-msgstr "Kann PIL Bild nicht in CHR Datei umwandeln: Höhe und Breite müssen ein Vielfaches von {CHR_TILE_WIDTH} sein"
+msgstr "Kann PIL-Bild nicht in CHR-Datei umwandeln: Höhe und Breite müssen ein Vielfaches von {CHR_TILE_WIDTH} sein"
 
 #: files/skytemple_files/graphics/dbg/model.py:85
 #, python-brace-format
@@ -1255,7 +1255,7 @@ msgstr "Das Bild darf nur die ersten 12 Paletten verwenden. Versuchte Palette {t
 
 #: files/skytemple_files/graphics/dpc/model.py:129
 msgid "A dungeon background or tilemap can not have more than 400 chunks."
-msgstr "Ein Dungeon-Hintergrund oder eine Tilemap kann nicht mehr 400 Blöcke beinhalten."
+msgstr "Ein Dungeon-Hintergrund oder eine Tilemap kann nicht mehr als 400 Blöcke beinhalten."
 
 #: files/skytemple_files/graphics/dpla/model.py:90
 msgid "This palette has no animation."
@@ -1613,7 +1613,7 @@ msgstr "Start"
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:94
 msgid "Right"
-msgstr "Recht"
+msgstr "Rechts"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:95
@@ -1674,7 +1674,7 @@ msgstr "Zuklappen"
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:7
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:384
 msgid "Joystick Config"
-msgstr "Controller Konfiguration"
+msgstr "Controller-Konfiguration"
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:112
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:800
@@ -1812,7 +1812,7 @@ msgstr "_Hinzufügen"
 
 #: skytemple/skytemple/_i18n.py:23
 msgid "_Apply"
-msgstr "A_nwenden"
+msgstr "_Anwenden"
 
 #: skytemple/skytemple/_i18n.py:24
 #: ssb_debugger/skytemple_ssb_debugger/controller/editor_notebook.py:324
@@ -1845,7 +1845,7 @@ msgstr "_Nächstes"
 
 #: skytemple/skytemple/_i18n.py:31
 msgid "P_ause"
-msgstr "_Pausieren"
+msgstr "P_ausieren"
 
 #: skytemple/skytemple/_i18n.py:32
 msgid "_Play"
@@ -1962,7 +1962,7 @@ msgstr "V_erkleinern"
 
 #: skytemple/skytemple/controller/main.py:235
 msgid "Open ROM..."
-msgstr "ROM Öffnen..."
+msgstr "ROM öffnen..."
 
 #: skytemple/skytemple/controller/main.py:337
 msgid "Error opening the ROM"
@@ -1979,7 +1979,7 @@ msgstr "Ein Projekt muss geöffnet sein, um dies zu verwenden."
 #: skytemple/skytemple/controller/main.py:546
 #: skytemple/skytemple/controller/main.py:547
 msgid "Open a ROM"
-msgstr "ROM Öffnen"
+msgstr "ROM öffnen"
 
 #: skytemple/skytemple/controller/main.py:572
 #, python-brace-format
@@ -2046,16 +2046,16 @@ msgstr "Deutsch"
 
 #: skytemple/skytemple/controller/settings.py:117
 msgid "You need to restart SkyTemple to apply some of the settings."
-msgstr "Du musst SkyTemple neu starten um einige deiner Änderungen anzuwenden."
+msgstr "Du musst SkyTemple neu starten, um einige deiner Änderungen anzuwenden."
 
 #: skytemple/skytemple/controller/tilequant.py:54
 #: skytemple/skytemple/core/ui_utils.py:85
 msgid "PNG image (*.png)"
-msgstr "PNG Bild (*.png)"
+msgstr "PNG-Bild (*.png)"
 
 #: skytemple/skytemple/controller/tilequant.py:59
 msgid "JPEG image (*.jpg, *.jpeg)"
-msgstr "JPEG Bild (*.jpg, *.jpeg)"
+msgstr "JPEG-Bild (*.jpg, *.jpeg)"
 
 #: skytemple/skytemple/controller/tilequant.py:65
 #: skytemple/skytemple/core/ui_utils.py:70
@@ -8757,7 +8757,7 @@ msgstr "Laden"
 
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:1253
 msgid "Reload current variables"
-msgstr "Aktuelle Variablen neuladen"
+msgstr "Aktuelle Variablen neu laden"
 
 #: ssb_debugger/skytemple_ssb_debugger/debugger.glade:1257
 msgid "Sometimes the values get out\n"
