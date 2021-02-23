@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "POT-Creation-Date: 2021-02-20 17:38+0100\n"
-"PO-Revision-Date: 2021-02-22 20:27\n"
+"PO-Revision-Date: 2021-02-23 16:17\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -30,11 +30,11 @@ msgstr ""
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:87
 #, python-brace-format
 msgid "Invalid tileset. Tileset has chunk dimensions of {dim}px, but only {CHUNK_DIM}px are supported."
-msgstr ""
+msgstr "Tileset inválido. El tileset tiene dimensiones de chunk de {dim}px, pero solo se soportan de {CHUNK_DIM}px."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:109
 msgid "Invalid animation: Animation is only supported for palettes 10 and 11."
-msgstr ""
+msgstr "Animación inválida: la animación solo es compatible con paletas 10 y 11."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:123
 #, python-brace-format
@@ -73,7 +73,7 @@ msgstr "Falta una regla en el conjunto importado"
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:228
 #, python-brace-format
 msgid "Error when importing mapping. Unknown type: '{mapping_type}'."
-msgstr ""
+msgstr "Error al importar el mapeado. Tipo desconocido: '{mapping_type}'."
 
 #: dtef/skytemple_dtef/explorers_dtef_importer.py:232
 #, python-brace-format
@@ -91,7 +91,7 @@ msgstr "Error en el archivo XML: Las duraciones de una paleta o de sus colores n
 #: dtef/skytemple_dtef/rules.py:118
 #, python-brace-format
 msgid "No match found for rule {orig_rule}. Input set correct?"
-msgstr ""
+msgstr "No se ha encontrado coincidencia para la regla {orig_rule}. ¿El conjunto de entrada es correcto?"
 
 #: explorerscript/explorerscript/macro.py:85
 #, python-brace-format
@@ -146,7 +146,7 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/scn_var.py:41
 msgid "scn() without a variable."
-msgstr ""
+msgstr "'scn()' no necesita una variable."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/value_of.py:41
 msgid "value() without a variable."
@@ -154,12 +154,12 @@ msgstr "'value()' no necesita una variable."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:52
 msgid "No target ID set for with(){} block."
-msgstr ""
+msgstr "No se ha establecido ID de destino para el bloque 'with(){}'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:54
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:96
 msgid "A with(){} block needs exactly one statement."
-msgstr ""
+msgstr "Un bloque 'with(){}' necesita exactamente una sentencia."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:64
 #, python-brace-format
@@ -176,7 +176,7 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:44
 msgid "No variable in if condition."
-msgstr "No se ha definido ninguna variable para la condición 'if'."
+msgstr "No se ha definido ninguna variable en la condición 'if'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:59
 #, python-brace-format
@@ -185,7 +185,7 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:47
 msgid "No variable for if condition."
-msgstr ""
+msgstr "No se ha definido ninguna variable para la condición 'if'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:49
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_headers/op.py:46
@@ -929,17 +929,17 @@ msgstr "XML inválido. '{XML_STRINGS__NAME}' falta para el idioma {xml_lang.tag}
 #: files/skytemple_files/data/monster_xml.py:207
 #, python-brace-format
 msgid "Invalid XML. '{XML_STRINGS__CATEGORY}' missing for language {xml_lang.tag}."
-msgstr ""
+msgstr "XML inválido. Falta '{XML_STRINGS__CATEGORY}' para el idioma {xml_lang.tag}."
 
 #: files/skytemple_files/data/monster_xml.py:345
 #, python-brace-format
 msgid "Invalid XML. '{XML_GENENT_EXCLUSIVE_ITEMS}' needs four item IDs."
-msgstr ""
+msgstr "XML inválido. '{XML_GENENT_EXCLUSIVE_ITEMS}' necesita cuatro IDs de objeto."
 
 #: files/skytemple_files/data/monster_xml.py:420
 #, python-brace-format
 msgid "Invalid XML. '{a}' missing for a {b}."
-msgstr ""
+msgstr "XML no válido. Falta '{a}' para {b}."
 
 #: files/skytemple_files/data/monster_xml.py:462
 #, python-brace-format
@@ -967,12 +967,12 @@ msgstr ""
 
 #: files/skytemple_files/data/monster_xml.py:578
 msgid "Incompatible XML. The number of portraits don't match with the expected value of {len(value_to_update)}"
-msgstr ""
+msgstr "XML incompatible. El número de retratos no coincide con el valor esperado de {len(value_to_update)}"
 
 #: files/skytemple_files/data/monster_xml.py:592
 #, python-brace-format
 msgid "Invalid XML. '{XML_PORTRAITS_PORTRAIT__IMAGE}' missing for a portrait."
-msgstr ""
+msgstr "XML inválido. '{XML_PORTRAITS_PORTRAIT__IMAGE}' falta para un retrato."
 
 #: files/skytemple_files/data/monster_xml.py:596
 #, python-brace-format
@@ -2198,7 +2198,7 @@ msgstr ""
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:141
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5398
 msgid "Map Layer Export"
-msgstr ""
+msgstr "Exportar capa del mapa"
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:204
 msgid "This will export the background as one image.\n\n"
@@ -2228,7 +2228,7 @@ msgstr "Detalles del formato"
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:264
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5899
 msgid "Map Layer Import"
-msgstr ""
+msgstr "Importar capa del mapa"
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:333
 msgid "This will import the entire background from an image.\n\n"
@@ -2631,7 +2631,11 @@ msgid "<b>Entity ID</b>\n\n"
 "Stats (ID):\n\n"
 "Item (ID):\n\n"
 "Tile Properties (ID):"
-msgstr ""
+msgstr "<b>ID de entidad</b>\n\n"
+"Pokémon (ID):\n\n"
+"Estadísticas (ID):\n\n"
+"Objeto (ID):\n\n"
+"Propiedades del tile (ID):"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:714
 #: skytemple/skytemple/module/script/controller/ssa.glade:716
@@ -2674,7 +2678,7 @@ msgstr "<span foreground=\"#ff0000\">0</span>: Sala 0\n"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:898
 msgid "Tile Layer Legend"
-msgstr ""
+msgstr "Leyenda de capa de tiles"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:933
 msgid "NAME: Item name"
@@ -2682,17 +2686,19 @@ msgstr "NOMBRE: Nombre del objeto"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:944
 msgid "Item Layer Legend"
-msgstr ""
+msgstr "Leyenda de capa de objetos"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:979
 msgid "<span foreground=\"#00ff00\">A</span>: Ally\n"
 "<span foreground=\"#ff0000\">E</span>: Strong Enemy\n"
 "<span foreground=\"#ffff00\">O</span>: Other"
-msgstr ""
+msgstr "<span foreground=\"#00ff00\">A</span>: Aliado\n"
+"<span foreground=\"#ff0000\">E</span>: Enemigo fuerte\n"
+"<span foreground=\"#ffff00\">O</span>: Otro"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:992
 msgid "Pokémon Layer Legend"
-msgstr ""
+msgstr "Leyenda de capa de Pokémon"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1027
 msgid "NAME: Trap name\n"
@@ -2778,7 +2784,10 @@ msgid "PLEASE NOTE: \n"
 "The game is hardcoded to check for stairs or warp zones on fixed rooms with ID >= 110.\n"
 "For rooms with ID >= 165 the game tries to place them as a room in a normal floor layout.\n"
 "If the game fails to generate a floor, it will fall back to a one-room monster house."
-msgstr ""
+msgstr "TEN EN CUENTA: \n"
+"El juego está programado para comprobar si hay escaleras o zonas de deformación en las habitaciones fijas con ID >= 110.\n"
+"Para las habitaciones con ID >= 165, el juego intentará colocarlas como una habitación en un diseño de piso normal.\n"
+"Si el juego no consigue generar una planta, volverá a ser un nido de monstruos de una sola habitación."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1660
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4312
@@ -4355,7 +4364,7 @@ msgid "This will import the chunks.\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
 msgstr "Esto importará los chunks.\n"
-"Los mapeos existentes serán reemplazados.\n\n"
+"Los mapeados existentes serán reemplazados.\n\n"
 "Recuerda que podrías necesitar convertirlo para poder usarlo.\n"
 "Mira los \"detalles de formato\"."
 
