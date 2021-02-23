@@ -30,7 +30,10 @@ logger = logging.getLogger(__name__)
 LANGS = [
     ('', _('Detect automatically')),
     ('C', _('English')),
-    ('de_DE.utf8', _('German'))
+    ('de_DE.utf8', _('German')),
+    ('es_ES.utf8', _('Spanish')),
+    ('fr_FR.utf8', _('French')),
+    ('zh_TW.utf8', _('Chinese Traditional')),
 ]
 
 
