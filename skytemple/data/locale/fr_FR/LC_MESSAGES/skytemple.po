@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-23 18:09+0000\n"
-"PO-Revision-Date: 2021-02-23 18:14\n"
+"PO-Revision-Date: 2021-02-23 19:20\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -346,7 +346,7 @@ msgstr "Y"
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:100
 msgid "Debug"
-msgstr ""
+msgstr "Débogage"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:101
@@ -385,21 +385,21 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:603
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:647
 msgid "State 1"
-msgstr ""
+msgstr "Sauvegarde Instantanée 1"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:138
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:260
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:613
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:657
 msgid "State 2"
-msgstr ""
+msgstr "Sauvegarde Instantanée 2"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:148
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:270
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:623
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:667
 msgid "State 3"
-msgstr ""
+msgstr "Sauvegarde Instantanée 3"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:158
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:280
@@ -443,7 +443,7 @@ msgstr ""
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:241
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:637
 msgid "Load State"
-msgstr ""
+msgstr "Charger une sauvegarde instantanée"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:350
 msgid "From File..."
@@ -473,7 +473,7 @@ msgstr ""
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:909
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:473
 msgid "Reset"
-msgstr ""
+msgstr "Réinitialiser"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:476
 msgid "Layers"
@@ -734,7 +734,7 @@ msgstr ""
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:7
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:384
 msgid "Joystick Config"
-msgstr ""
+msgstr "Configuration Manette"
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:112
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:800
@@ -2047,7 +2047,7 @@ msgstr "Fichier config.xml manquant dans le paquetage du patch."
 
 #: skytemple-files/skytemple_files/patch/patches.py:147
 msgid "Syntax error in the config.xml while reading patch package."
-msgstr ""
+msgstr "Erreur de syntaxe dans le fichier config.xml lors de la lecture du paquet de correctifs."
 
 #: skytemple-files/skytemple_files/patch/patches.py:157
 msgid "patch.py missing in patch package."
@@ -2145,7 +2145,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:320
 #, python-brace-format
 msgid "Do you want to save changes to {filename}?"
-msgstr ""
+msgstr "Voulez-vous sauvegarder les changements faits dans {filename} ?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:322
 #: skytemple/skytemple/controller/main.py:750
@@ -2200,7 +2200,7 @@ msgstr "Attention !"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:361
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:45
 msgid "Free"
@@ -2212,7 +2212,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:48
 msgid "Temporary"
-msgstr ""
+msgstr "Temporaire"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:49
 msgid "Sub Table"
@@ -2221,11 +2221,11 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:30
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:91
 msgid "Script"
-msgstr ""
+msgstr "Script"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:64
 msgid "Path"
-msgstr ""
+msgstr "Chemin"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:70
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:87
@@ -9209,7 +9209,9 @@ msgstr ""
 msgid "Join our Discord server and become a \"Beta Tester\", to get\n"
 "access to new features. Your feedback will directly help\n"
 "to improve SkyTemple and you can also suggest new features!"
-msgstr ""
+msgstr "Rejoignez notre serveur Discord et devenez un \"bêta testeur\", pour avoir accès à\n"
+"de nouvelles fonctionnalités. Vos commentaires aideront directement\n"
+"à améliorer SkyTemple et vous pourrez également suggérer de nouvelles fonctionnalités !"
 
 #: skytemple/skytemple/skytemple.glade:1418
 msgid "... by joining development or reverse engineering the game!"
@@ -9221,7 +9223,11 @@ msgid "We are always looking for people to help develop SkyTemple\n"
 "engineering or implementing new features for SkyTemple,\n"
 "you can find the project on Github! \n"
 "You can also join the Discord server if you have any questions."
-msgstr ""
+msgstr "Nous sommes toujours à la recherche de gens pour aider à développer SkyTemple\n"
+"ou qui aident à hacker le jeu. Si vous êtes intéressé par l'ingénierie\n"
+"inversée ou l'implémentation de nouvelles fonctionnalités pour SkyTemple,\n"
+"vous pouvez trouver le projet sur Github ! \n"
+"Vous pouvez également rejoindre le serveur Discord si vous avez des questions."
 
 #: skytemple/skytemple/skytemple.glade:1499
 msgid "... by buying us a coffee!"
@@ -9234,22 +9240,24 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1547
 msgid "Parakoopa"
-msgstr ""
+msgstr "Parakoopa"
 
 #: skytemple/skytemple/skytemple.glade:1564
 msgid "Developer of SkyTemple and \n"
 "creator of ExplorerScript.\n"
-msgstr ""
+msgstr "Développeur de SkyTemple et \n"
+"créateur de ExplorerScript.\n"
 
 #: skytemple/skytemple/skytemple.glade:1610
 msgid "psy_commando"
-msgstr ""
+msgstr "psy_commando"
 
 #: skytemple/skytemple/skytemple.glade:1627
 msgid "Figured out most things about \n"
 "how this game works!\n"
 "Developer of ppmdu."
-msgstr ""
+msgstr "A compris la plupart du fonctionnement du jeu !\n"
+"Développeur de ppmdu."
 
 #: skytemple/skytemple/skytemple.glade:1705
 msgid "Dither: Ordered"
@@ -9265,7 +9273,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1717
 msgid "Reorganize colors only"
-msgstr ""
+msgstr "Réorganiser les couleurs uniquement"
 
 #: skytemple/skytemple/skytemple.glade:1723
 msgid "Tilequant"
@@ -9276,7 +9284,10 @@ msgid "This tool converts any image into the image format required by Explorers 
 "Please note that the game has pretty strict color restrictions.\n\n"
 "Each 8x8 tile will only be able to use one palette.\n\n"
 "The images created by this tool can be imported for backgrounds."
-msgstr ""
+msgstr "Cet outil convertit n'importe quelle image dans le format d'image requis par Explorateurs du Ciel.\n"
+"Veuillez noter que le jeu a des restrictions de couleurs assez strictes.\n\n"
+"Chaque tuile 8x8 ne sera en mesure d'utiliser qu'une seule palette.\n\n"
+"Les images créées par cet outil peuvent être importées pour les arrière-plans."
 
 #: skytemple/skytemple/skytemple.glade:1801
 msgid "Number of Palettes"
@@ -9288,11 +9299,11 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1876
 msgid "Transparent Color"
-msgstr ""
+msgstr "Couleur transparente"
 
 #: skytemple/skytemple/skytemple.glade:1919
 msgid "Color"
-msgstr ""
+msgstr "Couleur"
 
 #: skytemple/skytemple/skytemple.glade:2031
 msgid "Dithering Level"
@@ -9304,5 +9315,5 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:2252
 msgid "Convert"
-msgstr ""
+msgstr "Convertir"
 
