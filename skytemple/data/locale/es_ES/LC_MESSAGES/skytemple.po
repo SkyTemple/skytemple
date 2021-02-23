@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-23 18:09+0000\n"
-"PO-Revision-Date: 2021-02-23 20:24\n"
+"PO-Revision-Date: 2021-02-23 21:26\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -88,7 +88,7 @@ msgstr "Un bloque 'with(){}' necesita exactamente una sentencia."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:65
 #, python-brace-format
 msgid "Invalid with(){{}} target type '{for_type}'."
-msgstr ""
+msgstr "Argumento 'with(){{}}' inválido para el tipo de destino '{for_type}'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:70
 msgid "A with(){} block needs exactly one binary operation. The handler for it generated multiple operations."
@@ -129,7 +129,7 @@ msgstr "Los únicos operadores soportados para las condiciones 'scn if' son ==, 
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:60
 msgid "Invalid content for an if-header"
-msgstr ""
+msgstr "Contenido inválido para 'if-header'"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/if_header.py:64
 #, python-brace-format
@@ -1488,7 +1488,7 @@ msgstr "XML inválido. '{XML_GENENT_EXCLUSIVE_ITEMS}' necesita cuatro IDs de obj
 #: skytemple-files/skytemple_files/data/monster_xml.py:420
 #, python-brace-format
 msgid "Invalid XML. '{a}' missing for a {b}."
-msgstr "XML no válido. Falta '{a}' para {b}."
+msgstr "XML inválido. Falta '{a}' para {b}."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:462
 #, python-brace-format
@@ -2568,7 +2568,9 @@ msgstr "ExplorerScript no está disponible para este archivo."
 msgid "The ExplorerScript source code does not match the compiled script that is present in the ROM.\n"
 "Do you want to keep your ExplorerScript source code, or reload (decompile) it from ROM?\n"
 "Warning: If you choose to reload, you will lose your file, including all comments in it."
-msgstr ""
+msgstr "El código fuente de ExplorerScript no coincide con el script compilado que está presente en la ROM.\n"
+"¿Quieres mantener tu código fuente de ExplorerScript o recargarlo (descompilarlo) desde la ROM?\n"
+"Advertencia: Si decides recargar, perderás tu archivo, incluyendo todos los comentarios en él."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:942
 msgid "ExplorerScript Inconsistency"
@@ -3312,7 +3314,7 @@ msgstr "P_ausa"
 
 #: skytemple/skytemple/_i18n.py:32
 msgid "_Play"
-msgstr "_Ejecutar"
+msgstr "_Iniciar"
 
 #: skytemple/skytemple/_i18n.py:33
 msgid "_Stop"
@@ -3495,7 +3497,9 @@ msgstr ""
 msgid "Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they \"blend into\" each other. This will make the image look like it contains more colors but also might decrease the overall visual quality. Two different algorithms are available.\n\n"
 "No Dithering: Color will be reorganized and reduced if necessary. No dithering will be performed.\n\n"
 "Reorganize colors only: Colors will be reorganized so that they fit the game's format. SkyTemple will not attempt to reduce the amount of overall colors to make this work, so you will get an error, if it's not possible with the current amount. However if it does work, the output image will look identical to the original image."
-msgstr ""
+msgstr "Difuminado: Los colores se reorganizarán y reducirán si es necesario. Los colores se cambiarán para \"mezclarse\" entre sí. Esto hará que la imagen parezca que contiene más colores, pero también podría reducir la calidad visual general. Hay dos algoritmos diferentes disponibles.\n\n"
+"Sin difuminado: El color será reorganizado y reducido si es necesario. No se realizará ningún difuminado.\n\n"
+"Solo reorganizar colores: Los colores se reorganizarán para que se ajusten al formato del juego. SkyTemple no intentará reducir el número de colores totales, por lo que obtendrás un error si se supera el límite. Sin embargo, si funciona, la imagen de salida se verá idéntica a la imagen original."
 
 #: skytemple/skytemple/controller/tilequant.py:104
 msgid "Only relevant if dithering is enabled: This controls the amount of dithering applied."
@@ -5055,7 +5059,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:327
 msgid "These sliders control how likely it is (in %) for certain things to generate on this floor."
-msgstr ""
+msgstr "Estos deslizadores controlan la probabilidad (en %) de que se generen ciertos elementos en este piso."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:330
 msgid "Every Kecleon shop has a minimum amount of guaranteed items.\n"
@@ -5081,7 +5085,8 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.py:370
 msgid "It was added in explorers of sky, so right now it's only used in the sky exclusive dungeons.\n"
 "If a monster house spawns in the floor, this is the chance of it being empty (no items will be generated inside)."
-msgstr ""
+msgstr "Se añadió en Exploradores del Cielo, así que ahora mismo solo se utiliza en los territorios exclusivos de esta versión.\n"
+"Si un nido de monstruos aparece en el piso, esta es la probabilidad de que esté vacío (de que no hayan objetos dentro)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:387
 msgid "If enabled, the IQ booster increases IQ on this floor."
@@ -5866,7 +5871,21 @@ msgid "This will export all tiles. Tiles are 8x8px images.\n"
 "256 colors, only the first 12 palettes are valid.\n\n"
 "Only if you follow these fomat restrictions, you will\n"
 "be able to re-import the tiles!"
-msgstr ""
+msgstr "Esto exportará todos los tiles. Los tiles son imágenes de 8x8px.\n"
+"Los tiles de 3x3 se pueden agrupar para formar un chunk,\n"
+"vea el \"Editor de chunks\" para más información.\n\n"
+"Puedes editar e importar los tiles de nuevo.\n\n"
+"Ten en cuenta lo siguiente sobre el formato de los archivos:\n"
+"- Las imágenes son PNGs indexados de 256 colores.\n"
+"- Los 256 colores están divididos en 12 paletas de 16 colores.\n"
+"- Cada tile de 8x8 en la imagen DEBE usar colores de\n"
+"  una de estas 12 paletas.\n"
+"- El primer color de cada paleta es la transparencia.\n"
+"- Todos los tiles se exportan con los colores de la paleta 0.\n\n"
+"Por razones técnicas, la imagen exportada tendrá \n"
+"256 colores, sólo las primeras 12 paletas son válidas.\n\n"
+"Siguiendo estas restricciones de formato, ¡podrás\n"
+"reimportar los tiles!"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1294
 msgid "Tileset X"
@@ -6564,7 +6583,29 @@ msgid "- The image consists of 8x8 tiles.\n"
 "transparency.\n\n"
 "Static tiles, chunks and palettes are replaced on import. \n"
 "Animated tiles and palette animation settings are not changed.\n"
-msgstr ""
+msgstr "- La imagen consta de tiles de 8x8.\n"
+"- La imagen es un PNG indexado de 256 colores.\n"
+"- Los 256 colores están divididos en 16 paletas de colores.\n"
+"- Cada tile de 8x8 de la imagen DEBE usar colores de\n"
+"  una de estas 16 paletas.\n"
+"- El primer color de cada paleta es la transparencia.\n"
+"- Los tiles animados NO se exportan ni se importan. En la exportación\n"
+"  se sustituyen por tiles en blanco. En la importación los mapeados a \n"
+"  tiles animados se perderán, así que asegúrate de anotarlos \n"
+"  para reasignarlos manualmente en la importación. Para cambiar los tiles animados \n"
+"  ve a Tiles > Tiles animados.\n"
+"- Cada importación debe dar lugar a un máximo de 1024 tiles únicos de 8x8 \n"
+"   (=no repetidos en otra paleta ni invertidos o rotados).\n\n"
+"Algunos editores de imágenes tienen problemas cuando trabajan con imágenes indexadas\n"
+"que contienen el mismo color varias veces. Puedes\n"
+"hacer que todos los colores del mapa sean únicos antes de exportarlos en\n"
+"Paletas > Editar paletas. También puedes usar el convertidor.\n\n"
+"Ten en cuenta que los chunks no pueden usar colores de \n"
+"las dos últimas paletas. No deben ser utilizados por ningún tile.\n\n"
+"Los colores que están en la paleta equivocada son reemplazados con\n"
+"transparencia.\n\n"
+"Los tiles, chunks y paletas estáticas se reemplazan al importar. \n"
+"Los tiles animados y los ajustes de animación de las paletas no se modifican.\n"
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:88
 msgid "- The image is a 256-color indexed PNG.\n"
@@ -6585,7 +6626,26 @@ msgid "- The image is a 256-color indexed PNG.\n"
 "Animated tiles and palette animation settings are not changed.\n\n"
 "Since no animated tiles are imported, they need\n"
 "to be (re-)assigned to chunks after the import."
-msgstr ""
+msgstr "- La imagen es un PNG indexado de 256 colores.\n"
+"- Los 256 colores están divididos en 16 paletas de colores.\n"
+"- Cada tile de 8x8 de la imagen DEBE usar colores de\n"
+"  una de estas 16 paletas.\n"
+"- El primer color de cada paleta es la transparencia.\n"
+"- Los tiles animados se exportan como tiles estáticos.\n"
+"- Cada importación debe resultar en un máximo de 1024 tiles únicos de 8x8 \n"
+"   (=no repetidos en otra paleta ni invertidos o rotados).\n\n"
+"Algunos editores de imágenes tienen problemas cuando trabajan con imágenes indexadas\n"
+"que contienen el mismo color varias veces. Puedes\n"
+"hacer que todos los colores del mapa sean únicos antes de exportarlos en\n"
+"Paletas > Editar paletas.\n\n"
+"Ten en cuenta que los chunks no pueden usar colores de \n"
+"las dos últimas paletas. No deben ser utilizados por ningún tile.\n\n"
+"Los colores que están en la paleta equivocada son reemplazados con\n"
+"transparencia.\n\n"
+"Los tiles estáticos se reemplazan al importar. \n"
+"Los tiles animados y los ajustes de animación de las paletas no se modifican.\n\n"
+"Dado que no se importan tiles animados, necesitan\n"
+"ser (re)asignados a los chunks después de la importación."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:175
 msgid "This map background shared some asset files with other map backgrounds.\n"
@@ -7484,7 +7544,8 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:459
 msgid "Warning: this WTE file doesn't contain any image data.\n"
 "Thus, the palette is displayed instead of the image."
-msgstr ""
+msgstr "Advertencia: este archivo WTE no contiene ningún dato de imagen.\n"
+"Se mostrará la paleta en lugar de la imagen."
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:518
 msgid "Image Size: "
@@ -8202,7 +8263,12 @@ msgid "The values are actually percentages.\n"
 "1000 -> 100%, etc.\n\n"
 "If you answered yes to the question asking if you played EoT or EoD in the personality test and you haven't recruited this Pokémon yet, the second recruit rate is used instead.\n"
 "If you have recruited this Pokémon already, its recruit rate is halved (only if it's positive)."
-msgstr ""
+msgstr "Los valores decimales son porcentajes.\n"
+"10 -> 1,0%,\n"
+"100 -> 10.0%,\n"
+"1000 -> 100%, etc.\n\n"
+"Si respondiste que sí a si jugaste Exploradores del Tiempo o Exploradores de la Oscuridad en la prueba de personalidad y aún no has reclutado a este Pokémon, se utilizará la tasa de reclutamiento en su lugar.\n"
+"Si ya has reclutado al Pokémon, su tasa de reclutamiento se reduce a la mitad (solo si es positiva)."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:324
 msgid "Recruit Rate"
@@ -8990,7 +9056,7 @@ msgstr "Exportar cadenas como..."
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:32
 msgid "Chunk Editor"
-msgstr "Editor de chunk"
+msgstr "Editor de chunks"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:136
 msgid "Add Chunk"
@@ -9014,7 +9080,7 @@ msgstr "Paleta"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:383
 msgid "Tile No."
-msgstr ""
+msgstr "Tile nº"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:425
 msgid "Selected Tile"
@@ -9022,7 +9088,7 @@ msgstr "Tile seleccionado"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:457
 msgid "Palette for Tile Preview"
-msgstr ""
+msgstr "Paleta para vista previa de tiles"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:529
 msgid "Static Tiles"
@@ -9048,7 +9114,9 @@ msgstr "Ranura de tiles animados 4"
 msgid "BPA slot is empty.\n\n"
 "Go to Tiles > Animated Tiles to\n"
 "manage animated tiles."
-msgstr ""
+msgstr "Ranura BPA vacía.\n\n"
+"Ve a Tiles > Tiles animados para\n"
+"gestionar los tiles animados."
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:17
 msgid "Palette Editor"
@@ -9255,7 +9323,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1713
 msgid "No Dithering"
-msgstr ""
+msgstr "Sin difuminado"
 
 #: skytemple/skytemple/skytemple.glade:1717
 msgid "Reorganize colors only"
