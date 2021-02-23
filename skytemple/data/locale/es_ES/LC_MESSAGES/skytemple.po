@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-23 18:09+0000\n"
-"PO-Revision-Date: 2021-02-23 21:26\n"
+"PO-Revision-Date: 2021-02-23 22:27\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -45,28 +45,28 @@ msgstr "No hay variable para 'init'."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:48
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:46
 msgid "No variable for assignment."
-msgstr ""
+msgstr "No hay variable para la asignación."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:50
 msgid "No operator set for assignment."
-msgstr ""
+msgstr "Operador no establecido para la asignación."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:52
 msgid "No value set for assignment."
-msgstr ""
+msgstr "Valor no establecido para la asignación."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:58
 #, python-brace-format
 msgid "value(X) can not be used with index based assignments (line {self.ctx.start.line})."
-msgstr ""
+msgstr "'value(X)' no puede usarse con asignaciones basadas en índices (línea {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_reset.py:43
 msgid "No target for reset."
-msgstr ""
+msgstr "Objetivo no establecido para 'reset'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_scenario.py:43
 msgid "No variable for assignment set."
-msgstr ""
+msgstr "Variable no establecida para la asignación."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/scn_var.py:41
 msgid "scn() without a variable."
@@ -78,7 +78,7 @@ msgstr "'value()' necesita una variable."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:53
 msgid "No target ID set for with(){} block."
-msgstr "No se ha establecido ID de destino para el bloque 'with(){}'."
+msgstr "ID de destino no establecido para el bloque 'with(){}'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:55
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:98
@@ -105,7 +105,7 @@ msgstr "No se ha definido ninguna variable en la condición 'if'."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:59
 #, python-brace-format
 msgid "The variable {var_target_name} can not be used with 'not' (line {self.ctx.start.line})."
-msgstr "La variable {var_target_name} no puede ser usada con 'not' (línea {self.ctx.start.line})."
+msgstr "La variable {var_target_name} no puede usarse con 'not' (línea {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:47
 msgid "No variable for if condition."
@@ -146,66 +146,66 @@ msgstr "Operación 'if' desconocida en la línea {self.ctx.start.line})."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:49
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:63
 msgid "Invalid message switch case call."
-msgstr ""
+msgstr "Llamada inválida a case de 'message switch'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_header.py:58
 msgid "Unknown case operation."
-msgstr ""
+msgstr "Operación 'case' desconocida."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:55
 msgid "Invalid message switch."
-msgstr ""
+msgstr "'Message switch' inválido."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:59
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:72
 #, python-brace-format
 msgid "A message_ switch can only contain cases with strings (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Un message_switch solo puede contener cases con cadenas (línea {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:63
 #, python-brace-format
 msgid "Invalid case type for message_ switch (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Tipo de 'case' inválido para un message_switch (línea {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:84
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line}"
-msgstr ""
+msgstr "Un switch block solo puede tener un único 'case' por defecto (línea {self.ctx.start.line})"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:75
 #, python-brace-format
 msgid "A switch case must contain a list of statements (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Un 'switch case' debe contener una lista de sentencias (línea{self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:121
 #, python-brace-format
 msgid "Unexpected switch end (line {self.ctx.start.line})"
-msgstr ""
+msgstr "Final inesperado del 'switch end' (línea {self.ctx.start.line})"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:134
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Un switch block solo puede tener un único 'case' por defecto (línea {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:63
 msgid "Invalid content for a switch-header"
-msgstr ""
+msgstr "Contenido inválido para un 'switch-header'"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:72
 msgid "Unknown switch operation."
-msgstr ""
+msgstr "Operación 'switch' desconocida."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/dungeon_mode.py:42
 msgid "No dungeon id set for dungeon_mode switch condition."
-msgstr ""
+msgstr "ID de territorio no establecido para la condición switch de dungeon_mode."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/random.py:42
 msgid "No value set for random switch condition."
-msgstr ""
+msgstr "Valor no establecido para la condición aleatoria de switch."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:43
 msgid "No variable set for scn switch condition."
-msgstr ""
+msgstr "Variable no establecida para la condición aleatoria de scn."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_headers/scn.py:50
 #, python-brace-format
@@ -237,17 +237,17 @@ msgstr "Error de compilación fatal: error de pila."
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:101
 #, python-brace-format
 msgid "Unexpected continue; in line {ctx.start.line}"
-msgstr ""
+msgstr "Continuación inesperada en la línea {ctx.start.line}"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:107
 #, python-brace-format
 msgid "Unexpected break_loop; in line {ctx.start.line}"
-msgstr ""
+msgstr "'Break_loop' inesperado en la línea {ctx.start.line}"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:113
 #, python-brace-format
 msgid "Unexpected break; in line {ctx.start.line}"
-msgstr ""
+msgstr "'Break' inesperado en la línea {ctx.start.line}"
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:136
 #, python-brace-format
@@ -259,13 +259,13 @@ msgstr "Se ha detectado una recursión infinita al intentar cargar un archivo Ex
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:162
 #, python-brace-format
 msgid "{fn}: Macro scripts must not contain any routines."
-msgstr ""
+msgstr "{fn}: Los scripts de macros no deben contener ninguna rutina."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:208
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:222
 #, python-brace-format
 msgid "The file to import ('{import_file}') was not found."
-msgstr ""
+msgstr "No se encontró el archivo a importar ('{import_file}')."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:214
 #, python-brace-format
@@ -473,7 +473,7 @@ msgstr ""
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:909
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:473
 msgid "Reset"
-msgstr ""
+msgstr "Reiniciar"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:476
 msgid "Layers"
@@ -776,7 +776,7 @@ msgstr "R: "
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:233
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:1060
 msgid "Debug : "
-msgstr ""
+msgstr "Depurar : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:249
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:1111
@@ -2045,7 +2045,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:157
 msgid "patch.py missing in patch package."
-msgstr ""
+msgstr "falta el archivo patch.py en el paquete de parches."
 
 #: skytemple-files/skytemple_files/patch/patches.py:159
 msgid "The patch.py of the patch package contains a syntay error."
@@ -2377,7 +2377,8 @@ msgstr "Abrir..."
 #, python-brace-format
 msgid "Unable to load: {fn}\n"
 "{ex}"
-msgstr ""
+msgstr "No se puede cargar: {fn}\n"
+"{ex}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:584
 msgid "Joypads are not supported on macOS. Sorry!"
@@ -3128,7 +3129,7 @@ msgstr "Pausar el emulador."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2690
 msgid "Reset the emulator."
-msgstr "Reiniciar el emulador."
+msgstr "Reinicia el emulador."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2926
 msgid "Savestate"
@@ -3464,7 +3465,7 @@ msgstr ""
 
 #: skytemple/skytemple/controller/settings.py:120
 msgid "You need to restart SkyTemple to apply some of the settings."
-msgstr "Necesitas reiniciar SkyTemple para aplicar algunos de los ajustes."
+msgstr "Necesitas reiniciar SkyTemple para aplicar algunos ajustes."
 
 #: skytemple/skytemple/controller/tilequant.py:54
 #: skytemple/skytemple/core/ui_utils.py:88
@@ -5940,7 +5941,7 @@ msgstr "Variaciones de campo #3"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2126
 msgid "These are extra rules. The purpose of them is currently unknown, so be careful when you edit them."
-msgstr ""
+msgstr "Estas son reglas adicionales. Su propósito es actualmente desconocido, así que ten cuidado cuando las edites."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2168
 msgid "Extra Rules"
@@ -6983,7 +6984,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2899
 msgid "BPA Settings"
-msgstr ""
+msgstr "Ajustes de BPA"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2962
 msgid "Animated Tile blocks are called BPA.\n"
@@ -7675,7 +7676,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:171
 msgid "Import Full Tileset"
-msgstr ""
+msgstr "Importar tileset completo"
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:176
 msgid "Import full zmappat from folder..."
@@ -7688,7 +7689,8 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/entity.py:34
 msgid "Each Pokémon has two gender forms (even if it only has one gender).\n"
 "This entry contains both of these forms. The first form is the main form, it is used as a fallback in some cases, when the data for the second form doesn't exist."
-msgstr ""
+msgstr "Cada Pokémon tiene dos variantes de género (aunque solo tenga uno).\n"
+"Esta entrada contiene ambas formas. La primera es la principal, y se utiliza como alternativa en algunos casos, cuando los datos de la segunda forma no existen."
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:91
 msgid "Interactive tooltips are not supported on your platform. To see them, click \"Open in browser\"."
@@ -7909,7 +7911,7 @@ msgstr "Shaymin"
 #: skytemple/skytemple/module/monster/controller/main.py:65
 #, python-format
 msgid "Unknown Actor %02d"
-msgstr ""
+msgstr "Actor desconocido %02d"
 
 #: skytemple/skytemple/module/monster/controller/main.py:51
 msgid "Snover"
@@ -7937,7 +7939,7 @@ msgstr "Gardevoir"
 
 #: skytemple/skytemple/module/monster/controller/main.py:57
 msgid "Unknown Actor 20"
-msgstr ""
+msgstr "Actor desconocido 20"
 
 #: skytemple/skytemple/module/monster/controller/main.py:59
 #: skytemple/skytemple/module/monster/controller/main.py:60
@@ -7955,7 +7957,7 @@ msgstr "Loudred"
 
 #: skytemple/skytemple/module/monster/controller/main.py:65
 msgid "Unknown Actor 35"
-msgstr ""
+msgstr "Actor desconocido 35"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:25
 msgid "Export Pokémon"
@@ -8250,7 +8252,13 @@ msgid "Values depend on Evolution Type:\n"
 "- Items: Regular Item ID - Optional evolutionary item ID\n"
 "- Unknown: ? - ?\n"
 "- Link Cable: 0 - 1"
-msgstr ""
+msgstr "Los valores dependen del tipo de evolución:\n"
+"- Ninguno: n/a - n/a\n"
+"- Nivel: Nivel requerido para evolucionar - ID de objeto evolutivo opcional\n"
+"- CI: CI requerido - ID de objeto evolutivo opcional\n"
+"- Objetos: ID de objetos comunes - ID de objeto evolutivo opcional\n"
+"- Desconocido: ? - ?\n"
+"- Cable Link: 0 - 1"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:307
 msgid "Evolution Parameters"
