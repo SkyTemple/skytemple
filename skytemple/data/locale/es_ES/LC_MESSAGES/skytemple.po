@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-23 18:09+0000\n"
-"PO-Revision-Date: 2021-02-24 14:39\n"
+"PO-Revision-Date: 2021-02-24 15:37\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1513,7 +1513,7 @@ msgstr "XML inválido. 'StatsGrowth' debe tener exactamente 100 niveles."
 #: skytemple-files/skytemple_files/data/monster_xml.py:553
 #, python-brace-format
 msgid "Invalid XML. '{x}' missing for a stats growth level entry."
-msgstr ""
+msgstr "XML inválido. Falta '{x}' para una entrada de aumento de estadísticas de subida de nivel."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:578
 msgid "Incompatible XML. The number of portraits don't match with the expected value of {len(value_to_update)}"
@@ -1556,7 +1556,7 @@ msgstr "Esperar"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:30
 msgid "Ground Wait"
-msgstr ""
+msgstr "En espera"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:43
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:103
@@ -1585,7 +1585,7 @@ msgstr "Lugar de aparición del líder"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:58
 msgid "Secondary, Room"
-msgstr ""
+msgstr "Terreno secundario, Sala"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:61
 msgid "Chasm, Hallway"
@@ -1612,11 +1612,11 @@ msgstr ""
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:70
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:108
 msgid "Creates a Warp Zone."
-msgstr ""
+msgstr "Crea un teletransportador."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:71
 msgid "Floor, Hallway"
-msgstr ""
+msgstr "Piso, Pasillo"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:74
 msgid "Chasm, Hallway; Impassable"
@@ -1733,7 +1733,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:37
 msgid "Invalid Floor List"
-msgstr ""
+msgstr "Lista de pisos inválida"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:40
 msgid "References a dungeon floor list that doesn't exist."
@@ -1749,12 +1749,12 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:60
 msgid "Re-uses Floor"
-msgstr ""
+msgstr "Reutiliza pisos"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:64
 #, python-brace-format
 msgid "Re-uses floors that are already used by {name}."
-msgstr ""
+msgstr "Reutiliza los pisos que ya está usando {name}."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:85
 msgid "Unused Floors"
@@ -1859,7 +1859,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:127
 #, python-brace-format
 msgid "Semi-transparent pixels found at: {rogue_pixels}"
-msgstr ""
+msgstr "Píxeles semitransparentes encontrados en: {rogue_pixels}"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:129
 #, python-brace-format
@@ -2034,7 +2034,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/patches.py:116
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
-msgstr ""
+msgstr "El parche '{patch_name}' necesita ser aplicado antes de poder aplicar '{name}'. No se ha encontrado el parche."
 
 #: skytemple-files/skytemple_files/patch/patches.py:145
 msgid "config.xml missing in patch package."
@@ -2042,7 +2042,7 @@ msgstr "falta el archivo config.xml en el paquete de parches."
 
 #: skytemple-files/skytemple_files/patch/patches.py:147
 msgid "Syntax error in the config.xml while reading patch package."
-msgstr ""
+msgstr "Error de sintaxis en el archivo config.xml al leer el paquete de parches."
 
 #: skytemple-files/skytemple_files/patch/patches.py:157
 msgid "patch.py missing in patch package."
@@ -2050,7 +2050,7 @@ msgstr "falta el archivo patch.py en el paquete de parches."
 
 #: skytemple-files/skytemple_files/patch/patches.py:159
 msgid "The patch.py of the patch package contains a syntay error."
-msgstr ""
+msgstr "Patch.py del paquete de parches contiene un error de sintaxis."
 
 #: skytemple-files/skytemple_files/patch/patches.py:164
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
@@ -4609,7 +4609,7 @@ msgstr "Nombre del territorio"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1113
 msgid "Floor Number"
-msgstr ""
+msgstr "Número de piso"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1136
 msgid "Tileset"
@@ -4676,7 +4676,7 @@ msgstr "Tipo de Estructura:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1494
 msgid "Floor connectivity:"
-msgstr ""
+msgstr "Conectividad del piso:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1529
 msgid "Dead Ends?:"
@@ -4724,7 +4724,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1820
 msgid "Floor item density:"
-msgstr ""
+msgstr "Densidad del objetos del piso:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1832
 msgid "Buried item density:"
@@ -4776,7 +4776,7 @@ msgstr "CI de enemigo:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1981
 msgid "IQ Booster enabled?:"
-msgstr ""
+msgstr "¿Potenciador del CI activado?:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2108
 msgid "Chances"
@@ -4788,7 +4788,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2367
 msgid "Hidden Stairs Type:"
-msgstr ""
+msgstr "Tipo de escaleras ocultas:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2411
 msgid "Hidden Stairs:"
@@ -5305,7 +5305,7 @@ msgstr "Grupo \"{dname}\""
 
 #: skytemple/skytemple/module/dungeon/module.py:457
 msgid "Floor {floor_i + 1}"
-msgstr ""
+msgstr "Piso {floor_i + 1}"
 
 #: skytemple/skytemple/module/dungeon/module.py:737
 msgid "Secondary"
@@ -6123,59 +6123,59 @@ msgstr "Listas: "
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:64
 msgid "E Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad E"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:65
 msgid "D Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad D"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:66
 msgid "C Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad C"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:67
 msgid "B Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad B"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:68
 msgid "A Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad A"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:69
 msgid "S Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad S"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:70
 msgid "★1 Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad ★1"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:71
 msgid "★2 Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad ★2"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:72
 msgid "★3 Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad ★3"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:73
 msgid "★4 Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad ★4"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:74
 msgid "★5 Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad ★5"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:75
 msgid "★6 Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad ★6"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:76
 msgid "★7 Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad ★7"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:77
 msgid "★8 Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad ★8"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:78
 msgid "★9 Floors Rewards"
