@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-23 18:09+0000\n"
-"PO-Revision-Date: 2021-02-23 18:14\n"
+"PO-Revision-Date: 2021-02-24 19:47\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -560,7 +560,7 @@ msgstr ""
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:645
 msgid "Config"
-msgstr ""
+msgstr "Konfiguration"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:654
 msgid "_Saves"
@@ -2135,16 +2135,16 @@ msgstr "Das Skript konnte nicht kompiliert werden: Alle Sprachen müssen die gle
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:175
 msgid "BOOST"
-msgstr ""
+msgstr "BOOST"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:178
 msgid "Debugging disabled."
-msgstr ""
+msgstr "Debugging deaktiviert."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:320
 #, python-brace-format
 msgid "Do you want to save changes to {filename}?"
-msgstr ""
+msgstr "Möchtest du die Änderungen an {filename} speichern?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:322
 #: skytemple/skytemple/controller/main.py:750
@@ -2289,15 +2289,15 @@ msgstr "<Leer>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:194
 msgid "1 (Enter)"
-msgstr ""
+msgstr "1 (Enter)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:197
 msgid "2 (Sub)"
-msgstr ""
+msgstr "2 (Sub)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:200
 msgid "3 (Acting)"
-msgstr ""
+msgstr "3 (Acting)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:234
 msgid "<Global>"
@@ -2358,7 +2358,7 @@ msgstr "Nintendo DS ROMs (*.nds)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:155
 msgid "Nintendo DS ROMs with binary loader (*.ds.gba)"
-msgstr ""
+msgstr "Nintendo DS ROMs mit Binärloader (*.ds.gba)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:159
 msgid "All files"
@@ -2368,7 +2368,8 @@ msgstr "Alle Dateien"
 #, python-brace-format
 msgid "DeSmuME couldn't be loaded. Debugging functionality will not be available:\n\n"
 "{ex}"
-msgstr ""
+msgstr "DeSmuME konnte nicht geladen werden. Die Debugging-Funktionalitäten werden nicht verfügbar sein:\n\n"
+"{ex}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:326
 msgid "Error loading the emulator!"
@@ -2387,7 +2388,7 @@ msgstr "Kann Datei nicht laden: {fn}\n"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:584
 msgid "Joypads are not supported on macOS. Sorry!"
-msgstr ""
+msgstr "Controller werden auf macOS nicht unterstützt. Sorry!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:639
 msgid "PNG Image (*.png)"
