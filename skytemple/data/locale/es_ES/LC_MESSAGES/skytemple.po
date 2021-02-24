@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-23 18:09+0000\n"
-"PO-Revision-Date: 2021-02-24 15:37\n"
+"PO-Revision-Date: 2021-02-24 19:47\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -254,7 +254,7 @@ msgstr "'Break' inesperado en la línea {ctx.start.line}"
 msgid "Infinite recursion detected while trying to load an ExplorerScript file from {subfile_path}.\n"
 "Tried loading from: {file_name}."
 msgstr "Se ha detectado una recursión infinita al intentar cargar un archivo ExplorerScript desde {subfile_path}.\n"
-"Se ha intentado cargar de: {file_name}."
+"Archivo de origen: {file_name}."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:162
 #, python-brace-format
@@ -806,7 +806,7 @@ msgstr "Pulsa un botón..."
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:443
 msgid "Key definition"
-msgstr ""
+msgstr "Definición clave"
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:506
 msgid "Press a key..."
@@ -1540,7 +1540,7 @@ msgstr "Saludable"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:26
 msgid "Half Life"
-msgstr ""
+msgstr "Mitad de vida"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:27
 msgid "Pinch"
@@ -1589,7 +1589,7 @@ msgstr "Terreno secundario, Sala"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:61
 msgid "Chasm, Hallway"
-msgstr ""
+msgstr "Abismo, Pasillo"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:63
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:76
@@ -1632,7 +1632,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:80
 msgid "F/W, Room; Key Door (0xC)"
-msgstr ""
+msgstr "S/P, Sala; Puerta cerrada con llave (0xC)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:82
 msgid "Tile flag 0xC is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
@@ -1640,7 +1640,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:84
 msgid "F/W, Room; Key Door (0xD)"
-msgstr ""
+msgstr "S/P, Sala; Puerta cerrada con llave (0xD)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:86
 msgid "Tile flag 0xD is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
@@ -1684,7 +1684,7 @@ msgstr "Activado (10)"
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:337
 #, python-brace-format
 msgid "Unexpected sub-node for {XML_FLOOR_LAYOUT}: {child.tag}"
-msgstr ""
+msgstr "Subnodo inesperado para {XML_FLOOR_LAYOUT}: {child.tag}"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:340
 #, python-brace-format
@@ -1729,7 +1729,7 @@ msgstr "Trampa {name} desconocida."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:109
 msgid "Trap lists need an entry for all of the 25 traps"
-msgstr ""
+msgstr "Las listas de trampas necesitan una entrada para las 25 trampas"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:37
 msgid "Invalid Floor List"
@@ -1849,12 +1849,12 @@ msgstr ""
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:86
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, Not divisble by {PORTRAIT_SIZE}x{PORTRAIT_SIZE}"
-msgstr ""
+msgstr "El retrato tiene un tamaño inválido de {img.size} no divisible por {PORTRAIT_SIZE}x{PORTRAIT_SIZE}"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:91
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, exceeding max of {max_size}"
-msgstr ""
+msgstr "El retrato tiene un tamaño inválido de {img.size}, superando el máximo de {max_size}"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:127
 #, python-brace-format
@@ -1868,7 +1868,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:147
 msgid "File should have original and flipped versions of emotions: {str(flipped_tiles)}"
-msgstr ""
+msgstr "El archivo debe tener versiones originales e invertidas de las emociones: {str(flipped_tiles)}"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:35
 msgid "Palette Only"
@@ -1888,7 +1888,7 @@ msgstr "8 bits por píxel (256 colores)"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:189
 msgid "Can not convert PIL image to WTE: Must be indexed image (=using a palette)"
-msgstr ""
+msgstr "No se puede convertir la imagen PIL a WTE: Debe ser una imagen indexada (=usando una paleta)"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:195
 msgid "This image is too big to fit into a WTE file."
@@ -1940,7 +1940,7 @@ msgstr "Error al aplicar el parche: {ex}"
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:42
 msgid "Tells the game, to load the actor and level lists from a separate file. Extracts both files on applying the patch."
-msgstr ""
+msgstr "Le dice al juego que cargue el actor y las listas de niveles de un archivo separado. Extrae ambos archivos al aplicar el parche."
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:69
 msgid "This patch can not be re-applied."
@@ -2281,7 +2281,7 @@ msgstr "0 (Global)"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:190
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:211
 msgid "<Empty>"
-msgstr ""
+msgstr "<Vacío>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:194
 msgid "1 (Enter)"
@@ -3658,7 +3658,9 @@ msgstr "Importar capa del mapa"
 msgid "This will import the entire background from an image.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Esto importará el fondo entero desde una imagen.\n\n"
+"Podrías necesitar convertir la imagen antes de poder usarla.\n"
+"Mira los \"Detalles del formato\"."
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:351
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1998
@@ -5092,7 +5094,7 @@ msgstr "Se añadió en Exploradores del Cielo, así que ahora mismo solo se util
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:387
 msgid "If enabled, the IQ booster increases IQ on this floor."
-msgstr ""
+msgstr "Si está activado, el potenciador de CI incrementará el CI en este piso."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:427
 #, python-brace-format
@@ -5707,8 +5709,8 @@ msgid "This will import the chunks.\n"
 "before you can use it. See the \"Format Details\"."
 msgstr "Esto importará los chunks.\n"
 "Los mapeados existentes serán reemplazados.\n\n"
-"Recuerda que podrías necesitar convertirlo para poder usarlo.\n"
-"Mira los \"detalles de formato\"."
+"Podrías necesitar convertir la imagen antes de poder usarla.\n"
+"Mira los \"Detalles del formato\"."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2055
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2484
@@ -5731,8 +5733,8 @@ msgid "This will import the entire background.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
 msgstr "Esto importará el fondo entero.\n\n"
-"Recuerda que podrías necesitar convertirlo para poder usarlo.\n"
-"Mira los \"detalles de formato\"."
+"Podrías necesitar convertir la imagen antes de poder usarla.\n"
+"Mira los \"Detalles del formato\"."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2279
 #: skytemple/skytemple/skytemple.glade:2106
@@ -5749,7 +5751,9 @@ msgstr "Importar tiles"
 msgid "This will import the tiles.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Esto importará los tiles.\n\n"
+"Podrías necesitar convertir la imagen antes de poder usarla.\n"
+"Mira los \"Detalles del formato\"."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2466
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2652
@@ -7249,14 +7253,19 @@ msgid "This will import the chunks for the selected layer\n"
 "using an image. The existing mappings are replaced.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Esto importará los chunks para la capa seleccionada\n"
+"con una imagen. Los mapeados existentes serán reemplazados.\n\n"
+"Podrías necesitar convertir la imagen antes de poder usarla.\n"
+"Mira los \"Detalles del formato\"."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5968
 msgid "This will import the entire map from one image\n"
 "per layer.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Esto importará el mapa entero desde una imagen por capas.\n\n"
+"Podrías necesitar convertir la imagen antes de poder usarla.\n"
+"Mira los \"Detalles del formato\"."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6043
 msgid "Layer 1 Image"
@@ -7271,7 +7280,10 @@ msgid "This will import the tiles for the selected layer\n"
 "using an image.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Esto importará los tiles para la capa seleccionada\n"
+"con una imagen.\n\n"
+"Podrías necesitar convertir la imagen antes de poder usarla.\n"
+"Mira los \"Detalles del formato\"."
 
 #: skytemple/skytemple/module/map_bg/module.py:71
 #: skytemple/skytemple/module/script/module.py:81
