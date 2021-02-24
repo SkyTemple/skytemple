@@ -126,7 +126,7 @@ class StringsController(AbstractController):
             Gtk.ButtonsType.OK,
             _("Import is done from a CSV file with the following specifications:\n"
               "- Has to contain all strings in order, one per row\n"
-              "- Strings may be quoted with: \" and escaped with doube-quotes.")
+              "- Strings may be quoted with: \" and escaped with double quotes.")
         )
         md.run()
         md.destroy()
@@ -170,7 +170,7 @@ class StringsController(AbstractController):
             Gtk.ButtonsType.OK,
             _("Export is done to a CSV file with the following specifications:\n"
               "- Contains all strings in order, one per row\n"
-              "- Strings may be quoted with: \" and escaped with doube-quotes.")
+              "- Strings may be quoted with: \" and escaped with double quotes.")
         )
         md.run()
         md.destroy()
