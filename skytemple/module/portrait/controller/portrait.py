@@ -56,6 +56,11 @@ class PortraitController(AbstractController):
 
         self.builder = None
 
+    def re_render(self):
+        self._portrait_provider.reset()
+        for draw in self._draws:
+            draw.queue_draw()
+
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'portrait.glade')
         self.builder.connect_signals(self)
@@ -89,6 +94,14 @@ class PortraitController(AbstractController):
 
     def on_import_clicked(self, w: Gtk.MenuToolButton):
         w.get_menu().popup(None, None, None, None, 0, Gtk.get_current_event_time())
+
+    def on_delete_clicked(self, label: Gtk.Label):
+        index = int(label.get_label().split(":")[0])
+        self.kao.loaded_kaos[self.item_id][index].empty = True
+        self.re_render()
+        # Mark as modified
+        self.module.mark_as_modified()
+        self._mark_as_modified_cb()
 
     def on_separate_export_activate(self, *args):
         dialog = Gtk.FileChooserNative.new(
@@ -157,10 +170,7 @@ class PortraitController(AbstractController):
                         f(_('Failed importing image "{name}":\n{err}')),
                         f(_(f"Error for '{name}'."))
                     )
-            # Re-render
-            self._portrait_provider.reset()
-            for draw in self._draws:
-                draw.queue_draw()
+            self.re_render()
             # Mark as modified
             self.module.mark_as_modified()
             self._mark_as_modified_cb()
@@ -224,10 +234,7 @@ class PortraitController(AbstractController):
                     f(_('Failed importing portraits sheet:\n{err}')),
                     _("Could not import.")
                 )
-            # Re-render
-            self._portrait_provider.reset()
-            for draw in self._draws:
-                draw.queue_draw()
+            self.re_render()
             # Mark as modified
             self.module.mark_as_modified()
             self._mark_as_modified_cb()

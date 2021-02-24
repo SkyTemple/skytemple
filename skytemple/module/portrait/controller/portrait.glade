@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.1 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkBox" id="box_main">
@@ -126,6 +126,23 @@
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label1" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw1">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -137,7 +154,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -150,7 +167,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -180,6 +197,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label2" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw2">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -191,7 +220,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -204,7 +233,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -218,6 +247,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label3" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw3">
                         <property name="width-request">80</property>
@@ -230,7 +271,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -243,7 +284,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -257,6 +298,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label4" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw4">
                         <property name="width-request">80</property>
@@ -269,7 +322,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -282,7 +335,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -297,6 +350,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label5" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw5">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -308,7 +373,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -321,7 +386,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -335,6 +400,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label6" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw6">
                         <property name="width-request">80</property>
@@ -347,7 +424,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -360,7 +437,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -374,6 +451,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label7" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw7">
                         <property name="width-request">80</property>
@@ -386,7 +475,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -399,7 +488,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -413,6 +502,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label8" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw8">
                         <property name="width-request">80</property>
@@ -425,7 +526,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -438,7 +539,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -453,6 +554,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label9" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw9">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -464,7 +577,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -477,7 +590,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -491,6 +604,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label10" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw10">
                         <property name="width-request">80</property>
@@ -503,7 +628,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -516,7 +641,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -530,6 +655,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label11" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw11">
                         <property name="width-request">80</property>
@@ -542,7 +679,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -555,7 +692,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -569,6 +706,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label12" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw12">
                         <property name="width-request">80</property>
@@ -581,7 +730,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -594,7 +743,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -609,6 +758,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label13" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw13">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -620,7 +781,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -633,7 +794,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -647,6 +808,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label14" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw14">
                         <property name="width-request">80</property>
@@ -659,7 +832,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -672,7 +845,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -686,6 +859,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label15" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw15">
                         <property name="width-request">80</property>
@@ -698,7 +883,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -711,7 +896,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -725,6 +910,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label16" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw16">
                         <property name="width-request">80</property>
@@ -737,7 +934,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -750,7 +947,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -765,6 +962,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label17" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw17">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -776,7 +985,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -789,7 +998,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -803,6 +1012,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label18" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw18">
                         <property name="width-request">80</property>
@@ -815,7 +1036,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -828,7 +1049,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -842,6 +1063,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label19" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw19">
                         <property name="width-request">80</property>
@@ -854,7 +1087,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -867,7 +1100,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -881,6 +1114,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label20" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw20">
                         <property name="width-request">80</property>
@@ -893,7 +1138,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -906,7 +1151,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -921,6 +1166,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label21" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw21">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -932,7 +1189,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -945,7 +1202,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -959,6 +1216,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label22" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw22">
                         <property name="width-request">80</property>
@@ -971,7 +1240,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -984,7 +1253,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -998,6 +1267,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label23" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw23">
                         <property name="width-request">80</property>
@@ -1010,7 +1291,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1023,7 +1304,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1037,6 +1318,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label24" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw24">
                         <property name="width-request">80</property>
@@ -1049,7 +1342,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1062,7 +1355,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1077,6 +1370,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label25" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw25">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -1088,7 +1393,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1101,7 +1406,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1115,6 +1420,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label26" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw26">
                         <property name="width-request">80</property>
@@ -1127,7 +1444,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1140,7 +1457,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1154,6 +1471,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label27" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw27">
                         <property name="width-request">80</property>
@@ -1166,7 +1495,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1179,7 +1508,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1193,6 +1522,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label28" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw28">
                         <property name="width-request">80</property>
@@ -1205,7 +1546,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1218,7 +1559,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1233,6 +1574,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label29" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw29">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -1244,7 +1597,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1257,7 +1610,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1271,6 +1624,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label30" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw30">
                         <property name="width-request">80</property>
@@ -1283,7 +1648,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1296,7 +1661,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1310,6 +1675,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label31" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw31">
                         <property name="width-request">80</property>
@@ -1322,7 +1699,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1335,7 +1712,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1349,6 +1726,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label32" swapped="no"/>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkDrawingArea" id="portrait_draw32">
                         <property name="width-request">80</property>
@@ -1361,7 +1750,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1374,7 +1763,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1389,6 +1778,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label33" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw33">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -1400,7 +1801,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1413,7 +1814,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1428,6 +1829,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label34" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw34">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -1439,7 +1852,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1452,7 +1865,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1467,6 +1880,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label35" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw35">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -1478,7 +1903,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1491,7 +1916,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1506,6 +1931,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label36" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw36">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -1517,7 +1954,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1530,7 +1967,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1545,6 +1982,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label37" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw37">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -1556,7 +2005,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1569,7 +2018,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1584,6 +2033,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label38" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw38">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -1595,7 +2056,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1608,7 +2069,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1623,6 +2084,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label39" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw39">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -1634,7 +2107,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1647,7 +2120,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -1662,6 +2135,18 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">x</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">end</property>
+                        <property name="valign">end</property>
+                        <property name="resize-mode">queue</property>
+                        <signal name="clicked" handler="on_delete_clicked" object="portrait_label40" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkDrawingArea" id="portrait_draw40">
                         <property name="width-request">80</property>
                         <property name="height-request">80</property>
@@ -1673,7 +2158,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -1686,7 +2171,7 @@ If flipped versions are empty, the game will automatically flip the image.</prop
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
