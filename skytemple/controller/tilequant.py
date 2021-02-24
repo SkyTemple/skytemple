@@ -85,7 +85,7 @@ class TilequantController:
         ))
         builder.get_object('tq_second_file_help').connect('clicked', partial(
             self.show_help, _('You can use this to convert multiple images at once with the same palettes. '
-                              'This is useful for map backgrounds with multiple layers, that need to share the same'
+                              'This is useful for map backgrounds with multiple layers, that need to share the same '
                               'palettes.')
         ))
         builder.get_object('tq_mode_help').connect('clicked', partial(
