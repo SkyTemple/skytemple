@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-24 20:38\n"
+"PO-Revision-Date: 2021-02-24 21:44\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1417,7 +1417,7 @@ msgstr "Zoquete"
 
 #: skytemple-files/skytemple_files/data/md/model.py:169
 msgid "Steadfast"
-msgstr ""
+msgstr "Impasible"
 
 #: skytemple-files/skytemple_files/data/md/model.py:170
 msgid "Flower Gift"
@@ -1425,7 +1425,7 @@ msgstr "Don Floral"
 
 #: skytemple-files/skytemple_files/data/md/model.py:171
 msgid "Poison Heal"
-msgstr ""
+msgstr "Antídoto"
 
 #: skytemple-files/skytemple_files/data/md/model.py:172
 msgid "Magic Guard"
@@ -1762,7 +1762,7 @@ msgstr "Pisos no usados"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/validator/exception.py:88
 msgid "Has {len(self.floors_in_mappa_not_referenced)} extra floors in it's floor list, which are not assigned to any dungeon."
-msgstr ""
+msgstr "Hay {len(self.floors_in_mappa_not_referenced)} pisos adicionales en tu lista de pisos que no están asignados a ningún territorio."
 
 #: skytemple-files/skytemple_files/graphics/bma/model.py:447
 #, python-brace-format
@@ -1944,7 +1944,7 @@ msgstr "Le dice al juego que cargue el actor y las listas de niveles de un archi
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:69
 msgid "This patch can not be re-applied."
-msgstr ""
+msgstr "Este parche no se puede volver a aplicar."
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:75
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:83
@@ -2050,7 +2050,7 @@ msgstr "falta el archivo patch.py en el paquete de parches."
 
 #: skytemple-files/skytemple_files/patch/patches.py:159
 msgid "The patch.py of the patch package contains a syntax error."
-msgstr ""
+msgstr "Patch.py del paquete de parches contiene un error de sintaxis."
 
 #: skytemple-files/skytemple_files/patch/patches.py:164
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
@@ -2068,13 +2068,13 @@ msgstr ""
 #: skytemple-files/skytemple_files/script/ssb/constants.py:75
 #, python-brace-format
 msgid "Invalid DungeonMode: {string}"
-msgstr ""
+msgstr "DungeonMode inválido: {string}"
 
 #: skytemple-files/skytemple_files/script/ssb/constants.py:202
 #: skytemple-files/skytemple_files/script/ssb/constants.py:203
 #, python-brace-format
 msgid "Unknown constant {constant_as_string}."
-msgstr ""
+msgstr "Constante desconocida: {constant_as_string}."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:107
 msgid "The routine data lists for the decompiler must have the same lengths."
@@ -2199,7 +2199,7 @@ msgstr "Cerrar"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:45
 msgid "Free"
-msgstr ""
+msgstr "Libre"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:47
 msgid "Block"
@@ -2521,7 +2521,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:282
 msgid "Parse error: "
-msgstr "Error de análisis: "
+msgstr "Error de sintaxis: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:285
 #, python-brace-format
@@ -3252,7 +3252,8 @@ msgstr ""
 #, python-brace-format
 msgid "The script contains a syntax error, please fix it before editing the Position Mark.\n"
 "Parse error: {err}"
-msgstr ""
+msgstr "El script contiene un error de sintaxis, soluciónalo antes de editar la marca de posición.\n"
+"Error de sintaxis: {err}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/constants.py:36
 msgid "Constants & Variables"
@@ -5898,7 +5899,12 @@ msgid "You can export and import the tiles from an easy-to-modify\n"
 "For more information about DTEF, click the \"Help\" button.\n"
 "You can also manually import chunks and assign tile rules,\n"
 "by switching to the Advanced Mode."
-msgstr ""
+msgstr "Puedes exportar e importar los tiles de un tileset fácil de modificar\n"
+"basado en 47 reglas (en formato DTEF). Los ajustes adicionales\n"
+"pueden cambiarse modificando el XML en la exportación.\n"
+"Para más información sobre DTEF, haz clic en el botón \"Ayuda\".\n"
+"También puedes importar manualmente chunks y asignar reglas de tiles,\n"
+"cambiando al Modo avanzado."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1481
 msgid "Simple Mode (DTEF)"
@@ -5956,7 +5962,7 @@ msgstr "Selector de chunk"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2274
 msgid "Advanced Mode (Manual)"
-msgstr ""
+msgstr "Modo avanzado (Manual)"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2328
 msgid "Secondary Terrain Type"
