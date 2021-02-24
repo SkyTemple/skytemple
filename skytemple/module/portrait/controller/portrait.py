@@ -97,7 +97,9 @@ class PortraitController(AbstractController):
 
     def on_delete_clicked(self, label: Gtk.Label):
         index = int(label.get_label().split(":")[0])
-        self.kao.loaded_kaos[self.item_id][index].empty = True
+        kao = self.kao.loaded_kaos[self.item_id][index]
+        kao.empty = True
+        kao.modified = True
         self.re_render()
         # Mark as modified
         self.module.mark_as_modified()
