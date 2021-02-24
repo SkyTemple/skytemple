@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-02-23 18:09+0000\n"
-"PO-Revision-Date: 2021-02-24 19:47\n"
+"POT-Creation-Date: 2021-02-24 20:36+0000\n"
+"PO-Revision-Date: 2021-02-24 20:38\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1416,16 +1416,16 @@ msgid "Klutz"
 msgstr "Zoquete"
 
 #: skytemple-files/skytemple_files/data/md/model.py:169
-msgid "Stedfast"
-msgstr "Impasible"
+msgid "Steadfast"
+msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:170
 msgid "Flower Gift"
 msgstr "Don Floral"
 
 #: skytemple-files/skytemple_files/data/md/model.py:171
-msgid "Poision Heal"
-msgstr "Antídoto"
+msgid "Poison Heal"
+msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:172
 msgid "Magic Guard"
@@ -2049,8 +2049,8 @@ msgid "patch.py missing in patch package."
 msgstr "falta el archivo patch.py en el paquete de parches."
 
 #: skytemple-files/skytemple_files/patch/patches.py:159
-msgid "The patch.py of the patch package contains a syntay error."
-msgstr "Patch.py del paquete de parches contiene un error de sintaxis."
+msgid "The patch.py of the patch package contains a syntax error."
+msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:164
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
@@ -3492,7 +3492,7 @@ msgid "This exact color of the image will be imported as transparency (default: 
 msgstr ""
 
 #: skytemple/skytemple/controller/tilequant.py:87
-msgid "You can use this to convert multiple images at once with the same palettes. This is useful for map backgrounds with multiple layers, that need to share the samepalettes."
+msgid "You can use this to convert multiple images at once with the same palettes. This is useful for map backgrounds with multiple layers, that need to share the same palettes."
 msgstr ""
 
 #: skytemple/skytemple/controller/tilequant.py:93
@@ -3552,12 +3552,10 @@ msgid "SkyTemple - Error!"
 msgstr "SkyTemple - ¡Error!"
 
 #: skytemple/skytemple/core/logger.py:45
-#, python-brace-format
-msgid "An uncaught exception occurred! This shouldn't happen, please report it!\n\n"
-"{traceback_str}"
+msgid "An uncaught exception occurred! This shouldn't happen, please report it!"
 msgstr ""
 
-#: skytemple/skytemple/core/logger.py:47
+#: skytemple/skytemple/core/logger.py:46
 msgid "SkyTemple - Uncaught error!"
 msgstr ""
 
@@ -5667,16 +5665,12 @@ msgid "Background Export"
 msgstr "Exportar fondo"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1712
-msgid "This will export the entire bakground an image.\n\n"
+msgid "This will export the entire background an image.\n\n"
 "You can edit and import the background again.\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr "Esto exportará el fondo entero de una imagen.\n\n"
-"Puedes editar e importar el fondo de nuevo.\n"
-"Recuerda que podrías necesitar convertirlo \n"
-"para poder usarlo. \n"
-"Ve la importación del diálogo para más información."
+msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1764
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:7
@@ -8506,7 +8500,7 @@ msgstr "... como una sola hoja (formato SpriteBot)"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:167
 msgid "If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.\n"
-"IIf that is also missing, the behaviour is undefined.\n"
+"If that is also missing, the behaviour is undefined.\n"
 "If flipped versions are empty, the game will automatically flip the image."
 msgstr ""
 
@@ -9050,7 +9044,7 @@ msgstr "Cadena"
 #: skytemple/skytemple/module/strings/controller/strings.py:127
 msgid "Import is done from a CSV file with the following specifications:\n"
 "- Has to contain all strings in order, one per row\n"
-"- Strings may be quoted with: \" and escaped with doube-quotes."
+"- Strings may be quoted with: \" and escaped with double quotes."
 msgstr ""
 
 #: skytemple/skytemple/module/strings/controller/strings.py:134
@@ -9068,7 +9062,7 @@ msgstr "Error al exportar las cadenas."
 #: skytemple/skytemple/module/strings/controller/strings.py:171
 msgid "Export is done to a CSV file with the following specifications:\n"
 "- Contains all strings in order, one per row\n"
-"- Strings may be quoted with: \" and escaped with doube-quotes."
+"- Strings may be quoted with: \" and escaped with double quotes."
 msgstr ""
 
 #: skytemple/skytemple/module/strings/controller/strings.py:179
@@ -9144,7 +9138,7 @@ msgid "Palette Editor"
 msgstr "Editor de paleta"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:103
-msgid "Make all colors unqiue"
+msgid "Make all colors unique"
 msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:170
