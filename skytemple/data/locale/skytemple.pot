@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-02-23 19:21+0000\n"
+"POT-Creation-Date: 2021-02-24 20:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2052,7 +2052,7 @@ msgid "patch.py missing in patch package."
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:159
-msgid "The patch.py of the patch package contains a syntay error."
+msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:164
@@ -3576,14 +3576,10 @@ msgid "SkyTemple - Error!"
 msgstr ""
 
 #: skytemple/skytemple/core/logger.py:45
-#, python-brace-format
-msgid ""
-"An uncaught exception occurred! This shouldn't happen, please report it!\n"
-"\n"
-"{traceback_str}"
+msgid "An uncaught exception occurred! This shouldn't happen, please report it!"
 msgstr ""
 
-#: skytemple/skytemple/core/logger.py:47
+#: skytemple/skytemple/core/logger.py:46
 msgid "SkyTemple - Uncaught error!"
 msgstr ""
 
@@ -8542,7 +8538,7 @@ msgstr ""
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:167
 msgid ""
 "If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.\n"
-"IIf that is also missing, the behaviour is undefined.\n"
+"If that is also missing, the behaviour is undefined.\n"
 "If flipped versions are empty, the game will automatically flip the image."
 msgstr ""
 
@@ -9115,7 +9111,7 @@ msgstr ""
 msgid ""
 "Import is done from a CSV file with the following specifications:\n"
 "- Has to contain all strings in order, one per row\n"
-"- Strings may be quoted with: \" and escaped with doube-quotes."
+"- Strings may be quoted with: \" and escaped with double quotes."
 msgstr ""
 
 #: skytemple/skytemple/module/strings/controller/strings.py:134
@@ -9134,7 +9130,7 @@ msgstr ""
 msgid ""
 "Export is done to a CSV file with the following specifications:\n"
 "- Contains all strings in order, one per row\n"
-"- Strings may be quoted with: \" and escaped with doube-quotes."
+"- Strings may be quoted with: \" and escaped with double quotes."
 msgstr ""
 
 #: skytemple/skytemple/module/strings/controller/strings.py:179
@@ -9210,7 +9206,7 @@ msgid "Palette Editor"
 msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:103
-msgid "Make all colors unqiue"
+msgid "Make all colors unique"
 msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:170
