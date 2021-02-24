@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-23 18:09+0000\n"
-"PO-Revision-Date: 2021-02-23 22:27\n"
+"PO-Revision-Date: 2021-02-24 14:39\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -853,7 +853,7 @@ msgstr "Falta un archivo DTEF necesario: {fn}. Por favor, comprueba el paquete D
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:131
 #, python-brace-format
 msgid "Can not import image \"{basename}\" as dungeon tileset: Must be indexed image (=using a palette)"
-msgstr "No se puede importar la imagen \"{basename}\" como tileset del territorio: Debe ser imagen indexada (=con una paleta)"
+msgstr "No se puede importar la imagen \"{basename}\" como tileset del territorio: Debe ser imagen indexada (=usando una paleta)"
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:134
 #, python-brace-format
@@ -916,7 +916,7 @@ msgstr "Solo se admiten imágenes 4bpp y 8bpp."
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:201
 msgid "Can not convert PIL image to PMD tiled image: Must be indexed image (=using a palette)"
-msgstr ""
+msgstr "No se puede convertir la imagen PIL a imagen de tiles de PMD: Debe ser una imagen indexada (=usando una paleta)"
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:205
 #, python-brace-format
@@ -926,18 +926,19 @@ msgstr "No se puede convertir la imagen PIL a una de tiles de PMD: la paleta deb
 #: skytemple-files/skytemple_files/common/tiled_image.py:209
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Image dimensions must be {img_width}x{img_height}px."
-msgstr ""
+msgstr "No se puede convertir la imagen PIL a imagen de tiles de PMD: Las dimensiones de la imagen deben ser de {img_width}x{img_height}px."
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:269
 #: skytemple-files/skytemple_files/common/tiled_image.py:277
 msgid "Can not convert PIL image to PMD tiled image: The color {pix} (from palette {math.floor(pix / single_palette_size)}) used by pixel {x+(idx % 2)}x{y} in tile {tile_id} ({tile_x}x{tile_y} is out of range. Expected are colors from palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
-msgstr ""
+msgstr "No se puede convertir una imagen PIL en una imagen de tiles de PMD: El color {pix} (de la paleta {math.floor(pix / single_palette_size)}) utilizado por el píxel {x+(idx % 2)}x{y} en el tile {tile_id} ({tile_x}x{tile_y} está fuera de rango. Se esperaban los colores de la paleta {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:317
 #, python-brace-format
 msgid "An image selected to import is too complex. It has too many unique tiles ({len_final_tiles}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
-msgstr ""
+msgstr "La imagen seleccionada para importar es demasiado compleja. Tiene demasiados tiles únicos ({len_final_tiles} tiles, pero el máximo permitido es 1024).\n"
+"Intenta reducir los tiles únicos. Estos tiles son secciones 8x8 de las imágenes que no se pueden encontrar en ninguna otra parte de la imagen (ni siquiera volteadas o con una subpaleta diferente)."
 
 #: skytemple-files/skytemple_files/common/util.py:310
 msgid "This ROM is not supported by SkyTemple."
@@ -1493,16 +1494,16 @@ msgstr "XML inválido. Falta '{a}' para {b}."
 #: skytemple-files/skytemple_files/data/monster_xml.py:462
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET_LEVEL_UP__LEVEL}' missing for a level up moveset entry."
-msgstr ""
+msgstr "XML inválido. Falta '{XML_MOVESET_LEVEL_UP__LEVEL}' para un movimiento de subida de nivel."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:466
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET__MOVE_ID}' missing for a level up moveset entry."
-msgstr ""
+msgstr "XML inválido. Falta '{XML_MOVESET__MOVE_ID}' para un movimiento de subida de nivel."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:503
 msgid "Invalid XML. StatsGrowth must have exactly 100 levels."
-msgstr ""
+msgstr "XML inválido. 'StatsGrowth' debe tener exactamente 100 niveles."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:528
 #: skytemple-files/skytemple_files/data/monster_xml.py:533
@@ -1526,12 +1527,12 @@ msgstr "XML inválido. '{XML_PORTRAITS_PORTRAIT__IMAGE}' falta para un retrato."
 #: skytemple-files/skytemple_files/data/monster_xml.py:596
 #, python-brace-format
 msgid "Invalid XML. '{XML_PORTRAITS_PORTRAIT__PALETTE}' missing for a portrait."
-msgstr ""
+msgstr "XML inválido. Falta '{XML_PORTRAITS_PORTRAIT__PALETTE}' para un retrato."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:604
 #, python-brace-format
 msgid "Invalid XML. The portrait data of one of the portraits is invalid: {err}"
-msgstr ""
+msgstr "XML inválido. Los datos de un retrato no son válidos: {err}"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:25
 msgid "Healthy"
@@ -1562,25 +1563,25 @@ msgstr ""
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:109
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:112
 msgid "Floor, Room"
-msgstr ""
+msgstr "Piso, Sala"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:46
 msgid "Wall, Hallway; Absolute Mover"
-msgstr ""
+msgstr "Pared, Pasillo; Híper-todoterreno"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:49
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:88
 msgid "Wall, Hallway; Impassable"
-msgstr ""
+msgstr "Pared, Pasillo; Intransitable"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:52
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:91
 msgid "Wall, Hallway"
-msgstr ""
+msgstr "Pared, Pasillo"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:55
 msgid "Leader Spawn Floor"
-msgstr ""
+msgstr "Lugar de aparición del líder"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:58
 msgid "Secondary, Room"
@@ -2669,7 +2670,7 @@ msgstr "Buscar y Reemplazar"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:448
 msgid "Replace All"
-msgstr "Reemplazar Todo"
+msgstr "Reemplazar todo"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:462
 msgid "Replace"
