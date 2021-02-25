@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-24 21:44\n"
+"PO-Revision-Date: 2021-02-25 12:23\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -2528,24 +2528,27 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:282
 msgid "Parse error: "
-msgstr ""
+msgstr "Erreur d'analyse : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:285
 #, python-brace-format
 msgid "The script file {self.filename} could not be saved.\n"
 "{prefix}{err}"
-msgstr ""
+msgstr "Le fichier de script {self.filename} n'a pas pu être enregistré.\n"
+"{prefix}{err}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:287
 msgid "Error saving the script."
-msgstr ""
+msgstr "Erreur pendant l'enregistrement du script."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:366
 #, python-brace-format
 msgid "There was an error while loading the ExplorerScript source code. The source will not be available.\n"
 "Please close and reopen the tab.\n\n"
 "{exception}"
-msgstr ""
+msgstr "Une erreur est provenue pendant le chargement du code source ExplorerScript. Ce code ne sera pas disponible.\n"
+"Veuillez fermer et rouvrir l'onglet.\n\n"
+"{exception}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:377
 msgid "SSBScript is not available for this file."
@@ -2554,7 +2557,8 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:466
 msgid "An old version of this script is still loaded in RAM, but breakpoints are not available.\n"
 "Debugging is disabled for this file, until it is reloaded."
-msgstr ""
+msgstr "Une ancienne version de ce script est toujours chargée en RAM, mais les points d'arrêt ne sont pas disponibles.\n"
+"Le débogage est désactivé pour ce fichier, jusqu'à ce qu'il soit rechargé."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:474
 msgid "An old version of this script is still loaded in RAM, old breakpoints are still used, until the file is reloaded."
@@ -2563,37 +2567,39 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:754
 #, python-brace-format
 msgid "Search and Replace in {self.filename}"
-msgstr ""
+msgstr "Rechercher et remplacer dans {self.filename}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:907
 msgid "This is a read-only representation of the compiled ExplorerScript."
-msgstr ""
+msgstr "Ceci est une représentation en lecture seule du script ExplorerScript compilé."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:918
 msgid "ExplorerScript is not available for this file."
-msgstr ""
+msgstr "ExplorerScript n'est pas disponible pour ce fichier."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:939
 msgid "The ExplorerScript source code does not match the compiled script that is present in the ROM.\n"
 "Do you want to keep your ExplorerScript source code, or reload (decompile) it from ROM?\n"
 "Warning: If you choose to reload, you will lose your file, including all comments in it."
-msgstr ""
+msgstr "Le code source ExplorerScript ne correspond pas au script compilé qui est présent dans la ROM.\n"
+"Voulez-vous conserver votre code source ExplorerScript, ou le recharger (décompiler) de la ROM ?\n"
+"Avertissement : Si vous choisissez de recharger, vous perdrez votre fichier, y compris tous les commentaires."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:942
 msgid "ExplorerScript Inconsistency"
-msgstr ""
+msgstr "Incohérence dans ExplorerScript"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:944
 msgid "Reload from ROM"
-msgstr ""
+msgstr "Recharger depuis la ROM"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:945
 msgid "Keep ExplorerScript source code"
-msgstr ""
+msgstr "Conserver le code source ExplorerScript"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:18
 msgid "Disable breakpoints (all files)."
-msgstr ""
+msgstr "Désactiver les points d’arrêt (tous les fichiers)."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:19
 msgid "Disable Breaks"
@@ -2601,11 +2607,11 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:44
 msgid "Resume."
-msgstr ""
+msgstr "Reprendre."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:45
 msgid "Resume"
-msgstr ""
+msgstr "Reprendre"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:60
 msgid "Step over the current instruction."
@@ -2679,15 +2685,15 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:462
 msgid "Replace"
-msgstr ""
+msgstr "Remplacer"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:476
 msgid "Search"
-msgstr ""
+msgstr "Rechercher"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:507
 msgid "Search for"
-msgstr ""
+msgstr "Rechercher"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:519
 msgid "Replace with"
@@ -2696,11 +2702,11 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:540
 #: skytemple/skytemple/module/dungeon/module.py:755
 msgid "Nothing"
-msgstr ""
+msgstr "Rien"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:554
 msgid "Case sensitive"
-msgstr ""
+msgstr "Sensible à la casse"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:568
 msgid "Search backwards"
@@ -2716,7 +2722,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:609
 msgid "Regular Expression"
-msgstr ""
+msgstr "Expression régulière"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:47
 msgid "Scenario"
@@ -2839,11 +2845,11 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:507
 #: skytemple/skytemple/skytemple.glade:266
 msgid "Language"
-msgstr ""
+msgstr "Langue"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:517
 msgid "Japanese"
-msgstr ""
+msgstr "Japonais"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:527
 #: skytemple/skytemple/controller/settings.py:32
@@ -2853,7 +2859,7 @@ msgstr "Anglais"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
 #: skytemple/skytemple/controller/settings.py:35
 msgid "French"
-msgstr ""
+msgstr "Français"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:550
 #: skytemple/skytemple/controller/settings.py:33
@@ -2862,20 +2868,20 @@ msgstr "Allemand"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:561
 msgid "Italian"
-msgstr ""
+msgstr "Italien"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:572
 #: skytemple/skytemple/controller/settings.py:34
 msgid "Spanish"
-msgstr ""
+msgstr "Espagnol"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:687
 msgid "Enable Audio"
-msgstr ""
+msgstr "Activer l'audio"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:697
 msgid "Screenshot..."
-msgstr ""
+msgstr "Capture d'écran"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:710
 msgid "_Help"
@@ -2883,7 +2889,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:720
 msgid "ExplorerScript documentation"
-msgstr ""
+msgstr "Documentation ExplorerScript"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:849
 msgid "Script Browser"
@@ -2893,7 +2899,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.glade:1036
 #: skytemple/skytemple/module/script/controller/ssb.py:24
 msgid "Scripts"
-msgstr ""
+msgstr "Scripts"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:925
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:958
@@ -2903,7 +2909,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:938
 msgid "Active Files"
-msgstr ""
+msgstr "Fichiers actifs"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:974
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:536
@@ -2928,7 +2934,7 @@ msgstr "Sauvegarder"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1172
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2845
 msgid "Load"
-msgstr ""
+msgstr "Charger"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1253
 msgid "Reload current variables"
@@ -2943,7 +2949,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1278
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1298
 msgid "Global Variables"
-msgstr ""
+msgstr "Variables globales"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1358
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1408
@@ -2954,7 +2960,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1374
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1451
 msgid "Local Variables"
-msgstr ""
+msgstr "Variables locales"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1424
 msgid "Macro Variables"
@@ -2991,19 +2997,19 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1624
 msgid "No Screen Fade"
-msgstr ""
+msgstr "Pas de fondu d'écran"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1640
 msgid "Sound OFF"
-msgstr ""
+msgstr "Son désactivé"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1656
 msgid "BGM OFF"
-msgstr ""
+msgstr "Musique de fond désactivée"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1672
 msgid "SE OFF"
-msgstr ""
+msgstr "Effets sonores désactivés"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1688
 msgid "Stage NPC Dummy"
@@ -3182,11 +3188,13 @@ msgstr ""
 msgid "Powered by DeSmuME, the Nintendo DS Emulator:\n"
 "Originally licensed under GPLv2. See https://github.com/TASVideos/desmume/blob/master/desmume/AUTHORS for a list of authors!\n"
 "Thanks for making this great emulator!"
-msgstr ""
+msgstr "Propulsé par DeSmuME, l'émulateur Nintendo DS :\n"
+"initialement sous licence GPLv2. Voir https://github. om/TASVideos/desmume/blob/master/desmume/AUTHORS pour une liste d'auteurs !\n"
+"Merci d'avoir fait ce grand émulateur !"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3213
 msgid "Interactive debugger for the script engine of Pokémon Mystery Dungeon Explorers of Sky (EU/US)"
-msgstr ""
+msgstr "Débogueur interactif pour le moteur de script de Pokémon Donjon Mystère: Explorateurs du Ciel (EU/US)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3215
 msgid "https://github.com/SkyTemple/skytemple-ssb-debugger"
@@ -3269,15 +3277,15 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/functions.py:32
 msgid "Functions"
-msgstr ""
+msgstr "Fonctions"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:260
 msgid "Macros have no scenes."
-msgstr ""
+msgstr "Les macros n'ont aucune scène."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:261
 msgid "Action not supported"
-msgstr ""
+msgstr "Action non prise en charge"
 
 #: skytemple/skytemple/_i18n.py:21
 msgid "_About"
@@ -3421,11 +3429,11 @@ msgstr ""
 
 #: skytemple/skytemple/controller/main.py:337
 msgid "Error opening the ROM"
-msgstr ""
+msgstr "Erreur lors de l'ouverture de la ROM"
 
 #: skytemple/skytemple/controller/main.py:359
 msgid "Error saving the ROM"
-msgstr ""
+msgstr "Erreur lors de la sauvegarde de la ROM"
 
 #: skytemple/skytemple/controller/main.py:469
 msgid "A project must be opened to use this."
@@ -3467,7 +3475,7 @@ msgstr "Détecter automatiquement"
 
 #: skytemple/skytemple/controller/settings.py:36
 msgid "Chinese Traditional"
-msgstr ""
+msgstr "Chinois Traditionnel"
 
 #: skytemple/skytemple/controller/settings.py:120
 msgid "You need to restart SkyTemple to apply some of the settings."
@@ -3490,7 +3498,7 @@ msgstr "Tous les fichiers"
 
 #: skytemple/skytemple/controller/tilequant.py:79
 msgid "The maximum number of palettes that can be used. For normal backgrounds, this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes (since the last 2 palettes are not rendered in game)."
-msgstr ""
+msgstr "Le nombre maximum de palettes qui peuvent être utilisées. Pour les fonds normaux, cela peut être un maximum de 16. Pour les fonds de carte, les deux calques partagent le total de 14 palettes (puisque les 2 dernières palettes ne sont pas affichées dans le jeu)."
 
 #: skytemple/skytemple/controller/tilequant.py:84
 msgid "This exact color of the image will be imported as transparency (default: #12ab56)."
@@ -3558,7 +3566,7 @@ msgstr "SkyTemple - Erreur !"
 
 #: skytemple/skytemple/core/logger.py:45
 msgid "An uncaught exception occurred! This shouldn't happen, please report it!"
-msgstr ""
+msgstr "Une exception non gérée s'est produite ! Cela ne devrait pas arriver, merci de la signaler !"
 
 #: skytemple/skytemple/core/logger.py:46
 msgid "SkyTemple - Uncaught error!"
@@ -3936,7 +3944,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:311
 msgid "Show more information"
-msgstr ""
+msgstr "Afficher plus d'informations"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:333
 msgid ":"
@@ -4290,7 +4298,8 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:216
 msgid "This section lets you edit fixed rooms. Fixed rooms can be configured to appear on dungeon floors.\n"
 "They are usually used for boss fights or other special floors."
-msgstr ""
+msgstr "Cette section vous permet de modifier les pièces fixes. Les pièces fixes peuvent être configurées pour apparaître sur les étages des donjons.\n"
+"Elles sont généralement utilisées pour les combats de boss ou d'autres étages spéciaux."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:250
 msgid "Here you can edit the entities that can be placed in fixed rooms. Entities are a combination of tile properties (+traps), Pokémon and items."
@@ -4319,7 +4328,7 @@ msgstr "Tuile"
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:1747
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:1895
 msgid "Item"
-msgstr ""
+msgstr "Objet"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:346
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:915
@@ -4332,7 +4341,7 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/main.glade:71
 #: skytemple/skytemple/module/monster/controller/monster.glade:466
 msgid "Pokémon"
-msgstr ""
+msgstr "Pokémon"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:400
 msgid "Go To Pokémon"
@@ -4353,7 +4362,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:585
 msgid "Unbreakable?"
-msgstr ""
+msgstr "Incassable ?"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:598
 msgid "Unk11"
@@ -4385,7 +4394,7 @@ msgstr "Unk17"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:689
 msgid "Room"
-msgstr ""
+msgstr "Salle"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:703
 msgid "Trap Visible?"
@@ -4433,16 +4442,16 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4745
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:2025
 msgid "Items"
-msgstr ""
+msgstr "Objets"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:946
 #: skytemple/skytemple/module/monster/controller/level_up.glade:381
 msgid "Stats"
-msgstr ""
+msgstr "Stats"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:993
 msgid "Go To Stats"
-msgstr ""
+msgstr "Aller aux statistiques"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1074
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2712
@@ -4469,15 +4478,15 @@ msgstr "Atq."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1130
 msgid "Sp. Atk."
-msgstr ""
+msgstr "Att. Spé."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1144
 msgid "Def."
-msgstr ""
+msgstr "Déf."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1158
 msgid "Sp. Def."
-msgstr ""
+msgstr "Déf. Spé."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1172
 msgid "UnkA"
@@ -4485,20 +4494,20 @@ msgstr "UnkA"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1195
 msgid "Pokémon Stats"
-msgstr ""
+msgstr "Stats de Pokémon"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1217
 msgid "Spawn Lists"
-msgstr ""
+msgstr "Listes d'apparitions"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:506
 msgid "n/a"
-msgstr ""
+msgstr "n/d"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:44
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:15
 msgid "Add category"
-msgstr ""
+msgstr "Ajouter une catégorie"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:110
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:78
@@ -4637,7 +4646,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1158
 msgid "Fixed Room"
-msgstr ""
+msgstr "Salle fixe"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1237
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:50
@@ -4656,7 +4665,7 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/object.glade:107
 #: skytemple/skytemple/module/strings/controller/strings.glade:153
 msgid "Import"
-msgstr ""
+msgstr "Importer"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1282
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:65
@@ -4675,20 +4684,20 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/object.glade:152
 #: skytemple/skytemple/module/strings/controller/strings.glade:198
 msgid "Export"
-msgstr ""
+msgstr "Exporter"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1333
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1378
 msgid "Go To"
-msgstr ""
+msgstr "Aller à"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1466
 msgid "Structure"
-msgstr ""
+msgstr "Structure"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1482
 msgid "Structure Type:"
-msgstr ""
+msgstr "Type de structure :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1494
 msgid "Floor connectivity:"
@@ -4732,7 +4741,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1779
 msgid "Weather:"
-msgstr ""
+msgstr "Météo :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1804
 msgid "Items, Traps and Enemies"
@@ -4788,7 +4797,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1969
 msgid "Enemy IQ:"
-msgstr ""
+msgstr "QI Ennemi :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1981
 msgid "IQ Booster enabled?:"
@@ -4858,18 +4867,18 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3046
 msgid "Traps"
-msgstr ""
+msgstr "Pièges"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3122
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:698
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:52
 msgid "Category"
-msgstr ""
+msgstr "Catégorie"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3235
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:811
 msgid "Categories"
-msgstr ""
+msgstr "Catégories"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3304
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3460
@@ -4929,7 +4938,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:1861
 #: skytemple/skytemple/module/lists/controller/item_lists.py:50
 msgid "Orbs"
-msgstr ""
+msgstr "Orbes"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4537
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:2009
@@ -5016,19 +5025,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:107
 msgid "★6 Rank"
-msgstr ""
+msgstr "Rang ★6"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:108
 msgid "★7 Rank"
-msgstr ""
+msgstr "Rang ★7"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:109
 msgid "★8 Rank"
-msgstr ""
+msgstr "Rang ★8"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:110
 msgid "★9 Rank"
-msgstr ""
+msgstr "Rang ★9"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:205
 msgid "This attribute is the base rank of this floor. \n"
@@ -5169,15 +5178,15 @@ msgstr "Exportation annulée."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:920
 msgid "Import floor from..."
-msgstr ""
+msgstr "Importer un étage depuis..."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:940
 msgid "Error importing the floor."
-msgstr ""
+msgstr "Erreur lors de l'import de l'étage."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1501
 msgid "No fixed room"
-msgstr ""
+msgstr "Aucune pièce fixe"
 
 #: skytemple/skytemple/module/dungeon/controller/group.py:37
 msgid "Dungeon groups contain multiple dungeon to create one big continuous dungeon.\n"
@@ -5200,11 +5209,11 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/main.glade:53
 #: skytemple/skytemple/module/dungeon/controller/main.py:39
 msgid "Dungeons"
-msgstr ""
+msgstr "Donjons"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:69
 msgid "This section lets you edit the layouts of dungeons in the game."
-msgstr ""
+msgstr "Cette section vous permet de modifier la disposition des donjons dans le jeu."
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:87
 #: skytemple/skytemple/module/dungeon/controller/main.glade:158
@@ -5228,11 +5237,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:259
 msgid "Error"
-msgstr ""
+msgstr "Erreur"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:270
 msgid "Details"
-msgstr ""
+msgstr "Détails"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:281
 msgid "Solution"
@@ -5312,7 +5321,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/module.py:457
 msgid "Floor {floor_i + 1}"
-msgstr ""
+msgstr "Étage {floor_i + 1}"
 
 #: skytemple/skytemple/module/dungeon/module.py:737
 msgid "Secondary"
@@ -5333,7 +5342,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:64
 msgid "Export PNG of map..."
-msgstr ""
+msgstr "Exporter une image PNG de la carte..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:131
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:733
@@ -5436,112 +5445,112 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:223
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:714
 msgid "Color #0"
-msgstr ""
+msgstr "Couleur 0"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:141
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:632
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:234
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:725
 msgid "Color #2"
-msgstr ""
+msgstr "Couleur 2"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:152
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:643
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:245
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:736
 msgid "Color #1"
-msgstr ""
+msgstr "Couleur 1"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:163
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:654
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:256
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:747
 msgid "Color #3"
-msgstr ""
+msgstr "Couleur 3"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:174
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:665
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:267
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:758
 msgid "Color #5"
-msgstr ""
+msgstr "Couleur 5"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:185
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:676
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:278
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:769
 msgid "Color #6"
-msgstr ""
+msgstr "Couleur 6"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:196
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:687
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:289
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:780
 msgid "Color #4"
-msgstr ""
+msgstr "Couleur 4"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:207
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:698
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:300
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:791
 msgid "Color #7"
-msgstr ""
+msgstr "Couleur 7"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:218
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:709
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:311
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:802
 msgid "Color #8"
-msgstr ""
+msgstr "Couleur 8"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:229
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:720
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:322
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:813
 msgid "Color #10"
-msgstr ""
+msgstr "Couleur 10"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:240
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:731
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:333
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:824
 msgid "Color #9"
-msgstr ""
+msgstr "Couleur 9"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:251
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:742
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:344
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:835
 msgid "Color #11"
-msgstr ""
+msgstr "Couleur 11"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:262
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:753
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:355
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:846
 msgid "Color #12"
-msgstr ""
+msgstr "Couleur 12"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:273
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:764
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:366
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:857
 msgid "Color #14"
-msgstr ""
+msgstr "Couleur 14"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:284
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:775
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:377
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:868
 msgid "Color #15"
-msgstr ""
+msgstr "Couleur 15"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:295
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:786
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:388
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:879
 msgid "Color #13"
-msgstr ""
+msgstr "Couleur 13"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:551
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1042
@@ -5557,11 +5566,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1099
 msgid "Export Background to Image..."
-msgstr ""
+msgstr "Exporter l'arrière-plan vers une image..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1108
 msgid "Import Background from Image..."
-msgstr ""
+msgstr "Importer l'arrière-plan de l'image..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1121
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1343
@@ -5587,7 +5596,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4421
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4468
 msgid "Export to Image..."
-msgstr ""
+msgstr "Exporter vers une image..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1154
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1533
@@ -5595,7 +5604,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4430
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4477
 msgid "Import from Image..."
-msgstr ""
+msgstr "Importer depuis une image..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1176
 msgid "Export Tiles to Image..."
@@ -5904,11 +5913,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1717
 msgid "Wall"
-msgstr ""
+msgstr "Mur"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1718
 msgid "Water / Lava"
-msgstr ""
+msgstr "Eau / Lave"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1745
 msgid "Has Liquid / Wall"
@@ -5934,7 +5943,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2126
 msgid "These are extra rules. The purpose of them is currently unknown, so be careful when you edit them."
-msgstr ""
+msgstr "Ce sont des règles supplémentaires. Leur but est actuellement inconnu, alors soyez prudent lorsque vous les éditez."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2168
 msgid "Extra Rules"
@@ -6021,7 +6030,7 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:155
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:212
 msgid "Success!"
-msgstr ""
+msgstr "Succès !"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:181
 msgid "Export dungeon tileset..."
@@ -6119,23 +6128,23 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:65
 msgid "D Floors Rewards"
-msgstr ""
+msgstr "Récompenses des Étages de rang D"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:66
 msgid "C Floors Rewards"
-msgstr ""
+msgstr "Récompenses des Étages de rang C"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:67
 msgid "B Floors Rewards"
-msgstr ""
+msgstr "Récompenses des Étages de rang B"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:68
 msgid "A Floors Rewards"
-msgstr ""
+msgstr "Récompenses des Étages de rang A"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:69
 msgid "S Floors Rewards"
-msgstr ""
+msgstr "Récompenses des Étages de rang S"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:70
 msgid "★1 Floors Rewards"
@@ -6175,7 +6184,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:79
 msgid "Kecleon Shop 1"
-msgstr ""
+msgstr "Boutique Kecleon 1"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:80
 msgid "Kecleon Orbs/TMs 1"
@@ -6183,7 +6192,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:81
 msgid "Kecleon Shop 2"
-msgstr ""
+msgstr "Boutique Kecleon 2"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:82
 msgid "Kecleon Orbs/TMs 2"
@@ -6191,7 +6200,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:83
 msgid "Kecleon Shop 3"
-msgstr ""
+msgstr "Boutique Kecleon 3"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:84
 msgid "Kecleon Orbs/TMs 3"
@@ -6199,7 +6208,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:85
 msgid "Kecleon Shop 4"
-msgstr ""
+msgstr "Boutique Kecleon 4"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:86
 msgid "Kecleon Orbs/TMs 4"
@@ -6239,7 +6248,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:108
 #: skytemple/skytemple/module/monster/controller/main.glade:249
 msgid "Language: "
-msgstr ""
+msgstr "Langue : "
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:160
 msgid "Name ID"
