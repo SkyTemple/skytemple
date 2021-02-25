@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-25 15:35\n"
+"PO-Revision-Date: 2021-02-25 18:11\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1964,7 +1964,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/disable_tips.py:39
 msgid "Disables the tip textboxes shown in dungeons at the beginning of the game."
-msgstr ""
+msgstr "Desactiva las cajas de texto de ayuda mostradas en los territorios al principio del juego."
 
 #: skytemple-files/skytemple_files/patch/handler/exp_share.py:43
 msgid "Implements shared experience points between all members (GtI style). \n"
@@ -1994,7 +1994,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/fix_evolution.py:38
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
-msgstr ""
+msgstr "Arregla el glitch de evolución que congela el juego cuando se intenta evolucionar un pokémon cuyo nombre tiene 10 caracteres."
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:39
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y)."
@@ -2010,7 +2010,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:38
 msgid "Allows the partner to be of the same type as the player in the personality test."
-msgstr ""
+msgstr "Permite que el compañero sea del mismo tipo que el jugador tras el test de personalidad."
 
 #: skytemple-files/skytemple_files/patch/handler/support_atupx.py:45
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
@@ -2089,11 +2089,11 @@ msgstr "Rutina {i} no encontrada."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:137
 msgid "The script must contain exactly {len(self.rom_data.script_data.common_routine_info)} coroutines."
-msgstr ""
+msgstr "El script debe contener exactamente {len(self.rom_data.script_data.common_routine_info)} corrutinas."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:140
 msgid "The script must not contain any duplicate coroutines."
-msgstr ""
+msgstr "El script no puede contener ninguna corrutina duplicada."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:146
 #, python-brace-format
@@ -2430,7 +2430,7 @@ msgstr "Crear directorio"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:838
 msgid "Name of the directory:"
-msgstr ""
+msgstr "Nombre del directorio:"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:846
 msgid "Create File"
@@ -2760,7 +2760,7 @@ msgstr "Misceláneo"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:259
 msgid "The variable must have a number as value."
-msgstr ""
+msgstr "La variable debe tener un número como valor."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:284
 #, python-brace-format
@@ -5057,7 +5057,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:236
 msgid "The game randomly adds a number between 0 and 2 to obtain the final value."
-msgstr ""
+msgstr "El juego añade al azar un número entre 0 y 2 para obtener el valor final."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:247
 msgid "Controls whether dead end hallways can be generated in the floor. Dead ends can still appear in the map even if they are disabled due to a bug in the map generator and because extra hallways can also produce them."
@@ -5065,7 +5065,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:260
 msgid "This is the amount of lakes that will be generated during the water generation phase."
-msgstr ""
+msgstr "Esta es la cantidad de lagos que se generarán durante la fase de generación de agua."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:267
 msgid "Floor connectivity (Min 1, if it's 0 a valid map can't be generated and you will get the default single room that it's also a monster house).\n\n"
@@ -5081,7 +5081,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:320
 msgid "The final value is randomized between density and density/2."
-msgstr ""
+msgstr "El valor final es aleatorizado entre densidad y densidad/2."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:323
 msgid "The value stored in the ROM is actually the value divided by 5. Because of this the saved value will be rounded to the next multiple of 5."
