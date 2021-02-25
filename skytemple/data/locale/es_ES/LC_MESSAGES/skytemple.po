@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-25 07:30\n"
+"PO-Revision-Date: 2021-02-25 14:35\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1594,7 +1594,7 @@ msgstr "Abismo, Pasillo"
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:63
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:76
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!)."
-msgstr "El tipo de tile está forzado a ser \" Vacío / Abismo\" (¡Todavía se renderiza como terreno secundario del tileset!)."
+msgstr "El tipo de tile está forzado a ser \"Vacío / Abismo\" (¡Todavía se renderiza como terreno secundario del tileset!)."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:64
 msgid "Chasm, Hallway; All Chasm"
@@ -1602,7 +1602,7 @@ msgstr "Abismo, Pasillo; Todo es abismo"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:66
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!). All tiles outside of defined room are made the tileset's defined secondary terrain."
-msgstr ""
+msgstr "El tipo de tile está forzado a ser \"Vacío / Abismo\" (¡Todavía se renderiza como terreno secundario del tileset!). Todos los tiles fuera de la sala definida se convierten en el terreno secundario del tileset."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:68
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:106
@@ -4022,7 +4022,12 @@ msgid "<b>NAME</b>\n"
 "Affected by Absolute Mover: Yes\n\n"
 "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!). \n"
 "All tiles outside of defined room are made the tileset\\'s defined secondary terrain."
-msgstr ""
+msgstr "<b>NOMBRE</b>\n"
+"Tipo: Pared\n"
+"Pasillo\n"
+"Intransitable: Sí\n"
+"Afectado por Híper-todoterreno: Sí\n\n"
+"El tipo de tile está forzado a ser \"Vacío / Abismo\" (¡Todavía se renderiza como terreno secundario del tileset!). Todos los tiles fuera de la sala definida se convierten en el terreno secundario del tileset."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:531
 msgid "Selected Tile Type"
