@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-25 12:23\n"
+"PO-Revision-Date: 2021-02-25 13:23\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -6280,20 +6280,28 @@ msgid "Menus are hardcoded so you can't add any option, but you can edit a few t
 " - The end of the menu is detected by the game with an entry in which the Name ID is set to 0. \n"
 "Also, the action code of that entry is used when pressing the B button (if the game allows it for this menu). \n"
 " - Editing a string with a specific ID will result of all strings using that ID to be changed."
-msgstr ""
+msgstr "Les menus sont codés en dur, vous ne pouvez donc pas ajouter d'option, mais vous pouvez modifier quelques choses.\n"
+"Cependant, il y a certaines règles : \n"
+" - Seuls les menus principaux et sous-menus peuvent avoir des descriptions. \n"
+" - Le code d'action indique au jeu ce qu'il faut faire lors de la sélection de ce menu. \n"
+"La signification des valeurs du code dépend du menu. \n"
+"Il est également utilisé pour déterminer si un menu doit être désactivé (ou masqué dans le menu principal).\n"
+" - La fin du menu est détectée par le jeu avec une entrée dans laquelle l'ID de nom est défini à 0. \n"
+"De plus, le code d'action de cette entrée est utilisé lorsque vous appuyez sur le bouton B (si le jeu l'autorise pour ce menu). \n"
+" - La modification d'une chaîne avec un ID spécifique changera toutes les chaînes utilisant cet ID."
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
 #: skytemple/skytemple/module/lists/module.py:86
 msgid "Rank List"
-msgstr ""
+msgstr "Liste des rangs"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:103
 msgid "Points for next Rank"
-msgstr ""
+msgstr "Points pour le rang suivant"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:117
 msgid "Storage Capacity"
-msgstr ""
+msgstr "Capacité de stockage"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:131
 msgid "Item Reward"
@@ -6324,16 +6332,16 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:91
 msgid "Starters List"
-msgstr ""
+msgstr "Liste des Starters"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:239
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:611
 msgid "Partner"
-msgstr ""
+msgstr "Partenaire"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:294
 msgid "Team Name"
-msgstr ""
+msgstr "Nom d'équipe"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:309
 msgid "You can apply the default team using the script command\n"
@@ -6343,7 +6351,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:329
 msgid "Default Starters"
-msgstr ""
+msgstr "Starters par défaut"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:370
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:521
@@ -6818,60 +6826,61 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:938
 msgid "Palette 4"
-msgstr ""
+msgstr "Palette 4"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1051
 msgid "Palette 5"
-msgstr ""
+msgstr "Palette 5"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1164
 msgid "Palette 6"
-msgstr ""
+msgstr "Palette 6"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1277
 msgid "Palette 7"
-msgstr ""
+msgstr "Palette 7"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1390
 msgid "Palette 8"
-msgstr ""
+msgstr "Palette 8"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1516
 msgid "Palette 9"
-msgstr ""
+msgstr "Palette 9"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1629
 msgid "Palette 10"
-msgstr ""
+msgstr "Palette 10"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1742
 msgid "Palette 11"
-msgstr ""
+msgstr "Palette 11"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1855
 msgid "Palette 12"
-msgstr ""
+msgstr "Palette 12"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1968
 msgid "Palette 13"
-msgstr ""
+msgstr "Palette 13"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2081
 msgid "Palette 14"
-msgstr ""
+msgstr "Palette 14"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2194
 msgid "Palette 15"
-msgstr ""
+msgstr "Palette 15"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2307
 msgid "Palette 16"
-msgstr ""
+msgstr "Palette 16"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2343
 msgid "Please note, that setting the number of frames of animations higher than the number of frames\n"
 "specified in the \"Edit Palette Animation\" section can lead to undefined behavior or crashes."
-msgstr ""
+msgstr "Veuillez noter que définir un nombre d'images d'animations supérieur au nombre d'images\n"
+"spécifié dans la section \"Modifier l'animation de palette\" peut conduire à un comportement indéfini ou à des plantages."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2373
 msgid "Map Settings"
@@ -6879,7 +6888,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2451
 msgid "Number of Layers "
-msgstr ""
+msgstr "Nombre de calques "
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2486
 msgid "Decreasing the number of layers will remove\n"
