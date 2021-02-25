@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-24 23:27\n"
+"PO-Revision-Date: 2021-02-25 00:36\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1556,7 +1556,7 @@ msgstr "Esperar"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:30
 msgid "Ground Wait"
-msgstr "En espera"
+msgstr "En espera (Ground)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:43
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:103
@@ -1594,11 +1594,11 @@ msgstr "Abismo, Pasillo"
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:63
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:76
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!)."
-msgstr ""
+msgstr "El tipo de tile está forzado a ser \" Vacío / Abismo\" (¡Todavía se renderiza como terreno secundario del tileset!)."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:64
 msgid "Chasm, Hallway; All Chasm"
-msgstr ""
+msgstr "Abismo, Pasillo; Todo es abismo"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:66
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!). All tiles outside of defined room are made the tileset's defined secondary terrain."
@@ -1620,15 +1620,15 @@ msgstr "Piso, Pasillo"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:74
 msgid "Chasm, Hallway; Impassable"
-msgstr ""
+msgstr "Abismo, Pasillo; Intransitable"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:77
 msgid "Floor, Hallway; Flag 0xA"
-msgstr ""
+msgstr "Piso, Pasillo; Bandera 0xA"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:79
 msgid "Tile flag 0xA is set to 1 (Unknown what this does)."
-msgstr ""
+msgstr "La bandera del tile 0xA está establecida en 1 (Se desconoce la función de esto)."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:80
 msgid "F/W, Room; Key Door (0xC)"
@@ -1648,15 +1648,15 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:94
 msgid "Attendant1 Spawn Floor"
-msgstr ""
+msgstr "Posición del Asistente 1"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:97
 msgid "Attendant2 Spawn Floor"
-msgstr ""
+msgstr "Posición del Asistente 2"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:100
 msgid "Attendant3 Spawn Floor"
-msgstr ""
+msgstr "Posición del Asistente 3"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor.py:240
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:72
@@ -1767,20 +1767,20 @@ msgstr "Hay {len(self.floors_in_mappa_not_referenced)} pisos adicionales en tu l
 #: skytemple-files/skytemple_files/graphics/bma/model.py:447
 #, python-brace-format
 msgid "Can not import map background: Width of both images must match the current map width: {expected_width}px"
-msgstr ""
+msgstr "No se puede importar el fondo del mapa: la anchura de ambas imágenes debe coincidir con la anchura actual del mapa: {expected_width}px"
 
 #: skytemple-files/skytemple_files/graphics/bma/model.py:451
 #, python-brace-format
 msgid "Can not import map background: Height of both images must match the current map height: {expected_height}px"
-msgstr ""
+msgstr "No se puede importar el fondo del mapa: la altura ambas imágenes debe coincidir con la altura actual del mapa: {expected_height}px"
 
 #: skytemple-files/skytemple_files/graphics/bpa/model.py:168
 msgid "The dimensions of all images must be the same."
-msgstr ""
+msgstr "Las dimensiones de todas las imágenes deben ser iguales."
 
 #: skytemple-files/skytemple_files/graphics/chr/model.py:70
 msgid "Cannot convert PIL image to CHR: Must be indexed image (=using a palette)"
-msgstr ""
+msgstr "No se puede convertir la imagen PIL a CHR: Debe ser una imagen indexada (=usando una paleta)"
 
 #: skytemple-files/skytemple_files/graphics/chr/model.py:72
 #, python-brace-format
@@ -1819,7 +1819,7 @@ msgstr "¡Esta imagen debe tener un índice de color!"
 #: skytemple-files/skytemple_files/graphics/fonts/banner_font/model.py:205
 #, python-brace-format
 msgid "Font parsing: Unexpected {child.tag}"
-msgstr ""
+msgstr "Análisis de la fuente: {child.tag} inesperado"
 
 #: skytemple-files/skytemple_files/graphics/fonts/font_dat/writer.py:38
 #, python-brace-format
@@ -2014,7 +2014,8 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/handler/support_atupx.py:45
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
 "Requires the ActorAndLevelLoader, as it frees the space needed to implement this."
-msgstr ""
+msgstr "Ofrece soporte para los contenedores ATUPX, que utilizan un algoritmo diferente al de la compresión PX.\n"
+"Requiere 'ActorAndLevelLoader', ya que libera el espacio necesario para implementarlo."
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:39
 msgid "Fixes the 'Unusued' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
@@ -2105,7 +2106,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:173
 #, python-brace-format
 msgid "Unknown operation {in_op.op_code.name}."
-msgstr ""
+msgstr "Operación desconocida: {in_op.op_code.name}."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:184
 msgid "The number of parameters for {normal_op_code.name} must be at least {normal_op_code.params}, is {self._correct_param_list_len(in_op.params)}."
@@ -2140,7 +2141,7 @@ msgstr "Depuración deshabilitada."
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:320
 #, python-brace-format
 msgid "Do you want to save changes to {filename}?"
-msgstr ""
+msgstr "¿Quieres guardar los cambios en {filename}?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:322
 #: skytemple/skytemple/controller/main.py:750
@@ -2441,12 +2442,12 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:858
 #, python-brace-format
 msgid "Do you want to delete the directory {row[1]} with all of it's contents?"
-msgstr ""
+msgstr "¿Quieres eliminar el directorio {row[1]} con todo su contenido?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:866
 #, python-brace-format
 msgid "Do you want to delete the script file {row[1]}?"
-msgstr ""
+msgstr "¿Quieres eliminar el archivo de script {row[1]}?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:903
 msgid "Common"
@@ -2473,11 +2474,11 @@ msgstr "Guardar bloque volcado..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1191
 msgid "Unable to save savestate!"
-msgstr ""
+msgstr "¡Error al guardar el archivo de guardado!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1226
 msgid "Unable to load savestate!"
-msgstr ""
+msgstr "¡Error al cargar el archivo guardado!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1308
 msgid "The game is stopped."
@@ -2592,7 +2593,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:19
 msgid "Disable Breaks"
-msgstr ""
+msgstr "Desactivar interrupciones"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:44
 msgid "Resume."
@@ -2636,7 +2637,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:119
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:439
 msgid "Step Next"
-msgstr ""
+msgstr "Siguiente paso"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:143
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:143
@@ -2645,12 +2646,12 @@ msgstr "Editar la escena con el mismo nombre que el fondo del mapa"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:145
 msgid "Go to Scene"
-msgstr ""
+msgstr "Ir a escena"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:170
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:729
 msgid "Textbox Preview Tool"
-msgstr ""
+msgstr "Vista previa de textos"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:259
 msgid "ExplorerScript"
@@ -2658,7 +2659,7 @@ msgstr "ExplorerScript"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:336
 msgid "SSBScript"
-msgstr ""
+msgstr "SSBScript"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:392
 msgid "..."
@@ -2691,7 +2692,7 @@ msgstr "Reemplazar con"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:540
 #: skytemple/skytemple/module/dungeon/module.py:755
 msgid "Nothing"
-msgstr ""
+msgstr "Nada"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:554
 msgid "Case sensitive"
@@ -2723,7 +2724,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:54
 msgid "Dungeon Progress"
-msgstr ""
+msgstr "Progreso del territorio"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:56
 msgid "Dungeon Init"
@@ -2773,7 +2774,7 @@ msgstr "¡Error!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:319
 msgid "Unable to load variables!"
-msgstr ""
+msgstr "¡No se pueden cargar las variables!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:172
 msgid "Open ROM"
@@ -2882,7 +2883,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:849
 msgid "Script Browser"
-msgstr ""
+msgstr "Navegador de scripts"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:866
 #: skytemple/skytemple/module/script/controller/ssa.glade:1036
@@ -2894,7 +2895,8 @@ msgstr "Scripts"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:958
 msgid "Ground Engine\n"
 "not running."
-msgstr ""
+msgstr "Motor de espera (Ground)\n"
+"no se está ejecutando."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:938
 msgid "Active Files"
@@ -2907,7 +2909,7 @@ msgstr "Entidades"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:990
 msgid "Ground Engine State"
-msgstr ""
+msgstr "Estado del motor de espera (Ground)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1010
 msgid "Ground State"
@@ -2927,7 +2929,7 @@ msgstr "Cargar"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1253
 msgid "Reload current variables"
-msgstr ""
+msgstr "Recargar variables actuales"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1257
 msgid "Sometimes the values get out\n"
@@ -2938,22 +2940,23 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1278
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1298
 msgid "Global Variables"
-msgstr ""
+msgstr "Variables globales"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1358
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1408
 msgid "Debugger is \n"
 "not halting."
-msgstr ""
+msgstr "El depurador no \n"
+"se detiene."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1374
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1451
 msgid "Local Variables"
-msgstr ""
+msgstr "Variables locales"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1424
 msgid "Macro Variables"
-msgstr ""
+msgstr "Variables de macro"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1518
 msgid "General Debug"
@@ -2965,12 +2968,12 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1548
 msgid "Enable Debugging Mode"
-msgstr ""
+msgstr "Activar modo de Depuración"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1552
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1569
 msgid "branch_Debug (if debug) commands will activate."
-msgstr ""
+msgstr "Los comandos de 'branch_Debug' se activarán (si se está depurando)."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1565
 msgid "Dungeons: Auto Next Floor"
@@ -2994,11 +2997,11 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1656
 msgid "BGM OFF"
-msgstr ""
+msgstr "Música DES"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1672
 msgid "SE OFF"
-msgstr ""
+msgstr "Efectos sonoros DES"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1688
 msgid "Stage NPC Dummy"
@@ -3032,7 +3035,7 @@ msgstr "???"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1784
 msgid "Debug Menus"
-msgstr ""
+msgstr "Menús de depuración"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1812
 msgid "Debug Flags 2"
@@ -3057,7 +3060,7 @@ msgstr "Entradas: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2199
 msgid "Header: "
-msgstr ""
+msgstr "Encabezado: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2211
 msgid "Data: "
@@ -3084,7 +3087,7 @@ msgstr "Usado"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2342
 msgid "Dump Selected Block"
-msgstr ""
+msgstr "Volcar bloque seleccionado"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2356
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:288
@@ -3101,12 +3104,12 @@ msgstr "Recargar"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2377
 msgid "Allocated Memory"
-msgstr ""
+msgstr "Memoria asignada"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2392
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2412
 msgid "State / Debugging"
-msgstr ""
+msgstr "Estado / Depuración"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2463
 msgid "Welcome to \n"
@@ -3115,14 +3118,14 @@ msgid "Welcome to \n"
 "Please load a game ROM\n"
 "via the File menu."
 msgstr "Bienvenido al \n"
-"Depurador del motor\n"
-"de scripts de SkyTemple\n\n"
+"Depurador del Motor de\n"
+"Scripts de SkyTemple\n\n"
 "Por favor, carga una ROM del juego\n"
 "a través del menú de Archivo."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2513
 msgid "The Script Engine is currently not running."
-msgstr ""
+msgstr "El motor de scripts no se está ejecutando."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2645
 msgid "Run the game from the start or stop the emulator."
@@ -3138,7 +3141,7 @@ msgstr "Reinicia el emulador."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2926
 msgid "Savestate"
-msgstr ""
+msgstr "Archivo de guardado"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2978
 msgid "Emulator"
@@ -3159,23 +3162,23 @@ msgstr "page0"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3077
 msgid "Game Internal"
-msgstr ""
+msgstr "Juego base"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3092
 msgid "OpCodes"
-msgstr ""
+msgstr "Códigos de operación"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3107
 msgid "Script Debug"
-msgstr ""
+msgstr "Script de depuración"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3123
 msgid "Engine Events"
-msgstr ""
+msgstr "Eventos del motor"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3183
 msgid "Debug Log"
-msgstr ""
+msgstr "Registro de depuración"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3210
 msgid "Powered by DeSmuME, the Nintendo DS Emulator:\n"
@@ -3185,7 +3188,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3213
 msgid "Interactive debugger for the script engine of Pokémon Mystery Dungeon Explorers of Sky (EU/US)"
-msgstr ""
+msgstr "Depurador interactivo para el motor de scripts de Pokémon Mundo Misterioso: Exploradores del Cielo (EU/US)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3215
 msgid "https://github.com/SkyTemple/skytemple-ssb-debugger"
@@ -3250,7 +3253,7 @@ msgid "<span size=\"large\">Welcome to SkyTemple Script Engine Debugger!</span>\
 "- A project directory was created next to the ROM. It contains\n"
 "  the ExplorerScript source code files created by the debugger.\n"
 "- Please report any issues."
-msgstr "<span size=\"large\">¡Bienvenido al depurador del motor de scripts de SkyTemple!</span>\n\n"
+msgstr "<span size=\"large\">¡Bienvenido al Depurador del Motor de Scripts  de SkyTemple!</span>\n\n"
 "Esta herramienta te ayudará a editar y probar scripts para el motor de\n"
 "Pokémon Mundo Misterioso: Exploradores del Cielo.\n\n"
 "Por favor, ten en cuenta lo siguiente:\n"
@@ -3259,7 +3262,7 @@ msgstr "<span size=\"large\">¡Bienvenido al depurador del motor de scripts de S
 "- El depurador guarda directamente los scripts editados en la ROM.\n"
 "  Por ello, experimentarás corrupciones en el juego, en la\n"
 "  música o en los gráficos con el tiempo. Por favor, reinicia el juego en\n"
-"  tal caso. Lo mismo se aplica a los estados de guardado.\n"
+"  tal caso. Lo mismo se aplica a los archivos de guardado.\n"
 "- Se ha creado un directorio de proyecto junto a la ROM. Contiene\n"
 "  los archivos de código fuente de ExplorerScript creados por el depurador.\n"
 "- Por favor, informa de cualquier problema."
@@ -3285,7 +3288,7 @@ msgstr "Funciones"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:260
 msgid "Macros have no scenes."
-msgstr ""
+msgstr "Las macros no tienen escenas."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:261
 msgid "Action not supported"
@@ -3397,7 +3400,7 @@ msgstr "_Rehacer"
 
 #: skytemple/skytemple/_i18n.py:47
 msgid "_Refresh"
-msgstr ""
+msgstr "_Actualizar"
 
 #: skytemple/skytemple/_i18n.py:48
 msgid "_Remove"
@@ -3471,7 +3474,7 @@ msgstr ""
 #: skytemple/skytemple/controller/main.py:748
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
-msgstr ""
+msgstr "¿Quieres guardar los cambios en {rom_name}?"
 
 #: skytemple/skytemple/controller/settings.py:31
 msgid "Detect automatically"
@@ -3479,7 +3482,7 @@ msgstr "Detectar automáticamente"
 
 #: skytemple/skytemple/controller/settings.py:36
 msgid "Chinese Traditional"
-msgstr ""
+msgstr "Chino tradicional"
 
 #: skytemple/skytemple/controller/settings.py:120
 msgid "You need to restart SkyTemple to apply some of the settings."
@@ -3534,7 +3537,7 @@ msgstr ""
 
 #: skytemple/skytemple/controller/tilequant.py:141
 msgid "Save first image as (PNG)..."
-msgstr ""
+msgstr "Guardar la primera imagen como (PNG)..."
 
 #: skytemple/skytemple/controller/tilequant.py:162
 msgid "Save second image as (PNG)..."
@@ -3542,7 +3545,7 @@ msgstr ""
 
 #: skytemple/skytemple/controller/tilequant.py:194
 msgid "You entered invalid numbers."
-msgstr ""
+msgstr "Has introducido números no válidos."
 
 #: skytemple/skytemple/controller/tilequant.py:197
 msgid "The input image does not exist."
@@ -3558,7 +3561,7 @@ msgstr ""
 
 #: skytemple/skytemple/controller/tilequant.py:236
 msgid "Image was converted."
-msgstr ""
+msgstr "Se ha convertido la imagen."
 
 #: skytemple/skytemple/core/error_handler.py:63
 msgid "Trying to display the error failed. Wow!"
@@ -3570,34 +3573,34 @@ msgstr "SkyTemple - ¡Error!"
 
 #: skytemple/skytemple/core/logger.py:45
 msgid "An uncaught exception occurred! This shouldn't happen, please report it!"
-msgstr ""
+msgstr "Se ha producido una excepción no detectada. Esto no debería ocurrir, por favor, repórtalo."
 
 #: skytemple/skytemple/core/logger.py:46
 msgid "SkyTemple - Uncaught error!"
-msgstr ""
+msgstr "SkyTemple - ¡Error no capturado!"
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:142
 #: skytemple/skytemple/core/ssb_debugger/context.py:156
 msgid "A scene for this script was not found."
-msgstr ""
+msgstr "No se ha encontrado una escena para este script."
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:143
 #: skytemple/skytemple/core/ssb_debugger/context.py:157
 #: skytemple/skytemple/module/map_bg/controller/bg.py:324
 msgid "No Scenes Found"
-msgstr ""
+msgstr "No se han encontrado escenas"
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:188
 msgid "SkyTemple Script Engine Debugger - Error!"
-msgstr ""
+msgstr "Depurador del Motor de Scripts de SkyTemple - ¡Error!"
 
 #: skytemple/skytemple/core/ui_utils.py:80
 msgid "GIF image (*.gif)"
-msgstr ""
+msgstr "Imagen GIF (*.gif)"
 
 #: skytemple/skytemple/core/ui_utils.py:96
 msgid "XML document (*.xml)"
-msgstr ""
+msgstr "Documento XML (*.xml)"
 
 #: skytemple/skytemple/core/ui_utils.py:104
 msgid "CSV file (*.csv)"
@@ -3605,7 +3608,7 @@ msgstr "Archivo CSV (*.csv)"
 
 #: skytemple/skytemple/main.py:93
 msgid "PyGObject compiled without Cairo support. Can't start!"
-msgstr ""
+msgstr "PyGObject compilado sin soporte de Cairo. ¡No se puede iniciar!"
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:35
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1090
@@ -5339,7 +5342,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/module.py:761
 #, python-brace-format
 msgid "{i} - Lvl: {entry.level}, Atk: {entry.attack}, Def: {entry.defense}, Sp. Atk: {entry.special_attack}, Sp. Def: {entry.special_defense}, HP: {entry.hp}"
-msgstr ""
+msgstr "{i} - Nv: {entry.level}, Atq.: {entry.attack}, Def: {entry.defense}, Atq. Esp: {entry.special_attack}, Def. Esp: {entry.special_defense}, PS: {entry.hp}"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:64
 msgid "Export PNG of map..."
@@ -6108,7 +6111,7 @@ msgstr "Actores con contornos "
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:379
 msgid " as sprites are <span foreground=\"orange\">special</span> and replaced with another Pokémon when the game is running."
-msgstr ""
+msgstr " ya que los sprites son <span foreground=\"orange\">especiales</span> y se reemplazan por otro Pokémon cuando el juego está en ejecución."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:402
 msgid "By changing the 'Pokémon' entry for these actors, you will only change which outline is rendered in SkyTemple."
@@ -6299,7 +6302,15 @@ msgid "Menus are hardcoded so you can't add any option, but you can edit a few t
 " - The end of the menu is detected by the game with an entry in which the Name ID is set to 0. \n"
 "Also, the action code of that entry is used when pressing the B button (if the game allows it for this menu). \n"
 " - Editing a string with a specific ID will result of all strings using that ID to be changed."
-msgstr ""
+msgstr "Los menús están codificados, por lo que no puedes añadir ninguna opción, pero puedes editar algunas cosas.\n"
+"Sin embargo, hay algunas reglas: \n"
+" - Solo los menús principales y secundarios del juego pueden tener descripciones. \n"
+" - El código de acción le dice al juego qué hacer cuando se selecciona este menú. \n"
+"El significado de los valores del código dependen del menú. \n"
+"También se utiliza para determinar si un menú debe ser desactivado (o escondido en el menú principal).\n"
+" - El final del menú es detectado por el juego con una entrada en la que el ID del nombre se establece en 0. \n"
+"Además, el código de acción de esa entrada se utiliza al pulsar el botón B (si el juego lo permite para dicho menú). \n"
+" - Si se edita una cadena con un ID específico, se cambiarán todas las cadenas que utilicen ese ID."
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
 #: skytemple/skytemple/module/lists/module.py:86
@@ -7719,7 +7730,7 @@ msgstr ""
 msgid "Each Pokémon has two gender forms (even if it only has one gender).\n"
 "This entry contains both of these forms. The first form is the main form, it is used as a fallback in some cases, when the data for the second form doesn't exist."
 msgstr "Cada Pokémon tiene dos variantes de género (aunque solo tenga uno).\n"
-"Esta entrada contiene ambas formas. La primera es la principal, y se utiliza como alternativa en algunos casos, cuando los datos de la segunda forma no existen."
+"Esta entrada contiene ambas formas. La primera es la principal, y se utiliza como alternativa en algunos casos cuando los datos de la segunda forma no existen."
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:91
 msgid "Interactive tooltips are not supported on your platform. To see them, click \"Open in browser\"."
@@ -7727,7 +7738,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:143
 msgid "Open in browser"
-msgstr ""
+msgstr "Abrir en el navegador"
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:160
 msgid "This opens the graph in a browser. You can use the \"refresh\" button (F5) in your browser to update it."
@@ -7897,7 +7908,7 @@ msgstr "Personalidad"
 
 #: skytemple/skytemple/module/monster/controller/main.glade:495
 msgid "Special Personalities"
-msgstr ""
+msgstr "Personalidades especiales"
 
 #: skytemple/skytemple/module/monster/controller/main.py:43
 msgid "Partner 1"
@@ -8590,11 +8601,11 @@ msgstr "Editar marcadores de posición"
 #: skytemple/skytemple/module/script/controller/folder.py:30
 #, python-brace-format
 msgid "Script Scenes for maps in category \"{self.name}\""
-msgstr ""
+msgstr "Scripts de escenas para mapas de la categoría \"{self.name}\""
 
 #: skytemple/skytemple/module/script/controller/folder.py:31
 msgid "Script Scenes for other maps"
-msgstr ""
+msgstr "Scripts de escena para otros mapas"
 
 #: skytemple/skytemple/module/script/controller/folder.py:36
 #, python-brace-format
@@ -8627,7 +8638,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/map.py:29
 msgid "Script Scenes for \"{}"
-msgstr ""
+msgstr "Scripts de escenas para \"{}"
 
 #: skytemple/skytemple/module/script/controller/map.py:34
 #, python-brace-format
@@ -8851,12 +8862,12 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssb.py:44
 msgid "Open Script Engine Debugger"
-msgstr ""
+msgstr "Abrir depurador del motor de scripts"
 
 #: skytemple/skytemple/module/script/controller/sub.py:29
 #, python-brace-format
 msgid "Sub Scenes for \"{self.name}\""
-msgstr ""
+msgstr "Subescenas para \"{self.name}\""
 
 #: skytemple/skytemple/module/script/controller/sub.py:34
 #, python-brace-format
@@ -9235,7 +9246,7 @@ msgstr "Ajustes del Tema"
 #: skytemple/skytemple/skytemple.glade:498
 #: skytemple/skytemple/skytemple.glade:856
 msgid "More Files"
-msgstr "Más Archivos"
+msgstr "Más archivos"
 
 #: skytemple/skytemple/skytemple.glade:539
 msgid "Save as..."
