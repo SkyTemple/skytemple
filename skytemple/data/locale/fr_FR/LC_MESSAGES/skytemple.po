@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-25 17:11\n"
+"PO-Revision-Date: 2021-02-25 18:11\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -952,12 +952,12 @@ msgstr "Fichier binaire {binary.filepath} introuvable."
 #: skytemple-files/skytemple_files/common/util.py:368
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
-msgstr "Répertoire {dir_name} non existant."
+msgstr "Dossier {dir_name} non existant."
 
 #: skytemple-files/skytemple_files/common/util.py:371
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
-msgstr "Le fichier {file_name} existe déjà dans ce répertoire."
+msgstr "Le fichier {file_name} existe déjà dans ce dossier."
 
 #: skytemple-files/skytemple_files/common/xml_util.py:43
 #, python-brace-format
@@ -7365,13 +7365,15 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:85
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:71
 msgid "Export font in folder..."
-msgstr ""
+msgstr "Exporter la police vers le dossier..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:107
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
 "IMPORTANT: All image files must be indexed PNGs!\n"
 "For banner fonts, all images must have the same palette."
-msgstr ""
+msgstr "Pour importer, veuillez sélectionner un dossier contenant tous les fichiers qui ont été créés lors de l'exportation de la police.\n"
+"IMPORTANT : toutes les images doivent être des fichiers PNG indexés !\n"
+"Pour les polices des bannières, toutes les images doivent utiliser la même palette."
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:110
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:95
@@ -7381,7 +7383,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:115
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:100
 msgid "Import font from folder..."
-msgstr ""
+msgstr "Importer la police à partir du dossier..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:140
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:137
@@ -7413,7 +7415,8 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:93
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
 "IMPORTANT: All image files must be indexed PNGs and use the same palette!"
-msgstr ""
+msgstr "Pour importer, veuillez sélectionner un dossier contenant tous les fichiers qui ont été créés lors de l'exportation de la police.\n"
+"IMPORTANT : toutes les images doivent être des fichiers PNG indexés et doivent utiliser la même palette !"
 
 #: skytemple/skytemple/module/misc_graphics/controller/main.py:23
 msgid "Misc. Graphics"
@@ -7602,16 +7605,17 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:72
 msgid "Export zmappat minimized in folder..."
-msgstr ""
+msgstr "Exporter le fichier zmappat minimisé vers le dossier..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:91
 msgid "Export full zmappat in folder..."
-msgstr ""
+msgstr "Exporter le fichier zmappat complet vers le dossier..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:113
 msgid "To import, select a folder containing all the image files that were created when exporting the minimized version.\n"
 "IMPORTANT: All image files must be indexed PNGs and use the same palette!"
-msgstr ""
+msgstr "Pour importer, veuillez sélectionner un dossier contenant tous les fichiers images qui ont été créés lors de l'exportation de la version minimisée.\n"
+"IMPORTANT : toutes les images doivent être des fichiers PNG indexés et doivent utiliser la même palette !"
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:115
 msgid "Import Minimized Version"
@@ -7619,7 +7623,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:120
 msgid "Import zmappat minimized from folder..."
-msgstr ""
+msgstr "Importer le fichier zmappat minimisé à partir du dossier..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:145
 msgid "Error importing minimized zmappat."
@@ -7640,7 +7644,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:170
 msgid "To import, select a folder containing all the image files that were created when exporting the full tileset."
-msgstr ""
+msgstr "Pour importer, veuillez sélectionner un dossier contenant toutes les images créées lors de l'exportation du jeu de tuiles complet."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:171
 msgid "Import Full Tileset"
@@ -7648,7 +7652,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:176
 msgid "Import full zmappat from folder..."
-msgstr ""
+msgstr "Importer le fichier zmappat complet à partir du dossier..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:201
 msgid "Error importing full zmappat."
