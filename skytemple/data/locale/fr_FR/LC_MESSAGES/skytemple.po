@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-25 13:23\n"
+"PO-Revision-Date: 2021-02-25 17:11\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -2492,23 +2492,26 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1317
 msgid "The game is paused."
-msgstr ""
+msgstr "Le jeu est en pause."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1395
 #, python-brace-format
 msgid "The debugger is halted at {ssb.file_name}."
-msgstr ""
+msgstr "Le débogueur s'est interrompu dans le script {ssb.file_name}."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1549
 msgid "You have unsaved changes to variables.\n"
 "Variables are reset when the game is rebooted.\n"
 "You need to save the variables and load them after boot.\n\n"
 "Do you still want to continue?"
-msgstr ""
+msgstr "Les modifications de certaines variables n'ont pas encore été enregistrées.\n"
+"Les variables sont réinitialisées lorsque le jeu est redémarré.\n"
+"Vous devez sauvegarder ces variables pour les recharger après le redémarrage.\n\n"
+"Êtes-vous sûr de vouloir continuer ?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1612
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1614
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1625
@@ -2519,12 +2522,12 @@ msgstr "Annuler"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1615
 msgid "You will not be able to restore it."
-msgstr ""
+msgstr "Vous ne pourrez pas les restaurer."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:265
 #, python-brace-format
 msgid "Compiling script \"{self.filename}\"..."
-msgstr ""
+msgstr "Compilation du script «{self.filename}»..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:282
 msgid "Parse error: "
@@ -2552,7 +2555,7 @@ msgstr "Une erreur est provenue pendant le chargement du code source ExplorerScr
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:377
 msgid "SSBScript is not available for this file."
-msgstr ""
+msgstr "SSBScript n'est pas disponible pour ce fichier."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:466
 msgid "An old version of this script is still loaded in RAM, but breakpoints are not available.\n"
@@ -2562,7 +2565,7 @@ msgstr "Une ancienne version de ce script est toujours chargée en RAM, mais les
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:474
 msgid "An old version of this script is still loaded in RAM, old breakpoints are still used, until the file is reloaded."
-msgstr ""
+msgstr "Une ancienne version de ce script est toujours chargée en RAM, les anciens points d'arrêt seront encore utilisés jusqu'à ce que le fichier soit rechargé."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:754
 #, python-brace-format
