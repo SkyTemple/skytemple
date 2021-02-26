@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-26 14:51\n"
+"PO-Revision-Date: 2021-02-26 16:03\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3300,7 +3300,7 @@ msgstr "Las macros no tienen escenas."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:261
 msgid "Action not supported"
-msgstr ""
+msgstr "Acción no soportada"
 
 #: skytemple/skytemple/_i18n.py:21
 msgid "_About"
@@ -3477,7 +3477,7 @@ msgstr "Guardando ROM \"{rom_name}\"..."
 #: skytemple/skytemple/controller/main.py:735
 #, python-brace-format
 msgid "Saving {rom.filename}."
-msgstr ""
+msgstr "Guardando {rom.filename}."
 
 #: skytemple/skytemple/controller/main.py:748
 #, python-brace-format
@@ -3541,7 +3541,7 @@ msgstr "Selecciona una imagen de entrada."
 
 #: skytemple/skytemple/controller/tilequant.py:135
 msgid "Since you selected two images to convert, you will be asked for both images where to save them to."
-msgstr ""
+msgstr "Dado que has seleccionado dos imágenes para convertir, se te preguntará dónde guardar cada una."
 
 #: skytemple/skytemple/controller/tilequant.py:141
 msgid "Save first image as (PNG)..."
@@ -4268,7 +4268,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:393
 msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr ""
+msgstr "Si el ID del piso fijo es 0 o >= 165, esta opción es ignorada. Siempre está activado."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:396
 msgid "Prevents any kind of item pulling (such as with the Trawl Orb).\n"
@@ -4309,11 +4309,12 @@ msgstr "Salas fijas"
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:216
 msgid "This section lets you edit fixed rooms. Fixed rooms can be configured to appear on dungeon floors.\n"
 "They are usually used for boss fights or other special floors."
-msgstr ""
+msgstr "Esta sección te permite editar las salas fijas. Las salas fijas se pueden configurar para que aparezcan en los pisos de los territorios.\n"
+"Suelen utilizarse para los combates contra jefes u otros pisos especiales."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:250
 msgid "Here you can edit the entities that can be placed in fixed rooms. Entities are a combination of tile properties (+traps), Pokémon and items."
-msgstr ""
+msgstr "Aquí puedes editar las entidades que se pueden colocar en las salas fijas. Las entidades son una combinación de propiedades de tile (+trampas), pokémon y objetos."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:298
 msgid "Tile"
@@ -8365,11 +8366,11 @@ msgstr "¿Puede evolucionar?"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:370
 msgid "Wheher or not you need to have a special item in the bag (mystery part/secret slab) for the Pokémon to spawn in dungeons"
-msgstr ""
+msgstr "Determina si necesitas o no tener un objeto especial en la bolsa (pieza misteriosa/tabla secreta) para que los Pokémon aparezcan en los territorios"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:372
 msgid "Item Required for spawning?"
-msgstr ""
+msgstr "¿Objeto necesario para aparecer?"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:382
 msgid "If the current $SCENARIO_BALANCE_FLAG value is lower than this number, the pokémon won't spawn in dungeons."
@@ -8377,7 +8378,7 @@ msgstr "Si el valor actual de $SCENARIO_BALANCE_FLAG es inferior a este número,
 
 #: skytemple/skytemple/module/monster/controller/monster.py:383
 msgid "Spawn Threshold"
-msgstr ""
+msgstr "Umbral de generación"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:393
 msgid "Affects the damage the Pokémon takes when attacked with Grass Knot."
