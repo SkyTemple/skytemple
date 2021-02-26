@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-25 23:31\n"
+"PO-Revision-Date: 2021-02-26 00:32\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1628,7 +1628,7 @@ msgstr "Piso, Pasillo; Bandera 0xA"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:79
 msgid "Tile flag 0xA is set to 1 (Unknown what this does)."
-msgstr "La bandera del tile 0xA está establecida en 1 (Se desconoce la función de esto)."
+msgstr "La bandera del tile 0xA se establece en 1 (Se desconoce la función de esto)."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:80
 msgid "F/W, Room; Key Door (0xC)"
@@ -1972,15 +1972,17 @@ msgstr "Desactiva las cajas de texto de ayuda mostradas en los territorios al pr
 msgid "Implements shared experience points between all members (GtI style). \n"
 "This is disabled during Special Episodes and dungeons with level 1 or no exp. restrictions. \n"
 "Needs the ExtractDungeonData patch to be applied to free some space used by this."
-msgstr ""
+msgstr "Implementa puntos de experiencia compartidos entre todos los miembros (como en Portales al Infinito). \n"
+"Se desactiva durante los Capítulos especiales y los territorios con nivel 1 o sin restricciones de exp. \n"
+"Necesita que se aplique el parche 'ExtractDungeonData' para liberar algo de espacio utilizado por este."
 
 #: skytemple-files/skytemple_files/patch/handler/extra_space.py:39
 msgid "This patch adds a new overlay 36 to the game, which is loaded at address 0x023A7080 and provides extra space for patches to place code and data in."
-msgstr ""
+msgstr "Este parche añade un nuevo overlay (36) al juego, que se carga en la dirección 0x023A7080 y proporciona espacio adicional para que otros parches coloquen código y otros datos."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_dungeon_data.py:53
 msgid "Extracts the floor ranks, forbidden mission floors, items available in dungeon tables and put them in files. Provides support for reading them from the rom file system."
-msgstr ""
+msgstr "Extrae los rangos de los pisos, los pisos de las misiones prohibidas y los objetos disponibles en las tablas de los territorios y los coloca en archivos. Proporciona soporte para leerlos desde el sistema de archivos de la ROM."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:46
 msgid "Extracts the hardcoded item lists, used for mission rewards/treasure boxes content as well as Kecleon shop items, and put them in files. Provides support for reading them from the rom file system."
@@ -1992,23 +1994,23 @@ msgstr "¡No hay suficiente espacio para poner nombres de archivo! "
 
 #: skytemple-files/skytemple_files/patch/handler/far_off_pal_overdrive.py:41
 msgid "Makes the game always move the PoV to your partners when they use moves or are attacked, even if the partner is only one tile away, when far-off pals is enabled. Recommended for CTC since the PoV stays on your last pokemon at the end of a manual movement round without this, and CTC already reduces the amount of time the game pauses for between PoV changes."
-msgstr ""
+msgstr "Hace que el juego siempre mueva el punto de vista a tus compañeros cuando usan movimientos o son atacados, incluso si el compañero está a solo un tile de distancia cuando los compañeros lejanos están habilitados. Recomendado para el parche 'CompleteTeamControl' (CTC), ya que sin esta opción el punto de vista se quedará en tu último pokémon al final de una ronda de control manual, y CTC ya reduce la cantidad de tiempo que el juego hace una pausa entre los cambios de puntos de vista."
 
 #: skytemple-files/skytemple_files/patch/handler/fix_evolution.py:38
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
-msgstr "Arregla el glitch de evolución que congela el juego cuando se intenta evolucionar un Pokémon cuyo nombre tiene 10 caracteres."
+msgstr "Arregla el glitch de evolución que congela el juego cuando se intenta evolucionar un pokémon cuyo nombre tiene 10 caracteres."
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:39
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y)."
-msgstr ""
+msgstr "Reemplaza el movimiento fijo (L+A) con una funcionalidad de acceso directo como en Portales al Infinito o Super Mystery Dungeon (L+A/B/X/Y)."
 
 #: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:41
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
-msgstr ""
+msgstr "Recomendado para el parche 'CompleteTeamControl'. Sin él, los compañeros de equipo no pueden activar las trampas. Esto reequilibra el juego, ya que es fácil hacer que los compañeros de equipo eviten las trampas en el modo manual, pero no es recomendable para los mods que utilicen trampas que dejarían fuera de combate instantáneamente a los compañeros de equipo si las pisaran."
 
 #: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:41
 msgid "Reduces the amount of time the game pauses for before changing the PoV when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
-msgstr ""
+msgstr "Reduce el tiempo de pausa al mover la cámara para ver a los compañeros de equipo a distancia de 60 fotogramas a 12. Esto ya se aplica en el parche 'CompleteTeamControl'."
 
 #: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:38
 msgid "Allows the partner to be of the same type as the player in the personality test."
@@ -2122,12 +2124,12 @@ msgstr ""
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:277
 #, python-brace-format
 msgid "Unknown language for string: {lang}"
-msgstr ""
+msgstr "Idioma desconocido para la cadena: {lang}"
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:281
 #, python-brace-format
 msgid "Invalid parameter supplied for an operation: {param}"
-msgstr ""
+msgstr "Parámetro inválido para una operación: {param}"
 
 #: skytemple-files/skytemple_files/script/ssb/writer.py:134
 msgid "Could not compile script: All languages must have the same amount of strings."
@@ -2368,7 +2370,8 @@ msgstr "Todos los archivos"
 #, python-brace-format
 msgid "DeSmuME couldn't be loaded. Debugging functionality will not be available:\n\n"
 "{ex}"
-msgstr ""
+msgstr "No se ha podido cargar DeSmuME. No se podrá depurar:\n\n"
+"{ex}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:326
 msgid "Error loading the emulator!"
@@ -2387,7 +2390,7 @@ msgstr "No se puede cargar: {fn}\n"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:584
 msgid "Joypads are not supported on macOS. Sorry!"
-msgstr ""
+msgstr "Los joypads no están soportados en macOS. ¡Lo sentimos!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:639
 msgid "PNG Image (*.png)"
@@ -2440,7 +2443,7 @@ msgstr "Crear archivo"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:846
 msgid "Name of the new script file:"
-msgstr ""
+msgstr "Nombre del nuevo script:"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:858
 #, python-brace-format
@@ -2459,7 +2462,7 @@ msgstr "Común"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:913
 #: skytemple/skytemple/module/script/module.py:122
 msgid "Enter (sse)"
-msgstr "Introducir (sse)"
+msgstr "Introducción (sse)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:924
 #: skytemple/skytemple/module/script/module.py:132
@@ -2592,7 +2595,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:18
 msgid "Disable breakpoints (all files)."
-msgstr ""
+msgstr "Desactivar puntos de interrupción (todos los archivos)."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:19
 msgid "Disable Breaks"
@@ -2969,7 +2972,7 @@ msgstr "Depuración general"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1533
 msgid "Draw Entity Debug Overlay"
-msgstr ""
+msgstr "Trazar superposición de depuración de entidades"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1548
 msgid "Enable Debugging Mode"
@@ -2998,7 +3001,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1640
 msgid "Sound OFF"
-msgstr ""
+msgstr "Sonido DES"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1656
 msgid "BGM OFF"
@@ -3057,7 +3060,7 @@ msgstr "Tabla: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2153
 msgid "Parent Table: "
-msgstr ""
+msgstr "Tabla padre: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2165
 msgid "Entries: "
@@ -3134,7 +3137,7 @@ msgstr "El motor de scripts no se está ejecutando."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2645
 msgid "Run the game from the start or stop the emulator."
-msgstr ""
+msgstr "Ejecuta el juego desde el principio o detiene el emulador."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2673
 msgid "Pause the emulator."
@@ -3530,7 +3533,7 @@ msgstr "Difuminado: Los colores se reorganizarán y reducirán si es necesario. 
 
 #: skytemple/skytemple/controller/tilequant.py:104
 msgid "Only relevant if dithering is enabled: This controls the amount of dithering applied."
-msgstr ""
+msgstr "Solo es relevante si el difuminado está activado: Controla la cantidad de difuminado aplicado."
 
 #: skytemple/skytemple/controller/tilequant.py:130
 msgid "Please select an input image."
@@ -3542,11 +3545,11 @@ msgstr ""
 
 #: skytemple/skytemple/controller/tilequant.py:141
 msgid "Save first image as (PNG)..."
-msgstr "Guardar la primera imagen como (PNG)..."
+msgstr "Guardar primera imagen como (PNG)..."
 
 #: skytemple/skytemple/controller/tilequant.py:162
 msgid "Save second image as (PNG)..."
-msgstr ""
+msgstr "Guardar segunda imagen como (PNG)..."
 
 #: skytemple/skytemple/controller/tilequant.py:194
 msgid "You entered invalid numbers."
@@ -3811,11 +3814,11 @@ msgstr "Intentos de rescate máximos\n"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:793
 msgid "Max items allowed:"
-msgstr ""
+msgstr "Objetos máx. permitidos:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:806
 msgid "Max. party members:"
-msgstr ""
+msgstr "Miembros máx. de equipo:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:819
 msgid "Turn limit:"
@@ -3823,7 +3826,7 @@ msgstr "Límite de turnos:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:848
 msgid "Add / Remove Floors"
-msgstr ""
+msgstr "Añadir / Quitar pisos"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:866
 msgid "This dungeon has XXX floors."
@@ -3904,7 +3907,7 @@ msgstr "Cuadrícula de tiles"
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:166
 #: skytemple/skytemple/module/script/controller/ssa.glade:497
 msgid "Move / Select"
-msgstr ""
+msgstr "Mover / Seleccionar"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:167
 #: skytemple/skytemple/module/monster/controller/level_up.glade:430
@@ -3947,11 +3950,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:287
 msgid "Go to Tileset"
-msgstr ""
+msgstr "Ir al tileset"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:311
 msgid "Show more information"
-msgstr ""
+msgstr "Mostrar más información"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:333
 msgid ":"
@@ -4251,7 +4254,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:382
 msgid "Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled)"
-msgstr "Determina si se pueden utilizar o no movimientos. No afecta al ataque normal. Si es 0, los demás Pokémon no atacarán (ni siquiera usarán el ataque normal, aun si la habilidad Movimaníaco está desactivada)"
+msgstr "Determina si se pueden utilizar o no movimientos. No afecta al ataque normal. Si es 0, los demás pokémon no atacarán (ni siquiera usarán el ataque normal, aun si la habilidad Movimaníaco está desactivada)"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:387
 msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
@@ -5139,11 +5142,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:546
 msgid "Can not add category"
-msgstr ""
+msgstr "No se puede añadir la categoría"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:568
 msgid "The last category can not be removed."
-msgstr ""
+msgstr "La última categoría no se puede eliminar."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:569
 msgid "Can't remove category."
@@ -5226,7 +5229,7 @@ msgstr "Territorios"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:69
 msgid "This section lets you edit the layouts of dungeons in the game."
-msgstr ""
+msgstr "Esta sección te permite editar los diseños de los territorios en el juego."
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:87
 #: skytemple/skytemple/module/dungeon/controller/main.glade:158
@@ -5268,7 +5271,7 @@ msgstr "Al hacer clic en 'Aplicar' se corregirán todos los errores seleccionado
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:340
 msgid "Edit Dungeon Groups"
-msgstr ""
+msgstr "Editar grupos de territorio"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:451
 msgid "Drag and Drop dungeons to build groups.\n"
@@ -5649,12 +5652,12 @@ msgstr "Ajustes de animación"
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1231
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1609
 msgid "Edit Animation Palette 10"
-msgstr ""
+msgstr "Editar paleta de animación 10"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1240
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1618
 msgid "Edit Animation Palette 11"
-msgstr ""
+msgstr "Editar paleta de animación 11"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1317
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:34
@@ -5995,7 +5998,7 @@ msgstr "Modo avanzado (Manual)"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2328
 msgid "Secondary Terrain Type"
-msgstr ""
+msgstr "Tipo de terreno secundario"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2369
 msgid "Tileset Settings"
@@ -6083,7 +6086,7 @@ msgstr ""
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.py:70
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.py:80
 msgid "The gfxcrunch process failed."
-msgstr ""
+msgstr "El proceso gfxcrunch falló."
 
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.py:142
 #, python-brace-format
@@ -6212,7 +6215,7 @@ msgstr "Recompensas de dificultad ★8"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:78
 msgid "★9 Floors Rewards"
-msgstr ""
+msgstr "Recompensas de dificultad ★9"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:79
 msgid "Kecleon Shop 1"
@@ -6342,7 +6345,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
 #: skytemple/skytemple/module/lists/module.py:80
 msgid "Recruitment List"
-msgstr ""
+msgstr "Lista de reclutamiento"
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:60
 msgid "You can add Pokémon from this list to the team via Script Engine commands."
@@ -6560,7 +6563,7 @@ msgstr "Editar selección"
 
 #: skytemple/skytemple/module/lists/controller/world_map.py:195
 msgid "<Not on map>"
-msgstr ""
+msgstr "<No está en el mapa>"
 
 #: skytemple/skytemple/module/lists/controller/world_map.py:197
 #, python-brace-format
@@ -6763,7 +6766,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:549
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:608
 msgid "SkyTemple - Success!"
-msgstr ""
+msgstr "SkyTemple - ¡Éxito!"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:553
 msgid "Error during BPA export"
@@ -6771,7 +6774,7 @@ msgstr "Error durante la exportación de BPA"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:566
 msgid "Import animated tiles (BPA)"
-msgstr ""
+msgstr "Importar tiles animados (BPA)"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:606
 msgid "The animated tiles were successfully imported, using the files: "
@@ -7045,7 +7048,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3719
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3840
 msgid "Enabled"
-msgstr ""
+msgstr "Activado"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3035
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3152
@@ -7140,7 +7143,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4375
 msgid "Go to Scripts..."
-msgstr ""
+msgstr "Ir a scripts..."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4396
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4503
@@ -7556,7 +7559,7 @@ msgstr "Error al importar la imagen \"{index}\":\n"
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:151
 #, python-brace-format
 msgid "Error for '{index}'."
-msgstr ""
+msgstr "Error para '{index}'."
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:38
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:191
@@ -7604,7 +7607,7 @@ msgstr "Tamaño de imagen: "
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:595
 msgid "WTE"
-msgstr ""
+msgstr "WTE"
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:624
 msgid "This image does\n"
@@ -7739,7 +7742,7 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/entity.py:34
 msgid "Each Pokémon has two gender forms (even if it only has one gender).\n"
 "This entry contains both of these forms. The first form is the main form, it is used as a fallback in some cases, when the data for the second form doesn't exist."
-msgstr "Cada Pokémon tiene dos variantes de género (aunque solo tenga uno).\n"
+msgstr "Cada pokémon tiene dos variantes de género (aunque solo tenga uno).\n"
 "Esta entrada contiene ambas formas. La primera es la principal, y se utiliza como alternativa en algunos casos cuando los datos de la segunda forma no existen."
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:91
@@ -7779,7 +7782,7 @@ msgstr "Atq.+"
 #: skytemple/skytemple/module/monster/controller/level_up.glade:268
 #: skytemple/skytemple/module/monster/controller/level_up.py:49
 msgid "Sp. ATK+"
-msgstr ""
+msgstr "At. Esp+"
 
 #. TRANSLATORS: Special Attack+
 #: skytemple/skytemple/module/monster/controller/level_up.glade:282
@@ -7791,7 +7794,7 @@ msgstr "Def.+"
 #: skytemple/skytemple/module/monster/controller/level_up.glade:296
 #: skytemple/skytemple/module/monster/controller/level_up.py:51
 msgid "Sp. DEF+"
-msgstr ""
+msgstr "Def. Esp+"
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:324
 msgid "Export to CSV"
@@ -7843,7 +7846,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:287
 msgid "Invalid CSV file:\n"
-msgstr ""
+msgstr "Archivo CSV inválido:\n"
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:288
 #: skytemple/skytemple/module/monster/controller/level_up.py:304
@@ -8060,11 +8063,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:603
 msgid "#<Base ID>"
-msgstr ""
+msgstr "#<ID base>"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:616
 msgid "Base ID:"
-msgstr "ID de base:"
+msgstr "ID base:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:628
 msgid "Type:"
@@ -8116,7 +8119,7 @@ msgstr "Movimiento:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1103
 msgid "IQ Group:"
-msgstr ""
+msgstr "Grupo de CI:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1115
 msgid "Ability:"
@@ -8176,11 +8179,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1601
 msgid "Pre Evolution:"
-msgstr ""
+msgstr "Preevolución:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1613
 msgid "Evolution Method:"
-msgstr ""
+msgstr "Método de evolución:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1625
 msgid "Parameters:"
@@ -8240,7 +8243,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1997
 msgid "Shadow Size:"
-msgstr ""
+msgstr "Tamaño de sombra:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2034
 msgid "Chance to spawn asleep:"
@@ -8312,7 +8315,7 @@ msgstr "Los valores dependen del tipo de evolución:\n"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:307
 msgid "Evolution Parameters"
-msgstr ""
+msgstr "Parámetros de evolución"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:317
 msgid "The values are actually percentages.\n"
@@ -8368,7 +8371,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.py:382
 msgid "If the current $SCENARIO_BALANCE_FLAG value is lower than this number, the pokémon won't spawn in dungeons."
-msgstr ""
+msgstr "Si el valor actual de $SCENARIO_BALANCE_FLAG es inferior a este número, no aparecerán pokémon en los territorios."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:383
 msgid "Spawn Threshold"
@@ -8549,7 +8552,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:95
 msgid "Export all portraits as PNGs..."
-msgstr ""
+msgstr "Exportar todos los retratos como PNG..."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:119
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
@@ -9198,7 +9201,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/drawer_tiled.py:79
 msgid "Only 1x1 or 3x3 supported."
-msgstr ""
+msgstr "Solo se admiten 1x1 o 3x3."
 
 #: skytemple/skytemple/skytemple.glade:39
 msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
