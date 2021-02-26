@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-24 20:38\n"
+"PO-Revision-Date: 2021-02-26 18:32\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1992,11 +1992,11 @@ msgstr "Nicht genug Platz um Dateinamen zu platzieren! "
 
 #: skytemple-files/skytemple_files/patch/handler/far_off_pal_overdrive.py:41
 msgid "Makes the game always move the PoV to your partners when they use moves or are attacked, even if the partner is only one tile away, when far-off pals is enabled. Recommended for CTC since the PoV stays on your last pokemon at the end of a manual movement round without this, and CTC already reduces the amount of time the game pauses for between PoV changes."
-msgstr ""
+msgstr "Sorgt dafür, dass das Spiel die Kamera immer zu deinen Partnern wechselt, wenn sie angreifen oder angegriffen werden, selbst dann, wenn sie nur ein Feld entfernt sind oder die Option zum Wechseln zu Partnern deaktiviert ist. Empfohlen für CTC, weil ansonsten der Fokus auf deinem letzten Pokémon bleibt wenn du den manuellen Modus aktiviert hast. CTC sorgt bereits dafür, dass das Spiel kürzer pausiert, wenn das Spiel den Fokus wechselt."
 
 #: skytemple-files/skytemple_files/patch/handler/fix_evolution.py:38
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
-msgstr ""
+msgstr "Behebt den Fehler, das dazu führt, dass das Spiel einfriert, wenn versucht wird ein Pokémon zu entwickeln, dass einen zehn Zeichen langen Namen hat."
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:39
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y)."
@@ -2004,11 +2004,11 @@ msgstr "Ersetzt die fixierte Attacke (L+A) mit einer Schnellauswahl Funktion wie
 
 #: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:41
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
-msgstr ""
+msgstr "Empfohlen für CTC. Ohne diesen Patch können Partner keine versteckten Fallen auslösen - das macht das Spiel fairer, falls du im manuellen Modus bist, da du ansonsten sehr leicht Fallen ausweichen könntest mit deinen Partnern. Der Patch wird allerdings nicht empfohlen für Hacks mit Gruben-Fallen, da sie Partner die sie auslösen sofort besiegen."
 
 #: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:41
 msgid "Reduces the amount of time the game pauses for before changing the PoV when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
-msgstr ""
+msgstr "Reduziert die Zeit, die das Spiel wartet, wenn es den Fokus auf ein anderes Teammitglied legt, wenn die Option dafür aktiviert ist. Die Zeit wird von 60 auf 12 Frames reduziert. Der CTC Patch enthält diesen Patch bereits."
 
 #: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:38
 msgid "Allows the partner to be of the same type as the player in the personality test."
@@ -2054,7 +2054,7 @@ msgstr "patch.py fehlt im Patch-Paket."
 
 #: skytemple-files/skytemple_files/patch/patches.py:159
 msgid "The patch.py of the patch package contains a syntax error."
-msgstr ""
+msgstr "Die patch.py von diesem Patch-Paket enthält einen Syntaxfehler."
 
 #: skytemple-files/skytemple_files/patch/patches.py:164
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
@@ -2182,7 +2182,9 @@ msgstr "Falls du nicht speicherst, gehen deine Änderungen verloren."
 msgid "The file is still loaded in RAM! Currently you are still able to debug using the old cached information stored in the editor.\n"
 "If you close the editor, you won't be able to debug this file until it is reloaded in RAM.\n\n"
 "Do you still want to close this file?"
-msgstr ""
+msgstr "Diese Datei ist noch im RAM geladen! Aktuell kannst du mit dem alten Stand der Datei noch Debuggen.\n"
+"Falls du den Editor schließt, wirst du nicht mehr in der Lage zu sein diese Datei zu Debuggen, bis die Datei im RAM neu geladen wird.\n\n"
+"Möchtest du die Datei trotzdem schließen?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:340
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1553
@@ -2446,7 +2448,7 @@ msgstr "Name der neuen Skript-Datei:"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:858
 #, python-brace-format
 msgid "Do you want to delete the directory {row[1]} with all of it's contents?"
-msgstr ""
+msgstr "Möchtest du das Verzeichnis {row[1]} mit dem gesamten Inhalt löschen?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:866
 #, python-brace-format
@@ -2474,7 +2476,7 @@ msgstr "Sub (sss)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:970
 msgid "Save dumped block..."
-msgstr ""
+msgstr "Speichere Block..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1191
 msgid "Unable to save savestate!"
@@ -2535,7 +2537,8 @@ msgstr "Fehler beim Parsen: "
 #, python-brace-format
 msgid "The script file {self.filename} could not be saved.\n"
 "{prefix}{err}"
-msgstr ""
+msgstr "Die Skriptdatei {self.filename} konnte nicht gespeichert werden.\n"
+"{prefix}{err}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:287
 msgid "Error saving the script."
@@ -2546,7 +2549,9 @@ msgstr "Fehler beim Speichern des Skripts."
 msgid "There was an error while loading the ExplorerScript source code. The source will not be available.\n"
 "Please close and reopen the tab.\n\n"
 "{exception}"
-msgstr ""
+msgstr "Beim Versuch den ExplorerScript Quellcode zu laden ist ein Fehler aufgetreten. Der Quellcode wird daher nicht zur Verfügung stehen.\n"
+"Bitte schließe den Tab und öffne ihn erneut.\n\n"
+"{exception}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:377
 msgid "SSBScript is not available for this file."
@@ -2555,11 +2560,12 @@ msgstr "SSBScript ist für diese Datei nicht verfügbar."
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:466
 msgid "An old version of this script is still loaded in RAM, but breakpoints are not available.\n"
 "Debugging is disabled for this file, until it is reloaded."
-msgstr ""
+msgstr "Eine alte Version dieses Skript ist noch im RAM geladen, aber Haltepunkte sind nicht verfügbar.\n"
+"Debugging ist für diese Datei nicht möglich, bis sie vom Spiel neu geladen wurde."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:474
 msgid "An old version of this script is still loaded in RAM, old breakpoints are still used, until the file is reloaded."
-msgstr ""
+msgstr "Eine alte Version dieses Skripts ist noch im RAM geladen. Alte Haltepunkte werden weiterhin verwendet, bis die Datei vom Spiel neu geladen wurde."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:754
 #, python-brace-format
@@ -2578,7 +2584,9 @@ msgstr "ExplorerScript ist für diese Datei nicht verfügbar."
 msgid "The ExplorerScript source code does not match the compiled script that is present in the ROM.\n"
 "Do you want to keep your ExplorerScript source code, or reload (decompile) it from ROM?\n"
 "Warning: If you choose to reload, you will lose your file, including all comments in it."
-msgstr ""
+msgstr "Der ExplorerScript Quellcode stimmt nicht mit dem kompilierten Skript überein, dass in der ROM gespeichert ist.\n"
+"Möchtest du den aktuellen ExplorerScript Quellcode beibehalten oder das Skript aus der ROM neu laden (dekompilieren)?\n"
+"Warnung: Falls du dich für das Neuladen aus der ROM entscheidest, verlierst du deine Datei, inklusive aller Kommentare."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:942
 msgid "ExplorerScript Inconsistency"
