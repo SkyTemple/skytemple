@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-26 17:26\n"
+"PO-Revision-Date: 2021-02-26 18:32\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2360,7 +2360,7 @@ msgstr "ROMs de Nintendo DS (*.nds)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:155
 msgid "Nintendo DS ROMs with binary loader (*.ds.gba)"
-msgstr ""
+msgstr "ROMs de Nintendo DS con cargador binario (*.ds.gba)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:159
 msgid "All files"
@@ -3858,7 +3858,7 @@ msgstr "Este territorio tiene {floor_count} pisos.{edit_text}"
 #: skytemple/skytemple/module/dungeon/controller/dungeon.py:129
 #, python-brace-format
 msgid "This dungeon currently has {current_floor_count} floors."
-msgstr "Este territorio tiene actualmente {current_floor_count} pisos."
+msgstr "Este territorio tiene actualmente {current_floor_count} piso(s)."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:110
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1301
@@ -3942,7 +3942,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.glade:591
 #: skytemple/skytemple/module/script/controller/ssa.glade:600
 msgid "Change the map background (editor preview only)"
-msgstr ""
+msgstr "Cambiar el fondo del mapa (solo en la vista previa del editor)"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:285
 msgid "Edit the currently selected tileset or background"
@@ -4716,7 +4716,7 @@ msgstr "Conectividad del piso:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1529
 msgid "Dead Ends?:"
-msgstr ""
+msgstr "¿Pasillos sin salida?:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1573
 msgid "Extra Hallway density:"
@@ -5137,11 +5137,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:428
 msgid "SkyTemple: Invalid Pokémon"
-msgstr ""
+msgstr "SkyTemple: Pokémon inválido"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:545
 msgid "All categories are already in the list."
-msgstr ""
+msgstr "Todas las categorías ya están en la lista."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:546
 msgid "Can not add category"
@@ -5161,11 +5161,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:740
 msgid "Invalid item id"
-msgstr ""
+msgstr "ID de objeto inválido"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:747
 msgid "This item is already in the list."
-msgstr ""
+msgstr "Este objeto ya está en la lista."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:748
 msgid "Can not use this item"
@@ -5590,7 +5590,7 @@ msgstr "Exportar fondo a imagen..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1108
 msgid "Import Background from Image..."
-msgstr ""
+msgstr "Importar fondo desde imagen..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1121
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1343
@@ -6268,12 +6268,13 @@ msgstr "Desconocido 3"
 
 #: skytemple/skytemple/module/lists/controller/main.py:23
 msgid "Ground Lists"
-msgstr ""
+msgstr "Listas de terreno"
 
 #: skytemple/skytemple/module/lists/controller/main.py:35
 msgid "This section lets you edit lists of the game's Ground Engine (the cutscene and overworld engine).\n"
 "These lists store various information, such as available actors and objects that can be placed on maps and also a list of maps itself."
-msgstr ""
+msgstr "Esta sección te permite editar las listas del Motor de Terreno del juego (el motor de escenas y del mundo exterior).\n"
+"Estas listas almacenan diversa información, como los actores y objetos disponibles que pueden colocarse en los mapas y también una lista de los propios mapas."
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:55
 msgid "Menu Lists"
@@ -6379,7 +6380,7 @@ msgstr "Compañero"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:294
 msgid "Team Name"
-msgstr "Nombre del Equipo"
+msgstr "Nombre del equipo"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:309
 msgid "You can apply the default team using the script command\n"
@@ -6798,7 +6799,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/folder.py:31
 #, python-brace-format
 msgid "Map Background category \"{self.name}\""
-msgstr ""
+msgstr "Categoría de fondo del mapa \"{self.name}\""
 
 #: skytemple/skytemple/module/map_bg/controller/folder.py:32
 msgid "Map Backgrounds for other maps"
@@ -7102,11 +7103,11 @@ msgstr "Dimensiones del mapa"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4037
 msgid "Map Width in Chunks"
-msgstr ""
+msgstr "Anchura del mapa en chunks"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4081
 msgid "Map Height in Chunks"
-msgstr ""
+msgstr "Altura del mapa en chunks"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4141
 msgid "Link Tile Width and Height"
@@ -7405,7 +7406,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/chr.glade:103
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:506
 msgid "Palette Variant: "
-msgstr ""
+msgstr "Variante de paleta: "
 
 #: skytemple/skytemple/module/misc_graphics/controller/chr.glade:140
 msgid "Chr"
@@ -7470,7 +7471,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:140
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:137
 msgid "Error importing font."
-msgstr ""
+msgstr "Error al importar fuente."
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:212
 #, python-brace-format
@@ -7581,7 +7582,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:204
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:530
 msgid "WTE Image Type: "
-msgstr ""
+msgstr "Tipo de imagen WTE: "
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:232
 msgid "Discard Palette"
@@ -7644,7 +7645,7 @@ msgstr "WTU"
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:122
 msgid "Filename not specified."
-msgstr ""
+msgstr "Nombre de archivo no especificado."
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:133
 msgid "Imported image size too big."
@@ -7652,7 +7653,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:139
 msgid "Not an indexed image."
-msgstr ""
+msgstr "No es una imagen indexada."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.glade:54
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.glade:91
@@ -8254,7 +8255,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2059
 msgid "HP Regeneration:"
-msgstr ""
+msgstr "Regeneración de PS:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2103
 msgid "Unk 27:"
@@ -8398,7 +8399,7 @@ msgstr "Importar Pokémon desde..."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:906
 msgid "Stats and Moves"
-msgstr "Estadísticas y Movimientos"
+msgstr "Estadísticas y movimientos"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:909
 msgid "Portraits"
@@ -8799,7 +8800,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.py:610
 msgid "This script already exists."
-msgstr ""
+msgstr "Este script ya existe."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:647
 msgid "Acting scenes must have exactly one script assigned to them."
@@ -8903,7 +8904,8 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:92
 msgid "Export\n"
 "Ground"
-msgstr ""
+msgstr "Exportar\n"
+"terreno"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:138
 msgid "Import\n"
