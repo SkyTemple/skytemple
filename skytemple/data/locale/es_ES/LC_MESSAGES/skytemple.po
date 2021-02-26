@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-26 00:32\n"
+"PO-Revision-Date: 2021-02-26 14:51\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2024,7 +2024,7 @@ msgstr "Ofrece soporte para los contenedores ATUPX, que utilizan un algoritmo di
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:39
 msgid "Fixes the 'Unusued' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
-msgstr ""
+msgstr "Corrige la función del valor aleatorio del atributo \"No utilizado\" de los pisos de los territorios. Esto determina la probabilidad de que una sala contenga aleatoriamente paredes en su interior, algunas de las cuales pueden ser sustituidas por terreno secundario."
 
 #: skytemple-files/skytemple_files/patch/patches.py:102
 #: skytemple-files/skytemple_files/patch/patches.py:107
@@ -2820,7 +2820,7 @@ msgstr "_Depurador"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:388
 msgid "Disable Breakpoints"
-msgstr ""
+msgstr "Desactivar puntos de interrupción"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:453
 msgid "_Emulator"
@@ -3537,7 +3537,7 @@ msgstr "Solo es relevante si el difuminado está activado: Controla la cantidad 
 
 #: skytemple/skytemple/controller/tilequant.py:130
 msgid "Please select an input image."
-msgstr ""
+msgstr "Selecciona una imagen de entrada."
 
 #: skytemple/skytemple/controller/tilequant.py:135
 msgid "Since you selected two images to convert, you will be asked for both images where to save them to."
@@ -3946,7 +3946,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:285
 msgid "Edit the currently selected tileset or background"
-msgstr ""
+msgstr "Editar el tileset o fondo seleccionado"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:287
 msgid "Go to Tileset"
@@ -4014,7 +4014,9 @@ msgstr "V"
 msgid "Select a tile \n"
 "or entity to \n"
 "edit or copy."
-msgstr ""
+msgstr "Selecciona un tile \n"
+"o entidad para \n"
+"editar o copiar."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:469
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1049
@@ -4047,7 +4049,7 @@ msgstr "Tipo de tile:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:590
 msgid "The direction is only relevant for the leader spawn tile."
-msgstr ""
+msgstr "La dirección solo es relevante para el tile del lugar de aparición del líder."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:620
 msgid "Add new tile"
@@ -4577,23 +4579,23 @@ msgstr "Diseño"
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:598
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2896
 msgid "Pokémon Spawns"
-msgstr ""
+msgstr "Generación de pokémon"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:612
 msgid "Trap Spawns"
-msgstr ""
+msgstr "Generación de trampas"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:626
 msgid "Floor Item Spawns"
-msgstr ""
+msgstr "Generación de objetos del piso"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:640
 msgid "Shop Item Spawns"
-msgstr ""
+msgstr "Generación de objetos en tiendas"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:654
 msgid "Monster House Item Spawns"
-msgstr ""
+msgstr "Generación de objetos en nidos de monstruos"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:668
 msgid "Bruied Item Spawns"
@@ -8295,7 +8297,7 @@ msgstr "Puede evolucionar:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2275
 msgid "Item req. for spawn:"
-msgstr ""
+msgstr "Objeto necesario para aparecer:"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:300
 msgid "Values depend on Evolution Type:\n"
