@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-26 20:41\n"
+"PO-Revision-Date: 2021-02-26 21:38\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -6979,7 +6979,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2518
 msgid "Number of Collision Layers"
-msgstr ""
+msgstr "Número de capas de colisión"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2564
 msgid "Has Data Layer?"
@@ -7134,7 +7134,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4321
 msgid "Width and Height"
-msgstr ""
+msgstr "Anchura y altura"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4336
 msgid "Export Map as GIF..."
@@ -7176,7 +7176,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4567
 msgid "Animated Tiles"
-msgstr ""
+msgstr "Tiles animados"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4592
 msgid "Import and Export..."
@@ -7457,7 +7457,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:85
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:71
 msgid "Export font in folder..."
-msgstr ""
+msgstr "Exportar fuente a la carpeta..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:107
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
@@ -7524,7 +7524,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:76
 msgid "Export all images as PNGs..."
-msgstr ""
+msgstr "Exportar todas las imágenes como PNGs..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:97
 msgid "To import, select a directory to import from. Files with the pattern 'XX.png'\n"
@@ -7543,12 +7543,13 @@ msgstr "Importar imágenes desde PNGs..."
 #, python-brace-format
 msgid "Failed importing image \"{i}\":\n"
 "Image for number {i} missing."
-msgstr ""
+msgstr "Error al importar la imagen \"{i}\":\n"
+"Falta la imagen para el número {i}."
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:126
 #, python-brace-format
 msgid "Image for number {i} missing."
-msgstr ""
+msgstr "Falta la imagen para el número {i}."
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:133
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:134
@@ -7558,7 +7559,7 @@ msgstr "No se han encontrado imágenes."
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:147
 #, python-brace-format
 msgid "Failed importing image '{index}'."
-msgstr ""
+msgstr "Error al importar la imagen '{index}'."
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:150
 #, python-brace-format
@@ -7821,7 +7822,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:516
 msgid "Level Up Moves"
-msgstr ""
+msgstr "Movimientos de subida de nivel"
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:636
 msgid "HM/TM Moves"
@@ -8062,7 +8063,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:315
 msgid "Portraits of current Gender Form*"
-msgstr ""
+msgstr "Retratos de la forma de género actual*"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:493
 msgid "(and/or) <b>2b. Copy to other Pokémon</b>"
@@ -8186,7 +8187,7 @@ msgstr "Estadísticas base"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1589
 msgid "Base Form Index:"
-msgstr ""
+msgstr "Índice de forma base:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1601
 msgid "Pre Evolution:"
@@ -8242,7 +8243,7 @@ msgstr "Desc. 31:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1936
 msgid "Spawn Threshold:"
-msgstr ""
+msgstr "Umbral de generación:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1960
 msgid "Unk 17:"
@@ -8799,11 +8800,11 @@ msgstr "Crear script"
 
 #: skytemple/skytemple/module/script/controller/ssa.py:587
 msgid "Script Number"
-msgstr ""
+msgstr "Número de script"
 
 #: skytemple/skytemple/module/script/controller/ssa.py:597
 msgid "Please enter a valid number."
-msgstr ""
+msgstr "Por favor, introduce un número válido."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:610
 msgid "This script already exists."
@@ -8811,7 +8812,7 @@ msgstr "Este script ya existe."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:647
 msgid "Acting scenes must have exactly one script assigned to them."
-msgstr ""
+msgstr "Las escenas de acción deben tener exactamente un guion asignado a ellas."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1263
 msgid "Event Script"
@@ -8902,7 +8903,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/module.py:244
 msgid "Map not found."
-msgstr ""
+msgstr "Mapa no encontrado."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:43
 msgid "<span size=\"large\">Spritesheet</span>"
@@ -8917,12 +8918,14 @@ msgstr "Exportar\n"
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:138
 msgid "Import\n"
 "Ground"
-msgstr ""
+msgstr "Importar\n"
+"terreno"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:184
 msgid "Import\n"
 "Attack"
-msgstr ""
+msgstr "Importar\n"
+"ataque"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:230
 msgid "Export\n"
@@ -8959,7 +8962,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:528
 msgid "Add new Sprite"
-msgstr ""
+msgstr "Añadir nuevo sprite"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:551
 msgid "-- or --"
@@ -8971,7 +8974,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:71
 msgid "Invalid Sprite ID."
-msgstr ""
+msgstr "ID de sprite inválido."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:75
 msgid "Alternatively you can export the sprite files \n"
