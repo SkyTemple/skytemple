@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-26 18:32\n"
+"PO-Revision-Date: 2021-02-26 20:41\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2069,7 +2069,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/patches.py:175
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
-msgstr ""
+msgstr "No se ha encontrado ningún parche para el manejador '{handler.name}' en la configuración."
 
 #: skytemple-files/skytemple_files/script/ssb/constants.py:75
 #, python-brace-format
@@ -2209,7 +2209,7 @@ msgstr "Libre"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:47
 msgid "Block"
-msgstr ""
+msgstr "Bloqueo"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:48
 msgid "Temporary"
@@ -2993,7 +2993,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1608
 msgid "Message Speed Up"
-msgstr ""
+msgstr "Acelerador de mensajes"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1624
 msgid "No Screen Fade"
@@ -3077,13 +3077,13 @@ msgstr "Datos: "
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2278
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4699
 msgid "Unk1"
-msgstr ""
+msgstr "Desc. 1"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2289
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4729
 #: skytemple/skytemple/module/script/controller/ssa.py:1198
 msgid "Unk2"
-msgstr ""
+msgstr "Desc. 2"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2311
 msgid "Available"
@@ -4377,31 +4377,31 @@ msgstr "¿Irrompible?"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:598
 msgid "Unk11"
-msgstr ""
+msgstr "Desc. 11"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:611
 msgid "Unk12"
-msgstr ""
+msgstr "Desc. 12"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:624
 msgid "Unk13"
-msgstr ""
+msgstr "Desc. 13"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:637
 msgid "Unk14"
-msgstr ""
+msgstr "Desc. 14"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:650
 msgid "Unk15"
-msgstr ""
+msgstr "Desc. 15"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:663
 msgid "Unk16"
-msgstr ""
+msgstr "Desc. 16"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:676
 msgid "Unk17"
-msgstr ""
+msgstr "Desc. 17"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:689
 msgid "Room"
@@ -4413,11 +4413,11 @@ msgstr "¿Hacer trampa visible?"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:716
 msgid "Unk31"
-msgstr ""
+msgstr "Desc. 31"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:729
 msgid "Unk32"
-msgstr ""
+msgstr "Desc. 32"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:742
 msgid "Secondary Terrain?"
@@ -4425,19 +4425,19 @@ msgstr "¿Terreno secundario?"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:755
 msgid "Unk34"
-msgstr ""
+msgstr "Desc. 34"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:768
 msgid "Unk35"
-msgstr ""
+msgstr "Desc. 35"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:781
 msgid "Unk36"
-msgstr ""
+msgstr "Desc. 36"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:794
 msgid "Unk37"
-msgstr ""
+msgstr "Desc. 37"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:816
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1167
@@ -4501,7 +4501,7 @@ msgstr "Def. Esp."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1172
 msgid "UnkA"
-msgstr ""
+msgstr "Desc. A"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1195
 msgid "Pokémon Stats"
@@ -5102,7 +5102,8 @@ msgstr "Estos deslizadores controlan la probabilidad (en %) de que se generen ci
 #: skytemple/skytemple/module/dungeon/controller/floor.py:330
 msgid "Every Kecleon shop has a minimum amount of guaranteed items.\n"
 "This value controls where in the shop they will be placed."
-msgstr ""
+msgstr "Cada tienda de Kecleon tiene una cantidad mínima de objetos garantizados.\n"
+"Este valor controla dónde se colocarán en la tienda."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:334
 #, python-format
@@ -5289,7 +5290,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:119
 msgid "Dungeon Errors were successfully fixed."
-msgstr ""
+msgstr "Los errores del territorio se han corregido correctamente."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:137
 msgid "The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first."
@@ -5989,7 +5990,7 @@ msgstr "Reglas adicionales"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2188
 msgid "Dungeon Tileset X Rules"
-msgstr ""
+msgstr "Reglas del Tileset X del territorio"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2238
 msgid "Chunk Picker"
@@ -6110,16 +6111,18 @@ msgstr ""
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ActorAndLevelLoader\" \n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar esta lista, aplica el parche ASM \"ActorAndLevelLoader\" \n"
+"del menú \"Parches ASM\"."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
 #: skytemple/skytemple/module/script/controller/ssa.py:1199
 msgid "Unk3"
-msgstr ""
+msgstr "Desc. 3"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:255
 msgid "Unk4"
-msgstr ""
+msgstr "Desc. 4"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:350
 msgid "Actors with outlines "
@@ -6278,7 +6281,7 @@ msgstr "Esta sección te permite editar las listas del Motor de Terreno del jueg
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:55
 msgid "Menu Lists"
-msgstr ""
+msgstr "Listas del menú"
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:76
 msgid "Menu: "
@@ -6295,7 +6298,7 @@ msgstr "ID de nombre"
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:175
 msgid "Name String"
-msgstr ""
+msgstr "Cadena de nombre"
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:189
 msgid "Description ID"
@@ -6303,7 +6306,7 @@ msgstr "ID de descripción"
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:203
 msgid "Description String"
-msgstr ""
+msgstr "Cadena de descripción"
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:217
 msgid "Action"
@@ -6332,19 +6335,19 @@ msgstr "Los menús están codificados, por lo que no puedes añadir ninguna opci
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
 #: skytemple/skytemple/module/lists/module.py:86
 msgid "Rank List"
-msgstr ""
+msgstr "Lista de rangos"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:103
 msgid "Points for next Rank"
-msgstr ""
+msgstr "Puntos hasta el siguiente rango"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:117
 msgid "Storage Capacity"
-msgstr ""
+msgstr "Capacidad de almacenamiento"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:131
 msgid "Item Reward"
-msgstr ""
+msgstr "Objetos de recompensa"
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
 #: skytemple/skytemple/module/lists/module.py:80
@@ -6527,11 +6530,11 @@ msgstr "Mapa:"
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:108
 msgid "Reference / Use another marker"
-msgstr ""
+msgstr "Referencia / Usar otro marcador"
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:134
 msgid "Select the position on the map"
-msgstr ""
+msgstr "Selecciona la posición en el mapa"
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:169
 msgid "Please don't select a marker that already references another marker.\n"
@@ -6541,7 +6544,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
 #: skytemple/skytemple/module/lists/module.py:83
 msgid "World Map Markers"
-msgstr ""
+msgstr "Marcadores del mapa del mundo"
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:343
 msgid "Edit Map Background"
@@ -6752,7 +6755,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:240
 msgid "Export PNGs of map..."
-msgstr ""
+msgstr "Exportar PNGs del mapa..."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:412
 msgid "This BPA has no frames.\n"
@@ -6790,11 +6793,11 @@ msgstr "Error durante la importación de BPA"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:702
 msgid "Palette Animation is not enabled."
-msgstr ""
+msgstr "La animación de paleta no está activada."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:852
 msgid "This map has no second layer."
-msgstr ""
+msgstr "Este mapa no tiene segunda capa."
 
 #: skytemple/skytemple/module/map_bg/controller/folder.py:31
 #, python-brace-format
@@ -7273,7 +7276,11 @@ msgid "This will export all chunks of the selected layer.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Esto exportará todos los chunks de la capa seleccionada.\n\n"
+"Puede editar e importar los chunks de nuevo.\n"
+"Recuerda que podrías necesitar convertirlo \n"
+"para poder usarlo. \n"
+"Ve la importación del diálogo para más información."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5461
 msgid "This will export the entire map as one or two images,\n"
@@ -8227,11 +8234,11 @@ msgstr "Objetos exclusivos"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1899
 msgid "Unk 1.0:"
-msgstr ""
+msgstr "Desc. 1.0:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1911
 msgid "Unk 31:"
-msgstr ""
+msgstr "Desc. 31:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1936
 msgid "Spawn Threshold:"
@@ -8239,11 +8246,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1960
 msgid "Unk 17:"
-msgstr ""
+msgstr "Desc. 17:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1985
 msgid "Unk 18:"
-msgstr ""
+msgstr "Desc. 18:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1997
 msgid "Shadow Size:"
@@ -8259,31 +8266,31 @@ msgstr "Regeneración de PS:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2103
 msgid "Unk 27:"
-msgstr ""
+msgstr "Desc. 27:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2115
 msgid "Unk 28:"
-msgstr ""
+msgstr "Desc. 28:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2153
 msgid "Unk 29:"
-msgstr ""
+msgstr "Desc. 29:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2165
 msgid "Unk 30:"
-msgstr ""
+msgstr "Desc. 30:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2203
 msgid "Unk 1.1:"
-msgstr ""
+msgstr "Desc. 1.1:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2215
 msgid "Unk 1.2:"
-msgstr ""
+msgstr "Desc. 1.2:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2227
 msgid "Unk 1.3:"
-msgstr ""
+msgstr "Desc. 1.3:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2239
 msgid "Can move:"
@@ -8291,7 +8298,7 @@ msgstr "Puede moverse:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2251
 msgid "Unk 1.5:"
-msgstr ""
+msgstr "Desc. 1.5:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2263
 msgid "Can evolve:"
