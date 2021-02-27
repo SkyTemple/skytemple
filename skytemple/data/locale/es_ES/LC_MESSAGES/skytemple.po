@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-27 22:43\n"
+"PO-Revision-Date: 2021-02-27 23:53\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -6359,7 +6359,7 @@ msgstr "Listas de terreno"
 #: skytemple/skytemple/module/lists/controller/main.py:35
 msgid "This section lets you edit lists of the game's Ground Engine (the cutscene and overworld engine).\n"
 "These lists store various information, such as available actors and objects that can be placed on maps and also a list of maps itself."
-msgstr "Esta sección te permite editar las listas del Motor de Terreno del juego (el motor de escenas y del mundo exterior).\n"
+msgstr "Esta sección te permite editar las listas del Motor de Terreno del juego (el motor de cinemáticas y del mundo exterior).\n"
 "Estas listas almacenan diversa información, como los actores y objetos disponibles que pueden colocarse en los mapas y también una lista de los propios mapas."
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:55
@@ -8784,7 +8784,9 @@ msgstr "Escenas de acción para \"{}"
 msgid "This section contains all acting scenes for the map {self.name}.\n\n"
 "These scenes are used for cutscenes.\n"
 "The player can usually not move the character in them."
-msgstr ""
+msgstr "Esta sección contiene todas las escenas de actuación para el mapa {self.name}.\n\n"
+"Estas escenas se utilizan para cinemáticas.\n"
+"El jugador normalmente no puede mover al personaje en ellas."
 
 #: skytemple/skytemple/module/script/controller/main.py:27
 msgid "Script Scenes"
@@ -8793,7 +8795,8 @@ msgstr "Script de escenas"
 #: skytemple/skytemple/module/script/controller/main.py:39
 msgid "This section lets you edit overworld scenes in the game, so anything that happens outside of Dungeons.\n"
 "This also includes cutscene visuals and some system related scenes, like credits or the title screen logos."
-msgstr ""
+msgstr "Esta sección te permite editar las escenas del mundo exterior del juego, es decir, todo lo que ocurre fuera de los territorios.\n"
+"Esto también incluye las escenas visuales y algunas escenas relacionadas con el sistema, como los créditos o los logotipos de la pantalla del título."
 
 #: skytemple/skytemple/module/script/controller/map.py:29
 msgid "Script Scenes for \"{}"
