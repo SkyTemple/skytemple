@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-27 21:47\n"
+"PO-Revision-Date: 2021-02-27 22:43\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1924,7 +1924,7 @@ msgstr "La imagen debe tener dimensiones de {IMG_WIDTH}x{IMG_HEIGHT}."
 
 #: skytemple-files/skytemple_files/hardcoded/cart_removed.py:67
 msgid "This image must be compressed better to fit in the arm9 ({len(data)} > {block.end-block.begin})."
-msgstr "Esta imagen debe comprimirse mejor para caber en arm9 ({len(data)} > {block.end-block.begin})."
+msgstr "Esta imagen debe comprimirse más para caber en ARM9 ({len(data)} > {block.end-block.begin})."
 
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:130
 msgid "ARMIPS could not be found. Make sure, that 'armips' is inside your system's PATH."
@@ -3203,7 +3203,9 @@ msgstr "Registro de depuración"
 msgid "Powered by DeSmuME, the Nintendo DS Emulator:\n"
 "Originally licensed under GPLv2. See https://github.com/TASVideos/desmume/blob/master/desmume/AUTHORS for a list of authors!\n"
 "Thanks for making this great emulator!"
-msgstr ""
+msgstr "Impulsado por DeSmuME, el emulador de Nintendo DS:\n"
+"Originalmente licenciado bajo GPLv2. Consulta https://github.com/TASVideos/desmume/blob/master/desmume/AUTHORS para ver la lista de autores.\n"
+"¡Gracias por hacer este gran emulador!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3213
 msgid "Interactive debugger for the script engine of Pokémon Mystery Dungeon Explorers of Sky (EU/US)"
@@ -3343,7 +3345,7 @@ msgstr "_Eliminar"
 
 #: skytemple/skytemple/_i18n.py:29
 msgid "_Forward"
-msgstr ""
+msgstr "_Adelante"
 
 #: skytemple/skytemple/_i18n.py:30
 msgid "_Next"
@@ -3463,7 +3465,7 @@ msgstr "Error al guardar la ROM"
 
 #: skytemple/skytemple/controller/main.py:469
 msgid "A project must be opened to use this."
-msgstr ""
+msgstr "Debe abrirse un proyecto para utilizarlo."
 
 #: skytemple/skytemple/controller/main.py:546
 #: skytemple/skytemple/controller/main.py:547
@@ -3768,7 +3770,7 @@ msgstr "back_SetDungeonBanner"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:161
 msgid "Banner"
-msgstr "Banner"
+msgstr "Cartel"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:420
 #: skytemple/skytemple/module/monster/controller/monster.glade:191
@@ -5151,7 +5153,7 @@ msgstr "Si está activado, el potenciador de CI incrementará el CI en este piso
 #: skytemple/skytemple/module/dungeon/controller/floor.py:427
 #, python-brace-format
 msgid "You can not spawn Kecleons or the Decoy Pokémon or any Pokémon above #{DUMMY_MD_INDEX}."
-msgstr ""
+msgstr "No puedes generar kecleons, pokémon señuelos o cualquier pokémon por encima de #{DUMMY_MD_INDEX}."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:428
 msgid "SkyTemple: Invalid Pokémon"
@@ -5203,7 +5205,11 @@ msgid "Change the chances of Pokémon, traps or items spawning.\n"
 "Please note for Pokémon, that weights for Pokémon that can not be spawned (eg. legendaries without having their items) will be added to the next Pokémon entry in the list when the game decides what to spawn.\n"
 "Please note for items, that the game first decides what category to spawn for an item and then chooses an entry for that category.\n"
 "All spawn entries are always saved to the game sorted by their (Pokémon, item, trap) ID."
-msgstr ""
+msgstr "Cambia la probabilidad de que aparezcan pokémon, trampas u objetos.\n"
+"La probabilidad de aparición depende del peso de una entrada. Cuanto mayor sea el peso de una entrada, más probabilidades tendrá de aparecer.\n"
+"Ten en cuenta que los pesos de los pokémon que no pueden aparecer (por ejemplo, los legendarios que no tienen sus objetos) se añadirán a la siguiente entrada de la lista cuando el juego decida qué aparecerá.\n"
+"Por favor, ten en cuenta que para los objetos, el juego decide primero la categoría de aparición de un objeto y luego elige una entrada para esa categoría.\n"
+"Todas las entradas de aparición se guardan siempre en el juego ordenadas por su ID (de pokémon, objeto, trampa)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:879
 msgid "Export floor as..."
@@ -5237,7 +5243,12 @@ msgid "This dungeon is currently invalid. \n"
 "fast-travel dungeons which are only used to be able to select locations like \n"
 "\"Shaymin Village\" from the crossroads dungeon selection menu.\n\n"
 "After fixing the dungeon, you will be able to edit it."
-msgstr ""
+msgstr "Este territorio es inválido. \n"
+"Puedes corregirlo desde Territorios > Corregir errores de territorio.\n\n"
+"Ten en cuenta que algunos territorios del juego están rotos por defecto, como los de \n"
+"viaje rápido que solo se usan para seleccionar lugares como la Aldea Shaymin desde \n"
+"el menú de selección de territorios del cruce.\n"
+"Después de corregir el territorio, podrás editarlo."
 
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:107
 msgid "Go To \"Dungeons\""
@@ -5257,7 +5268,7 @@ msgstr "Esta sección te permite editar los diseños de los territorios en el ju
 #: skytemple/skytemple/module/dungeon/controller/main.py:112
 #: skytemple/skytemple/module/dungeon/controller/main.py:120
 msgid "Fix Dungeon Errors"
-msgstr "Corregir errores del territorio"
+msgstr "Corregir errores de territorio"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:105
 msgid "Edit Groups"
@@ -5303,7 +5314,8 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/main.py:110
 msgid "Dungeon Errors were fixed.\n"
 "However there are still errors left. Re-open the dialog to fix the rest. If they are still not fixed, please report a bug!"
-msgstr ""
+msgstr "Se han corregido los errores de los territorios.\n"
+"Sin embargo, aún quedan errores. Vuelve a abrir el diálogo para arreglar el resto. Si todavía no se han arreglado, por favor, repórtalo."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:119
 msgid "Dungeon Errors were successfully fixed."
@@ -5311,16 +5323,16 @@ msgstr "Los errores del territorio se han corregido correctamente."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:137
 msgid "The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first."
-msgstr ""
+msgstr "El juego contiene territorios inválidos. Por favor, haz clic en 'Corregir errores de territorio' primero."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:158
 msgid "Dungeons were missing in the list. This is a bug in SkyTemple! Please try again and report this!"
-msgstr ""
+msgstr "Faltan territorios en la lista. ¡Esto es un error de SkyTemple! ¡Por favor, inténtalo de nuevo e informa de esto!"
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:160
 #: skytemple/skytemple/module/dungeon/controller/main.py:169
 msgid "Failed regrouping the dungeons."
-msgstr ""
+msgstr "Error al reagrupar territorios."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:168
 msgid "An internal error occurred: "
@@ -5341,7 +5353,7 @@ msgstr "Quitar el piso sin usar."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:415
 msgid "Add the remaining floors to the dungeon."
-msgstr ""
+msgstr "Añade los pisos restantes al territorio."
 
 #: skytemple/skytemple/module/dungeon/module.py:158
 #, python-brace-format
@@ -5350,7 +5362,7 @@ msgstr "Sala fija {i}"
 
 #: skytemple/skytemple/module/dungeon/module.py:418
 msgid "Some dungeons were missing in the new group list. This is a bug."
-msgstr ""
+msgstr "Faltan algunos territorios en la lista nueva de grupos. Esto es un fallo."
 
 #: skytemple/skytemple/module/dungeon/module.py:450
 #, python-brace-format
@@ -5600,7 +5612,7 @@ msgstr "Duraciones de fotograma"
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:572
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:665
 msgid "Enable Palette Animations for Palette 11"
-msgstr ""
+msgstr "Habilitar animaciones de paleta para la paleta 11"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1099
 msgid "Export Background to Image..."
@@ -5712,7 +5724,11 @@ msgid "This will export all tiles.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Esto exportará todos los tiles.\n\n"
+"Puede editar e importar los tiles de nuevo.\n"
+"Recuerda que podrías necesitar convertirlo \n"
+"para poder usarlo. \n"
+"Ve la importación del diálogo para más información."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1649
 msgid "Background Export"
@@ -5834,7 +5850,7 @@ msgstr "- La imagen consta de tiles de 8x8.\n"
 "- Las paletas exportadas son solo para tu comodidad.\n"
 "  Se basan en la primera vez que se utiliza el tile en un \n"
 "  mapeado de chunks (Chunks > Editar chunks).\n"
-"- Cada importación debe producir un máximo de 1024 tiles únicos de 8x8 \n"
+"- Cada importación debe dar lugar a un máximo de 1024 tiles únicos de 8x8 \n"
 "  (=no repetidos en otra paleta ni invertidos o rotados).\n"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:55
@@ -5849,7 +5865,17 @@ msgid "- The image is a 256-color indexed PNG.\n"
 "images, that contain the same color multiple times. You can\n"
 "make all colors on the map unique before exporting at\n"
 "Palettes > Edit Palettes."
-msgstr ""
+msgstr "- La imagen es un PNG indexado de 256 colores.\n"
+"- Los 256 colores están divididos en 16 paletas de colores.\n"
+"- Cada tile de 8x8 de la imagen DEBE usar colores de\n"
+"  una de estas 16 paletas.\n"
+"- El primer color de cada paleta es la transparencia.\n"
+"- Cada importación debe dar lugar a un máximo de 1024 tiles únicos de 8x8 \n"
+"   (=no repetidos en otra paleta ni invertidos o rotados).\n\n"
+"Algunos editores de imágenes tienen problemas cuando trabajan con imágenes indexadas\n"
+"que contienen el mismo color varias veces. Puedes hacer\n"
+"que todos los colores del mapa sean únicos antes de exportar en\n"
+"Paletas > Editar paletas."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:68
 msgid "- The images is a 256-color indexed PNG.\n"
@@ -5863,7 +5889,17 @@ msgid "- The images is a 256-color indexed PNG.\n"
 "images, that contain the same color multiple times. You can\n"
 "make all colors on the map unique before exporting at\n"
 "Palettes > Edit Palettes."
-msgstr ""
+msgstr "- Las imágenes son un PNG indexado de 256 colores.\n"
+"- Los 256 colores están divididos en 16 paletas de colores.\n"
+"- Cada tile de 8x8 de la imagen DEBE usar colores de\n"
+"  una de estas 16 paletas.\n"
+"- El primer color de cada paleta es la transparencia.\n"
+"- Cada importación debe dar lugar a un máximo de 1024 tiles únicos de 8x8 \n"
+"   (=no repetidos en otra paleta ni invertidos o rotados).\n\n"
+"Algunos editores de imágenes tienen problemas cuando trabajan con imágenes indexadas\n"
+"que contienen el mismo color varias veces. Puedes hacer\n"
+"que todos los colores del mapa sean únicos antes de exportar en\n"
+"Paletas > Editar paletas."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.py:24
 msgid "Dungeon Tilesets"
@@ -6072,21 +6108,30 @@ msgid "This will import the tiles.\n\n"
 "  one of these 12 palettes.\n"
 "- The first color of each palette will be\n"
 "  imported as transparency."
-msgstr ""
+msgstr "Esto importará los tiles.\n\n"
+"Se espera que el archivo tenga el siguiente formato:\n"
+"- Las imágenes consisten en grupos de 8x8 tiles.\n"
+"- Las imágenes son PNGs indexados.\n"
+"- Los colores se dividen en 12 paletas de 16 colores\n"
+"  (los colores adicionales se ignoran).\n"
+"- Cada tile de 8x8 en la imagen DEBE usar colores de\n"
+"  una de estas 12 paletas.\n"
+"- El primer color de cada paleta será\n"
+"  importado como transparencia."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:110
 #, python-brace-format
 msgid "Dungeon Tileset {self.item_id} Rules"
-msgstr ""
+msgstr "Reglas del tileset {self.item_id} del territorio"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:111
 #, python-brace-format
 msgid "Dungeon Tileset {self.item_id}"
-msgstr ""
+msgstr "Tileset {self.item_id} del territorio"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:129
 msgid "To import select the XML file in the DTEF tileset package. If it is still zipped, unzip it first."
-msgstr ""
+msgstr "Para importar, selecciona el archivo XML en el paquete de tileset DTEF. Si está comprimido, descomprímelo antes."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:136
 msgid "Import dungeon tileset..."
@@ -6121,7 +6166,7 @@ msgstr "gfxcrunch"
 
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.glade:84
 msgid "The sprite im- or export is done via <a href=\"gfxcrunch\">gfxcrunch</a>."
-msgstr ""
+msgstr "La importación o exportación de sprites se realiza a través de <a href=\"gfxcrunch\">gfxcrunch</a>."
 
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.py:70
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.py:80
@@ -6141,7 +6186,7 @@ msgstr "Lista de actores"
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:68
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:145
 msgid "The entries in this list can be placed on maps and used in scripts."
-msgstr ""
+msgstr "Las entradas de esta lista se pueden colocar en mapas y utilizar en scripts."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:81
 msgid "<Not available>\n\n"
@@ -6663,7 +6708,7 @@ msgstr "- La imagen consta de tiles de 8x8.\n"
 "- Las paletas exportadas son solo para tu comodidad.\n"
 "  Se basan en la primera vez que se utiliza el tile en un \n"
 "  mapeado de chunks (Chunks > Editar chunks).\n"
-"- Cada importación debe producir un máximo de 1024 tiles únicos de 8x8 \n"
+"- Cada importación debe dar lugar a un máximo de 1024 tiles únicos de 8x8 \n"
 "  (=no repetidos en otra paleta ni invertidos o rotados).\n\n"
 "Los tiles animados no se importan."
 
@@ -6703,7 +6748,7 @@ msgstr "- La imagen consta de tiles de 8x8.\n"
 "  para reasignarlos manualmente en la importación. Para cambiar los tiles animados \n"
 "  ve a Tiles > Tiles animados.\n"
 "- Cada importación debe dar lugar a un máximo de 1024 tiles únicos de 8x8 \n"
-"   (=no repetidos en otra paleta ni invertidos o rotados).\n\n"
+"  (=no repetidos en otra paleta ni invertidos o rotados).\n\n"
 "Algunos editores de imágenes tienen problemas cuando trabajan con imágenes indexadas\n"
 "que contienen el mismo color varias veces. Puedes\n"
 "hacer que todos los colores del mapa sean únicos antes de exportarlos en\n"
@@ -6740,8 +6785,8 @@ msgstr "- La imagen es un PNG indexado de 256 colores.\n"
 "  una de estas 16 paletas.\n"
 "- El primer color de cada paleta es la transparencia.\n"
 "- Los tiles animados se exportan como tiles estáticos.\n"
-"- Cada importación debe resultar en un máximo de 1024 tiles únicos de 8x8 \n"
-"   (=no repetidos en otra paleta ni invertidos o rotados).\n\n"
+"- Cada importación debe dar lugar a un máximo de 1024 tiles únicos de 8x8 \n"
+"  (=no repetidos en otra paleta ni invertidos o rotados).\n\n"
 "Algunos editores de imágenes tienen problemas cuando trabajan con imágenes indexadas\n"
 "que contienen el mismo color varias veces. Puedes\n"
 "hacer que todos los colores del mapa sean únicos antes de exportarlos en\n"
@@ -6805,7 +6850,7 @@ msgstr "Paletas de fondo"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:188
 msgid "Please only enter numbers for the map size."
-msgstr ""
+msgstr "Por favor, introduce sólo números para el tamaño del mapa."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:200
 msgid "Save GIF of map..."
@@ -6818,7 +6863,8 @@ msgstr "Exportar PNGs del mapa..."
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:412
 msgid "This BPA has no frames.\n"
 "Enable the BPA and import images for a BPA to add frames."
-msgstr ""
+msgstr "Este BPA no tiene fotogramas.\n"
+"Activa el BPA e importa imágenes para que un BPA añada fotogramas."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:524
 msgid "Export animated tiles (BPA)"
@@ -6864,7 +6910,7 @@ msgstr "Categoría de fondo del mapa \"{self.name}\""
 
 #: skytemple/skytemple/module/map_bg/controller/folder.py:32
 msgid "Map Backgrounds for other maps"
-msgstr ""
+msgstr "Fondos de mapa para otros mapas"
 
 #: skytemple/skytemple/module/map_bg/controller/folder.py:37
 #, python-brace-format
@@ -7020,7 +7066,8 @@ msgstr "Paleta 16"
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2343
 msgid "Please note, that setting the number of frames of animations higher than the number of frames\n"
 "specified in the \"Edit Palette Animation\" section can lead to undefined behavior or crashes."
-msgstr ""
+msgstr "Ten en cuenta que establecer el número de fotogramas de las animaciones por encima del número de fotogramas\n"
+"especificado en la sección \"Editar animación de la paleta\" puede provocar un comportamiento imprevisto o bloqueos."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2373
 msgid "Map Settings"
@@ -7033,7 +7080,8 @@ msgstr "Número de capas "
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2486
 msgid "Decreasing the number of layers will remove\n"
 "all tiles and chunks of the upper layer."
-msgstr ""
+msgstr "Disminuir el número de capas eliminará\n"
+"todos los tiles y chunks de la capa superior."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2518
 msgid "Number of Collision Layers"
@@ -7041,15 +7089,15 @@ msgstr "Número de capas de colisión"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2564
 msgid "Has Data Layer?"
-msgstr ""
+msgstr "¿Tiene capa de datos?"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2603
 msgid "Import/Export Animated Tiles "
-msgstr ""
+msgstr "Importar/exportar tiles animados "
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2648
 msgid "This will export or import the selected set of animated tiles."
-msgstr ""
+msgstr "Esto exportará o importará el conjunto de tiles animados."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2669
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2709
@@ -7068,12 +7116,22 @@ msgid "Exports and imports multiple images.\n\n"
 "name pattern \"@@@name_pattern@@@\" are imported.\n\n"
 "If frames are added, the frame duration of \n"
 "the last frame is copied."
-msgstr ""
+msgstr "Exporta e importa múltiples imágenes.\n\n"
+"Cada fotograma de tiles animados es un PNG independiente.\n\n"
+"Se espera que las imágenes tengan el siguiente formato:\n"
+"- Las imágenes consisten en tiles de 8x8.\n"
+"- Las imágenes son PNGs indexados de 16 colores.\n"
+"- El primer color de cada paleta será\n"
+"  importado como transparencia.\n\n"
+"Al importarse, todos los archivos PNG con el\n"
+"patrón de nombre \"@@@name_pattern@@@\" se importarán.\n\n"
+"Si se añaden fotogramas, la duración del \n"
+"último fotograma se copiará."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2741
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2779
 msgid "Using a single image"
-msgstr ""
+msgstr "Usando solo una imagen"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2758
 msgid "Exports and imports using a single image.\n\n"
@@ -7102,7 +7160,11 @@ msgid "Animated Tile blocks are called BPA.\n"
 "    BPA 1-4: Layer 1\n"
 "If the map has two layers:\n"
 "    BPA 1-4: Layer 2     |    BPA 5-8: Layer 1"
-msgstr ""
+msgstr "Los bloques de tile animados se llaman BPA.\n"
+"Si el mapa tiene una capa:\n"
+"    BPA 1-4: Capa 1\n"
+"Si el mapa tiene dos capas\n"
+"    BPA 1-4: Capa 2   |   BPA 5-8: Capa 1"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2997
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3114
@@ -7242,7 +7304,7 @@ msgstr "Importar y exportar..."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4642
 msgid "Edit Animation Palette"
-msgstr "Editar paleta de animación"
+msgstr "Editar animación de la paleta"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4752
 msgid "Collision 1"
@@ -7439,20 +7501,21 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:193
 msgid "Logo added successfully. Thank you!"
-msgstr ""
+msgstr "Logo añadido correctamente. ¡Gracias!"
 
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.glade:146
 msgid "Cartridge Removed"
-msgstr "Cartucho quitado"
+msgstr "Cartucho extraído"
 
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:65
 msgid "This is what the game shows when the cartridge is removed while playing.\n"
 "IMPORTANT! The game stores this compressed in the ARM9, so this is limited in space.\n"
-msgstr ""
+msgstr "Esto es lo que muestra el juego cuando se extrae el cartucho mientras se juega.\n"
+"¡IMPORTANTE! El juego almacena este comprimido en ARM9, por lo que tiene espacio limitado.\n"
 
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:68
 msgid "Cartridge Removed Image Info"
-msgstr ""
+msgstr "Imagen de información de cartucho extraído"
 
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:75
 #: skytemple/skytemple/module/misc_graphics/controller/chr.py:65
@@ -7466,7 +7529,7 @@ msgstr "Importar imagen como PNG..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:113
 msgid "Error importing cart removed image."
-msgstr ""
+msgstr "Error al importar la imagen de cartucho extraído."
 
 #: skytemple/skytemple/module/misc_graphics/controller/chr.glade:103
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:506
@@ -7510,7 +7573,7 @@ msgstr "Bytes por fila"
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:52
 msgid "Padding"
-msgstr ""
+msgstr "Espaciado"
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:85
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:71
@@ -7521,7 +7584,9 @@ msgstr "Exportar fuente a la carpeta..."
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
 "IMPORTANT: All image files must be indexed PNGs!\n"
 "For banner fonts, all images must have the same palette."
-msgstr ""
+msgstr "Para importar, selecciona una carpeta que contenga todos los archivos que se crearon al exportar la fuente.\n"
+"IMPORTANTE: Todos los archivos de imagen deben ser PNGs indexados.\n"
+"Para las fuentes de los carteles, todas las imágenes deben tener la misma paleta."
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:110
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:95
@@ -7770,7 +7835,8 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:113
 msgid "To import, select a folder containing all the image files that were created when exporting the minimized version.\n"
 "IMPORTANT: All image files must be indexed PNGs and use the same palette!"
-msgstr ""
+msgstr "Para importar, selecciona una carpeta que contenga todas las imágenes que se crearon al exportar la versión minimizada.\n"
+"IMPORTANTE: Todos los archivos de imagen deben ser PNGs indexados y usar la misma paleta."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:115
 msgid "Import Minimized Version"
@@ -7908,7 +7974,7 @@ msgstr "Importar CSV..."
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:253
 msgid "is missing in the CSV"
-msgstr ""
+msgstr "no se encuentra en el CSV"
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:279
 msgid "All values must be numbers."
@@ -8135,7 +8201,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:590
 msgid "$<ID Number>: <Eng. Name>"
-msgstr ""
+msgstr "$<Número de ID>: <Nombre en inglés>"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:603
 msgid "#<Base ID>"
@@ -8187,7 +8253,7 @@ msgstr "<Nombre de idioma 5>:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1079
 msgid "Body Size:"
-msgstr ""
+msgstr "Tamaño del cuerpo:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1091
 msgid "Movement:"
@@ -8203,7 +8269,7 @@ msgstr "Habilidad:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1127
 msgid "Exp. Yield:"
-msgstr ""
+msgstr "Puntos de exp.:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1139
 msgid "Recruit Rate:"
@@ -8484,7 +8550,7 @@ msgstr "Sprites"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:934
 msgid "??? Enter a valid Base ID (#)"
-msgstr ""
+msgstr "??? Introduce un ID base válido (#)"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:945
 msgid "??? Enter a valid Entry ID ($)"
@@ -8612,7 +8678,7 @@ msgstr "... de imágenes separadas"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:40
 msgid "... from one sheet (SpriteBot format)"
-msgstr "... de una sola hoja (formato SpriteBot)"
+msgstr "... de una sola ficha (formato SpriteBot)"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:70
 msgid "... as separate images"
@@ -8620,7 +8686,7 @@ msgstr "... como imágenes separadas"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:79
 msgid "... as one sheet (SpriteBot format)"
-msgstr "... como una sola hoja (formato SpriteBot)"
+msgstr "... como una sola ficha (formato SpriteBot)"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:167
 msgid "If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.\n"
@@ -8650,7 +8716,8 @@ msgstr "Importar retratos desde PNGs..."
 #, python-brace-format
 msgid "Failed importing image \"{name}\":\n"
 "{err}"
-msgstr ""
+msgstr "Error al importar la imagen \"{name}\":\n"
+"{err}"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:158
 #: skytemple/skytemple/module/portrait/controller/portrait.py:218
@@ -8660,17 +8727,18 @@ msgstr "Error para '{name}'."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:170
 msgid "Export portrait as PNG sheet..."
-msgstr ""
+msgstr "Exportar retrato como ficha PNG..."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:189
 msgid "Import portraits from PNG sheet..."
-msgstr ""
+msgstr "Importar retratos desde ficha PNG..."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:224
 #, python-brace-format
 msgid "Failed importing portraits sheet:\n"
 "{err}"
-msgstr ""
+msgstr "Error al importar la ficha de retratos:\n"
+"{err}"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:225
 msgid "Could not import."
@@ -8709,7 +8777,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/lsd.py:29
 msgid "Acting Scenes for \"{}"
-msgstr ""
+msgstr "Escenas de acción para \"{}"
 
 #: skytemple/skytemple/module/script/controller/lsd.py:34
 #, python-brace-format
@@ -8858,7 +8926,9 @@ msgstr "Sector {new_index}"
 msgid "Are you sure you want to remove this sector?\n"
 "Removing the sector will re-number all following sectors (eg. if you remove Sector 70, sector 71 will become 70, 72 -> 71, etc.)\n"
 "Removing a sector may cause serious issues when the game tries to load the scene."
-msgstr ""
+msgstr "¿Estás seguro de querer eliminar este sector?\n"
+"Al eliminar el sector se renumerarán todos los sectores siguientes (por ejemplo, si eliminas el sector 70, el sector 71 se convertirá en 70, el 72 en 71, etc.)\n"
+"Eliminar un sector puede causar graves problemas cuando el juego intente cargar la escena."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:587
 msgid "Create Script"
@@ -8973,7 +9043,7 @@ msgstr "Mapa no encontrado."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:43
 msgid "<span size=\"large\">Spritesheet</span>"
-msgstr ""
+msgstr "<span size=\"large\">Ficha de sprites</span>"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:92
 msgid "Export\n"
@@ -9024,7 +9094,8 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:403
 msgid "You can export sprites in the SpriteBot format and import them again.\n"
 "For support, see our Discord server or the <a href=\"format\">specification</a> of the sheet format."
-msgstr ""
+msgstr "Puedes exportar sprites en el formato de SpriteBot e importarlos de nuevo.\n"
+"Para obtener ayuda, consulta nuestro servidor de Discord o la <a href=\"format\">especificación</a> del formato de las fichas."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:528
 msgid "Add new Sprite"
@@ -9050,37 +9121,39 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:126
 msgid "Export spritesheet..."
-msgstr "Exportar spritesheet..."
+msgstr "Exportar ficha de sprites..."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:154
 msgid "The spritesheet was successfully exported."
-msgstr ""
+msgstr "La ficha de sprites se ha exportado correctamente."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:162
 msgid "Error exporting the spritesheet."
-msgstr ""
+msgstr "Error al exportar ficha de sprites."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:168
 msgid "To import select the directory of the spritesheets. If it is still zipped, unzip it first."
-msgstr ""
+msgstr "Para importar, selecciona el directorio de las fichas de sprites. Si está comprimido, descomprímelo antes."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:179
 msgid "This will insert a completely new sprite into the game's sprite file and assign the new ID to the Pokémon.\n"
 "If you want to instead replace the currently assigned sprite, choose 'Import'.\n\n"
 "To import select the directory of the spritesheets. If it is still zipped, unzip it first."
-msgstr ""
+msgstr "Esto insertará un sprite completamente nuevo en el archivo de sprites del juego y asignará el nuevo ID al Pokémon.\n"
+"Si lo que quieres es reemplazar el sprite actualmente asignado, elige \"Importar\".\n\n"
+"Para importar, selecciona el directorio de las fichas de sprites. Si está comprimido, descomprímelo antes."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:194
 msgid "Import spritesheet..."
-msgstr "Importar spritesheet..."
+msgstr "Importar ficha de sprites..."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:211
 msgid "The spritesheet was successfully imported."
-msgstr ""
+msgstr "La ficha de sprites se ha importado correctamente."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:230
 msgid "Error importing the spritesheet."
-msgstr ""
+msgstr "Error al importar ficha de sprites."
 
 #: skytemple/skytemple/module/sprite/controller/object.glade:59
 msgid "SkyTemple can not edit sprites. \n"
@@ -9311,7 +9384,14 @@ msgid "Can we add a \"Created with SkyTemple\" message\n"
 "If you want to do it later, or for another project, \n"
 "you can reopen this dialog, using the menu on \n"
 "the top-right of the main window."
-msgstr ""
+msgstr "¿Podemos añadir un mensaje de \"Creado con SkyTemple\"\n"
+" a los logotipos que aparecen al iniciar el juego?\n\n"
+"Este mensaje se colocará en la capa 2 del fondo de\n"
+"mapa S05P01A. Si no te gusta, puedes\n"
+"quitarlo o personalizarlo fácilmente.\n\n"
+"Si quieres hacerlo más tarde, o para otro proyecto, \n"
+"puedes volver a abrir este diálogo utilizando el menú en \n"
+"la parte superior derecha de la ventana principal."
 
 #: skytemple/skytemple/skytemple.glade:114
 msgid "Add \"Created with SkyTemple\""
