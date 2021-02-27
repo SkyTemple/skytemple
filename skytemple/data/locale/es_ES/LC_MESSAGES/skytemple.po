@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-27 10:30\n"
+"PO-Revision-Date: 2021-02-27 13:41\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2106,7 +2106,7 @@ msgstr "Corrutina desconocida: {err}"
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:161
 msgid "Coroutines and regular routines can not be mixed in a script file."
-msgstr ""
+msgstr "Las corrutinas y las rutinas no pueden mezclarse en un script."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:173
 #, python-brace-format
@@ -2115,11 +2115,11 @@ msgstr "Operación desconocida: {in_op.op_code.name}."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:184
 msgid "The number of parameters for {normal_op_code.name} must be at least {normal_op_code.params}, is {self._correct_param_list_len(in_op.params)}."
-msgstr ""
+msgstr "El número de parámetros para {normal_op_code.name} debe ser de al menos {normal_op_code.params}, pero tiene {self._correct_param_list_len(in_op.params)}."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:198
 msgid "The number of parameters for {op_code.name} must be {op_code.params}, is {self._correct_param_list_len(in_op.params)}."
-msgstr ""
+msgstr "El número de parámetros para {op_code.name} debe ser de {op_code.params}, pero tiene {self._correct_param_list_len(in_op.params)}."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:277
 #, python-brace-format
@@ -2133,7 +2133,7 @@ msgstr "Parámetro inválido para una operación: {param}"
 
 #: skytemple-files/skytemple_files/script/ssb/writer.py:134
 msgid "Could not compile script: All languages must have the same amount of strings."
-msgstr ""
+msgstr "No se ha podido compilar el script: Todos los idiomas deben tener la misma cantidad de cadenas."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:175
 msgid "BOOST"
@@ -2184,7 +2184,9 @@ msgstr "Si no guardas, se perderán los cambios."
 msgid "The file is still loaded in RAM! Currently you are still able to debug using the old cached information stored in the editor.\n"
 "If you close the editor, you won't be able to debug this file until it is reloaded in RAM.\n\n"
 "Do you still want to close this file?"
-msgstr ""
+msgstr "El archivo sigue cargado en la memoria RAM. Todavía puede depurarse utilizando la información almacenada el la caché del editor.\n"
+"Si cierras el editor, no podrás depurar este archivo hasta que se vuelva a cargar en la RAM.\n\n"
+"¿Quieres cerrar el archivo?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:340
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1553
@@ -2217,7 +2219,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:49
 msgid "Sub Table"
-msgstr ""
+msgstr "Subtabla"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:30
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:91
