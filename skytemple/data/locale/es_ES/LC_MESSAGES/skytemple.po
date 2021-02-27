@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-26 21:38\n"
+"PO-Revision-Date: 2021-02-27 09:32\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2885,7 +2885,7 @@ msgstr "_Ayuda"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:720
 msgid "ExplorerScript documentation"
-msgstr ""
+msgstr "Documentación de ExplorerScript"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:849
 msgid "Script Browser"
@@ -2901,7 +2901,7 @@ msgstr "Scripts"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:958
 msgid "Ground Engine\n"
 "not running."
-msgstr "Motor de espera (Ground)\n"
+msgstr "El motor de terreno\n"
 "no se está ejecutando."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:938
@@ -2915,11 +2915,11 @@ msgstr "Entidades"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:990
 msgid "Ground Engine State"
-msgstr "Estado del motor de espera (Ground)"
+msgstr "Estado del motor de terreno"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1010
 msgid "Ground State"
-msgstr ""
+msgstr "Estado del terreno"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1089
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2762
@@ -3853,7 +3853,7 @@ msgstr "\n"
 #: skytemple/skytemple/module/dungeon/controller/dungeon.py:63
 #, python-brace-format
 msgid "This dungeon has {floor_count} floors.{edit_text}"
-msgstr "Este territorio tiene {floor_count} pisos.{edit_text}"
+msgstr "Este territorio tiene {floor_count} piso(s).{edit_text}"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.py:129
 #, python-brace-format
@@ -5316,7 +5316,7 @@ msgstr "Crea una nueva lista de pisos con un piso vacío para este territorio."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:408
 msgid "Correct the floor count for this dungeon. If no floor exists, generate one."
-msgstr ""
+msgstr "Corrige el número de pisos del territorio. Si no hay ninguno, se genera uno."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:414
 msgid "Remove the unused floor."
