@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-27 09:32\n"
+"PO-Revision-Date: 2021-02-27 10:30\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -4604,11 +4604,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:682
 msgid "Unk1 Item Spawns"
-msgstr ""
+msgstr "Generación de objeto desc. 1"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:696
 msgid "Unk2 Item Spawns"
-msgstr ""
+msgstr "Generación de objeto desc. 2"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:719
 #: skytemple/skytemple/module/monster/controller/monster.glade:343
@@ -5093,7 +5093,7 @@ msgstr "El valor final es aleatorizado entre densidad y densidad/2."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:323
 msgid "The value stored in the ROM is actually the value divided by 5. Because of this the saved value will be rounded to the next multiple of 5."
-msgstr ""
+msgstr "El valor almacenado en la ROM es un valor dividido entre 5. Por ello, el valor guardado será redondeado al siguiente múltiplo de 5."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:327
 msgid "These sliders control how likely it is (in %) for certain things to generate on this floor."
@@ -5158,7 +5158,7 @@ msgstr "No se puede eliminar categoría."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:739
 msgid "This item does not belong in this category. Please chose another item."
-msgstr ""
+msgstr "Este objeto no pertenece a esta categoría. Por favor, elige otro."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:740
 msgid "Invalid item id"
