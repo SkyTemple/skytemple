@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-27 14:38\n"
+"PO-Revision-Date: 2021-02-27 16:47\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2781,7 +2781,9 @@ msgstr "La variable debe tener un número como valor."
 msgid "Invalid variable value:\n"
 "{err}\n"
 "The value was not written to RAM."
-msgstr ""
+msgstr "Valor de variable inválido:\n"
+"{err}\n"
+"El valor no se ha escrito en RAM."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:285
 msgid "Error!"
@@ -3582,7 +3584,7 @@ msgstr "Se ha convertido la imagen."
 
 #: skytemple/skytemple/core/error_handler.py:63
 msgid "Trying to display the error failed. Wow!"
-msgstr ""
+msgstr "Error al intentar mostrar el error. ¡Guau!"
 
 #: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:94
 msgid "SkyTemple - Error!"
@@ -5335,7 +5337,7 @@ msgstr "Corrige el número de pisos del territorio. Si no hay ninguno, se genera
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:414
 msgid "Remove the unused floor."
-msgstr ""
+msgstr "Quitar el piso sin usar."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:415
 msgid "Add the remaining floors to the dungeon."
@@ -6879,7 +6881,7 @@ msgstr "Fondos del mapa"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:36
 msgid "This section lets you edit map backgrounds. These backgrounds are usually loaded by the game for scenes and serve many purposes (actual backgrounds for maps, title screen backgrounds, cutscenes, etc.)."
-msgstr ""
+msgstr "Esta sección te permite editar los fondos del mapa. Estos suelen cargarse para escenas y tienen múltiples propósitos (fondos reales para mapas, fondos de la pantalla del título, cinemáticas, etc.)."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:92
 msgid "Hide Other Layers"
@@ -7170,7 +7172,7 @@ msgstr "Altura del mapa en chunks"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4141
 msgid "Link Tile Width and Height"
-msgstr ""
+msgstr "Vincular con la anchura y altura del tile"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4180
 msgid "Map Width in Tiles"
@@ -7949,7 +7951,8 @@ msgstr "CSV (*.csv)"
 #: skytemple/skytemple/module/monster/controller/main.glade:87
 msgid "This section lets you edit data for Pokémon in the game.\n"
 "This includes stats and the portrait images."
-msgstr ""
+msgstr "Esta sección te permite editar los datos de los pokémon en el juego.\n"
+"Esto incluye las estadísticas y sus retratos."
 
 #: skytemple/skytemple/module/monster/controller/main.glade:118
 msgid "Here you can edit the different personality groups."
@@ -8120,7 +8123,7 @@ msgstr "Retratos de otra forma de género*"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:279
 msgid "Stat Growth"
-msgstr ""
+msgstr "Crecimiento de estadísticas"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:315
 msgid "Portraits of current Gender Form*"
@@ -8834,13 +8837,13 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.glade:2090
 #: skytemple/skytemple/module/script/controller/ssa.glade:2235
 msgid "W"
-msgstr ""
+msgstr "Anch."
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1914
 #: skytemple/skytemple/module/script/controller/ssa.glade:2115
 #: skytemple/skytemple/module/script/controller/ssa.glade:2279
 msgid "H"
-msgstr ""
+msgstr "Alt."
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:2172
 msgid "Event"
@@ -9097,7 +9100,7 @@ msgstr "Sprites de objetos"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:35
 msgid "This section lets you import and export object sprites."
-msgstr ""
+msgstr "Esta sección te permite importar y exportar sprites de objetos."
 
 #: skytemple/skytemple/module/sprite/module.py:117
 msgid "Import WAN sprite..."
@@ -9271,7 +9274,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:174
 msgid "CTRL + Click to add before current"
-msgstr ""
+msgstr "CTRL + Clic para añadir antes del actual"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:187
 msgid "Remove current Frame"
