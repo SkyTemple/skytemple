@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-28 17:54\n"
+"PO-Revision-Date: 2021-02-28 21:31\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -356,7 +356,7 @@ msgstr ""
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:102
 msgid "Lid"
-msgstr ""
+msgstr "Tapa"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:7
 msgid "3D rom"
@@ -761,7 +761,7 @@ msgstr "Select: "
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:184
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:890
 msgid "Lid : "
-msgstr ""
+msgstr "Tapa: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:202
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:926
@@ -2620,30 +2620,30 @@ msgstr "Reanudar"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:60
 msgid "Step over the current instruction."
-msgstr ""
+msgstr "Salta sobre la declaración actual."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:61
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:403
 msgid "Step Over"
-msgstr ""
+msgstr "Paso sobre"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:76
 msgid "Step into the current instruction, if it's a call, otherwise step over."
-msgstr ""
+msgstr "Salta a la declaración actual si es una llamada; en caso contrario, salta por encima de ella."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:77
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:413
 msgid "Step Into"
-msgstr ""
+msgstr "Paso en"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:92
 msgid "Step out of the current function call."
-msgstr ""
+msgstr "Salir de la llamada a la función actual."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:93
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:423
 msgid "Step Out"
-msgstr ""
+msgstr "Paso de"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:118
 msgid "Halt at the next instruction, even if in another script context."
@@ -5094,7 +5094,7 @@ msgstr "El juego añade al azar un número entre 0 y 2 para obtener el valor fin
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:247
 msgid "Controls whether dead end hallways can be generated in the floor. Dead ends can still appear in the map even if they are disabled due to a bug in the map generator and because extra hallways can also produce them."
-msgstr ""
+msgstr "Controla si se pueden generar pasillos sin salida en el piso. Los callejones sin salida pueden seguir apareciendo en el mapa aunque estén desactivados debido a un error en el generador de mapas y porque los pasillos adicionales también pueden producirlos."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:260
 msgid "This is the amount of lakes that will be generated during the water generation phase."
@@ -6489,7 +6489,9 @@ msgstr "Nombre del equipo"
 msgid "You can apply the default team using the script command\n"
 "\"ProcessSpecial(PROCESS_SPECIAL_INIT_MAIN_TEAM_AFTER_QUIZ, 0. 0)\" \n"
 "(without going through the personality test first). "
-msgstr ""
+msgstr "Puedes elegir el equipo por defecto utilizando el comando de script\n"
+"\"ProcessSpecial(PROCESS_SPECIAL_INIT_MAIN_TEAM_AFTER_QUIZ, 0. 0)\" \n"
+"(sin hacer el test de personalidad). "
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:329
 msgid "Default Starters"
@@ -6511,7 +6513,8 @@ msgstr "Género"
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:633
 msgid "Please note that after editing the Player Starters, you also need to edit the result text that is shown\n"
 "to the player. You can find that in the \"Personality Quiz result strings\" category under \"Text Strings\"."
-msgstr ""
+msgstr "Ten en cuenta que, después de editar los pokémon iniciales, también debes editar el texto del resultado que se muestra\n"
+"al jugador. Puedes encontrarlo en la categoría \"Cadenas de resultados de los tests de personalidad\" en \"Cadenas de texto\"."
 
 #: skytemple/skytemple/module/lists/controller/starters_list.py:30
 #: skytemple/skytemple/module/lists/controller/starters_list.py:31
