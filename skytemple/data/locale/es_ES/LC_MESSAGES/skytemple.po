@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-28 00:51\n"
+"PO-Revision-Date: 2021-02-28 01:52\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2064,7 +2064,7 @@ msgstr "Patch.py del paquete de parches no contiene 'PatchHandler'."
 
 #: skytemple-files/skytemple_files/patch/patches.py:169
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
-msgstr ""
+msgstr "El paquete de parches no contiene una entrada para el nombre del parche del manipulador en config.xml."
 
 #: skytemple-files/skytemple_files/patch/patches.py:175
 #, python-brace-format
@@ -2084,7 +2084,7 @@ msgstr "Constante desconocida: {constant_as_string}."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:107
 msgid "The routine data lists for the decompiler must have the same lengths."
-msgstr ""
+msgstr "Las listas de datos de rutina para el descompilador deben tener las mismas longitudes."
 
 #: skytemple-files/skytemple_files/script/ssb/script_compiler.py:120
 #, python-brace-format
@@ -3140,7 +3140,7 @@ msgstr "Bienvenido al \n"
 "Depurador del Motor de\n"
 "Scripts de SkyTemple\n\n"
 "Por favor, carga una ROM del juego\n"
-"a través del menú de Archivo."
+"a través del menú Archivo."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2513
 msgid "The Script Engine is currently not running."
@@ -4007,7 +4007,7 @@ msgstr "Mostrar información de tile"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:368
 msgid "Ti"
-msgstr ""
+msgstr "Ti"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:383
 msgid "Show Item Info"
@@ -4015,7 +4015,7 @@ msgstr "Mostrar información del objeto"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:384
 msgid "I"
-msgstr "I"
+msgstr "O"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:399
 msgid "Show Pokémon Info"
@@ -4027,7 +4027,7 @@ msgstr "P"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:415
 msgid "Show Trap Info"
-msgstr "Mostrar información de la trampa"
+msgstr "Mostrar información de trampas"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:416
 msgid "Tr"
@@ -4127,7 +4127,7 @@ msgid "<span foreground=\"#ff0000\">0</span>: Room 0\n"
 msgstr "<span foreground=\"#ff0000\">0</span>: Sala 0\n"
 "<span foreground=\"#ff0000\">1</span>: Sala 1\n"
 "<span foreground=\"#ffff00\">I</span>: Intransitable\n"
-"<span foreground=\"#00ff00\">A</span>: Híper-todoterreno posible"
+"<span foreground=\"#00ff00\">H</span>: Híper-todoterreno posible"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:898
 msgid "Tile Layer Legend"
@@ -4151,7 +4151,7 @@ msgstr "<span foreground=\"#00ff00\">A</span>: Aliado\n"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:992
 msgid "Pokémon Layer Legend"
-msgstr "Leyenda de capa de Pokémon"
+msgstr "Leyenda de capa de pokémon"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1027
 msgid "NAME: Trap name\n"
@@ -4283,7 +4283,7 @@ msgstr "Determina si se pueden utilizar o no movimientos. No afecta al ataque no
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:387
 msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
-msgstr "Si el ID del piso fijo es 0 o >= 165, esta opción es ignorada. Las esferas siempre están permitidas."
+msgstr "Si el ID del piso fijo es 0 o >= 165, este parámetro se ignora. Las esferas siempre están permitidas."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:390
 msgid "If enabled, the floor is exited after all the enemies have been defeated"
@@ -4291,12 +4291,13 @@ msgstr "Si se activa, se sale del piso después de haber derrotado a todos los e
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:393
 msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr "Si el ID del piso fijo es 0 o >= 165, esta opción es ignorada. Siempre está activado."
+msgstr "Si el ID del piso fijo es 0 o >= 165, este parámetro se ignora. Siempre está activado."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:396
 msgid "Prevents any kind of item pulling (such as with the Trawl Orb).\n"
 "If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr ""
+msgstr "Evita cualquier cualquier lanzamiento de objetos (como hace Arrojasfera).\n"
+"Si el ID del piso fijo es 0 o >= 165, este parámetro se ignora. Siempre está activado."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:400
 msgid "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
@@ -4759,7 +4760,7 @@ msgstr "Terreno secundario:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1682
 msgid "Secondary T. density:"
-msgstr "Densidad del T. secundario:"
+msgstr "Densidad del t. secundario:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1694
 msgid "Imperfect rooms?:"
@@ -4779,7 +4780,7 @@ msgstr "Clima:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1804
 msgid "Items, Traps and Enemies"
-msgstr ""
+msgstr "Objetos, Trampas y Enemigos"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1820
 msgid "Floor item density:"
@@ -4930,14 +4931,14 @@ msgstr "Garantizado"
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:975
 #: skytemple/skytemple/module/lists/controller/item_lists.py:42
 msgid "Thrown - Pierce"
-msgstr ""
+msgstr "Arrojadizos - Punzantes"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3571
 #: skytemple/skytemple/module/dungeon/controller/floor.py:64
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:1121
 #: skytemple/skytemple/module/lists/controller/item_lists.py:43
 msgid "Thrown - Rock"
-msgstr ""
+msgstr "Arrojadizos - Rocas"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3732
 #: skytemple/skytemple/module/dungeon/controller/floor.py:65
@@ -4958,7 +4959,7 @@ msgstr "Comida, Gomis"
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:1565
 #: skytemple/skytemple/module/lists/controller/item_lists.py:46
 msgid "Hold"
-msgstr ""
+msgstr "Equipables"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4215
 #: skytemple/skytemple/module/dungeon/controller/floor.py:68
@@ -6638,7 +6639,8 @@ msgstr "Selecciona la posición en el mapa"
 #: skytemple/skytemple/module/lists/controller/world_map.glade:169
 msgid "Please don't select a marker that already references another marker.\n"
 "The behavior for this is undefined."
-msgstr ""
+msgstr "Por favor, no selecciones un marcador que haga referencia a otro marcador.\n"
+"El comportamiento para esto no está definido."
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
 #: skytemple/skytemple/module/lists/module.py:83
@@ -7427,7 +7429,11 @@ msgid "This will export all tiles of the selected layer.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Esto exportará todos los tiles de la capa seleccionada.\n\n"
+"Puede editar e importar los tiles de nuevo.\n"
+"Recuerda que podrías necesitar convertirlo \n"
+"para poder usarlo. \n"
+"Ve la importación del diálogo para más información."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5742
 msgid "This will import the chunks for the selected layer\n"
@@ -7663,7 +7669,8 @@ msgstr "Exportar todas las imágenes como PNGs..."
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:97
 msgid "To import, select a directory to import from. Files with the pattern 'XX.png'\n"
 "will be imported, where XX is a number between 0 and 99. The image dimensions must be a multiple of 8."
-msgstr ""
+msgstr "Para importar, selecciona un directorio desde el que importar. Los archivos con el patrón 'XX.png'\n"
+"se importarán, donde XX es un número entre 0 y 99. Las dimensiones de la imagen deben ser un múltiplo de 8."
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:99
 msgid "Import Images"
@@ -7876,7 +7883,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:170
 msgid "To import, select a folder containing all the image files that were created when exporting the full tileset."
-msgstr ""
+msgstr "Para importar, selecciona una carpeta que contenga todos los archivos de imagen que se crearon al exportar el tileset completo."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:171
 msgid "Import Full Tileset"
@@ -8712,7 +8719,7 @@ msgstr "Exportar todos los retratos como PNG..."
 #: skytemple/skytemple/module/portrait/controller/portrait.py:119
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 40."
-msgstr ""
+msgstr "Para importar, selecciona un directorio desde el que importar. Se importarán los archivos con el patrón '{self.item_id + 1}_XX.png', donde XX es un número entre 0 y 40."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:121
 msgid "Import Portraits"
@@ -8762,7 +8769,8 @@ msgstr " (invertido)"
 #: skytemple/skytemple/module/rom/controller/main.py:39
 msgid "Select something to edit in the ROM from the tree on the left \n"
 "or start the debugger by clicking the bug icon on the top right."
-msgstr ""
+msgstr "Selecciona un elemento para editar en la ROM desde el árbol de la izquierda \n"
+"o inicia el depurador haciendo clic en el icono de fallos en la parte superior derecha."
 
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:74
 msgid "Edit Position Marks"
@@ -8864,7 +8872,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:623
 msgid "Edit the currently selected map background"
-msgstr ""
+msgstr "Editar el fondo seleccionado"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:625
 msgid "Go to BG"
@@ -9182,7 +9190,9 @@ msgstr "Error al importar ficha de sprites."
 msgid "SkyTemple can not edit sprites. \n"
 "However you can export the sprite and edit it with PsyCommando's <a href=\"gfxcrunch\">gfxcrunch</a>.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "SkyTemple no puede editar sprites. \n"
+"Sin embargo, puedes exportar el sprite y editarlo con PsyCommando <a href=\"gfxcrunch\">gfxcrunch</a>.\n"
+"Advertencia: SkyTemple no valida los archivos que importas."
 
 #: skytemple/skytemple/module/sprite/controller/object.py:60
 msgid "SkyTemple can not edit sprites. \n"
@@ -9196,7 +9206,7 @@ msgstr "Sprites de objetos"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:35
 msgid "This section lets you import and export object sprites."
-msgstr "Esta sección te permite importar y exportar sprites de objetos."
+msgstr "Esta sección te permite importar y exportar sprites de diferentes elementos."
 
 #: skytemple/skytemple/module/sprite/module.py:117
 msgid "Import WAN sprite..."
@@ -9212,7 +9222,7 @@ msgstr "Sprite WAN (*.wan)"
 
 #: skytemple/skytemple/module/sprite/module.py:159
 msgid "To import select the directory of the sprite export. If it is still zipped, unzip it first."
-msgstr ""
+msgstr "Para importar, selecciona el directorio de la exportación de sprites. Si está comprimido, descomprímelo antes."
 
 #: skytemple/skytemple/module/sprite/module.py:165
 msgid "Import gfxcrunch sprite..."
