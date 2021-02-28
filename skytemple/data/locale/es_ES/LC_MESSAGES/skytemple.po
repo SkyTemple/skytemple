@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-28 21:31\n"
+"PO-Revision-Date: 2021-02-28 22:32\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -351,7 +351,7 @@ msgstr "Depurar"
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:101
 msgid "Boost"
-msgstr ""
+msgstr "Acelerar"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:102
@@ -786,7 +786,7 @@ msgstr "Start: "
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:265
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:1162
 msgid "Boost : "
-msgstr ""
+msgstr "Acelerar: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:281
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:299
@@ -1994,11 +1994,11 @@ msgstr "¡No hay suficiente espacio para poner nombres de archivo! "
 
 #: skytemple-files/skytemple_files/patch/handler/far_off_pal_overdrive.py:41
 msgid "Makes the game always move the PoV to your partners when they use moves or are attacked, even if the partner is only one tile away, when far-off pals is enabled. Recommended for CTC since the PoV stays on your last pokemon at the end of a manual movement round without this, and CTC already reduces the amount of time the game pauses for between PoV changes."
-msgstr "Hace que el juego siempre mueva el punto de vista a tus compañeros cuando usan movimientos o son atacados, incluso si el compañero está a solo un tile de distancia cuando los compañeros lejanos están habilitados. Recomendado para el parche 'CompleteTeamControl' (CTC), ya que sin esta opción el punto de vista se quedará en tu último pokémon al final de una ronda de control manual, y CTC ya reduce la cantidad de tiempo que el juego hace una pausa entre los cambios de puntos de vista."
+msgstr "Hace que el juego siempre mueva el punto de vista a tus compañeros cuando usan movimientos o son atacados, incluso si el compañero está a solo un tile de distancia cuando los compañeros lejanos están habilitados. Recomendado para el parche 'CompleteTeamControl' (CTC), ya que sin esta opción el punto de vista se quedará en tu último Pokémon al final de una ronda de control manual, y CTC ya reduce la cantidad de tiempo que el juego hace una pausa entre los cambios de puntos de vista."
 
 #: skytemple-files/skytemple_files/patch/handler/fix_evolution.py:38
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
-msgstr "Arregla el glitch de evolución que congela el juego cuando se intenta evolucionar un pokémon cuyo nombre tiene 10 caracteres."
+msgstr "Corrige el fallo de evolución que congela el juego cuando se intenta evolucionar un Pokémon cuyo nombre tiene 10 caracteres."
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:39
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y)."
@@ -2215,7 +2215,7 @@ msgstr "Bloqueo"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:48
 msgid "Temporary"
-msgstr ""
+msgstr "Temporario"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:49
 msgid "Sub Table"
@@ -2719,11 +2719,11 @@ msgstr "Buscar hacia atrás"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:581
 msgid "Match words"
-msgstr ""
+msgstr "Palabras coincidentes"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:595
 msgid "Wrap Around"
-msgstr ""
+msgstr "Continuar búsqueda desde el inicio"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:609
 msgid "Regular Expression"
@@ -3000,7 +3000,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1593
 msgid "Debug Flags 1"
-msgstr ""
+msgstr "Indicadores de depuración 1"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1608
 msgid "Message Speed Up"
@@ -3024,7 +3024,7 @@ msgstr "Efectos sonoros DES"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1688
 msgid "Stage NPC Dummy"
-msgstr ""
+msgstr "Utilizar actores de reserva"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1704
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1720
@@ -3058,11 +3058,11 @@ msgstr "Menús de depuración"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1812
 msgid "Debug Flags 2"
-msgstr ""
+msgstr "Indicadores de depuración 2"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2098
 msgid "Debug Flags"
-msgstr ""
+msgstr "Indicadores de depuración"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2119
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:302
@@ -4093,7 +4093,7 @@ msgstr "<b>ID de entidad</b>\n\n"
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:714
 #: skytemple/skytemple/module/script/controller/ssa.glade:716
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:752
 msgid "Selected Entity"
@@ -4151,7 +4151,7 @@ msgstr "<span foreground=\"#00ff00\">A</span>: Aliado\n"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:992
 msgid "Pokémon Layer Legend"
-msgstr "Leyenda de capa de pokémon"
+msgstr "Leyenda de capa de Pokémon"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1027
 msgid "NAME: Trap name\n"
@@ -4191,7 +4191,7 @@ msgstr "Esferas permitidas:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1293
 msgid "Overrides"
-msgstr ""
+msgstr "Sobreescribe"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1309
 msgid "Fixed Room to load \n"
@@ -4279,7 +4279,7 @@ msgstr "Si no se establece, se utilizará en su lugar el ID de la pista especifi
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:382
 msgid "Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled)"
-msgstr "Determina si se pueden utilizar o no movimientos. No afecta al ataque normal. Si es 0, los demás pokémon no atacarán (ni siquiera usarán el ataque normal, aun si la habilidad Movimaníaco está desactivada)"
+msgstr "Determina si se pueden utilizar o no movimientos. No afecta al ataque normal. Si es 0, los demás Pokémon no atacarán (ni siquiera usarán el ataque normal, aun si la habilidad Movimaníaco está desactivada)"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:387
 msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
@@ -4302,7 +4302,8 @@ msgstr "Evita cualquier cualquier lanzamiento de objetos (como hace Arrojasfera)
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:400
 msgid "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
 "This is used in dungeons where the content of a fixed floor varies depending on the story progress, such as in most of the dungeons with a legendary Pokémon at the end (first visit vs rematch)."
-msgstr ""
+msgstr "Si el modo del territorio es PETICIÓN (= está marcado como despejada una vez), se utilizará este piso fijo en su lugar.\n"
+"Esto se utiliza en territorios donde el contenido de un piso fijo varía en función del progreso de la historia, como en la mayoría de los territorios con un Pokémon legendario al final (primera visita vs. revancha)."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:418
 #, python-brace-format
@@ -4338,7 +4339,7 @@ msgstr "Esta sección te permite editar las salas fijas. Las salas fijas se pued
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:250
 msgid "Here you can edit the entities that can be placed in fixed rooms. Entities are a combination of tile properties (+traps), Pokémon and items."
-msgstr "Aquí puedes editar las entidades que se pueden colocar en las salas fijas. Las entidades son una combinación de propiedades de tile (+trampas), pokémon y objetos."
+msgstr "Aquí puedes editar las entidades que se pueden colocar en las salas fijas. Las entidades son una combinación de propiedades de tile (+trampas), Pokémon y objetos."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:298
 msgid "Tile"
@@ -4604,7 +4605,7 @@ msgstr "Diseño"
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:598
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2896
 msgid "Pokémon Spawns"
-msgstr "Generación de pokémon"
+msgstr "Generación de Pokémon"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:612
 msgid "Trap Spawns"
@@ -5160,7 +5161,7 @@ msgstr "Si está activado, el potenciador de CI incrementará el CI en este piso
 #: skytemple/skytemple/module/dungeon/controller/floor.py:427
 #, python-brace-format
 msgid "You can not spawn Kecleons or the Decoy Pokémon or any Pokémon above #{DUMMY_MD_INDEX}."
-msgstr "No puedes generar Kecleons, pokémon señuelos o cualquier pokémon por encima de #{DUMMY_MD_INDEX}."
+msgstr "No puedes generar Kecleons, Pokémon señuelos o cualquier otro Pokémon por encima de #{DUMMY_MD_INDEX}."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:428
 msgid "SkyTemple: Invalid Pokémon"
@@ -5212,11 +5213,11 @@ msgid "Change the chances of Pokémon, traps or items spawning.\n"
 "Please note for Pokémon, that weights for Pokémon that can not be spawned (eg. legendaries without having their items) will be added to the next Pokémon entry in the list when the game decides what to spawn.\n"
 "Please note for items, that the game first decides what category to spawn for an item and then chooses an entry for that category.\n"
 "All spawn entries are always saved to the game sorted by their (Pokémon, item, trap) ID."
-msgstr "Cambia la probabilidad de que aparezcan pokémon, trampas u objetos.\n"
+msgstr "Cambia la probabilidad de que aparezcan Pokémon, trampas u objetos.\n"
 "La probabilidad de aparición depende del peso de una entrada. Cuanto mayor sea el peso de una entrada, más probabilidades tendrá de aparecer.\n"
-"Ten en cuenta que los pesos de los pokémon que no pueden aparecer (por ejemplo, los legendarios que no tienen sus objetos) se añadirán a la siguiente entrada de la lista cuando el juego decida qué aparecerá.\n"
+"Ten en cuenta que los pesos de los Pokémon que no pueden aparecer (por ejemplo, los legendarios que no tienen sus objetos) se añadirán a la siguiente entrada de la lista cuando el juego decida qué aparecerá.\n"
 "Por favor, ten en cuenta que para los objetos, el juego decide primero la categoría de aparición de un objeto y luego elige una entrada para esa categoría.\n"
-"Todas las entradas de aparición se guardan siempre en el juego ordenadas por su ID (de pokémon, objeto, trampa)."
+"Todas las entradas de aparición se guardan siempre en el juego ordenadas por su ID (de Pokémon, objeto, trampa)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:879
 msgid "Export floor as..."
@@ -5241,7 +5242,8 @@ msgstr "No hay sala fija"
 #: skytemple/skytemple/module/dungeon/controller/group.py:37
 msgid "Dungeon groups contain multiple dungeon to create one big continuous dungeon.\n"
 "You can edit groups under \"Dungeons\"."
-msgstr ""
+msgstr "Los grupos de territorios contienen varios territorios para crear una gran mazmorra continua.\n"
+"Puedes editar los grupos en \"Territorios\"."
 
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:73
 msgid "This dungeon is currently invalid. \n"
@@ -6450,7 +6452,7 @@ msgstr "Lista de reclutamiento"
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:60
 msgid "You can add Pokémon from this list to the team via Script Engine commands."
-msgstr "Puedes añadir pokémon desde esta lista al equipo mediante comandos del motor de scripts."
+msgstr "Puedes añadir Pokémon desde esta lista al equipo mediante comandos del motor de scripts."
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:135
 msgid "Location of Recruiment"
@@ -6859,7 +6861,11 @@ msgid "Map backgrounds can be used as primary or secondary.\n"
 "When used as secondary, the background can only have 1 palette, using slot 14, and every palette value will have a new value of (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
 "It is still possible to use palette values above those limits, but this is only in cases where a background needs to reference a palette from the other background.\n"
 "Note: in the original game, almost every background is used as primary, the exceptions being mainly the weather (W) backgrounds.\n"
-msgstr ""
+msgstr "Los fondos de mapa pueden utilizarse como primarios o secundarios.\n"
+"Cuando se utiliza como primario, el fondo puede tener hasta 14 paletas, utilizando las ranuras de 0 a 13.\n"
+"Cuando se utiliza como secundario, el fondo solo puede tener 1 paleta, utilizando la ranura 14, y cada valor de paleta tendrá un nuevo valor de (valor_antiguo{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
+"Todavía es posible utilizar valores de paleta por encima de esos límites, pero esto es solo en los casos en que un fondo necesita hacer referencia a una paleta del otro fondo.\n"
+"Nota: en el juego original, casi todos los fondos se utilizan como primarios, siendo las excepciones principalmente los fondos de clima (W).\n"
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:799
 msgid "Background Palettes"
@@ -6906,7 +6912,7 @@ msgstr "Importar tiles animados (BPA)"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:606
 msgid "The animated tiles were successfully imported, using the files: "
-msgstr ""
+msgstr "Los tiles animados se han importado con éxito, utilizando los archivos: "
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:612
 msgid "Error during BPA import"
@@ -7880,15 +7886,15 @@ msgstr "Para importar, selecciona una carpeta que contenga todas las imágenes q
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:115
 msgid "Import Minimized Version"
-msgstr ""
+msgstr "Importar versión minimizada"
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:120
 msgid "Import zmappat minimized from folder..."
-msgstr ""
+msgstr "Importar zmappat minimizado desde carpeta..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:145
 msgid "Error importing minimized zmappat."
-msgstr ""
+msgstr "Error al importar zmappat minimizado."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:154
 msgid "The game uses 4x4 'mini-tiles' tiles to render the map.\n"
@@ -7927,7 +7933,7 @@ msgstr "Error al importar zmappat completo."
 #: skytemple/skytemple/module/monster/controller/entity.py:34
 msgid "Each Pokémon has two gender forms (even if it only has one gender).\n"
 "This entry contains both of these forms. The first form is the main form, it is used as a fallback in some cases, when the data for the second form doesn't exist."
-msgstr "Cada pokémon tiene dos variantes de género (aunque solo tenga uno).\n"
+msgstr "Cada Pokémon tiene dos variantes de género (aunque solo tenga uno).\n"
 "Esta entrada contiene ambas formas. La primera es la principal, y se utiliza como alternativa en algunos casos cuando los datos de la segunda forma no existen."
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:91
@@ -8042,7 +8048,9 @@ msgstr "Error leyendo el CSV."
 msgid "Warning: The stats view might be corrupted now,\n"
 "but the data in ROM is still unchanged,\n"
 "simply reload this view!\n"
-msgstr ""
+msgstr "Advertencia: La vista de las estadísticas puede estar dañada ahora,\n"
+"pero los datos de la ROM siguen siendo los mismos.\n"
+"Simplemente recarga esta vista.\n"
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:406
 #: skytemple/skytemple/module/monster/controller/level_up.py:478
@@ -8062,7 +8070,7 @@ msgstr "CSV (*.csv)"
 #: skytemple/skytemple/module/monster/controller/main.glade:87
 msgid "This section lets you edit data for Pokémon in the game.\n"
 "This includes stats and the portrait images."
-msgstr "Esta sección te permite editar los datos de los pokémon en el juego.\n"
+msgstr "Esta sección te permite editar los datos de los Pokémon en el juego.\n"
 "Esto incluye las estadísticas y sus retratos."
 
 #: skytemple/skytemple/module/monster/controller/main.glade:118
@@ -8242,7 +8250,7 @@ msgstr "Retratos de la forma de género actual*"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:493
 msgid "(and/or) <b>2b. Copy to other Pokémon</b>"
-msgstr "(y/o) <b>2b. Copiar a otro(s) pokémon</b>"
+msgstr "(y/o) <b>2b. Copiar a otro(s) Pokémon</b>"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:590
 msgid "$<ID Number>: <Eng. Name>"
@@ -8559,7 +8567,7 @@ msgstr "¿Objeto necesario para aparecer?"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:382
 msgid "If the current $SCENARIO_BALANCE_FLAG value is lower than this number, the pokémon won't spawn in dungeons."
-msgstr "Si el valor actual de $SCENARIO_BALANCE_FLAG es inferior a este número, no aparecerán pokémon en los territorios."
+msgstr "Si el valor actual de $SCENARIO_BALANCE_FLAG es inferior a este número, no aparecerán Pokémon en los territorios."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:383
 msgid "Spawn Threshold"
@@ -8604,7 +8612,8 @@ msgstr "??? Introduce una entrada de ID válida ($)"
 #: skytemple/skytemple/module/monster/controller/monster.py:977
 msgid "The sprite memory size of this Pokémon was too low for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
-msgstr ""
+msgstr "El tamaño en memoria del sprite de este pokémon era demasiado bajo para su sprite asignado.\n"
+"SkyTemple lo ha corregido automáticamente."
 
 #: skytemple/skytemple/module/monster/level_up_graph.py:87
 msgid "Exp."
@@ -8873,7 +8882,7 @@ msgstr "Esta sección contiene todas las escenas del mapa {self.name}.\n\n"
 #: skytemple/skytemple/module/script/controller/ssa.glade:73
 #: skytemple/skytemple/module/script/controller/ssa.py:1196
 msgid "Triggered Script"
-msgstr ""
+msgstr "Script desencadenante"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:84
 #: skytemple/skytemple/module/script/controller/ssa.py:1197
@@ -8898,7 +8907,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.glade:564
 #: skytemple/skytemple/module/script/controller/ssa.glade:565
 msgid "Add Trigger"
-msgstr ""
+msgstr "Añadir desencadenante"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:623
 msgid "Edit the currently selected map background"
@@ -8958,7 +8967,7 @@ msgstr "Dirección"
 #: skytemple/skytemple/module/script/controller/ssa.glade:2077
 #: skytemple/skytemple/module/script/controller/ssa.glade:2222
 msgid "Hitbox"
-msgstr ""
+msgstr "Hitbox"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1901
 #: skytemple/skytemple/module/script/controller/ssa.glade:2090
@@ -9016,7 +9025,7 @@ msgstr "Script de evento"
 #: skytemple/skytemple/module/script/controller/ssa.py:1330
 #, python-brace-format
 msgid "Type {performer_type}"
-msgstr ""
+msgstr "Tipo {performer_type}"
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1350
 msgid "V"
@@ -9063,7 +9072,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.py:1512
 #, python-brace-format
 msgid "Type {performer.type}"
-msgstr ""
+msgstr "Tipo {performer.type}"
 
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:43
 #, python-brace-format
@@ -9172,7 +9181,7 @@ msgstr "-- o --"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:599
 msgid "Warning: This will edit the sprite with the ID assigned to this Pokémon. Other Pokémon that use this sprite are also affected."
-msgstr "Advertencia: Esto editará el sprite con el ID asignado al pokémon. Los demás pokémon que utilicen el sprite también se verán afectados."
+msgstr "Advertencia: Esto editará el sprite con el ID asignado al Pokémon. Los demás Pokémon que utilicen el sprite también se verán afectados."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:71
 msgid "Invalid Sprite ID."
