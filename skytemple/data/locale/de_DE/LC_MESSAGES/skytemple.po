@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-26 18:32\n"
+"PO-Revision-Date: 2021-02-28 16:49\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3272,7 +3272,16 @@ msgid "<span size=\"large\">Welcome to SkyTemple Script Engine Debugger!</span>\
 "- A project directory was created next to the ROM. It contains\n"
 "  the ExplorerScript source code files created by the debugger.\n"
 "- Please report any issues."
-msgstr ""
+msgstr "<span size=\"large\">Willkommen zum SkyTemple Script Engine Debugger!</span>\n\n"
+"Mit diesem Programm kannst du Skripte für die Skript-Engine von Pokémon Mystery Dungeon Explorers of Sky bearbeiten und testen.\n\n"
+"Bitte beachte folgendes:\n"
+"- Diese Software ist noch ziemlich instabil, mache daher regelmäßig Backups deiner ROM. \n"
+"Dinge <i>werden</i> kaputt gehen.\n"
+"- Der Debugger speichert die bearbeiteten Skripte direkt in der ROM. \n"
+"Daher kann es sein, dass Musik oder das Spielgeschehen über die Zeit beginnen fehlerhaft zu funktionieren. \n"
+"Bitte lade das Spiel in diesem  Fall neu. Das Gleiche gilt für Savestate.\n"
+"- Ein Projektverzeichnis wurde neben der ROM erstellt. Es enthält die ExplorerScript-Quellcode-Dateien, die vom Debugger erstellt wurden.\n"
+"- Bitte sag uns Bescheid, wenn du irgendwelche Probleme hast."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:86
 #, python-brace-format
@@ -3520,7 +3529,7 @@ msgstr "Dieser Farbwert wird als Transparenz importiert (Standard: #12ab56)."
 
 #: skytemple/skytemple/controller/tilequant.py:87
 msgid "You can use this to convert multiple images at once with the same palettes. This is useful for map backgrounds with multiple layers, that need to share the same palettes."
-msgstr ""
+msgstr "Du kannst diese Einstellung verwenden, um mehrere Bilder gleichzeitig unter Verwendung der gleichen Paletten umzuwandeln. Das ist praktisch für Kartenhintergründen, da diese sich dieselben Paletten teilen."
 
 #: skytemple/skytemple/controller/tilequant.py:93
 msgid "Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they \"blend into\" each other. This will make the image look like it contains more colors but also might decrease the overall visual quality. Two different algorithms are available.\n\n"
@@ -3540,7 +3549,7 @@ msgstr "Bitte wähle ein Bild zum konvertieren aus."
 
 #: skytemple/skytemple/controller/tilequant.py:135
 msgid "Since you selected two images to convert, you will be asked for both images where to save them to."
-msgstr ""
+msgstr "Da du zwei Bilder zum Umwandeln ausgewählt hast, wirst du nacheinander für jedes gefragt, wo du es speichern möchtest."
 
 #: skytemple/skytemple/controller/tilequant.py:141
 msgid "Save first image as (PNG)..."
@@ -3580,7 +3589,7 @@ msgstr "SkyTemple - Fehler!"
 
 #: skytemple/skytemple/core/logger.py:45
 msgid "An uncaught exception occurred! This shouldn't happen, please report it!"
-msgstr ""
+msgstr "Eine unbehandelte Ausnahme ist aufgetreten! Das sollte nicht passieren, bitte melde uns diesen Fehler!"
 
 #: skytemple/skytemple/core/logger.py:46
 msgid "SkyTemple - Uncaught error!"
@@ -3655,7 +3664,9 @@ msgid "This will export the background as one image.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Dies wird den Hintergrund als einzelnes Bild exportieren.\n\n"
+"Du kannst den Hintergrund bearbeiten und dann wieder importieren. Beachte bitte, dass du ihn eventuell umwandeln musst, bevor du ihn importieren kannst.\n"
+"Siehe den Import-Dialog für weitere Informationen."
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:219
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:368
@@ -3683,7 +3694,9 @@ msgstr "Kartenhintergund-Import"
 msgid "This will import the entire background from an image.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Dies wird den Hintergrund ais einem einzelnen Bild importieren.\n\n"
+"Beachte bitte, dass du ihn eventuell umwandeln musst, bevor du ihn importieren kannst.\n"
+"Siehe die \"Format-Details\"."
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:351
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1998
@@ -5706,7 +5719,10 @@ msgid "This will import the chunks.\n"
 "The existing mappings are replaced.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Dies wird alle Blöcke importieren.\n"
+"Bestehe Zuordnungen von Kacheln zu Blöcken werden überschrieben. \n\n"
+"Beachte bitte, dass du das Eingabebild eventuell umwandeln musst, bevor du es importieren kannst.\n"
+"Siehe die \"Format-Details\" für weitere Informationen."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2055
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2484
@@ -5728,7 +5744,9 @@ msgstr "Hintergrund-Import"
 msgid "This will import the entire background.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Dies wird den gesamten Hintergrund importieren.\n\n"
+"Beachte bitte, dass du ihn eventuell umwandeln musst, bevor du ihn importieren kannst.\n"
+"Siehe die \"Format-Details\" für weitere Informationen."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2279
 #: skytemple/skytemple/skytemple.glade:2106
@@ -5745,7 +5763,9 @@ msgstr "Kachel-Import"
 msgid "This will import the tiles.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Dies wird alle Kacheln importieren.\n\n"
+"Beachte bitte, dass du das Eingabebild eventuell umwandeln musst, bevor du es importieren kannst.\n"
+"Siehe die \"Format-Details\" für weitere Informationen."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2466
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2652
