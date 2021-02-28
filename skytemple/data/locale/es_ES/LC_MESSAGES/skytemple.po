@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-28 15:21\n"
+"PO-Revision-Date: 2021-02-28 17:54\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -6392,7 +6392,7 @@ msgstr "ID de nombre"
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:175
 msgid "Name String"
-msgstr "Cadena de nombre"
+msgstr "Nombre de cadena"
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:189
 msgid "Description ID"
@@ -6400,7 +6400,7 @@ msgstr "ID de descripción"
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:203
 msgid "Description String"
-msgstr "Cadena de descripción"
+msgstr "Descripción de cadena"
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:217
 msgid "Action"
@@ -7894,11 +7894,16 @@ msgid "The game uses 4x4 'mini-tiles' tiles to render the map.\n"
 "The mask is then used to apply the mini-tile only on the correct part of the resulting 8x8 tile.\n"
 "The minimized version reduces the tileset to only 4x4 mini-tiles and handles the duplication when importing.\n"
 "But remember that the full tileset allows more exploits as you can render tiles differently depending on where they are placed."
-msgstr ""
+msgstr "El juego utiliza 'minitiles' de 4x4 para renderizar el mapa.\n"
+"Sin embargo, como el sistema solo utiliza tiles de 8x8, el juego renderiza cada tile de 8x8 aplicando 4 minitiles con sus respectivas máscaras.\n"
+"Para ello, se han duplicado todos los minitiles para cubrir las 4 posibilidades de colocación del minitile en los tiles de 8x8 (arriba a la izquierda, arriba a la derecha, abajo a la izquierda, abajo a la derecha).\n"
+"La máscara se utilizará entonces para aplicar el minitrilo sólo en la parte correcta del tile de 8x8 resultante.\n"
+"La versión minimizada reduce el tileset a solo 4x4 minitiles y maneja la duplicación al importar.\n"
+"Recuerda que el tileset completo permite más exploits, ya que puedes renderizar tiles de forma diferente dependiendo de donde estén colocados."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:160
 msgid "Minimized Version Info"
-msgstr ""
+msgstr "Información de la versión minimizada"
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:170
 msgid "To import, select a folder containing all the image files that were created when exporting the full tileset."
@@ -7914,7 +7919,7 @@ msgstr "Importar zmappat completo desde carpeta..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:201
 msgid "Error importing full zmappat."
-msgstr ""
+msgstr "Error al importar zmappat completo."
 
 #: skytemple/skytemple/module/monster/controller/entity.py:34
 msgid "Each Pokémon has two gender forms (even if it only has one gender).\n"
@@ -8730,7 +8735,9 @@ msgstr "... como una sola ficha (formato SpriteBot)"
 msgid "If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.\n"
 "If that is also missing, the behaviour is undefined.\n"
 "If flipped versions are empty, the game will automatically flip the image."
-msgstr ""
+msgstr "Si falta un retrato, el juego intentará cargar el retrato de la primera forma del Pokémon en su lugar.\n"
+"Si también falta, el comportamiento es indefinido.\n"
+"Si las versiones invertidas están vacías, el juego invertirá automáticamente la imagen."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:95
 msgid "Export all portraits as PNGs..."
@@ -9068,7 +9075,9 @@ msgstr "Nuevo evento"
 msgid "Each of the scenes has at least one script assigned to them, which is run when the scene is loaded.\n"
 "In addition to that, there is also \"COMMON/unionall.ssb\", which contains the game's coroutines (main scripts).\n\n"
 "To edit the game's scripts, open the Script Engine Debugger. You can also do this by clicking the bug icon in the top right.\n"
-msgstr ""
+msgstr "Cada una de las escenas tiene al menos un script asignado, que se ejecuta cuando se carga la escena.\n"
+"Además de eso, también está \"COMMON/unionall.ssb\", que contiene las corrutinas del juego (scripts principales).\n\n"
+"Para editar los scripts del juego, abre el Depurador del motor de scripts. También puedes hacerlo haciendo clic en el icono de fallos en la parte superior derecha.\n"
 
 #: skytemple/skytemple/module/script/controller/ssb.py:44
 msgid "Open Script Engine Debugger"
@@ -9136,7 +9145,9 @@ msgstr "Importar\n"
 msgid "Alternatively you can export the raw WAN sprite files \n"
 "and edit them with a tool like PsyCommando's <a href=\"gfxcrunch\">gfxcrunch</a>.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "También puedes exportar los sprites WAN sin procesar \n"
+"y editarlos con una herramienta como <a href=\"gfxcrunch\">gfxcrunch</a> de PsyCommando.\n"
+"Advertencia: SkyTemple no valida los archivos que importas."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:388
 msgid "<span size=\"large\">Manual Im-/Export</span>"
@@ -9168,7 +9179,9 @@ msgstr "ID de sprite inválido."
 msgid "Alternatively you can export the sprite files \n"
 "in the gfxcrunch format and edit them manually.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "Otra posibilidad es exportar los sprites \n"
+"en el formato gfxcrunch y editarlos manualmente.\n"
+"Advertencia: SkyTemple no valida los archivos que importas."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:126
 msgid "Export spritesheet..."
@@ -9211,7 +9224,7 @@ msgid "SkyTemple can not edit sprites. \n"
 "However you can export the sprite and edit it with PsyCommando's <a href=\"gfxcrunch\">gfxcrunch</a>.\n"
 "Warning: SkyTemple does not validate the files you import."
 msgstr "SkyTemple no puede editar sprites. \n"
-"Sin embargo, puedes exportar el sprite y editarlo con PsyCommando <a href=\"gfxcrunch\">gfxcrunch</a>.\n"
+"Sin embargo, puedes exportar el sprite y editarlo con la herramienta <a href=\"gfxcrunch\">gfxcrunch</a> de PsyCommando.\n"
 "Advertencia: SkyTemple no valida los archivos que importas."
 
 #: skytemple/skytemple/module/sprite/controller/object.py:60
