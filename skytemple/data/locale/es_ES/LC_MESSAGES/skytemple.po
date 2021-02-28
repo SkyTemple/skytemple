@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-27 23:53\n"
+"PO-Revision-Date: 2021-02-28 00:51\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2293,15 +2293,15 @@ msgstr "<Vacío>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:194
 msgid "1 (Enter)"
-msgstr ""
+msgstr "1 (Entrada)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:197
 msgid "2 (Sub)"
-msgstr ""
+msgstr "2 (Sub)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:200
 msgid "3 (Acting)"
-msgstr ""
+msgstr "3 (Acto)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:234
 msgid "<Global>"
@@ -2464,7 +2464,7 @@ msgstr "Común"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:913
 #: skytemple/skytemple/module/script/module.py:122
 msgid "Enter (sse)"
-msgstr "Introducción (sse)"
+msgstr "Entrada (sse)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:924
 #: skytemple/skytemple/module/script/module.py:132
@@ -3530,11 +3530,11 @@ msgstr "Es el número máximo de paletas que se pueden utilizar. Para fondos nor
 
 #: skytemple/skytemple/controller/tilequant.py:84
 msgid "This exact color of the image will be imported as transparency (default: #12ab56)."
-msgstr ""
+msgstr "Este color exacto de la imagen se importará como transparencia (por defecto: #12ab56)."
 
 #: skytemple/skytemple/controller/tilequant.py:87
 msgid "You can use this to convert multiple images at once with the same palettes. This is useful for map backgrounds with multiple layers, that need to share the same palettes."
-msgstr ""
+msgstr "Puedes utilizar esto para convertir varias imágenes a la vez con las mismas paletas. Esto es útil para fondos de mapas con múltiples capas que necesitan compartir las mismas paletas."
 
 #: skytemple/skytemple/controller/tilequant.py:93
 msgid "Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they \"blend into\" each other. This will make the image look like it contains more colors but also might decrease the overall visual quality. Two different algorithms are available.\n\n"
@@ -3570,11 +3570,11 @@ msgstr "Has introducido números no válidos."
 
 #: skytemple/skytemple/controller/tilequant.py:197
 msgid "The input image does not exist."
-msgstr ""
+msgstr "La imagen de entrada no existe."
 
 #: skytemple/skytemple/controller/tilequant.py:200
 msgid "The second input image does not exist."
-msgstr ""
+msgstr "La segunda imagen de entrada no existe."
 
 #: skytemple/skytemple/controller/tilequant.py:219
 msgid "The input image is not a supported format."
@@ -3727,7 +3727,13 @@ msgid "- The image is a 256-color indexed PNG.\n"
 "- The first color in each palette is transparency.\n"
 "- Each import must result in a maximum of 1024 unique 8x8 tiles \n"
 "  (=not existing with another palette or flipped or rotated)."
-msgstr ""
+msgstr "- La imagen es un PNG indexado de 256 colores.\n"
+"- Los 256 colores están divididos en 16 paletas de colores.\n"
+"- Cada tile de 8x8 de la imagen DEBE usar colores de\n"
+"  una de estas 16 paletas.\n"
+"- El primer color de cada paleta es la transparencia.\n"
+"- Cada importación debe dar lugar a un máximo de 1024 tiles únicos de 8x8 \n"
+"  (=no repetidos en otra paleta ni invertidos o rotados)."
 
 #: skytemple/skytemple/module/bgp/controller/bgp.py:113
 msgid "Error importing the image."
@@ -4281,7 +4287,7 @@ msgstr "Si el ID del piso fijo es 0 o >= 165, esta opción es ignorada. Las esfe
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:390
 msgid "If enabled, the floor is exited after all the enemies have been defeated"
-msgstr ""
+msgstr "Si se activa, se sale del piso después de haber derrotado a todos los enemigos"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:393
 msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
@@ -4498,7 +4504,7 @@ msgstr "PS"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1102
 msgid "Exp. Yield"
-msgstr ""
+msgstr "Puntos de exp."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1116
 msgid "Atk."
@@ -5103,7 +5109,7 @@ msgstr "Conexiones del piso (mínimo 1, si es 0 no se puede generar un mapa vál
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:275
 msgid "Used to generate additional hallways in the map (those \"donuts\" that lead to nowhere, multiple entrances to the same room, room exits connected to the same room, those dead ends that come out of a room, make a couple of twists and also lead to nowhere)"
-msgstr ""
+msgstr "Se utiliza para generar pasillos adicionales en el mapa (esos \"donuts\" que no llevan a ninguna parte, las entradas múltiples a una misma sala, las conexiones entre salas, los callejones sin salida que salen de una habitación, dan un par de vueltas y tampoco llevan a ninguna parte...)"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:320
 msgid "The final value is randomized between density and density/2."
@@ -5309,7 +5315,9 @@ msgstr "Editar grupos de territorio"
 msgid "Drag and Drop dungeons to build groups.\n"
 "Dungeons that are in groups build \"real\" full dungeons,\n"
 "you can seperate dungeons in a group with overworld maps (eg. rest rooms)."
-msgstr ""
+msgstr "Arrastra y suelta los territorios para construir grupos.\n"
+"Los territorios que están en grupos construyen territorios completos \"reales\", puedes separar\n"
+"las mazmorras de un grupo con mapeados del mundo exterior (por ejemplo, salas de descanso)."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:110
 msgid "Dungeon Errors were fixed.\n"
@@ -5427,7 +5435,7 @@ msgstr "Exportar PNG de tiles..."
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:480
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:683
 msgid "Some values were invalid (not a number). They were replaced with 0."
-msgstr ""
+msgstr "Algunos valores no eran válidos (no son números). Han sido reemplazados por 0."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:330
 msgid "Palette Animation is not enabled for this palette."
@@ -5477,7 +5485,9 @@ msgstr "Error al importar esquema de color."
 msgid "This colormap defines color palette transformations used by the game during dungeons (for weather effects).\n"
 "Each color color component (RGB) is changed to the corresponding color component of the n-th color map entry (where n is the old color component value).\n"
 "This transformation also applies to monsters and items sprites."
-msgstr ""
+msgstr "Este mapa de colores define las transformaciones de la paleta de colores utilizada por el juego durante los territorios (para los efectos climáticos).\n"
+"Cada componente de color (RGB) se cambia al componente correspondiente de la n-ésima entrada del mapa de color (donde n es el valor del componente de color antiguo).\n"
+"Esta transformación también se aplica a los sprites de monstruos y objetos."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:13
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:106
@@ -6923,7 +6933,7 @@ msgstr "Esta sección contiene todos los fondos del mapa que no encajan en ningu
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:24
 msgid "Map Backgrounds"
-msgstr "Fondos del mapa"
+msgstr "Fondos de mapa"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:36
 msgid "This section lets you edit map backgrounds. These backgrounds are usually loaded by the game for scenes and serve many purposes (actual backgrounds for maps, title screen backgrounds, cutscenes, etc.)."
@@ -7497,7 +7507,7 @@ msgstr "W - Clima"
 
 #: skytemple/skytemple/module/map_bg/module.py:188
 msgid "Error adding the logo."
-msgstr ""
+msgstr "Error al añadir el logo."
 
 #: skytemple/skytemple/module/map_bg/module.py:193
 msgid "Logo added successfully. Thank you!"
@@ -7606,7 +7616,7 @@ msgstr "Error al importar fuente."
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:212
 #, python-brace-format
 msgid "Character {char} already exists in the table!"
-msgstr ""
+msgstr "¡El personaje {char} ya existe en la tabla!"
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:225
 msgid "Error adding character."
@@ -7643,7 +7653,8 @@ msgstr "Esta sección te permite editar gráficos misceláneos."
 #: skytemple/skytemple/module/misc_graphics/controller/w16.glade:80
 msgid "The images in this preview are scaled to 64x64px.\n"
 "Imported image dimensions must be a multiple of 8."
-msgstr ""
+msgstr "Las imágenes en esta vista previa son escaladas a 64x64px.\n"
+"Las dimensiones de la imagen importada deben ser un múltiplo de 8."
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:76
 msgid "Export all images as PNGs..."
@@ -7873,7 +7884,7 @@ msgstr "Importar tileset completo"
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:176
 msgid "Import full zmappat from folder..."
-msgstr ""
+msgstr "Importar zmappat completo desde carpeta..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:201
 msgid "Error importing full zmappat."
@@ -8769,11 +8780,11 @@ msgstr "Scripts de escena para otros mapas"
 #: skytemple/skytemple/module/script/controller/folder.py:36
 #, python-brace-format
 msgid "This section contains all the script scenes of maps, that start with the letter {self.name[0]}."
-msgstr ""
+msgstr "Esta sección contiene todas las escenas de script de los mapas que comienzan con la letra {self.name[0]}."
 
 #: skytemple/skytemple/module/script/controller/folder.py:39
 msgid "This section contains all the script scenes of maps, that don't fit in any of the other categories."
-msgstr ""
+msgstr "Esta sección contiene todas las escenas de scripts de los mapas que no encajan en ninguna de las otras categorías."
 
 #: skytemple/skytemple/module/script/controller/lsd.py:29
 msgid "Acting Scenes for \"{}"
@@ -8812,7 +8823,14 @@ msgid "This section contains all scenes for the map {self.name}.\n\n"
 "\"Sub (sss)\" contains scenes that can be loaded on on top of the \"Enter\" scene,\n"
 "depending on the current story progress.\n\n"
 "Currently new scenes can not be added via SkyTemple."
-msgstr ""
+msgstr "Esta sección contiene todas las escenas del mapa {self.name}.\n\n"
+"\"Entrada(sse)\" contiene la escena que se carga cuando el jugador entra en el\n"
+"mapa al \"caminar hacia él\" (si es aplicable).\n\n"
+"\"Acto (ssa)\" contiene las escenas utilizadas para las cinemáticas.\n"
+"El jugador normalmente no puede mover al personaje en estas escenas.\n\n"
+"\"Sub (sss)\" contiene escenas que pueden ser cargadas sobre la escena \"Enter\",\n"
+"dependiendo del progreso de la historia actual.\n\n"
+"Actualmente no se pueden añadir nuevas escenas a través de SkyTemple."
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:73
 #: skytemple/skytemple/module/script/controller/ssa.py:1196
@@ -8850,7 +8868,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:625
 msgid "Go to BG"
-msgstr ""
+msgstr "Ir a fondo"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:696
 #: skytemple/skytemple/module/script/controller/ssa.glade:1054
@@ -8992,7 +9010,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.py:1495
 #, python-brace-format
 msgid "{len_objects} objs, "
-msgstr ""
+msgstr "{len_objects} objetos, "
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1497
 #, python-brace-format
@@ -9038,7 +9056,9 @@ msgstr "Subescenas para \"{self.name}\""
 msgid "This section contains all sub scenes for the map {self.name}.\n\n"
 "These scenes can be loaded on top of the \"Enter\" scene,\n"
 "depending on the current story progress."
-msgstr ""
+msgstr "Esta sección contiene todas las subescenas del mapa {self.name}.\n\n"
+"Estas escenas pueden ser cargadas sobre la escena \"Entrada\",\n"
+"dependiendo del progreso actual de la historia."
 
 #: skytemple/skytemple/module/script/module.py:244
 msgid "Map not found."
@@ -9180,7 +9200,7 @@ msgstr "Esta sección te permite importar y exportar sprites de objetos."
 
 #: skytemple/skytemple/module/sprite/module.py:117
 msgid "Import WAN sprite..."
-msgstr ""
+msgstr "Importar sprite WAN..."
 
 #: skytemple/skytemple/module/sprite/module.py:135
 msgid "Export WAN sprite..."
@@ -9188,7 +9208,7 @@ msgstr "Exportar sprite WAN..."
 
 #: skytemple/skytemple/module/sprite/module.py:141
 msgid "WAN sprite (*.wan)"
-msgstr ""
+msgstr "Sprite WAN (*.wan)"
 
 #: skytemple/skytemple/module/sprite/module.py:159
 msgid "To import select the directory of the sprite export. If it is still zipped, unzip it first."
@@ -9217,7 +9237,8 @@ msgstr "Cadenas de texto"
 #: skytemple/skytemple/module/strings/controller/main.py:35
 msgid "This section lets you edit the text strings in the game. Please note that some of these strings can also be edited in other places in the UI (eg. the Pokémon names under Pokémon).\n"
 "Not included are the strings of the game's scripts."
-msgstr ""
+msgstr "Esta sección te permite editar las cadenas de texto del juego. Por favor, ten en cuenta que algunas de estas cadenas también pueden ser editadas en otros lugares de la IU (por ejemplo, los nombres de los pokémon bajo Pokémon).\n"
+"No se incluyen las cadenas de los scripts del juego."
 
 #: skytemple/skytemple/module/strings/controller/strings.glade:45
 msgid "<LANG> Text Strings"
@@ -9234,7 +9255,7 @@ msgstr ""
 #: skytemple/skytemple/module/strings/controller/strings.py:62
 #, python-brace-format
 msgid "{self.langname} Text Strings"
-msgstr ""
+msgstr "{self.langname} cadenas de texto"
 
 #: skytemple/skytemple/module/strings/controller/strings.py:84
 msgid "(All)"
@@ -9252,11 +9273,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/strings/controller/strings.py:134
 msgid "Import strings from..."
-msgstr ""
+msgstr "Importar cadenas desde..."
 
 #: skytemple/skytemple/module/strings/controller/strings.py:154
 msgid "The CSV file must contain exactly {len(self._str.strings)} strings, has {len(strings)}."
-msgstr ""
+msgstr "El archivo CSV debe contener exactamente {len(self._str.strings)} cadenas, tiene {len(strings)}."
 
 #: skytemple/skytemple/module/strings/controller/strings.py:163
 msgid "Error exporting the strings."
@@ -9342,7 +9363,7 @@ msgstr "Editor de paleta"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:103
 msgid "Make all colors unique"
-msgstr ""
+msgstr "Hacer todos los colores únicos"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:170
 msgid "Add Frame (after current)"
@@ -9497,7 +9518,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1356
 msgid "... by testing new features!"
-msgstr ""
+msgstr "... probando nuevas características!"
 
 #: skytemple/skytemple/skytemple.glade:1372
 msgid "Join our Discord server and become a \"Beta Tester\", to get\n"
@@ -9507,7 +9528,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1418
 msgid "... by joining development or reverse engineering the game!"
-msgstr ""
+msgstr "... uniéndote al desarrollo, o participando en la ingeniería inversa del juego!"
 
 #: skytemple/skytemple/skytemple.glade:1434
 msgid "We are always looking for people to help develop SkyTemple\n"
@@ -9515,7 +9536,11 @@ msgid "We are always looking for people to help develop SkyTemple\n"
 "engineering or implementing new features for SkyTemple,\n"
 "you can find the project on Github! \n"
 "You can also join the Discord server if you have any questions."
-msgstr ""
+msgstr "Siempre estamos buscando gente que ayude a desarrollar SkyTemple\n"
+"o que ayuden a hackear el juego. Si estás interesado en la ingeniería inversa\n"
+"o en implementar nuevas características para SkyTemple,\n"
+"puedes encontrar el proyecto en Github. \n"
+"También puedes unirte al servidor de Discord si tienes alguna pregunta."
 
 #: skytemple/skytemple/skytemple.glade:1499
 msgid "... by buying us a coffee!"
@@ -9547,7 +9572,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1705
 msgid "Dither: Ordered"
-msgstr ""
+msgstr "Difuminado: Ordenado"
 
 #: skytemple/skytemple/skytemple.glade:1709
 msgid "Dither: Floyd Steinberg"
@@ -9559,7 +9584,7 @@ msgstr "Sin difuminado"
 
 #: skytemple/skytemple/skytemple.glade:1717
 msgid "Reorganize colors only"
-msgstr ""
+msgstr "Reorganizar solo colores"
 
 #: skytemple/skytemple/skytemple.glade:1723
 msgid "Tilequant"
