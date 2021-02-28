@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-28 01:52\n"
+"PO-Revision-Date: 2021-02-28 13:21\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -4533,7 +4533,7 @@ msgstr "Estadísticas del Pokémon"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1217
 msgid "Spawn Lists"
-msgstr ""
+msgstr "Listas de aparición"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:506
 msgid "n/a"
@@ -4661,7 +4661,7 @@ msgstr "Territorio / Piso"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:868
 msgid "(and/or) <b>2b. Copy to other floor(s)</b>"
-msgstr ""
+msgstr "(y/o) <b>2b. Copiar a otro(s) piso(s)</b>"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1100
 msgid "Dungeon Name"
@@ -4744,7 +4744,7 @@ msgstr "¿Pasillos sin salida?:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1573
 msgid "Extra Hallway density:"
-msgstr ""
+msgstr "Densidad adicional de pasillos:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1630
 msgid "Terrain Settings"
@@ -5388,7 +5388,7 @@ msgstr "Secundario"
 
 #: skytemple/skytemple/module/dungeon/module.py:742
 msgid "Vis."
-msgstr ""
+msgstr "Vis."
 
 #: skytemple/skytemple/module/dungeon/module.py:744
 msgid "Unb."
@@ -5440,7 +5440,7 @@ msgstr "Algunos valores no eran válidos (no son números). Han sido reemplazado
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:330
 msgid "Palette Animation is not enabled for this palette."
-msgstr ""
+msgstr "La animación de paleta no está activada en esta paleta."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:91
 msgid "Tileset: "
@@ -5706,7 +5706,7 @@ msgstr "Editar paleta de animación 11"
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1317
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:34
 msgid "Zoom-"
-msgstr ""
+msgstr "Zoom-"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1341
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:58
@@ -6830,7 +6830,7 @@ msgstr "No existe un script de mapa con el mismo nombre que este fondo."
 msgid "This map only has one layer.\n"
 "You can add a second layer at Map > Settings."
 msgstr "Este mapa solo tiene una capa.\n"
-"Puedes añadir una segunda capa en Mapa > Configuración."
+"Puedes añadir una segunda capa desde Mapa > Ajustes."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:645
 msgid "This map has no collision.\n"
@@ -6841,12 +6841,14 @@ msgstr "Este mapa no tiene colisiones.\n"
 #: skytemple/skytemple/module/map_bg/controller/bg.py:654
 msgid "This map has no second collision layer.\n"
 "You can add a second collision layer at Map > Settings."
-msgstr ""
+msgstr "Este mapa no tiene segunda capa de colisiones.\n"
+"Puedes añadirla desde Mapa > Ajustes."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:674
 msgid "This map has no data layer.\n"
 "You can add a data layer at Map > Settings."
-msgstr ""
+msgstr "Este mapa no tiene capa de datos.\n"
+"Puedes añadir una desde Mapa > Ajustes."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:794
 msgid "Map backgrounds can be used as primary or secondary.\n"
@@ -7400,7 +7402,9 @@ msgstr ""
 msgid "This background uses weird palette values for some chunks, so the game will not render this background the same as it is displayed here.\n"
 "You should click on the help button get more information before continuing.\n"
 "If this is intentional and you know what you are doing, you can ignore  this."
-msgstr ""
+msgstr "Este fondo utiliza valores de paleta extraños para algunos chunks, por lo que el juego no renderizará este fondo igual que se muestra aquí.\n"
+"Puedes hacer clic en el botón de ayuda para obtener más información antes de continuar.\n"
+"Si esto es intencionado y sabes lo que estás haciendo, puedes ignorar esto."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5346
 msgid "This will export all chunks of the selected layer.\n\n"
