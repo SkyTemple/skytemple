@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-24 20:37\n"
+"POT-Creation-Date: 2021-03-01 21:02+0000\n"
+"PO-Revision-Date: 2021-03-01 22:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -1827,17 +1827,17 @@ msgstr ""
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:159
+#: skytemple-files/skytemple_files/graphics/kao/model.py:160
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:215
+#: skytemple-files/skytemple_files/graphics/kao/model.py:216
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:252
+#: skytemple-files/skytemple_files/graphics/kao/model.py:312
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr ""
@@ -2159,7 +2159,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:78
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:75
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:94
-#: skytemple/skytemple/module/portrait/controller/portrait.py:98
+#: skytemple/skytemple/module/portrait/controller/portrait.py:113
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:129
 #: skytemple/skytemple/module/sprite/module.py:191
 msgid "_Save"
@@ -3181,46 +3181,46 @@ msgid "https://github.com/SkyTemple/skytemple-ssb-debugger"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3337
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:148
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:202
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:241
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:280
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:319
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:358
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:397
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:436
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:475
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:514
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:553
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:592
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:631
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:670
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:709
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:748
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:787
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:826
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:865
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:904
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:943
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:982
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1021
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1060
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1099
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1138
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1177
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1216
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1255
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1294
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1333
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1372
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1411
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1450
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1489
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1528
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1567
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1606
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1645
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1684
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:366
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:438
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:495
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:552
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:609
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:666
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:723
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:780
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:837
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:894
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:951
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1008
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1065
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1122
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1179
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1236
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1293
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1350
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1407
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1464
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1521
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1578
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1635
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1692
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1749
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1806
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1863
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1920
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1977
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2034
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2091
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2148
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2205
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2262
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2319
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2376
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2433
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2490
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2547
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2604
 #: skytemple/skytemple/module/script/controller/ssa.glade:237
 msgid "label"
 msgstr ""
@@ -4607,7 +4607,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:315
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.glade:42
 #: skytemple/skytemple/module/monster/controller/monster.glade:819
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:19
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:219
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:457
 #: skytemple/skytemple/module/sprite/controller/object.glade:107
 #: skytemple/skytemple/module/strings/controller/strings.glade:153
@@ -4626,7 +4626,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:330
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.glade:79
 #: skytemple/skytemple/module/monster/controller/monster.glade:864
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:58
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:258
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:502
 #: skytemple/skytemple/module/sprite/controller/object.glade:152
 #: skytemple/skytemple/module/strings/controller/strings.glade:198
@@ -8326,77 +8326,77 @@ msgstr ""
 msgid "ASM Patches"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:31
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:231
 msgid "... from separate images"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:40
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:240
 msgid "... from one sheet (SpriteBot format)"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:70
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:270
 msgid "... as separate images"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:79
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:279
 msgid "... as one sheet (SpriteBot format)"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:167
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:385
 msgid "If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.\n"
 "If that is also missing, the behaviour is undefined.\n"
 "If flipped versions are empty, the game will automatically flip the image."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:95
+#: skytemple/skytemple/module/portrait/controller/portrait.py:110
 msgid "Export all portraits as PNGs..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:119
+#: skytemple/skytemple/module/portrait/controller/portrait.py:134
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 40."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:121
+#: skytemple/skytemple/module/portrait/controller/portrait.py:136
 msgid "Import Portraits"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:126
+#: skytemple/skytemple/module/portrait/controller/portrait.py:141
 msgid "Import portraits from PNGs..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:157
-#: skytemple/skytemple/module/portrait/controller/portrait.py:217
+#: skytemple/skytemple/module/portrait/controller/portrait.py:172
+#: skytemple/skytemple/module/portrait/controller/portrait.py:229
 #, python-brace-format
 msgid "Failed importing image \"{name}\":\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:158
-#: skytemple/skytemple/module/portrait/controller/portrait.py:218
+#: skytemple/skytemple/module/portrait/controller/portrait.py:173
+#: skytemple/skytemple/module/portrait/controller/portrait.py:230
 #, python-brace-format
 msgid "Error for '{name}'."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:170
+#: skytemple/skytemple/module/portrait/controller/portrait.py:182
 msgid "Export portrait as PNG sheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:189
+#: skytemple/skytemple/module/portrait/controller/portrait.py:201
 msgid "Import portraits from PNG sheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:224
+#: skytemple/skytemple/module/portrait/controller/portrait.py:236
 #, python-brace-format
 msgid "Failed importing portraits sheet:\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:225
+#: skytemple/skytemple/module/portrait/controller/portrait.py:237
 msgid "Could not import."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:245
+#: skytemple/skytemple/module/portrait/controller/portrait.py:254
 msgid " (flip)"
 msgstr ""
 
