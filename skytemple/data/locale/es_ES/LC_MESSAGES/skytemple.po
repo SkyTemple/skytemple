@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-28 22:32\n"
+"PO-Revision-Date: 2021-03-01 14:24\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2743,7 +2743,7 @@ msgstr "Progreso del territorio"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:56
 msgid "Dungeon Init"
-msgstr ""
+msgstr "Inicio de territorio"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:58
 msgid "World Map"
@@ -4625,7 +4625,7 @@ msgstr "Generación de objetos en nidos de monstruos"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:668
 msgid "Bruied Item Spawns"
-msgstr ""
+msgstr "Generación de objetos enterrados"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:682
 msgid "Unk1 Item Spawns"
@@ -7282,7 +7282,11 @@ msgid "Usually the width and height in tiles should be linked\n"
 "please note, that the dimensions in tiles are used for\n"
 "the collision and data layers. The dimensions in chunks \n"
 "are used for the image data on Layer 1 and 2."
-msgstr ""
+msgstr "Por lo general, la anchura y la altura en tiles deben estar\n"
+"vinculadas a la anchura y la altura en chunks. Si no es así,\n"
+"recuerda que las dimensiones en tiles se utilizan para\n"
+"las capas de colisión y de datos. Las dimensiones en chunks \n"
+"se utilizan para los datos de la imagen en las capas 1 y 2."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4321
 msgid "Width and Height"
@@ -7414,7 +7418,7 @@ msgstr "Metadatos"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5173
 msgid "This seems to be a dungeon rest room. The graphics of this map are rendered by the dungeon engine. To do this, the chunk data and the data in the data layer is used."
-msgstr ""
+msgstr "Esto parece ser una sala de descanso de un territorio. Los gráficos de este mapa son renderizados por el motor de los territorios. Para ello, se utilizan los datos de los chunks y de la capa de datos."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5242
 msgid "This background uses weird palette values for some chunks, so the game will not render this background the same as it is displayed here.\n"
@@ -7753,7 +7757,8 @@ msgstr "Archivo de imagen: "
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:165
 msgid "The image file must be a color-indexed PNG to be imported\n"
 "as a WTE file."
-msgstr ""
+msgstr "El archivo de imagen debe ser un PNG indexado en color para ser importado\n"
+"como un archivo WTE."
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:204
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:530
@@ -9052,7 +9057,7 @@ msgstr "?INVÁLIDO? {script_id}"
 #: skytemple/skytemple/module/script/controller/ssa.py:1493
 #, python-brace-format
 msgid "{len_actors} acts, "
-msgstr ""
+msgstr "{len_actors} act., "
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1495
 #, python-brace-format
@@ -9067,7 +9072,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.py:1499
 #, python-brace-format
 msgid "{len_triggers} trgs"
-msgstr ""
+msgstr "{len_triggers} desenc."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1512
 #, python-brace-format
