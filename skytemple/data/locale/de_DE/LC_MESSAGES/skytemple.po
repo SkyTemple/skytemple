@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-03-01 08:30\n"
+"PO-Revision-Date: 2021-03-01 09:34\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -2022,7 +2022,7 @@ msgstr "Bietet Unterstützung für ATUPX Container, welche einen andere Komprimi
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:39
 msgid "Fixes the 'Unusued' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
-msgstr "Korrigierte die \"unbenutzte\" Chance für Dungeons. Sie wird nun benutzt um zu ermitteln, ob ein Raum in der Ebene nun ein Labyrinth aus Wänden beinhaltet, mit einigen Kacheln ersetzt mit dem sekundären Terrain."
+msgstr "Korrigiert die \"unbenutzte\" Chance für Dungeons. Sie bestimmt nun die Wahrscheinlichkeit, dass ein Labyrinth mit Wänden und sekundärem Terrain generiert wird."
 
 #: skytemple-files/skytemple_files/patch/patches.py:102
 #: skytemple-files/skytemple_files/patch/patches.py:107
@@ -2182,8 +2182,8 @@ msgstr "Falls du nicht speicherst, gehen deine Änderungen verloren."
 msgid "The file is still loaded in RAM! Currently you are still able to debug using the old cached information stored in the editor.\n"
 "If you close the editor, you won't be able to debug this file until it is reloaded in RAM.\n\n"
 "Do you still want to close this file?"
-msgstr "Diese Datei ist noch im RAM geladen! Aktuell kannst du mit dem alten Stand der Datei noch Debuggen.\n"
-"Falls du den Editor schließt, wirst du nicht mehr in der Lage zu sein diese Datei zu Debuggen, bis die Datei im RAM neu geladen wird.\n\n"
+msgstr "Diese Datei ist noch in den RAM geladen! Aktuell kannst du mit dem alten Stand der Datei noch debuggen.\n"
+"Falls du den Editor schließt, kannst du die Datei nicht mehr debuggen, bis die Datei im RAM neu geladen wird.\n\n"
 "Möchtest du die Datei trotzdem schließen?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:340
@@ -2504,10 +2504,10 @@ msgid "You have unsaved changes to variables.\n"
 "Variables are reset when the game is rebooted.\n"
 "You need to save the variables and load them after boot.\n\n"
 "Do you still want to continue?"
-msgstr "Du hast umgespeicherte Änderungen in Variablen.\n"
+msgstr "Du hast ungespeicherte Änderungen in Variablen.\n"
 "Variablen werden zurückgesetzt, wenn das Spiel neu gestartet wird.\n"
 "Du musst die Variablen speichern und nach dem Neustart laden.\n\n"
-"Möchtest Du trotzdem fortfahren?"
+"Möchtest du trotzdem fortfahren?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1612
 msgid "Delete"
@@ -2560,7 +2560,7 @@ msgstr "SSBScript ist für diese Datei nicht verfügbar."
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:466
 msgid "An old version of this script is still loaded in RAM, but breakpoints are not available.\n"
 "Debugging is disabled for this file, until it is reloaded."
-msgstr "Eine alte Version dieses Skript ist noch im RAM geladen, aber Haltepunkte sind nicht verfügbar.\n"
+msgstr "Eine alte Version dieses Skripts ist noch im RAM geladen, aber Haltepunkte sind nicht verfügbar.\n"
 "Debugging ist für diese Datei nicht möglich, bis sie vom Spiel neu geladen wurde."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:474
@@ -2586,7 +2586,7 @@ msgid "The ExplorerScript source code does not match the compiled script that is
 "Warning: If you choose to reload, you will lose your file, including all comments in it."
 msgstr "Der ExplorerScript Quellcode stimmt nicht mit dem kompilierten Skript überein, dass in der ROM gespeichert ist.\n"
 "Möchtest du den aktuellen ExplorerScript Quellcode beibehalten oder das Skript aus der ROM neu laden (dekompilieren)?\n"
-"Warnung: Falls du dich für das Neuladen aus der ROM entscheidest, verlierst du deine Datei, inklusive aller Kommentare."
+"Warnung: Falls du dich für das neu laden aus der ROM entscheidest, verlierst du deine Datei, inklusive aller Kommentare."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:942
 msgid "ExplorerScript Inconsistency"
@@ -2779,7 +2779,7 @@ msgstr "Die Variable muss eine Zahl als Wert haben."
 msgid "Invalid variable value:\n"
 "{err}\n"
 "The value was not written to RAM."
-msgstr "Ungültiger Variablen-wert:\n"
+msgstr "Ungültiger Variablenwert:\n"
 "{err}\n"
 "Der Wert wurde nicht in den RAM geschrieben."
 
@@ -2793,11 +2793,11 @@ msgstr "Variablen können nicht geladen werden!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:172
 msgid "Open ROM"
-msgstr "ROM Öffnen"
+msgstr "ROM öffnen"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:189
 msgid "Save Script"
-msgstr "Script speichern"
+msgstr "Skript speichern"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:202
 msgid "Close Script"
@@ -3022,7 +3022,7 @@ msgstr "Soundeffekte AUS"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1688
 msgid "Stage NPC Dummy"
-msgstr "Benutze Platzhalter Akteure"
+msgstr "Platzhalter-Akteure verwenden"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1704
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1720
@@ -3146,7 +3146,7 @@ msgstr "Die Skript-Engine wird aktuell nicht ausgeführt."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2645
 msgid "Run the game from the start or stop the emulator."
-msgstr "Starte das Spiel von Vorne oder Stoppe den Emulator."
+msgstr "Starte das Spiel von vorne oder stoppe den Emulator."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2673
 msgid "Pause the emulator."
@@ -3191,7 +3191,7 @@ msgstr "Skript-Debug"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3123
 msgid "Engine Events"
-msgstr "Engine Ereignisse"
+msgstr "Engine-Ereignisse"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3183
 msgid "Debug Log"
@@ -3320,7 +3320,7 @@ msgstr "_Hinzufügen"
 
 #: skytemple/skytemple/_i18n.py:23
 msgid "_Apply"
-msgstr "_Anwenden"
+msgstr "A_nwenden"
 
 #: skytemple/skytemple/_i18n.py:25
 msgid "_Close"
@@ -3521,7 +3521,7 @@ msgstr "Alle Dateien"
 
 #: skytemple/skytemple/controller/tilequant.py:79
 msgid "The maximum number of palettes that can be used. For normal backgrounds, this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes (since the last 2 palettes are not rendered in game)."
-msgstr "Die maximale Anzahl an Paletten die verwendet werden kann. Für gewöhnliche Hintergründe, können 16 Paletten verwendet werden. Für Kartenhintergründe teilen sich beide Ebenen maximal 14 Paletten (da zwei Paletten nicht im Spiel dargestellt werden können)."
+msgstr "Die Anzahl der verfügbaren Paletten. Für gewöhnliche Hintergründe können 16 Paletten verwendet werden. Für Kartenhintergründe teilen sich beide Ebenen maximal 14 Paletten (da zwei Paletten nicht im Spiel dargestellt werden können)."
 
 #: skytemple/skytemple/controller/tilequant.py:84
 msgid "This exact color of the image will be imported as transparency (default: #12ab56)."
@@ -3694,7 +3694,7 @@ msgstr "Kartenhintergund-Import"
 msgid "This will import the entire background from an image.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr "Dies wird den Hintergrund ais einem einzelnen Bild importieren.\n\n"
+msgstr "Dies wird den Hintergrund als einem einzelnen Bild importieren.\n\n"
 "Beachte bitte, dass du ihn eventuell umwandeln musst, bevor du ihn importieren kannst.\n"
 "Siehe die \"Format-Details\"."
 
@@ -3778,7 +3778,7 @@ msgstr "Richtung:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:527
 msgid "Enemies evolve w. KOed:"
-msgstr "Gegner entwickeln sich w. KO:"
+msgstr "Gegnerentwicklung:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:662
 msgid "Exp. enabled:"
@@ -3810,7 +3810,7 @@ msgstr "IQ-Fähigkeiten aktiviert:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:753
 msgid "Reveal traps by attack:"
-msgstr "Zeige Fallen wenn angegriffen:"
+msgstr "Angriff enthüllt Fallen:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:766
 msgid "Enemies drop chests:"
@@ -3828,7 +3828,7 @@ msgstr "Max. Items erlaubt:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:806
 msgid "Max. party members:"
-msgstr "Max. Partymitglieder:"
+msgstr "Max. Gruppenmitglieder:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:819
 msgid "Turn limit:"
@@ -3906,13 +3906,13 @@ msgstr "Zoom -"
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.glade:118
 #: skytemple/skytemple/module/script/controller/ssa.glade:471
 msgid "Show Tiles Grid"
-msgstr "Kachel-Grid anzeigen"
+msgstr "Kachelraster anzeigen"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:141
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.glade:119
 #: skytemple/skytemple/module/script/controller/ssa.glade:472
 msgid "Tile Grid"
-msgstr "Kachel Grid"
+msgstr "Raster"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:166
 #: skytemple/skytemple/module/script/controller/ssa.glade:497
