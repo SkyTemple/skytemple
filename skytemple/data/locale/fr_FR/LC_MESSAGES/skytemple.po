@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-01 21:02+0000\n"
-"PO-Revision-Date: 2021-03-01 22:04\n"
+"PO-Revision-Date: 2021-03-01 22:59\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -88,7 +88,7 @@ msgstr "Un bloc with(){} ne doit contenir qu'une seule instruction."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:65
 #, python-brace-format
 msgid "Invalid with(){{}} target type '{for_type}'."
-msgstr "Type de la cible du bloc with(){} «{for_type}» invalide."
+msgstr "Type de la cible du bloc with(){} « {for_type} » invalide."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:70
 msgid "A with(){} block needs exactly one binary operation. The handler for it generated multiple operations."
@@ -105,7 +105,7 @@ msgstr "Aucune variable définie dans la condition du if."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:59
 #, python-brace-format
 msgid "The variable {var_target_name} can not be used with 'not' (line {self.ctx.start.line})."
-msgstr "La variable {var_target_name} ne peut pas être utilisée avec l'opérateur «not» (ligne {self.ctx.start.line})."
+msgstr "La variable {var_target_name} ne peut pas être utilisée avec l'opérateur « not » (ligne {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/operator.py:47
 msgid "No variable for if condition."
@@ -265,12 +265,12 @@ msgstr "{fn} : les scripts de macro ne doivent pas contenir de routines."
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:222
 #, python-brace-format
 msgid "The file to import ('{import_file}') was not found."
-msgstr "Fichier à importer («{import_file}») introuvable."
+msgstr "Fichier à importer (« {import_file} ») introuvable."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:214
 #, python-brace-format
 msgid "Invalid import: '{import_file}'. Non absolute/relative imports must not contain relative paths."
-msgstr "Importation invalide : «{import_file}». Les importations non absolues/relatives ne doivent pas contenir de chemins relatifs."
+msgstr "Importation invalide : « {import_file} ». Les importations non absolues/relatives ne doivent pas contenir de chemins relatifs."
 
 #: explorerscript/explorerscript/syntax_error_listener.py:38
 #, python-brace-format
@@ -852,17 +852,17 @@ msgstr "Un fichier DTEF requis manque : {fn}. Veuillez vérifier le paquet DTEF.
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:131
 #, python-brace-format
 msgid "Can not import image \"{basename}\" as dungeon tileset: Must be indexed image (=using a palette)"
-msgstr "Impossible d'importer l'image «{basename}» en tant que jeu de tuiles de donjon : l'image doit être indexée (c'est-à-dire utiliser une palette)."
+msgstr "Impossible d'importer l'image « {basename} » en tant que jeu de tuiles de donjon : l'image doit être indexée (c'est-à-dire utiliser une palette)."
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:134
 #, python-brace-format
 msgid "Can not import image \"{basename}\" as dungeon tileset: Palette must contain  256 RGB colors."
-msgstr "Impossible d'importer l'image «{basename}» en tant que jeu de tuiles de donjon : la palette doit contenir 256 couleurs RVB."
+msgstr "Impossible d'importer l'image « {basename} » en tant que jeu de tuiles de donjon : la palette doit contenir 256 couleurs RVB."
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:139
 #, python-brace-format
 msgid "Can not import images as dungeon tilesets: The palettes of the images do not match. First image read that didn't match: \"{basename}\""
-msgstr "Impossible d'importer les images en tant que jeu de tuiles de donjon : les palettes de ces images ne correspondent pas. La première image qui ne correspond pas est la suivante : «{basename}»."
+msgstr "Impossible d'importer les images en tant que jeu de tuiles de donjon : les palettes de ces images ne correspondent pas. La première image qui ne correspond pas est la suivante : « {basename} »."
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:144
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:145
@@ -872,7 +872,7 @@ msgstr "Erreur dans la logique d'importation : le fichier de jeu de tuiles {fn} 
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:148
 msgid "Image '{fn}' is too small ({tileset.width}x{tileset.height}px), must be at least {bx+w}x{by+h}px."
-msgstr "L'image «{fn}» est trop petite ({tileset.width}x{tileset.height} px), elle doit être au minimum de dimensions {bx+w}x{by+h} pixels."
+msgstr "L'image « {fn} » est trop petite ({tileset.width}x{tileset.height} px), elle doit être au minimum de dimensions {bx+w}x{by+h} pixels."
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:153
 msgid "A rule is missing in the import set"
@@ -1473,36 +1473,36 @@ msgstr "NULL"
 #: skytemple-files/skytemple_files/data/monster_xml.py:205
 #, python-brace-format
 msgid "Invalid XML. '{XML_STRINGS__NAME}' missing for language {xml_lang.tag}."
-msgstr "XML invalide. «{XML_STRINGS__NAME}» est absent pour la langue «{xml_lang.tag}»."
+msgstr "XML invalide. « {XML_STRINGS__NAME} » est absent pour la langue « {xml_lang.tag} »."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:207
 #, python-brace-format
 msgid "Invalid XML. '{XML_STRINGS__CATEGORY}' missing for language {xml_lang.tag}."
-msgstr "XML invalide. «{XML_STRINGS__CATEGORY}» est manquant pour la langue {xml_lang.tag}."
+msgstr "XML invalide. « {XML_STRINGS__CATEGORY} » est manquant pour la langue {xml_lang.tag}."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:345
 #, python-brace-format
 msgid "Invalid XML. '{XML_GENENT_EXCLUSIVE_ITEMS}' needs four item IDs."
-msgstr "XML invalide. «{XML_GENENT_EXCLUSIVE_ITEMS}» a besoin de quatre identifiants d'objet."
+msgstr "XML invalide. « {XML_GENENT_EXCLUSIVE_ITEMS} » a besoin de quatre identifiants d'objet."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:420
 #, python-brace-format
 msgid "Invalid XML. '{a}' missing for a {b}."
-msgstr "XML invalide. «{a}» manquant pour un {b}."
+msgstr "XML invalide. « {a} » manquant pour un {b}."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:462
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET_LEVEL_UP__LEVEL}' missing for a level up moveset entry."
-msgstr "XML invalide. «{XML_MOVESET_LEVEL_UP__LEVEL}» manquant pour une capacité apprise par montée de niveau."
+msgstr "XML invalide. « {XML_MOVESET_LEVEL_UP__LEVEL} » manquant pour une capacité apprise par montée de niveau."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:466
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET__MOVE_ID}' missing for a level up moveset entry."
-msgstr "XML invalide. «{XML_MOVESET__MOVE_ID}» manquant pour une capacité apprise par montée de niveau."
+msgstr "XML invalide. « {XML_MOVESET__MOVE_ID} » manquant pour une capacité apprise par montée de niveau."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:503
 msgid "Invalid XML. StatsGrowth must have exactly 100 levels."
-msgstr "XML invalide. «StatsGrowth» (augmentation des statistiques) doit avoir exactement 100 niveaux."
+msgstr "XML invalide. « StatsGrowth » (augmentation des statistiques) doit avoir exactement 100 niveaux."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:528
 #: skytemple-files/skytemple_files/data/monster_xml.py:533
@@ -1512,7 +1512,7 @@ msgstr "XML invalide. «StatsGrowth» (augmentation des statistiques) doit avoir
 #: skytemple-files/skytemple_files/data/monster_xml.py:553
 #, python-brace-format
 msgid "Invalid XML. '{x}' missing for a stats growth level entry."
-msgstr "XML invalide. «{x}» manquant pour une entrée d'augmentation des statistiques par niveau."
+msgstr "XML invalide. « {x} » manquant pour une entrée d'augmentation des statistiques par niveau."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:578
 msgid "Incompatible XML. The number of portraits don't match with the expected value of {len(value_to_update)}"
@@ -1521,12 +1521,12 @@ msgstr "XML invalide. Le nombre de portraits ne correspond pas à la valeur atte
 #: skytemple-files/skytemple_files/data/monster_xml.py:592
 #, python-brace-format
 msgid "Invalid XML. '{XML_PORTRAITS_PORTRAIT__IMAGE}' missing for a portrait."
-msgstr "XML invalide. «{XML_PORTRAITS_PORTRAIT__IMAGE}» manquant pour un portrait."
+msgstr "XML invalide. « {XML_PORTRAITS_PORTRAIT__IMAGE} » manquant pour un portrait."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:596
 #, python-brace-format
 msgid "Invalid XML. '{XML_PORTRAITS_PORTRAIT__PALETTE}' missing for a portrait."
-msgstr "XML invalide. «{XML_PORTRAITS_PORTRAIT__PALETTE}» manquant pour un portrait."
+msgstr "XML invalide. « {XML_PORTRAITS_PORTRAIT__PALETTE} » manquant pour un portrait."
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:604
 #, python-brace-format
@@ -1593,7 +1593,7 @@ msgstr "Gouffre, Couloir"
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:63
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:76
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!)."
-msgstr "La tuile est considérée comme étant du «Vide / Gouffre» (mais est tout de même affichée en jeu comme du terrain secondaire !)"
+msgstr "La tuile est considérée comme étant du « Vide / Gouffre » (mais est tout de même affichée en jeu comme du terrain secondaire !)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:64
 msgid "Chasm, Hallway; All Chasm"
@@ -1601,7 +1601,7 @@ msgstr "Gouffre, Couloir ; Le reste devient Gouffre"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:66
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!). All tiles outside of defined room are made the tileset's defined secondary terrain."
-msgstr "La tuile est considérée comme étant du «Vide / Gouffre» (mais est tout de même affichée comme du terrain secondaire !)\n"
+msgstr "La tuile est considérée comme étant du « Vide / Gouffre » (mais est tout de même affichée comme du terrain secondaire !)\n"
 "Toutes les tuiles en dehors de la salle définie utilisent le terrain secondaire."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:68
@@ -1845,7 +1845,7 @@ msgstr "Impossible de convertir l'image PIL pour le fichier KAO : les dimensions
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr "Ce portrait ne se compresse pas bien, la taille résultante est plus grande que 800 octets ({len(new_img_compressed)} au total).\n"
-"Si ce n'est pas encore fait, essayez d'appliquer le patch «ProvideATUPXSupport» pour installer un algorithme de compression plus optimisé, qui est susceptible de mieux compresser l'image."
+"Si ce n'est pas encore fait, essayez d'appliquer le patch « ProvideATUPXSupport » pour installer un algorithme de compression plus optimisé, qui est susceptible de mieux compresser l'image."
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:86
 #, python-brace-format
@@ -1928,7 +1928,7 @@ msgstr "Cette image doit être mieux compressée pour être placée dans sa zone
 
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:130
 msgid "ARMIPS could not be found. Make sure, that 'armips' is inside your system's PATH."
-msgstr "ARMIPS introuvable. Assurez-vous que «armips» se trouve dans la variable path de votre système."
+msgstr "ARMIPS introuvable. Assurez-vous que « armips » se trouve dans la variable path de votre système."
 
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:137
 msgid "ARMIPS reported an error while applying the patch."
@@ -1973,7 +1973,7 @@ msgid "Implements shared experience points between all members (GtI style). \n"
 "This is disabled during Special Episodes and dungeons with level 1 or no exp. restrictions. \n"
 "Needs the ExtractDungeonData patch to be applied to free some space used by this."
 msgstr "Implémente le partage des points d'expérience entre tous les membres (style Portes de l'Infini). \n"
-"Le partage est desactivé lors des Épisodes Spéciaux et dans les donjons avec les restrictions «niveau 1» ou «pas de gain d'expérience».\n"
+"Le partage est desactivé lors des Épisodes Spéciaux et dans les donjons avec les restrictions « niveau 1 » ou « pas de gain d'expérience ».\n"
 "Le correctif ExtractDungeonData doit être appliqué pour libérer de l'espace utilisé par celui-ci."
 
 #: skytemple-files/skytemple_files/patch/handler/extra_space.py:39
@@ -1994,7 +1994,7 @@ msgstr "Pas assez d'espace pour mettre les noms de fichier ! "
 
 #: skytemple-files/skytemple_files/patch/handler/far_off_pal_overdrive.py:41
 msgid "Makes the game always move the PoV to your partners when they use moves or are attacked, even if the partner is only one tile away, when far-off pals is enabled. Recommended for CTC since the PoV stays on your last pokemon at the end of a manual movement round without this, and CTC already reduces the amount of time the game pauses for between PoV changes."
-msgstr "Fait en sorte de toujours voir les coéquipiers quand ils utilisent des capacités ou sont attaqués, même s'ils sont à une case de distance, lorsque l'option pour voir les coéquipiers au loin est activée. Recommandé pour le patch «CompleteTeamControl» étant donné que la caméra reste sur le dernier pokémon ayant agi en mode manuel sans cela, et le patch «CompleteTeamControl» réduit le temps de pause lors du déplacement de la caméra."
+msgstr "Fait en sorte de toujours voir les coéquipiers quand ils utilisent des capacités ou sont attaqués, même s'ils sont à une case de distance, lorsque l'option pour voir les coéquipiers au loin est activée. Recommandé pour le patch « CompleteTeamControl » étant donné que la caméra reste sur le dernier pokémon ayant agi en mode manuel sans cela, et le patch « CompleteTeamControl » réduit le temps de pause lors du déplacement de la caméra."
 
 #: skytemple-files/skytemple_files/patch/handler/fix_evolution.py:38
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
@@ -2006,11 +2006,11 @@ msgstr "Remplace la capacité en raccourci fixe (L+A) par un système de raccour
 
 #: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:41
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
-msgstr "Recommandé pour le correctif «CompleteTeamControl». Sans ce patch, les coéquipiers ne peuvent pas déclencher de pièges. Cela rééquilibre le jeu, étant donné qu'il est facile de faire éviter les pièges aux coéquipiers en mode manuel. Mais ce n'est pas recommandé pour les mods qui utilisent les pièges trappe, ce qui mettrait instantanément KO les coéquipiers s'ils marchaient dessus."
+msgstr "Recommandé pour le correctif « CompleteTeamControl ». Sans ce patch, les coéquipiers ne peuvent pas déclencher de pièges. Cela rééquilibre le jeu, étant donné qu'il est facile de faire éviter les pièges aux coéquipiers en mode manuel. Mais ce n'est pas recommandé pour les mods qui utilisent les pièges trappe, ce qui mettrait instantanément KO les coéquipiers s'ils marchaient dessus."
 
 #: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:41
 msgid "Reduces the amount of time the game pauses for before changing the PoV when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
-msgstr "Réduit le temps de pause lors du déplacement de la caméra pour voir les coéquipiers au loin, de 60 images à 12. Ce patch est déjà appliqué par le patch «CompleteTeamControl»."
+msgstr "Réduit le temps de pause lors du déplacement de la caméra pour voir les coéquipiers au loin, de 60 images à 12. Ce patch est déjà appliqué par le patch « CompleteTeamControl »."
 
 #: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:38
 msgid "Allows the partner to be of the same type as the player in the personality test."
@@ -2020,27 +2020,27 @@ msgstr "Autorise le partenaire à être du même type que le joueur dans le test
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
 "Requires the ActorAndLevelLoader, as it frees the space needed to implement this."
 msgstr "Fournit le support pour les conteneurs ATUPX, qui utilisent un algorithme de compression différent de PX.\n"
-"Requiert le patch «ActorAndLevelLoader» qui libère de l'espace utile pour implanter ce patch."
+"Requiert le patch « ActorAndLevelLoader » qui libère de l'espace utile pour implanter ce patch."
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:39
 msgid "Fixes the 'Unusued' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
-msgstr "Corrige le fonctionnement de la valeur chance pour l'attribut «Inutilisé» des étages de donjons. Cela détermine maintenant la chance qu'une salle contienne aléatoirement des murs à l'intérieur, dont certains peuvent être remplacés par le terrain secondaire."
+msgstr "Corrige le fonctionnement de la valeur chance pour l'attribut « Inutilisé » des étages de donjons. Cela détermine maintenant la chance qu'une salle contienne aléatoirement des murs à l'intérieur, dont certains peuvent être remplacés par le terrain secondaire."
 
 #: skytemple-files/skytemple_files/patch/patches.py:102
 #: skytemple-files/skytemple_files/patch/patches.py:107
 #, python-brace-format
 msgid "The patch '{name}' was not found."
-msgstr "Le correctif «{name}» est introuvable."
+msgstr "Le correctif « {name} » est introuvable."
 
 #: skytemple-files/skytemple_files/patch/patches.py:113
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
-msgstr "Le correctif «{patch_name}» doit être appliqué avant d'appliquer le correctif «{name}»."
+msgstr "Le correctif « {patch_name} » doit être appliqué avant d'appliquer le correctif « {name} »."
 
 #: skytemple-files/skytemple_files/patch/patches.py:116
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
-msgstr "Le correctif «{patch_name}» doit être appliqué avant d'appliquer le correctif «{name}». Ce correctif est introuvable."
+msgstr "Le correctif « {patch_name} » doit être appliqué avant d'appliquer le correctif « {name} ». Ce correctif est introuvable."
 
 #: skytemple-files/skytemple_files/patch/patches.py:145
 msgid "config.xml missing in patch package."
@@ -2060,7 +2060,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:164
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
-msgstr "Le fichier patch.py du paquet de correctifs ne contient pas de gestionnaire de correctifs («PatchHandler»)."
+msgstr "Le fichier patch.py du paquet de correctifs ne contient pas de gestionnaire de correctifs (« PatchHandler »)."
 
 #: skytemple-files/skytemple_files/patch/patches.py:169
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
@@ -2069,7 +2069,7 @@ msgstr "Le paquet de correctifs ne contient aucune entrée de configuration dans
 #: skytemple-files/skytemple_files/patch/patches.py:175
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
-msgstr "Aucun correctif trouvé dans la configuration pour le gestionnaire «{handler.name}»."
+msgstr "Aucun correctif trouvé dans la configuration pour le gestionnaire « {handler.name} »."
 
 #: skytemple-files/skytemple_files/script/ssb/constants.py:75
 #, python-brace-format
@@ -2529,7 +2529,7 @@ msgstr "Vous ne pourrez pas les restaurer."
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:265
 #, python-brace-format
 msgid "Compiling script \"{self.filename}\"..."
-msgstr "Compilation du script «{self.filename}»..."
+msgstr "Compilation du script « {self.filename} »..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:282
 msgid "Parse error: "
@@ -3452,7 +3452,7 @@ msgstr "Ouvrir une ROM"
 #: skytemple/skytemple/controller/main.py:572
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
-msgstr "Chargement de la ROM «{rom_name}»..."
+msgstr "Chargement de la ROM « {rom_name} »..."
 
 #: skytemple/skytemple/controller/main.py:574
 #, python-brace-format
@@ -3462,7 +3462,7 @@ msgstr "Ouverture de {filename}."
 #: skytemple/skytemple/controller/main.py:733
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
-msgstr "Enregistrement de la ROM «{rom_name}»..."
+msgstr "Enregistrement de la ROM « {rom_name} »..."
 
 #: skytemple/skytemple/controller/main.py:735
 #, python-brace-format
@@ -3517,7 +3517,7 @@ msgstr ""
 msgid "Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they \"blend into\" each other. This will make the image look like it contains more colors but also might decrease the overall visual quality. Two different algorithms are available.\n\n"
 "No Dithering: Color will be reorganized and reduced if necessary. No dithering will be performed.\n\n"
 "Reorganize colors only: Colors will be reorganized so that they fit the game's format. SkyTemple will not attempt to reduce the amount of overall colors to make this work, so you will get an error, if it's not possible with the current amount. However if it does work, the output image will look identical to the original image."
-msgstr "Tramage : les couleurs sont réorganisées et leur nombre est réduit si nécessaire. Les couleurs sont altérées pour qu'elles se «mélangent mieux». Cela donne l'impression que l'image contient plus de couleurs mais peut aussi dégrader l'aspect visuel global. Deux algorithmes de tramage sont proposés. \n\n"
+msgstr "Tramage : les couleurs sont réorganisées et leur nombre est réduit si nécessaire. Les couleurs sont altérées pour qu'elles se « mélangent mieux ». Cela donne l'impression que l'image contient plus de couleurs mais peut aussi dégrader l'aspect visuel global. Deux algorithmes de tramage sont proposés. \n\n"
 "Aucun tramage : les couleurs sont réorganisées et leur nombre est réduit si nécessaire. Aucune opération de tramage ne sera effectuée.\n\n"
 "Réorganiser les couleurs uniquement : les couleurs sont réorganisées pour être en adéquation avec le format utilisé par le jeu. SkyTemple ne tentera pas de réduire le nombre de couleurs pour que cela marche, donc il se peut qu'il y ait une erreur à cause du nombre de couleurs présentes. Cependant, si cela marche, l'image produite sera visuellement identique à l'original."
 
@@ -4030,7 +4030,7 @@ msgstr "<b>NOM</b>\n"
 "Couloir\n"
 "Infranchissable : Oui\n"
 "Affecté par Bulldozer Tout-Terrain : Oui\n\n"
-"La tuile est considérée comme étant du «Vide / Gouffre» (mais est tout de même affichée comme du terrain secondaire). \n"
+"La tuile est considérée comme étant du « Vide / Gouffre » (mais est tout de même affichée comme du terrain secondaire). \n"
 "Toutes les tuiles en dehors de la salle définie utilisent le terrain secondaire."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:531
