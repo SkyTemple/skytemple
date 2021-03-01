@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-03-01 14:24\n"
+"PO-Revision-Date: 2021-03-01 15:31\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -351,7 +351,7 @@ msgstr "Depurar"
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:101
 msgid "Boost"
-msgstr "Acelerar"
+msgstr "Aceleración"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:102
@@ -1544,7 +1544,7 @@ msgstr "Mitad de vida"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:27
 msgid "Pinch"
-msgstr ""
+msgstr "Pellizcar"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:28
 msgid "Level Up"
@@ -2137,7 +2137,7 @@ msgstr "No se ha podido compilar el script: Todos los idiomas deben tener la mis
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:175
 msgid "BOOST"
-msgstr ""
+msgstr "ACELERACIÓN"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:178
 msgid "Debugging disabled."
@@ -2233,7 +2233,7 @@ msgstr "Ruta"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:70
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:87
 msgid "Hanger"
-msgstr ""
+msgstr "Suspensión"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:71
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2267
@@ -2301,7 +2301,7 @@ msgstr "2 (Sub)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:200
 msgid "3 (Acting)"
-msgstr "3 (Acto)"
+msgstr "3 (Acciones)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:234
 msgid "<Global>"
@@ -2469,7 +2469,7 @@ msgstr "Entrada (sse)"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:924
 #: skytemple/skytemple/module/script/module.py:132
 msgid "Acting (ssa)"
-msgstr "Actuando (ssa)"
+msgstr "Acciones (ssa)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:934
 #: skytemple/skytemple/module/script/module.py:150
@@ -2625,7 +2625,7 @@ msgstr "Salta sobre la declaración actual."
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:61
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:403
 msgid "Step Over"
-msgstr "Paso sobre"
+msgstr "Saltar"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:76
 msgid "Step into the current instruction, if it's a call, otherwise step over."
@@ -2634,25 +2634,25 @@ msgstr "Salta a la declaración actual si es una llamada; en caso contrario, sal
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:77
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:413
 msgid "Step Into"
-msgstr "Paso en"
+msgstr "Depurar paso a paso por instrucciones"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:92
 msgid "Step out of the current function call."
-msgstr "Salir de la llamada a la función actual."
+msgstr "Sale de la llamada a la función actual."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:93
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:423
 msgid "Step Out"
-msgstr "Paso de"
+msgstr "Depurar hasta el retorno"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:118
 msgid "Halt at the next instruction, even if in another script context."
-msgstr ""
+msgstr "Se detiene en la siguiente declaración, incluso si está en un contexto de script diferente."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:119
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:439
 msgid "Step Next"
-msgstr "Siguiente paso"
+msgstr "Paso siguiente"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:143
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:143
@@ -2735,7 +2735,7 @@ msgstr "Escenario"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:52
 msgid "Init"
-msgstr ""
+msgstr "Inicio"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:54
 msgid "Dungeon Progress"
@@ -2996,7 +2996,7 @@ msgstr "Los comandos de 'branch_Debug' se activarán (si se está depurando)."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1565
 msgid "Dungeons: Auto Next Floor"
-msgstr ""
+msgstr "Territorios: Avanzar automáticamente al siguiente piso"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1593
 msgid "Debug Flags 1"
@@ -4825,11 +4825,11 @@ msgstr "Objetos pegajosos:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1941
 msgid "IQ and Misc"
-msgstr "CI y misceláneo"
+msgstr "CI y Misceláneo"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1957
 msgid "Unknown E:"
-msgstr ""
+msgstr "E desconocido:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1969
 msgid "Enemy IQ:"
@@ -8876,9 +8876,9 @@ msgid "This section contains all scenes for the map {self.name}.\n\n"
 "depending on the current story progress.\n\n"
 "Currently new scenes can not be added via SkyTemple."
 msgstr "Esta sección contiene todas las escenas del mapa {self.name}.\n\n"
-"\"Entrada(sse)\" contiene la escena que se carga cuando el jugador entra en el\n"
+"\"Entrada (sse)\" contiene la escena que se carga cuando el jugador entra en el\n"
 "mapa al \"caminar hacia él\" (si es aplicable).\n\n"
-"\"Acto (ssa)\" contiene las escenas utilizadas para las cinemáticas.\n"
+"\"Acciones (ssa)\" contiene las escenas utilizadas para las cinemáticas.\n"
 "El jugador normalmente no puede mover al personaje en estas escenas.\n\n"
 "\"Sub (sss)\" contiene escenas que pueden ser cargadas sobre la escena \"Enter\",\n"
 "dependiendo del progreso de la historia actual.\n\n"
@@ -9098,7 +9098,7 @@ msgstr "Cada una de las escenas tiene al menos un script asignado, que se ejecut
 
 #: skytemple/skytemple/module/script/controller/ssb.py:44
 msgid "Open Script Engine Debugger"
-msgstr "Abrir depurador del motor de scripts"
+msgstr "Abrir Depurador del Motor de Scripts"
 
 #: skytemple/skytemple/module/script/controller/sub.py:29
 #, python-brace-format
@@ -9580,7 +9580,7 @@ msgstr "Cargando ROM \"NAME\"..."
 #: skytemple/skytemple/skytemple.glade:1336
 msgid "You want to support SkyTemple and PMD2 ROM hacking?\n"
 "Thank you! You can support us..."
-msgstr "¿Quieres apoyar SkyTemple y PMD2 ROM hacking?\n"
+msgstr "¿Quieres apoyar SkyTemple y el hacking de la ROM de PMD2?\n"
 "¡Muchas gracias! Puedes apoyarnos..."
 
 #: skytemple/skytemple/skytemple.glade:1356
