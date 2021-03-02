@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-02 11:24+0000\n"
-"PO-Revision-Date: 2021-03-02 12:09\n"
+"PO-Revision-Date: 2021-03-02 16:40\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -2034,7 +2034,7 @@ msgstr "Bietet Unterstützung für ATUPX Container, welche einen andere Komprimi
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:39
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
-msgstr ""
+msgstr "Korrigierte die 'unbenutzte' Chance für Dungeons. Sie wird nun benutzt um zu ermitteln, ob ein Raum in der Ebene nun ein Labyrinth aus Wänden beinhaltet, mit einigen Kacheln ersetzt mit dem sekundären Terrain."
 
 #: skytemple-files/skytemple_files/patch/patches.py:106
 #: skytemple-files/skytemple_files/patch/patches.py:111
@@ -3767,7 +3767,8 @@ msgstr "Dojo Dungeons"
 #: skytemple/skytemple/module/dungeon/controller/dojos.py:35
 msgid "Dojo Dungeons are the dungeons used in the Marowak Dojo.\n"
 "You can not change the number of floors for Dojo Dungeons."
-msgstr ""
+msgstr "Dojo Dungeons sind die Dungeons des Knogga-Dojos.\n"
+"Du kannst die Anzahl der Ebenen für Dojo Dungeons nicht ändern."
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:43
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:57
@@ -5710,7 +5711,11 @@ msgid "This will export all tiles.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Dies wird alle Kacheln exportieren.\n\n"
+"Du kannst die Kacheln bearbeiten und wieder importieren.\n"
+"Beachte bitte, dass du sie eventuell umwandeln musst,\n"
+"bevor du sie importieren kannst.\n"
+"Siehe den Import-Dialog für weitere Informationen."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1649
 msgid "Background Export"
@@ -5722,7 +5727,11 @@ msgid "This will export the entire background an image.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Dies wird den gesamten Hintergrund exportieren.\n\n"
+"Du kannst den Hintergrund bearbeiten und wieder importieren.\n"
+"Beachte bitte, dass du ihn eventuell umwandeln musst,\n"
+"bevor du ihn importieren kannst.\n"
+"Siehe den Import-Dialog für weitere Informationen."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1764
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:7
@@ -5736,7 +5745,11 @@ msgid "This will export all chunks.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Dies wird alle Blöcke exportieren.\n\n"
+"Du kannst die exportierte Datei bearbeiten und wieder importieren.\n"
+"Beachte bitte, dass du ihn eventuell umwandeln musst,\n"
+"bevor du ihn importieren kannst.\n"
+"Siehe den Import-Dialog für weitere Informationen."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1909
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2390
@@ -5946,7 +5959,7 @@ msgstr "Feld-Variationen #3"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2126
 msgid "These are extra rules. The purpose of them is currently unknown, so be careful when you edit them."
-msgstr ""
+msgstr "Dies sind zusätzliche Regeln. Aktuell ist nicht bekannt, wofür diese Regeln sind. Sei also vorsichtig, wenn du sie bearbeitest."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2168
 msgid "Extra Rules"
@@ -5987,7 +6000,20 @@ msgid "This will import the chunks. \n"
 "Colors that are in the wrong palette are replaced wth\n"
 "transparency.\n\n"
 "Palette animation settings are not changed."
-msgstr ""
+msgstr "Dies wird alle Blöcke importieren.\n"
+"Bestehe Zuordnungen von Kacheln zu Blöcken werden überschrieben. \n\n"
+"Die Datei muss folgendes Format haben:\n"
+"- Die Bilder müssen aus 3x3 Kachel-Blöcken bestehen. \n"
+"  Eine Kachel ist 8x8px groß.\n"
+"- Die Bilder sind indizierte PNGs.\n"
+"- Die Farben sind in 12 Paletten mit je 16 Farben aufgeteilt \n"
+"  (weitere Farben werden ignoriert).\n"
+"- Jede 8x8 Kachel im Bild DARF nur Farben aus einer dieser 12\n"
+"  Paletten verwenden.\n"
+"- Die erste Farbe jeder Palette wird als Transparenz importiert.\n\n"
+"Farben mit der falschen Palette werden stattdessen als \n"
+"Transparenz importiert.\n\n"
+"Die Einstellungen der Palettenanimation werden nicht geändert."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2624
 msgid "This will import the tiles.\n\n"
@@ -6441,7 +6467,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:135
 msgid "Location of Recruitment"
-msgstr ""
+msgstr "Ort der Rekrutierung"
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:172
 msgid "To add them to the team right away:\n"
@@ -7340,7 +7366,10 @@ msgid "This will import the chunks for the selected layer\n"
 "using an image. The existing mappings are replaced.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Dies wird alle Blöcke für die auswählte Ebene importieren.\n"
+"Bestehe Zuordnungen von Kacheln zu Blöcken werden überschrieben. \n\n"
+"Beachte bitte, dass du das Eingabebild eventuell umwandeln musst, bevor du es importieren kannst.\n"
+"Siehe die \"Format-Details\" für weitere Informationen."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5968
 msgid "This will import the entire map from one image\n"
