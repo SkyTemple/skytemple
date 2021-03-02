@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-02 09:46+0000\n"
-"PO-Revision-Date: 2021-03-02 10:38\n"
+"POT-Creation-Date: 2021-03-02 11:24+0000\n"
+"PO-Revision-Date: 2021-03-02 12:09\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -970,7 +970,7 @@ msgstr "Ungültiges XML. Erwartete Attribut {attrib} für XML-Tag {ele.tag}."
 
 #: skytemple-files/skytemple_files/data/data_cd/model.py:58
 msgid "To delete this effect, no items must use it."
-msgstr ""
+msgstr "Um diesen Effekt zu löschen, dürfen keine Items ihn verwenden."
 
 #: skytemple-files/skytemple_files/data/md/model.py:58
 msgid "Stench"
@@ -1988,7 +1988,7 @@ msgstr "Extrahiert die Ebenen-Ränge, die Liste der Ebenen für die keine Missio
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_code.py:56
 msgid "Extracts item effects code and put it in files."
-msgstr ""
+msgstr "Extrahiert den Code für Item-Effekte in Dateien."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:46
 msgid "Extracts the hardcoded item lists, used for mission rewards/treasure boxes content as well as Kecleon shop items, and put them in files. Provides support for reading them from the rom file system."
@@ -2000,7 +2000,7 @@ msgstr "Nicht genug Platz um Dateinamen zu platzieren! "
 
 #: skytemple-files/skytemple_files/patch/handler/extract_move_code.py:53
 msgid "Extracts move effects code and put it in files."
-msgstr ""
+msgstr "Extrahiert den Code für Attacken-Effekte in Dateien."
 
 #: skytemple-files/skytemple_files/patch/handler/far_off_pal_overdrive.py:41
 msgid "Makes the game always move the PoV to your partners when they use moves or are attacked, even if the partner is only one tile away, when far-off pals is enabled. Recommended for CTC since the PoV stays on your last pokemon at the end of a manual movement round without this, and CTC already reduces the amount of time the game pauses for between PoV changes."
@@ -2033,8 +2033,8 @@ msgstr "Bietet Unterstützung für ATUPX Container, welche einen andere Komprimi
 "Benötigt den ActorAndLevelLoader, da dieser den freien Platz für den Patch zur Verfügung stellt."
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:39
-msgid "Fixes the 'Unusued' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
-msgstr "Korrigiert die \"unbenutzte\" Chance für Dungeons. Sie bestimmt nun die Wahrscheinlichkeit, dass ein Labyrinth mit Wänden und sekundärem Terrain generiert wird."
+msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
+msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:106
 #: skytemple-files/skytemple_files/patch/patches.py:111
@@ -3758,7 +3758,7 @@ msgstr "Hintergründe"
 
 #: skytemple/skytemple/module/bgp/controller/main.py:35
 msgid "This section lets you edit static backgrounds used in various places of the game."
-msgstr ""
+msgstr "In diesem Abschnitt können Hintergründe bearbeitet werden, die in unterschiedlichen Stellen im Spiel verwendet werden."
 
 #: skytemple/skytemple/module/dungeon/controller/dojos.py:23
 msgid "Dojo Dungeons"
@@ -5365,11 +5365,11 @@ msgstr "Sekundär"
 
 #: skytemple/skytemple/module/dungeon/module.py:742
 msgid "Vis."
-msgstr ""
+msgstr "Sichtb."
 
 #: skytemple/skytemple/module/dungeon/module.py:744
 msgid "Unb."
-msgstr ""
+msgstr "Unzerstörb."
 
 #: skytemple/skytemple/module/dungeon/module.py:761
 #, python-brace-format
@@ -6109,7 +6109,7 @@ msgstr "Nicht implementiert."
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:276
 #: skytemple/skytemple/module/lists/module.py:102
 msgid "Item Effects"
-msgstr ""
+msgstr "Item-Effekte"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:71
 msgid "Edits the item effects used by the game."
@@ -6129,32 +6129,32 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:204
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:204
 msgid "Effect"
-msgstr ""
+msgstr "Effekt"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:295
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:295
 msgid "Effect ID: "
-msgstr ""
+msgstr "Effekt-ID: "
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:392
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:392
 msgid "Used by: "
-msgstr ""
+msgstr "Verwendet von: "
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:481
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:481
 msgid "Import Code"
-msgstr ""
+msgstr "Code importieren"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:526
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:526
 msgid "Export Code"
-msgstr ""
+msgstr "Code exportieren"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:559
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:559
 msgid "Effects Code"
-msgstr ""
+msgstr "Effekt-Code"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:107
 msgid "Import any item effect ASM code. It must follow the rules of a valid item effect code.\n"
@@ -6374,11 +6374,11 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:276
 #: skytemple/skytemple/module/lists/module.py:105
 msgid "Move Effects"
-msgstr ""
+msgstr "Attacken-Effekte"
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:71
 msgid "Edits the move effects used by the game."
-msgstr ""
+msgstr "Bearbeitet die Attacken-Effekte, die das Spiel benutzt."
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:84
 msgid "<Not available>\n\n"
@@ -6411,7 +6411,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/move_effects.py:178
 msgid "Cannot delete this effect."
-msgstr ""
+msgstr "Kann diesen Effekt nicht löschen."
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
 #: skytemple/skytemple/module/lists/module.py:93
@@ -6440,8 +6440,8 @@ msgid "You can add Pokémon from this list to the team via Script Engine command
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:135
-msgid "Location of Recruiment"
-msgstr "Ort der Rekrutierung"
+msgid "Location of Recruitment"
+msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:172
 msgid "To add them to the team right away:\n"
@@ -8386,7 +8386,7 @@ msgid "Can Evolve?"
 msgstr "Entwicklung möglich?"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:370
-msgid "Wheher or not you need to have a special item in the bag (mystery part/secret slab) for the Pokémon to spawn in dungeons"
+msgid "Whether or not you need to have a special item in the bag (mystery part/secret slab) for the Pokémon to spawn in dungeons"
 msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.py:372
@@ -8657,8 +8657,8 @@ msgid "This section contains all the script scenes of maps, that don't fit in an
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/lsd.py:29
-msgid "Acting Scenes for \"{}"
-msgstr "Handlungsszenen für \"{}"
+msgid "Acting Scenes for \"{}\""
+msgstr ""
 
 #: skytemple/skytemple/module/script/controller/lsd.py:34
 #, python-brace-format
@@ -9215,7 +9215,7 @@ msgstr "Paletten-Editor"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:103
 msgid "Make all colors unique"
-msgstr ""
+msgstr "Alle Farben einzigartig machen"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:170
 msgid "Add Frame (after current)"
@@ -9403,7 +9403,9 @@ msgstr "psy_commando"
 msgid "Figured out most things about \n"
 "how this game works!\n"
 "Developer of ppmdu."
-msgstr ""
+msgstr "Hat das meiste darüber herausgefunden,\n"
+"wie dieses Spiel funktioniert!\n"
+"Entwickler von ppmdu."
 
 #: skytemple/skytemple/skytemple.glade:1705
 msgid "Dither: Ordered"
