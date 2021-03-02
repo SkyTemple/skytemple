@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-02 11:24+0000\n"
-"PO-Revision-Date: 2021-03-02 19:29\n"
+"PO-Revision-Date: 2021-03-02 20:26\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -146,7 +146,7 @@ msgstr "Operación 'if' desconocida en la línea {self.ctx.start.line})."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:49
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/default_case_block.py:63
 msgid "Invalid message switch case call."
-msgstr "Llamada inválida a case de 'message switch'."
+msgstr "Llamada inválida a caso de 'message switch'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/case_header.py:58
 msgid "Unknown case operation."
@@ -170,7 +170,7 @@ msgstr "Tipo de 'case' inválido para un message_switch (línea {self.ctx.start.
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:84
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line}"
-msgstr "Un switch block solo puede tener un único 'case' por defecto (línea {self.ctx.start.line})"
+msgstr "Un switch block solo puede tener un único caso del tipo 'default' (línea {self.ctx.start.line})"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:75
 #, python-brace-format
@@ -237,7 +237,7 @@ msgstr "Error de compilación fatal: error de pila."
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:101
 #, python-brace-format
 msgid "Unexpected continue; in line {ctx.start.line}"
-msgstr "Continuación inesperada en la línea {ctx.start.line}"
+msgstr "'continue' inesperado en la línea {ctx.start.line}"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:107
 #, python-brace-format
@@ -351,7 +351,7 @@ msgstr "Depurar"
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:101
 msgid "Boost"
-msgstr "Aceleración"
+msgstr "Acelerar"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:102
