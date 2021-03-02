@@ -26,10 +26,13 @@ from skytemple.module.lists.controller.actor_list import ActorListController
 from skytemple.module.lists.controller.rank_list import RankListController
 from skytemple.module.lists.controller.menu_list import MenuListController
 from skytemple.module.lists.controller.item_lists import ItemListsController
+from skytemple.module.lists.controller.item_effects import ItemEffectsController
+from skytemple.module.lists.controller.move_effects import MoveEffectsController
 from skytemple.module.lists.controller.starters_list import StartersListController
 from skytemple.module.lists.controller.recruitment_list import RecruitmentListController
 from skytemple.module.lists.controller.world_map import WorldMapController
 from skytemple_files.data.md.model import Md
+from skytemple_files.data.data_cd.handler import DataCDHandler
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement, HardcodedDungeons
 from skytemple_files.hardcoded.personality_test_starters import HardcodedPersonalityTestStarters
 from skytemple_files.hardcoded.default_starters import HardcodedDefaultStarters
@@ -43,6 +46,8 @@ from skytemple_files.common.i18n_util import _
 
 ITEM_LISTS = 'TABLEDAT/list_%02d.bin'
 ACTOR_LIST = 'BALANCE/actor_list.bin'
+MOVE_EFFECTS = 'BALANCE/waza_cd.bin'
+ITEM_EFFECTS = 'BALANCE/item_cd.bin'
 
 class ListsModule(AbstractModule):
     """Module to modify lists."""
@@ -65,6 +70,8 @@ class ListsModule(AbstractModule):
         self._rank_list_tree_iter = None
         self._menu_list_tree_iter = None
         self._item_lists_tree_iter = None
+        self._item_effects_tree_iter = None
+        self._move_effects_tree_iter = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
@@ -91,6 +98,12 @@ class ListsModule(AbstractModule):
         self._menu_list_tree_iter = item_store.append(root, [
             'skytemple-view-list-symbolic', _('Menu List'), self, MenuListController, 0, False, '', True
         ])
+        self._item_effects_tree_iter = item_store.append(root, [
+            'skytemple-view-list-symbolic', _('Item Effects'), self, ItemEffectsController, 0, False, '', True
+        ])
+        self._move_effects_tree_iter = item_store.append(root, [
+            'skytemple-view-list-symbolic', _('Move Effects'), self, MoveEffectsController, 0, False, '', True
+        ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])
         generate_item_store_row_label(item_store[self._starters_tree_iter])
@@ -99,8 +112,36 @@ class ListsModule(AbstractModule):
         generate_item_store_row_label(item_store[self._rank_list_tree_iter])
         generate_item_store_row_label(item_store[self._menu_list_tree_iter])
         generate_item_store_row_label(item_store[self._item_lists_tree_iter])
+        generate_item_store_row_label(item_store[self._move_effects_tree_iter])
+        generate_item_store_row_label(item_store[self._item_effects_tree_iter])
         self._tree_model = item_store
 
+    def has_item_effects(self):
+        return self.project.file_exists(ITEM_EFFECTS)
+    
+    def get_item_effects(self):
+        return self.project.open_file_in_rom(ITEM_EFFECTS, DataCDHandler)
+    
+    def mark_item_effects_as_modified(self):
+        """Mark as modified"""
+        self.project.mark_as_modified(ITEM_EFFECTS)
+        # Mark as modified in tree
+        row = self._tree_model[self._item_effects_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+        
+    def has_move_effects(self):
+        return self.project.file_exists(MOVE_EFFECTS)
+    
+    def get_move_effects(self):
+        return self.project.open_file_in_rom(MOVE_EFFECTS, DataCDHandler)
+    
+    def mark_move_effects_as_modified(self):
+        """Mark as modified"""
+        self.project.mark_as_modified(MOVE_EFFECTS)
+        # Mark as modified in tree
+        row = self._tree_model[self._move_effects_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+    
     def has_item_lists(self):
         return self.project.file_exists(ITEM_LISTS%0)
 
