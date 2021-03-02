@@ -26,7 +26,7 @@ class LsdController(SimpleController):
         self.name = name
 
     def get_title(self) -> str:
-        return _('Acting Scenes for "{}').format(self.name)
+        return _('Acting Scenes for "{}"').format(self.name)
 
     def get_content(self) -> Gtk.Widget:
         # TODO: Adding and removing the acting scenes.
