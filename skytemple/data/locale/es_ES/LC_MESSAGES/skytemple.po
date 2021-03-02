@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-02 11:24+0000\n"
-"PO-Revision-Date: 2021-03-02 13:49\n"
+"PO-Revision-Date: 2021-03-02 15:33\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1990,7 +1990,7 @@ msgstr "Extrae los rangos de los pisos, los pisos de las misiones prohibidas y l
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_code.py:56
 msgid "Extracts item effects code and put it in files."
-msgstr ""
+msgstr "Extrae el código de los efectos del objeto y los pone en archivos."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:46
 msgid "Extracts the hardcoded item lists, used for mission rewards/treasure boxes content as well as Kecleon shop items, and put them in files. Provides support for reading them from the rom file system."
@@ -2002,7 +2002,7 @@ msgstr "¡No hay suficiente espacio para poner nombres de archivo! "
 
 #: skytemple-files/skytemple_files/patch/handler/extract_move_code.py:53
 msgid "Extracts move effects code and put it in files."
-msgstr ""
+msgstr "Extrae el código de los efectos del movimiento y los pone en archivos."
 
 #: skytemple-files/skytemple_files/patch/handler/far_off_pal_overdrive.py:41
 msgid "Makes the game always move the PoV to your partners when they use moves or are attacked, even if the partner is only one tile away, when far-off pals is enabled. Recommended for CTC since the PoV stays on your last pokemon at the end of a manual movement round without this, and CTC already reduces the amount of time the game pauses for between PoV changes."
@@ -2036,7 +2036,7 @@ msgstr "Ofrece soporte para los contenedores ATUPX, que utilizan un algoritmo di
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:39
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
-msgstr ""
+msgstr "Corrige la función del valor aleatorio del atributo \"No utilizado\" de los pisos de los territorios. Esto determina la probabilidad de que una sala contenga aleatoriamente paredes en su interior, algunas de las cuales pueden ser sustituidas por terreno secundario."
 
 #: skytemple-files/skytemple_files/patch/patches.py:106
 #: skytemple-files/skytemple_files/patch/patches.py:111
@@ -2340,7 +2340,7 @@ msgstr "Objetos"
 #: skytemple/skytemple/module/script/controller/ssa.glade:1425
 #: skytemple/skytemple/module/script/controller/ssa.glade:1453
 msgid "Performers"
-msgstr ""
+msgstr "Intérpretes"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:290
 #: skytemple/skytemple/module/script/controller/ssa.glade:1534
@@ -6271,84 +6271,89 @@ msgstr "No implementado."
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:276
 #: skytemple/skytemple/module/lists/module.py:102
 msgid "Item Effects"
-msgstr ""
+msgstr "Efectos de objeto"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:71
 msgid "Edits the item effects used by the game."
-msgstr ""
+msgstr "Edita los efectos de los objetos utilizados por el juego."
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:84
 msgid "<Not available>\n\n"
 "To view and edit move effects, please apply the \"ExtractItemCode\" \n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar los efectos de movimientos, aplica el parche ASM \n"
+"\"ExtractItemCode\" desde el menú \"Parches ASM\"."
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:148
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:148
 msgid "Edits the effects used by each move."
-msgstr ""
+msgstr "Edita los efectos utilizados por cada movimiento."
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:204
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:204
 msgid "Effect"
-msgstr ""
+msgstr "Efecto"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:295
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:295
 msgid "Effect ID: "
-msgstr ""
+msgstr "ID de efecto: "
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:392
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:392
 msgid "Used by: "
-msgstr ""
+msgstr "Usado por: "
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:481
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:481
 msgid "Import Code"
-msgstr ""
+msgstr "Importar código"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:526
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:526
 msgid "Export Code"
-msgstr ""
+msgstr "Exportar código"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:559
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:559
 msgid "Effects Code"
-msgstr ""
+msgstr "Efectos de código"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:107
 msgid "Import any item effect ASM code. It must follow the rules of a valid item effect code.\n"
 "WARNING: SkyTemple does not check if the code is correct!\n"
 "Also, make sure the code was assembled for the version you are using. "
-msgstr ""
+msgstr "Importa cualquier código ASM de efectos de objeto. Debe seguir las reglas de un código de efecto de objeto válido.\n"
+"ATENCIÓN: ¡SkyTemple no comprueba si el código es correcto!\n"
+"Además, asegúrate de que el código se haya creado para la versión que estés utilizando. "
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:110
 msgid "Import Item Effect ASM Code"
-msgstr ""
+msgstr "Importar código ASM de efectos de objeto"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:115
 msgid "Import Item Effect ASM Code..."
-msgstr ""
+msgstr "Importar código ASM de efectos de objeto..."
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:134
 #: skytemple/skytemple/module/lists/controller/move_effects.py:133
 msgid "Error importing ASM code."
-msgstr ""
+msgstr "Error al importar código ASM."
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:142
 msgid "Export any item effect ASM code. It must follow the rules of a valid item effect code.\n"
 "WARNING: it only exports the raw code, it doesn't disassemble it!"
-msgstr ""
+msgstr "Exporta cualquier código ASM de efectos de objeto. Debe seguir las reglas de un código de efecto de objeto válido.\n"
+"ATENCIÓN: solo exporta el código en bruto, ¡no lo desensambla!"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:144
 msgid "Export Item Effect ASM Code"
-msgstr ""
+msgstr "Exportar código ASM de efectos de objeto"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:149
 msgid "Export Item Effect ASM Code..."
-msgstr ""
+msgstr "Exportar código ASM de efectos de objeto..."
 
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:493
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:570
@@ -6547,44 +6552,49 @@ msgstr "Los menús están codificados, por lo que no puedes añadir ninguna opci
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:276
 #: skytemple/skytemple/module/lists/module.py:105
 msgid "Move Effects"
-msgstr ""
+msgstr "Efectos de movimiento"
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:71
 msgid "Edits the move effects used by the game."
-msgstr ""
+msgstr "Edita los efectos de movimiento usados por el juego."
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:84
 msgid "<Not available>\n\n"
 "To view and edit move effects, please apply the \"ExtractMoveCode\" \n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar los efectos de movimiento, aplica el parche ASM \"ExtractMoveCode\" \n"
+"desde el menú \"Parches ASM\"."
 
 #: skytemple/skytemple/module/lists/controller/move_effects.py:106
 msgid "Import any move effect ASM code. It must follow the rules of a valid move effect code.\n"
 "WARNING: SkyTemple does not check if the code is correct!\n"
 "Also, make sure the code was assembled for the version you are using. "
-msgstr ""
+msgstr "Importa cualquier código ASM de efectos de movimiento. Debe seguir las reglas de un código de efectos de movimiento válido.\n"
+"ATENCIÓN: ¡SkyTemple no comprueba si el código es correcto!\n"
+"Además, asegúrate de que el código se haya creado para la versión que estés utilizando. "
 
 #: skytemple/skytemple/module/lists/controller/move_effects.py:109
 msgid "Import Move Effect ASM Code"
-msgstr ""
+msgstr "Importar código ASM de efectos de movimiento"
 
 #: skytemple/skytemple/module/lists/controller/move_effects.py:114
 msgid "Import Move Effect ASM Code..."
-msgstr ""
+msgstr "Importar código ASM de efectos de movimiento..."
 
 #: skytemple/skytemple/module/lists/controller/move_effects.py:141
 msgid "Export any move effect ASM code. It must follow the rules of a valid move effect code.\n"
 "WARNING: it only exports the raw code, it doesn't disassemble it!"
-msgstr ""
+msgstr "Exporta cualquier código ASM de efectos de movimiento. Debe seguir las reglas de un código de efecto de movimiento válido.\n"
+"ATENCIÓN: solo exporta el código en bruto, ¡no lo desensambla!"
 
 #: skytemple/skytemple/module/lists/controller/move_effects.py:148
 msgid "Export Move Effect ASM Code..."
-msgstr ""
+msgstr "Exportar código ASM de efectos de movimiento..."
 
 #: skytemple/skytemple/module/lists/controller/move_effects.py:178
 msgid "Cannot delete this effect."
-msgstr ""
+msgstr "No se puede eliminar este efecto."
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
 #: skytemple/skytemple/module/lists/module.py:93
@@ -6614,7 +6624,7 @@ msgstr "Puedes añadir Pokémon desde esta lista al equipo mediante comandos del
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:135
 msgid "Location of Recruitment"
-msgstr ""
+msgstr "Lugar de reclutamiento"
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:172
 msgid "To add them to the team right away:\n"
@@ -8722,7 +8732,7 @@ msgstr "¿Puede evolucionar?"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:370
 msgid "Whether or not you need to have a special item in the bag (mystery part/secret slab) for the Pokémon to spawn in dungeons"
-msgstr ""
+msgstr "Determina si necesitas o no tener un objeto especial en la bolsa (pieza misteriosa/tabla secreta) para que los Pokémon aparezcan en los territorios"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:372
 msgid "Item Required for spawning?"
@@ -9065,7 +9075,7 @@ msgstr "Añadir objeto"
 #: skytemple/skytemple/module/script/controller/ssa.glade:547
 #: skytemple/skytemple/module/script/controller/ssa.glade:548
 msgid "Add Performer"
-msgstr ""
+msgstr "Añadir intérprete"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:564
 #: skytemple/skytemple/module/script/controller/ssa.glade:565
@@ -9225,7 +9235,7 @@ msgstr "{len_objects} objetos, "
 #: skytemple/skytemple/module/script/controller/ssa.py:1497
 #, python-brace-format
 msgid "{len_performers} prfs, "
-msgstr ""
+msgstr "{len_performers} intérp., "
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1499
 #, python-brace-format
