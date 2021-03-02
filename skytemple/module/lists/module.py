@@ -99,10 +99,10 @@ class ListsModule(AbstractModule):
             'skytemple-view-list-symbolic', _('Menu List'), self, MenuListController, 0, False, '', True
         ])
         self._item_effects_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', 'Item Effects', self, ItemEffectsController, 0, False, '', True
+            'skytemple-view-list-symbolic', _('Item Effects'), self, ItemEffectsController, 0, False, '', True
         ])
         self._move_effects_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', 'Move Effects', self, MoveEffectsController, 0, False, '', True
+            'skytemple-view-list-symbolic', _('Move Effects'), self, MoveEffectsController, 0, False, '', True
         ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])

@@ -15,9 +15,9 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-import re
 import sys
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, List
+from skytemple_files.common.i18n_util import _, f
 
 from gi.repository import Gtk
 
@@ -25,7 +25,6 @@ from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.list.actor.model import ActorListBin
 from skytemple.core.string_provider import StringType
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
@@ -105,15 +104,15 @@ class ItemEffectsController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"Import any item effect ASM code. It must follow the rules of a valid item effect code.\n"
-            f"WARNING: SkyTemple does not check if the code is correct!\n"
-            f"Also, make sure the code was assembled for the version you are using. ",
-            title="Import Item Effect ASM Code"
+            _("Import any item effect ASM code. It must follow the rules of a valid item effect code.\n"
+              "WARNING: SkyTemple does not check if the code is correct!\n"
+              "Also, make sure the code was assembled for the version you are using. "),
+            title=_("Import Item Effect ASM Code")
         )
         md.run()
         md.destroy()
         dialog = Gtk.FileChooserNative.new(
-            "Import Item Effect ASM Code...",
+            _("Import Item Effect ASM Code..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
             None, None
@@ -132,7 +131,7 @@ class ItemEffectsController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing ASM code."
+                    _("Error importing ASM code.")
                 )
     
     def on_btn_export_code_clicked(self, *args):
@@ -140,14 +139,14 @@ class ItemEffectsController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"Export any item effect ASM code. It must follow the rules of a valid item effect code.\n"
-            f"WARNING: it only exports the raw code, it doesn't disassemble it!",
-            title="Export Item Effect ASM Code"
+            _("Export any item effect ASM code. It must follow the rules of a valid item effect code.\n"
+              "WARNING: it only exports the raw code, it doesn't disassemble it!"),
+            title=_("Export Item Effect ASM Code")
         )
         md.run()
         md.destroy()
         dialog = Gtk.FileChooserNative.new(
-            "Export Item Effect ASM Code...",
+            _("Export Item Effect ASM Code..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
             None, None
@@ -206,4 +205,3 @@ class ItemEffectsController(AbstractController):
         store.clear()
         for x in self.item_effects.get_all_of(effect_id):
             store.append([x, self._string_provider.get_value(StringType.ITEM_NAMES, x)])
-        
