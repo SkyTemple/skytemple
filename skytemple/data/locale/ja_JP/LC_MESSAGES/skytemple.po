@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-02-24 20:36+0000\n"
-"PO-Revision-Date: 2021-02-24 20:38\n"
+"POT-Creation-Date: 2021-03-02 09:46+0000\n"
+"PO-Revision-Date: 2021-03-02 10:38\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -966,6 +966,10 @@ msgstr ""
 msgid "Invalid XML. Expected attribute {attrib} for XML tag {ele.tag}."
 msgstr ""
 
+#: skytemple-files/skytemple_files/data/data_cd/model.py:58
+msgid "To delete this effect, no items must use it."
+msgstr ""
+
 #: skytemple-files/skytemple_files/data/md/model.py:58
 msgid "Stench"
 msgstr ""
@@ -1827,17 +1831,17 @@ msgstr ""
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:159
+#: skytemple-files/skytemple_files/graphics/kao/model.py:160
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:215
+#: skytemple-files/skytemple_files/graphics/kao/model.py:216
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:252
+#: skytemple-files/skytemple_files/graphics/kao/model.py:312
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr ""
@@ -1975,12 +1979,20 @@ msgstr ""
 msgid "Extracts the floor ranks, forbidden mission floors, items available in dungeon tables and put them in files. Provides support for reading them from the rom file system."
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/extract_item_code.py:56
+msgid "Extracts item effects code and put it in files."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:46
 msgid "Extracts the hardcoded item lists, used for mission rewards/treasure boxes content as well as Kecleon shop items, and put them in files. Provides support for reading them from the rom file system."
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:111
 msgid "Don't have enough space to put filenames! "
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/handler/extract_move_code.py:53
+msgid "Extracts move effects code and put it in files."
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/far_off_pal_overdrive.py:41
@@ -2016,47 +2028,47 @@ msgstr ""
 msgid "Fixes the 'Unusued' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:102
-#: skytemple-files/skytemple_files/patch/patches.py:107
+#: skytemple-files/skytemple_files/patch/patches.py:106
+#: skytemple-files/skytemple_files/patch/patches.py:111
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:113
+#: skytemple-files/skytemple_files/patch/patches.py:117
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:116
+#: skytemple-files/skytemple_files/patch/patches.py:120
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:145
+#: skytemple-files/skytemple_files/patch/patches.py:149
 msgid "config.xml missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:147
+#: skytemple-files/skytemple_files/patch/patches.py:151
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:157
+#: skytemple-files/skytemple_files/patch/patches.py:161
 msgid "patch.py missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:159
+#: skytemple-files/skytemple_files/patch/patches.py:163
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:164
+#: skytemple-files/skytemple_files/patch/patches.py:168
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:169
+#: skytemple-files/skytemple_files/patch/patches.py:173
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:175
+#: skytemple-files/skytemple_files/patch/patches.py:179
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
@@ -2159,7 +2171,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:78
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:75
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:94
-#: skytemple/skytemple/module/portrait/controller/portrait.py:98
+#: skytemple/skytemple/module/portrait/controller/portrait.py:113
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:129
 #: skytemple/skytemple/module/sprite/module.py:191
 msgid "_Save"
@@ -2240,6 +2252,10 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1063
 #: skytemple/skytemple/module/dungeon/controller/main.glade:417
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:171
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:182
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:417
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:182
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:417
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:86
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:411
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:562
@@ -2296,7 +2312,7 @@ msgid "<Global>"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
-#: skytemple/skytemple/module/lists/module.py:74
+#: skytemple/skytemple/module/lists/module.py:81
 #: skytemple/skytemple/module/script/controller/ssa.glade:1207
 #: skytemple/skytemple/module/script/controller/ssa.glade:1235
 msgid "Actors"
@@ -2328,6 +2344,10 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:60
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:223
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:184
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:193
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:428
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:193
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:428
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:89
 #: skytemple/skytemple/module/lists/controller/world_map.glade:405
 #: skytemple/skytemple/module/monster/controller/monster.glade:1055
@@ -3082,6 +3102,10 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2356
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:288
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:310
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:333
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:355
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:333
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:355
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:232
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:254
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:733
@@ -3138,7 +3162,9 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:859
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:953
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:105
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:108
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:546
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:108
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:159
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:631
 #: skytemple/skytemple/module/monster/controller/level_up.glade:107
@@ -3181,46 +3207,46 @@ msgid "https://github.com/SkyTemple/skytemple-ssb-debugger"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3337
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:148
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:202
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:241
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:280
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:319
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:358
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:397
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:436
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:475
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:514
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:553
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:592
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:631
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:670
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:709
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:748
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:787
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:826
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:865
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:904
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:943
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:982
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1021
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1060
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1099
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1138
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1177
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1216
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1255
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1294
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1333
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1372
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1411
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1450
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1489
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1528
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1567
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1606
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1645
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1684
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:366
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:438
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:495
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:552
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:609
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:666
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:723
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:780
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:837
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:894
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:951
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1008
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1065
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1122
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1179
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1236
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1293
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1350
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1407
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1464
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1521
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1578
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1635
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1692
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1749
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1806
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1863
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1920
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1977
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2034
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2091
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2148
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2205
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2262
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2319
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2376
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2433
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2490
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2547
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2604
 #: skytemple/skytemple/module/script/controller/ssa.glade:237
 msgid "label"
 msgstr ""
@@ -4036,7 +4062,9 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:907
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1001
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:429
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:585
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:2058
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:585
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:199
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:796
 #: skytemple/skytemple/module/monster/controller/level_up.glade:121
@@ -4607,7 +4635,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:315
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.glade:42
 #: skytemple/skytemple/module/monster/controller/monster.glade:819
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:19
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:219
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:457
 #: skytemple/skytemple/module/sprite/controller/object.glade:107
 #: skytemple/skytemple/module/strings/controller/strings.glade:153
@@ -4626,7 +4654,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:330
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.glade:79
 #: skytemple/skytemple/module/monster/controller/monster.glade:864
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:58
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:258
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:502
 #: skytemple/skytemple/module/sprite/controller/object.glade:152
 #: skytemple/skytemple/module/strings/controller/strings.glade:198
@@ -4635,6 +4663,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1333
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1378
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:241
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:241
 msgid "Go To"
 msgstr ""
 
@@ -6008,9 +6038,93 @@ msgstr ""
 msgid "Not implemented."
 msgstr ""
 
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:55
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:132
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:276
+#: skytemple/skytemple/module/lists/module.py:102
+msgid "Item Effects"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:71
+msgid "Edits the item effects used by the game."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:84
+msgid "<Not available>\n\n"
+"To view and edit move effects, please apply the \"ExtractItemCode\" \n"
+"ASM patch from the \"ASM Patches\" menu."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:148
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:148
+msgid "Edits the effects used by each move."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:204
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:204
+msgid "Effect"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:295
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:295
+msgid "Effect ID: "
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:392
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:392
+msgid "Used by: "
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:481
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:481
+msgid "Import Code"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:526
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:526
+msgid "Export Code"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.glade:559
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:559
+msgid "Effects Code"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.py:107
+msgid "Import any item effect ASM code. It must follow the rules of a valid item effect code.\n"
+"WARNING: SkyTemple does not check if the code is correct!\n"
+"Also, make sure the code was assembled for the version you are using. "
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.py:110
+msgid "Import Item Effect ASM Code"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.py:115
+msgid "Import Item Effect ASM Code..."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.py:134
+#: skytemple/skytemple/module/lists/controller/move_effects.py:133
+msgid "Error importing ASM code."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.py:142
+msgid "Export any item effect ASM code. It must follow the rules of a valid item effect code.\n"
+"WARNING: it only exports the raw code, it doesn't disassemble it!"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.py:144
+msgid "Export Item Effect ASM Code"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/item_effects.py:149
+msgid "Export Item Effect ASM Code..."
+msgstr ""
+
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:493
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:570
-#: skytemple/skytemple/module/lists/module.py:89
+#: skytemple/skytemple/module/lists/module.py:96
 msgid "Item Lists"
 msgstr ""
 
@@ -6189,8 +6303,52 @@ msgid "Menus are hardcoded so you can't add any option, but you can edit a few t
 " - Editing a string with a specific ID will result of all strings using that ID to be changed."
 msgstr ""
 
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:55
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:132
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:276
+#: skytemple/skytemple/module/lists/module.py:105
+msgid "Move Effects"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:71
+msgid "Edits the move effects used by the game."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:84
+msgid "<Not available>\n\n"
+"To view and edit move effects, please apply the \"ExtractMoveCode\" \n"
+"ASM patch from the \"ASM Patches\" menu."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.py:106
+msgid "Import any move effect ASM code. It must follow the rules of a valid move effect code.\n"
+"WARNING: SkyTemple does not check if the code is correct!\n"
+"Also, make sure the code was assembled for the version you are using. "
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.py:109
+msgid "Import Move Effect ASM Code"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.py:114
+msgid "Import Move Effect ASM Code..."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.py:141
+msgid "Export any move effect ASM code. It must follow the rules of a valid move effect code.\n"
+"WARNING: it only exports the raw code, it doesn't disassemble it!"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.py:148
+msgid "Export Move Effect ASM Code..."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.py:178
+msgid "Cannot delete this effect."
+msgstr ""
+
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
-#: skytemple/skytemple/module/lists/module.py:86
+#: skytemple/skytemple/module/lists/module.py:93
 msgid "Rank List"
 msgstr ""
 
@@ -6207,7 +6365,7 @@ msgid "Item Reward"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
-#: skytemple/skytemple/module/lists/module.py:80
+#: skytemple/skytemple/module/lists/module.py:87
 msgid "Recruitment List"
 msgstr ""
 
@@ -6399,7 +6557,7 @@ msgid "Please don't select a marker that already references another marker.\n"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
-#: skytemple/skytemple/module/lists/module.py:83
+#: skytemple/skytemple/module/lists/module.py:90
 msgid "World Map Markers"
 msgstr ""
 
@@ -6446,11 +6604,11 @@ msgstr ""
 msgid "You need to select a reference."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:77
+#: skytemple/skytemple/module/lists/module.py:84
 msgid "Starters"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:92
+#: skytemple/skytemple/module/lists/module.py:99
 msgid "Menu List"
 msgstr ""
 
@@ -8326,77 +8484,77 @@ msgstr ""
 msgid "ASM Patches"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:31
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:231
 msgid "... from separate images"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:40
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:240
 msgid "... from one sheet (SpriteBot format)"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:70
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:270
 msgid "... as separate images"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:79
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:279
 msgid "... as one sheet (SpriteBot format)"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:167
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:385
 msgid "If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.\n"
 "If that is also missing, the behaviour is undefined.\n"
 "If flipped versions are empty, the game will automatically flip the image."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:95
+#: skytemple/skytemple/module/portrait/controller/portrait.py:110
 msgid "Export all portraits as PNGs..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:119
+#: skytemple/skytemple/module/portrait/controller/portrait.py:134
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 40."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:121
+#: skytemple/skytemple/module/portrait/controller/portrait.py:136
 msgid "Import Portraits"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:126
+#: skytemple/skytemple/module/portrait/controller/portrait.py:141
 msgid "Import portraits from PNGs..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:157
-#: skytemple/skytemple/module/portrait/controller/portrait.py:217
+#: skytemple/skytemple/module/portrait/controller/portrait.py:172
+#: skytemple/skytemple/module/portrait/controller/portrait.py:229
 #, python-brace-format
 msgid "Failed importing image \"{name}\":\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:158
-#: skytemple/skytemple/module/portrait/controller/portrait.py:218
+#: skytemple/skytemple/module/portrait/controller/portrait.py:173
+#: skytemple/skytemple/module/portrait/controller/portrait.py:230
 #, python-brace-format
 msgid "Error for '{name}'."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:170
+#: skytemple/skytemple/module/portrait/controller/portrait.py:182
 msgid "Export portrait as PNG sheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:189
+#: skytemple/skytemple/module/portrait/controller/portrait.py:201
 msgid "Import portraits from PNG sheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:224
+#: skytemple/skytemple/module/portrait/controller/portrait.py:236
 #, python-brace-format
 msgid "Failed importing portraits sheet:\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:225
+#: skytemple/skytemple/module/portrait/controller/portrait.py:237
 msgid "Could not import."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:245
+#: skytemple/skytemple/module/portrait/controller/portrait.py:254
 msgid " (flip)"
 msgstr ""
 
