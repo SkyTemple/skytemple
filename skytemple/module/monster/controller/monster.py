@@ -367,7 +367,7 @@ class MonsterController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("Wheher or not you need to have a special item in the bag (mystery part/secret slab) for "
+            _("Whether or not you need to have a special item in the bag (mystery part/secret slab) for "
               "the Pokémon to spawn in dungeons"),
             title=_("Item Required for spawning?")
         )
