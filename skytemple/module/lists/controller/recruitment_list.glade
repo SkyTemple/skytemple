@@ -132,7 +132,7 @@
                     <child>
                       <object class="GtkTreeViewColumn">
                         <property name="resizable">True</property>
-                        <property name="title" translatable="yes">Location of Recruiment</property>
+                        <property name="title" translatable="yes">Location of Recruitment</property>
                         <child>
                           <object class="GtkCellRendererText" id="cr_location">
                             <property name="editable">True</property>
