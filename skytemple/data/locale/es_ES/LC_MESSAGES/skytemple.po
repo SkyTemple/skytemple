@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-02 11:24+0000\n"
-"PO-Revision-Date: 2021-03-02 17:36\n"
+"PO-Revision-Date: 2021-03-02 19:29\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -180,12 +180,12 @@ msgstr "Un 'switch case' debe contener una lista de sentencias (línea{self.ctx.
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:121
 #, python-brace-format
 msgid "Unexpected switch end (line {self.ctx.start.line})"
-msgstr "Final inesperado del 'switch end' (línea {self.ctx.start.line})"
+msgstr "Final inesperado de 'switch' (línea {self.ctx.start.line})"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:134
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line})."
-msgstr "Un switch block solo puede tener un único 'case' por defecto (línea {self.ctx.start.line})."
+msgstr "Un bloque 'switch' solo puede tener un único caso 'default' (línea {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:63
 msgid "Invalid content for a switch-header"
