@@ -19,6 +19,7 @@ import os
 import sys
 from typing import TYPE_CHECKING
 from xml.etree import ElementTree
+from zipfile import ZipFile
 
 import cairo
 
@@ -121,13 +122,28 @@ Warning: SkyTemple does not validate the files you import."""))
         ctx.scale(1 / scale, 1 / scale)
         return True
 
+    def _zip_is_active(self):
+        return self.builder.get_object("import_export_zip").get_active()
+
+    def _add_zip_filter_to_dialog(self, dialog: Gtk.FileChooserNative):
+        filter_zip = Gtk.FileFilter()
+        filter_zip.set_name("Zip archives")
+        filter_zip.add_pattern("*.zip")
+        dialog.add_filter(filter_zip)
+        dialog.set_current_name("spritesheet.zip")
+
     def on_export_clicked(self, w: Gtk.MenuToolButton):
+        is_zip = self._zip_is_active()
+
         dialog = Gtk.FileChooserNative.new(
             _("Export spritesheet..."),
             MainController.window(),
-            Gtk.FileChooserAction.SELECT_FOLDER,
+            Gtk.FileChooserAction.SELECT_FOLDER if not is_zip else Gtk.FileChooserAction.SAVE,
             _('_Save'), None
         )
+
+        if is_zip:
+            self._add_zip_filter_to_dialog(dialog)
 
         response = dialog.run()
         fn = dialog.get_filename()
@@ -141,13 +157,19 @@ Warning: SkyTemple does not validate the files you import."""))
                 merged = FileType.WAN.CHARA.merge_wan(monster, ground, attack)
                 merged.sdwSize = self._get_shadow_size_cb()
                 try:
-                    animation_names = self.module.project.get_rom_module().get_static_data().animation_names[self.item_id]
+                    animation_names = self.module.project.get_rom_module().get_static_data().animation_names[
+                        self.item_id]
                 except KeyError:
                     # Fall back to Bulbasaur
                     animation_names = self.module.project.get_rom_module().get_static_data().animation_names[0]
-                FileType.WAN.CHARA.export_sheets(
-                    fn, merged, animation_names
-                )
+                if not is_zip:
+                    FileType.WAN.CHARA.export_sheets(
+                        fn, merged, animation_names
+                    )
+                else:
+                    FileType.WAN.CHARA.export_sheets_as_zip(
+                        fn, merged, animation_names
+                    )
 
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
@@ -165,8 +187,10 @@ Warning: SkyTemple does not validate the files you import."""))
     def on_import_clicked(self, w: Gtk.MenuToolButton):
         md = SkyTempleMessageDialog(MainController.window(),
                                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, _("To import select the directory of the spritesheets. If it "
-                                                          "is still zipped, unzip it first."),
+                                    Gtk.ButtonsType.OK, "To import select the archive that contains the spritesheets."
+                                    if self._zip_is_active()
+                                    else _("To import select the directory of the spritesheets. If it "
+                                           "is still zipped, unzip it first."),
                                     title="SkyTemple")
         md.run()
         md.destroy()
@@ -179,7 +203,9 @@ Warning: SkyTemple does not validate the files you import."""))
                                     _("This will insert a completely new sprite into the game's sprite file and "
                                       "assign the new ID to the Pokémon.\n"
                                       "If you want to instead replace the currently assigned sprite, choose 'Import'."
-                                      "\n\nTo import select the directory of the spritesheets. If it "
+                                      "To import select the archive that contains the spritesheets."
+                                      if self._zip_is_active()
+                                      else "\n\nTo import select the directory of the spritesheets. If it "
                                       "is still zipped, unzip it first."),
                                     title="SkyTemple")
         response = md.run()
@@ -190,12 +216,17 @@ Warning: SkyTemple does not validate the files you import."""))
                 self.do_import(new_item_id, lambda: self._assign_new_sprite_id_cb(new_item_id))
 
     def do_import(self, item_id: int, cb=lambda: None):
+        is_zip = self._zip_is_active()
+
         dialog = Gtk.FileChooserNative.new(
             _("Import spritesheet..."),
             MainController.window(),
-            Gtk.FileChooserAction.SELECT_FOLDER,
+            Gtk.FileChooserAction.SELECT_FOLDER if not is_zip else Gtk.FileChooserAction.OPEN,
             None, None
         )
+
+        if is_zip:
+            self._add_zip_filter_to_dialog(dialog)
 
         response = dialog.run()
         fn = dialog.get_filename()
@@ -203,7 +234,8 @@ Warning: SkyTemple does not validate the files you import."""))
 
         if response == Gtk.ResponseType.ACCEPT:
             try:
-                wan = FileType.WAN.CHARA.import_sheets(fn)
+                wan = FileType.WAN.CHARA.import_sheets(fn) if not is_zip \
+                    else FileType.WAN.CHARA.import_sheets_from_zip(fn)
                 monster, ground, attack = FileType.WAN.CHARA.split_wan(wan)
 
                 md = SkyTempleMessageDialog(MainController.window(),
@@ -217,8 +249,12 @@ Warning: SkyTemple does not validate the files you import."""))
                 self.module.save_monster_attack_sprite(item_id, attack)
 
                 # Shadow size
-                tree = ElementTree.parse(os.path.join(fn, 'AnimData.xml'))
-                self._set_shadow_size_cb(int(tree.getroot().find('ShadowSize').text))
+                if not is_zip:
+                    tree = ElementTree.parse(os.path.join(fn, 'AnimData.xml')).getroot()
+                else:
+                    with ZipFile(fn, 'r') as ZipObj:
+                        tree = ElementTree.fromstring(ZipObj.read('AnimData.xml'))
+                self._set_shadow_size_cb(int(tree.find('ShadowSize').text))
 
                 cb()
                 self._mark_as_modified_cb()
@@ -288,7 +324,8 @@ Warning: SkyTemple does not validate the files you import."""))
             for frame in ani_group[frame_id].frames:
                 mfg_id = frame.frame_id
                 sprite_img, (cx, cy) = sprite.render_frame_group(sprite.frame_groups[mfg_id])
-                self._rendered_frame_info.append((frame.duration, (pil_to_cairo_surface(sprite_img), cx, cy, sprite_img.width, sprite_img.height)))
+                self._rendered_frame_info.append(
+                    (frame.duration, (pil_to_cairo_surface(sprite_img), cx, cy, sprite_img.width, sprite_img.height)))
 
     def _load_sprite_from_bin_pack(self, bin_pack: BinPack, file_id) -> Wan:
         # TODO: Support of bin_pack item management via the RomProject instead?
