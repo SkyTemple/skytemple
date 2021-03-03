@@ -59,8 +59,26 @@ jobs:
               --package-name=skytemple --msgid-bugs-address=https://translate.skytemple.org \
               --add-comments='TRANSLATORS:' --from-code=UTF-8 \
               -o skytemple/skytemple/data/locale/skytemple.pot
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Upgrade pip
+        run: |
+          python -m pip install --upgrade pip
+      - name: Install skytemple-files
+        run: |
+          python -m pip install ./skytemple-files
+      - name: Add ppmdu config strings
+        run: |
+          xgettext \
+          -F --keyword='_' --no-wrap --foreign-user \
+          --package-name=skytemple --msgid-bugs-address=https://translate.skytemple.org \
+          -j --from-code=UTF-8 \
+          -o skytemple/skytemple/data/locale/skytemple.pot \
+          <(python -m skytemple_files.common.ppmdu_config.l10n_str_generator)
       - name: Commit and Push
-        uses: EndBug/add-and-commit@v7 # You can change this to use a specific version
+        uses: EndBug/add-and-commit@v7
         with:
           add: skytemple/data/locale/skytemple.pot
           cwd: './skytemple'

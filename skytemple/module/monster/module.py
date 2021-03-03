@@ -115,7 +115,7 @@ class MonsterModule(AbstractModule):
 
     def generate_entry__entry(self, i, gender):
         return [
-            'skytemple-e-monster-symbolic', f'${i:04}: {gender.name.capitalize()}',
+            'skytemple-e-monster-symbolic', f'${i:04}: {gender.print_name}',
             self, MonsterController, i, False, '', True
         ]
 

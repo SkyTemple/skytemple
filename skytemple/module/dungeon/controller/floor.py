@@ -1140,9 +1140,8 @@ class FloorController(AbstractController):
             trap: MappaTrapType
             relative_weight = relative_weights[i]
             chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
-            name = ' '.join([x.capitalize() for x in trap.name.split('_')])
             store.append([
-                trap.value, name, chance, str(relative_weight)
+                trap.value, trap.name, chance, str(relative_weight)
             ])
 
     def _init_item_spawns(self):

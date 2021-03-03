@@ -1282,7 +1282,7 @@ class SsaController(AbstractController):
         # > PO - Directions
         po_direction_store = Gtk.ListStore(int, str)  # ID, name
         for direction in self.static_data.script_data.directions.values():
-            po_direction_store.append([direction.id, direction.name])
+            po_direction_store.append([direction.id, direction.print_name])
         
         po_actor_direction: Gtk.ComboBox = self.builder.get_object('po_actor_dir')
         self._fast_set_comboxbox_store(po_actor_direction, po_direction_store, 1)

@@ -53,7 +53,7 @@ class FixedRoomsController(AbstractController):
         length = len(self.module.get_monster_md().entries)
         for i, entry in enumerate(self.module.get_monster_md().entries):
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i % NUM_ENTITIES)
-            self.monster_names[i] = f'{name} ({entry.gender.name.capitalize()}) (${i:04})'
+            self.monster_names[i] = f'{name} ({entry.gender.print_name}) (${i:04})'
         for i in range(length, length + SPECIAL_MONSTERS):
             self.monster_names[i] = _('(Special?)') + f' (${i:04})'
 
@@ -391,7 +391,7 @@ class FixedRoomsController(AbstractController):
         store: Gtk.ListStore = self.builder.get_object('model_entities__tiles')
         store.clear()
         for i in range(0, len(self.lst_tile)):
-            store.append([i, f"{'Tile'} {i} ({self.module.desc_fixed_floor_tile(self.lst_tile[i])})"])
+            store.append([i, f"{_('Tile')} {i} ({self.module.desc_fixed_floor_tile(self.lst_tile[i])})"])
         # Init Monsters Store
         store: Gtk.ListStore = self.builder.get_object('model_entities__monsters')
         store.clear()
@@ -405,7 +405,7 @@ class FixedRoomsController(AbstractController):
         store: Gtk.ListStore = self.builder.get_object('model_entities__items')
         store.clear()
         for i in range(0, len(self.lst_item)):
-            store.append([i, f"{'Item'} {i} ({self.module.desc_fixed_floor_item(self.lst_item[i].item_id)})"])
+            store.append([i, f"{_('Item')} {i} ({self.module.desc_fixed_floor_item(self.lst_item[i].item_id)})"])
 
         # Init Entities Store
         store: Gtk.ListStore = self.builder.get_object('model_entities')
@@ -413,7 +413,7 @@ class FixedRoomsController(AbstractController):
         for idx, entity in enumerate(self.lst_entity):
             monster = self.lst_monster[entity.monster_id]
             store.append([
-                str(idx), f"{'Tile'} {entity.tile_id}", f"{'Item'} {entity.item_id}", f"Pokémon {entity.monster_id}",
+                str(idx), f"{_('Tile')} {entity.tile_id}", f"{_('Item')} {entity.item_id}", f"Pokémon {entity.monster_id}",
                 "(" + self.module.desc_fixed_floor_tile(self.lst_tile[entity.tile_id]) + ")",
                 "(" + self.module.desc_fixed_floor_item(self.lst_item[entity.item_id].item_id) + ")",
                 "(" + self.module.desc_fixed_floor_monster(
@@ -426,7 +426,7 @@ class FixedRoomsController(AbstractController):
         store: Gtk.ListStore = self.builder.get_object('model_tiles__traps')
         store.append([25, _('None')])
         for trap in MappaTrapType:
-            store.append([trap.value, ' '.join([x.capitalize() for x in trap.name.split('_')])])
+            store.append([trap.value, trap.print_name])
 
     def _fill_tiles(self):
         # Init Tiles Store
