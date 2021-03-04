@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-04 09:29+0000\n"
-"PO-Revision-Date: 2021-03-04 16:34\n"
+"PO-Revision-Date: 2021-03-04 17:33\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -429,7 +429,7 @@ msgstr "Argumento 'with(){{}}' inválido para el tipo de destino '{for_type}'."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:70
 msgid "A with(){} block needs exactly one binary operation. The handler for it generated multiple operations."
-msgstr "Un bloque 'with(){}' necesita exactamente una operación binaria. El manejador para él ha generado múltiples operaciones."
+msgstr "Un bloque 'with(){}' necesita exactamente una operación binaria. El manipulador para él ha generado múltiples operaciones."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:87
 msgid "A with(){} block can not contain labels."
@@ -1194,7 +1194,7 @@ msgstr "Falta un archivo DTEF necesario: {fn}. Por favor, comprueba el paquete D
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:131
 #, python-brace-format
 msgid "Can not import image \"{basename}\" as dungeon tileset: Must be indexed image (=using a palette)"
-msgstr "No se puede importar la imagen \"{basename}\" como tileset del territorio: Debe ser imagen indexada (usando una paleta)"
+msgstr "No se puede importar la imagen \"{basename}\" como tileset del territorio: Debe ser una imagen indexada (usando una paleta)"
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:134
 #, python-brace-format
@@ -2111,7 +2111,7 @@ msgstr "Mitad de vida"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:27
 msgid "Pinch"
-msgstr "En apuro"
+msgstr "En apuros"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:28
 msgid "Level Up"
@@ -2275,7 +2275,7 @@ msgstr "{XML_FLOOR_LAYOUT__MISCSET} falta para {XML_FLOOR_LAYOUT}."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:404
 msgid "Invalid structure type {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}"
-msgstr "Tipo de estructura no válida: {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}"
+msgstr "Tipo de estructura inválida: {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:408
 msgid "Invalid weather type {ele.get(XML_FLOOR_LAYOUT__WEATHER)}"
@@ -2578,7 +2578,7 @@ msgstr "La lista de tiles y máscaras debe tener exactamente 3 elementos"
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:174
 #: skytemple-files/skytemple_files/graphics/zmappat/model.py:195
 msgid "Can not convert PIL image to ZMAPPAT: Must be indexed images (=using a palette)"
-msgstr "No se puede convertir la imagen PIL a ZMAPPAT: Deben ser una imágenes indexadas (usando una paleta)"
+msgstr "No se puede convertir la imagen PIL a ZMAPPAT: Deben ser imágenes indexadas (usando una paleta)"
 
 #: skytemple-files/skytemple_files/hardcoded/cart_removed.py:56
 #, python-brace-format
@@ -2825,7 +2825,7 @@ msgstr "El paquete de parches no contiene una entrada para el nombre del parche 
 #: skytemple-files/skytemple_files/patch/patches.py:179
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
-msgstr "No se ha encontrado ningún parche para el manejador '{handler.name}' en la configuración."
+msgstr "No se ha encontrado ningún parche para el manipulador '{handler.name}' en la configuración."
 
 #: skytemple-files/skytemple_files/script/ssb/constants.py:75
 #, python-brace-format
@@ -4545,7 +4545,7 @@ msgstr "Exp. activada:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:675
 msgid "Recruting enabled:"
-msgstr "Reclutamiento activado:"
+msgstr "Permitir reclutamiento:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:688
 msgid "Level Reset to 1:"
@@ -4569,7 +4569,7 @@ msgstr "Habilidades CI activadas:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:753
 msgid "Reveal traps by attack:"
-msgstr "Revelar trampas atacando:"
+msgstr "Revelar trampas al atacar:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:766
 msgid "Enemies drop chests:"
@@ -4603,7 +4603,7 @@ msgstr "Este territorio tiene XXX pisos."
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:904
 msgid "Change Floor Count"
-msgstr "Cambiar número de piso"
+msgstr "Cambiar número de pisos"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:965
 msgid "This dungeon currently has X floors."
@@ -5036,7 +5036,7 @@ msgstr "Evita cualquier cualquier lanzamiento de objetos (como hace Arrojasfera)
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:400
 msgid "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
 "This is used in dungeons where the content of a fixed floor varies depending on the story progress, such as in most of the dungeons with a legendary Pokémon at the end (first visit vs rematch)."
-msgstr "Si el modo del territorio es PETICIÓN (= está marcado como despejada una vez), se utilizará este piso fijo en su lugar.\n"
+msgstr "Si el modo del territorio es PETICIÓN (=que se haya marcado como despejado), se utilizará este piso fijo en su lugar.\n"
 "Esto se utiliza en territorios donde el contenido de un piso fijo varía en función del progreso de la historia, como en la mayoría de los territorios con un Pokémon legendario al final (primera visita vs. revancha)."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:418
@@ -5058,7 +5058,7 @@ msgstr "No sobrescribir"
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1502
 #, python-brace-format
 msgid "No. {i}"
-msgstr "No. {i}"
+msgstr "Nº {i}"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:200
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:34
@@ -5489,7 +5489,7 @@ msgstr "¿Salas imperfectas?:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1739
 msgid "Weather and Conditions"
-msgstr "Clima y condiciones"
+msgstr "Clima y Condiciones"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1755
 msgid "Darkness Level:"
@@ -5553,7 +5553,7 @@ msgstr "E desconocido:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1969
 msgid "Enemy IQ:"
-msgstr "CI de enemigo:"
+msgstr "CI de enemigos:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1981
 msgid "IQ Booster enabled?:"
@@ -5802,7 +5802,7 @@ msgstr "Este atributo es el rango base del piso. \n"
 #: skytemple/skytemple/module/dungeon/controller/floor.py:216
 msgid "If this attribute is set to 'Yes', no missions will be generated for this floor, and Wonder Mail S codes targetting this floor will be considered as invalid. \n"
 "Needs the 'ExtractDungeonData' patch to be applied to edit this attribute."
-msgstr "Si este atributo se establece en \"Sí\", no se generarán misiones para este piso, y los códigos de las cartas secretas que tengan como objetivo este piso no serán válidos. \n"
+msgstr "Si este atributo se establece en \"Sí\", no se generarán misiones para este piso y los códigos de las cartas secretas que tengan como objetivo este piso no serán válidos. \n"
 "Es necesario aplicar el parche \"ExtractDungeonData\" para editar este atributo."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:236
