@@ -64,7 +64,7 @@ class CartRemovedController(AbstractController):
             Gtk.ButtonsType.OK,
             _("This is what the game shows when the cartridge is removed while playing.\n"
               "IMPORTANT! The game stores this compressed in the ARM9, so this is limited in space.\n"
-              f"It is recommended to only edit this to change the text color/content."),
+              "It is recommended to only edit this to change the text color/content."),
             title=_("Cartridge Removed Image Info")
         )
         md.run()
