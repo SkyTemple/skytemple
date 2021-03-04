@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-03 08:42+0000\n"
-"PO-Revision-Date: 2021-03-03 17:53\n"
+"PO-Revision-Date: 2021-03-04 09:29\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -4806,7 +4806,11 @@ msgid "<b>Entity ID</b>\n\n"
 "Stats (ID):\n\n"
 "Item (ID):\n\n"
 "Tile Properties (ID):"
-msgstr ""
+msgstr "<b>Entitäts-ID</b>\n\n"
+"Pokémon (ID):\n\n"
+"Statuswerte (ID):\n\n"
+"Item (ID):\n\n"
+"Kacheleigenschaften (ID):"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:714
 #: skytemple/skytemple/module/script/controller/ssa.glade:716
@@ -4844,7 +4848,10 @@ msgid "<span foreground=\"#ff0000\">0</span>: Room 0\n"
 "<span foreground=\"#ff0000\">1</span>: Room 1\n"
 "<span foreground=\"#ffff00\">I</span>: Impassable\n"
 "<span foreground=\"#00ff00\">A</span>: Absolute Mover possible"
-msgstr ""
+msgstr "<span foreground=\"#ff0000\">0</span>: Raum 0\n"
+"<span foreground=\"#ff0000\">1</span>: Raum 1\n"
+"<span foreground=\"#ffff00\">I</span>: Unpassierbar\n"
+"<span foreground=\"#00ff00\">A</span>: \"Bewegungstalent\" möglich"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:898
 msgid "Tile Layer Legend"
@@ -4862,7 +4869,9 @@ msgstr "Legende der Item-Ebene"
 msgid "<span foreground=\"#00ff00\">A</span>: Ally\n"
 "<span foreground=\"#ff0000\">E</span>: Strong Enemy\n"
 "<span foreground=\"#ffff00\">O</span>: Other"
-msgstr ""
+msgstr "<span foreground=\"#00ff00\">A</span>: Freund\n"
+"<span foreground=\"#ff0000\">E</span>: Starker Feind\n"
+"<span foreground=\"#ffff00\">O</span>: Andere"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:992
 msgid "Pokémon Layer Legend"
@@ -4872,7 +4881,9 @@ msgstr "Legende der Pokémon-Ebene"
 msgid "NAME: Trap name\n"
 "<span foreground=\"#ff0000\">B</span>: Can be broken\n"
 "<span foreground=\"#ffff00\">V</span>: Is visible"
-msgstr ""
+msgstr "NAME: Fallenname\n"
+"<span foreground=\"#ff0000\">B</span>: Kann zerstört werden\n"
+"<span foreground=\"#ffff00\">V</span>: Ist sichtbar"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1040
 msgid "Trap Layer Legend"
@@ -6864,7 +6875,9 @@ msgstr ""
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ActorAndLevelLoader\" \n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um diese Liste anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ActorAndLevelLoader“ aus dem Menü „ASM Patches“ an."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
 #: skytemple/skytemple/module/script/controller/ssa.py:1199
@@ -6902,13 +6915,15 @@ msgstr "Item-Effekte"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:71
 msgid "Edits the item effects used by the game."
-msgstr ""
+msgstr "Bearbeitet die Item-Effekte, die das Spiel benutzt."
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:84
 msgid "<Not available>\n\n"
 "To view and edit move effects, please apply the \"ExtractItemCode\" \n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um Item-Effekte anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ExtractItemCode“ aus dem Menü „ASM Patches“ an."
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:148
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:148
@@ -6992,7 +7007,9 @@ msgstr ""
 msgid "<Not available>\n\n"
 "To view and edit those lists, please apply the \"ExtractHardcodedItemLists\" \n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um diese Listen anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ExtractHardcodedItemLists“ aus dem Menü „ASM Patches“ an."
 
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:604
 msgid "Lists: "
@@ -7173,7 +7190,9 @@ msgstr "Bearbeitet die Attacken-Effekte, die das Spiel benutzt."
 msgid "<Not available>\n\n"
 "To view and edit move effects, please apply the \"ExtractMoveCode\" \n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um Attacken-Effekte anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ExtractMoveCode“ aus dem Menü „ASM Patches“ an."
 
 #: skytemple/skytemple/module/lists/controller/move_effects.py:106
 msgid "Import any move effect ASM code. It must follow the rules of a valid move effect code.\n"
