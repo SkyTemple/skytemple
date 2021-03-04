@@ -83,7 +83,7 @@ class StringsController(AbstractController):
         cat_store.clear()
         cat_store.append([_("(All)"), None])
         for cat in self._collect_categories():
-            cat_store.append([cat.name, cat])
+            cat_store.append([cat.name_localized, cat])
         tree.get_selection().select_iter(cat_store.get_iter_first())
 
     def refresh_list(self):
@@ -208,8 +208,7 @@ class StringsController(AbstractController):
         for cat in sorted(self._string_cats.values(), key=lambda c: c.begin):
             if cat.begin > current_index:
                 # yield a placeholder category
-                yield Pmd2StringBlock(f"({current_index} - {cat.begin - 1})", current_index, cat.begin)
+                name = f"({current_index} - {cat.begin - 1})"
+                yield Pmd2StringBlock(name, name, current_index, cat.begin)
             yield cat
             current_index = cat.end
-
-from skytemple_files.common.i18n_util import f, _
