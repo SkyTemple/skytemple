@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-03 08:42+0000\n"
-"PO-Revision-Date: 2021-03-03 08:51\n"
+"POT-Creation-Date: 2021-03-04 09:29+0000\n"
+"PO-Revision-Date: 2021-03-04 10:38\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "Language: ar_SA\n"
@@ -6737,7 +6737,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:84
 msgid "<Not available>\n\n"
-"To view and edit move effects, please apply the \"ExtractItemCode\" \n"
+"To view and edit item effects, please apply the \"ExtractItemCode\"\n"
 "ASM patch from the \"ASM Patches\" menu."
 msgstr ""
 
@@ -8002,6 +8002,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:65
 msgid "This is what the game shows when the cartridge is removed while playing.\n"
 "IMPORTANT! The game stores this compressed in the ARM9, so this is limited in space.\n"
+"It is recommended to only edit this to change the text color/content."
 msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:68
