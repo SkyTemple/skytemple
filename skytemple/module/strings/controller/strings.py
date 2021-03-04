@@ -45,7 +45,7 @@ logger = logging.getLogger(__name__)
 class StringsController(AbstractController):
     def __init__(self, module: 'StringsModule', lang: Pmd2Language):
         self.module = module
-        self.langname = lang.name
+        self.langname = lang.name_localized
         self.filename = lang.filename
 
         self.builder = None

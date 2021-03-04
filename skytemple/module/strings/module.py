@@ -50,7 +50,7 @@ class StringsModule(AbstractModule):
         config = self.project.get_rom_module().get_static_data()
         for language in config.string_index_data.languages:
             self._tree_iters[language.filename] = item_store.append(root, [
-                'skytemple-e-string-symbolic', language.name, self, StringsController, language, False, '', True
+                'skytemple-e-string-symbolic', language.name_localized, self, StringsController, language, False, '', True
             ])
         self._tree_model = item_store
         recursive_generate_item_store_row_label(self._tree_model[root])

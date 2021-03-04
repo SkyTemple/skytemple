@@ -741,7 +741,7 @@ class MonsterController(AbstractController):
             gui_entry: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}')
             if lang_id < len(langs):
                 # We have this language
-                gui_label.set_text(_(langs[lang_id].name) + ':')
+                gui_label.set_text(_(langs[lang_id].name_localized) + ':')
             else:
                 # We don't.
                 gui_label.set_text("")
