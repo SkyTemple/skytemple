@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-04 09:29+0000\n"
-"PO-Revision-Date: 2021-03-04 10:38\n"
+"PO-Revision-Date: 2021-03-04 15:36\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1249,19 +1249,19 @@ msgstr "Esta función no tiene descripción."
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:221
 msgid "Down Right"
-msgstr ""
+msgstr "Abajo derecha"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:225
 msgid "Up Right"
-msgstr ""
+msgstr "Arriba derecha"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:229
 msgid "Up Left"
-msgstr ""
+msgstr "Arriba izquierda"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:233
 msgid "Down Left"
-msgstr ""
+msgstr "Abajo izquierda"
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:39
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
@@ -2291,7 +2291,7 @@ msgstr "Nivel de oscuridad inválido: {ele.get(XML_FLOOR_LAYOUT__DARKNESS_LEVEL)
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:32
 msgid "Mud Trap"
-msgstr ""
+msgstr "Trampa Lodo"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:33
 msgid "Sticky Trap"
@@ -6967,7 +6967,9 @@ msgstr "Edita los efectos de los objetos utilizados por el juego."
 msgid "<Not available>\n\n"
 "To view and edit item effects, please apply the \"ExtractItemCode\"\n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar los efectos de objetos, aplica el parche ASM \n"
+"\"ExtractItemCode\" desde el menú \"Parches ASM\"."
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:148
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:148
@@ -8374,7 +8376,9 @@ msgstr "Cartucho extraído"
 msgid "This is what the game shows when the cartridge is removed while playing.\n"
 "IMPORTANT! The game stores this compressed in the ARM9, so this is limited in space.\n"
 "It is recommended to only edit this to change the text color/content."
-msgstr ""
+msgstr "Esto es lo que muestra el juego cuando se extrae el cartucho mientras se juega.\n"
+"¡IMPORTANTE! El juego almacena este comprimido en ARM9, por lo que tiene un espacio limitado.\n"
+"Se recomienda editar esto solo para cambiar el color o el contenido del texto."
 
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:68
 msgid "Cartridge Removed Image Info"
