@@ -28,6 +28,7 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple_files.graphics.kao.sprite_bot_sheet import SpriteBotSheet
+from skytemple_files.common.i18n_util import f, _
 
 try:
     from PIL import Image
@@ -54,6 +55,11 @@ class PortraitController(AbstractController):
         self.kao = self.module.kao
 
         self.builder = None
+
+    def re_render(self):
+        self._portrait_provider.reset()
+        for draw in self._draws:
+            draw.queue_draw()
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'portrait.glade')
@@ -89,12 +95,22 @@ class PortraitController(AbstractController):
     def on_import_clicked(self, w: Gtk.MenuToolButton):
         w.get_menu().popup(None, None, None, None, 0, Gtk.get_current_event_time())
 
+    def on_delete_clicked(self, label: Gtk.Label):
+        index = int(label.get_label().split(":")[0])
+        kao = self.kao.loaded_kaos[self.item_id][index]
+        kao.empty = True
+        kao.modified = True
+        self.re_render()
+        # Mark as modified
+        self.module.mark_as_modified()
+        self._mark_as_modified_cb()
+
     def on_separate_export_activate(self, *args):
         dialog = Gtk.FileChooserNative.new(
-            "Export all portraits as PNGs...",
+            _("Export all portraits as PNGs..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            "_Save", None
+            _("_Save"), None
         )
 
         response = dialog.run()
@@ -115,14 +131,14 @@ class PortraitController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
-            f"will be imported, where XX is a number between 0 and 40.",
-            title="Import Portraits"
+            f(_("To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
+                "will be imported, where XX is a number between 0 and 40.")),
+            title=_("Import Portraits")
         )
         md.run()
         md.destroy()
         dialog = Gtk.FileChooserNative.new(
-            "Import portraits from PNGs...",
+            _("Import portraits from PNGs..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
             None, None
@@ -153,20 +169,17 @@ class PortraitController(AbstractController):
                     logger.error(f"Failed importing image '{name}'.", exc_info=err)
                     display_error(
                         sys.exc_info(),
-                        f'Failed importing image "{name}":\n{err}',
-                        f"Error for '{name}'."
+                        f(_('Failed importing image "{name}":\n{err}')),
+                        f(_(f"Error for '{name}'."))
                     )
-            # Re-render
-            self._portrait_provider.reset()
-            for draw in self._draws:
-                draw.queue_draw()
+            self.re_render()
             # Mark as modified
             self.module.mark_as_modified()
             self._mark_as_modified_cb()
 
     def on_spritebot_export_activate(self, *args):
         dialog = Gtk.FileChooserNative.new(
-            "Export portrait as PNG sheet...",
+            _("Export portrait as PNG sheet..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
             None, None
@@ -185,7 +198,7 @@ class PortraitController(AbstractController):
 
     def on_spritebot_import_activate(self, *args):
         dialog = Gtk.FileChooserNative.new(
-            "Import portraits from PNG sheet...",
+            _("Import portraits from PNG sheet..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
             None, None
@@ -213,20 +226,17 @@ class PortraitController(AbstractController):
                         logger.error(f"Failed importing image '{name}'.", exc_info=err)
                         display_error(
                             sys.exc_info(),
-                            f'Failed importing image "{name}":\n{err}',
-                            f"Error for '{name}'."
+                            f(_('Failed importing image "{name}":\n{err}')),
+                            f(_("Error for '{name}'."))
                         )
             except Exception as err:
                 logger.error(f"Failed importing portraits sheet: {err}", exc_info=err)
                 display_error(
                     sys.exc_info(),
-                    f'Failed importing portraits sheet:\n{err}',
-                    f"Could not import."
+                    f(_('Failed importing portraits sheet:\n{err}')),
+                    _("Could not import.")
                 )
-            # Re-render
-            self._portrait_provider.reset()
-            for draw in self._draws:
-                draw.queue_draw()
+            self.re_render()
             # Mark as modified
             self.module.mark_as_modified()
             self._mark_as_modified_cb()
@@ -241,5 +251,5 @@ class PortraitController(AbstractController):
         ].name.replace('-', '_')
         portrait_name = f'{subindex}: {portrait_name}'
         if subindex % 2 != 0:
-            portrait_name += ' (flip)'
+            portrait_name += _(' (flip)')  # TRANSLATORS: Suffix for flipped portraits
         return portrait_name

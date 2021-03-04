@@ -25,6 +25,7 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple_tilequant.aikku.image_converter import AikkuImageConverter, DitheringMode
 from skytemple_tilequant.image_converter import ImageConverter
+from skytemple_files.common.i18n_util import _
 
 try:
     from PIL import Image
@@ -50,18 +51,18 @@ class TilequantController:
         
         # Filters
         png_filter = Gtk.FileFilter()
-        png_filter.set_name("PNG image (*.png)")
+        png_filter.set_name(_("PNG image (*.png)"))
         png_filter.add_mime_type("image/png")
         png_filter.add_pattern("*.png")
 
         jpg_filter = Gtk.FileFilter()
-        jpg_filter.set_name("JPEG image (*.jpg, *.jpeg)")
+        jpg_filter.set_name(_("JPEG image (*.jpg, *.jpeg)"))
         jpg_filter.add_mime_type("image/jpge")
         jpg_filter.add_pattern("*.jpg")
         jpg_filter.add_pattern("*.jpeg")
 
         any_filter = Gtk.FileFilter()
-        any_filter.set_name("Any files")
+        any_filter.set_name(_("Any files"))
         any_filter.add_pattern("*")
 
         tq_input_file: Gtk.FileChooserButton = builder.get_object('tq_input_file')
@@ -75,32 +76,32 @@ class TilequantController:
         tq_second_file.add_filter(any_filter)
 
         builder.get_object('tq_number_palettes_help').connect('clicked', partial(
-            self.show_help, 'The maximum number of palettes that can be used. For normal backgrounds, '
-                            'this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes '
-                            '(since the last 2 palettes are not rendered in game).'
+            self.show_help, _('The maximum number of palettes that can be used. For normal backgrounds, '
+                              'this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes '
+                              '(since the last 2 palettes are not rendered in game).')
         ))
         builder.get_object('tq_transparent_color_help').connect('clicked', partial(
-            self.show_help, 'This exact color of the image will be imported as transparency (default: #12ab56).'
+            self.show_help, _('This exact color of the image will be imported as transparency (default: #12ab56).')
         ))
         builder.get_object('tq_second_file_help').connect('clicked', partial(
-            self.show_help, 'You can use this to convert multiple images at once with the same palettes. '
-                            'This is useful for map backgrounds with multiple layers, that need to share the same'
-                            'palettes.'
+            self.show_help, _('You can use this to convert multiple images at once with the same palettes. '
+                              'This is useful for map backgrounds with multiple layers, that need to share the same '
+                              'palettes.')
         ))
         builder.get_object('tq_mode_help').connect('clicked', partial(
             self.show_help,
-            'Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they '
-            '"blend into" each other. This will make the image look like it contains more colors but also might '
-            'decrease the overall visual quality. Two different algorithms are available.\n\n'
-            'No Dithering: Color will be reorganized and reduced if necessary. No dithering will be performed.\n\n'
-            'Reorganize colors only: Colors will be reorganized so that they fit the game\'s format. SkyTemple will '
-            'not attempt to reduce the amount of overall colors to make this work, so you will get an error, if it\'s '
-            'not possible with the current amount. However if it does work, the output image will look identical to '
-            'the original image.'
+            _('Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they '
+              '"blend into" each other. This will make the image look like it contains more colors but also might '
+              'decrease the overall visual quality. Two different algorithms are available.\n\n'
+              'No Dithering: Color will be reorganized and reduced if necessary. No dithering will be performed.\n\n'
+              'Reorganize colors only: Colors will be reorganized so that they fit the game\'s format. SkyTemple will '
+              'not attempt to reduce the amount of overall colors to make this work, so you will get an error, if '
+              'it\'s not possible with the current amount. However if it does work, the output image will look '
+              'identical to the original image.')
         ))
         builder.get_object('tq_dither_level_help').connect('clicked', partial(
             self.show_help,
-            'Only relevant if dithering is enabled: This controls the amount of dithering applied.'
+            _('Only relevant if dithering is enabled: This controls the amount of dithering applied.')
         ))
         builder.get_object('tq_convert').connect('clicked', self.convert)
         self.builder = builder
@@ -126,18 +127,18 @@ class TilequantController:
         has_second_image = self.builder.get_object('tq_second_file').get_filename() is not None
 
         if not has_first_image:
-            self.error("Please select an input image.")
+            self.error(_("Please select an input image."))
             return
         if has_second_image:
             md = SkyTempleMessageDialog(self.window,
                                         Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                        Gtk.ButtonsType.OK, "Since you selected two images to convert, you will be asked "
-                                                            "for both images where to save them to.")
+                                        Gtk.ButtonsType.OK, _("Since you selected two images to convert, you will be "
+                                                              "asked for both images where to save them to."))
             md.run()
             md.destroy()
 
         dialog = Gtk.FileChooserNative.new(
-            "Save first image as (PNG)...",
+            _("Save first image as (PNG)..."),
             self.window,
             Gtk.FileChooserAction.SAVE,
             None, None
@@ -158,7 +159,7 @@ class TilequantController:
 
         if has_second_image:
             dialog = Gtk.FileChooserNative.new(
-                "Save second image as (PNG)...",
+                _("Save second image as (PNG)..."),
                 self.window,
                 Gtk.FileChooserAction.SAVE,
                 None, None
@@ -190,13 +191,13 @@ class TilequantController:
                 int(transparent_color.blue_float * 255)
             )
         except ValueError:
-            self.error("You entered invalid numbers.")
+            self.error(_("You entered invalid numbers."))
         else:
             if not os.path.exists(input_image):
-                self.error("The input image does not exist.")
+                self.error(_("The input image does not exist."))
                 return
             if has_second_image and not os.path.exists(second_input_file):
-                self.error("The second input image does not exist.")
+                self.error(_("The second input image does not exist."))
                 return
             with open(input_image, 'rb') as input_file:
                 try:
@@ -215,7 +216,7 @@ class TilequantController:
                         image.paste(image1, (0, 0))
                         image.paste(image2, (0, image1.height))
                 except OSError:
-                    self.error("The input image is not a supported format.")
+                    self.error(_("The input image is not a supported format."))
                     return
                 try:
                     img = self._convert(image, transparent_color, mode, num_pals, dither_level)
@@ -232,7 +233,7 @@ class TilequantController:
                 else:
                     md = SkyTempleMessageDialog(self.window,
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                                Gtk.ButtonsType.OK, "Image was converted.", is_success=True)
+                                                Gtk.ButtonsType.OK, _("Image was converted."), is_success=True)
                     md.run()
                     md.destroy()
 

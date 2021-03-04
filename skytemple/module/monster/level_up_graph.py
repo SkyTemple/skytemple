@@ -24,6 +24,7 @@ from pygal.style import DarkSolarizedStyle
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry, LEVEL_BIN_ENTRY_LEVEL_LEN
 from skytemple_files.data.md.model import MdEntry
 from skytemple_files.data.waza_p.model import MoveLearnset
+from skytemple_files.common.i18n_util import f, _
 
 
 class LevelUpGraphProvider:
@@ -83,13 +84,14 @@ class LevelUpGraphProvider:
                 'label': self.move_strings[lum.move_id]
             })
 
-        chart.add('Exp.', exps, secondary=True)
-        chart.add('HP', hps)
-        chart.add('ATK', atks)
-        chart.add('Sp. ATK', sp_atks)
-        chart.add('DEF', defs)
-        chart.add('Sp. DEF', sp_defs)
-        chart.add('Moves', moves, stroke=False, formatter=lambda x: f'at level {x[0]}')
+        chart.add(_('Exp.'), exps, secondary=True)  # TRANSLATORS: Experience
+        chart.add(_('HP'), hps)  # TRANSLATORS: Health Points
+        chart.add(_('ATK'), atks)  # TRANSLATORS: Attack
+        chart.add(_('Sp. ATK'), sp_atks)  # TRANSLATORS: Special Attack
+        chart.add(_('DEF'), defs)  # TRANSLATORS: Defense
+        chart.add(_('Sp. DEF'), sp_defs)  # TRANSLATORS: Special Defense
+        chart.add(_('Moves'), moves, stroke=False,
+                  formatter=lambda x: f(_('at level {x[0]}')))
 
         return chart
 

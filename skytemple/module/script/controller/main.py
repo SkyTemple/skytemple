@@ -22,8 +22,9 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import f, _
 
-SCRIPT_SCENES = 'Script Scenes'
+SCRIPT_SCENES = _('Script Scenes')
 
 
 class MainController(SimpleController):
@@ -35,9 +36,9 @@ class MainController(SimpleController):
 
     def get_content(self) -> Gtk.Widget:
         return self.generate_content_label(
-            "This section lets you edit overworld scenes in the game, so anything that happens outside of Dungeons.\n"
-            "This also includes cutscene visuals and some system related scenes, "
-            "like credits or the title screen logos."
+            _("This section lets you edit overworld scenes in the game, so anything that happens outside of Dungeons.\n"
+              "This also includes cutscene visuals and some system related scenes, "
+              "like credits or the title screen logos.")
         )
 
     def get_icon(self) -> str:

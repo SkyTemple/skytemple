@@ -17,7 +17,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 import re
-from typing import TYPE_CHECKING, Tuple
+from typing import TYPE_CHECKING, Tuple, List
 
 from gi.repository import Gtk
 from gi.repository.Gtk import Widget
@@ -26,6 +26,7 @@ from skytemple.core.string_provider import StringProvider, StringType
 from skytemple.core.module_controller import AbstractController
 from skytemple_files.data.tbl_talk import TBL_TALK_SPEC_LEN
 from skytemple_files.data.tbl_talk.model import TalkType
+from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
@@ -39,29 +40,29 @@ MAP_TALK_TYPE = [StringType.DIALOGUE_HEALTHY,
                  StringType.DIALOGUE_GROUND_WAIT]
 
 # TODO: Static list of actors
-UNIQUE_ACTORS = ["Partner 1",
-                 "Partner 2",
-                 "Partner 3",
-                 "Grovyle",
-                 "Chatot",
-                 "Bidoof",
-                 "Celebi",
-                 "Cresselia"]+["Unknown Actor %02d"%i for i in range(8, 13)]+["Shaymin",
-                 "Snover",
-                 "Armaldo",
-                 "Banette", #Not sure about those two (I could have swapped them)
-                 "Skorupi", #With this
-                 "Medicham",
-                 "Gardevoir",
-                 "Unknown Actor 20",
-                 "Celebi",
-                 "Dusknoir",
-                 "Dusknoir",
-                 "Dusknoir",
-                 "Dusknoir",
-                 "Dusknoir",
-                 "Dusknoir",
-                 "Dusknoir"]+["Unknown Actor %02d"%i for i in range(29, 34)]+["Loudred", "Unknown Actor 35"]
+UNIQUE_ACTORS = [_("Partner 1"),
+                 _("Partner 2"),
+                 _("Partner 3"),
+                 _("Grovyle"),
+                 _("Chatot"),
+                 _("Bidoof"),
+                 _("Celebi"),
+                 _("Cresselia")]+[_("Unknown Actor %02d") % i for i in range(8, 13)]+[_("Shaymin"),
+                 _("Snover"),
+                 _("Armaldo"),
+                 _("Banette"), #Not sure about those two (I could have swapped them)
+                 _("Skorupi"), #With this
+                 _("Medicham"),
+                 _("Gardevoir"),
+                 _("Unknown Actor 20"),
+                 _("Celebi"),
+                 _("Dusknoir"),
+                 _("Dusknoir"),
+                 _("Dusknoir"),
+                 _("Dusknoir"),
+                 _("Dusknoir"),
+                 _("Dusknoir"),
+                 _("Dusknoir")]+[_("Unknown Actor %02d") % i for i in range(29, 34)]+[_("Loudred"), _("Unknown Actor 35")]
 class MainController(AbstractController):
     def __init__(self, module: 'MonsterModule', item_id: int):
         self.module = module

@@ -19,8 +19,9 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import _
 
-MAPBG_NAME = 'Map Backgrounds'
+MAPBG_NAME = _('Map Backgrounds')
 
 
 class MainController(SimpleController):
@@ -32,9 +33,9 @@ class MainController(SimpleController):
 
     def get_content(self) -> Gtk.Widget:
         return self.generate_content_label(
-            "This section lets you edit map backgrounds. These backgrounds are usually "
-            "loaded by the game for scenes and serve many purposes (actual backgrounds for maps, "
-            "title screen backgrounds, cutscenes, etc.)."
+            _("This section lets you edit map backgrounds. These backgrounds are usually "
+              "loaded by the game for scenes and serve many purposes (actual backgrounds for maps, "
+              "title screen backgrounds, cutscenes, etc.).")
         )
 
     def get_icon(self) -> str:

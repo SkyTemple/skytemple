@@ -38,6 +38,7 @@ from skytemple_files.graphics.dpci.model import Dpci
 from skytemple_files.graphics.dpl.model import Dpl
 from skytemple_files.graphics.dpla.model import Dpla
 from skytemple_files.graphics.colvec.model import Colvec
+from skytemple_files.common.i18n_util import f, _
 
 # TODO: Not so great that this is hard-coded, but how else can we really do it? - Maybe at least in the dungeondata.xml?
 NUMBER_OF_TILESETS = 170
@@ -76,19 +77,19 @@ class DungeonGraphicsModule(AbstractModule):
         for i in range(0, NUMBER_OF_TILESETS):
             self._tree_level_iter.append(
                 item_store.append(root, [
-                    'skytemple-e-dungeon-tileset-symbolic', f"Tileset {i}", self,  TilesetController, i, False, '', True
+                    'skytemple-e-dungeon-tileset-symbolic', f"{_('Tileset')} {i}", self,  TilesetController, i, False, '', True
                 ])
             )
         for i in range(0, NUMBER_OF_BACKGROUNDS):
             self._tree_level_iter.append(
                 item_store.append(root, [
-                    'skytemple-e-mapbg-symbolic', f"Background {i + NUMBER_OF_TILESETS}",
+                    'skytemple-e-mapbg-symbolic', f"{_('Background')} {i + NUMBER_OF_TILESETS}",
                     self,  DungeonBgController, i, False, '', True
                 ])
             )
         self._tree_level_iter.append(
             item_store.append(root, [
-                'skytemple-e-dungeon-tileset-symbolic', f"Color Map",
+                'skytemple-e-dungeon-tileset-symbolic', _("Color Map"),
                 self, ColvecController, i, False, '', True
             ])
         )

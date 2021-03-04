@@ -18,8 +18,9 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import _
 
-MISC_GRAPHICS = 'Misc. Graphics'
+MISC_GRAPHICS = _('Misc. Graphics')
 
 
 class MainController(SimpleController):
@@ -31,7 +32,7 @@ class MainController(SimpleController):
 
     def get_content(self) -> Gtk.Widget:
         return self.generate_content_label(
-            "This section lets you edit miscellaneous graphics."
+            _("This section lets you edit miscellaneous graphics.")
         )
 
     def get_icon(self) -> str:

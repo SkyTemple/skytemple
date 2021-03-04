@@ -60,6 +60,7 @@ from skytemple_files.dungeon_data.floor_attribute.handler import FloorAttributeH
 # TODO: Add this to dungeondata.xml?
 from skytemple_files.hardcoded.fixed_floor import EntitySpawnEntry, ItemSpawn, MonsterSpawn, TileSpawn, \
     MonsterSpawnStats, HardcodedFixedFloorTables, FixedFloorProperties
+from skytemple_files.common.i18n_util import _, f
 
 DOJO_DUNGEONS_FIRST = 0xB4
 DOJO_DUNGEONS_LAST = 0xBF
@@ -154,7 +155,7 @@ class DungeonModule(AbstractModule):
         ])
         for i in range(0, len(self._fixed_floor_data.fixed_floors)):
             self._fixed_floor_iters.append(item_store.append(self._fixed_floor_root_iter, [
-                ICON_FIXED_ROOMS, f'Fixed Room {i}', self, FixedController,
+                ICON_FIXED_ROOMS, f(_('Fixed Room {i}')), self, FixedController,
                 i, False, '', True
             ]))
 
@@ -414,8 +415,8 @@ class DungeonModule(AbstractModule):
                 new_floor_list += new_floors
             new_floor_lists.append(new_floor_list)
 
-        assert len(dungeons_not_visited) == 0, "Some dungeons were missing in the new group list. " \
-                                               "This is a bug."
+        assert len(dungeons_not_visited) == 0, _("Some dungeons were missing in the new group list. "
+                                                 "This is a bug.")
 
         # If we haven't inserted the dojo dungeon floor list yet, do it now and pad with empty lists.
         if len(new_floor_lists) < DOJO_MAPPA_ENTRY:
@@ -444,14 +445,16 @@ class DungeonModule(AbstractModule):
         self.rebuild_dungeon_tree()
 
     def generate_group_label(self, base_dungeon_id) -> str:
+        # noinspection PyUnusedLocal
         dname = self.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, base_dungeon_id)
-        return f'"{dname}" Group'
+        return f(_('"{dname}" Group'))
 
     def generate_dungeon_label(self, idx) -> str:
         return f'{idx}: {self.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, idx)}'
 
+    # noinspection PyUnusedLocal
     def generate_floor_label(self, floor_i) -> str:
-        return f'Floor {floor_i + 1}'
+        return f(_('Floor {floor_i + 1}'))
 
     def get_number_floors(self, idx) -> int:
         # End:
@@ -731,32 +734,32 @@ class DungeonModule(AbstractModule):
     @staticmethod
     def desc_fixed_floor_tile(tile):
         attrs = []
-        attrs.append("Floor" if not tile.is_secondary_terrain() else "Secondary")
+        attrs.append(_("Floor") if not tile.is_secondary_terrain() else _("Secondary"))
         if tile.trap_id < 25:
             trap = MappaTrapType(tile.trap_id)
             attrs.append(' '.join([x.capitalize() for x in trap.name.split('_')]))
         if tile.trap_is_visible():
-            attrs.append("Vis.")
+            attrs.append(_("Vis."))  # TRANSLATORS: Visible (trap)
         if not tile.can_be_broken():
-            attrs.append("Unb.")
+            attrs.append(_("Unb."))  # TRANSLATORS: Unbreakable (trap)
         return ", ".join(attrs)
 
     def desc_fixed_floor_item(self, item_id):
         return self.project.get_string_provider().get_value(
             StringType.ITEM_NAMES, item_id
-        ) if item_id < MAX_ITEMS else "(Special?)"
+        ) if item_id < MAX_ITEMS else _("(Special?)")
 
     @staticmethod
     def desc_fixed_floor_monster(monster_id, enemy_settings, monster_names, enemy_settings_names, short=False):
         if monster_id == 0:
-            return "Nothing"
+            return _("Nothing")
         if short:
             return monster_names[monster_id]
         return monster_names[monster_id] + " (" + enemy_settings_names[enemy_settings] + ")"
 
     def desc_fixed_floor_stats(self, i, entry):
-        return f"{i} - Lvl: {entry.level}, Atk: {entry.attack}, Def: {entry.defense}, " \
-               f"Sp. Atk: {entry.special_attack}, Sp. Def: {entry.special_defense}, HP: {entry.hp}"
+        return f(_("{i} - Lvl: {entry.level}, Atk: {entry.attack}, Def: {entry.defense}, "
+                   "Sp. Atk: {entry.special_attack}, Sp. Def: {entry.special_defense}, HP: {entry.hp}"))
 
     def mappa_generate_and_insert_new_floor_list(self):
         mappa = self.get_mappa()

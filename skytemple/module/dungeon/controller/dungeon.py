@@ -23,6 +23,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple_files.hardcoded.dungeons import DungeonRestrictionDirection
+from skytemple_files.common.i18n_util import _, f
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, DungeonViewInfo
@@ -43,6 +44,7 @@ class DungeonController(AbstractController):
         self.builder = None
         self._is_loading = True
 
+    # noinspection PyUnusedLocal
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'dungeon.glade')
 
@@ -50,14 +52,15 @@ class DungeonController(AbstractController):
         edit_text = ''
 
         if not self.dungeon_info.length_can_be_edited:
-            edit_text = '\nSince this is a Dojo Dungeon, the floor count can not be changed.'
+            edit_text = _('\nSince this is a Dojo Dungeon, the floor count can not be changed.')
             self.builder.get_object('edit_floor_count').set_sensitive(False)
             self.builder.get_object('dungeon_restrictions_grid').set_sensitive(False)
         else:
             self._init_dungeon_restrictions()
 
+        floor_count = self.module.get_number_floors(self.dungeon_info.dungeon_id)
         self.builder.get_object('label_floor_count').set_text(
-            f'This dungeon has {self.module.get_number_floors(self.dungeon_info.dungeon_id)} floors.{edit_text}'
+            f(_('This dungeon has {floor_count} floors.{edit_text}'))
         )
 
         self._init_names()
@@ -123,7 +126,7 @@ class DungeonController(AbstractController):
         label_floor_count_in_dialog: Gtk.Label = self.builder.get_object('label_floor_count_in_dialog')
         spin_floor_count: Gtk.SpinButton = self.builder.get_object('spin_floor_count')
 
-        label_floor_count_in_dialog.set_text(f'This dungeon currently has {current_floor_count} floors.')
+        label_floor_count_in_dialog.set_text(f(_('This dungeon currently has {current_floor_count} floors.')))
         spin_floor_count.set_value(current_floor_count)
 
         resp = dialog.run()

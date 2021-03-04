@@ -36,18 +36,19 @@ from skytemple.module.monster.level_up_graph import LevelUpGraphProvider
 from skytemple_files.common.util import open_utf8
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry
 from skytemple_files.data.waza_p.model import WazaP, MoveLearnset, LevelUpMove
+from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
 logger = logging.getLogger(__name__)
 MOVE_NAME_PATTERN = re.compile(r'.*\((\d+)\).*')
-CSV_LEVEL = "Level"
-CSV_EXP_POINTS = "Exp. Points"
-CSV_HP = "HP+"
-CSV_ATK = "ATK+"
-CSV_SP_ATK = "Sp. ATK+"
-CSV_DEF = "DEF+"
-CSV_SP_DEF = "Sp. DEF+"
+CSV_LEVEL = _("Level")
+CSV_EXP_POINTS = _("Exp. Points")  # TRANSLATORS: Experience Points
+CSV_HP = _("HP+")  # TRANSLATORS: Health Points+
+CSV_ATK = _("ATK+")  # TRANSLATORS: Attack+
+CSV_SP_ATK = _("Sp. ATK+")  # TRANSLATORS: Special Attack+
+CSV_DEF = _("DEF+")  # TRANSLATORS: Defense+
+CSV_SP_DEF = _("Sp. DEF+")  # TRANSLATORS: Special Defense+
 
 
 def render_graph_template(title, svg):
@@ -201,7 +202,7 @@ class LevelUpController(AbstractController):
 
     def on_stats_export_clicked(self, *args):
         dialog = Gtk.FileChooserNative.new(
-            "Save CSV...",
+            _("Save CSV..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
             None, None
@@ -229,12 +230,12 @@ class LevelUpController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error saving the CSV."
+                    _("Error saving the CSV.")
                 )
 
     def on_stats_import_clicked(self, *args):
         dialog = Gtk.FileChooserNative.new(
-            "Import CSV...",
+            _("Import CSV..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
             None, None
@@ -249,21 +250,22 @@ class LevelUpController(AbstractController):
         if response == Gtk.ResponseType.ACCEPT:
             try:
                 with open_utf8(fn, mode='r') as csv_file:
+                    is_missing = _('is missing in the CSV')
                     content = list(csv.DictReader(csv_file))
                     if CSV_LEVEL not in content[0]:
-                        raise ValueError(f'{CSV_LEVEL} is missing in the CSV.')
+                        raise ValueError(f'{CSV_LEVEL} {is_missing}.')
                     if CSV_EXP_POINTS not in content[0]:
-                        raise ValueError(f'{CSV_EXP_POINTS} is missing in the CSV.')
+                        raise ValueError(f'{CSV_EXP_POINTS} {is_missing}.')
                     if CSV_HP not in content[0]:
-                        raise ValueError(f'{CSV_HP} is missing in the CSV.')
+                        raise ValueError(f'{CSV_HP} {is_missing}.')
                     if CSV_ATK not in content[0]:
-                        raise ValueError(f'{CSV_ATK} is missing in the CSV.')
+                        raise ValueError(f'{CSV_ATK} {is_missing}.')
                     if CSV_SP_ATK not in content[0]:
-                        raise ValueError(f'{CSV_SP_ATK} is missing in the CSV.')
+                        raise ValueError(f'{CSV_SP_ATK} {is_missing}.')
                     if CSV_DEF not in content[0]:
-                        raise ValueError(f'{CSV_DEF} is missing in the CSV.')
+                        raise ValueError(f'{CSV_DEF} {is_missing}.')
                     if CSV_SP_DEF not in content[0]:
-                        raise ValueError(f'{CSV_SP_DEF} is missing in the CSV.')
+                        raise ValueError(f'{CSV_SP_DEF} {is_missing}.')
                     try:
                         levels = [int(row[CSV_LEVEL]) for row in content]
                         for row in content:
@@ -274,16 +276,16 @@ class LevelUpController(AbstractController):
                             int(row[CSV_DEF])
                             int(row[CSV_SP_DEF])
                     except ValueError:
-                        raise ValueError(f'All values must be numbers.')
+                        raise ValueError(_('All values must be numbers.'))
                     all_levels = set(range(1, 101))
                     if len(levels) != len(all_levels) or set(levels) != all_levels:
-                        raise ValueError("The CSV must contain one entry per level.")
+                        raise ValueError(_("The CSV must contain one entry per level."))
                     content.sort(key=lambda row: int(row[CSV_LEVEL]))
             except BaseException as err:
                 display_error(
                     sys.exc_info(),
-                    "Invalid CSV file:\n" + str(err),
-                    "Error reading the CSV."
+                    _("Invalid CSV file:\n") + str(err),
+                    _("Error reading the CSV.")
                 )
                 return
             try:
@@ -296,10 +298,10 @@ class LevelUpController(AbstractController):
             except BaseException as err:
                 display_error(
                     sys.exc_info(),
-                    "Warning: The stats view might be corrupted now,\n"
-                    "but the data in ROM is still unchanged,\n"
-                    "simply reload this view!\n" + str(err),
-                    "Error reading the CSV."
+                    _("Warning: The stats view might be corrupted now,\n"
+                      "but the data in ROM is still unchanged,\n"
+                      "simply reload this view!\n") + str(err),
+                    _("Error reading the CSV.")
                 )
                 return
             self._rebuild_stats()
@@ -401,7 +403,7 @@ class LevelUpController(AbstractController):
             for child in stats_box:
                 stats_box.remove(child)
             self._render_graph = False
-            stats_box.pack_start(Gtk.Label.new('This Pokémon has no stats.'), True, True, 0)
+            stats_box.pack_start(Gtk.Label.new(_('This Pokémon has no stats.')), True, True, 0)
         else:
             self._level_bin_entry = self.module.get_m_level_bin_entry(entry_id)
             for i, level in enumerate(self._level_bin_entry.levels):
@@ -428,9 +430,9 @@ class LevelUpController(AbstractController):
                 hmtm_box.remove(child)
             for child in egg_box:
                 egg_box.remove(child)
-            level_up_box.pack_start(Gtk.Label.new('This Pokémon has no moves.'), True, True, 0)
-            hmtm_box.pack_start(Gtk.Label.new('This Pokémon has no moves.'), True, True, 0)
-            egg_box.pack_start(Gtk.Label.new('This Pokémon has no moves.'), True, True, 0)
+            level_up_box.pack_start(Gtk.Label.new(_('This Pokémon has no moves.')), True, True, 0)
+            hmtm_box.pack_start(Gtk.Label.new(_('This Pokémon has no moves.')), True, True, 0)
+            egg_box.pack_start(Gtk.Label.new(_('This Pokémon has no moves.')), True, True, 0)
         else:
             entry = self._waza_p.learnsets[self.item_id]
             # Level up
@@ -473,7 +475,7 @@ class LevelUpController(AbstractController):
             graph_box: Gtk.Box = self.builder.get_object('graph_box')
             for child in graph_box:
                 graph_box.remove(child)
-            graph_box.pack_start(Gtk.Label.new('This Pokémon has no stats.'), True, True, 0)
+            graph_box.pack_start(Gtk.Label.new(_('This Pokémon has no stats.')), True, True, 0)
         else:
             self.queue_render_graph()
 
@@ -500,7 +502,7 @@ class LevelUpController(AbstractController):
 
         with open_utf8(self.get_tmp_html_path(), 'w') as f:
             f.write(render_graph_template(
-                f'{self._string_provider.get_value(StringType.POKEMON_NAMES, self.item_id)} Stats Graph (SkyTemple)',
+                f'{self._string_provider.get_value(StringType.POKEMON_NAMES, self.item_id)} {_("Stats Graph")} (SkyTemple)',
                 svg
             ))
 
@@ -530,13 +532,13 @@ class LevelUpController(AbstractController):
 
     def _add_dialog_file_filters(self, dialog):
         filter_csv = Gtk.FileFilter()
-        filter_csv.set_name("CSV (*.csv)")
+        filter_csv.set_name(_("CSV (*.csv)"))
         filter_csv.add_mime_type("text/csv")
         filter_csv.add_pattern("*.csv")
         dialog.add_filter(filter_csv)
 
         filter_any = Gtk.FileFilter()
-        filter_any.set_name("Any files")
+        filter_any.set_name(_("Any files"))
         filter_any.add_pattern("*")
         dialog.add_filter(filter_any)
 

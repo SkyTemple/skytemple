@@ -26,6 +26,8 @@ from gi.repository import GLib
 
 from skytemple.core.error_handler import display_error
 from skytemple_files.common.project_file_manager import ProjectFileManager
+from skytemple_files.common.i18n_util import _, f
+
 logger = logging.getLogger('system')
 
 
@@ -36,11 +38,12 @@ def handle_exception(exc_type, exc_value, exc_traceback):
 
     logger.critical("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
     try:
+        # noinspection PyUnusedLocal
+        traceback_str = ''.join(traceback.format_exception(exc_type, exc_value, exc_traceback))
         GLib.idle_add(lambda: display_error(
             (exc_type, exc_value, exc_traceback),
-             f"An uncaught exception occured! This shouldn't happen, please report it!\n\n"
-             f"{''.join(traceback.format_exception(exc_type, exc_value, exc_traceback))}",
-            "SkyTemple - Uncaught error!", log=False
+             f(_("An uncaught exception occurred! This shouldn't happen, please report it!")) + "\n\n" + traceback_str,
+            _("SkyTemple - Uncaught error!"), log=False
         ))
     except:
         pass

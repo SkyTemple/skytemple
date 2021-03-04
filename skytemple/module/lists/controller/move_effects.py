@@ -15,9 +15,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-import re
 import sys
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, List
 
 from gi.repository import Gtk
 
@@ -25,7 +24,6 @@ from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.list.actor.model import ActorListBin
 from skytemple.core.string_provider import StringType
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
@@ -117,15 +115,15 @@ class MoveEffectsController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"Import any move effect ASM code. It must follow the rules of a valid move effect code.\n"
-            f"WARNING: SkyTemple does not check if the code is correct!\n"
-            f"Also, make sure the code was assembled for the version you are using. ",
-            title="Import Move Effect ASM Code"
+            _("Import any move effect ASM code. It must follow the rules of a valid move effect code.\n"
+              "WARNING: SkyTemple does not check if the code is correct!\n"
+              "Also, make sure the code was assembled for the version you are using. "),
+            title=_("Import Move Effect ASM Code")
         )
         md.run()
         md.destroy()
         dialog = Gtk.FileChooserNative.new(
-            "Import Move Effect ASM Code...",
+            _("Import Move Effect ASM Code..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
             None, None
@@ -144,7 +142,7 @@ class MoveEffectsController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error importing ASM code."
+                    _("Error importing ASM code.")
                 )
     
     def on_btn_export_code_clicked(self, *args):
@@ -152,14 +150,14 @@ class MoveEffectsController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"Export any move effect ASM code. It must follow the rules of a valid move effect code.\n"
-            f"WARNING: it only exports the raw code, it doesn't disassemble it!",
-            title="Export Move Effect ASM Code"
+            _("Export any move effect ASM code. It must follow the rules of a valid move effect code.\n"
+              "WARNING: it only exports the raw code, it doesn't disassemble it!"),
+            title=_("Export Move Effect ASM Code")
         )
         md.run()
         md.destroy()
         dialog = Gtk.FileChooserNative.new(
-            "Export Move Effect ASM Code...",
+            _("Export Move Effect ASM Code..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
             None, None
@@ -189,7 +187,7 @@ class MoveEffectsController(AbstractController):
             display_error(
                 sys.exc_info(),
                 str(err),
-                "Cannot delete this effect."
+                _("Cannot delete this effect.")
             )
     def on_metronome_move_id_edited(self, widget, path, text):
         try:
@@ -250,4 +248,4 @@ class MoveEffectsController(AbstractController):
         store.clear()
         for x in self.move_effects.get_all_of(effect_id):
             store.append([x, self._string_provider.get_value(StringType.MOVE_NAMES, x)])
-        
+

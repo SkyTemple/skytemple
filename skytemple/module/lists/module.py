@@ -43,6 +43,7 @@ from skytemple_files.hardcoded.menus import HardcodedMenus, MenuEntry, MenuType
 from skytemple_files.list.actor.model import ActorListBin
 from skytemple_files.list.items.handler import ItemListHandler
 from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList
+from skytemple_files.common.i18n_util import _
 
 ITEM_LISTS = 'TABLEDAT/list_%02d.bin'
 ACTOR_LIST = 'BALANCE/actor_list.bin'
@@ -79,31 +80,31 @@ class ListsModule(AbstractModule):
             'skytemple-view-list-symbolic', GROUND_LISTS, self, MainController, 0, False, '', True
         ])
         self._actor_tree_iter = item_store.append(root, [
-            'skytemple-e-actor-symbolic', 'Actors', self, ActorListController, 0, False, '', True
+            'skytemple-e-actor-symbolic', _('Actors'), self, ActorListController, 0, False, '', True
         ])
         self._starters_tree_iter = item_store.append(root, [
-            'skytemple-e-monster-symbolic', 'Starters', self, StartersListController, 0, False, '', True
+            'skytemple-e-monster-symbolic', _('Starters'), self, StartersListController, 0, False, '', True
         ])
         self._recruitment_tree_iter = item_store.append(root, [
-            'skytemple-e-monster-symbolic', 'Recruitment List', self, RecruitmentListController, 0, False, '', True
+            'skytemple-e-monster-symbolic', _('Recruitment List'), self, RecruitmentListController, 0, False, '', True
         ])
         self._world_map_tree_iter = item_store.append(root, [
-            'skytemple-e-worldmap-symbolic', 'World Map Markers', self, WorldMapController, 0, False, '', True
+            'skytemple-e-worldmap-symbolic', _('World Map Markers'), self, WorldMapController, 0, False, '', True
         ])
         self._rank_list_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', 'Rank List', self, RankListController, 0, False, '', True
+            'skytemple-view-list-symbolic', _('Rank List'), self, RankListController, 0, False, '', True
         ])
         self._item_lists_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', 'Item Lists', self, ItemListsController, 0, False, '', True
+            'skytemple-view-list-symbolic', _('Item Lists'), self, ItemListsController, 0, False, '', True
         ])
         self._menu_list_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', 'Menu List', self, MenuListController, 0, False, '', True
+            'skytemple-view-list-symbolic', _('Menu List'), self, MenuListController, 0, False, '', True
         ])
         self._item_effects_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', 'Item Effects', self, ItemEffectsController, 0, False, '', True
+            'skytemple-view-list-symbolic', _('Item Effects'), self, ItemEffectsController, 0, False, '', True
         ])
         self._move_effects_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', 'Move Effects', self, MoveEffectsController, 0, False, '', True
+            'skytemple-view-list-symbolic', _('Move Effects'), self, MoveEffectsController, 0, False, '', True
         ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])
@@ -142,7 +143,7 @@ class ListsModule(AbstractModule):
         # Mark as modified in tree
         row = self._tree_model[self._move_effects_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
-        
+    
     def has_move_effects(self):
         return self.project.file_exists(MOVE_EFFECTS)
     

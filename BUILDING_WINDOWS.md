@@ -5,10 +5,10 @@ All of these commands should be run in the MSys environment that is set up in st
 
 1. Install Python and the Pygobject dependencies, as explained here (for development!):
    https://pygobject.readthedocs.io/en/latest/getting_started.html#windows-getting-started
-2. Install additional packages: `pacman -S mingw-w64-x86_64-python-pip mingw-w64-x86_64-gtksourceview4 mingw-w64-x86_64-python-pillow`
-3. Install the binary wheels from https://shared.parakoopa.de/wl/?id=LaXpVxsQXwmH84L1TGA7zvJxlQZROPCP:
+2. Install additional packages: `pacman -S mingw-w64-x86_64-python-pip mingw-w64-x86_64-gtksourceview4 mingw-w64-x86_64-python-pillow mingw-w64-x86_64-toolchain mingw-w64-x86_64-gtksourceview3`
+3. Install the binary wheels from https://skytemple.org/build_deps/:
    ```
-   pip install py_desmume-0.0.2-cp38-cp38-mingw.whl
+   pip install py_desmume-0.0.3-cp38-cp38-mingw.whl
    pip install python_igraph-0.8.2-cp38-cp38-mingw.whl
    pip install skytemple_rust-0.0.1-cp38-cp38-mingw.whl
    ```

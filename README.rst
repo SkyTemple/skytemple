@@ -3,9 +3,13 @@
 SkyTemple
 =========
 
-|build| |pypi-version| |pypi-downloads| |pypi-license| |pypi-pyversions| |discord|
+|build| |crowdin| |pypi-version| |pypi-downloads| |pypi-license| |pypi-pyversions| |discord|
 
 .. |logo| image:: https://raw.githubusercontent.com/SkyTemple/skytemple/master/skytemple/data/icons/hicolor/256x256/apps/skytemple.png
+
+.. |crowdin| image:: https://badges.crowdin.net/skytemple/localized.svg
+    :target: https://crowdin.com/project/skytemple
+    :alt: Localization Progress
 
 .. |build| image:: https://img.shields.io/github/workflow/status/SkyTemple/skytemple/Build,%20test%20and%20publish
     :target: https://pypi.org/project/skytemple/
@@ -26,7 +30,7 @@ SkyTemple
     :alt: Supported Python versions
 
 .. |discord| image:: https://img.shields.io/discord/710190644152369162?label=Discord
-    :target: https://discord.gg/4e3X36f
+    :target: https://discord.gg/skytemple
     :alt: Discord
 
 .. |kofi| image:: https://www.ko-fi.com/img/githubbutton_sm.svg

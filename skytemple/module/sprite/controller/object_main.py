@@ -18,8 +18,9 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import f, _
 
-OBJECT_SPRTIES = 'Object Sprites'
+OBJECT_SPRTIES = _('Object Sprites')
 
 
 class ObjectMainController(SimpleController):
@@ -31,7 +32,7 @@ class ObjectMainController(SimpleController):
 
     def get_content(self) -> Gtk.Widget:
         return self.generate_content_label(
-            "This section lets you import and export object sprites."
+            _("This section lets you import and export object sprites.")
         )
 
     def get_icon(self):

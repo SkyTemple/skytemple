@@ -1,5 +1,10 @@
-__version__ = '1.1.2.post0'
+__version__ = '1.1.5'
+
+import glob
 import os
+import pathlib
+import subprocess
+import sys
 
 from setuptools import setup, find_packages
 
@@ -11,6 +16,25 @@ with open(path.join(this_directory, 'README.rst'), encoding='utf-8') as f:
 # END README read-in
 
 
+PO_FILES = 'data/locale/*/LC_MESSAGES/skytemple.po'
+
+
+def create_mo_files():
+    try:
+        mo_files = []
+        prefix = os.path.join(this_directory, 'skytemple')
+
+        for po_path in glob.glob(str(pathlib.Path(prefix) / PO_FILES)):
+            mo = pathlib.Path(po_path.replace('.po', '.mo'))
+
+            subprocess.run(['msgfmt', '-o', str(mo), po_path], check=True)
+            mo_files.append(str(mo.relative_to(prefix)))
+
+        return mo_files
+    except BaseException as ex:
+        return []
+
+
 def recursive_pkg_files(file_ext):
     directory = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'skytemple')
     paths = []
@@ -18,6 +42,15 @@ def recursive_pkg_files(file_ext):
         for filename in filenames:
             if filename.endswith(file_ext):
                 paths.append(os.path.relpath(os.path.join('..', path, filename), directory))
+    return paths
+
+
+def recursive_pkg_files_in(xpath):
+    directory = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'skytemple', xpath)
+    paths = []
+    for (path, directories, filenames) in os.walk(directory):
+        for filename in filenames:
+            paths.append(os.path.relpath(os.path.join('..', path, filename), os.path.join(os.path.abspath(os.path.dirname(__file__)), 'skytemple')))
     return paths
 
 
@@ -31,7 +64,7 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files >= 1.1.2.post0',
+        'skytemple-files >= 1.1.5',
         'skytemple-dtef >= 1.1.1',
         'skytemple-icons >= 1.1.0',
         'pygobject >= 3.26.0',
@@ -55,7 +88,7 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9'
     ],
-    package_data={'skytemple': ['*.css', 'data/*/*/*/*/*', 'data/*', 'data/fixed_floor/*', 'data/back_illust/*'] + recursive_pkg_files('.glade')},
+    package_data={'skytemple': ['*.css'] + recursive_pkg_files('.glade') + recursive_pkg_files_in('data/') + create_mo_files()},
     entry_points='''
         [skytemple.module]
         rom=          skytemple.module.rom.module:RomModule

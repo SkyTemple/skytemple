@@ -21,43 +21,44 @@ from gi.repository import Gtk
 
 from skytemple.core.string_provider import StringType
 from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
+from skytemple_files.common.i18n_util import _
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 
 logger = logging.getLogger(__name__)
 NATURES_AND_GENDERS = [
-    ("Hardy", "Male"),
-    ("Hardy", "Female"),
-    ("Docile", "Male"),
-    ("Docile", "Female"),
-    ("Brave", "Male"),
-    ("Brave", "Female"),
-    ("Jolly", "Male"),
-    ("Jolly", "Female"),
-    ("Impish", "Male"),
-    ("Impish", "Female"),
-    ("Naive", "Male"),
-    ("Naive", "Female"),
-    ("Timid", "Male"),
-    ("Timid", "Female"),
-    ("Hasty", "Male"),
-    ("Hasty", "Female"),
-    ("Sassy", "Male"),
-    ("Sassy", "Female"),
-    ("Calm", "Male"),
-    ("Calm", "Female"),
-    ("Relaxed", "Male"),
-    ("Relaxed", "Female"),
-    ("Lonely", "Male"),
-    ("Lonely", "Female"),
-    ("Quirky", "Male"),
-    ("Quirky", "Female"),
-    ("Quiet", "Male"),
-    ("Quiet", "Female"),
-    ("Rash", "Male"),
-    ("Rash", "Female"),
-    ("???", "???"),
-    ("???", "???")
+    (_("Hardy"), _("Male")),
+    (_("Hardy"), _("Female")),
+    (_("Docile"), _("Male")),
+    (_("Docile"), _("Female")),
+    (_("Brave"), _("Male")),
+    (_("Brave"), _("Female")),
+    (_("Jolly"), _("Male")),
+    (_("Jolly"), _("Female")),
+    (_("Impish"), _("Male")),
+    (_("Impish"), _("Female")),
+    (_("Naive"), _("Male")),
+    (_("Naive"), _("Female")),
+    (_("Timid"), _("Male")),
+    (_("Timid"), _("Female")),
+    (_("Hasty"), _("Male")),
+    (_("Hasty"), _("Female")),
+    (_("Sassy"), _("Male")),
+    (_("Sassy"), _("Female")),
+    (_("Calm"), _("Male")),
+    (_("Calm"), _("Female")),
+    (_("Relaxed"), _("Male")),
+    (_("Relaxed"), _("Female")),
+    (_("Lonely"), _("Male")),
+    (_("Lonely"), _("Female")),
+    (_("Quirky"), _("Male")),
+    (_("Quirky"), _("Female")),
+    (_("Quiet"), _("Male")),
+    (_("Quiet"), _("Female")),
+    (_("Rash"), _("Male")),
+    (_("Rash"), _("Female")),
+    (_("???"), _("???")),
+    (_("???"), _("???"))
 ]
 
 

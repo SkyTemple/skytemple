@@ -23,6 +23,7 @@ from gi.repository import Gtk, Pango
 from gi.repository.Gtk import Widget
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.ui_utils import APP, make_builder
 
 
 class AbstractController(ABC):
@@ -38,9 +39,7 @@ class AbstractController(ABC):
     @staticmethod
     def _get_builder(pymodule_path: str, glade_file: str):
         path = os.path.abspath(os.path.dirname(pymodule_path))
-        builder = Gtk.Builder()
-        builder.add_from_file(os.path.join(path, glade_file))
-        return builder
+        return make_builder(os.path.join(path, glade_file))
 
 
 class NotImplementedController(AbstractController):

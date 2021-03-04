@@ -18,8 +18,9 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import f, _
 
-TEXT_STRINGS = 'Text Strings'
+TEXT_STRINGS = _('Text Strings')
 
 
 class MainController(SimpleController):
@@ -31,9 +32,9 @@ class MainController(SimpleController):
 
     def get_content(self) -> Gtk.Widget:
         return self.generate_content_label(
-            "This section lets you edit the text strings in the game. Please note that some of these strings "
-            "can also be edited in other places in the UI (eg. the Pokémon names under Pokémon).\n"
-            "Not included are the strings of the game's scripts."
+            _("This section lets you edit the text strings in the game. Please note that some of these strings "
+              "can also be edited in other places in the UI (eg. the Pokémon names under Pokémon).\n"
+              "Not included are the strings of the game's scripts.")
         )
 
     def get_icon(self) -> str:

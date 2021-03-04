@@ -18,6 +18,7 @@ from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import f, _
 
 
 class MapController(SimpleController):
@@ -25,19 +26,19 @@ class MapController(SimpleController):
         self.name = name
 
     def get_title(self) -> str:
-        return f'Script Scenes for "{self.name}"'
+        return f(_('Script Scenes for "{}').format(self.name))
 
     def get_content(self) -> Gtk.Widget:
         # TODO: Adding and removing the enter scene.
         return self.generate_content_label(
-            f'This section contains all scenes for the map {self.name}.\n\n'
-            f'"Enter (sse)" contains the scene that is loaded when the map is entered\n'
-            f'by the player by "walking into it" (if applicable).\n\n'
-            f'"Acting (ssa)" contains the scenes used for cutscenes.\n'
-            f'The player can usually not move the character in these scenes.\n\n'
-            f'"Sub (sss)" contains scenes that can be loaded on on top of the "Enter" scene,\n'
-            f'depending on the current story progress.\n\n'
-            f'Currently new scenes can not be added via SkyTemple.'
+            f(_('This section contains all scenes for the map {self.name}.\n\n'
+                '"Enter (sse)" contains the scene that is loaded when the map is entered\n'
+                'by the player by "walking into it" (if applicable).\n\n'
+                '"Acting (ssa)" contains the scenes used for cutscenes.\n'
+                'The player can usually not move the character in these scenes.\n\n'
+                '"Sub (sss)" contains scenes that can be loaded on on top of the "Enter" scene,\n'
+                'depending on the current story progress.\n\n'
+                'Currently new scenes can not be added via SkyTemple.'))
         )
 
     def get_icon(self) -> str:

@@ -31,6 +31,7 @@ from skytemple.core.model_context import ModelContext
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.graphics.wan_wat.model import Wan
+from skytemple_files.common.i18n_util import f, _
 
 try:
     from PIL import Image
@@ -67,13 +68,13 @@ class MonsterSpriteController(AbstractController):
 
     def get_view(self) -> Gtk.Widget:
         if self.item_id < 0:
-            return Gtk.Label.new('Invalid Sprite ID.')
+            return Gtk.Label.new(_('Invalid Sprite ID.'))
         self.builder = self._get_builder(__file__, 'monster_sprite.glade')
         self._draw_area = self.builder.get_object('draw_sprite')
         if self.module.get_gfxcrunch().is_available():
-            self.builder.get_object('explanation_text2').set_markup("""Alternatively you can export the sprite files 
+            self.builder.get_object('explanation_text2').set_markup(_("""Alternatively you can export the sprite files 
 in the gfxcrunch format and edit them manually.
-Warning: SkyTemple does not validate the files you import.""")
+Warning: SkyTemple does not validate the files you import."""))
         self.builder.connect_signals(self)
 
         try:
@@ -122,10 +123,10 @@ Warning: SkyTemple does not validate the files you import.""")
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(
-            "Export spritesheet...",
+            _("Export spritesheet..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            '_Save', None
+            _('_Save'), None
         )
 
         response = dialog.run()
@@ -150,22 +151,22 @@ Warning: SkyTemple does not validate the files you import.""")
 
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                            Gtk.ButtonsType.OK, "The spritesheet was successfully exported.",
-                                            title="Success!", is_success=True)
+                                            Gtk.ButtonsType.OK, _("The spritesheet was successfully exported."),
+                                            title=_("Success!"), is_success=True)
                 md.run()
                 md.destroy()
             except BaseException as e:
                 display_error(
                     sys.exc_info(),
                     str(e),
-                    "Error exporting the spritesheet."
+                    _("Error exporting the spritesheet.")
                 )
 
     def on_import_clicked(self, w: Gtk.MenuToolButton):
         md = SkyTempleMessageDialog(MainController.window(),
                                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, "To import select the directory of the spritesheets. If it "
-                                                        "is still zipped, unzip it first.",
+                                    Gtk.ButtonsType.OK, _("To import select the directory of the spritesheets. If it "
+                                                          "is still zipped, unzip it first."),
                                     title="SkyTemple")
         md.run()
         md.destroy()
@@ -175,11 +176,11 @@ Warning: SkyTemple does not validate the files you import.""")
         md = SkyTempleMessageDialog(MainController.window(),
                                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
                                     Gtk.ButtonsType.OK_CANCEL,
-                                    "This will insert a completely new sprite into the game's sprite file and "
-                                    "assign the new ID to the Pokémon.\n"
-                                    "If you want to instead replace the currently assigned sprite, choose 'Import'."
-                                    "\n\nTo import select the directory of the spritesheets. If it "
-                                    "is still zipped, unzip it first.",
+                                    _("This will insert a completely new sprite into the game's sprite file and "
+                                      "assign the new ID to the Pokémon.\n"
+                                      "If you want to instead replace the currently assigned sprite, choose 'Import'."
+                                      "\n\nTo import select the directory of the spritesheets. If it "
+                                      "is still zipped, unzip it first."),
                                     title="SkyTemple")
         response = md.run()
         md.destroy()
@@ -190,7 +191,7 @@ Warning: SkyTemple does not validate the files you import.""")
 
     def do_import(self, item_id: int, cb=lambda: None):
         dialog = Gtk.FileChooserNative.new(
-            "Import spritesheet...",
+            _("Import spritesheet..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
             None, None
@@ -207,8 +208,8 @@ Warning: SkyTemple does not validate the files you import.""")
 
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                            Gtk.ButtonsType.OK, "The spritesheet was successfully imported.",
-                                            title="Success!", is_success=True)
+                                            Gtk.ButtonsType.OK, _("The spritesheet was successfully imported."),
+                                            title=_("Success!"), is_success=True)
                 md.run()
                 md.destroy()
                 self.module.save_monster_monster_sprite(item_id, monster)
@@ -226,7 +227,7 @@ Warning: SkyTemple does not validate the files you import.""")
                 display_error(
                     sys.exc_info(),
                     str(e),
-                    "Error importing the spritesheet."
+                    _("Error importing the spritesheet.")
                 )
 
     def on_export_ground_clicked(self, w: Gtk.MenuToolButton):

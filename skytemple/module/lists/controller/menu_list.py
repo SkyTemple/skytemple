@@ -25,6 +25,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.string_provider import StringType
 from skytemple_files.hardcoded.menus import MenuEntry, MenuType
+from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
@@ -78,15 +79,15 @@ class MenuListController(AbstractController):
         md = SkyTempleMessageDialog(MainController.window(),
                                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
                                     Gtk.ButtonsType.OK,
-                                    "Menus are hardcoded so you can't add any option, but you can edit a few things.\n"
-                                    "However, there are some rules: \n"
-                                    " - Only the Game Main & Sub menus can have descriptions. \n"
-                                    " - The action code tells the game what to do when selecting this menu. \n"
-                                    "The meaning of the code values depends on the menu. \n"
-                                    "It is also used to determine if a menu should be disabled (or hidden in the main menu).\n"
-                                    " - The end of the menu is detected by the game with an entry in which the Name ID is set to 0. \n"
-                                    "Also, the action code of that entry is used when pressing the B button (if the game allows it for this menu). \n"
-                                    " - Editing a string with a specific ID will result of all strings using that ID to be changed. ")
+                                    _("Menus are hardcoded so you can't add any option, but you can edit a few things.\n"
+                                      "However, there are some rules: \n"
+                                      " - Only the Game Main & Sub menus can have descriptions. \n"
+                                      " - The action code tells the game what to do when selecting this menu. \n"
+                                      "The meaning of the code values depends on the menu. \n"
+                                      "It is also used to determine if a menu should be disabled (or hidden in the main menu).\n"
+                                      " - The end of the menu is detected by the game with an entry in which the Name ID is set to 0. \n"
+                                      "Also, the action code of that entry is used when pressing the B button (if the game allows it for this menu). \n"
+                                      " - Editing a string with a specific ID will result of all strings using that ID to be changed."))
         md.run()
         md.destroy()
 

@@ -30,6 +30,7 @@ jobs:
         uses: RalfG/python-wheels-manylinux-build@v0.3.3-manylinux2010_x86_64
         with:
           python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38 cp39-cp39'
+          system-packages: 'gettext'
       - name: Upload wheels
         uses: actions/upload-artifact@v2
         with:
@@ -115,6 +116,7 @@ jobs:
           unzip -o nsis.zip -d "/c/Program Files (x86)/NSIS"
 
           # Install PyInstaller
+          pip3 install setuptools
           pip3 install pyinstaller
 
           # Package

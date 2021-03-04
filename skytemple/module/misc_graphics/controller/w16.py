@@ -36,6 +36,7 @@ from gi.repository import Gtk
 
 from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
+from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
     from skytemple.module.misc_graphics.module import MiscGraphicsModule
@@ -72,10 +73,10 @@ class W16Controller(AbstractController):
 
     def on_export_clicked(self, *args):
         dialog = Gtk.FileChooserNative.new(
-            "Export all images as PNGs...",
+            _("Export all images as PNGs..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            "_Save", None
+            _("_Save"), None
         )
 
         response = dialog.run()
@@ -93,14 +94,14 @@ class W16Controller(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"To import, select a directory to import from. Files with the pattern 'XX.png'\n"
-            f"will be imported, where XX is a number between 0 and 99. The image dimensions must be a multiple of 8.",
-            title="Import Images"
+            _("To import, select a directory to import from. Files with the pattern 'XX.png'\n"
+              "will be imported, where XX is a number between 0 and 99. The image dimensions must be a multiple of 8."),
+            title=_("Import Images")
         )
         md.run()
         md.destroy()
         dialog = Gtk.FileChooserNative.new(
-            "Import images from PNGs...",
+            _("Import images from PNGs..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
             None, None
@@ -121,33 +122,33 @@ class W16Controller(AbstractController):
                 if i not in imgs_dict:
                     display_error(
                         None,
-                        f'Failed importing image "{i}":\nImage for number {i} missing.',
-                        f"Image for number {i} missing."
+                        f(_('Failed importing image "{i}":\nImage for number {i} missing.')),
+                        _('Image for number {i} missing.')
                     )
                     return
                 imgs.append(imgs_dict[i])
             if len(imgs) == 0:
                 display_error(
                     None,
-                    f'No images found.',
-                    f"No images found."
+                    _('No images found.'),
+                    _("No images found.")
                 )
                 return
             for index, image_fn in enumerate(imgs):
                 try:
-                    with open(os.path.join(fn, image_fn), 'rb') as f:
-                        image = Image.open(f)
+                    with open(os.path.join(fn, image_fn), 'rb') as file:
+                        image = Image.open(file)
                         if len(self.w16) > index:
                             # Existing image, update
                             self.w16[index].set(image)
                         else:
                             self.w16.append(W16AtImage.new(W16TocEntry(0, 0, 0, 0), image))
                 except Exception as err:
-                    logger.error(f"Failed importing image '{index}'.", exc_info=err)
+                    logger.error(f(_("Failed importing image '{index}'.")), exc_info=err)
                     display_error(
                         sys.exc_info(),
-                        f'Failed importing image "{index}":\n{err}',
-                        f"Error for '{index}'."
+                        f(_('Failed importing image "{index}":\n{err}')),
+                        f(_("Error for '{index}'."))
                     )
             # Re-render
             self._reset()

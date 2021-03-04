@@ -31,6 +31,8 @@ from skytemple_files.common.tiled_image import TilemapEntry
 import cairo
 
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
+from skytemple_files.common.i18n_util import f, _
+
 FPS = 60
 FRAME_COUNTER_MAX = 1000000
 
@@ -74,7 +76,7 @@ class DrawerTiled:
             self.width = BPC_TILE_DIM * self.tiling_width
             self.height = BPC_TILE_DIM * self.tiling_height
         else:
-            raise ValueError("Only 1x1 or 3x3 supported.")
+            raise ValueError(_("Only 1x1 or 3x3 supported."))
 
     def start(self):
         """Start drawing on the DrawingArea"""

@@ -31,11 +31,12 @@ from skytemple_files.dungeon_data.mappa_bin.validator.exception import DungeonTo
     DungeonMissingFloorError
 from skytemple_files.hardcoded.dungeons import DungeonDefinition
 from skytemple.controller.main import MainController as MainSkyTempleController
+from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, DungeonGroup
 
-DUNGEONS_NAME = 'Dungeons'
+DUNGEONS_NAME = _('Dungeons')
 DND_TARGETS = [
     ('MY_TREE_MODEL_ROW', Gtk.TargetFlags.SAME_WIDGET, 0)
 ]
@@ -76,7 +77,7 @@ class MainController(AbstractController):
             if not isinstance(e, DungeonTotalFloorCountInvalidError):
                 if isinstance(e, FloorReusedError):
                     i = e.reused_of_dungeon_with_id
-                    e.reused_of_dungeon_name = f'dungeon {i} ({self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, i)})'
+                    e.reused_of_dungeon_name = f'{"dungeon"} {i} ({self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, i)})'
                 dungeon_name = f'{e.dungeon_id}: {self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, e.dungeon_id)}'
                 store.append([
                     True,  # selected
@@ -106,17 +107,17 @@ class MainController(AbstractController):
                     MainSkyTempleController.window(),
                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
                     Gtk.ButtonsType.OK,
-                    f"Dungeon Errors were fixed.\nHowever there are still errors left. "
-                    f"Re-open the dialog to fix the rest. If they are still not fixed, please report a bug!",
-                    title="Fix Dungeon Errors"
+                    _("Dungeon Errors were fixed.\nHowever there are still errors left. "
+                      "Re-open the dialog to fix the rest. If they are still not fixed, please report a bug!"),
+                    title=_("Fix Dungeon Errors")
                 )
             else:
                 md = SkyTempleMessageDialog(
                     MainSkyTempleController.window(),
                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
                     Gtk.ButtonsType.OK,
-                    f"Dungeon Errors were successfully fixed.",
-                    title="Fix Dungeon Errors", is_success=True
+                    _("Dungeon Errors were successfully fixed."),
+                    title=_("Fix Dungeon Errors"), is_success=True
                 )
             md.run()
             md.destroy()
@@ -133,7 +134,7 @@ class MainController(AbstractController):
         if not self.module.get_validator().validate(self.module.get_dungeon_list()):
             display_error(
                 None,
-                "The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first."
+                _("The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first.")
             )
             return
         dialog: Gtk.Dialog = self.builder.get_object('dialog_groups')
@@ -154,9 +155,9 @@ class MainController(AbstractController):
                 if expected_dungeon_ids != dungeon_ids_from_dialog:
                     display_error(
                         None,
-                        "Dungeons were missing in the list. This is a bug in SkyTemple! "
-                        "Please try again and report this!",
-                        "Failed regrouping the dungeons."
+                        _("Dungeons were missing in the list. This is a bug in SkyTemple! "
+                          "Please try again and report this!"),
+                        _("Failed regrouping the dungeons.")
                     )
                     return
 
@@ -164,8 +165,8 @@ class MainController(AbstractController):
             except BaseException as ex:
                 display_error(
                     sys.exc_info(),
-                    "An internal error occurred: " + str(ex),
-                    "Failed regrouping the dungeons."
+                    _("An internal error occurred: ") + str(ex),
+                    _("Failed regrouping the dungeons.")
                 )
                 return
 
@@ -402,16 +403,16 @@ class MainController(AbstractController):
 
     def _get_solution_text(self, dungeons: List[DungeonDefinition], e: DungeonValidatorError):
         if isinstance(e, InvalidFloorListReferencedError):
-            return 'Create a new floor list with one empty floor for this dungeon.'
+            return _('Create a new floor list with one empty floor for this dungeon.')
         if isinstance(e, InvalidFloorReferencedError):
-            return 'Correct the floor count for this dungeon. If no floor exists, generate one.'
+            return _('Correct the floor count for this dungeon. If no floor exists, generate one.')
         if isinstance(e, FloorReusedError):
-            return 'Create a new floor list with one empty floor for this dungeon.'
+            return _('Create a new floor list with one empty floor for this dungeon.')
         if isinstance(e, DungeonMissingFloorError):
             # Special case for Regigigas Chamber
             if self._is_regigias_special_case(dungeons, e):
-                return 'Remove the unused floor.'
-            return f'Add the remaining floors to the dungeon.'
+                return _('Remove the unused floor.')
+            return _('Add the remaining floors to the dungeon.')
         return '???'
 
     def _is_regigias_special_case(self, dungeons, e):

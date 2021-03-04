@@ -31,6 +31,7 @@ from skytemple.core.third_party_util.cellrenderercustomtext import CellRendererT
 from skytemple.core.ui_utils import add_dialog_csv_filter
 from skytemple_files.common.ppmdu_config.data import Pmd2Language, Pmd2StringBlock
 from skytemple_files.data.str.model import Str, open_utf8
+from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
     from skytemple.module.strings.module import StringsModule
@@ -58,7 +59,7 @@ class StringsController(AbstractController):
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'strings.glade')
-        self.builder.get_object('lang_name').set_text(f'{self.langname} Text Strings')
+        self.builder.get_object('lang_name').set_text(f(_('{self.langname} Text Strings')))
 
         self._str = self.module.get_string_file(self.filename)
         self._string_cats = self.module.project.get_rom_module().get_static_data().string_index_data.string_blocks
@@ -80,7 +81,7 @@ class StringsController(AbstractController):
         tree: Gtk.TreeView = self.builder.get_object('category_tree')
         cat_store: Gtk.ListStore = tree.get_model()
         cat_store.clear()
-        cat_store.append(["(All)", None])
+        cat_store.append([_("(All)"), None])
         for cat in self._collect_categories():
             cat_store.append([cat.name, cat])
         tree.get_selection().select_iter(cat_store.get_iter_first())
@@ -91,7 +92,7 @@ class StringsController(AbstractController):
         renderer_editabletext = CellRendererTextView()
         renderer_editabletext.set_property('editable', True)
         column_editabletext = Gtk.TreeViewColumn(
-            "String", renderer_editabletext, text=1, editable=2
+            _("String"), renderer_editabletext, text=1, editable=2
         )
         tree.append_column(column_editabletext)
         renderer_editabletext.connect('edited', self.on_cr_string_edited)
@@ -123,14 +124,14 @@ class StringsController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"Import is done from a CSV file with the following specifications:\n"
-            f"- Has to contain all strings in order, one per row\n"
-            f"- Strings may be quoted with: \" and escaped with doube-quotes."
+            _("Import is done from a CSV file with the following specifications:\n"
+              "- Has to contain all strings in order, one per row\n"
+              "- Strings may be quoted with: \" and escaped with double quotes.")
         )
         md.run()
         md.destroy()
         save_diag = Gtk.FileChooserNative.new(
-            "Import strings from...",
+            _("Import strings from..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
             None, None
@@ -150,7 +151,8 @@ class StringsController(AbstractController):
                         if len(row) > 0:
                             strings.append(row[0])
                     if len(self._str.strings) != len(strings):
-                        raise ValueError(f"The CSV file must contain exactly {len(self._str.strings)} strings, has {len(strings)}.")
+                        raise ValueError(f(_("The CSV file must contain exactly {len(self._str.strings)} strings, "
+                                             "has {len(strings)}.")))
                     self._str.strings = strings
                 self.module.mark_as_modified(self.filename)
                 MainController.reload_view()
@@ -158,7 +160,7 @@ class StringsController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    "Error exporting the strings."
+                    _("Error exporting the strings.")
                 )
 
     def on_btn_export_clicked(self, *args):
@@ -166,15 +168,15 @@ class StringsController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f"Export is done to a CSV file with the following specifications:\n"
-            f"- Contains all strings in order, one per row\n"
-            f"- Strings may be quoted with: \" and escaped with doube-quotes."
+            _("Export is done to a CSV file with the following specifications:\n"
+              "- Contains all strings in order, one per row\n"
+              "- Strings may be quoted with: \" and escaped with double quotes.")
         )
         md.run()
         md.destroy()
 
         save_diag = Gtk.FileChooserNative.new(
-            "Export strings as...",
+            _("Export strings as..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
             None, None
@@ -209,3 +211,5 @@ class StringsController(AbstractController):
                 yield Pmd2StringBlock(f"({current_index} - {cat.begin - 1})", current_index, cat.begin)
             yield cat
             current_index = cat.end
+
+from skytemple_files.common.i18n_util import f, _

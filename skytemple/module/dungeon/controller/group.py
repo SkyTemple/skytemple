@@ -19,6 +19,7 @@ from typing import TYPE_CHECKING
 from gi.repository import Gtk
 
 from skytemple.core.module_controller import SimpleController
+from skytemple_files.common.i18n_util import _
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule
 
@@ -33,8 +34,8 @@ class GroupController(SimpleController):
 
     def get_content(self) -> Gtk.Widget:
         return self.generate_content_label(
-            'Dungeon groups contain multiple dungeon to create one big continuous dungeon.\n'
-            'You can edit groups under "Dungeons".'
+            _('Dungeon groups contain multiple dungeon to create one big continuous dungeon.\n'
+              'You can edit groups under "Dungeons".')
         )
 
     def get_icon(self) -> str:

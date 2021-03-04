@@ -36,6 +36,7 @@ from skytemple.module.script.controller.main import MainController, SCRIPT_SCENE
 from skytemple.module.script.controller.sub import SubController
 from skytemple_files.common.script_util import load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT
 from skytemple_files.common.types.file_types import FileType
+from skytemple_files.common.i18n_util import f, _
 
 
 class ScriptModule(AbstractModule):
@@ -77,30 +78,30 @@ class ScriptModule(AbstractModule):
 
         sub_nodes = {
             'S': item_store.append(root, [
-                'skytemple-folder-symbolic', 'S - System', self, FolderController, 'S - System', False, '', True
+                'skytemple-folder-symbolic', _('S - System'), self, FolderController, _('S - System'), False, '', True
             ]),
             'T': item_store.append(root, [
-                'skytemple-folder-symbolic', 'T - Town', self, FolderController, 'T - Town', False, '', True
+                'skytemple-folder-symbolic', _('T - Town'), self, FolderController, _('T - Town'), False, '', True
             ]),
             'D': item_store.append(root, [
-                'skytemple-folder-symbolic', 'D - Dungeon', self, FolderController, 'D - Dungeon', False, '', True
+                'skytemple-folder-symbolic', _('D - Dungeon'), self, FolderController, _('D - Dungeon'), False, '', True
             ]),
             'G': item_store.append(root, [
-                'skytemple-folder-symbolic', 'G - Guild', self, FolderController, 'G - Guild', False, '', True
+                'skytemple-folder-symbolic', _('G - Guild'), self, FolderController, _('G - Guild'), False, '', True
             ]),
             'H': item_store.append(root, [
-                'skytemple-folder-symbolic', 'H - Habitat', self, FolderController, 'H - Habitat', False, '', True
+                'skytemple-folder-symbolic', _('H - Habitat'), self, FolderController, _('H - Habitat'), False, '', True
             ]),
             'P': item_store.append(root, [
-                'skytemple-folder-symbolic', 'P - Places', self, FolderController, 'P - Places', False, '', True
+                'skytemple-folder-symbolic', _('P - Places'), self, FolderController, _('P - Places'), False, '', True
             ]),
             'V': item_store.append(root, [
-                'skytemple-folder-symbolic', 'V - Visual', self, FolderController, 'V - Visual', False, '', True
+                'skytemple-folder-symbolic', _('V - Visual'), self, FolderController, _('V - Visual'), False, '', True
             ])
         }
         # Other
         other = item_store.append(root, [
-            'skytemple-folder-symbolic', 'Other', self, FolderController, None, False, '', True
+            'skytemple-folder-symbolic', _('Others'), self, FolderController, None, False, '', True
         ])
 
         for i, map_obj in enumerate(self.script_engine_file_tree['maps'].values()):
@@ -118,7 +119,7 @@ class ScriptModule(AbstractModule):
             if map_obj['enter_sse'] is not None:
                 #          -> Enter [sse]
                 self._map_sse[map_obj['name']] = item_store.append(map_root, [
-                    'skytemple-e-ground-symbolic', 'Enter (sse)', self,  SsaController, {
+                    'skytemple-e-ground-symbolic', _('Enter (sse)'), self,  SsaController, {
                         'map': map_obj['name'],
                         'file': f"{SCRIPT_DIR}/{map_obj['name']}/{map_obj['enter_sse']}",
                         'type': 'sse',
@@ -128,7 +129,7 @@ class ScriptModule(AbstractModule):
 
             #       -> Acting Scripts [lsd]
             acting_root = item_store.append(map_root, [
-                'skytemple-folder-open-symbolic', 'Acting (ssa)', self,  LsdController, map_obj['name'], False, '', True
+                'skytemple-folder-open-symbolic', _('Acting (ssa)'), self,  LsdController, map_obj['name'], False, '', True
             ])
             for ssa, ssb in map_obj['ssas']:
                 stem = ssa[:-len(SSA_EXT)]
@@ -146,7 +147,7 @@ class ScriptModule(AbstractModule):
 
             #       -> Sub Scripts [sub]
             sub_root = item_store.append(map_root, [
-                'skytemple-folder-open-symbolic', 'Sub (sss)', self,  SubController, map_obj['name'], False, '', True
+                'skytemple-folder-open-symbolic', _('Sub (sss)'), self,  SubController, map_obj['name'], False, '', True
             ])
             for sss, ssbs in map_obj['subscripts'].items():
                 stem = sss[:-len(SSS_EXT)]
@@ -240,7 +241,7 @@ class ScriptModule(AbstractModule):
                                        pos_marks: List[SourceMapPositionMark],
                                        pos_mark_to_edit: int) -> PosMarkEditorController:
         if mapname not in self.project.get_rom_module().get_static_data().script_data.level_list__by_name:
-            raise ValueError("Map not found.")
+            raise ValueError(_("Map not found."))
         return PosMarkEditorController(
             self.get_ssa(f'{SCRIPT_DIR}/{mapname}/{scene_name[:-4]}.{scene_type}'), parent_window,
             self.get_sprite_provider(),
