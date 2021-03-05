@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-04 09:29+0000\n"
-"PO-Revision-Date: 2021-03-04 21:34\n"
+"PO-Revision-Date: 2021-03-05 19:09\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -5525,7 +5525,7 @@ msgstr "Densidad inicial de enemigos:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1880
 msgid "Kecleon Shop:"
-msgstr "Tienda de Kecleon:"
+msgstr "Tienda Kecleon:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1892
 msgid "Monster House:"
@@ -7126,7 +7126,7 @@ msgstr "Recompensas de dificultad ★9"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:79
 msgid "Kecleon Shop 1"
-msgstr "Tienda de Kecleon 1"
+msgstr "Tienda Kecleon 1"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:80
 msgid "Kecleon Orbs/TMs 1"
@@ -7134,7 +7134,7 @@ msgstr "Esferas mágicas de Kecleon/1 MT"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:81
 msgid "Kecleon Shop 2"
-msgstr "Tienda de Kecleon 2"
+msgstr "Tienda Kecleon 2"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:82
 msgid "Kecleon Orbs/TMs 2"
@@ -7142,7 +7142,7 @@ msgstr "Esferas mágicas de Kecleon/2 MTs"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:83
 msgid "Kecleon Shop 3"
-msgstr "Tienda de Kecleon 3"
+msgstr "Tienda Kecleon 3"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:84
 msgid "Kecleon Orbs/TMs 3"
@@ -7150,7 +7150,7 @@ msgstr "Esferas mágicas de Kecleon/3 MTs"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:85
 msgid "Kecleon Shop 4"
-msgstr "Tienda de Kecleon 4"
+msgstr "Tienda Kecleon 4"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.py:86
 msgid "Kecleon Orbs/TMs 4"
@@ -9652,11 +9652,11 @@ msgstr "Scripts de escena para otros mapas"
 #: skytemple/skytemple/module/script/controller/folder.py:36
 #, python-brace-format
 msgid "This section contains all the script scenes of maps, that start with the letter {self.name[0]}."
-msgstr "Esta sección contiene todas las escenas de script de los mapas que comienzan con la letra {self.name[0]}."
+msgstr "Esta sección contiene todas los scripts de escenas de los mapas que comienzan con la letra {self.name[0]}."
 
 #: skytemple/skytemple/module/script/controller/folder.py:39
 msgid "This section contains all the script scenes of maps, that don't fit in any of the other categories."
-msgstr "Esta sección contiene todas las escenas de scripts de los mapas que no encajan en ninguna de las otras categorías."
+msgstr "Esta sección contiene todos los scripts de escenas de los mapas que no encajan en ninguna de las otras categorías."
 
 #: skytemple/skytemple/module/script/controller/lsd.py:29
 msgid "Acting Scenes for \"{}\""
@@ -9667,13 +9667,13 @@ msgstr "Escenas de acción para \"{}\""
 msgid "This section contains all acting scenes for the map {self.name}.\n\n"
 "These scenes are used for cutscenes.\n"
 "The player can usually not move the character in them."
-msgstr "Esta sección contiene todas las escenas de actuación para el mapa {self.name}.\n\n"
+msgstr "Esta sección contiene todas las escenas de acción para el mapa {self.name}.\n\n"
 "Estas escenas se utilizan para cinemáticas.\n"
 "El jugador normalmente no puede mover al personaje en ellas."
 
 #: skytemple/skytemple/module/script/controller/main.py:27
 msgid "Script Scenes"
-msgstr "Script de escenas"
+msgstr "Scripts de escenas"
 
 #: skytemple/skytemple/module/script/controller/main.py:39
 msgid "This section lets you edit overworld scenes in the game, so anything that happens outside of Dungeons.\n"
