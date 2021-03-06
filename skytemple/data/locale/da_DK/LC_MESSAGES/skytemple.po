@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-04 09:29+0000\n"
-"PO-Revision-Date: 2021-03-04 10:38\n"
+"POT-Creation-Date: 2021-03-06 13:05+0000\n"
+"PO-Revision-Date: 2021-03-06 13:47\n"
 "Last-Translator: \n"
 "Language-Team: Danish\n"
 "Language: da_DK\n"
@@ -2735,7 +2735,7 @@ msgstr ""
 msgid "Don't have enough space to put filenames! "
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/extract_move_code.py:53
+#: skytemple-files/skytemple_files/patch/handler/extract_move_code.py:57
 msgid "Extracts move effects code and put it in files."
 msgstr ""
 
@@ -2916,7 +2916,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:75
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:94
 #: skytemple/skytemple/module/portrait/controller/portrait.py:113
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:129
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:142
 #: skytemple/skytemple/module/sprite/module.py:191
 msgid "_Save"
 msgstr ""
@@ -2998,8 +2998,9 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:171
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:182
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:417
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:182
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:417
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:191
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:426
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:615
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:86
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:411
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:562
@@ -3056,7 +3057,7 @@ msgid "<Global>"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
-#: skytemple/skytemple/module/lists/module.py:81
+#: skytemple/skytemple/module/lists/module.py:83
 #: skytemple/skytemple/module/script/controller/ssa.glade:1207
 #: skytemple/skytemple/module/script/controller/ssa.glade:1235
 msgid "Actors"
@@ -3090,8 +3091,9 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:184
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:193
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:428
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:193
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:428
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:202
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:437
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:629
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:89
 #: skytemple/skytemple/module/lists/controller/world_map.glade:405
 #: skytemple/skytemple/module/monster/controller/monster.glade:1055
@@ -3824,8 +3826,10 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:310
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:333
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:355
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:333
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:355
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:342
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:364
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:657
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:679
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:232
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:254
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:733
@@ -3884,7 +3888,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:105
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:108
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:546
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:108
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:117
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:159
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:631
 #: skytemple/skytemple/module/monster/controller/level_up.glade:107
@@ -4770,7 +4774,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:429
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:585
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:2058
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:585
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:738
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:199
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:796
 #: skytemple/skytemple/module/monster/controller/level_up.glade:121
@@ -5354,7 +5358,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1333
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1378
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:241
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:241
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:250
 msgid "Go To"
 msgstr ""
 
@@ -6650,8 +6654,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:167
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:208
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:155
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:212
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:177
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:245
 msgid "Success!"
 msgstr ""
 
@@ -6727,7 +6731,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:55
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:132
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:276
-#: skytemple/skytemple/module/lists/module.py:102
+#: skytemple/skytemple/module/lists/module.py:104
 msgid "Item Effects"
 msgstr ""
 
@@ -6742,37 +6746,37 @@ msgid "<Not available>\n\n"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:148
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:148
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:157
 msgid "Edits the effects used by each move."
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:204
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:204
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:213
 msgid "Effect"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:295
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:295
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:304
 msgid "Effect ID: "
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:392
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:392
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:401
 msgid "Used by: "
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:481
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:481
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:490
 msgid "Import Code"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:526
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:526
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:535
 msgid "Export Code"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:559
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:559
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:568
 msgid "Effects Code"
 msgstr ""
 
@@ -6791,7 +6795,7 @@ msgid "Import Item Effect ASM Code..."
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:134
-#: skytemple/skytemple/module/lists/controller/move_effects.py:133
+#: skytemple/skytemple/module/lists/controller/move_effects.py:145
 msgid "Error importing ASM code."
 msgstr ""
 
@@ -6810,7 +6814,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:493
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:570
-#: skytemple/skytemple/module/lists/module.py:96
+#: skytemple/skytemple/module/lists/module.py:98
 msgid "Item Lists"
 msgstr ""
 
@@ -6989,52 +6993,66 @@ msgid "Menus are hardcoded so you can't add any option, but you can edit a few t
 " - Editing a string with a specific ID will result of all strings using that ID to be changed."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:55
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:132
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:276
-#: skytemple/skytemple/module/lists/module.py:105
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:63
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:141
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:285
+#: skytemple/skytemple/module/lists/module.py:107
 msgid "Move Effects"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:71
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:79
 msgid "Edits the move effects used by the game."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:84
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:92
 msgid "<Not available>\n\n"
 "To view and edit move effects, please apply the \"ExtractMoveCode\" \n"
-"ASM patch from the \"ASM Patches\" menu."
+"ASM patch from the \"ASM Patches\" menu.\n"
+"If you already have applied it, apply it again to be sure to use the last version. "
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/move_effects.py:106
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:587
+msgid "Here you can edit Metronome's movepool.\n"
+"Each move in this list has the same chance of being used by Metronome."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:712
+msgid "Metronome"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.py:118
 msgid "Import any move effect ASM code. It must follow the rules of a valid move effect code.\n"
 "WARNING: SkyTemple does not check if the code is correct!\n"
 "Also, make sure the code was assembled for the version you are using. "
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/move_effects.py:109
+#: skytemple/skytemple/module/lists/controller/move_effects.py:121
 msgid "Import Move Effect ASM Code"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/move_effects.py:114
+#: skytemple/skytemple/module/lists/controller/move_effects.py:126
 msgid "Import Move Effect ASM Code..."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/move_effects.py:141
+#: skytemple/skytemple/module/lists/controller/move_effects.py:153
 msgid "Export any move effect ASM code. It must follow the rules of a valid move effect code.\n"
 "WARNING: it only exports the raw code, it doesn't disassemble it!"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/move_effects.py:148
+#: skytemple/skytemple/module/lists/controller/move_effects.py:155
+msgid "Export Move Effect ASM Code"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.py:160
 msgid "Export Move Effect ASM Code..."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/move_effects.py:178
+#: skytemple/skytemple/module/lists/controller/move_effects.py:190
 msgid "Cannot delete this effect."
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
-#: skytemple/skytemple/module/lists/module.py:93
+#: skytemple/skytemple/module/lists/module.py:95
 msgid "Rank List"
 msgstr ""
 
@@ -7051,7 +7069,7 @@ msgid "Item Reward"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
-#: skytemple/skytemple/module/lists/module.py:87
+#: skytemple/skytemple/module/lists/module.py:89
 msgid "Recruitment List"
 msgstr ""
 
@@ -7207,7 +7225,7 @@ msgid "Please don't select a marker that already references another marker.\n"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
-#: skytemple/skytemple/module/lists/module.py:90
+#: skytemple/skytemple/module/lists/module.py:92
 msgid "World Map Markers"
 msgstr ""
 
@@ -7254,11 +7272,11 @@ msgstr ""
 msgid "You need to select a reference."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:84
+#: skytemple/skytemple/module/lists/module.py:86
 msgid "Starters"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:99
+#: skytemple/skytemple/module/lists/module.py:101
 msgid "Menu List"
 msgstr ""
 
@@ -9553,55 +9571,64 @@ msgstr ""
 msgid "Add new Sprite"
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:551
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:542
+msgid "Use a ZIP archive instead of a folder."
+msgstr ""
+
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:565
 msgid "-- or --"
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:599
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:613
 msgid "Warning: This will edit the sprite with the ID assigned to this Pokémon. Other Pokémon that use this sprite are also affected."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:71
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:72
 msgid "Invalid Sprite ID."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:75
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:76
 msgid "Alternatively you can export the sprite files \n"
 "in the gfxcrunch format and edit them manually.\n"
 "Warning: SkyTemple does not validate the files you import."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:126
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:139
 msgid "Export spritesheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:154
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:176
 msgid "The spritesheet was successfully exported."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:162
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:184
 msgid "Error exporting the spritesheet."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:168
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:190
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:207
+msgid "To import select the archive that contains the spritesheets."
+msgstr ""
+
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:192
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:209
 msgid "To import select the directory of the spritesheets. If it is still zipped, unzip it first."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:179
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:203
 msgid "This will insert a completely new sprite into the game's sprite file and assign the new ID to the Pokémon.\n"
-"If you want to instead replace the currently assigned sprite, choose 'Import'.\n\n"
-"To import select the directory of the spritesheets. If it is still zipped, unzip it first."
+"If you want to instead replace the currently assigned sprite, choose 'Import'.\n"
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:194
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:223
 msgid "Import spritesheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:211
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:244
 msgid "The spritesheet was successfully imported."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:230
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:267
 msgid "Error importing the spritesheet."
 msgstr ""
 
