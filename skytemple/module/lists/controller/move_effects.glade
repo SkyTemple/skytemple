@@ -18,6 +18,14 @@
       <column type="gchararray"/>
     </columns>
   </object>
+  <object class="GtkListStore" id="metronome_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="guint"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkListStore" id="move_effects_store">
     <columns>
       <!-- column-name id -->
@@ -84,7 +92,8 @@
                     <property name="label" translatable="yes">&lt;Not available&gt;
 
 To view and edit move effects, please apply the "ExtractMoveCode" 
-ASM patch from the "ASM Patches" menu.</property>
+ASM patch from the "ASM Patches" menu.
+If you already have applied it, apply it again to be sure to use the last version. </property>
                     <property name="justify">center</property>
                   </object>
                   <packing>
@@ -560,6 +569,150 @@ ASM patch from the "ASM Patches" menu.</property>
                       </object>
                       <packing>
                         <property name="position">1</property>
+                        <property name="tab_fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin_top">5</property>
+                            <property name="margin_bottom">5</property>
+                            <property name="label" translatable="yes">Here you can edit Metronome's movepool.
+Each move in this list has the same chance of being used by Metronome.</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkScrolledWindow">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="vexpand">True</property>
+                            <property name="shadow_type">in</property>
+                            <child>
+                              <object class="GtkTreeView" id="metronome_tree">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="model">metronome_store</property>
+                                <property name="search_column">0</property>
+                                <child internal-child="selection">
+                                  <object class="GtkTreeSelection">
+                                    <property name="mode">multiple</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">ID</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="metronome_move_id">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_metronome_move_id_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Name</property>
+                                    <child>
+                                      <object class="GtkCellRendererText"/>
+                                      <attributes>
+                                        <attribute name="text">1</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="spacing">5</property>
+                            <child>
+                              <object class="GtkButton" id="btn_add_metronome">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                                <property name="tooltip_text" translatable="yes">Reload</property>
+                                <signal name="clicked" handler="on_btn_add_metronome_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="icon_name">skytemple-list-add-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack_type">end</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="btn_remove_metronome">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                                <property name="tooltip_text" translatable="yes">Reload</property>
+                                <signal name="clicked" handler="on_btn_remove_metronome_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="icon_name">skytemple-list-remove-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack_type">end</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Metronome</property>
+                      </object>
+                      <packing>
+                        <property name="position">2</property>
                         <property name="tab_fill">False</property>
                       </packing>
                     </child>

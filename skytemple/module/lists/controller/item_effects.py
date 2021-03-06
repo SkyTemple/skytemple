@@ -205,3 +205,4 @@ class ItemEffectsController(AbstractController):
         store.clear()
         for x in self.item_effects.get_all_of(effect_id):
             store.append([x, self._string_provider.get_value(StringType.ITEM_NAMES, x)])
+

@@ -36,16 +36,19 @@ class MoveEffectsController(AbstractController):
         super().__init__(module, *args)
         self.module = module
         self.move_effects = None
+        self.metronome = None
         self._string_provider = module.project.get_string_provider()
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'move_effects.glade')
         stack: Gtk.Stack = self.builder.get_object('list_stack')
 
-        if not self.module.has_move_effects():
+        if not self.module.has_move_effects() or not self.module.has_metronome_pool():
             stack.set_visible_child(self.builder.get_object('box_na'))
             return stack
         self.move_effects = self.module.get_move_effects()
+        self.metronome = self.module.get_metronome_pool()
+        self._metronome_pool = self.metronome.get_list(4)
 
         self._init_move_list()
         self._init_combos()
@@ -75,7 +78,7 @@ class MoveEffectsController(AbstractController):
             return 0
 
     def _init_move_list(self):
-        # Init available menus
+        # Init available moves
         move_store: Gtk.ListStore = self.builder.get_object('move_effects_store')
         # Init list
         move_store.clear()
@@ -88,8 +91,17 @@ class MoveEffectsController(AbstractController):
         for x in sorted(non_sorted, key=lambda x:x[1]):
             move_store.append(x)
         
+        # Init available metronome moves
+        metronome_store: Gtk.ListStore = self.builder.get_object('metronome_store')
+        # Init list
+        metronome_store.clear()
+
+        for i in self._metronome_pool:
+            metronome_store.append([i,
+                               self._string_provider.get_value(StringType.MOVE_NAMES, i)])
+        
     def _init_combos(self, active=0):
-        # Init available menus
+        # Init available effects
         cb_store: Gtk.ListStore = self.builder.get_object('effect_ids_store')
         cb: Gtk.ComboBoxText = self.builder.get_object('cb_effect_ids')
         # Init combobox
@@ -140,7 +152,7 @@ class MoveEffectsController(AbstractController):
             Gtk.ButtonsType.OK,
             _("Export any move effect ASM code. It must follow the rules of a valid move effect code.\n"
               "WARNING: it only exports the raw code, it doesn't disassemble it!"),
-            title="Export Move Effect ASM Code"
+            title=_("Export Move Effect ASM Code")
         )
         md.run()
         md.destroy()
@@ -177,7 +189,39 @@ class MoveEffectsController(AbstractController):
                 str(err),
                 _("Cannot delete this effect.")
             )
+    def on_metronome_move_id_edited(self, widget, path, text):
+        try:
+            tree_store: Gtk.ListStore = self.builder.get_object('metronome_store')
+            new = int(text)
+            tree_store[path][0] = new
+            tree_store[path][1] = self._string_provider.get_value(StringType.MOVE_NAMES, new)
+        except ValueError:
+            return
+        self._metronome_pool[int(path)] = new
+        self._push_metronome_pool()
+
+    def _push_metronome_pool(self):
+        self.metronome.set_list(self._metronome_pool, 4)
+        self.module.mark_metronome_pool_as_modified()
         
+    def on_btn_add_metronome_clicked(self, *args):
+        metronome_store: Gtk.ListStore = self.builder.get_object('metronome_store')
+        metronome_store.append([0,
+                               self._string_provider.get_value(StringType.MOVE_NAMES, 0)])
+        self._metronome_pool.append(0)
+        self._push_metronome_pool()
+        
+    def on_btn_remove_metronome_clicked(self, *args):
+        # Deletes all selected metronome entries
+        # Allows multiple deletions
+        active_rows : List[Gtk.TreePath] = self.builder.get_object('metronome_tree').get_selection().get_selected_rows()[1]
+        metronome_store: Gtk.ListStore = self.builder.get_object('metronome_store')
+        for x in reversed(sorted(active_rows, key=lambda x:x.get_indices())):
+            index = x.get_indices()[0]
+            del self._metronome_pool[index]
+            del metronome_store[index]
+        self._push_metronome_pool()
+    
     def on_btn_goto_effect_clicked(self, *args):
         move_effect = self._get_current_move_effect()
         if move_effect != None:
@@ -204,3 +248,4 @@ class MoveEffectsController(AbstractController):
         store.clear()
         for x in self.move_effects.get_all_of(effect_id):
             store.append([x, self._string_provider.get_value(StringType.MOVE_NAMES, x)])
+
