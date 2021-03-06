@@ -187,7 +187,7 @@ Warning: SkyTemple does not validate the files you import."""))
     def on_import_clicked(self, w: Gtk.MenuToolButton):
         md = SkyTempleMessageDialog(MainController.window(),
                                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, "To import select the archive that contains the spritesheets."
+                                    Gtk.ButtonsType.OK, _("To import select the archive that contains the spritesheets.")
                                     if self._zip_is_active()
                                     else _("To import select the directory of the spritesheets. If it "
                                            "is still zipped, unzip it first."),
@@ -202,11 +202,12 @@ Warning: SkyTemple does not validate the files you import."""))
                                     Gtk.ButtonsType.OK_CANCEL,
                                     _("This will insert a completely new sprite into the game's sprite file and "
                                       "assign the new ID to the Pokémon.\n"
-                                      "If you want to instead replace the currently assigned sprite, choose 'Import'."
-                                      "To import select the archive that contains the spritesheets."
-                                      if self._zip_is_active()
-                                      else "\n\nTo import select the directory of the spritesheets. If it "
-                                      "is still zipped, unzip it first."),
+                                      "If you want to instead replace the currently assigned sprite, choose 'Import'.\n")
+                                    +
+                                    _("To import select the archive that contains the spritesheets.")
+                                    if self._zip_is_active()
+                                    else _("To import select the directory of the spritesheets. If it "
+                                           "is still zipped, unzip it first."),
                                     title="SkyTemple")
         response = md.run()
         md.destroy()
