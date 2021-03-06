@@ -1040,12 +1040,16 @@ class FloorController(AbstractController):
             self.builder.get_object('cb_mission_forbidden').set_sensitive(False)
 
     def _init_layout_values(self):
-        if self.module.has_floor_ranks():
-            cb = self.builder.get_object('cb_floor_ranks')
+        cb = self.builder.get_object('cb_floor_ranks')
+        if self.item.dungeon.length_can_be_edited and self.module.has_floor_ranks():
             cb.set_active(self.module.get_floor_rank(self.item.dungeon.dungeon_id, self.item.floor_id))
-        if self.module.has_mission_forbidden():
-            cb = self.builder.get_object('cb_mission_forbidden')
+        else:
+            cb.set_sensitive(False)
+        cb = self.builder.get_object('cb_mission_forbidden')
+        if self.item.dungeon.length_can_be_edited and self.module.has_mission_forbidden():
             cb.set_active(self.module.get_floor_mf(self.item.dungeon.dungeon_id, self.item.floor_id))
+        else:
+            cb.set_sensitive(False)
         all_entries_and_cbs = [
             "cb_tileset_id",
             "cb_music_id",
