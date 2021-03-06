@@ -757,23 +757,6 @@ the top-right of the main window.</property>
                             <property name="margin-bottom">16</property>
                             <property name="spacing">10</property>
                             <child>
-                              <object class="GtkEventBox" id="discord_icon_container">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <signal name="button-release-event" handler="on_discord_icon_container_button_release_event" swapped="no"/>
-                                <signal name="enter-notify-event" handler="on__enter_notify_event__pointer" swapped="no"/>
-                                <signal name="leave-notify-event" handler="on__leave_notify_event__pointer" swapped="no"/>
-                                <child>
-                                  <placeholder/>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
                               <object class="GtkButton" id="button_support_us">
                                 <property name="label" translatable="yes">Support us!</property>
                                 <property name="visible">True</property>
