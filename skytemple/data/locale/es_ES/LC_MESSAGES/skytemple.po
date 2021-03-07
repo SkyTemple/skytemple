@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-06 17:23+0000\n"
-"PO-Revision-Date: 2021-03-06 23:57\n"
+"PO-Revision-Date: 2021-03-07 01:12\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2123,7 +2123,7 @@ msgstr "Esperar"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:30
 msgid "Ground Wait"
-msgstr "En espera (Ground)"
+msgstr "En espera (Territorio)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:43
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:103
@@ -3654,7 +3654,7 @@ msgstr "Scripts"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:958
 msgid "Ground Engine\n"
 "not running."
-msgstr "El motor de terreno\n"
+msgstr "El motor de territorios\n"
 "no se está ejecutando."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:938
@@ -3668,7 +3668,7 @@ msgstr "Entidades"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:990
 msgid "Ground Engine State"
-msgstr "Estado del motor de terreno"
+msgstr "Estado del motor de territorios"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1010
 msgid "Ground State"
@@ -7181,7 +7181,7 @@ msgstr "Listas de terreno"
 #: skytemple/skytemple/module/lists/controller/main.py:35
 msgid "This section lets you edit lists of the game's Ground Engine (the cutscene and overworld engine).\n"
 "These lists store various information, such as available actors and objects that can be placed on maps and also a list of maps itself."
-msgstr "Esta sección te permite editar las listas del Motor de Terreno del juego (el motor de cinemáticas y del mundo exterior).\n"
+msgstr "Esta sección te permite editar las listas del Motor de territorios del juego (el motor de cinemáticas y del mundo exterior).\n"
 "Estas listas almacenan diversa información, como los actores y objetos disponibles que pueden colocarse en los mapas y también una lista de los propios mapas."
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:55
@@ -7253,12 +7253,16 @@ msgid "<Not available>\n\n"
 "To view and edit move effects, please apply the \"ExtractMoveCode\" \n"
 "ASM patch from the \"ASM Patches\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar los efectos de movimiento, aplica el parche \"ExtractMoveCode\" \n"
+"desde el menú \"Parches ASM\".\n"
+"Si ya lo has aplicado, aplícalo de nuevo para asegurarte de usar la última versión. "
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:587
 msgid "Here you can edit Metronome's movepool.\n"
 "Each move in this list has the same chance of being used by Metronome."
-msgstr ""
+msgstr "Aquí puedes editar el movepool del Metrónomo.\n"
+"Cada movimiento en esta lista tiene la misma probabilidad de ser utilizado por el Metrónomo."
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:712
 msgid "Metronome"
@@ -7386,7 +7390,7 @@ msgstr "Género"
 msgid "Please note that after editing the Player Starters, you also need to edit the result text that is shown\n"
 "to the player. You can find that in the \"Personality Quiz result strings\" category under \"Text Strings\"."
 msgstr "Ten en cuenta que, después de editar los pokémon iniciales, también debes editar el texto del resultado que se muestra\n"
-"al jugador. Puedes encontrarlo en la categoría \"Cadenas de resultados de los tests de personalidad\" en \"Cadenas de texto\"."
+"al jugador. Puedes encontrarlo en la categoría \"Cadenas de resultados de prueba de personalidad\" en \"Cadenas de texto\"."
 
 #: skytemple/skytemple/module/lists/controller/starters_list.py:30
 #: skytemple/skytemple/module/lists/controller/starters_list.py:31
@@ -10055,7 +10059,7 @@ msgstr "Error al exportar ficha de sprites."
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:190
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:207
 msgid "To import select the archive that contains the spritesheets."
-msgstr ""
+msgstr "Para importar, selecciona el archivo que contiene las fichas de sprites."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:192
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:209
@@ -10065,7 +10069,8 @@ msgstr "Para importar, selecciona el directorio de las fichas de sprites. Si est
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:203
 msgid "This will insert a completely new sprite into the game's sprite file and assign the new ID to the Pokémon.\n"
 "If you want to instead replace the currently assigned sprite, choose 'Import'.\n"
-msgstr ""
+msgstr "Esto insertará un sprite completamente nuevo en el archivo de sprites del juego y asignará el nuevo ID al Pokémon.\n"
+"Si lo que quieres es reemplazar el sprite actualmente asignado, elige \"Importar\".\n"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:223
 msgid "Import spritesheet..."
@@ -10456,12 +10461,13 @@ msgstr "Siempre estamos buscando gente que ayude a desarrollar SkyTemple\n"
 
 #: skytemple/skytemple/skytemple.glade:1465
 msgid "... by helping to translate SkyTemple!"
-msgstr ""
+msgstr "... ayudando a traducir SkyTemple!"
 
 #: skytemple/skytemple/skytemple.glade:1481
 msgid "Do you want to help translating SkyTemple to your native\n"
 "language? Join our Discord for more information."
-msgstr ""
+msgstr "¿Quieres ayudar a traducir SkyTemple a tu idioma\n"
+"nativo? Únete a nuestro Discord para más información."
 
 #: skytemple/skytemple/skytemple.glade:1525
 msgid "... by buying us a coffee!"
