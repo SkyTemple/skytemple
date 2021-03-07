@@ -16,6 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import sys
+import webbrowser
 from typing import TYPE_CHECKING, Optional, List
 from skytemple_files.common.i18n_util import _, f
 
@@ -26,8 +27,11 @@ from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple_files.common.util import open_utf8
+
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
+from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
 
@@ -100,17 +104,6 @@ class ItemEffectsController(AbstractController):
         cb.set_active(active)
 
     def on_btn_import_code_clicked(self, *args):
-        md = SkyTempleMessageDialog(
-            MainController.window(),
-            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-            Gtk.ButtonsType.OK,
-            _("Import any item effect ASM code. It must follow the rules of a valid item effect code.\n"
-              "WARNING: SkyTemple does not check if the code is correct!\n"
-              "Also, make sure the code was assembled for the version you are using. "),
-            title=_("Import Item Effect ASM Code")
-        )
-        md.run()
-        md.destroy()
         dialog = Gtk.FileChooserNative.new(
             _("Import Item Effect ASM Code..."),
             MainController.window(),
@@ -118,14 +111,33 @@ class ItemEffectsController(AbstractController):
             None, None
         )
 
+        filter = Gtk.FileFilter()
+        filter.set_name(_("Any Files"))
+        filter.add_pattern("*")
+        dialog.add_filter(filter)
+
+        filter = Gtk.FileFilter()
+        filter.set_name(_("armips ASM patches (*.asm)"))
+        filter.add_pattern("*.asm")
+        dialog.add_filter(filter)
+
+        filter = Gtk.FileFilter()
+        filter.set_name(_("Raw code (*.bin)"))
+        filter.add_pattern("*.bin")
+        dialog.add_filter(filter)
+
         response = dialog.run()
         fn = dialog.get_filename()
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
             try:
-                with open(fn, 'rb') as file:
-                    self.item_effects.set_effect_code(self._get_current_effect(), file.read())
+                if fn.split('.')[-1].lower() == 'asm':
+                    with open_utf8(fn, 'r') as file:
+                        self.item_effects.import_armips_effect_code(self._get_current_effect(), file.read())
+                else:
+                    with open(fn, 'rb') as file:
+                        self.item_effects.set_effect_code(self._get_current_effect(), file.read())
                 self.module.mark_item_effects_as_modified()
             except Exception as err:
                 display_error(
@@ -133,18 +145,30 @@ class ItemEffectsController(AbstractController):
                     str(err),
                     _("Error importing ASM code.")
                 )
-    
+
+    def on_tv_paste_import_buffer_paste_done(self, buff: Gtk.TextBuffer, *args):
+        text = buff.get_text(buff.get_start_iter(), buff.get_end_iter(), False)
+        buff.delete(buff.get_start_iter(), buff.get_end_iter())
+        try:
+            self.item_effects.import_armips_effect_code(self._get_current_effect(), text)
+            self.module.mark_item_effects_as_modified()
+            md = SkyTempleMessageDialog(
+                MainController.window(),
+                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                Gtk.ButtonsType.OK,
+                _("Patch successfully imported."),
+                is_success=True
+            )
+            md.run()
+            md.destroy()
+        except Exception as err:
+            display_error(
+                sys.exc_info(),
+                str(err),
+                _("Error importing ASM code.")
+            )
+
     def on_btn_export_code_clicked(self, *args):
-        md = SkyTempleMessageDialog(
-            MainController.window(),
-            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-            Gtk.ButtonsType.OK,
-            _("Export any item effect ASM code. It must follow the rules of a valid item effect code.\n"
-              "WARNING: it only exports the raw code, it doesn't disassemble it!"),
-            title=_("Export Item Effect ASM Code")
-        )
-        md.run()
-        md.destroy()
         dialog = Gtk.FileChooserNative.new(
             _("Export Item Effect ASM Code..."),
             MainController.window(),
@@ -159,7 +183,32 @@ class ItemEffectsController(AbstractController):
         if response == Gtk.ResponseType.ACCEPT:
             with open(fn, 'wb') as file:
                 file.write(self.item_effects.get_effect_code(self._get_current_effect()))
-        
+
+    def on_btn_help_import_clicked(self):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("""Export and import effect code.
+The export only exports the raw machine code. It is NOT disassembled.
+The import accepts both armips ASM code or the raw binary machine code.
+Please note, that SkyTemple does not check the raw code you try to import.
+If you import armips ASM code, irdkwia's effect code library is available.
+
+You can use the ASM Editor tool to generate patch files.
+The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to import.
+"""),
+            title=_("Export / Import Effect Code Help")
+        )
+        md.run()
+        md.destroy()
+
+    def on_btn_irdkwia_clicked(self, *args):
+        webbrowser.open_new_tab('https://github.com/irdkwia/eos-move-effects')
+
+    def on_btn_asmeditor_clicked(self, *args):
+        webbrowser.open_new_tab('https://asmeditor.skytemple.org/')
+
     def on_btn_add_effect_clicked(self, *args):
         self.item_effects.add_effect_code(bytes([0x64, 0x09, 0x00, 0xEA])) # Branch to the end
         self._init_combos(self.item_effects.nb_effects()-1)

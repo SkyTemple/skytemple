@@ -159,9 +159,12 @@ class StringProvider:
         return string_index_data.string_blocks[string_type.xml_name]
 
     def _get_locale_from_app_locale(self) -> LanguageLike:
-        current_locale = locale.getlocale()[0].split('_')[0]
-        for lang in self.get_languages():
-            lang_locale = lang.locale.split('-')[0]
-            if lang_locale == current_locale:
-                return lang
-        return self.get_languages()[0]
+        try:
+            current_locale = locale.getlocale()[0].split('_')[0]
+            for lang in self.get_languages():
+                lang_locale = lang.locale.split('-')[0]
+                if lang_locale == current_locale:
+                    return lang
+            return self.get_languages()[0]
+        except:
+            return self.get_languages()[0]
