@@ -33,6 +33,7 @@ from skytemple.module.lists.controller.recruitment_list import RecruitmentListCo
 from skytemple.module.lists.controller.world_map import WorldMapController
 from skytemple_files.data.md.model import Md
 from skytemple_files.data.data_cd.handler import DataCDHandler
+from skytemple_files.data.val_list.handler import ValListHandler
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement, HardcodedDungeons
 from skytemple_files.hardcoded.personality_test_starters import HardcodedPersonalityTestStarters
 from skytemple_files.hardcoded.default_starters import HardcodedDefaultStarters
@@ -46,6 +47,7 @@ from skytemple_files.common.i18n_util import _
 
 ITEM_LISTS = 'TABLEDAT/list_%02d.bin'
 ACTOR_LIST = 'BALANCE/actor_list.bin'
+METRONOME_POOL = 'BALANCE/metrono.bin'
 MOVE_EFFECTS = 'BALANCE/waza_cd.bin'
 ITEM_EFFECTS = 'BALANCE/item_cd.bin'
 
@@ -129,6 +131,19 @@ class ListsModule(AbstractModule):
         row = self._tree_model[self._item_effects_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
         
+    def has_metronome_pool(self):
+        return self.project.file_exists(METRONOME_POOL)
+    
+    def get_metronome_pool(self):
+        return self.project.open_file_in_rom(METRONOME_POOL, ValListHandler)
+    
+    def mark_metronome_pool_as_modified(self):
+        """Mark as modified"""
+        self.project.mark_as_modified(METRONOME_POOL)
+        # Mark as modified in tree
+        row = self._tree_model[self._move_effects_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+    
     def has_move_effects(self):
         return self.project.file_exists(MOVE_EFFECTS)
     

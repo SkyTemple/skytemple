@@ -757,24 +757,6 @@ class MainController:
         return response
 
     def _load_support_images(self):
-        # Load the Discord badge
-        try:
-            raise Exception("Disabled for now.")
-            url = 'https://raster.shields.io/discord/710190644152369162?label=Discord'
-            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-            # Some weird issue on Windows with PyInstaller...:
-            ctx = ssl.create_default_context()
-            ctx.check_hostname = False
-            ctx.verify_mode = ssl.CERT_NONE
-            input_stream = Gio.MemoryInputStream.new_from_data(urllib.request.urlopen(req, context=ctx, timeout=1).read(), None)
-            pixbuf = Pixbuf.new_from_stream(input_stream, None)
-            image = Gtk.Image()
-            image.show()
-            image.set_from_pixbuf(pixbuf)
-            self.builder.get_object('discord_icon_container').add(image)
-        except BaseException:
-            # We are not crashing over a Discord badge...
-            logger.error("Failed loading the Discord badge.", exc_info=sys.exc_info())
         # Load the support us images
         try:
             # Discord

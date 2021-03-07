@@ -20,7 +20,7 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import SimpleController
 from skytemple_files.common.i18n_util import _
 
-GROUND_LISTS = _('Ground Lists')
+GROUND_LISTS = _('Lists')
 
 
 class MainController(SimpleController):
@@ -32,9 +32,7 @@ class MainController(SimpleController):
 
     def get_content(self) -> Gtk.Widget:
         return self.generate_content_label(
-            _("This section lets you edit lists of the game's Ground Engine (the cutscene and overworld engine).\n"
-              "These lists store various information, such as available actors and objects that can "
-              "be placed on maps and also a list of maps itself.")
+            _("This section lets you edit various lists of the game.")
         )
 
     def get_icon(self) -> str:
