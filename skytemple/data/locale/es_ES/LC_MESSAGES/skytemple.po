@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-07 17:52+0000\n"
-"PO-Revision-Date: 2021-03-07 17:53\n"
+"PO-Revision-Date: 2021-03-07 19:26\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1340,7 +1340,7 @@ msgstr "ARMIPS informó de un error al aplicar el parche."
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:70
 #, python-brace-format
 msgid "The armips source file did not create a {OUT_BIN}."
-msgstr ""
+msgstr "El archivo de origen de armips no ha generado un {OUT_BIN}."
 
 #: skytemple-files/skytemple_files/data/data_cd/model.py:66
 msgid "To delete this effect, no items must use it."
@@ -7418,7 +7418,7 @@ msgstr "<No disponible>\n\n"
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:297
 msgid "Fix # of Moves"
-msgstr ""
+msgstr "Corregir número de movimientos"
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:832
 msgid "Here you can edit Metronome's movepool.\n"
@@ -7445,11 +7445,12 @@ msgstr "No se puede eliminar este efecto."
 #: skytemple/skytemple/module/lists/controller/move_effects.py:287
 msgid "This will change the number of moves to 559, in case there isn't enough moves in the list.\n"
 "used to fix the previous amount of move effects extracted by the previous versions of the patch."
-msgstr ""
+msgstr "Esto cambiará el número de movimientos a 559 en caso de que no haya suficientes movimientos en la lista.\n"
+"Se utiliza para corregir la cantidad anterior de efectos de movimiento extraídos por las versiones anteriores del parche."
 
 #: skytemple/skytemple/module/lists/controller/move_effects.py:289
 msgid "Fix Number of Moves"
-msgstr ""
+msgstr "Corregir número de movimientos"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
 #: skytemple/skytemple/module/lists/module.py:95
