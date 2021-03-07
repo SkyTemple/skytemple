@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-07 11:32+0000\n"
-"PO-Revision-Date: 2021-03-07 11:33\n"
+"POT-Creation-Date: 2021-03-07 11:51+0000\n"
+"PO-Revision-Date: 2021-03-07 11:52\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1340,7 +1340,7 @@ msgstr "ARMIPS informó de un error al aplicar el parche."
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:70
 #, python-brace-format
 msgid "The armips source file did not crate a {OUT_BIN}."
-msgstr ""
+msgstr "El archivo de origen de ARMIPS no ha generado un {OUT_BIN}."
 
 #: skytemple-files/skytemple_files/data/data_cd/model.py:63
 msgid "To delete this effect, no items must use it."
@@ -2042,10 +2042,12 @@ msgid "Lava"
 msgstr "Lava"
 
 #: skytemple-files/skytemple_files/data/md/model.py:337
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:32
 msgid "Small"
 msgstr "Pequeño"
 
 #: skytemple-files/skytemple_files/data/md/model.py:338
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:42
 msgid "Medium"
 msgstr "Mediano"
 
@@ -2251,56 +2253,168 @@ msgstr "Análisis del piso: {child.tag} inesperado"
 msgid "Missing {k} for Floor data."
 msgstr "Falta {k} para los datos del piso."
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:62
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:31
+msgid "Medium Large"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:33
+msgid "Single Monster House"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:34
+msgid "Ring"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:35
+msgid "Crossroads"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:36
+msgid "Two Rooms, One Monster House"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:37
+msgid "Line"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:38
+msgid "Cross"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:39
+msgid "Small Medium"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:40
+msgid "Beetle"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:41
+msgid "Outer Rooms"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:43
+msgid "Medium Large (12)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:44
+msgid "Medium Large (13)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:45
+msgid "Medium Large (14)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:46
+msgid "Medium Large (15)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:69
+msgid "Clear"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:70
+msgid "Sunny"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:71
+msgid "Sandstorm"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:72
+msgid "Cloudy"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:73
+msgid "Rainy"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:74
+msgid "Hail"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:75
+msgid "Fog"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:76
+msgid "Snow"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:77
+msgid "Random"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:100
 msgid "Disabled? (0)"
 msgstr "¿Desactivado? (0)"
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:63
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:101
 msgid "Enabled (1)"
 msgstr "Activado (1)"
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:64
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:102
 msgid "Enabled (10)"
 msgstr "Activado (10)"
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:337
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:158
+msgid "No darkness"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:159
+msgid "1-tile vision (Heavy darkness)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:160
+msgid "2-tile vision (Light darkness)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:161
+msgid "3-tile vision"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:162
+msgid "4-tile vision"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:375
 #, python-brace-format
 msgid "Unexpected sub-node for {XML_FLOOR_LAYOUT}: {child.tag}"
 msgstr "Subnodo inesperado para {XML_FLOOR_LAYOUT}: {child.tag}"
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:340
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:378
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__GENSET} missing for {XML_FLOOR_LAYOUT}."
 msgstr "{XML_FLOOR_LAYOUT__GENSET} falta para {XML_FLOOR_LAYOUT}."
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:343
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:381
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__CHANCES} missing for {XML_FLOOR_LAYOUT}."
 msgstr "{XML_FLOOR_LAYOUT__CHANCES} falta para {XML_FLOOR_LAYOUT}."
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:346
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:384
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__TERRAINSET} missing for {XML_FLOOR_LAYOUT}."
 msgstr "{XML_FLOOR_LAYOUT__TERRAINSET} falta para {XML_FLOOR_LAYOUT}."
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:349
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:387
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__MISCSET} missing for {XML_FLOOR_LAYOUT}."
 msgstr "{XML_FLOOR_LAYOUT__MISCSET} falta para {XML_FLOOR_LAYOUT}."
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:404
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:442
 msgid "Invalid structure type {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}"
 msgstr "Tipo de estructura inválida: {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}"
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:408
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:446
 msgid "Invalid weather type {ele.get(XML_FLOOR_LAYOUT__WEATHER)}"
 msgstr "Tipo de clima inválido: {ele.get(XML_FLOOR_LAYOUT__WEATHER)}"
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:412
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:450
 msgid "Invalid terrain type {terrain_settings.get(XML_FLOOR_LAYOUT__TERRAINSET__SECONDARY_TYPE)}"
 msgstr "Tipo de terreno inválido: {terrain_settings.get(XML_FLOOR_LAYOUT__TERRAINSET__SECONDARY_TYPE)}"
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:416
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:454
 msgid "Invalid darkness level type {ele.get(XML_FLOOR_LAYOUT__DARKNESS_LEVEL)}"
 msgstr "Nivel de oscuridad inválido: {ele.get(XML_FLOOR_LAYOUT__DARKNESS_LEVEL)}"
 
@@ -7012,7 +7126,7 @@ msgstr "Importar código"
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:541
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:550
 msgid "Clipboard Import"
-msgstr ""
+msgstr "Importación del portapapeles"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:584
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:593
@@ -7022,12 +7136,12 @@ msgstr "Exportar código"
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:675
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:685
 msgid "irdkwia's Effect Library"
-msgstr ""
+msgstr "Biblioteca de efectos de irdkwia"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:719
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:729
 msgid "ASM Editor"
-msgstr ""
+msgstr "Editor ASM"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:771
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:781
@@ -7041,17 +7155,17 @@ msgstr "Importar código ASM de efectos de objeto..."
 #: skytemple/skytemple/module/lists/controller/item_effects.py:115
 #: skytemple/skytemple/module/lists/controller/move_effects.py:126
 msgid "Any Files"
-msgstr ""
+msgstr "Cualquier archivo"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:120
 #: skytemple/skytemple/module/lists/controller/move_effects.py:131
 msgid "armips ASM patches (*.asm)"
-msgstr ""
+msgstr "Parches ASM armips (*.asm)"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:125
 #: skytemple/skytemple/module/lists/controller/move_effects.py:136
 msgid "Raw code (*.bin)"
-msgstr ""
+msgstr "Código sin procesar (*.bin)"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:146
 #: skytemple/skytemple/module/lists/controller/item_effects.py:168
@@ -7063,7 +7177,7 @@ msgstr "Error al importar código ASM."
 #: skytemple/skytemple/module/lists/controller/item_effects.py:159
 #: skytemple/skytemple/module/lists/controller/move_effects.py:170
 msgid "Patch successfully imported."
-msgstr ""
+msgstr "Parche importado correctamente."
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:173
 msgid "Export Item Effect ASM Code..."
@@ -7078,12 +7192,18 @@ msgid "Export and import effect code.\n"
 "If you import armips ASM code, irdkwia's effect code library is available.\n\n"
 "You can use the ASM Editor tool to generate patch files.\n"
 "The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to import.\n"
-msgstr ""
+msgstr "Exportar e importar código de efectos.\n"
+"Solo se puede exportar código máquina en bruto. NO se desensambla.\n"
+"La importación acepta tanto el código ASM de armips como el código máquina binario en bruto.\n"
+"Por favor, ten en cuenta que SkyTemple no comprueba el código en bruto que intentas importar.\n"
+"Si importas código ASM de armips, la biblioteca de código de efectos de irdkwia estará disponible.\n\n"
+"Puedes utilizar la herramienta Editor de ASM para generar archivos de parche.\n"
+"El parche ASM debe generar un archivo 'code_out.bin', que SkyTemple intentará importar.\n"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:201
 #: skytemple/skytemple/module/lists/controller/move_effects.py:212
 msgid "Export / Import Effect Code Help"
-msgstr ""
+msgstr "Ayuda para la Exportación / Importación de efectos de código"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:493
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:570
@@ -7216,11 +7336,11 @@ msgstr "Desconocido 3"
 
 #: skytemple/skytemple/module/lists/controller/main.py:23
 msgid "Lists"
-msgstr ""
+msgstr "Listas"
 
 #: skytemple/skytemple/module/lists/controller/main.py:35
 msgid "This section lets you edit various lists of the game."
-msgstr ""
+msgstr "Esta sección te permite editar varias listas del juego."
 
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:55
 msgid "Menu Lists"
@@ -9913,17 +10033,17 @@ msgstr "?INVÁLIDO? {script_id}"
 #: skytemple/skytemple/module/script/controller/ssa.py:1493
 #, python-brace-format
 msgid "{len_actors} acts, "
-msgstr "{len_actors} act., "
+msgstr "{len_actors} actor(es), "
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1495
 #, python-brace-format
 msgid "{len_objects} objs, "
-msgstr "{len_objects} objetos, "
+msgstr "{len_objects} objeto(s), "
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1497
 #, python-brace-format
 msgid "{len_performers} prfs, "
-msgstr "{len_performers} intérpretes, "
+msgstr "{len_performers} intérprete(s), "
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1499
 #, python-brace-format
