@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-07 11:32+0000\n"
-"PO-Revision-Date: 2021-03-07 11:33\n"
+"POT-Creation-Date: 2021-03-07 11:51+0000\n"
+"PO-Revision-Date: 2021-03-07 11:52\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "Language: ar_SA\n"
@@ -2038,10 +2038,12 @@ msgid "Lava"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:337
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:32
 msgid "Small"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:338
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:42
 msgid "Medium"
 msgstr ""
 
@@ -2247,56 +2249,168 @@ msgstr ""
 msgid "Missing {k} for Floor data."
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:62
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:31
+msgid "Medium Large"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:33
+msgid "Single Monster House"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:34
+msgid "Ring"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:35
+msgid "Crossroads"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:36
+msgid "Two Rooms, One Monster House"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:37
+msgid "Line"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:38
+msgid "Cross"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:39
+msgid "Small Medium"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:40
+msgid "Beetle"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:41
+msgid "Outer Rooms"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:43
+msgid "Medium Large (12)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:44
+msgid "Medium Large (13)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:45
+msgid "Medium Large (14)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:46
+msgid "Medium Large (15)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:69
+msgid "Clear"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:70
+msgid "Sunny"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:71
+msgid "Sandstorm"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:72
+msgid "Cloudy"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:73
+msgid "Rainy"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:74
+msgid "Hail"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:75
+msgid "Fog"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:76
+msgid "Snow"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:77
+msgid "Random"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:100
 msgid "Disabled? (0)"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:63
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:101
 msgid "Enabled (1)"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:64
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:102
 msgid "Enabled (10)"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:337
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:158
+msgid "No darkness"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:159
+msgid "1-tile vision (Heavy darkness)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:160
+msgid "2-tile vision (Light darkness)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:161
+msgid "3-tile vision"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:162
+msgid "4-tile vision"
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:375
 #, python-brace-format
 msgid "Unexpected sub-node for {XML_FLOOR_LAYOUT}: {child.tag}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:340
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:378
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__GENSET} missing for {XML_FLOOR_LAYOUT}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:343
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:381
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__CHANCES} missing for {XML_FLOOR_LAYOUT}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:346
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:384
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__TERRAINSET} missing for {XML_FLOOR_LAYOUT}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:349
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:387
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__MISCSET} missing for {XML_FLOOR_LAYOUT}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:404
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:442
 msgid "Invalid structure type {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:408
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:446
 msgid "Invalid weather type {ele.get(XML_FLOOR_LAYOUT__WEATHER)}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:412
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:450
 msgid "Invalid terrain type {terrain_settings.get(XML_FLOOR_LAYOUT__TERRAINSET__SECONDARY_TYPE)}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:416
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:454
 msgid "Invalid darkness level type {ele.get(XML_FLOOR_LAYOUT__DARKNESS_LEVEL)}"
 msgstr ""
 
