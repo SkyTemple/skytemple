@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-07 11:51+0000\n"
-"PO-Revision-Date: 2021-03-07 11:52\n"
+"POT-Creation-Date: 2021-03-07 17:52+0000\n"
+"PO-Revision-Date: 2021-03-07 17:53\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -1335,10 +1335,10 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:70
 #, python-brace-format
-msgid "The armips source file did not crate a {OUT_BIN}."
+msgid "The armips source file did not create a {OUT_BIN}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/data_cd/model.py:63
+#: skytemple-files/skytemple_files/data/data_cd/model.py:66
 msgid "To delete this effect, no items must use it."
 msgstr ""
 
@@ -3123,8 +3123,8 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:185
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:423
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:194
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:432
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:828
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:464
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:860
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:86
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:411
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:562
@@ -3216,8 +3216,8 @@ msgstr "Marcas de posição"
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:196
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:434
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:205
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:443
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:842
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:475
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:874
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:89
 #: skytemple/skytemple/module/lists/controller/world_map.glade:405
 #: skytemple/skytemple/module/monster/controller/monster.glade:1055
@@ -3951,10 +3951,10 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:310
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:339
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:361
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:348
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:370
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:870
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:892
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:380
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:402
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:902
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:924
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:232
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:254
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:733
@@ -4899,7 +4899,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:429
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:797
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:2058
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:951
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:983
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:199
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:796
 #: skytemple/skytemple/module/monster/controller/level_up.glade:121
@@ -5483,7 +5483,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1333
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1378
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:244
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:253
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:257
 msgid "Go To"
 msgstr ""
 
@@ -5655,7 +5655,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3011
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1447
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:630
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:640
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:672
 msgid "Help"
 msgstr ""
 
@@ -6883,42 +6883,42 @@ msgid "Effect"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:301
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:310
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:342
 msgid "Effect ID: "
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:398
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:407
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:439
 msgid "Used by: "
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:493
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:502
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:534
 msgid "Import Code"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:541
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:550
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:582
 msgid "Clipboard Import"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:584
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:593
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:625
 msgid "Export Code"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:675
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:685
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:717
 msgid "irdkwia's Effect Library"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:719
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:729
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:761
 msgid "ASM Editor"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:771
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:781
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:813
 msgid "Effects Code"
 msgstr ""
 
@@ -7155,7 +7155,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:66
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:144
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:288
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:320
 #: skytemple/skytemple/module/lists/module.py:107
 msgid "Move Effects"
 msgstr ""
@@ -7171,12 +7171,16 @@ msgid "<Not available>\n\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:800
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:297
+msgid "Fix # of Moves"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:832
 msgid "Here you can edit Metronome's movepool.\n"
 "Each move in this list has the same chance of being used by Metronome."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/move_effects.glade:925
+#: skytemple/skytemple/module/lists/controller/move_effects.glade:957
 msgid "Metronome"
 msgstr ""
 
@@ -7190,6 +7194,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/move_effects.py:239
 msgid "Cannot delete this effect."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.py:287
+msgid "This will change the number of moves to 559, in case there isn't enough moves in the list.\n"
+"used to fix the previous amount of move effects extracted by the previous versions of the patch."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/move_effects.py:289
+msgid "Fix Number of Moves"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
