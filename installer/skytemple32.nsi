@@ -1,4 +1,4 @@
-!define PRODUCT_NAME "SkyTemple"
+!define PRODUCT_NAME "SkyTemple (32-bit)"
 
 !define DIST_DIR "dist\skytemple"
 !define APPEXE "skytemple.exe"
@@ -25,8 +25,8 @@ RequestExecutionLevel admin
 
 Name "${PRODUCT_NAME} - ${PRODUCT_VERSION}"
 Icon "skytemple.ico"
-OutFile "skytemple-${PRODUCT_VERSION}-install-x64.exe"
-InstallDir "$PROGRAMFILES64\${PRODUCT_NAME}"
+OutFile "skytemple-${PRODUCT_VERSION}-install-x86.exe"
+InstallDir "$PROGRAMFILES32\${PRODUCT_NAME}"
 ShowInstDetails show
 
 Section "install"
