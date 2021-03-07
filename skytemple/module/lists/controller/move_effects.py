@@ -278,6 +278,22 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
             cb.set_active(move_effect)
             effects_notebook = self.builder.get_object('effects_notebook')
             effects_notebook.set_current_page(1)
+    
+    def on_btn_fix_nb_items_clicked(self, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("""This will change the number of moves to 559, in case there isn't enough moves in the list.
+used to fix the previous amount of move effects extracted by the previous versions of the patch."""),
+            title=_("Fix Number of Moves")
+        )
+        md.run()
+        md.destroy()
+        while self.move_effects.nb_items()<559:
+            self.move_effects.add_item_effect_id(0)
+        self.module.mark_move_effects_as_modified()
+        self._init_move_list()
         
     def on_move_effect_id_edited(self, widget, path, text):
         try:
