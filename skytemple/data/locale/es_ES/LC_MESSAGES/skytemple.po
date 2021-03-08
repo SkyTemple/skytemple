@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-07 17:52+0000\n"
-"PO-Revision-Date: 2021-03-08 00:43\n"
+"PO-Revision-Date: 2021-03-08 20:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1269,7 +1269,7 @@ msgstr "No se puede procesar el mapeado de tiles. El número de tiles referencia
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:97
 msgid "Only 4bpp and 8bpp images are supported."
-msgstr "Solo se admiten imágenes 4bpp y 8bpp."
+msgstr "Solo se admiten imágenes de 4bpp y 8bpp."
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:201
 msgid "Can not convert PIL image to PMD tiled image: Must be indexed image (=using a palette)"
@@ -1288,7 +1288,7 @@ msgstr "No se puede convertir la imagen PIL a imagen de tiles de PMD: Las dimens
 #: skytemple-files/skytemple_files/common/tiled_image.py:269
 #: skytemple-files/skytemple_files/common/tiled_image.py:277
 msgid "Can not convert PIL image to PMD tiled image: The color {pix} (from palette {math.floor(pix / single_palette_size)}) used by pixel {x+(idx % 2)}x{y} in tile {tile_id} ({tile_x}x{tile_y} is out of range. Expected are colors from palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
-msgstr "No se puede convertir una imagen PIL en una imagen de tiles de PMD: El color {pix} (de la paleta {math.floor(pix / single_palette_size)}) utilizado por el píxel {x+(idx % 2)}x{y} en el tile {tile_id} ({tile_x}x{tile_y} está fuera de rango. Se esperaban los colores de la paleta {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
+msgstr "No se puede convertir una imagen PIL en una imagen de tiles de PMD: El color {pix} (de la paleta {math.floor(pix / single_palette_size)}) utilizada por el píxel {x+(idx % 2)}x{y} en el tile {tile_id} ({tile_x}x{tile_y} está fuera de rango. Se esperaban los colores de la paleta {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:317
 #, python-brace-format
@@ -7063,11 +7063,11 @@ msgstr "Desc. 4"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:350
 msgid "Actors with outlines "
-msgstr "Actores con contornos "
+msgstr "Los actores tienen contornos "
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:379
 msgid " as sprites are <span foreground=\"orange\">special</span> and replaced with another Pokémon when the game is running."
-msgstr " ya que los sprites son <span foreground=\"orange\">especiales</span> y se reemplazan por otro Pokémon cuando el juego está en ejecución."
+msgstr " porque los sprites son <span foreground=\"orange\">especiales</span> y se reemplazan por otro Pokémon cuando el juego está en ejecución."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:402
 msgid "By changing the 'Pokémon' entry for these actors, you will only change which outline is rendered in SkyTemple."
@@ -7126,7 +7126,7 @@ msgstr "Importar código"
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:541
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:582
 msgid "Clipboard Import"
-msgstr "Importación del portapapeles"
+msgstr "Importar desde portapapeles"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:584
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:625
@@ -9817,7 +9817,7 @@ msgstr "Scripts de escenas para mapas de la categoría \"{self.name}\""
 
 #: skytemple/skytemple/module/script/controller/folder.py:31
 msgid "Script Scenes for other maps"
-msgstr "Scripts de escena para otros mapas"
+msgstr "Scripts de escenas para otros mapas"
 
 #: skytemple/skytemple/module/script/controller/folder.py:36
 #, python-brace-format
