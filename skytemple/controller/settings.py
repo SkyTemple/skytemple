@@ -100,9 +100,11 @@ class SettingsController:
             # Gtk Theme
             if not sys.platform.startswith('linux'):
                 cb: Gtk.ComboBox = self.builder.get_object('setting_gtk_theme')
-                theme_name = cb.get_model()[cb.get_active_iter()][0]
-                gtk_settings.set_property("gtk-theme-name", theme_name)
-                self.settings.set_gtk_theme(theme_name)
+                iter = cb.get_active_iter()
+                if (iter != None):
+                    theme_name = cb.get_model()[iter][0]
+                    gtk_settings.set_property("gtk-theme-name", theme_name)
+                    self.settings.set_gtk_theme(theme_name)
 
             # Languages
             cb: Gtk.ComboBox = self.builder.get_object('setting_language')
