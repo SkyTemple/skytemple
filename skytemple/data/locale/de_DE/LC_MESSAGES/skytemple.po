@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-10 10:29+0000\n"
-"PO-Revision-Date: 2021-03-10 10:33\n"
+"PO-Revision-Date: 2021-03-10 11:34\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1338,7 +1338,7 @@ msgstr "ARMIPS hat einen Fehler zurückgegeben während es versucht hat, den Pat
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:70
 #, python-brace-format
 msgid "The armips source file did not create a {OUT_BIN}."
-msgstr ""
+msgstr "Die armips Quelldatei hat keine {OUT_BIN} erstellt."
 
 #: skytemple-files/skytemple_files/data/data_cd/model.py:66
 msgid "To delete this effect, no items must use it."
@@ -2218,7 +2218,7 @@ msgstr "B/W, Raum, Schlüssel-Tür (0xC)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:82
 msgid "Tile flag 0xC is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr ""
+msgstr "Kachel-Flag 0xC wird auf 1 gesetzt und es wird Schlüsseltür erstellt. Wenn die ID des statischen Raums &lt; 0xA5 ist, wird unter der Tür eine Mauer sein, ansonsten Boden."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:84
 msgid "F/W, Room; Key Door (0xD)"
@@ -2226,7 +2226,7 @@ msgstr "B/W, Raum, Schlüssel-Tür (0xD)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:86
 msgid "Tile flag 0xD is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr ""
+msgstr "Kachel-Flag 0xD wird auf 1 gesetzt und es wird Schlüsseltür erstellt. Wenn die ID des statischen Raums &lt; 0xA5 ist, wird unter der Tür eine Mauer sein, ansonsten Boden."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:94
 msgid "Attendant1 Spawn Floor"
@@ -5124,28 +5124,29 @@ msgstr "Du bist im Begriff, den Raum zu verkleinern. Das wird Kacheln löschen. 
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:378
 msgid "If not set, the track ID specified on the floor this fixed floor is assigned to will be used instead."
-msgstr ""
+msgstr "Falls nicht gesetzt, wird stattdessen die ID des Musikstücks der Ebene genommen, die dem statischen Raum zugeordnet ist."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:382
 msgid "Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled)"
-msgstr ""
+msgstr "Ob Attacken verwendet werden können. Beeinflusst nicht den regulären Angriff. Falls 0 werden andere Pokémon nicht angreifen (sie werden auch nicht die reguläre Attacke verwenden, selbst dann nicht, falls Attacken-Nutzer deaktiviert ist)"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:387
 msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
-msgstr ""
+msgstr "Falls die ID des statischen Raumes 0 oder >= 165 ist wird diese Einstellung ignoriert. Orbs werden immer erlaubt."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:390
 msgid "If enabled, the floor is exited after all the enemies have been defeated"
-msgstr ""
+msgstr "Falls aktiviert wird die Ebene verlassen, falls alle Gegner besiegt wurden"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:393
 msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr ""
+msgstr "Falls die ID des statischen Raumes 0 oder >= 165 ist wird diese Einstellung ignoriert. Sie ist dann immer aktiviert."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:396
 msgid "Prevents any kind of item pulling (such as with the Trawl Orb).\n"
 "If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr ""
+msgstr "Verhindert, dass Items an den Spieler herangezogen werden (beispielsweise durch den Sogorb).\n"
+"Falls die ID des statischen Raums 0 oder >= 165 ist, wird diese Einstellung ignoriert. Sie ist dann immer aktiviert."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:400
 msgid "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
@@ -5942,11 +5943,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:320
 msgid "The final value is randomized between density and density/2."
-msgstr ""
+msgstr "Der endgültige Wert wird vom Spiel zwischen dem Wert für \"Dichte\" und der Hälfte des Wertes ausgewürfelt."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:323
 msgid "The value stored in the ROM is actually the value divided by 5. Because of this the saved value will be rounded to the next multiple of 5."
-msgstr ""
+msgstr "In der ROM wird der hier angegebene Wert geteilt durch 5 gespeichert. Daher wird beim Speichern der hier angegebene Wert zum nächsten Vielfachen von 5 gerundet."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:327
 msgid "These sliders control how likely it is (in %) for certain things to generate on this floor."
@@ -5963,7 +5964,10 @@ msgid "0 --> 100% secret bazaar\n"
 "1 --> 100% secret room\n"
 "255 --> 50% secret bazaar, 50% secret room\n"
 "Other values: 0% secret bazaar, 0% secret room (you just go to the next floor like normal stairs)."
-msgstr ""
+msgstr "0 —> 100% Geheimbasar\n"
+"1 —> 100% geheimer Raum\n"
+"255 —> 50% Geheimbasar, 50% geheimer Raum\n"
+"Andere Werte: 0% Geheimbasar, 0% geheimer Raum (funktioniert dann wie normale Treppe)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:352
 msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from \"ASM Patches.\"\n"
@@ -6208,7 +6212,7 @@ msgstr "Unzerstörb."
 #: skytemple/skytemple/module/dungeon/module.py:761
 #, python-brace-format
 msgid "{i} - Lvl: {entry.level}, Atk: {entry.attack}, Def: {entry.defense}, Sp. Atk: {entry.special_attack}, Sp. Def: {entry.special_defense}, HP: {entry.hp}"
-msgstr ""
+msgstr "{i} - Lvl.: {entry.level}, Angr.: {entry.attack}, Vert.: {entry.defense}, Sp. Angr.: {entry.special_attack}, Sp. Vert.: {entry.special_defense}, KP: {entry.hp}"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:64
 msgid "Export PNG of map..."
@@ -6999,7 +7003,7 @@ msgstr "Liste der Akteure"
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:68
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:145
 msgid "The entries in this list can be placed on maps and used in scripts."
-msgstr ""
+msgstr "Die Einträge in dieser Liste können auf Karten platziert und in Skripten verwendet werden."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:81
 msgid "<Not available>\n\n"
@@ -7024,11 +7028,11 @@ msgstr "Akteure mit Umrissen "
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:379
 msgid " as sprites are <span foreground=\"orange\">special</span> and replaced with another Pokémon when the game is running."
-msgstr ""
+msgstr " als Sprites sind <span foreground=\"orange\">speziell</span> und werden im laufenden Spiel durch ein anderes Pokémon ersetzt."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:402
 msgid "By changing the 'Pokémon' entry for these actors, you will only change which outline is rendered in SkyTemple."
-msgstr ""
+msgstr "Durch das ändern des \"Pokémon\"-Eintrags für diese Akteure änderst du nur, welcher Umriss in SkyTemple angezeigt wird."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.py:62
 #: skytemple/skytemple/module/lists/controller/actor_list.py:73
@@ -7051,7 +7055,9 @@ msgstr "Bearbeitet die Item-Effekte, die das Spiel benutzt."
 msgid "<Not available>\n\n"
 "To view and edit item effects, please apply the \"ExtractItemCode\"\n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um Item-Effekte anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ExtractItemCode“ aus dem Menü „ASM Patches“ an."
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:151
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:160
@@ -7147,12 +7153,18 @@ msgid "Export and import effect code.\n"
 "If you import armips ASM code, irdkwia's effect code library is available.\n\n"
 "You can use the ASM Editor tool to generate patch files.\n"
 "The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to import.\n"
-msgstr ""
+msgstr "Exportiere und impportiere Effektcode.\n"
+"Beim Export wird nur der rohe Maschinencode exportiert. Er wird nicht disassembled.\n"
+"Der Import akzeptiert sowohl armips ASM-Code als auch rohen Maschinencode.\n"
+"Bitte beachte, dass SkyTemple beim Import keinen rohen Maschinencode überprüft.\n"
+"Falls du armips ASM-Code importierst, steht irdkwias Effektcode-Bibliothek zur Verfügung.\n\n"
+"Du kannst den ASM-Editor nutzen, um Patch-Dateien zu erstellen.\n"
+"Der ASM-Patch muss eine \"code_out.bin\" Datei erstellen. SkyTemple wird versuchen diese Datei zu importieren.\n"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:201
 #: skytemple/skytemple/module/lists/controller/move_effects.py:212
 msgid "Export / Import Effect Code Help"
-msgstr ""
+msgstr "Hilfe zum Importieren / Exportieren von Effektcode"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:493
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:570
@@ -7352,11 +7364,13 @@ msgid "<Not available>\n\n"
 "To view and edit move effects, please apply the \"ExtractMoveCode\" \n"
 "ASM patch from the \"ASM Patches\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um Attacken-Effekte anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ExtractMoveCode“ aus dem Menü „ASM Patches“ an. "
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:297
 msgid "Fix # of Moves"
-msgstr ""
+msgstr "Anzahl der Attacken korrigieren"
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:832
 msgid "Here you can edit Metronome's movepool.\n"
@@ -7386,7 +7400,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/move_effects.py:289
 msgid "Fix Number of Moves"
-msgstr ""
+msgstr "Anzahl der Attacken korrigieren"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
 #: skytemple/skytemple/module/lists/module.py:95
@@ -7426,7 +7440,13 @@ msgid "To add them to the team right away:\n"
 "message_Menu(MENU_ACCEPT_TEAM_MEMBER);\n\n"
 "The menu returns 1 if the player said yes and 0 if they said no.\n"
 "* Please note that for entry no. 16 the player will not be asked, it will always be added to the team."
-msgstr ""
+msgstr "Um sie sofort zum Team hinzuzufügen:\n"
+"ProcessSpecial(PROCESS_SPECIAL_ADD_RECRUITABLE_TO_TEAM, XX, 0);\n\n"
+"Um sie zum Team hinzuzufügen und dabei den Spieler danach zu fragen* und die Abfrage für einen Spitznamen anzuzeigen:\n"
+"ProcessSpecial(PROCESS_SPECIAL_PREPARE_MENU_ACCEPT_TEAM_MEMBER, XX, 0);\n"
+"message_Menu(MENU_ACCEPT_TEAM_MEMBER);\n\n"
+"Das Menü gibt 1 zurück, wenn der Spieler Ja gesagt hat und 0 wenn er Nein gesagt hat.\n"
+"* Bitte beachte, dass für Eintrag Nr. 16 der Spieler nicht gefragt wird. Dieses Pokémon wird immer dem Team hinzugefügt."
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:91
 msgid "Starters List"
@@ -7759,12 +7779,14 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/bg.py:654
 msgid "This map has no second collision layer.\n"
 "You can add a second collision layer at Map > Settings."
-msgstr ""
+msgstr "Diese Karte hat keine zweite Kollisionsebene.\n"
+"Du kannst unter Karte > Einstellungen eine zweite Kollisionsebene hinzufügen."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:674
 msgid "This map has no data layer.\n"
 "You can add a data layer at Map > Settings."
-msgstr ""
+msgstr "Diese Karte hat keine Daten-Ebene.\n"
+"Du kannst eine Daten-Ebene unter Karte > Einstellungen hinzufügen."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:794
 msgid "Map backgrounds can be used as primary or secondary.\n"
@@ -8455,7 +8477,8 @@ msgstr "Fehler beim Importieren des Chr-Bildes."
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:57
 msgid "Choose which character\n"
 "you want to add in the table: "
-msgstr ""
+msgstr "Wähle das Zeichen aus, dass\n"
+"du de Tabelle hinzufügen möchtest: "
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:361
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:275
@@ -8487,7 +8510,9 @@ msgstr "Schrift exportieren..."
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
 "IMPORTANT: All image files must be indexed PNGs!\n"
 "For banner fonts, all images must have the same palette."
-msgstr ""
+msgstr "Zum Importieren, wähle einen Ordner aus, der alle Dateien enthält, die beim Export der Schrift erstellt wurden.\n"
+"WICHTIG: Alle Dateien müssen indizierte PNGs sein!\n"
+"Für Banner-Schriften gilt, dass alle Bilder dieselbe Palette haben müssen."
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:110
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:95
@@ -8516,7 +8541,8 @@ msgstr "Fehler beim Hinzufügen des Zeichens."
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:57
 msgid "Choose how many characters\n"
 "will be in the list: "
-msgstr ""
+msgstr "Wähle die Anzahl Zeichen,\n"
+"die in der Liste sein sollen: "
 
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:154
 msgid "This entry is empty."
@@ -8529,7 +8555,8 @@ msgstr "Eintrag: "
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:93
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
 "IMPORTANT: All image files must be indexed PNGs and use the same palette!"
-msgstr ""
+msgstr "Zum Importieren, wähle einen Ordner aus, der alle Dateien enthält, die beim Export der Schrift erstellt wurden.\n"
+"WICHTIG: Alle Dateien müssen indizierte PNGs sein und dieselbe Palette verwenden!"
 
 #: skytemple/skytemple/module/misc_graphics/controller/main.py:23
 msgid "Misc. Graphics"
@@ -8537,12 +8564,13 @@ msgstr "Sonstige Grafiken"
 
 #: skytemple/skytemple/module/misc_graphics/controller/main.py:35
 msgid "This section lets you edit miscellaneous graphics."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du verschiedene Grafiken bearbeiten."
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.glade:80
 msgid "The images in this preview are scaled to 64x64px.\n"
 "Imported image dimensions must be a multiple of 8."
-msgstr ""
+msgstr "Die Bilder in dieser Vorschau werden auf 64x64px skaliert.\n"
+"Bildmaße müssen beim Import ein Vielfaches von 8 sein."
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:76
 msgid "Export all images as PNGs..."
@@ -8646,7 +8674,9 @@ msgstr "WTE"
 msgid "This image does\n"
 "not have WTU data\n"
 "assigned to it."
-msgstr ""
+msgstr "Dieses Bild hat\n"
+"keine WTU-Daten\n"
+"zugewiesen."
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:660
 msgid "x"
@@ -8712,7 +8742,7 @@ msgstr "Geschrumpft: "
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.glade:273
 msgid "This will show the true form of the file if disabled."
-msgstr ""
+msgstr "Dies zeigt die wahre Form der Datei an, wenn deaktiviert."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.glade:345
 msgid "ZMappaT"
@@ -8733,15 +8763,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:115
 msgid "Import Minimized Version"
-msgstr ""
+msgstr "Geschrumpfte Version importieren"
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:120
 msgid "Import zmappat minimized from folder..."
-msgstr ""
+msgstr "Importiere geschrumpfte ZMappaT aus Ordner..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:145
 msgid "Error importing minimized zmappat."
-msgstr ""
+msgstr "Fehler beim Importieren der geschrumpften ZMappaT."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:154
 msgid "The game uses 4x4 'mini-tiles' tiles to render the map.\n"
@@ -8754,7 +8784,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:160
 msgid "Minimized Version Info"
-msgstr ""
+msgstr "Infos über die geschrumpfte Version"
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:170
 msgid "To import, select a folder containing all the image files that were created when exporting the full tileset."
@@ -8766,20 +8796,21 @@ msgstr "Komplettes Tileset importieren"
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:176
 msgid "Import full zmappat from folder..."
-msgstr ""
+msgstr "Importiere vollständige ZMappaT aus Ordner..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:201
 msgid "Error importing full zmappat."
-msgstr ""
+msgstr "Fehler beim Importieren der vollständigen ZMappaT."
 
 #: skytemple/skytemple/module/monster/controller/entity.py:34
 msgid "Each Pokémon has two gender forms (even if it only has one gender).\n"
 "This entry contains both of these forms. The first form is the main form, it is used as a fallback in some cases, when the data for the second form doesn't exist."
-msgstr ""
+msgstr "Jedes Pokémon hat zwei Geschlechterformen (auch wenn es nur ein Geschlecht hat).\n"
+"Dieser Eintrag enthält diese beiden Formen. Die erste Form ist die Basis-Form, sie wird in einigen Fällen als Ausweichoption verwendet, wenn Daten für die zweite Form nicht existieren."
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:91
 msgid "Interactive tooltips are not supported on your platform. To see them, click \"Open in browser\"."
-msgstr ""
+msgstr "Interaktive Tooltips werden auf dieser Plattform nicht unterstützt. Um sie zu sehen, klicke auf „Im Browser öffnen“."
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:143
 msgid "Open in browser"
@@ -8787,7 +8818,7 @@ msgstr "Im Browser öffnen"
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:160
 msgid "This opens the graph in a browser. You can use the \"refresh\" button (F5) in your browser to update it."
-msgstr ""
+msgstr "Dies öffnet den Graphen in deinem Browser. Du kannst die Schaltfläche \"aktualisieren\" (F5) deines Browser verwenden, um den Graphen zu aktualisieren."
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:182
 msgid "Graph"
@@ -8838,7 +8869,7 @@ msgstr "Importiere aus CSV"
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:361
 msgid "Base Stats can be edited under \"Settings\". They will be applied for level 1."
-msgstr ""
+msgstr "Basis-Statuswerte können unter \"Einstellungen\" bearbeitet werden. Sie werden für Level 1 angewendet."
 
 #: skytemple/skytemple/module/monster/controller/level_up.glade:516
 msgid "Level Up Moves"
@@ -8874,7 +8905,7 @@ msgstr "Alle Werte müssen Zahlen sein."
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:282
 msgid "The CSV must contain one entry per level."
-msgstr ""
+msgstr "Der CSV muss einen Eintrag pro Level enthalten."
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:287
 msgid "Invalid CSV file:\n"
@@ -8889,7 +8920,9 @@ msgstr "Fehler beim Lesen der CSV."
 msgid "Warning: The stats view might be corrupted now,\n"
 "but the data in ROM is still unchanged,\n"
 "simply reload this view!\n"
-msgstr ""
+msgstr "Warnung: Die Statuswert-Ansicht könnte jetzt falsch sein sein,\n"
+"aber die Daten im ROM sind weiterhin unverändert,\n"
+"lade einfach diese Ansicht neu!\n"
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:406
 #: skytemple/skytemple/module/monster/controller/level_up.py:478
@@ -8909,11 +8942,12 @@ msgstr "CSV (*.csv)"
 #: skytemple/skytemple/module/monster/controller/main.glade:87
 msgid "This section lets you edit data for Pokémon in the game.\n"
 "This includes stats and the portrait images."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du Daten für Pokémon im Spiel bearbeiten.\n"
+"Dies beinhaltet die Statuswerte und die Portraits."
 
 #: skytemple/skytemple/module/monster/controller/main.glade:118
 msgid "Here you can edit the different personality groups."
-msgstr ""
+msgstr "Hier kannst Du die verschiedenen Persönlichkeitsgruppen bearbeiten."
 
 #: skytemple/skytemple/module/monster/controller/main.glade:141
 msgid "Group: "
@@ -8941,7 +8975,7 @@ msgstr "Persönlichkeitsgruppen"
 
 #: skytemple/skytemple/module/monster/controller/main.glade:426
 msgid "Here you can edit special personalities, used by unique actors."
-msgstr ""
+msgstr "Hier kannst du spezielle Persönlichkeiten bearbeiten, die von besonderen Akteuren verwendet werden."
 
 #: skytemple/skytemple/module/monster/controller/main.glade:454
 msgid "Actor"
@@ -9050,11 +9084,11 @@ msgstr "Pokémon exportieren"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:163
 msgid "Current Gender Form Settings*"
-msgstr ""
+msgstr "Einstellungen der aktuellen Geschlechterform*"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:177
 msgid "Other Gender Form Settings*"
-msgstr ""
+msgstr "Einstellungen der anderen Geschlechterform*"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:205
 msgid "Moveset EoS"
@@ -9067,7 +9101,8 @@ msgstr "Attacken in Zeit / Dunkelheit**"
 #: skytemple/skytemple/module/monster/controller/monster.glade:231
 msgid "<i>*If you choose to export only one gender, the data of this gender will be used when importing again.\n"
 "If you choose to export both genders, upon import the matching gender entry will be used (second gender will be imported using the second gender entry).</i>"
-msgstr ""
+msgstr "<i>*Wenn du nur ein Geschlecht exportierst, dann werden die Daten dieser Form beim Import verwendet.\n"
+"Falls du beide Formen exportierst, werden diese beim Import automatisch zugewiesen (der zweiten Geschlechterform wird automatisch der Eintrag für die zweite Form zugewiesen).</i>"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:247
 msgid "** This data is not editable in SkyTemple, but you can export and import it."
@@ -9075,7 +9110,7 @@ msgstr "** Diese Daten können in SkyTemple nicht bearbeitet werden, aber du kan
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:265
 msgid "Portraits of other Gender Form*"
-msgstr ""
+msgstr "Portraits der aktuellen Geschlechterform*"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:279
 msgid "Stat Growth"
@@ -9083,11 +9118,11 @@ msgstr "Statuswerte-Anstieg"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:315
 msgid "Portraits of current Gender Form*"
-msgstr ""
+msgstr "Portraits der anderen Geschlechterform*"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:493
 msgid "(and/or) <b>2b. Copy to other Pokémon</b>"
-msgstr ""
+msgstr "(und/oder) <b>2b. Kopiere zu anderen Pokémon</b>"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:590
 msgid "$<ID Number>: <Eng. Name>"
@@ -9360,7 +9395,8 @@ msgstr "Rekrutierungsrate"
 #, python-format
 msgid "The % of HP that this Pokémon regenerates at the end of each turn is equal to 1/(value * 2), before applying any modifiers.\n"
 "The final value is capped between 1/30 and 1/500"
-msgstr ""
+msgstr "Der Prozentsatz der KP, den dieses Pokémon am Ende jeder Runde regeneriert, entspricht vor Anwendung von Modifikatoren 1/(Wert * 2).\n"
+"Der endgültige Wert ist zwischen 1/30 und 1/500 begrenzt"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:337
 msgid "HP Regeneration"
@@ -9368,7 +9404,7 @@ msgstr "KP Regeneration"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:347
 msgid "Whether or not the enemy or ally AI will move the Pokémon in dungeons."
-msgstr ""
+msgstr "Ob die Gegner-KI dieses Pokémon im Dungeon bewegt."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:348
 msgid "Can Move?"
@@ -9376,7 +9412,7 @@ msgstr "Kann sich bewegen?"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:358
 msgid "Whether or not the Pokémon can evolve at Luminous Spring (If it's off, it will never be allowed to evolve even if it has an evolution)."
-msgstr ""
+msgstr "Ob sich dieses Pokémon bei der Glitzerquelle entwickeln kann (falls deaktiviert kann es sich nicht entwickeln, selbst wenn Daten für die Entwicklung definiert sind)."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:360
 msgid "Can Evolve?"
@@ -9512,7 +9548,8 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/main.py:104
 msgid "Error loading patch package {os.path.basename(fname)}:\n"
 "{err}"
-msgstr ""
+msgstr "Fehler beim Laden des Patch-Pakets {os.path.basename(fname)}:\n"
+"{err}"
 
 #: skytemple/skytemple/module/patch/controller/main.py:107
 msgid "Not compatible"
@@ -9570,7 +9607,9 @@ msgstr "... als ein Spritesheet (SpriteBot Format)"
 msgid "If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.\n"
 "If that is also missing, the behaviour is undefined.\n"
 "If flipped versions are empty, the game will automatically flip the image."
-msgstr ""
+msgstr "Wenn ein Portrait fehlt, versucht das Spiel stattdessen das Portrait der ersten Form des Pokémon zu laden.\n"
+"Wenn das ebenfalls fehlt, ist das Verhalten undefiniert.\n"
+"Falls eine gedrehte Version fehlt, dreht das Spiel das Portrait automatisch."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:110
 msgid "Export all portraits as PNGs..."
@@ -9647,11 +9686,11 @@ msgstr "Skript-Szenen für andere Karten"
 #: skytemple/skytemple/module/script/controller/folder.py:36
 #, python-brace-format
 msgid "This section contains all the script scenes of maps, that start with the letter {self.name[0]}."
-msgstr ""
+msgstr "Dieser Abschnitt enthält alle Skriptszenen von Karten, die mit dem Buchstaben {self.name[0]} beginnen."
 
 #: skytemple/skytemple/module/script/controller/folder.py:39
 msgid "This section contains all the script scenes of maps, that don't fit in any of the other categories."
-msgstr ""
+msgstr "Dieser Abschnitt enthält alle Skriptszenen von Karten, die in keine der anderen Kategorien passen."
 
 #: skytemple/skytemple/module/script/controller/lsd.py:29
 msgid "Acting Scenes for \"{}\""
@@ -9662,7 +9701,9 @@ msgstr "Handlungsszenen für \"{}\""
 msgid "This section contains all acting scenes for the map {self.name}.\n\n"
 "These scenes are used for cutscenes.\n"
 "The player can usually not move the character in them."
-msgstr ""
+msgstr "Dieser Abschnitt enthält alle Handlungsszenen für die Karte {self.name}.\n\n"
+"Diese Szenen werden für Zwischensequenzen verwendet.\n"
+"Der Spieler kann den Charakter in diesen Szenen normalerweise nicht bewegen."
 
 #: skytemple/skytemple/module/script/controller/main.py:27
 msgid "Script Scenes"
@@ -9824,7 +9865,7 @@ msgstr "Dieses Skript existiert bereits."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:647
 msgid "Acting scenes must have exactly one script assigned to them."
-msgstr ""
+msgstr "Handlungsszenen müssen genau ein Skript zugewiesen haben."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1263
 msgid "Event Script"
