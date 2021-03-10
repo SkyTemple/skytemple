@@ -24,6 +24,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.module.dungeon import MAX_ITEMS, SPECIAL_ITEMS, SPECIAL_MONSTERS
 from skytemple_files.data.md.model import NUM_ENTITIES
+from skytemple_files.dungeon_data.fixed_bin.model import TileRuleType
 from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
 from skytemple_files.common.i18n_util import f, _
@@ -410,7 +411,11 @@ class FixedRoomsController(AbstractController):
         # Init Entities Store
         store: Gtk.ListStore = self.builder.get_object('model_entities')
         store.clear()
+        reserved_ids = [x.value for x in TileRuleType]
         for idx, entity in enumerate(self.lst_entity):
+            # Remove ids that don't actually represent entities
+            if idx + 16 in reserved_ids:
+                continue;
             monster = self.lst_monster[entity.monster_id]
             store.append([
                 str(idx), f"{_('Tile')} {entity.tile_id}", f"{_('Item')} {entity.item_id}", f"Pokémon {entity.monster_id}",
