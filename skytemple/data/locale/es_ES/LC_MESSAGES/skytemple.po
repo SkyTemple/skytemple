@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-10 10:29+0000\n"
-"PO-Revision-Date: 2021-03-10 18:11\n"
+"PO-Revision-Date: 2021-03-10 19:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2220,7 +2220,7 @@ msgstr "S/P, Sala; Puerta cerrada con llave (0xC)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:82
 msgid "Tile flag 0xC is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr ""
+msgstr "El indicador del tile 0xC se establece en 1 y genera una Puerta cerrada con llave. Si el ID fijo de la sala es &lt; 0xA5, será una pared. De lo contrario, será suelo."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:84
 msgid "F/W, Room; Key Door (0xD)"
@@ -2228,7 +2228,7 @@ msgstr "S/P, Sala; Puerta cerrada con llave (0xD)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:86
 msgid "Tile flag 0xD is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr ""
+msgstr "El indicador del tile 0xD se establece en 1 y genera una Puerta cerrada con llave. Si el ID fijo de la sala es &lt; 0xA5, será una pared. De lo contrario, será suelo."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:94
 msgid "Attendant1 Spawn Floor"
@@ -5102,7 +5102,7 @@ msgid "PLEASE NOTE: \n"
 msgstr "TEN EN CUENTA: \n"
 "El juego está programado para comprobar si hay escaleras o zonas de deformación en las habitaciones fijas con ID >= 110.\n"
 "Para las habitaciones con ID >= 165, el juego intentará colocarlas como una habitación en un diseño de piso normal.\n"
-"Si el juego no consigue generar una planta, volverá a ser un nido de monstruos de una sola habitación."
+"Si el juego no consigue generar el piso, volverá a ser un nido de monstruos de una sola habitación."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1660
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4312
@@ -5161,7 +5161,7 @@ msgstr "Evita cualquier cualquier lanzamiento de objetos (como hace Arrojasfera)
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:400
 msgid "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
 "This is used in dungeons where the content of a fixed floor varies depending on the story progress, such as in most of the dungeons with a legendary Pokémon at the end (first visit vs rematch)."
-msgstr "Si el modo del territorio es PETICIÓN (=que se haya marcado como despejado), se utilizará este piso fijo en su lugar.\n"
+msgstr "Si el modo del territorio es una PETICIÓN (=que se haya marcado como despejado), se utilizará este piso fijo en su lugar.\n"
 "Esto se utiliza en territorios donde el contenido de un piso fijo varía en función del progreso de la historia, como en la mayoría de los territorios con un Pokémon legendario al final (primera visita vs. revancha)."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:418
