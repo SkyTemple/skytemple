@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-10 00:19+0000\n"
-"PO-Revision-Date: 2021-03-10 00:38\n"
+"POT-Creation-Date: 2021-03-10 10:29+0000\n"
+"PO-Revision-Date: 2021-03-10 10:33\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2219,16 +2219,16 @@ msgid "F/W, Room; Key Door (0xC)"
 msgstr "S/P, Sala; Puerta cerrada con llave (0xC)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:82
-msgid "Tile flag 0xC is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
-msgstr "La bandera del tile 0xC se establece en 1 y genera una puerta con llave. El uso de la pared o del piso depende de un factor desconocido."
+msgid "Tile flag 0xC is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
+msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:84
 msgid "F/W, Room; Key Door (0xD)"
 msgstr "S/P, Sala; Puerta cerrada con llave (0xD)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:86
-msgid "Tile flag 0xD is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
-msgstr "La bandera del tile 0xD se establece en 1 y genera una puerta con llave. El uso de la pared o del piso depende de un factor desconocido."
+msgid "Tile flag 0xD is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
+msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:94
 msgid "Attendant1 Spawn Floor"
