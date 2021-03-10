@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-10 00:19+0000\n"
-"PO-Revision-Date: 2021-03-10 00:38\n"
+"POT-Creation-Date: 2021-03-10 10:29+0000\n"
+"PO-Revision-Date: 2021-03-10 10:32\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -2219,16 +2219,16 @@ msgid "F/W, Room; Key Door (0xC)"
 msgstr "S/M, Salle ; Porte fermée à Clé (0xC)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:82
-msgid "Tile flag 0xC is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
-msgstr "Le drapeau 0xC associé à la tuile est activé et fait apparaître une Porte fermée à Clé. Le fait que la tuile soit un Mur ou du Sol dépend d'un facteur inconnu."
+msgid "Tile flag 0xC is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
+msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:84
 msgid "F/W, Room; Key Door (0xD)"
 msgstr "S/M, Salle ; Porte fermée à Clé (0xD)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:86
-msgid "Tile flag 0xD is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
-msgstr "Le drapeau 0xD associé à la tuile est activé et fait apparaître une Porte fermée à Clé. Le fait que la tuile soit un Mur ou du Sol dépend d'un facteur inconnu."
+msgid "Tile flag 0xD is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
+msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:94
 msgid "Attendant1 Spawn Floor"
