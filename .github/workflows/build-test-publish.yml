@@ -2,7 +2,14 @@
 # Deploys to PyPi for tags.
 name: Build, test and publish
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+      - l10n_master
+  pull_request:
+    branches-ignore:
+      - l10n_master
 
 jobs:
   build:
