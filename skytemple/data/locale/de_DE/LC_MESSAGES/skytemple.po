@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-10 10:29+0000\n"
-"PO-Revision-Date: 2021-03-10 16:11\n"
+"POT-Creation-Date: 2021-03-11 18:10+0000\n"
+"PO-Revision-Date: 2021-03-11 19:19\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3044,7 +3044,7 @@ msgstr "_Abbrechen"
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:78
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:75
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:94
-#: skytemple/skytemple/module/portrait/controller/portrait.py:113
+#: skytemple/skytemple/module/portrait/controller/portrait.py:114
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:142
 #: skytemple/skytemple/module/sprite/module.py:191
 msgid "_Save"
@@ -5151,7 +5151,8 @@ msgstr "Verhindert, dass Items an den Spieler herangezogen werden (beispielsweis
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:400
 msgid "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
 "This is used in dungeons where the content of a fixed floor varies depending on the story progress, such as in most of the dungeons with a legendary Pokémon at the end (first visit vs rematch)."
-msgstr ""
+msgstr "Wenn der Dungeon-Modus REQUEST ist (=der Dungeon wird einmal bezwungen), wird stattdessen dieser statische Raum verwendet.\n"
+"Dies wird von Dungeons verwendet, bei denen der Inhalt einer statischen Ebene je nach Fortschritt der Geschichte variiert, z. B. in den meisten Dungeons mit einem legendären Pokémon am Ende (erster Besuch vs. Rematch)."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:418
 #, python-brace-format
@@ -5182,11 +5183,12 @@ msgstr "Statische Räume"
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:216
 msgid "This section lets you edit fixed rooms. Fixed rooms can be configured to appear on dungeon floors.\n"
 "They are usually used for boss fights or other special floors."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du statische Räume bearbeiten. Statische Räume können so konfiguriert werden, dass sie auf Dungeon-Ebenen erscheinen.\n"
+"Sie werden in der Regel für Bosskämpfe oder andere spezielle Ebenen verwendet."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:250
 msgid "Here you can edit the entities that can be placed in fixed rooms. Entities are a combination of tile properties (+traps), Pokémon and items."
-msgstr ""
+msgstr "Hier kannst du die Entitäten definieren, die in statischen Räumen platziert werden können. Entitäten sind eine Kombination von Kacheleigenschaften (+ Fallen), Pokémon und Items."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:298
 msgid "Tile"
@@ -5917,11 +5919,12 @@ msgstr "Dieses Attribut ist der Basis-Rang dieser Ebene.\n"
 #: skytemple/skytemple/module/dungeon/controller/floor.py:216
 msgid "If this attribute is set to 'Yes', no missions will be generated for this floor, and Wonder Mail S codes targetting this floor will be considered as invalid. \n"
 "Needs the 'ExtractDungeonData' patch to be applied to edit this attribute."
-msgstr ""
+msgstr "Wenn dieses Attribut auf 'Ja' gesetzt ist, werden keine Missionen für diese Etage generiert und S-Wunderbrief Codes für diese Ebene werden als ungültig betrachtet. \n"
+"Der Patch 'ExtractDungeonData' wird benötigt, um dieses Attribut zu bearbeiten."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:236
 msgid "The game randomly adds a number between 0 and 2 to obtain the final value."
-msgstr ""
+msgstr "Das Spiel fügt zufällig eine Zahl zwischen 0 und 2 hinzu, um den finalen Wert zu erhalten."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:247
 msgid "Controls whether dead end hallways can be generated in the floor. Dead ends can still appear in the map even if they are disabled due to a bug in the map generator and because extra hallways can also produce them."
@@ -5929,7 +5932,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:260
 msgid "This is the amount of lakes that will be generated during the water generation phase."
-msgstr ""
+msgstr "Dies ist die Anzahl der Seen, die während der Wassergenerationsphase erzeugt werden."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:267
 msgid "Floor connectivity (Min 1, if it's 0 a valid map can't be generated and you will get the default single room that it's also a monster house).\n\n"
@@ -8047,7 +8050,7 @@ msgstr "Animierte Kacheln importieren/exportieren "
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2648
 msgid "This will export or import the selected set of animated tiles."
-msgstr ""
+msgstr "Dies wird die ausgewählte Gruppe von animierten Kacheln exportieren oder importieren."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2669
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2709
@@ -8318,7 +8321,7 @@ msgstr "Metadaten"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5173
 msgid "This seems to be a dungeon rest room. The graphics of this map are rendered by the dungeon engine. To do this, the chunk data and the data in the data layer is used."
-msgstr ""
+msgstr "Dies scheint ein Dungeon-Ruheraum zu sein. Diese Karte wird von der Dungeon-Engine dargestellt. Dazu werden die Block-Daten und die Daten in der Daten-Ebene als Basis verwendet."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5242
 msgid "This background uses weird palette values for some chunks, so the game will not render this background the same as it is displayed here.\n"
@@ -9612,57 +9615,57 @@ msgstr "Wenn ein Portrait fehlt, versucht das Spiel stattdessen das Portrait der
 "Wenn das ebenfalls fehlt, ist das Verhalten undefiniert.\n"
 "Falls eine gedrehte Version fehlt, dreht das Spiel das Portrait automatisch."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:110
+#: skytemple/skytemple/module/portrait/controller/portrait.py:111
 msgid "Export all portraits as PNGs..."
 msgstr "Alle Portraits als PNGs exportieren..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:134
+#: skytemple/skytemple/module/portrait/controller/portrait.py:135
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 40."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:136
+#: skytemple/skytemple/module/portrait/controller/portrait.py:137
 msgid "Import Portraits"
 msgstr "Portraits importieren"
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:141
+#: skytemple/skytemple/module/portrait/controller/portrait.py:142
 msgid "Import portraits from PNGs..."
 msgstr "Importiere Portraits aus PNG..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:172
-#: skytemple/skytemple/module/portrait/controller/portrait.py:229
+#: skytemple/skytemple/module/portrait/controller/portrait.py:173
+#: skytemple/skytemple/module/portrait/controller/portrait.py:230
 #, python-brace-format
 msgid "Failed importing image \"{name}\":\n"
 "{err}"
 msgstr "Fehler beim Importieren von Bild \"{name}\":\n"
 "{err}"
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:173
-#: skytemple/skytemple/module/portrait/controller/portrait.py:230
+#: skytemple/skytemple/module/portrait/controller/portrait.py:174
+#: skytemple/skytemple/module/portrait/controller/portrait.py:231
 #, python-brace-format
 msgid "Error for '{name}'."
 msgstr "Fehler für '{name}'."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:182
+#: skytemple/skytemple/module/portrait/controller/portrait.py:183
 msgid "Export portrait as PNG sheet..."
 msgstr "Portrait als PNG-Sheet exportieren..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:201
+#: skytemple/skytemple/module/portrait/controller/portrait.py:202
 msgid "Import portraits from PNG sheet..."
 msgstr "Importiere Portraits aus PNG-Sheet..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:236
+#: skytemple/skytemple/module/portrait/controller/portrait.py:237
 #, python-brace-format
 msgid "Failed importing portraits sheet:\n"
 "{err}"
 msgstr "Import der Portraits fehlgeschlagen:\n"
 "{err}"
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:237
+#: skytemple/skytemple/module/portrait/controller/portrait.py:238
 msgid "Could not import."
 msgstr "Import fehlgeschlagen."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:254
+#: skytemple/skytemple/module/portrait/controller/portrait.py:255
 msgid " (flip)"
 msgstr " (gespiegelt)"
 
