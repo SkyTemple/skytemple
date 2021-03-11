@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-07 17:52+0000\n"
-"PO-Revision-Date: 2021-03-07 17:53\n"
+"POT-Creation-Date: 2021-03-11 18:10+0000\n"
+"PO-Revision-Date: 2021-03-11 19:19\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1269,7 +1269,7 @@ msgstr "No se puede procesar el mapeado de tiles. El número de tiles referencia
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:97
 msgid "Only 4bpp and 8bpp images are supported."
-msgstr "Solo se admiten imágenes 4bpp y 8bpp."
+msgstr "Solo se admiten imágenes de 4bpp y 8bpp."
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:201
 msgid "Can not convert PIL image to PMD tiled image: Must be indexed image (=using a palette)"
@@ -1288,7 +1288,7 @@ msgstr "No se puede convertir la imagen PIL a imagen de tiles de PMD: Las dimens
 #: skytemple-files/skytemple_files/common/tiled_image.py:269
 #: skytemple-files/skytemple_files/common/tiled_image.py:277
 msgid "Can not convert PIL image to PMD tiled image: The color {pix} (from palette {math.floor(pix / single_palette_size)}) used by pixel {x+(idx % 2)}x{y} in tile {tile_id} ({tile_x}x{tile_y} is out of range. Expected are colors from palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
-msgstr "No se puede convertir una imagen PIL en una imagen de tiles de PMD: El color {pix} (de la paleta {math.floor(pix / single_palette_size)}) utilizado por el píxel {x+(idx % 2)}x{y} en el tile {tile_id} ({tile_x}x{tile_y} está fuera de rango. Se esperaban los colores de la paleta {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
+msgstr "No se puede convertir una imagen PIL en una imagen de tiles de PMD: El color {pix} (de la paleta {math.floor(pix / single_palette_size)}) utilizada por el píxel {x+(idx % 2)}x{y} en el tile {tile_id} ({tile_x}x{tile_y} está fuera de rango. Se esperaban los colores de la paleta {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:317
 #, python-brace-format
@@ -1340,7 +1340,7 @@ msgstr "ARMIPS informó de un error al aplicar el parche."
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:70
 #, python-brace-format
 msgid "The armips source file did not create a {OUT_BIN}."
-msgstr ""
+msgstr "El archivo de origen de armips no ha generado un {OUT_BIN}."
 
 #: skytemple-files/skytemple_files/data/data_cd/model.py:66
 msgid "To delete this effect, no items must use it."
@@ -1399,8 +1399,8 @@ msgstr "Sin género"
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:453
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:454
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:427
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:436
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:432
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:441
 #: skytemple/skytemple/module/map_bg/controller/bg.py:594
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:193
 #: skytemple/skytemple/module/script/controller/ssa.py:1184
@@ -2136,11 +2136,11 @@ msgstr "Subida de nivel"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:29
 msgid "Wait"
-msgstr "Esperar"
+msgstr "Esperando"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:30
 msgid "Ground Wait"
-msgstr "En espera (Territorio)"
+msgstr "Esperando (en territorio)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:43
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:103
@@ -2212,23 +2212,23 @@ msgstr "Piso, Pasillo; Bandera 0xA"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:79
 msgid "Tile flag 0xA is set to 1 (Unknown what this does)."
-msgstr "La bandera del tile 0xA se establece en 1 (Se desconoce la función de esto)."
+msgstr "El indicador del tile 0xA se establece en 1 (Se desconoce la función de esto)."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:80
 msgid "F/W, Room; Key Door (0xC)"
 msgstr "S/P, Sala; Puerta cerrada con llave (0xC)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:82
-msgid "Tile flag 0xC is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
-msgstr "La bandera del tile 0xC se establece en 1 y genera una puerta con llave. El uso de la pared o del piso depende de un factor desconocido."
+msgid "Tile flag 0xC is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
+msgstr "El indicador del tile 0xC se establece en 1 y genera una Puerta cerrada con llave. Si el ID fijo de la sala es &lt; 0xA5, será una pared. De lo contrario, será suelo."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:84
 msgid "F/W, Room; Key Door (0xD)"
 msgstr "S/P, Sala; Puerta cerrada con llave (0xD)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:86
-msgid "Tile flag 0xD is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
-msgstr "La bandera del tile 0xD se establece en 1 y genera una puerta con llave. El uso de la pared o del piso depende de un factor desconocido."
+msgid "Tile flag 0xD is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
+msgstr "El indicador del tile 0xD se establece en 1 y genera una Puerta cerrada con llave. Si el ID fijo de la sala es &lt; 0xA5, será una pared. De lo contrario, será suelo."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:94
 msgid "Attendant1 Spawn Floor"
@@ -3046,7 +3046,7 @@ msgstr "_Cancelar"
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:78
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:75
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:94
-#: skytemple/skytemple/module/portrait/controller/portrait.py:113
+#: skytemple/skytemple/module/portrait/controller/portrait.py:114
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:142
 #: skytemple/skytemple/module/sprite/module.py:191
 msgid "_Save"
@@ -4080,7 +4080,7 @@ msgstr "Impulsado por DeSmuME, el emulador de Nintendo DS:\n"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3213
 msgid "Interactive debugger for the script engine of Pokémon Mystery Dungeon Explorers of Sky (EU/US)"
-msgstr "Depurador interactivo para el motor de scripts de Pokémon Mundo Misterioso: Exploradores del Cielo (EU/US)"
+msgstr "Depurador interactivo para el motor de scripts de Pokémon Mundo Misterioso: Exploradores del Cielo (UE/US)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3215
 msgid "https://github.com/SkyTemple/skytemple-ssb-debugger"
@@ -4376,7 +4376,7 @@ msgstr "Detectar automáticamente"
 msgid "Chinese Traditional"
 msgstr "Chino tradicional"
 
-#: skytemple/skytemple/controller/settings.py:120
+#: skytemple/skytemple/controller/settings.py:122
 msgid "You need to restart SkyTemple to apply some of the settings."
 msgstr "Necesitas reiniciar SkyTemple para aplicar algunos ajustes."
 
@@ -5102,7 +5102,7 @@ msgid "PLEASE NOTE: \n"
 msgstr "TEN EN CUENTA: \n"
 "El juego está programado para comprobar si hay escaleras o zonas de deformación en las habitaciones fijas con ID >= 110.\n"
 "Para las habitaciones con ID >= 165, el juego intentará colocarlas como una habitación en un diseño de piso normal.\n"
-"Si el juego no consigue generar una planta, volverá a ser un nido de monstruos de una sola habitación."
+"Si el juego no consigue generar el piso, volverá a ser un nido de monstruos de una sola habitación."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1660
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4312
@@ -5113,8 +5113,8 @@ msgstr "Ajustes"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:84
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:85
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:58
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:65
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:59
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:66
 #: skytemple/skytemple/module/dungeon/fixed_room_drawer.py:371
 #: skytemple/skytemple/module/dungeon/module.py:750
 msgid "(Special?)"
@@ -5161,7 +5161,7 @@ msgstr "Evita cualquier cualquier lanzamiento de objetos (como hace Arrojasfera)
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:400
 msgid "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
 "This is used in dungeons where the content of a fixed floor varies depending on the story progress, such as in most of the dungeons with a legendary Pokémon at the end (first visit vs rematch)."
-msgstr "Si el modo del territorio es PETICIÓN (=que se haya marcado como despejado), se utilizará este piso fijo en su lugar.\n"
+msgstr "Si el modo del territorio es una PETICIÓN (=que se haya marcado como despejado), se utilizará este piso fijo en su lugar.\n"
 "Esto se utiliza en territorios donde el contenido de un piso fijo varía en función del progreso de la historia, como en la mayoría de los territorios con un Pokémon legendario al final (primera visita vs. revancha)."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:418
@@ -5186,7 +5186,7 @@ msgid "No. {i}"
 msgstr "Nº {i}"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:200
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:34
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:35
 msgid "Fixed Rooms"
 msgstr "Salas fijas"
 
@@ -5379,7 +5379,7 @@ msgstr "Estadísticas del Pokémon"
 msgid "Spawn Lists"
 msgstr "Listas de aparición"
 
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:506
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:511
 msgid "n/a"
 msgstr "n/a"
 
@@ -7063,11 +7063,11 @@ msgstr "Desc. 4"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:350
 msgid "Actors with outlines "
-msgstr "Actores con contornos "
+msgstr "Los actores tienen contornos "
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:379
 msgid " as sprites are <span foreground=\"orange\">special</span> and replaced with another Pokémon when the game is running."
-msgstr " ya que los sprites son <span foreground=\"orange\">especiales</span> y se reemplazan por otro Pokémon cuando el juego está en ejecución."
+msgstr " porque los sprites son <span foreground=\"orange\">especiales</span> y se reemplazan por otro Pokémon cuando el juego está en ejecución."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:402
 msgid "By changing the 'Pokémon' entry for these actors, you will only change which outline is rendered in SkyTemple."
@@ -7126,7 +7126,7 @@ msgstr "Importar código"
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:541
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:582
 msgid "Clipboard Import"
-msgstr "Importación del portapapeles"
+msgstr "Importar desde portapapeles"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:584
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:625
@@ -7418,7 +7418,7 @@ msgstr "<No disponible>\n\n"
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:297
 msgid "Fix # of Moves"
-msgstr ""
+msgstr "Corregir número de movimientos"
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:832
 msgid "Here you can edit Metronome's movepool.\n"
@@ -7445,11 +7445,12 @@ msgstr "No se puede eliminar este efecto."
 #: skytemple/skytemple/module/lists/controller/move_effects.py:287
 msgid "This will change the number of moves to 559, in case there isn't enough moves in the list.\n"
 "used to fix the previous amount of move effects extracted by the previous versions of the patch."
-msgstr ""
+msgstr "Esto cambiará el número de movimientos a 559 en caso de que no haya suficientes movimientos en la lista.\n"
+"Se utiliza para corregir la cantidad anterior de efectos de movimiento extraídos por las versiones anteriores del parche."
 
 #: skytemple/skytemple/module/lists/controller/move_effects.py:289
 msgid "Fix Number of Moves"
-msgstr ""
+msgstr "Corregir número de movimientos"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
 #: skytemple/skytemple/module/lists/module.py:95
@@ -9745,57 +9746,57 @@ msgstr "Si falta un retrato, el juego intentará cargar el retrato de la primera
 "Si también falta, el comportamiento es indefinido.\n"
 "Si las versiones invertidas están vacías, el juego invertirá automáticamente la imagen."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:110
+#: skytemple/skytemple/module/portrait/controller/portrait.py:111
 msgid "Export all portraits as PNGs..."
 msgstr "Exportar todos los retratos como PNG..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:134
+#: skytemple/skytemple/module/portrait/controller/portrait.py:135
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 40."
 msgstr "Para importar, selecciona un directorio desde el que importar. Se importarán los archivos con el patrón '{self.item_id + 1}_XX.png', donde XX es un número entre 0 y 40."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:136
+#: skytemple/skytemple/module/portrait/controller/portrait.py:137
 msgid "Import Portraits"
 msgstr "Importar retratos"
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:141
+#: skytemple/skytemple/module/portrait/controller/portrait.py:142
 msgid "Import portraits from PNGs..."
 msgstr "Importar retratos desde PNGs..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:172
-#: skytemple/skytemple/module/portrait/controller/portrait.py:229
+#: skytemple/skytemple/module/portrait/controller/portrait.py:173
+#: skytemple/skytemple/module/portrait/controller/portrait.py:230
 #, python-brace-format
 msgid "Failed importing image \"{name}\":\n"
 "{err}"
 msgstr "Error al importar la imagen \"{name}\":\n"
 "{err}"
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:173
-#: skytemple/skytemple/module/portrait/controller/portrait.py:230
+#: skytemple/skytemple/module/portrait/controller/portrait.py:174
+#: skytemple/skytemple/module/portrait/controller/portrait.py:231
 #, python-brace-format
 msgid "Error for '{name}'."
 msgstr "Error para '{name}'."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:182
+#: skytemple/skytemple/module/portrait/controller/portrait.py:183
 msgid "Export portrait as PNG sheet..."
 msgstr "Exportar retrato como ficha PNG..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:201
+#: skytemple/skytemple/module/portrait/controller/portrait.py:202
 msgid "Import portraits from PNG sheet..."
 msgstr "Importar retratos desde ficha PNG..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:236
+#: skytemple/skytemple/module/portrait/controller/portrait.py:237
 #, python-brace-format
 msgid "Failed importing portraits sheet:\n"
 "{err}"
 msgstr "Error al importar la ficha de retratos:\n"
 "{err}"
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:237
+#: skytemple/skytemple/module/portrait/controller/portrait.py:238
 msgid "Could not import."
 msgstr "Importación fallida."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:254
+#: skytemple/skytemple/module/portrait/controller/portrait.py:255
 msgid " (flip)"
 msgstr " (invertido)"
 
@@ -9816,7 +9817,7 @@ msgstr "Scripts de escenas para mapas de la categoría \"{self.name}\""
 
 #: skytemple/skytemple/module/script/controller/folder.py:31
 msgid "Script Scenes for other maps"
-msgstr "Scripts de escena para otros mapas"
+msgstr "Scripts de escenas para otros mapas"
 
 #: skytemple/skytemple/module/script/controller/folder.py:36
 #, python-brace-format
@@ -10010,7 +10011,7 @@ msgstr "Este script ya existe."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:647
 msgid "Acting scenes must have exactly one script assigned to them."
-msgstr "Las escenas de acción deben tener exactamente un guion asignado a ellas."
+msgstr "Las escenas de acción deben tener exactamente un script asignado a ellas."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1263
 msgid "Event Script"
@@ -10564,7 +10565,7 @@ msgstr "Abrir Editor de scripts / Depurador"
 
 #: skytemple/skytemple/skytemple.glade:1109
 msgid "Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US)."
-msgstr "Programa para editar la ROM de Pokémon Mundo Misterioso: Exploradores del Cielo (EU/US)."
+msgstr "Programa para editar la ROM de Pokémon Mundo Misterioso: Exploradores del Cielo (UE/US)."
 
 #: skytemple/skytemple/skytemple.glade:1111
 msgid "https://github.com/SkyTemple/skytemple"

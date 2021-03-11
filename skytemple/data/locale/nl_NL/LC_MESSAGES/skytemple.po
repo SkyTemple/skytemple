@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-07 17:52+0000\n"
-"PO-Revision-Date: 2021-03-07 17:53\n"
+"POT-Creation-Date: 2021-03-11 18:10+0000\n"
+"PO-Revision-Date: 2021-03-11 19:19\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -1395,8 +1395,8 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:453
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:454
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:427
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:436
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:432
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:441
 #: skytemple/skytemple/module/map_bg/controller/bg.py:594
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:193
 #: skytemple/skytemple/module/script/controller/ssa.py:1184
@@ -2215,7 +2215,7 @@ msgid "F/W, Room; Key Door (0xC)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:82
-msgid "Tile flag 0xC is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
+msgid "Tile flag 0xC is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:84
@@ -2223,7 +2223,7 @@ msgid "F/W, Room; Key Door (0xD)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:86
-msgid "Tile flag 0xD is set to 1 and spawns a key Door. Whether Wall or Floor is used depends on an unknown factor."
+msgid "Tile flag 0xD is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:94
@@ -3036,7 +3036,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:78
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:75
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:94
-#: skytemple/skytemple/module/portrait/controller/portrait.py:113
+#: skytemple/skytemple/module/portrait/controller/portrait.py:114
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:142
 #: skytemple/skytemple/module/sprite/module.py:191
 msgid "_Save"
@@ -4328,7 +4328,7 @@ msgstr ""
 msgid "Chinese Traditional"
 msgstr ""
 
-#: skytemple/skytemple/controller/settings.py:120
+#: skytemple/skytemple/controller/settings.py:122
 msgid "You need to restart SkyTemple to apply some of the settings."
 msgstr ""
 
@@ -5027,8 +5027,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:84
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:85
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:58
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:65
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:59
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:66
 #: skytemple/skytemple/module/dungeon/fixed_room_drawer.py:371
 #: skytemple/skytemple/module/dungeon/module.py:750
 msgid "(Special?)"
@@ -5098,7 +5098,7 @@ msgid "No. {i}"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:200
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:34
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:35
 msgid "Fixed Rooms"
 msgstr ""
 
@@ -5290,7 +5290,7 @@ msgstr ""
 msgid "Spawn Lists"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:506
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:511
 msgid "n/a"
 msgstr ""
 
@@ -9325,55 +9325,55 @@ msgid "If a portrait is missing, the game tries to load the portrait of the Pok√
 "If flipped versions are empty, the game will automatically flip the image."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:110
+#: skytemple/skytemple/module/portrait/controller/portrait.py:111
 msgid "Export all portraits as PNGs..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:134
+#: skytemple/skytemple/module/portrait/controller/portrait.py:135
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 40."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:136
+#: skytemple/skytemple/module/portrait/controller/portrait.py:137
 msgid "Import Portraits"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:141
+#: skytemple/skytemple/module/portrait/controller/portrait.py:142
 msgid "Import portraits from PNGs..."
-msgstr ""
-
-#: skytemple/skytemple/module/portrait/controller/portrait.py:172
-#: skytemple/skytemple/module/portrait/controller/portrait.py:229
-#, python-brace-format
-msgid "Failed importing image \"{name}\":\n"
-"{err}"
 msgstr ""
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:173
 #: skytemple/skytemple/module/portrait/controller/portrait.py:230
 #, python-brace-format
+msgid "Failed importing image \"{name}\":\n"
+"{err}"
+msgstr ""
+
+#: skytemple/skytemple/module/portrait/controller/portrait.py:174
+#: skytemple/skytemple/module/portrait/controller/portrait.py:231
+#, python-brace-format
 msgid "Error for '{name}'."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:182
+#: skytemple/skytemple/module/portrait/controller/portrait.py:183
 msgid "Export portrait as PNG sheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:201
+#: skytemple/skytemple/module/portrait/controller/portrait.py:202
 msgid "Import portraits from PNG sheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:236
+#: skytemple/skytemple/module/portrait/controller/portrait.py:237
 #, python-brace-format
 msgid "Failed importing portraits sheet:\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:237
+#: skytemple/skytemple/module/portrait/controller/portrait.py:238
 msgid "Could not import."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:254
+#: skytemple/skytemple/module/portrait/controller/portrait.py:255
 msgid " (flip)"
 msgstr ""
 
