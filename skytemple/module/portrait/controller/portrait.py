@@ -39,6 +39,7 @@ from gi.repository import Gtk, GLib
 from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
 from skytemple_files.graphics.kao.model import SUBENTRIES, KaoImage
+from skytemple_files.common.i18n_util import _, f
 
 if TYPE_CHECKING:
     from skytemple.module.portrait.module import PortraitModule
@@ -155,8 +156,8 @@ class PortraitController(AbstractController):
                     if match is not None and int(match[1]) <= 40}
             for subindex, image_fn in imgs.items():
                 try:
-                    with open(os.path.join(fn, image_fn), 'rb') as f:
-                        image = Image.open(f)
+                    with open(os.path.join(fn, image_fn), 'rb') as file:
+                        image = Image.open(file)
                         kao = self.kao.get(self.item_id, subindex)
                         if kao:
                             # Replace
