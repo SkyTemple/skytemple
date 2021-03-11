@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-10 10:29+0000\n"
-"PO-Revision-Date: 2021-03-11 07:27\n"
+"PO-Revision-Date: 2021-03-11 08:29\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -2021,11 +2021,11 @@ msgstr "Inconnu"
 
 #: skytemple-files/skytemple_files/data/md/model.py:286
 msgid "Link Cable"
-msgstr ""
+msgstr "Câble link"
 
 #: skytemple-files/skytemple_files/data/md/model.py:309
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #: skytemple-files/skytemple_files/data/md/model.py:311
 msgid "Hovering"
@@ -2043,12 +2043,12 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/md/model.py:337
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:32
 msgid "Small"
-msgstr ""
+msgstr "Petite"
 
 #: skytemple-files/skytemple_files/data/md/model.py:338
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:42
 msgid "Medium"
-msgstr ""
+msgstr "Moyenne"
 
 #: skytemple-files/skytemple_files/data/md/model.py:339
 msgid "Large"
@@ -2339,11 +2339,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:76
 msgid "Snow"
-msgstr ""
+msgstr "Neige"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:77
 msgid "Random"
-msgstr ""
+msgstr "Aléatoire"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:100
 msgid "Disabled? (0)"
@@ -2359,23 +2359,23 @@ msgstr "Activé (10)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:158
 msgid "No darkness"
-msgstr ""
+msgstr "Sans obscurité"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:159
 msgid "1-tile vision (Heavy darkness)"
-msgstr ""
+msgstr "Vision à 1 tuile (obscurité élevé)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:160
 msgid "2-tile vision (Light darkness)"
-msgstr ""
+msgstr "Vision à 2 tuiles (obscurité légère)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:161
 msgid "3-tile vision"
-msgstr ""
+msgstr "Vision à 3 tuiles"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:162
 msgid "4-tile vision"
-msgstr ""
+msgstr "Vision à 4 tuiles"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:375
 #, python-brace-format
@@ -2721,7 +2721,7 @@ msgstr "Cette image doit être mieux compressée pour être placée dans sa zone
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:83
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:106
 msgid "Normal Enemy"
-msgstr ""
+msgstr "Ennemi normal"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:85
 msgid "Outlaw"
@@ -3249,7 +3249,7 @@ msgstr "ROM Nintendo DS (*.nds)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:157
 msgid "Nintendo DS ROMs with binary loader (*.ds.gba)"
-msgstr ""
+msgstr "Roms Nintendo DS avec chargeur binaire (*.ds.gba)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:161
 msgid "All files"
@@ -7009,7 +7009,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:719
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:761
 msgid "ASM Editor"
-msgstr ""
+msgstr "Éditeur ASM"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.glade:771
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:813
@@ -7023,33 +7023,33 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/item_effects.py:115
 #: skytemple/skytemple/module/lists/controller/move_effects.py:126
 msgid "Any Files"
-msgstr ""
+msgstr "Tous les fichiers"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:120
 #: skytemple/skytemple/module/lists/controller/move_effects.py:131
 msgid "armips ASM patches (*.asm)"
-msgstr ""
+msgstr "correctifs ASM armips (*.asm)"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:125
 #: skytemple/skytemple/module/lists/controller/move_effects.py:136
 msgid "Raw code (*.bin)"
-msgstr ""
+msgstr "Code brut (*.bin)"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:146
 #: skytemple/skytemple/module/lists/controller/item_effects.py:168
 #: skytemple/skytemple/module/lists/controller/move_effects.py:157
 #: skytemple/skytemple/module/lists/controller/move_effects.py:179
 msgid "Error importing ASM code."
-msgstr ""
+msgstr "Erreur lors de l'importation du code assembleur."
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:159
 #: skytemple/skytemple/module/lists/controller/move_effects.py:170
 msgid "Patch successfully imported."
-msgstr ""
+msgstr "Correctif correctement importé."
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:173
 msgid "Export Item Effect ASM Code..."
-msgstr ""
+msgstr "Exporter le code assembleur de l'item..."
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:192
 #: skytemple/skytemple/module/lists/controller/move_effects.py:203
@@ -7060,12 +7060,18 @@ msgid "Export and import effect code.\n"
 "If you import armips ASM code, irdkwia's effect code library is available.\n\n"
 "You can use the ASM Editor tool to generate patch files.\n"
 "The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to import.\n"
-msgstr ""
+msgstr "Exporte et importe le code d'effet.\n"
+"L'export ne fait qu'exporter du code machine. Il n'est PAS désassemblé.\n"
+"L'import accepte à la fois du code assembleur armips ou du code machine binaire.\n"
+"Veillez noter que SkyTemple ne vérifie pas le code que vous essayer d'importer.\n"
+"Si vous importer du code assembleur armips, les codes d'effets d'irdkwia sont disponible.\n\n"
+"Vous pouvez utiliser l'éditeur d'assembleur pour générer des fichiers de correctif.\n"
+"Le correctif assembleur doit générer un fichier 'code_out.bin', que SkyTemple essayera d'importer.\n"
 
 #: skytemple/skytemple/module/lists/controller/item_effects.py:201
 #: skytemple/skytemple/module/lists/controller/move_effects.py:212
 msgid "Export / Import Effect Code Help"
-msgstr ""
+msgstr "Aide pour l'import/export du code d'effet"
 
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:493
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:570
@@ -7522,11 +7528,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.py:297
 msgid "You need to select a map."
-msgstr ""
+msgstr "Vous devez sélectionner une carte."
 
 #: skytemple/skytemple/module/lists/controller/world_map.py:310
 msgid "You need to select a reference."
-msgstr ""
+msgstr "Vous devez sélectionner une référence."
 
 #: skytemple/skytemple/module/lists/module.py:86
 msgid "Starters"
