@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-10 10:29+0000\n"
-"PO-Revision-Date: 2021-03-10 10:33\n"
+"POT-Creation-Date: 2021-03-11 18:10+0000\n"
+"PO-Revision-Date: 2021-03-11 19:19\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "Language: ar_SA\n"
@@ -3036,7 +3036,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:78
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:75
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:94
-#: skytemple/skytemple/module/portrait/controller/portrait.py:113
+#: skytemple/skytemple/module/portrait/controller/portrait.py:114
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:142
 #: skytemple/skytemple/module/sprite/module.py:191
 msgid "_Save"
@@ -9325,55 +9325,55 @@ msgid "If a portrait is missing, the game tries to load the portrait of the Pok√
 "If flipped versions are empty, the game will automatically flip the image."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:110
+#: skytemple/skytemple/module/portrait/controller/portrait.py:111
 msgid "Export all portraits as PNGs..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:134
+#: skytemple/skytemple/module/portrait/controller/portrait.py:135
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 40."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:136
+#: skytemple/skytemple/module/portrait/controller/portrait.py:137
 msgid "Import Portraits"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:141
+#: skytemple/skytemple/module/portrait/controller/portrait.py:142
 msgid "Import portraits from PNGs..."
-msgstr ""
-
-#: skytemple/skytemple/module/portrait/controller/portrait.py:172
-#: skytemple/skytemple/module/portrait/controller/portrait.py:229
-#, python-brace-format
-msgid "Failed importing image \"{name}\":\n"
-"{err}"
 msgstr ""
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:173
 #: skytemple/skytemple/module/portrait/controller/portrait.py:230
 #, python-brace-format
+msgid "Failed importing image \"{name}\":\n"
+"{err}"
+msgstr ""
+
+#: skytemple/skytemple/module/portrait/controller/portrait.py:174
+#: skytemple/skytemple/module/portrait/controller/portrait.py:231
+#, python-brace-format
 msgid "Error for '{name}'."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:182
+#: skytemple/skytemple/module/portrait/controller/portrait.py:183
 msgid "Export portrait as PNG sheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:201
+#: skytemple/skytemple/module/portrait/controller/portrait.py:202
 msgid "Import portraits from PNG sheet..."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:236
+#: skytemple/skytemple/module/portrait/controller/portrait.py:237
 #, python-brace-format
 msgid "Failed importing portraits sheet:\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:237
+#: skytemple/skytemple/module/portrait/controller/portrait.py:238
 msgid "Could not import."
 msgstr ""
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:254
+#: skytemple/skytemple/module/portrait/controller/portrait.py:255
 msgid " (flip)"
 msgstr ""
 
