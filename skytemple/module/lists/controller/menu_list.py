@@ -66,7 +66,7 @@ class MenuListController(AbstractController):
         # Init combobox
         cb_store.clear()
         for lang in self._string_provider.get_languages():
-            cb_store.append([lang.locale, lang.name])
+            cb_store.append([lang.locale, lang.name_localized])
         cb.set_active(0)
     
     def _get_current_settings(self) -> int:
