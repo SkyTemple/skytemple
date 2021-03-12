@@ -224,10 +224,7 @@ class MainController:
             project.filename = fn
             self._save(True)
             project.get_rom_module().update_filename()
-
             self._update_recent_files(fn)
-
-            self.reload_view()
 
     def on_open_more_clicked(self, button: Button):
         """Dialog to open a file"""
