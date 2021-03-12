@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-11 18:10+0000\n"
-"PO-Revision-Date: 2021-03-11 19:19\n"
+"POT-Creation-Date: 2021-03-12 14:42+0000\n"
+"PO-Revision-Date: 2021-03-12 15:09\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3024,7 +3024,7 @@ msgid "Do you want to save changes to {filename}?"
 msgstr "Möchtest du die Änderungen an {filename} speichern?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:322
-#: skytemple/skytemple/controller/main.py:750
+#: skytemple/skytemple/controller/main.py:747
 msgid "Don't Save"
 msgstr "Nicht speichern"
 
@@ -3051,7 +3051,7 @@ msgid "_Save"
 msgstr "_Speichern"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:326
-#: skytemple/skytemple/controller/main.py:754
+#: skytemple/skytemple/controller/main.py:751
 msgid "If you don't save, your changes will be lost."
 msgstr "Falls du nicht speicherst, gehen deine Änderungen verloren."
 
@@ -3402,7 +3402,7 @@ msgstr "Löschen"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1616
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1627
-#: skytemple/skytemple/controller/main.py:752
+#: skytemple/skytemple/controller/main.py:749
 #: skytemple/skytemple/module/script/controller/ssa.py:1557
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -3795,7 +3795,7 @@ msgstr "Ground Engine Zustand"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1089
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2762
-#: skytemple/skytemple/controller/main.py:753
+#: skytemple/skytemple/controller/main.py:750
 #: skytemple/skytemple/skytemple.glade:1063
 msgid "Save"
 msgstr "Speichern"
@@ -4317,48 +4317,48 @@ msgstr "_Vergrößern"
 msgid "Zoom _Out"
 msgstr "V_erkleinern"
 
-#: skytemple/skytemple/controller/main.py:235
+#: skytemple/skytemple/controller/main.py:232
 msgid "Open ROM..."
 msgstr "ROM öffnen..."
 
-#: skytemple/skytemple/controller/main.py:337
+#: skytemple/skytemple/controller/main.py:334
 msgid "Error opening the ROM"
 msgstr "Fehler beim Öffnen der ROM"
 
-#: skytemple/skytemple/controller/main.py:359
+#: skytemple/skytemple/controller/main.py:356
 msgid "Error saving the ROM"
 msgstr "Fehler beim Speichern der ROM"
 
-#: skytemple/skytemple/controller/main.py:469
+#: skytemple/skytemple/controller/main.py:466
 msgid "A project must be opened to use this."
 msgstr "Ein Projekt muss geöffnet sein, um dies zu verwenden."
 
-#: skytemple/skytemple/controller/main.py:546
-#: skytemple/skytemple/controller/main.py:547
+#: skytemple/skytemple/controller/main.py:543
+#: skytemple/skytemple/controller/main.py:544
 msgid "Open a ROM"
 msgstr "ROM öffnen"
 
-#: skytemple/skytemple/controller/main.py:572
+#: skytemple/skytemple/controller/main.py:569
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
 msgstr "Lade ROM \"{rom_name}\"..."
 
-#: skytemple/skytemple/controller/main.py:574
+#: skytemple/skytemple/controller/main.py:571
 #, python-brace-format
 msgid "Opening {filename}."
 msgstr "Öffne {filename}."
 
-#: skytemple/skytemple/controller/main.py:733
+#: skytemple/skytemple/controller/main.py:730
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
 msgstr "Speichere ROM \"{rom_name}\"..."
 
-#: skytemple/skytemple/controller/main.py:735
+#: skytemple/skytemple/controller/main.py:732
 #, python-brace-format
 msgid "Saving {rom.filename}."
 msgstr "Speichere {rom.filename}."
 
-#: skytemple/skytemple/controller/main.py:748
+#: skytemple/skytemple/controller/main.py:745
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
 msgstr "Möchtest du Änderungen an {rom_name} speichern?"
@@ -5928,7 +5928,7 @@ msgstr "Das Spiel fügt zufällig eine Zahl zwischen 0 und 2 hinzu, um den final
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:247
 msgid "Controls whether dead end hallways can be generated in the floor. Dead ends can still appear in the map even if they are disabled due to a bug in the map generator and because extra hallways can also produce them."
-msgstr ""
+msgstr "Legt fest, ob Sackgassen in der Ebene erzeugt werden können. Es kann passieren, dass trotzdem Sackgassen generiert werden, wegen eines Fehlers im Kartengenerator. Außerdem kann die \"zusätzlicher Flure\"-Option dazu führen, dass Sackgassen erzeugt werden."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:260
 msgid "This is the amount of lakes that will be generated during the water generation phase."
