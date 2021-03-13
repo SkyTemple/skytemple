@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-13 09:59+0000\n"
-"PO-Revision-Date: 2021-03-13 10:07\n"
+"POT-Creation-Date: 2021-03-13 13:43+0000\n"
+"PO-Revision-Date: 2021-03-13 13:45\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -333,13 +333,13 @@ msgstr ""
 
 #: /dev/fd/63:80
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
-#: skytemple/skytemple/controller/settings.py:35
+#: skytemple/skytemple/controller/settings.py:33
 msgid "French"
 msgstr ""
 
 #: /dev/fd/63:81
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:550
-#: skytemple/skytemple/controller/settings.py:33
+#: skytemple/skytemple/controller/settings.py:34
 msgid "German"
 msgstr ""
 
@@ -350,7 +350,7 @@ msgstr ""
 
 #: /dev/fd/63:83
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:572
-#: skytemple/skytemple/controller/settings.py:34
+#: skytemple/skytemple/controller/settings.py:36
 msgid "Spanish"
 msgstr ""
 
@@ -2619,17 +2619,17 @@ msgstr ""
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:160
+#: skytemple-files/skytemple_files/graphics/kao/model.py:161
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:216
+#: skytemple-files/skytemple_files/graphics/kao/model.py:217
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:312
+#: skytemple-files/skytemple_files/graphics/kao/model.py:313
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr ""
@@ -4541,8 +4541,8 @@ msgstr ""
 msgid "Detect automatically"
 msgstr ""
 
-#: skytemple/skytemple/controller/settings.py:36
-msgid "Chinese Traditional"
+#: skytemple/skytemple/controller/settings.py:35
+msgid "Portuguese, Brazilian"
 msgstr ""
 
 #: skytemple/skytemple/controller/settings.py:122
