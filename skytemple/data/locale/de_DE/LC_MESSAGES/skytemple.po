@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-13 09:59+0000\n"
-"PO-Revision-Date: 2021-03-13 12:45\n"
+"POT-Creation-Date: 2021-03-13 13:43+0000\n"
+"PO-Revision-Date: 2021-03-13 13:44\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -333,13 +333,13 @@ msgstr "Mitwirkende"
 
 #: /dev/fd/63:80
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
-#: skytemple/skytemple/controller/settings.py:35
+#: skytemple/skytemple/controller/settings.py:33
 msgid "French"
 msgstr "Französisch"
 
 #: /dev/fd/63:81
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:550
-#: skytemple/skytemple/controller/settings.py:33
+#: skytemple/skytemple/controller/settings.py:34
 msgid "German"
 msgstr "Deutsch"
 
@@ -350,7 +350,7 @@ msgstr "Italienisch"
 
 #: /dev/fd/63:83
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:572
-#: skytemple/skytemple/controller/settings.py:34
+#: skytemple/skytemple/controller/settings.py:36
 msgid "Spanish"
 msgstr "Spanisch"
 
@@ -2621,17 +2621,17 @@ msgstr "Zeichen {e.char} in der Tabelle {e.table} ist mehrfach definiert in eine
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
 msgstr "Zeichen {e.char} in der Tabelle {e.table} ist mehrfach definiert in einer Schrift-Datei!"
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:160
+#: skytemple-files/skytemple_files/graphics/kao/model.py:161
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
 msgstr "Konnte KAO bei Index {old_index},{old_subindex} nicht laden: {ex}"
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:216
+#: skytemple-files/skytemple_files/graphics/kao/model.py:217
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
 msgstr "Kann PIL Bild nicht in KAO umwandeln: Bilddimensionen müssen {img_dim}x{img_dim}px. sein."
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:312
+#: skytemple-files/skytemple_files/graphics/kao/model.py:313
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr "Dieses Portrait lässt sich nicht gut komprimieren, die Größe nach dem Komprimieren ist größer als 800 Bytes ({len(new_img_compressed)} Bytes insgesamt).\n"
@@ -4586,9 +4586,9 @@ msgstr "Möchtest du Änderungen an {rom_name} speichern?"
 msgid "Detect automatically"
 msgstr "Automatisch erkennen"
 
-#: skytemple/skytemple/controller/settings.py:36
-msgid "Chinese Traditional"
-msgstr "Chinesisch (Traditionell)"
+#: skytemple/skytemple/controller/settings.py:35
+msgid "Portuguese, Brazilian"
+msgstr ""
 
 #: skytemple/skytemple/controller/settings.py:122
 msgid "You need to restart SkyTemple to apply some of the settings."
@@ -6540,7 +6540,9 @@ msgstr "Fehler beim Importieren der Farbkarte."
 msgid "This colormap defines color palette transformations used by the game during dungeons (for weather effects).\n"
 "Each color color component (RGB) is changed to the corresponding color component of the n-th color map entry (where n is the old color component value).\n"
 "This transformation also applies to monsters and items sprites."
-msgstr ""
+msgstr "Diese Farbtabelle definiert Veränderungen der Farbtabelle, die das Spiel in Dungeons benutzt (für Wettereffekte).\n"
+"Jede Farbkomponente (RGB) wird in die jeweilige Farbkomponente des n-ten Eintrags der Farbtabelle transformiert (wobei n der alte Farbkomponenten-Wert ist).\n"
+"Diese Transformation wird auch auf Pokémon- und Item-Sprites angewendet."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:13
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:106
@@ -6971,7 +6973,7 @@ msgstr "Dungeon Tilesets"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.py:36
 msgid "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du die Grafiken von Dungeon-Kacheln bearbeiten und wie die Dungeon-Kacheln angeordnet werden."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:60
 msgid "This will export all chunks. \n"
