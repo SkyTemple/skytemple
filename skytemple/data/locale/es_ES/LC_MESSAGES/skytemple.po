@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-13 09:59+0000\n"
-"PO-Revision-Date: 2021-03-13 10:08\n"
+"PO-Revision-Date: 2021-03-13 12:45\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3034,7 +3034,7 @@ msgstr "\n\n"
 
 #: skytemple-files/skytemple_files/patch/handler/add_type.py:119
 msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
-msgstr ""
+msgstr "Añade tipos a la tabla de tipos. Esto reemplazará la antigua tabla por la tabla de tipos de la 6ª generación, añadiendo el tipo Hada al final."
 
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:74
 msgid "Pressing start in a dungeon toggles between automatic and manual mode. In manual mode, you can control your partners on their turns. You must apply the extra code overlay made by End45 before applying this patch."
@@ -3058,7 +3058,7 @@ msgstr "Este parche añade un nuevo overlay (36) al juego, que se carga en la di
 
 #: skytemple-files/skytemple_files/patch/handler/extract_bar_list.py:51
 msgid "Extracts Spinda bar's item list."
-msgstr ""
+msgstr "Extrae la lista de objetos del bar de Spinda."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_dungeon_data.py:53
 msgid "Extracts the floor ranks, forbidden mission floors, items available in dungeon tables and put them in files. Provides support for reading them from the rom file system."
@@ -3084,7 +3084,9 @@ msgstr "Extrae el código de los efectos del movimiento y los pone en archivos."
 msgid "Implements Fairy-type specialized gummies. Uses unused item 138.\n"
 "Needs ExtractItemCode, ExtractBarItemList and AddTypes patches to be applied for this patch to work.\n"
 "Also, you'll need to reapply this if you apply AddTypes again. "
-msgstr ""
+msgstr "Implementa las gomis de tipo hada. Utiliza el elemento 138 no utilizado.\n"
+"Necesita que se apliquen los parches 'ExtractItemCode', 'ExtractBarItemList' y 'AddTypes' para que funcione.\n"
+"Además, tendrás que reaplicarlo si vuelves a aplicar AddTypes de nuevo. "
 
 #: skytemple-files/skytemple_files/patch/handler/far_off_pal_overdrive.py:41
 msgid "Makes the game always move the PoV to your partners when they use moves or are attacked, even if the partner is only one tile away, when far-off pals is enabled. Recommended for CTC since the PoV stays on your last pokemon at the end of a manual movement round without this, and CTC already reduces the amount of time the game pauses for between PoV changes."
