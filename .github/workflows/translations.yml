@@ -90,4 +90,4 @@ jobs:
           cwd: './skytemple'
           message: 'Github Actions: Update .pot string index'
           push: true
-          if: ${{ env.NUM_CHANGED_LINES > 1 }}
+        if: ${{ env.NUM_CHANGED_LINES > 1 }}
