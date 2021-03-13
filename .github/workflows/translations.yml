@@ -45,6 +45,9 @@ jobs:
         with:
           repository: skytemple/tilequant
           path: tilequant
+      - name: Backup current string file
+        run: |
+          cp skytemple/skytemple/data/locale/skytemple.pot /tmp/skytemple.pot
       - name: Generate Strings
         run: |
           find . \
@@ -77,6 +80,9 @@ jobs:
           -j --from-code=UTF-8 \
           -o skytemple/skytemple/data/locale/skytemple.pot \
           <(python -m skytemple_files.common.ppmdu_config.l10n_str_generator)
+      - name: Check if we need to commit
+        run: |
+          echo "NUM_CHANGED_LINES=$(diff -y --suppress-common-lines /tmp/skytemple.pot skytemple/skytemple/data/locale/skytemple.pot | wc -l)" >> $GITHUB_ENV
       - name: Commit and Push
         uses: EndBug/add-and-commit@v7
         with:
@@ -84,3 +90,4 @@ jobs:
           cwd: './skytemple'
           message: 'Github Actions: Update .pot string index'
           push: true
+        if: ${{ env.NUM_CHANGED_LINES > 1 }}
