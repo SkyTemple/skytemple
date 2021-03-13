@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-12 20:53+0000\n"
-"PO-Revision-Date: 2021-03-12 20:56\n"
+"POT-Creation-Date: 2021-03-13 09:59+0000\n"
+"PO-Revision-Date: 2021-03-13 10:07\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Language: vi_VN\n"
@@ -3025,6 +3025,10 @@ msgid "\n\n"
 "You can already edit it through SkyTemple, but it won't be used in game, until you successfully apply the patch."
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/add_type.py:119
+msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:74
 msgid "Pressing start in a dungeon toggles between automatic and manual mode. In manual mode, you can control your partners on their turns. You must apply the extra code overlay made by End45 before applying this patch."
 msgstr ""
@@ -3041,6 +3045,10 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/extra_space.py:39
 msgid "This patch adds a new overlay 36 to the game, which is loaded at address 0x023A7080 and provides extra space for patches to place code and data in."
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/handler/extract_bar_list.py:51
+msgid "Extracts Spinda bar's item list."
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/extract_dungeon_data.py:53
@@ -3061,6 +3069,12 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/extract_move_code.py:57
 msgid "Extracts move effects code and put it in files."
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/handler/fairy_gummies.py:95
+msgid "Implements Fairy-type specialized gummies. Uses unused item 138.\n"
+"Needs ExtractItemCode, ExtractBarItemList and AddTypes patches to be applied for this patch to work.\n"
+"Also, you'll need to reapply this if you apply AddTypes again. "
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/far_off_pal_overdrive.py:41
@@ -3096,47 +3110,47 @@ msgstr ""
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:106
-#: skytemple-files/skytemple_files/patch/patches.py:111
+#: skytemple-files/skytemple_files/patch/patches.py:112
+#: skytemple-files/skytemple_files/patch/patches.py:117
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:117
+#: skytemple-files/skytemple_files/patch/patches.py:123
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:120
+#: skytemple-files/skytemple_files/patch/patches.py:126
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:149
+#: skytemple-files/skytemple_files/patch/patches.py:155
 msgid "config.xml missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:151
+#: skytemple-files/skytemple_files/patch/patches.py:157
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:161
+#: skytemple-files/skytemple_files/patch/patches.py:167
 msgid "patch.py missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:163
+#: skytemple-files/skytemple_files/patch/patches.py:169
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:168
+#: skytemple-files/skytemple_files/patch/patches.py:174
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:173
+#: skytemple-files/skytemple_files/patch/patches.py:179
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:179
+#: skytemple-files/skytemple_files/patch/patches.py:185
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
