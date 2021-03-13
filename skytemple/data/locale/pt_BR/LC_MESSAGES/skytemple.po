@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-13 09:59+0000\n"
-"PO-Revision-Date: 2021-03-13 10:08\n"
+"POT-Creation-Date: 2021-03-13 13:43+0000\n"
+"PO-Revision-Date: 2021-03-13 13:45\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -333,13 +333,13 @@ msgstr "Créditos"
 
 #: /dev/fd/63:80
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
-#: skytemple/skytemple/controller/settings.py:35
+#: skytemple/skytemple/controller/settings.py:33
 msgid "French"
 msgstr "Francês"
 
 #: /dev/fd/63:81
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:550
-#: skytemple/skytemple/controller/settings.py:33
+#: skytemple/skytemple/controller/settings.py:34
 msgid "German"
 msgstr "Alemão"
 
@@ -350,7 +350,7 @@ msgstr "Italiano"
 
 #: /dev/fd/63:83
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:572
-#: skytemple/skytemple/controller/settings.py:34
+#: skytemple/skytemple/controller/settings.py:36
 msgid "Spanish"
 msgstr "Espanhol"
 
@@ -2620,17 +2620,17 @@ msgstr "Caractere {e.char} na tabela {e.table} é definido múltiplas vezes num 
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
 msgstr "Caractere {e.char} na tabela {e.table} é definido múltiplas vezes num arquivo de fonte!"
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:160
+#: skytemple-files/skytemple_files/graphics/kao/model.py:161
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
 msgstr "Não foi possível carregar KAO em {old_index},{old_subindex}: {ex}"
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:216
+#: skytemple-files/skytemple_files/graphics/kao/model.py:217
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
 msgstr "Não é possível converter imagem PIL para KAO: Dimensões da imagem devem ser {img_dim}x{img_dim}px."
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:312
+#: skytemple-files/skytemple_files/graphics/kao/model.py:313
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr "Este retrato não compacta bem, o tamanho do resultado é maior que 800 bytes ({len(new_img_compressed)} bytes no total).\n"
@@ -4546,8 +4546,8 @@ msgstr ""
 msgid "Detect automatically"
 msgstr ""
 
-#: skytemple/skytemple/controller/settings.py:36
-msgid "Chinese Traditional"
+#: skytemple/skytemple/controller/settings.py:35
+msgid "Portuguese, Brazilian"
 msgstr ""
 
 #: skytemple/skytemple/controller/settings.py:122
