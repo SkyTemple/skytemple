@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-13 09:59+0000\n"
-"PO-Revision-Date: 2021-03-13 12:45\n"
+"POT-Creation-Date: 2021-03-13 13:43+0000\n"
+"PO-Revision-Date: 2021-03-14 19:09\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -333,13 +333,13 @@ msgstr "Mitwirkende"
 
 #: /dev/fd/63:80
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
-#: skytemple/skytemple/controller/settings.py:35
+#: skytemple/skytemple/controller/settings.py:33
 msgid "French"
 msgstr "Französisch"
 
 #: /dev/fd/63:81
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:550
-#: skytemple/skytemple/controller/settings.py:33
+#: skytemple/skytemple/controller/settings.py:34
 msgid "German"
 msgstr "Deutsch"
 
@@ -350,7 +350,7 @@ msgstr "Italienisch"
 
 #: /dev/fd/63:83
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:572
-#: skytemple/skytemple/controller/settings.py:34
+#: skytemple/skytemple/controller/settings.py:36
 msgid "Spanish"
 msgstr "Spanisch"
 
@@ -2621,17 +2621,17 @@ msgstr "Zeichen {e.char} in der Tabelle {e.table} ist mehrfach definiert in eine
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
 msgstr "Zeichen {e.char} in der Tabelle {e.table} ist mehrfach definiert in einer Schrift-Datei!"
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:160
+#: skytemple-files/skytemple_files/graphics/kao/model.py:161
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
 msgstr "Konnte KAO bei Index {old_index},{old_subindex} nicht laden: {ex}"
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:216
+#: skytemple-files/skytemple_files/graphics/kao/model.py:217
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
 msgstr "Kann PIL Bild nicht in KAO umwandeln: Bilddimensionen müssen {img_dim}x{img_dim}px. sein."
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:312
+#: skytemple-files/skytemple_files/graphics/kao/model.py:313
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr "Dieses Portrait lässt sich nicht gut komprimieren, die Größe nach dem Komprimieren ist größer als 800 Bytes ({len(new_img_compressed)} Bytes insgesamt).\n"
@@ -4586,9 +4586,9 @@ msgstr "Möchtest du Änderungen an {rom_name} speichern?"
 msgid "Detect automatically"
 msgstr "Automatisch erkennen"
 
-#: skytemple/skytemple/controller/settings.py:36
-msgid "Chinese Traditional"
-msgstr "Chinesisch (Traditionell)"
+#: skytemple/skytemple/controller/settings.py:35
+msgid "Portuguese, Brazilian"
+msgstr "Portugiesisch, Brasilianisch"
 
 #: skytemple/skytemple/controller/settings.py:122
 msgid "You need to restart SkyTemple to apply some of the settings."
@@ -4784,7 +4784,7 @@ msgstr "Kartenhintergund-Import"
 msgid "This will import the entire background from an image.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr "Dies wird den Hintergrund als einem einzelnen Bild importieren.\n\n"
+msgstr "Dies wird den Hintergrund aus einem einzelnen Bild importieren.\n\n"
 "Beachte bitte, dass du ihn eventuell umwandeln musst, bevor du ihn importieren kannst.\n"
 "Siehe die \"Format-Details\"."
 
@@ -6540,7 +6540,9 @@ msgstr "Fehler beim Importieren der Farbkarte."
 msgid "This colormap defines color palette transformations used by the game during dungeons (for weather effects).\n"
 "Each color color component (RGB) is changed to the corresponding color component of the n-th color map entry (where n is the old color component value).\n"
 "This transformation also applies to monsters and items sprites."
-msgstr ""
+msgstr "Diese Farbtabelle definiert Veränderungen der Farbtabelle, die das Spiel in Dungeons benutzt (für Wettereffekte).\n"
+"Jede Farbkomponente (RGB) wird in die jeweilige Farbkomponente des n-ten Eintrags der Farbtabelle transformiert (wobei n der alte Farbkomponenten-Wert ist).\n"
+"Diese Transformation wird auch auf Pokémon- und Item-Sprites angewendet."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:13
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:106
@@ -6971,7 +6973,7 @@ msgstr "Dungeon Tilesets"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.py:36
 msgid "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du die Grafiken von Dungeon-Kacheln bearbeiten und wie die Dungeon-Kacheln angeordnet werden."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:60
 msgid "This will export all chunks. \n"
@@ -7056,7 +7058,12 @@ msgid "You can export and import the tiles from an easy-to-modify\n"
 "For more information about DTEF, click the \"Help\" button.\n"
 "You can also manually import chunks and assign tile rules,\n"
 "by switching to the Advanced Mode."
-msgstr ""
+msgstr "Du kannst die Kacheln exportieren und Importieren aus einem\n"
+"einfachen Format basierend auf 47 Regeln (DTEF-Format). Weitere\n"
+"Einstellungen können über eine XML-Datei geändert werden.\n"
+"Für weitere Informationen über DTEF klicke den \"Hilfe\"-Button.\n"
+"Du kannst alternativ auch manuell Blöcke importieren und Kachelregeln\n"
+"definieren, indem du in den erweiterten Modus wechselst."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1481
 msgid "Simple Mode (DTEF)"
@@ -7082,7 +7089,9 @@ msgstr "Hat Flüssigkeit / Wand"
 msgid "Here you can edit what chunks get rendered for which dungeon field configuration. Select the configuration you want to edit, select a chunk from the \"Chunk Picker\" to use and then click on the dungeon field you want to edit.\n"
 "Use the menus above to edit chunks and tile graphics.\n"
 "<b>Please note</b>: The animations previewed here are not accurate to how they look in-game."
-msgstr ""
+msgstr "Hier kannst du einstellen, welche Blöcke für welche Dungeon-Feldkonfiguration verwendet werden. Wähle die Konfiguration, die du bearbeiten möchtest, wähle einen Block aus der \"Block-Auswahl\" und dann klicke auf das Feld, dass du setzen möchtest.\n"
+"Benutze die Menüs oben, um Blöcke und Kachelgrafiken zu bearbeiten.\n"
+"<b>Beachte bitte</b>: Die Animationen in der Vorschau sind nicht genau so, wie sie im Spiel aussehen."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1993
 msgid "Field Variations #1"
@@ -7222,7 +7231,7 @@ msgstr "gfxcrunch"
 
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.glade:84
 msgid "The sprite im- or export is done via <a href=\"gfxcrunch\">gfxcrunch</a>."
-msgstr ""
+msgstr "Der Import und Export von Sprites wird mit <a href=\"gfxcrunch\">gfxcrunch</a> durchgeführt."
 
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.py:70
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.py:80
@@ -7414,7 +7423,7 @@ msgstr "Item-Listen"
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:509
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:586
 msgid "Edits the lists used for mission rewards, treasure boxes and Treasure Town Kecleon shops."
-msgstr ""
+msgstr "Bearbeitet die Listen für Missionsbelohnungen, Schatzkisten und Shops in Schatzstadt."
 
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:522
 msgid "<Not available>\n\n"
@@ -7585,7 +7594,15 @@ msgid "Menus are hardcoded so you can't add any option, but you can edit a few t
 " - The end of the menu is detected by the game with an entry in which the Name ID is set to 0. \n"
 "Also, the action code of that entry is used when pressing the B button (if the game allows it for this menu). \n"
 " - Editing a string with a specific ID will result of all strings using that ID to be changed."
-msgstr ""
+msgstr "Den Menüs können keine Optionen hinzufügt werden, aber es können einige Einstellungen bearbeitet werden.\n"
+"Es gibt jedoch einige Regeln: \n"
+" - Nur die Spiel-Haupt/ -untermenüs können Beschreibungen enthalten. \n"
+" - \"Aktion\" teilt dem Spiel mit, was bei der Auswahl dieses Menüs zu tun ist. \n"
+"Die Bedeutung der Werte hängt vom Menü ab. \n"
+"Der Wert wird auch verwendet, um zu bestimmen, ob ein Menü deaktiviert (oder im Hauptmenü ausgeblendet) werden soll.\n"
+" - Das Spiel erkennt das Ende eines Menüs über einen Eintrag mit der ID 0 für den Namen. \n"
+"Außerdem wird die Aktion dieses Eintrags beim Drücken der B-Taste verwendet (wenn das Spiel das für dieses Menü zulässt). \n"
+" - Das Bearbeiten einer Zeichenketten mit einer ID führt dazu, dass alle Einträge, die diese Zeichenkette verwenden geändert werden."
 
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:66
 #: skytemple/skytemple/module/lists/controller/move_effects.glade:144
@@ -7730,7 +7747,9 @@ msgstr "Geschlecht"
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:633
 msgid "Please note that after editing the Player Starters, you also need to edit the result text that is shown\n"
 "to the player. You can find that in the \"Personality Quiz result strings\" category under \"Text Strings\"."
-msgstr ""
+msgstr "Bitte beachte, dass du nach dem Ändern der Starter für den Spieler auch die Ergebnistexte \n"
+"bearbeiten musst, der dem Spieler am Ende des Persönlichkeitstests angezeigt werden.\n"
+"Diese findest du in der Kategorie \"Ergebnisse im Persönlichkeitstest\" unter \"Zeichenketten\"."
 
 #: skytemple/skytemple/module/lists/controller/starters_list.py:30
 #: skytemple/skytemple/module/lists/controller/starters_list.py:31
@@ -7822,7 +7841,8 @@ msgstr "Wähle die Position auf der Karte"
 #: skytemple/skytemple/module/lists/controller/world_map.glade:169
 msgid "Please don't select a marker that already references another marker.\n"
 "The behavior for this is undefined."
-msgstr ""
+msgstr "Bitte wähle keinen Marker, der einen anderen Marker referenziert.\n"
+"Das Verhalten für diesen Fall ist nicht definiert."
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
 #: skytemple/skytemple/module/lists/module.py:92
@@ -7999,7 +8019,8 @@ msgstr "- Das Bild muss ein indiziertes PNG mit 256 Farben sein.\n"
 #: skytemple/skytemple/module/map_bg/controller/bg.py:175
 msgid "This map background shared some asset files with other map backgrounds.\n"
 "SkyTemple can't edit shared files, so those assets were copied."
-msgstr ""
+msgstr "Dieser Kartenhintergrund teilte einige Asset-Dateien mit anderen Kartenhintergründen.\n"
+"SkyTemple kann keine geteilten Dateien bearbeiten, daher wurden diese Assets kopiert."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:179
 msgid "SkyTemple - Notice"
@@ -8007,17 +8028,19 @@ msgstr "SkyTemple - Hinweis"
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:322
 msgid "A script map with the same name as this background does not exist."
-msgstr ""
+msgstr "Eine Skriptkarte mit dem gleichen Namen wie dieser Hintergrund existiert nicht."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:624
 msgid "This map only has one layer.\n"
 "You can add a second layer at Map > Settings."
-msgstr ""
+msgstr "Diese Karte hat nur eine -Ebene.\n"
+"Du kannst eine zweite Ebene unter Karte > Einstellungen hinzufügen."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:645
 msgid "This map has no collision.\n"
 "You can add collision at Map > Settings."
-msgstr ""
+msgstr "Diese Karte hat zweite Kollisionsebene.\n"
+"Du kannst unter Karte > Einstellungen eine Kollisionsebene hinzufügen."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:654
 msgid "This map has no second collision layer.\n"
@@ -8037,7 +8060,11 @@ msgid "Map backgrounds can be used as primary or secondary.\n"
 "When used as secondary, the background can only have 1 palette, using slot 14, and every palette value will have a new value of (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
 "It is still possible to use palette values above those limits, but this is only in cases where a background needs to reference a palette from the other background.\n"
 "Note: in the original game, almost every background is used as primary, the exceptions being mainly the weather (W) backgrounds.\n"
-msgstr ""
+msgstr "Kartenhintergründe können als \"primär\" oder \"sekundär\" verwendet werden.\n"
+"Wenn primär verwendet, kann der Hintergrund bis zu 14 Paletten haben, wobei Slots von 0 bis 13 verwendet werden.\n"
+"Sekundär verwendet kann der Hintergrund nur eine Palette haben, wobei Slot 14 verwendet wird. Jeder Palettenwert hat einen neuen Wert von (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
+"Es ist immer noch möglich, Palettenwerte über diesen Grenzen zu verwenden, aber nur in Fällen, in denen der Hintergrund auf eine Palette aus dem anderen geladenen Hintergrund verweist.\n"
+"Hinweis: Im Originalspiel wird fast jeder Hintergrund als primär verwendet, wobei die Ausnahmen hauptsächlich die Wetter-Hintergründe (W) sind.\n"
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:799
 msgid "Background Palettes"
@@ -8058,7 +8085,8 @@ msgstr "PNGs der Karte exportieren..."
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:412
 msgid "This BPA has no frames.\n"
 "Enable the BPA and import images for a BPA to add frames."
-msgstr ""
+msgstr "Diese BPA hat keine Frames.\n"
+"Aktiviere die BPA und importiere Bilder für ein BPA, um Frames hinzuzufügen."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:524
 msgid "Export animated tiles (BPA)"
@@ -8109,11 +8137,11 @@ msgstr "Kartenhintergründe für andere Karten"
 #: skytemple/skytemple/module/map_bg/controller/folder.py:37
 #, python-brace-format
 msgid "This section contains all the map backgrounds, that start with the letter {self.name[0]}."
-msgstr ""
+msgstr "Dieser Abschnitt enthält alle Kartenhintergründe, die mit dem Buchstaben {self.name[0]} beginnen."
 
 #: skytemple/skytemple/module/map_bg/controller/folder.py:40
 msgid "This section contains all the map backgrounds, that don't fit in any of the other categories."
-msgstr ""
+msgstr "Dieser Abschnitt enthält alle Kartenhintergründe, die in keine der anderen Kategorien passen."
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:24
 msgid "Map Backgrounds"
@@ -8121,7 +8149,7 @@ msgstr "Kartenhintergründe"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:36
 msgid "This section lets you edit map backgrounds. These backgrounds are usually loaded by the game for scenes and serve many purposes (actual backgrounds for maps, title screen backgrounds, cutscenes, etc.)."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du Kartenhintergründe bearbeiten. Diese Hintergründe werden üblicherweise vom Spiel in Szenen geladen und werden für eine Reihe von Zwecken verwendet (bspw. Hintergründe für Karten, Zwischensequenzen, etc.)."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:92
 msgid "Hide Other Layers"
@@ -8260,7 +8288,8 @@ msgstr "Palette 16"
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2343
 msgid "Please note, that setting the number of frames of animations higher than the number of frames\n"
 "specified in the \"Edit Palette Animation\" section can lead to undefined behavior or crashes."
-msgstr ""
+msgstr "Bitte beachte: setzt du die Anzahl der Frames einer Animation höher als die unter \"Animations-Palette bearbeiten\"\n"
+"Anzahl, kann das zu undefiniertem Verhalten oder Abstürzen führen."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2373
 msgid "Map Settings"
@@ -8273,7 +8302,9 @@ msgstr "Anzahl der Ebenen "
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2486
 msgid "Decreasing the number of layers will remove\n"
 "all tiles and chunks of the upper layer."
-msgstr ""
+msgstr "Wenn du die Anzahl der Ebenen verringerst\n"
+"entfernst du damit alle Kacheln und Blöcke der\n"
+"oberen Ebene."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2518
 msgid "Number of Collision Layers"
@@ -8308,7 +8339,16 @@ msgid "Exports and imports multiple images.\n\n"
 "name pattern \"@@@name_pattern@@@\" are imported.\n\n"
 "If frames are added, the frame duration of \n"
 "the last frame is copied."
-msgstr ""
+msgstr "Export und importiert mehrere Bilder.\n\n"
+"Jede Frame der animierten Kacheln ist ein separates PNG.\n\n"
+"Die Bilder müssen folgendes Format haben:\n"
+"- Die Bilder müssen aus 8x8 Kacheln bestehen.\n"
+"- Die Bilder sind indizierte PNGs mit 16 Farben.\n"
+"- Die erste Farbe jeder Palette wird als Transparenz importiert.\n\n"
+"Beim Import werden alle PNG-Dateien nach dem Dateinamen-Muster\n"
+"\"@@@name_pattern@@@\" importiert.\n\n"
+"Falls Frames hinzugefügt werden wird die Länge der letzten\n"
+"Frame kopiert."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2741
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2779
@@ -8326,7 +8366,15 @@ msgid "Exports and imports using a single image.\n\n"
 "  imported as transparency.\n\n"
 "If frames are added, the frame duration of \n"
 "the last frame is copied."
-msgstr ""
+msgstr "Export und importiert über ein einzelnes Bild.\n\n"
+"Das Bild muss folgendes Format haben:\n"
+"- Das Bild muss aus 8x8 Kacheln bestehen.\n"
+"- Die Zeilen sind die einzelnen Kacheln.\n"
+"- Die Spalten sind die Frames jeder Kachel.\n"
+"- Die Bilder sind indizierte PNGs mit 16 Farben.\n"
+"- Die erste Farbe jeder Palette wird als Transparenz importiert.\n\n"
+"Falls Frames hinzugefügt werden wird die Länge der letzten\n"
+"Frame kopiert."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2817
 msgid "BPA to export or import:"
@@ -8342,7 +8390,11 @@ msgid "Animated Tile blocks are called BPA.\n"
 "    BPA 1-4: Layer 1\n"
 "If the map has two layers:\n"
 "    BPA 1-4: Layer 2     |    BPA 5-8: Layer 1"
-msgstr ""
+msgstr "Animierte Kachelblöcke heißen BPA.\n"
+"Wenn die Karte eine Ebene hat:\n"
+"    BPA 1-4: Ebene 1\n"
+"Wenn die Karte zwei Ebenen hat:\n"
+"    BPA 1-4: Ebene 2 | BPA 5-8: Ebene 1"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2997
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3114
@@ -8428,7 +8480,11 @@ msgid "Usually the width and height in tiles should be linked\n"
 "please note, that the dimensions in tiles are used for\n"
 "the collision and data layers. The dimensions in chunks \n"
 "are used for the image data on Layer 1 and 2."
-msgstr ""
+msgstr "Normalerweise sollten die Breite und Höhe in Kacheln mit der\n"
+"Breite und Höhe in Blöcken verknüpft werden. Wenn dies nicht der Fall ist,\n"
+"beachten bitte, dass die Maße in Kacheln verwendet werden für die\n"
+"Kollisions- und Datenebenen. Die Abmessungen in Blöcken werden für die \n"
+"Bilddaten auf Ebene 1 und 2 verwendet."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4321
 msgid "Width and Height"
@@ -8566,7 +8622,9 @@ msgstr "Dies scheint ein Dungeon-Ruheraum zu sein. Diese Karte wird von der Dung
 msgid "This background uses weird palette values for some chunks, so the game will not render this background the same as it is displayed here.\n"
 "You should click on the help button get more information before continuing.\n"
 "If this is intentional and you know what you are doing, you can ignore  this."
-msgstr ""
+msgstr "Dieser Hintergrund verwendet für einige Blöcke seltsame Palettenwerte, sodass das Spiel diesen Hintergrund nicht so darstellt, wie er hier angezeigt wird.\n"
+"Du solltest auf die Schaltfläche \"Hilfe\" klicken und weitere Informationen zu erhalten, bevor du fortfährst..\n"
+"Wenn das beabsichtigt ist und du weißt, was du tust, kannst du das ignorieren."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5346
 msgid "This will export all chunks of the selected layer.\n\n"
@@ -8574,7 +8632,11 @@ msgid "This will export all chunks of the selected layer.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Dies wird alle Blöcke der gewählten Ebene exportieren.\n\n"
+"Du kannst die exportierte Datei bearbeiten und wieder importieren.\n"
+"Beachte bitte, dass du ihn eventuell umwandeln musst,\n"
+"bevor du ihn importieren kannst.\n"
+"Siehe den Import-Dialog für weitere Informationen."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5461
 msgid "This will export the entire map as one or two images,\n"
@@ -8583,7 +8645,13 @@ msgid "This will export the entire map as one or two images,\n"
 "Please note, that you might need to convert it to be able\n"
 "to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Dies wird den gesamten Kartenhintergrund exportieren.\n"
+"Die Anzahl der exportieren Bilder hängt von der Anzahl der Ebenen\n"
+"ab.\n\n"
+"Du kannst die Hintergründe bearbeiten und wieder importieren.\n"
+"Beachte bitte, dass du sie eventuell umwandeln musst,\n"
+"bevor du sieimportieren kannst.\n"
+"Siehe den Import-Dialog für weitere Informationen."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5577
 msgid "This will export all tiles of the selected layer.\n\n"
@@ -8591,7 +8659,11 @@ msgid "This will export all tiles of the selected layer.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Dies wird alle Kacheln der gewählten Ebene exportieren.\n\n"
+"Du kannst die exportierte Datei bearbeiten und wieder importieren.\n"
+"Beachte bitte, dass du ihn eventuell umwandeln musst,\n"
+"bevor du ihn importieren kannst.\n"
+"Siehe den Import-Dialog für weitere Informationen."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5742
 msgid "This will import the chunks for the selected layer\n"
@@ -8608,7 +8680,9 @@ msgid "This will import the entire map from one image\n"
 "per layer.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Dies wird den Kartenhintergrund aus einem einzelnen Bild importieren.\n\n"
+"Beachte bitte, dass du ihn eventuell umwandeln musst, bevor du ihn importieren kannst.\n"
+"Siehe die \"Format-Details\"."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6043
 msgid "Layer 1 Image"
@@ -8623,7 +8697,10 @@ msgid "This will import the tiles for the selected layer\n"
 "using an image.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Dies wird die Kacheln der gewählten Ebene\n"
+"aus einem einzelnen Bild importieren.\n\n"
+"Beachte bitte, dass du das Bild eventuell umwandeln musst, \n"
+"bevor du es importieren kannst. Siehe die \"Format-Details\"."
 
 #: skytemple/skytemple/module/map_bg/module.py:71
 #: skytemple/skytemple/module/script/module.py:81
@@ -8680,7 +8757,9 @@ msgstr "Karte entfernt"
 msgid "This is what the game shows when the cartridge is removed while playing.\n"
 "IMPORTANT! The game stores this compressed in the ARM9, so this is limited in space.\n"
 "It is recommended to only edit this to change the text color/content."
-msgstr ""
+msgstr "Dieses Bild zeigt das Spiel an, falls die Karte des Spiels während dem Spielen entfernt wurde.\n"
+"WICHTIG! Das Spiel speichert diese Grafik komprimiert in der ARM9-Datei, daher gibt es eine Größenbeschränkung.\n"
+"Es wird empfohlen das nur zu ändern um die Textfarbe oder den Inhalt zu ändern."
 
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:68
 msgid "Cartridge Removed Image Info"
@@ -8822,7 +8901,8 @@ msgstr "Alle Bilder als PNG exportieren..."
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:97
 msgid "To import, select a directory to import from. Files with the pattern 'XX.png'\n"
 "will be imported, where XX is a number between 0 and 99. The image dimensions must be a multiple of 8."
-msgstr ""
+msgstr "Um zu importieren, wählen einen Ordner aus, aus dem du importieren möchtest. Dateien werden nach \n"
+"dem Muster 'XX.png' importiert, wobei XX eine Zahl zwischen 0 und 99 ist. Die Bildgröße muss ein Vielfaches von 8 sein."
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:99
 msgid "Import Images"
@@ -8878,7 +8958,8 @@ msgstr "Bilddatei: "
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:165
 msgid "The image file must be a color-indexed PNG to be imported\n"
 "as a WTE file."
-msgstr ""
+msgstr "Die Bilddatei muss ein farbindiziertes PNG sein, um\n"
+"als WTE-Datei importiert werden zu können."
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:204
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:530
@@ -8892,18 +8973,22 @@ msgstr "Palette verwerfen"
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:251
 msgid "If ticked, the WTE file will not contain the palette data.\n"
 "This is for files that use another file's palette data. "
-msgstr ""
+msgstr "Falls ausgewählt wird die WTE Datei keine Palettendaten enthalten.\n"
+"Dies wird genutzt für Dateien, die die Palette einer anderen Datei nutzen. "
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:405
 msgid "Warning: this WTE file doesn't contain any palette data.\n"
 "The palette data used for this file may be in another WTE file.\n"
 "A default grayscale palette has been generated in order to distinct the different color indices."
-msgstr ""
+msgstr "Warnung: Diese WTE-Datei enthält keine Palettendaten.\n"
+"Die für diese Datei verwendeten Palettendaten könnten in einer anderen WTE Datei liegen.\n"
+"Es wurde eine Standard-Palette (Graustufen) generiert, um die verschiedenen Farbindizes zu unterscheiden."
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:459
 msgid "Warning: this WTE file doesn't contain any image data.\n"
 "Thus, the palette is displayed instead of the image."
-msgstr ""
+msgstr "Warnung: Diese WTE-Datei enthält keine Bilddaten.\n"
+"Daher wird nur die Palette anstelle des Bildes angezeigt."
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:518
 msgid "Image Size: "
@@ -9002,7 +9087,8 @@ msgstr "Exportiere vollständige ZMappaT..."
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:113
 msgid "To import, select a folder containing all the image files that were created when exporting the minimized version.\n"
 "IMPORTANT: All image files must be indexed PNGs and use the same palette!"
-msgstr ""
+msgstr "Zum Importieren, wähle einen Ordner aus, der alle Dateien enthält, die beim Export erstellt wurden.\n"
+"WICHTIG: Alle Dateien müssen indizierte PNGs sein und dieselbe Palette verwenden!"
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:115
 msgid "Import Minimized Version"
@@ -9023,7 +9109,12 @@ msgid "The game uses 4x4 'mini-tiles' tiles to render the map.\n"
 "The mask is then used to apply the mini-tile only on the correct part of the resulting 8x8 tile.\n"
 "The minimized version reduces the tileset to only 4x4 mini-tiles and handles the duplication when importing.\n"
 "But remember that the full tileset allows more exploits as you can render tiles differently depending on where they are placed."
-msgstr ""
+msgstr "Das Spiel verwendet 4x4 „Mini-Kacheln“ -Kacheln, um die Karte zu rendern.\n"
+"Da das System jedoch nur 8x8 Kacheln verwendet, rendert das Spiel jedes 8x8-Plättchen, indem es 4 Mini-Kacheln unter Anwendung der jeweiligen Masken darstellt.\n"
+"Dafür wurden alle Mini-Kacheln dupliziert, um die 4 Möglichkeiten zum Platzieren der Mini-Kachel in 8x8-Kacheln abzudecken (oben links, oben rechts, unten links, unten rechts).\n"
+"Die Maske wird dann verwendet, um die Mini-Kachel nur auf den richtigen Teil der resultierenden 8x8-Kachel anzuwenden.\n"
+"Die geschrumpfte Version reduziert das Tileset auf nur 4x4-Mini-Kacheln. Beim Import wurd dann entsprechend dupliziert.\n"
+"Denke aber daran, dass das vollständige Tileset mehr Möglichkeiten zulässt, da du die Kacheln je nach Platzierung unterschiedlich rendern kannst."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:160
 msgid "Minimized Version Info"
@@ -9031,7 +9122,7 @@ msgstr "Infos über die geschrumpfte Version"
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:170
 msgid "To import, select a folder containing all the image files that were created when exporting the full tileset."
-msgstr ""
+msgstr "Um zu importieren, wähle einen Ordner mit allen Bilddateien, die beim Export des vollständigen Tilesets erstellt wurden."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:171
 msgid "Import Full Tileset"
@@ -9615,7 +9706,13 @@ msgid "Values depend on Evolution Type:\n"
 "- Items: Regular Item ID - Optional evolutionary item ID\n"
 "- Unknown: ? - ?\n"
 "- Link Cable: 0 - 1"
-msgstr ""
+msgstr "Die Werte hängen vom Typ der Entwicklung ab:\n"
+"- Keine(s): n/a - n/a\n"
+"- Level: Erforderliches Level zur Weiterentwicklung - Optional: ID eines benötigten Items\n"
+"- IQ: Benötigter IQ-Wert - Optional: ID eines benötigten Items\n"
+"- Item: ID des benötigten Items - optional eine zweite Item ID\n"
+"- Unbekannt:? -?\n"
+"- Linkkabel: 0 - 1"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:307
 msgid "Evolution Parameters"
@@ -9628,7 +9725,12 @@ msgid "The values are actually percentages.\n"
 "1000 -> 100%, etc.\n\n"
 "If you answered yes to the question asking if you played EoT or EoD in the personality test and you haven't recruited this Pokémon yet, the second recruit rate is used instead.\n"
 "If you have recruited this Pokémon already, its recruit rate is halved (only if it's positive)."
-msgstr ""
+msgstr "Die Werte sind in Wirklichkeit Prozentwerte.\n"
+"10 - > 1,0%,\n"
+"100 - > 10,0%,\n"
+"1000 -> 100% usw.\n\n"
+"Falls die Frage im Persönlichkeitstest, ob der Spieler bereits Zeit oder Dunkelheit gespielt hat, mit Ja beantwortet wurde und das jeweilige Pokémon noch nicht rekrutiert wurde, wird stattdessen der zweite Rekrutierungswert verwendet.\n"
+"Wenn das betroffene Pokémon bereits rekrutiert wurde, wird die Quote halbiert (nur wenn sie positiv ist)."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:324
 msgid "Recruit Rate"
@@ -9663,7 +9765,7 @@ msgstr "Entwicklung möglich?"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:370
 msgid "Whether or not you need to have a special item in the bag (mystery part/secret slab) for the Pokémon to spawn in dungeons"
-msgstr ""
+msgstr "Ob du einen speziellen Gegenstand in der Tasche (Geheimteil/Geheimtafel) benötigst, damit dieses Pokémon in Dungeons spawnen kann"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:372
 msgid "Item Required for spawning?"
@@ -9716,7 +9818,8 @@ msgstr "??? Bitte eine gültige Eintrags-ID ($) eingeben"
 #: skytemple/skytemple/module/monster/controller/monster.py:977
 msgid "The sprite memory size of this Pokémon was too low for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
-msgstr ""
+msgstr "Der Wert für die Speichergröße des Sprites vom Pokémon war zu niedrig.\n"
+"SkyTemple hat den Wert automatisch korrigiert."
 
 #: skytemple/skytemple/module/monster/level_up_graph.py:87
 msgid "Exp."
@@ -9767,7 +9870,7 @@ msgstr "Patches"
 
 #: skytemple/skytemple/module/patch/controller/main.py:61
 msgid "This patch is already applied. Some patches support applying them again, but you might also run into problems with some. Proceed with care."
-msgstr ""
+msgstr "Der Patch wurde bereits angewendet. Einige Patches unterstützen erneut angewendet zu werden. Allerdings könnte es mit anderen Patches auch zu Problemen kommen. Sei vorsichtig."
 
 #: skytemple/skytemple/module/patch/controller/main.py:71
 msgid "The current ROM is not supported by this patch."
@@ -9861,7 +9964,7 @@ msgstr "Alle Portraits als PNGs exportieren..."
 #: skytemple/skytemple/module/portrait/controller/portrait.py:135
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 40."
-msgstr ""
+msgstr "Um zu importieren, wähle einen Ordner aus. Dateien nach dem Muster '{self.item_id + 1}_XX.png' werden importiert. Dabei muss XX eine Zahl zwischen 0 und 40 sein."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:137
 msgid "Import Portraits"
@@ -9956,7 +10059,8 @@ msgstr "Skript-Szenen"
 #: skytemple/skytemple/module/script/controller/main.py:39
 msgid "This section lets you edit overworld scenes in the game, so anything that happens outside of Dungeons.\n"
 "This also includes cutscene visuals and some system related scenes, like credits or the title screen logos."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du Szenen im Spiel bearbeiten, also alles, was außerhalb von Dungeons geschieht.\n"
+"Enthält auch Zwischensequenzen und einige systemrelevante Szenen, wie z. B. die Credits oder Titelbildschirm-Logos."
 
 #: skytemple/skytemple/module/script/controller/map.py:29
 msgid "Script Scenes for \"{}"
@@ -9972,7 +10076,14 @@ msgid "This section contains all scenes for the map {self.name}.\n\n"
 "\"Sub (sss)\" contains scenes that can be loaded on on top of the \"Enter\" scene,\n"
 "depending on the current story progress.\n\n"
 "Currently new scenes can not be added via SkyTemple."
-msgstr ""
+msgstr "Dieser Abschnitt enthält alle Szenen für die Karte {self.name}.\n\n"
+"„Eingang (sse)“ enthält die Szene, die geladen wird, wenn die Karte durch \n"
+"den Spieler betreten wird (falls möglich).\n\n"
+"„Handlung (ssa)“ enthält die für Zwischensequenzen verwendeten Szenen.\n"
+"Der Spieler kann den Charakter in diesen Szenen normalerweise nicht bewegen.\n\n"
+"„Sub (sss)“ enthält Szenen, die über die „Eingang“ -Szene geladen werden können,\n"
+"abhängig vom aktuellen Story-Fortschritt.\n\n"
+"Derzeit können über SkyTemple keine neuen Szenen hinzugefügt werden."
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:73
 #: skytemple/skytemple/module/script/controller/ssa.py:1196
@@ -10089,7 +10200,9 @@ msgstr "Sektor {new_index}"
 msgid "Are you sure you want to remove this sector?\n"
 "Removing the sector will re-number all following sectors (eg. if you remove Sector 70, sector 71 will become 70, 72 -> 71, etc.)\n"
 "Removing a sector may cause serious issues when the game tries to load the scene."
-msgstr ""
+msgstr "Möchten du diesen Sektor wirklich entfernen?\n"
+"Durch das Entfernen des Sektors werden alle folgenden Sektoren neu nummeriert (wenn du z. B. Sektor 70 entfernst, wird Sektor 71 zu 70, 72 -> 71 usw.)\n"
+"Das Entfernen eines Sektors kann schwerwiegende Probleme verursachen, wenn das Spiel versucht, die Szene zu laden."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:587
 msgid "Create Script"
@@ -10180,7 +10293,10 @@ msgstr "Neues Ereignis"
 msgid "Each of the scenes has at least one script assigned to them, which is run when the scene is loaded.\n"
 "In addition to that, there is also \"COMMON/unionall.ssb\", which contains the game's coroutines (main scripts).\n\n"
 "To edit the game's scripts, open the Script Engine Debugger. You can also do this by clicking the bug icon in the top right.\n"
-msgstr ""
+msgstr "Jede Szenen hat mindestens ein Skript zugewiesen, das beim Laden der Szene ausgeführt wird.\n"
+"Zusätzlich gibt es auch \"COMMON/unionall.ssb\", das die Coroutinen des Spiels enthält (Hauptskripte).\n\n"
+"Um die Spielskripte zu bearbeiten, öffne den Script Engine Debugger. Tipp: Du kannst ihn auch öffnen, indem\n"
+"du das Käfer-Icon oben rechts drückst.\n"
 
 #: skytemple/skytemple/module/script/controller/ssb.py:44
 msgid "Open Script Engine Debugger"
@@ -10196,7 +10312,9 @@ msgstr "Sub-Szenen für \"{self.name}\""
 msgid "This section contains all sub scenes for the map {self.name}.\n\n"
 "These scenes can be loaded on top of the \"Enter\" scene,\n"
 "depending on the current story progress."
-msgstr ""
+msgstr "Dieser Abschnitt enthält alle Unterszenen für die Karte {self.name}.\n\n"
+"Diese Szenen können über die „Eingang“ -Szene geladen werden,\n"
+"abhängig vom aktuellen Story-Fortschritt."
 
 #: skytemple/skytemple/module/script/module.py:244
 msgid "Map not found."
@@ -10246,7 +10364,9 @@ msgstr "Importiere\n"
 msgid "Alternatively you can export the raw WAN sprite files \n"
 "and edit them with a tool like PsyCommando's <a href=\"gfxcrunch\">gfxcrunch</a>.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "Alternativ kannst du die rohen WAN-Sprite-Dateien exportieren \n"
+"und sie mit einem Werkzeug wie PsyCommandos <a href=\"gfxcrunch\">gfxcrunch</a> bearbeitet.\n"
+"Warnung: SkyTemple validiert die importierten Dateien nicht."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:388
 msgid "<span size=\"large\">Manual Im-/Export</span>"
@@ -10255,7 +10375,8 @@ msgstr "<span size=\"large\">Manueller Im-/Export</span>"
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:403
 msgid "You can export sprites in the SpriteBot format and import them again.\n"
 "For support, see our Discord server or the <a href=\"format\">specification</a> of the sheet format."
-msgstr ""
+msgstr "Du kannst Sprites im SpriteBot-Format exportieren und erneut importieren.\n"
+"Falls du Hilfe brauchst, komme in unseren Discord Server oder siehe dir die <a href=\"format\">Spezifikation</a> des Formats an."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:528
 msgid "Add new Sprite"
@@ -10305,12 +10426,13 @@ msgstr "Zum Importieren wähle das Archiv, das die Spritesheets enthält."
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:192
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:209
 msgid "To import select the directory of the spritesheets. If it is still zipped, unzip it first."
-msgstr ""
+msgstr "Wähle den Ordner aus, aus dem die Spritesheets importiert werden sollen. Falls es noch ein ZIP-Archiv ist, entpacke es zuerst."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:203
 msgid "This will insert a completely new sprite into the game's sprite file and assign the new ID to the Pokémon.\n"
 "If you want to instead replace the currently assigned sprite, choose 'Import'.\n"
-msgstr ""
+msgstr "Dadurch wird ein komplett neuer Sprite in die Sprite-Datei des Spiels eingefügt und dem Pokémon die neue ID zugewiesen.\n"
+"Wenn du stattdessen den derzeit zugewiesenen Sprite ersetzen möchtest, wähle „Import“.\n"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:223
 msgid "Import spritesheet..."
@@ -10328,13 +10450,17 @@ msgstr "Fehler beim Importieren des Spritesheets."
 msgid "SkyTemple can not edit sprites. \n"
 "However you can export the sprite and edit it with PsyCommando's <a href=\"gfxcrunch\">gfxcrunch</a>.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "SkyTemple kann keine Sprites bearbeiten. \n"
+"Du kannst den Sprite jedoch exportieren und mit PsyCommandos <a href=\"gfxcrunch\">gfxcrunch</a> bearbeiten.\n"
+"Warnung: SkyTemple validiert importierte Dateien nicht."
 
 #: skytemple/skytemple/module/sprite/controller/object.py:60
 msgid "SkyTemple can not edit sprites. \n"
 "However you can export the sprite in the gfxcrunch format and import it back again.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "SkyTemple kann keine Sprites bearbeiten. \n"
+"Du kannst den Sprite jedoch im gfxcrunch-Format exportieren, bearbeiten und wieder importieren.\n"
+"Warnung: SkyTemple validiert importierte Dateien nicht."
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:23
 msgid "Object Sprites"
@@ -10358,7 +10484,7 @@ msgstr "WAN-Sprite (*.wan)"
 
 #: skytemple/skytemple/module/sprite/module.py:159
 msgid "To import select the directory of the sprite export. If it is still zipped, unzip it first."
-msgstr ""
+msgstr "Wähle den Ordner aus, aus dem die Sprites importiert werden sollen. Falls sie noch in einem ZIP-Archiv sind, entpacke es zuerst."
 
 #: skytemple/skytemple/module/sprite/module.py:165
 msgid "Import gfxcrunch sprite..."
@@ -10383,7 +10509,8 @@ msgstr "Zeichenketten"
 #: skytemple/skytemple/module/strings/controller/main.py:35
 msgid "This section lets you edit the text strings in the game. Please note that some of these strings can also be edited in other places in the UI (eg. the Pokémon names under Pokémon).\n"
 "Not included are the strings of the game's scripts."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du die Zeichenketten im Spiel bearbeiten. Bitte beachte, dass einige dieser Zeichenketten auch an anderen Stellen im Editor bearbeiten werden können (z. B. die Pokémon-Namen unter \"Pokémon\").\n"
+"Dieser Abschnitt enhält nicht die Zeichenketten der Spielskripte."
 
 #: skytemple/skytemple/module/strings/controller/strings.glade:45
 msgid "<LANG> Text Strings"
@@ -10414,7 +10541,9 @@ msgstr "Zeichenkette"
 msgid "Import is done from a CSV file with the following specifications:\n"
 "- Has to contain all strings in order, one per row\n"
 "- Strings may be quoted with: \" and escaped with double quotes."
-msgstr ""
+msgstr "Der Import erfolgt aus einer CSV-Datei mit dem folgenden Format:\n"
+"- Alle Zeichenfolge müssen in Reihenfolge vorkommen, eine pro Zeile\n"
+"- Zeichenketten können in \" eingebettet werden. \" können mit doppelten \" escaped werden."
 
 #: skytemple/skytemple/module/strings/controller/strings.py:134
 msgid "Import strings from..."
@@ -10422,7 +10551,7 @@ msgstr "Zeichenketten importieren..."
 
 #: skytemple/skytemple/module/strings/controller/strings.py:154
 msgid "The CSV file must contain exactly {len(self._str.strings)} strings, has {len(strings)}."
-msgstr ""
+msgstr "Die CSV-Datei muss genau {len(self._str.strings)} Zeichenketten enthalten, sie enthält aber {len(strings)}."
 
 #: skytemple/skytemple/module/strings/controller/strings.py:163
 msgid "Error exporting the strings."
@@ -10432,7 +10561,9 @@ msgstr "Fehler beim Exportieren der Zeichenketten."
 msgid "Export is done to a CSV file with the following specifications:\n"
 "- Contains all strings in order, one per row\n"
 "- Strings may be quoted with: \" and escaped with double quotes."
-msgstr ""
+msgstr "Der Export erfolgt in eine CSV-Datei mit der folgenden Spezifikation:\n"
+"- Alle Zeichenfolge müssen in Reihenfolge vorkommen, eine pro Zeile\n"
+"- Zeichenketten können in \" eingebettet werden. \" können mit doppelten \" escaped werden."
 
 #: skytemple/skytemple/module/strings/controller/strings.py:179
 msgid "Export strings as..."
@@ -10535,7 +10666,14 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "  ROM. Things <i>will</i> break.\n"
 "- A project directory was created next to the ROM.\n"
 "- Please report any issues."
-msgstr ""
+msgstr "<span size=\"large\">Willkommen bei SkyTemple!</span>\n\n"
+"Mit diesem Wekzeug kannst du verschiedene Dinge in ROMs \n"
+"von Pokémon Mystery Dungeon Erkundungsteam Himmel bearbeiten.\n\n"
+"Bitte beachte folgendes:\n"
+"- Diese Software ist noch ziemlich instabil, mache daher regelmäßig Backups deiner ROM. \n"
+"Dinge <i>werden</i> kaputt gehen.\n"
+"- Ein Projektverzeichnis wurde neben der ROM erstellt.\n"
+"- Bitte sag uns Bescheid, wenn du irgendwelche Probleme hast."
 
 #: skytemple/skytemple/skytemple.glade:94
 msgid "Can we add a \"Created with SkyTemple\" message\n"
@@ -10546,7 +10684,15 @@ msgid "Can we add a \"Created with SkyTemple\" message\n"
 "If you want to do it later, or for another project, \n"
 "you can reopen this dialog, using the menu on \n"
 "the top-right of the main window."
-msgstr ""
+msgstr "Dürfen wir eine „Created with SkyTemple“ -Nachricht\n"
+"(„erstellt mit SkyTemple“) zu den Logs beim Spielstart\n"
+"hinzufügen?\n\n"
+"Diese Nachricht wird auf Ebene 2 des Kartenhintergrunds\n"
+"S05P01A platziert. Wenn sie dir nicht gefällt, kannst du\n"
+"sie einfach wieder entfernen oder anpassen.\n\n"
+"Wenn du es lieber später oder für ein anderes Projekt hinzufügen\n"
+"möchtest kannst du diesen Dialog über das Menü oben rechts\n"
+"wieder öffnen."
 
 #: skytemple/skytemple/skytemple.glade:114
 msgid "Add \"Created with SkyTemple\""
@@ -10744,7 +10890,10 @@ msgid "This tool converts any image into the image format required by Explorers 
 "Please note that the game has pretty strict color restrictions.\n\n"
 "Each 8x8 tile will only be able to use one palette.\n\n"
 "The images created by this tool can be imported for backgrounds."
-msgstr ""
+msgstr "Dieses Tool konvertiert jedes Bild in das von \"Erkundungsteam Himmel\" benötigte Bildformat.\n"
+"Bitte beachte, dass das Spiel ziemlich strenge Farbbeschränkungen hat.\n\n"
+"Jede 8x8 Kachel kann nur eine Palette verwenden.\n\n"
+"Die von diesem Werkzeug erstellten Bilder können als Hintergründe importiert werden."
 
 #: skytemple/skytemple/skytemple.glade:1827
 msgid "Number of Palettes"
