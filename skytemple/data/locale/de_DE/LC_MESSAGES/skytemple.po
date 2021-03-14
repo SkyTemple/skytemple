@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-13 13:43+0000\n"
-"PO-Revision-Date: 2021-03-14 11:17\n"
+"PO-Revision-Date: 2021-03-14 12:13\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -8894,7 +8894,8 @@ msgstr "Palette verwerfen"
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:251
 msgid "If ticked, the WTE file will not contain the palette data.\n"
 "This is for files that use another file's palette data. "
-msgstr ""
+msgstr "Falls ausgewählt wird die WTE Datei keine Palettendaten enthalten.\n"
+"Dies wird genutzt für Dateien, die die Palette einer anderen Datei nutzen. "
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:405
 msgid "Warning: this WTE file doesn't contain any palette data.\n"
@@ -10103,7 +10104,9 @@ msgstr "Sektor {new_index}"
 msgid "Are you sure you want to remove this sector?\n"
 "Removing the sector will re-number all following sectors (eg. if you remove Sector 70, sector 71 will become 70, 72 -> 71, etc.)\n"
 "Removing a sector may cause serious issues when the game tries to load the scene."
-msgstr ""
+msgstr "Möchten du diesen Sektor wirklich entfernen?\n"
+"Durch das Entfernen des Sektors werden alle folgenden Sektoren neu nummeriert (wenn du z. B. Sektor 70 entfernst, wird Sektor 71 zu 70, 72 -> 71 usw.)\n"
+"Das Entfernen eines Sektors kann schwerwiegende Probleme verursachen, wenn das Spiel versucht, die Szene zu laden."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:587
 msgid "Create Script"
@@ -10260,7 +10263,9 @@ msgstr "Importiere\n"
 msgid "Alternatively you can export the raw WAN sprite files \n"
 "and edit them with a tool like PsyCommando's <a href=\"gfxcrunch\">gfxcrunch</a>.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "Alternativ kannst du die rohen WAN-Sprite-Dateien exportieren \n"
+"und sie mit einem Werkzeug wie PsyCommandos <a href=\"gfxcrunch\">gfxcrunch</a> bearbeitet.\n"
+"Warnung: SkyTemple validiert die importierten Dateien nicht."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:388
 msgid "<span size=\"large\">Manual Im-/Export</span>"
@@ -10269,7 +10274,8 @@ msgstr "<span size=\"large\">Manueller Im-/Export</span>"
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:403
 msgid "You can export sprites in the SpriteBot format and import them again.\n"
 "For support, see our Discord server or the <a href=\"format\">specification</a> of the sheet format."
-msgstr ""
+msgstr "Du kannst Sprites im SpriteBot-Format exportieren und erneut importieren.\n"
+"Falls du Hilfe brauchst, komme in unseren Discord Server oder siehe dir die <a href=\"format\">Spezifikation</a> des Formats an."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:528
 msgid "Add new Sprite"
@@ -10319,7 +10325,7 @@ msgstr "Zum Importieren wähle das Archiv, das die Spritesheets enthält."
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:192
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:209
 msgid "To import select the directory of the spritesheets. If it is still zipped, unzip it first."
-msgstr ""
+msgstr "Wähle den Ordner aus, aus dem die Spritesheets importiert werden sollen. Falls es noch ein ZIP-Archiv ist, entpacke es zuerst."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:203
 msgid "This will insert a completely new sprite into the game's sprite file and assign the new ID to the Pokémon.\n"
@@ -10428,7 +10434,9 @@ msgstr "Zeichenkette"
 msgid "Import is done from a CSV file with the following specifications:\n"
 "- Has to contain all strings in order, one per row\n"
 "- Strings may be quoted with: \" and escaped with double quotes."
-msgstr ""
+msgstr "Der Import erfolgt aus einer CSV-Datei mit dem folgenden Format:\n"
+"- Alle Zeichenfolge müssen in Reihenfolge vorkommen, eine pro Zeile\n"
+"- Zeichenketten können in \" eingebettet werden. \" können mit doppelten \" escaped werden."
 
 #: skytemple/skytemple/module/strings/controller/strings.py:134
 msgid "Import strings from..."
@@ -10436,7 +10444,7 @@ msgstr "Zeichenketten importieren..."
 
 #: skytemple/skytemple/module/strings/controller/strings.py:154
 msgid "The CSV file must contain exactly {len(self._str.strings)} strings, has {len(strings)}."
-msgstr ""
+msgstr "Die CSV-Datei muss genau {len(self._str.strings)} Zeichenketten enthalten, sie enthält aber {len(strings)}."
 
 #: skytemple/skytemple/module/strings/controller/strings.py:163
 msgid "Error exporting the strings."
