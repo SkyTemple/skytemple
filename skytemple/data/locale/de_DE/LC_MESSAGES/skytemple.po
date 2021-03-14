@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-13 13:43+0000\n"
-"PO-Revision-Date: 2021-03-13 14:58\n"
+"PO-Revision-Date: 2021-03-14 10:11\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -9033,7 +9033,7 @@ msgstr "Infos über die geschrumpfte Version"
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:170
 msgid "To import, select a folder containing all the image files that were created when exporting the full tileset."
-msgstr ""
+msgstr "Um zu importieren, wähle einen Ordner mit allen Bilddateien, die beim Export des vollständigen Tilesets erstellt wurden."
 
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:171
 msgid "Import Full Tileset"
@@ -9617,7 +9617,13 @@ msgid "Values depend on Evolution Type:\n"
 "- Items: Regular Item ID - Optional evolutionary item ID\n"
 "- Unknown: ? - ?\n"
 "- Link Cable: 0 - 1"
-msgstr ""
+msgstr "Die Werte hängen vom Typ der Entwicklung ab:\n"
+"- Keine(s): n/a - n/a\n"
+"- Level: Erforderliches Level zur Weiterentwicklung - Optional: ID eines benötigten Items\n"
+"- IQ: Benötigter IQ-Wert - Optional: ID eines benötigten Items\n"
+"- Item: ID des benötigten Items - optional eine zweite Item ID\n"
+"- Unbekannt:? -?\n"
+"- Linkkabel: 0 - 1"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:307
 msgid "Evolution Parameters"
