@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-13 13:43+0000\n"
-"PO-Revision-Date: 2021-03-14 10:11\n"
+"PO-Revision-Date: 2021-03-14 11:17\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -9636,7 +9636,12 @@ msgid "The values are actually percentages.\n"
 "1000 -> 100%, etc.\n\n"
 "If you answered yes to the question asking if you played EoT or EoD in the personality test and you haven't recruited this Pokémon yet, the second recruit rate is used instead.\n"
 "If you have recruited this Pokémon already, its recruit rate is halved (only if it's positive)."
-msgstr ""
+msgstr "Die Werte sind in Wirklichkeit Prozentwerte.\n"
+"10 - > 1,0%,\n"
+"100 - > 10,0%,\n"
+"1000 -> 100% usw.\n\n"
+"Falls die Frage im Persönlichkeitstest, ob der Spieler bereits Zeit oder Dunkelheit gespielt hat, mit Ja beantwortet wurde und das jeweilige Pokémon noch nicht rekrutiert wurde, wird stattdessen der zweite Rekrutierungswert verwendet.\n"
+"Wenn das betroffene Pokémon bereits rekrutiert wurde, wird die Quote halbiert (nur wenn sie positiv ist)."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:324
 msgid "Recruit Rate"
@@ -9724,7 +9729,8 @@ msgstr "??? Bitte eine gültige Eintrags-ID ($) eingeben"
 #: skytemple/skytemple/module/monster/controller/monster.py:977
 msgid "The sprite memory size of this Pokémon was too low for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
-msgstr ""
+msgstr "Der Wert für die Speichergröße des Sprites vom Pokémon war zu niedrig.\n"
+"SkyTemple hat den Wert automatisch korrigiert."
 
 #: skytemple/skytemple/module/monster/level_up_graph.py:87
 msgid "Exp."
@@ -9775,7 +9781,7 @@ msgstr "Patches"
 
 #: skytemple/skytemple/module/patch/controller/main.py:61
 msgid "This patch is already applied. Some patches support applying them again, but you might also run into problems with some. Proceed with care."
-msgstr ""
+msgstr "Der Patch wurde bereits angewendet. Einige Patches unterstützen erneut angewendet zu werden. Allerdings könnte es mit anderen Patches auch zu Problemen kommen. Sei vorsichtig."
 
 #: skytemple/skytemple/module/patch/controller/main.py:71
 msgid "The current ROM is not supported by this patch."
@@ -9869,7 +9875,7 @@ msgstr "Alle Portraits als PNGs exportieren..."
 #: skytemple/skytemple/module/portrait/controller/portrait.py:135
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 40."
-msgstr ""
+msgstr "Um zu importieren, wähle einen Ordner aus. Dateien nach dem Muster '{self.item_id + 1}_XX.png' werden importiert. Dabei muss XX eine Zahl zwischen 0 und 40 sein."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:137
 msgid "Import Portraits"
