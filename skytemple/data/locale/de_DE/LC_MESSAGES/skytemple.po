@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-13 13:43+0000\n"
-"PO-Revision-Date: 2021-03-14 12:13\n"
+"PO-Revision-Date: 2021-03-14 18:25\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -7058,7 +7058,12 @@ msgid "You can export and import the tiles from an easy-to-modify\n"
 "For more information about DTEF, click the \"Help\" button.\n"
 "You can also manually import chunks and assign tile rules,\n"
 "by switching to the Advanced Mode."
-msgstr ""
+msgstr "Du kannst die Kacheln exportieren und Importieren aus einem\n"
+"einfachen Format basierend auf 47 Regeln (DTEF-Format). Weitere\n"
+"Einstellungen können über eine XML-Datei geändert werden.\n"
+"Für weitere Informationen über DTEF klicke den \"Hilfe\"-Button.\n"
+"Du kannst alternativ auch manuell Blöcke importieren und Kachelregeln\n"
+"definieren, indem du in den erweiterten Modus wechselst."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1481
 msgid "Simple Mode (DTEF)"
@@ -7084,7 +7089,9 @@ msgstr "Hat Flüssigkeit / Wand"
 msgid "Here you can edit what chunks get rendered for which dungeon field configuration. Select the configuration you want to edit, select a chunk from the \"Chunk Picker\" to use and then click on the dungeon field you want to edit.\n"
 "Use the menus above to edit chunks and tile graphics.\n"
 "<b>Please note</b>: The animations previewed here are not accurate to how they look in-game."
-msgstr ""
+msgstr "Hier kannst du einstellen, welche Blöcke für welche Dungeon-Feldkonfiguration verwendet werden. Wähle die Konfiguration, die du bearbeiten möchtest, wähle einen Block aus der \"Block-Auswahl\" und dann klicke auf das Feld, dass du setzen möchtest.\n"
+"Benutze die Menüs oben, um Blöcke und Kachelgrafiken zu bearbeiten.\n"
+"<b>Beachte bitte</b>: Die Animationen in der Vorschau sind nicht genau so, wie sie im Spiel aussehen."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1993
 msgid "Field Variations #1"
@@ -7224,7 +7231,7 @@ msgstr "gfxcrunch"
 
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.glade:84
 msgid "The sprite im- or export is done via <a href=\"gfxcrunch\">gfxcrunch</a>."
-msgstr ""
+msgstr "Der Import und Export von Sprites wird mit <a href=\"gfxcrunch\">gfxcrunch</a> durchgeführt."
 
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.py:70
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.py:80
@@ -7416,7 +7423,7 @@ msgstr "Item-Listen"
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:509
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:586
 msgid "Edits the lists used for mission rewards, treasure boxes and Treasure Town Kecleon shops."
-msgstr ""
+msgstr "Bearbeitet die Listen für Missionsbelohnungen, Schatzkisten und Shops in Schatzstadt."
 
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:522
 msgid "<Not available>\n\n"
