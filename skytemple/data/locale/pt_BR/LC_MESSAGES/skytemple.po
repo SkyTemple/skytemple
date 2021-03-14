@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-13 13:43+0000\n"
-"PO-Revision-Date: 2021-03-13 13:45\n"
+"POT-Creation-Date: 2021-03-14 19:10+0000\n"
+"PO-Revision-Date: 2021-03-14 20:17\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -1343,6 +1343,55 @@ msgstr "O arquivo de origem do armips não criou um {OUT_BIN}."
 msgid "To delete this effect, no items must use it."
 msgstr "Para excluir esse efeito, nenhum item deve usá-lo."
 
+#: skytemple-files/skytemple_files/data/item_s_p/model.py:29
+#: skytemple-files/skytemple_files/data/md/model.py:55
+#: skytemple-files/skytemple_files/data/md/model.py:281
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:453
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:454
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:432
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:441
+#: skytemple/skytemple/module/map_bg/controller/bg.py:594
+#: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:193
+#: skytemple/skytemple/module/script/controller/ssa.py:1184
+#: skytemple/skytemple/module/script/controller/ssa.py:1298
+#: skytemple/skytemple/module/script/controller/ssa.py:1467
+#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:52
+msgid "None"
+msgstr "Nenhum"
+
+#: skytemple-files/skytemple_files/data/item_s_p/model.py:30
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:346
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:915
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1040
+#: skytemple/skytemple/module/dungeon/controller/floor.glade:2691
+#: skytemple/skytemple/module/lists/controller/actor_list.glade:216
+#: skytemple/skytemple/module/lists/controller/recruitment_list.glade:98
+#: skytemple/skytemple/module/lists/controller/starters_list.glade:447
+#: skytemple/skytemple/module/lists/controller/starters_list.glade:574
+#: skytemple/skytemple/module/monster/controller/main.glade:71
+#: skytemple/skytemple/module/monster/controller/monster.glade:466
+msgid "Pokémon"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/item_s_p/model.py:31
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:71
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2267
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:930
+#: skytemple/skytemple/module/lists/controller/actor_list.glade:200
+#: skytemple/skytemple/module/script/controller/ssa.glade:1983
+#: skytemple/skytemple/module/script/controller/ssa.py:1255
+msgid "Type"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/item_s_p/model.py:61
+msgid "The Pokemon may hatch holding the item."
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/item_s_p/model.py:62
+msgid "? (Only all the Eeveelutions, and the Tyrogue line have items with this type!)"
+msgstr ""
+
 #: skytemple-files/skytemple_files/data/md/model.py:29
 #: skytemple-files/skytemple_files/data/md/model.py:258
 #: skytemple/skytemple/module/dungeon/controller/floor.py:95
@@ -1390,22 +1439,6 @@ msgstr "Feminino"
 #: skytemple-files/skytemple_files/data/md/model.py:32
 msgid "Genderless"
 msgstr "Sem Gênero"
-
-#: skytemple-files/skytemple_files/data/md/model.py:55
-#: skytemple-files/skytemple_files/data/md/model.py:281
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:453
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:454
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:432
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:441
-#: skytemple/skytemple/module/map_bg/controller/bg.py:594
-#: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:193
-#: skytemple/skytemple/module/script/controller/ssa.py:1184
-#: skytemple/skytemple/module/script/controller/ssa.py:1298
-#: skytemple/skytemple/module/script/controller/ssa.py:1467
-#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:52
-msgid "None"
-msgstr "Nenhum"
 
 #: skytemple-files/skytemple_files/data/md/model.py:56
 msgid "Normal"
@@ -2137,6 +2170,18 @@ msgstr "Esperar"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:30
 msgid "Ground Wait"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:60
+msgid "Physical Move"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:61
+msgid "Special Move"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:62
+msgid "Status Move"
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:43
@@ -3217,7 +3262,7 @@ msgstr ""
 msgid "Invalid parameter supplied for an operation: {param}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/script/ssb/writer.py:134
+#: skytemple-files/skytemple_files/script/ssb/writer.py:141
 msgid "Could not compile script: All languages must have the same amount of strings."
 msgstr ""
 
@@ -3319,15 +3364,6 @@ msgstr "Localização"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:70
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:87
 msgid "Hanger"
-msgstr ""
-
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:71
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2267
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:930
-#: skytemple/skytemple/module/lists/controller/actor_list.glade:200
-#: skytemple/skytemple/module/script/controller/ssa.glade:1983
-#: skytemple/skytemple/module/script/controller/ssa.py:1255
-msgid "Type"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:78
@@ -5356,19 +5392,6 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:1747
 #: skytemple/skytemple/module/lists/controller/item_lists.glade:1895
 msgid "Item"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:346
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:915
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1040
-#: skytemple/skytemple/module/dungeon/controller/floor.glade:2691
-#: skytemple/skytemple/module/lists/controller/actor_list.glade:216
-#: skytemple/skytemple/module/lists/controller/recruitment_list.glade:98
-#: skytemple/skytemple/module/lists/controller/starters_list.glade:447
-#: skytemple/skytemple/module/lists/controller/starters_list.glade:574
-#: skytemple/skytemple/module/monster/controller/main.glade:71
-#: skytemple/skytemple/module/monster/controller/monster.glade:466
-msgid "Pokémon"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:400
