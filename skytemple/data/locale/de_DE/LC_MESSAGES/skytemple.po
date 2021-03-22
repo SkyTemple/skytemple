@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-14 19:10+0000\n"
-"PO-Revision-Date: 2021-03-14 20:16\n"
+"POT-Creation-Date: 2021-03-22 15:05+0000\n"
+"PO-Revision-Date: 2021-03-22 15:09\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1415,6 +1415,7 @@ msgstr "Ungültig"
 #: skytemple/skytemple/module/lists/controller/starters_list.py:54
 #: skytemple/skytemple/module/lists/controller/starters_list.py:56
 #: skytemple/skytemple/module/lists/controller/starters_list.py:58
+#: skytemple/skytemple/module/lists/controller/starters_list.py:60
 msgid "Male"
 msgstr "Männlich"
 
@@ -1434,6 +1435,7 @@ msgstr "Männlich"
 #: skytemple/skytemple/module/lists/controller/starters_list.py:55
 #: skytemple/skytemple/module/lists/controller/starters_list.py:57
 #: skytemple/skytemple/module/lists/controller/starters_list.py:59
+#: skytemple/skytemple/module/lists/controller/starters_list.py:61
 msgid "Female"
 msgstr "Weiblich"
 
@@ -4163,8 +4165,6 @@ msgstr "Platzhalter-Akteure verwenden"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2035
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2051
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2067
-#: skytemple/skytemple/module/lists/controller/starters_list.py:60
-#: skytemple/skytemple/module/lists/controller/starters_list.py:61
 msgid "???"
 msgstr "???"
 
@@ -7848,6 +7848,12 @@ msgstr "Ruhig"
 #: skytemple/skytemple/module/lists/controller/starters_list.py:59
 msgid "Rash"
 msgstr "Hitzig"
+
+#. TRANSLATORS: Nature
+#: skytemple/skytemple/module/lists/controller/starters_list.py:60
+#: skytemple/skytemple/module/lists/controller/starters_list.py:61
+msgid "Bold"
+msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:76
 msgid "Map:"
