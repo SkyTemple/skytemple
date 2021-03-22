@@ -57,8 +57,8 @@ NATURES_AND_GENDERS = [
     (_("Quiet"), _("Female")),
     (_("Rash"), _("Male")),
     (_("Rash"), _("Female")),
-    (_("???"), _("???")),
-    (_("???"), _("???"))
+    (_("Bold"), _("Male")),  # TRANSLATORS: Nature
+    (_("Bold"), _("Female"))  # TRANSLATORS: Nature
 ]
 
 
