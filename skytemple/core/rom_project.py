@@ -141,6 +141,7 @@ class RomProject:
         self._rom = NintendoDSRom.fromFile(self.filename)
         self._loaded_modules = {}
         for name, module in Modules.all().items():
+            logger.debug(f"Loading module {name} for ROM...")
             if name == 'rom':
                 self._rom_module = module(self)
             else:

@@ -288,6 +288,7 @@ class MainController:
             project.init_patch_properties()
             
             logger.info(f'Loaded ROM {project.filename} ({rom_module.get_static_data().game_edition})')
+            logger.debug(f"Loading ROM module tree items...")
             rom_module.load_tree_items(self._item_store, None)
             root_node = rom_module.get_root_node()
 
@@ -297,10 +298,12 @@ class MainController:
 
             # Load item tree items
             for module in sorted(project.get_modules(False), key=lambda m: m.sort_order()):
+                logger.debug(f"Loading {module.__class__.__name__} module tree items...")
                 module.load_tree_items(self._item_store, root_node)
                 if module.__class__.__name__ == 'MapBgModule':
                     self._loaded_map_bg_module = module
             # TODO: Load settings from ROM for history, bookmarks, etc? - separate module?
+            logger.debug(f"Loaded all modules.")
 
             # Trigger event
             EventManager.instance().trigger(EVT_PROJECT_OPEN, project=project)
