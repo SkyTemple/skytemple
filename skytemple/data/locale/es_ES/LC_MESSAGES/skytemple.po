@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-22 15:05+0000\n"
-"PO-Revision-Date: 2021-03-22 17:30\n"
+"POT-Creation-Date: 2021-03-25 11:31+0000\n"
+"PO-Revision-Date: 2021-03-25 11:39\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3083,6 +3083,15 @@ msgstr "\n\n"
 msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
 msgstr "Añade tipos a la tabla de tipos. Esto reemplazará la antigua tabla por la tabla de tipos de la 6ª generación, añadiendo el tipo Hada al final."
 
+#: skytemple-files/skytemple_files/patch/handler/choose_starter.py:46
+msgid "Then, who would you like to be?"
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/handler/choose_starter.py:57
+msgid "Adds an extra menu during the personality test to choose the starter.\n"
+"Uses the supposedly unused string 2613 in the strings file. "
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:74
 msgid "Pressing start in a dungeon toggles between automatic and manual mode. In manual mode, you can control your partners on their turns. You must apply the extra code overlay made by End45 before applying this patch."
 msgstr "Al pulsar el botón Start en un territorio, se alterna entre el modo automático y el manual. En el modo manual, puedes controlar a tus compañeros en sus turnos. Debes aplicar la superposición de código adicional creado por End45 antes de aplicar este parche."
@@ -3159,6 +3168,15 @@ msgstr "Reduce el tiempo de pausa al mover la cámara para ver a los compañeros
 msgid "Allows the partner to be of the same type as the player in the personality test."
 msgstr "Permite que el compañero sea del mismo tipo que el jugador tras el test de personalidad."
 
+#: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:38
+msgid "Who would you like to be?"
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:49
+msgid "Skips the quiz, only leaving the gender question.\n"
+"Needs ChooseStarter patch to be applied. "
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/support_atupx.py:45
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
 "Requires the ActorAndLevelLoader, as it frees the space needed to implement this."
@@ -3169,47 +3187,47 @@ msgstr "Ofrece soporte para los contenedores ATUPX, que utilizan un algoritmo di
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr "Corrige la función del valor aleatorio del atributo \"No utilizado\" de los pisos de los territorios. Esto determina la probabilidad de que una sala contenga aleatoriamente paredes en su interior, algunas de las cuales pueden ser sustituidas por terreno secundario."
 
-#: skytemple-files/skytemple_files/patch/patches.py:112
-#: skytemple-files/skytemple_files/patch/patches.py:117
+#: skytemple-files/skytemple_files/patch/patches.py:116
+#: skytemple-files/skytemple_files/patch/patches.py:121
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "El parche '{name}' no se ha encontrado."
 
-#: skytemple-files/skytemple_files/patch/patches.py:123
+#: skytemple-files/skytemple_files/patch/patches.py:127
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "El parche '{patch_name}' necesita ser aplicado antes de poder aplicar '{name}'."
 
-#: skytemple-files/skytemple_files/patch/patches.py:126
+#: skytemple-files/skytemple_files/patch/patches.py:130
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr "El parche '{patch_name}' necesita ser aplicado antes de poder aplicar '{name}'. No se ha encontrado el parche."
 
-#: skytemple-files/skytemple_files/patch/patches.py:155
+#: skytemple-files/skytemple_files/patch/patches.py:159
 msgid "config.xml missing in patch package."
 msgstr "falta el archivo config.xml en el paquete de parches."
 
-#: skytemple-files/skytemple_files/patch/patches.py:157
+#: skytemple-files/skytemple_files/patch/patches.py:161
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "Error de sintaxis en el archivo config.xml al leer el paquete de parches."
 
-#: skytemple-files/skytemple_files/patch/patches.py:167
+#: skytemple-files/skytemple_files/patch/patches.py:171
 msgid "patch.py missing in patch package."
 msgstr "Falta el archivo patch.py en el paquete de parches."
 
-#: skytemple-files/skytemple_files/patch/patches.py:169
+#: skytemple-files/skytemple_files/patch/patches.py:173
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr "Patch.py del paquete de parches contiene un error de sintaxis."
 
-#: skytemple-files/skytemple_files/patch/patches.py:174
+#: skytemple-files/skytemple_files/patch/patches.py:178
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "Patch.py del paquete de parches no contiene 'PatchHandler'."
 
-#: skytemple-files/skytemple_files/patch/patches.py:179
+#: skytemple-files/skytemple_files/patch/patches.py:183
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "El paquete de parches no contiene una entrada para el nombre del parche del manipulador en config.xml."
 
-#: skytemple-files/skytemple_files/patch/patches.py:185
+#: skytemple-files/skytemple_files/patch/patches.py:189
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "No se ha encontrado ningún parche para el manipulador '{handler.name}' en la configuración."
@@ -4714,7 +4732,7 @@ msgstr "Se ha convertido la imagen."
 msgid "Trying to display the error failed. Wow!"
 msgstr "Error al intentar mostrar el error. ¡Guau!"
 
-#: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:94
+#: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:93
 msgid "SkyTemple - Error!"
 msgstr "SkyTemple - ¡Error!"
 
@@ -4753,7 +4771,7 @@ msgstr "Documento XML (*.xml)"
 msgid "CSV file (*.csv)"
 msgstr "Archivo CSV (*.csv)"
 
-#: skytemple/skytemple/main.py:93
+#: skytemple/skytemple/main.py:92
 msgid "PyGObject compiled without Cairo support. Can't start!"
 msgstr "PyGObject compilado sin soporte de Cairo. ¡No se puede iniciar!"
 
