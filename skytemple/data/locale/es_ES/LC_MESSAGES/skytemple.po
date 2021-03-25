@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-03-25 11:31+0000\n"
-"PO-Revision-Date: 2021-03-25 18:31\n"
+"PO-Revision-Date: 2021-03-25 19:30\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3085,7 +3085,7 @@ msgstr "Añade tipos a la tabla de tipos. Esto reemplazará la antigua tabla por
 
 #: skytemple-files/skytemple_files/patch/handler/choose_starter.py:46
 msgid "Then, who would you like to be?"
-msgstr "Entonces, ¿quién te gustaría ser?"
+msgstr "Entonces, ¿qué Pokémon te gustaría ser?"
 
 #: skytemple-files/skytemple_files/patch/handler/choose_starter.py:57
 msgid "Adds an extra menu during the personality test to choose the starter.\n"
@@ -3171,12 +3171,13 @@ msgstr "Permite que el compañero sea del mismo tipo que el jugador tras el test
 
 #: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:38
 msgid "Who would you like to be?"
-msgstr ""
+msgstr "¿Qué Pokémon te gustaría ser?"
 
 #: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:49
 msgid "Skips the quiz, only leaving the gender question.\n"
 "Needs ChooseStarter patch to be applied. "
-msgstr ""
+msgstr "Se salta la prueba, dejando solo la pregunta de género.\n"
+"Necesita que se aplique el parche 'ChooseStarter'. "
 
 #: skytemple-files/skytemple_files/patch/handler/support_atupx.py:45
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
