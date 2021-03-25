@@ -150,7 +150,7 @@ class TilequantController:
 
         response = dialog.run()
         output_image = dialog.get_filename()
-        if '.' not in output_image:
+        if output_image and '.' not in output_image:
             output_image += '.png'
         self._previous_output_image = output_image
         dialog.destroy()
