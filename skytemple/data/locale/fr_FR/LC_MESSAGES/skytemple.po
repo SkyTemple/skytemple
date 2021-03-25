@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-22 15:05+0000\n"
-"PO-Revision-Date: 2021-03-22 15:09\n"
+"POT-Creation-Date: 2021-03-25 11:31+0000\n"
+"PO-Revision-Date: 2021-03-25 11:39\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -3083,6 +3083,15 @@ msgstr "\n\n"
 msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/choose_starter.py:46
+msgid "Then, who would you like to be?"
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/handler/choose_starter.py:57
+msgid "Adds an extra menu during the personality test to choose the starter.\n"
+"Uses the supposedly unused string 2613 in the strings file. "
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:74
 msgid "Pressing start in a dungeon toggles between automatic and manual mode. In manual mode, you can control your partners on their turns. You must apply the extra code overlay made by End45 before applying this patch."
 msgstr "Appuyer sur Start dans un donjon permet de basculer entre le mode automatique et le mode manuel. En mode manuel, vous pouvez contrôler vous partenaires pendant leurs tours. Vous devez appliquer le correctif pour l'overlay de code supplémentaire de End45 avant d'appliquer ce patch."
@@ -3157,6 +3166,15 @@ msgstr "Réduit le temps de pause lors du déplacement de la caméra pour voir l
 msgid "Allows the partner to be of the same type as the player in the personality test."
 msgstr "Autorise le partenaire à être du même type que le joueur dans le test de personnalité."
 
+#: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:38
+msgid "Who would you like to be?"
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:49
+msgid "Skips the quiz, only leaving the gender question.\n"
+"Needs ChooseStarter patch to be applied. "
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/support_atupx.py:45
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
 "Requires the ActorAndLevelLoader, as it frees the space needed to implement this."
@@ -3167,47 +3185,47 @@ msgstr "Fournit le support pour les conteneurs ATUPX, qui utilisent un algorithm
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:112
-#: skytemple-files/skytemple_files/patch/patches.py:117
+#: skytemple-files/skytemple_files/patch/patches.py:116
+#: skytemple-files/skytemple_files/patch/patches.py:121
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "Le correctif « {name} » est introuvable."
 
-#: skytemple-files/skytemple_files/patch/patches.py:123
+#: skytemple-files/skytemple_files/patch/patches.py:127
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "Le correctif « {patch_name} » doit être appliqué avant d'appliquer le correctif « {name} »."
 
-#: skytemple-files/skytemple_files/patch/patches.py:126
+#: skytemple-files/skytemple_files/patch/patches.py:130
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr "Le correctif « {patch_name} » doit être appliqué avant d'appliquer le correctif « {name} ». Ce correctif est introuvable."
 
-#: skytemple-files/skytemple_files/patch/patches.py:155
+#: skytemple-files/skytemple_files/patch/patches.py:159
 msgid "config.xml missing in patch package."
 msgstr "Fichier config.xml manquant dans le paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:157
+#: skytemple-files/skytemple_files/patch/patches.py:161
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "Erreur de syntaxe dans le fichier config.xml lors de la lecture du paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:167
+#: skytemple-files/skytemple_files/patch/patches.py:171
 msgid "patch.py missing in patch package."
 msgstr "Fichier patch.py manquant dans le paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:169
+#: skytemple-files/skytemple_files/patch/patches.py:173
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:174
+#: skytemple-files/skytemple_files/patch/patches.py:178
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "Le fichier patch.py du paquet de correctifs ne contient pas de gestionnaire de correctifs (« PatchHandler »)."
 
-#: skytemple-files/skytemple_files/patch/patches.py:179
+#: skytemple-files/skytemple_files/patch/patches.py:183
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "Le paquet de correctifs ne contient aucune entrée de configuration dans config.xml pour le nom du correctif géré par ce gestionnaire."
 
-#: skytemple-files/skytemple_files/patch/patches.py:185
+#: skytemple-files/skytemple_files/patch/patches.py:189
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "Aucun correctif trouvé dans la configuration pour le gestionnaire « {handler.name} »."
@@ -4689,7 +4707,7 @@ msgstr "Image convertie."
 msgid "Trying to display the error failed. Wow!"
 msgstr "L'affichage de l'erreur a échoué. Incroyable !"
 
-#: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:94
+#: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:93
 msgid "SkyTemple - Error!"
 msgstr "SkyTemple - Erreur !"
 
@@ -4728,7 +4746,7 @@ msgstr "Document XML (*.xml)"
 msgid "CSV file (*.csv)"
 msgstr "Fichier CSV (*.csv)"
 
-#: skytemple/skytemple/main.py:93
+#: skytemple/skytemple/main.py:92
 msgid "PyGObject compiled without Cairo support. Can't start!"
 msgstr "PyGObject a été compilé sans le support pour Cairo. Impossible de démarrer !"
 
