@@ -57,9 +57,8 @@ try:
         loc = os.environ['LC_ALL']
         if loc == '':
             loc = locale.getdefaultlocale()[0]
-        gettext.translation(APP, localedir=LOCALE_DIR, languages=[loc, loc.split('_')[0]]).install()
         from skytemple_files.common.i18n_util import reload_locale
-        reload_locale()
+        reload_locale(APP, localedir=LOCALE_DIR, main_languages=[loc, loc.split('_')[0]])
 except Exception as ex:
     print("Faild setting up Python locale.")
     print(ex)
