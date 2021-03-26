@@ -16,20 +16,15 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 import os
-import ssl
 import sys
 import traceback
-import urllib
 import webbrowser
-from gettext import gettext
 from threading import current_thread
 from typing import Optional
-from urllib.request import urlopen
+import packaging.version
 
 import gi
 import logging
-
-from gi.repository.GdkPixbuf import Pixbuf
 
 from skytemple.controller.settings import SettingsController
 from skytemple.controller.tilequant import TilequantController
@@ -48,6 +43,7 @@ from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir, \
     version, open_dir
 from skytemple_files.common.i18n_util import _, f
+from skytemple_files.common.version_util import check_newest_release, ReleaseType
 
 gi.require_version('Gtk', '3.0')
 
@@ -122,6 +118,7 @@ class MainController:
         self._load_recent_files()
         self._connect_item_views()
         self._configure_error_view()
+        self._check_for_updates()
 
         self._debugger_manager = DebuggerManager()
 
@@ -492,6 +489,9 @@ class MainController:
         about.set_version(version())
         about.run()
 
+    def on_update_button_clicked(self, *args):
+        webbrowser.open_new_tab("https://projectpokemon.org/home/files/file/4193-skytemple-pmd2-rom-edtior/")
+
     def gtk_widget_hide_on_delete(self, w: Gtk.Widget, *args):
         w.hide_on_delete()
         return True
@@ -792,3 +792,14 @@ class MainController:
         self.recent_files = new_recent_files
         self.settings.set_recent_files(self.recent_files)
         # TODO Update recent files store too!
+
+    def _check_for_updates(self):
+        try:
+            new_version = check_newest_release(ReleaseType.SKYTEMPLE)
+            if packaging.version.parse(version()) < packaging.version.parse(new_version):
+                self.builder.get_object('update_new_version').set_text(new_version)
+                return
+        except Exception:
+            pass
+        # else/except:
+        self.builder.get_object('update_info').hide()

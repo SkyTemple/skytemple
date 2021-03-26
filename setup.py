@@ -1,4 +1,4 @@
-__version__ = '1.1.5'
+__version__ = '1.1.6'
 
 import glob
 import os
@@ -64,7 +64,7 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files >= 1.1.5',
+        'skytemple-files >= 1.1.6',
         'skytemple-dtef >= 1.1.1',
         'skytemple-icons >= 1.1.0',
         'pygobject >= 3.26.0',
@@ -73,7 +73,8 @@ setup(
         'tilequant >= 0.4.0',
         'skytemple-ssb-debugger >= 1.1.2',
         'pygal >= 2.4.0',
-        'CairoSVG >= 2.4.2'
+        'CairoSVG >= 2.4.2',
+        'packaging'
     ],
     extras_require={
         'discord':  ["pypresence >= 4.2.0"],
