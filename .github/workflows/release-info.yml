@@ -1,0 +1,23 @@
+name: Update Release Info
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Update Release Info
+    steps:
+      - name: Checkout Release Info
+        uses: actions/checkout@v2
+        with:
+          repository: skytemple/release-info
+      - name: Update Release
+        run: |
+          echo $GITHUB_REF > skytemple
+      - name: Commit and Push
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: skytemple
+          message: SkyTemple Release ${{ env.GITHUB_REF }}
+          push: true
