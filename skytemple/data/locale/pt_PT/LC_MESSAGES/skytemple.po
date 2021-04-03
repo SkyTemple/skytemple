@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-26 07:13+0000\n"
-"PO-Revision-Date: 2021-03-26 07:57\n"
+"POT-Creation-Date: 2021-04-03 13:42+0000\n"
+"PO-Revision-Date: 2021-04-03 14:01\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -1324,16 +1324,16 @@ msgid "Invalid XML. Expected attribute {attrib} for XML tag {ele.tag}."
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:57
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:130
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:133
 msgid "ARMIPS could not be found. Make sure, that 'armips' is inside your system's PATH."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:64
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:137
+#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:61
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:158
 msgid "ARMIPS reported an error while applying the patch."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:70
+#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:67
 #, python-brace-format
 msgid "The armips source file did not create a {OUT_BIN}."
 msgstr ""
@@ -3048,7 +3048,7 @@ msgstr ""
 msgid "This menu must have {num_entries} entries!"
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:166
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:187
 #, python-brace-format
 msgid "Error while applying the patch: {ex}"
 msgstr ""
