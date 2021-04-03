@@ -103,6 +103,7 @@ setup(
         portrait=     skytemple.module.portrait.module:PortraitModule
         patch=        skytemple.module.patch.module:PatchModule
         lists=        skytemple.module.lists.module:ListsModule
+        moves_items=  skytemple.module.moves_items.module:MovesItemsModule
         misc_graphics=skytemple.module.misc_graphics.module:MiscGraphicsModule
         dungeon=      skytemple.module.dungeon.module:DungeonModule
         dungeon_graphics=skytemple.module.dungeon_graphics.module:DungeonGraphicsModule

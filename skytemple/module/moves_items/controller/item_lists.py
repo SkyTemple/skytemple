@@ -14,25 +14,39 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+#
+#  This file is part of SkyTemple.
+#
+#  SkyTemple is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  SkyTemple is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
 from typing import TYPE_CHECKING, Dict, List, Optional
 
 from gi.repository import Gtk
 
-from functools import partial, reduce
+from functools import reduce
 from math import gcd
 from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.string_provider import StringType
-from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem
 from skytemple.core.module_controller import AbstractController
 from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList, Probability, MappaItemCategory, \
     MAX_ITEM_ID
 from skytemple_files.common.i18n_util import _
 if TYPE_CHECKING:
-    from skytemple.module.lists.module import ListsModule
+    from skytemple.module.moves_items.module import MovesItemsModule
 
 logger = logging.getLogger(__name__)
 
@@ -88,8 +102,9 @@ ITEM_LISTS = [_("E Floors Rewards"),
               _("Unknown 2"),
               _("Unknown 3")]
 
+
 class ItemListsController(AbstractController):
-    def __init__(self, module: 'ListsModule', *args):
+    def __init__(self, module: 'MovesItemsModule', *args):
         self.module = module
         self._item_list: Optional[MappaItemList] = None
         self._item_names = {}

@@ -65,6 +65,7 @@ class Modules:
         from skytemple.module.strings.module import StringsModule
         from skytemple.module.gfxcrunch.module import GfxcrunchModule
         from skytemple.module.sprite.module import SpriteModule
+        from skytemple.module.moves_items.module import MovesItemsModule
         return {
             "rom": RomModule,
             "bgp": BgpModule,
@@ -80,7 +81,8 @@ class Modules:
             "dungeon_graphics": DungeonGraphicsModule,
             "strings": StringsModule,
             "gfxcrunch": GfxcrunchModule,
-            "sprite": SpriteModule
+            "sprite": SpriteModule,
+            'moves_items': MovesItemsModule
         }
 
 
