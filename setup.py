@@ -1,4 +1,4 @@
-__version__ = '1.1.6'
+__version__ = '1.2.0'
 
 import glob
 import os
@@ -64,7 +64,7 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files >= 1.1.6',
+        'skytemple-files >= 1.2.0',
         'skytemple-dtef >= 1.1.1',
         'skytemple-icons >= 1.1.0',
         'pygobject >= 3.26.0',
