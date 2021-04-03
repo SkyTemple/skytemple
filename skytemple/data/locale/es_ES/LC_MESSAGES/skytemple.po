@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-03-26 07:13+0000\n"
-"PO-Revision-Date: 2021-04-02 10:19\n"
+"POT-Creation-Date: 2021-04-03 13:42+0000\n"
+"PO-Revision-Date: 2021-04-03 14:00\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1328,16 +1328,16 @@ msgid "Invalid XML. Expected attribute {attrib} for XML tag {ele.tag}."
 msgstr "Archivo XML inválido. Se esperaba el atributo {attrib} para la etiqueta XML {ele.tag}."
 
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:57
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:130
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:133
 msgid "ARMIPS could not be found. Make sure, that 'armips' is inside your system's PATH."
 msgstr "No se ha encontrado ARMIPS. Asegúrate de que 'armips' esté dentro de la variable 'path'."
 
-#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:64
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:137
+#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:61
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:158
 msgid "ARMIPS reported an error while applying the patch."
 msgstr "ARMIPS informó de un error al aplicar el parche."
 
-#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:70
+#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:67
 #, python-brace-format
 msgid "The armips source file did not create a {OUT_BIN}."
 msgstr "El archivo de origen de armips no ha generado un {OUT_BIN}."
@@ -3053,7 +3053,7 @@ msgstr "Menú de depuración principal de territorio"
 msgid "This menu must have {num_entries} entries!"
 msgstr "¡Este menú debe tener {num_entries} entradas!"
 
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:166
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:187
 #, python-brace-format
 msgid "Error while applying the patch: {ex}"
 msgstr "Error al aplicar el parche: {ex}"
