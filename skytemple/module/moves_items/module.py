@@ -14,19 +14,28 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from gi.repository.Gtk import TreeStore
+from typing import Optional, Dict
+
+from gi.repository.Gtk import TreeStore, TreeIter
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
+from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label, \
     recursive_generate_item_store_row_label
+from skytemple.module.moves_items.controller.item_controller import ItemController
 from skytemple.module.moves_items.controller.main_moves import MainMovesController, MOVES
 from skytemple.module.moves_items.controller.main_items import MainItemsController, ITEMS
 from skytemple.module.moves_items.controller.item_lists import ItemListsController
 from skytemple.module.moves_items.controller.item_effects import ItemEffectsController
+from skytemple.module.moves_items.controller.move_controller import MoveController
 from skytemple.module.moves_items.controller.move_effects import MoveEffectsController
+from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.data_cd.handler import DataCDHandler
+from skytemple_files.data.item_p.model import ItemP
+from skytemple_files.data.item_s_p.model import ItemSP
 from skytemple_files.data.val_list.handler import ValListHandler
+from skytemple_files.data.waza_p.model import WazaP
 from skytemple_files.list.items.handler import ItemListHandler
 from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList
 from skytemple_files.common.i18n_util import _
@@ -35,6 +44,7 @@ ITEM_LISTS = 'TABLEDAT/list_%02d.bin'
 METRONOME_POOL = 'BALANCE/metrono.bin'
 MOVE_EFFECTS = 'BALANCE/waza_cd.bin'
 ITEM_EFFECTS = 'BALANCE/item_cd.bin'
+FIRST_EXCLUSIVE_ITEM_ID = 444
 
 
 class MovesItemsModule(AbstractModule):
@@ -54,6 +64,8 @@ class MovesItemsModule(AbstractModule):
         self._item_lists_tree_iter = None
         self._item_effects_tree_iter = None
         self._move_effects_tree_iter = None
+        self.item_iters: Dict[int, TreeIter] = {}
+        self.moves_iters: Dict[int, TreeIter] = {}
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root_items = item_store.append(root_node, [
@@ -71,6 +83,19 @@ class MovesItemsModule(AbstractModule):
         self._move_effects_tree_iter = item_store.append(root_moves, [
             'skytemple-view-list-symbolic', _('Move Effects'), self, MoveEffectsController, 0, False, '', True
         ])
+
+        for i, item in enumerate(self.get_item_p().item_list):
+            name = self.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
+            item_store.append(root_items, [
+                'skytemple-view-list-symbolic', f'#{i:04}: {name}', self, ItemController, i, False, '', True
+            ])
+
+        for i, item in enumerate(self.get_waza_p().moves):
+            name = self.project.get_string_provider().get_value(StringType.MOVE_NAMES, i)
+            item_store.append(root_moves, [
+                'skytemple-view-list-symbolic', f'#{i:04}: {name}', self, MoveController, i, False, '', True
+            ])
+
         recursive_generate_item_store_row_label(item_store[root_items])
         recursive_generate_item_store_row_label(item_store[root_moves])
         self._tree_model = item_store
@@ -127,3 +152,12 @@ class MovesItemsModule(AbstractModule):
         # Mark as modified in tree
         row = self._tree_model[self._item_lists_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
+
+    def get_item_p(self) -> ItemP:
+        return self.project.open_file_in_rom('BALANCE/item_p.bin', FileType.ITEM_P)
+
+    def get_item_s_p(self) -> ItemSP:
+        return self.project.open_file_in_rom('BALANCE/item_s_p.bin', FileType.ITEM_SP)
+
+    def get_waza_p(self) -> WazaP:
+        return self.project.open_file_in_rom('BALANCE/waza_p.bin', FileType.WAZA_P)
