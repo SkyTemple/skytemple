@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-04-03 14:39+0000\n"
+"POT-Creation-Date: 2021-04-04 11:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2186,6 +2186,134 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:62
 msgid "Status Move"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:83
+msgid "Enemies"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:84
+msgid "Allies"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:85
+msgid "Everyone"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:86
+#: skytemple-files/skytemple_files/data/waza_p/model.py:126
+msgid "User"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:87
+msgid "Two-turn move"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:88
+msgid "Everyone except user"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:89
+msgid "All allies except user"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:90
+#: skytemple-files/skytemple_files/data/waza_p/model.py:91
+#: skytemple-files/skytemple_files/data/waza_p/model.py:92
+#: skytemple-files/skytemple_files/data/waza_p/model.py:93
+#: skytemple-files/skytemple_files/data/waza_p/model.py:94
+#: skytemple-files/skytemple_files/data/waza_p/model.py:95
+#: skytemple-files/skytemple_files/data/waza_p/model.py:96
+#: skytemple-files/skytemple_files/data/waza_p/model.py:97
+#: skytemple-files/skytemple_files/data/waza_p/model.py:129
+#: skytemple-files/skytemple_files/data/waza_p/model.py:130
+#: skytemple-files/skytemple_files/data/waza_p/model.py:131
+#: skytemple-files/skytemple_files/data/waza_p/model.py:132
+#: skytemple-files/skytemple_files/data/waza_p/model.py:133
+#: skytemple-files/skytemple_files/data/waza_p/model.py:163
+#: skytemple-files/skytemple_files/data/waza_p/model.py:164
+#: skytemple-files/skytemple_files/data/waza_p/model.py:165
+#: skytemple-files/skytemple_files/data/waza_p/model.py:166
+#: skytemple-files/skytemple_files/data/waza_p/model.py:167
+#: skytemple-files/skytemple_files/data/waza_p/model.py:168
+#: skytemple-files/skytemple_files/data/waza_p/model.py:169
+#: skytemple-files/skytemple_files/data/waza_p/model.py:170
+#: skytemple-files/skytemple_files/data/waza_p/model.py:171
+msgid "Invalid "
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:98
+#: skytemple-files/skytemple_files/data/waza_p/model.py:134
+msgid "Special / Invalid"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:119
+msgid "In front"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:120
+msgid "In front + adjacent (like Wide Slash)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:121
+msgid "8 tiles around user"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:122
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:689
+msgid "Room"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:123
+msgid "Two tiles away"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:124
+msgid "Straight line"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:125
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1130
+#: skytemple/skytemple/module/dungeon/controller/floor.glade:4580
+#: skytemple/skytemple/module/dungeon/module.py:737
+msgid "Floor"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:127
+msgid "In front; cuts corners"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:128
+msgid "Two tiles away; cuts corners"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:156
+msgid "No condition"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:157
+msgid "Based on AI Weight"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:158
+msgid "Current HP <= 25%"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:159
+msgid "Has at least one negative status condition"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:160
+msgid "Is asleep, in a nightmare or napping"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:161
+msgid "Is a ghost-type Pokémon and does not have the exposed status"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/waza_p/model.py:162
+#, python-format
+msgid "Current HP <= 25% or has at least one negative status condition"
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:43
@@ -5269,12 +5397,6 @@ msgstr ""
 msgid "Trap Layer Legend"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1130
-#: skytemple/skytemple/module/dungeon/controller/floor.glade:4580
-#: skytemple/skytemple/module/dungeon/module.py:737
-msgid "Floor"
-msgstr ""
-
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1159
 msgid "Music:"
 msgstr ""
@@ -5515,10 +5637,6 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:676
 msgid "Unk17"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:689
-msgid "Room"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:703
