@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-04-04 17:19+0000\n"
-"PO-Revision-Date: 2021-04-04 17:21\n"
+"PO-Revision-Date: 2021-04-04 18:34\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2192,32 +2192,32 @@ msgstr "Movimientos de estado"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:83
 msgid "Enemies"
-msgstr ""
+msgstr "Enemigos"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:84
 msgid "Allies"
-msgstr ""
+msgstr "Aliados"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:85
 msgid "Everyone"
-msgstr ""
+msgstr "Todos"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:86
 #: skytemple-files/skytemple_files/data/waza_p/model.py:126
 msgid "User"
-msgstr ""
+msgstr "Usuario"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:87
 msgid "Two-turn move"
-msgstr ""
+msgstr "Movimiento de dos turnos"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:88
 msgid "Everyone except user"
-msgstr ""
+msgstr "Todos excepto el usuario"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:89
 msgid "All allies except user"
-msgstr ""
+msgstr "Todos los aliados excepto el usuario"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:90
 #: skytemple-files/skytemple_files/data/waza_p/model.py:91
@@ -2242,24 +2242,24 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/waza_p/model.py:170
 #: skytemple-files/skytemple_files/data/waza_p/model.py:171
 msgid "Invalid "
-msgstr ""
+msgstr "Inválido "
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:98
 #: skytemple-files/skytemple_files/data/waza_p/model.py:134
 msgid "Special / Invalid"
-msgstr ""
+msgstr "Especial / Inválido"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:119
 msgid "In front"
-msgstr ""
+msgstr "En frente"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:120
 msgid "In front + adjacent (like Wide Slash)"
-msgstr ""
+msgstr "En frente + adyacente (como con Sablazo)"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:121
 msgid "8 tiles around user"
-msgstr ""
+msgstr "8 tiles alrededor del usuario"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:122
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:689
@@ -2268,11 +2268,11 @@ msgstr "Sala"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:123
 msgid "Two tiles away"
-msgstr ""
+msgstr "Dos tiles de distancia"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:124
 msgid "Straight line"
-msgstr ""
+msgstr "Línea recta"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:125
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1130
@@ -2291,23 +2291,23 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:156
 msgid "No condition"
-msgstr ""
+msgstr "Sin condición"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:157
 msgid "Based on AI Weight"
-msgstr ""
+msgstr "Basado en el peso de IA"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:158
 msgid "Current HP <= 25%"
-msgstr ""
+msgstr "PS actuales <= 25%"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:159
 msgid "Has at least one negative status condition"
-msgstr ""
+msgstr "Tiene al menos un estado negativo"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:160
 msgid "Is asleep, in a nightmare or napping"
-msgstr ""
+msgstr "Está dormido, en una pesadilla o descansando"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:161
 msgid "Is a ghost-type Pokémon and does not have the exposed status"
