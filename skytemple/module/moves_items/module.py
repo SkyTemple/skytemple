@@ -23,12 +23,12 @@ from skytemple.core.rom_project import RomProject
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label, \
     recursive_generate_item_store_row_label
-from skytemple.module.moves_items.controller.item_controller import ItemController
+from skytemple.module.moves_items.controller.item import ItemController
 from skytemple.module.moves_items.controller.main_moves import MainMovesController, MOVES
 from skytemple.module.moves_items.controller.main_items import MainItemsController, ITEMS
 from skytemple.module.moves_items.controller.item_lists import ItemListsController
 from skytemple.module.moves_items.controller.item_effects import ItemEffectsController
-from skytemple.module.moves_items.controller.move_controller import MoveController
+from skytemple.module.moves_items.controller.move import MoveController
 from skytemple.module.moves_items.controller.move_effects import MoveEffectsController
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.data_cd.handler import DataCDHandler
