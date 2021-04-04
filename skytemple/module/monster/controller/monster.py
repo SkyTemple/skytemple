@@ -200,6 +200,26 @@ class MonsterController(AbstractController):
         self._update_lang_from_entry(w, 4)
         self.mark_as_modified()
 
+    def on_entry_lang1_cat_changed(self, w, *args):
+        self._update_lang_cat_from_entry(w, 0)
+        self.mark_as_modified()
+
+    def on_entry_lang2_cat_changed(self, w, *args):
+        self._update_lang_cat_from_entry(w, 1)
+        self.mark_as_modified()
+
+    def on_entry_lang3_cat_changed(self, w, *args):
+        self._update_lang_cat_from_entry(w, 2)
+        self.mark_as_modified()
+
+    def on_entry_lang4_cat_changed(self, w, *args):
+        self._update_lang_cat_from_entry(w, 3)
+        self.mark_as_modified()
+
+    def on_entry_lang5_cat_changed(self, w, *args):
+        self._update_lang_cat_from_entry(w, 4)
+        self.mark_as_modified()
+
     def on_entry_body_size_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()
@@ -738,14 +758,19 @@ class MonsterController(AbstractController):
         for lang_id in range(0, 5):
             gui_id = lang_id + 1
             gui_label: Gtk.Label = self.builder.get_object(f'label_lang{gui_id}')
+            gui_label_cat: Gtk.Label = self.builder.get_object(f'label_lang{gui_id}_cat')
             gui_entry: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}')
+            gui_entry_cat: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}_cat')
             if lang_id < len(langs):
                 # We have this language
                 gui_label.set_text(_(langs[lang_id].name_localized) + ':')
+                gui_label_cat.set_text(_(langs[lang_id].name_localized) + ':')
             else:
                 # We don't.
                 gui_label.set_text("")
                 gui_entry.set_sensitive(False)
+                gui_label_cat.set_text("")
+                gui_entry_cat.set_sensitive(False)
 
     def _init_entid(self):
         self.builder.get_object(f'label_base_id').set_text(f'#{self.entry.md_index_base:03}')
@@ -774,11 +799,15 @@ class MonsterController(AbstractController):
         for lang_id in range(0, 5):
             gui_id = lang_id + 1
             gui_entry: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}')
+            gui_entry_cat: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}_cat')
             if lang_id < len(langs):
                 # We have this language
                 gui_entry.set_text(self._string_provider.get_value(StringType.POKEMON_NAMES,
                                                                    self.entry.md_index_base,
                                                                    langs[lang_id]))
+                gui_entry_cat.set_text(self._string_provider.get_value(StringType.POKEMON_CATEGORIES,
+                                                                       self.entry.md_index_base,
+                                                                       langs[lang_id]))
 
         # Stats
         self._set_entry('entry_personality', self.module.get_personality(self.item_id))
@@ -899,6 +928,12 @@ class MonsterController(AbstractController):
         lang = self._string_provider.get_languages()[lang_index]
         self._string_provider.get_model(lang).strings[
             self._string_provider.get_index(StringType.POKEMON_NAMES, self.entry.md_index_base)
+        ] = w.get_text()
+
+    def _update_lang_cat_from_entry(self, w: Gtk.Entry, lang_index):
+        lang = self._string_provider.get_languages()[lang_index]
+        self._string_provider.get_model(lang).strings[
+            self._string_provider.get_index(StringType.POKEMON_CATEGORIES, self.entry.md_index_base)
         ] = w.get_text()
 
     def _init_sub_pages(self):
