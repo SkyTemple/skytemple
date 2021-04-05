@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-04-04 17:19+0000\n"
-"PO-Revision-Date: 2021-04-04 17:21\n"
+"POT-Creation-Date: 2021-04-05 12:32+0000\n"
+"PO-Revision-Date: 2021-04-05 12:47\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -2190,32 +2190,32 @@ msgstr "Status-Attacke"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:83
 msgid "Enemies"
-msgstr ""
+msgstr "Gegner"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:84
 msgid "Allies"
-msgstr ""
+msgstr "Verbündete"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:85
 msgid "Everyone"
-msgstr ""
+msgstr "Alle"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:86
 #: skytemple-files/skytemple_files/data/waza_p/model.py:126
 msgid "User"
-msgstr ""
+msgstr "Anwender"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:87
 msgid "Two-turn move"
-msgstr ""
+msgstr "Attacke über zwei Runden"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:88
 msgid "Everyone except user"
-msgstr ""
+msgstr "Alle außer Anwender"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:89
 msgid "All allies except user"
-msgstr ""
+msgstr "Alle Verbündeten außer Anwender"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:90
 #: skytemple-files/skytemple_files/data/waza_p/model.py:91
@@ -2240,24 +2240,24 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/waza_p/model.py:170
 #: skytemple-files/skytemple_files/data/waza_p/model.py:171
 msgid "Invalid "
-msgstr ""
+msgstr "Ungültig "
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:98
 #: skytemple-files/skytemple_files/data/waza_p/model.py:134
 msgid "Special / Invalid"
-msgstr ""
+msgstr "Besonders / Ungültig"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:119
 msgid "In front"
-msgstr ""
+msgstr "Vor Anwender"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:120
 msgid "In front + adjacent (like Wide Slash)"
-msgstr ""
+msgstr "Vor Anwender + angrenzend (wie Drei-Streich)"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:121
 msgid "8 tiles around user"
-msgstr ""
+msgstr "8 Felder um Anwender"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:122
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:689
@@ -2266,11 +2266,11 @@ msgstr "Raum"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:123
 msgid "Two tiles away"
-msgstr ""
+msgstr "Zwei Felder entfernt"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:124
 msgid "Straight line"
-msgstr ""
+msgstr "Gerade Linie"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:125
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1130
@@ -2281,40 +2281,40 @@ msgstr "Boden"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:127
 msgid "In front; cuts corners"
-msgstr ""
+msgstr "Vor Anwender; über Ecken"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:128
 msgid "Two tiles away; cuts corners"
-msgstr ""
+msgstr "Zwei Felder entfernt; über Ecken"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:156
 msgid "No condition"
-msgstr ""
+msgstr "Keine Bedingung"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:157
 msgid "Based on AI Weight"
-msgstr ""
+msgstr "Basierend auf KI-Gewichtung"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:158
 msgid "Current HP <= 25%"
-msgstr ""
+msgstr "Aktuelle KP <= 25%"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:159
 msgid "Has at least one negative status condition"
-msgstr ""
+msgstr "Hat mindestens einen negativen Status"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:160
 msgid "Is asleep, in a nightmare or napping"
-msgstr ""
+msgstr "Schläft oder von Albtraum betroffen"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:161
 msgid "Is a ghost-type Pokémon and does not have the exposed status"
-msgstr ""
+msgstr "Ist ein Geist-Pokémon und hat nicht den Entlarvt-Status"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:162
 #, python-format
 msgid "Current HP <= 25% or has at least one negative status condition"
-msgstr ""
+msgstr "Aktuelle KP <= 25% oder hat mindestens einen negativen Status"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:43
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:103
@@ -3212,7 +3212,7 @@ msgstr "Fügt Typen am Ende der Typentabelle hinzu. Dadurch wird die Typentabell
 
 #: skytemple-files/skytemple_files/patch/handler/choose_starter.py:46
 msgid "Then, who would you like to be?"
-msgstr ""
+msgstr "Wer würdest du dann gerne sein?"
 
 #: skytemple-files/skytemple_files/patch/handler/choose_starter.py:57
 msgid "Adds an extra menu during the personality test to choose the starter.\n"
@@ -5426,6 +5426,7 @@ msgstr "Erlaubte Attacken:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1183
 #: skytemple/skytemple/module/monster/controller/monster.glade:1449
+#: skytemple/skytemple/module/moves_items/controller/item.glade:923
 #: skytemple/skytemple/module/moves_items/controller/move.glade:747
 #: skytemple/skytemple/skytemple.glade:300
 msgid "General"
@@ -5760,6 +5761,7 @@ msgstr "Kategorie hinzufügen"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:110
 #: skytemple/skytemple/module/monster/controller/monster.glade:1070
+#: skytemple/skytemple/module/moves_items/controller/item.glade:98
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:97
 #: skytemple/skytemple/module/moves_items/controller/move.glade:172
 msgid "Category:"
@@ -9147,6 +9149,7 @@ msgid "Group: "
 msgstr "Gruppe: "
 
 #: skytemple/skytemple/module/monster/controller/main.glade:205
+#: skytemple/skytemple/module/moves_items/controller/item.glade:716
 #: skytemple/skytemple/module/moves_items/controller/move.glade:554
 msgid "Text"
 msgstr "Text"
@@ -9348,13 +9351,15 @@ msgid "Entity ID:"
 msgstr "Entität-ID:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:750
+#: skytemple/skytemple/module/moves_items/controller/item.glade:122
 msgid "Sprite ID:"
 msgstr "Sprite-ID:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1054
+#: skytemple/skytemple/module/moves_items/controller/item.glade:383
 #: skytemple/skytemple/module/moves_items/controller/move.glade:357
 msgid "Name:"
-msgstr ""
+msgstr "Name:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1231
 msgid "Body Size:"
@@ -9710,10 +9715,87 @@ msgstr "Dieser Eintrag hat keine Portraits."
 msgid "Stats and moves are only editable for base forms."
 msgstr "Statuswerte und Attacken sind nur für Basis-Formen editierbar."
 
+#: skytemple/skytemple/module/moves_items/controller/item.glade:52
+msgid "Item ID:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:147
+msgid "Buy Price:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:159
+msgid "Sell Price:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:197
+msgid "Palette ID:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:399
+msgid "Long Description:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:575
+msgid "Short Description:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:740
+#: skytemple/skytemple/module/moves_items/controller/move.glade:76
+msgid "Move ID:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:752
+msgid "Min Amount:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:810
+msgid "Max Amount:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:855
+msgid "Action Name:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:992
+msgid "Is Valid:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1004
+msgid "Is in T/D:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1016
+msgid "AI Flag 1:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1028
+msgid "AI Flag 2:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1040
+msgid "AI Flag 3:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1082
+msgid "Flags"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1107
+msgid "Exclusive Item Type:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1119
+msgid "Exclusive Item Parameter:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1200
+msgid "Exclusive Item Settings"
+msgstr ""
+
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:77
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:154
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:298
-#: skytemple/skytemple/module/moves_items/module.py:81
+#: skytemple/skytemple/module/moves_items/module.py:85
 msgid "Item Effects"
 msgstr "Item-Effekte"
 
@@ -9838,7 +9920,7 @@ msgstr "Hilfe zum Importieren / Exportieren von Effektcode"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:512
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:589
-#: skytemple/skytemple/module/moves_items/module.py:78
+#: skytemple/skytemple/module/moves_items/module.py:82
 msgid "Item Lists"
 msgstr "Item-Listen"
 
@@ -9973,10 +10055,6 @@ msgstr ""
 msgid "This section lets you edit settings related to moves."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.glade:76
-msgid "Move ID:"
-msgstr ""
-
 #: skytemple/skytemple/module/moves_items/controller/move.glade:101
 msgid "Base Power:"
 msgstr ""
@@ -10045,15 +10123,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1049
 msgid "Unk C:"
-msgstr ""
+msgstr "Unb. C:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1074
 msgid "Unk 13:"
-msgstr ""
+msgstr "Unb. 13:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1099
 msgid "Unk 15:"
-msgstr ""
+msgstr "Unb. 15:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1124
 msgid "Is Snatchable:"
@@ -10070,7 +10148,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:85
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:163
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:339
-#: skytemple/skytemple/module/moves_items/module.py:84
+#: skytemple/skytemple/module/moves_items/module.py:88
 msgid "Move Effects"
 msgstr "Attacken-Effekte"
 
@@ -11010,11 +11088,11 @@ msgstr "SkyTemple"
 
 #: skytemple/skytemple/skytemple.glade:775
 msgid "A new version of SkyTemple is available: "
-msgstr ""
+msgstr "Eine neue Version von SkyTemple ist verfügbar: "
 
 #: skytemple/skytemple/skytemple.glade:800
 msgid "Update now!"
-msgstr ""
+msgstr "Jetzt aktualisieren!"
 
 #: skytemple/skytemple/skytemple.glade:828
 msgid "Support us!"
