@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-04-04 17:19+0000\n"
-"PO-Revision-Date: 2021-04-05 07:03\n"
+"POT-Creation-Date: 2021-04-05 12:32+0000\n"
+"PO-Revision-Date: 2021-04-05 12:47\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -5352,6 +5352,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1183
 #: skytemple/skytemple/module/monster/controller/monster.glade:1449
+#: skytemple/skytemple/module/moves_items/controller/item.glade:923
 #: skytemple/skytemple/module/moves_items/controller/move.glade:747
 #: skytemple/skytemple/skytemple.glade:300
 msgid "General"
@@ -5679,6 +5680,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:110
 #: skytemple/skytemple/module/monster/controller/monster.glade:1070
+#: skytemple/skytemple/module/moves_items/controller/item.glade:98
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:97
 #: skytemple/skytemple/module/moves_items/controller/move.glade:172
 msgid "Category:"
@@ -8764,6 +8766,7 @@ msgid "Group: "
 msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/main.glade:205
+#: skytemple/skytemple/module/moves_items/controller/item.glade:716
 #: skytemple/skytemple/module/moves_items/controller/move.glade:554
 msgid "Text"
 msgstr ""
@@ -8964,10 +8967,12 @@ msgid "Entity ID:"
 msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:750
+#: skytemple/skytemple/module/moves_items/controller/item.glade:122
 msgid "Sprite ID:"
 msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1054
+#: skytemple/skytemple/module/moves_items/controller/item.glade:383
 #: skytemple/skytemple/module/moves_items/controller/move.glade:357
 msgid "Name:"
 msgstr ""
@@ -9313,10 +9318,87 @@ msgstr ""
 msgid "Stats and moves are only editable for base forms."
 msgstr ""
 
+#: skytemple/skytemple/module/moves_items/controller/item.glade:52
+msgid "Item ID:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:147
+msgid "Buy Price:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:159
+msgid "Sell Price:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:197
+msgid "Palette ID:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:399
+msgid "Long Description:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:575
+msgid "Short Description:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:740
+#: skytemple/skytemple/module/moves_items/controller/move.glade:76
+msgid "Move ID:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:752
+msgid "Min Amount:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:810
+msgid "Max Amount:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:855
+msgid "Action Name:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:992
+msgid "Is Valid:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1004
+msgid "Is in T/D:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1016
+msgid "AI Flag 1:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1028
+msgid "AI Flag 2:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1040
+msgid "AI Flag 3:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1082
+msgid "Flags"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1107
+msgid "Exclusive Item Type:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1119
+msgid "Exclusive Item Parameter:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1200
+msgid "Exclusive Item Settings"
+msgstr ""
+
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:77
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:154
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:298
-#: skytemple/skytemple/module/moves_items/module.py:81
+#: skytemple/skytemple/module/moves_items/module.py:85
 msgid "Item Effects"
 msgstr ""
 
@@ -9433,7 +9515,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:512
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:589
-#: skytemple/skytemple/module/moves_items/module.py:78
+#: skytemple/skytemple/module/moves_items/module.py:82
 msgid "Item Lists"
 msgstr ""
 
@@ -9566,10 +9648,6 @@ msgstr ""
 msgid "This section lets you edit settings related to moves."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.glade:76
-msgid "Move ID:"
-msgstr ""
-
 #: skytemple/skytemple/module/moves_items/controller/move.glade:101
 msgid "Base Power:"
 msgstr ""
@@ -9663,7 +9741,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:85
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:163
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:339
-#: skytemple/skytemple/module/moves_items/module.py:84
+#: skytemple/skytemple/module/moves_items/module.py:88
 msgid "Move Effects"
 msgstr ""
 
