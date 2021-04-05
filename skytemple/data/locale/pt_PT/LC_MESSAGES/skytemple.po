@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-04-05 12:32+0000\n"
-"PO-Revision-Date: 2021-04-05 12:47\n"
+"POT-Creation-Date: 2021-04-05 23:29+0000\n"
+"PO-Revision-Date: 2021-04-05 23:38\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -882,7 +882,7 @@ msgid "9"
 msgstr ""
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:598
-#: skytemple/skytemple/module/monster/controller/monster.py:425
+#: skytemple/skytemple/module/monster/controller/monster.py:452
 msgid "Size"
 msgstr ""
 
@@ -1344,7 +1344,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:29
 #: skytemple-files/skytemple_files/data/md/model.py:55
-#: skytemple-files/skytemple_files/data/md/model.py:281
+#: skytemple-files/skytemple_files/data/md/model.py:308
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:453
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:454
@@ -1450,7 +1450,7 @@ msgid "Fire"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:58
-#: skytemple-files/skytemple_files/data/md/model.py:314
+#: skytemple-files/skytemple_files/data/md/model.py:351
 msgid "Water"
 msgstr ""
 
@@ -2024,6 +2024,10 @@ msgstr ""
 msgid "Unused"
 msgstr ""
 
+#: skytemple-files/skytemple_files/data/md/model.py:281
+msgid "Not an Evolved Form."
+msgstr ""
+
 #: skytemple-files/skytemple_files/data/md/model.py:282
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1074
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2712
@@ -2048,42 +2052,105 @@ msgid "Items"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:285
-#: skytemple-files/skytemple_files/data/md/model.py:310
-msgid "Unknown"
+msgid "Recruited"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:286
-msgid "Link Cable"
+msgid "No Main Requirement"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:309
-msgid "Standard"
+msgid "Link Cable"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:310
+msgid "Attack > Defense"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:311
-msgid "Hovering"
+msgid "Attack < Defense"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:312
+msgid "Attack = Defense"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:313
+msgid "Sun Ribbon"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:314
+msgid "Lunar Ribbon"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:315
+msgid "Beauty Scarf"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:316
+msgid "Internal Value 0x1 = 1"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:317
+msgid "Internal Value 0x1 = 0"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:318
+msgid "Male (1st form)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:319
+msgid "Female (2nd form)"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:320
+msgid "Knows AncientPower"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:321
+msgid "Knows Rollout"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:322
+msgid "Knows Double Hit"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:323
+msgid "Knows Mimic"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:346
+msgid "Standard"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:347
+msgid "Unknown"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:348
+msgid "Hovering"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/md/model.py:349
 msgid "Phase Through Walls"
 msgstr ""
 
 #. TRANSLATORS: Movement Type
-#: skytemple-files/skytemple_files/data/md/model.py:313
+#: skytemple-files/skytemple_files/data/md/model.py:350
 msgid "Lava"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/model.py:337
+#: skytemple-files/skytemple_files/data/md/model.py:374
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:32
 msgid "Small"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/model.py:338
+#: skytemple-files/skytemple_files/data/md/model.py:375
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:42
 msgid "Medium"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/model.py:339
+#: skytemple-files/skytemple_files/data/md/model.py:376
 msgid "Large"
 msgstr ""
 
@@ -3614,7 +3681,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:184
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:89
 #: skytemple/skytemple/module/lists/controller/world_map.glade:405
-#: skytemple/skytemple/module/monster/controller/monster.glade:1207
+#: skytemple/skytemple/module/monster/controller/monster.glade:1243
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:215
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:453
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:224
@@ -4283,6 +4350,10 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2035
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2051
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2067
+#: skytemple/skytemple/module/monster/controller/monster.py:1063
+#: skytemple/skytemple/module/monster/controller/monster.py:1064
+#: skytemple/skytemple/module/monster/controller/monster.py:1065
+#: skytemple/skytemple/module/monster/controller/monster.py:1066
 msgid "???"
 msgstr ""
 
@@ -5351,7 +5422,7 @@ msgid "Moves allowed:"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1183
-#: skytemple/skytemple/module/monster/controller/monster.glade:1449
+#: skytemple/skytemple/module/monster/controller/monster.glade:1485
 #: skytemple/skytemple/module/moves_items/controller/item.glade:923
 #: skytemple/skytemple/module/moves_items/controller/move.glade:747
 #: skytemple/skytemple/skytemple.glade:300
@@ -5417,7 +5488,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1660
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4312
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4577
-#: skytemple/skytemple/module/monster/controller/monster.glade:2643
+#: skytemple/skytemple/module/monster/controller/monster.glade:2813
 msgid "Settings"
 msgstr ""
 
@@ -6016,7 +6087,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4116
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4277
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4438
-#: skytemple/skytemple/module/monster/controller/monster.py:414
+#: skytemple/skytemple/module/monster/controller/monster.py:441
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:733
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:899
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1042
@@ -6141,7 +6212,7 @@ msgid "Poké (Money)"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:70
-#: skytemple/skytemple/module/monster/controller/monster.glade:2626
+#: skytemple/skytemple/module/monster/controller/monster.glade:2796
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:63
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1288
 msgid "Other"
@@ -8977,209 +9048,237 @@ msgstr ""
 msgid "Name:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1231
+#: skytemple/skytemple/module/monster/controller/monster.glade:1267
 msgid "Body Size:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1243
+#: skytemple/skytemple/module/monster/controller/monster.glade:1279
 msgid "Movement:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1255
+#: skytemple/skytemple/module/monster/controller/monster.glade:1291
 msgid "IQ Group:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1267
+#: skytemple/skytemple/module/monster/controller/monster.glade:1303
 msgid "Ability:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1279
+#: skytemple/skytemple/module/monster/controller/monster.glade:1315
 msgid "Exp. Yield:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1291
+#: skytemple/skytemple/module/monster/controller/monster.glade:1327
 msgid "Recruit Rate:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1303
+#: skytemple/skytemple/module/monster/controller/monster.glade:1339
 msgid "Personality:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1474
+#: skytemple/skytemple/module/monster/controller/monster.glade:1510
 msgid "Base HP:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1486
+#: skytemple/skytemple/module/monster/controller/monster.glade:1522
 msgid "Weight:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1498
+#: skytemple/skytemple/module/monster/controller/monster.glade:1534
 msgid "Base Atk:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1510
+#: skytemple/skytemple/module/monster/controller/monster.glade:1546
 msgid "Base Sp. Atk:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1522
+#: skytemple/skytemple/module/monster/controller/monster.glade:1558
 msgid "Base Def:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1534
+#: skytemple/skytemple/module/monster/controller/monster.glade:1570
 msgid "Base Sp. Def:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1546
+#: skytemple/skytemple/module/monster/controller/monster.glade:1582
 msgid "Size:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1558
+#: skytemple/skytemple/module/monster/controller/monster.glade:1594
 msgid "Movement Speed:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1716
+#: skytemple/skytemple/module/monster/controller/monster.glade:1752
 msgid "Base Stats"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1741
+#: skytemple/skytemple/module/monster/controller/monster.glade:1777
 msgid "Base Form Index:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1753
+#: skytemple/skytemple/module/monster/controller/monster.glade:1789
 msgid "Pre Evolution:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1765
-msgid "Evolution Method:"
+#: skytemple/skytemple/module/monster/controller/monster.glade:1801
+msgid "Main Requirement:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1777
-msgid "Parameters:"
+#: skytemple/skytemple/module/monster/controller/monster.glade:1813
+msgid "Parameter:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1845
+#: skytemple/skytemple/module/monster/controller/monster.glade:1869
 msgid "label_base_form_index"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1858
+#: skytemple/skytemple/module/monster/controller/monster.glade:1882
 msgid "label_pre_evo_index"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1899
+#: skytemple/skytemple/module/monster/controller/monster.glade:1931
+msgid "label_param"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.glade:1943
+msgid "Additional Requirement:"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.glade:1959
 msgid "Evolution"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1924
+#: skytemple/skytemple/module/monster/controller/monster.glade:1984
 msgid "Item 1:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1936
+#: skytemple/skytemple/module/monster/controller/monster.glade:1996
 msgid "Item 2:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1948
+#: skytemple/skytemple/module/monster/controller/monster.glade:2008
 msgid "Item 3:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:1960
+#: skytemple/skytemple/module/monster/controller/monster.glade:2020
 msgid "Item 4:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2028
+#: skytemple/skytemple/module/monster/controller/monster.glade:2100
 msgid "Exclusive Items"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2051
+#: skytemple/skytemple/module/monster/controller/monster.glade:2123
 msgid "Unk 1.0:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2063
+#: skytemple/skytemple/module/monster/controller/monster.glade:2135
 msgid "Unk 31:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2088
+#: skytemple/skytemple/module/monster/controller/monster.glade:2160
 msgid "Spawn Threshold:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2112
+#: skytemple/skytemple/module/monster/controller/monster.glade:2184
 msgid "Unk 17:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2137
+#: skytemple/skytemple/module/monster/controller/monster.glade:2209
 msgid "Unk 18:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2149
+#: skytemple/skytemple/module/monster/controller/monster.glade:2221
 msgid "Shadow Size:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2186
+#: skytemple/skytemple/module/monster/controller/monster.glade:2258
 msgid "Chance to spawn asleep:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2211
+#: skytemple/skytemple/module/monster/controller/monster.glade:2283
 msgid "HP Regeneration:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2255
-msgid "Unk 27:"
-msgstr ""
-
-#: skytemple/skytemple/module/monster/controller/monster.glade:2267
-msgid "Unk 28:"
-msgstr ""
-
-#: skytemple/skytemple/module/monster/controller/monster.glade:2305
-msgid "Unk 29:"
-msgstr ""
-
-#: skytemple/skytemple/module/monster/controller/monster.glade:2317
-msgid "Unk 30:"
-msgstr ""
-
-#: skytemple/skytemple/module/monster/controller/monster.glade:2355
+#: skytemple/skytemple/module/monster/controller/monster.glade:2328
 msgid "Unk 1.1:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2367
+#: skytemple/skytemple/module/monster/controller/monster.glade:2340
 msgid "Unk 1.2:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2379
+#: skytemple/skytemple/module/monster/controller/monster.glade:2352
 msgid "Unk 1.3:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2391
+#: skytemple/skytemple/module/monster/controller/monster.glade:2364
 msgid "Can move:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2403
-msgid "Unk 1.5:"
+#: skytemple/skytemple/module/monster/controller/monster.glade:2376
+msgid "Can throw items:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2415
+#: skytemple/skytemple/module/monster/controller/monster.glade:2388
 msgid "Can evolve:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.glade:2427
+#: skytemple/skytemple/module/monster/controller/monster.glade:2400
 msgid "Item req. for spawn:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:320
-msgid "Values depend on Evolution Type:\n"
-"- None: n/a - n/a\n"
-"- Level: Level required to evolve - Optional evolutionary item ID\n"
-"- IQ: IQ required - Optional evolutionary item ID\n"
-"- Items: Regular Item ID - Optional evolutionary item ID\n"
-"- Unknown: ? - ?\n"
-"- Link Cable: 0 - 1"
+#: skytemple/skytemple/module/monster/controller/monster.glade:2600
+msgid "Chest with type 2 exclusive items:"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:327
+#: skytemple/skytemple/module/monster/controller/monster.glade:2624
+msgid "Chest with type 1 exclusive items:"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.glade:2648
+msgid "Chest with normal items:"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.glade:2672
+msgid "No drop:"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.glade:2696
+msgid "Chest Drop Rates:"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.glade:2712
+msgid "label_chance_no_drop"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.glade:2724
+msgid "label_chance_normal_items"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.glade:2736
+msgid "label_chance_exclusive1"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.glade:2748
+msgid "label_chance_exclusive2"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.py:324
+msgid "Value depends on Main Requirement:\n"
+"- Never Evolves: Unused\n"
+"- Level: Level required to evolve\n"
+"- IQ: IQ required\n"
+"- Items: ID of the item required\n"
+"- Recruited: ID of the Pokémon you have to recruit\n"
+"- No Main Requirement: Unused"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.py:331
 msgid "Evolution Parameters"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:337
+#: skytemple/skytemple/module/monster/controller/monster.py:341
 msgid "The values are actually percentages.\n"
 "10 -> 1.0%,\n"
 "100 -> 10.0%,\n"
@@ -9188,89 +9287,110 @@ msgid "The values are actually percentages.\n"
 "If you have recruited this Pokémon already, its recruit rate is halved (only if it's positive)."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:344
+#: skytemple/skytemple/module/monster/controller/monster.py:348
 msgid "Recruit Rate"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:354
+#: skytemple/skytemple/module/monster/controller/monster.py:358
 #, python-format
 msgid "The % of HP that this Pokémon regenerates at the end of each turn is equal to 1/(value * 2), before applying any modifiers.\n"
 "The final value is capped between 1/30 and 1/500"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:357
+#: skytemple/skytemple/module/monster/controller/monster.py:361
 msgid "HP Regeneration"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:367
+#: skytemple/skytemple/module/monster/controller/monster.py:371
 msgid "Whether or not the enemy or ally AI will move the Pokémon in dungeons."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:368
+#: skytemple/skytemple/module/monster/controller/monster.py:372
 msgid "Can Move?"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:378
+#: skytemple/skytemple/module/monster/controller/monster.py:382
+msgid "Whether or not the Pokémon can throw any items."
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.py:383
+msgid "Can Throw Items?"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.py:393
+msgid "Controls the drop rates of different types of chests.\n"
+"Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected."
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.py:395
+msgid "Chests drop rates"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.py:405
 msgid "Whether or not the Pokémon can evolve at Luminous Spring (If it's off, it will never be allowed to evolve even if it has an evolution)."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:380
+#: skytemple/skytemple/module/monster/controller/monster.py:407
 msgid "Can Evolve?"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:390
+#: skytemple/skytemple/module/monster/controller/monster.py:417
 msgid "Whether or not you need to have a special item in the bag (mystery part/secret slab) for the Pokémon to spawn in dungeons"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:392
+#: skytemple/skytemple/module/monster/controller/monster.py:419
 msgid "Item Required for spawning?"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:402
+#: skytemple/skytemple/module/monster/controller/monster.py:429
 msgid "If the current $SCENARIO_BALANCE_FLAG value is lower than this number, the pokémon won't spawn in dungeons."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:403
+#: skytemple/skytemple/module/monster/controller/monster.py:430
 msgid "Spawn Threshold"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:413
+#: skytemple/skytemple/module/monster/controller/monster.py:440
 msgid "Affects the damage the Pokémon takes when attacked with Grass Knot."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:424
+#: skytemple/skytemple/module/monster/controller/monster.py:451
 msgid "Affects the damage the Pokémon takes when attacked with a Sizebust Orb."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:667
+#: skytemple/skytemple/module/monster/controller/monster.py:698
 msgid "Export Pokémon as..."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:706
+#: skytemple/skytemple/module/monster/controller/monster.py:737
 msgid "Import Pokémon from..."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:941
+#: skytemple/skytemple/module/monster/controller/monster.py:975
 msgid "Stats and Moves"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:944
+#: skytemple/skytemple/module/monster/controller/monster.py:978
 msgid "Portraits"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:952
+#: skytemple/skytemple/module/monster/controller/monster.py:986
 msgid "Sprites"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:969
+#: skytemple/skytemple/module/monster/controller/monster.py:1013
+msgid "??? Enter a valid parameter (#)"
+msgstr ""
+
+#: skytemple/skytemple/module/monster/controller/monster.py:1026
 msgid "??? Enter a valid Base ID (#)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:980
+#: skytemple/skytemple/module/monster/controller/monster.py:1037
 msgid "??? Enter a valid Entry ID ($)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1012
+#: skytemple/skytemple/module/monster/controller/monster.py:1098
 msgid "The sprite memory size of this Pokémon was too low for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr ""
