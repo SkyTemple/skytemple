@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-04-05 12:32+0000\n"
-"PO-Revision-Date: 2021-04-05 19:48\n"
+"PO-Revision-Date: 2021-04-05 20:54\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -197,7 +197,7 @@ msgstr "Dialogue du Pokemon montant de niveau"
 
 #: /dev/fd/63:45 /dev/fd/63:127
 msgid "Pokemon WAIT Dialogue"
-msgstr "Dialogue du Pokemon immobile"
+msgstr "Dialogue du Pokemon en attente"
 
 #: /dev/fd/63:46 /dev/fd/63:128
 msgid "Pokemon HEALTHY Dialogue"
@@ -205,7 +205,7 @@ msgstr "Dialogue du Pokemon au statut normal"
 
 #: /dev/fd/63:47 /dev/fd/63:129
 msgid "Pokemon HALF_LIFE Dialogue"
-msgstr "Dialogue du Pokemon à moitié de sa vie"
+msgstr "Dialogue du Pokemon pour PV bas"
 
 #: /dev/fd/63:48 /dev/fd/63:130
 msgid "Pokemon PINCH Dialogue"
@@ -2039,7 +2039,7 @@ msgstr "Niveau"
 
 #: skytemple-files/skytemple_files/data/md/model.py:283
 msgid "IQ"
-msgstr ""
+msgstr "QI"
 
 #: skytemple-files/skytemple_files/data/md/model.py:284
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:874
@@ -2074,7 +2074,7 @@ msgstr ""
 #. TRANSLATORS: Movement Type
 #: skytemple-files/skytemple_files/data/md/model.py:313
 msgid "Lava"
-msgstr ""
+msgstr "Lave"
 
 #: skytemple-files/skytemple_files/data/md/model.py:337
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:32
@@ -2208,15 +2208,15 @@ msgstr "Lanceur"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:87
 msgid "Two-turn move"
-msgstr ""
+msgstr "Capacité en deux tours"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:88
 msgid "Everyone except user"
-msgstr ""
+msgstr "Tout le monde excepté le lanceur"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:89
 msgid "All allies except user"
-msgstr ""
+msgstr "Tout les alliés exceptés le lanceur"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:90
 #: skytemple-files/skytemple_files/data/waza_p/model.py:91
