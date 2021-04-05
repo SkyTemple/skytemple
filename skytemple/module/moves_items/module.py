@@ -40,6 +40,9 @@ from skytemple_files.list.items.handler import ItemListHandler
 from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList
 from skytemple_files.common.i18n_util import _
 
+MOVE_FILE = 'BALANCE/waza_p.bin'
+ITEM_S_FILE = 'BALANCE/item_s_p.bin'
+ITEM_FILE = 'BALANCE/item_p.bin'
 ITEM_LISTS = 'TABLEDAT/list_%02d.bin'
 METRONOME_POOL = 'BALANCE/metrono.bin'
 MOVE_EFFECTS = 'BALANCE/waza_cd.bin'
@@ -49,6 +52,7 @@ FIRST_EXCLUSIVE_ITEM_ID = 444
 
 class MovesItemsModule(AbstractModule):
     """Module to modify move and item lists."""
+
     @classmethod
     def depends_on(cls):
         return []
@@ -102,62 +106,63 @@ class MovesItemsModule(AbstractModule):
 
     def has_item_effects(self):
         return self.project.file_exists(ITEM_EFFECTS)
-    
+
     def get_item_effects(self):
         return self.project.open_file_in_rom(ITEM_EFFECTS, DataCDHandler)
-    
+
     def mark_item_effects_as_modified(self):
         """Mark as modified"""
         self.project.mark_as_modified(ITEM_EFFECTS)
         # Mark as modified in tree
         row = self._tree_model[self._item_effects_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
-        
+
     def has_metronome_pool(self):
         return self.project.file_exists(METRONOME_POOL)
-    
+
     def get_metronome_pool(self):
         return self.project.open_file_in_rom(METRONOME_POOL, ValListHandler)
-    
+
     def mark_metronome_pool_as_modified(self):
         """Mark as modified"""
         self.project.mark_as_modified(METRONOME_POOL)
         # Mark as modified in tree
         row = self._tree_model[self._move_effects_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
-    
+
     def has_move_effects(self):
         return self.project.file_exists(MOVE_EFFECTS)
-    
+
     def get_move_effects(self):
         return self.project.open_file_in_rom(MOVE_EFFECTS, DataCDHandler)
-    
+
     def mark_move_effects_as_modified(self):
         """Mark as modified"""
         self.project.mark_as_modified(MOVE_EFFECTS)
         # Mark as modified in tree
         row = self._tree_model[self._move_effects_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
-    
+
     def has_item_lists(self):
-        return self.project.file_exists(ITEM_LISTS%0)
+        return self.project.file_exists(ITEM_LISTS % 0)
 
     def get_item_list(self, list_id) -> MappaItemList:
         static_data = self.project.get_rom_module().get_static_data()
-        return self.project.open_file_in_rom(ITEM_LISTS%list_id, ItemListHandler, items=static_data.dungeon_data.items)
-    
+        return self.project.open_file_in_rom(ITEM_LISTS % list_id, ItemListHandler,
+                                             items=static_data.dungeon_data.items)
+
     def mark_item_list_as_modified(self, list_id):
         """Mark as modified"""
-        self.project.mark_as_modified(ITEM_LISTS%list_id)
+        self.project.mark_as_modified(ITEM_LISTS % list_id)
         # Mark as modified in tree
         row = self._tree_model[self._item_lists_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
 
     def get_item_p(self) -> ItemP:
-        return self.project.open_file_in_rom('BALANCE/item_p.bin', FileType.ITEM_P)
+        return self.project.open_file_in_rom(ITEM_FILE, FileType.ITEM_P)
 
     def get_item_s_p(self) -> ItemSP:
-        return self.project.open_file_in_rom('BALANCE/item_s_p.bin', FileType.ITEM_SP)
+        return self.project.open_file_in_rom(ITEM_S_FILE, FileType.ITEM_SP)
 
     def get_waza_p(self) -> WazaP:
-        return self.project.open_file_in_rom('BALANCE/waza_p.bin', FileType.WAZA_P)
+        return self.project.open_file_in_rom(MOVE_FILE, FileType.WAZA_P)
