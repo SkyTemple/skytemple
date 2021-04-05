@@ -34,7 +34,7 @@ from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.xml_util import prettify
 from skytemple_files.data.md.model import Gender, PokeType, MovementType, IQGroup, Ability, EvolutionMethod, \
-    NUM_ENTITIES, ShadowSize, MONSTER_BIN, MdEntry
+    AdditionalRequirement, NUM_ENTITIES, ShadowSize, MONSTER_BIN, MdEntry
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.data.monster_xml import monster_xml_export
 from skytemple_files.common.i18n_util import f, _
@@ -94,6 +94,8 @@ class MonsterController(AbstractController):
 
         self._update_pre_evo_label()
         self._update_base_form_label()
+        self._update_param_label()
+        self._update_chance_label()
 
         self.builder.connect_signals(self)
         self.builder.get_object('draw_sprite').queue_draw()
@@ -297,10 +299,11 @@ class MonsterController(AbstractController):
 
     def on_entry_evo_param1_changed(self, w, *args):
         self._update_from_entry(w)
+        self._update_param_label()
         self.mark_as_modified()
 
-    def on_entry_evo_param2_changed(self, w, *args):
-        self._update_from_entry(w)
+    def on_cb_evo_param2_changed(self, w, *args):
+        self._update_from_cb(w)
         self.mark_as_modified()
 
     def on_entry_pre_evo_index_changed(self, w, *args):
@@ -310,6 +313,7 @@ class MonsterController(AbstractController):
 
     def on_cb_evo_method_changed(self, w, *args):
         self._update_from_cb(w)
+        self._update_param_label()
         self.mark_as_modified()
 
     def on_btn_help_evo_params_clicked(self, w, *args):
@@ -317,13 +321,13 @@ class MonsterController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("Values depend on Evolution Type:\n"
-              "- None: n/a - n/a\n"
-              "- Level: Level required to evolve - Optional evolutionary item ID\n"
-              "- IQ: IQ required - Optional evolutionary item ID\n"
-              "- Items: Regular Item ID - Optional evolutionary item ID\n"
-              "- Unknown: ? - ?\n"
-              "- Link Cable: 0 - 1"),
+            _("Value depends on Main Requirement:\n"
+              "- Never Evolves: Unused\n"
+              "- Level: Level required to evolve\n"
+              "- IQ: IQ required\n"
+              "- Items: ID of the item required\n"
+              "- Recruited: ID of the Pokémon you have to recruit\n"
+              "- No Main Requirement: Unused"),
             title=_("Evolution Parameters")
         )
         md.run()
@@ -369,7 +373,30 @@ class MonsterController(AbstractController):
         )
         md.run()
         md.destroy()
-
+    
+    def on_btn_help_can_throw_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("Whether or not the Pokémon can throw any items."),
+            title=_("Can Throw Items?")
+        )
+        md.run()
+        md.destroy()
+        
+    def on_btn_help_chest_drop_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("""Controls the drop rates of different types of chests.
+Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected."""),
+            title=_("Chests drop rates")
+        )
+        md.run()
+        md.destroy()
+    
     def on_btn_help_can_evolve_clicked(self, w, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
@@ -505,18 +532,22 @@ class MonsterController(AbstractController):
 
     def on_entry_unk27_changed(self, w, *args):
         self._update_from_entry(w)
+        self._update_chance_label()
         self.mark_as_modified()
 
     def on_entry_unk29_changed(self, w, *args):
         self._update_from_entry(w)
+        self._update_chance_label()
         self.mark_as_modified()
 
     def on_entry_unk28_changed(self, w, *args):
         self._update_from_entry(w)
+        self._update_chance_label()
         self.mark_as_modified()
 
     def on_entry_unk30_changed(self, w, *args):
         self._update_from_entry(w)
+        self._update_chance_label()
         self.mark_as_modified()
 
     def on_entry_base_form_index_changed(self, w, *args):
@@ -790,6 +821,9 @@ class MonsterController(AbstractController):
         self._comboxbox_for_enum(['cb_ability_primary', 'cb_ability_secondary'], Ability, True)
         # Evolution Methods
         self._comboxbox_for_enum(['cb_evo_method'], EvolutionMethod)
+        # Additional Requirement
+        self._comboxbox_for_enum(['cb_evo_param2'], AdditionalRequirement)
+        
         # Shadow Size
         self._comboxbox_for_enum(['cb_shadow_size'], ShadowSize)
 
@@ -820,7 +854,7 @@ class MonsterController(AbstractController):
         self._set_entry('entry_base_form_index', self.entry.base_form_index)
         self._set_cb('cb_evo_method', self.entry.evo_method.value)
         self._set_entry('entry_evo_param1', self.entry.evo_param1)
-        self._set_entry('entry_evo_param2', self.entry.evo_param2)
+        self._set_cb('cb_evo_param2', self.entry.evo_param2.value)
         self._set_cb('cb_gender', self.entry.gender.value)
         self._set_entry('entry_body_size', self.entry.body_size)
         self._set_cb('cb_type_primary', self.entry.type_primary.value)
@@ -955,6 +989,29 @@ class MonsterController(AbstractController):
             self.module.get_sprite_view(self.entry.sprite_index, self.item_id), tab_label
         )
 
+    def _update_param_label(self):
+        label: Gtk.Label = self.builder.get_object('label_param')
+        entry: Gtk.Entry = self.builder.get_object('entry_evo_param1')
+        cb: Gtk.ComboBox = self.builder.get_object('cb_evo_method')
+        val = cb.get_model()[cb.get_active_iter()][0]
+        try:
+            entry_id = int(entry.get_text())
+            if val==3:
+                if entry_id >= MAX_ITEMS:
+                    raise ValueError()
+                name = self._string_provider.get_value(StringType.ITEM_NAMES, entry_id)
+                label.set_text(f'#{entry_id:03d}: {name}')
+            elif val==4:
+                if entry_id > NUM_ENTITIES:
+                    raise ValueError()
+                entry = self.module.monster_md[entry_id]
+                name = self._string_provider.get_value(StringType.POKEMON_NAMES, entry.md_index_base)
+                label.set_text(f'#{entry.md_index_base:03d}: {name}')
+            else:
+                label.set_text(f'')
+        except BaseException:
+            label.set_text(_('??? Enter a valid parameter (#)'))
+        
     def _update_base_form_label(self):
         label: Gtk.Label = self.builder.get_object('label_base_form_index')
         entry: Gtk.Entry = self.builder.get_object('entry_base_form_index')
@@ -978,6 +1035,35 @@ class MonsterController(AbstractController):
             label.set_text(f'${entry.md_index:04d}: {name} ({entry.gender.name[0]})')
         except BaseException:
             label.set_text(_('??? Enter a valid Entry ID ($)'))
+    
+    def _update_chance_label(self):
+        label1: Gtk.Label = self.builder.get_object('label_chance_no_drop')
+        entry1: Gtk.Entry = self.builder.get_object('entry_unk27')
+        label2: Gtk.Label = self.builder.get_object('label_chance_normal_items')
+        entry2: Gtk.Entry = self.builder.get_object('entry_unk28')
+        label3: Gtk.Label = self.builder.get_object('label_chance_exclusive1')
+        entry3: Gtk.Entry = self.builder.get_object('entry_unk29')
+        label4: Gtk.Label = self.builder.get_object('label_chance_exclusive2')
+        entry4: Gtk.Entry = self.builder.get_object('entry_unk30')
+        try:
+            entry1_value = int(entry1.get_text())
+            if entry1_value==0:
+                entry1_value = 1
+                entry2_value = entry3_value = entry4_value = 0
+            else:
+                entry2_value = int(entry2.get_text())
+                entry3_value = int(entry3.get_text())
+                entry4_value = int(entry4.get_text())
+            sum_values = entry1_value+entry2_value+entry3_value+entry4_value
+            label1.set_text(f'{entry1_value/sum_values*100:2.02f}%')
+            label2.set_text(f'{entry2_value/sum_values*100:2.02f}%')
+            label3.set_text(f'{entry3_value/sum_values*100:2.02f}%')
+            label4.set_text(f'{entry4_value/sum_values*100:2.02f}%')
+        except BaseException:
+            label1.set_text(_('???'))
+            label2.set_text(_('???'))
+            label3.set_text(_('???'))
+            label4.set_text(_('???'))
 
     def _check_sprite_size(self, show_warning):
         """
