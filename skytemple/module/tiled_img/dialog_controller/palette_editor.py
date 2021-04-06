@@ -24,6 +24,7 @@ from gi.repository.Gtk import ResponseType
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import APP, make_builder
 from skytemple_files.common.util import make_palette_colors_unique
+from skytemple_files.common.i18n_util import _
 
 
 class PaletteEditorController:
@@ -93,14 +94,14 @@ class PaletteEditorController:
         md = SkyTempleMessageDialog(self.dialog,
                                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
                                     Gtk.ButtonsType.OK,
-                                    f"Some images editors have problems when editing indexed images that contain\n"
-                                    f"the same color multiple times (they mis-match the actual color index).\n"
-                                    f"Since the import expects all 8x8 tiles to only use one 16-color palette, this\n"
-                                    f"can lead to issues.\n\n"
-                                    f"To solve this, you can make all colors in the palettes unique. This is done by\n"
-                                    f"slightly shifting the color values of duplicate colors (not visible for the\n"
-                                    f"human eye).",
-                                    title="Make Colors Unique")
+                                    _("Some images editors have problems when editing indexed images that contain\n"
+                                      "the same color multiple times (they mis-match the actual color index).\n"
+                                      "Since the import expects all 8x8 tiles to only use one 16-color palette, this\n"
+                                      "can lead to issues.\n\n"
+                                      "To solve this, you can make all colors in the palettes unique. This is done by\n"
+                                      "slightly shifting the color values of duplicate colors (not visible for the\n"
+                                      "human eye)."),
+                                    title=_("Make Colors Unique"))
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
@@ -111,8 +112,8 @@ class PaletteEditorController:
         md = SkyTempleMessageDialog(self.dialog,
                                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
                                     Gtk.ButtonsType.OK,
-                                    f"Made colors unique.",
-                                    title="Palette Editor", is_success=True)
+                                    _("Made colors unique."),
+                                    title=_("Palette Editor"), is_success=True)
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
@@ -137,8 +138,8 @@ class PaletteEditorController:
         if self.notebook.get_n_pages() < 2:
             md = SkyTempleMessageDialog(self.dialog,
                                         Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                        Gtk.ButtonsType.OK, "You can not remove the last palette.",
-                                        title="Error!")
+                                        Gtk.ButtonsType.OK, _("You can not remove the last palette."),
+                                        title=_("Error!"))
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()
@@ -192,7 +193,7 @@ class PaletteEditorController:
         previous_col_start_elem = None
         for i, color_idx in enumerate(range(0, len_palette, 3)):
             cbx = Gtk.Box.new(Gtk.Orientation.VERTICAL, 0)
-            lb = Gtk.Label.new(f"Color {i}")
+            lb = Gtk.Label.new(_("Color ") + str(i))
             cb: Gtk.ColorButton = Gtk.ColorButton.new()
             if hasattr(cb.props, 'show_editor'):
                 cb.set_property('show_editor', True)
