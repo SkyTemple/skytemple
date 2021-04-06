@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-04-05 23:29+0000\n"
-"PO-Revision-Date: 2021-04-06 15:54\n"
+"PO-Revision-Date: 2021-04-06 16:50\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2061,7 +2061,7 @@ msgstr "Reclutado"
 
 #: skytemple-files/skytemple_files/data/md/model.py:286
 msgid "No Main Requirement"
-msgstr ""
+msgstr "Sin requisito principal"
 
 #: skytemple-files/skytemple_files/data/md/model.py:309
 msgid "Link Cable"
@@ -2109,7 +2109,7 @@ msgstr "Hembra (2ª forma)"
 
 #: skytemple-files/skytemple_files/data/md/model.py:320
 msgid "Knows AncientPower"
-msgstr ""
+msgstr "Conoce Poder Pasado"
 
 #: skytemple-files/skytemple_files/data/md/model.py:321
 msgid "Knows Rollout"
@@ -2451,7 +2451,7 @@ msgstr "Abismo, Pasillo; Intransitable"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:77
 msgid "Floor, Hallway; Flag 0xA"
-msgstr "Piso, Pasillo; Bandera 0xA"
+msgstr "Piso, Pasillo; Indicador 0xA"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:79
 msgid "Tile flag 0xA is set to 1 (Unknown what this does)."
@@ -9515,11 +9515,11 @@ msgstr "Preevolución:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1801
 msgid "Main Requirement:"
-msgstr ""
+msgstr "Requisito principal:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1813
 msgid "Parameter:"
-msgstr ""
+msgstr "Parámetro:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1869
 msgid "label_base_form_index"
@@ -9535,7 +9535,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1943
 msgid "Additional Requirement:"
-msgstr ""
+msgstr "Requisito adicional:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1959
 msgid "Evolution"
@@ -9611,7 +9611,7 @@ msgstr "Puede moverse:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2376
 msgid "Can throw items:"
-msgstr ""
+msgstr "Puede lanzar objetos:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2388
 msgid "Can evolve:"
@@ -9623,15 +9623,15 @@ msgstr "Objeto necesario para aparecer:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2600
 msgid "Chest with type 2 exclusive items:"
-msgstr ""
+msgstr "Cofre con objetos exclusivos de tipo 2:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2624
 msgid "Chest with type 1 exclusive items:"
-msgstr ""
+msgstr "Cofre con objetos exclusivos de tipo 1:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2648
 msgid "Chest with normal items:"
-msgstr ""
+msgstr "Cofre con objetos normales:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2672
 msgid "No drop:"
@@ -9665,7 +9665,13 @@ msgid "Value depends on Main Requirement:\n"
 "- Items: ID of the item required\n"
 "- Recruited: ID of the Pokémon you have to recruit\n"
 "- No Main Requirement: Unused"
-msgstr ""
+msgstr "El valor depende del requisito principal:\n"
+"- Nunca evoluciona: No utilizado\n"
+"- Nivel: Nivel necesario para evolucionar\n"
+"- CI: CIrequerido\n"
+"- Objetos: ID del objeto requerido\n"
+"- Reclutado: ID del Pokémon que tienes que reclutar\n"
+"- Sin requisito principal: No utilizado"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:331
 msgid "Evolution Parameters"
@@ -9710,20 +9716,21 @@ msgstr "¿Puede moverse?"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:382
 msgid "Whether or not the Pokémon can throw any items."
-msgstr ""
+msgstr "Con independencia de si el Pokémon puede lanzar objetos o no."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:383
 msgid "Can Throw Items?"
-msgstr ""
+msgstr "¿Puede lanzar objetos?"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:393
 msgid "Controls the drop rates of different types of chests.\n"
 "Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected."
-msgstr ""
+msgstr "Controla las tasas de liberación de distintos tipos de cofres.\n"
+"Cada cofre del tipo x tiene una probabilidad de (tasa x)/(suma de todas las tasas) de ser seleccionado."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:395
 msgid "Chests drop rates"
-msgstr ""
+msgstr "Tasas de liberación de cofres"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:405
 msgid "Whether or not the Pokémon can evolve at Luminous Spring (If it's off, it will never be allowed to evolve even if it has an evolution)."
@@ -9779,7 +9786,7 @@ msgstr "Sprites"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1013
 msgid "??? Enter a valid parameter (#)"
-msgstr ""
+msgstr "??? Introduce un parámetro válido (#)"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1026
 msgid "??? Enter a valid Base ID (#)"
@@ -9889,19 +9896,19 @@ msgstr "Está en EdT/EdO:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1016
 msgid "AI Flag 1:"
-msgstr ""
+msgstr "Indicador de IA 1:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1028
 msgid "AI Flag 2:"
-msgstr ""
+msgstr "Indicador de IA 2:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1040
 msgid "AI Flag 3:"
-msgstr ""
+msgstr "Indicador de IA 3:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1082
 msgid "Flags"
-msgstr ""
+msgstr "Indicadores"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1107
 msgid "Exclusive Item Type:"
@@ -10192,11 +10199,11 @@ msgstr "Descripción:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:578
 msgid "Accuracy:"
-msgstr ""
+msgstr "Precisión:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:590
 msgid "Miss Accuracy:"
-msgstr ""
+msgstr "Precisión de fallar:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:648
 msgid "# of chained hits:"
@@ -11346,7 +11353,7 @@ msgstr "Sin difuminado"
 
 #: skytemple/skytemple/skytemple.glade:1810
 msgid "Reorganize colors only"
-msgstr "Reorganizar solo colores"
+msgstr "Solo reorganizar colores"
 
 #: skytemple/skytemple/skytemple.glade:1816
 msgid "Tilequant"
