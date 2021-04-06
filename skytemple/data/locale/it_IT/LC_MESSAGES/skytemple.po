@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-04-05 23:29+0000\n"
-"PO-Revision-Date: 2021-04-05 23:38\n"
+"POT-Creation-Date: 2021-04-06 17:51+0000\n"
+"PO-Revision-Date: 2021-04-06 17:56\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -4117,6 +4117,7 @@ msgid "Invalid variable value:\n"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:285
+#: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:142
 msgid "Error!"
 msgstr ""
 
@@ -10634,6 +10635,7 @@ msgid "BPA slot is empty.\n\n"
 msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:17
+#: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:116
 msgid "Palette Editor"
 msgstr ""
 
@@ -10651,6 +10653,32 @@ msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:187
 msgid "Remove current Frame"
+msgstr ""
+
+#: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:97
+msgid "Some images editors have problems when editing indexed images that contain\n"
+"the same color multiple times (they mis-match the actual color index).\n"
+"Since the import expects all 8x8 tiles to only use one 16-color palette, this\n"
+"can lead to issues.\n\n"
+"To solve this, you can make all colors in the palettes unique. This is done by\n"
+"slightly shifting the color values of duplicate colors (not visible for the\n"
+"human eye)."
+msgstr ""
+
+#: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:104
+msgid "Make Colors Unique"
+msgstr ""
+
+#: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:115
+msgid "Made colors unique."
+msgstr ""
+
+#: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:141
+msgid "You can not remove the last palette."
+msgstr ""
+
+#: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:196
+msgid "Color "
 msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/drawer_tiled.py:79
