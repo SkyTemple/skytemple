@@ -173,11 +173,11 @@ class LevelUpController(AbstractController):
 
     def on_hmtm_add_clicked(self, *args):
         self._add('hmtm_store')
-        self._rebuild_level_up()
+        self._rebuild_hmtm()
 
     def on_hmtm_remove_clicked(self, *args):
         self._remove('hmtm_tree')
-        self._rebuild_level_up()
+        self._rebuild_hmtm()
 
     def on_egg_move_edited(self, widget, path, text):
         self._edit_move('egg_store', path, 0, 1, text)
@@ -185,11 +185,11 @@ class LevelUpController(AbstractController):
 
     def on_egg_add_clicked(self, *args):
         self._add('egg_store')
-        self._rebuild_level_up()
+        self._rebuild_egg()
 
     def on_egg_remove_clicked(self, *args):
         self._remove('egg_tree')
-        self._rebuild_level_up()
+        self._rebuild_egg()
 
     def on_level_up_move_editing_started(self, renderer, editable, path):
         editable.set_completion(self.builder.get_object('completion_moves'))
