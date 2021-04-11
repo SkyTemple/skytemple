@@ -17,6 +17,7 @@
 import logging
 import math
 import re
+import sys
 from enum import Enum
 from typing import TYPE_CHECKING, Type, List, Optional, Dict
 from xml.etree import ElementTree
@@ -24,6 +25,7 @@ from xml.etree import ElementTree
 import cairo
 from gi.repository import Gtk, GLib
 
+from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
@@ -44,7 +46,8 @@ if TYPE_CHECKING:
 MAX_ITEMS = 1400
 PATTERN = re.compile(r'.*\(#(\d+)\).*')
 logger = logging.getLogger(__name__)
-
+MAX_EVOS = 8
+MAX_EGGS = 6
 
 class MonsterController(AbstractController):
     _last_open_tab_id = 0
@@ -97,6 +100,19 @@ class MonsterController(AbstractController):
         self._update_param_label()
         self._update_chance_label()
 
+        self._ent_names = {}
+        
+        self._init_monster_store()
+
+        stack: Gtk.Stack = self.builder.get_object('evo_stack')
+        if self.module.has_md_evo():
+            self._md_evo = self.module.get_md_evo()
+            self._init_evo_lists()
+            stack.set_visible_child(self.builder.get_object('box_evo'))
+        else:
+            self._md_evo = None
+            stack.set_visible_child(self.builder.get_object('box_no_evo'))
+
         self.builder.connect_signals(self)
         self.builder.get_object('draw_sprite').queue_draw()
 
@@ -106,7 +122,7 @@ class MonsterController(AbstractController):
         self._check_sprite_size(True)
 
         return self.builder.get_object('box_main')
-
+        
     def on_main_notebook_switch_page(self, notebook, page, page_num):
         self.__class__._last_open_tab_id = page_num
         if self._render_graph_on_tab_change:
@@ -322,7 +338,7 @@ class MonsterController(AbstractController):
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
             _("Value depends on Main Requirement:\n"
-              "- Never Evolves: Unused\n"
+              "- Not an Evolved Form: Unused\n"
               "- Level: Level required to evolve\n"
               "- IQ: IQ required\n"
               "- Items: ID of the item required\n"
@@ -333,6 +349,35 @@ class MonsterController(AbstractController):
         md.run()
         md.destroy()
 
+    def on_btn_help_base_form_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("This value indicates the family of a pokemon.\n"
+              "This is used by a certain type of exclusive items that benefits to a family."),
+            title=_("Base Form Info")
+        )
+        md.run()
+        md.destroy()
+    
+    def on_btn_help_pre_evo_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("This value indicates the previous evolution of the pokémon.\n"
+              "The game use this in several cases: \n"
+              "1 - For evolution purposes.\n"
+              "2 - When remembering moves at Electivire's shop, you can also remember moves from you pre evolutions up to 2 generations.\n"
+              "3 - For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
+              "Child Pokémon are computed using the pre evolution value and going recursively until one pokémon without a pre evolution is found.\n"
+              "If the ChangeEvoSystem patch is applied, only point 2 applies, the other points are handled with other data."),
+            title=_("Pre Evolution Info")
+        )
+        md.run()
+        md.destroy()
+    
     def on_btn_help_recruit_rate_clicked(self, w, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
@@ -1105,3 +1150,158 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 self.mark_as_modified()
         except BaseException as ex:
             logger.error("Failed to check Pokémon sprite size.", exc_info=ex)
+
+    # Relative to the new evolution system
+    def _init_monster_store(self):
+        monster_md = self.module.monster_md
+        monster_store: Gtk.ListStore = self.builder.get_object('monster_store')
+        for idx, entry in enumerate(monster_md.entries):
+            if idx == 0:
+                continue
+            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, entry.md_index_base)
+            self._ent_names[idx] = f'{name} ({entry.gender.print_name}) (#{idx:04})'
+            monster_store.append([self._ent_names[idx]])
+    
+    def on_cr_entity_editing_started(self, renderer, editable, path):
+        editable.set_completion(self.builder.get_object('completion_entities'))
+
+    def on_btn_help_evo_egg_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
+              "This list indicates this Pokémon's children. If no children exist, the game will default to that pokémon species. "),
+            title=_("Children Info")
+        )
+        md.run()
+        md.destroy()
+
+    def on_btn_help_evo_stats_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
+              "Negative values are allowed."),
+            title=_("Evolution Bonus Info")
+        )
+        md.run()
+        md.destroy()
+
+    def on_evo_species_edited(self, widget, path, text):
+        self._edit_species_store('evo_store', path, text)
+    def on_egg_species_edited(self, widget, path, text):
+        self._edit_species_store('egg_store', path, text)
+    
+    def _edit_species_store(self, store_name, path, text):
+        store = self.builder.get_object(store_name)
+        match = PATTERN.match(text)
+        if match is None:
+            return
+        try:
+            entid = int(match.group(1))
+        except ValueError:
+            return
+        # entid:
+        store[path][0] = entid
+        # ent_name:
+        store[path][1] = self._ent_names[entid]
+        self._rebuild_evo_lists()
+        
+    def _init_evo_lists(self):
+        current_evo = self._md_evo.evo_entries[self.item_id]
+        current_stats = self._md_evo.evo_stats[self.item_id]
+        tree: Gtk.TreeView = self.builder.get_object('evo_tree')
+        store = tree.get_model()
+        store.clear()
+        for entry in current_evo.evos:
+            store.append([
+                entry, self._ent_names[entry]
+            ])
+        tree: Gtk.TreeView = self.builder.get_object('egg_tree')
+        store = tree.get_model()
+        store.clear()
+        for entry in current_evo.eggs:
+            store.append([
+                entry, self._ent_names[entry]
+            ])
+        self._set_entry('entry_hp_bonus', current_stats.hp_bonus)
+        self._set_entry('entry_atk_bonus', current_stats.atk_bonus)
+        self._set_entry('entry_spatk_bonus', current_stats.spatk_bonus)
+        self._set_entry('entry_def_bonus', current_stats.def_bonus)
+        self._set_entry('entry_spdef_bonus', current_stats.spdef_bonus)
+    
+    def on_entry_evo_stats_changed(self, w: Gtk.Entry, *args):
+        attr_name = Gtk.Buildable.get_name(w)[6:]
+        try:
+            val = int(w.get_text())
+        except ValueError:
+            return
+        setattr(self._md_evo.evo_stats[self.item_id], attr_name, val)
+        self.module.mark_md_evo_as_modified(self.item_id)
+    
+    def on_btn_add_evo_clicked(self, *args):
+        try:
+            if len(self._md_evo.evo_entries[self.item_id].evos)>=MAX_EVOS:
+                raise ValueError(_(f"A pokémon can't evolve into more than {MAX_EVOS} evolutions."))
+            else:
+                self._add_monster_to_store('evo_tree')
+        except ValueError as err:
+            display_error(
+                sys.exc_info(),
+                str(err),
+                _("Too much evolutions.")
+            )
+    def on_btn_add_egg_clicked(self, *args):
+        try:
+            if len(self._md_evo.evo_entries[self.item_id].eggs)>=MAX_EGGS:
+                raise ValueError(_(f"A pokémon can't have more than {MAX_EGGS} children."))
+            else:
+                self._add_monster_to_store('egg_tree')
+        except ValueError as err:
+            display_error(
+                sys.exc_info(),
+                str(err),
+                _("Too much children.")
+            )
+
+    def _add_monster_to_store(self, tree_name):
+        tree: Gtk.TreeView = self.builder.get_object(tree_name)
+        store = tree.get_model()
+        store.append([
+            1, self._ent_names[1]
+        ])
+        self._rebuild_evo_lists()
+    
+    def on_btn_remove_evo_clicked(self, *args):
+        self._remove_monster_to_store('evo_tree')
+    def on_btn_remove_egg_clicked(self, *args):
+        self._remove_monster_to_store('egg_tree')
+        
+    def _remove_monster_to_store(self, tree_name):
+        tree: Gtk.TreeView = self.builder.get_object(tree_name)
+        store = tree.get_model()
+        # Deletes all selected dialogue entries
+        # Allows multiple deletion
+        active_rows : List[Gtk.TreePath] = tree.get_selection().get_selected_rows()[1]
+        store: Gtk.ListStore = store
+        for x in reversed(sorted(active_rows, key=lambda x:x.get_indices())):
+            del store[x.get_indices()[0]]
+        self._rebuild_evo_lists()
+        self._init_evo_lists()
+        
+    def _rebuild_evo_lists(self):
+        tree: Gtk.TreeView = self.builder.get_object('evo_tree')
+        store = tree.get_model()
+        evo_entries = []
+        for entry in store:
+            evo_entries.append(entry[0])
+        self._md_evo.evo_entries[self.item_id].evos = evo_entries
+        tree: Gtk.TreeView = self.builder.get_object('egg_tree')
+        store = tree.get_model()
+        eggs_entries = []
+        for entry in store:
+            eggs_entries.append(entry[0])
+        self._md_evo.evo_entries[self.item_id].eggs = eggs_entries
+        self.module.mark_md_evo_as_modified(self.item_id)
