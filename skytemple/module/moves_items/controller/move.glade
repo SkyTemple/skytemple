@@ -193,7 +193,7 @@
         </child>
         <style>
           <class name="back_illust"/>
-          <class name="monsters"/>
+          <class name="moves"/>
         </style>
       </object>
       <packing>
@@ -604,7 +604,7 @@
               <packing>
                 <property name="left-attach">1</property>
                 <property name="top-attach">0</property>
-                <property name="width">3</property>
+                <property name="width">2</property>
               </packing>
             </child>
             <child>
@@ -621,12 +621,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="btn_help_recruit_rate">
+              <object class="GtkButton" id="btn_help_miss_accuracy">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <property name="valign">center</property>
-                <signal name="clicked" handler="on_btn_help_recruit_rate_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_btn_help_miss_accuracy_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage">
                     <property name="visible">True</property>
@@ -733,6 +733,26 @@
                 <property name="left-attach">1</property>
                 <property name="top-attach">4</property>
                 <property name="width">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_help_accuracy">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_btn_help_accuracy_clicked" swapped="no"/>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left-attach">3</property>
+                <property name="top-attach">0</property>
               </packing>
             </child>
           </object>
@@ -1164,10 +1184,10 @@
               </packing>
             </child>
             <child>
-              <object class="GtkSwitch" id="switch_is_snatchable ">
+              <object class="GtkSwitch" id="switch_is_snatchable">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <signal name="state-set" handler="on_switch_is_snatchable _state_set" swapped="no"/>
+                <signal name="state-set" handler="on_switch_is_snatchable_state_set" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>

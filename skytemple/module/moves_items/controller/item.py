@@ -24,56 +24,10 @@ from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple_files.common.i18n_util import f, _
+from skytemple_files.common.i18n_util import _
 from skytemple_files.data.item_s_p.model import ItemSPType
-from skytemple_files.data.md.model import PokeType, MovementType
+from skytemple_files.data.md.model import PokeType
 from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemCategory
-
-"""
-XXXX:
-<signal name="changed" handler="on_buff_lang1_desc_changed" swapped="no"/>
-<signal name="changed" handler="on_buff_lang2_desc_changed" swapped="no"/>
-<signal name="changed" handler="on_buff_lang3_desc_changed" swapped="no"/>
-<signal name="changed" handler="on_buff_lang4_desc_changed" swapped="no"/>
-<signal name="changed" handler="on_buff_lang5_desc_changed" swapped="no"/>
-<signal name="changed" handler="on_cb_type_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_move_id_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_base_power_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_base_pp_changed" swapped="no"/>
-<signal name="changed" handler="on_cb_category_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_lang1_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_lang2_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_lang3_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_lang4_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_lang5_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_accuracy_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_miss_accuracy_changed" swapped="no"/>
-<signal name="clicked" handler="on_btn_help_recruit_rate_clicked" swapped="no"/>
-<signal name="changed" handler="on_entry_number_chained_hits_changed" swapped="no"/>
-<signal name="clicked" handler="on_btn_help_number_chained_hits_clicked" swapped="no"/>
-<signal name="changed" handler="on_entry_max_upgrade_level_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_crit_chance_changed" swapped="no"/>
-<signal name="clicked" handler="on_btn_help_settings_range_clicked" swapped="no"/>
-<signal name="changed" handler="on_cb_settings_range_target_changed" swapped="no"/>
-<signal name="changed" handler="on_cb_settings_range_range_changed" swapped="no"/>
-<signal name="clicked" handler="on_btn_help_settings_range_ai_clicked" swapped="no"/>
-<signal name="changed" handler="on_cb_settings_range_ai_target_changed" swapped="no"/>
-<signal name="changed" handler="on_cb_settings_range_ai_range_changed" swapped="no"/>
-<signal name="changed" handler="on_cb_settings_range_ai_condition_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_ai_weight_changed" swapped="no"/>
-<signal name="clicked" handler="on_btn_help_settings_range_ai_condition_clicked" swapped="no"/>
-<signal name="changed" handler="on_entry_unkC_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_unk13_changed" swapped="no"/>
-<signal name="changed" handler="on_entry_unk15_changed" swapped="no"/>
-<signal name="state-set" handler="on_switch_affected_by_magic_coat_state_set" swapped="no"/>
-<signal name="state-set" handler="on_switch_is_snatchable _state_set" swapped="no"/>
-<signal name="state-set" handler="on_switch_uses_mouth_state_set" swapped="no"/>
-<signal name="state-set" handler="on_switch_ignores_taunted_state_set" swapped="no"/>
-<signal name="clicked" handler="on_btn_help_affected_by_magic_coat_clicked" swapped="no"/>
-<signal name="clicked" handler="on_btn_help_is_snatchable_clicked" swapped="no"/>
-<signal name="clicked" handler="on_btn_help_uses_mouth_clicked" swapped="no"/>
-<signal name="clicked" handler="on_btn_help_ignores_taunted_clicked" swapped="no"/>
-"""
 
 
 class UseType(Enum):

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
 <!--
   ~ Copyright 2020-2021 Parakoopa and the SkyTemple Contributors
   ~
@@ -17,8 +18,6 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
   -->
-
-<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkListStore" id="effect_ids_store">
@@ -60,28 +59,28 @@
   </object>
   <object class="GtkStack" id="list_stack">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <child>
       <object class="GtkBox" id="box_na">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkAlignment">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="xscale">0.80000001192092896</property>
-            <property name="yscale">0.80000001192092896</property>
+            <property name="can-focus">False</property>
+            <property name="xscale">0.8000000119209289</property>
+            <property name="yscale">0.8000000119209289</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">64</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">64</property>
                     <property name="label" translatable="yes">Move Effects</property>
                     <style>
                       <class name="skytemple-view-main-label"/>
@@ -96,8 +95,8 @@
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">5</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">5</property>
                     <property name="label" translatable="yes">Edits the move effects used by the game.</property>
                   </object>
                   <packing>
@@ -109,8 +108,8 @@
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">40</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">40</property>
                     <property name="label" translatable="yes">&lt;Not available&gt;
 
 To view and edit move effects, please apply the "ExtractMoveCode" 
@@ -142,24 +141,24 @@ If you already have applied it, apply it again to be sure to use the last versio
     <child>
       <object class="GtkBox" id="box_list">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkAlignment">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="xscale">0.80000001192092896</property>
-            <property name="yscale">0.80000001192092896</property>
+            <property name="can-focus">False</property>
+            <property name="xscale">0.8000000119209289</property>
+            <property name="yscale">0.8000000119209289</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">64</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">64</property>
                     <property name="label" translatable="yes">Move Effects</property>
                     <style>
                       <class name="skytemple-view-main-label"/>
@@ -174,8 +173,8 @@ If you already have applied it, apply it again to be sure to use the last versio
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">5</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">5</property>
                     <property name="label" translatable="yes">Edits the effects used by each move.</property>
                   </object>
                   <packing>
@@ -187,24 +186,24 @@ If you already have applied it, apply it again to be sure to use the last versio
                 <child>
                   <object class="GtkNotebook" id="effects_notebook">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
+                    <property name="can-focus">True</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkScrolledWindow">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
+                            <property name="can-focus">True</property>
                             <property name="vexpand">True</property>
-                            <property name="shadow_type">in</property>
+                            <property name="shadow-type">in</property>
                             <child>
                               <object class="GtkTreeView" id="moves_tree">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
+                                <property name="can-focus">True</property>
                                 <property name="model">move_effects_store</property>
-                                <property name="search_column">0</property>
+                                <property name="search-column">0</property>
                                 <child internal-child="selection">
                                   <object class="GtkTreeSelection"/>
                                 </child>
@@ -256,23 +255,23 @@ If you already have applied it, apply it again to be sure to use the last versio
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkButton" id="btn_goto_effect">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
                                 <property name="valign">center</property>
                                 <signal name="clicked" handler="on_btn_goto_effect_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkBox">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
+                                    <property name="can-focus">False</property>
                                     <property name="spacing">5</property>
                                     <child>
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
+                                        <property name="can-focus">False</property>
                                         <property name="label" translatable="yes">Go To</property>
                                       </object>
                                       <packing>
@@ -284,8 +283,8 @@ If you already have applied it, apply it again to be sure to use the last versio
                                     <child>
                                       <object class="GtkImage">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="icon_name">skytemple-go-next-symbolic</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">skytemple-go-next-symbolic</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -305,14 +304,14 @@ If you already have applied it, apply it again to be sure to use the last versio
                             <child>
                               <object class="GtkButton" id="btn_fix_nb_items">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
                                 <property name="valign">center</property>
                                 <signal name="clicked" handler="on_btn_fix_nb_items_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkLabel">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
+                                    <property name="can-focus">False</property>
                                     <property name="label" translatable="yes">Fix # of Moves</property>
                                   </object>
                                 </child>
@@ -335,29 +334,29 @@ If you already have applied it, apply it again to be sure to use the last versio
                     <child type="tab">
                       <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">Move Effects</property>
                       </object>
                       <packing>
-                        <property name="tab_fill">False</property>
+                        <property name="tab-fill">False</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="margin_bottom">5</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-bottom">5</property>
                         <property name="orientation">vertical</property>
                         <property name="spacing">5</property>
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="spacing">5</property>
                             <child>
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
+                                <property name="can-focus">False</property>
                                 <property name="label" translatable="yes">Effect ID: </property>
                               </object>
                               <packing>
@@ -369,7 +368,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                             <child>
                               <object class="GtkComboBox" id="cb_effect_ids">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
+                                <property name="can-focus">False</property>
                                 <property name="model">effect_ids_store</property>
                                 <signal name="changed" handler="on_cb_effect_ids_changed" swapped="no"/>
                                 <child>
@@ -388,50 +387,50 @@ If you already have applied it, apply it again to be sure to use the last versio
                             <child>
                               <object class="GtkBox">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="margin_left">20</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">20</property>
                                 <property name="spacing">5</property>
                                 <child>
                                   <object class="GtkButton" id="btn_add_effect">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
-                                    <property name="tooltip_text" translatable="yes">Reload</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="tooltip-text" translatable="yes">Reload</property>
                                     <signal name="clicked" handler="on_btn_add_effect_clicked" swapped="no"/>
                                     <child>
                                       <object class="GtkImage">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="icon_name">skytemple-list-add-symbolic</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">skytemple-list-add-symbolic</property>
                                       </object>
                                     </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
-                                    <property name="pack_type">end</property>
+                                    <property name="pack-type">end</property>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="btn_remove_effect">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
-                                    <property name="tooltip_text" translatable="yes">Reload</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="tooltip-text" translatable="yes">Reload</property>
                                     <signal name="clicked" handler="on_btn_remove_effect_clicked" swapped="no"/>
                                     <child>
                                       <object class="GtkImage">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="icon_name">skytemple-list-remove-symbolic</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">skytemple-list-remove-symbolic</property>
                                       </object>
                                     </child>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
-                                    <property name="pack_type">end</property>
+                                    <property name="pack-type">end</property>
                                     <property name="position">1</property>
                                   </packing>
                                 </child>
@@ -452,9 +451,9 @@ If you already have applied it, apply it again to be sure to use the last versio
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin_top">5</property>
+                            <property name="margin-top">5</property>
                             <property name="label" translatable="yes">Used by: </property>
                           </object>
                           <packing>
@@ -466,15 +465,15 @@ If you already have applied it, apply it again to be sure to use the last versio
                         <child>
                           <object class="GtkScrolledWindow">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
+                            <property name="can-focus">True</property>
                             <property name="vexpand">True</property>
-                            <property name="shadow_type">in</property>
+                            <property name="shadow-type">in</property>
                             <child>
                               <object class="GtkTreeView" id="effect_tree">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
+                                <property name="can-focus">True</property>
                                 <property name="model">effect_moves_store</property>
-                                <property name="search_column">0</property>
+                                <property name="search-column">0</property>
                                 <child internal-child="selection">
                                   <object class="GtkTreeSelection"/>
                                 </child>
@@ -512,33 +511,33 @@ If you already have applied it, apply it again to be sure to use the last versio
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="orientation">vertical</property>
                             <property name="spacing">5</property>
                             <child>
                               <object class="GtkBox">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
+                                <property name="can-focus">False</property>
                                 <property name="halign">center</property>
                                 <property name="valign">end</property>
                                 <property name="spacing">20</property>
                                 <child>
                                   <object class="GtkButton" id="btn_import_code">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
                                     <signal name="clicked" handler="on_btn_import_code_clicked" swapped="no"/>
                                     <child>
                                       <object class="GtkBox">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
+                                        <property name="can-focus">False</property>
                                         <property name="orientation">vertical</property>
                                         <property name="spacing">5</property>
                                         <child>
                                           <object class="GtkImage">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
-                                            <property name="icon_name">skytemple-import-symbolic</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="icon-name">skytemple-import-symbolic</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -549,7 +548,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                                         <child>
                                           <object class="GtkLabel">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
+                                            <property name="can-focus">False</property>
                                             <property name="label" translatable="yes">Import Code</property>
                                           </object>
                                           <packing>
@@ -570,20 +569,20 @@ If you already have applied it, apply it again to be sure to use the last versio
                                 <child>
                                   <object class="GtkBox">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
+                                    <property name="can-focus">False</property>
                                     <property name="orientation">vertical</property>
                                     <property name="spacing">5</property>
                                     <child>
                                       <object class="GtkScrolledWindow">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="hscrollbar_policy">never</property>
-                                        <property name="vscrollbar_policy">never</property>
-                                        <property name="shadow_type">in</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="hscrollbar-policy">never</property>
+                                        <property name="vscrollbar-policy">never</property>
+                                        <property name="shadow-type">in</property>
                                         <child>
                                           <object class="GtkTextView" id="tv_paste_import">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
+                                            <property name="can-focus">True</property>
                                             <property name="buffer">tv_paste_import_buffer</property>
                                           </object>
                                         </child>
@@ -597,7 +596,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                                     <child>
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
+                                        <property name="can-focus">False</property>
                                         <property name="label" translatable="yes">Clipboard Import</property>
                                       </object>
                                       <packing>
@@ -616,20 +615,20 @@ If you already have applied it, apply it again to be sure to use the last versio
                                 <child>
                                   <object class="GtkButton" id="btn_export_code">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
                                     <signal name="clicked" handler="on_btn_export_code_clicked" swapped="no"/>
                                     <child>
                                       <object class="GtkBox">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
+                                        <property name="can-focus">False</property>
                                         <property name="orientation">vertical</property>
                                         <property name="spacing">5</property>
                                         <child>
                                           <object class="GtkImage">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
-                                            <property name="icon_name">skytemple-export-symbolic</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="icon-name">skytemple-export-symbolic</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -640,7 +639,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                                         <child>
                                           <object class="GtkLabel">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
+                                            <property name="can-focus">False</property>
                                             <property name="label" translatable="yes">Export Code</property>
                                           </object>
                                           <packing>
@@ -661,22 +660,22 @@ If you already have applied it, apply it again to be sure to use the last versio
                                 <child>
                                   <object class="GtkButton" id="btn_help_import">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
                                     <property name="halign">start</property>
                                     <property name="valign">center</property>
                                     <signal name="clicked" handler="on_btn_help_import_clicked" swapped="no"/>
                                     <child>
                                       <object class="GtkBox">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
+                                        <property name="can-focus">False</property>
                                         <property name="orientation">vertical</property>
                                         <property name="spacing">5</property>
                                         <child>
                                           <object class="GtkImage">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
-                                            <property name="icon_name">skytemple-help-about-symbolic</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="icon-name">skytemple-help-about-symbolic</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -687,7 +686,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                                         <child>
                                           <object class="GtkLabel">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
+                                            <property name="can-focus">False</property>
                                             <property name="label" translatable="yes">Help</property>
                                           </object>
                                           <packing>
@@ -715,24 +714,24 @@ If you already have applied it, apply it again to be sure to use the last versio
                             <child>
                               <object class="GtkBox">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
+                                <property name="can-focus">False</property>
                                 <property name="halign">center</property>
                                 <property name="spacing">5</property>
                                 <child>
                                   <object class="GtkButton" id="btn_irdkwia">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
                                     <signal name="clicked" handler="on_btn_irdkwia_clicked" swapped="no"/>
                                     <child>
                                       <object class="GtkBox">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
+                                        <property name="can-focus">False</property>
                                         <property name="spacing">5</property>
                                         <child>
                                           <object class="GtkLabel">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
+                                            <property name="can-focus">False</property>
                                             <property name="label" translatable="yes">irdkwia's Effect Library</property>
                                           </object>
                                           <packing>
@@ -744,8 +743,8 @@ If you already have applied it, apply it again to be sure to use the last versio
                                         <child>
                                           <object class="GtkImage">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
-                                            <property name="icon_name">skytemple-go-next-symbolic</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="icon-name">skytemple-go-next-symbolic</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -765,18 +764,18 @@ If you already have applied it, apply it again to be sure to use the last versio
                                 <child>
                                   <object class="GtkButton" id="btn_asmeditor">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
                                     <signal name="clicked" handler="on_btn_asmeditor_clicked" swapped="no"/>
                                     <child>
                                       <object class="GtkBox">
                                         <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
+                                        <property name="can-focus">False</property>
                                         <property name="spacing">5</property>
                                         <child>
                                           <object class="GtkLabel">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
+                                            <property name="can-focus">False</property>
                                             <property name="label" translatable="yes">ASM Editor</property>
                                           </object>
                                           <packing>
@@ -788,8 +787,8 @@ If you already have applied it, apply it again to be sure to use the last versio
                                         <child>
                                           <object class="GtkImage">
                                             <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
-                                            <property name="icon_name">skytemple-go-next-symbolic</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="icon-name">skytemple-go-next-symbolic</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -828,26 +827,26 @@ If you already have applied it, apply it again to be sure to use the last versio
                     <child type="tab">
                       <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">Effects Code</property>
                       </object>
                       <packing>
                         <property name="position">1</property>
-                        <property name="tab_fill">False</property>
+                        <property name="tab-fill">False</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin_top">5</property>
-                            <property name="margin_bottom">5</property>
+                            <property name="margin-top">5</property>
+                            <property name="margin-bottom">5</property>
                             <property name="label" translatable="yes">Here you can edit Metronome's movepool.
 Each move in this list has the same chance of being used by Metronome.</property>
                           </object>
@@ -860,15 +859,15 @@ Each move in this list has the same chance of being used by Metronome.</property
                         <child>
                           <object class="GtkScrolledWindow">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
+                            <property name="can-focus">True</property>
                             <property name="vexpand">True</property>
-                            <property name="shadow_type">in</property>
+                            <property name="shadow-type">in</property>
                             <child>
                               <object class="GtkTreeView" id="metronome_tree">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
+                                <property name="can-focus">True</property>
                                 <property name="model">metronome_store</property>
-                                <property name="search_column">0</property>
+                                <property name="search-column">0</property>
                                 <child internal-child="selection">
                                   <object class="GtkTreeSelection">
                                     <property name="mode">multiple</property>
@@ -911,49 +910,49 @@ Each move in this list has the same chance of being used by Metronome.</property
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="spacing">5</property>
                             <child>
                               <object class="GtkButton" id="btn_add_metronome">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
-                                <property name="tooltip_text" translatable="yes">Reload</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Reload</property>
                                 <signal name="clicked" handler="on_btn_add_metronome_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="icon_name">skytemple-list-add-symbolic</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-list-add-symbolic</property>
                                   </object>
                                 </child>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="pack_type">end</property>
+                                <property name="pack-type">end</property>
                                 <property name="position">0</property>
                               </packing>
                             </child>
                             <child>
                               <object class="GtkButton" id="btn_remove_metronome">
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
-                                <property name="tooltip_text" translatable="yes">Reload</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Reload</property>
                                 <signal name="clicked" handler="on_btn_remove_metronome_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="icon_name">skytemple-list-remove-symbolic</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-list-remove-symbolic</property>
                                   </object>
                                 </child>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="pack_type">end</property>
+                                <property name="pack-type">end</property>
                                 <property name="position">1</property>
                               </packing>
                             </child>
@@ -972,12 +971,12 @@ Each move in this list has the same chance of being used by Metronome.</property
                     <child type="tab">
                       <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">Metronome</property>
                       </object>
                       <packing>
                         <property name="position">2</property>
-                        <property name="tab_fill">False</property>
+                        <property name="tab-fill">False</property>
                       </packing>
                     </child>
                   </object>
@@ -1005,7 +1004,7 @@ Each move in this list has the same chance of being used by Metronome.</property
     </child>
     <style>
       <class name="back_illust"/>
-      <class name="bboard"/>
+      <class name="moves"/>
     </style>
   </object>
 </interface>

@@ -35,7 +35,7 @@ from skytemple_files.data.data_cd.handler import DataCDHandler
 from skytemple_files.data.item_p.model import ItemP, ItemPEntry
 from skytemple_files.data.item_s_p.model import ItemSP, ItemSPEntry
 from skytemple_files.data.val_list.handler import ValListHandler
-from skytemple_files.data.waza_p.model import WazaP
+from skytemple_files.data.waza_p.model import WazaP, WazaMove
 from skytemple_files.list.items.handler import ItemListHandler
 from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList
 from skytemple_files.common.i18n_util import _
@@ -180,3 +180,13 @@ class MovesItemsModule(AbstractModule):
 
     def get_waza_p(self) -> WazaP:
         return self.project.open_file_in_rom(MOVE_FILE, FileType.WAZA_P)
+
+    def get_move(self, move_id) -> WazaMove:
+        return self.get_waza_p().moves[move_id]
+
+    def mark_move_as_modified(self, move_id):
+        self.project.mark_as_modified(MOVE_FILE)
+        self.project.get_string_provider().mark_as_modified()
+        # Mark as modified in tree
+        row = self._tree_model[self.move_iters[move_id]]
+        recursive_up_item_store_mark_as_modified(row)

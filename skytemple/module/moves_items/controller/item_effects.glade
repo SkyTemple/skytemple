@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
 <!--
   ~ Copyright 2020-2021 Parakoopa and the SkyTemple Contributors
   ~
@@ -17,8 +18,6 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
   -->
-
-<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkListStore" id="effect_ids_store">
@@ -819,7 +818,7 @@ ASM patch from the "ASM Patches" menu.</property>
     </child>
     <style>
       <class name="back_illust"/>
-      <class name="bboard"/>
+      <class name="items"/>
     </style>
   </object>
 </interface>
