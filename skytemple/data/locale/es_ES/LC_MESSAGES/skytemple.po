@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-04-13 19:53+0000\n"
-"PO-Revision-Date: 2021-04-13 19:54\n"
+"PO-Revision-Date: 2021-04-13 20:53\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1273,29 +1273,29 @@ msgstr "Solo se admiten imágenes de 4bpp y 8bpp."
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:201
 msgid "Can not convert PIL image to PMD tiled image: Must be indexed image (=using a palette)"
-msgstr "No se puede convertir la imagen PIL a imagen de tiles de PMD: Debe ser una imagen indexada (usando una paleta)"
+msgstr "No se puede convertir la imagen PIL a imagen de tiles de PMM: Debe ser una imagen indexada (usando una paleta)"
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:205
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Palette must contain max {max_len_pal} RGB colors and be divisible by {single_palette_size}."
-msgstr "No se puede convertir la imagen PIL a una de tiles de PMD: la paleta debe contener un máximo de {max_len_pal} colores RGB y ser divisible por {single_palette_size}."
+msgstr "No se puede convertir la imagen PIL a una de tiles de PMM: la paleta debe contener un máximo de {max_len_pal} colores RGB y ser divisible por {single_palette_size}."
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:209
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Image dimensions must be {img_width}x{img_height}px."
-msgstr "No se puede convertir la imagen PIL a imagen de tiles de PMD: Las dimensiones de la imagen deben ser de {img_width}x{img_height}px."
+msgstr "No se puede convertir la imagen PIL a imagen de tiles de PMM: Las dimensiones de la imagen deben ser de {img_width}x{img_height}px."
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:269
 #: skytemple-files/skytemple_files/common/tiled_image.py:277
 msgid "Can not convert PIL image to PMD tiled image: The color {pix} (from palette {math.floor(pix / single_palette_size)}) used by pixel {x+(idx % 2)}x{y} in tile {tile_id} ({tile_x}x{tile_y} is out of range. Expected are colors from palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
-msgstr "No se puede convertir una imagen PIL en una imagen de tiles de PMD: El color {pix} (de la paleta {math.floor(pix / single_palette_size)}) utilizada por el píxel {x+(idx % 2)}x{y} en el tile {tile_id} ({tile_x}x{tile_y} está fuera de rango. Se esperaban los colores de la paleta {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
+msgstr "No se puede convertir una imagen PIL en una imagen de tiles de PMM: El color {pix} (de la paleta {math.floor(pix / single_palette_size)}) utilizada por el píxel {x+(idx % 2)}x{y} en el tile {tile_id} ({tile_x}x{tile_y} está fuera de rango. Se esperaban los colores de la paleta {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:317
 #, python-brace-format
 msgid "An image selected to import is too complex. It has too many unique tiles ({len_final_tiles}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr "La imagen seleccionada para importar es demasiado compleja. Tiene demasiados tiles únicos ({len_final_tiles} tiles, pero el máximo permitido es 1024).\n"
-"Intenta reducir los tiles únicos. Estos tiles son secciones 8x8 de las imágenes que no se pueden encontrar en ninguna otra parte de la imagen (ni siquiera volteadas o con una subpaleta diferente)."
+"Intenta reducir los tiles únicos. Estos tiles son secciones 8x8 de las imágenes que no se pueden encontrar en ninguna otra parte de la imagen (ni siquiera invertidas o con una subpaleta diferente)."
 
 #: skytemple-files/skytemple_files/common/util.py:310
 msgid "This ROM is not supported by SkyTemple."
@@ -3349,7 +3349,7 @@ msgid "\n\n"
 "You can already edit it through SkyTemple, but it won't be used in game, until you successfully apply the patch."
 msgstr "\n\n"
 "La lista se ha extraído de todos modos.\n"
-"Ya se puede editar a través de SkyTemple, pero no se utilizará en el juego hasta que se aplique con éxito el parche."
+"Puedes editarla a través de SkyTemple, pero no se utilizará en el juego hasta que se aplique el parche."
 
 #: skytemple-files/skytemple_files/patch/handler/add_type.py:119
 msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
@@ -4949,7 +4949,7 @@ msgstr "Cualquier archivo"
 
 #: skytemple/skytemple/controller/tilequant.py:79
 msgid "The maximum number of palettes that can be used. For normal backgrounds, this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes (since the last 2 palettes are not rendered in game)."
-msgstr "Es el número máximo de paletas que se pueden utilizar. Para fondos normales, puede ser un máximo de 16. Para fondos de mapa, ambas capas comparten en total 14 paletas (ya que las últimas 2 paletas no se renderizan en el juego)."
+msgstr "Es el número máximo de paletas que pueden utilizarse. Para fondos normales, puede ser un máximo de 16. Para fondos de mapa, ambas capas comparten en total 14 paletas (ya que las últimas 2 paletas no se renderizan en el juego)."
 
 #: skytemple/skytemple/controller/tilequant.py:84
 msgid "This exact color of the image will be imported as transparency (default: #12ab56)."
@@ -5079,7 +5079,7 @@ msgstr "Herramientas"
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1641
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4665
 msgid "Convert image to PMD2 indexed PNG..."
-msgstr "Convertir imagen a PNG de PMD2 indexada..."
+msgstr "Convertir imagen a PNG de PMM2 indexada..."
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:141
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5398
@@ -5686,7 +5686,7 @@ msgstr "Si no se establece, se utilizará en su lugar el ID de la pista especifi
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:382
 msgid "Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled)"
-msgstr "Determina si se pueden utilizar o no movimientos. No afecta al ataque normal. Si es 0, los demás Pokémon no atacarán (ni siquiera usarán el ataque normal, aun si la habilidad Movimaníaco está desactivada)"
+msgstr "Determina si pueden utilizarse o no movimientos. No afecta al ataque normal. Si es 0, los demás Pokémon no atacarán (ni siquiera usarán el ataque normal, aun si la habilidad Movimaníaco está desactivada)"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:387
 msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
@@ -5741,7 +5741,7 @@ msgstr "Salas fijas"
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:216
 msgid "This section lets you edit fixed rooms. Fixed rooms can be configured to appear on dungeon floors.\n"
 "They are usually used for boss fights or other special floors."
-msgstr "Esta sección te permite editar las salas fijas. Las salas fijas se pueden configurar para que aparezcan en los pisos de los territorios.\n"
+msgstr "Esta sección te permite editar las salas fijas. Las salas fijas pueden configurarse para que aparezcan en los pisos de los territorios.\n"
 "Suelen utilizarse para los combates contra jefes u otros pisos especiales."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:250
@@ -10369,7 +10369,7 @@ msgstr "Desc. 15:"
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1144
 #: skytemple/skytemple/module/moves_items/controller/move.py:288
 msgid "Is Snatchable:"
-msgstr "Es arrebatable:"
+msgstr "Puede ser robado:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1156
 #: skytemple/skytemple/module/moves_items/controller/move.py:299
@@ -10383,43 +10383,43 @@ msgstr "Ignora Mofa:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:207
 msgid "The percentage indicating the chances the move will succeed. 100 is perfect accuracy. Anything higher than 100 is a never-miss move."
-msgstr ""
+msgstr "El porcentaje que indica la probabilidad de que el movimiento acierte. 100 es la precisión perfecta. Si es superior a 100, el movimiento nunca falla."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:219
 msgid "Seems to be a second sort of accuracy check. A different message will be shown if this accuracy test fails."
-msgstr ""
+msgstr "Parece ser un segundo tipo de comprobación de precisión. Se mostrará un mensaje diferente si esta prueba de precisión falla."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:231
 msgid "Possibly the number of times a move hits in a row."
-msgstr ""
+msgstr "Probablemente indica el número de veces que un movimiento golpea en serie."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:242
 msgid "These are the range settings that the game uses for processing the actual move."
-msgstr ""
+msgstr "Son los ajustes de alcance que el juego utiliza para procesar el movimiento real."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:253
 msgid "When deciding what move to use, the AI will treat the move like it actually has the range settings configured here."
-msgstr ""
+msgstr "Al decidir qué movimiento utilizar, la IA tratará el movimiento como si tuviera los ajustes de alcance configurados aquí."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:265
 msgid "The Pokémon must be in this condition in order for this move to be used."
-msgstr ""
+msgstr "El Pokémon debe cumplir esta condición para utilizar este movimiento."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:276
 msgid "Whether the move is affected by magic coat."
-msgstr ""
+msgstr "Indica si el movimiento se ve afectado por Capa Mágica."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:287
 msgid "Whether the move is affected by snatch."
-msgstr ""
+msgstr "Indica si el movimiento se ve afectado por Robo."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:298
 msgid "Whether the move is disabled by the \"muzzled\" status."
-msgstr ""
+msgstr "Indica si el movimiento se desactiva por el estado Amordazado."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:309
 msgid "Whether the move can be used while taunted."
-msgstr ""
+msgstr "Indica si el movimiento se puede utilizar tras sufrir el efecto de Mofa."
 
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:84
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:162
@@ -11445,7 +11445,7 @@ msgstr "Cargando ROM \"NAME\"..."
 #: skytemple/skytemple/skytemple.glade:1386
 msgid "You want to support SkyTemple and PMD2 ROM hacking?\n"
 "Thank you! You can support us..."
-msgstr "¿Quieres apoyar SkyTemple y el hacking de la ROM de PMD2?\n"
+msgstr "¿Quieres apoyar SkyTemple y el hacking de la ROM de PMM2?\n"
 "¡Muchas gracias! Puedes apoyarnos..."
 
 #: skytemple/skytemple/skytemple.glade:1406
@@ -11493,7 +11493,7 @@ msgstr "... comprándonos un café!"
 #: skytemple/skytemple/skytemple.glade:1615
 msgid "If you like SkyTemple or other PMD2 hacking tools, you can\n"
 "support us with a small donation."
-msgstr "Si te gusta SkyTemple u otras herramientas de hacking de PMD2, puedes\n"
+msgstr "Si te gusta SkyTemple u otras herramientas de hacking de PMM2, puedes\n"
 "apoyarnos con una pequeña donación."
 
 #: skytemple/skytemple/skytemple.glade:1640
