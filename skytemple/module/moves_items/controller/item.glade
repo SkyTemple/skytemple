@@ -219,7 +219,7 @@
         </child>
         <style>
           <class name="back_illust"/>
-          <class name="monsters"/>
+          <class name="items"/>
         </style>
       </object>
       <packing>
@@ -229,7 +229,7 @@
       </packing>
     </child>
     <child>
-      <object class="GtkNotebook">
+      <object class="GtkNotebook" id="main_notebook">
         <property name="visible">True</property>
         <property name="can-focus">True</property>
         <property name="scrollable">True</property>

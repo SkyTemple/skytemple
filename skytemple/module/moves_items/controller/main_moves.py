@@ -36,4 +36,4 @@ class MainMovesController(SimpleController):
         )
 
     def get_icon(self) -> str:
-        return 'skytemple-illust-bboard'
+        return 'skytemple-illust-moves'

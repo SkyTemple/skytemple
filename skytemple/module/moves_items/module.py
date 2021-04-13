@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional, Dict
+from typing import Dict, Tuple, Optional
 
 from gi.repository.Gtk import TreeStore, TreeIter
 
@@ -32,8 +32,8 @@ from skytemple.module.moves_items.controller.move import MoveController
 from skytemple.module.moves_items.controller.move_effects import MoveEffectsController
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.data_cd.handler import DataCDHandler
-from skytemple_files.data.item_p.model import ItemP
-from skytemple_files.data.item_s_p.model import ItemSP
+from skytemple_files.data.item_p.model import ItemP, ItemPEntry
+from skytemple_files.data.item_s_p.model import ItemSP, ItemSPEntry
 from skytemple_files.data.val_list.handler import ValListHandler
 from skytemple_files.data.waza_p.model import WazaP
 from skytemple_files.list.items.handler import ItemListHandler
@@ -69,14 +69,14 @@ class MovesItemsModule(AbstractModule):
         self._item_effects_tree_iter = None
         self._move_effects_tree_iter = None
         self.item_iters: Dict[int, TreeIter] = {}
-        self.moves_iters: Dict[int, TreeIter] = {}
+        self.move_iters: Dict[int, TreeIter] = {}
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root_items = item_store.append(root_node, [
-            'skytemple-view-list-symbolic', ITEMS, self, MainItemsController, 0, False, '', True
+            'skytemple-e-item-symbolic', ITEMS, self, MainItemsController, 0, False, '', True
         ])
         root_moves = item_store.append(root_node, [
-            'skytemple-view-list-symbolic', MOVES, self, MainMovesController, 0, False, '', True
+            'skytemple-e-move-symbolic', MOVES, self, MainMovesController, 0, False, '', True
         ])
         self._item_lists_tree_iter = item_store.append(root_items, [
             'skytemple-view-list-symbolic', _('Item Lists'), self, ItemListsController, 0, False, '', True
@@ -90,15 +90,15 @@ class MovesItemsModule(AbstractModule):
 
         for i, item in enumerate(self.get_item_p().item_list):
             name = self.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
-            item_store.append(root_items, [
-                'skytemple-view-list-symbolic', f'#{i:04}: {name}', self, ItemController, i, False, '', True
-            ])
+            self.item_iters[i] = (item_store.append(root_items, [
+                'skytemple-e-item-symbolic', f'#{i:04}: {name}', self, ItemController, i, False, '', True
+            ]))
 
         for i, item in enumerate(self.get_waza_p().moves):
             name = self.project.get_string_provider().get_value(StringType.MOVE_NAMES, i)
-            item_store.append(root_moves, [
-                'skytemple-view-list-symbolic', f'#{i:04}: {name}', self, MoveController, i, False, '', True
-            ])
+            self.move_iters[i] = (item_store.append(root_moves, [
+                'skytemple-e-move-symbolic', f'#{i:04}: {name}', self, MoveController, i, False, '', True
+            ]))
 
         recursive_generate_item_store_row_label(item_store[root_items])
         recursive_generate_item_store_row_label(item_store[root_moves])
@@ -163,6 +163,20 @@ class MovesItemsModule(AbstractModule):
 
     def get_item_s_p(self) -> ItemSP:
         return self.project.open_file_in_rom(ITEM_S_FILE, FileType.ITEM_SP)
+
+    def get_item(self, item_id) -> Tuple[ItemPEntry, Optional[ItemSPEntry]]:
+        if item_id > FIRST_EXCLUSIVE_ITEM_ID:
+            return self.get_item_p().item_list[item_id], self.get_item_s_p().item_list[item_id - FIRST_EXCLUSIVE_ITEM_ID]
+        return self.get_item_p().item_list[item_id], None
+
+    def mark_item_as_modified(self, item_id):
+        self.project.mark_as_modified(ITEM_FILE)
+        self.project.get_string_provider().mark_as_modified()
+        if item_id >= FIRST_EXCLUSIVE_ITEM_ID:
+            self.project.mark_as_modified(ITEM_S_FILE)
+        # Mark as modified in tree
+        row = self._tree_model[self.item_iters[item_id]]
+        recursive_up_item_store_mark_as_modified(row)
 
     def get_waza_p(self) -> WazaP:
         return self.project.open_file_in_rom(MOVE_FILE, FileType.WAZA_P)

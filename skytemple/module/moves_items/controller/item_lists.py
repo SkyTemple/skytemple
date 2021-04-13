@@ -14,21 +14,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-#
-#  This file is part of SkyTemple.
-#
-#  SkyTemple is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 3 of the License, or
-#  (at your option) any later version.
-#
-#  SkyTemple is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
 from typing import TYPE_CHECKING, Dict, List, Optional
@@ -53,16 +38,16 @@ logger = logging.getLogger(__name__)
 PATTERN_MD_ENTRY = re.compile(r'.*\(#(\d+)\).*')
 
 VALID_ITEM_CATEGORY_NAMES = {
-    MappaItemCategory.THROWN_PIERCE: _('Thrown - Pierce'),
-    MappaItemCategory.THROWN_ROCK: _('Thrown - Rock'),
-    MappaItemCategory.BERRIES_SEEDS_VITAMINS: _('Berries, Seeds, Vitamins'),
-    MappaItemCategory.FOODS_GUMMIES: _('Foods, Gummies'),
-    MappaItemCategory.HOLD: _('Hold'),
-    MappaItemCategory.TMS: _('TMs, HMs'),
-    MappaItemCategory.POKE: _('Poké (Money)'),
-    MappaItemCategory.OTHER: _('Other'),
-    MappaItemCategory.ORBS: _('Orbs'),
-    MappaItemCategory.LINK_BOX: _('Link Box')
+    MappaItemCategory.THROWN_PIERCE: MappaItemCategory.THROWN_PIERCE.print_name,
+    MappaItemCategory.THROWN_ROCK: MappaItemCategory.THROWN_ROCK.print_name,
+    MappaItemCategory.BERRIES_SEEDS_VITAMINS: MappaItemCategory.BERRIES_SEEDS_VITAMINS.print_name,
+    MappaItemCategory.FOODS_GUMMIES: MappaItemCategory.FOODS_GUMMIES.print_name,
+    MappaItemCategory.HOLD: MappaItemCategory.HOLD.print_name,
+    MappaItemCategory.TMS: MappaItemCategory.TMS.print_name,
+    MappaItemCategory.POKE: MappaItemCategory.POKE.print_name,
+    MappaItemCategory.OTHER: MappaItemCategory.OTHER.print_name,
+    MappaItemCategory.ORBS: MappaItemCategory.ORBS.print_name,
+    MappaItemCategory.LINK_BOX: MappaItemCategory.LINK_BOX.print_name
 }
 CATEGORIES_FOR_STORES = {
     'item_cat_thrown_pierce_store': MappaItemCategory.THROWN_PIERCE,
