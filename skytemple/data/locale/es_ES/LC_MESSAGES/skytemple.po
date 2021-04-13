@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-04-13 12:48+0000\n"
-"PO-Revision-Date: 2021-04-13 12:57\n"
+"PO-Revision-Date: 2021-04-13 18:42\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -9522,7 +9522,7 @@ msgstr "label_pre_evo_index"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1931
 msgid "label_param"
-msgstr ""
+msgstr "label_param"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1943
 msgid "Additional Requirement:"
@@ -9634,19 +9634,19 @@ msgstr "Tasas de liberación de cofres:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2712
 msgid "label_chance_no_drop"
-msgstr ""
+msgstr "label_chance_no_drop"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2724
 msgid "label_chance_normal_items"
-msgstr ""
+msgstr "label_chance_normal_items"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2736
 msgid "label_chance_exclusive1"
-msgstr ""
+msgstr "label_chance_exclusive1"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2748
 msgid "label_chance_exclusive2"
-msgstr ""
+msgstr "label_chance_exclusive2"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:324
 msgid "Value depends on Main Requirement:\n"
@@ -9922,83 +9922,85 @@ msgstr "Ajustes de objeto exclusivos"
 #: skytemple/skytemple/module/moves_items/controller/item.py:94
 #: skytemple/skytemple/module/moves_items/controller/item.py:95
 msgid "Use"
-msgstr ""
+msgstr "Usar"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:81
 msgid "Hurl"
-msgstr ""
+msgstr "Lanzar"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:82
 msgid "Throw"
-msgstr ""
+msgstr "Arrojar"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:83
 #: skytemple/skytemple/module/moves_items/controller/item.py:91
 #: skytemple/skytemple/module/moves_items/controller/item.py:92
 msgid "Equip"
-msgstr ""
+msgstr "Equipar"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:84
 msgid "Eat"
-msgstr ""
+msgstr "Comer"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:85
 msgid "Ingest"
-msgstr ""
+msgstr "Ingerir"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:86
 msgid "Peel"
-msgstr ""
+msgstr "Pelar"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:292
 msgid "For stackable items: Indicates the minimum amount you can get for 1 instance of that item."
-msgstr ""
+msgstr "En objetos acumulables, indica la cantidad mínima que puedes obtener por cada instancia de ese objeto."
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:293
 msgid "Min Amount"
-msgstr ""
+msgstr "Cantidad mín."
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:303
 msgid "For stackable items: Indicates the maximum amount you can get for 1 instance of that item."
-msgstr ""
+msgstr "En objetos acumulables, indica la cantidad máxima que puedes obtener por cada instancia de ese objeto."
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:304
 msgid "Max Amount"
-msgstr ""
+msgstr "Cantidad máx."
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:314
 msgid "The ID of a move, that is associated with this item."
-msgstr ""
+msgstr "El ID de un movimiento que está asociado con este elemento."
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:315
 msgid "Move ID"
-msgstr ""
+msgstr "ID de movimiento"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:321
 msgid "Either the ID of a type or of a Pokémon, depending on the type of the exclusive item.\n\n"
 "IDs for Types:\n"
-msgstr ""
+msgstr "El ID de un tipo o de un Pokémon, dependiendo del tipo de objeto exclusivo.\n\n"
+"ID de tipos:\n"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:330
 msgid "Exclusive Item Parameter"
-msgstr ""
+msgstr "Parámetro de objeto exclusivo"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:340
 msgid "Some exclusive items are assigned to Pokémon, others to types. See the values in the dropdown for the possible options."
-msgstr ""
+msgstr "Algunos objetos exclusivos se asignan a los Pokémon, otros a ciertos tipos. Consulta los valores en el menú desplegable para ver las opciones."
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:342
 msgid "Exclusive Item Type"
-msgstr ""
+msgstr "Tipo de objeto exclusivo"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:352
 msgid "Action name displayed in dungeon menus (Use, Eat, Ingest, Equip...).\n"
 "See 'Text Strings' for actual values."
-msgstr ""
+msgstr "Nombre de la acción mostrada en los menús de los territorios (Usar, Comer, Ingerir, Equipar...).\n"
+"Ver 'Cadenas de texto' para los valores reales."
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:354
 msgid "Action Name"
-msgstr ""
+msgstr "Nombre de la acción"
 
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:77
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:154
