@@ -319,7 +319,7 @@ class MoveController(AbstractController):
             gui_label: Gtk.Label = self.builder.get_object(f'label_lang{gui_id}')
             gui_label_desc: Gtk.Label = self.builder.get_object(f'label_lang{gui_id}_desc')
             gui_entry: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}')
-            gui_entry_desc: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}_desc')
+            gui_entry_desc: Gtk.Entry = self.builder.get_object(f'view_lang{gui_id}_desc')
             if lang_id < len(langs):
                 # We have this language
                 gui_label.set_text(_(langs[lang_id].name_localized) + ':')

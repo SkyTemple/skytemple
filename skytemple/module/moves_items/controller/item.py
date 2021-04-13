@@ -318,7 +318,7 @@ class ItemController(AbstractController):
             gui_label_desc: Gtk.Label = self.builder.get_object(f'label_lang{gui_id}_desc')
             gui_label_short_desc: Gtk.Label = self.builder.get_object(f'label_lang{gui_id}_short_desc')
             gui_entry: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}')
-            gui_entry_desc: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}_desc')
+            gui_entry_desc: Gtk.Entry = self.builder.get_object(f'view_lang{gui_id}_desc')
             gui_entry_short_desc: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}_short_desc')
             if lang_id < len(langs):
                 # We have this language
