@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-04-06 17:51+0000\n"
-"PO-Revision-Date: 2021-04-06 17:56\n"
+"POT-Creation-Date: 2021-04-13 12:48+0000\n"
+"PO-Revision-Date: 2021-04-13 12:58\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -6223,49 +6223,42 @@ msgstr "Garantiert"
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3412
 #: skytemple/skytemple/module/dungeon/controller/floor.py:63
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:994
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:56
 msgid "Thrown - Pierce"
 msgstr "Wurf-Items - Durchbohrend"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3571
 #: skytemple/skytemple/module/dungeon/controller/floor.py:64
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1140
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:57
 msgid "Thrown - Rock"
 msgstr "Wurf-Items - Steine"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3732
 #: skytemple/skytemple/module/dungeon/controller/floor.py:65
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1288
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:58
 msgid "Berries, Seeds, Vitamins"
 msgstr "Beeren, Samen, Vitamine"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3893
 #: skytemple/skytemple/module/dungeon/controller/floor.py:66
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1436
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:59
 msgid "Foods, Gummies"
 msgstr "Nahrung, Gummis"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4054
 #: skytemple/skytemple/module/dungeon/controller/floor.py:67
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1584
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:60
 msgid "Hold"
 msgstr "Getragen"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4215
 #: skytemple/skytemple/module/dungeon/controller/floor.py:68
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1732
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:61
 msgid "TMs, HMs"
 msgstr "TMs, VMs"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4376
 #: skytemple/skytemple/module/dungeon/controller/floor.py:71
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1880
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:64
 msgid "Orbs"
 msgstr "Orbs"
 
@@ -6289,19 +6282,16 @@ msgid "Buried"
 msgstr "Vergraben"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:69
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:62
 msgid "Poké (Money)"
 msgstr "Poké (Geld)"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:70
 #: skytemple/skytemple/module/monster/controller/monster.glade:2796
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:63
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1288
 msgid "Other"
 msgstr "Anderes"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:72
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:65
 msgid "Link Box"
 msgstr "Linkbox"
 
@@ -9907,6 +9897,93 @@ msgstr ""
 msgid "Exclusive Item Settings"
 msgstr ""
 
+#: skytemple/skytemple/module/moves_items/controller/item.py:80
+#: skytemple/skytemple/module/moves_items/controller/item.py:87
+#: skytemple/skytemple/module/moves_items/controller/item.py:88
+#: skytemple/skytemple/module/moves_items/controller/item.py:89
+#: skytemple/skytemple/module/moves_items/controller/item.py:90
+#: skytemple/skytemple/module/moves_items/controller/item.py:93
+#: skytemple/skytemple/module/moves_items/controller/item.py:94
+#: skytemple/skytemple/module/moves_items/controller/item.py:95
+msgid "Use"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:81
+msgid "Hurl"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:82
+msgid "Throw"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:83
+#: skytemple/skytemple/module/moves_items/controller/item.py:91
+#: skytemple/skytemple/module/moves_items/controller/item.py:92
+msgid "Equip"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:84
+msgid "Eat"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:85
+msgid "Ingest"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:86
+msgid "Peel"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:292
+msgid "For stackable items: Indicates the minimum amount you can get for 1 instance of that item."
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:293
+msgid "Min Amount"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:303
+msgid "For stackable items: Indicates the maximum amount you can get for 1 instance of that item."
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:304
+msgid "Max Amount"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:314
+msgid "The ID of a move, that is associated with this item."
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:315
+msgid "Move ID"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:321
+msgid "Either the ID of a type or of a Pokémon, depending on the type of the exclusive item.\n\n"
+"IDs for Types:\n"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:330
+msgid "Exclusive Item Parameter"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:340
+msgid "Some exclusive items are assigned to Pokémon, others to types. See the values in the dropdown for the possible options."
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:342
+msgid "Exclusive Item Type"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:352
+msgid "Action name displayed in dungeon menus (Use, Eat, Ingest, Equip...).\n"
+"See 'Text Strings' for actual values."
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/item.py:354
+msgid "Action Name"
+msgstr ""
+
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:77
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:154
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:298
@@ -10056,108 +10133,108 @@ msgstr "<Nicht verfügbar>\n\n"
 msgid "Lists: "
 msgstr "Listen: "
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:78
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:63
 msgid "E Floors Rewards"
 msgstr "E-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:79
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:64
 msgid "D Floors Rewards"
 msgstr "D-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:80
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:65
 msgid "C Floors Rewards"
 msgstr "C-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:81
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:66
 msgid "B Floors Rewards"
 msgstr "B-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:82
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:67
 msgid "A Floors Rewards"
 msgstr "A-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:83
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:68
 msgid "S Floors Rewards"
 msgstr "S-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:84
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:69
 msgid "★1 Floors Rewards"
 msgstr "★1-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:85
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:70
 msgid "★2 Floors Rewards"
 msgstr "★2-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:86
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:71
 msgid "★3 Floors Rewards"
 msgstr "★3-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:87
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:72
 msgid "★4 Floors Rewards"
 msgstr "★4-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:88
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:73
 msgid "★5 Floors Rewards"
 msgstr "★5-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:89
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:74
 msgid "★6 Floors Rewards"
 msgstr "★6-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:90
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:75
 msgid "★7 Floors Rewards"
 msgstr "★7-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:91
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:76
 msgid "★8 Floors Rewards"
 msgstr "★8-Rang Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:92
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:77
 msgid "★9 Floors Rewards"
 msgstr "★9 Ebenen Belohnungen"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:93
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:78
 msgid "Kecleon Shop 1"
 msgstr "Kecleon Shop 1"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:94
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:79
 msgid "Kecleon Orbs/TMs 1"
 msgstr "Kecleon Orbs/TMs 1"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:95
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:80
 msgid "Kecleon Shop 2"
 msgstr "Kecleon Shop 2"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:96
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:81
 msgid "Kecleon Orbs/TMs 2"
 msgstr "Kecleon Orbs/TMs 2"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:97
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:82
 msgid "Kecleon Shop 3"
 msgstr "Kecleon Shop 3"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:98
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:83
 msgid "Kecleon Orbs/TMs 3"
 msgstr "Kecleon Orbs/TMs 3"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:99
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:84
 msgid "Kecleon Shop 4"
 msgstr "Kecleon Shop 4"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:100
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:85
 msgid "Kecleon Orbs/TMs 4"
 msgstr "Kecleon Orbs/TMs 4"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:101
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:86
 msgid "Unknown 1"
 msgstr "Unbekannt 1"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:102
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:87
 #: skytemple/skytemple/module/script/controller/ssa.glade:95
 msgid "Unknown 2"
 msgstr "Unbekannt 2"
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:103
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:88
 #: skytemple/skytemple/module/script/controller/ssa.glade:106
 msgid "Unknown 3"
 msgstr "Unbekannt 3"
