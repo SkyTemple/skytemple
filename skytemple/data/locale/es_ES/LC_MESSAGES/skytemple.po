@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-04-14 09:01+0000\n"
-"PO-Revision-Date: 2021-04-14 14:04\n"
+"PO-Revision-Date: 2021-04-14 14:59\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2340,7 +2340,7 @@ msgstr "Sala"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:131
 msgid "Two tiles away"
-msgstr "Dos tiles de distancia"
+msgstr "A dos casillas de distancia"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:132
 msgid "Straight line"
@@ -2359,7 +2359,7 @@ msgstr "En frente; corta esquinas"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:136
 msgid "Two tiles away; cuts corners"
-msgstr "Dos tiles de distancia; corta esquinas"
+msgstr "A dos casillas de distancia; corta esquinas"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:168
 msgid "No condition"
@@ -2367,7 +2367,7 @@ msgstr "Sin condición"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:169
 msgid "Based on AI Condition 1 Chance"
-msgstr ""
+msgstr "Basado en la probabilidad de la condición 1 de la IA"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:170
 msgid "Current HP <= 25%"
@@ -10347,7 +10347,7 @@ msgstr "Peso de la IA:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1041
 msgid "AI Condition 1 Chance:"
-msgstr ""
+msgstr "Probabilidad de Condición 1 de la IA:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1057
 msgid "Range"
@@ -10409,7 +10409,8 @@ msgstr "Al decidir qué movimiento utilizar, la IA tratará el movimiento como s
 #: skytemple/skytemple/module/moves_items/controller/move.py:258
 msgid "\n"
 "Due to a bug, if the values are \"straight line\", \"In front; cuts corners\" or \"Two tiles away; cuts corners\" are chosen here, the AI range is used as the ACTUAL range of the move."
-msgstr ""
+msgstr "\n"
+"Debido a un error, si se escogen los valores \"Línea recta\", \"En frente; corta esquinas\" o \"A dos casillas de distancia; corta esquinas\", la distancia de la IA se utiliza como la distancia REAL del movimiento."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:271
 msgid "The Pokémon must be in this condition in order for this move to be used."
@@ -10433,7 +10434,7 @@ msgstr "Indica si el movimiento se puede utilizar tras sufrir el efecto de Mofa.
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:326
 msgid "Message ID offset that is displayed for the move. 0 uses the Text String 3860. Higher values select the strings after that (offsets)."
-msgstr ""
+msgstr "Es el intervalo del ID del mensaje que se muestra para el movimiento. El 0 utiliza la cadena de texto 3860. Valores más altos seleccionarán cadenas posteriores a esta (intervalos)."
 
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:84
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:162
