@@ -772,7 +772,7 @@
           </packing>
         </child>
         <child>
-          <!-- n-columns=3 n-rows=8 -->
+          <!-- n-columns=3 n-rows=9 -->
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
@@ -1020,6 +1020,31 @@
                 <property name="top-attach">6</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkEntry" id="entry_ai_condition1_chance">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="width-chars">10</property>
+                <signal name="changed" handler="on_entry_ai_condition1_chance_changed" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">8</property>
+                <property name="width">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">AI Condition 1 Chance:</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">8</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="position">2</property>
@@ -1066,36 +1091,11 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
-                <property name="label" translatable="yes">Unk C:</property>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">4</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry_unkC">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="width-chars">10</property>
-                <signal name="changed" handler="on_entry_unkC_changed" swapped="no"/>
-              </object>
-              <packing>
-                <property name="left-attach">1</property>
-                <property name="top-attach">4</property>
-                <property name="width">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">end</property>
                 <property name="label" translatable="yes">Unk 13:</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">5</property>
+                <property name="top-attach">4</property>
               </packing>
             </child>
             <child>
@@ -1107,7 +1107,7 @@
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">5</property>
+                <property name="top-attach">4</property>
                 <property name="width">2</property>
               </packing>
             </child>
@@ -1120,7 +1120,7 @@
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">6</property>
+                <property name="top-attach">5</property>
               </packing>
             </child>
             <child>
@@ -1132,7 +1132,7 @@
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">6</property>
+                <property name="top-attach">5</property>
                 <property name="width">2</property>
               </packing>
             </child>
@@ -1294,6 +1294,50 @@
               <packing>
                 <property name="left-attach">2</property>
                 <property name="top-attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_help_message_id">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_btn_help_message_id_clicked" swapped="no"/>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">6</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="entry_message_id">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="width-chars">10</property>
+                <signal name="changed" handler="on_entry_message_id_changed" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">6</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">Message ID:</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">6</property>
               </packing>
             </child>
           </object>

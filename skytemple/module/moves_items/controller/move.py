@@ -97,7 +97,7 @@ class MoveController(AbstractController):
         self._update_from_entry(w)
         self.mark_as_modified()
 
-    def on_entry_unkC_changed(self, w, *args):
+    def on_entry_ai_condition1_chance_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()
 
@@ -106,6 +106,10 @@ class MoveController(AbstractController):
         self.mark_as_modified()
 
     def on_entry_unk15_changed(self, w, *args):
+        self._update_from_entry(w)
+        self.mark_as_modified()
+
+    def on_entry_message_id_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()
 
@@ -251,7 +255,9 @@ class MoveController(AbstractController):
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
             _("When deciding what move to use, the AI will treat the move like it actually has the range settings "
-              "configured here."),
+              "configured here.") + _('\nDue to a bug, if the values are "straight line", "In front; cuts corners" or '
+                                      '"Two tiles away; cuts corners" are chosen here, the AI range is used as the '
+                                      'ACTUAL range of the move.'),
             title=_("Values used for AI calculation:")[:-1]
         )
         md.run()
@@ -308,6 +314,18 @@ class MoveController(AbstractController):
             Gtk.ButtonsType.OK,
             _("Whether the move can be used while taunted."),
             title=_("Ignores Taunted:")[:-1]
+        )
+        md.run()
+        md.destroy()
+
+    def on_btn_help_message_id_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("Message ID offset that is displayed for the move. 0 uses the Text String 3860. Higher values select "
+              "the strings after that (offsets)."),
+            title=_("Message ID:")[:-1]
         )
         md.run()
         md.destroy()
@@ -369,9 +387,10 @@ class MoveController(AbstractController):
         self._set_entry('entry_crit_chance', self.move.crit_chance)
         self._set_entry('entry_number_chained_hits', self.move.number_chained_hits)
         self._set_entry('entry_ai_weight', self.move.ai_weight)
-        self._set_entry('entry_unkC', self.move.unkC)
+        self._set_entry('entry_ai_condition1_chance', self.move.ai_condition1_chance)
         self._set_entry('entry_unk13', self.move.unk13)
         self._set_entry('entry_unk15', self.move.unk15)
+        self._set_entry('entry_message_id', self.move.message_id)
 
         self._set_cb('cb_category', self.move.category.value)
         self._set_cb('cb_type', self.move.type.value)
