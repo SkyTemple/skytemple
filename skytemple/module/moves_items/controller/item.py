@@ -339,7 +339,10 @@ class ItemController(AbstractController):
         self.builder.get_object('label_id_name').set_text(f'#{self.item_id:04d}: {name}')
 
     def _init_stores(self):
-        self._comboxbox_for_enum(['cb_category'], MappaItemCategory)
+        store = Gtk.ListStore(int, str)  # id, name
+        for category in self.module.project.get_rom_module().get_static_data().dungeon_data.item_categories.values():
+            store.append([category.id, category.name_localized])
+        self._fast_set_comboxbox_store(self.builder.get_object('cb_category'), store, 1)
         self._comboxbox_for_enum(['cb_action_name'], UseType)
         self._comboxbox_for_enum(['cb_excl_type'], ItemSPType)
 

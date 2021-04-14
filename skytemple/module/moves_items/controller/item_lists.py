@@ -25,10 +25,10 @@ from math import gcd
 from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.string_provider import StringType
-from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem
+from skytemple.module.dungeon.controller.floor import POKE_CATEGORY_ID, LINKBOX_CATEGORY_ID
+from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem, Pmd2DungeonItemCategory
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList, Probability, MappaItemCategory, \
-    MAX_ITEM_ID
+from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList, Probability, MAX_ITEM_ID
 from skytemple_files.common.i18n_util import _
 if TYPE_CHECKING:
     from skytemple.module.moves_items.module import MovesItemsModule
@@ -37,28 +37,6 @@ logger = logging.getLogger(__name__)
 
 PATTERN_MD_ENTRY = re.compile(r'.*\(#(\d+)\).*')
 
-VALID_ITEM_CATEGORY_NAMES = {
-    MappaItemCategory.THROWN_PIERCE: MappaItemCategory.THROWN_PIERCE.print_name,
-    MappaItemCategory.THROWN_ROCK: MappaItemCategory.THROWN_ROCK.print_name,
-    MappaItemCategory.BERRIES_SEEDS_VITAMINS: MappaItemCategory.BERRIES_SEEDS_VITAMINS.print_name,
-    MappaItemCategory.FOODS_GUMMIES: MappaItemCategory.FOODS_GUMMIES.print_name,
-    MappaItemCategory.HOLD: MappaItemCategory.HOLD.print_name,
-    MappaItemCategory.TMS: MappaItemCategory.TMS.print_name,
-    MappaItemCategory.POKE: MappaItemCategory.POKE.print_name,
-    MappaItemCategory.OTHER: MappaItemCategory.OTHER.print_name,
-    MappaItemCategory.ORBS: MappaItemCategory.ORBS.print_name,
-    MappaItemCategory.LINK_BOX: MappaItemCategory.LINK_BOX.print_name
-}
-CATEGORIES_FOR_STORES = {
-    'item_cat_thrown_pierce_store': MappaItemCategory.THROWN_PIERCE,
-    'item_cat_thrown_rock_store': MappaItemCategory.THROWN_ROCK,
-    'item_cat_berries_store': MappaItemCategory.BERRIES_SEEDS_VITAMINS,
-    'item_cat_foods_store': MappaItemCategory.FOODS_GUMMIES,
-    'item_cat_hold_store': MappaItemCategory.HOLD,
-    'item_cat_tms_store': MappaItemCategory.TMS,
-    'item_cat_orbs_store': MappaItemCategory.ORBS,
-    'item_cat_others_store': MappaItemCategory.OTHER
-}
 
 ITEM_LISTS = [_("E Floors Rewards"),
               _("D Floors Rewards"),
@@ -93,6 +71,31 @@ class ItemListsController(AbstractController):
         self.module = module
         self._item_list: Optional[MappaItemList] = None
         self._item_names = {}
+        orig_cats = module.project.get_rom_module().get_static_data().dungeon_data.item_categories
+
+        # TODO: Support editing other item categories?
+        self.item_categories = {
+            0: orig_cats[0],
+            1: orig_cats[1],
+            2: orig_cats[2],
+            3: orig_cats[3],
+            4: orig_cats[4],
+            5: orig_cats[5],
+            6: orig_cats[6],
+            8: orig_cats[8],
+            9: orig_cats[9],
+            10: orig_cats[10],
+        }
+        self.categories_for_stores = {
+            'item_cat_thrown_pierce_store': orig_cats[0],
+            'item_cat_thrown_rock_store': orig_cats[1],
+            'item_cat_berries_store': orig_cats[2],
+            'item_cat_foods_store': orig_cats[3],
+            'item_cat_hold_store': orig_cats[4],
+            'item_cat_tms_store': orig_cats[5],
+            'item_cat_orbs_store': orig_cats[9],
+            'item_cat_others_store': orig_cats[8]
+        }
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'item_lists.glade')
@@ -338,7 +341,7 @@ class ItemListsController(AbstractController):
         except ValueError:
             return
 
-        if entid not in CATEGORIES_FOR_STORES[store_name].item_ids():
+        if entid not in self.categories_for_stores[store_name].item_ids():
             display_error(
                 None,
                 'This item does not belong in this category. Please chose another item.',
@@ -380,7 +383,7 @@ class ItemListsController(AbstractController):
             item_ids_already_in.append(int(row[0]))
 
         i = 0
-        all_item_ids = CATEGORIES_FOR_STORES[store_name].item_ids()
+        all_item_ids = self.categories_for_stores[store_name].item_ids()
         while True:
             first_item_id = all_item_ids[i]
             if first_item_id not in item_ids_already_in:
@@ -421,14 +424,14 @@ class ItemListsController(AbstractController):
         item_cat_orbs_store: Gtk.ListStore = self.builder.get_object('item_cat_orbs_store')
         item_cat_others_store: Gtk.ListStore = self.builder.get_object('item_cat_others_store')
         item_stores = {
-            MappaItemCategory.THROWN_PIERCE: item_cat_thrown_pierce_store,
-            MappaItemCategory.THROWN_ROCK: item_cat_thrown_rock_store,
-            MappaItemCategory.BERRIES_SEEDS_VITAMINS: item_cat_berries_store,
-            MappaItemCategory.FOODS_GUMMIES: item_cat_foods_store,
-            MappaItemCategory.HOLD: item_cat_hold_store,
-            MappaItemCategory.TMS: item_cat_tms_store,
-            MappaItemCategory.ORBS: item_cat_orbs_store,
-            MappaItemCategory.OTHER: item_cat_others_store
+            self.item_categories[0]: item_cat_thrown_pierce_store,
+            self.item_categories[1]: item_cat_thrown_rock_store,
+            self.item_categories[2]: item_cat_berries_store,
+            self.item_categories[3]: item_cat_foods_store,
+            self.item_categories[4]: item_cat_hold_store,
+            self.item_categories[5]: item_cat_tms_store,
+            self.item_categories[9]: item_cat_orbs_store,
+            self.item_categories[8]: item_cat_others_store
         }
 
         # Clear everything
@@ -444,9 +447,9 @@ class ItemListsController(AbstractController):
             sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
         for i, (category, chance) in enumerate(il.categories.items()):
             relative_weight = relative_weights[i]
-            if category not in VALID_ITEM_CATEGORY_NAMES:
-                continue  # TODO: Support editing unknown / unused item categories?
-            name = VALID_ITEM_CATEGORY_NAMES[category]
+            if category.value not in self.item_categories.keys():
+                continue  # TODO: Support editing other item categories?
+            name = self.item_categories[category.value].name_localized
             chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
             item_categories_store.append([
                 category.value, name, False,
@@ -475,9 +478,9 @@ class ItemListsController(AbstractController):
 
     def _split_items_in_list_in_cats(
             self, items: Dict[Pmd2DungeonItem, Probability]
-    ) -> Dict[MappaItemCategory, Dict[Pmd2DungeonItem, Probability]]:
+    ) -> Dict[Pmd2DungeonItemCategory, Dict[Pmd2DungeonItem, Probability]]:
         out_items = {}
-        for cat in VALID_ITEM_CATEGORY_NAMES.keys():
+        for cat in self.item_categories.values():
             out_items[cat] = {}
             for item, probability in items.items():
                 if cat.is_item_in_cat(item.id):
@@ -494,14 +497,14 @@ class ItemListsController(AbstractController):
         completion_item_orbs_store: Gtk.ListStore = self.builder.get_object('completion_item_orbs_store')
         completion_item_others_store: Gtk.ListStore = self.builder.get_object('completion_item_others_store')
         completion_stores = {
-            MappaItemCategory.THROWN_PIERCE: completion_item_thrown_pierce_store,
-            MappaItemCategory.THROWN_ROCK: completion_item_thrown_rock_store,
-            MappaItemCategory.BERRIES_SEEDS_VITAMINS: completion_item_berries_store,
-            MappaItemCategory.FOODS_GUMMIES: completion_item_foods_store,
-            MappaItemCategory.HOLD: completion_item_hold_store,
-            MappaItemCategory.TMS: completion_item_tms_store,
-            MappaItemCategory.ORBS: completion_item_orbs_store,
-            MappaItemCategory.OTHER: completion_item_others_store
+            self.item_categories[0]: completion_item_thrown_pierce_store,
+            self.item_categories[1]: completion_item_thrown_rock_store,
+            self.item_categories[2]: completion_item_berries_store,
+            self.item_categories[3]: completion_item_foods_store,
+            self.item_categories[4]: completion_item_hold_store,
+            self.item_categories[5]: completion_item_tms_store,
+            self.item_categories[9]: completion_item_orbs_store,
+            self.item_categories[8]: completion_item_others_store
         }
 
         for i in range(0, MAX_ITEM_ID):
@@ -545,13 +548,13 @@ class ItemListsController(AbstractController):
 
     def _fill_available_categories_into_store(self, cb_store):
         available_categories = [
-            cat for cat in VALID_ITEM_CATEGORY_NAMES.keys()
+            cat for cat in self.item_categories.values()
             if cat not in self._item_list.categories.keys()
         ]
         # Init combobox
         cb_store.clear()
         for cat in available_categories:
-            cb_store.append([cat.value, VALID_ITEM_CATEGORY_NAMES[cat]])
+            cb_store.append([cat.value, cat.name_localized])
         return available_categories
     
     def _update_cr_item_cat_name_store(self):
@@ -561,14 +564,14 @@ class ItemListsController(AbstractController):
     def _save_item_spawn_rates(self):
         item_stores = {
             None: self.builder.get_object('item_categories_store'),
-            MappaItemCategory.THROWN_PIERCE: self.builder.get_object('item_cat_thrown_pierce_store'),
-            MappaItemCategory.THROWN_ROCK: self.builder.get_object('item_cat_thrown_rock_store'),
-            MappaItemCategory.BERRIES_SEEDS_VITAMINS: self.builder.get_object('item_cat_berries_store'),
-            MappaItemCategory.FOODS_GUMMIES: self.builder.get_object('item_cat_foods_store'),
-            MappaItemCategory.HOLD: self.builder.get_object('item_cat_hold_store'),
-            MappaItemCategory.TMS: self.builder.get_object('item_cat_tms_store'),
-            MappaItemCategory.ORBS: self.builder.get_object('item_cat_orbs_store'),
-            MappaItemCategory.OTHER: self.builder.get_object('item_cat_others_store')
+            self.item_categories[0]: self.builder.get_object('item_cat_thrown_pierce_store'),
+            self.item_categories[1]: self.builder.get_object('item_cat_thrown_rock_store'),
+            self.item_categories[2]: self.builder.get_object('item_cat_berries_store'),
+            self.item_categories[3]: self.builder.get_object('item_cat_foods_store'),
+            self.item_categories[4]: self.builder.get_object('item_cat_hold_store'),
+            self.item_categories[5]: self.builder.get_object('item_cat_tms_store'),
+            self.item_categories[9]: self.builder.get_object('item_cat_orbs_store'),
+            self.item_categories[8]: self.builder.get_object('item_cat_others_store')
         }
 
         category_weights = {}
@@ -588,10 +591,10 @@ class ItemListsController(AbstractController):
 
                 # Add Poké and Link Box items for those categories
                 if not cat:
-                    if i == MappaItemCategory.POKE.value:
-                        item_weights[Pmd2DungeonItem(MappaItemCategory.POKE.item_ids()[0], '')] = 10000
-                    if i == MappaItemCategory.LINK_BOX.value:
-                        item_weights[Pmd2DungeonItem(MappaItemCategory.LINK_BOX.item_ids()[0], '')] = 10000
+                    if i == POKE_CATEGORY_ID:
+                        item_weights[Pmd2DungeonItem(self.item_categories[POKE_CATEGORY_ID].item_ids()[0], '')] = 10000
+                    if i == LINKBOX_CATEGORY_ID:
+                        item_weights[Pmd2DungeonItem(self.item_categories[LINKBOX_CATEGORY_ID].item_ids()[0], '')] = 10000
                 was_set = False
                 weight = 0
                 if row[4] != "0":
@@ -599,7 +602,7 @@ class ItemListsController(AbstractController):
                     last_weight = weight
                     was_set = True
                 if cat is None:
-                    set_idx = MappaItemCategory(row[0])
+                    set_idx = self.item_categories[row[0]]
                     category_weights[set_idx] = weight
                     if was_set:
                         last_weight_set_idx = set_idx
