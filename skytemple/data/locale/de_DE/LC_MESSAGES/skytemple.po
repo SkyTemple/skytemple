@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-04-14 15:36+0000\n"
-"PO-Revision-Date: 2021-04-15 18:46\n"
+"PO-Revision-Date: 2021-04-15 19:43\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -9626,23 +9626,23 @@ msgstr "Ben. Item für Entw.:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2600
 msgid "Chest with type 2 exclusive items:"
-msgstr ""
+msgstr "Truhe mit Typ 2 exklusiven Items:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2624
 msgid "Chest with type 1 exclusive items:"
-msgstr ""
+msgstr "Truhe mit Typ 1 exklusiven Items:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2648
 msgid "Chest with normal items:"
-msgstr ""
+msgstr "Truhen mit normalen Items:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2672
 msgid "No drop:"
-msgstr ""
+msgstr "Kein Drop:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2696
 msgid "Chest Drop Rates:"
-msgstr ""
+msgstr "Truhen-Drop-Raten:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2712
 msgid "label_chance_no_drop"
@@ -9713,11 +9713,11 @@ msgstr "Kann sich bewegen?"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:382
 msgid "Whether or not the Pokémon can throw any items."
-msgstr ""
+msgstr "Ob das Pokémon irgendwelche Gegenstände werfen kann oder nicht."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:383
 msgid "Can Throw Items?"
-msgstr ""
+msgstr "Kann Items werfen?"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:393
 msgid "Controls the drop rates of different types of chests.\n"
@@ -9726,7 +9726,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.py:395
 msgid "Chests drop rates"
-msgstr ""
+msgstr "Drop-Daten für Truhen"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:405
 msgid "Whether or not the Pokémon can evolve at Luminous Spring (If it's off, it will never be allowed to evolve even if it has an evolution)."
@@ -9782,7 +9782,7 @@ msgstr "Sprites"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1013
 msgid "??? Enter a valid parameter (#)"
-msgstr ""
+msgstr "??? Bitte eine gültigen Parameter (#) eingeben"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1026
 msgid "??? Enter a valid Base ID (#)"
@@ -9847,11 +9847,11 @@ msgstr "Item-ID:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:147
 msgid "Buy Price:"
-msgstr ""
+msgstr "Kaufpreis:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:159
 msgid "Sell Price:"
-msgstr ""
+msgstr "Verkaufspreis:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:197
 msgid "Palette ID:"
@@ -9880,7 +9880,7 @@ msgstr "Maximale Anzahl:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:855
 msgid "Action Name:"
-msgstr ""
+msgstr "Aktionsname:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:992
 msgid "Is Valid:"
@@ -9957,7 +9957,7 @@ msgstr "Schälen"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:246
 msgid "For stackable items: Indicates the minimum amount you can get for 1 instance of that item."
-msgstr ""
+msgstr "Für stapelbare Items: Die minimale Anzahl die für dieses Item erhalten werden kann."
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:247
 msgid "Min Amount"
@@ -9965,7 +9965,7 @@ msgstr "Mindestanzahl"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:257
 msgid "For stackable items: Indicates the maximum amount you can get for 1 instance of that item."
-msgstr ""
+msgstr "Für stapelbare Items: Die maximale Anzahl die für dieses Item erhalten werden kann."
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:258
 msgid "Max Amount"
@@ -9973,7 +9973,7 @@ msgstr "Maximale Anzahl"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:268
 msgid "The ID of a move, that is associated with this item."
-msgstr ""
+msgstr "Die ID einer Attacke, die diesem Item zugeordnet ist."
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:269
 msgid "Move ID"
@@ -9986,7 +9986,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:284
 msgid "Exclusive Item Parameter"
-msgstr ""
+msgstr "Exklusives Item - Parameter"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:294
 msgid "Some exclusive items are assigned to Pokémon, others to types. See the values in the dropdown for the possible options."
@@ -10262,11 +10262,11 @@ msgstr "Unbekannt 3"
 
 #: skytemple/skytemple/module/moves_items/controller/main_items.py:35
 msgid "This section lets you edit settings related to items."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du Einstellungen für Items bearbeiten."
 
 #: skytemple/skytemple/module/moves_items/controller/main_moves.py:35
 msgid "This section lets you edit settings related to moves."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du Einstellungen für Attacken bearbeiten."
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:101
 msgid "Base Power:"
@@ -10404,19 +10404,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:282
 msgid "Whether the move is affected by magic coat."
-msgstr ""
+msgstr "Ob die Attacke von Magiemantel beeinflusst wird."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:293
 msgid "Whether the move is affected by snatch."
-msgstr ""
+msgstr "Ob die Attacke von Übernahme beeinflusst wird."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:304
 msgid "Whether the move is disabled by the \"muzzled\" status."
-msgstr ""
+msgstr "Ob die Attacke vom \"Mondtot\"-Status deaktiviert wird."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:315
 msgid "Whether the move can be used while taunted."
-msgstr ""
+msgstr "Ob diee Attacke verwendet werden kann, wenn der Anweder verhöhnt ist."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:326
 msgid "Message ID offset that is displayed for the move. 0 uses the Text String 3860. Higher values select the strings after that (offsets)."
