@@ -178,6 +178,16 @@ class MovesItemsModule(AbstractModule):
         row = self._tree_model[self.item_iters[item_id]]
         recursive_up_item_store_mark_as_modified(row)
 
+        # Reload item categories:
+        conf = self.project.get_rom_module().get_static_data()
+        cats = {x: [] for x in conf.dungeon_data.item_categories.values()}
+
+        for idx, entry in enumerate(self.get_item_p().item_list):
+            cats[entry.category_pmd2obj(conf.dungeon_data.item_categories)].append(idx)
+
+        for category in conf.dungeon_data.item_categories.values():
+            category.items = cats[category]
+
     def get_waza_p(self) -> WazaP:
         return self.project.open_file_in_rom(MOVE_FILE, FileType.WAZA_P)
 
