@@ -426,10 +426,10 @@ class FloorController(AbstractController):
         except ValueError:
             return
 
-        if entid == KECLEON_MD_INDEX or entid >= DUMMY_MD_INDEX:
+        if entid == KECLEON_MD_INDEX:
             display_error(
                 None,
-                f(_("You can not spawn Kecleons or the Decoy Pokémon or any Pokémon above #{DUMMY_MD_INDEX}.")),
+                f(_("You can not spawn Kecleons or the Decoy Pokémon.")),
                 _("SkyTemple: Invalid Pokémon")
             )
             return
@@ -1131,7 +1131,7 @@ class FloorController(AbstractController):
     def _init_monster_completion_store(self):
         monster_md = self.module.get_monster_md()
         monster_store: Gtk.ListStore = self.builder.get_object('completion_monsters_store')
-        for idx, entry in enumerate(monster_md.entries[0:DUMMY_MD_INDEX]):
+        for idx, entry in enumerate(monster_md.entries):
             if idx == 0:
                 continue
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, entry.md_index_base)

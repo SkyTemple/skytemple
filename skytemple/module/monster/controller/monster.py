@@ -186,7 +186,7 @@ class MonsterController(AbstractController):
         self._update_from_entry(w)
         self.mark_as_modified()
         self._sprite_provider.reset()
-        self._check_sprite_size(False)
+        #self._check_sprite_size(False)
         self.builder.get_object('draw_sprite').queue_draw()
         self._reload_sprite_page()
 
