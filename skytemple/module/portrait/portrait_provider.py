@@ -22,7 +22,7 @@ from gi.repository import Gdk, GdkPixbuf, Gtk
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple_files.common.task_runner import AsyncTaskRunner
-from skytemple_files.data.md.model import NUM_ENTITIES
+from skytemple_files.data.md.model import MdProperties
 from skytemple_files.graphics.kao.model import Kao, KAO_IMG_METAPIXELS_DIM, KAO_IMG_IMG_DIM
 
 IMG_DIM = KAO_IMG_METAPIXELS_DIM * KAO_IMG_IMG_DIM
@@ -98,7 +98,7 @@ class PortraitProvider:
             if kao is None or kao.empty is True:
                 if allow_fallback:
                     is_fallback = True
-                    kao = self._kao.get(entry_id % NUM_ENTITIES, sub_id)
+                    kao = self._kao.get(entry_id % MdProperties.NUM_ENTITIES, sub_id)
                     if kao is None:
                         raise RuntimeError()
                 else:

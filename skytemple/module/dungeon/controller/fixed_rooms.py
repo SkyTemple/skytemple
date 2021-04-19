@@ -23,7 +23,7 @@ from gi.repository.Gtk import Widget
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.module.dungeon import MAX_ITEMS, SPECIAL_ITEMS, SPECIAL_MONSTERS
-from skytemple_files.data.md.model import NUM_ENTITIES
+from skytemple_files.data.md.model import MdProperties
 from skytemple_files.dungeon_data.fixed_bin.model import TileRuleType
 from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
@@ -53,7 +53,7 @@ class FixedRoomsController(AbstractController):
         self.monster_names = {}
         length = len(self.module.get_monster_md().entries)
         for i, entry in enumerate(self.module.get_monster_md().entries):
-            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i % NUM_ENTITIES)
+            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i % MdProperties.NUM_ENTITIES)
             self.monster_names[i] = f'{name} ({entry.gender.print_name}) (${i:04})'
         for i in range(length, length + SPECIAL_MONSTERS):
             self.monster_names[i] = _('(Special?)') + f' (${i:04})'

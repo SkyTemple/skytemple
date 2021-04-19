@@ -31,15 +31,16 @@ from skytemple.module.monster.controller.main import MainController, MONSTER_NAM
 from skytemple.module.monster.controller.monster import MonsterController
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.bin_pack.model import BinPack
+from skytemple_files.data.val_list.handler import ValListHandler
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry
 from skytemple_files.data.tbl_talk.model import TblTalk, TalkType
-from skytemple_files.data.md.model import Md, MdEntry, NUM_ENTITIES, ShadowSize
+from skytemple_files.data.md.model import Md, MdEntry, MdProperties, ShadowSize
 from skytemple_files.data.monster_xml import monster_xml_import
 from skytemple_files.data.waza_p.model import WazaP
 from skytemple_files.graphics.kao.model import KaoImage, SUBENTRIES, Kao
 from skytemple_files.hardcoded.monster_sprite_data_table import HardcodedMonsterSpriteDataTable
 from skytemple_files.common.i18n_util import _
-
+from skytemple_files.common.util import normalize_string
 MONSTER_MD_FILE = 'BALANCE/monster.md'
 M_LEVEL_BIN = 'BALANCE/m_level.bin'
 WAZA_P_BIN = 'BALANCE/waza_p.bin'
@@ -121,8 +122,8 @@ class MonsterModule(AbstractModule):
         ]
 
     def get_entry_both(self, item_id) -> Tuple[MdEntry, Optional[MdEntry]]:
-        if item_id + NUM_ENTITIES < len(self.monster_md):
-            return self.monster_md[item_id], self.monster_md[item_id + NUM_ENTITIES]
+        if item_id + MdProperties.NUM_ENTITIES < len(self.monster_md):
+            return self.monster_md[item_id], self.monster_md[item_id + MdProperties.NUM_ENTITIES]
         return self.monster_md[item_id], None
 
     def get_entry(self, item_id):
@@ -198,15 +199,15 @@ class MonsterModule(AbstractModule):
             for kao_i in range(0, SUBENTRIES):
                 portraits.append(kao.get(item_id, kao_i))
 
-        if item_id > -1 and NUM_ENTITIES + item_id < kao.toc_len:
+        if item_id > -1 and MdProperties.NUM_ENTITIES + item_id < kao.toc_len:
             portraits2 = []
             for kao_i in range(0, SUBENTRIES):
-                portraits2.append(kao.get(NUM_ENTITIES + item_id, kao_i))
+                portraits2.append(kao.get(MdProperties.NUM_ENTITIES + item_id, kao_i))
 
         return portraits, portraits2
 
     def get_level_up_view(self, item_id):
-        if item_id >= NUM_ENTITIES:
+        if item_id >= MdProperties.NUM_ENTITIES:
             return Gtk.Label.new(_("Stats and moves are only editable for base forms.")), None
         controller = LevelUpController(self, item_id)
         return controller.get_view(), controller
@@ -298,11 +299,26 @@ class MonsterModule(AbstractModule):
         portraits, portraits2 = self.get_portraits_for_export(stats_and_portraits_id)
         return names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2
 
+    def update_monster_sort_lists(self, lang):
+        sp = self.project.get_string_provider()
+        lang = sp.get_language(lang)
+        model = sp.get_model(lang)
+        sorted_list = list(enumerate(model.strings[sp.get_index(StringType.POKEMON_NAMES,0):sp.get_index(StringType.POKEMON_NAMES,0)+MdProperties.MAX_POSSIBLE]))
+        sorted_list.sort(key=lambda x:normalize_string(x[1]))
+        sorted_list = [x[0] for x in sorted_list]
+        inv_sorted_list = [sorted_list.index(i) for i in range(MdProperties.MAX_POSSIBLE)]
+        m2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.m2n}", ValListHandler)
+        m2n_model.set_list(inv_sorted_list)
+        self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.m2n}")
+        n2m_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.n2m}", ValListHandler)
+        n2m_model.set_list(sorted_list)
+        self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.n2m}")
+        
     def import_from_xml(self, selected_monsters: List[int], xml: Element):
         for monster_id in selected_monsters:
             entry = self.get_entry(monster_id)
             names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2 = self.get_export_data(entry)
-            we_are_gender1 = monster_id < NUM_ENTITIES
+            we_are_gender1 = monster_id < MdProperties.NUM_ENTITIES
 
             md_gender1_imp = md_gender1
             portraits1_imp = portraits
@@ -329,6 +345,7 @@ class MonsterModule(AbstractModule):
                     model = sp.get_model(lang_name)
                     model.strings[sp.get_index(StringType.POKEMON_NAMES, entry.md_index_base)] = name
                     model.strings[sp.get_index(StringType.POKEMON_CATEGORIES, entry.md_index_base)] = category
+                    self.update_monster_sort_lists(lang_name)
                 sp.mark_as_modified()
 
             portrait_module = self.project.get_module('portrait')

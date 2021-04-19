@@ -36,7 +36,7 @@ from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.xml_util import prettify
 from skytemple_files.data.md.model import Gender, PokeType, MovementType, IQGroup, Ability, EvolutionMethod, \
-    AdditionalRequirement, NUM_ENTITIES, ShadowSize, MONSTER_BIN, MdEntry
+    AdditionalRequirement, MdProperties, ShadowSize, MONSTER_BIN, MdEntry
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.data.monster_xml import monster_xml_export
 from skytemple_files.common.i18n_util import f, _
@@ -186,7 +186,7 @@ class MonsterController(AbstractController):
         self._update_from_entry(w)
         self.mark_as_modified()
         self._sprite_provider.reset()
-        #self._check_sprite_size(False)
+        self._check_sprite_size(False)
         self.builder.get_object('draw_sprite').queue_draw()
         self._reload_sprite_page()
 
@@ -1008,6 +1008,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         self._string_provider.get_model(lang).strings[
             self._string_provider.get_index(StringType.POKEMON_NAMES, self.entry.md_index_base)
         ] = w.get_text()
+        self.module.update_monster_sort_lists(lang)
 
     def _update_lang_cat_from_entry(self, w: Gtk.Entry, lang_index):
         lang = self._string_provider.get_languages()[lang_index]
@@ -1047,7 +1048,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 name = self._string_provider.get_value(StringType.ITEM_NAMES, entry_id)
                 label.set_text(f'#{entry_id:03d}: {name}')
             elif val==4:
-                if entry_id > NUM_ENTITIES:
+                if entry_id > MdProperties.NUM_ENTITIES:
                     raise ValueError()
                 entry = self.module.monster_md[entry_id]
                 name = self._string_provider.get_value(StringType.POKEMON_NAMES, entry.md_index_base)
@@ -1062,7 +1063,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         entry: Gtk.Entry = self.builder.get_object('entry_base_form_index')
         try:
             entry_id = int(entry.get_text())
-            if entry_id > NUM_ENTITIES:
+            if entry_id > MdProperties.NUM_ENTITIES:
                 raise ValueError()
             entry = self.module.monster_md[entry_id]
             name = self._string_provider.get_value(StringType.POKEMON_NAMES, entry.md_index_base)
@@ -1110,37 +1111,77 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             label3.set_text(_('???'))
             label4.set_text(_('???'))
 
+    def _get_sprite_properties(self, entry):
+        if entry.sprite_index < 0:
+            return 0,0
+        with self._monster_bin as sprites:
+            sprite_bin = sprites[entry.sprite_index]
+            sprite_bytes = FileType.COMMON_AT.deserialize(sprite_bin).decompress()
+            sprite = FileType.WAN.deserialize(sprite_bytes)
+        max_tile_slots_needed = max(
+            (f.unk2 & 0x3FF) + math.ceil(f.resolution.x * f.resolution.y / 256)
+            for f in sprite.model.meta_frame_store.meta_frames
+        )
+        max_tile_slots_needed = max((6, max_tile_slots_needed))
+        max_file_size_needed = math.ceil(len(sprite_bytes) / 512)
+        return max_tile_slots_needed, max_file_size_needed
+    
     def _check_sprite_size(self, show_warning):
         """
         Check that the data in the unknown Pokémon sprite-related metadata
         table matches the currently selected sprite of the Pokémon. If not, change
         the value and save it.
         """
+        md_gender1, md_gender2 = self.module.get_entry_both(self.entry.md_index_base)
         try:
-            if self.entry.sprite_index < 0:
-                return
-            with self._monster_bin as sprites:
-                sprite_bin = sprites[self.entry.sprite_index]
-                sprite = FileType.WAN.deserialize(FileType.COMMON_AT.deserialize(sprite_bin).decompress())
-            sprite_size_table = self.module.get_pokemon_sprite_data_table()
-            check_value = sprite_size_table[self.entry.md_index_base].sprite_tile_slots
-            max_tile_slots_needed = max(
-                (f.unk2 & 0x3FF) + math.ceil(f.resolution.x * f.resolution.y / 256)
-                for f in sprite.model.meta_frame_store.meta_frames
-            )
-            # There isn't those 2 blocks buffer! Doing this would cause some problems in the long term.
-            # Also, this should use the Unk#6 field in the animation info block (see psy's docs about wan files)
-            # instead of the calculation above, as it's exactly the result of that
-            max_tile_slots_needed = max((6, max_tile_slots_needed))
+            # If ExpandPokeList is applied, unk17 and unk18 are the values used instead
+            # (Note: they aren't used in the current state)
+            if self.module.project.is_patch_applied("ExpandPokeList"):
+                check_value = self.entry.unk17
+                check_value_file = self.entry.unk18
+            else:
+                sprite_size_table = self.module.get_pokemon_sprite_data_table()
+                check_value = sprite_size_table[md_gender1.md_index_base].sprite_tile_slots
+                check_value_file = sprite_size_table[md_gender1.md_index_base].unk1
+            
+            max_tile_slots_needed, max_file_size_needed = self._get_sprite_properties(md_gender1)
+            if md_gender2!=None:
+                max_tile_slots_needed2, max_file_size_needed2 = self._get_sprite_properties(md_gender2)
+                max_tile_slots_needed = max(max_tile_slots_needed, max_tile_slots_needed2)
+                max_file_size_needed = max(max_file_size_needed, max_file_size_needed2)
             if check_value != max_tile_slots_needed:
-                sprite_size_table[self.entry.md_index_base].sprite_tile_slots = max_tile_slots_needed
-                self.module.set_pokemon_sprite_data_table(sprite_size_table)
+                if self.module.project.is_patch_applied("ExpandPokeList"):
+                    self.entry.unk17 = max_tile_slots_needed
+                    self._set_entry('entry_unk17', self.entry.unk17)
+                else:
+                    sprite_size_table[md_gender1.md_index_base].sprite_tile_slots = max_tile_slots_needed
+                    self.module.set_pokemon_sprite_data_table(sprite_size_table)
 
                 if show_warning:
                     md = SkyTempleMessageDialog(MainController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
                                                 Gtk.ButtonsType.OK,
-                                                _("The sprite memory size of this Pokémon was too low "
+                                                _("The sprite memory size of this Pokémon was not consistent "
+                                                  "for this Pokémon's assigned sprite.\n"
+                                                  "SkyTemple automatically corrected it."))
+                    md.set_position(Gtk.WindowPosition.CENTER)
+                    md.run()
+                    md.destroy()
+
+                self.mark_as_modified()
+            if check_value_file != max_file_size_needed:
+                if self.module.project.is_patch_applied("ExpandPokeList"):
+                    self.entry.unk18 = max_file_size_needed
+                    self._set_entry('entry_unk18', self.entry.unk18)
+                else:
+                    sprite_size_table[md_gender1.md_index_base].unk1 = max_file_size_needed
+                    self.module.set_pokemon_sprite_data_table(sprite_size_table)
+
+                if show_warning:
+                    md = SkyTempleMessageDialog(MainController.window(),
+                                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                                Gtk.ButtonsType.OK,
+                                                _("The sprite file size of this Pokémon was not consistent "
                                                   "for this Pokémon's assigned sprite.\n"
                                                   "SkyTemple automatically corrected it."))
                     md.set_position(Gtk.WindowPosition.CENTER)
