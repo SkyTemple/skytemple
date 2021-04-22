@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-04-17 15:35+0000\n"
-"PO-Revision-Date: 2021-04-22 10:20\n"
+"PO-Revision-Date: 2021-04-22 11:23\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3450,7 +3450,8 @@ msgstr "Wer würdest du gerne sein?"
 #: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:49
 msgid "Skips the quiz, only leaving the gender question.\n"
 "Needs ChooseStarter patch to be applied. "
-msgstr ""
+msgstr "Überspringt das Persönlichkeitsquiz. Der Spieler wird nur nach dem Geschlecht gefragt.\n"
+"Der \"ChooseStarter\"-Patch muss angewendet sein. "
 
 #: skytemple-files/skytemple_files/patch/handler/support_atupx.py:45
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
@@ -6310,7 +6311,7 @@ msgstr "Andere"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4550
 msgid "Items<span size=\"small\"> - Only Items with IDs smaller than 363 can be added.</span>"
-msgstr ""
+msgstr "Items<span size=\"small\"> - Nur Items mit IDs kleiner als 363 können hinzugefügt werden.</span>"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4607
 msgid "Shop"
@@ -9672,7 +9673,13 @@ msgid "Value depends on Main Requirement:\n"
 "- Items: ID of the item required\n"
 "- Recruited: ID of the Pokémon you have to recruit\n"
 "- No Main Requirement: Unused"
-msgstr ""
+msgstr "Der Wert hängt von der Hauptvoraussetzung ab:\n"
+"- Entwickelt sich nie: Unbenutzt\n"
+"- Level: Das Level, dass für die Entwicklung erreicht werden muss\n"
+"- IQ: IQ-Punkte die benötigt werden\n"
+"- Items: ID des benötigten Items\n"
+"- Angeworben: ID des Pokémon, dass zuvor angeworben werden muss\n"
+"- Keine Hauptvoraussetzung: Unbenutzt"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:331
 msgid "Evolution Parameters"
@@ -9726,7 +9733,8 @@ msgstr "Kann Items werfen?"
 #: skytemple/skytemple/module/monster/controller/monster.py:393
 msgid "Controls the drop rates of different types of chests.\n"
 "Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected."
-msgstr ""
+msgstr "Steuert die Drop-Raten von verschiedenen Arten von Boxen.\n"
+"Für jeden Drop-Typen X muss eine Chance von (Rate X)/(Summer aller Raten) ausgewählt werden."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:395
 msgid "Chests drop rates"
@@ -9986,7 +9994,8 @@ msgstr "Attacken-ID"
 #: skytemple/skytemple/module/moves_items/controller/item.py:275
 msgid "Either the ID of a type or of a Pokémon, depending on the type of the exclusive item.\n\n"
 "IDs for Types:\n"
-msgstr ""
+msgstr "Entweder die ID eines Typen oder eines Pokémon, abhängig vom Typen des exklusiven Items.\n\n"
+"IDs für Typen:\n"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:284
 msgid "Exclusive Item Parameter"
@@ -9994,7 +10003,7 @@ msgstr "Exklusives Item - Parameter"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:294
 msgid "Some exclusive items are assigned to Pokémon, others to types. See the values in the dropdown for the possible options."
-msgstr ""
+msgstr "Eine exklusive Items sind Pokémon zugewiesen, andere Typen."
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:296
 msgid "Exclusive Item Type"
@@ -10003,7 +10012,8 @@ msgstr "Exklusives Item - Typ"
 #: skytemple/skytemple/module/moves_items/controller/item.py:306
 msgid "Action name displayed in dungeon menus (Use, Eat, Ingest, Equip...).\n"
 "See 'Text Strings' for actual values."
-msgstr ""
+msgstr "Aktionsname, der in Dungeon-Menüs angezeigt wird (Einsatz, Essen, Trinken, Ausrüst. ...).\n"
+"Siehe 'Zeichenketten' für die eigentlichen Werte."
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:308
 msgid "Action Name"
@@ -10379,32 +10389,33 @@ msgstr "Nachrichten-ID:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:211
 msgid "The percentage indicating the chances the move will succeed. 100 is perfect accuracy. Anything higher than 100 is a never-miss move."
-msgstr ""
+msgstr "Der Prozentsatz, der die Chance angibt, dass die Attacke erfolgreich ist. 100 ist perfekte Genauigkeit. Alles, was höher als 100 ist, trifft immer."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:223
 msgid "Seems to be a second sort of accuracy check. A different message will be shown if this accuracy test fails."
-msgstr ""
+msgstr "Scheint eine zweite Art von Genauigkeitsprüfung zu sein. Eine andere Nachricht wird angezeigt, falls diese Prüfung fehlschlägt."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:235
 msgid "Possibly the number of times a move hits in a row."
-msgstr ""
+msgstr "Vermutlich die Anzahl der Treffer der Attacke in einer Runde."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:246
 msgid "These are the range settings that the game uses for processing the actual move."
-msgstr ""
+msgstr "Dies sind die Reichweiteneinstellungen, die das Spiel für die Verarbeitung der Attacke verwendet."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:257
 msgid "When deciding what move to use, the AI will treat the move like it actually has the range settings configured here."
-msgstr ""
+msgstr "Um zu entscheiden, welche Attacke die KI einsetzt, tut die KI so, als hätte die Attacke die hier angegebenen Einstellungen."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:258
 msgid "\n"
 "Due to a bug, if the values are \"straight line\", \"In front; cuts corners\" or \"Two tiles away; cuts corners\" are chosen here, the AI range is used as the ACTUAL range of the move."
-msgstr ""
+msgstr "\n"
+"Aufgrund eines Fehlers werden, wenn als Wert hier \"Gerade Linie\", \"Vor Anwender; über Ecken\" oder \"Zwei Felder entfernt\" entfernt sind, diese Werte nicht für die KI-Berechnung sondern auch für die EIGENTLICHE Reichweite der Attacke verwendet."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:271
 msgid "The Pokémon must be in this condition in order for this move to be used."
-msgstr ""
+msgstr "Das Pokémon muss diesen Status haben, damit es die Attacke einsetzen kann."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:282
 msgid "Whether the move is affected by magic coat."
@@ -10424,7 +10435,7 @@ msgstr "Ob diee Attacke verwendet werden kann, wenn der Anweder verhöhnt ist."
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:326
 msgid "Message ID offset that is displayed for the move. 0 uses the Text String 3860. Higher values select the strings after that (offsets)."
-msgstr ""
+msgstr "Nachrichten-ID Offset der für die Attacke verwendet wird. Bei 0 wird die Zeichenkette 3860 verwendet. Höhere Werte sorgen dafür, dass Zeichenketten nach diesem Eintrag verwendet werden."
 
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:84
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:162
@@ -11281,7 +11292,9 @@ msgid "Some images editors have problems when editing indexed images that contai
 "To solve this, you can make all colors in the palettes unique. This is done by\n"
 "slightly shifting the color values of duplicate colors (not visible for the\n"
 "human eye)."
-msgstr ""
+msgstr "Eine Bildbearbeitungsprogramme haben Probleme damit, indizierte Bilder zu bearbeiten, die dieselbe Farbe mehrfach in der Palette verwenden (sie ordnen den falschen Farbindex zu).\n"
+"Da der Import erwartet, dass alle 8x8 Kacheln nur eine der 16-Farbpaletten verwenden kann das zu Problemen führen.\n\n"
+"Um das zu lösen, kannst du alle Farben in der Palette einzigartig machen. Dabei werden alle gleichen Farbwerte leicht verändert (nicht sichtbar für das menschliche Auge)."
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:104
 msgid "Make Colors Unique"
