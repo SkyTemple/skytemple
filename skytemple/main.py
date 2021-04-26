@@ -58,7 +58,13 @@ try:
         if loc == '':
             loc = locale.getdefaultlocale()[0]
         from skytemple_files.common.i18n_util import reload_locale
-        reload_locale(APP, localedir=LOCALE_DIR, main_languages=[loc, loc.split('_')[0]])
+        base_loc = loc.split('_')[0]
+        fallback_loc = base_loc
+        for subdir in next(os.walk(LOCALE_DIR))[1]:
+            if subdir.startswith(base_loc):
+                fallback_loc = subdir
+                break
+        reload_locale(APP, localedir=LOCALE_DIR, main_languages=list({loc, base_loc, fallback_loc}))
 except Exception as ex:
     print("Faild setting up Python locale.")
     print(ex)
