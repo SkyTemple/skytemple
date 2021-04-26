@@ -43,8 +43,28 @@ appdir=dist/SkyTemple.app/Contents/MacOS
 # Change "run_skytemple" to "pre_run_skytemple" in the launcher info to launch the shell script instead of the app
 sed -i '' 's/run_skytemple/pre_run_skytemple/' dist/SkyTemple.app/Contents/Info.plist
 
-# Create a shell script that sets LD_LIBRARY_PATH and launches SkyTemple
-printf '#!/bin/sh\nLD_LIBRARY_PATH="$(dirname $0)" PATH="$PATH:$(dirname $0)/skytemple_files/_resources" "$(dirname $0)/run_skytemple"\n' > $appdir/pre_run_skytemple
+# Create a shell script that sets LD_LIBRARY_PATH and the working directory, then launches SkyTemple
+cat > $appdir/pre_run_skytemple << EOF
+#!/bin/sh
+
+# Fix paths
+LD_LIBRARY_PATH="\$(dirname $0)"
+PATH="\$PATH:\$(dirname \$0)/skytemple_files/_resources"
+
+# Fix the language 🥲
+# The output of "defaults read -g AppleLanguages" looks like this, so we need to extract
+# the language code and replace "-" with "_".
+# (
+#     "de-DE",
+#     "en-US"
+# )
+language="\$(defaults read -g AppleLanguages | grep -o "\w\w-\w\w" | head -1 | sed -e "s/-/_/")"
+export LC_ALL="\$language.UTF-8"
+
+# Run the SkyTemple binary
+"\$(dirname \$0)/run_skytemple"
+EOF
+
 chmod +x $appdir/pre_run_skytemple
 
 # Write the version number to files that are read at runtime
