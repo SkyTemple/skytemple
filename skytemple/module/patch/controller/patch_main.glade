@@ -2,18 +2,6 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
-  <object class="GtkListStore" id="patch_store">
-    <columns>
-      <!-- column-name id -->
-      <column type="gchararray"/>
-      <!-- column-name author -->
-      <column type="gchararray"/>
-      <!-- column-name description -->
-      <column type="gchararray"/>
-      <!-- column-name applied -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
   <object class="GtkBox" id="box_patches">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -46,74 +34,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkScrolledWindow">
+              <object class="GtkNotebook" id="patch_categories">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="margin-top">20</property>
                 <property name="margin-bottom">20</property>
-                <property name="shadow-type">in</property>
-                <child>
-                  <object class="GtkTreeView" id="patch_tree">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="model">patch_store</property>
-                    <property name="search-column">0</property>
-                    <child internal-child="selection">
-                      <object class="GtkTreeSelection"/>
-                    </child>
-                    <child>
-                      <object class="GtkTreeViewColumn">
-                        <property name="resizable">True</property>
-                        <property name="title" translatable="yes">Name</property>
-                        <child>
-                          <object class="GtkCellRendererText"/>
-                          <attributes>
-                            <attribute name="text">0</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkTreeViewColumn">
-                        <property name="resizable">True</property>
-                        <property name="title" translatable="yes">Author</property>
-                        <child>
-                          <object class="GtkCellRendererText"/>
-                          <attributes>
-                            <attribute name="text">1</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkTreeViewColumn">
-                        <property name="resizable">True</property>
-                        <property name="title" translatable="yes">Description</property>
-                        <child>
-                          <object class="GtkCellRendererText">
-                            <property name="wrap-mode">word</property>
-                            <property name="wrap-width">500</property>
-                          </object>
-                          <attributes>
-                            <attribute name="text">2</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkTreeViewColumn">
-                        <property name="resizable">True</property>
-                        <property name="title" translatable="yes">Status</property>
-                        <child>
-                          <object class="GtkCellRendererText"/>
-                          <attributes>
-                            <attribute name="text">3</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
+                <signal name="switch-page" handler="on_patch_categories_switch_page" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -221,5 +147,84 @@
       <class name="back_illust"/>
       <class name="patch"/>
     </style>
+  </object>
+  <object class="GtkListStore" id="patch_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="gchararray"/>
+      <!-- column-name author -->
+      <column type="gchararray"/>
+      <!-- column-name description -->
+      <column type="gchararray"/>
+      <!-- column-name applied -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkScrolledWindow" id="patch_window">
+    <property name="visible">True</property>
+    <property name="can-focus">True</property>
+    <property name="shadow-type">in</property>
+    <child>
+      <object class="GtkTreeView" id="patch_tree">
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="model">patch_store</property>
+        <property name="search-column">0</property>
+        <child internal-child="selection">
+          <object class="GtkTreeSelection"/>
+        </child>
+        <child>
+          <object class="GtkTreeViewColumn">
+            <property name="resizable">True</property>
+            <property name="title" translatable="yes">Name</property>
+            <child>
+              <object class="GtkCellRendererText"/>
+              <attributes>
+                <attribute name="text">0</attribute>
+              </attributes>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkTreeViewColumn">
+            <property name="resizable">True</property>
+            <property name="title" translatable="yes">Author</property>
+            <child>
+              <object class="GtkCellRendererText"/>
+              <attributes>
+                <attribute name="text">1</attribute>
+              </attributes>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkTreeViewColumn">
+            <property name="resizable">True</property>
+            <property name="title" translatable="yes">Description</property>
+            <child>
+              <object class="GtkCellRendererText">
+                <property name="wrap-mode">word</property>
+                <property name="wrap-width">500</property>
+              </object>
+              <attributes>
+                <attribute name="text">2</attribute>
+              </attributes>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkTreeViewColumn">
+            <property name="resizable">True</property>
+            <property name="title" translatable="yes">Status</property>
+            <child>
+              <object class="GtkCellRendererText"/>
+              <attributes>
+                <attribute name="text">3</attribute>
+              </attributes>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
   </object>
 </interface>

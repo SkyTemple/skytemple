@@ -17,7 +17,7 @@
 import os
 import sys
 from glob import glob
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Dict
 
 from gi.repository import Gtk
 
@@ -25,6 +25,7 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.ui_utils import open_dir
+from skytemple_files.patch.category import PatchCategory
 from skytemple_files.patch.patches import Patcher
 from skytemple.controller.main import MainController as MainAppController
 from skytemple_files.common.i18n_util import f, _
@@ -41,10 +42,14 @@ class MainController(AbstractController):
         self.builder = None
         self._patcher: Optional[Patcher] = None
 
+        self._category_tabs: Dict[PatchCategory, Gtk.Widget] = {}  # category -> page
+        self._category_tabs_reverse: Dict[Gtk.Widget, PatchCategory] = {}  # page -> category
+        self._current_tab: Optional[PatchCategory] = None
+
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'patch_main.glade')
 
-        self.refresh()
+        self.refresh_all()
 
         self.builder.connect_signals(self)
         return self.builder.get_object('box_patches')
@@ -84,14 +89,42 @@ class MainController(AbstractController):
                               "is correctly loaded."), Gtk.MessageType.INFO, is_success=True)
             finally:
                 self.module.mark_as_modified()
+                self.refresh(self._current_tab)
 
     def on_btn_refresh_clicked(self, *args):
-        self.refresh()
+        self.refresh(self._current_tab)
 
     def on_btn_open_patch_dir_clicked(self, *args):
         open_dir(self.patch_dir())
 
-    def refresh(self):
+    def on_patch_categories_switch_page(self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num):
+        cat = self._category_tabs_reverse[page]
+        sw: Gtk.ScrolledWindow = self.builder.get_object('patch_window')
+        sw.get_parent().remove(sw)
+        self.refresh(cat)
+
+    def refresh_all(self):
+        self._category_tabs = {}
+        self._category_tabs_reverse = {}
+        notebook: Gtk.Notebook = self.builder.get_object('patch_categories')
+        page_num = 0
+        for category in PatchCategory:
+            box = Gtk.Box.new(Gtk.Orientation.HORIZONTAL, 0)
+            notebook.append_page(box, Gtk.Label.new(category.print_name))
+            self._category_tabs[category] = box
+            self._category_tabs_reverse[box] = category
+            if self._current_tab is None and page_num == 0 or self._current_tab == category:
+                # Select
+                notebook.set_current_page(page_num)
+                self.refresh(category)
+            page_num += 1
+
+    def refresh(self, patch_category: PatchCategory):
+        # ATTACH
+        page = self._category_tabs[patch_category]
+        page.pack_start(self.builder.get_object('patch_window'), True, True, 0)
+        self._current_tab = patch_category
+
         tree: Gtk.TreeView = self.builder.get_object('patch_tree')
         model: Gtk.ListStore = tree.get_model()
         model.clear()
@@ -104,6 +137,8 @@ class MainController(AbstractController):
                 self._error(f(_("Error loading patch package {os.path.basename(fname)}:\n{err}")))
         # List patches:
         for patch in sorted(self._patcher.list(), key=lambda p: p.name):
+            if patch.category != patch_category:
+                continue
             applied_str = _('Not compatible')
             try:
                 applied_str = _('Applied') if self._patcher.is_applied(patch.name) else _('Compatible')

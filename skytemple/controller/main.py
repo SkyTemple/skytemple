@@ -195,6 +195,10 @@ class MainController:
     def on_save_button_clicked(self, wdg):
         self._save()
 
+    def on_reload_button_clicked(self, wdg):
+        if RomProject.get_current().filename:
+            self._open_file(RomProject.get_current().filename)
+
     def on_debugger_button_clicked(self, wdg):
         self._debugger_manager.open(self.window)
 
@@ -683,6 +687,7 @@ class MainController:
         """Set the titlebar and make buttons sensitive after a ROM load"""
         self._item_store.clear()
         self.builder.get_object('save_button').set_sensitive(True)
+        self.builder.get_object('reload_button').set_sensitive(True)
         self.builder.get_object('save_as_button').set_sensitive(True)
         self.builder.get_object('main_item_list_search').set_sensitive(True)
         self.builder.get_object('debugger_button').set_sensitive(True)

@@ -1141,6 +1141,28 @@ the top-right of the main window.</property>
           </packing>
         </child>
         <child>
+          <object class="GtkButton" id="reload_button">
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Reload current ROM</property>
+            <signal name="clicked" handler="on_reload_button_clicked" swapped="no"/>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">view-refresh</property>
+                <property name="icon_size">3</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack-type">end</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkButton" id="debugger_button">
             <property name="visible">True</property>
             <property name="sensitive">False</property>
@@ -1159,7 +1181,7 @@ the top-right of the main window.</property>
           </object>
           <packing>
             <property name="pack-type">end</property>
-            <property name="position">3</property>
+            <property name="position">4</property>
           </packing>
         </child>
       </object>
