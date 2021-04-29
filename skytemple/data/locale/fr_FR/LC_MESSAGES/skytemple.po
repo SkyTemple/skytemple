@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-04-26 16:15+0000\n"
-"PO-Revision-Date: 2021-04-26 16:20\n"
+"POT-Creation-Date: 2021-04-29 12:50+0000\n"
+"PO-Revision-Date: 2021-04-29 12:50\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -1097,7 +1097,7 @@ msgstr ""
 #. TRANSLATORS: Replace this string with your names, one name per line.
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:1252
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3265
-#: skytemple/skytemple/skytemple.glade:1230
+#: skytemple/skytemple/skytemple.glade:1252
 msgid "translator-credits"
 msgstr "N_tonio36#5530\n"
 "marius851000"
@@ -3334,20 +3334,48 @@ msgstr ""
 msgid "Error while applying the patch: {ex}"
 msgstr "Erreur lors de l'application du correctif : {ex}"
 
-#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:42
+#: skytemple-files/skytemple_files/patch/category.py:22
+msgid "Improvements and Tweaks"
+msgstr ""
+
+#. TRANSLATORS: Name for the category of ASM patch
+#: skytemple-files/skytemple_files/patch/category.py:23
+msgid "New Mechanics"
+msgstr ""
+
+#. TRANSLATORS: Name for the category of ASM patch
+#: skytemple-files/skytemple_files/patch/category.py:24
+msgid "Bugfixes"
+msgstr ""
+
+#. TRANSLATORS: Name for the category of ASM patch
+#: skytemple-files/skytemple_files/patch/category.py:25
+msgid "Utility"
+msgstr ""
+
+#. TRANSLATORS: Name for the category of ASM patch
+#: skytemple-files/skytemple_files/patch/category.py:26
+#: skytemple/skytemple/module/dungeon/controller/floor.glade:4534
+#: skytemple/skytemple/module/map_bg/module.py:97
+#: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2027
+#: skytemple/skytemple/module/script/module.py:104
+msgid "Others"
+msgstr "Autres"
+
+#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:43
 msgid "Tells the game, to load the actor and level lists from a separate file. Extracts both files on applying the patch."
 msgstr "Indique au jeu de charger les listes d'acteurs et de niveaux à partir de fichiers séparés. Extrait les deux fichiers lors de l'application de ce correctif."
 
-#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:69
+#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:74
 msgid "This patch can not be re-applied."
 msgstr "Ce correctif ne peut pas être réappliqué."
 
-#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:75
-#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:83
+#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:80
+#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:88
 msgid "The source data specification was not found in the configuration."
 msgstr "La spécification des données source est introuvable dans la configuration."
 
-#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:94
+#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:99
 msgid "\n\n"
 "The list was extracted anyway.\n"
 "You can already edit it through SkyTemple, but it won't be used in game, until you successfully apply the patch."
@@ -3355,28 +3383,28 @@ msgstr "\n\n"
 "Les listes ont tout de même été extraites.\n"
 "Vous pouvez les éditer via SkyTemple, mais elles ne seront pas utilisées par le jeu avant que le correctif soit appliqué avec succès."
 
-#: skytemple-files/skytemple_files/patch/handler/add_type.py:119
+#: skytemple-files/skytemple_files/patch/handler/add_type.py:120
 msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/choose_starter.py:46
+#: skytemple-files/skytemple_files/patch/handler/choose_starter.py:47
 msgid "Then, who would you like to be?"
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/choose_starter.py:57
+#: skytemple-files/skytemple_files/patch/handler/choose_starter.py:58
 msgid "Adds an extra menu during the personality test to choose the starter.\n"
 "Uses the supposedly unused string 2613 in the strings file. "
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:74
+#: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:75
 msgid "Pressing start in a dungeon toggles between automatic and manual mode. In manual mode, you can control your partners on their turns. You must apply the extra code overlay made by End45 before applying this patch."
 msgstr "Appuyer sur Start dans un donjon permet de basculer entre le mode automatique et le mode manuel. En mode manuel, vous pouvez contrôler vous partenaires pendant leurs tours. Vous devez appliquer le correctif pour l'overlay de code supplémentaire de End45 avant d'appliquer ce patch."
 
-#: skytemple-files/skytemple_files/patch/handler/disable_tips.py:39
+#: skytemple-files/skytemple_files/patch/handler/disable_tips.py:40
 msgid "Disables the tip textboxes shown in dungeons at the beginning of the game."
 msgstr "Désactive les boîtes de dialogue d'aide affichées en donjon au début du jeu."
 
-#: skytemple-files/skytemple_files/patch/handler/exp_share.py:43
+#: skytemple-files/skytemple_files/patch/handler/exp_share.py:44
 msgid "Implements shared experience points between all members (GtI style). \n"
 "This is disabled during Special Episodes and dungeons with level 1 or no exp. restrictions. \n"
 "Needs the ExtractDungeonData patch to be applied to free some space used by this."
@@ -3384,80 +3412,80 @@ msgstr "Implémente le partage des points d'expérience entre tous les membres (
 "Le partage est desactivé lors des Épisodes Spéciaux et dans les donjons avec les restrictions « niveau 1 » ou « pas de gain d'expérience ».\n"
 "Le correctif ExtractDungeonData doit être appliqué pour libérer de l'espace utilisé par celui-ci."
 
-#: skytemple-files/skytemple_files/patch/handler/extra_space.py:39
+#: skytemple-files/skytemple_files/patch/handler/extra_space.py:40
 msgid "This patch adds a new overlay 36 to the game, which is loaded at address 0x023A7080 and provides extra space for patches to place code and data in."
 msgstr "Ce correctif ajoute un nouvel overlay (36) au jeu, qui est chargé à l'adresse 0x023A7080 et fournit de l'espace supplémentaire aux autres correctifs pour y placer du code et d'autres données."
 
-#: skytemple-files/skytemple_files/patch/handler/extract_bar_list.py:51
+#: skytemple-files/skytemple_files/patch/handler/extract_bar_list.py:52
 msgid "Extracts Spinda bar's item list."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/extract_dungeon_data.py:53
+#: skytemple-files/skytemple_files/patch/handler/extract_dungeon_data.py:54
 msgid "Extracts the floor ranks, forbidden mission floors, items available in dungeon tables and put them in files. Provides support for reading them from the rom file system."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/extract_item_code.py:56
+#: skytemple-files/skytemple_files/patch/handler/extract_item_code.py:57
 msgid "Extracts item effects code and put it in files."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:46
+#: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:47
 msgid "Extracts the hardcoded item lists, used for mission rewards/treasure boxes content as well as Kecleon shop items, and put them in files. Provides support for reading them from the rom file system."
 msgstr "Extrait les listes d'objet codées en dur, utilisées pour les récompenses de mission et le contenu des coffres ainsi que les objets du magasin Kecleon, et les met dans des fichiers. Fournit le support pour lire les listes depuis le système de fichiers de la rom."
 
-#: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:111
+#: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:116
 msgid "Don't have enough space to put filenames! "
 msgstr "Pas assez d'espace pour mettre les noms de fichier ! "
 
-#: skytemple-files/skytemple_files/patch/handler/extract_move_code.py:57
+#: skytemple-files/skytemple_files/patch/handler/extract_move_code.py:58
 msgid "Extracts move effects code and put it in files."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/fairy_gummies.py:95
+#: skytemple-files/skytemple_files/patch/handler/fairy_gummies.py:96
 msgid "Implements Fairy-type specialized gummies. Uses unused item 138.\n"
 "Needs ExtractItemCode, ExtractBarItemList and AddTypes patches to be applied for this patch to work.\n"
 "Also, you'll need to reapply this if you apply AddTypes again. "
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/far_off_pal_overdrive.py:41
+#: skytemple-files/skytemple_files/patch/handler/far_off_pal_overdrive.py:42
 msgid "Makes the game always move the PoV to your partners when they use moves or are attacked, even if the partner is only one tile away, when far-off pals is enabled. Recommended for CTC since the PoV stays on your last pokemon at the end of a manual movement round without this, and CTC already reduces the amount of time the game pauses for between PoV changes."
 msgstr "Fait en sorte de toujours voir les coéquipiers quand ils utilisent des capacités ou sont attaqués, même s'ils sont à une case de distance, lorsque l'option pour voir les coéquipiers au loin est activée. Recommandé pour le patch « CompleteTeamControl » étant donné que la caméra reste sur le dernier pokémon ayant agi en mode manuel sans cela, et le patch « CompleteTeamControl » réduit le temps de pause lors du déplacement de la caméra."
 
-#: skytemple-files/skytemple_files/patch/handler/fix_evolution.py:38
+#: skytemple-files/skytemple_files/patch/handler/fix_evolution.py:39
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
 msgstr "Corrige le bug de l'évolution qui fait planter le jeu en essayant de faire évoluer un pokémon dont le nom comporte 10 caractères (bug présent dans la version américaine d'Explorateurs du Ciel)."
 
-#: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:39
+#: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:40
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y)."
 msgstr "Remplace la capacité en raccourci fixe (L+A) par un système de raccourci comme ceux présents dans les jeux suivants de la série (L+A/B/X/Y)."
 
-#: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:41
+#: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:42
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
 msgstr "Recommandé pour le correctif « CompleteTeamControl ». Sans ce patch, les coéquipiers ne peuvent pas déclencher de pièges. Cela rééquilibre le jeu, étant donné qu'il est facile de faire éviter les pièges aux coéquipiers en mode manuel. Mais ce n'est pas recommandé pour les mods qui utilisent les pièges trappe, ce qui mettrait instantanément KO les coéquipiers s'ils marchaient dessus."
 
-#: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:41
+#: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:42
 msgid "Reduces the amount of time the game pauses for before changing the PoV when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
 msgstr "Réduit le temps de pause lors du déplacement de la caméra pour voir les coéquipiers au loin, de 60 images à 12. Ce patch est déjà appliqué par le patch « CompleteTeamControl »."
 
-#: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:38
+#: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:39
 msgid "Allows the partner to be of the same type as the player in the personality test."
 msgstr "Autorise le partenaire à être du même type que le joueur dans le test de personnalité."
 
-#: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:38
+#: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:39
 msgid "Who would you like to be?"
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:49
+#: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:50
 msgid "Skips the quiz, only leaving the gender question.\n"
 "Needs ChooseStarter patch to be applied. "
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/support_atupx.py:45
+#: skytemple-files/skytemple_files/patch/handler/support_atupx.py:46
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
 "Requires the ActorAndLevelLoader, as it frees the space needed to implement this."
 msgstr "Fournit le support pour les conteneurs ATUPX, qui utilisent un algorithme de compression différent de PX.\n"
 "Requiert le patch « ActorAndLevelLoader » qui libère de l'espace utile pour implanter ce patch."
 
-#: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:39
+#: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:40
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
@@ -3584,7 +3612,7 @@ msgid "Do you want to save changes to {filename}?"
 msgstr "Voulez-vous sauvegarder les changements faits dans {filename} ?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:322
-#: skytemple/skytemple/controller/main.py:750
+#: skytemple/skytemple/controller/main.py:755
 msgid "Don't Save"
 msgstr "Ne pas sauvegarder"
 
@@ -3611,7 +3639,7 @@ msgid "_Save"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:326
-#: skytemple/skytemple/controller/main.py:754
+#: skytemple/skytemple/controller/main.py:759
 msgid "If you don't save, your changes will be lost."
 msgstr "Si vous n'enregistrez pas, vos modifications seront perdues."
 
@@ -3779,7 +3807,7 @@ msgstr "Marqueurs de Position"
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:223
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:493
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:892
-#: skytemple/skytemple/module/patch/controller/patch_main.glade:67
+#: skytemple/skytemple/module/patch/controller/patch_main.glade:179
 #: skytemple/skytemple/module/script/controller/ssa.py:1208
 #: skytemple/skytemple/module/script/controller/ssa.py:1220
 #: skytemple/skytemple/module/script/controller/ssa.py:1356
@@ -3953,7 +3981,7 @@ msgstr "Supprimer"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1616
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1627
-#: skytemple/skytemple/controller/main.py:752
+#: skytemple/skytemple/controller/main.py:757
 #: skytemple/skytemple/module/script/controller/ssa.py:1557
 msgid "Cancel"
 msgstr "Annuler"
@@ -4196,7 +4224,7 @@ msgid "Player"
 msgstr "Joueur"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:67
-#: skytemple/skytemple/skytemple.glade:2045
+#: skytemple/skytemple/skytemple.glade:2067
 msgid "Mode"
 msgstr ""
 
@@ -4344,7 +4372,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1089
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2762
-#: skytemple/skytemple/controller/main.py:753
+#: skytemple/skytemple/controller/main.py:758
 #: skytemple/skytemple/skytemple.glade:1130
 msgid "Save"
 msgstr "Sauvegarder"
@@ -4532,7 +4560,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:420
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:920
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:942
-#: skytemple/skytemple/module/patch/controller/patch_main.glade:153
+#: skytemple/skytemple/module/patch/controller/patch_main.glade:79
 msgid "Reload"
 msgstr ""
 
@@ -4851,48 +4879,48 @@ msgstr ""
 msgid "Zoom _Out"
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:229
+#: skytemple/skytemple/controller/main.py:233
 msgid "Open ROM..."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:334
+#: skytemple/skytemple/controller/main.py:338
 msgid "Error opening the ROM"
 msgstr "Erreur lors de l'ouverture de la ROM"
 
-#: skytemple/skytemple/controller/main.py:356
+#: skytemple/skytemple/controller/main.py:360
 msgid "Error saving the ROM"
 msgstr "Erreur lors de la sauvegarde de la ROM"
 
-#: skytemple/skytemple/controller/main.py:466
+#: skytemple/skytemple/controller/main.py:470
 msgid "A project must be opened to use this."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:546
-#: skytemple/skytemple/controller/main.py:547
+#: skytemple/skytemple/controller/main.py:550
+#: skytemple/skytemple/controller/main.py:551
 msgid "Open a ROM"
 msgstr "Ouvrir une ROM"
 
-#: skytemple/skytemple/controller/main.py:572
+#: skytemple/skytemple/controller/main.py:576
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
 msgstr "Chargement de la ROM « {rom_name} »..."
 
-#: skytemple/skytemple/controller/main.py:574
+#: skytemple/skytemple/controller/main.py:578
 #, python-brace-format
 msgid "Opening {filename}."
 msgstr "Ouverture de {filename}."
 
-#: skytemple/skytemple/controller/main.py:733
+#: skytemple/skytemple/controller/main.py:738
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
 msgstr "Enregistrement de la ROM « {rom_name} »..."
 
-#: skytemple/skytemple/controller/main.py:735
+#: skytemple/skytemple/controller/main.py:740
 #, python-brace-format
 msgid "Saving {rom.filename}."
 msgstr "Sauvegarde de {rom.filename}."
 
-#: skytemple/skytemple/controller/main.py:748
+#: skytemple/skytemple/controller/main.py:753
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
 msgstr "Voulez vous enregistrer les changement vers {rom_name} ?"
@@ -6277,13 +6305,6 @@ msgstr "Catégories"
 msgid "Guaranteed"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.glade:4534
-#: skytemple/skytemple/module/map_bg/module.py:97
-#: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2027
-#: skytemple/skytemple/module/script/module.py:104
-msgid "Others"
-msgstr "Autres"
-
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4550
 msgid "Items<span size=\"small\"> - Only Items with IDs smaller than 363 can be added.</span>"
 msgstr ""
@@ -7059,7 +7080,7 @@ msgid "This will import the entire background.\n\n"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2279
-#: skytemple/skytemple/skytemple.glade:2199
+#: skytemple/skytemple/skytemple.glade:2221
 msgid "Input Image"
 msgstr ""
 
@@ -10193,69 +10214,69 @@ msgstr ""
 msgid "Fix Number of Moves"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:32
-#: skytemple/skytemple/module/patch/controller/patch_main.glade:37
+#: skytemple/skytemple/module/patch/controller/main.py:33
+#: skytemple/skytemple/module/patch/controller/patch_main.glade:25
 msgid "Patches"
 msgstr "Correctifs"
 
-#: skytemple/skytemple/module/patch/controller/main.py:61
+#: skytemple/skytemple/module/patch/controller/main.py:66
 msgid "This patch is already applied. Some patches support applying them again, but you might also run into problems with some. Proceed with care."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:71
+#: skytemple/skytemple/module/patch/controller/main.py:76
 msgid "The current ROM is not supported by this patch."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:75
+#: skytemple/skytemple/module/patch/controller/main.py:80
 msgid "Please save the ROM before applying the patch."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:81
+#: skytemple/skytemple/module/patch/controller/main.py:86
 #, python-brace-format
 msgid "Error applying the patch:\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:83
+#: skytemple/skytemple/module/patch/controller/main.py:88
 msgid "Patch was successfully applied. You should re-open the project, to make sure all data is correctly loaded."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:104
+#: skytemple/skytemple/module/patch/controller/main.py:137
 msgid "Error loading patch package {os.path.basename(fname)}:\n"
 "{err}"
 msgstr "Erreur lors du chargement du paquet de correctifs {os.path.basename(fname)} :\n"
 "{err}"
 
-#: skytemple/skytemple/module/patch/controller/main.py:107
+#: skytemple/skytemple/module/patch/controller/main.py:142
 msgid "Not compatible"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:109
+#: skytemple/skytemple/module/patch/controller/main.py:144
 msgid "Applied"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:109
+#: skytemple/skytemple/module/patch/controller/main.py:144
 msgid "Compatible"
 msgstr "Compatible"
 
-#: skytemple/skytemple/module/patch/controller/patch_main.glade:79
-msgid "Author"
-msgstr ""
-
-#: skytemple/skytemple/module/patch/controller/patch_main.glade:91
-msgid "Description"
-msgstr ""
-
-#: skytemple/skytemple/module/patch/controller/patch_main.glade:106
-msgid "Status"
-msgstr ""
-
-#: skytemple/skytemple/module/patch/controller/patch_main.glade:136
+#: skytemple/skytemple/module/patch/controller/patch_main.glade:62
 msgid "Open Patch Directory..."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/patch_main.glade:184
+#: skytemple/skytemple/module/patch/controller/patch_main.glade:110
 msgid "Apply"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/patch_main.glade:191
+msgid "Author"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/patch_main.glade:203
+msgid "Description"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/patch_main.glade:218
+msgid "Status"
 msgstr ""
 
 #: skytemple/skytemple/module/patch/module.py:44
@@ -11094,31 +11115,35 @@ msgid "Save to ROM"
 msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1149
+msgid "Reload current ROM"
+msgstr ""
+
+#: skytemple/skytemple/skytemple.glade:1171
 msgid "Open script editor / debugger"
 msgstr "Ouvrir l'éditeur de script / débogueur"
 
-#: skytemple/skytemple/skytemple.glade:1176
+#: skytemple/skytemple/skytemple.glade:1198
 msgid "Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US)."
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1178
+#: skytemple/skytemple/skytemple.glade:1200
 msgid "https://github.com/SkyTemple/skytemple"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1304
+#: skytemple/skytemple/skytemple.glade:1326
 msgid "Loading ROM \"NAME\"..."
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1386
+#: skytemple/skytemple/skytemple.glade:1408
 msgid "You want to support SkyTemple and PMD2 ROM hacking?\n"
 "Thank you! You can support us..."
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1406
+#: skytemple/skytemple/skytemple.glade:1428
 msgid "... by testing new features!"
 msgstr "... en testant de nouvelles fonctionnalités !"
 
-#: skytemple/skytemple/skytemple.glade:1422
+#: skytemple/skytemple/skytemple.glade:1444
 msgid "Join our Discord server and become a \"Beta Tester\", to get\n"
 "access to new features. Your feedback will directly help\n"
 "to improve SkyTemple and you can also suggest new features!"
@@ -11126,11 +11151,11 @@ msgstr "Rejoignez notre serveur Discord et devenez un \"bêta testeur\", pour av
 "de nouvelles fonctionnalités. Vos commentaires aideront directement\n"
 "à améliorer SkyTemple et vous pourrez également suggérer de nouvelles fonctionnalités !"
 
-#: skytemple/skytemple/skytemple.glade:1468
+#: skytemple/skytemple/skytemple.glade:1490
 msgid "... by joining development or reverse engineering the game!"
 msgstr "... en rejoignant le développement de SkyTemple, ou en inversant l'ingénierie du jeu !"
 
-#: skytemple/skytemple/skytemple.glade:1484
+#: skytemple/skytemple/skytemple.glade:1506
 msgid "We are always looking for people to help develop SkyTemple\n"
 "or who help hacking the game. If you are interested in reverse\n"
 "engineering or implementing new features for SkyTemple,\n"
@@ -11142,66 +11167,66 @@ msgstr "Nous sommes toujours à la recherche de gens pour aider à développer S
 "vous pouvez trouver le projet sur Github ! \n"
 "Vous pouvez également rejoindre le serveur Discord si vous avez des questions."
 
-#: skytemple/skytemple/skytemple.glade:1532
+#: skytemple/skytemple/skytemple.glade:1554
 msgid "... by helping to translate SkyTemple!"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1548
+#: skytemple/skytemple/skytemple.glade:1570
 msgid "Do you want to help translating SkyTemple to your native\n"
 "language? Join our Discord for more information."
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1592
+#: skytemple/skytemple/skytemple.glade:1614
 msgid "... by buying us a coffee!"
 msgstr "... en nous achetant un café !"
 
-#: skytemple/skytemple/skytemple.glade:1615
+#: skytemple/skytemple/skytemple.glade:1637
 msgid "If you like SkyTemple or other PMD2 hacking tools, you can\n"
 "support us with a small donation."
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1640
+#: skytemple/skytemple/skytemple.glade:1662
 msgid "Parakoopa"
 msgstr "Parakoopa"
 
-#: skytemple/skytemple/skytemple.glade:1657
+#: skytemple/skytemple/skytemple.glade:1679
 msgid "Developer of SkyTemple and \n"
 "creator of ExplorerScript.\n"
 msgstr "Développeur de SkyTemple et \n"
 "créateur de ExplorerScript.\n"
 
-#: skytemple/skytemple/skytemple.glade:1703
+#: skytemple/skytemple/skytemple.glade:1725
 msgid "psy_commando"
 msgstr "psy_commando"
 
-#: skytemple/skytemple/skytemple.glade:1720
+#: skytemple/skytemple/skytemple.glade:1742
 msgid "Figured out most things about \n"
 "how this game works!\n"
 "Developer of ppmdu."
 msgstr "A compris la plupart du fonctionnement du jeu !\n"
 "Développeur de ppmdu."
 
-#: skytemple/skytemple/skytemple.glade:1798
+#: skytemple/skytemple/skytemple.glade:1820
 msgid "Dither: Ordered"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1802
+#: skytemple/skytemple/skytemple.glade:1824
 msgid "Dither: Floyd Steinberg"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1806
+#: skytemple/skytemple/skytemple.glade:1828
 msgid "No Dithering"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1810
+#: skytemple/skytemple/skytemple.glade:1832
 msgid "Reorganize colors only"
 msgstr "Réorganiser les couleurs uniquement"
 
-#: skytemple/skytemple/skytemple.glade:1816
+#: skytemple/skytemple/skytemple.glade:1838
 msgid "Tilequant"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1865
+#: skytemple/skytemple/skytemple.glade:1887
 msgid "This tool converts any image into the image format required by Explorers of Sky.\n"
 "Please note that the game has pretty strict color restrictions.\n\n"
 "Each 8x8 tile will only be able to use one palette.\n\n"
@@ -11211,31 +11236,31 @@ msgstr "Cet outil convertit n'importe quelle image dans le format d'image requis
 "Chaque tuile 8x8 ne sera en mesure d'utiliser qu'une seule palette.\n\n"
 "Les images créées par cet outil peuvent être importées pour les arrière-plans."
 
-#: skytemple/skytemple/skytemple.glade:1894
+#: skytemple/skytemple/skytemple.glade:1916
 msgid "Number of Palettes"
 msgstr "Nombre de Palettes"
 
-#: skytemple/skytemple/skytemple.glade:1937
+#: skytemple/skytemple/skytemple.glade:1959
 msgid "16"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1969
+#: skytemple/skytemple/skytemple.glade:1991
 msgid "Transparent Color"
 msgstr "Couleur transparente"
 
-#: skytemple/skytemple/skytemple.glade:2012
+#: skytemple/skytemple/skytemple.glade:2034
 msgid "Color"
 msgstr "Couleur"
 
-#: skytemple/skytemple/skytemple.glade:2124
+#: skytemple/skytemple/skytemple.glade:2146
 msgid "Dithering Level"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:2251
+#: skytemple/skytemple/skytemple.glade:2273
 msgid "Additional Input Image (optional)"
 msgstr "Image d'entrée supplémentaire (optionnel)"
 
-#: skytemple/skytemple/skytemple.glade:2345
+#: skytemple/skytemple/skytemple.glade:2367
 msgid "Convert"
 msgstr "Convertir"
 
