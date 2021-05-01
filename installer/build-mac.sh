@@ -48,8 +48,8 @@ cat > $appdir/pre_run_skytemple << EOF
 #!/bin/sh
 
 # Fix paths
-LD_LIBRARY_PATH="\$(dirname \$0)"
-PATH="\$PATH:\$(dirname \$0)/skytemple_files/_resources"
+export LD_LIBRARY_PATH="\$(dirname \$0)"
+export PATH="\$PATH:\$(dirname \$0)/skytemple_files/_resources"
 
 # Fix the language 🥲
 # The output of "defaults read -g AppleLanguages" looks like this, so we need to extract
