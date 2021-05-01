@@ -48,7 +48,7 @@ cat > $appdir/pre_run_skytemple << EOF
 #!/bin/sh
 
 # Fix paths
-LD_LIBRARY_PATH="\$(dirname $0)"
+LD_LIBRARY_PATH="\$(dirname \$0)"
 PATH="\$PATH:\$(dirname \$0)/skytemple_files/_resources"
 
 # Fix the language 🥲
