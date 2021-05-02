@@ -26,7 +26,8 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.ui_utils import open_dir
 from skytemple_files.patch.category import PatchCategory
-from skytemple_files.patch.patches import Patcher
+from skytemple_files.patch.handler.abstract import DependantPatch
+from skytemple_files.patch.patches import Patcher, PatchDependencyError
 from skytemple.controller.main import MainController as MainAppController
 from skytemple_files.common.i18n_util import f, _
 
@@ -81,7 +82,19 @@ class MainController(AbstractController):
                 return
 
             try:
-                self._patcher.apply(name)
+                dependencies = self._get_dependencies(name)
+                if len(dependencies) > 0:
+                    md = SkyTempleMessageDialog(MainAppController.window(),
+                                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                                Gtk.ButtonsType.YES_NO,
+                                                _("This patch requires some other patches to be applied first:\n") + '\n'.join(dependencies) + _("\nDo you want to apply these first?"))
+                    md.set_position(Gtk.WindowPosition.CENTER)
+                    response = md.run()
+                    md.destroy()
+                    if response != Gtk.ResponseType.YES:
+                        return
+                for patch in dependencies + [name]:
+                    self._patcher.apply(patch)
             except RuntimeError as err:
                 self._error(f(_("Error applying the patch:\n{err}")), exc_info=sys.exc_info())
             else:
@@ -164,3 +177,22 @@ class MainController(AbstractController):
 
     def patch_dir(self):
         return self.module.project.get_project_file_manager().dir(PATCH_DIR)
+
+    def _get_dependencies(self, name):
+        to_check = [name]
+        collected_deps = []
+        while len(to_check) > 0:
+            patch = self._patcher.get(to_check.pop())
+            if isinstance(patch, DependantPatch):
+                for patch_name in patch.depends_on():
+                    try:
+                        if not self._patcher.is_applied(patch_name):
+                            if patch_name in collected_deps:
+                                collected_deps.remove(patch_name)
+                            collected_deps.append(patch_name)
+                            to_check.append(patch_name)
+                    except ValueError as err:
+                        raise PatchDependencyError(f(_("The patch '{patch_name}' needs to be applied before you can "
+                                                       "apply '{name}'. "
+                                                       "This patch could not be found."))) from err
+        return list(reversed(collected_deps))
