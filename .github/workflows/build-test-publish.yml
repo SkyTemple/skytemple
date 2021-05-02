@@ -7,9 +7,13 @@ on:
     branches:
       - master
       - l10n_master
+      - release
   pull_request:
     branches-ignore:
       - l10n_master
+  create:
+    tags:
+      - '*'
 
 jobs:
   build:
