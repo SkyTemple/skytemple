@@ -26,6 +26,8 @@ import packaging.version
 import gi
 import logging
 
+from gi.repository.GdkPixbuf import Pixbuf
+
 from skytemple.controller.settings import SettingsController
 from skytemple.controller.tilequant import TilequantController
 from skytemple.core.abstract_module import AbstractModule
@@ -43,7 +45,7 @@ from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir, \
     version, open_dir
 from skytemple_files.common.i18n_util import _, f
-from skytemple_files.common.version_util import check_newest_release, ReleaseType
+from skytemple_files.common.version_util import check_newest_release, ReleaseType, get_event_banner
 
 gi.require_version('Gtk', '3.0')
 
@@ -119,6 +121,7 @@ class MainController:
         self._connect_item_views()
         self._configure_error_view()
         self._check_for_updates()
+        self._check_for_banner()
 
         self._debugger_manager = DebuggerManager()
 
@@ -808,3 +811,36 @@ class MainController:
             pass
         # else/except:
         self.builder.get_object('update_info').hide()
+
+    def _check_for_banner(self):
+        try:
+            img_banner, url = get_event_banner()
+            if img_banner is not None:
+                input_stream = Gio.MemoryInputStream.new_from_data(img_banner, None)
+                pixbuf = Pixbuf.new_from_stream(input_stream, None)
+                image = Gtk.Image()
+                image.show()
+                image.set_from_pixbuf(pixbuf)
+
+                def open_web(*args):
+                    webbrowser.open_new_tab(url)
+
+                def cursor_change(w: Gtk.Widget, evt: Gdk.EventCrossing):
+                    cursor = None
+                    if evt.get_event_type() == Gdk.EventType.ENTER_NOTIFY:
+                        cursor = Gdk.Cursor.new_from_name(w.get_display(), "pointer")
+                    elif evt.get_event_type() == Gdk.EventType.LEAVE_NOTIFY:
+                        cursor = Gdk.Cursor.new_from_name(w.get_display(), "default")
+                    if cursor:
+                        w.get_window().set_cursor(cursor)
+                b_info = self.builder.get_object('banner_info')
+                b_info.connect('button-release-event', open_web)
+                b_info.connect('enter-notify-event', cursor_change)
+                b_info.connect('leave-notify-event', cursor_change)
+                b_info.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
+                b_info.add(image)
+                return
+        except Exception:
+            pass
+        # else/except:
+        self.builder.get_object('banner_info').hide()
