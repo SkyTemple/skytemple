@@ -1345,7 +1345,7 @@ class FloorController(AbstractController):
         last_weight_set_idx = 0
         for i, row in enumerate(rows):
             weight = 0
-            if row[5] != "0":
+            if int(row[5]) != 0:
                 weight = last_weight + int(10000 * (int(row[5]) / sum_of_weights))
                 last_weight = weight
                 last_weight_set_idx = i
@@ -1372,7 +1372,7 @@ class FloorController(AbstractController):
         weights = []
         for i, row in enumerate(store):
             weight = 0
-            if row[3] != "0":
+            if int(row[3]) != 0:
                 weight = last_weight + int(10000 * (int(row[3]) / sum_of_weights))
                 last_weight = weight
                 last_weight_set_idx = i
@@ -1437,7 +1437,7 @@ class FloorController(AbstractController):
                 if row[2]:
                     weight = GUARANTEED
                 else:
-                    if row[4] != "0":
+                    if int(row[4]) != 0:
                         weight = last_weight + int(10000 * (int(row[4]) / sum_of_weights))
                         last_weight = weight
                         was_set = True
