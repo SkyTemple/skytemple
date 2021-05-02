@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-05-02 12:29+0000\n"
-"PO-Revision-Date: 2021-05-02 19:13\n"
+"PO-Revision-Date: 2021-05-02 20:13\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -2803,7 +2803,7 @@ msgstr "イガグリスイッチ"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:48
 msgid "Wonder Tile"
-msgstr ""
+msgstr "ふしぎなゆか"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:49
 msgid "Pokemon Trap"
@@ -2811,15 +2811,15 @@ msgstr "ポケモンのワナ"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:50
 msgid "Spiked Tile"
-msgstr ""
+msgstr "まきびし"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:51
 msgid "Stealth Rock"
-msgstr ""
+msgstr "ステルスロック"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:52
 msgid "Toxic Spikes"
-msgstr ""
+msgstr "どくびし"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:53
 msgid "Trip Trap"
@@ -2983,7 +2983,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:35
 msgid "Palette Only"
-msgstr ""
+msgstr "パレットのみ"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:36
 msgid "2 bits per pixel (4 colors)"
@@ -3341,12 +3341,12 @@ msgstr ""
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:24
 msgid "Bugfixes"
-msgstr ""
+msgstr "バグ修正"
 
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:25
 msgid "Utility"
-msgstr ""
+msgstr "実用"
 
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:26
@@ -3355,7 +3355,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2027
 #: skytemple/skytemple/module/script/module.py:104
 msgid "Others"
-msgstr ""
+msgstr "その他"
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:43
 msgid "Tells the game, to load the actor and level lists from a separate file. Extracts both files on applying the patch."
@@ -3591,7 +3591,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:175
 msgid "BOOST"
-msgstr ""
+msgstr "ブースト"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:178
 msgid "Debugging disabled."
@@ -3605,12 +3605,12 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:322
 #: skytemple/skytemple/controller/main.py:758
 msgid "Don't Save"
-msgstr ""
+msgstr "保存しない"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:324
 #: skytemple/skytemple/_i18n.py:24
 msgid "_Cancel"
-msgstr ""
+msgstr "キャンセル(_C)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:325
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:975
@@ -3627,7 +3627,7 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:142
 #: skytemple/skytemple/module/sprite/module.py:191
 msgid "_Save"
-msgstr ""
+msgstr "保存(_S)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:326
 #: skytemple/skytemple/controller/main.py:762
@@ -3651,7 +3651,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:703
 #: skytemple/skytemple/module/script/controller/ssa.py:477
 msgid "Warning!"
-msgstr ""
+msgstr "警告!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:361
 msgid "Close"
@@ -3663,11 +3663,11 @@ msgstr "利用可能"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:47
 msgid "Block"
-msgstr ""
+msgstr "ブロック"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:48
 msgid "Temporary"
-msgstr ""
+msgstr "一時的"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:49
 msgid "Sub Table"
@@ -3676,16 +3676,16 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:30
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:91
 msgid "Script"
-msgstr ""
+msgstr "スクリプト"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:64
 msgid "Path"
-msgstr ""
+msgstr "小道"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:70
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:87
 msgid "Hanger"
-msgstr ""
+msgstr "ハンガー"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:78
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:287
@@ -3727,7 +3727,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.py:1254
 #: skytemple/skytemple/module/script/controller/ssa.py:1262
 msgid "Sector"
-msgstr ""
+msgstr "セクター"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:186
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:190
@@ -3737,7 +3737,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:190
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:211
 msgid "<Empty>"
-msgstr ""
+msgstr "<なし>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:194
 msgid "1 (Enter)"
@@ -3753,7 +3753,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:234
 msgid "<Global>"
-msgstr ""
+msgstr "<Global>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
 #: skytemple/skytemple/module/lists/module.py:70
@@ -3766,7 +3766,7 @@ msgstr "アクター"
 #: skytemple/skytemple/module/script/controller/ssa.glade:1316
 #: skytemple/skytemple/module/script/controller/ssa.glade:1344
 msgid "Objects"
-msgstr ""
+msgstr "オブジェクト"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:274
 #: skytemple/skytemple/module/script/controller/ssa.glade:1425
@@ -3778,7 +3778,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.glade:1534
 #: skytemple/skytemple/module/script/controller/ssa.glade:1562
 msgid "Triggers"
-msgstr ""
+msgstr "トリガー"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:299
 msgid "Pos. Marks"
@@ -3806,7 +3806,7 @@ msgstr "名"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:57
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:61
 msgid "Value"
-msgstr ""
+msgstr "値"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:153
 #: skytemple/skytemple/core/ui_utils.py:67
@@ -3872,7 +3872,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:820
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:891
 msgid "Macros"
-msgstr ""
+msgstr "マクロ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:823
 msgid "Delete directory..."
@@ -3968,7 +3968,7 @@ msgstr ""
 #: skytemple/skytemple/controller/main.py:760
 #: skytemple/skytemple/module/script/controller/ssa.py:1557
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1617
 msgid "You will not be able to restore it."
@@ -4103,7 +4103,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:145
 msgid "Go to Scene"
-msgstr ""
+msgstr "シーンへに移動"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:170
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:729
@@ -4112,11 +4112,11 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:259
 msgid "ExplorerScript"
-msgstr ""
+msgstr "ExplorerScript"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:336
 msgid "SSBScript"
-msgstr ""
+msgstr "SSBScript"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:392
 msgid "..."
@@ -4173,7 +4173,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:47
 msgid "Scenario"
-msgstr ""
+msgstr "シナリオ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:52
 msgid "Init"
@@ -4204,7 +4204,7 @@ msgstr "プレイヤー"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:67
 #: skytemple/skytemple/skytemple.glade:2084
 msgid "Mode"
-msgstr ""
+msgstr "モード"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:69
 msgid "Backup"
@@ -4228,7 +4228,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:285
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:142
 msgid "Error!"
-msgstr ""
+msgstr "エラー!"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:319
 msgid "Unable to load variables!"
@@ -4236,15 +4236,15 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:172
 msgid "Open ROM"
-msgstr ""
+msgstr "ROMを開く"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:189
 msgid "Save Script"
-msgstr ""
+msgstr "スクリプトを保存"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:202
 msgid "Close Script"
-msgstr ""
+msgstr "スクリプトを閉じる"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:218
 msgid "Save All"
@@ -4323,7 +4323,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.glade:1036
 #: skytemple/skytemple/module/script/controller/ssb.py:24
 msgid "Scripts"
-msgstr ""
+msgstr "スクリプト"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:925
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:958
@@ -4338,7 +4338,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:974
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:536
 msgid "Entities"
-msgstr ""
+msgstr "エンティティ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:990
 msgid "Ground Engine State"
@@ -4373,7 +4373,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1278
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1298
 msgid "Global Variables"
-msgstr ""
+msgstr "グローバル変数"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1358
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1408
@@ -4384,11 +4384,11 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1374
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1451
 msgid "Local Variables"
-msgstr ""
+msgstr "ローカル変数"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1424
 msgid "Macro Variables"
-msgstr ""
+msgstr "マクロ変数"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1518
 msgid "General Debug"
@@ -4701,7 +4701,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/constants.py:36
 msgid "Constants & Variables"
-msgstr ""
+msgstr "定数と変数"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/exps_statements.py:32
 msgid "Statements"
@@ -4907,7 +4907,7 @@ msgstr "自動検出"
 
 #: skytemple/skytemple/controller/settings.py:35
 msgid "Portuguese, Brazilian"
-msgstr ""
+msgstr "ポルトガル語、ブラジル語"
 
 #: skytemple/skytemple/controller/settings.py:122
 msgid "You need to restart SkyTemple to apply some of the settings."
@@ -5166,7 +5166,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:161
 msgid "Banner"
-msgstr ""
+msgstr "バナー"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:420
 #: skytemple/skytemple/module/monster/controller/monster.glade:191
@@ -5361,7 +5361,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:287
 msgid "Go to Tileset"
-msgstr ""
+msgstr "タイルセットに移動"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:311
 msgid "Show more information"
@@ -5385,7 +5385,7 @@ msgstr "タ"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:383
 msgid "Show Item Info"
-msgstr ""
+msgstr "アイテム情報を表示"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:384
 msgid "I"
@@ -5393,7 +5393,7 @@ msgstr "イ"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:399
 msgid "Show Pokémon Info"
-msgstr ""
+msgstr "ポケモン情報を表示"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:400
 msgid "P"
@@ -5401,7 +5401,7 @@ msgstr "ポ"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:415
 msgid "Show Trap Info"
-msgstr ""
+msgstr "トラップ情報を表示"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:416
 msgid "Tr"
@@ -5554,7 +5554,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1365
 msgid "Dimensions"
-msgstr ""
+msgstr "大きさ"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1381
 msgid "Width:"
@@ -5672,12 +5672,12 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1511
 #, python-brace-format
 msgid "No. {i}"
-msgstr "No. {i}"
+msgstr "N. {i}"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:200
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:35
 msgid "Fixed Rooms"
-msgstr ""
+msgstr "固定場所"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:216
 msgid "This section lets you edit fixed rooms. Fixed rooms can be configured to appear on dungeon floors.\n"
@@ -5715,15 +5715,15 @@ msgstr "アイテム"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:400
 msgid "Go To Pokémon"
-msgstr ""
+msgstr "ポケモンに移動"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:446
 msgid "Go To Item"
-msgstr ""
+msgstr "アイテムに移動"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:492
 msgid "Go To Tile"
-msgstr ""
+msgstr "タイルに移動"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:569
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2929
@@ -5810,7 +5810,7 @@ msgstr "ステータス"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:993
 msgid "Go To Stats"
-msgstr ""
+msgstr "ステータスに移動"
 
 #. TRANSLATORS: Experience
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1088
@@ -5926,7 +5926,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:607
 msgid "Trap Spawns"
-msgstr ""
+msgstr "トラップスポーン"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:621
 msgid "Floor Item Spawns"
@@ -5975,7 +5975,7 @@ msgstr "S"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:836
 msgid "Dungeon / Floor"
-msgstr ""
+msgstr "ダンジョン/フロア"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:863
 msgid "(and/or) <b>2b. Copy to other floor(s)</b>"
@@ -5987,7 +5987,7 @@ msgstr "ダンジョン名"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1109
 msgid "Floor Number"
-msgstr ""
+msgstr "フロア番号"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1132
 msgid "Tileset"
@@ -6489,7 +6489,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:107
 msgid "Go To \"Dungeons\""
-msgstr ""
+msgstr "「ダンジョン」に移動"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:53
 #: skytemple/skytemple/module/dungeon/controller/main.py:39
@@ -7831,7 +7831,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:145
 msgid "Go to Scenes"
-msgstr ""
+msgstr "シーンへに移動"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:213
 msgid "Collision"
@@ -8146,7 +8146,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4375
 msgid "Go to Scripts..."
-msgstr ""
+msgstr "スクリプトに移動..."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4396
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4503
@@ -10348,7 +10348,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:625
 msgid "Go to BG"
-msgstr ""
+msgstr "BGに移動"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:696
 #: skytemple/skytemple/module/script/controller/ssa.glade:1054
