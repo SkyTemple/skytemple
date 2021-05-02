@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-05-02 12:29+0000\n"
-"PO-Revision-Date: 2021-05-02 16:15\n"
+"PO-Revision-Date: 2021-05-02 17:10\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -373,13 +373,13 @@ msgstr "ポケ 【おかね】"
 
 #: /dev/fd/63:86 /dev/fd/63:184
 msgid "Unknown 7"
-msgstr ""
+msgstr "不明 7"
 
 #: /dev/fd/63:87 /dev/fd/63:185
 #: skytemple/skytemple/module/monster/controller/monster.glade:2796
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1352
 msgid "Other"
-msgstr ""
+msgstr "その他"
 
 #: /dev/fd/63:88 /dev/fd/63:186
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4373
@@ -572,7 +572,7 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:55
 msgid "Invalid message switch."
-msgstr ""
+msgstr "無効なメッセージスイッチです。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:59
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:72
@@ -633,7 +633,7 @@ msgstr ""
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/operations/macro_call.py:46
 #, python-brace-format
 msgid "Macro {name} not found."
-msgstr ""
+msgstr "マクロ {name} が見つかりません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:89
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/macro_resolution_order.py:93
@@ -692,7 +692,7 @@ msgstr ""
 #: explorerscript/explorerscript/syntax_error_listener.py:38
 #, python-brace-format
 msgid "line {self.line}:{self.column}: {self.msg}"
-msgstr ""
+msgstr "行 {self.line}:{self.column}: {self.msg}"
 
 #: py_desmume/desmume/controls.py:88
 msgid "A"
@@ -2145,15 +2145,15 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:310
 msgid "Attack > Defense"
-msgstr ""
+msgstr "攻撃力 > 防衛力"
 
 #: skytemple-files/skytemple_files/data/md/model.py:311
 msgid "Attack < Defense"
-msgstr ""
+msgstr "攻撃力 < 防衛力"
 
 #: skytemple-files/skytemple_files/data/md/model.py:312
 msgid "Attack = Defense"
-msgstr ""
+msgstr "攻撃力 = 防衛力"
 
 #: skytemple-files/skytemple_files/data/md/model.py:313
 msgid "Sun Ribbon"
@@ -2209,7 +2209,7 @@ msgstr "不明"
 
 #: skytemple-files/skytemple_files/data/md/model.py:348
 msgid "Hovering"
-msgstr ""
+msgstr "ホバリング"
 
 #: skytemple-files/skytemple_files/data/md/model.py:349
 msgid "Phase Through Walls"
@@ -2218,7 +2218,7 @@ msgstr ""
 #. TRANSLATORS: Movement Type
 #: skytemple-files/skytemple_files/data/md/model.py:350
 msgid "Lava"
-msgstr ""
+msgstr "溶岩"
 
 #: skytemple-files/skytemple_files/data/md/model.py:374
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:32
@@ -2315,7 +2315,7 @@ msgstr "レベルアップ"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:29
 msgid "Wait"
-msgstr ""
+msgstr "待機"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:30
 msgid "Ground Wait"
@@ -2335,15 +2335,15 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:87
 msgid "Enemies"
-msgstr ""
+msgstr "敵"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:88
 msgid "Allies"
-msgstr ""
+msgstr "味方"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:89
 msgid "Everyone"
-msgstr ""
+msgstr "全員"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:90
 #: skytemple-files/skytemple_files/data/waza_p/model.py:134
@@ -2415,7 +2415,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:132
 msgid "Straight line"
-msgstr ""
+msgstr "直の行"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:133
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1130
@@ -2434,7 +2434,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:168
 msgid "No condition"
-msgstr ""
+msgstr "条件なし"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:169
 msgid "Based on AI Condition 1 Chance"
@@ -2442,7 +2442,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:170
 msgid "Current HP <= 25%"
-msgstr ""
+msgstr "現在のHP <= 25%"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:171
 msgid "Has at least one negative status condition"
@@ -2574,7 +2574,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:31
 msgid "Medium Large"
-msgstr ""
+msgstr "標準の大型"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:33
 msgid "Single Monster House"
@@ -2586,7 +2586,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:35
 msgid "Crossroads"
-msgstr ""
+msgstr "十字路"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:36
 msgid "Two Rooms, One Monster House"
@@ -2594,19 +2594,19 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:37
 msgid "Line"
-msgstr ""
+msgstr "行線"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:38
 msgid "Cross"
-msgstr ""
+msgstr "十字型"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:39
 msgid "Small Medium"
-msgstr ""
+msgstr "小さいな標準"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:40
 msgid "Beetle"
-msgstr ""
+msgstr "甲虫"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:41
 msgid "Outer Rooms"
@@ -2614,55 +2614,55 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:43
 msgid "Medium Large (12)"
-msgstr ""
+msgstr "標準の大型(12)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:44
 msgid "Medium Large (13)"
-msgstr ""
+msgstr "標準の大型(13)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:45
 msgid "Medium Large (14)"
-msgstr ""
+msgstr "標準の大型(14)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:46
 msgid "Medium Large (15)"
-msgstr ""
+msgstr "標準の大型(15)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:69
 msgid "Clear"
-msgstr ""
+msgstr "快晴"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:70
 msgid "Sunny"
-msgstr ""
+msgstr "日当たりの良い"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:71
 msgid "Sandstorm"
-msgstr ""
+msgstr "砂嵐"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:72
 msgid "Cloudy"
-msgstr ""
+msgstr "曇り"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:73
 msgid "Rainy"
-msgstr ""
+msgstr "雨"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:74
 msgid "Hail"
-msgstr ""
+msgstr "雹"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:75
 msgid "Fog"
-msgstr ""
+msgstr "霧"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:76
 msgid "Snow"
-msgstr ""
+msgstr "雪"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:77
 msgid "Random"
-msgstr ""
+msgstr "ランダム"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:100
 msgid "Disabled? (0)"
@@ -2836,7 +2836,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:123
 #, python-brace-format
 msgid "Unknown trap {name}."
-msgstr ""
+msgstr "不明なトラップ 「{name}」。"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:128
 msgid "Trap lists need an entry for all of the 25 traps"
@@ -3091,7 +3091,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:117
 msgid "Unknown 5"
-msgstr ""
+msgstr "不明 5"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:120
 msgid "Bazaar Host"
@@ -3140,7 +3140,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:39
 msgid "Unknown Menu"
-msgstr ""
+msgstr "不明なメニュー"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:40
 msgid "Footprint Debug Menu"
@@ -4503,13 +4503,13 @@ msgstr "データ: "
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2278
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4697
 msgid "Unk1"
-msgstr ""
+msgstr "不明1"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2289
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4727
 #: skytemple/skytemple/module/script/controller/ssa.py:1198
 msgid "Unk2"
-msgstr ""
+msgstr "不明2"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2311
 msgid "Available"
@@ -5736,31 +5736,31 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:598
 msgid "Unk11"
-msgstr ""
+msgstr "不明11"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:611
 msgid "Unk12"
-msgstr ""
+msgstr "不明12"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:624
 msgid "Unk13"
-msgstr ""
+msgstr "不明13"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:637
 msgid "Unk14"
-msgstr ""
+msgstr "不明14"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:650
 msgid "Unk15"
-msgstr ""
+msgstr "不明15"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:663
 msgid "Unk16"
-msgstr ""
+msgstr "不明16"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:676
 msgid "Unk17"
-msgstr ""
+msgstr "不明17"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:703
 msgid "Trap Visible?"
@@ -5768,11 +5768,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:716
 msgid "Unk31"
-msgstr ""
+msgstr "不明31"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:729
 msgid "Unk32"
-msgstr ""
+msgstr "不明32"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:742
 msgid "Secondary Terrain?"
@@ -5780,19 +5780,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:755
 msgid "Unk34"
-msgstr ""
+msgstr "不明34"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:768
 msgid "Unk35"
-msgstr ""
+msgstr "不明35"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:781
 msgid "Unk36"
-msgstr ""
+msgstr "不明36"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:794
 msgid "Unk37"
-msgstr ""
+msgstr "不明37"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:816
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1167
@@ -5840,7 +5840,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1172
 msgid "UnkA"
-msgstr ""
+msgstr "不明A"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1195
 msgid "Pokémon Stats"
@@ -6148,7 +6148,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1954
 msgid "Unknown E:"
-msgstr ""
+msgstr "不明 E:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1966
 msgid "Enemy IQ:"
@@ -6866,14 +6866,14 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4387
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:165
 msgid "Chunks"
-msgstr ""
+msgstr "チャンク"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1130
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1509
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4406
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4453
 msgid "Edit Chunks"
-msgstr ""
+msgstr "チャンクを編集"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1145
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1524
@@ -7322,11 +7322,11 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
 #: skytemple/skytemple/module/script/controller/ssa.py:1199
 msgid "Unk3"
-msgstr ""
+msgstr "不明3"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:255
 msgid "Unk4"
-msgstr ""
+msgstr "不明4"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:350
 msgid "Actors with outlines "
@@ -9207,11 +9207,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2123
 msgid "Unk 1.0:"
-msgstr ""
+msgstr "不明1.0:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2135
 msgid "Unk 31:"
-msgstr ""
+msgstr "不明31:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2160
 msgid "Spawn Threshold:"
@@ -9219,11 +9219,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2184
 msgid "Unk 17:"
-msgstr ""
+msgstr "不明17:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2209
 msgid "Unk 18:"
-msgstr ""
+msgstr "不明18:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2221
 msgid "Shadow Size:"
@@ -9239,15 +9239,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2328
 msgid "Unk 1.1:"
-msgstr ""
+msgstr "不明1.1:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2340
 msgid "Unk 1.2:"
-msgstr ""
+msgstr "不明1.2:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2352
 msgid "Unk 1.3:"
-msgstr ""
+msgstr "不明1.3:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2364
 msgid "Can move:"
@@ -9872,17 +9872,17 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:64
 msgid "Unknown 1"
-msgstr ""
+msgstr "不明 1"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:65
 #: skytemple/skytemple/module/script/controller/ssa.glade:95
 msgid "Unknown 2"
-msgstr ""
+msgstr "不明 2"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:66
 #: skytemple/skytemple/module/script/controller/ssa.glade:106
 msgid "Unknown 3"
-msgstr ""
+msgstr "不明 3"
 
 #: skytemple/skytemple/module/moves_items/controller/main_items.py:35
 msgid "This section lets you edit settings related to items."
@@ -9971,11 +9971,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1094
 msgid "Unk 13:"
-msgstr ""
+msgstr "不明13:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1119
 msgid "Unk 15:"
-msgstr ""
+msgstr "不明15:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1144
 #: skytemple/skytemple/module/moves_items/controller/move.py:294
@@ -10770,11 +10770,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:32
 msgid "Chunk Editor"
-msgstr ""
+msgstr "チャンクエディター"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:136
 msgid "Add Chunk"
-msgstr ""
+msgstr "チャンクを追加"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:207
 msgid "Selected Chunk"
@@ -10790,11 +10790,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:338
 msgid "Palette"
-msgstr ""
+msgstr "パレット"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:383
 msgid "Tile No."
-msgstr ""
+msgstr "タイル番号"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:425
 msgid "Selected Tile"
@@ -10806,7 +10806,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:529
 msgid "Static Tiles"
-msgstr ""
+msgstr "固定タイル"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:576
 msgid "Animated Tiles Slot 1"
