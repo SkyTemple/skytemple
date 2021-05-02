@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-05-02 12:29+0000\n"
-"PO-Revision-Date: 2021-05-02 12:52\n"
+"PO-Revision-Date: 2021-05-02 15:09\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -10543,11 +10543,12 @@ msgstr "Por favor, guarda la ROM antes de aplicar el parche."
 #: skytemple/skytemple/module/patch/controller/main.py:90
 msgid "\n"
 "Do you want to apply these first?"
-msgstr ""
+msgstr "\n"
+"¿Quieres aplicar estos primero?"
 
 #: skytemple/skytemple/module/patch/controller/main.py:90
 msgid "This patch requires some other patches to be applied first:\n"
-msgstr ""
+msgstr "Este parche necesita que se apliquen otros parches primero:\n"
 
 #: skytemple/skytemple/module/patch/controller/main.py:99
 #, python-brace-format
