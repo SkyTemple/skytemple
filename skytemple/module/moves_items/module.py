@@ -165,7 +165,7 @@ class MovesItemsModule(AbstractModule):
         return self.project.open_file_in_rom(ITEM_S_FILE, FileType.ITEM_SP)
 
     def get_item(self, item_id) -> Tuple[ItemPEntry, Optional[ItemSPEntry]]:
-        if item_id > FIRST_EXCLUSIVE_ITEM_ID:
+        if item_id >= FIRST_EXCLUSIVE_ITEM_ID:
             return self.get_item_p().item_list[item_id], self.get_item_s_p().item_list[item_id - FIRST_EXCLUSIVE_ITEM_ID]
         return self.get_item_p().item_list[item_id], None
 
