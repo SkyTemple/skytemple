@@ -37,6 +37,7 @@ additional_datas = [
 additional_binaries = [
     (os.path.join(site_packages, "desmume", "libdesmume.so"), "."),
     (os.path.join(os.sep, "usr", "local", "lib", "libSDL-1.2.0.dylib"), "."), # Must be installed with Homebrew
+    (os.path.join(os.sep, "usr", "local", "lib", "libSDL2-2.0.0.dylib"), "."), # Must be installed with Homebrew
     (os.path.join(os.sep, "usr", "local", "lib", "libenchant-2.dylib"), "."), # Must be installed with Homebrew
     (os.path.join(os.sep, "usr", "local", "lib", "libaspell.15.dylib"), "."), # Gets installed with Enchant
     (os.path.join(os.sep, "usr", "local", "lib", "enchant-2", "enchant_applespell.so"), "."), # Gets installed with Enchant
