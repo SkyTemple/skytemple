@@ -587,13 +587,12 @@ class ItemListsController(AbstractController):
 
             last_weight = 0
             last_weight_set_idx = None
-            for i, row in enumerate(rows):
-
+            for row in rows:
                 # Add Poké and Link Box items for those categories
                 if not cat:
-                    if i == POKE_CATEGORY_ID:
+                    if row[0] == POKE_CATEGORY_ID:
                         item_weights[Pmd2DungeonItem(self.item_categories[POKE_CATEGORY_ID].item_ids()[0], '')] = 10000
-                    if i == LINKBOX_CATEGORY_ID:
+                    if row[0] == LINKBOX_CATEGORY_ID:
                         item_weights[Pmd2DungeonItem(self.item_categories[LINKBOX_CATEGORY_ID].item_ids()[0], '')] = 10000
                 was_set = False
                 weight = 0
