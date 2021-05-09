@@ -240,10 +240,41 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__SpriteModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
         from skytemple.module.sprite.controller.object import ObjectController
 
-        self.module_info = 'Editing spritess'
+        self.module_info = 'Editing sprites'
         self.module_state = self.rom_name
         if isinstance(controller, ObjectController):
             self.module_state = breadcrumbs[0]
+
+    def on_view_switch__MovesItemsModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
+        from skytemple.module.moves_items.controller.item import ItemController
+        from skytemple.module.moves_items.controller.item_effects import ItemEffectsController
+        from skytemple.module.moves_items.controller.item_lists import ItemListsController
+        from skytemple.module.moves_items.controller.main_items import MainItemsController
+        from skytemple.module.moves_items.controller.main_moves import MainMovesController
+        from skytemple.module.moves_items.controller.move import MoveController
+        from skytemple.module.moves_items.controller.move_effects import MoveEffectsController
+
+        if isinstance(controller, MainItemsController):
+            self.module_info = 'Editing Items'
+            self.module_state = self.rom_name
+        elif isinstance(controller, MainMovesController):
+            self.module_info = 'Editing Moves'
+            self.module_state = self.rom_name
+        elif isinstance(controller, ItemController):
+            self.module_info = 'Editing Items'
+            self.module_state = breadcrumbs[0]
+        elif isinstance(controller, MoveController):
+            self.module_info = 'Editing Moves'
+            self.module_state = breadcrumbs[0]
+        elif isinstance(controller, ItemEffectsController):
+            self.module_info = 'Editing Item Effects'
+            self.module_state = self.rom_name
+        elif isinstance(controller, MoveEffectsController):
+            self.module_info = 'Editing Move Effects'
+            self.module_state = self.rom_name
+        elif isinstance(controller, ItemListsController):
+            self.module_info = 'Editing Item Lists'
+            self.module_state = self.rom_name
 
     def on_debugger_script_open(self, script_name: str):
         self.debugger_script_name = script_name.replace(self.project.get_project_file_manager().dir(), '')
