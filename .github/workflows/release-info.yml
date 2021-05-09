@@ -21,4 +21,4 @@ jobs:
           add: skytemple
           message: SkyTemple Release ${{ env.GITHUB_REF }}
           push: true
-          branch: master
+          branch: main
