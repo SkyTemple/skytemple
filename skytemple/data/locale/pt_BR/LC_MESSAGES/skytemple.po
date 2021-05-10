@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-05-09 10:32+0000\n"
-"PO-Revision-Date: 2021-05-09 11:08\n"
+"PO-Revision-Date: 2021-05-10 12:07\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -359,33 +359,33 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4051
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1583
 msgid "Hold"
-msgstr ""
+msgstr "Segurar"
 
 #: /dev/fd/63:84 /dev/fd/63:182
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4212
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1731
 msgid "TMs, HMs"
-msgstr ""
+msgstr "TMs, HMs"
 
 #: /dev/fd/63:85 /dev/fd/63:183
 msgid "Poké (Money)"
-msgstr ""
+msgstr "Poké (Dinheiro)"
 
 #: /dev/fd/63:86 /dev/fd/63:184
 msgid "Unknown 7"
-msgstr ""
+msgstr "Desconhecido 7"
 
 #: /dev/fd/63:87 /dev/fd/63:185
 #: skytemple/skytemple/module/monster/controller/monster.glade:2796
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1352
 msgid "Other"
-msgstr ""
+msgstr "Outro"
 
 #: /dev/fd/63:88 /dev/fd/63:186
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4373
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1879
 msgid "Orbs"
-msgstr ""
+msgstr "Esferas"
 
 #: /dev/fd/63:89 /dev/fd/63:187
 msgid "Link Box"
@@ -450,11 +450,11 @@ msgstr "Nenhuma variável para \"clear\"."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:43
 msgid "No variable for dungeon_mode set."
-msgstr ""
+msgstr "Nenhuma variável definida para dungeon_mode."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:45
 msgid "No value for dungeon_mode set."
-msgstr ""
+msgstr "Nenhuma valor definido para dungeon_mode."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_initial.py:42
 msgid "No variable for init."
@@ -488,11 +488,11 @@ msgstr "Nenhuma variável para atribuição definida."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/scn_var.py:41
 msgid "scn() without a variable."
-msgstr ""
+msgstr "scn() sem uma variável."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/atoms/value_of.py:41
 msgid "value() without a variable."
-msgstr ""
+msgstr "value() sem uma variável."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:53
 msgid "No target ID set for with(){} block."
@@ -506,7 +506,7 @@ msgstr "Um bloco with(){} precisa de exatamente uma afirmação."
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:65
 #, python-brace-format
 msgid "Invalid with(){{}} target type '{for_type}'."
-msgstr ""
+msgstr "Alvo '{for_type}' inválido para with(){{}}."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:70
 msgid "A with(){} block needs exactly one binary operation. The handler for it generated multiple operations."
@@ -514,7 +514,7 @@ msgstr "Um bloco with(){} precisa de exatamente uma operação binária. O manip
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:87
 msgid "A with(){} block can not contain labels."
-msgstr ""
+msgstr "Um bloco with(){} não pode conter rótulos."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:44
 msgid "No variable in if condition."
@@ -588,7 +588,7 @@ msgstr ""
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/message_switch.py:84
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line}"
-msgstr ""
+msgstr "Um bloco switch pode ter apenas um caso padrão (linha {self.ctx.start.line}"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:75
 #, python-brace-format
