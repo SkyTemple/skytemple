@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-05-09 10:32+0000\n"
-"PO-Revision-Date: 2021-05-10 12:07\n"
+"PO-Revision-Date: 2021-05-10 13:08\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -173,19 +173,19 @@ msgstr ""
 
 #: /dev/fd/63:39 /dev/fd/63:137
 msgid "Shedinja Shop Strings"
-msgstr ""
+msgstr "Strings da loja do Shedinja"
 
 #: /dev/fd/63:40 /dev/fd/63:138
 msgid "Mime Jr. Spa Strings"
-msgstr ""
+msgstr "Strings do spa do Mime Jr."
 
 #: /dev/fd/63:41 /dev/fd/63:139
 msgid "Swalot's Shop Strings"
-msgstr ""
+msgstr "Strings da loja do Swalot"
 
 #: /dev/fd/63:42 /dev/fd/63:140
 msgid "Team Tactics Menu strings"
-msgstr ""
+msgstr "Strings do Menu de Táticas do Time"
 
 #: /dev/fd/63:43 /dev/fd/63:141
 msgid "Item Became Sticky"
@@ -193,27 +193,27 @@ msgstr "Item Ficou Grudento"
 
 #: /dev/fd/63:44 /dev/fd/63:142
 msgid "Pokemon LEVEL_UP Dialogue"
-msgstr "Diálogo de Pokémon LEVEL_UP"
+msgstr "Diálogo LEVEL_UP de Pokémon"
 
 #: /dev/fd/63:45 /dev/fd/63:143
 msgid "Pokemon WAIT Dialogue"
-msgstr ""
+msgstr "Diálogo WAIT de Pokémon"
 
 #: /dev/fd/63:46 /dev/fd/63:144
 msgid "Pokemon HEALTHY Dialogue"
-msgstr ""
+msgstr "Diálogo HEALTHY de Pokémon"
 
 #: /dev/fd/63:47 /dev/fd/63:145
 msgid "Pokemon HALF_LIFE Dialogue"
-msgstr ""
+msgstr "Diálogo HALF_LIFE de Pokémon"
 
 #: /dev/fd/63:48 /dev/fd/63:146
 msgid "Pokemon PINCH Dialogue"
-msgstr ""
+msgstr "Diálogo PINCH de Pokémon"
 
 #: /dev/fd/63:49 /dev/fd/63:147
 msgid "Pokemon GROUND_WAIT Dialogue"
-msgstr ""
+msgstr "Diálogo GROUND_WAIT de Pokémon"
 
 #: /dev/fd/63:50 /dev/fd/63:148
 msgid "Item Names"
@@ -253,7 +253,7 @@ msgstr "Strings dos Alvos de Movimentos"
 
 #: /dev/fd/63:59 /dev/fd/63:157
 msgid "Accuracy/Power Stars Ratings"
-msgstr ""
+msgstr "Avaliações Estrela de Precisão/Poder"
 
 #: /dev/fd/63:60 /dev/fd/63:158
 msgid "Move Descriptions"
@@ -393,7 +393,7 @@ msgstr ""
 
 #: /dev/fd/63:90 /dev/fd/63:188
 msgid "Used TM"
-msgstr ""
+msgstr "Usou TM"
 
 #: /dev/fd/63:91 /dev/fd/63:189
 msgid "Treasure Box 1"
@@ -410,7 +410,7 @@ msgstr ""
 #: /dev/fd/63:94 /dev/fd/63:192
 #: skytemple/skytemple/module/monster/controller/monster.glade:2100
 msgid "Exclusive Items"
-msgstr ""
+msgstr "Itens Exclusivos"
 
 #: /dev/fd/63:96
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
@@ -593,21 +593,21 @@ msgstr "Um bloco switch pode ter apenas um caso padrão (linha {self.ctx.start.l
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:75
 #, python-brace-format
 msgid "A switch case must contain a list of statements (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Um switch case deve conter uma lista de afirmações (linha {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:121
 #, python-brace-format
 msgid "Unexpected switch end (line {self.ctx.start.line})"
-msgstr ""
+msgstr "Switch end inesperado (linha {self.ctx.start.line})"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_block.py:134
 #, python-brace-format
 msgid "A switch block can only have a single default case (line {self.ctx.start.line})."
-msgstr ""
+msgstr "Um bloco switch pode ter apenas um caso padrão (linha {self.ctx.start.line})."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:63
 msgid "Invalid content for a switch-header"
-msgstr ""
+msgstr "Conteúdo inválido para um switch-header"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/switches/switch_header.py:72
 msgid "Unknown switch operation."
@@ -671,7 +671,8 @@ msgstr ""
 #, python-brace-format
 msgid "Infinite recursion detected while trying to load an ExplorerScript file from {subfile_path}.\n"
 "Tried loading from: {file_name}."
-msgstr ""
+msgstr "Recursão infinita detectada ao tentar carregar um arquivo ExplorerScript de {subfile_path}.\n"
+"Tentou carregar de: {file_name}."
 
 #: explorerscript/explorerscript/ssb_converting/ssb_compiler.py:162
 #, python-brace-format
