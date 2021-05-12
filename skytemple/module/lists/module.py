@@ -28,6 +28,8 @@ from skytemple.module.lists.controller.menu_list import MenuListController
 from skytemple.module.lists.controller.starters_list import StartersListController
 from skytemple.module.lists.controller.recruitment_list import RecruitmentListController
 from skytemple.module.lists.controller.world_map import WorldMapController
+from skytemple.module.lists.controller.sp_effects import SPEffectsController
+from skytemple_files.data.data_cd.handler import DataCDHandler
 from skytemple_files.data.md.model import Md
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement, HardcodedDungeons
 from skytemple_files.hardcoded.personality_test_starters import HardcodedPersonalityTestStarters
@@ -39,7 +41,7 @@ from skytemple_files.list.actor.model import ActorListBin
 from skytemple_files.common.i18n_util import _
 
 ACTOR_LIST = 'BALANCE/actor_list.bin'
-
+SP_EFFECTS = 'BALANCE/process.bin'
 
 class ListsModule(AbstractModule):
     """Module to modify lists."""
@@ -84,6 +86,9 @@ class ListsModule(AbstractModule):
         self._menu_list_tree_iter = item_store.append(root, [
             'skytemple-view-list-symbolic', _('Menu List'), self, MenuListController, 0, False, '', True
         ])
+        self._sp_effects_tree_iter = item_store.append(root, [
+            'skytemple-view-list-symbolic', _('Special Process Effects'), self, SPEffectsController, 0, False, '', True
+        ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])
         generate_item_store_row_label(item_store[self._starters_tree_iter])
@@ -91,8 +96,23 @@ class ListsModule(AbstractModule):
         generate_item_store_row_label(item_store[self._world_map_tree_iter])
         generate_item_store_row_label(item_store[self._rank_list_tree_iter])
         generate_item_store_row_label(item_store[self._menu_list_tree_iter])
+        generate_item_store_row_label(item_store[self._sp_effects_tree_iter])
         self._tree_model = item_store
 
+
+    def has_sp_effects(self):
+        return self.project.file_exists(SP_EFFECTS)
+
+    def get_sp_effects(self):
+        return self.project.open_file_in_rom(SP_EFFECTS, DataCDHandler)
+    
+    def mark_sp_effects_as_modified(self):
+        """Mark as modified"""
+        self.project.mark_as_modified(SP_EFFECTS)
+        # Mark as modified in tree
+        row = self._tree_model[self._sp_effects_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+    
     def has_actor_list(self):
         return self.project.file_exists(ACTOR_LIST)
 
