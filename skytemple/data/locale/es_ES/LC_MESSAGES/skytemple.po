@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-05-13 11:45+0000\n"
-"PO-Revision-Date: 2021-05-13 12:11\n"
+"PO-Revision-Date: 2021-05-13 18:14\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3393,12 +3393,14 @@ msgstr "Añade tipos a la tabla de tipos. Esto reemplazará la antigua tabla por
 msgid "Change the evolution system.\n"
 "After applying this, every single Pokémon will have two lists for their evolution and children, and different stat bonuses when a Pokémon evolves into them.\n"
 "This supposedly removes most of the particular cases the game handles for evolutions. "
-msgstr ""
+msgstr "Modifica el sistema de evolución.\n"
+"Después de aplicarse, cada Pokémon tendrá dos listas para su evolución y sus crías, y diferentes bonificaciones de estadísticas cuando un Pokémon evolucione en ellos.\n"
+"Esto eliminará supuestamente la mayoría de los casos particulares que el juego maneja para las evoluciones. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:170
 #, python-brace-format
 msgid "Infinite recursion detected in pre evolutions for md entry {i}. "
-msgstr ""
+msgstr "Recursión infinita detectada en preevoluciones para la entrada de MD {i}. "
 
 #: skytemple-files/skytemple_files/patch/handler/choose_starter.py:47
 msgid "Then, who would you like to be?"
@@ -3456,7 +3458,7 @@ msgstr "Extrae el código de los efectos del movimiento y los pone en archivos."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_sp_code.py:54
 msgid "Extracts special processes code and put it in files."
-msgstr ""
+msgstr "Extrae el código de los procesos especiales y lo pone en archivos."
 
 #: skytemple-files/skytemple_files/patch/handler/fairy_gummies.py:96
 msgid "Implements Fairy-type specialized gummies. Uses unused item 138.\n"
@@ -3503,12 +3505,13 @@ msgstr "Se salta la prueba, dejando solo la pregunta de género.\n"
 #: skytemple-files/skytemple_files/patch/handler/stat_disp.py:71
 msgid "Replaces old move stats display with bars.\n"
 "This patch may not be compatible if the markfont.dat file has been modified."
-msgstr ""
+msgstr "Sustituye la visualización antigua de estadísticas de movimiento por barras.\n"
+"Este parche puede no ser compatible si se ha modificado el archivo \"markfont.dat\"."
 
 #: skytemple-files/skytemple_files/patch/handler/stat_disp.py:109
 #: skytemple-files/skytemple_files/patch/handler/stat_disp.py:114
 msgid "This patch isn't compatible with this rom."
-msgstr ""
+msgstr "Este parche no es compatible con esta ROM."
 
 #: skytemple-files/skytemple_files/patch/handler/support_atupx.py:46
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
@@ -7733,21 +7736,23 @@ msgstr "Para añadirlos al equipo de inmediato:\n"
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:296
 #: skytemple/skytemple/module/lists/module.py:90
 msgid "Special Process Effects"
-msgstr ""
+msgstr "Efectos de procesos especiales"
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:88
 msgid "Edits the special process effects used by the game."
-msgstr ""
+msgstr "Edita los efectos de los procesos especiales utilizados por el juego."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:101
 msgid "<Not available>\n\n"
 "To view and edit special process effects, please apply the \"ExtractSPCode\"\n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar los efectos de procesos especiales, aplica el parche\n"
+"\"ExtractSPCode\" desde el menú Parches ASM."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:165
 msgid "Edits the effects used by each special process."
-msgstr ""
+msgstr "Edita los efectos utilizados por cada proceso especial."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:210
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:225
@@ -7757,7 +7762,7 @@ msgstr "Efecto"
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:278
 msgid "Add Special Process"
-msgstr ""
+msgstr "Añadir proceso especial"
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:318
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:319
@@ -7809,7 +7814,7 @@ msgstr "Efectos de código"
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.py:117
 msgid "Import Special Process Effect ASM Code..."
-msgstr ""
+msgstr "Importar código ASM de proceso especial..."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.py:124
 #: skytemple/skytemple/module/moves_items/controller/item_effects.py:130
@@ -7846,7 +7851,7 @@ msgstr "Parche importado correctamente."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.py:182
 msgid "Export Special Process Effect ASM Code..."
-msgstr ""
+msgstr "Exportar código ASM de proceso especial..."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.py:201
 #: skytemple/skytemple/module/moves_items/controller/item_effects.py:207
@@ -9767,35 +9772,35 @@ msgstr "Requisito adicional:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2181
 msgid "Evolves Into: "
-msgstr ""
+msgstr "Evoluciona a: "
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2317
 msgid "Children: "
-msgstr ""
+msgstr "Crías: "
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2353
 msgid "Evolution Bonus: "
-msgstr ""
+msgstr "Bonificación de evolución: "
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2389
 msgid "HP: "
-msgstr ""
+msgstr "PS: "
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2413
 msgid "Atk: "
-msgstr ""
+msgstr "Atq: "
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2425
 msgid "Sp. Atk: "
-msgstr ""
+msgstr "At. Esp: "
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2437
 msgid "Def: "
-msgstr ""
+msgstr "Def: "
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2449
 msgid "Sp. Def: "
-msgstr ""
+msgstr "Def. Esp: "
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2598
 msgid "Evolution"
@@ -9921,7 +9926,13 @@ msgid "Value depends on Main Requirement:\n"
 "- Items: ID of the item required\n"
 "- Recruited: ID of the Pokémon you have to recruit\n"
 "- No Main Requirement: Unused"
-msgstr ""
+msgstr "El valor depende del requisito principal:\n"
+"- No es una forma evolucionada: No utilizado\n"
+"- Nivel: Nivel necesario para evolucionar\n"
+"- CI: CIrequerido\n"
+"- Objetos: ID del objeto requerido\n"
+"- Reclutado: ID del Pokémon que tienes que reclutar\n"
+"- Sin requisito principal: No utilizado"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:347
 msgid "Evolution Parameters"
@@ -9930,11 +9941,12 @@ msgstr "Parámetros de evolución"
 #: skytemple/skytemple/module/monster/controller/monster.py:357
 msgid "This value indicates the family of a pokemon.\n"
 "This is used by a certain type of exclusive items that benefits to a family."
-msgstr ""
+msgstr "Este valor indica la familia de un Pokémon.\n"
+"Son usados por un tipo de objetos exclusivos que benefician a una familia."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:359
 msgid "Base Form Info"
-msgstr ""
+msgstr "Información de forma base"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:369
 msgid "This value indicates the previous evolution of the pokémon.\n"
@@ -9948,7 +9960,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.py:376
 msgid "Pre Evolution Info"
-msgstr ""
+msgstr "Información de preevolución"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:386
 msgid "The values are actually percentages.\n"
@@ -10082,34 +10094,35 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1175
 msgid "Children Info"
-msgstr ""
+msgstr "Información de crías"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1185
 msgid "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
 "Negative values are allowed."
-msgstr ""
+msgstr "Estas son las bonificaciones aplicadas a las estadísticas cuando un Pokémon evoluciona a esa especie.\n"
+"Se admiten valores negativos."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1187
 msgid "Evolution Bonus Info"
-msgstr ""
+msgstr "Información de bonificación de evolución"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1247
 #, python-brace-format
 msgid "A pokémon can't evolve into more than {MAX_EVOS} evolutions."
-msgstr ""
+msgstr "Un Pokémon no puede evolucionar más de {MAX_EVOS} evoluciones."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1254
 msgid "Too much evolutions."
-msgstr ""
+msgstr "Demasiadas evoluciones."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1259
 #, python-brace-format
 msgid "A pokémon can't have more than {MAX_EGGS} children."
-msgstr ""
+msgstr "Un Pokémon no puede tener más de {MAX_EGGS} crías."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1266
 msgid "Too much children."
-msgstr ""
+msgstr "Demasiadas crías."
 
 #: skytemple/skytemple/module/monster/level_up_graph.py:87
 msgid "Exp."
@@ -10661,8 +10674,8 @@ msgid "<Not available>\n\n"
 "ASM patch from the \"ASM Patches\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
 msgstr "<No disponible>\n\n"
-"Para ver y editar los efectos de movimiento, aplica el parche \"ExtractMoveCode\" \n"
-"desde el menú \"Parches ASM\".\n"
+"Para ver y editar los efectos de movimientos, aplica el parche\n"
+"\"ExtractMoveCode\" desde el menú Parches ASM.\n"
 "Si ya lo has aplicado, aplícalo de nuevo para asegurarte de usar la última versión. "
 
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:315
