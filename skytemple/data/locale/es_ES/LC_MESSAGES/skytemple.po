@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-05-13 11:45+0000\n"
-"PO-Revision-Date: 2021-05-13 18:14\n"
+"PO-Revision-Date: 2021-05-13 19:12\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -9956,7 +9956,13 @@ msgid "This value indicates the previous evolution of the pokémon.\n"
 "3 - For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "Child Pokémon are computed using the pre evolution value and going recursively until one pokémon without a pre evolution is found.\n"
 "If the ChangeEvoSystem patch is applied, only point 2 applies, the other points are handled with other data."
-msgstr ""
+msgstr "Este valor indica la evolución anterior del pokémon.\n"
+"El juego lo utiliza en varias situaciones: \n"
+"1 - Para la evolución.\n"
+"2 - Al recordar movimientos en la tienda de Electivire, también puedes recordar movimientos de tus preevoluciones hasta 2 generaciones.\n"
+"3 - En las misiones con un huevo como recompensa, el huevo contiene un Pokémon aleatorio que se selecciona entre las crías de los que están en la lista de aparición del piso de la misión.\n"
+"Las crías Pokémon se calculan usando el valor de la preevolución y avanzando recursivamente hasta encontrar un pokémon sin preevolución.\n"
+"Si se aplica el parche \"ChangeEvoSystem\", solo se aplica el punto 2, los demás puntos se manejan con otros datos."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:376
 msgid "Pre Evolution Info"
@@ -10090,7 +10096,8 @@ msgstr "El tamaño en memoria del sprite de este pokémon era demasiado bajo par
 #: skytemple/skytemple/module/monster/controller/monster.py:1173
 msgid "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "This list indicates this Pokémon's children. If no children exist, the game will default to that pokémon species. "
-msgstr ""
+msgstr "En las misiones con un huevo como recompensa, el huevo contiene un Pokémon aleatorio que se elige entre las crías de la lista de aparición del piso de la misión.\n"
+"Esta lista indica las crías de este Pokémon. Si no existen, el juego elegirá por defecto esa especie de Pokémon. "
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1175
 msgid "Children Info"
