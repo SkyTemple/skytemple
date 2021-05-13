@@ -46,6 +46,7 @@ WAZA_P_BIN = 'BALANCE/waza_p.bin'
 WAZA_P2_BIN = 'BALANCE/waza_p2.bin'
 PORTRAIT_FILE = 'FONT/kaomado.kao'
 TBL_TALK_FILE = 'MESSAGE/tbl_talk.tlk'
+MEVO_FILE = "BALANCE/md_evo.bin"
 logger = logging.getLogger(__name__)
 
 
@@ -353,3 +354,12 @@ class MonsterModule(AbstractModule):
             self.project.mark_as_modified(WAZA_P2_BIN)
             self.project.get_string_provider().mark_as_modified()
             self.project.mark_as_modified(PORTRAIT_FILE)
+    def has_md_evo(self):
+        return self.project.file_exists(MEVO_FILE)
+
+    def get_md_evo(self):
+        return self.project.open_file_in_rom(MEVO_FILE, FileType.MD_EVO)
+
+    def mark_md_evo_as_modified(self, item_id):
+        self.project.mark_as_modified(MEVO_FILE)
+        self._mark_as_modified_in_tree(item_id)
