@@ -99,6 +99,14 @@ class MonsterController(AbstractController):
         self._update_base_form_label()
         self._update_param_label()
         self._update_chance_label()
+        
+        if self.module.project.is_patch_applied("ExpandPokeList"):
+            self.builder.get_object('lbl_unk_1_0').set_text(_("Spinda Egg"))
+            self.builder.get_object('lbl_unk_1_1').set_text(_("Spinda Recruit"))
+            self.builder.get_object('lbl_unk_1_2').set_text(_("Don't appear in Missions"))
+            self.builder.get_object('lbl_unk_1_3').set_text(_("Don't appear in Missions during story"))
+            self.builder.get_object('lbl_unk_17').set_text(_("Sprite Size"))
+            self.builder.get_object('lbl_unk_18').set_text(_("Sprite File Size"))
 
         self._ent_names = {}
         

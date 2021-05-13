@@ -2755,7 +2755,7 @@ If you choose to export both genders, upon import the matching gender entry will
                         <property name="row-spacing">5</property>
                         <property name="column-spacing">5</property>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="lbl_unk_1_0">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
@@ -2816,7 +2816,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="lbl_unk_17">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
@@ -2841,7 +2841,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="lbl_unk_18">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
@@ -2960,7 +2960,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="lbl_unk_1_1">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
@@ -2972,7 +2972,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="lbl_unk_1_2">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
@@ -2984,7 +2984,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="lbl_unk_1_3">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
