@@ -28,7 +28,8 @@ from skytemple.core.modules import Modules
 from skytemple.core.open_request import OpenRequest
 from skytemple.core.model_context import ModelContext
 from skytemple.core.sprite_provider import SpriteProvider
-from skytemple.core.string_provider import StringProvider
+from skytemple.core.string_provider import StringProvider, StringType
+from skytemple_files.data.md.model import MdProperties
 from skytemple_files.common.ppmdu_config.data import Pmd2Binary
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.task_runner import AsyncTaskRunner
@@ -135,6 +136,9 @@ class RomProject:
         # Callback for opening views using iterators from the main view list.
         self._cb_open_view: Callable[[Gtk.TreeIter], None] = cb_open_view
         self._project_fm = ProjectFileManager(filename)
+        
+        # Lazy
+        self._patcher = None
 
     def load(self):
         """Load the ROM into memory and initialize all modules"""
@@ -351,7 +355,9 @@ class RomProject:
         return self._string_provider
 
     def create_patcher(self):
-        return Patcher(self._rom, self.get_rom_module().get_static_data())
+        if self._patcher==None:
+            self._patcher = Patcher(self._rom, self.get_rom_module().get_static_data())
+        return self._patcher
 
     def get_binary(self, binary: Union[Pmd2Binary, BinaryName, str]) -> bytes:
         if not isinstance(binary, Pmd2Binary):
@@ -367,15 +373,33 @@ class RomProject:
         set_binary_in_rom_ppmdu(self._rom, binary, data)
         self.force_mark_as_modified()
 
+    def is_patch_applied(self, patch_name):
+        patcher = self.create_patcher()
+        try:
+            if patcher.is_applied(patch_name):
+                return True
+            else:
+                return False
+        except NotImplementedError:
+            return False
+        
     def init_patch_properties(self):
         """ Initialize patch-specific properties of the rom. """
-        patcher = self.create_patcher()
         
         # Allow ATUPX files if the ProvideATUPXSupport patch is applied
-        try:
-            if patcher.is_applied("ProvideATUPXSupport"):
-                FileType.COMMON_AT.allow(CommonAtType.ATUPX)
-            else:
-                FileType.COMMON_AT.disallow(CommonAtType.ATUPX)
-        except NotImplementedError:
+        if self.is_patch_applied("ProvideATUPXSupport"):
+            FileType.COMMON_AT.allow(CommonAtType.ATUPX)
+        else:
             FileType.COMMON_AT.disallow(CommonAtType.ATUPX)
+            
+        # Change Pokemon Names and Categories strings if ExpandPokeList
+        if self.is_patch_applied("ExpandPokeList"):
+            StringType.POKEMON_NAMES.replace_xml_name('New Pokemon Names')
+            StringType.POKEMON_CATEGORIES.replace_xml_name('New Pokemon Categories')
+            MdProperties.NUM_ENTITIES = 2048
+            MdProperties.MAX_POSSIBLE = 2048
+        else:
+            StringType.POKEMON_NAMES.replace_xml_name('Pokemon Names')
+            StringType.POKEMON_CATEGORIES.replace_xml_name('Pokemon Categories')
+            MdProperties.NUM_ENTITIES = 600
+            MdProperties.MAX_POSSIBLE = 554

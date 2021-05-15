@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 
 COUNT_VALID_BGM = 118
 COUNT_VALID_FIXED_FLOORS = 256
-KECLEON_MD_INDEX = 383
+KECLEON_MD_INDEX = [383, 983]
 CB = 'cb_'
 CB_TERRAIN_SETTINGS = 'cb_terrain_settings__'
 ENTRY = 'entry_'
@@ -177,6 +177,9 @@ class FloorController(AbstractController):
         self._recalculate_spawn_chances('item_cat_orbs_store', 4, 3)
         self._recalculate_spawn_chances('item_cat_others_store', 4, 3)
 
+        if not self.module.project.is_patch_applied("ExpandPokeList"):
+            self.builder.get_object('switch_kecleon_gender').destroy()
+            self.builder.get_object('label_kecleon_gender').destroy()
         self._init_layout_values()
         self._loading = False
 
@@ -426,10 +429,10 @@ class FloorController(AbstractController):
         except ValueError:
             return
 
-        if entid == KECLEON_MD_INDEX or entid >= DUMMY_MD_INDEX:
+        if entid in KECLEON_MD_INDEX or entid==DUMMY_MD_INDEX:
             display_error(
                 None,
-                f(_("You can not spawn Kecleons or the Decoy Pokémon or any Pokémon above #{DUMMY_MD_INDEX}.")),
+                f(_("You can not spawn Kecleons or the Decoy Pokémon.")),
                 _("SkyTemple: Invalid Pokémon")
             )
             return
@@ -488,11 +491,21 @@ class FloorController(AbstractController):
         except:
             return
         for i, monster in enumerate(self.entry.monsters):
-            if monster.md_index == KECLEON_MD_INDEX:
+            if monster.md_index in KECLEON_MD_INDEX:
                 monster.level = level
                 break
         self.mark_as_modified()
 
+    def on_switch_kecleon_gender_state_set(self, w, *args):
+        if w.get_active():
+            new_index = KECLEON_MD_INDEX[1]
+        else:
+            new_index = KECLEON_MD_INDEX[0]
+        for i, monster in enumerate(self.entry.monsters):
+            if monster.md_index in KECLEON_MD_INDEX:
+                monster.md_index = new_index
+                break
+        self.mark_as_modified()
     # </editor-fold>
 
     # <editor-fold desc="HANDLERS TRAPS" defaultstate="collapsed">
@@ -1118,8 +1131,13 @@ class FloorController(AbstractController):
         for i, monster in enumerate(self.entry.monsters):
             relative_weight = relative_weights[i]
             chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
-            if monster.md_index == KECLEON_MD_INDEX:
+            if monster.md_index in KECLEON_MD_INDEX:
                 self.builder.get_object('kecleon_level_entry').set_text(str(monster.level))
+                switch = self.builder.get_object('switch_kecleon_gender')
+                if monster.md_index==KECLEON_MD_INDEX[0]:
+                    switch.set_active(False)
+                else:
+                    switch.set_active(True)
                 continue
             if monster.md_index == DUMMY_MD_INDEX:
                 continue
@@ -1131,7 +1149,7 @@ class FloorController(AbstractController):
     def _init_monster_completion_store(self):
         monster_md = self.module.get_monster_md()
         monster_store: Gtk.ListStore = self.builder.get_object('completion_monsters_store')
-        for idx, entry in enumerate(monster_md.entries[0:DUMMY_MD_INDEX]):
+        for idx, entry in enumerate(monster_md.entries):
             if idx == 0:
                 continue
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, entry.md_index_base)
@@ -1327,15 +1345,17 @@ class FloorController(AbstractController):
     def _save_monster_spawn_rates(self):
         store: Gtk.ListStore = self.builder.get_object('monster_spawns_store')
         original_kecleon_level = 0
+        original_kecleon_index = KECLEON_MD_INDEX[0]
         for monster in self.entry.monsters:
-            if monster.md_index == KECLEON_MD_INDEX:
+            if monster.md_index in KECLEON_MD_INDEX:
+                original_kecleon_index = monster.md_index
                 original_kecleon_level = monster.level
                 break
         self.entry.monsters = []
         rows = []
         for row in store:
             rows.append(row[:])
-        rows.append([KECLEON_MD_INDEX, None, None, str(original_kecleon_level), None, "0"])
+        rows.append([original_kecleon_index, None, None, str(original_kecleon_level), None, "0"])
         rows.append([DUMMY_MD_INDEX, None, None, "1", None, "0"])
         rows.sort(key=lambda e: e[0])
 

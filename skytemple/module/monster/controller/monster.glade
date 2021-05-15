@@ -796,7 +796,6 @@ If you choose to export both genders, upon import the matching gender entry will
           <packing>
             <property name="left-attach">1</property>
             <property name="top-attach">3</property>
-            <property name="width">2</property>
           </packing>
         </child>
         <child>
@@ -915,6 +914,27 @@ If you choose to export both genders, upon import the matching gender entry will
             <property name="left-attach">0</property>
             <property name="top-attach">8</property>
             <property name="width">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_help_entid">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="halign">start</property>
+            <property name="valign">center</property>
+            <signal name="clicked" handler="on_btn_help_entid_clicked" swapped="no"/>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">skytemple-help-about-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left-attach">2</property>
+            <property name="top-attach">3</property>
           </packing>
         </child>
         <style>
@@ -2074,6 +2094,9 @@ If you choose to export both genders, upon import the matching gender entry will
                                                 <property name="vexpand">True</property>
                                                 <property name="model">egg_store</property>
                                                 <property name="search-column">0</property>
+                                                <child internal-child="selection">
+                                                  <object class="GtkTreeSelection"/>
+                                                </child>
                                                 <child>
                                                   <object class="GtkTreeViewColumn">
                                                     <property name="title" translatable="yes">ID</property>
@@ -2210,6 +2233,9 @@ If you choose to export both genders, upon import the matching gender entry will
                                                 <property name="vexpand">True</property>
                                                 <property name="model">evo_store</property>
                                                 <property name="search-column">0</property>
+                                                <child internal-child="selection">
+                                                  <object class="GtkTreeSelection"/>
+                                                </child>
                                                 <child>
                                                   <object class="GtkTreeViewColumn">
                                                     <property name="title" translatable="yes">ID</property>
@@ -2755,7 +2781,7 @@ If you choose to export both genders, upon import the matching gender entry will
                         <property name="row-spacing">5</property>
                         <property name="column-spacing">5</property>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="lbl_unk_1_0">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
@@ -2816,7 +2842,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="lbl_unk_17">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
@@ -2841,7 +2867,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="lbl_unk_18">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
@@ -2960,7 +2986,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="lbl_unk_1_1">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
@@ -2972,7 +2998,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="lbl_unk_1_2">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
@@ -2984,7 +3010,7 @@ If you choose to export both genders, upon import the matching gender entry will
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkLabel" id="lbl_unk_1_3">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>

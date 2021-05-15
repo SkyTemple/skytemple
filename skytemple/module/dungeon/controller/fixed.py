@@ -32,7 +32,7 @@ from skytemple.module.dungeon.entity_rule_container import EntityRuleContainer
 from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer, InfoLayer, InteractionMode
 from skytemple.module.dungeon.fixed_room_tileset_renderer.bg import FixedFloorDrawerBackground
 from skytemple.module.dungeon.fixed_room_tileset_renderer.tileset import FixedFloorDrawerTileset
-from skytemple_files.data.md.model import NUM_ENTITIES
+from skytemple_files.data.md.model import MdProperties
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRuleType, TileRule, EntityRule
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
 from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
@@ -77,7 +77,7 @@ class FixedController(AbstractController):
         self.long_monster_names = {}
         length = len(self.module.get_monster_md().entries)
         for i, entry in enumerate(self.module.get_monster_md().entries):
-            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i % NUM_ENTITIES)
+            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i % MdProperties.NUM_ENTITIES)
             self.monster_names[i] = f'{name}'
             self.long_monster_names[i] = f'{name} ({entry.gender.name.capitalize()}) (${i:04})'
         for i in range(length, length + SPECIAL_MONSTERS):

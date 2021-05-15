@@ -72,6 +72,9 @@ class StringType(Enum):
     @property
     def xml_name(self):
         return self._xml_name_
+    
+    def replace_xml_name(self, new_name):
+        self._xml_name_ = new_name
 
 
 LanguageLike = Union[str, Pmd2Language]  # locale string or Pmd2Language
@@ -121,7 +124,7 @@ class StringProvider:
         Returns the string table model for the given language.
         If language is not set, the default ROM language is used.
         """
-        return self.project.open_file_in_rom(f'{MESSAGE_DIR}/{self._get_language(language).filename}', FileType.STR)
+        return self.project.open_file_in_rom(f'{MESSAGE_DIR}/{self.get_language(language).filename}', FileType.STR)
 
     def get_languages(self) -> List[Pmd2Language]:
         """Returns all supported languages."""
@@ -133,7 +136,7 @@ class StringProvider:
             if self.project.is_opened(fname):
                 self.project.mark_as_modified(fname)
 
-    def _get_language(self, language_locale: LanguageLike = None) -> Pmd2Language:
+    def get_language(self, language_locale: LanguageLike = None) -> Pmd2Language:
         if isinstance(language_locale, Pmd2Language):
             return language_locale
 

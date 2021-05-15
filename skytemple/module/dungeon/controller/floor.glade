@@ -2852,6 +2852,18 @@
                       </packing>
                     </child>
                     <child>
+                      <object class="GtkLabel" id="label_kecleon_gender">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Female</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">4</property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="GtkButton" id="monster_spawns_remove">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
@@ -2869,6 +2881,18 @@
                         <property name="expand">False</property>
                         <property name="fill">True</property>
                         <property name="pack-type">end</property>
+                        <property name="position">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSwitch" id="switch_kecleon_gender">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <signal name="state-set" handler="on_switch_kecleon_gender_state_set" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
                         <property name="position">4</property>
                       </packing>
                     </child>
