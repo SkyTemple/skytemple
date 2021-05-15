@@ -1178,16 +1178,16 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             if self.module.project.is_patch_applied("ExpandPokeList"):
                 check_value = self.entry.unk17
                 check_value_file = self.entry.unk18
+                max_tile_slots_needed, max_file_size_needed = self._get_sprite_properties(self.entry)
             else:
                 sprite_size_table = self.module.get_pokemon_sprite_data_table()
                 check_value = sprite_size_table[md_gender1.md_index_base].sprite_tile_slots
                 check_value_file = sprite_size_table[md_gender1.md_index_base].unk1
-            
-            max_tile_slots_needed, max_file_size_needed = self._get_sprite_properties(md_gender1)
-            if md_gender2!=None:
-                max_tile_slots_needed2, max_file_size_needed2 = self._get_sprite_properties(md_gender2)
-                max_tile_slots_needed = max(max_tile_slots_needed, max_tile_slots_needed2)
-                max_file_size_needed = max(max_file_size_needed, max_file_size_needed2)
+                max_tile_slots_needed, max_file_size_needed = self._get_sprite_properties(md_gender1)
+                if md_gender2!=None:
+                    max_tile_slots_needed2, max_file_size_needed2 = self._get_sprite_properties(md_gender2)
+                    max_tile_slots_needed = max(max_tile_slots_needed, max_tile_slots_needed2)
+                    max_file_size_needed = max(max_file_size_needed, max_file_size_needed2)
             if check_value != max_tile_slots_needed:
                 if self.module.project.is_patch_applied("ExpandPokeList"):
                     self.entry.unk17 = max_tile_slots_needed
@@ -1239,9 +1239,9 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             if idx == 0:
                 continue
             if not self.module.project.is_patch_applied('ExpandPokeList'):
-                sidx = self.entry.md_index_base
+                sidx = entry.md_index_base
             else:
-                sidx = self.entry.md_index
+                sidx = entry.md_index
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, sidx)
             self._ent_names[idx] = f'{name} ({entry.gender.print_name}) (#{idx:04})'
             monster_store.append([self._ent_names[idx]])
