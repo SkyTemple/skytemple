@@ -72,6 +72,7 @@ class MonsterModule(AbstractModule):
         self._tree_model = None
         self._tree_iter__entity_roots = {}
         self._tree_iter__entries = []
+        self.effective_base_attr = 'md_index_base'
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         self._root = item_store.append(root_node, [
@@ -81,11 +82,15 @@ class MonsterModule(AbstractModule):
         self._tree_iter__entity_roots = {}
         self._tree_iter__entries = {}
 
+        if self.project.is_patch_applied("ExpandPokeList"):
+            self.effective_base_attr = 'entid'
+        b_attr = self.effective_base_attr
+
         monster_entries_by_base_id: Dict[int, List[MdEntry]] = {}
         for entry in self.monster_md.entries:
-            if entry.md_index_base not in monster_entries_by_base_id:
-                monster_entries_by_base_id[entry.md_index_base] = []
-            monster_entries_by_base_id[entry.md_index_base].append(entry)
+            if getattr(entry, b_attr) not in monster_entries_by_base_id:
+                monster_entries_by_base_id[getattr(entry, b_attr)] = []
+            monster_entries_by_base_id[getattr(entry, b_attr)].append(entry)
 
         for baseid, entry_list in monster_entries_by_base_id.items():
             name = self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, baseid)
@@ -100,10 +105,12 @@ class MonsterModule(AbstractModule):
         recursive_generate_item_store_row_label(self._tree_model[self._root])
 
     def refresh(self, item_id):
+        b_attr = self.effective_base_attr
+
         entry = self.monster_md.entries[item_id]
-        name = self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, entry.md_index_base)
-        self._tree_model[self._tree_iter__entity_roots[entry.md_index_base]][:] = self.generate_entry__entity_root(
-            entry.md_index_base, name
+        name = self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, getattr(entry, b_attr))
+        self._tree_model[self._tree_iter__entity_roots[getattr(entry, b_attr)]][:] = self.generate_entry__entity_root(
+            getattr(entry, b_attr), name
         )
         self._tree_model[self._tree_iter__entries[item_id]][:] = self.generate_entry__entry(
             entry.md_index, entry.gender
@@ -286,15 +293,17 @@ class MonsterModule(AbstractModule):
     def get_export_data(self, entry):
         waza_p = self.get_waza_p()
         waza_p2 = self.get_waza_p2()
-        md_gender1, md_gender2 = self.get_entry_both(entry.md_index_base)
-        names = self.get_pokemon_names_and_categories(entry.md_index_base)
+        b_attr = self.effective_base_attr
+
+        md_gender1, md_gender2 = self.get_entry_both(getattr(entry, b_attr))
+        names = self.get_pokemon_names_and_categories(getattr(entry, b_attr))
         moveset = None
-        if entry.md_index_base < len(waza_p.learnsets):
-            moveset = waza_p.learnsets[entry.md_index_base]
+        if getattr(entry, b_attr) < len(waza_p.learnsets):
+            moveset = waza_p.learnsets[getattr(entry, b_attr)]
         moveset2 = None
-        if entry.md_index_base < len(waza_p2.learnsets):
-            moveset2 = waza_p2.learnsets[entry.md_index_base]
-        stats_and_portraits_id = entry.md_index_base - 1
+        if getattr(entry, b_attr) < len(waza_p2.learnsets):
+            moveset2 = waza_p2.learnsets[getattr(entry, b_attr)]
+        stats_and_portraits_id = getattr(entry, b_attr) - 1
         stats = self.get_m_level_bin_entry(stats_and_portraits_id)
         portraits, portraits2 = self.get_portraits_for_export(stats_and_portraits_id)
         return names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2
@@ -315,6 +324,7 @@ class MonsterModule(AbstractModule):
         self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.n2m}")
         
     def import_from_xml(self, selected_monsters: List[int], xml: Element):
+        b_attr = self.effective_base_attr
         for monster_id in selected_monsters:
             entry = self.get_entry(monster_id)
             names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2 = self.get_export_data(entry)
@@ -338,13 +348,13 @@ class MonsterModule(AbstractModule):
                 portraits1_imp, portraits2_imp
             )
             if stats:
-                self.set_m_level_bin_entry(entry.md_index_base - 1, stats)
+                self.set_m_level_bin_entry(getattr(entry, b_attr) - 1, stats)
             if names:
                 sp = self.project.get_string_provider()
                 for lang_name, (name, category) in names.items():
                     model = sp.get_model(lang_name)
-                    model.strings[sp.get_index(StringType.POKEMON_NAMES, entry.md_index_base)] = name
-                    model.strings[sp.get_index(StringType.POKEMON_CATEGORIES, entry.md_index_base)] = category
+                    model.strings[sp.get_index(StringType.POKEMON_NAMES, getattr(entry, b_attr))] = name
+                    model.strings[sp.get_index(StringType.POKEMON_CATEGORIES, getattr(entry, b_attr))] = category
                     self.update_monster_sort_lists(lang_name)
                 sp.mark_as_modified()
 
@@ -371,6 +381,7 @@ class MonsterModule(AbstractModule):
             self.project.mark_as_modified(WAZA_P2_BIN)
             self.project.get_string_provider().mark_as_modified()
             self.project.mark_as_modified(PORTRAIT_FILE)
+
     def has_md_evo(self):
         return self.project.file_exists(MEVO_FILE)
 

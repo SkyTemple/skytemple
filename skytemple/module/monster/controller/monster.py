@@ -651,9 +651,9 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         store.clear()
         monster_entries_by_base_id: Dict[int, List[MdEntry]] = {}
         for entry in self.module.monster_md.entries:
-            if entry.md_index_base not in monster_entries_by_base_id:
-                monster_entries_by_base_id[entry.md_index_base] = []
-            monster_entries_by_base_id[entry.md_index_base].append(entry)
+            if getattr(entry, self.module.effective_base_attr) not in monster_entries_by_base_id:
+                monster_entries_by_base_id[getattr(entry, self.module.effective_base_attr)] = []
+            monster_entries_by_base_id[getattr(entry, self.module.effective_base_attr)].append(entry)
 
         for baseid, entry_list in monster_entries_by_base_id.items():
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, baseid)
@@ -857,7 +857,10 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 gui_entry_cat.set_sensitive(False)
 
     def _init_entid(self):
-        self.builder.get_object(f'label_base_id').set_text(f'#{self.entry.md_index_base:03}')
+        if not self.module.project.is_patch_applied("ExpandPokeList"):
+            self.builder.get_object(f'label_base_id').set_text(f'#{self.entry.md_index_base:03}')
+        else:
+            self.builder.get_object(f'label_base_id').set_text(f'See Entity ID')
         name = self._string_provider.get_value(StringType.POKEMON_NAMES, self.entry.md_index_base)
         self.builder.get_object('label_id_name').set_text(f'${self.entry.md_index:04d}: {name}')
 
@@ -889,11 +892,15 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             gui_entry_cat: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}_cat')
             if lang_id < len(langs):
                 # We have this language
+                if not self.module.project.is_patch_applied('ExpandPokeList'):
+                    idx = self.entry.md_index_base
+                else:
+                    idx = self.entry.md_index
                 gui_entry.set_text(self._string_provider.get_value(StringType.POKEMON_NAMES,
-                                                                   self.entry.md_index_base,
+                                                                   idx,
                                                                    langs[lang_id]))
                 gui_entry_cat.set_text(self._string_provider.get_value(StringType.POKEMON_CATEGORIES,
-                                                                       self.entry.md_index_base,
+                                                                       idx,
                                                                        langs[lang_id]))
 
         # Stats
@@ -1013,15 +1020,23 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
     def _update_lang_from_entry(self, w: Gtk.Entry, lang_index):
         lang = self._string_provider.get_languages()[lang_index]
+        if not self.module.project.is_patch_applied('ExpandPokeList'):
+            idx = self.entry.md_index_base
+        else:
+            idx = self.entry.md_index
         self._string_provider.get_model(lang).strings[
-            self._string_provider.get_index(StringType.POKEMON_NAMES, self.entry.md_index_base)
+            self._string_provider.get_index(StringType.POKEMON_NAMES, idx)
         ] = w.get_text()
         self.module.update_monster_sort_lists(lang)
 
     def _update_lang_cat_from_entry(self, w: Gtk.Entry, lang_index):
+        if not self.module.project.is_patch_applied('ExpandPokeList'):
+            idx = self.entry.md_index_base
+        else:
+            idx = self.entry.md_index
         lang = self._string_provider.get_languages()[lang_index]
         self._string_provider.get_model(lang).strings[
-            self._string_provider.get_index(StringType.POKEMON_CATEGORIES, self.entry.md_index_base)
+            self._string_provider.get_index(StringType.POKEMON_CATEGORIES, idx)
         ] = w.get_text()
 
     def _init_sub_pages(self):
@@ -1059,8 +1074,14 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 if entry_id > MdProperties.NUM_ENTITIES:
                     raise ValueError()
                 entry = self.module.monster_md[entry_id]
-                name = self._string_provider.get_value(StringType.POKEMON_NAMES, entry.md_index_base)
-                label.set_text(f'#{entry.md_index_base:03d}: {name}')
+                if not self.module.project.is_patch_applied('ExpandPokeList'):
+                    idx = entry.md_index_base
+                    p = '#'
+                else:
+                    idx = entry.md_index
+                    p = '$'
+                name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
+                label.set_text(f'{p}{idx:04d}: {name}')
             else:
                 label.set_text(f'')
         except BaseException:
@@ -1074,8 +1095,14 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             if entry_id > MdProperties.NUM_ENTITIES:
                 raise ValueError()
             entry = self.module.monster_md[entry_id]
-            name = self._string_provider.get_value(StringType.POKEMON_NAMES, entry.md_index_base)
-            label.set_text(f'#{entry.md_index_base:03d}: {name}')
+            if not self.module.project.is_patch_applied('ExpandPokeList'):
+                idx = entry.md_index_base
+                p = '#'
+            else:
+                idx = entry.md_index
+                p = '$'
+            name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
+            label.set_text(f'{p}{idx:04d}: {name}')
         except BaseException:
             label.set_text(_('??? Enter a valid Base ID (#)'))
 
@@ -1085,7 +1112,11 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         try:
             entry_id = int(entry.get_text())
             entry = self.module.monster_md[entry_id]
-            name = self._string_provider.get_value(StringType.POKEMON_NAMES, entry.md_index_base)
+            if not self.module.project.is_patch_applied('ExpandPokeList'):
+                idx = entry.md_index_base
+            else:
+                idx = entry.md_index
+            name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
             label.set_text(f'${entry.md_index:04d}: {name} ({entry.gender.name[0]})')
         except BaseException:
             label.set_text(_('??? Enter a valid Entry ID ($)'))
@@ -1140,7 +1171,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         table matches the currently selected sprite of the Pokémon. If not, change
         the value and save it.
         """
-        md_gender1, md_gender2 = self.module.get_entry_both(self.entry.md_index_base)
+        md_gender1, md_gender2 = self.module.get_entry_both(getattr(self.entry, self.module.effective_base_attr))
         try:
             # If ExpandPokeList is applied, unk17 and unk18 are the values used instead
             # (Note: they aren't used in the current state)
@@ -1162,7 +1193,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                     self.entry.unk17 = max_tile_slots_needed
                     self._set_entry('entry_unk17', self.entry.unk17)
                 else:
-                    sprite_size_table[md_gender1.md_index_base].sprite_tile_slots = max_tile_slots_needed
+                    sprite_size_table[getattr(md_gender1, self.module.effective_base_attr)].sprite_tile_slots = max_tile_slots_needed
                     self.module.set_pokemon_sprite_data_table(sprite_size_table)
 
                 if show_warning:
@@ -1182,7 +1213,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                     self.entry.unk18 = max_file_size_needed
                     self._set_entry('entry_unk18', self.entry.unk18)
                 else:
-                    sprite_size_table[md_gender1.md_index_base].unk1 = max_file_size_needed
+                    sprite_size_table[getattr(md_gender1, self.module.effective_base_attr)].unk1 = max_file_size_needed
                     self.module.set_pokemon_sprite_data_table(sprite_size_table)
 
                 if show_warning:
@@ -1207,12 +1238,29 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         for idx, entry in enumerate(monster_md.entries):
             if idx == 0:
                 continue
-            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, entry.md_index_base)
+            if not self.module.project.is_patch_applied('ExpandPokeList'):
+                sidx = self.entry.md_index_base
+            else:
+                sidx = self.entry.md_index
+            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, sidx)
             self._ent_names[idx] = f'{name} ({entry.gender.print_name}) (#{idx:04})'
             monster_store.append([self._ent_names[idx]])
     
     def on_cr_entity_editing_started(self, renderer, editable, path):
         editable.set_completion(self.builder.get_object('completion_entities'))
+
+    def on_btn_help_entid_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
+              "After the patch is applied, this value defines the Base ID and therefore how Pokémon are grouped.\n"
+              "Reload the project after making changes to this value, to reflect them in the tree on the left."),
+            title=_("Entity ID")
+        )
+        md.run()
+        md.destroy()
 
     def on_btn_help_evo_egg_clicked(self, w, *args):
         md = SkyTempleMessageDialog(
