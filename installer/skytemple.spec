@@ -52,7 +52,7 @@ for (path, directories, filenames) in os.walk(os.path.join(pkg_path, 'module')):
                                      f'skytemple/{str(PurePosixPath(Path(path.replace(pkg_path + "/", ""))))}'))
 
 additional_binaries = [
-    (os.path.join(site_packages, "desmume", "libdesmume.dll"), ".")
+    (os.path.join(site_packages, "desmume", "libdesmume.dll"), "."),
     (os.path.join(site_packages, "skytemple_tilequant", "aikku", "libtilequant.dll"), "skytemple_tilequant/aikku"),
     (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "bin", "libenchant-2.dll"), f'enchant/data/{mingw}/bin'),
     (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "bin", "libglib-2.0-0.dll"), f'enchant/data/{mingw}/bin'),
