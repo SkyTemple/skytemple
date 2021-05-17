@@ -22,3 +22,5 @@ jobs:
           message: SkyTemple Release ${{ env.GITHUB_REF }}
           push: true
           branch: main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
