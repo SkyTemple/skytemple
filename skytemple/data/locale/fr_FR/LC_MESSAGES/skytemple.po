@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-05-16 18:34+0000\n"
-"PO-Revision-Date: 2021-05-16 18:38\n"
+"PO-Revision-Date: 2021-05-24 17:54\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -1338,7 +1338,7 @@ msgstr "La fonction n'a pas de description."
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:221
 msgid "Down Right"
-msgstr ""
+msgstr "En bas à droite"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:225
 msgid "Up Right"
@@ -1346,11 +1346,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:229
 msgid "Up Left"
-msgstr ""
+msgstr "En haut à gauche"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:233
 msgid "Down Left"
-msgstr ""
+msgstr "En bas à gauche"
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:39
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
@@ -1433,7 +1433,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/data_cd/model.py:66
 msgid "To delete this effect, no items must use it."
-msgstr ""
+msgstr "Pour supprimer cet effet, aucun objet ne doit l'utiliser."
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:29
 #: skytemple-files/skytemple_files/data/md/model.py:63
@@ -1450,7 +1450,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.py:1467
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:52
 msgid "None"
-msgstr ""
+msgstr "Aucun"
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:30
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:346
@@ -1480,17 +1480,17 @@ msgstr "Type"
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:61
 msgid "The Pokemon may hatch holding the item."
-msgstr ""
+msgstr "Le Pokémon peut éclore en tenant l'objet."
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:62
 msgid "? (Only all the Eeveelutions, and the Tyrogue line have items with this type!)"
-msgstr ""
+msgstr " ? (Seules toutes les évolutions d'Evoli, et l'espèce des Debugant ont des objets de ce type !)"
 
 #: skytemple-files/skytemple_files/data/md/model.py:37
 #: skytemple-files/skytemple_files/data/md/model.py:266
 #: skytemple/skytemple/module/dungeon/controller/floor.py:75
 msgid "Invalid"
-msgstr ""
+msgstr "Invalide"
 
 #: skytemple-files/skytemple_files/data/md/model.py:38
 #: skytemple/skytemple/module/lists/controller/starters_list.py:30
@@ -1535,7 +1535,7 @@ msgstr "Femelle"
 
 #: skytemple-files/skytemple_files/data/md/model.py:40
 msgid "Genderless"
-msgstr ""
+msgstr "Genre neutre"
 
 #: skytemple-files/skytemple_files/data/md/model.py:64
 msgid "Normal"
@@ -2122,7 +2122,7 @@ msgstr "Non-utilisé"
 
 #: skytemple-files/skytemple_files/data/md/model.py:289
 msgid "Not an Evolved Form."
-msgstr ""
+msgstr "Ce n'est pas une forme évoluée."
 
 #: skytemple-files/skytemple_files/data/md/model.py:290
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1074
@@ -2148,11 +2148,11 @@ msgstr "Objets"
 
 #: skytemple-files/skytemple_files/data/md/model.py:293
 msgid "Recruited"
-msgstr ""
+msgstr "Recruté"
 
 #: skytemple-files/skytemple_files/data/md/model.py:294
 msgid "No Main Requirement"
-msgstr ""
+msgstr "Aucune exigence principale"
 
 #: skytemple-files/skytemple_files/data/md/model.py:317
 msgid "Link Cable"
@@ -2160,43 +2160,43 @@ msgstr "Câble link"
 
 #: skytemple-files/skytemple_files/data/md/model.py:318
 msgid "Attack > Defense"
-msgstr ""
+msgstr "Attaque > Défense"
 
 #: skytemple-files/skytemple_files/data/md/model.py:319
 msgid "Attack < Defense"
-msgstr ""
+msgstr "Attaque < Défense"
 
 #: skytemple-files/skytemple_files/data/md/model.py:320
 msgid "Attack = Defense"
-msgstr ""
+msgstr "Attaque = Défense"
 
 #: skytemple-files/skytemple_files/data/md/model.py:321
 msgid "Sun Ribbon"
-msgstr ""
+msgstr "Ruban Solaire"
 
 #: skytemple-files/skytemple_files/data/md/model.py:322
 msgid "Lunar Ribbon"
-msgstr ""
+msgstr "Ruban lunaire"
 
 #: skytemple-files/skytemple_files/data/md/model.py:323
 msgid "Beauty Scarf"
-msgstr ""
+msgstr "Écharpe de beauté"
 
 #: skytemple-files/skytemple_files/data/md/model.py:324
 msgid "Internal Value 0x1 = 1"
-msgstr ""
+msgstr "Valeur interne 0x1 = 1"
 
 #: skytemple-files/skytemple_files/data/md/model.py:325
 msgid "Internal Value 0x1 = 0"
-msgstr ""
+msgstr "Valeur interne 0x1 = 0"
 
 #: skytemple-files/skytemple_files/data/md/model.py:326
 msgid "Male (1st form)"
-msgstr ""
+msgstr "Masculin (1ère forme)"
 
 #: skytemple-files/skytemple_files/data/md/model.py:327
 msgid "Female (2nd form)"
-msgstr ""
+msgstr "Femelle (2e forme)"
 
 #: skytemple-files/skytemple_files/data/md/model.py:328
 msgid "Knows AncientPower"
@@ -2224,11 +2224,11 @@ msgstr "Inconnu"
 
 #: skytemple-files/skytemple_files/data/md/model.py:356
 msgid "Hovering"
-msgstr ""
+msgstr "Lévitation"
 
 #: skytemple-files/skytemple_files/data/md/model.py:357
 msgid "Phase Through Walls"
-msgstr ""
+msgstr "Traverser les murs"
 
 #. TRANSLATORS: Movement Type
 #: skytemple-files/skytemple_files/data/md/model.py:358
@@ -2247,7 +2247,7 @@ msgstr "Moyenne"
 
 #: skytemple-files/skytemple_files/data/md/model.py:384
 msgid "Large"
-msgstr ""
+msgstr "Large"
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:205
 #, python-brace-format
@@ -2400,16 +2400,16 @@ msgstr "Tout les alliés exceptés le lanceur"
 #: skytemple-files/skytemple_files/data/waza_p/model.py:182
 #: skytemple-files/skytemple_files/data/waza_p/model.py:183
 msgid "Invalid "
-msgstr ""
+msgstr "Invalide "
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:102
 #: skytemple-files/skytemple_files/data/waza_p/model.py:142
 msgid "Special / Invalid"
-msgstr ""
+msgstr "Spécial / Invalide"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:127
 msgid "In front"
-msgstr ""
+msgstr "Devant"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:128
 msgid "In front + adjacent (like Wide Slash)"
@@ -2417,7 +2417,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:129
 msgid "8 tiles around user"
-msgstr ""
+msgstr "8 cases autour de l'utilisateur"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:130
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:689
@@ -2426,11 +2426,11 @@ msgstr "Salle"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:131
 msgid "Two tiles away"
-msgstr ""
+msgstr "Deux cases plus loin"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:132
 msgid "Straight line"
-msgstr ""
+msgstr "Ligne doite"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:133
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1130
@@ -2441,40 +2441,40 @@ msgstr "Étage"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:135
 msgid "In front; cuts corners"
-msgstr ""
+msgstr "Devant; affecte les coins"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:136
 msgid "Two tiles away; cuts corners"
-msgstr ""
+msgstr "Deux cases plus loin; affecte les coins"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:168
 msgid "No condition"
-msgstr ""
+msgstr "Aucune condition"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:169
 msgid "Based on AI Condition 1 Chance"
-msgstr ""
+msgstr "Basé sur la condition IA 1 chance"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:170
 msgid "Current HP <= 25%"
-msgstr ""
+msgstr "PV actuel <= 25%"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:171
 msgid "Has at least one negative status condition"
-msgstr ""
+msgstr "A au moins une condition d'état négatif"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:172
 msgid "Is asleep, in a nightmare or napping"
-msgstr ""
+msgstr "Est endormi, dans un cauchemar ou fait une sieste"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:173
 msgid "Is a ghost-type Pokémon and does not have the exposed status"
-msgstr ""
+msgstr "Est un Pokémon de type fantôme et n'a pas le statut exposé"
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:174
 #, python-format
 msgid "Current HP <= 25% or has at least one negative status condition"
-msgstr ""
+msgstr "HP actuel <= 25 % ou présente au moins une condition d'état négatif"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:43
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:103
