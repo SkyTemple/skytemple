@@ -25,7 +25,7 @@ from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import generate_item_store_row_label
 from skytemple.module.rom.controller.main import MainController
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
-
+from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified
 
 class RomModule(AbstractModule):
     @classmethod
@@ -71,3 +71,8 @@ class RomModule(AbstractModule):
 
     def get_static_data(self) -> Pmd2Data:
         return self._static_data
+
+    def mark_as_modified(self):
+        self.project.force_mark_as_modified()
+        row = self._item_store[self._root_node]
+        recursive_up_item_store_mark_as_modified(row)

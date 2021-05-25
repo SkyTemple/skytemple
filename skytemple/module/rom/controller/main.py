@@ -17,27 +17,97 @@
 import os
 from typing import TYPE_CHECKING
 
-from gi.repository import Gtk
-from gi.repository.Gtk import Widget
+from gi.repository.Gtk import Widget, TextBuffer, Entry
 
-from skytemple.core.module_controller import SimpleController
-from skytemple_files.common.i18n_util import f, _
+from skytemple.core.module_controller import AbstractController
 if TYPE_CHECKING:
     from skytemple.module.rom.module import RomModule
 
-
-class MainController(SimpleController):
+class MainController(AbstractController):
     def __init__(self, module: 'RomModule', item_id: int):
         self.module = module
-        self.rom = module.controller_get_rom()
+        self.project = module.project
+        self.icon_banner = module.project.get_icon_banner()
 
-    def get_title(self) -> str:
-        return os.path.basename(self.module.project.filename)
+    def get_view(self) -> Widget:
+        self.builder = self._get_builder(__file__, 'rom.glade')
 
-    def get_content(self) -> Widget:
-        # TODO: Might want to show some more ROM info here later and make it editable.
-        return self.generate_content_label(_("Select something to edit in the ROM from the tree on the left \n"
-                                             "or start the debugger by clicking the bug icon on the top right."))
+        file_name = os.path.basename(self.module.project.filename)
+        self.builder.get_object('file_name').set_text(file_name)
 
-    def get_icon(self) -> str:
-        return 'skytemple-illust-rom'
+        self.builder.get_object('name').set_text(self.project.get_rom_name())
+        self.builder.get_object('id_code').set_text(self.project.get_id_code())
+
+        title_japanese_buffer = self.builder.get_object('title_japanese').get_buffer()
+        title_japanese_buffer.set_text(self.icon_banner.title_japanese)
+        title_japanese_buffer.connect('changed', self.on_title_japanese_changed)
+
+        title_english_buffer = self.builder.get_object('title_english').get_buffer()
+        title_english_buffer.set_text(self.icon_banner.title_english)
+        title_english_buffer.connect('changed', self.on_title_english_changed)
+
+        title_french_buffer = self.builder.get_object('title_french').get_buffer()
+        title_french_buffer.set_text(self.icon_banner.title_french)
+        title_french_buffer.connect('changed', self.on_title_french_changed)
+
+        title_german_buffer = self.builder.get_object('title_german').get_buffer()
+        title_german_buffer.set_text(self.icon_banner.title_german)
+        title_german_buffer.connect('changed', self.on_title_german_changed)
+
+        title_italian_buffer = self.builder.get_object('title_italian').get_buffer()
+        title_italian_buffer.set_text(self.icon_banner.title_italian)
+        title_italian_buffer.connect('changed', self.on_title_italian_changed)
+
+        title_spanish_buffer = self.builder.get_object('title_spanish').get_buffer()
+        title_spanish_buffer.set_text(self.icon_banner.title_spanish)
+        title_spanish_buffer.connect('changed', self.on_title_spanish_changed)
+
+        self.builder.connect_signals(self)
+
+        return self.builder.get_object('box_list')
+
+    def on_title_japanese_changed(self, buffer: TextBuffer):
+        (start, end) = buffer.get_bounds()
+        self.icon_banner.title_japanese = buffer.get_text(start, end, True)
+        self.module.mark_as_modified()
+
+    def on_title_english_changed(self, buffer: TextBuffer):
+        (start, end) = buffer.get_bounds()
+        self.icon_banner.title_english = buffer.get_text(start, end, True)
+        self.module.mark_as_modified()
+
+    def on_title_french_changed(self, buffer: TextBuffer):
+        (start, end) = buffer.get_bounds()
+        self.icon_banner.title_french = buffer.get_text(start, end, True)
+        self.module.mark_as_modified()
+
+    def on_title_german_changed(self, buffer: TextBuffer):
+        (start, end) = buffer.get_bounds()
+        self.icon_banner.title_german = buffer.get_text(start, end, True)
+        self.module.mark_as_modified()
+
+    def on_title_italian_changed(self, buffer: TextBuffer):
+        (start, end) = buffer.get_bounds()
+        self.icon_banner.title_italian = buffer.get_text(start, end, True)
+        self.module.mark_as_modified()
+
+    def on_title_spanish_changed(self, buffer: TextBuffer):
+        (start, end) = buffer.get_bounds()
+        self.icon_banner.title_spanish = buffer.get_text(start, end, True)
+        self.module.mark_as_modified()
+
+    def on_name_changed(self, entry: Entry):
+        try:
+            self.project.set_rom_name(entry.get_text())
+            self.module.mark_as_modified()
+        except:
+            # Invalid input, e.g. non-ASCII characters
+            entry.set_text(self.project.get_rom_name())
+
+    def on_id_code_changed(self, entry: Entry):
+        try:
+            self.project.set_id_code(entry.get_text())
+            self.module.mark_as_modified()
+        except:
+            # Invalid input, e.g. non-ASCII characters
+            entry.set_text(self.project.get_id_code())
