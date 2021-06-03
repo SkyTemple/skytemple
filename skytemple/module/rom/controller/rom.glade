@@ -204,84 +204,6 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkTextView" id="title_japanese">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="wrap-mode">word</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">1</property>
-                    <property name="width">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkTextView" id="title_english">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="wrap-mode">word</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">2</property>
-                    <property name="width">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkTextView" id="title_french">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="wrap-mode">word</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">3</property>
-                    <property name="width">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkTextView" id="title_german">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="wrap-mode">word</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">4</property>
-                    <property name="width">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkTextView" id="title_italian">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="wrap-mode">word</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">5</property>
-                    <property name="width">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkTextView" id="title_spanish">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="wrap-mode">word</property>
-                  </object>
-                  <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">6</property>
-                    <property name="width">2</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
@@ -295,6 +217,126 @@
                   <packing>
                     <property name="left-attach">0</property>
                     <property name="top-attach">0</property>
+                    <property name="width">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkTextView" id="title_japanese">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="wrap-mode">word</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">1</property>
+                    <property name="width">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkTextView" id="title_spanish">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="wrap-mode">word</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">6</property>
+                    <property name="width">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkTextView" id="title_italian">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="wrap-mode">word</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">5</property>
+                    <property name="width">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkTextView" id="title_german">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="wrap-mode">word</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">4</property>
+                    <property name="width">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkTextView" id="title_french">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="wrap-mode">word</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">3</property>
+                    <property name="width">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="shadow-type">in</property>
+                    <child>
+                      <object class="GtkTextView" id="title_english">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="wrap-mode">word</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">2</property>
                     <property name="width">2</property>
                   </packing>
                 </child>
