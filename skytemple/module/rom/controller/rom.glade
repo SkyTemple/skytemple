@@ -69,6 +69,7 @@
                 <child>
                   <object class="GtkEntry" id="id_code">
                     <property name="visible">True</property>
+                    <property name="sensitive">False</property>
                     <property name="can-focus">True</property>
                     <property name="max-length">4</property>
                     <property name="width-chars">6</property>
