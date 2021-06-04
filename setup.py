@@ -65,7 +65,7 @@ setup(
     install_requires=[
         'ndspy >= 3.0.0',
         'skytemple-files >= 1.2.3',
-        'skytemple-dtef >= 1.1.2',
+        'skytemple-dtef >= 1.1.3',
         'skytemple-icons >= 1.2.0',
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
