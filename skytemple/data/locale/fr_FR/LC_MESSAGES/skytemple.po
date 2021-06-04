@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-06-04 14:36+0000\n"
-"PO-Revision-Date: 2021-06-04 14:39\n"
+"POT-Creation-Date: 2021-06-04 18:02+0000\n"
+"PO-Revision-Date: 2021-06-04 18:04\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -1271,59 +1271,59 @@ msgstr "Impossible de configurer le joystick alors que le jeu est actif !"
 msgid "Invalid tileset. Tileset has chunk dimensions of {dim}px, but only {CHUNK_DIM}px are supported."
 msgstr "Jeu de tuiles invalide. Le jeu de tuiles possède des fragments de dimensions {dim} pixels, mais seuls les fragments de dimensions {CHUNK_DIM} pixels sont supportés."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:109
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:111
 msgid "Invalid animation: Animation is only supported for palettes 10 and 11."
 msgstr "Animation invalide : l'animation des couleurs n'est supportée que sur les palettes 10 et 11."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:123
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:125
 #, python-brace-format
 msgid "A required DTEF file is missing: {fn}. Please verify the DTEF package."
 msgstr "Un fichier DTEF requis manque : {fn}. Veuillez vérifier le paquet DTEF."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:131
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:133
 #, python-brace-format
 msgid "Can not import image \"{basename}\" as dungeon tileset: Must be indexed image (=using a palette)"
 msgstr "Impossible d'importer l'image « {basename} » en tant que jeu de tuiles de donjon : l'image doit être indexée (c'est-à-dire utiliser une palette)."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:134
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:136
 #, python-brace-format
 msgid "Can not import image \"{basename}\" as dungeon tileset: Palette must contain  256 RGB colors."
 msgstr "Impossible d'importer l'image « {basename} » en tant que jeu de tuiles de donjon : la palette doit contenir 256 couleurs RVB."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:139
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:141
 #, python-brace-format
 msgid "Can not import images as dungeon tilesets: The palettes of the images do not match. First image read that didn't match: \"{basename}\""
 msgstr "Impossible d'importer les images en tant que jeu de tuiles de donjon : les palettes de ces images ne correspondent pas. La première image qui ne correspond pas est la suivante : « {basename} »."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:144
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:145
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:146
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:147
 #, python-brace-format
 msgid "Logic error: Tileset file {fn} was not loaded."
 msgstr "Erreur dans la logique d'importation : le fichier de jeu de tuiles {fn} n'a pas été chargé."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:148
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:150
 msgid "Image '{fn}' is too small ({tileset.width}x{tileset.height}px), must be at least {bx+w}x{by+h}px."
 msgstr "L'image « {fn} » est trop petite ({tileset.width}x{tileset.height} px), elle doit être au minimum de dimensions {bx+w}x{by+h} pixels."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:153
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:155
 msgid "A rule is missing in the import set"
 msgstr "Une règle manque dans le paquetage importé."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:228
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:230
 #, python-brace-format
 msgid "Error when importing mapping. Unknown type: '{mapping_type}'."
 msgstr "Erreur lors de l'importation du mappage. Type inconnu : '{mapping_type}'."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:232
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:234
 #, python-brace-format
 msgid "Invalid variation index {var_idx}."
 msgstr "Index de variation invalide : {var_idx}."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:274
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:276
 msgid "Error in the XML: One of the animation frames doesn't have 16 colors. Each frame must have a value for each color."
 msgstr "Erreur dans le fichier XML : une des images de l'animation n'a pas 16 couleurs. Chaque image doit avoir une valeur pour chaque couleur."
 
-#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:282
+#: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:284
 msgid "Error in the XML: Durations for a palette or it's colors are not correctly defined."
 msgstr "Erreur dans le fichier XML : la durée et/ou les couleurs d'une palette ne sont pas correctement définies."
 
@@ -1473,7 +1473,7 @@ msgstr "Pokémon"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2267
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:930
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:200
-#: skytemple/skytemple/module/script/controller/ssa.glade:1983
+#: skytemple/skytemple/module/script/controller/ssa.glade:1979
 #: skytemple/skytemple/module/script/controller/ssa.py:1255
 msgid "Type"
 msgstr "Type"
@@ -3781,18 +3781,18 @@ msgid "ID"
 msgstr "ID"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:86
-#: skytemple/skytemple/module/script/controller/ssa.glade:1617
-#: skytemple/skytemple/module/script/controller/ssa.glade:1769
+#: skytemple/skytemple/module/script/controller/ssa.glade:1613
+#: skytemple/skytemple/module/script/controller/ssa.glade:1765
 #: skytemple/skytemple/module/script/controller/ssa.py:1237
 #: skytemple/skytemple/module/script/controller/ssa.py:1246
 msgid "Kind"
 msgstr "Catégorie"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:90
-#: skytemple/skytemple/module/script/controller/ssa.glade:1630
-#: skytemple/skytemple/module/script/controller/ssa.glade:1782
-#: skytemple/skytemple/module/script/controller/ssa.glade:1996
-#: skytemple/skytemple/module/script/controller/ssa.glade:2185
+#: skytemple/skytemple/module/script/controller/ssa.glade:1626
+#: skytemple/skytemple/module/script/controller/ssa.glade:1778
+#: skytemple/skytemple/module/script/controller/ssa.glade:1992
+#: skytemple/skytemple/module/script/controller/ssa.glade:2181
 #: skytemple/skytemple/module/script/controller/ssa.py:1236
 #: skytemple/skytemple/module/script/controller/ssa.py:1245
 #: skytemple/skytemple/module/script/controller/ssa.py:1254
@@ -3828,26 +3828,26 @@ msgstr "<Global>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
 #: skytemple/skytemple/module/lists/module.py:72
-#: skytemple/skytemple/module/script/controller/ssa.glade:1207
-#: skytemple/skytemple/module/script/controller/ssa.glade:1235
+#: skytemple/skytemple/module/script/controller/ssa.glade:1203
+#: skytemple/skytemple/module/script/controller/ssa.glade:1231
 msgid "Actors"
 msgstr "Acteurs"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:255
-#: skytemple/skytemple/module/script/controller/ssa.glade:1316
-#: skytemple/skytemple/module/script/controller/ssa.glade:1344
+#: skytemple/skytemple/module/script/controller/ssa.glade:1312
+#: skytemple/skytemple/module/script/controller/ssa.glade:1340
 msgid "Objects"
 msgstr "Objets"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:274
-#: skytemple/skytemple/module/script/controller/ssa.glade:1425
-#: skytemple/skytemple/module/script/controller/ssa.glade:1453
+#: skytemple/skytemple/module/script/controller/ssa.glade:1421
+#: skytemple/skytemple/module/script/controller/ssa.glade:1449
 msgid "Performers"
 msgstr "Exécutants"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:290
-#: skytemple/skytemple/module/script/controller/ssa.glade:1534
-#: skytemple/skytemple/module/script/controller/ssa.glade:1562
+#: skytemple/skytemple/module/script/controller/ssa.glade:1530
+#: skytemple/skytemple/module/script/controller/ssa.glade:1558
 msgid "Triggers"
 msgstr "Déclencheurs"
 
@@ -4402,7 +4402,7 @@ msgid "Script Browser"
 msgstr "Explorateur de scripts"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:866
-#: skytemple/skytemple/module/script/controller/ssa.glade:1036
+#: skytemple/skytemple/module/script/controller/ssa.glade:1032
 #: skytemple/skytemple/module/script/controller/ssb.py:24
 msgid "Scripts"
 msgstr "Scripts"
@@ -7915,7 +7915,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:417
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4303
-#: skytemple/skytemple/module/script/controller/ssa.glade:1126
+#: skytemple/skytemple/module/script/controller/ssa.glade:1122
 msgid "Map"
 msgstr ""
 
@@ -10769,70 +10769,70 @@ msgid "Go to BG"
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:696
-#: skytemple/skytemple/module/script/controller/ssa.glade:1054
+#: skytemple/skytemple/module/script/controller/ssa.glade:1050
 msgid "Scene"
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:740
-#: skytemple/skytemple/module/script/controller/ssa.glade:869
-#: skytemple/skytemple/module/script/controller/ssa.glade:993
+#: skytemple/skytemple/module/script/controller/ssa.glade:865
+#: skytemple/skytemple/module/script/controller/ssa.glade:989
 msgid "Add"
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:754
-#: skytemple/skytemple/module/script/controller/ssa.glade:883
-#: skytemple/skytemple/module/script/controller/ssa.glade:1007
+#: skytemple/skytemple/module/script/controller/ssa.glade:879
+#: skytemple/skytemple/module/script/controller/ssa.glade:1003
 msgid "Remove"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.glade:798
+#: skytemple/skytemple/module/script/controller/ssa.glade:794
 msgid "Events"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.glade:913
+#: skytemple/skytemple/module/script/controller/ssa.glade:909
 msgid "Sectors (Layers)"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.glade:969
+#: skytemple/skytemple/module/script/controller/ssa.glade:965
 msgid "Edit Script"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.glade:1105
+#: skytemple/skytemple/module/script/controller/ssa.glade:1101
 msgid "Scenes for this map"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.glade:1643
-#: skytemple/skytemple/module/script/controller/ssa.glade:1795
+#: skytemple/skytemple/module/script/controller/ssa.glade:1639
+#: skytemple/skytemple/module/script/controller/ssa.glade:1791
 #: skytemple/skytemple/module/script/controller/ssa.py:1238
 #: skytemple/skytemple/module/script/controller/ssa.py:1247
 msgid "Talk Script"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.glade:1656
-#: skytemple/skytemple/module/script/controller/ssa.glade:1808
-#: skytemple/skytemple/module/script/controller/ssa.glade:2052
+#: skytemple/skytemple/module/script/controller/ssa.glade:1652
+#: skytemple/skytemple/module/script/controller/ssa.glade:1804
+#: skytemple/skytemple/module/script/controller/ssa.glade:2048
 msgid "Direction"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.glade:1888
-#: skytemple/skytemple/module/script/controller/ssa.glade:2077
-#: skytemple/skytemple/module/script/controller/ssa.glade:2222
+#: skytemple/skytemple/module/script/controller/ssa.glade:1884
+#: skytemple/skytemple/module/script/controller/ssa.glade:2073
+#: skytemple/skytemple/module/script/controller/ssa.glade:2218
 msgid "Hitbox"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.glade:1901
-#: skytemple/skytemple/module/script/controller/ssa.glade:2090
-#: skytemple/skytemple/module/script/controller/ssa.glade:2235
+#: skytemple/skytemple/module/script/controller/ssa.glade:1897
+#: skytemple/skytemple/module/script/controller/ssa.glade:2086
+#: skytemple/skytemple/module/script/controller/ssa.glade:2231
 msgid "W"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.glade:1914
-#: skytemple/skytemple/module/script/controller/ssa.glade:2115
-#: skytemple/skytemple/module/script/controller/ssa.glade:2279
+#: skytemple/skytemple/module/script/controller/ssa.glade:1910
+#: skytemple/skytemple/module/script/controller/ssa.glade:2111
+#: skytemple/skytemple/module/script/controller/ssa.glade:2275
 msgid "H"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.glade:2172
+#: skytemple/skytemple/module/script/controller/ssa.glade:2168
 msgid "Event"
 msgstr ""
 
