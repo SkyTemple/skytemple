@@ -15,13 +15,23 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
+import sys
 from typing import TYPE_CHECKING
 
-from gi.repository.Gtk import Widget, TextBuffer, Entry
+import cairo
+from PIL import Image
+from gi.repository.Gtk import Widget, TextBuffer, Entry, DrawingArea, FileChooserNative, FileChooserAction, ResponseType
 
+from skytemple.core.error_handler import display_error
+from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
+from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple_files.common.i18n_util import _, f
+from skytemple.controller.main import MainController as SkyTempleMainController
+
 if TYPE_CHECKING:
     from skytemple.module.rom.module import RomModule
+
 
 class MainController(AbstractController):
     def __init__(self, module: 'RomModule', item_id: int):
@@ -37,6 +47,7 @@ class MainController(AbstractController):
 
         self.builder.get_object('name').set_text(self.project.get_rom_name())
         self.builder.get_object('id_code').set_text(self.project.get_id_code())
+        self.icon_surface = pil_to_cairo_surface(self.icon_banner.icon.to_pil().convert('RGBA'))
 
         title_japanese_buffer = self.builder.get_object('title_japanese').get_buffer()
         title_japanese_buffer.set_text(self.icon_banner.title_japanese)
@@ -65,6 +76,62 @@ class MainController(AbstractController):
         self.builder.connect_signals(self)
 
         return self.builder.get_object('box_list')
+
+    def on_draw_icon_draw(self, widget: DrawingArea, ctx: cairo.Context):
+        scale = 2
+        ctx.scale(scale, scale)
+        ctx.set_source_surface(self.icon_surface)
+        ctx.get_source().set_filter(cairo.Filter.NEAREST)
+        ctx.paint()
+        ctx.scale(1 / scale, 1 / scale)
+        return True
+
+    def on_export_icon_clicked(self, *args):
+        dialog = FileChooserNative.new(
+            _("Export game icon as PNG..."),
+            SkyTempleMainController.window(),
+            FileChooserAction.SAVE,
+            None, None
+        )
+
+        add_dialog_png_filter(dialog)
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+        if '.' not in fn:
+            fn += '.png'
+        dialog.destroy()
+
+        if response == ResponseType.ACCEPT:
+            self.icon_banner.icon.to_pil().save(fn)
+
+    def on_import_icon_clicked(self, *args):
+        dialog = FileChooserNative.new(
+            _("Import game icon from PNG..."),
+            SkyTempleMainController.window(),
+            FileChooserAction.OPEN,
+            None, None
+        )
+
+        add_dialog_png_filter(dialog)
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+        dialog.destroy()
+
+        if response == ResponseType.ACCEPT:
+            try:
+                self.icon_banner.icon.from_pil(Image.open(fn))
+            except Exception as err:
+                display_error(
+                    sys.exc_info(),
+                    _('Failed importing game icon:\n') + str(err),
+                    _("Could not import.")
+                )
+            self.icon_surface = pil_to_cairo_surface(self.icon_banner.icon.to_pil().convert('RGBA'))
+            self.builder.get_object('draw_icon').queue_draw()
+            # Mark as modified
+            self.module.mark_as_modified()
 
     def on_title_japanese_changed(self, buffer: TextBuffer):
         (start, end) = buffer.get_bounds()
