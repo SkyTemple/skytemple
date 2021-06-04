@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-05-16 18:34+0000\n"
-"PO-Revision-Date: 2021-05-16 18:39\n"
+"POT-Creation-Date: 2021-06-04 14:36+0000\n"
+"PO-Revision-Date: 2021-06-04 14:39\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -6088,6 +6088,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.glade:42
 #: skytemple/skytemple/module/monster/controller/monster.glade:850
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:219
+#: skytemple/skytemple/module/rom/controller/rom.glade:153
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:457
 #: skytemple/skytemple/module/sprite/controller/object.glade:107
 #: skytemple/skytemple/module/strings/controller/strings.glade:153
@@ -6107,6 +6108,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.glade:79
 #: skytemple/skytemple/module/monster/controller/monster.glade:895
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:258
+#: skytemple/skytemple/module/rom/controller/rom.glade:107
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:502
 #: skytemple/skytemple/module/sprite/controller/object.glade:152
 #: skytemple/skytemple/module/strings/controller/strings.glade:198
@@ -10497,6 +10499,7 @@ msgid "Failed importing portraits sheet:\n"
 msgstr ""
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:238
+#: skytemple/skytemple/module/rom/controller/main.py:129
 msgid "Could not import."
 msgstr ""
 
@@ -10504,9 +10507,56 @@ msgstr ""
 msgid " (flip)"
 msgstr ""
 
-#: skytemple/skytemple/module/rom/controller/main.py:39
-msgid "Select something to edit in the ROM from the tree on the left \n"
-"or start the debugger by clicking the bug icon on the top right."
+#: skytemple/skytemple/module/rom/controller/main.py:91
+msgid "Export game icon as PNG..."
+msgstr ""
+
+#: skytemple/skytemple/module/rom/controller/main.py:110
+msgid "Import game icon from PNG..."
+msgstr ""
+
+#: skytemple/skytemple/module/rom/controller/main.py:128
+msgid "Failed importing game icon:\n"
+msgstr ""
+
+#: skytemple/skytemple/module/rom/controller/rom.glade:40
+msgid "Rom Settings"
+msgstr ""
+
+#: skytemple/skytemple/module/rom/controller/rom.glade:193
+msgid "Internal name:"
+msgstr ""
+
+#: skytemple/skytemple/module/rom/controller/rom.glade:220
+msgid "ID code: "
+msgstr ""
+
+#: skytemple/skytemple/module/rom/controller/rom.glade:275
+msgid "Japanese:"
+msgstr ""
+
+#: skytemple/skytemple/module/rom/controller/rom.glade:287
+msgid "English:"
+msgstr ""
+
+#: skytemple/skytemple/module/rom/controller/rom.glade:299
+msgid "French:"
+msgstr ""
+
+#: skytemple/skytemple/module/rom/controller/rom.glade:311
+msgid "German:"
+msgstr ""
+
+#: skytemple/skytemple/module/rom/controller/rom.glade:323
+msgid "Italian:"
+msgstr ""
+
+#: skytemple/skytemple/module/rom/controller/rom.glade:335
+msgid "Spanish:"
+msgstr ""
+
+#: skytemple/skytemple/module/rom/controller/rom.glade:348
+msgid "Title:"
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:74
