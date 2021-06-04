@@ -40,6 +40,7 @@ from skytemple_files.common.util import get_files_from_rom_with_extension, get_r
 from skytemple_files.container.sir0.sir0_serializable import Sir0Serializable
 from skytemple_files.patch.patches import Patcher
 from skytemple_files.compression_container.common_at.handler import CommonAtType
+from skytemple_files.hardcoded.icon_banner import IconBanner
 
 logger = logging.getLogger(__name__)
 
@@ -136,6 +137,8 @@ class RomProject:
         # Callback for opening views using iterators from the main view list.
         self._cb_open_view: Callable[[Gtk.TreeIter], None] = cb_open_view
         self._project_fm = ProjectFileManager(filename)
+
+        self._icon_banner: Optional[IconBanner] = None
         
         # Lazy
         self._patcher = None
@@ -153,6 +156,7 @@ class RomProject:
 
         self._sprite_renderer = SpriteProvider(self)
         self._string_provider = StringProvider(self)
+        self._icon_banner = IconBanner(self._rom)
 
     def get_rom_module(self) -> 'RomModule':
         return self._rom_module
@@ -168,6 +172,21 @@ class RomProject:
 
     def get_module(self, name):
         return self._loaded_modules[name]
+
+    def get_icon_banner(self) -> IconBanner:
+        return self._icon_banner
+
+    def get_rom_name(self) -> str:
+        return self._rom.name.decode('ascii')
+
+    def set_rom_name(self, name: str):
+        self._rom.name = name.encode('ascii')
+
+    def get_id_code(self) -> str:
+        return self._rom.idCode.decode('ascii')
+
+    def set_id_code(self, id_code: str):
+        self._rom.idCode = id_code.encode('ascii')
 
     def open_file_in_rom(self, file_path_in_rom: str, file_handler_class: Type[DataHandler[T]],
                          threadsafe=False, **kwargs) -> Union[T, ModelContext[T]]:
@@ -272,6 +291,8 @@ class RomProject:
             for name in self._modified_files:
                 self.prepare_save_model(name)
             self._modified_files = []
+            if self._icon_banner:
+                self._icon_banner.save_to_rom()
             self._forced_modified = False
             logger.debug(f"Saving ROM to {self.filename}")
             self.save_as_is()
