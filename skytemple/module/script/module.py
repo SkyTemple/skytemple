@@ -58,7 +58,7 @@ class ScriptModule(AbstractModule):
         self.project = rom_project
 
         # Load all scripts
-        self.script_engine_file_tree = load_script_files(self.project.get_rom_folder(SCRIPT_DIR))
+        self.script_engine_file_tree = load_script_files(self.project.get_rom_folder(SCRIPT_DIR), self.get_level_list())
 
         # Tree iters for handle_request:
         self._map_scene_root: Dict[str, Gtk.TreeIter] = {}
