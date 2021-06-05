@@ -25,6 +25,7 @@ from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST
     REQUEST_TYPE_SCENE_SSS
 from skytemple.core.rom_project import RomProject
 from skytemple.core.sprite_provider import SpriteProvider
+from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.script.controller.folder import FolderController
 from skytemple.module.script.controller.map import MapController
@@ -37,6 +38,9 @@ from skytemple.module.script.controller.sub import SubController
 from skytemple_files.common.script_util import load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.i18n_util import f, _
+from skytemple_files.graphics.bg_list_dat.model import BgList
+from skytemple_files.list.level.model import LevelListBin
+LEVEL_LIST = 'BALANCE/level_list.bin'
 
 
 class ScriptModule(AbstractModule):
@@ -62,12 +66,14 @@ class ScriptModule(AbstractModule):
         self._map_ssss: Dict[str, Dict[str, Gtk.TreeIter]] = {}
 
         self._tree_model = None
+        self._root = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         # -> Script [main]
         root = item_store.append(root_node, [
             'skytemple-e-ground-symbolic', SCRIPT_SCENES, self, MainController, 0, False, '', True
         ])
+        self._root = root
 
         self._tree_model = item_store
 
@@ -249,3 +255,24 @@ class ScriptModule(AbstractModule):
             self.project.get_module('map_bg'),
             pos_marks, pos_mark_to_edit
         )
+
+    def has_level_list(self):
+        return self.project.file_exists(LEVEL_LIST)
+
+    def get_level_list(self) -> LevelListBin:
+        return self.project.open_sir0_file_in_rom(LEVEL_LIST, LevelListBin)
+
+    def mark_level_list_as_modified(self):
+        self.project.mark_as_modified(LEVEL_LIST)
+        recursive_up_item_store_mark_as_modified(self._tree_model[self._root])
+
+    def get_bg_level_list(self) -> BgList:
+        return self.project.open_file_in_rom('MAP_BG/bg_list.dat', FileType.BG_LIST_DAT)
+
+    def get_map_display_name(self, nameid):
+        sp = self.project.get_string_provider()
+        if nameid == 0:
+            return sp.get_value(StringType.GROUND_MAP_NAMES, 0), sp.get_index(StringType.GROUND_MAP_NAMES, 0)
+        if nameid < 181:
+            return sp.get_value(StringType.DUNGEON_NAMES_SELECTION, nameid - 1), sp.get_index(StringType.DUNGEON_NAMES_SELECTION, nameid - 1)
+        return sp.get_value(StringType.GROUND_MAP_NAMES, nameid - 182), sp.get_index(StringType.GROUND_MAP_NAMES, nameid - 182)

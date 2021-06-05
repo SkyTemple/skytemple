@@ -122,22 +122,6 @@ These backgrounds are usually loaded by the game for scenes and serve many purpo
       </packing>
     </child>
   </object>
-  <object class="GtkListStore" id="cb_store_lang">
-    <columns>
-      <!-- column-name locale -->
-      <column type="gchararray"/>
-      <!-- column-name name -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkListStore" id="cb_store_types">
-    <columns>
-      <!-- column-name id_type -->
-      <column type="guint"/>
-      <!-- column-name description -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
   <object class="GtkDialog" id="generic_input_dialog">
     <property name="can-focus">False</property>
     <property name="modal">True</property>
@@ -205,21 +189,5 @@ These backgrounds are usually loaded by the game for scenes and serve many purpo
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkListStore" id="group_text_tree_store">
-    <columns>
-      <!-- column-name id_text -->
-      <column type="guint"/>
-      <!-- column-name string_text -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
-  <object class="GtkListStore" id="special_personalities_tree_store">
-    <columns>
-      <!-- column-name actor -->
-      <column type="gchararray"/>
-      <!-- column-name personality -->
-      <column type="guint"/>
-    </columns>
   </object>
 </interface>
