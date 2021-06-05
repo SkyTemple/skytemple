@@ -33,7 +33,7 @@ from skytemple.module.map_bg.controller.folder import FolderController
 from skytemple.module.map_bg.controller.main import MainController, MAPBG_NAME
 from skytemple.module.map_bg.script.add_created_with_logo import AddCreatedWithLogo
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.graphics.bg_list_dat.model import BgList
+from skytemple_files.graphics.bg_list_dat.model import BgList, BgListEntry
 from skytemple_files.graphics.bma.model import Bma
 from skytemple_files.graphics.bpa.model import Bpa
 from skytemple_files.graphics.bpc.model import Bpc
@@ -61,12 +61,14 @@ class MapBgModule(AbstractModule):
 
         self._tree_model = None
         self._tree_level_iter = []
+        self._sub_nodes = None
+        self._other_node = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
             'skytemple-e-mapbg-symbolic', MAPBG_NAME, self, MainController, 0, False, '', True
         ])
-        sub_nodes = {
+        self._sub_nodes = {
             'S': item_store.append(root, [
                 'skytemple-folder-symbolic', _('S - System'), self, FolderController, 'S - System', False, '', True
             ]),
@@ -93,18 +95,17 @@ class MapBgModule(AbstractModule):
             ])
         }
         # Other
-        other = item_store.append(root, [
+        self._other_node = item_store.append(root, [
             'skytemple-folder-symbolic', _('Others'), self, FolderController, None, False, '', True
         ])
         self._tree_model = item_store
         self._tree_level_iter = []
         for i, level in enumerate(self.bgs.level):
-            parent = other
-            if level.bma_name[0] in sub_nodes.keys():
-                parent = sub_nodes[level.bma_name[0]]
+            parent = self._other_node
+            if level.bma_name[0] in self._sub_nodes.keys():
+                parent = self._sub_nodes[level.bma_name[0]]
             self._tree_level_iter.append(
                 item_store.append(parent, [
-                    # TODO: Name from Strings
                     'skytemple-e-mapbg-symbolic', level.bma_name, self,  BgController, i, False, '', True
                 ])
             )
@@ -143,13 +144,28 @@ class MapBgModule(AbstractModule):
                 bpas.append(self.project.open_file_in_rom(f'{MAP_BG_PATH}{bpa.lower()}.bpa', FileType.BPA))
         return bpas
 
+    def add_map(self, map_name):
+        item_id = len(self.bgs.level)
+        self.bgs.level.append(
+            BgListEntry(map_name, map_name, map_name, [None] * 8)
+        )
+        parent = self._other_node
+        if map_name[0] in self._sub_nodes.keys():
+            parent = self._sub_nodes[map_name[0]]
+        self._tree_level_iter.append(
+            self._tree_model.append(parent, [
+                'skytemple-e-mapbg-symbolic', map_name, self, BgController, item_id, False, '', True
+            ])
+        )
+        self.mark_as_modified(item_id)
+        self.mark_level_list_as_modified()
+
     def mark_as_modified(self, item_id):
         """Mark a specific map as modified"""
         l = self.bgs.level[item_id]
         self.project.mark_as_modified(f'{MAP_BG_PATH}{l.bma_name.lower()}.bma')
         self.project.mark_as_modified(f'{MAP_BG_PATH}{l.bpc_name.lower()}.bpc')
         self.project.mark_as_modified(f'{MAP_BG_PATH}{l.bpl_name.lower()}.bpl')
-        self.project.mark_as_modified(f'{MAP_BG_PATH}{l.bma_name.lower()}.bma')
         for bpa in l.bpa_names:
             if bpa is not None:
                 self.project.mark_as_modified(f'{MAP_BG_PATH}{bpa.lower()}.bpa')
