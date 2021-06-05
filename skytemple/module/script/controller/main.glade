@@ -2,6 +2,22 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
+  <object class="GtkListStore" id="dungeon_tileset_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="gchararray"/>
+      <!-- column-name level -->
+      <column type="gint"/>
+      <!-- column-name dungeon -->
+      <column type="guint"/>
+      <!-- column-name level_label -->
+      <column type="gchararray"/>
+      <!-- column-name dungeon_label -->
+      <column type="gchararray"/>
+      <!-- column-name floor_id -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkDialog" id="generic_input_dialog">
     <property name="can-focus">False</property>
     <property name="modal">True</property>
@@ -129,6 +145,22 @@
       <column type="gchararray"/>
     </columns>
   </object>
+  <object class="GtkListStore" id="td_dungeon_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="guint"/>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="td_level_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="gint"/>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkBox" id="box_list">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -191,31 +223,44 @@ This also includes cutscene visuals and some system related scenes like credits 
               </packing>
             </child>
             <child>
-              <object class="GtkStack" id="list_stack">
+              <object class="GtkNotebook">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
+                <property name="can-focus">True</property>
+                <property name="margin-start">5</property>
+                <property name="margin-end">5</property>
+                <property name="margin-top">5</property>
+                <property name="margin-bottom">5</property>
                 <child>
-                  <object class="GtkBox" id="box_na">
+                  <object class="GtkStack" id="list_stack">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkBox">
+                      <object class="GtkBox" id="box_na">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="orientation">vertical</property>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="margin-top">5</property>
-                            <property name="margin-bottom">5</property>
-                            <property name="label" translatable="yes">Level List:</property>
-                            <property name="wrap">True</property>
-                            <attributes>
-                              <attribute name="weight" value="bold"/>
-                            </attributes>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-top">40</property>
+                                <property name="label" translatable="yes">&lt;Not available&gt;
+
+To view and edit this list, please apply the "ActorAndLevelLoader" 
+ASM patch from the "ASM Patches" menu.</property>
+                                <property name="justify">center</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -223,16 +268,184 @@ This also includes cutscene visuals and some system related scenes like credits 
                             <property name="position">0</property>
                           </packing>
                         </child>
+                      </object>
+                      <packing>
+                        <property name="name">page1</property>
+                        <property name="title" translatable="yes">page1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="box_edit">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">5</property>
                         <child>
-                          <object class="GtkLabel">
+                          <!-- n-columns=7 n-rows=2 -->
+                          <object class="GtkGrid">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="margin-top">40</property>
-                            <property name="label" translatable="yes">&lt;Not available&gt;
-
-To view and edit this list, please apply the "ActorAndLevelLoader" 
-ASM patch from the "ASM Patches" menu.</property>
-                            <property name="justify">center</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
+                            <property name="row-spacing">5</property>
+                            <property name="column-spacing">5</property>
+                            <child>
+                              <object class="GtkScrolledWindow">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                                <property name="shadow-type">in</property>
+                                <child>
+                                  <object class="GtkTreeView" id="level_list_tree">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="model">level_list_tree_store</property>
+                                    <property name="rules-hint">True</property>
+                                    <property name="search-column">0</property>
+                                    <child internal-child="selection">
+                                      <object class="GtkTreeSelection"/>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">ID</property>
+                                        <child>
+                                          <object class="GtkCellRendererText"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">Internal Name</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cr_name">
+                                            <property name="editable">True</property>
+                                            <signal name="edited" handler="on_cr_name_edited" swapped="no"/>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="text">1</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">Overworld Text String</property>
+                                        <child>
+                                          <object class="GtkCellRendererCombo" id="cr_nameid">
+                                            <property name="editable">True</property>
+                                            <property name="model">nameid_store</property>
+                                            <property name="text-column">1</property>
+                                            <signal name="changed" handler="on_cr_nameid_changed" swapped="no"/>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="text">6</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">Type</property>
+                                        <child>
+                                          <object class="GtkCellRendererCombo" id="cr_maptype">
+                                            <property name="editable">True</property>
+                                            <property name="model">maptype_store</property>
+                                            <property name="text-column">1</property>
+                                            <signal name="changed" handler="on_cr_maptype_changed" swapped="no"/>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="text">7</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">Map Background</property>
+                                        <child>
+                                          <object class="GtkCellRendererCombo" id="cr_mapid">
+                                            <property name="editable">True</property>
+                                            <property name="model">mapbg_store</property>
+                                            <property name="text-column">1</property>
+                                            <signal name="changed" handler="on_cr_mapid_changed" swapped="no"/>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="text">8</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTreeViewColumn">
+                                        <property name="title" translatable="yes">Default Weather</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="cr_weather">
+                                            <property name="editable">True</property>
+                                            <signal name="edited" handler="on_cr_weather_edited" swapped="no"/>
+                                          </object>
+                                          <attributes>
+                                            <attribute name="text">5</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">0</property>
+                                <property name="width">7</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">5</property>
+                                <child>
+                                  <object class="GtkButton" id="btn_add">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="tooltip-text" translatable="yes">Reload</property>
+                                    <signal name="clicked" handler="on_btn_add_clicked" swapped="no"/>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">skytemple-list-add-symbolic</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">6</property>
+                                <property name="top-attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">1</property>
+                                <property name="width">6</property>
+                              </packing>
+                            </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -242,50 +455,31 @@ ASM patch from the "ASM Patches" menu.</property>
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="name">page0</property>
+                        <property name="title" translatable="yes">page0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                   </object>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Level List</property>
+                  </object>
                   <packing>
-                    <property name="name">page1</property>
-                    <property name="title" translatable="yes">page1</property>
+                    <property name="tab-fill">False</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkBox" id="box_edit">
+                  <object class="GtkBox" id="box_edit1">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-left">5</property>
-                    <property name="margin-right">5</property>
-                    <property name="margin-start">5</property>
-                    <property name="margin-end">5</property>
-                    <property name="margin-top">5</property>
-                    <property name="margin-bottom">5</property>
                     <property name="orientation">vertical</property>
                     <property name="spacing">5</property>
                     <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="halign">start</property>
-                        <property name="margin-top">5</property>
-                        <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">Level List:</property>
-                        <property name="wrap">True</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <!-- n-columns=7 n-rows=2 -->
+                      <!-- n-columns=7 n-rows=1 -->
                       <object class="GtkGrid">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
@@ -301,12 +495,15 @@ ASM patch from the "ASM Patches" menu.</property>
                             <property name="vexpand">True</property>
                             <property name="shadow-type">in</property>
                             <child>
-                              <object class="GtkTreeView" id="level_list_tree">
+                              <object class="GtkTreeView" id="dungeon_tileset_tree">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <property name="model">level_list_tree_store</property>
+                                <property name="model">dungeon_tileset_store</property>
                                 <property name="rules-hint">True</property>
                                 <property name="search-column">0</property>
+                                <child internal-child="selection">
+                                  <object class="GtkTreeSelection"/>
+                                </child>
                                 <child>
                                   <object class="GtkTreeViewColumn">
                                     <property name="title" translatable="yes">ID</property>
@@ -320,73 +517,43 @@ ASM patch from the "ASM Patches" menu.</property>
                                 </child>
                                 <child>
                                   <object class="GtkTreeViewColumn">
-                                    <property name="title" translatable="yes">Internal Name</property>
+                                    <property name="title" translatable="yes">Level</property>
                                     <child>
-                                      <object class="GtkCellRendererText" id="cr_name">
+                                      <object class="GtkCellRendererCombo" id="cr_td_level">
                                         <property name="editable">True</property>
-                                        <signal name="edited" handler="on_cr_name_edited" swapped="no"/>
-                                      </object>
-                                      <attributes>
-                                        <attribute name="text">1</attribute>
-                                      </attributes>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkTreeViewColumn">
-                                    <property name="title" translatable="yes">Overworld Text String</property>
-                                    <child>
-                                      <object class="GtkCellRendererCombo" id="cr_nameid">
-                                        <property name="editable">True</property>
-                                        <property name="model">nameid_store</property>
+                                        <property name="model">td_level_store</property>
                                         <property name="text-column">1</property>
-                                        <signal name="changed" handler="on_cr_nameid_changed" swapped="no"/>
+                                        <signal name="changed" handler="on_cr_td_level_changed" swapped="no"/>
                                       </object>
                                       <attributes>
-                                        <attribute name="text">6</attribute>
+                                        <attribute name="text">3</attribute>
                                       </attributes>
                                     </child>
                                   </object>
                                 </child>
                                 <child>
                                   <object class="GtkTreeViewColumn">
-                                    <property name="title" translatable="yes">Type</property>
+                                    <property name="title" translatable="yes">Dungeon</property>
                                     <child>
-                                      <object class="GtkCellRendererCombo" id="cr_maptype">
+                                      <object class="GtkCellRendererCombo" id="cr_td_dungeon">
                                         <property name="editable">True</property>
-                                        <property name="model">maptype_store</property>
+                                        <property name="model">td_dungeon_store</property>
                                         <property name="text-column">1</property>
-                                        <signal name="changed" handler="on_cr_maptype_changed" swapped="no"/>
+                                        <signal name="changed" handler="on_cr_td_dungeon_changed" swapped="no"/>
                                       </object>
                                       <attributes>
-                                        <attribute name="text">7</attribute>
+                                        <attribute name="text">4</attribute>
                                       </attributes>
                                     </child>
                                   </object>
                                 </child>
                                 <child>
                                   <object class="GtkTreeViewColumn">
-                                    <property name="title" translatable="yes">Map Background</property>
+                                    <property name="title" translatable="yes">Floor Number</property>
                                     <child>
-                                      <object class="GtkCellRendererCombo" id="cr_mapid">
+                                      <object class="GtkCellRendererText" id="cr_td_floor_number">
                                         <property name="editable">True</property>
-                                        <property name="model">mapbg_store</property>
-                                        <property name="text-column">1</property>
-                                        <signal name="changed" handler="on_cr_mapid_changed" swapped="no"/>
-                                      </object>
-                                      <attributes>
-                                        <attribute name="text">8</attribute>
-                                      </attributes>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkTreeViewColumn">
-                                    <property name="title" translatable="yes">Default Weather</property>
-                                    <child>
-                                      <object class="GtkCellRendererText" id="cr_weather">
-                                        <property name="editable">True</property>
-                                        <signal name="edited" handler="on_cr_weather_edited" swapped="no"/>
+                                        <signal name="edited" handler="on_cr_td_floor_number_edited" swapped="no"/>
                                       </object>
                                       <attributes>
                                         <attribute name="text">5</attribute>
@@ -403,62 +570,44 @@ ASM patch from the "ASM Patches" menu.</property>
                             <property name="width">7</property>
                           </packing>
                         </child>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="spacing">5</property>
-                            <child>
-                              <object class="GtkButton" id="btn_add">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="tooltip-text" translatable="yes">Reload</property>
-                                <signal name="clicked" handler="on_btn_add_clicked" swapped="no"/>
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">skytemple-list-add-symbolic</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left-attach">6</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">1</property>
-                            <property name="width">6</property>
-                          </packing>
-                        </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">2</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="margin-start">5</property>
+                        <property name="margin-bottom">5</property>
+                        <property name="label" translatable="yes">This maps ground levels using type #10 or #11 to dungeons and or fixed rooms. 
+If a selected floor number is bigger than the floor count for this dungeon, the last floor is used.</property>
+                        <property name="wrap">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
-                    <property name="name">page0</property>
-                    <property name="title" translatable="yes">page0</property>
                     <property name="position">1</property>
+                  </packing>
+                </child>
+                <child type="tab">
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Level - Dungeon Mappings</property>
+                  </object>
+                  <packing>
+                    <property name="position">1</property>
+                    <property name="tab-fill">False</property>
                   </packing>
                 </child>
               </object>

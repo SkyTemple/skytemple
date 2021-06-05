@@ -23,7 +23,7 @@ from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST_TYPE_SCENE_SSE, REQUEST_TYPE_SCENE_SSA, \
     REQUEST_TYPE_SCENE_SSS
-from skytemple.core.rom_project import RomProject
+from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
@@ -39,6 +39,7 @@ from skytemple_files.common.script_util import load_script_files, SCRIPT_DIR, SS
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.i18n_util import f, _
 from skytemple_files.graphics.bg_list_dat.model import BgList
+from skytemple_files.hardcoded.ground_dungeon_tilesets import HardcodedGroundDungeonTilesets, GroundTilesetMapping
 from skytemple_files.list.level.model import LevelListBin
 LEVEL_LIST = 'BALANCE/level_list.bin'
 
@@ -276,3 +277,17 @@ class ScriptModule(AbstractModule):
         if nameid < 181:
             return sp.get_value(StringType.DUNGEON_NAMES_SELECTION, nameid - 1), sp.get_index(StringType.DUNGEON_NAMES_SELECTION, nameid - 1)
         return sp.get_value(StringType.GROUND_MAP_NAMES, nameid - 182), sp.get_index(StringType.GROUND_MAP_NAMES, nameid - 182)
+
+    def get_dungeon_tilesets(self) -> List[GroundTilesetMapping]:
+        config = self.project.get_rom_module().get_static_data()
+        ov11 = self.project.get_binary(BinaryName.OVERLAY_11)
+        return HardcodedGroundDungeonTilesets.get_ground_dungeon_tilesets(ov11, config)
+
+    def save_dungeon_tilesets(self, value: List[GroundTilesetMapping]):
+        config = self.project.get_rom_module().get_static_data()
+        self.project.modify_binary(
+            BinaryName.OVERLAY_11, lambda binary: HardcodedGroundDungeonTilesets.set_ground_dungeon_tilesets(
+                value, binary, config
+            )
+        )
+        recursive_up_item_store_mark_as_modified(self._tree_model[self._root])

@@ -15,17 +15,21 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, List
 
 from gi.repository import Gtk
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
+from skytemple.core.rom_project import BinaryName
+from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import data_dir
-from skytemple_files.common.i18n_util import _
+from skytemple_files.common.i18n_util import _, f
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevelMapType, Pmd2ScriptLevel
 from skytemple_files.common.types.file_types import FileType
+from skytemple_files.hardcoded.dungeons import HardcodedDungeons
+from skytemple_files.hardcoded.ground_dungeon_tilesets import GroundTilesetMapping
 from skytemple_files.list.level.model import LevelListBin
 
 if TYPE_CHECKING:
@@ -39,9 +43,12 @@ class MainController(AbstractController):
         self.module = module
         self.builder = None
         self._list: Optional[LevelListBin] = None
+        self._dungeon_tilesets: Optional[List[GroundTilesetMapping]] = None
         self._labels_mapid = {}
         self._labels_maptype = {}
         self._labels_overworld_strings = {}
+        self._labels_td_level = {}
+        self._labels_td_dungeon = {}
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'main.glade')
@@ -49,13 +56,17 @@ class MainController(AbstractController):
 
         if not self.module.has_level_list():
             stack.set_visible_child(self.builder.get_object('box_na'))
-            return stack
-        self._list = self.module.get_level_list()
+        else:
+            self._list = self.module.get_level_list()
 
-        self._init_label_stores()
-        self._init_list_store()
+            self._init_label_stores()
+            self._init_list_store()
+            stack.set_visible_child(self.builder.get_object('box_edit'))
 
-        stack.set_visible_child(self.builder.get_object('box_edit'))
+        self._dungeon_tilesets = self.module.get_dungeon_tilesets()
+        self._init_td_label_stores()
+        self._init_td_list_store()
+
         self.builder.connect_signals(self)
         return self.builder.get_object('box_list')
 
@@ -107,6 +118,29 @@ class MainController(AbstractController):
 
     def on_btn_add_clicked(self, *args):
         return  # todo
+
+    def on_cr_td_level_changed(self, widget, path, new_iter, *args):
+        store: Gtk.ListStore = self.builder.get_object('dungeon_tileset_store')
+        cb_store: Gtk.Store = self.builder.get_object('td_level_store')
+        store[path][1] = cb_store[new_iter][0]
+        store[path][3] = cb_store[new_iter][1]
+        self._save_td()
+
+    def on_cr_td_dungeon_changed(self, widget, path, new_iter, *args):
+        store: Gtk.ListStore = self.builder.get_object('dungeon_tileset_store')
+        cb_store: Gtk.Store = self.builder.get_object('td_dungeon_store')
+        store[path][2] = cb_store[new_iter][0]
+        store[path][4] = cb_store[new_iter][1]
+        self._save_td()
+
+    def on_cr_td_floor_number_edited(self, widget, path, text):
+        store: Gtk.ListStore = self.builder.get_object('dungeon_tileset_store')
+        try:
+            v = int(text)
+        except:
+            return
+        store[path][5] = text
+        self._save_td()
 
     def _show_generic_input(self, label_text, ok_text, sublabel_text=''):
         dialog: Gtk.Dialog = self.builder.get_object('generic_input_dialog')
@@ -162,6 +196,43 @@ class MainController(AbstractController):
                 self._labels_maptype[level.mapty], self._labels_mapid[level.mapid]
             ])
 
+    def _init_td_label_stores(self):
+        self._labels_td_level = {}
+        self._labels_td_dungeon = {}
+
+        store: Gtk.ListStore = self.builder.get_object('td_level_store')
+        self._labels_td_level[-1] = _('None')
+        store.append([-1, _('None')])
+        if self._list:
+            for level in self._list.list:
+                lbl = f'{level.name} (#{level.id:03})'
+                self._labels_td_level[level.id] = lbl
+                store.append([level.id, lbl])
+        else:
+            for i in range(0, 400):
+                lbl = f'? (#{i:03})'
+                self._labels_td_level[i] = lbl
+                store.append([i, lbl])
+
+        static = self.module.project.get_rom_module().get_static_data()
+        dungeons = HardcodedDungeons.get_dungeon_list(
+            self.module.project.get_binary(BinaryName.ARM9), static
+        )
+        store: Gtk.ListStore = self.builder.get_object('td_dungeon_store')
+        for i, dungeon in enumerate(dungeons):
+            lbl = f'{self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_SELECTION, i)} (#{i:03})'
+            self._labels_td_dungeon[i] = lbl
+            store.append([i, lbl])
+
+    def _init_td_list_store(self):
+        store: Gtk.ListStore = self.builder.get_object('dungeon_tileset_store')
+        for i, dt in enumerate(self._dungeon_tilesets):
+            store.append([
+                str(i), dt.ground_level, dt.dungeon_id,
+                self._labels_td_level[dt.ground_level], self._labels_td_dungeon[dt.dungeon_id],
+                str(dt.floor_id)
+            ])
+
     def _save(self):
         self._list.list.clear()
         for row in self.builder.get_object('level_list_tree_store'):
@@ -176,3 +247,16 @@ class MainController(AbstractController):
                 )
             )
         self.module.mark_level_list_as_modified()
+
+    def _save_td(self):
+        self._dungeon_tilesets.clear()
+        for row in self.builder.get_object('dungeon_tileset_store'):
+            self._dungeon_tilesets.append(
+                GroundTilesetMapping(
+                    row[1],
+                    row[2],
+                    int(row[5]),
+                    0,
+                )
+            )
+        self.module.save_dungeon_tilesets(self._dungeon_tilesets)
