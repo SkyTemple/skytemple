@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-06-05 14:37+0000\n"
-"PO-Revision-Date: 2021-06-05 14:47\n"
+"POT-Creation-Date: 2021-06-05 17:13+0000\n"
+"PO-Revision-Date: 2021-06-05 17:18\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -1489,8 +1489,8 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:441
 #: skytemple/skytemple/module/map_bg/controller/bg.py:594
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:193
-#: skytemple/skytemple/module/script/controller/main.py:204
-#: skytemple/skytemple/module/script/controller/main.py:205
+#: skytemple/skytemple/module/script/controller/main.py:237
+#: skytemple/skytemple/module/script/controller/main.py:238
 #: skytemple/skytemple/module/script/controller/ssa.py:1184
 #: skytemple/skytemple/module/script/controller/ssa.py:1298
 #: skytemple/skytemple/module/script/controller/ssa.py:1467
@@ -1519,7 +1519,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2267
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:930
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:200
-#: skytemple/skytemple/module/script/controller/main.glade:352
+#: skytemple/skytemple/module/script/controller/main.glade:353
 #: skytemple/skytemple/module/script/controller/ssa.glade:1979
 #: skytemple/skytemple/module/script/controller/ssa.py:1255
 msgid "Type"
@@ -2178,7 +2178,7 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/level_up.glade:215
 #: skytemple/skytemple/module/monster/controller/level_up.glade:416
 #: skytemple/skytemple/module/monster/controller/level_up.py:45
-#: skytemple/skytemple/module/script/controller/main.glade:520
+#: skytemple/skytemple/module/script/controller/main.glade:524
 msgid "Level"
 msgstr ""
 
@@ -3416,7 +3416,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4558
 #: skytemple/skytemple/module/map_bg/module.py:99
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2027
-#: skytemple/skytemple/module/script/module.py:111
+#: skytemple/skytemple/module/script/module.py:113
 msgid "Others"
 msgstr ""
 
@@ -3815,8 +3815,8 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:212
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:482
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:878
-#: skytemple/skytemple/module/script/controller/main.glade:311
-#: skytemple/skytemple/module/script/controller/main.glade:509
+#: skytemple/skytemple/module/script/controller/main.glade:312
+#: skytemple/skytemple/module/script/controller/main.glade:513
 #: skytemple/skytemple/module/strings/controller/strings.glade:252
 msgid "ID"
 msgstr ""
@@ -4025,17 +4025,19 @@ msgid "Common"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:915
-#: skytemple/skytemple/module/script/module.py:129
+#: skytemple/skytemple/module/script/module.py:133
 msgid "Enter (sse)"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:926
-#: skytemple/skytemple/module/script/module.py:139
+#: skytemple/skytemple/module/script/module.py:143
+#: skytemple/skytemple/module/script/module.py:310
 msgid "Acting (ssa)"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:936
-#: skytemple/skytemple/module/script/module.py:157
+#: skytemple/skytemple/module/script/module.py:161
+#: skytemple/skytemple/module/script/module.py:313
 msgid "Sub (sss)"
 msgstr ""
 
@@ -4079,7 +4081,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1627
 #: skytemple/skytemple/controller/main.py:760
 #: skytemple/skytemple/module/map_bg/controller/main.py:96
-#: skytemple/skytemple/module/script/controller/main.py:152
+#: skytemple/skytemple/module/script/controller/main.py:185
 #: skytemple/skytemple/module/script/controller/ssa.py:1557
 msgid "Cancel"
 msgstr ""
@@ -4659,7 +4661,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:920
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:942
 #: skytemple/skytemple/module/patch/controller/patch_main.glade:79
-#: skytemple/skytemple/module/script/controller/main.glade:415
+#: skytemple/skytemple/module/script/controller/main.glade:416
 msgid "Reload"
 msgstr ""
 
@@ -4717,7 +4719,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:129
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:564
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:138
-#: skytemple/skytemple/module/script/controller/main.glade:459
+#: skytemple/skytemple/module/script/controller/main.glade:463
 #: skytemple/skytemple/skytemple.glade:948
 msgid "page0"
 msgstr ""
@@ -5609,7 +5611,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:815
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2076
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:1001
-#: skytemple/skytemple/module/script/controller/main.glade:274
+#: skytemple/skytemple/module/script/controller/main.glade:275
 #: skytemple/skytemple/skytemple.glade:972
 msgid "page1"
 msgstr ""
@@ -6116,7 +6118,7 @@ msgid "Dungeon Name"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1109
-#: skytemple/skytemple/module/script/controller/main.glade:552
+#: skytemple/skytemple/module/script/controller/main.glade:556
 msgid "Floor Number"
 msgstr ""
 
@@ -6651,7 +6653,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:248
 #: skytemple/skytemple/module/dungeon/controller/main.glade:428
-#: skytemple/skytemple/module/script/controller/main.glade:536
+#: skytemple/skytemple/module/script/controller/main.glade:540
 msgid "Dungeon"
 msgstr ""
 
@@ -7449,7 +7451,7 @@ msgid "The entries in this list can be placed on maps and used in scripts."
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:81
-#: skytemple/skytemple/module/script/controller/main.glade:252
+#: skytemple/skytemple/module/script/controller/main.glade:253
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ActorAndLevelLoader\" \n"
 "ASM patch from the \"ASM Patches\" menu."
@@ -8623,37 +8625,37 @@ msgid "This will import the tiles for the selected layer\n"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:73
-#: skytemple/skytemple/module/script/module.py:88
+#: skytemple/skytemple/module/script/module.py:90
 msgid "S - System"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:76
-#: skytemple/skytemple/module/script/module.py:91
+#: skytemple/skytemple/module/script/module.py:93
 msgid "T - Town"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:79
-#: skytemple/skytemple/module/script/module.py:94
+#: skytemple/skytemple/module/script/module.py:96
 msgid "D - Dungeon"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:82
-#: skytemple/skytemple/module/script/module.py:97
+#: skytemple/skytemple/module/script/module.py:99
 msgid "G - Guild"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:85
-#: skytemple/skytemple/module/script/module.py:100
+#: skytemple/skytemple/module/script/module.py:102
 msgid "H - Habitat"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:88
-#: skytemple/skytemple/module/script/module.py:103
+#: skytemple/skytemple/module/script/module.py:105
 msgid "P - Places"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:91
-#: skytemple/skytemple/module/script/module.py:106
+#: skytemple/skytemple/module/script/module.py:108
 msgid "V - Visual"
 msgstr ""
 
@@ -8661,11 +8663,11 @@ msgstr ""
 msgid "W - Weather"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:204
+#: skytemple/skytemple/module/map_bg/module.py:205
 msgid "Error adding the logo."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:209
+#: skytemple/skytemple/module/map_bg/module.py:210
 msgid "Logo added successfully. Thank you!"
 msgstr ""
 
@@ -10679,47 +10681,64 @@ msgid "This section contains all acting scenes for the map {self.name}.\n\n"
 "The player can usually not move the character in them."
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/main.glade:199
+#: skytemple/skytemple/module/script/controller/main.glade:200
 #: skytemple/skytemple/module/script/controller/main.py:38
 msgid "Script Scenes"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/main.glade:214
+#: skytemple/skytemple/module/script/controller/main.glade:215
 msgid "This section lets you edit overworld scenes in the game, so anything that happens outside of Dungeons.\n"
 "This also includes cutscene visuals and some system related scenes like credits or the title screen logos."
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/main.glade:322
+#: skytemple/skytemple/module/script/controller/main.glade:323
 msgid "Internal Name"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/main.glade:336
+#: skytemple/skytemple/module/script/controller/main.glade:337
 msgid "Overworld Text String"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/main.glade:368
+#: skytemple/skytemple/module/script/controller/main.glade:369
 msgid "Map Background"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/main.glade:384
+#: skytemple/skytemple/module/script/controller/main.glade:385
 msgid "Default Weather"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/main.glade:469
+#: skytemple/skytemple/module/script/controller/main.glade:473
 msgid "Level List"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/main.glade:587
+#: skytemple/skytemple/module/script/controller/main.glade:591
 msgid "This maps ground levels using type #10 or #11 to dungeons and or fixed rooms. \n"
 "If a selected floor number is bigger than the floor count for this dungeon, the last floor is used."
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/main.glade:606
+#: skytemple/skytemple/module/script/controller/main.glade:610
 msgid "Level - Dungeon Mappings"
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/main.py:80
+#: skytemple/skytemple/module/script/controller/main.py:132
 msgid "The length of the level name must be between 1-8 characters."
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/main.py:120
+msgid "Create Level"
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/main.py:120
+msgid "Level Name"
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/main.py:121
+msgid "If you also need a new background for this level, you can create one under \"Map Backrgounds\" and assign it to this level afterwards."
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/main.py:150
+msgid "New level created."
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/map.py:29
@@ -10734,8 +10753,7 @@ msgid "This section contains all scenes for the map {self.name}.\n\n"
 "\"Acting (ssa)\" contains the scenes used for cutscenes.\n"
 "The player can usually not move the character in these scenes.\n\n"
 "\"Sub (sss)\" contains scenes that can be loaded on on top of the \"Enter\" scene,\n"
-"depending on the current story progress.\n\n"
-"Currently new scenes can not be added via SkyTemple."
+"depending on the current story progress."
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:73
@@ -10962,7 +10980,7 @@ msgid "This section contains all sub scenes for the map {self.name}.\n\n"
 "depending on the current story progress."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:251
+#: skytemple/skytemple/module/script/module.py:255
 msgid "Map not found."
 msgstr ""
 
