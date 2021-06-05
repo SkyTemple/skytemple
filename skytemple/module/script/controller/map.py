@@ -37,8 +37,7 @@ class MapController(SimpleController):
                 '"Acting (ssa)" contains the scenes used for cutscenes.\n'
                 'The player can usually not move the character in these scenes.\n\n'
                 '"Sub (sss)" contains scenes that can be loaded on on top of the "Enter" scene,\n'
-                'depending on the current story progress.\n\n'
-                'Currently new scenes can not be added via SkyTemple.'))
+                'depending on the current story progress.'))
         )
 
     def get_icon(self) -> str:

@@ -117,7 +117,40 @@ class MainController(AbstractController):
         self._save()
 
     def on_btn_add_clicked(self, *args):
-        return  # todo
+        response, new_name = self._show_generic_input(_('Level Name'), _('Create Level'),
+                                                      (_('If you also need a new background for this level, you can '
+                                                         'create one under "Map Backrgounds" and assign it to this '
+                                                         'level afterwards.')))
+        if response != Gtk.ResponseType.OK:
+            return
+        new_name = new_name.upper()
+        if len(new_name) < 1 or len(new_name) > 8:
+            md = SkyTempleMessageDialog(
+                SkyTempleMainController.window(),
+                Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
+                Gtk.ButtonsType.OK,
+                _("The length of the level name must be between 1-8 characters.")
+            )
+            md.run()
+            md.destroy()
+            return
+        new_id = max(l.id for l in self._list.list) + 1
+        store: Gtk.ListStore = self.builder.get_object('level_list_tree_store')
+        store.append([
+            str(new_id), new_name, 0, 0, 0, str(-1),
+            self._labels_overworld_strings[0],
+            self._labels_maptype[0], self._labels_mapid[0]
+        ])
+        self.module.create_new_level(new_name)
+        self._save()
+        md = SkyTempleMessageDialog(
+            SkyTempleMainController.window(),
+            Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("New level created."), is_success=True
+        )
+        md.run()
+        md.destroy()
 
     def on_cr_td_level_changed(self, widget, path, new_iter, *args):
         store: Gtk.ListStore = self.builder.get_object('dungeon_tileset_store')

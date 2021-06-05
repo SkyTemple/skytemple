@@ -157,6 +157,7 @@ class MapBgModule(AbstractModule):
                 'skytemple-e-mapbg-symbolic', map_name, self, BgController, item_id, False, '', True
             ])
         )
+        recursive_generate_item_store_row_label(self._tree_model[parent])
         self.mark_as_modified(item_id)
         self.mark_level_list_as_modified()
 

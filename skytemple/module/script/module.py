@@ -68,6 +68,8 @@ class ScriptModule(AbstractModule):
 
         self._tree_model = None
         self._root = None
+        self._other_node = None
+        self._sub_nodes = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         # -> Script [main]
@@ -110,6 +112,8 @@ class ScriptModule(AbstractModule):
         other = item_store.append(root, [
             'skytemple-folder-symbolic', _('Others'), self, FolderController, None, False, '', True
         ])
+        self._other_node = other
+        self._sub_nodes = sub_nodes
 
         for i, map_obj in enumerate(self.script_engine_file_tree['maps'].values()):
             parent = other
@@ -291,3 +295,21 @@ class ScriptModule(AbstractModule):
             )
         )
         recursive_up_item_store_mark_as_modified(self._tree_model[self._root])
+
+    def create_new_level(self, new_name):
+        parent = self._other_node
+        if new_name[0] in self._sub_nodes.keys():
+            parent = self._sub_nodes[new_name[0]]
+        self._map_ssas[new_name] = {}
+        self._map_ssss[new_name] = {}
+        map_root = self._tree_model.append(parent, [
+            'skytemple-folder-symbolic', new_name, self,  MapController, new_name, False, '', True
+        ])
+        self._map_scene_root[new_name] = map_root
+        self._tree_model.append(map_root, [
+            'skytemple-folder-open-symbolic', _('Acting (ssa)'), self,  LsdController, new_name, False, '', True
+        ])
+        self._tree_model.append(map_root, [
+            'skytemple-folder-open-symbolic', _('Sub (sss)'), self,  SubController, new_name, False, '', True
+        ])
+        recursive_generate_item_store_row_label(self._tree_model[parent])
