@@ -88,6 +88,15 @@ class MainController(AbstractController):
         self.module.project.create_new_file(MAP_BG_PATH + bpc_name, empty_bpc, FileType.BPC)
         self.module.add_map(name_bg_list)
 
+        md = SkyTempleMessageDialog(
+            SkyTempleMainController.window(),
+            Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("Map background added successfully"), is_success=True
+        )
+        md.run()
+        md.destroy()
+
     def _show_generic_input(self, label_text, ok_text):
         dialog: Gtk.Dialog = self.builder.get_object('generic_input_dialog')
         entry: Gtk.Entry = self.builder.get_object('generic_input_dialog_entry')
