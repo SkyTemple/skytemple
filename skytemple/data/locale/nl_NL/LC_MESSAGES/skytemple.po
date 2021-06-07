@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-06-05 17:13+0000\n"
-"PO-Revision-Date: 2021-06-05 17:18\n"
+"POT-Creation-Date: 2021-06-07 20:24+0000\n"
+"PO-Revision-Date: 2021-06-07 20:31\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -1441,6 +1441,7 @@ msgid "Binary {binary.filepath} not found."
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/util.py:376
+#: skytemple-files/skytemple_files/common/util.py:407
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr ""
@@ -1448,6 +1449,11 @@ msgstr ""
 #: skytemple-files/skytemple_files/common/util.py:379
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
+msgstr ""
+
+#: skytemple-files/skytemple_files/common/util.py:402
+#, python-brace-format
+msgid "Folder {path} already exists."
 msgstr ""
 
 #: skytemple-files/skytemple_files/common/xml_util.py:43
@@ -3416,7 +3422,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4558
 #: skytemple/skytemple/module/map_bg/module.py:99
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2027
-#: skytemple/skytemple/module/script/module.py:113
+#: skytemple/skytemple/module/script/module.py:122
 msgid "Others"
 msgstr ""
 
@@ -3550,7 +3556,7 @@ msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden t
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:42
-msgid "Reduces the amount of time the game pauses for before changing the PoV when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
+msgid "Reduces the amount of time the game pauses for before changing the PoV, like when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:39
@@ -3719,9 +3725,9 @@ msgid "_Cancel"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:325
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:975
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:980
 #: skytemple/skytemple/_i18n.py:50
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:243
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:245
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:78
 #: skytemple/skytemple/module/misc_graphics/controller/chr.py:68
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:74
@@ -3747,14 +3753,14 @@ msgid "The file is still loaded in RAM! Currently you are still able to debug us
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:340
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1555
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1584
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:88
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:367
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:318
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:331
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:482
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:685
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:703
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:484
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:687
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:705
 #: skytemple/skytemple/module/script/controller/ssa.py:477
 msgid "Warning!"
 msgstr ""
@@ -3898,7 +3904,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:56
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:60
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:225
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:228
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:184
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:89
 #: skytemple/skytemple/module/lists/controller/world_map.glade:405
@@ -3920,173 +3926,178 @@ msgstr ""
 msgid "Value"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:153
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:156
 #: skytemple/skytemple/core/ui_utils.py:67
 msgid "Nintendo DS ROMs (*.nds)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:157
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:160
 msgid "Nintendo DS ROMs with binary loader (*.ds.gba)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:161
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:164
 msgid "All files"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:325
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:328
 #, python-brace-format
 msgid "DeSmuME couldn't be loaded. Debugging functionality will not be available:\n\n"
 "{ex}"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:328
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:331
 msgid "Error loading the emulator!"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:479
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:482
 msgid "Open..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:487
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:490
 #, python-brace-format
 msgid "Unable to load: {fn}\n"
 "{ex}"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:586
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:589
 msgid "Joypads are not supported on macOS. Sorry!"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:641
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:644
 msgid "PNG Image (*.png)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:644
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:647
 msgid "Save Screenshot..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:797
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:800
 msgid "Open Scenes..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:804
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:807
 msgid "Open Scene..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:813
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:816
 msgid "Create directory..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:815
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:818
 msgid "Create new script file..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:820
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:891
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:823
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:894
 msgid "Macros"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:823
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:826
 msgid "Delete directory..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:831
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:834
 msgid "Delete script file..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:840
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:843
 msgid "Create Directory"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:840
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:843
 msgid "Name of the directory:"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:848
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:851
 msgid "Create File"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:848
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:851
 msgid "Name of the new script file:"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:860
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:863
 #, python-brace-format
 msgid "Do you want to delete the directory {row[1]} with all of it's contents?"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:868
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:871
 #, python-brace-format
 msgid "Do you want to delete the script file {row[1]}?"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:905
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:908
 msgid "Common"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:915
-#: skytemple/skytemple/module/script/module.py:133
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:919
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1369
+#: skytemple/skytemple/module/script/module.py:142
+#: skytemple/skytemple/module/script/module.py:352
 msgid "Enter (sse)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:926
-#: skytemple/skytemple/module/script/module.py:143
-#: skytemple/skytemple/module/script/module.py:310
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:930
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1372
+#: skytemple/skytemple/module/script/module.py:152
+#: skytemple/skytemple/module/script/module.py:321
 msgid "Acting (ssa)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:936
-#: skytemple/skytemple/module/script/module.py:161
-#: skytemple/skytemple/module/script/module.py:313
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:940
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1376
+#: skytemple/skytemple/module/script/module.py:171
+#: skytemple/skytemple/module/script/module.py:324
 msgid "Sub (sss)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:972
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:977
 msgid "Save dumped block..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1193
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1198
 msgid "Unable to save savestate!"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1228
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1233
 msgid "Unable to load savestate!"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1310
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1315
 msgid "The game is stopped."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1319
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1324
 msgid "The game is paused."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1397
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1426
 #, python-brace-format
 msgid "The debugger is halted at {ssb.file_name}."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1551
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1580
 msgid "You have unsaved changes to variables.\n"
 "Variables are reset when the game is rebooted.\n"
 "You need to save the variables and load them after boot.\n\n"
 "Do you still want to continue?"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1614
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1643
 msgid "Delete"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1616
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1627
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1645
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1656
 #: skytemple/skytemple/controller/main.py:760
-#: skytemple/skytemple/module/map_bg/controller/main.py:96
+#: skytemple/skytemple/module/map_bg/controller/main.py:105
 #: skytemple/skytemple/module/script/controller/main.py:185
+#: skytemple/skytemple/module/script/controller/map.py:160
 #: skytemple/skytemple/module/script/controller/ssa.py:1557
 msgid "Cancel"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1617
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1646
 msgid "You will not be able to restore it."
 msgstr ""
 
@@ -4802,6 +4813,7 @@ msgstr ""
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:2604
 #: skytemple/skytemple/module/script/controller/main.glade:59
 #: skytemple/skytemple/module/script/controller/main.glade:83
+#: skytemple/skytemple/module/script/controller/map.glade:264
 #: skytemple/skytemple/module/script/controller/ssa.glade:237
 msgid "label"
 msgstr ""
@@ -6767,7 +6779,7 @@ msgid "Export PNG of map..."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:131
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:733
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:735
 msgid "Export PNG of chunks..."
 msgstr ""
 
@@ -6779,8 +6791,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:177
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:248
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:772
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:834
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:774
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:836
 msgid "An image must be selected."
 msgstr ""
 
@@ -6791,13 +6803,13 @@ msgid "Error importing the tileset."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:205
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:798
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:800
 msgid "Export PNG of tiles..."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:316
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:480
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:683
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:482
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:685
 msgid "Some values were invalid (not a number). They were replaced with 0."
 msgstr ""
 
@@ -8017,57 +8029,57 @@ msgstr ""
 msgid "Background Palettes"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:188
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:190
 msgid "Please only enter numbers for the map size."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:200
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:202
 msgid "Save GIF of map..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:240
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:242
 msgid "Export PNGs of map..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:412
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:414
 msgid "This BPA has no frames.\n"
 "Enable the BPA and import images for a BPA to add frames."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:524
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:526
 msgid "Export animated tiles (BPA)"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:548
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:550
 msgid "The animated tiles were successfully exported."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:549
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:608
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:551
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:610
 msgid "SkyTemple - Success!"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:553
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:555
 msgid "Error during BPA export"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:566
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:568
 msgid "Import animated tiles (BPA)"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:606
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:608
 msgid "The animated tiles were successfully imported, using the files: "
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:612
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:614
 msgid "Error during BPA import"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:702
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:704
 msgid "Palette Animation is not enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:852
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:854
 msgid "This map has no second layer."
 msgstr ""
 
@@ -8118,6 +8130,10 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:72
 msgid "A map background with this name already exists."
+msgstr ""
+
+#: skytemple/skytemple/module/map_bg/controller/main.py:95
+msgid "Map background added successfully"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:92
@@ -8625,37 +8641,37 @@ msgid "This will import the tiles for the selected layer\n"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:73
-#: skytemple/skytemple/module/script/module.py:90
+#: skytemple/skytemple/module/script/module.py:99
 msgid "S - System"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:76
-#: skytemple/skytemple/module/script/module.py:93
+#: skytemple/skytemple/module/script/module.py:102
 msgid "T - Town"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:79
-#: skytemple/skytemple/module/script/module.py:96
+#: skytemple/skytemple/module/script/module.py:105
 msgid "D - Dungeon"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:82
-#: skytemple/skytemple/module/script/module.py:99
+#: skytemple/skytemple/module/script/module.py:108
 msgid "G - Guild"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:85
-#: skytemple/skytemple/module/script/module.py:102
+#: skytemple/skytemple/module/script/module.py:111
 msgid "H - Habitat"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:88
-#: skytemple/skytemple/module/script/module.py:105
+#: skytemple/skytemple/module/script/module.py:114
 msgid "P - Places"
 msgstr ""
 
 #: skytemple/skytemple/module/map_bg/module.py:91
-#: skytemple/skytemple/module/script/module.py:108
+#: skytemple/skytemple/module/script/module.py:117
 msgid "V - Visual"
 msgstr ""
 
@@ -10741,11 +10757,23 @@ msgstr ""
 msgid "New level created."
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/map.py:29
-msgid "Script Scenes for \"{}"
+#: skytemple/skytemple/module/script/controller/map.glade:102
+msgid "Add \"Enter\" scene"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/map.py:34
+#: skytemple/skytemple/module/script/controller/map.glade:147
+msgid "Add \"Acting\" scene"
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/map.glade:192
+msgid "Add \"Sub\" scene"
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/map.py:45
+msgid "Script Scenes for \"{}\""
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/map.py:47
 #, python-brace-format
 msgid "This section contains all scenes for the map {self.name}.\n\n"
 "\"Enter (sse)\" contains the scene that is loaded when the map is entered\n"
@@ -10754,6 +10782,33 @@ msgid "This section contains all scenes for the map {self.name}.\n\n"
 "The player can usually not move the character in these scenes.\n\n"
 "\"Sub (sss)\" contains scenes that can be loaded on on top of the \"Enter\" scene,\n"
 "depending on the current story progress."
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/map.py:68
+#: skytemple/skytemple/module/script/controller/map.py:105
+#: skytemple/skytemple/module/script/controller/map.py:141
+msgid "Could not add the scene: "
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/map.py:77
+#: skytemple/skytemple/module/script/controller/map.py:114
+#: skytemple/skytemple/module/script/controller/map.py:150
+msgid "Scene added successfully"
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/map.py:84
+#: skytemple/skytemple/module/script/controller/map.py:120
+msgid "Create Scene"
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/map.py:84
+#: skytemple/skytemple/module/script/controller/map.py:120
+msgid "Scene Name (without file extension)"
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/map.py:93
+#: skytemple/skytemple/module/script/controller/map.py:129
+msgid "The length of the scene name must be between 1-8 characters."
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:73
@@ -10980,8 +11035,16 @@ msgid "This section contains all sub scenes for the map {self.name}.\n\n"
 "depending on the current story progress."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:255
+#: skytemple/skytemple/module/script/module.py:266
 msgid "Map not found."
+msgstr ""
+
+#: skytemple/skytemple/module/script/module.py:402
+msgid "The file name provided must not have a file extension."
+msgstr ""
+
+#: skytemple/skytemple/module/script/module.py:404
+msgid "The file name provided is too long (max 8 characters)."
 msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:43
