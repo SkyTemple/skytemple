@@ -65,7 +65,7 @@ class ScriptModule(AbstractModule):
         self.project = rom_project
 
         # Load all scripts
-        self.script_engine_file_tree = load_script_files(self.project.get_rom_folder(SCRIPT_DIR), self.get_level_list())
+        self.script_engine_file_tree = load_script_files(self.project.get_rom_folder(SCRIPT_DIR), self.get_level_list() if self.has_level_list() else None)
 
         # Tree iters for handle_request:
         self._map_scene_root: Dict[str, Gtk.TreeIter] = {}
@@ -360,7 +360,7 @@ class ScriptModule(AbstractModule):
         self.mark_as_modified(level_name, 'sse', file_name)
 
     def add_scene_acting(self, level_name, scene_name):
-        file_name, ssb_file_name = self._create_scene_file(level_name, scene_name, 'ssa', matching_ssb='01')
+        file_name, ssb_file_name = self._create_scene_file(level_name, scene_name, 'ssa', matching_ssb='')
         lsd_path = f'{SCRIPT_DIR}/{level_name}/{level_name.lower()}{LSD_EXT}'
         if not self.project.file_exists(lsd_path):
             self.project.create_new_file(lsd_path, FileType.LSD.new(), FileType.LSD)
@@ -407,7 +407,7 @@ class ScriptModule(AbstractModule):
         self.project.ensure_dir(dir_name)
         self.project.create_new_file(ssx_name, self._get_empty_scene(), FileType.SSA)
 
-        if matching_ssb:
+        if matching_ssb is not None:
             ssb_name = f"{dir_name}/{scene_name}{matching_ssb}.ssb"
 
             save_kwargs = {

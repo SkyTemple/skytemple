@@ -91,14 +91,16 @@ class BgMenuController:
                 has_a_change = True
                 bma.add_upper_layer()
                 bpc.add_upper_layer()
+                self.parent.builder.get_object('map_import_layer2_file').set_sensitive(True)
             elif number_layers <= 1 and bma.number_of_layers > 1:
                 # A LAYER WAS REMOVE
                 has_a_change = True
                 bma.remove_upper_layer()
                 bpc.remove_upper_layer()
                 self.parent.module.remove_bpa_upper_layer(self.parent.item_id)
+                self.parent.builder.get_object('map_import_layer2_file').set_sensitive(False)
             number_col_layers = number_collision_adjustment.get_value()
-            if number_col_layers > 1 and bma.number_of_collision_layers <= 0:
+            if number_col_layers > 0 and bma.number_of_collision_layers <= 0:
                 # COLLISION 1 WAS ADDED
                 has_a_change = True
                 bma.number_of_collision_layers = 1
