@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 import itertools
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 import gi
 from gi.repository import Gtk, Gdk
@@ -26,17 +26,20 @@ from gi.repository.Gtk import *
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
+from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE
 from skytemple.module.map_bg.controller.bg_menu import BgMenuController
 from skytemple.module.map_bg.drawer import Drawer, DrawerCellRenderer, DrawerInteraction
+from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevelMapType
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.graphics.bg_list_dat.model import BMA_EXT, BPC_EXT, BPL_EXT, BPA_EXT, DIR
 from skytemple_files.graphics.bma.model import MASK_PAL
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 from skytemple_files.graphics.bpl.model import BPL_NORMAL_MAX_PAL
 from skytemple_files.common.i18n_util import _
+from skytemple_files.hardcoded.ground_dungeon_tilesets import resolve_mapping_for_level
 
 if TYPE_CHECKING:
     from skytemple.module.map_bg.module import MapBgModule
@@ -132,6 +135,8 @@ class BgController(AbstractController):
 
         self.bg_draw: DrawingArea = None
         self.bg_draw_event_box: EventBox = None
+
+        self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
 
         self.scale_factor = 1
         self.current_chunks_icon_layer = 0
@@ -495,6 +500,7 @@ class BgController(AbstractController):
             if self.bpl.has_palette_animation:
                 self.pal_ani_durations = max(spec.duration_per_frame for spec in self.bpl.animation_specs)
         self.set_warning_palette()
+
     def _init_drawer(self):
         """(Re)-initialize the main drawing area"""
         bg_draw_sw: ScrolledWindow = self.builder.get_object('bg_draw_sw')
@@ -525,6 +531,8 @@ class BgController(AbstractController):
         )
 
         self.drawer = Drawer(self.bg_draw, self.bma, self.bpa_durations, self.pal_ani_durations, self.chunks_surfaces)
+        if self._tileset_drawer_overlay:
+            self.drawer.add_overlay(self._tileset_drawer_overlay)
         self.drawer.start()
 
     def _init_drawer_layer_selected(self):
@@ -737,9 +745,22 @@ class BgController(AbstractController):
         self._refresh_metadata()
 
     def _init_rest_room_note(self):
-        """If the data layer of this map contains 0x08, this is probably a rest room"""
+        mode_10_or_11_level = None
+        for level in self.module.get_all_associated_script_maps(self.item_id):
+            if level.mapty_enum == Pmd2ScriptLevelMapType.TILESET or level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM:
+                mode_10_or_11_level = level
+                break
+
         info_bar = self.builder.get_object('editor_rest_room_note')
-        if self.bma.unknown_data_block is None or not any(v == 8 for v in self.bma.unknown_data_block):
+        if mode_10_or_11_level:
+            mapping = resolve_mapping_for_level(mode_10_or_11_level, *self.module.get_mapping_dungeon_assets())
+            if mapping:
+                dma, dpc, dpci, dpl, _, fixed_room = mapping
+                self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)
+                self.drawer.add_overlay(self._tileset_drawer_overlay)
+            else:
+                info_bar.destroy()
+        else:
             info_bar.destroy()
 
     def _perform_asset_copy(self):
@@ -784,7 +805,6 @@ class BgController(AbstractController):
         if self.module.project.file_exists(try_rom_filename):
             return self._find_new_name(try_name, ext)
         return try_name, try_rom_filename
-    
 
     def on_btn_about_palettes_clicked(self, w, *args):
         md = SkyTempleMessageDialog(
@@ -800,3 +820,6 @@ class BgController(AbstractController):
         )
         md.run()
         md.destroy()
+
+    def on_btn_toggle_overlay_rendering_clicked(self, *args):
+        self._tileset_drawer_overlay.enabled = not self._tileset_drawer_overlay.enabled

@@ -17,7 +17,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 from enum import Enum, auto
-from typing import List, Union, Iterable
+from typing import List, Union, Iterable, Optional
 
 from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
@@ -26,6 +26,7 @@ from gi.repository.Gtk import Widget
 from skytemple.core.events.manager import EventManager
 from skytemple.core.mapbg_util.drawer_plugin.grid import GridDrawerPlugin
 from skytemple.core.mapbg_util.drawer_plugin.selection import SelectionDrawerPlugin
+from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.module.tiled_img.animation_context import AnimationContext
 from skytemple_files.graphics.bma.model import Bma
 import cairo
@@ -114,6 +115,7 @@ class Drawer:
             self.data_layer = None
 
         self.animation_context = AnimationContext(chunks_surfaces, bpa_durations, pal_ani_durations)
+        self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
 
     def start(self):
         """Start drawing on the DrawingArea"""
@@ -155,47 +157,50 @@ class Drawer:
         )
         ctx.fill()
 
-        # Layers
-        for layer_idx, chunks_at_frame in enumerate(self.animation_context.current()):
-            if self.show_only_edited_layer and layer_idx != self.edited_layer:
-                continue
-            current_layer_mappings = self.mappings[layer_idx]
-            for i, chunk_at_pos in enumerate(current_layer_mappings):
-                if 0 < chunk_at_pos < len(chunks_at_frame):
-                    chunk = chunks_at_frame[chunk_at_pos]
-                    ctx.set_source_surface(chunk, 0, 0)
-                    ctx.get_source().set_filter(cairo.Filter.NEAREST)
-                    if self.edited_layer != -1 and layer_idx > 0 and layer_idx != self.edited_layer:
-                        # For Layer 1 if not the current edited: Set an alpha mask
-                        ctx.paint_with_alpha(0.7)
+        if self._tileset_drawer_overlay is not None and self._tileset_drawer_overlay.enabled:
+            self._tileset_drawer_overlay.draw_full(ctx, self.mappings[0], self.width_in_chunks, self.height_in_chunks)
+        else:
+            # Layers
+            for layer_idx, chunks_at_frame in enumerate(self.animation_context.current()):
+                if self.show_only_edited_layer and layer_idx != self.edited_layer:
+                    continue
+                current_layer_mappings = self.mappings[layer_idx]
+                for i, chunk_at_pos in enumerate(current_layer_mappings):
+                    if 0 < chunk_at_pos < len(chunks_at_frame):
+                        chunk = chunks_at_frame[chunk_at_pos]
+                        ctx.set_source_surface(chunk, 0, 0)
+                        ctx.get_source().set_filter(cairo.Filter.NEAREST)
+                        if self.edited_layer != -1 and layer_idx > 0 and layer_idx != self.edited_layer:
+                            # For Layer 1 if not the current edited: Set an alpha mask
+                            ctx.paint_with_alpha(0.7)
+                        else:
+                            ctx.paint()
+                    if (i + 1) % self.width_in_chunks == 0:
+                        # Move to beginning of next line
+                        if do_translates:
+                            ctx.translate(-chunk_width * (self.width_in_chunks - 1), chunk_height)
                     else:
-                        ctx.paint()
-                if (i + 1) % self.width_in_chunks == 0:
-                    # Move to beginning of next line
-                    if do_translates:
-                        ctx.translate(-chunk_width * (self.width_in_chunks - 1), chunk_height)
-                else:
-                    # Move to next tile in line
-                    if do_translates:
-                        ctx.translate(chunk_width, 0)
+                        # Move to next tile in line
+                        if do_translates:
+                            ctx.translate(chunk_width, 0)
 
-            # Move back to beginning
-            if do_translates:
-                ctx.translate(0, -chunk_height * self.height_in_chunks)
+                # Move back to beginning
+                if do_translates:
+                    ctx.translate(0, -chunk_height * self.height_in_chunks)
 
-            if (self.edited_layer != -1 and layer_idx < 1 and layer_idx != self.edited_layer) \
-                or (layer_idx == 1 and self.dim_layers) \
-                or (layer_idx == 0 and self.animation_context.num_layers < 2 and self.dim_layers):
-                # For Layer 0 if not the current edited: Draw dark rectangle
-                # or for layer 1 if dim layers
-                # ...or for layer 0 if dim layers and no second layer
-                ctx.set_source_rgba(0, 0, 0, 0.5)
-                ctx.rectangle(
-                    0, 0,
-                    self.width_in_chunks * self.tiling_width * BPC_TILE_DIM,
-                    self.height_in_chunks * self.tiling_height * BPC_TILE_DIM
-                )
-                ctx.fill()
+                if (self.edited_layer != -1 and layer_idx < 1 and layer_idx != self.edited_layer) \
+                    or (layer_idx == 1 and self.dim_layers) \
+                    or (layer_idx == 0 and self.animation_context.num_layers < 2 and self.dim_layers):
+                    # For Layer 0 if not the current edited: Draw dark rectangle
+                    # or for layer 1 if dim layers
+                    # ...or for layer 0 if dim layers and no second layer
+                    ctx.set_source_rgba(0, 0, 0, 0.5)
+                    ctx.rectangle(
+                        0, 0,
+                        self.width_in_chunks * self.tiling_width * BPC_TILE_DIM,
+                        self.height_in_chunks * self.tiling_height * BPC_TILE_DIM
+                    )
+                    ctx.fill()
 
         # Col 1 and 2
         for col_index, should_draw in enumerate([self.draw_collision1, self.draw_collision2]):
@@ -370,6 +375,9 @@ class Drawer:
 
     def set_scale(self, v):
         self.scale = v
+
+    def add_overlay(self, tileset_drawer_overlay):
+        self._tileset_drawer_overlay = tileset_drawer_overlay
 
 
 class DrawerCellRenderer(Drawer, Gtk.CellRenderer):

@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import Optional, Dict, List
+from typing import Optional, Dict, List, Tuple
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
@@ -41,7 +41,11 @@ from skytemple.module.script.controller.sub import SubController
 from skytemple_files.common.script_util import load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT, LSD_EXT
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.i18n_util import f, _
+from skytemple_files.container.dungeon_bin.model import DungeonBinPack
+from skytemple_files.dungeon_data.fixed_bin.model import FixedBin
+from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
 from skytemple_files.graphics.bg_list_dat.model import BgList
+from skytemple_files.hardcoded.dungeons import DungeonDefinition, HardcodedDungeons
 from skytemple_files.hardcoded.ground_dungeon_tilesets import HardcodedGroundDungeonTilesets, GroundTilesetMapping
 from skytemple_files.list.level.model import LevelListBin
 from skytemple_files.script.lsd.model import Lsd
@@ -269,6 +273,7 @@ class ScriptModule(AbstractModule):
             self.get_sprite_provider(),
             self.project.get_rom_module().get_static_data().script_data.level_list__by_name[mapname],
             self.project.get_module('map_bg'),
+            self,
             pos_marks, pos_mark_to_edit
         )
 
@@ -425,3 +430,25 @@ class ScriptModule(AbstractModule):
             return ssx_name, ssb_name
         else:
             return ssx_name, None
+
+    def get_mapping_dungeon_assets(
+            self
+    ) -> Tuple[List[GroundTilesetMapping], MappaBin, FixedBin, DungeonBinPack, List[DungeonDefinition]]:
+        static_data = self.project.get_rom_module().get_static_data()
+        mappings = self.get_dungeon_tilesets()
+
+        mappa = self.project.open_file_in_rom('BALANCE/mappa_s.bin', FileType.MAPPA_BIN)
+        fixed = self.project.open_file_in_rom(
+            'BALANCE/fixed.bin', FileType.FIXED_BIN,
+            static_data=static_data
+        )
+
+        dungeon_bin: DungeonBinPack = self.project.open_file_in_rom(
+            'DUNGEON/dungeon.bin', FileType.DUNGEON_BIN, static_data=static_data
+        )
+
+        dungeon_list = HardcodedDungeons.get_dungeon_list(
+            self.project.get_binary(BinaryName.ARM9), static_data
+        )
+
+        return mappings, mappa, fixed, dungeon_bin, dungeon_list

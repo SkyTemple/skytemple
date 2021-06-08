@@ -5163,7 +5163,50 @@ are used for the image data on Layer 1 and 2.</property>
                 <property name="spacing">6</property>
                 <property name="layout-style">end</property>
                 <child>
-                  <placeholder/>
+                  <object class="GtkButton" id="btn_toggle_overlay_rendering">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <signal name="clicked" handler="on_btn_toggle_overlay_rendering_clicked" swapped="no"/>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="vexpand">False</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="valign">center</property>
+                            <property name="margin-end">5</property>
+                            <property name="icon-name">skytemple-view-reveal-symbolic</property>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Toggle</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
                 </child>
               </object>
               <packing>
@@ -5184,7 +5227,7 @@ are used for the image data on Layer 1 and 2.</property>
                     <property name="margin-right">5</property>
                     <property name="margin-top">5</property>
                     <property name="margin-bottom">5</property>
-                    <property name="label" translatable="yes">This seems to be a dungeon rest room. The graphics of this map are rendered by the dungeon engine. To do this, the chunk data and the data in the data layer is used.</property>
+                    <property name="label" translatable="yes">One of the levels assigned to this background use mode #10 or #11. The background will be rendered in game using the assigned dungeon tileset. If it's mode #10 you can build the layout above. Mode #11 uses the fixed room of the assigned floor.</property>
                     <property name="wrap">True</property>
                   </object>
                   <packing>
