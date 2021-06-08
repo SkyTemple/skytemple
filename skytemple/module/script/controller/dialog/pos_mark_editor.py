@@ -248,7 +248,6 @@ class PosMarkEditorController:
         if self.level.mapty_enum == Pmd2ScriptLevelMapType.TILESET or self.level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM:
             mapping = resolve_mapping_for_level(self.level, *self.script_module.get_mapping_dungeon_assets())
             if mapping:
-                info_bar.destroy()
                 dma, dpc, dpci, dpl, _, fixed_room = mapping
                 self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)
             else:
