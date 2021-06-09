@@ -65,7 +65,7 @@ if TYPE_CHECKING:
 
 
 URL_HELP = 'https://github.com/SkyTemple/skytemple-dtef/blob/main/docs/SkyTemple.rst'
-TILESETS_NAME = 'Tilesets'
+TILESETS_NAME = _('Tilesets')
 
 
 class TilesetMainController(SimpleController):
@@ -77,7 +77,7 @@ class TilesetMainController(SimpleController):
 
     def get_content(self) -> Gtk.Widget:
         return self.generate_content_label(
-            "This section lets you edit the tilesets that are used for dungeons."
+            _("This section lets you edit the tilesets that are used for dungeons.")
         )
 
     def get_icon(self) -> str:
