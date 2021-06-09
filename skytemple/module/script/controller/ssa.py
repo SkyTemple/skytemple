@@ -24,6 +24,7 @@ from gi.repository.Gtk import TreeViewColumn
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
+from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import REQUEST_TYPE_MAP_BG, OpenRequest, REQUEST_TYPE_SCENE_SSE, \
@@ -32,10 +33,11 @@ from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHan
 from skytemple.module.script.controller.ssa_event_dialog import SsaEventDialogController
 from skytemple.module.script.drawer import Drawer, InteractionMode
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
-from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine, Pmd2ScriptLevel
+from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine, Pmd2ScriptLevel, Pmd2ScriptLevelMapType
 from skytemple_files.common.script_util import SSB_EXT
 from skytemple_files.graphics.bg_list_dat.model import BgList
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
+from skytemple_files.hardcoded.ground_dungeon_tilesets import resolve_mapping_for_level
 from skytemple_files.script.ssa_sse_sss.actor import SsaActor
 from skytemple_files.script.ssa_sse_sss.event import SsaEvent
 from skytemple_files.script.ssa_sse_sss.layer import SsaLayer
@@ -130,6 +132,8 @@ class SsaController(AbstractController):
 
         self.drawer: Optional[Drawer] = None
 
+        self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
+
     def get_view(self) -> Gtk.Widget:
         self.module.get_sprite_provider().reset()
         self.builder = self._get_builder(__file__, 'ssa.glade')
@@ -151,6 +155,7 @@ class SsaController(AbstractController):
 
         self._init_ssa()
         self._init_drawer()
+        self._init_rest_room_note()
         self._init_all_the_stores()
         self._update_scales()
 
@@ -324,7 +329,12 @@ class SsaController(AbstractController):
         if model is not None and cbiter is not None and cbiter != []:
             item_id = model[cbiter][0]
             self.mapbg_id = item_id
-            if self.__class__.map_bg_surface_cache[0] == item_id:
+            if self._tileset_drawer_overlay and self._tileset_drawer_overlay.enabled:
+                bma = self.map_bg_module.get_bma(item_id)
+                self._map_bg_surface = self._tileset_drawer_overlay.create(bma.layer0, bma.map_width_chunks, bma.map_height_chunks)
+                bma_width = bma.map_width_camera * BPC_TILE_DIM
+                bma_height = bma.map_height_camera * BPC_TILE_DIM
+            elif self.__class__.map_bg_surface_cache[0] == item_id:
                 self._map_bg_surface, bma_width, bma_height = self.__class__.map_bg_surface_cache[1:]
             else:
                 bma = self.map_bg_module.get_bma(item_id)
@@ -1566,3 +1576,19 @@ class SsaController(AbstractController):
         btn.get_parent().remove(btn)
         btn_cancel.get_parent().remove(btn_cancel)
         return response, entry.get_text()
+
+    def _init_rest_room_note(self):
+        info_bar = self.builder.get_object('editor_rest_room_note')
+        if self.level.mapty_enum == Pmd2ScriptLevelMapType.TILESET or self.level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM:
+            mapping = resolve_mapping_for_level(self.level, *self.module.get_mapping_dungeon_assets())
+            if mapping:
+                dma, dpc, dpci, dpl, _, fixed_room = mapping
+                self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)
+            else:
+                info_bar.destroy()
+        else:
+            info_bar.destroy()
+
+    def on_btn_toggle_overlay_rendering_clicked(self, *args):
+        self._tileset_drawer_overlay.enabled = not self._tileset_drawer_overlay.enabled
+        self.on_tool_choose_map_bg_cb_changed(self.builder.get_object('tool_choose_map_bg_cb'))

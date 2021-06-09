@@ -217,8 +217,8 @@ class MainController(AbstractController):
         store: Gtk.ListStore = self.builder.get_object('nameid_store')
         for i in range(0, 312):
             lbl, lbl_id = self.module.get_map_display_name(i)
-            self._labels_overworld_strings[i] = lbl + f' (#{lbl_id:04})'
-            store.append([i, lbl + f' (#{lbl_id:04})'])
+            self._labels_overworld_strings[i] = lbl + f' (#{(lbl_id + 1):04})'
+            store.append([i, lbl + f' (#{(lbl_id + 1):04})'])
 
     def _init_list_store(self):
         store: Gtk.ListStore = self.builder.get_object('level_list_tree_store')

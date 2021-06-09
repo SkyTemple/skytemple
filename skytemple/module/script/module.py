@@ -14,7 +14,8 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional, Dict, List
+import os
+from typing import Optional, Dict, List, Tuple
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
@@ -25,8 +26,10 @@ from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST
     REQUEST_TYPE_SCENE_SSS
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.sprite_provider import SpriteProvider
+from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHandler
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
+from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified, \
+    data_dir
 from skytemple.module.script.controller.folder import FolderController
 from skytemple.module.script.controller.map import MapController
 from skytemple.module.script.controller.dialog.pos_mark_editor import PosMarkEditorController
@@ -35,12 +38,20 @@ from skytemple.module.script.controller.ssb import SsbController, SCRIPT_SCRIPTS
 from skytemple.module.script.controller.lsd import LsdController
 from skytemple.module.script.controller.main import MainController, SCRIPT_SCENES
 from skytemple.module.script.controller.sub import SubController
-from skytemple_files.common.script_util import load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT
+from skytemple_files.common.script_util import load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT, LSD_EXT
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.i18n_util import f, _
+from skytemple_files.container.dungeon_bin.model import DungeonBinPack
+from skytemple_files.dungeon_data.fixed_bin.model import FixedBin
+from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
 from skytemple_files.graphics.bg_list_dat.model import BgList
+from skytemple_files.hardcoded.dungeons import DungeonDefinition, HardcodedDungeons
 from skytemple_files.hardcoded.ground_dungeon_tilesets import HardcodedGroundDungeonTilesets, GroundTilesetMapping
 from skytemple_files.list.level.model import LevelListBin
+from skytemple_files.script.lsd.model import Lsd
+from skytemple_files.script.ssa_sse_sss.model import Ssa
+from skytemple.controller.main import MainController as SkyTempleMainController
+
 LEVEL_LIST = 'BALANCE/level_list.bin'
 
 
@@ -58,15 +69,17 @@ class ScriptModule(AbstractModule):
         self.project = rom_project
 
         # Load all scripts
-        self.script_engine_file_tree = load_script_files(self.project.get_rom_folder(SCRIPT_DIR), self.get_level_list())
+        self.script_engine_file_tree = load_script_files(self.project.get_rom_folder(SCRIPT_DIR), self.get_level_list() if self.has_level_list() else None)
 
         # Tree iters for handle_request:
         self._map_scene_root: Dict[str, Gtk.TreeIter] = {}
+        self._acting_roots: Dict[str, Gtk.TreeIter] = {}
+        self._sub_roots: Dict[str, Gtk.TreeIter] = {}
         self._map_ssas: Dict[str, Dict[str, Gtk.TreeIter]] = {}
         self._map_sse: Dict[str, Gtk.TreeIter] = {}
         self._map_ssss: Dict[str, Dict[str, Gtk.TreeIter]] = {}
 
-        self._tree_model = None
+        self._tree_model: Optional[TreeStore] = None
         self._root = None
         self._other_node = None
         self._sub_nodes = None
@@ -142,6 +155,7 @@ class ScriptModule(AbstractModule):
             acting_root = item_store.append(map_root, [
                 'skytemple-folder-open-symbolic', _('Acting (ssa)'), self,  LsdController, map_obj['name'], False, '', True
             ])
+            self._acting_roots[map_obj['name']] = acting_root
             for ssa, ssb in map_obj['ssas']:
                 stem = ssa[:-len(SSA_EXT)]
                 #             -> Scene [ssa]
@@ -160,6 +174,7 @@ class ScriptModule(AbstractModule):
             sub_root = item_store.append(map_root, [
                 'skytemple-folder-open-symbolic', _('Sub (sss)'), self,  SubController, map_obj['name'], False, '', True
             ])
+            self._sub_roots[map_obj['name']] = sub_root
             for sss, ssbs in map_obj['subscripts'].items():
                 stem = sss[:-len(SSS_EXT)]
                 #             -> Scene [sss]
@@ -258,6 +273,7 @@ class ScriptModule(AbstractModule):
             self.get_sprite_provider(),
             self.project.get_rom_module().get_static_data().script_data.level_list__by_name[mapname],
             self.project.get_module('map_bg'),
+            self,
             pos_marks, pos_mark_to_edit
         )
 
@@ -313,3 +329,126 @@ class ScriptModule(AbstractModule):
             'skytemple-folder-open-symbolic', _('Sub (sss)'), self,  SubController, new_name, False, '', True
         ])
         recursive_generate_item_store_row_label(self._tree_model[parent])
+
+    def get_subnodes(self, name):
+        enter = None
+        acting = None
+        sub = None
+        child = self._tree_model.iter_children(self._map_scene_root[name])
+        while child is not None:
+            controller = self._tree_model[child][3]
+            data = self._tree_model[child][4]
+            if controller == SsaController and isinstance(data, dict) and 'type' in data and data['type'] == 'sse':
+                enter = child
+            elif controller == LsdController:
+                acting = child
+            elif controller == SubController:
+                sub = child
+
+            nxt = self._tree_model.iter_next(child)
+            child = nxt
+
+        return enter, acting, sub
+
+    def add_scene_enter(self, level_name):
+        scene_name = 'enter'
+        file_name, ssb_file_name = self._create_scene_file(level_name, scene_name, 'sse', matching_ssb='00')
+        self._map_sse[level_name] = self._tree_model.append(self._map_scene_root[level_name], [
+            'skytemple-e-ground-symbolic', _('Enter (sse)'), self, SsaController, {
+                'map': level_name,
+                'file': file_name,
+                'type': 'sse',
+                'scripts': [ssb_file_name.split('/')[-1]]
+            }, False, '', True
+        ])
+        recursive_generate_item_store_row_label(self._tree_model[self._map_sse[level_name]])
+        self.mark_as_modified(level_name, 'sse', file_name)
+
+    def add_scene_acting(self, level_name, scene_name):
+        file_name, ssb_file_name = self._create_scene_file(level_name, scene_name, 'ssa', matching_ssb='')
+        lsd_path = f'{SCRIPT_DIR}/{level_name}/{level_name.lower()}{LSD_EXT}'
+        if not self.project.file_exists(lsd_path):
+            self.project.create_new_file(lsd_path, FileType.LSD.new(), FileType.LSD)
+        lsd: Lsd = self.project.open_file_in_rom(lsd_path, FileType.LSD)
+        lsd.entries.append(scene_name)
+        self._map_ssas[level_name][file_name] = self._tree_model.append(self._acting_roots[level_name], [
+            'skytemple-e-ground-symbolic', scene_name,
+            self, SsaController, {
+                'map': level_name,
+                'file': file_name,
+                'type': 'ssa',
+                'scripts': [ssb_file_name.split('/')[-1]]
+            }, False, '', True
+        ])
+        recursive_generate_item_store_row_label(self._tree_model[self._map_ssas[level_name][file_name]])
+        self.mark_as_modified(level_name, 'ssa', file_name)
+
+    def add_scene_sub(self, level_name, scene_name):
+        file_name, ssb_file_name = self._create_scene_file(level_name, scene_name, 'sss', matching_ssb='00')
+        self._map_ssss[level_name][file_name] = self._tree_model.append(self._sub_roots[level_name], [
+            'skytemple-e-ground-symbolic', scene_name,
+            self, SsaController, {
+                'map': level_name,
+                'file': file_name,
+                'type': 'sss',
+                'scripts': [ssb_file_name.split('/')[-1]]
+            }, False, '', True
+        ])
+        recursive_generate_item_store_row_label(self._tree_model[self._map_ssss[level_name][file_name]])
+        self.mark_as_modified(level_name, 'sss', file_name)
+
+    def _get_empty_scene(self) -> Ssa:
+        with open(os.path.join(data_dir(), 'empty.ssx'), 'rb') as f:
+            return FileType.SSA.deserialize(f.read())
+
+    def _create_scene_file(self, level_name, scene_name, ext, matching_ssb=None):
+        dir_name = f"{SCRIPT_DIR}/{level_name}"
+        if '.' in scene_name:
+            raise ValueError(_("The file name provided must not have a file extension."))
+        if len(scene_name) > 8:
+            raise ValueError(_("The file name provided is too long (max 8 characters)."))
+        ssx_name = f"{dir_name}/{scene_name}.{ext}"
+
+        self.project.ensure_dir(dir_name)
+        self.project.create_new_file(ssx_name, self._get_empty_scene(), FileType.SSA)
+
+        if matching_ssb is not None:
+            ssb_name = f"{dir_name}/{scene_name}{matching_ssb}.ssb"
+
+            save_kwargs = {
+                'filename': ssb_name,
+                'static_data': self.project.get_rom_module().get_static_data(),
+                'project_fm': self.project.get_project_file_manager()
+            }
+            self.project.create_new_file(
+                ssb_name, SsbLoadedFileHandler.create(**save_kwargs), SsbLoadedFileHandler, **save_kwargs
+            )
+            # Update debugger
+            SkyTempleMainController.debugger_manager().on_script_added(
+                ssb_name, level_name, ext, f'{scene_name}.{ext}'
+            )
+            return ssx_name, ssb_name
+        else:
+            return ssx_name, None
+
+    def get_mapping_dungeon_assets(
+            self
+    ) -> Tuple[List[GroundTilesetMapping], MappaBin, FixedBin, DungeonBinPack, List[DungeonDefinition]]:
+        static_data = self.project.get_rom_module().get_static_data()
+        mappings = self.get_dungeon_tilesets()
+
+        mappa = self.project.open_file_in_rom('BALANCE/mappa_s.bin', FileType.MAPPA_BIN)
+        fixed = self.project.open_file_in_rom(
+            'BALANCE/fixed.bin', FileType.FIXED_BIN,
+            static_data=static_data
+        )
+
+        dungeon_bin: DungeonBinPack = self.project.open_file_in_rom(
+            'DUNGEON/dungeon.bin', FileType.DUNGEON_BIN, static_data=static_data
+        )
+
+        dungeon_list = HardcodedDungeons.get_dungeon_list(
+            self.project.get_binary(BinaryName.ARM9), static_data
+        )
+
+        return mappings, mappa, fixed, dungeon_bin, dungeon_list

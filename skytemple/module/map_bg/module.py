@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import sys
-from typing import Union, List, Optional
+from typing import Union, List, Optional, Tuple
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
@@ -25,7 +25,7 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
-from skytemple.core.rom_project import RomProject
+from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label
 from skytemple.module.map_bg.controller.bg import BgController
@@ -33,12 +33,17 @@ from skytemple.module.map_bg.controller.folder import FolderController
 from skytemple.module.map_bg.controller.main import MainController, MAPBG_NAME
 from skytemple.module.map_bg.script.add_created_with_logo import AddCreatedWithLogo
 from skytemple_files.common.types.file_types import FileType
+from skytemple_files.container.dungeon_bin.model import DungeonBinPack
+from skytemple_files.dungeon_data.fixed_bin.model import FixedBin
+from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
 from skytemple_files.graphics.bg_list_dat.model import BgList, BgListEntry
 from skytemple_files.graphics.bma.model import Bma
 from skytemple_files.graphics.bpa.model import Bpa
 from skytemple_files.graphics.bpc.model import Bpc
 from skytemple_files.graphics.bpl.model import Bpl
 from skytemple_files.common.i18n_util import f, _
+from skytemple_files.hardcoded.dungeons import DungeonDefinition, HardcodedDungeons
+from skytemple_files.hardcoded.ground_dungeon_tilesets import GroundTilesetMapping, HardcodedGroundDungeonTilesets
 
 MAP_BG_PATH = 'MAP_BG/'
 MAP_BG_LIST = MAP_BG_PATH + 'bg_list.dat'
@@ -219,6 +224,14 @@ class MapBgModule(AbstractModule):
                 return level
         return None
 
+    def get_all_associated_script_maps(self, item_id):
+        """Returns all script maps that are associated to this map bg item ID, or empty list if not found"""
+        maps = []
+        for level in self.project.get_rom_module().get_static_data().script_data.level_list__by_id.values():
+            if level.mapid == item_id:
+                maps.append(level)
+        return maps
+
     def remove_bpa_upper_layer(self, item_id):
         """
         A BPC layer was removed, change the BPAs for the entry item_id in the level list.
@@ -227,3 +240,27 @@ class MapBgModule(AbstractModule):
         l = self.bgs.level[item_id]
         l.bpa_names = l.bpa_names[4:8] + [None, None, None, None]
         self.mark_level_list_as_modified()
+
+    def get_mapping_dungeon_assets(
+            self
+    ) -> Tuple[List[GroundTilesetMapping], MappaBin, FixedBin, DungeonBinPack, List[DungeonDefinition]]:
+        static_data = self.project.get_rom_module().get_static_data()
+        config = self.project.get_rom_module().get_static_data()
+        ov11 = self.project.get_binary(BinaryName.OVERLAY_11)
+        mappings = HardcodedGroundDungeonTilesets.get_ground_dungeon_tilesets(ov11, config)
+
+        mappa = self.project.open_file_in_rom('BALANCE/mappa_s.bin', FileType.MAPPA_BIN)
+        fixed = self.project.open_file_in_rom(
+            'BALANCE/fixed.bin', FileType.FIXED_BIN,
+            static_data=static_data
+        )
+
+        dungeon_bin: DungeonBinPack = self.project.open_file_in_rom(
+            'DUNGEON/dungeon.bin', FileType.DUNGEON_BIN, static_data=static_data
+        )
+
+        dungeon_list = HardcodedDungeons.get_dungeon_list(
+            self.project.get_binary(BinaryName.ARM9), static_data
+        )
+
+        return mappings, mappa, fixed, dungeon_bin, dungeon_list

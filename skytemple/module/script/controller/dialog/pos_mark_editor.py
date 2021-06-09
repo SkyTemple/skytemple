@@ -25,12 +25,14 @@ from gi.repository import Gtk, Gdk
 
 from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.img_utils import pil_to_cairo_surface
+from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.ui_utils import APP, make_builder
 from skytemple.module.script.drawer import Drawer, InteractionMode
-from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevel
+from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevel, Pmd2ScriptLevelMapType
 from skytemple_files.graphics.bg_list_dat.model import BgList
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
+from skytemple_files.hardcoded.ground_dungeon_tilesets import resolve_mapping_for_level
 from skytemple_files.script.ssa_sse_sss.model import Ssa
 from skytemple_files.script.ssa_sse_sss.trigger import SsaTrigger
 from skytemple_files.common.i18n_util import f, _
@@ -40,7 +42,7 @@ SIZE_REQUEST_NONE = 500
 
 class PosMarkEditorController:
     def __init__(self, ssa: Ssa, parent_window: Gtk.Window, sprite_provider: SpriteProvider,
-                 level: Pmd2ScriptLevel, map_bg_module,
+                 level: Pmd2ScriptLevel, map_bg_module, script_module,
                  pos_marks: List[SourceMapPositionMark], pos_mark_to_edit: int):
         """A controller for a dialog for editing position marks for an Ssb file."""
         path = os.path.abspath(os.path.dirname(__file__))
@@ -48,6 +50,7 @@ class PosMarkEditorController:
         self.sprite_provider = sprite_provider
         self.ssa: Ssa = ssa
         self.map_bg_module = map_bg_module
+        self.script_module = script_module
 
         self.pos_marks = pos_marks
         # intial to edit, index
@@ -65,6 +68,7 @@ class PosMarkEditorController:
         self._currently_selected_mark: Optional[SourceMapPositionMark] = None
 
         self._w_ssa_draw: Gtk.DrawingArea = self.builder.get_object('ssa_draw')
+        self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
 
         self.drawer: Optional[Drawer] = None
 
@@ -80,6 +84,7 @@ class PosMarkEditorController:
         self.window.set_title(self.title)
 
         self._init_drawer()
+        self._init_rest_room_note()
         self._init_all_the_stores()
         self._update_scales()
 
@@ -174,14 +179,19 @@ class PosMarkEditorController:
             item_id = model[cbiter][0]
             self.mapbg_id = item_id
             bma = self.map_bg_module.get_bma(item_id)
-            bpl = self.map_bg_module.get_bpl(item_id)
-            bpc = self.map_bg_module.get_bpc(item_id)
-            bpas = self.map_bg_module.get_bpas(item_id)
-            self._map_bg_surface = pil_to_cairo_surface(
-                bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[0].convert('RGBA')
-            )
-            bma_width = bma.map_width_camera * BPC_TILE_DIM
-            bma_height = bma.map_height_camera * BPC_TILE_DIM
+            if self._tileset_drawer_overlay and self._tileset_drawer_overlay.enabled:
+                self._map_bg_surface = self._tileset_drawer_overlay.create(bma.layer0, bma.map_width_chunks, bma.map_height_chunks)
+                bma_width = bma.map_width_camera * BPC_TILE_DIM
+                bma_height = bma.map_height_camera * BPC_TILE_DIM
+            else:
+                bpl = self.map_bg_module.get_bpl(item_id)
+                bpc = self.map_bg_module.get_bpc(item_id)
+                bpas = self.map_bg_module.get_bpas(item_id)
+                self._map_bg_surface = pil_to_cairo_surface(
+                    bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[0].convert('RGBA')
+                )
+                bma_width = bma.map_width_camera * BPC_TILE_DIM
+                bma_height = bma.map_height_camera * BPC_TILE_DIM
             if self.drawer:
                 self._set_drawer_bg(self._map_bg_surface, bma_width, bma_height)
 
@@ -232,3 +242,19 @@ class PosMarkEditorController:
         renderer_text = Gtk.CellRendererText()
         cb.pack_start(renderer_text, True)
         cb.add_attribute(renderer_text, "text", col)
+
+    def _init_rest_room_note(self):
+        info_bar = self.builder.get_object('editor_rest_room_note')
+        if self.level.mapty_enum == Pmd2ScriptLevelMapType.TILESET or self.level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM:
+            mapping = resolve_mapping_for_level(self.level, *self.script_module.get_mapping_dungeon_assets())
+            if mapping:
+                dma, dpc, dpci, dpl, _, fixed_room = mapping
+                self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)
+            else:
+                info_bar.destroy()
+        else:
+            info_bar.destroy()
+
+    def on_btn_toggle_overlay_rendering_clicked(self, *args):
+        self._tileset_drawer_overlay.enabled = not self._tileset_drawer_overlay.enabled
+        self.on_tool_choose_map_bg_cb_changed(self.builder.get_object('tool_choose_map_bg_cb'))

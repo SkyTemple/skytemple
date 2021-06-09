@@ -36,7 +36,8 @@ from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
-    get_ppmdu_config_for_rom, get_binary_from_rom_ppmdu, set_binary_in_rom_ppmdu, get_files_from_folder_with_extension
+    get_ppmdu_config_for_rom, get_binary_from_rom_ppmdu, set_binary_in_rom_ppmdu, get_files_from_folder_with_extension, \
+    folder_in_rom_exists, create_folder_in_rom
 from skytemple_files.container.sir0.sir0_serializable import Sir0Serializable
 from skytemple_files.patch.patches import Patcher
 from skytemple_files.compression_container.common_at.handler import CommonAtType
@@ -350,6 +351,11 @@ class RomProject:
         self._file_handler_kwargs[new_filename] = kwargs
         return copy_bin
 
+    def ensure_dir(self, dir_name):
+        """Makes sure the specified directory exists in the ROM-FS. If not, it is created."""
+        if not folder_in_rom_exists(self._rom, dir_name):
+            create_folder_in_rom(self._rom, dir_name)
+
     def file_exists(self, filename):
         return self._rom.filenames.idOf(filename) is not None
 
@@ -424,3 +430,4 @@ class RomProject:
             StringType.POKEMON_CATEGORIES.replace_xml_name('Pokemon Categories')
             MdProperties.NUM_ENTITIES = 600
             MdProperties.MAX_POSSIBLE = 554
+
