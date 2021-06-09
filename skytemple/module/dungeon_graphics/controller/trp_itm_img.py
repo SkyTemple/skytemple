@@ -17,7 +17,7 @@
 import os
 import sys
 from enum import Enum, auto
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
 import cairo
 from PIL import Image
@@ -28,7 +28,11 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
-
+from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple_files.common.i18n_util import _
+from skytemple_files.common.util import make_palette_colors_unique
+from skytemple_files.graphics.img_itm.model import ImgItm
+from skytemple_files.graphics.img_trp.model import ImgTrp
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
@@ -44,28 +48,45 @@ MAX_ENTRIES = 10000
 
 
 class TrpItmImgController(AbstractController):
-    def __init__(self, module: 'DungeonGraphicsModule', item: 'FontOpenSpec'):
+    def __init__(self, module: 'DungeonGraphicsModule', img_type: ImgType):
         self.module = module
-        self.spec = item
-        self.font: Optional[GraphicFont] = self.module.get_graphic_font(self.spec)
+        self.img_type = img_type
+        self.img: Union[ImgItm, ImgTrp] = self.module.get_icons(img_type)
 
         self.builder = None
+        self.image_idx = 0
+        self.palette_idx = 0
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'graphic_font.glade')
+        self.builder = self._get_builder(__file__, 'trp_itm_img.glade')
+        if self.img_type == ImgType.ITM:
+            self.builder.get_object('lbl_name').set_text(_('Items'))
+        else:
+            self.builder.get_object('lbl_name').set_text(_('Traps'))
 
-        self._init_font()
+        self._init_sprites()
 
         self.builder.connect_signals(self)
         self.builder.get_object('draw').connect('draw', self.draw)
         return self.builder.get_object('editor')
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
-        dialog = Gtk.FileChooserNative.new(
-            "Export font in folder...",
+        self.img.palettes = make_palette_colors_unique(self.img.palettes)
+        md = SkyTempleMessageDialog(
             MainController.window(),
-            Gtk.FileChooserAction.SELECT_FOLDER,
-            '_Save', None
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("This will export the currently selected image with the currently selected palette. "
+              "The image file itself contains all palettes, you can choose to import the edited palettes on import."),
+            title=_("Export Images")
+        )
+        md.run()
+        md.destroy()
+        dialog = Gtk.FileChooserNative.new(
+            _("Export current image to folder..."),
+            MainController.window(),
+            Gtk.FileChooserAction.SAVE,
+            _('_Save'), None
         )
 
         response = dialog.run()
@@ -73,29 +94,16 @@ class TrpItmImgController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
-            for i in range(self.font.get_nb_entries()):
-                e = self.font.get_entry(i)
-                if e:
-                    path = os.path.join(fn, f'{i:0>4}.png')
-                    e.save(path)
+            self.img.to_pil(self.image_idx, self.palette_idx).save(fn)
 
     def on_import_clicked(self, w: Gtk.MenuToolButton):
-        md = SkyTempleMessageDialog(
-            MainController.window(),
-            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-            Gtk.ButtonsType.OK,
-            f"To import, select a folder containing all the files that were created when exporting the font.\n"
-            f"IMPORTANT: All image files must be indexed PNGs and use the same palette!",
-            title="Import Font"
-        )
-        md.run()
-        md.destroy()
         dialog = Gtk.FileChooserNative.new(
-            "Import font from folder...",
+            _("Import image..."),
             MainController.window(),
-            Gtk.FileChooserAction.SELECT_FOLDER,
+            Gtk.FileChooserAction.OPEN,
             None, None
         )
+        add_dialog_png_filter(dialog)
 
         response = dialog.run()
         fn = dialog.get_filename()
@@ -104,38 +112,38 @@ class TrpItmImgController(AbstractController):
         if response == Gtk.ResponseType.ACCEPT:
             dialog: Gtk.Dialog = self.builder.get_object('dialog_import')
 
-            self.builder.get_object('nb_entries_import').set_increments(1, 1)
-            self.builder.get_object('nb_entries_import').set_range(1, MAX_ENTRIES - 1)
-            self.builder.get_object('nb_entries_import').set_text(str(self.font.get_nb_entries()))
-
             dialog.set_attached_to(MainController.window())
             dialog.set_transient_for(MainController.window())
 
             resp = dialog.run()
             dialog.hide()
             if resp == Gtk.ResponseType.OK:
+                import_palette = self.builder.get_object('switch_import_palette').get_active()
+                import_new = self.builder.get_object('switch_import_new').get_active()
+                img = Image.open(fn)
+                if import_new:
+                    idx = len(self.img.sprites)
+                    self.img.sprites.append(None)
+                else:
+                    idx = self.image_idx
                 try:
-                    lst_entries = []
-                    for i in range(int(self.builder.get_object('nb_entries_import').get_text())):
-                        path = os.path.join(fn, f'{i:0>4}.png')
-                        if os.path.exists(path):
-                            lst_entries.append(Image.open(path, 'r'))
-                        else:
-                            lst_entries.append(None)
-                    self.font.set_entries(lst_entries)
-                    self.module.mark_font_as_modified(self.spec)
+                    self.img.from_pil(idx, img, import_palette)
+                    self.module.mark_icons_as_modified(self.img_type, self.img)
                 except Exception as err:
                     display_error(
                         sys.exc_info(),
                         str(err),
-                        "Error importing font."
+                        "Error importing sprite."
                     )
-                self._init_font()
+                self._init_sprites(idx, self.palette_idx)
 
-    def _init_font(self):
-        self.builder.get_object('entry_id').set_text(str(0))
+    def _init_sprites(self, sprite_idx=0, palette_idx=0):
+        self.builder.get_object('entry_id').set_text(str(sprite_idx))
         self.builder.get_object('entry_id').set_increments(1, 1)
-        self.builder.get_object('entry_id').set_range(0, self.font.get_nb_entries() - 1)
+        self.builder.get_object('entry_id').set_range(0, len(self.img.sprites) - 1)
+        self.builder.get_object('entry_palette').set_text(str(palette_idx))
+        self.builder.get_object('entry_palette').set_increments(1, 1)
+        self.builder.get_object('entry_palette').set_range(0, len(self.img.palettes) - 1)
         self._switch_entry()
 
     def on_entry_id_changed(self, widget):
@@ -147,26 +155,29 @@ class TrpItmImgController(AbstractController):
         if val < 0:
             val = 0
             widget.set_text(str(val))
-        elif val >= self.font.get_nb_entries():
-            val = self.font.get_nb_entries() - 1
+        elif val >= len(self.img.sprites):
+            val = len(self.img.sprites) - 1
             widget.set_text(str(val))
         self._switch_entry()
 
-    def on_nb_entries_import_changed(self, widget):
+    def on_entry_palette_changed(self, widget):
         try:
             val = int(widget.get_text())
         except ValueError:
             val = -1
 
-        if val <= 0:
-            val = 1
+        if val < 0:
+            val = 0
             widget.set_text(str(val))
-        elif val >= MAX_ENTRIES + 1:
-            val = MAX_ENTRIES
+        elif val >= len(self.img.palettes):
+            val = len(self.img.palettes) - 1
             widget.set_text(str(val))
+        self._switch_entry()
 
     def _switch_entry(self):
-        surface = self.font.get_entry(int(self.builder.get_object('entry_id').get_text()))
+        self.image_idx = int(self.builder.get_object('entry_id').get_text())
+        self.palette_idx = int(self.builder.get_object('entry_palette').get_text())
+        surface = self.img.to_pil(self.image_idx, self.palette_idx)
         stack: Gtk.Stack = self.builder.get_object('entry_stack')
         if surface:
             stack.set_visible_child(self.builder.get_object('entry_viewer'))

@@ -46,6 +46,8 @@ from skytemple_files.common.i18n_util import f, _
 NUMBER_OF_TILESETS = 170
 NUMBER_OF_BACKGROUNDS = 29
 DUNGEON_BIN = 'DUNGEON/dungeon.bin'
+ITEM_ICON_FILE = 'items.itm.img'
+TRAP_ICON_FILE = 'traps.trp.img'
 logger = logging.getLogger(__name__)
 
 
@@ -172,3 +174,20 @@ class DungeonGraphicsModule(AbstractModule):
 
     def nb_tilesets(self):
         return NUMBER_OF_TILESETS
+
+    def get_icons(self, img_type):
+        if img_type == ImgType.ITM:
+            return self.dungeon_bin.get(ITEM_ICON_FILE)
+        elif img_type == ImgType.TRP:
+            return self.dungeon_bin.get(TRAP_ICON_FILE)
+        else:
+            raise ValueError("Invalid item type")
+
+    def mark_icons_as_modified(self, img_type, img_model):
+        if img_type == ImgType.ITM:
+            self.dungeon_bin.set(ITEM_ICON_FILE, img_model)
+        elif img_type == ImgType.TRP:
+            self.dungeon_bin.set(TRAP_ICON_FILE, img_model)
+        else:
+            raise ValueError("Invalid item type")
+        self.project.mark_as_modified(DUNGEON_BIN)
