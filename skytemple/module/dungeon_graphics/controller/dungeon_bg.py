@@ -78,7 +78,7 @@ Some image editors have problems when working with indexed
 images, that contain the same color multiple times. You can
 make all colors on the map unique before exporting at
 Palettes > Edit Palettes.""")
-BACKGROUNDS_NAMES = 'Backgrounds'
+BACKGROUNDS_NAMES = _('Backgrounds')
 
 
 class DungeonBgMainController(SimpleController):
