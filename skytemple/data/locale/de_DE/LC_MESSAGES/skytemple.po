@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-06-08 22:40+0000\n"
-"PO-Revision-Date: 2021-06-08 22:49\n"
+"POT-Creation-Date: 2021-06-09 19:44+0000\n"
+"PO-Revision-Date: 2021-06-09 19:48\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -2197,6 +2197,7 @@ msgstr "IQ"
 #: skytemple-files/skytemple_files/data/md/model.py:292
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:874
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4767
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:63
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2043
 #: skytemple/skytemple/module/moves_items/controller/main_items.py:23
 msgid "Items"
@@ -3739,6 +3740,7 @@ msgstr "_Abbrechen"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:325
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:980
 #: skytemple/skytemple/_i18n.py:50
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:89
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:245
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:78
 #: skytemple/skytemple/module/misc_graphics/controller/chr.py:68
@@ -4756,6 +4758,7 @@ msgstr "Emulator"
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:629
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:859
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:953
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:212
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:105
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:125
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:159
@@ -5330,6 +5333,7 @@ msgid "Error importing the image."
 msgstr "Fehler beim Importieren des Bildes."
 
 #: skytemple/skytemple/module/bgp/controller/main.py:23
+#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:81
 msgid "Backgrounds"
 msgstr "Hintergründe"
 
@@ -5683,6 +5687,7 @@ msgstr "Neue Entität hinzufügen"
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:833
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:907
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1001
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:250
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:429
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:803
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:199
@@ -6232,6 +6237,7 @@ msgstr "Statischer Raum"
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1233
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:50
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1357
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:167
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2879
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.glade:34
 #: skytemple/skytemple/module/misc_graphics/controller/chr.glade:34
@@ -6252,6 +6258,7 @@ msgstr "Import"
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1278
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:65
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1402
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:182
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2865
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.glade:49
 #: skytemple/skytemple/module/misc_graphics/controller/chr.glade:49
@@ -6455,6 +6462,7 @@ msgid "Kecleon Level "
 msgstr "Kecleon Level "
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3067
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:65
 msgid "Traps"
 msgstr "Fallen"
 
@@ -6893,7 +6901,7 @@ msgstr "PNG der Blöcke exportieren..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:152
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:226
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:215
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:233
 msgid "Error exporting the tileset."
 msgstr "Fehler beim Exportieren des Tilesets."
 
@@ -6906,7 +6914,7 @@ msgstr "Ein Bild muss ausgewählt sein."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:191
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:259
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:176
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:194
 msgid "Error importing the tileset."
 msgstr "Fehler beim Importieren des Tilesets."
 
@@ -6949,7 +6957,7 @@ msgid "More Info: "
 msgstr "Weitere Infos: "
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:329
-#: skytemple/skytemple/module/dungeon_graphics/module.py:92
+#: skytemple/skytemple/module/dungeon_graphics/module.py:116
 msgid "Color Map"
 msgstr "Farbkarte"
 
@@ -7323,7 +7331,7 @@ msgstr "Dies wird alle Kacheln importieren.\n\n"
 msgid "Tiles Image"
 msgstr "Kachel-Bild"
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:42
+#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:43
 msgid "- The image consists of 8x8 tiles.\n"
 "- The image is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
@@ -7348,7 +7356,7 @@ msgstr "- Das Bild muss aus 8x8 Kacheln bestehen.\n"
 "- Nach dem Import darf es nur 1024 einzigartige 8x8 Kacheln geben\n"
 "  (=nicht doppelt vorhanden, auch nicht gedreht oder gespielt).\n"
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:55
+#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:56
 msgid "- The image is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
 "- Each 8x8 tile in the image MUST only use colors from\n"
@@ -7372,7 +7380,7 @@ msgstr "- Das Bild muss ein indiziertes PNG mit 256 Farben sein.\n"
 "alle Farben im Hintergrund einzigartig machen unter \"Paletten ->\n"
 "Paletten bearbeiten\"."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:68
+#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:69
 msgid "- The images is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
 "- Each 8x8 tile in the image MUST only use colors from\n"
@@ -7396,9 +7404,13 @@ msgstr "- Das Bild muss ein indiziertes PNG mit 256 Farben sein.\n"
 "alle Farben im Hintergrund einzigartig machen unter \"Paletten ->\n"
 "Paletten bearbeiten\"."
 
+#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:93
+msgid "This section lets you edit the background images that are used for some special dungeon floors."
+msgstr ""
+
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.py:24
-msgid "Dungeon Tilesets"
-msgstr "Dungeon Tilesets"
+msgid "Dungeon Graphics"
+msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.py:36
 msgid "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged."
@@ -7613,46 +7625,97 @@ msgstr "Dies wird die Kacheln importieren.\n\n"
 "  Paletten verwenden.\n"
 "- Die erste Farbe jeder Palette wird als Transparenz importiert."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:110
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:68
+msgid "Tilesets"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:80
+msgid "This section lets you edit the tilesets that are used for dungeons."
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:128
 #, python-brace-format
 msgid "Dungeon Tileset {self.item_id} Rules"
 msgstr "Regeln für Dungeon Tileset {self.item_id}"
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:111
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:129
 #, python-brace-format
 msgid "Dungeon Tileset {self.item_id}"
 msgstr "Dungeon-Tileset {self.item_id}"
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:129
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:147
 msgid "To import select the XML file in the DTEF tileset package. If it is still zipped, unzip it first."
 msgstr "Zum Importieren wähle die XML-Datei im DTEF-Tileset-Paket. Falls es noch ein ZIP-Archiv ist, entpacke es zuerst."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:136
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:154
 msgid "Import dungeon tileset..."
 msgstr "Dungeon Tileset importieren..."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:143
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:161
 msgid "DTEF XML document (*.dtef.xml)"
 msgstr "DTEF XML-Dokument (*.dtef.xml)"
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:166
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:184
 msgid "The tileset was successfully imported."
 msgstr "Das Tileset wurde erfolgreich importiert."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:167
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:208
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:185
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:226
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:177
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:245
 msgid "Success!"
 msgstr "Erfolg!"
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:181
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:199
 msgid "Export dungeon tileset..."
 msgstr "Dungeon Tileset exportieren..."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:207
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:225
 msgid "The tileset was successfully exported."
 msgstr "Das Tileset wurde erfolgreich exportiert."
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:79
+msgid "Import palettes?\n"
+"Note that this will affect all images."
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:102
+msgid "Insert as NEW image instead of replacing current."
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:113
+msgid "Import settings:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:207
+#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:154
+msgid "This entry is empty."
+msgstr "Dieser Eintrag ist leer."
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:273
+#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:220
+msgid "Entry: "
+msgstr "Eintrag: "
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:297
+msgid "Palette: "
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:79
+msgid "This will export the currently selected image with the currently selected palette. The image file itself contains all palettes, you can choose to import the edited palettes on import."
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:81
+msgid "Export Images"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:86
+msgid "Export current image to folder..."
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:101
+msgid "Import image..."
+msgstr ""
 
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.glade:7
 msgid "gfxcrunch"
@@ -9172,14 +9235,6 @@ msgid "Choose how many characters\n"
 "will be in the list: "
 msgstr "Wähle die Anzahl Zeichen,\n"
 "die in der Liste sein sollen: "
-
-#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:154
-msgid "This entry is empty."
-msgstr "Dieser Eintrag ist leer."
-
-#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:220
-msgid "Entry: "
-msgstr "Eintrag: "
 
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:93
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
