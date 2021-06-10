@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-06-09 19:49+0000\n"
-"PO-Revision-Date: 2021-06-09 20:45\n"
+"PO-Revision-Date: 2021-06-10 21:58\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1378,7 +1378,7 @@ msgstr "Tilesets de territorio (#10)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:135
 msgid "Use Fixed Room (#11)"
-msgstr ""
+msgstr "Usar sala fija (#11)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:240
 msgid "This function has no description."
@@ -1458,7 +1458,7 @@ msgstr "El archivo {file_name} ya existe en esta carpeta."
 #: skytemple-files/skytemple_files/common/util.py:402
 #, python-brace-format
 msgid "Folder {path} already exists."
-msgstr ""
+msgstr "La carpeta {path} ya existe."
 
 #: skytemple-files/skytemple_files/common/xml_util.py:43
 #, python-brace-format
@@ -3578,7 +3578,7 @@ msgstr "Recomendado para el parche 'CompleteTeamControl'. Sin él, los compañer
 
 #: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:42
 msgid "Reduces the amount of time the game pauses for before changing the PoV, like when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
-msgstr ""
+msgstr "Reduce el tiempo de pausa al mover la cámara para ver a los compañeros de equipo a distancia de 60 fotogramas a 12. Esto ya se aplica en el parche 'CompleteTeamControl'."
 
 #: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:39
 msgid "Allows the partner to be of the same type as the player in the personality test."
@@ -7424,11 +7424,11 @@ msgstr "- Las imágenes son un PNG indexado de 256 colores.\n"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:93
 msgid "This section lets you edit the background images that are used for some special dungeon floors."
-msgstr ""
+msgstr "Esta sección te permite editar las imágenes de fondo que se utilizan en algunos pisos especiales de territorios."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.py:24
 msgid "Dungeon Graphics"
-msgstr ""
+msgstr "Gráficos de territorios"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.py:36
 msgid "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged."
@@ -7646,7 +7646,7 @@ msgstr "Esto importará los tiles.\n\n"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:68
 msgid "Tilesets"
-msgstr ""
+msgstr "Tilesets"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:80
 msgid "This section lets you edit the tilesets that are used for dungeons."
