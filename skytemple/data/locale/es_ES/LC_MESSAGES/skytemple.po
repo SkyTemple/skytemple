@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-06-09 19:49+0000\n"
-"PO-Revision-Date: 2021-06-11 00:22\n"
+"POT-Creation-Date: 2021-06-11 11:13+0000\n"
+"PO-Revision-Date: 2021-06-11 12:12\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3901,7 +3901,7 @@ msgid "<Global>"
 msgstr "<Global>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
-#: skytemple/skytemple/module/lists/module.py:72
+#: skytemple/skytemple/module/lists/module.py:74
 #: skytemple/skytemple/module/script/controller/ssa.glade:1302
 #: skytemple/skytemple/module/script/controller/ssa.glade:1330
 msgid "Actors"
@@ -7862,8 +7862,93 @@ msgstr "Los menús están codificados, por lo que no puedes añadir ninguna opci
 "Además, el código de acción de esa entrada se utiliza al pulsar el botón B (si el juego lo permite para dicho menú). \n"
 " - Si se edita una cadena con un ID específico, se cambiarán todas las cadenas que utilicen ese ID."
 
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:34
+#: skytemple/skytemple/module/lists/module.py:95
+msgid "Misc. Settings"
+msgstr "Otros ajustes"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:71
+msgid "General:"
+msgstr "General:"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:89
+msgid "Dungeon:"
+msgstr "Territorio:"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:107
+msgid "Conditions:"
+msgstr "Condiciones:"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:125
+msgid "IQ:"
+msgstr "CI:"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:153
+msgid "Enable fast (\"debug mode\") text speed:"
+msgstr "Activar velocidad de texto rápida:"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:165
+msgid "Normal spawn delay (turns):"
+msgstr "Retraso normal de aparición (turnos):"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:177
+msgid "Spawn delay (turns) after stealing \n"
+"from shop:"
+msgstr "Retraso de aparición (turnos) tras robar \n"
+"de la tienda:"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:214
+msgid "Main menu music track:"
+msgstr "Pista musical del menú principal:"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:245
+msgid "Min. IQ required by enemies to learn \n"
+"Exclusive Move-User:"
+msgstr "CI mínimo requerido por los enemigos para aprender \n"
+"Movimaníaco:"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:259
+msgid "Min. IQ required by enemies to learn \n"
+"Item Master:"
+msgstr "Mín. IQ requerido por los enemigos para aprender \n"
+"Domina-objetos:"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:297
+msgid "Belly points lost when \n"
+"walking through walls:"
+msgstr "Puntos de tripa perdidos al \n"
+"atravesar paredes:"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:311
+msgid "1/1000 belly points lost when \n"
+"walking through walls:"
+msgstr "1/1000 puntos de tripa se pierden al \n"
+"atravesar paredes:"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:349
+msgid "Intimidator activation chance (%):"
+msgstr "Probabilidad de activación de intimidación (%):"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:374
+msgid "Chance of Ginseng increasing \n"
+"a move's power by 3 (%):"
+msgstr "Probabilidad de que Ginseng aumente \n"
+"la potencia de un movimiento un 3%:"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:400
+msgid "Burn damage delay (turns):"
+msgstr "Retraso de daño por Quemado (turnos):"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:413
+msgid "Poison damage delay (turns):"
+msgstr "Retraso de daño por Envenenado (turnos):"
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:426
+msgid "Bad poison damage delay (turns):"
+msgstr "Retraso de daño por Gravemente envenenado (turnos):"
+
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
-#: skytemple/skytemple/module/lists/module.py:84
+#: skytemple/skytemple/module/lists/module.py:86
 msgid "Rank List"
 msgstr "Lista de rangos"
 
@@ -7880,7 +7965,7 @@ msgid "Item Reward"
 msgstr "Objetos de recompensa"
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
-#: skytemple/skytemple/module/lists/module.py:78
+#: skytemple/skytemple/module/lists/module.py:80
 msgid "Recruitment List"
 msgstr "Lista de reclutamiento"
 
@@ -7911,7 +7996,7 @@ msgstr "Para añadirlos al equipo de inmediato:\n"
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:149
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:296
-#: skytemple/skytemple/module/lists/module.py:90
+#: skytemple/skytemple/module/lists/module.py:92
 msgid "Special Process Effects"
 msgstr "Efectos de procesos especiales"
 
@@ -8198,7 +8283,7 @@ msgstr "Por favor, no selecciones un marcador que haga referencia a otro marcado
 "El comportamiento para esto no está definido."
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
-#: skytemple/skytemple/module/lists/module.py:81
+#: skytemple/skytemple/module/lists/module.py:83
 msgid "World Map Markers"
 msgstr "Marcadores del mapa del mundo"
 
@@ -8245,11 +8330,11 @@ msgstr "Debes seleccionar un mapa."
 msgid "You need to select a reference."
 msgstr "Necesitas seleccionar una referencia."
 
-#: skytemple/skytemple/module/lists/module.py:75
+#: skytemple/skytemple/module/lists/module.py:77
 msgid "Starters"
 msgstr "Iniciales"
 
-#: skytemple/skytemple/module/lists/module.py:87
+#: skytemple/skytemple/module/lists/module.py:89
 msgid "Menu List"
 msgstr "Listas de menú"
 
@@ -9007,7 +9092,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5230
 msgid "One of the levels assigned to this background use mode #10 or #11. The background will be rendered in game using the assigned dungeon tileset. If it's mode #10 you can build the layout above. Mode #11 uses the fixed room of the assigned floor."
-msgstr ""
+msgstr "Uno de los niveles asignados a este fondo utiliza el modo #10 o #11. El fondo se renderizará en el juego usando el conjunto de territorios asignado. Si es el modo #10, puedes construir el diseño anterior. El modo #11 utiliza la sala fija del piso asignado."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5299
 msgid "This background uses weird palette values for some chunks, so the game will not render this background the same as it is displayed here.\n"
@@ -11185,7 +11270,7 @@ msgstr "Título:"
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.glade:286
 #: skytemple/skytemple/module/script/controller/ssa.glade:756
 msgid "This level uses mode #10 or #11. It is using dungeon tiles for rendering (and if mode #11 a fixed room assigned). Changing the map background may result in unexpected results because of this."
-msgstr ""
+msgstr "Este nivel utiliza el modo #10 o #11. Está usando tiles de territorio para el renderizado (y si usas el modo #11, una sala fija asignada). Cambiar el fondo del mapa puede dar resultados inesperados debido a esto."
 
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:78
 msgid "Edit Position Marks"
@@ -11230,7 +11315,8 @@ msgstr "Scripts de escenas"
 #: skytemple/skytemple/module/script/controller/main.glade:215
 msgid "This section lets you edit overworld scenes in the game, so anything that happens outside of Dungeons.\n"
 "This also includes cutscene visuals and some system related scenes like credits or the title screen logos."
-msgstr ""
+msgstr "Esta sección te permite editar las escenas del mundo exterior del juego, es decir, todo lo que ocurre fuera de los territorios.\n"
+"Esto también incluye las escenas visuales y algunas escenas relacionadas con el sistema, como los créditos o los logotipos de la pantalla del título."
 
 #: skytemple/skytemple/module/script/controller/main.glade:323
 msgid "Internal Name"
@@ -11255,7 +11341,8 @@ msgstr "Lista de niveles"
 #: skytemple/skytemple/module/script/controller/main.glade:591
 msgid "This maps ground levels using type #10 or #11 to dungeons and or fixed rooms. \n"
 "If a selected floor number is bigger than the floor count for this dungeon, the last floor is used."
-msgstr ""
+msgstr "Esto mapea los niveles del suelo usando el tipo #10 o #11 a territorios y salas fijas. \n"
+"Si un número de piso seleccionado es mayor que el recuento de pisos del territorio, se utiliza el último piso."
 
 #: skytemple/skytemple/module/script/controller/main.glade:610
 msgid "Level - Dungeon Mappings"
@@ -11276,7 +11363,7 @@ msgstr "Nombre de nivel"
 
 #: skytemple/skytemple/module/script/controller/main.py:121
 msgid "If you also need a new background for this level, you can create one under \"Map Backrgounds\" and assign it to this level afterwards."
-msgstr ""
+msgstr "Si también necesitas un nuevo fondo para este nivel, puedes crear uno debajo de \"Fondos de mapa\" y asignarlo a este nivel después."
 
 #: skytemple/skytemple/module/script/controller/main.py:150
 msgid "New level created."
