@@ -52,7 +52,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <child>
-                      <!-- n-columns=2 n-rows=17 -->
+                      <!-- n-columns=2 n-rows=18 -->
                       <object class="GtkGrid">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
@@ -111,7 +111,7 @@
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
-                            <property name="top-attach">9</property>
+                            <property name="top-attach">10</property>
                             <property name="width">2</property>
                           </packing>
                         </child>
@@ -129,7 +129,7 @@
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
-                            <property name="top-attach">13</property>
+                            <property name="top-attach">14</property>
                             <property name="width">2</property>
                           </packing>
                         </child>
@@ -248,7 +248,7 @@ Exclusive Move-User:</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
-                            <property name="top-attach">14</property>
+                            <property name="top-attach">15</property>
                           </packing>
                         </child>
                         <child>
@@ -262,7 +262,7 @@ Item Master:</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
-                            <property name="top-attach">15</property>
+                            <property name="top-attach">16</property>
                           </packing>
                         </child>
                         <child>
@@ -274,7 +274,7 @@ Item Master:</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="top-attach">14</property>
+                            <property name="top-attach">15</property>
                           </packing>
                         </child>
                         <child>
@@ -286,7 +286,7 @@ Item Master:</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="top-attach">15</property>
+                            <property name="top-attach">16</property>
                           </packing>
                         </child>
                         <child>
@@ -295,21 +295,7 @@ Item Master:</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
                             <property name="label" translatable="yes">Belly points lost when 
-walking through walls:</property>
-                            <property name="justify">right</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">6</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">end</property>
-                            <property name="label" translatable="yes">1/1000 belly points lost when 
-walking through walls:</property>
+walking through walls, per turn:</property>
                             <property name="justify">right</property>
                           </object>
                           <packing>
@@ -326,18 +312,6 @@ walking through walls:</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="top-attach">6</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="entry_belly_lost_wtw_1000">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="valign">center</property>
-                            <signal name="changed" handler="on_entry_belly_lost_wtw_1000_changed" swapped="no"/>
-                          </object>
-                          <packing>
-                            <property name="left-attach">1</property>
                             <property name="top-attach">7</property>
                           </packing>
                         </child>
@@ -351,7 +325,7 @@ walking through walls:</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
-                            <property name="top-attach">16</property>
+                            <property name="top-attach">17</property>
                           </packing>
                         </child>
                         <child>
@@ -363,7 +337,7 @@ walking through walls:</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="top-attach">16</property>
+                            <property name="top-attach">17</property>
                           </packing>
                         </child>
                         <child>
@@ -377,7 +351,7 @@ a move's power by 3 (%):</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
-                            <property name="top-attach">8</property>
+                            <property name="top-attach">9</property>
                           </packing>
                         </child>
                         <child>
@@ -389,7 +363,7 @@ a move's power by 3 (%):</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="top-attach">8</property>
+                            <property name="top-attach">9</property>
                           </packing>
                         </child>
                         <child>
@@ -402,7 +376,7 @@ a move's power by 3 (%):</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
-                            <property name="top-attach">10</property>
+                            <property name="top-attach">11</property>
                           </packing>
                         </child>
                         <child>
@@ -415,7 +389,7 @@ a move's power by 3 (%):</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
-                            <property name="top-attach">11</property>
+                            <property name="top-attach">12</property>
                           </packing>
                         </child>
                         <child>
@@ -428,7 +402,7 @@ a move's power by 3 (%):</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
-                            <property name="top-attach">12</property>
+                            <property name="top-attach">13</property>
                           </packing>
                         </child>
                         <child>
@@ -440,7 +414,7 @@ a move's power by 3 (%):</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="top-attach">10</property>
+                            <property name="top-attach">11</property>
                           </packing>
                         </child>
                         <child>
@@ -452,7 +426,7 @@ a move's power by 3 (%):</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="top-attach">11</property>
+                            <property name="top-attach">12</property>
                           </packing>
                         </child>
                         <child>
@@ -464,7 +438,58 @@ a move's power by 3 (%):</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="top-attach">12</property>
+                            <property name="top-attach">13</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">end</property>
+                            <property name="label" translatable="yes">Belly points lost, per turn:</property>
+                            <property name="justify">right</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">6</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="entry_belly_lost">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="valign">center</property>
+                            <signal name="changed" handler="on_entry_belly_lost_changed" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">6</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">end</property>
+                            <property name="label" translatable="yes">1/1000 belly points lost when 
+walking through walls, per turn:</property>
+                            <property name="justify">right</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">8</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="entry_belly_lost_wtw_1000">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="valign">center</property>
+                            <signal name="changed" handler="on_entry_belly_lost_wtw_1000_changed" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">8</property>
                           </packing>
                         </child>
                       </object>

@@ -84,6 +84,15 @@ class MiscSettingsController(AbstractController):
         self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedSpawnRate.set_stolen_spawn_rate(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    def on_entry_belly_lost_changed(self, widget, *args):
+        try:
+            val = float(widget.get_text())
+        except ValueError:
+            return
+        static_data = self.module.project.get_rom_module().get_static_data()
+        self.module.project.modify_binary(BinaryName.OVERLAY_29, lambda bin: HardcodedDungeonMisc.set_belly_loss_turn(val, bin, static_data))
+        self.module.mark_misc_settings_as_modified()
+
     def on_entry_belly_lost_wtw_changed(self, widget, *args):
         try:
             val = int(widget.get_text())
@@ -184,6 +193,7 @@ class MiscSettingsController(AbstractController):
         self.builder.get_object('cb_main_menu_music').set_active(HardcodedMainMenuMusic.get_main_menu_music(ov00, static_data))
         self.builder.get_object('entry_normal_spawn_delay').set_text(str(HardcodedSpawnRate.get_normal_spawn_rate(ov10, static_data)))
         self.builder.get_object('entry_stolen_spawn_delay').set_text(str(HardcodedSpawnRate.get_stolen_spawn_rate(ov10, static_data)))
+        self.builder.get_object('entry_belly_lost').set_text(str(HardcodedDungeonMisc.get_belly_loss_turn(ov29, static_data)))
         self.builder.get_object('entry_belly_lost_wtw').set_text(str(HardcodedDungeonMisc.get_belly_loss_walk_through_walls(ov29, static_data)))
         self.builder.get_object('entry_belly_lost_wtw_1000').set_text(str(HardcodedDungeonMisc.get_belly_loss_1000ile_walk_through_walls(ov29, static_data)))
         self.builder.get_object('entry_ginseng_3_chance').set_text(str(HardcodedDungeonMisc.get_ginseng_increase_by_3_chance(ov10, static_data)))
