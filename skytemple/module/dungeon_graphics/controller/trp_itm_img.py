@@ -94,6 +94,8 @@ class TrpItmImgController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
+            if '.' not in fn:
+                fn += '.png'
             self.img.to_pil(self.image_idx, self.palette_idx).save(fn)
 
     def on_import_clicked(self, w: Gtk.MenuToolButton):
