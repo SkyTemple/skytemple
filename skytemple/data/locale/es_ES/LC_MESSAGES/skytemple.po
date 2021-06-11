@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-06-11 11:13+0000\n"
-"PO-Revision-Date: 2021-06-11 12:12\n"
+"PO-Revision-Date: 2021-06-11 13:14\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -11375,7 +11375,7 @@ msgstr "Añadir escena \"Entrada\""
 
 #: skytemple/skytemple/module/script/controller/map.glade:147
 msgid "Add \"Acting\" scene"
-msgstr "Añadir escena \"Acciones\""
+msgstr "Añadir escena \"Acción\""
 
 #: skytemple/skytemple/module/script/controller/map.glade:192
 msgid "Add \"Sub\" scene"
@@ -11399,7 +11399,7 @@ msgstr "Esta sección contiene todas las escenas del mapa {self.name}.\n\n"
 "mapa al \"caminar hacia él\" (si es aplicable).\n\n"
 "\"Acciones (ssa)\" contiene las escenas utilizadas para las cinemáticas.\n"
 "El jugador normalmente no puede mover al personaje en estas escenas.\n\n"
-"\"Sub (sss)\" contiene escenas que pueden ser cargadas sobre la escena \"Enter\",\n"
+"\"Sub (sss)\" contiene escenas que pueden ser cargadas sobre la escena \"Entrada\",\n"
 "dependiendo del progreso de la historia actual."
 
 #: skytemple/skytemple/module/script/controller/map.py:68
@@ -11602,7 +11602,7 @@ msgstr "?INVÁLIDO? {script_id}"
 #: skytemple/skytemple/module/script/controller/ssa.py:1503
 #, python-brace-format
 msgid "{len_actors} acts, "
-msgstr "{len_actors} actor(es), "
+msgstr "{len_actors} actor/es, "
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1505
 #, python-brace-format
