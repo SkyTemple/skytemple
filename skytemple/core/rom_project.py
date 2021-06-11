@@ -62,6 +62,8 @@ except ImportError:  # < Python 3.7
 class BinaryName(Enum):
     """This enum maps to binary names of the pmd2data.xml."""
     ARM9 = auto(), 'arm9.bin'
+    OVERLAY_00 = auto(), 'overlay/overlay_0000.bin'
+    OVERLAY_09 = auto(), 'overlay/overlay_0009.bin'
     OVERLAY_10 = auto(), 'overlay/overlay_0010.bin'
     OVERLAY_11 = auto(), 'overlay/overlay_0011.bin'
     OVERLAY_13 = auto(), 'overlay/overlay_0013.bin'

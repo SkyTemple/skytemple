@@ -23,6 +23,7 @@ from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label
 from skytemple.module.lists.controller.main import MainController, GROUND_LISTS
 from skytemple.module.lists.controller.actor_list import ActorListController
+from skytemple.module.lists.controller.misc_settings import MiscSettingsController
 from skytemple.module.lists.controller.rank_list import RankListController
 from skytemple.module.lists.controller.menu_list import MenuListController
 from skytemple.module.lists.controller.starters_list import StartersListController
@@ -63,6 +64,7 @@ class ListsModule(AbstractModule):
         self._world_map_tree_iter = None
         self._rank_list_tree_iter = None
         self._menu_list_tree_iter = None
+        self._misc_settings_tree_iter = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
@@ -89,6 +91,9 @@ class ListsModule(AbstractModule):
         self._sp_effects_tree_iter = item_store.append(root, [
             'skytemple-view-list-symbolic', _('Special Process Effects'), self, SPEffectsController, 0, False, '', True
         ])
+        self._misc_settings_tree_iter = item_store.append(root, [
+            'skytemple-view-list-symbolic', _('Misc. Settings'), self, MiscSettingsController, 0, False, '', True
+        ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])
         generate_item_store_row_label(item_store[self._starters_tree_iter])
@@ -97,6 +102,7 @@ class ListsModule(AbstractModule):
         generate_item_store_row_label(item_store[self._rank_list_tree_iter])
         generate_item_store_row_label(item_store[self._menu_list_tree_iter])
         generate_item_store_row_label(item_store[self._sp_effects_tree_iter])
+        generate_item_store_row_label(item_store[self._misc_settings_tree_iter])
         self._tree_model = item_store
 
 
@@ -130,6 +136,11 @@ class ListsModule(AbstractModule):
         self.project.get_string_provider().mark_as_modified()
         # Mark as modified in tree
         row = self._tree_model[self._starters_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+
+    def mark_misc_settings_as_modified(self):
+        # Mark as modified in tree
+        row = self._tree_model[self._misc_settings_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
 
     def get_monster_md(self) -> Md:
