@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-06-09 19:49+0000\n"
-"PO-Revision-Date: 2021-06-09 20:45\n"
+"POT-Creation-Date: 2021-06-11 11:13+0000\n"
+"PO-Revision-Date: 2021-06-11 12:12\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -3876,7 +3876,7 @@ msgid "<Global>"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
-#: skytemple/skytemple/module/lists/module.py:72
+#: skytemple/skytemple/module/lists/module.py:74
 #: skytemple/skytemple/module/script/controller/ssa.glade:1302
 #: skytemple/skytemple/module/script/controller/ssa.glade:1330
 msgid "Actors"
@@ -7612,8 +7612,87 @@ msgid "Menus are hardcoded so you can't add any option, but you can edit a few t
 " - Editing a string with a specific ID will result of all strings using that ID to be changed."
 msgstr ""
 
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:34
+#: skytemple/skytemple/module/lists/module.py:95
+msgid "Misc. Settings"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:71
+msgid "General:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:89
+msgid "Dungeon:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:107
+msgid "Conditions:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:125
+msgid "IQ:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:153
+msgid "Enable fast (\"debug mode\") text speed:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:165
+msgid "Normal spawn delay (turns):"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:177
+msgid "Spawn delay (turns) after stealing \n"
+"from shop:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:214
+msgid "Main menu music track:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:245
+msgid "Min. IQ required by enemies to learn \n"
+"Exclusive Move-User:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:259
+msgid "Min. IQ required by enemies to learn \n"
+"Item Master:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:297
+msgid "Belly points lost when \n"
+"walking through walls:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:311
+msgid "1/1000 belly points lost when \n"
+"walking through walls:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:349
+msgid "Intimidator activation chance (%):"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:374
+msgid "Chance of Ginseng increasing \n"
+"a move's power by 3 (%):"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:400
+msgid "Burn damage delay (turns):"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:413
+msgid "Poison damage delay (turns):"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:426
+msgid "Bad poison damage delay (turns):"
+msgstr ""
+
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
-#: skytemple/skytemple/module/lists/module.py:84
+#: skytemple/skytemple/module/lists/module.py:86
 msgid "Rank List"
 msgstr ""
 
@@ -7630,7 +7709,7 @@ msgid "Item Reward"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
-#: skytemple/skytemple/module/lists/module.py:78
+#: skytemple/skytemple/module/lists/module.py:80
 msgid "Recruitment List"
 msgstr ""
 
@@ -7655,7 +7734,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:149
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:296
-#: skytemple/skytemple/module/lists/module.py:90
+#: skytemple/skytemple/module/lists/module.py:92
 msgid "Special Process Effects"
 msgstr ""
 
@@ -7930,7 +8009,7 @@ msgid "Please don't select a marker that already references another marker.\n"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
-#: skytemple/skytemple/module/lists/module.py:81
+#: skytemple/skytemple/module/lists/module.py:83
 msgid "World Map Markers"
 msgstr ""
 
@@ -7977,11 +8056,11 @@ msgstr ""
 msgid "You need to select a reference."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:75
+#: skytemple/skytemple/module/lists/module.py:77
 msgid "Starters"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:87
+#: skytemple/skytemple/module/lists/module.py:89
 msgid "Menu List"
 msgstr ""
 
