@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-06-09 19:49+0000\n"
-"PO-Revision-Date: 2021-06-10 21:58\n"
+"PO-Revision-Date: 2021-06-11 00:22\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -7650,7 +7650,7 @@ msgstr "Tilesets"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:80
 msgid "This section lets you edit the tilesets that are used for dungeons."
-msgstr ""
+msgstr "Esta sección te permite editar los tilesets utilizados en territorios."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:128
 #, python-brace-format
@@ -7696,15 +7696,16 @@ msgstr "El tileset se ha exportado correctamente."
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:79
 msgid "Import palettes?\n"
 "Note that this will affect all images."
-msgstr ""
+msgstr "¿Importar paletas?\n"
+"Ten en cuenta que esto afectará a todas las imágenes."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:102
 msgid "Insert as NEW image instead of replacing current."
-msgstr ""
+msgstr "Insertar como NUEVA imagen en lugar de reemplazar la actual."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:113
 msgid "Import settings:"
-msgstr ""
+msgstr "Importar configuración:"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:207
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:154
@@ -7718,23 +7719,23 @@ msgstr "Entrada: "
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:297
 msgid "Palette: "
-msgstr ""
+msgstr "Paleta: "
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:79
 msgid "This will export the currently selected image with the currently selected palette. The image file itself contains all palettes, you can choose to import the edited palettes on import."
-msgstr ""
+msgstr "Esto exportará la imagen seleccionada con la paleta elegida. El propio archivo de imagen contiene todas las paletas, por lo que puedes elegir importar las paletas editadas al importar."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:81
 msgid "Export Images"
-msgstr ""
+msgstr "Exportar imágenes"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:86
 msgid "Export current image to folder..."
-msgstr ""
+msgstr "Exportar la imagen actual a la carpeta..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:101
 msgid "Import image..."
-msgstr ""
+msgstr "Importar imagen..."
 
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.glade:7
 msgid "gfxcrunch"
@@ -8502,31 +8503,31 @@ msgstr "Fondos de mapa"
 msgid "This section lets you edit map backgrounds. \n"
 "These backgrounds are usually loaded by the game for scenes and serve many purposes \n"
 "(actual backgrounds for maps, title screen backgrounds, cutscenes, etc.)."
-msgstr ""
+msgstr "Esta sección te permite editar los fondos del mapa. Estos suelen cargarse para escenas y tienen múltiples propósitos (fondos reales para mapas, fondos de la pantalla del título, cinemáticas, etc.)."
 
 #: skytemple/skytemple/module/map_bg/controller/main.glade:98
 msgid "New Background"
-msgstr ""
+msgstr "Nuevo fondo"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:47
 msgid "Create Background"
-msgstr ""
+msgstr "Crear fondo"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:47
 msgid "Map Background Name"
-msgstr ""
+msgstr "Nombre del fondo del mapa"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:57
 msgid "The length of the map background name must be between 1-8 characters."
-msgstr ""
+msgstr "La longitud del nombre del fondo del mapa debe tener entre 1-8 caracteres."
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:72
 msgid "A map background with this name already exists."
-msgstr ""
+msgstr "Ya existe un fondo de mapa con este nombre."
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:95
 msgid "Map background added successfully"
-msgstr ""
+msgstr "Fondo del mapa añadido correctamente"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:92
 msgid "Hide Other Layers"
@@ -8685,7 +8686,8 @@ msgstr "Disminuir el número de capas eliminará\n"
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2500
 msgid "NOTE: The number of layers for the level that uses this\n"
 "map must match."
-msgstr ""
+msgstr "NOTA: El número de capas para el nivel que utiliza este mapa\n"
+"debe coincidir."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2532
 msgid "Number of Collision Layers"
@@ -11232,23 +11234,23 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/main.glade:323
 msgid "Internal Name"
-msgstr ""
+msgstr "Nombre Interno"
 
 #: skytemple/skytemple/module/script/controller/main.glade:337
 msgid "Overworld Text String"
-msgstr ""
+msgstr "Cadenas de fuera de territorios"
 
 #: skytemple/skytemple/module/script/controller/main.glade:369
 msgid "Map Background"
-msgstr ""
+msgstr "Fondo del mapa"
 
 #: skytemple/skytemple/module/script/controller/main.glade:385
 msgid "Default Weather"
-msgstr ""
+msgstr "Clima por defecto"
 
 #: skytemple/skytemple/module/script/controller/main.glade:473
 msgid "Level List"
-msgstr ""
+msgstr "Lista de niveles"
 
 #: skytemple/skytemple/module/script/controller/main.glade:591
 msgid "This maps ground levels using type #10 or #11 to dungeons and or fixed rooms. \n"
@@ -11257,20 +11259,20 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/main.glade:610
 msgid "Level - Dungeon Mappings"
-msgstr ""
+msgstr "Nivel - Mapeados de territorios"
 
 #: skytemple/skytemple/module/script/controller/main.py:80
 #: skytemple/skytemple/module/script/controller/main.py:132
 msgid "The length of the level name must be between 1-8 characters."
-msgstr ""
+msgstr "La longitud del nombre del nivel debe tener entre 1-8 caracteres."
 
 #: skytemple/skytemple/module/script/controller/main.py:120
 msgid "Create Level"
-msgstr ""
+msgstr "Crear nivel"
 
 #: skytemple/skytemple/module/script/controller/main.py:120
 msgid "Level Name"
-msgstr ""
+msgstr "Nombre de nivel"
 
 #: skytemple/skytemple/module/script/controller/main.py:121
 msgid "If you also need a new background for this level, you can create one under \"Map Backrgounds\" and assign it to this level afterwards."
@@ -11278,23 +11280,23 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/main.py:150
 msgid "New level created."
-msgstr ""
+msgstr "Nuevo nivel creado."
 
 #: skytemple/skytemple/module/script/controller/map.glade:102
 msgid "Add \"Enter\" scene"
-msgstr ""
+msgstr "Añadir escena \"Entrada\""
 
 #: skytemple/skytemple/module/script/controller/map.glade:147
 msgid "Add \"Acting\" scene"
-msgstr ""
+msgstr "Añadir escena \"Acciones\""
 
 #: skytemple/skytemple/module/script/controller/map.glade:192
 msgid "Add \"Sub\" scene"
-msgstr ""
+msgstr "Añadir escena \"Sub\""
 
 #: skytemple/skytemple/module/script/controller/map.py:45
 msgid "Script Scenes for \"{}\""
-msgstr ""
+msgstr "Scripts de escenas para \"{}\""
 
 #: skytemple/skytemple/module/script/controller/map.py:47
 #, python-brace-format
@@ -11305,19 +11307,25 @@ msgid "This section contains all scenes for the map {self.name}.\n\n"
 "The player can usually not move the character in these scenes.\n\n"
 "\"Sub (sss)\" contains scenes that can be loaded on on top of the \"Enter\" scene,\n"
 "depending on the current story progress."
-msgstr ""
+msgstr "Esta sección contiene todas las escenas del mapa {self.name}.\n\n"
+"\"Entrada (sse)\" contiene la escena que se carga cuando el jugador entra en el\n"
+"mapa al \"caminar hacia él\" (si es aplicable).\n\n"
+"\"Acciones (ssa)\" contiene las escenas utilizadas para las cinemáticas.\n"
+"El jugador normalmente no puede mover al personaje en estas escenas.\n\n"
+"\"Sub (sss)\" contiene escenas que pueden ser cargadas sobre la escena \"Enter\",\n"
+"dependiendo del progreso de la historia actual."
 
 #: skytemple/skytemple/module/script/controller/map.py:68
 #: skytemple/skytemple/module/script/controller/map.py:105
 #: skytemple/skytemple/module/script/controller/map.py:141
 msgid "Could not add the scene: "
-msgstr ""
+msgstr "No se ha podido añadir la escena: "
 
 #: skytemple/skytemple/module/script/controller/map.py:77
 #: skytemple/skytemple/module/script/controller/map.py:114
 #: skytemple/skytemple/module/script/controller/map.py:150
 msgid "Scene added successfully"
-msgstr ""
+msgstr "Escena añadida correctamente"
 
 #: skytemple/skytemple/module/script/controller/map.py:84
 #: skytemple/skytemple/module/script/controller/map.py:120
@@ -11570,11 +11578,11 @@ msgstr "Mapa no encontrado."
 
 #: skytemple/skytemple/module/script/module.py:409
 msgid "The file name provided must not have a file extension."
-msgstr ""
+msgstr "El nombre del archivo no debe tener extensión."
 
 #: skytemple/skytemple/module/script/module.py:411
 msgid "The file name provided is too long (max 8 characters)."
-msgstr ""
+msgstr "El nombre del archivo es demasiado largo (máx. 8 caracteres)."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:43
 msgid "<span size=\"large\">Spritesheet</span>"
