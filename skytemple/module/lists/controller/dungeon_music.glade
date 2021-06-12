@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.22"/>
+  <object class="GtkListStore" id="store_random_tracks">
+    <columns>
+      <!-- column-name id -->
+      <column type="gchararray"/>
+      <!-- column-name track1 -->
+      <column type="gchararray"/>
+      <!-- column-name track2 -->
+      <column type="gchararray"/>
+      <!-- column-name track3 -->
+      <column type="gchararray"/>
+      <!-- column-name track4 -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="store_track_name">
+    <columns>
+      <!-- column-name id -->
+      <column type="guint"/>
+      <!-- column-name track_label -->
+      <column type="gchararray"/>
+      <!-- column-name is_random -->
+      <column type="gboolean"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="store_track_name_single">
+    <columns>
+      <!-- column-name id -->
+      <column type="guint"/>
+      <!-- column-name track_label -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="store_tracks">
+    <columns>
+      <!-- column-name id -->
+      <column type="gchararray"/>
+      <!-- column-name selected_track_label -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkBox" id="box_list">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkAlignment">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="xscale">0.8000000119209289</property>
+        <property name="yscale">0.8000000119209289</property>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">20</property>
+                <property name="pixel-size">127</property>
+                <property name="icon-name">skytemple-illust-music</property>
+                <property name="icon_size">3</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">20</property>
+                <property name="label" translatable="yes">Dungeon Music</property>
+                <style>
+                  <class name="skytemple-view-main-label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">5</property>
+                <property name="label" translatable="yes">Here you can edit the tracks selectable for dungeon floors. The tracks can either be assigned to single music tracks or to sets of four random tracks.</property>
+                <property name="justify">center</property>
+                <property name="wrap">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkNotebook" id="nb_sl">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="margin-top">5</property>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="shadow-type">in</property>
+                        <child>
+                          <object class="GtkTreeView" id="tree_tracks">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="model">store_tracks</property>
+                            <property name="search-column">0</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection"/>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">ID</property>
+                                <child>
+                                  <object class="GtkCellRendererText"/>
+                                  <attributes>
+                                    <attribute name="text">0</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Track</property>
+                                <child>
+                                  <object class="GtkCellRendererCombo" id="cr_tracks_track">
+                                    <property name="editable">True</property>
+                                    <property name="model">store_track_name</property>
+                                    <property name="text-column">1</property>
+                                    <signal name="changed" handler="on_cr_tracks_track_changed" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">1</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Tracks</property>
+                      </object>
+                      <packing>
+                        <property name="tab-fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="shadow-type">in</property>
+                        <child>
+                          <object class="GtkTreeView" id="tree_random_tracks">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="model">store_random_tracks</property>
+                            <property name="search-column">0</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection"/>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">ID</property>
+                                <child>
+                                  <object class="GtkCellRendererText"/>
+                                  <attributes>
+                                    <attribute name="text">0</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Track 1</property>
+                                <child>
+                                  <object class="GtkCellRendererCombo" id="cr_random_track1">
+                                    <property name="editable">True</property>
+                                    <property name="model">store_track_name_single</property>
+                                    <property name="text-column">1</property>
+                                    <signal name="changed" handler="on_cr_random_track1_changed" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">1</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Track 2</property>
+                                <child>
+                                  <object class="GtkCellRendererCombo" id="cr_random_track2">
+                                    <property name="editable">True</property>
+                                    <property name="model">store_track_name_single</property>
+                                    <property name="text-column">1</property>
+                                    <signal name="changed" handler="on_cr_random_track2_changed" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">2</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Track 3</property>
+                                <child>
+                                  <object class="GtkCellRendererCombo" id="cr_random_track3">
+                                    <property name="editable">True</property>
+                                    <property name="model">store_track_name_single</property>
+                                    <property name="text-column">1</property>
+                                    <signal name="changed" handler="on_cr_random_track3_changed" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">3</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Track 4</property>
+                                <child>
+                                  <object class="GtkCellRendererCombo" id="cr_random_track4">
+                                    <property name="editable">True</property>
+                                    <property name="model">store_track_name_single</property>
+                                    <property name="text-column">1</property>
+                                    <signal name="changed" handler="on_cr_random_track4_changed" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">4</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Random Music</property>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                        <property name="tab-fill">False</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <style>
+      <class name="back_illust"/>
+      <class name="music"/>
+    </style>
+  </object>
+</interface>

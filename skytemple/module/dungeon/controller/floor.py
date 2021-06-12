@@ -29,7 +29,8 @@ from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET, REQUEST_TYPE_DUNGEON_FIXED_FLOOR
+from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET, REQUEST_TYPE_DUNGEON_FIXED_FLOOR, \
+    REQUEST_TYPE_DUNGEON_MUSIC
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import add_dialog_xml_filter
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG
@@ -414,6 +415,11 @@ class FloorController(AbstractController):
             self.module.project.request_open(OpenRequest(
                 REQUEST_TYPE_DUNGEON_FIXED_FLOOR, idx
             ))
+
+    def on_btn_goto_music_clicked(self, *args):
+        self.module.project.request_open(OpenRequest(
+            REQUEST_TYPE_DUNGEON_MUSIC, None
+        ))
 
     # </editor-fold>
 
@@ -1516,10 +1522,21 @@ class FloorController(AbstractController):
             self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     def _comboxbox_for_music_id(self, names: List[str]):
-        # TODO: Music Name
         store = Gtk.ListStore(int, str)  # id, name
-        for i in range(0, COUNT_VALID_BGM):
-            store.append([i, f(_("No. {i}"))])  # TRANSLATORS: Number {i}
+        music_entries = self.module.project.get_rom_module().get_static_data().script_data.bgms__by_id
+        dungeon_music, random_tracks = self.module.get_dungeon_music_spec()
+        for i, track in enumerate(dungeon_music):
+            if track.is_random_ref:
+                name = _("Random ") + str(track.track_or_ref)
+            else:
+                if track.track_or_ref == 999:
+                    name = _("Invalid?")
+                else:
+                    if len(music_entries[track.track_or_ref].name) > 10:
+                        name = music_entries[track.track_or_ref].name[:10] + '...'
+                    else:
+                        name = music_entries[track.track_or_ref].name
+            store.append([i, name + f" (#{i:03})"])
         for name in names:
             self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 

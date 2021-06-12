@@ -14,13 +14,15 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
-from gi.repository.Gtk import TreeStore
+from gi.repository.Gtk import TreeStore, TreeIter
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_MUSIC
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label
+from skytemple.module.lists.controller.dungeon_music import DungeonMusicController
 from skytemple.module.lists.controller.main import MainController, GROUND_LISTS
 from skytemple.module.lists.controller.actor_list import ActorListController
 from skytemple.module.lists.controller.misc_settings import MiscSettingsController
@@ -32,6 +34,7 @@ from skytemple.module.lists.controller.world_map import WorldMapController
 from skytemple.module.lists.controller.sp_effects import SPEffectsController
 from skytemple_files.data.data_cd.handler import DataCDHandler
 from skytemple_files.data.md.model import Md
+from skytemple_files.hardcoded.dungeon_music import HardcodedDungeonMusic, DungeonMusicEntry
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement, HardcodedDungeons
 from skytemple_files.hardcoded.personality_test_starters import HardcodedPersonalityTestStarters
 from skytemple_files.hardcoded.default_starters import HardcodedDefaultStarters
@@ -43,6 +46,7 @@ from skytemple_files.common.i18n_util import _
 
 ACTOR_LIST = 'BALANCE/actor_list.bin'
 SP_EFFECTS = 'BALANCE/process.bin'
+
 
 class ListsModule(AbstractModule):
     """Module to modify lists."""
@@ -64,6 +68,7 @@ class ListsModule(AbstractModule):
         self._world_map_tree_iter = None
         self._rank_list_tree_iter = None
         self._menu_list_tree_iter = None
+        self._dungeon_music_tree_iter = None
         self._misc_settings_tree_iter = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
@@ -91,6 +96,9 @@ class ListsModule(AbstractModule):
         self._sp_effects_tree_iter = item_store.append(root, [
             'skytemple-view-list-symbolic', _('Special Process Effects'), self, SPEffectsController, 0, False, '', True
         ])
+        self._dungeon_music_tree_iter = item_store.append(root, [
+            'skytemple-e-music-symbolic', _('Dungeon Music'), self, DungeonMusicController, 0, False, '', True
+        ])
         self._misc_settings_tree_iter = item_store.append(root, [
             'skytemple-view-list-symbolic', _('Misc. Settings'), self, MiscSettingsController, 0, False, '', True
         ])
@@ -102,9 +110,13 @@ class ListsModule(AbstractModule):
         generate_item_store_row_label(item_store[self._rank_list_tree_iter])
         generate_item_store_row_label(item_store[self._menu_list_tree_iter])
         generate_item_store_row_label(item_store[self._sp_effects_tree_iter])
+        generate_item_store_row_label(item_store[self._dungeon_music_tree_iter])
         generate_item_store_row_label(item_store[self._misc_settings_tree_iter])
         self._tree_model = item_store
 
+    def handle_request(self, request: OpenRequest) -> Optional[TreeIter]:
+        if request.type == REQUEST_TYPE_DUNGEON_MUSIC:
+            return self._dungeon_music_tree_iter
 
     def has_sp_effects(self):
         return self.project.file_exists(SP_EFFECTS)
@@ -285,3 +297,19 @@ class ListsModule(AbstractModule):
     def mark_string_as_modified(self):
         """Mark as modified"""
         self.project.get_string_provider().mark_as_modified()
+
+    def get_dungeon_music_spec(self) -> Tuple[List[DungeonMusicEntry], List[Tuple[int, int, int, int]]]:
+        config = self.project.get_rom_module().get_static_data()
+        ov10 = self.project.get_binary(BinaryName.OVERLAY_10)
+        return (
+            HardcodedDungeonMusic.get_music_list(ov10, config),
+            HardcodedDungeonMusic.get_random_music_list(ov10, config)
+        )
+
+    def set_dungeon_music(self, lst, random):
+        config = self.project.get_rom_module().get_static_data()
+        self.project.modify_binary(BinaryName.OVERLAY_10, lambda ov10: HardcodedDungeonMusic.set_music_list(lst, ov10, config))
+        self.project.modify_binary(BinaryName.OVERLAY_10, lambda ov10: HardcodedDungeonMusic.set_random_music_list(random, ov10, config))
+
+        row = self._tree_model[self._dungeon_music_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)

@@ -337,6 +337,10 @@ Note that this will affect all images.</property>
         <property name="position">0</property>
       </packing>
     </child>
+    <style>
+      <class name="back_illust"/>
+      <class name="misc_graphics"/>
+    </style>
   </object>
   <object class="GtkListStore" id="table_store">
     <columns>
