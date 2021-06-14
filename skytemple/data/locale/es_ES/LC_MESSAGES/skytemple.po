@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-06-13 12:51+0000\n"
-"PO-Revision-Date: 2021-06-13 14:05\n"
+"PO-Revision-Date: 2021-06-14 19:30\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3503,8 +3503,7 @@ msgid "Expand the pokemon entries allowed to 2048, and makes all the entries ind
 "and to save a backup of your ROM before applying this."
 msgstr "Amplía las entradas de Pokémon permitidas a 2048, y hace que sean independientes entre sí.\n"
 "Necesita los parches \"ChangeEvoSystem\", \"ExternalizeWazaFile\" y \"ExternalizeMappaFile\" para funcionar.\n"
-"Se recomienda encarecidamente corregir cualquier error en los territorios y guardar\n"
-"una copia de seguridad de tu ROM antes de aplicar el parche."
+"Se recomienda encarecidamente corregir cualquier error en los territorios y guardar una copia de seguridad de tu ROM antes de aplicar el parche."
 
 #: skytemple-files/skytemple_files/patch/handler/externalize_mappa.py:42
 msgid "Use filestreams to access mappa_t/mappa_y/mappa_s data instead of loading them entirely.\n"
@@ -3609,7 +3608,7 @@ msgstr "Este parche no es compatible con esta ROM."
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
 "Requires the ActorAndLevelLoader, as it frees the space needed to implement this."
 msgstr "Ofrece soporte para los contenedores ATUPX, que utilizan un algoritmo diferente al de la compresión PX.\n"
-"Requiere 'ActorAndLevelLoader', ya que libera el espacio necesario para implementarlo."
+"Necesita \"ActorAndLevelLoader\" para funcionar, ya que libera el espacio necesario para implementarlo."
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:40
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
