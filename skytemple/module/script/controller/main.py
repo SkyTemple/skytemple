@@ -23,7 +23,7 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import BinaryName
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import data_dir
+from skytemple.core.ui_utils import data_dir, glib_async
 from skytemple_files.common.i18n_util import _, f
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevelMapType, Pmd2ScriptLevel
@@ -86,6 +86,7 @@ class MainController(AbstractController):
         store[path][1] = text
         self._save()
 
+    @glib_async
     def on_cr_nameid_changed(self, widget, path, new_iter, *args):
         store: Gtk.ListStore = self.builder.get_object('level_list_tree_store')
         cb_store: Gtk.Store = self.builder.get_object('nameid_store')
@@ -93,6 +94,7 @@ class MainController(AbstractController):
         store[path][6] = cb_store[new_iter][1]
         self._save()
 
+    @glib_async
     def on_cr_maptype_changed(self, widget, path, new_iter, *args):
         store: Gtk.ListStore = self.builder.get_object('level_list_tree_store')
         cb_store: Gtk.Store = self.builder.get_object('maptype_store')
@@ -100,6 +102,7 @@ class MainController(AbstractController):
         store[path][7] = cb_store[new_iter][1]
         self._save()
 
+    @glib_async
     def on_cr_mapid_changed(self, widget, path, new_iter, *args):
         store: Gtk.ListStore = self.builder.get_object('level_list_tree_store')
         cb_store: Gtk.Store = self.builder.get_object('mapbg_store')
@@ -152,6 +155,7 @@ class MainController(AbstractController):
         md.run()
         md.destroy()
 
+    @glib_async
     def on_cr_td_level_changed(self, widget, path, new_iter, *args):
         store: Gtk.ListStore = self.builder.get_object('dungeon_tileset_store')
         cb_store: Gtk.Store = self.builder.get_object('td_level_store')
@@ -159,6 +163,7 @@ class MainController(AbstractController):
         store[path][3] = cb_store[new_iter][1]
         self._save_td()
 
+    @glib_async
     def on_cr_td_dungeon_changed(self, widget, path, new_iter, *args):
         store: Gtk.ListStore = self.builder.get_object('dungeon_tileset_store')
         cb_store: Gtk.Store = self.builder.get_object('td_dungeon_store')

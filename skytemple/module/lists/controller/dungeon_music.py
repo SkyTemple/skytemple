@@ -21,6 +21,7 @@ from typing import TYPE_CHECKING
 from gi.repository import Gtk
 
 from skytemple.core.module_controller import AbstractController
+from skytemple.core.ui_utils import glib_async
 from skytemple_files.common.i18n_util import _
 from skytemple_files.hardcoded.dungeon_music import DungeonMusicEntry
 
@@ -48,6 +49,7 @@ class DungeonMusicController(AbstractController):
         self.builder.connect_signals(self)
         return box
 
+    @glib_async
     def on_cr_tracks_track_changed(self, widget, path, new_iter, *args):
         track_store: Gtk.Store = self.builder.get_object('store_tracks')
         cb_store: Gtk.Store = self.builder.get_object('store_track_name')
@@ -55,6 +57,7 @@ class DungeonMusicController(AbstractController):
         self._music_list[int(track_store[path][0])] = DungeonMusicEntry(None, cb_store[new_iter][0], cb_store[new_iter][2])
         self.module.set_dungeon_music(self._music_list, self._random_list)
 
+    @glib_async
     def on_cr_random_track1_changed(self, store, path, new_iter):
         track_store: Gtk.Store = self.builder.get_object('store_random_tracks')
         cb_store: Gtk.Store = self.builder.get_object('store_track_name_single')
@@ -63,6 +66,7 @@ class DungeonMusicController(AbstractController):
         self._random_list[int(track_store[path][0])] = (cb_store[new_iter][0], t[1], t[2], t[3])
         self.module.set_dungeon_music(self._music_list, self._random_list)
 
+    @glib_async
     def on_cr_random_track2_changed(self, widget, path, new_iter, *args):
         track_store: Gtk.Store = self.builder.get_object('store_random_tracks')
         cb_store: Gtk.Store = self.builder.get_object('store_track_name_single')
@@ -71,6 +75,7 @@ class DungeonMusicController(AbstractController):
         self._random_list[int(track_store[path][0])] = (t[0], cb_store[new_iter][0], t[2], t[3])
         self.module.set_dungeon_music(self._music_list, self._random_list)
 
+    @glib_async
     def on_cr_random_track3_changed(self, widget, path, new_iter, *args):
         track_store: Gtk.Store = self.builder.get_object('store_random_tracks')
         cb_store: Gtk.Store = self.builder.get_object('store_track_name_single')
@@ -79,6 +84,7 @@ class DungeonMusicController(AbstractController):
         self._random_list[int(track_store[path][0])] = (t[0], t[1], cb_store[new_iter][0], t[3])
         self.module.set_dungeon_music(self._music_list, self._random_list)
 
+    @glib_async
     def on_cr_random_track4_changed(self, widget, path, new_iter, *args):
         track_store: Gtk.Store = self.builder.get_object('store_random_tracks')
         cb_store: Gtk.Store = self.builder.get_object('store_track_name_single')
