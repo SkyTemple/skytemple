@@ -22,6 +22,7 @@ from gi.repository.Gtk import Widget
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import glib_async
 from skytemple.module.dungeon import MAX_ITEMS, SPECIAL_ITEMS, SPECIAL_MONSTERS
 from skytemple_files.data.md.model import NUM_ENTITIES
 from skytemple_files.dungeon_data.fixed_bin.model import TileRuleType
@@ -97,6 +98,7 @@ class FixedRoomsController(AbstractController):
         else:
             self._fill_stats()
 
+    @glib_async
     def on_cr_entities_tile_id_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('model_entities')
         cb_store: Gtk.Store = self.builder.get_object('model_entities__tiles')
@@ -105,6 +107,7 @@ class FixedRoomsController(AbstractController):
         store[path][4] = self.module.desc_fixed_floor_tile(self.lst_tile[cb_store[new_iter][0]])
         self._save()
 
+    @glib_async
     def on_cr_entities_item_id_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('model_entities')
         cb_store: Gtk.Store = self.builder.get_object('model_entities__items')
@@ -113,6 +116,7 @@ class FixedRoomsController(AbstractController):
         store[path][5] = self.module.desc_fixed_floor_item(self.lst_item[cb_store[new_iter][0]].item_id)
         self._save()
 
+    @glib_async
     def on_cr_entities_monster_id_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('model_entities')
         cb_store: Gtk.Store = self.builder.get_object('model_entities__monsters')
@@ -174,6 +178,7 @@ class FixedRoomsController(AbstractController):
             s.select_path(p)
             t.scroll_to_cell(p, use_align=True, row_align=0.5)
 
+    @glib_async
     def on_cr_tiles_trap_id_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('model_tiles')
         cb_store: Gtk.Store = self.builder.get_object('model_tiles__traps')
@@ -291,6 +296,7 @@ class FixedRoomsController(AbstractController):
         self.lst_monster[int(store[path][0])].md_idx = idx
         self._save()
 
+    @glib_async
     def on_cr_monsters_type_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('model_monsters')
         cb_store: Gtk.Store = self.builder.get_object('model_monsters__type')
@@ -299,6 +305,7 @@ class FixedRoomsController(AbstractController):
         self.lst_monster[int(store[path][0])].enemy_settings = MonsterSpawnType(cb_store[new_iter][0])
         self._save()
 
+    @glib_async
     def on_cr_monsters_stats_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('model_monsters')
         cb_store: Gtk.Store = self.builder.get_object('model_monsters__stats')

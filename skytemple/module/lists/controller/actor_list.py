@@ -22,6 +22,7 @@ from gi.repository import Gtk
 
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
+from skytemple.core.ui_utils import glib_async
 from skytemple.module.lists.controller.base import ListBaseController, ORANGE, PATTERN_MD_ENTRY
 from skytemple_files.list.actor.model import ActorListBin
 from skytemple_files.common.i18n_util import _
@@ -127,6 +128,7 @@ class ActorListController(ListBaseController):
             return
         self._list_store[path][6] = text
 
+    @glib_async
     def on_list_store_row_changed(self, store, path, l_iter):
         """Propagate changes to list store entries to the model."""
         if self._loading:
