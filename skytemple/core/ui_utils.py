@@ -15,6 +15,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import functools
 import os
 import pathlib
 import sys
@@ -26,7 +27,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 
 import pkg_resources
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 from gi.repository.Gio import AppInfo
 from gi.repository.Gtk import TreeModelRow
 from skytemple_files.common.i18n_util import _
@@ -157,3 +158,12 @@ def make_builder(gui_file) -> Gtk.Builder:
         builder.set_translation_domain(APP)
         builder.add_from_file(gui_file)
         return builder
+
+
+def glib_async(f):
+    """Decorator to wrap a function call in Glib.idle_add."""
+    @functools.wraps(f)
+    def wrapper(*args, **kwargs):
+        return GLib.idle_add(lambda: f(*args, **kwargs))
+
+    return wrapper

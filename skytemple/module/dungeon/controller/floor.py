@@ -31,7 +31,7 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET, REQUEST_TYPE_DUNGEON_FIXED_FLOOR
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import add_dialog_xml_filter
+from skytemple.core.ui_utils import add_dialog_xml_filter, glib_async
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG
 from skytemple.module.dungeon.controller.dojos import DOJOS_NAME
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem, Pmd2DungeonItemCategory
@@ -513,6 +513,7 @@ class FloorController(AbstractController):
 
     # <editor-fold desc="ITEM HANDLERS" defaultstate="collapsed">
 
+    @glib_async
     def on_cr_items_cat_name_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('item_categories_store')
         cb_store: Gtk.Store = self.builder.get_object('cr_item_cat_name_store')
