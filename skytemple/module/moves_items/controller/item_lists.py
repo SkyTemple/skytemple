@@ -25,6 +25,7 @@ from math import gcd
 from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import glib_async
 from skytemple.module.dungeon.controller.floor import POKE_CATEGORY_ID, LINKBOX_CATEGORY_ID
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem, Pmd2DungeonItemCategory
 from skytemple.core.module_controller import AbstractController
@@ -139,7 +140,8 @@ class ItemListsController(AbstractController):
         cb_store: Gtk.ListStore = self.builder.get_object('cb_list_ids_store')
         cb: Gtk.ComboBoxText = self.builder.get_object('cb_list_ids')
         return cb_store[cb.get_active_iter()][0]
-    
+
+    @glib_async
     def on_cr_items_cat_name_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('item_categories_store')
         cb_store: Gtk.Store = self.builder.get_object('cr_item_cat_name_store')

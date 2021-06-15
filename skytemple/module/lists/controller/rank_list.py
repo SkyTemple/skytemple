@@ -22,6 +22,7 @@ from gi.repository import Gtk
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import glib_async
 from skytemple_files.hardcoded.rank_up_table import Rank
 
 if TYPE_CHECKING:
@@ -85,6 +86,7 @@ class RankListController(AbstractController):
     def on_cr_item_awarded_editing_started(self, renderer, editable, path):
         editable.set_completion(self.builder.get_object('completion_items'))
 
+    @glib_async
     def on_list_store_row_changed(self, store, path, l_iter):
         """Propagate changes to list store entries to the lists."""
         if self._loading:

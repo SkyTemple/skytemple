@@ -22,6 +22,7 @@ from gi.repository import Gtk
 
 from skytemple.controller.main import MainController
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import glib_async
 from skytemple.module.lists.controller.base import ListBaseController, ORANGE, PATTERN_MD_ENTRY
 
 if TYPE_CHECKING:
@@ -92,6 +93,7 @@ class RecruitmentListController(ListBaseController):
         editable.set_completion(self.builder.get_object('completion_locations'))
         self._tmp_path_locations = path
 
+    @glib_async
     def on_list_store_row_changed(self, store, path, l_iter):
         """Propagate changes to list store entries to the lists."""
         if self._loading:
