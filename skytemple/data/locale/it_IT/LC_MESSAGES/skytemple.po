@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-06-13 12:51+0000\n"
-"PO-Revision-Date: 2021-06-13 13:04\n"
+"POT-Creation-Date: 2021-06-15 13:34+0000\n"
+"PO-Revision-Date: 2021-06-15 13:39\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -1491,12 +1491,12 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:453
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:454
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:432
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:441
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:439
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:448
 #: skytemple/skytemple/module/map_bg/controller/bg.py:602
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:203
-#: skytemple/skytemple/module/script/controller/main.py:237
-#: skytemple/skytemple/module/script/controller/main.py:238
+#: skytemple/skytemple/module/script/controller/main.py:242
+#: skytemple/skytemple/module/script/controller/main.py:243
 #: skytemple/skytemple/module/script/controller/ssa.py:1194
 #: skytemple/skytemple/module/script/controller/ssa.py:1308
 #: skytemple/skytemple/module/script/controller/ssa.py:1477
@@ -3931,7 +3931,7 @@ msgid "Value"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:156
-#: skytemple/skytemple/core/ui_utils.py:67
+#: skytemple/skytemple/core/ui_utils.py:68
 msgid "Nintendo DS ROMs (*.nds)"
 msgstr ""
 
@@ -4095,7 +4095,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1643
 #: skytemple/skytemple/controller/main.py:760
 #: skytemple/skytemple/module/map_bg/controller/main.py:105
-#: skytemple/skytemple/module/script/controller/main.py:185
+#: skytemple/skytemple/module/script/controller/main.py:190
 #: skytemple/skytemple/module/script/controller/map.py:160
 #: skytemple/skytemple/module/script/controller/ssa.py:1567
 msgid "Cancel"
@@ -4906,7 +4906,7 @@ msgid "_OK"
 msgstr ""
 
 #: skytemple/skytemple/_i18n.py:36
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1509
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1510
 msgid "No"
 msgstr ""
 
@@ -4915,7 +4915,7 @@ msgid "_No"
 msgstr ""
 
 #: skytemple/skytemple/_i18n.py:38
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1510
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1511
 msgid "Yes"
 msgstr ""
 
@@ -5044,7 +5044,7 @@ msgid "You need to restart SkyTemple to apply some of the settings."
 msgstr ""
 
 #: skytemple/skytemple/controller/tilequant.py:54
-#: skytemple/skytemple/core/ui_utils.py:88
+#: skytemple/skytemple/core/ui_utils.py:89
 msgid "PNG image (*.png)"
 msgstr ""
 
@@ -5053,7 +5053,7 @@ msgid "JPEG image (*.jpg, *.jpeg)"
 msgstr ""
 
 #: skytemple/skytemple/controller/tilequant.py:65
-#: skytemple/skytemple/core/ui_utils.py:73
+#: skytemple/skytemple/core/ui_utils.py:74
 #: skytemple/skytemple/module/monster/controller/level_up.py:541
 msgid "Any files"
 msgstr ""
@@ -5147,15 +5147,15 @@ msgstr ""
 msgid "SkyTemple Script Engine Debugger - Error!"
 msgstr ""
 
-#: skytemple/skytemple/core/ui_utils.py:80
+#: skytemple/skytemple/core/ui_utils.py:81
 msgid "GIF image (*.gif)"
 msgstr ""
 
-#: skytemple/skytemple/core/ui_utils.py:96
+#: skytemple/skytemple/core/ui_utils.py:97
 msgid "XML document (*.xml)"
 msgstr ""
 
-#: skytemple/skytemple/core/ui_utils.py:104
+#: skytemple/skytemple/core/ui_utils.py:105
 msgid "CSV file (*.csv)"
 msgstr ""
 
@@ -5739,8 +5739,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:84
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:85
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:59
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:66
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:60
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:67
 #: skytemple/skytemple/module/dungeon/fixed_room_drawer.py:371
 #: skytemple/skytemple/module/dungeon/module.py:751
 msgid "(Special?)"
@@ -5803,13 +5803,13 @@ msgid "No override"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:427
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1547
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1548
 #, python-brace-format
 msgid "No. {i}"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:200
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:35
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:36
 msgid "Fixed Rooms"
 msgstr ""
 
@@ -5984,7 +5984,7 @@ msgstr ""
 msgid "Spawn Lists"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:511
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:518
 msgid "n/a"
 msgstr ""
 
@@ -6547,47 +6547,47 @@ msgstr ""
 msgid "SkyTemple: Invalid Pokémon"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:569
+#: skytemple/skytemple/module/dungeon/controller/floor.py:570
 msgid "All categories are already in the list."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:570
+#: skytemple/skytemple/module/dungeon/controller/floor.py:571
 msgid "Can not add category"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:592
+#: skytemple/skytemple/module/dungeon/controller/floor.py:593
 msgid "The last category can not be removed."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:593
+#: skytemple/skytemple/module/dungeon/controller/floor.py:594
 msgid "Can't remove category."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:763
+#: skytemple/skytemple/module/dungeon/controller/floor.py:764
 msgid "This item does not belong in this category. Please chose another item."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:764
+#: skytemple/skytemple/module/dungeon/controller/floor.py:765
 msgid "Invalid item id"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:771
+#: skytemple/skytemple/module/dungeon/controller/floor.py:772
 msgid "This item is already in the list."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:772
+#: skytemple/skytemple/module/dungeon/controller/floor.py:773
 msgid "Can not use this item"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:819
+#: skytemple/skytemple/module/dungeon/controller/floor.py:820
 msgid "All items are already in the list"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:820
+#: skytemple/skytemple/module/dungeon/controller/floor.py:821
 msgid "Can not add item."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:840
+#: skytemple/skytemple/module/dungeon/controller/floor.py:841
 msgid "Change the chances of Pokémon, traps or items spawning.\n"
 "The spawn chance depends on the weight of an entry. The higher an entry's weight is, the more likely it is to spawn.\n"
 "Please note for Pokémon, that weights for Pokémon that can not be spawned (eg. legendaries without having their items) will be added to the next Pokémon entry in the list when the game decides what to spawn.\n"
@@ -6595,33 +6595,33 @@ msgid "Change the chances of Pokémon, traps or items spawning.\n"
 "All spawn entries are always saved to the game sorted by their (Pokémon, item, trap) ID."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:903
+#: skytemple/skytemple/module/dungeon/controller/floor.py:904
 msgid "Export floor as..."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:922
+#: skytemple/skytemple/module/dungeon/controller/floor.py:923
 msgid "Export was canceled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:944
+#: skytemple/skytemple/module/dungeon/controller/floor.py:945
 msgid "Import floor from..."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:964
+#: skytemple/skytemple/module/dungeon/controller/floor.py:965
 msgid "Error importing the floor."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1530
-#: skytemple/skytemple/module/lists/controller/dungeon_music.py:99
-#: skytemple/skytemple/module/lists/controller/dungeon_music.py:113
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1531
+#: skytemple/skytemple/module/lists/controller/dungeon_music.py:105
+#: skytemple/skytemple/module/lists/controller/dungeon_music.py:119
 msgid "Random "
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1533
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1534
 msgid "Invalid?"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1545
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1546
 msgid "No fixed room"
 msgstr ""
 
@@ -7549,8 +7549,8 @@ msgstr ""
 msgid "By changing the 'Pokémon' entry for these actors, you will only change which outline is rendered in SkyTemple."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/actor_list.py:62
-#: skytemple/skytemple/module/lists/controller/actor_list.py:73
+#: skytemple/skytemple/module/lists/controller/actor_list.py:63
+#: skytemple/skytemple/module/lists/controller/actor_list.py:74
 #: skytemple/skytemple/module/script/controller/ssa.py:667
 msgid "Not implemented."
 msgstr ""
@@ -7592,8 +7592,8 @@ msgstr ""
 msgid "Random Music"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/dungeon_music.py:95
-#: skytemple/skytemple/module/lists/controller/dungeon_music.py:116
+#: skytemple/skytemple/module/lists/controller/dungeon_music.py:101
+#: skytemple/skytemple/module/lists/controller/dungeon_music.py:122
 msgid "Invalid? (#999)"
 msgstr ""
 
@@ -10322,108 +10322,108 @@ msgstr ""
 msgid "Lists: "
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:41
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:42
 msgid "E Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:42
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:43
 msgid "D Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:43
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:44
 msgid "C Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:44
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:45
 msgid "B Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:45
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:46
 msgid "A Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:46
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:47
 msgid "S Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:47
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:48
 msgid "★1 Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:48
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:49
 msgid "★2 Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:49
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:50
 msgid "★3 Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:50
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:51
 msgid "★4 Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:51
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:52
 msgid "★5 Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:52
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:53
 msgid "★6 Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:53
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:54
 msgid "★7 Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:54
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:55
 msgid "★8 Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:55
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:56
 msgid "★9 Floors Rewards"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:56
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:57
 msgid "Kecleon Shop 1"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:57
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:58
 msgid "Kecleon Orbs/TMs 1"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:58
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:59
 msgid "Kecleon Shop 2"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:59
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:60
 msgid "Kecleon Orbs/TMs 2"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:60
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:61
 msgid "Kecleon Shop 3"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:61
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:62
 msgid "Kecleon Orbs/TMs 3"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:62
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:63
 msgid "Kecleon Shop 4"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:63
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:64
 msgid "Kecleon Orbs/TMs 4"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:64
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:65
 msgid "Unknown 1"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:65
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:66
 #: skytemple/skytemple/module/script/controller/ssa.glade:95
 msgid "Unknown 2"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_lists.py:66
+#: skytemple/skytemple/module/moves_items/controller/item_lists.py:67
 #: skytemple/skytemple/module/script/controller/ssa.glade:106
 msgid "Unknown 3"
 msgstr ""
@@ -10924,23 +10924,23 @@ msgid "Level - Dungeon Mappings"
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/main.py:80
-#: skytemple/skytemple/module/script/controller/main.py:132
+#: skytemple/skytemple/module/script/controller/main.py:135
 msgid "The length of the level name must be between 1-8 characters."
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/main.py:120
+#: skytemple/skytemple/module/script/controller/main.py:123
 msgid "Create Level"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/main.py:120
+#: skytemple/skytemple/module/script/controller/main.py:123
 msgid "Level Name"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/main.py:121
+#: skytemple/skytemple/module/script/controller/main.py:124
 msgid "If you also need a new background for this level, you can create one under \"Map Backrgounds\" and assign it to this level afterwards."
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/main.py:150
+#: skytemple/skytemple/module/script/controller/main.py:153
 msgid "New level created."
 msgstr ""
 
