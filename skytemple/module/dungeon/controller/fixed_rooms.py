@@ -97,32 +97,14 @@ class FixedRoomsController(AbstractController):
         else:
             self._fill_stats()
 
-    def on_cr_entities_tile_id_changed(self, widget, path, new_iter, *args):
-        store: Gtk.Store = self.builder.get_object('model_entities')
-        cb_store: Gtk.Store = self.builder.get_object('model_entities__tiles')
-        store[path][1] = f'{_("Tile")} {cb_store[new_iter][0]}'
-        self.lst_entity[int(store[path][0])].tile_id = cb_store[new_iter][0]
-        store[path][4] = self.module.desc_fixed_floor_tile(self.lst_tile[cb_store[new_iter][0]])
-        self._save()
+    def on_cr_entities_tile_id_changed(self, *args):
+        pass
 
-    def on_cr_entities_item_id_changed(self, widget, path, new_iter, *args):
-        store: Gtk.Store = self.builder.get_object('model_entities')
-        cb_store: Gtk.Store = self.builder.get_object('model_entities__items')
-        store[path][2] = f'{_("Item")} {cb_store[new_iter][0]}'
-        self.lst_entity[int(store[path][0])].item_id = cb_store[new_iter][0]
-        store[path][5] = self.module.desc_fixed_floor_item(self.lst_item[cb_store[new_iter][0]].item_id)
-        self._save()
+    def on_cr_entities_item_id_changed(self, *args):
+        pass
 
-    def on_cr_entities_monster_id_changed(self, widget, path, new_iter, *args):
-        store: Gtk.Store = self.builder.get_object('model_entities')
-        cb_store: Gtk.Store = self.builder.get_object('model_entities__monsters')
-        store[path][3] = f'Pokémon {cb_store[new_iter][0]}'
-        self.lst_entity[int(store[path][0])].monster_id = cb_store[new_iter][0]
-        monster = self.lst_monster[cb_store[new_iter][0]]
-        store[path][6] = self.module.desc_fixed_floor_monster(
-            monster.md_idx, monster.enemy_settings.value, self.monster_names, self.enemy_settings_name
-        )
-        self._save()
+    def on_cr_entities_monster_id_changed(self, *args):
+        pass
 
     def on_btn_entities_goto_monster_clicked(self, *args):
         tree: Gtk.TreeView = self.builder.get_object('tree_entities')
@@ -174,12 +156,8 @@ class FixedRoomsController(AbstractController):
             s.select_path(p)
             t.scroll_to_cell(p, use_align=True, row_align=0.5)
 
-    def on_cr_tiles_trap_id_changed(self, widget, path, new_iter, *args):
-        store: Gtk.Store = self.builder.get_object('model_tiles')
-        cb_store: Gtk.Store = self.builder.get_object('model_tiles__traps')
-        store[path][1] = cb_store[new_iter][1]
-        self.lst_tile[int(store[path][0])].trap_id = cb_store[new_iter][0]
-        self._save()
+    def on_cr_tiles_trap_id_changed(self, *args):
+        pass
 
     def _set_tiles_trap_data_bitflag(self, idx, value, path):
         store: Gtk.Store = self.builder.get_object('model_tiles')
