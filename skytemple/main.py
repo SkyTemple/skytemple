@@ -19,7 +19,7 @@ import os
 import sys
 import locale
 import gettext
-from skytemple.core.ui_utils import data_dir, APP
+from skytemple.core.ui_utils import data_dir, APP, gdk_backend, GDK_BACKEND_BROADWAY
 
 # Setup locale :(
 from skytemple.core.settings import SkyTempleSettingsStore
@@ -133,6 +133,11 @@ def main():
         # The search path is wrong if SkyTemple is executed as an .app bundle
         if getattr(sys, 'frozen', False):
             path = os.path.dirname(sys.executable)
+
+    if sys.platform.startswith('linux') and gdk_backend() == GDK_BACKEND_BROADWAY:
+        gtk_settings = Gtk.Settings.get_default()
+        gtk_settings.set_property("gtk-theme-name", 'Arc-Dark')
+        gtk_settings.set_property("gtk-application-prefer-dark-theme", True)
 
     itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
     itheme.append_search_path(os.path.abspath(icons()))

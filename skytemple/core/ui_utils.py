@@ -160,6 +160,12 @@ def make_builder(gui_file) -> Gtk.Builder:
         return builder
 
 
+GDK_BACKEND_BROADWAY = 'broadway'
+def gdk_backend():
+    # TODO: better way to do this?
+    return os.environ.get('GDK_BACKEND', 'default')
+
+
 def glib_async(f):
     """Decorator to wrap a function call in Glib.idle_add."""
     @functools.wraps(f)
