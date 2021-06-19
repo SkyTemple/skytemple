@@ -22,9 +22,10 @@ from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import *
 
 from skytemple.controller.main import MainController
+from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.module_controller import AbstractController
+from skytemple.core.module_controller import AbstractController, SimpleController
 from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
 from skytemple.module.dungeon_graphics.dungeon_bg_drawer import Drawer, DrawerCellRenderer
 from skytemple_files.common.util import lcm
@@ -77,6 +78,23 @@ Some image editors have problems when working with indexed
 images, that contain the same color multiple times. You can
 make all colors on the map unique before exporting at
 Palettes > Edit Palettes.""")
+BACKGROUNDS_NAMES = _('Backgrounds')
+
+
+class DungeonBgMainController(SimpleController):
+    def __init__(self, module: AbstractModule, item_id: int):
+        pass
+
+    def get_title(self) -> str:
+        return BACKGROUNDS_NAMES
+
+    def get_content(self) -> Gtk.Widget:
+        return self.generate_content_label(
+            _("This section lets you edit the background images that are used for some special dungeon floors.")
+        )
+
+    def get_icon(self) -> str:
+        return 'skytemple-illust-map'
 
 
 class DungeonBgController(AbstractController):

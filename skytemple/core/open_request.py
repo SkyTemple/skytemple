@@ -26,6 +26,7 @@ REQUEST_TYPE_DUNGEONS  = "dungeon_list" # no identifier
 REQUEST_TYPE_DUNGEON_TILESET = 'dungeon_tileset'  # identifier is the tileset id
 REQUEST_TYPE_DUNGEON_FIXED_FLOOR = 'dungeon_fixed_floor'  # identifier is the fixed floor id
 REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY = 'dungeon_fixed_floor_entity'  # identifier is the entity id to highlight
+REQUEST_TYPE_DUNGEON_MUSIC = "dungeon_music"  # no identifier
 
 
 class OpenRequest:

@@ -322,12 +322,14 @@ class ScriptModule(AbstractModule):
             'skytemple-folder-symbolic', new_name, self,  MapController, new_name, False, '', True
         ])
         self._map_scene_root[new_name] = map_root
-        self._tree_model.append(map_root, [
+        ar = self._tree_model.append(map_root, [
             'skytemple-folder-open-symbolic', _('Acting (ssa)'), self,  LsdController, new_name, False, '', True
         ])
-        self._tree_model.append(map_root, [
+        self._acting_roots[new_name] = ar
+        sr = self._tree_model.append(map_root, [
             'skytemple-folder-open-symbolic', _('Sub (sss)'), self,  SubController, new_name, False, '', True
         ])
+        self._sub_roots[new_name] = sr
         recursive_generate_item_store_row_label(self._tree_model[parent])
 
     def get_subnodes(self, name):

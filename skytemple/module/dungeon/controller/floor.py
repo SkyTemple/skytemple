@@ -29,9 +29,10 @@ from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET, REQUEST_TYPE_DUNGEON_FIXED_FLOOR
+from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET, REQUEST_TYPE_DUNGEON_FIXED_FLOOR, \
+    REQUEST_TYPE_DUNGEON_MUSIC
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import add_dialog_xml_filter
+from skytemple.core.ui_utils import add_dialog_xml_filter, glib_async
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG
 from skytemple.module.dungeon.controller.dojos import DOJOS_NAME
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem, Pmd2DungeonItemCategory
@@ -415,6 +416,11 @@ class FloorController(AbstractController):
                 REQUEST_TYPE_DUNGEON_FIXED_FLOOR, idx
             ))
 
+    def on_btn_goto_music_clicked(self, *args):
+        self.module.project.request_open(OpenRequest(
+            REQUEST_TYPE_DUNGEON_MUSIC, None
+        ))
+
     # </editor-fold>
 
     # <editor-fold desc="HANDLERS MONSTERS" defaultstate="collapsed">
@@ -526,6 +532,7 @@ class FloorController(AbstractController):
 
     # <editor-fold desc="ITEM HANDLERS" defaultstate="collapsed">
 
+    @glib_async
     def on_cr_items_cat_name_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('item_categories_store')
         cb_store: Gtk.Store = self.builder.get_object('cr_item_cat_name_store')
@@ -1516,10 +1523,21 @@ class FloorController(AbstractController):
             self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     def _comboxbox_for_music_id(self, names: List[str]):
-        # TODO: Music Name
         store = Gtk.ListStore(int, str)  # id, name
-        for i in range(0, COUNT_VALID_BGM):
-            store.append([i, f(_("No. {i}"))])  # TRANSLATORS: Number {i}
+        music_entries = self.module.project.get_rom_module().get_static_data().script_data.bgms__by_id
+        dungeon_music, random_tracks = self.module.get_dungeon_music_spec()
+        for i, track in enumerate(dungeon_music):
+            if track.is_random_ref:
+                name = _("Random ") + str(track.track_or_ref)
+            else:
+                if track.track_or_ref == 999:
+                    name = _("Invalid?")
+                else:
+                    if len(music_entries[track.track_or_ref].name) > 10:
+                        name = music_entries[track.track_or_ref].name[:10] + '...'
+                    else:
+                        name = music_entries[track.track_or_ref].name
+            store.append([i, name + f" (#{i:03})"])
         for name in names:
             self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 

@@ -54,6 +54,7 @@ from skytemple_files.graphics.dma.model import Dma
 from skytemple_files.graphics.dpc.model import Dpc
 from skytemple_files.graphics.dpci.model import Dpci
 from skytemple_files.graphics.dpl.model import Dpl
+from skytemple_files.hardcoded.dungeon_music import HardcodedDungeonMusic, DungeonMusicEntry
 from skytemple_files.hardcoded.dungeons import HardcodedDungeons, DungeonDefinition, DungeonRestriction
 from skytemple_files.dungeon_data.floor_attribute.handler import FloorAttributeHandler
 
@@ -771,4 +772,11 @@ class DungeonModule(AbstractModule):
         """Copies the first floor of test dungeon and returns it"""
         return MappaFloor.from_xml(self.get_mappa().floor_lists[0][0].to_xml())
 
+    def get_dungeon_music_spec(self) -> Tuple[List[DungeonMusicEntry], List[Tuple[int, int, int, int]]]:
+        config = self.project.get_rom_module().get_static_data()
+        ov10 = self.project.get_binary(BinaryName.OVERLAY_10)
+        return (
+            HardcodedDungeonMusic.get_music_list(ov10, config),
+            HardcodedDungeonMusic.get_random_music_list(ov10, config)
+        )
 
