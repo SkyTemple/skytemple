@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-06-15 13:34+0000\n"
-"PO-Revision-Date: 2021-06-19 13:26\n"
+"PO-Revision-Date: 2021-06-20 16:13\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -373,7 +373,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4291
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1731
 msgid "TMs, HMs"
-msgstr ""
+msgstr "CT, CS"
 
 #: /dev/fd/63:87 /dev/fd/63:187
 msgid "Poké (Money)"
@@ -1256,7 +1256,7 @@ msgstr "Droite : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:854
 msgid "Down : "
-msgstr ""
+msgstr "Bas : "
 
 #: py_desmume/desmume/frontend/control_ui/joystick_controls.py:58
 msgid "You don't have any joypads!"
@@ -1374,11 +1374,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:134
 msgid "Dungeon Tileset (#10)"
-msgstr ""
+msgstr "Set de tuiles de Donjon (#10)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:135
 msgid "Use Fixed Room (#11)"
-msgstr ""
+msgstr "Utiliser la Salle Prédéfinie (#11)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:240
 msgid "This function has no description."
@@ -2267,11 +2267,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:330
 msgid "Knows Double Hit"
-msgstr ""
+msgstr "Connaît Coup Double"
 
 #: skytemple-files/skytemple_files/data/md/model.py:331
 msgid "Knows Mimic"
-msgstr ""
+msgstr "Connaît Mimique"
 
 #: skytemple-files/skytemple_files/data/md/model.py:354
 msgid "Standard"
@@ -2669,11 +2669,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:37
 msgid "Line"
-msgstr ""
+msgstr "Ligne"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:38
 msgid "Cross"
-msgstr ""
+msgstr "Croix"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:39
 msgid "Small Medium"
@@ -2814,47 +2814,47 @@ msgstr "Niveau d'obscurité invalide {ele.get(XML_FLOOR_LAYOUT__DARKNESS_LEVEL)}
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:32
 msgid "Mud Trap"
-msgstr ""
+msgstr "Piège Boue"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:33
 msgid "Sticky Trap"
-msgstr ""
+msgstr "Piège Glu"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:34
 msgid "Grimy Trap"
-msgstr ""
+msgstr "Piège Tadmorv"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:35
 msgid "Summon Trap"
-msgstr ""
+msgstr "Piège Appeau"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:36
 msgid "Pitfall Trap"
-msgstr ""
+msgstr "Piège Trappe"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:37
 msgid "Warp Trap"
-msgstr ""
+msgstr "Télépiège"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:38
 msgid "Gust Trap"
-msgstr ""
+msgstr "Piège Ventilo"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:39
 msgid "Spin Trap"
-msgstr ""
+msgstr "Piège Tournis"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:40
 msgid "Slumber Trap"
-msgstr ""
+msgstr "Piège Soporifique"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:41
 msgid "Slow Trap"
-msgstr ""
+msgstr "Piège Ramoloss"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:42
 msgid "Seal Trap"
-msgstr ""
+msgstr "Piège Verrou"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:43
 msgid "Poison Trap"
