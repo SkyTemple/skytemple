@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-06-15 13:34+0000\n"
-"PO-Revision-Date: 2021-06-20 16:13\n"
+"PO-Revision-Date: 2021-06-20 17:09\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -2858,55 +2858,55 @@ msgstr "Piège Verrou"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:43
 msgid "Poison Trap"
-msgstr ""
+msgstr "Piège Poison"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:44
 msgid "Selfdestruct Trap"
-msgstr ""
+msgstr "Piège Voltomine"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:45
 msgid "Explosion Trap"
-msgstr ""
+msgstr "Piège Électromine"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:46
 msgid "Pp Zero Trap"
-msgstr ""
+msgstr "Piège PP-Zéro"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:47
 msgid "Chestnut Trap"
-msgstr ""
+msgstr "Piège Châtaigne"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:48
 msgid "Wonder Tile"
-msgstr ""
+msgstr "Case Miracle"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:49
 msgid "Pokemon Trap"
-msgstr ""
+msgstr "Piège Pokémon"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:50
 msgid "Spiked Tile"
-msgstr ""
+msgstr "Piège Picots"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:51
 msgid "Stealth Rock"
-msgstr ""
+msgstr "Piège de Rock"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:52
 msgid "Toxic Spikes"
-msgstr ""
+msgstr "Pics Toxik"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:53
 msgid "Trip Trap"
-msgstr ""
+msgstr "Croche-Piège"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:54
 msgid "Random Trap"
-msgstr ""
+msgstr "Piège Aléa"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:55
 msgid "Grudge Trap"
-msgstr ""
+msgstr "Piège Rancune"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/trap_list.py:123
 #, python-brace-format
@@ -2990,7 +2990,7 @@ msgstr "L'image à importer ne peut utiliser que les 12 premières palettes. La 
 
 #: skytemple-files/skytemple_files/graphics/dpc/model.py:129
 msgid "A dungeon background or tilemap can not have more than 400 chunks."
-msgstr ""
+msgstr "Un arrière-plan de donjon ou un ensemble de tuiles ne peut pas comporter plus de 400 éléments."
 
 #: skytemple-files/skytemple_files/graphics/dpla/model.py:90
 msgid "This palette has no animation."
@@ -3171,7 +3171,7 @@ msgstr "Inconnue 5"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:120
 msgid "Bazaar Host"
-msgstr ""
+msgstr "Hôte du Bazar"
 
 #. TRANSLATORS: 'Name' of one of the Bazar NPC types
 #. The shop that lets you heal all your HP, PP and belly
@@ -4258,7 +4258,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:145
 msgid "Go to Scene"
-msgstr ""
+msgstr "Aller à la scène"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:170
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:729
@@ -4279,11 +4279,11 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:428
 msgid "Search and Replace"
-msgstr ""
+msgstr "Rechercher et Remplacer"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:448
 msgid "Replace All"
-msgstr ""
+msgstr "Remplacer tout"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:462
 msgid "Replace"
@@ -4299,7 +4299,7 @@ msgstr "Rechercher"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:519
 msgid "Replace with"
-msgstr ""
+msgstr "Remplacer par"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:540
 #: skytemple/skytemple/module/dungeon/module.py:756
@@ -4706,7 +4706,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2377
 msgid "Allocated Memory"
-msgstr ""
+msgstr "Mémoire allouée"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2392
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2412
@@ -4719,7 +4719,11 @@ msgid "Welcome to \n"
 "Script Engine Debugger.\n\n"
 "Please load a game ROM\n"
 "via the File menu."
-msgstr ""
+msgstr "Bienvenue dans le débogueur du moteur de script \n"
+"SkyTemple\n"
+".\n\n"
+"Veuillez charger une ROM de jeu\n"
+"via le menu Fichier."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2513
 msgid "The Script Engine is currently not running."
