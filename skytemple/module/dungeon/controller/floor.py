@@ -1532,6 +1532,8 @@ class FloorController(AbstractController):
             else:
                 if track.track_or_ref == 999:
                     name = _("Invalid?")
+                elif track.track_or_ref >= len(music_entries):
+                    name = _("INVALID!!!")
                 else:
                     if len(music_entries[track.track_or_ref].name) > 10:
                         name = music_entries[track.track_or_ref].name[:10] + '...'

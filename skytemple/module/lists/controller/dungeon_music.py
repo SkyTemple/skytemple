@@ -120,6 +120,8 @@ class DungeonMusicController(AbstractController):
             else:
                 if track.track_or_ref == 999:
                     name = _("Invalid? (#999)")
+                elif track.track_or_ref >= len(music_entries):
+                    name = _("INVALID!!!") + f" (#{i:03})"
                 else:
                     name = music_entries[track.track_or_ref].name + f" (#{track.track_or_ref:03})"
             cb_store.append([str(idx), name])
