@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-06-15 13:34+0000\n"
-"PO-Revision-Date: 2021-06-15 13:38\n"
+"POT-Creation-Date: 2021-06-21 11:23+0000\n"
+"PO-Revision-Date: 2021-06-21 11:23\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3457,6 +3457,10 @@ msgstr "\n\n"
 msgid "Add types to the type matchup table. This will replace the old matchup table by the 6th+ Gen type table, Fairy type being added to the end."
 msgstr "Añade tipos a la tabla de tipos. Esto reemplazará la antigua tabla por la tabla de tipos de la 6ª generación, añadiendo el tipo Hada al final."
 
+#: skytemple-files/skytemple_files/patch/handler/allow_unrecruitable_mons.py:40
+msgid "Allows recruiting the other Deoxys forms and the regis inside dungeons."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:95
 msgid "Change the evolution system.\n"
 "After applying this, every single Pokémon will have two lists for their evolution and children, and different stat bonuses when a Pokémon evolves into them.\n"
@@ -3614,48 +3618,48 @@ msgstr "Ofrece soporte para los contenedores ATUPX, que utilizan un algoritmo di
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr "Corrige la función del valor aleatorio del atributo \"No utilizado\" de los pisos de los territorios. Esto determina la probabilidad de que una sala contenga aleatoriamente paredes en su interior, algunas de las cuales pueden ser sustituidas por terreno secundario."
 
-#: skytemple-files/skytemple_files/patch/patches.py:128
-#: skytemple-files/skytemple_files/patch/patches.py:133
+#: skytemple-files/skytemple_files/patch/patches.py:130
+#: skytemple-files/skytemple_files/patch/patches.py:135
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "El parche '{name}' no se ha encontrado."
 
-#: skytemple-files/skytemple_files/patch/patches.py:139
+#: skytemple-files/skytemple_files/patch/patches.py:141
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "El parche '{patch_name}' necesita ser aplicado antes de poder aplicar '{name}'."
 
-#: skytemple-files/skytemple_files/patch/patches.py:142
-#: skytemple/skytemple/module/patch/controller/main.py:195
+#: skytemple-files/skytemple_files/patch/patches.py:144
+#: skytemple/skytemple/module/patch/controller/main.py:207
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr "El parche '{patch_name}' necesita ser aplicado antes de poder aplicar '{name}'. No se ha encontrado el parche."
 
-#: skytemple-files/skytemple_files/patch/patches.py:171
+#: skytemple-files/skytemple_files/patch/patches.py:173
 msgid "config.xml missing in patch package."
 msgstr "falta el archivo config.xml en el paquete de parches."
 
-#: skytemple-files/skytemple_files/patch/patches.py:173
+#: skytemple-files/skytemple_files/patch/patches.py:175
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "Error de sintaxis en el archivo config.xml al leer el paquete de parches."
 
-#: skytemple-files/skytemple_files/patch/patches.py:183
+#: skytemple-files/skytemple_files/patch/patches.py:185
 msgid "patch.py missing in patch package."
 msgstr "Falta el archivo patch.py en el paquete de parches."
 
-#: skytemple-files/skytemple_files/patch/patches.py:185
+#: skytemple-files/skytemple_files/patch/patches.py:187
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr "Patch.py del paquete de parches contiene un error de sintaxis."
 
-#: skytemple-files/skytemple_files/patch/patches.py:190
+#: skytemple-files/skytemple_files/patch/patches.py:192
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "Patch.py del paquete de parches no contiene 'PatchHandler'."
 
-#: skytemple-files/skytemple_files/patch/patches.py:195
+#: skytemple-files/skytemple_files/patch/patches.py:197
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "El paquete de parches no contiene una entrada para el nombre del parche del manipulador en config.xml."
 
-#: skytemple-files/skytemple_files/patch/patches.py:201
+#: skytemple-files/skytemple_files/patch/patches.py:203
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "No se ha encontrado ningún parche para el manipulador '{handler.name}' en la configuración."
@@ -5414,9 +5418,8 @@ msgstr "Enemigos sueltan cofres:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:779
 msgid "Max. rescue attempts\n"
-"(-1 = unlimited):"
-msgstr "Intentos de rescate máximos\n"
-"(-1 = ilimitado):"
+"(-1 = none):"
+msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:793
 msgid "Max. items allowed:"
@@ -5891,7 +5894,7 @@ msgid "No override"
 msgstr "No sobrescribir"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:427
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1548
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1550
 #, python-brace-format
 msgid "No. {i}"
 msgstr "Nº {i}"
@@ -6725,7 +6728,12 @@ msgstr "Aleatorio "
 msgid "Invalid?"
 msgstr "¿Inválido?"
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1546
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1536
+#: skytemple/skytemple/module/lists/controller/dungeon_music.py:124
+msgid "INVALID!!!"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1548
 msgid "No fixed room"
 msgstr "No hay sala fija"
 
@@ -11102,42 +11110,46 @@ msgstr "La ROM actual no está soportada por este parche."
 msgid "Please save the ROM before applying the patch."
 msgstr "Por favor, guarda la ROM antes de aplicar el parche."
 
-#: skytemple/skytemple/module/patch/controller/main.py:90
+#: skytemple/skytemple/module/patch/controller/main.py:88
+msgid "This patch extends the Pokémon list. It iss very experimental and WILL break a few things. Once applied you can not remove it again. Proceed?"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/main.py:102
 msgid "\n"
 "Do you want to apply these first?"
 msgstr "\n"
 "¿Quieres aplicar estos primero?"
 
-#: skytemple/skytemple/module/patch/controller/main.py:90
+#: skytemple/skytemple/module/patch/controller/main.py:102
 msgid "This patch requires some other patches to be applied first:\n"
 msgstr "Este parche necesita que se apliquen otros parches primero:\n"
 
-#: skytemple/skytemple/module/patch/controller/main.py:99
+#: skytemple/skytemple/module/patch/controller/main.py:111
 #, python-brace-format
 msgid "Error applying the patch:\n"
 "{err}"
 msgstr "Error al aplicar el parche:\n"
 "{err}"
 
-#: skytemple/skytemple/module/patch/controller/main.py:101
+#: skytemple/skytemple/module/patch/controller/main.py:113
 msgid "Patch was successfully applied. You should re-open the project, to make sure all data is correctly loaded."
 msgstr "El parche se ha aplicado correctamente. Debes volver a abrir el proyecto para asegurarte de que todos los datos se carguen correctamente."
 
-#: skytemple/skytemple/module/patch/controller/main.py:150
+#: skytemple/skytemple/module/patch/controller/main.py:162
 msgid "Error loading patch package {os.path.basename(fname)}:\n"
 "{err}"
 msgstr "Error al cargar el paquete del parche {os.path.basename(fname)}:\n"
 "{err}"
 
-#: skytemple/skytemple/module/patch/controller/main.py:155
+#: skytemple/skytemple/module/patch/controller/main.py:167
 msgid "Not compatible"
 msgstr "No compatible"
 
-#: skytemple/skytemple/module/patch/controller/main.py:157
+#: skytemple/skytemple/module/patch/controller/main.py:169
 msgid "Applied"
 msgstr "Aplicado"
 
-#: skytemple/skytemple/module/patch/controller/main.py:157
+#: skytemple/skytemple/module/patch/controller/main.py:169
 msgid "Compatible"
 msgstr "Compatible"
 
