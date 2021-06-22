@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-06-21 11:23+0000\n"
-"PO-Revision-Date: 2021-06-21 23:32\n"
+"PO-Revision-Date: 2021-06-22 00:41\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3459,7 +3459,7 @@ msgstr "Añade tipos a la tabla de tipos. Esto reemplazará la antigua tabla por
 
 #: skytemple-files/skytemple_files/patch/handler/allow_unrecruitable_mons.py:40
 msgid "Allows recruiting the other Deoxys forms and the regis inside dungeons."
-msgstr ""
+msgstr "Permite reclutar las otras formas de Deoxys y los Regis dentro de territorios."
 
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:95
 msgid "Change the evolution system.\n"
@@ -5419,7 +5419,8 @@ msgstr "Enemigos sueltan cofres:"
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:779
 msgid "Max. rescue attempts\n"
 "(-1 = none):"
-msgstr ""
+msgstr "Intentos de rescate máximos\n"
+"(-1 = ninguno):"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:793
 msgid "Max. items allowed:"
@@ -6740,7 +6741,7 @@ msgstr "No hay sala fija"
 #: skytemple/skytemple/module/dungeon/controller/group.py:37
 msgid "Dungeon groups contain multiple dungeon to create one big continuous dungeon.\n"
 "You can edit groups under \"Dungeons\"."
-msgstr "Los grupos de territorios contienen varios territorios para crear una gran mazmorra continua.\n"
+msgstr "Los grupos de territorios contienen múltiples territorios para crear un gran territorio continuo.\n"
 "Puedes editar los grupos en \"Territorios\"."
 
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:73
@@ -6818,8 +6819,8 @@ msgid "Drag and Drop dungeons to build groups.\n"
 "Dungeons that are in groups build \"real\" full dungeons,\n"
 "you can seperate dungeons in a group with overworld maps (eg. rest rooms)."
 msgstr "Arrastra y suelta los territorios para construir grupos.\n"
-"Los territorios que están en grupos construyen territorios completos \"reales\", puedes separar\n"
-"las mazmorras de un grupo con mapeados del mundo exterior (por ejemplo, salas de descanso)."
+"Los territorios que están en grupos construyen territorios completos \"reales\".\n"
+"Puedes separar los territorios de un grupo con mapeados del mundo exterior (por ejemplo, salas de descanso)."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:110
 msgid "Dungeon Errors were fixed.\n"
@@ -11112,7 +11113,7 @@ msgstr "Por favor, guarda la ROM antes de aplicar el parche."
 
 #: skytemple/skytemple/module/patch/controller/main.py:88
 msgid "This patch extends the Pokémon list. It iss very experimental and WILL break a few things. Once applied you can not remove it again. Proceed?"
-msgstr ""
+msgstr "Este parche amplía la lista de Pokémon. Es muy experimental y algunas cosas no funcionarán bien. Una vez aplicado, no se eliminarse. ¿Continuar?"
 
 #: skytemple/skytemple/module/patch/controller/main.py:102
 msgid "\n"
