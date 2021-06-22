@@ -103,6 +103,13 @@ class SsaController(AbstractController):
         if self.mapname in self.static_data.script_data.level_list__by_name:
             self.level = self.static_data.script_data.level_list__by_name[self.mapname]
             self.mapbg_id = self.level.mapid
+        elif self.module.has_level_list():
+            level_list = self.module.get_level_list()
+            for level in level_list.list:
+                if level.name == self.mapname:
+                    self.level = level
+                    self.mapbg_id = self.level.mapid
+                    break
 
         self.builder = None
 
