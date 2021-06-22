@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-06-21 11:23+0000\n"
-"PO-Revision-Date: 2021-06-21 11:23\n"
+"POT-Creation-Date: 2021-06-22 08:40+0000\n"
+"PO-Revision-Date: 2021-06-22 10:06\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -1501,9 +1501,9 @@ msgstr "Pour supprimer cet effet, aucun objet ne doit l'utiliser."
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:203
 #: skytemple/skytemple/module/script/controller/main.py:242
 #: skytemple/skytemple/module/script/controller/main.py:243
-#: skytemple/skytemple/module/script/controller/ssa.py:1194
-#: skytemple/skytemple/module/script/controller/ssa.py:1308
-#: skytemple/skytemple/module/script/controller/ssa.py:1477
+#: skytemple/skytemple/module/script/controller/ssa.py:1201
+#: skytemple/skytemple/module/script/controller/ssa.py:1315
+#: skytemple/skytemple/module/script/controller/ssa.py:1484
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:52
 msgid "None"
 msgstr "Aucun"
@@ -1531,7 +1531,7 @@ msgstr "Pokémon"
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:200
 #: skytemple/skytemple/module/script/controller/main.glade:353
 #: skytemple/skytemple/module/script/controller/ssa.glade:2078
-#: skytemple/skytemple/module/script/controller/ssa.py:1265
+#: skytemple/skytemple/module/script/controller/ssa.py:1272
 msgid "Type"
 msgstr "Type"
 
@@ -3780,7 +3780,7 @@ msgstr "Le fichier est encore chargé dans la RAM ! Pour l'instant, vous pouvez 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:484
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:687
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:705
-#: skytemple/skytemple/module/script/controller/ssa.py:487
+#: skytemple/skytemple/module/script/controller/ssa.py:494
 msgid "Warning!"
 msgstr "Attention !"
 
@@ -3851,8 +3851,8 @@ msgstr "ID"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:86
 #: skytemple/skytemple/module/script/controller/ssa.glade:1712
 #: skytemple/skytemple/module/script/controller/ssa.glade:1864
-#: skytemple/skytemple/module/script/controller/ssa.py:1247
-#: skytemple/skytemple/module/script/controller/ssa.py:1256
+#: skytemple/skytemple/module/script/controller/ssa.py:1254
+#: skytemple/skytemple/module/script/controller/ssa.py:1263
 msgid "Kind"
 msgstr "Catégorie"
 
@@ -3861,10 +3861,10 @@ msgstr "Catégorie"
 #: skytemple/skytemple/module/script/controller/ssa.glade:1877
 #: skytemple/skytemple/module/script/controller/ssa.glade:2091
 #: skytemple/skytemple/module/script/controller/ssa.glade:2280
-#: skytemple/skytemple/module/script/controller/ssa.py:1246
-#: skytemple/skytemple/module/script/controller/ssa.py:1255
-#: skytemple/skytemple/module/script/controller/ssa.py:1264
-#: skytemple/skytemple/module/script/controller/ssa.py:1272
+#: skytemple/skytemple/module/script/controller/ssa.py:1253
+#: skytemple/skytemple/module/script/controller/ssa.py:1262
+#: skytemple/skytemple/module/script/controller/ssa.py:1271
+#: skytemple/skytemple/module/script/controller/ssa.py:1279
 msgid "Sector"
 msgstr "Secteur"
 
@@ -3936,9 +3936,9 @@ msgstr "Marqueurs de Position"
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:493
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:892
 #: skytemple/skytemple/module/patch/controller/patch_main.glade:179
-#: skytemple/skytemple/module/script/controller/ssa.py:1218
-#: skytemple/skytemple/module/script/controller/ssa.py:1230
-#: skytemple/skytemple/module/script/controller/ssa.py:1366
+#: skytemple/skytemple/module/script/controller/ssa.py:1225
+#: skytemple/skytemple/module/script/controller/ssa.py:1237
+#: skytemple/skytemple/module/script/controller/ssa.py:1373
 msgid "Name"
 msgstr "Nom"
 
@@ -4119,7 +4119,7 @@ msgstr "Supprimer"
 #: skytemple/skytemple/module/map_bg/controller/main.py:105
 #: skytemple/skytemple/module/script/controller/main.py:190
 #: skytemple/skytemple/module/script/controller/map.py:160
-#: skytemple/skytemple/module/script/controller/ssa.py:1567
+#: skytemple/skytemple/module/script/controller/ssa.py:1574
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -4666,7 +4666,7 @@ msgstr "Unk1"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2289
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4806
-#: skytemple/skytemple/module/script/controller/ssa.py:1208
+#: skytemple/skytemple/module/script/controller/ssa.py:1215
 msgid "Unk2"
 msgstr "Unk2"
 
@@ -6169,7 +6169,7 @@ msgstr "2a. Exporter vers un fichier"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:822
 #: skytemple/skytemple/module/monster/controller/monster.glade:468
-#: skytemple/skytemple/module/script/controller/ssa.py:1364
+#: skytemple/skytemple/module/script/controller/ssa.py:1371
 msgid "S"
 msgstr ""
 
@@ -7640,7 +7640,7 @@ msgid "<Not available>\n\n"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
-#: skytemple/skytemple/module/script/controller/ssa.py:1209
+#: skytemple/skytemple/module/script/controller/ssa.py:1216
 msgid "Unk3"
 msgstr ""
 
@@ -7662,7 +7662,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/actor_list.py:63
 #: skytemple/skytemple/module/lists/controller/actor_list.py:74
-#: skytemple/skytemple/module/script/controller/ssa.py:667
+#: skytemple/skytemple/module/script/controller/ssa.py:674
 msgid "Not implemented."
 msgstr ""
 
@@ -7790,64 +7790,64 @@ msgstr ""
 msgid "IQ:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:153
-msgid "Enable fast (\"debug mode\") text speed:"
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:141
+msgid "Text Speed (debug mode uses 4):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:165
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:153
 msgid "Normal spawn delay (turns):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:177
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:165
 msgid "Spawn delay (turns) after stealing \n"
 "from shop:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:214
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:202
 msgid "Main menu music track:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:245
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:233
 msgid "Min. IQ required by enemies to learn \n"
 "Exclusive Move-User:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:259
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:247
 msgid "Min. IQ required by enemies to learn \n"
 "Item Master:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:297
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:285
 msgid "Belly points lost when \n"
 "walking through walls, per turn:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:323
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:311
 msgid "Intimidator activation chance (%):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:348
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:336
 msgid "Chance of Ginseng increasing \n"
 "a move's power by 3 (%):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:374
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:362
 msgid "Burn damage delay (turns):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:387
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:375
 msgid "Poison damage delay (turns):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:400
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:388
 msgid "Bad poison damage delay (turns):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:449
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:437
 msgid "Belly points lost, per turn:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:474
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:462
 msgid "1/1000 belly points lost when \n"
 "walking through walls, per turn:"
 msgstr ""
@@ -11134,12 +11134,12 @@ msgid "The length of the scene name must be between 1-8 characters."
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:73
-#: skytemple/skytemple/module/script/controller/ssa.py:1206
+#: skytemple/skytemple/module/script/controller/ssa.py:1213
 msgid "Triggered Script"
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:84
-#: skytemple/skytemple/module/script/controller/ssa.py:1207
+#: skytemple/skytemple/module/script/controller/ssa.py:1214
 msgid "Coroutine"
 msgstr ""
 
@@ -11206,8 +11206,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1738
 #: skytemple/skytemple/module/script/controller/ssa.glade:1890
-#: skytemple/skytemple/module/script/controller/ssa.py:1248
-#: skytemple/skytemple/module/script/controller/ssa.py:1257
+#: skytemple/skytemple/module/script/controller/ssa.py:1255
+#: skytemple/skytemple/module/script/controller/ssa.py:1264
 msgid "Talk Script"
 msgstr ""
 
@@ -11239,89 +11239,89 @@ msgstr ""
 msgid "Event"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:472
+#: skytemple/skytemple/module/script/controller/ssa.py:479
 #, python-brace-format
 msgid "Sector {new_index}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:484
+#: skytemple/skytemple/module/script/controller/ssa.py:491
 msgid "Are you sure you want to remove this sector?\n"
 "Removing the sector will re-number all following sectors (eg. if you remove Sector 70, sector 71 will become 70, 72 -> 71, etc.)\n"
 "Removing a sector may cause serious issues when the game tries to load the scene."
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:597
+#: skytemple/skytemple/module/script/controller/ssa.py:604
 msgid "Create Script"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:597
+#: skytemple/skytemple/module/script/controller/ssa.py:604
 msgid "Script Number"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:607
+#: skytemple/skytemple/module/script/controller/ssa.py:614
 msgid "Please enter a valid number."
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:620
+#: skytemple/skytemple/module/script/controller/ssa.py:627
 msgid "This script already exists."
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:657
+#: skytemple/skytemple/module/script/controller/ssa.py:664
 msgid "Acting scenes must have exactly one script assigned to them."
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1273
+#: skytemple/skytemple/module/script/controller/ssa.py:1280
 msgid "Event Script"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1340
+#: skytemple/skytemple/module/script/controller/ssa.py:1347
 #, python-brace-format
 msgid "Type {performer_type}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1360
+#: skytemple/skytemple/module/script/controller/ssa.py:1367
 msgid "V"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1361
+#: skytemple/skytemple/module/script/controller/ssa.py:1368
 msgid "Visible"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1365
+#: skytemple/skytemple/module/script/controller/ssa.py:1372
 msgid "Solo"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1390
+#: skytemple/skytemple/module/script/controller/ssa.py:1397
 #, python-brace-format
 msgid "Sector {i}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1482
+#: skytemple/skytemple/module/script/controller/ssa.py:1489
 #, python-brace-format
 msgid "?INVALID? {script_id}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1503
+#: skytemple/skytemple/module/script/controller/ssa.py:1510
 #, python-brace-format
 msgid "{len_actors} acts, "
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1505
+#: skytemple/skytemple/module/script/controller/ssa.py:1512
 #, python-brace-format
 msgid "{len_objects} objs, "
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1507
+#: skytemple/skytemple/module/script/controller/ssa.py:1514
 #, python-brace-format
 msgid "{len_performers} prfs, "
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1509
+#: skytemple/skytemple/module/script/controller/ssa.py:1516
 #, python-brace-format
 msgid "{len_triggers} trgs"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1522
+#: skytemple/skytemple/module/script/controller/ssa.py:1529
 #, python-brace-format
 msgid "Type {performer.type}"
 msgstr ""
