@@ -50,9 +50,14 @@ class MiscSettingsController(AbstractController):
         self.builder.connect_signals(self)
         return box
 
-    def on_switch_text_speed_state_set(self, w: Gtk.Switch, state: bool, *args):
+    def on_entry_text_speed_changed(self, widget, *args):
+        try:
+            val = int(widget.get_text())
+        except ValueError:
+            return
+
         static_data = self.module.project.get_rom_module().get_static_data()
-        self.module.project.modify_binary(BinaryName.ARM9, lambda bin: HardcodedTextSpeed.set_text_speed_debug(state, bin, static_data))
+        self.module.project.modify_binary(BinaryName.ARM9, lambda bin: HardcodedTextSpeed.set_text_speed(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
     def on_cb_main_menu_music_changed(self, widget: Gtk.ComboBox, *args):
@@ -189,7 +194,7 @@ class MiscSettingsController(AbstractController):
         ov29 = self.module.project.get_binary(BinaryName.OVERLAY_29)
         static_data = self.module.project.get_rom_module().get_static_data()
 
-        self.builder.get_object('switch_text_speed').set_active(HardcodedTextSpeed.get_text_speed_debug(arm9, static_data))
+        self.builder.get_object('entry_text_speed').set_text(str(HardcodedTextSpeed.get_text_speed(arm9, static_data)))
         self.builder.get_object('cb_main_menu_music').set_active(HardcodedMainMenuMusic.get_main_menu_music(ov00, static_data))
         self.builder.get_object('entry_normal_spawn_delay').set_text(str(HardcodedSpawnRate.get_normal_spawn_rate(ov10, static_data)))
         self.builder.get_object('entry_stolen_spawn_delay').set_text(str(HardcodedSpawnRate.get_stolen_spawn_rate(ov10, static_data)))
