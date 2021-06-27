@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-06-22 08:40+0000\n"
-"PO-Revision-Date: 2021-06-27 18:54\n"
+"PO-Revision-Date: 2021-06-27 19:49\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -33,7 +33,7 @@ msgstr "Nombres del equipo por defecto"
 
 #: /dev/fd/63:4 /dev/fd/63:104
 msgid "Job Debriefing Related Strings"
-msgstr "Cadenas relacionadas con las misiones"
+msgstr "Cadenas relacionadas con misiones"
 
 #: /dev/fd/63:5 /dev/fd/63:105
 msgid "Member Joined Menu"
@@ -73,11 +73,11 @@ msgstr "Respuestas de la prueba de personalidad"
 
 #: /dev/fd/63:14 /dev/fd/63:114
 msgid "Personality Quiz result strings"
-msgstr "Resultados de prueba de personalidad"
+msgstr "Resultados de la prueba de personalidad"
 
 #: /dev/fd/63:15 /dev/fd/63:115
 msgid "Personality string natures"
-msgstr "Cadenas de naturaleza de personalidad"
+msgstr "Cadenas de naturalezas de personalidad"
 
 #: /dev/fd/63:16 /dev/fd/63:116
 msgid "Weather Change Feedback"
@@ -93,7 +93,7 @@ msgstr "Nombres de estado del suelo + Desc."
 
 #: /dev/fd/63:19 /dev/fd/63:119
 msgid "IQ Skills Menu"
-msgstr "Menú de habilidades CI"
+msgstr "Menú de habilidades de CI"
 
 #: /dev/fd/63:20 /dev/fd/63:120
 msgid "Test Dungeon"
@@ -109,7 +109,7 @@ msgstr "Cadenas de misiones fallidas o derrotas"
 
 #: /dev/fd/63:23 /dev/fd/63:123
 msgid "Speed Change Feedback"
-msgstr "Comentarios de cambio de velocidad"
+msgstr "Comentarios sobre cambios de velocidad"
 
 #: /dev/fd/63:24 /dev/fd/63:124
 msgid "Potential Recruit Strings"
@@ -121,7 +121,7 @@ msgstr "Reacción a gomis"
 
 #: /dev/fd/63:26 /dev/fd/63:126
 msgid "Traps Feedback"
-msgstr "Comentarios de trampas"
+msgstr "Comentarios sobre trampas"
 
 #: /dev/fd/63:27 /dev/fd/63:127
 msgid "More Dungeon Feedback"
@@ -141,7 +141,7 @@ msgstr "Cadenas de cambio de forma de Shaymin"
 
 #: /dev/fd/63:31 /dev/fd/63:131
 msgid "Recruited A Pokemon Strings"
-msgstr "Cadenas de Pokémon reclutado"
+msgstr "Cadenas de Pokémon reclutados"
 
 #: /dev/fd/63:32 /dev/fd/63:132
 msgid "Battle Feedback Messages"
@@ -185,7 +185,7 @@ msgstr "Cadenas de tienda de Swalot"
 
 #: /dev/fd/63:42 /dev/fd/63:142
 msgid "Team Tactics Menu strings"
-msgstr "Cadenas de menú tácticas de equipo"
+msgstr "Cadenas del menú de tácticas de equipo"
 
 #: /dev/fd/63:43 /dev/fd/63:143
 msgid "Item Became Sticky"
@@ -5576,7 +5576,7 @@ msgstr "Ocultar información de capa"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:367
 msgid "Show Tile Info"
-msgstr "Mostrar información de tiles"
+msgstr "Mostrar información de Tiles"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:368
 msgid "Ti"
@@ -5584,7 +5584,7 @@ msgstr "Ti"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:383
 msgid "Show Item Info"
-msgstr "Mostrar información de objetos"
+msgstr "Mostrar información de Objetos"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:384
 msgid "I"
@@ -5600,7 +5600,7 @@ msgstr "P"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:415
 msgid "Show Trap Info"
-msgstr "Mostrar información de trampas"
+msgstr "Mostrar información de Trampas"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:416
 msgid "Tr"
@@ -12094,13 +12094,13 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "- A project directory was created next to the ROM.\n"
 "- Please report any issues."
 msgstr "<span size=\"large\">¡Bienvenido a SkyTemple!</span>\n\n"
-"Con esta herramienta puedes editar múltiples opciones en las \n"
+"Con esta herramienta puedes editar múltiples parámetros en las \n"
 "ROMs de Pokémon Mundo Misterioso: Exploradores del Cielo.\n\n"
 "Por favor, ten en cuenta lo siguiente:\n"
-"- Este software aún se encuentra en desarrollo, por favor haz copias\n"
-"  de seguridad de tu ROM. Algunas cosas <i>no</i> funcionarán.\n"
+"- Este software aún se encuentra en desarrollo, por lo que recomendamos que\n"
+"  hagas copias de seguridad de tu ROM. Algunas cosas <i>no</i> funcionarán.\n"
 "- Se ha creado un directorio del proyecto junto a la ROM.\n"
-"- Por favor, informa de cualquier problema."
+"- Por favor, infórmanos si tienes cualquier problema."
 
 #: skytemple/skytemple/skytemple.glade:94
 msgid "Can we add a \"Created with SkyTemple\" message\n"
