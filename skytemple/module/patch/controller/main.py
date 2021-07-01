@@ -81,6 +81,18 @@ class MainController(AbstractController):
                 self._error(_("Please save the ROM before applying the patch."))
                 return
 
+            if name == 'ExpandPokeList':
+                    md = SkyTempleMessageDialog(MainAppController.window(),
+                                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                                Gtk.ButtonsType.YES_NO,
+                                                _("This patch extends the Pokémon list. It iss very experimental and "
+                                                  "WILL break a few things. Once applied you can not remove it again. "
+                                                  "Proceed?"))
+                    md.set_position(Gtk.WindowPosition.CENTER)
+                    response = md.run()
+                    md.destroy()
+                    if response != Gtk.ResponseType.YES:
+                        return
             try:
                 dependencies = self._get_dependencies(name)
                 if len(dependencies) > 0:

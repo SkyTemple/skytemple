@@ -134,23 +134,11 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSwitch" id="switch_text_speed">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="halign">start</property>
-                            <signal name="state-set" handler="on_switch_text_speed_state_set" swapped="no"/>
-                          </object>
-                          <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
-                            <property name="label" translatable="yes">Enable fast ("debug mode") text speed:</property>
+                            <property name="label" translatable="yes">Text Speed (debug mode uses 4):</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
@@ -490,6 +478,17 @@ walking through walls, per turn:</property>
                           <packing>
                             <property name="left-attach">1</property>
                             <property name="top-attach">8</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="entry_text_speed">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <signal name="changed" handler="on_entry_text_speed_changed" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">1</property>
                           </packing>
                         </child>
                       </object>
