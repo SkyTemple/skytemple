@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-06-22 08:40+0000\n"
-"PO-Revision-Date: 2021-06-22 10:06\n"
+"POT-Creation-Date: 2021-07-04 12:26+0000\n"
+"PO-Revision-Date: 2021-07-04 12:37\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -3562,9 +3562,26 @@ msgstr "Fait en sorte de toujours voir les coéquipiers quand ils utilisent des 
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
 msgstr "Corrige le bug de l'évolution qui fait planter le jeu en essayant de faire évoluer un pokémon dont le nom comporte 10 caractères (bug présent dans la version américaine d'Explorateurs du Ciel)."
 
+#: skytemple-files/skytemple_files/patch/handler/move_growth.py:78
+msgid "Implements move growth (PoC/Unfinished). \n"
+"Needs ActorAndLevelLoader, ExtractAnimData and ChangeMoveStatsDisplay patches. \n"
+"Currently not compatible with MoveShortcuts. \n"
+"The last version of ChangeMoveStatsDisplay must be used with this.\n"
+"May be incompatible if markfont.dat has been modified (except for ChangeMoveStatsDisplay)\n"
+"Makes all prior save files incompatible. "
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/handler/move_growth.py:115
+#: skytemple-files/skytemple_files/patch/handler/move_growth.py:120
+#: skytemple-files/skytemple_files/patch/handler/move_growth.py:125
+#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:109
+#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:114
+msgid "This patch isn't compatible with this rom."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:40
-msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y)."
-msgstr "Remplace la capacité en raccourci fixe (L+A) par un système de raccourci comme ceux présents dans les jeux suivants de la série (L+A/B/X/Y)."
+msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
+msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:42
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
@@ -3592,12 +3609,7 @@ msgid "Replaces old move stats display with bars.\n"
 "This patch may not be compatible if the markfont.dat file has been modified."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:109
-#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:114
-msgid "This patch isn't compatible with this rom."
-msgstr ""
-
-#: skytemple-files/skytemple_files/patch/handler/support_atupx.py:46
+#: skytemple-files/skytemple_files/patch/handler/support_atupx.py:40
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
 "Requires the ActorAndLevelLoader, as it frees the space needed to implement this."
 msgstr "Fournit le support pour les conteneurs ATUPX, qui utilisent un algorithme de compression différent de PX.\n"
@@ -3607,48 +3619,48 @@ msgstr "Fournit le support pour les conteneurs ATUPX, qui utilisent un algorithm
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:130
-#: skytemple-files/skytemple_files/patch/patches.py:135
+#: skytemple-files/skytemple_files/patch/patches.py:132
+#: skytemple-files/skytemple_files/patch/patches.py:137
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "Le correctif « {name} » est introuvable."
 
-#: skytemple-files/skytemple_files/patch/patches.py:141
+#: skytemple-files/skytemple_files/patch/patches.py:143
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "Le correctif « {patch_name} » doit être appliqué avant d'appliquer le correctif « {name} »."
 
-#: skytemple-files/skytemple_files/patch/patches.py:144
+#: skytemple-files/skytemple_files/patch/patches.py:146
 #: skytemple/skytemple/module/patch/controller/main.py:207
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr "Le correctif « {patch_name} » doit être appliqué avant d'appliquer le correctif « {name} ». Ce correctif est introuvable."
 
-#: skytemple-files/skytemple_files/patch/patches.py:173
+#: skytemple-files/skytemple_files/patch/patches.py:175
 msgid "config.xml missing in patch package."
 msgstr "Fichier config.xml manquant dans le paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:175
+#: skytemple-files/skytemple_files/patch/patches.py:177
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "Erreur de syntaxe dans le fichier config.xml lors de la lecture du paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:185
+#: skytemple-files/skytemple_files/patch/patches.py:187
 msgid "patch.py missing in patch package."
 msgstr "Fichier patch.py manquant dans le paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:187
+#: skytemple-files/skytemple_files/patch/patches.py:189
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:192
+#: skytemple-files/skytemple_files/patch/patches.py:194
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "Le fichier patch.py du paquet de correctifs ne contient pas de gestionnaire de correctifs (« PatchHandler »)."
 
-#: skytemple-files/skytemple_files/patch/patches.py:197
+#: skytemple-files/skytemple_files/patch/patches.py:199
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "Le paquet de correctifs ne contient aucune entrée de configuration dans config.xml pour le nom du correctif géré par ce gestionnaire."
 
-#: skytemple-files/skytemple_files/patch/patches.py:203
+#: skytemple-files/skytemple_files/patch/patches.py:205
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "Aucun correctif trouvé dans la configuration pour le gestionnaire « {handler.name} »."
