@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-07-07 09:15+0000\n"
+"POT-Creation-Date: 2021-07-04 12:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1432,28 +1432,28 @@ msgid ""
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:320
+#: skytemple-files/skytemple_files/common/util.py:318
 msgid "This ROM is not supported by SkyTemple."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:346
-#: skytemple-files/skytemple_files/common/util.py:368
+#: skytemple-files/skytemple_files/common/util.py:344
+#: skytemple-files/skytemple_files/common/util.py:366
 #, python-brace-format
 msgid "Binary {binary.filepath} not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:378
-#: skytemple-files/skytemple_files/common/util.py:409
+#: skytemple-files/skytemple_files/common/util.py:376
+#: skytemple-files/skytemple_files/common/util.py:407
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:381
+#: skytemple-files/skytemple_files/common/util.py:379
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:404
+#: skytemple-files/skytemple_files/common/util.py:402
 #, python-brace-format
 msgid "Folder {path} already exists."
 msgstr ""
@@ -1468,17 +1468,17 @@ msgstr ""
 msgid "Invalid XML. Expected attribute {attrib} for XML tag {ele.tag}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:59
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:136
+#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:57
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:148
 msgid "ARMIPS could not be found. Make sure, that 'armips' is inside your system's PATH."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:63
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:140
+#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:61
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:152
 msgid "ARMIPS reported an error while applying the patch."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:69
+#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:67
 #, python-brace-format
 msgid "The armips source file did not create a {OUT_BIN}."
 msgstr ""
@@ -3397,7 +3397,7 @@ msgstr ""
 msgid "This menu must have {num_entries} entries!"
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:169
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:181
 #, python-brace-format
 msgid "Error while applying the patch: {ex}"
 msgstr ""
