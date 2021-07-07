@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-07-04 12:26+0000\n"
-"PO-Revision-Date: 2021-07-04 17:39\n"
+"POT-Creation-Date: 2021-07-07 09:15+0000\n"
+"PO-Revision-Date: 2021-07-07 09:19\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1434,28 +1434,28 @@ msgid "An image selected to import is too complex. It has too many unique tiles 
 msgstr "La imagen seleccionada para importar es demasiado compleja. Tiene demasiados tiles únicos ({len_final_tiles} tiles, pero el máximo permitido es 1024).\n"
 "Intenta reducir los tiles únicos. Estos tiles son secciones 8x8 de las imágenes que no se pueden encontrar en ninguna otra parte de la imagen (ni siquiera invertidas o con una subpaleta diferente)."
 
-#: skytemple-files/skytemple_files/common/util.py:318
+#: skytemple-files/skytemple_files/common/util.py:320
 msgid "This ROM is not supported by SkyTemple."
 msgstr "Esta ROM no está soportada por SkyTemple."
 
-#: skytemple-files/skytemple_files/common/util.py:344
-#: skytemple-files/skytemple_files/common/util.py:366
+#: skytemple-files/skytemple_files/common/util.py:346
+#: skytemple-files/skytemple_files/common/util.py:368
 #, python-brace-format
 msgid "Binary {binary.filepath} not found."
 msgstr "Binario {binary.filepath} no encontrado."
 
-#: skytemple-files/skytemple_files/common/util.py:376
-#: skytemple-files/skytemple_files/common/util.py:407
+#: skytemple-files/skytemple_files/common/util.py:378
+#: skytemple-files/skytemple_files/common/util.py:409
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr "La carpeta {dir_name} no existe."
 
-#: skytemple-files/skytemple_files/common/util.py:379
+#: skytemple-files/skytemple_files/common/util.py:381
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
 msgstr "El archivo {file_name} ya existe en esta carpeta."
 
-#: skytemple-files/skytemple_files/common/util.py:402
+#: skytemple-files/skytemple_files/common/util.py:404
 #, python-brace-format
 msgid "Folder {path} already exists."
 msgstr "La carpeta {path} ya existe."
@@ -1470,17 +1470,17 @@ msgstr "XML inválido. Se esperaba la etiqueta {tag}, pero se obtuvo {ele.tag}."
 msgid "Invalid XML. Expected attribute {attrib} for XML tag {ele.tag}."
 msgstr "Archivo XML inválido. Se esperaba el atributo {attrib} para la etiqueta XML {ele.tag}."
 
-#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:57
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:148
+#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:59
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:136
 msgid "ARMIPS could not be found. Make sure, that 'armips' is inside your system's PATH."
 msgstr "No se ha encontrado ARMIPS. Asegúrate de que 'armips' esté dentro de la variable 'path'."
 
-#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:61
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:152
+#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:63
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:140
 msgid "ARMIPS reported an error while applying the patch."
 msgstr "ARMIPS informó de un error al aplicar el parche."
 
-#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:67
+#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:69
 #, python-brace-format
 msgid "The armips source file did not create a {OUT_BIN}."
 msgstr "El archivo de origen de armips no ha generado un {OUT_BIN}."
@@ -3399,7 +3399,7 @@ msgstr "Menú de depuración principal de territorio"
 msgid "This menu must have {num_entries} entries!"
 msgstr "¡Este menú debe tener {num_entries} entradas!"
 
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:181
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:169
 #, python-brace-format
 msgid "Error while applying the patch: {ex}"
 msgstr "Error al aplicar el parche: {ex}"
