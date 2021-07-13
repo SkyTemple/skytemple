@@ -315,4 +315,4 @@ class DungeonController(AbstractController):
             lang = sp.get_languages()[lang_index]
             sp.get_model(lang).strings[
                 sp.get_index(string_type, self.dungeon_info.dungeon_id)
-            ] = w.get_text()
+            ] = w.get_text().replace('\\n', '\n')
