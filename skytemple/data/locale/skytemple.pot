@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-07-07 09:15+0000\n"
+"POT-Creation-Date: 2021-07-13 15:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3471,6 +3471,10 @@ msgstr ""
 msgid "Infinite recursion detected in pre evolutions for md entry {i}. "
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/change_tbbg.py:43
+msgid "Provides support for editing textbox background color."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/choose_starter.py:47
 msgid "Then, who would you like to be?"
 msgstr ""
@@ -3624,48 +3628,48 @@ msgstr ""
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:132
-#: skytemple-files/skytemple_files/patch/patches.py:137
+#: skytemple-files/skytemple_files/patch/patches.py:134
+#: skytemple-files/skytemple_files/patch/patches.py:139
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:143
+#: skytemple-files/skytemple_files/patch/patches.py:145
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:146
+#: skytemple-files/skytemple_files/patch/patches.py:148
 #: skytemple/skytemple/module/patch/controller/main.py:207
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:175
+#: skytemple-files/skytemple_files/patch/patches.py:177
 msgid "config.xml missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:177
+#: skytemple-files/skytemple_files/patch/patches.py:179
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:187
+#: skytemple-files/skytemple_files/patch/patches.py:189
 msgid "patch.py missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:189
+#: skytemple-files/skytemple_files/patch/patches.py:191
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:194
+#: skytemple-files/skytemple_files/patch/patches.py:196
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:199
+#: skytemple-files/skytemple_files/patch/patches.py:201
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:205
+#: skytemple-files/skytemple_files/patch/patches.py:207
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
@@ -7853,31 +7857,47 @@ msgid "Intimidator activation chance (%):"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:336
+msgid "Burn damage delay (turns):"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:349
+msgid "Poison damage delay (turns):"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:362
+msgid "Bad poison damage delay (turns):"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:411
+msgid "Belly points lost, per turn:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:436
+msgid ""
+"1/1000 belly points lost when \n"
+"walking through walls, per turn:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:475
+msgid "Items:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:491
 msgid ""
 "Chance of Ginseng increasing \n"
 "a move's power by 3 (%):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:362
-msgid "Burn damage delay (turns):"
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:517
+msgid "Life Seed Max HP increase:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:375
-msgid "Poison damage delay (turns):"
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:530
+msgid "Oran Berry HP heal amount:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:388
-msgid "Bad poison damage delay (turns):"
-msgstr ""
-
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:437
-msgid "Belly points lost, per turn:"
-msgstr ""
-
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:462
-msgid ""
-"1/1000 belly points lost when \n"
-"walking through walls, per turn:"
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:543
+msgid "Sitrus Berry HP heal amount:"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
