@@ -284,6 +284,8 @@ class MainController(AbstractController):
                     name=row[1]
                 )
             )
+        # UPDATE STATIC DATA
+        self.module.project.get_rom_module().get_static_data().script_data.level_list = self._list.list
         self.module.mark_level_list_as_modified()
 
     def _save_td(self):

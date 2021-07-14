@@ -23,6 +23,7 @@ from gi.repository import Gtk
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import BinaryName
 from skytemple_files.hardcoded.dungeon_misc import HardcodedDungeonMisc
+from skytemple_files.hardcoded.hp_items import HardcodedHpItems
 from skytemple_files.hardcoded.main_menu_music import HardcodedMainMenuMusic
 from skytemple_files.hardcoded.spawn_rate import HardcodedSpawnRate
 from skytemple_files.hardcoded.text_speed import HardcodedTextSpeed
@@ -125,6 +126,33 @@ class MiscSettingsController(AbstractController):
         self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedDungeonMisc.set_ginseng_increase_by_3_chance(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    def on_entry_life_seed_changed(self, widget, *args):
+        try:
+            val = int(widget.get_text())
+        except ValueError:
+            return
+        static_data = self.module.project.get_rom_module().get_static_data()
+        self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedHpItems.set_life_seed_hp(val, bin, static_data))
+        self.module.mark_misc_settings_as_modified()
+
+    def on_entry_oran_berry_changed(self, widget, *args):
+        try:
+            val = int(widget.get_text())
+        except ValueError:
+            return
+        static_data = self.module.project.get_rom_module().get_static_data()
+        self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedHpItems.set_oran_berry_hp(val, bin, static_data))
+        self.module.mark_misc_settings_as_modified()
+
+    def on_entry_sitrus_berry_changed(self, widget, *args):
+        try:
+            val = int(widget.get_text())
+        except ValueError:
+            return
+        static_data = self.module.project.get_rom_module().get_static_data()
+        self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedHpItems.set_sitrus_berry_hp(val, bin, static_data))
+        self.module.mark_misc_settings_as_modified()
+
     def on_entry_burn_damage_delay_changed(self, widget, *args):
         try:
             val = int(widget.get_text())
@@ -202,6 +230,9 @@ class MiscSettingsController(AbstractController):
         self.builder.get_object('entry_belly_lost_wtw').set_text(str(HardcodedDungeonMisc.get_belly_loss_walk_through_walls(ov29, static_data)))
         self.builder.get_object('entry_belly_lost_wtw_1000').set_text(str(HardcodedDungeonMisc.get_belly_loss_1000ile_walk_through_walls(ov29, static_data)))
         self.builder.get_object('entry_ginseng_3_chance').set_text(str(HardcodedDungeonMisc.get_ginseng_increase_by_3_chance(ov10, static_data)))
+        self.builder.get_object('entry_life_seed').set_text(str(HardcodedHpItems.get_life_seed_hp(ov10, static_data)))
+        self.builder.get_object('entry_oran_berry').set_text(str(HardcodedHpItems.get_oran_berry_hp(ov10, static_data)))
+        self.builder.get_object('entry_sitrus_berry').set_text(str(HardcodedHpItems.get_sitrus_berry_hp(ov10, static_data)))
         self.builder.get_object('entry_burn_damage_delay').set_text(str(HardcodedDungeonMisc.get_burn_damage_delay(ov10, static_data)))
         self.builder.get_object('entry_poison_damage_delay').set_text(str(HardcodedDungeonMisc.get_poison_damage_delay(ov10, static_data)))
         self.builder.get_object('entry_bad_poison_damage_delay').set_text(str(HardcodedDungeonMisc.get_bad_poison_damage_delay(ov10, static_data)))
