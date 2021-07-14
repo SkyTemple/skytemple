@@ -27,7 +27,8 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.ui_utils import open_dir
 from skytemple_files.patch.category import PatchCategory
 from skytemple_files.patch.handler.abstract import DependantPatch
-from skytemple_files.patch.patches import Patcher, PatchDependencyError
+from skytemple_files.patch.patches import Patcher
+from skytemple_files.patch.errors import PatchDependencyError
 from skytemple.controller.main import MainController as MainAppController
 from skytemple_files.common.i18n_util import f, _
 
