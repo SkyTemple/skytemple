@@ -15,10 +15,12 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import logging
 
 import pkg_resources
 
 MODULE_ENTRYPOINT_KEY = 'skytemple.module'
+logger = logging.getLogger(__name__)
 
 
 class Modules:
@@ -27,11 +29,16 @@ class Modules:
     @classmethod
     def load(cls):
         # Look up package entrypoints for modules
-        cls._modules = {
-            entry_point.name:
-                entry_point.load() for entry_point in pkg_resources.iter_entry_points(MODULE_ENTRYPOINT_KEY)
-        }
+        try:
+            cls._modules = {
+                entry_point.name:
+                    entry_point.load() for entry_point in pkg_resources.iter_entry_points(MODULE_ENTRYPOINT_KEY)
+            }
+        except BaseException as ex:
+            logger.warning("Failed loading modules.", exc_info=ex)
+
         if len(cls._modules) < 1:
+            logger.warning("No module fount, falling back to default.")
             # PyInstaller under Windows has no idea what (custom) entrypoints are...
             # TODO: Figure out a better way to do this...
             cls._modules = cls._load_windows_modules()
