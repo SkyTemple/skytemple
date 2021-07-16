@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-07-16 20:15+0000\n"
+"POT-Creation-Date: 2021-07-16 20:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3654,7 +3654,7 @@ msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:149
-#: skytemple/skytemple/module/patch/controller/main.py:207
+#: skytemple/skytemple/module/patch/controller/main.py:225
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
@@ -4176,6 +4176,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1643
 #: skytemple/skytemple/controller/main.py:760
 #: skytemple/skytemple/module/map_bg/controller/main.py:105
+#: skytemple/skytemple/module/patch/controller/param_dialog.py:43
 #: skytemple/skytemple/module/script/controller/main.py:190
 #: skytemple/skytemple/module/script/controller/map.py:160
 #: skytemple/skytemple/module/script/controller/ssa.py:1574
@@ -5784,7 +5785,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1183
 #: skytemple/skytemple/module/monster/controller/monster.glade:1537
-#: skytemple/skytemple/module/moves_items/controller/item.glade:923
+#: skytemple/skytemple/module/moves_items/controller/item.glade:933
 #: skytemple/skytemple/module/moves_items/controller/move.glade:767
 #: skytemple/skytemple/skytemple.glade:300
 msgid "General"
@@ -9660,7 +9661,7 @@ msgid "Group: "
 msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/main.glade:205
-#: skytemple/skytemple/module/moves_items/controller/item.glade:716
+#: skytemple/skytemple/module/moves_items/controller/item.glade:726
 #: skytemple/skytemple/module/moves_items/controller/move.glade:554
 msgid "Text"
 msgstr ""
@@ -9867,7 +9868,7 @@ msgid "Sprite ID:"
 msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1106
-#: skytemple/skytemple/module/moves_items/controller/item.glade:383
+#: skytemple/skytemple/module/moves_items/controller/item.glade:393
 #: skytemple/skytemple/module/moves_items/controller/move.glade:357
 msgid "Name:"
 msgstr ""
@@ -10416,154 +10417,154 @@ msgstr ""
 msgid "Palette ID:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:399
+#: skytemple/skytemple/module/moves_items/controller/item.glade:409
 msgid "Long Description:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:575
+#: skytemple/skytemple/module/moves_items/controller/item.glade:585
 msgid "Short Description:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:740
+#: skytemple/skytemple/module/moves_items/controller/item.glade:750
 #: skytemple/skytemple/module/moves_items/controller/move.glade:76
 msgid "Move ID:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:752
+#: skytemple/skytemple/module/moves_items/controller/item.glade:762
 msgid "Min Amount:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:810
+#: skytemple/skytemple/module/moves_items/controller/item.glade:820
 msgid "Max Amount:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:855
+#: skytemple/skytemple/module/moves_items/controller/item.glade:865
 msgid "Action Name:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:992
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1002
 msgid "Is Valid:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:1004
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1014
 msgid "Is in T/D:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:1016
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1026
 msgid "AI Flag 1:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:1028
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1038
 msgid "AI Flag 2:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:1040
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1050
 msgid "AI Flag 3:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:1082
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1092
 msgid "Flags"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:1107
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1117
 msgid "Exclusive Item Type:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:1119
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1129
 msgid "Exclusive Item Parameter:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.glade:1200
+#: skytemple/skytemple/module/moves_items/controller/item.glade:1210
 msgid "Exclusive Item Settings"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:34
-#: skytemple/skytemple/module/moves_items/controller/item.py:41
+#: skytemple/skytemple/module/moves_items/controller/item.py:35
 #: skytemple/skytemple/module/moves_items/controller/item.py:42
 #: skytemple/skytemple/module/moves_items/controller/item.py:43
 #: skytemple/skytemple/module/moves_items/controller/item.py:44
-#: skytemple/skytemple/module/moves_items/controller/item.py:47
+#: skytemple/skytemple/module/moves_items/controller/item.py:45
 #: skytemple/skytemple/module/moves_items/controller/item.py:48
 #: skytemple/skytemple/module/moves_items/controller/item.py:49
+#: skytemple/skytemple/module/moves_items/controller/item.py:50
 msgid "Use"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:35
+#: skytemple/skytemple/module/moves_items/controller/item.py:36
 msgid "Hurl"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:36
+#: skytemple/skytemple/module/moves_items/controller/item.py:37
 msgid "Throw"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:37
-#: skytemple/skytemple/module/moves_items/controller/item.py:45
+#: skytemple/skytemple/module/moves_items/controller/item.py:38
 #: skytemple/skytemple/module/moves_items/controller/item.py:46
+#: skytemple/skytemple/module/moves_items/controller/item.py:47
 msgid "Equip"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:38
+#: skytemple/skytemple/module/moves_items/controller/item.py:39
 msgid "Eat"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:39
+#: skytemple/skytemple/module/moves_items/controller/item.py:40
 msgid "Ingest"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:40
+#: skytemple/skytemple/module/moves_items/controller/item.py:41
 msgid "Peel"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:246
+#: skytemple/skytemple/module/moves_items/controller/item.py:264
 msgid "For stackable items: Indicates the minimum amount you can get for 1 instance of that item."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:247
+#: skytemple/skytemple/module/moves_items/controller/item.py:265
 msgid "Min Amount"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:257
+#: skytemple/skytemple/module/moves_items/controller/item.py:275
 msgid "For stackable items: Indicates the maximum amount you can get for 1 instance of that item."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:258
+#: skytemple/skytemple/module/moves_items/controller/item.py:276
 msgid "Max Amount"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:268
+#: skytemple/skytemple/module/moves_items/controller/item.py:286
 msgid "The ID of a move, that is associated with this item."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:269
+#: skytemple/skytemple/module/moves_items/controller/item.py:287
 msgid "Move ID"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:275
+#: skytemple/skytemple/module/moves_items/controller/item.py:293
 msgid ""
 "Either the ID of a type or of a Pokémon, depending on the type of the exclusive item.\n"
 "\n"
 "IDs for Types:\n"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:284
+#: skytemple/skytemple/module/moves_items/controller/item.py:302
 msgid "Exclusive Item Parameter"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:294
+#: skytemple/skytemple/module/moves_items/controller/item.py:312
 msgid "Some exclusive items are assigned to Pokémon, others to types. See the values in the dropdown for the possible options."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:296
+#: skytemple/skytemple/module/moves_items/controller/item.py:314
 msgid "Exclusive Item Type"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:306
+#: skytemple/skytemple/module/moves_items/controller/item.py:324
 msgid ""
 "Action name displayed in dungeon menus (Use, Eat, Ingest, Equip...).\n"
 "See 'Text Strings' for actual values."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item.py:308
+#: skytemple/skytemple/module/moves_items/controller/item.py:326
 msgid "Action Name"
 msgstr ""
 
@@ -10947,72 +10948,94 @@ msgstr ""
 msgid "Fix Number of Moves"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:34
+#: skytemple/skytemple/module/patch/controller/main.py:39
 #: skytemple/skytemple/module/patch/controller/patch_main.glade:25
 msgid "Patches"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:67
+#: skytemple/skytemple/module/patch/controller/main.py:73
 msgid "This patch is already applied. Some patches support applying them again, but you might also run into problems with some. Proceed with care."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:77
+#: skytemple/skytemple/module/patch/controller/main.py:83
 msgid "The current ROM is not supported by this patch."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:81
+#: skytemple/skytemple/module/patch/controller/main.py:87
 msgid "Please save the ROM before applying the patch."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:88
+#: skytemple/skytemple/module/patch/controller/main.py:94
 msgid "This patch extends the Pokémon list. It iss very experimental and WILL break a few things. Once applied you can not remove it again. Proceed?"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:102
+#: skytemple/skytemple/module/patch/controller/main.py:109
 msgid ""
 "\n"
 "Do you want to apply these first?"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:102
+#: skytemple/skytemple/module/patch/controller/main.py:109
 msgid "This patch requires some other patches to be applied first:\n"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:111
+#: skytemple/skytemple/module/patch/controller/main.py:124
+msgid ""
+"\n"
+"Configuration field with errors: \"{}\"\n"
+"Error: {}"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/main.py:125
+#: skytemple/skytemple/module/patch/controller/main.py:127
 #, python-brace-format
 msgid ""
 "Error applying the patch:\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:113
+#: skytemple/skytemple/module/patch/controller/main.py:130
 msgid "Patch was successfully applied. You should re-open the project, to make sure all data is correctly loaded."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:162
+#: skytemple/skytemple/module/patch/controller/main.py:180
 msgid ""
 "Error loading patch package {os.path.basename(fname)}:\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:167
+#: skytemple/skytemple/module/patch/controller/main.py:185
 msgid "Not compatible"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:169
+#: skytemple/skytemple/module/patch/controller/main.py:187
 msgid "Applied"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:169
+#: skytemple/skytemple/module/patch/controller/main.py:187
 msgid "Compatible"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/param_dialog.py:43
+#: skytemple/skytemple/module/patch/controller/patch_main.glade:110
+msgid "Apply"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/param_dialog.py:48
+msgid "Settings for the \"{}\" Patch"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/param_dialog.py:51
+msgid "The patch \"{}\" requires additional configuration:"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/param_dialog.py:117
+#: skytemple/skytemple/module/patch/controller/param_dialog.py:118
+msgid "Invalid values for some settings provided. Please try again."
 msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/patch_main.glade:62
 msgid "Open Patch Directory..."
-msgstr ""
-
-#: skytemple/skytemple/module/patch/controller/patch_main.glade:110
-msgid "Apply"
 msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/patch_main.glade:191
