@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-07-14 21:41+0000\n"
+"POT-Creation-Date: 2021-07-16 08:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1469,12 +1469,12 @@ msgid "Invalid XML. Expected attribute {attrib} for XML tag {ele.tag}."
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:59
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:136
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:146
 msgid "ARMIPS could not be found. Make sure, that 'armips' is inside your system's PATH."
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:63
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:140
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:155
 msgid "ARMIPS reported an error while applying the patch."
 msgstr ""
 
@@ -3194,6 +3194,16 @@ msgstr ""
 msgid "Bazaar Escape"
 msgstr ""
 
+#: skytemple-files/skytemple_files/hardcoded/guest_pokemon.py:37
+#, python-brace-format
+msgid "'{guest1_index}' is not a valid guest pokémon index"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/guest_pokemon.py:41
+#, python-brace-format
+msgid "'{guest2_index}' is not a valid guest pokémon index"
+msgstr ""
+
 #: skytemple-files/skytemple_files/hardcoded/menus.py:34
 msgid "Game Main Menu"
 msgstr ""
@@ -3397,7 +3407,7 @@ msgstr ""
 msgid "This menu must have {num_entries} entries!"
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:169
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:184
 #, python-brace-format
 msgid "Error while applying the patch: {ex}"
 msgstr ""
@@ -3632,48 +3642,72 @@ msgstr ""
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:136
-#: skytemple-files/skytemple_files/patch/patches.py:141
+#: skytemple-files/skytemple_files/patch/patches.py:130
+#: skytemple-files/skytemple_files/patch/patches.py:140
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:147
+#: skytemple-files/skytemple_files/patch/patches.py:146
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:150
+#: skytemple-files/skytemple_files/patch/patches.py:149
 #: skytemple/skytemple/module/patch/controller/main.py:207
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:179
+#: skytemple-files/skytemple_files/patch/patches.py:156
+msgid "No configuration was given."
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/patches.py:159
+msgid "Missing configuration value."
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/patches.py:163
+#: skytemple-files/skytemple_files/patch/patches.py:165
+#: skytemple-files/skytemple_files/patch/patches.py:167
+#: skytemple-files/skytemple_files/patch/patches.py:171
+#: skytemple-files/skytemple_files/patch/patches.py:181
+msgid "Invalid configuration value."
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/patches.py:165
+msgid "Must be >= {}."
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/patches.py:167
+msgid "Must be <= {}."
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/patches.py:215
 msgid "config.xml missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:181
+#: skytemple-files/skytemple_files/patch/patches.py:217
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:191
+#: skytemple-files/skytemple_files/patch/patches.py:227
 msgid "patch.py missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:193
+#: skytemple-files/skytemple_files/patch/patches.py:229
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:198
+#: skytemple-files/skytemple_files/patch/patches.py:234
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:203
+#: skytemple-files/skytemple_files/patch/patches.py:239
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:209
+#: skytemple-files/skytemple_files/patch/patches.py:245
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
@@ -4647,10 +4681,10 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2035
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2051
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2067
-#: skytemple/skytemple/module/monster/controller/monster.py:1148
-#: skytemple/skytemple/module/monster/controller/monster.py:1149
-#: skytemple/skytemple/module/monster/controller/monster.py:1150
-#: skytemple/skytemple/module/monster/controller/monster.py:1151
+#: skytemple/skytemple/module/monster/controller/monster.py:1155
+#: skytemple/skytemple/module/monster/controller/monster.py:1156
+#: skytemple/skytemple/module/monster/controller/monster.py:1157
+#: skytemple/skytemple/module/monster/controller/monster.py:1158
 msgid "???"
 msgstr ""
 
@@ -10238,88 +10272,88 @@ msgstr ""
 msgid "Import Pokémon from..."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1044
+#: skytemple/skytemple/module/monster/controller/monster.py:1051
 msgid "Stats and Moves"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1047
+#: skytemple/skytemple/module/monster/controller/monster.py:1054
 msgid "Portraits"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1055
+#: skytemple/skytemple/module/monster/controller/monster.py:1062
 msgid "Sprites"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1088
+#: skytemple/skytemple/module/monster/controller/monster.py:1095
 msgid "??? Enter a valid parameter (#)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1107
+#: skytemple/skytemple/module/monster/controller/monster.py:1114
 msgid "??? Enter a valid Base ID (#)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1122
+#: skytemple/skytemple/module/monster/controller/monster.py:1129
 msgid "??? Enter a valid Entry ID ($)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1203
+#: skytemple/skytemple/module/monster/controller/monster.py:1210
 msgid ""
 "The sprite memory size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1223
+#: skytemple/skytemple/module/monster/controller/monster.py:1230
 msgid ""
 "The sprite file size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1257
+#: skytemple/skytemple/module/monster/controller/monster.py:1264
 msgid ""
 "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
 "After the patch is applied, this value defines the Base ID and therefore how Pokémon are grouped.\n"
 "Reload the project after making changes to this value, to reflect them in the tree on the left."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1260
+#: skytemple/skytemple/module/monster/controller/monster.py:1267
 msgid "Entity ID"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1270
+#: skytemple/skytemple/module/monster/controller/monster.py:1277
 msgid ""
 "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "This list indicates this Pokémon's children. If no children exist, the game will default to that pokémon species. "
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1272
+#: skytemple/skytemple/module/monster/controller/monster.py:1279
 msgid "Children Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1282
+#: skytemple/skytemple/module/monster/controller/monster.py:1289
 msgid ""
 "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
 "Negative values are allowed."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1284
+#: skytemple/skytemple/module/monster/controller/monster.py:1291
 msgid "Evolution Bonus Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1344
+#: skytemple/skytemple/module/monster/controller/monster.py:1351
 #, python-brace-format
 msgid "A pokémon can't evolve into more than {MAX_EVOS} evolutions."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1351
+#: skytemple/skytemple/module/monster/controller/monster.py:1358
 msgid "Too much evolutions."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1356
+#: skytemple/skytemple/module/monster/controller/monster.py:1363
 #, python-brace-format
 msgid "A pokémon can't have more than {MAX_EGGS} children."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1363
+#: skytemple/skytemple/module/monster/controller/monster.py:1370
 msgid "Too much children."
 msgstr ""
 
