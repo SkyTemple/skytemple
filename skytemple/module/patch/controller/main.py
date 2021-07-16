@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import logging
 import os
 import sys
 from glob import glob
@@ -25,15 +26,20 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.ui_utils import open_dir
+from skytemple.module.patch.controller.param_dialog import ParamDialogController, PatchCanceledError
 from skytemple_files.patch.category import PatchCategory
+from skytemple_files.patch.errors import PatchNotConfiguredError
 from skytemple_files.patch.handler.abstract import DependantPatch
-from skytemple_files.patch.patches import Patcher, PatchDependencyError
+from skytemple_files.patch.patches import Patcher
+from skytemple_files.patch.errors import PatchDependencyError
 from skytemple.controller.main import MainController as MainAppController
 from skytemple_files.common.i18n_util import f, _
+from skytemple.controller.main import MainController as MainSkyTempleController
 
 PATCH_DIR = _('Patches')
 if TYPE_CHECKING:
     from skytemple.module.patch.module import PatchModule
+logger = logging.getLogger(__name__)
 
 
 class MainController(AbstractController):
@@ -93,6 +99,7 @@ class MainController(AbstractController):
                     md.destroy()
                     if response != Gtk.ResponseType.YES:
                         return
+            some_skipped = False
             try:
                 dependencies = self._get_dependencies(name)
                 if len(dependencies) > 0:
@@ -106,12 +113,22 @@ class MainController(AbstractController):
                     if response != Gtk.ResponseType.YES:
                         return
                 for patch in dependencies + [name]:
-                    self._patcher.apply(patch)
+                    try:
+                        self._apply(patch)
+                    except PatchCanceledError:
+                        some_skipped = True
+                        break
+            except PatchNotConfiguredError as ex:
+                err = str(ex)
+                if ex.config_parameter != "*":
+                    err += _('\nConfiguration field with errors: "{}"\nError: {}').format(ex.config_parameter, ex.error)
+                self._error(f(_("Error applying the patch:\n{err}")), exc_info=sys.exc_info())
             except RuntimeError as err:
                 self._error(f(_("Error applying the patch:\n{err}")), exc_info=sys.exc_info())
             else:
-                self._error(_("Patch was successfully applied. You should re-open the project, to make sure all data "
-                              "is correctly loaded."), Gtk.MessageType.INFO, is_success=True)
+                if not some_skipped:
+                    self._error(_("Patch was successfully applied. You should re-open the project, to make sure all data "
+                                  "is correctly loaded."), Gtk.MessageType.INFO, is_success=True)
             finally:
                 self.module.mark_as_modified()
                 self.refresh(self._current_tab)
@@ -159,6 +176,7 @@ class MainController(AbstractController):
             try:
                 self._patcher.add_pkg(fname)
             except BaseException as err:
+                logger.error(f"Error loading patch package {os.path.basename(fname)}", exc_info=sys.exc_info())
                 self._error(f(_("Error loading patch package {os.path.basename(fname)}:\n{err}")))
         # List patches:
         for patch in sorted(self._patcher.list(), key=lambda p: p.name):
@@ -208,3 +226,13 @@ class MainController(AbstractController):
                                                        "apply '{name}'. "
                                                        "This patch could not be found."))) from err
         return list(reversed(collected_deps))
+
+    def _apply(self, patch: str):
+        patches = self.module.project.get_rom_module().get_static_data().asm_patches_constants.patches
+        parameter_data = None
+        if patch in patches:
+            if len(patches[patch].parameters) > 0:
+                parameter_data = ParamDialogController(
+                    MainSkyTempleController.window()
+                ).run(patch, patches[patch].parameters)
+        self._patcher.apply(patch, parameter_data)
