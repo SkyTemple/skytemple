@@ -19,6 +19,7 @@ from typing import Optional
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.model_context import ModelContext
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.misc_graphics.controller.w16 import W16Controller
@@ -108,7 +109,7 @@ class MiscGraphicsModule(AbstractModule):
         self.list_of_pals = self.project.get_files_with_ext(PAL_FILE_EXT)
         self.list_of_chrs = self.project.get_files_with_ext(CHR_FILE_EXT)
         self.list_of_banner_fonts = sorted(list(set(self.list_of_bins) & VALID_BANNER_FONT_FILES))
-        self.dungeon_bin: Optional[DungeonBinPack] = None
+        self.dungeon_bin_context: Optional[ModelContext[DungeonBinPack]] = None
         self.list_of_wtes_dungeon_bin = None
         self.list_of_wtus_dungeon_bin = None
         self.list_of_zmappats_dungeon_bin = None
@@ -118,13 +119,15 @@ class MiscGraphicsModule(AbstractModule):
         self._tree_level_dungeon_iter = {}
 
     def load_tree_items(self, item_store: TreeStore, root_node):
-        self.dungeon_bin: DungeonBinPack = self.project.open_file_in_rom(
+        self.dungeon_bin_context: ModelContext[DungeonBinPack] = self.project.open_file_in_rom(
             DUNGEON_BIN_PATH, FileType.DUNGEON_BIN,
-            static_data=self.project.get_rom_module().get_static_data()
+            static_data=self.project.get_rom_module().get_static_data(),
+            threadsafe=True
         )
-        self.list_of_wtes_dungeon_bin = self.dungeon_bin.get_files_with_ext(WTE_FILE_EXT)
-        self.list_of_wtus_dungeon_bin = self.dungeon_bin.get_files_with_ext(WTU_FILE_EXT)
-        self.list_of_zmappats_dungeon_bin = self.dungeon_bin.get_files_with_ext(ZMAPPAT_FILE_EXT)
+        with self.dungeon_bin_context as dungeon_bin:
+            self.list_of_wtes_dungeon_bin = dungeon_bin.get_files_with_ext(WTE_FILE_EXT)
+            self.list_of_wtus_dungeon_bin = dungeon_bin.get_files_with_ext(WTU_FILE_EXT)
+            self.list_of_zmappats_dungeon_bin = dungeon_bin.get_files_with_ext(ZMAPPAT_FILE_EXT)
 
         root = item_store.append(root_node, [
             'skytemple-e-graphics-symbolic', MISC_GRAPHICS, self, MainController, 0, False, '', True
@@ -285,7 +288,8 @@ class MiscGraphicsModule(AbstractModule):
         recursive_up_item_store_mark_as_modified(row)
         
     def get_dungeon_bin_file(self, fn):
-        return self.dungeon_bin.get(fn)
+        with self.dungeon_bin_context as dungeon_bin:
+            return dungeon_bin.get(fn)
 
     def _mark_font_assoc_as_modified(self, name: str):
         """Marks the other instances as modified (the ones with a different palette) """
@@ -310,7 +314,8 @@ class MiscGraphicsModule(AbstractModule):
         self._mark_font_assoc_as_modified(item.font_filename)
         
     def mark_zmappat_as_modified(self, zmappat, fn):
-        self.dungeon_bin.set(fn, zmappat)
+        with self.dungeon_bin_context as dungeon_bin:
+            dungeon_bin.set(fn, zmappat)
         self.project.mark_as_modified(DUNGEON_BIN_PATH)
         # Mark as modified in tree
         row = self._tree_model[self._tree_level_dungeon_iter[fn]]
@@ -326,9 +331,10 @@ class MiscGraphicsModule(AbstractModule):
         
     def mark_wte_as_modified(self, item: WteOpenSpec, wte, wtu):
         if item.in_dungeon_bin:
-            self.dungeon_bin.set(item.wte_filename, wte)
-            if item.wtu_filename:
-                self.dungeon_bin.set(item.wtu_filename, wtu)
+            with self.dungeon_bin_context as dungeon_bin:
+                dungeon_bin.set(item.wte_filename, wte)
+                if item.wtu_filename:
+                    dungeon_bin.set(item.wtu_filename, wtu)
             self.project.mark_as_modified(DUNGEON_BIN_PATH)
             # Mark as modified in tree
             row = self._tree_model[self._tree_level_dungeon_iter[item.wte_filename]]

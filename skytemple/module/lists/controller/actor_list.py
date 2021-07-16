@@ -21,9 +21,10 @@ from typing import TYPE_CHECKING, Optional
 from gi.repository import Gtk
 
 from skytemple.controller.main import MainController
+from skytemple.core.list_icon_renderer import ORANGE
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import glib_async
-from skytemple.module.lists.controller.base import ListBaseController, ORANGE, PATTERN_MD_ENTRY
+from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
 from skytemple_files.list.actor.model import ActorListBin
 from skytemple_files.common.i18n_util import _
 if TYPE_CHECKING:
@@ -152,7 +153,6 @@ class ActorListController(ListBaseController):
         tree: Gtk.TreeView = self.builder.get_object('actor_tree')
         self._list_store: Gtk.ListStore = tree.get_model()
         self._list_store.clear()
-        self._icon_pixbufs = {}
         # Iterate list
         for idx, entry in enumerate(self._list.list):
             # If the entid is NOT 0 we will edit the value of entid
@@ -165,12 +165,11 @@ class ActorListController(ListBaseController):
                 standins = self._sprite_provider.get_standin_entities()
                 if idx in standins:
                     entid_to_edit = standins[idx]
-            l_iter = self._list_store.append([
+            self._list_store.append([
                 str(idx), entry.name, str(entry.type), self._get_icon(entid_to_edit, idx, force_placeholder),
                 entid_to_edit, str(entry.unk3), str(entry.unk4), self._ent_names[entid_to_edit],
                 ORANGE if force_placeholder else None
             ])
-            self._tree_iters_by_idx[idx] = l_iter
 
     def get_tree(self):
         return self.builder.get_object('actor_tree')

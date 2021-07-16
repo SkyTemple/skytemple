@@ -19,9 +19,16 @@ import json
 import logging
 import os
 import threading
-from typing import TYPE_CHECKING, Tuple, Dict, List, Union
+from typing import TYPE_CHECKING, Tuple, Dict, List, Union, Optional
 
 import cairo
+
+from skytemple_files.container.dungeon_bin.model import DungeonBinPack
+from skytemple_files.data.item_p.model import ItemPEntry
+from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
+from skytemple_files.graphics.img_itm.model import ImgItm
+from skytemple_files.graphics.img_trp.model import ImgTrp
+
 try:
     from PIL import Image, ImageFilter
 except ImportError:
@@ -33,7 +40,7 @@ from skytemple.core.model_context import ModelContext
 from skytemple.core.ui_utils import data_dir
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.common.util import MONSTER_MD, MONSTER_BIN, open_utf8
+from skytemple_files.common.util import MONSTER_MD, MONSTER_BIN, open_utf8, DUNGEON_BIN
 from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.data.md.model import Md
 from skytemple_files.graphics.wan_wat.model import Wan
@@ -107,6 +114,36 @@ STANDIN_ENTITIES_DEFAULT = {
     66: 1,
     67: 4
 }
+# TODO: Read from ROM eventually
+TRAP_PALETTE_MAP = {
+    MappaTrapType.UNUSED: 0,
+    MappaTrapType.MUD_TRAP: 1,
+    MappaTrapType.STICKY_TRAP: 1,
+    MappaTrapType.GRIMY_TRAP: 1,
+    MappaTrapType.SUMMON_TRAP: 1,
+    MappaTrapType.PITFALL_TRAP: 0,
+    MappaTrapType.WARP_TRAP: 1,
+    MappaTrapType.GUST_TRAP: 1,
+    MappaTrapType.SPIN_TRAP: 1,
+    MappaTrapType.SLUMBER_TRAP: 1,
+    MappaTrapType.SLOW_TRAP: 1,
+    MappaTrapType.SEAL_TRAP: 1,
+    MappaTrapType.POISON_TRAP: 1,
+    MappaTrapType.SELFDESTRUCT_TRAP: 1,
+    MappaTrapType.EXPLOSION_TRAP: 1,
+    MappaTrapType.PP_ZERO_TRAP: 1,
+    MappaTrapType.CHESTNUT_TRAP: 0,
+    MappaTrapType.WONDER_TILE: 0,
+    MappaTrapType.POKEMON_TRAP: 1,
+    MappaTrapType.SPIKED_TILE: 0,
+    MappaTrapType.STEALTH_ROCK: 1,
+    MappaTrapType.TOXIC_SPIKES: 1,
+    MappaTrapType.TRIP_TRAP: 0,
+    MappaTrapType.RANDOM_TRAP: 1,
+    MappaTrapType.GRUDGE_TRAP: 1
+}
+TRP_FILENAME = 'traps.trp.img'
+ITM_FILENAME = 'items.itm.img'
 FILE_NAME_STANDIN_SPRITES = '.standin_sprites.json'
 
 
@@ -124,14 +161,19 @@ class SpriteProvider:
         self._loaded__monsters_outlines: Dict[ActorSpriteKey, SpriteAndOffsetAndDims] = {}
         self._loaded__actor_placeholders: Dict[ActorSpriteKey, SpriteAndOffsetAndDims] = {}
         self._loaded__objects: Dict[str, SpriteAndOffsetAndDims] = {}
+        self._loaded__traps: Dict[MappaTrapType, SpriteAndOffsetAndDims] = {}
+        self._loaded__items: Dict[int, SpriteAndOffsetAndDims] = {}
 
         self._requests__monsters: List[ActorSpriteKey] = []
         self._requests__monsters_outlines: List[ActorSpriteKey] = []
         self._requests__actor_placeholders: List[ActorSpriteKey] = []
         self._requests__objects: List[str] = []
+        self._requests__traps: List[MappaTrapType] = []
+        self._requests__items: List[int] = []
 
-        self._monster_md: Md = self._project.open_file_in_rom(MONSTER_MD, FileType.MD, threadsafe=True)
-        self._monster_bin: BinPack = self._project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
+        self._monster_md: ModelContext[Md] = self._project.open_file_in_rom(MONSTER_MD, FileType.MD, threadsafe=True)
+        self._monster_bin: ModelContext[BinPack] = self._project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
+        self._dungeon_bin: Optional[ModelContext[DungeonBinPack]] = None
 
         self._stripes = Image.open(os.path.join(data_dir(), 'stripes.png'))
         self._loaded_standins = None
@@ -161,13 +203,17 @@ class SpriteProvider:
 
     def reset(self):
         with sprite_provider_lock:
-            self._loaded__monsters: Dict[int, cairo.Surface] = {}
-            self._loaded__actor_placeholders: Dict[str, cairo.Surface] = {}
-            self._loaded__objects: Dict[str, cairo.Surface] = {}
+            self._loaded__monsters = {}
+            self._loaded__actor_placeholders = {}
+            self._loaded__objects = {}
+            self._loaded__traps = {}
+            self._loaded__items = {}
 
-            self._requests__monsters: List[int] = []
-            self._requests__actor_placeholders: List[str] = []
-            self._requests__objects: List[str] = []
+            self._requests__monsters = []
+            self._requests__actor_placeholders = []
+            self._requests__objects = []
+            self._requests__traps = []
+            self._requests__items = []
 
     def get_actor_placeholder(self, actor_id, direction_id: int, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
         """
@@ -219,6 +265,34 @@ class SpriteProvider:
             if name not in self._requests__objects:
                 self._requests__objects.append(name)
                 self._load_object(name, after_load_cb)
+        return self.get_loader()
+
+    def get_for_trap(self, trp: MappaTrapType, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+        """
+        Returns a trap sprite.
+        As long as the sprite is being loaded, the loader sprite is returned instead.
+        """
+        self._load_dungeon_bin()
+        with sprite_provider_lock:
+            if trp in self._loaded__traps:
+                return self._loaded__traps[trp]
+            if trp not in self._requests__traps:
+                self._requests__traps.append(trp)
+                self._load_trap(trp, after_load_cb)
+        return self.get_loader()
+
+    def get_for_item(self, itm: ItemPEntry, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+        """
+        Returns a item sprite based on the sprite ID.
+        As long as the sprite is being loaded, the loader sprite is returned instead.
+        """
+        self._load_dungeon_bin()
+        with sprite_provider_lock:
+            if itm.item_id in self._loaded__items:
+                return self._loaded__items[itm.item_id]
+            if itm.item_id not in self._requests__items:
+                self._requests__items.append(itm.item_id)
+                self._load_item(itm, after_load_cb)
         return self.get_loader()
 
     def _load_actor_placeholder(self, actor_id, direction_id: int, after_load_cb):
@@ -351,6 +425,46 @@ class SpriteProvider:
             self._requests__objects.remove(name)
         after_load_cb()
 
+    def _load_trap(self, trp: MappaTrapType, after_load_cb):
+        AsyncTaskRunner.instance().run_task(self._load_trap__impl(trp, after_load_cb))
+
+    async def _load_trap__impl(self, trp: MappaTrapType, after_load_cb):
+        try:
+            with self._dungeon_bin as dungeon_bin:
+                traps: ImgTrp = dungeon_bin.get(TRP_FILENAME)
+            surf = pil_to_cairo_surface(traps.to_pil(trp.value, TRAP_PALETTE_MAP[trp.value]))
+            with sprite_provider_lock:
+                self._loaded__traps[trp] = surf, 0, 0, 24, 24
+
+        except BaseException as e:
+            # Error :(
+            logger.warning(f"Error loading an trap sprite for {trp}.", exc_info=e)
+            with sprite_provider_lock:
+                self._loaded__traps[trp] = self.get_error()
+        with sprite_provider_lock:
+            self._requests__traps.remove(trp)
+        after_load_cb()
+
+    def _load_item(self, idx: ItemPEntry, after_load_cb):
+        AsyncTaskRunner.instance().run_task(self._load_item__impl(idx, after_load_cb))
+
+    async def _load_item__impl(self, item: ItemPEntry, after_load_cb):
+        try:
+            with self._dungeon_bin as dungeon_bin:
+                items: ImgItm = dungeon_bin.get(ITM_FILENAME)
+            surf = pil_to_cairo_surface(items.to_pil(item.sprite, item.palette))
+            with sprite_provider_lock:
+                self._loaded__items[item.item_id] = surf, 0, 0, 24, 24
+
+        except BaseException as e:
+            # Error :(
+            logger.warning(f"Error loading an item sprite for {item}.", exc_info=e)
+            with sprite_provider_lock:
+                self._loaded__items[item.item_id] = self.get_error()
+        with sprite_provider_lock:
+            self._requests__items.remove(item.item_id)
+        after_load_cb()
+
     def _load_sprite_from_bin_pack(self, bin_pack: BinPack, file_id) -> Wan:
         # TODO: Support of bin_pack item management via the RomProject instead?
         return FileType.WAN.deserialize(FileType.COMMON_AT.deserialize(bin_pack[file_id]).decompress())
@@ -394,3 +508,9 @@ class SpriteProvider:
 
     def _standin_entities_filepath(self):
         return os.path.join(self._project.get_project_file_manager().dir(), FILE_NAME_STANDIN_SPRITES)
+
+    def _load_dungeon_bin(self):
+        self._dungeon_bin = self._project.open_file_in_rom(
+            DUNGEON_BIN, FileType.DUNGEON_BIN,
+            static_data=self._project.get_rom_module().get_static_data(), threadsafe=True
+        )

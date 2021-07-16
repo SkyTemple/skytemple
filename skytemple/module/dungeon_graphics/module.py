@@ -21,6 +21,7 @@ from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.model_context import ModelContext
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
@@ -63,14 +64,15 @@ class DungeonGraphicsModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self.dungeon_bin: Optional[DungeonBinPack] = None
+        self.dungeon_bin_context: Optional[DungeonBinPack] = None
         self._tree_model = None
         self._tree_level_iter = []
         self._colvec_pos = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
-        self.dungeon_bin: DungeonBinPack = self.project.open_file_in_rom(
-            DUNGEON_BIN, FileType.DUNGEON_BIN, static_data=self.project.get_rom_module().get_static_data()
+        self.dungeon_bin_context: ModelContext[DungeonBinPack] = self.project.open_file_in_rom(
+            DUNGEON_BIN, FileType.DUNGEON_BIN, static_data=self.project.get_rom_module().get_static_data(),
+            threadsafe=True
         )
 
         root = item_store.append(root_node, [
@@ -125,37 +127,48 @@ class DungeonGraphicsModule(AbstractModule):
             return self._tree_level_iter[request.identifier]
 
     def get_colvec(self) -> Colvec:
-        return self.dungeon_bin.get(f'colormap.colvec')
+        with self.dungeon_bin_context as dungeon_bin:
+            return dungeon_bin.get(f'colormap.colvec')
     
     def get_dma(self, item_id) -> Dma:
-        return self.dungeon_bin.get(f'dungeon{item_id}.dma')
+        with self.dungeon_bin_context as dungeon_bin:
+            return dungeon_bin.get(f'dungeon{item_id}.dma')
 
     def get_dpl(self, item_id) -> Dpl:
-        return self.dungeon_bin.get(f'dungeon{item_id}.dpl')
+        with self.dungeon_bin_context as dungeon_bin:
+            return dungeon_bin.get(f'dungeon{item_id}.dpl')
 
     def get_dpla(self, item_id) -> Dpla:
-        return self.dungeon_bin.get(f'dungeon{item_id}.dpla')
+        with self.dungeon_bin_context as dungeon_bin:
+            return dungeon_bin.get(f'dungeon{item_id}.dpla')
 
     def get_dpc(self, item_id) -> Dpc:
-        return self.dungeon_bin.get(f'dungeon{item_id}.dpc')
+        with self.dungeon_bin_context as dungeon_bin:
+            return dungeon_bin.get(f'dungeon{item_id}.dpc')
 
     def get_dpci(self, item_id) -> Dpci:
-        return self.dungeon_bin.get(f'dungeon{item_id}.dpci')
+        with self.dungeon_bin_context as dungeon_bin:
+            return dungeon_bin.get(f'dungeon{item_id}.dpci')
 
     def get_bg_dbg(self, item_id) -> Dbg:
-        return self.dungeon_bin.get(f'dungeon_bg{item_id}.dbg')
+        with self.dungeon_bin_context as dungeon_bin:
+            return dungeon_bin.get(f'dungeon_bg{item_id}.dbg')
 
     def get_bg_dpl(self, item_id) -> Dpl:
-        return self.dungeon_bin.get(f'dungeon_bg{item_id}.dpl')
+        with self.dungeon_bin_context as dungeon_bin:
+            return dungeon_bin.get(f'dungeon_bg{item_id}.dpl')
 
     def get_bg_dpla(self, item_id) -> Dpla:
-        return self.dungeon_bin.get(f'dungeon_bg{item_id}.dpla')
+        with self.dungeon_bin_context as dungeon_bin:
+            return dungeon_bin.get(f'dungeon_bg{item_id}.dpla')
 
     def get_bg_dpc(self, item_id) -> Dpc:
-        return self.dungeon_bin.get(f'dungeon_bg{item_id}.dpc')
+        with self.dungeon_bin_context as dungeon_bin:
+            return dungeon_bin.get(f'dungeon_bg{item_id}.dpc')
 
     def get_bg_dpci(self, item_id) -> Dpci:
-        return self.dungeon_bin.get(f'dungeon_bg{item_id}.dpci')
+        with self.dungeon_bin_context as dungeon_bin:
+            return dungeon_bin.get(f'dungeon_bg{item_id}.dpci')
 
     def mark_as_modified(self, item_id, is_background):
         self.project.mark_as_modified(DUNGEON_BIN)
@@ -177,17 +190,19 @@ class DungeonGraphicsModule(AbstractModule):
 
     def get_icons(self, img_type):
         if img_type == ImgType.ITM:
-            return self.dungeon_bin.get(ITEM_ICON_FILE)
+            with self.dungeon_bin_context as dungeon_bin:
+                return dungeon_bin.get(ITEM_ICON_FILE)
         elif img_type == ImgType.TRP:
-            return self.dungeon_bin.get(TRAP_ICON_FILE)
+            with self.dungeon_bin_context as dungeon_bin:
+                return dungeon_bin.get(TRAP_ICON_FILE)
         else:
             raise ValueError("Invalid item type")
 
     def mark_icons_as_modified(self, img_type, img_model):
         if img_type == ImgType.ITM:
-            self.dungeon_bin.set(ITEM_ICON_FILE, img_model)
+            self.dungeon_bin_context.set(ITEM_ICON_FILE, img_model)
         elif img_type == ImgType.TRP:
-            self.dungeon_bin.set(TRAP_ICON_FILE, img_model)
+            self.dungeon_bin_context.set(TRAP_ICON_FILE, img_model)
         else:
             raise ValueError("Invalid item type")
         self.project.mark_as_modified(DUNGEON_BIN)

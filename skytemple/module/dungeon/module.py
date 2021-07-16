@@ -24,6 +24,7 @@ from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.model_context import ModelContext
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR, \
     REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, REQUEST_TYPE_DUNGEONS
 from skytemple.core.rom_project import RomProject, BinaryName
@@ -121,7 +122,7 @@ class DungeonModule(AbstractModule):
         self._fixed_floor_iters = []
         self._fixed_floor_root_iter = None
         self._fixed_floor_data: Optional[FixedBin] = None
-        self._dungeon_bin: Optional[DungeonBinPack] = None
+        self._dungeon_bin_context: Optional[ModelContext[DungeonBinPack]] = None
         self._cached_dungeon_list = None
 
         # Preload mappa
@@ -141,9 +142,10 @@ class DungeonModule(AbstractModule):
             FIXED_PATH, FileType.FIXED_BIN,
             static_data=static_data
         )
-        self._dungeon_bin: DungeonBinPack = self.project.open_file_in_rom(
+        self._dungeon_bin_context: ModelContext[DungeonBinPack] = self.project.open_file_in_rom(
             DUNGEON_BIN, FileType.DUNGEON_BIN,
-            static_data=static_data
+            static_data=static_data,
+            threadsafe=True
         )
 
         self._validator.validate(self.get_dungeon_list())
@@ -565,20 +567,22 @@ class DungeonModule(AbstractModule):
             self.mark_floor_as_modified(floor_info, modified_mappag=True)
 
     def get_dungeon_tileset(self, tileset_id) -> Tuple[Dma, Dpci, Dpc, Dpl]:
-        return (
-            self._dungeon_bin.get(f'dungeon{tileset_id}.dma'),
-            self._dungeon_bin.get(f'dungeon{tileset_id}.dpci'),
-            self._dungeon_bin.get(f'dungeon{tileset_id}.dpc'),
-            self._dungeon_bin.get(f'dungeon{tileset_id}.dpl'),
-        )
+        with self._dungeon_bin_context as dungeon_bin:
+            return (
+                dungeon_bin.get(f'dungeon{tileset_id}.dma'),
+                dungeon_bin.get(f'dungeon{tileset_id}.dpci'),
+                dungeon_bin.get(f'dungeon{tileset_id}.dpc'),
+                dungeon_bin.get(f'dungeon{tileset_id}.dpl'),
+            )
 
     def get_dungeon_background(self, background_id) -> Tuple[Dbg, Dpci, Dpc, Dpl]:
-        return (
-            self._dungeon_bin.get(f'dungeon_bg{background_id}.dbg'),
-            self._dungeon_bin.get(f'dungeon_bg{background_id}.dpci'),
-            self._dungeon_bin.get(f'dungeon_bg{background_id}.dpc'),
-            self._dungeon_bin.get(f'dungeon_bg{background_id}.dpl'),
-        )
+        with self._dungeon_bin_context as dungeon_bin:
+            return (
+                dungeon_bin.get(f'dungeon_bg{background_id}.dbg'),
+                dungeon_bin.get(f'dungeon_bg{background_id}.dpci'),
+                dungeon_bin.get(f'dungeon_bg{background_id}.dpc'),
+                dungeon_bin.get(f'dungeon_bg{background_id}.dpl'),
+            )
 
     def _get_dungeon_group(self, dungeon_id: int) -> int:
         return self.get_dungeon_list()[dungeon_id].mappa_index

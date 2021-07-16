@@ -173,3 +173,12 @@ def glib_async(f):
         return GLib.idle_add(lambda: f(*args, **kwargs))
 
     return wrapper
+
+
+def get_list_store_iter_by_idx(store: Gtk.ListStore, idx, get_iter=False):
+    liter = store.get_iter_first()
+    for i in range(0, idx):
+        liter = store.iter_next(liter)
+    if get_iter:
+        return liter
+    return liter
