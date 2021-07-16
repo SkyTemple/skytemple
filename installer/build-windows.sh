@@ -9,7 +9,6 @@ export XDG_DATA_DIRS="${BUILD_ROOT}/${MINGW}/share"
 rm build -rf || true
 rm dist -rf || true
 
-pip3 install python_igraph-*-mingw.whl
 pip3 install py_desmume-*-mingw.whl
 pip3 install skytemple_rust-*-mingw.whl
 pip3 install tilequant-*-mingw.whl
