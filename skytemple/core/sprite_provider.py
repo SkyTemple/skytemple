@@ -432,7 +432,7 @@ class SpriteProvider:
         try:
             with self._dungeon_bin as dungeon_bin:
                 traps: ImgTrp = dungeon_bin.get(TRP_FILENAME)
-            surf = pil_to_cairo_surface(traps.to_pil(trp.value, TRAP_PALETTE_MAP[trp.value]))
+            surf = pil_to_cairo_surface(traps.to_pil(trp.value, TRAP_PALETTE_MAP[trp]).convert('RGBA'))
             with sprite_provider_lock:
                 self._loaded__traps[trp] = surf, 0, 0, 24, 24
 
@@ -445,17 +445,16 @@ class SpriteProvider:
             self._requests__traps.remove(trp)
         after_load_cb()
 
-    def _load_item(self, idx: ItemPEntry, after_load_cb):
-        AsyncTaskRunner.instance().run_task(self._load_item__impl(idx, after_load_cb))
+    def _load_item(self, itm: ItemPEntry, after_load_cb):
+        AsyncTaskRunner.instance().run_task(self._load_item__impl(itm, after_load_cb))
 
     async def _load_item__impl(self, item: ItemPEntry, after_load_cb):
         try:
             with self._dungeon_bin as dungeon_bin:
                 items: ImgItm = dungeon_bin.get(ITM_FILENAME)
-            surf = pil_to_cairo_surface(items.to_pil(item.sprite, item.palette))
+            surf = pil_to_cairo_surface(items.to_pil(item.sprite, item.palette).convert('RGBA'))
             with sprite_provider_lock:
-                self._loaded__items[item.item_id] = surf, 0, 0, 24, 24
-
+                self._loaded__items[item.item_id] = surf, 0, 0, 16, 16
         except BaseException as e:
             # Error :(
             logger.warning(f"Error loading an item sprite for {item}.", exc_info=e)

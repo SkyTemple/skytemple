@@ -370,6 +370,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_foods_store">
@@ -384,6 +386,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_hold_store">
@@ -398,6 +402,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_orbs_store">
@@ -412,6 +418,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_others_store">
@@ -426,6 +434,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_thrown_pierce_store">
@@ -440,6 +450,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_thrown_rock_store">
@@ -454,6 +466,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_tms_store">
@@ -468,6 +482,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_categories_store">
@@ -882,6 +898,12 @@ ASM patch from the "ASM Patches" menu.</property>
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
                                                             <child>
+                                                              <object class="GtkCellRendererPixbuf"/>
+                                                              <attributes>
+                                                                <attribute name="pixbuf">5</attribute>
+                                                              </attributes>
+                                                            </child>
+                                                            <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_thrown_pierce_item_name">
                                                             <property name="editable">True</property>
                                                             <signal name="edited" handler="on_cr_items_cat_thrown_pierce_item_name_edited" swapped="no"/>
@@ -1024,6 +1046,12 @@ ASM patch from the "ASM Patches" menu.</property>
                                                         <child>
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
+                                                            <child>
+                                                              <object class="GtkCellRendererPixbuf"/>
+                                                              <attributes>
+                                                                <attribute name="pixbuf">5</attribute>
+                                                              </attributes>
+                                                            </child>
                                                             <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_thrown_rock_item_name">
                                                             <property name="editable">True</property>
@@ -1171,6 +1199,12 @@ ASM patch from the "ASM Patches" menu.</property>
                                                         <child>
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
+                                                            <child>
+                                                              <object class="GtkCellRendererPixbuf"/>
+                                                              <attributes>
+                                                                <attribute name="pixbuf">5</attribute>
+                                                              </attributes>
+                                                            </child>
                                                             <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_berries_item_name">
                                                             <property name="editable">True</property>
@@ -1320,6 +1354,12 @@ ASM patch from the "ASM Patches" menu.</property>
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
                                                             <child>
+                                                              <object class="GtkCellRendererPixbuf"/>
+                                                              <attributes>
+                                                                <attribute name="pixbuf">5</attribute>
+                                                              </attributes>
+                                                            </child>
+                                                            <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_foods_item_name">
                                                             <property name="editable">True</property>
                                                             <signal name="edited" handler="on_cr_items_cat_foods_item_name_edited" swapped="no"/>
@@ -1467,6 +1507,12 @@ ASM patch from the "ASM Patches" menu.</property>
                                                         <child>
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
+                                                            <child>
+                                                              <object class="GtkCellRendererPixbuf"/>
+                                                              <attributes>
+                                                                <attribute name="pixbuf">5</attribute>
+                                                              </attributes>
+                                                            </child>
                                                             <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_hold_item_name">
                                                             <property name="editable">True</property>
@@ -1616,6 +1662,12 @@ ASM patch from the "ASM Patches" menu.</property>
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
                                                             <child>
+                                                              <object class="GtkCellRendererPixbuf"/>
+                                                              <attributes>
+                                                                <attribute name="pixbuf">5</attribute>
+                                                              </attributes>
+                                                            </child>
+                                                            <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_tms_item_name">
                                                             <property name="editable">True</property>
                                                             <signal name="edited" handler="on_cr_items_cat_tms_item_name_edited" swapped="no"/>
@@ -1764,6 +1816,12 @@ ASM patch from the "ASM Patches" menu.</property>
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
                                                             <child>
+                                                              <object class="GtkCellRendererPixbuf"/>
+                                                              <attributes>
+                                                                <attribute name="pixbuf">5</attribute>
+                                                              </attributes>
+                                                            </child>
+                                                            <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_orbs_item_name">
                                                             <property name="editable">True</property>
                                                             <signal name="edited" handler="on_cr_items_cat_orbs_item_name_edited" swapped="no"/>
@@ -1911,6 +1969,12 @@ ASM patch from the "ASM Patches" menu.</property>
                                                         <child>
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
+                                                            <child>
+                                                              <object class="GtkCellRendererPixbuf"/>
+                                                              <attributes>
+                                                                <attribute name="pixbuf">5</attribute>
+                                                              </attributes>
+                                                            </child>
                                                             <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_others_item_name">
                                                             <property name="editable">True</property>

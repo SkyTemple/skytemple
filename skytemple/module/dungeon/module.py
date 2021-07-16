@@ -784,3 +784,5 @@ class DungeonModule(AbstractModule):
             HardcodedDungeonMusic.get_random_music_list(ov10, config)
         )
 
+    def get_item(self, idx):
+        return self.project.open_file_in_rom('BALANCE/item_p.bin', FileType.ITEM_P).item_list[idx]

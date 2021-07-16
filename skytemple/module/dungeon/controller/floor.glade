@@ -914,6 +914,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_foods_store">
@@ -928,6 +930,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_hold_store">
@@ -942,6 +946,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_orbs_store">
@@ -956,6 +962,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_others_store">
@@ -970,6 +978,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_thrown_pierce_store">
@@ -984,6 +994,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_thrown_rock_store">
@@ -998,6 +1010,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_cat_tms_store">
@@ -1012,6 +1026,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkListStore" id="item_categories_store">
@@ -1063,6 +1079,8 @@
       <column type="gchararray"/>
       <!-- column-name weight -->
       <column type="gchararray"/>
+      <!-- column-name icon -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkLabel" id="trap_spawns_tree_chance_label">
@@ -3007,6 +3025,12 @@
                             <property name="resizable">True</property>
                             <property name="title" translatable="yes">Trap</property>
                             <child>
+                              <object class="GtkCellRendererPixbuf"/>
+                              <attributes>
+                                <attribute name="pixbuf">4</attribute>
+                              </attributes>
+                            </child>
+                            <child>
                               <object class="GtkCellRendererText" id="cr_trap_spawns_trap"/>
                               <attributes>
                                 <attribute name="text">1</attribute>
@@ -3364,6 +3388,12 @@
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
                                                             <child>
+                                                            <object class="GtkCellRendererPixbuf"/>
+                                                            <attributes>
+                                                            <attribute name="pixbuf">5</attribute>
+                                                            </attributes>
+                                                            </child>
+                                                            <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_thrown_pierce_item_name">
                                                             <property name="editable">True</property>
                                                             <signal name="edited" handler="on_cr_items_cat_thrown_pierce_item_name_edited" swapped="no"/>
@@ -3519,6 +3549,12 @@
                                                         <child>
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
+                                                            <child>
+                                                            <object class="GtkCellRendererPixbuf"/>
+                                                            <attributes>
+                                                            <attribute name="pixbuf">5</attribute>
+                                                            </attributes>
+                                                            </child>
                                                             <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_thrown_rock_item_name">
                                                             <property name="editable">True</property>
@@ -3679,6 +3715,12 @@
                                                         <child>
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
+                                                            <child>
+                                                            <object class="GtkCellRendererPixbuf"/>
+                                                            <attributes>
+                                                            <attribute name="pixbuf">5</attribute>
+                                                            </attributes>
+                                                            </child>
                                                             <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_berries_item_name">
                                                             <property name="editable">True</property>
@@ -3841,6 +3883,12 @@
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
                                                             <child>
+                                                            <object class="GtkCellRendererPixbuf"/>
+                                                            <attributes>
+                                                            <attribute name="pixbuf">5</attribute>
+                                                            </attributes>
+                                                            </child>
+                                                            <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_foods_item_name">
                                                             <property name="editable">True</property>
                                                             <signal name="edited" handler="on_cr_items_cat_foods_item_name_edited" swapped="no"/>
@@ -4001,6 +4049,12 @@
                                                         <child>
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
+                                                            <child>
+                                                            <object class="GtkCellRendererPixbuf"/>
+                                                            <attributes>
+                                                            <attribute name="pixbuf">5</attribute>
+                                                            </attributes>
+                                                            </child>
                                                             <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_hold_item_name">
                                                             <property name="editable">True</property>
@@ -4163,6 +4217,12 @@
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
                                                             <child>
+                                                            <object class="GtkCellRendererPixbuf"/>
+                                                            <attributes>
+                                                            <attribute name="pixbuf">5</attribute>
+                                                            </attributes>
+                                                            </child>
+                                                            <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_tms_item_name">
                                                             <property name="editable">True</property>
                                                             <signal name="edited" handler="on_cr_items_cat_tms_item_name_edited" swapped="no"/>
@@ -4324,6 +4384,12 @@
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
                                                             <child>
+                                                            <object class="GtkCellRendererPixbuf"/>
+                                                            <attributes>
+                                                            <attribute name="pixbuf">5</attribute>
+                                                            </attributes>
+                                                            </child>
+                                                            <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_orbs_item_name">
                                                             <property name="editable">True</property>
                                                             <signal name="edited" handler="on_cr_items_cat_orbs_item_name_edited" swapped="no"/>
@@ -4484,6 +4550,12 @@
                                                         <child>
                                                           <object class="GtkTreeViewColumn">
                                                             <property name="title" translatable="yes">Item</property>
+                                                            <child>
+                                                            <object class="GtkCellRendererPixbuf"/>
+                                                            <attributes>
+                                                            <attribute name="pixbuf">5</attribute>
+                                                            </attributes>
+                                                            </child>
                                                             <child>
                                                             <object class="GtkCellRendererText" id="cr_items_cat_others_item_name">
                                                             <property name="editable">True</property>
