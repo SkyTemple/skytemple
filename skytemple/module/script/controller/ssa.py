@@ -1587,7 +1587,9 @@ class SsaController(AbstractController):
     def _init_rest_room_note(self):
         info_bar = self.builder.get_object('editor_rest_room_note')
         if self.level.mapty_enum == Pmd2ScriptLevelMapType.TILESET or self.level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM:
-            mapping = resolve_mapping_for_level(self.level, *self.module.get_mapping_dungeon_assets())
+            mappings, mappa, fixed, dungeon_bin_context, dungeon_list = self.module.get_mapping_dungeon_assets()
+            with dungeon_bin_context as dungeon_bin:
+                mapping = resolve_mapping_for_level(self.level, mappings, mappa, fixed, dungeon_bin, dungeon_list)
             if mapping:
                 dma, dpc, dpci, dpl, _, fixed_room = mapping
                 self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)
