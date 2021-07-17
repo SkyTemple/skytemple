@@ -105,16 +105,6 @@ jobs:
             mingw-w64-${{ matrix.arch }}-hunspell
             mingw-w64-${{ matrix.arch }}-hunspell-en
             mingw-w64-${{ matrix.arch }}-openssl
-            autoconf
-            automake
-            bison
-            flex
-            libtool
-            mingw-w64-${{ matrix.arch }}-libtool
-            zip
-            mingw-w64-${{ matrix.arch }}-libxml2
-            mingw-w64-${{ matrix.arch }}-cmake
-            mingw-w64-${{ matrix.arch }}-toolchain
       - name: Checkout
         uses: actions/checkout@v2
       - name: Rewrite version for dev if not tag
