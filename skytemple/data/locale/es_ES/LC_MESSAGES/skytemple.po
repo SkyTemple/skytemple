@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-07-16 20:27+0000\n"
-"PO-Revision-Date: 2021-07-16 20:32\n"
+"PO-Revision-Date: 2021-07-17 16:10\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3688,11 +3688,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:165
 msgid "Must be >= {}."
-msgstr ""
+msgstr "Debe ser >= {}."
 
 #: skytemple-files/skytemple_files/patch/patches.py:167
 msgid "Must be <= {}."
-msgstr ""
+msgstr "Debe ser <= {}."
 
 #: skytemple-files/skytemple_files/patch/patches.py:215
 msgid "config.xml missing in patch package."
@@ -11206,7 +11206,9 @@ msgstr "Este parche necesita que se apliquen otros parches primero:\n"
 msgid "\n"
 "Configuration field with errors: \"{}\"\n"
 "Error: {}"
-msgstr ""
+msgstr "\n"
+"Campo de configuración con errores: \"{}\"\n"
+"Error: {}"
 
 #: skytemple/skytemple/module/patch/controller/main.py:125
 #: skytemple/skytemple/module/patch/controller/main.py:127
@@ -11245,11 +11247,11 @@ msgstr "Aplicar"
 
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:48
 msgid "Settings for the \"{}\" Patch"
-msgstr ""
+msgstr "Configuración del parche \"{}\""
 
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:51
 msgid "The patch \"{}\" requires additional configuration:"
-msgstr ""
+msgstr "El parche \"{}\" necesita configuración adicional:"
 
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:117
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:118
