@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-07-16 20:27+0000\n"
-"PO-Revision-Date: 2021-07-17 16:10\n"
+"PO-Revision-Date: 2021-07-17 17:13\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3199,12 +3199,12 @@ msgstr "Huida del Bazar"
 #: skytemple-files/skytemple_files/hardcoded/guest_pokemon.py:37
 #, python-brace-format
 msgid "'{guest1_index}' is not a valid guest pokémon index"
-msgstr ""
+msgstr "'{guest1_index}' no es un índice de Pokémon invitado válido"
 
 #: skytemple-files/skytemple_files/hardcoded/guest_pokemon.py:41
 #, python-brace-format
 msgid "'{guest2_index}' is not a valid guest pokémon index"
-msgstr ""
+msgstr "'{guest2_index}' no es un índice de Pokémon invitado válido"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:34
 msgid "Game Main Menu"
@@ -3672,11 +3672,11 @@ msgstr "El parche '{patch_name}' necesita ser aplicado antes de poder aplicar '{
 
 #: skytemple-files/skytemple_files/patch/patches.py:156
 msgid "No configuration was given."
-msgstr ""
+msgstr "No se ha dado ninguna configuración."
 
 #: skytemple-files/skytemple_files/patch/patches.py:159
 msgid "Missing configuration value."
-msgstr ""
+msgstr "Falta el valor de configuración."
 
 #: skytemple-files/skytemple_files/patch/patches.py:163
 #: skytemple-files/skytemple_files/patch/patches.py:165
@@ -3684,7 +3684,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/patches.py:171
 #: skytemple-files/skytemple_files/patch/patches.py:181
 msgid "Invalid configuration value."
-msgstr ""
+msgstr "Valor de configuración inválido."
 
 #: skytemple-files/skytemple_files/patch/patches.py:165
 msgid "Must be >= {}."
@@ -11256,7 +11256,7 @@ msgstr "El parche \"{}\" necesita configuración adicional:"
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:117
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:118
 msgid "Invalid values for some settings provided. Please try again."
-msgstr ""
+msgstr "Valores inválidos para algunos ajustes proporcionados. Por favor, inténtalo de nuevo."
 
 #: skytemple/skytemple/module/patch/controller/patch_main.glade:62
 msgid "Open Patch Directory..."
