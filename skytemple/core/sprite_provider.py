@@ -116,31 +116,38 @@ STANDIN_ENTITIES_DEFAULT = {
 }
 # TODO: Read from ROM eventually
 TRAP_PALETTE_MAP = {
-    MappaTrapType.UNUSED: 0,
-    MappaTrapType.MUD_TRAP: 1,
-    MappaTrapType.STICKY_TRAP: 1,
-    MappaTrapType.GRIMY_TRAP: 1,
-    MappaTrapType.SUMMON_TRAP: 1,
-    MappaTrapType.PITFALL_TRAP: 0,
-    MappaTrapType.WARP_TRAP: 1,
-    MappaTrapType.GUST_TRAP: 1,
-    MappaTrapType.SPIN_TRAP: 1,
-    MappaTrapType.SLUMBER_TRAP: 1,
-    MappaTrapType.SLOW_TRAP: 1,
-    MappaTrapType.SEAL_TRAP: 1,
-    MappaTrapType.POISON_TRAP: 1,
-    MappaTrapType.SELFDESTRUCT_TRAP: 1,
-    MappaTrapType.EXPLOSION_TRAP: 1,
-    MappaTrapType.PP_ZERO_TRAP: 1,
-    MappaTrapType.CHESTNUT_TRAP: 0,
-    MappaTrapType.WONDER_TILE: 0,
-    MappaTrapType.POKEMON_TRAP: 1,
-    MappaTrapType.SPIKED_TILE: 0,
-    MappaTrapType.STEALTH_ROCK: 1,
-    MappaTrapType.TOXIC_SPIKES: 1,
-    MappaTrapType.TRIP_TRAP: 0,
-    MappaTrapType.RANDOM_TRAP: 1,
-    MappaTrapType.GRUDGE_TRAP: 1
+    MappaTrapType.UNUSED.value: 0,
+    MappaTrapType.MUD_TRAP.value: 1,
+    MappaTrapType.STICKY_TRAP.value: 1,
+    MappaTrapType.GRIMY_TRAP.value: 1,
+    MappaTrapType.SUMMON_TRAP.value: 1,
+    MappaTrapType.PITFALL_TRAP.value: 0,
+    MappaTrapType.WARP_TRAP.value: 1,
+    MappaTrapType.GUST_TRAP.value: 1,
+    MappaTrapType.SPIN_TRAP.value: 1,
+    MappaTrapType.SLUMBER_TRAP.value: 1,
+    MappaTrapType.SLOW_TRAP.value: 1,
+    MappaTrapType.SEAL_TRAP.value: 1,
+    MappaTrapType.POISON_TRAP.value: 1,
+    MappaTrapType.SELFDESTRUCT_TRAP.value: 1,
+    MappaTrapType.EXPLOSION_TRAP.value: 1,
+    MappaTrapType.PP_ZERO_TRAP.value: 1,
+    MappaTrapType.CHESTNUT_TRAP.value: 0,
+    MappaTrapType.WONDER_TILE.value: 0,
+    MappaTrapType.POKEMON_TRAP.value: 1,
+    MappaTrapType.SPIKED_TILE.value: 0,
+    MappaTrapType.STEALTH_ROCK.value: 1,
+    MappaTrapType.TOXIC_SPIKES.value: 1,
+    MappaTrapType.TRIP_TRAP.value: 0,
+    MappaTrapType.RANDOM_TRAP.value: 1,
+    MappaTrapType.GRUDGE_TRAP.value: 1,
+    27: 0,  # Stairs down
+    28: 0,  # Stairs up
+    29: 1,  # Rescue Point
+    30: 1,  # Kecleon Shop
+    31: 0,  # Key Wall
+    32: 0,  # Pitfall trap, destroyed
+    33: 1,  # X?
 }
 TRP_FILENAME = 'traps.trp.img'
 ITM_FILENAME = 'items.itm.img'
@@ -161,14 +168,14 @@ class SpriteProvider:
         self._loaded__monsters_outlines: Dict[ActorSpriteKey, SpriteAndOffsetAndDims] = {}
         self._loaded__actor_placeholders: Dict[ActorSpriteKey, SpriteAndOffsetAndDims] = {}
         self._loaded__objects: Dict[str, SpriteAndOffsetAndDims] = {}
-        self._loaded__traps: Dict[MappaTrapType, SpriteAndOffsetAndDims] = {}
+        self._loaded__traps: Dict[int, SpriteAndOffsetAndDims] = {}
         self._loaded__items: Dict[int, SpriteAndOffsetAndDims] = {}
 
         self._requests__monsters: List[ActorSpriteKey] = []
         self._requests__monsters_outlines: List[ActorSpriteKey] = []
         self._requests__actor_placeholders: List[ActorSpriteKey] = []
         self._requests__objects: List[str] = []
-        self._requests__traps: List[MappaTrapType] = []
+        self._requests__traps: List[int] = []
         self._requests__items: List[int] = []
 
         self._monster_md: ModelContext[Md] = self._project.open_file_in_rom(MONSTER_MD, FileType.MD, threadsafe=True)
@@ -267,11 +274,13 @@ class SpriteProvider:
                 self._load_object(name, after_load_cb)
         return self.get_loader()
 
-    def get_for_trap(self, trp: MappaTrapType, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+    def get_for_trap(self, trp: Union[MappaTrapType, int], after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
         """
         Returns a trap sprite.
         As long as the sprite is being loaded, the loader sprite is returned instead.
         """
+        if isinstance(trp, MappaTrapType):
+            trp = trp.value
         self._load_dungeon_bin()
         with sprite_provider_lock:
             if trp in self._loaded__traps:
@@ -425,14 +434,14 @@ class SpriteProvider:
             self._requests__objects.remove(name)
         after_load_cb()
 
-    def _load_trap(self, trp: MappaTrapType, after_load_cb):
+    def _load_trap(self, trp: int, after_load_cb):
         AsyncTaskRunner.instance().run_task(self._load_trap__impl(trp, after_load_cb))
 
-    async def _load_trap__impl(self, trp: MappaTrapType, after_load_cb):
+    async def _load_trap__impl(self, trp: int, after_load_cb):
         try:
             with self._dungeon_bin as dungeon_bin:
                 traps: ImgTrp = dungeon_bin.get(TRP_FILENAME)
-            surf = pil_to_cairo_surface(traps.to_pil(trp.value, TRAP_PALETTE_MAP[trp]).convert('RGBA'))
+            surf = pil_to_cairo_surface(traps.to_pil(trp, TRAP_PALETTE_MAP[trp]).convert('RGBA'))
             with sprite_provider_lock:
                 self._loaded__traps[trp] = surf, 0, 0, 24, 24
 
@@ -452,7 +461,13 @@ class SpriteProvider:
         try:
             with self._dungeon_bin as dungeon_bin:
                 items: ImgItm = dungeon_bin.get(ITM_FILENAME)
-            surf = pil_to_cairo_surface(items.to_pil(item.sprite, item.palette).convert('RGBA'))
+            img = items.to_pil(item.sprite, item.palette)
+            alpha = [px % 16 != 0 for px in img.getdata()]
+            img = img.convert('RGBA')
+            alphaimg = Image.new('1', (img.width, img.height))
+            alphaimg.putdata(alpha)
+            img.putalpha(alphaimg)
+            surf = pil_to_cairo_surface(img)
             with sprite_provider_lock:
                 self._loaded__items[item.item_id] = surf, 0, 0, 16, 16
         except BaseException as e:
