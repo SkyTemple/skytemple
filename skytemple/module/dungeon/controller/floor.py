@@ -27,6 +27,7 @@ from gi.repository import Gtk, GLib, GdkPixbuf
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
+from skytemple.core.list_icon_renderer import ListIconRenderer
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET, REQUEST_TYPE_DUNGEON_FIXED_FLOOR, \
@@ -776,6 +777,31 @@ class FloorController(AbstractController):
 
         store[path][0] = entid
         store[path][1] = self._item_names[entid]
+        item_icon_renderer = ListIconRenderer(5)
+        itm = self.module.get_item(entid)
+        ##################
+        ##################
+        # DO NOT LOOK
+        # this is awful
+        liter = store.get_iter_first()
+        i = 0
+        found = False
+        while liter:
+            # dear god what is this
+            if str(store.get_path(liter)) == path:
+                found = True
+                break
+            liter = store.iter_next(liter)
+            i += 1
+        row_idx = i
+        assert found
+        # end of awfulness
+        ##################
+        ##################
+        item_icon = item_icon_renderer.load_icon(
+            store, self.module.project.get_sprite_provider().get_for_item, row_idx, row_idx, (itm,)
+        )
+        store[path][5] = item_icon
         self._save_item_spawn_rates()
 
     def _on_cat_item_guaranteed_toggled(self, store_name: str, path, old_state: bool):
@@ -821,9 +847,15 @@ class FloorController(AbstractController):
                     _('Can not add item.')
                 )
                 return
+        item_icon_renderer = ListIconRenderer(5)
+        itm = self.module.get_item(first_item_id)
+        row_idx = len(store)
+        item_icon = item_icon_renderer.load_icon(
+            store, self.module.project.get_sprite_provider().get_for_item, row_idx, row_idx, (itm,)
+        )
         store.append([
             first_item_id, self._item_names[first_item_id],
-            False, "0%", "0"
+            False, "0%", "0", item_icon
         ])
         self._save_item_spawn_rates()
 
@@ -1165,6 +1197,7 @@ class FloorController(AbstractController):
 
     def _init_trap_spawns(self):
         store: Gtk.Store = self.builder.get_object('trap_spawns_store')
+        trap_icon_renderer = ListIconRenderer(4)
         # Add all traps
         relative_weights = self._calculate_relative_weights([x for x in self.entry.traps.weights.values()])
         sum_of_all_weights = sum(relative_weights)
@@ -1174,8 +1207,11 @@ class FloorController(AbstractController):
             trap: MappaTrapType
             relative_weight = relative_weights[i]
             chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
+            trap_icon = trap_icon_renderer.load_icon(
+                store, self.module.project.get_sprite_provider().get_for_trap, i, i, (trap, )
+            )
             store.append([
-                trap.value, trap.name, chance, str(relative_weight)
+                trap.value, trap.name, chance, str(relative_weight), trap_icon
             ])
 
     def _init_item_spawns(self):
@@ -1226,22 +1262,27 @@ class FloorController(AbstractController):
         # Add items
         items_by_category = self._split_items_in_list_in_cats(il.items)
         for j, (category, store) in enumerate(item_stores.items()):
+            item_icon_renderer = ListIconRenderer(5)
             cat_items = items_by_category[category]
             relative_weights = self._calculate_relative_weights([v for v in cat_items.values() if v != GUARANTEED])
             sum_of_all_weights = sum(relative_weights)
             if sum_of_all_weights <= 0:
                 sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
             i = 0
-            for item, stored_weight in cat_items.items():
+            for row_idx, (item, stored_weight) in enumerate(cat_items.items()):
                 relative_weight = 0
                 if stored_weight != GUARANTEED:
                     relative_weight = relative_weights[i]
                     i += 1
                 name = self._item_names[item.id]
                 chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
+                itm = self.module.get_item(item.id)
+                item_icon = item_icon_renderer.load_icon(
+                    store, self.module.project.get_sprite_provider().get_for_item, row_idx, row_idx, (itm, )
+                )
                 store.append([
                     item.id, name, stored_weight == GUARANTEED,
-                    chance, str(relative_weight)
+                    chance, str(relative_weight), item_icon
                 ])
         self._update_cr_item_cat_name_store()
 

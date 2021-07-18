@@ -69,9 +69,10 @@ class FixedRoomDrawer:
     def __init__(
             self, draw_area: Gtk.Widget, fixed_floor: FixedFloor,
             sprite_provider: SpriteProvider, entity_rule_container: EntityRuleContainer,
-            string_provider: StringProvider
+            string_provider: StringProvider, module
     ):
         self.draw_area = draw_area
+        self.module = module
 
         self.fixed_floor = fixed_floor
         self.tileset_renderer: Optional[AbstractTilesetRenderer] = None
@@ -398,21 +399,36 @@ class FixedRoomDrawer:
             item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
             # Has trap?
             if tile.trap_id < 25:
-                ctx.rectangle(sx + 5, sy + 5, DPCI_TILE_DIM * DPC_TILING_DIM - 10, DPCI_TILE_DIM * DPC_TILING_DIM - 10)
-                ctx.set_source_rgba(*COLOR_TRAP)
-                ctx.fill_preserve()
-                ctx.set_source_rgba(*COLOR_OUTLINE)
-                ctx.set_line_width(1)
-                ctx.stroke()
+                sprite, x, y, w, h = self.sprite_provider.get_for_trap(
+                    tile.trap_id,
+                    lambda: GLib.idle_add(self.draw_area.queue_draw())
+                )
+                ctx.translate(sx, sy)
+                ctx.set_source_surface(sprite)
+                ctx.paint()
+                ctx.get_source().set_filter(cairo.Filter.NEAREST)
+                ctx.translate(-sx, -sy)
             # Has item?
             if item.item_id > 0:
-                ctx.arc(sx + DPCI_TILE_DIM * DPC_TILING_DIM / 2, sy + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
-                        DPCI_TILE_DIM * DPC_TILING_DIM / 2, 0, 2 * math.pi)
-                ctx.set_source_rgba(*COLOR_ITEM)
-                ctx.fill_preserve()
-                ctx.set_source_rgba(*COLOR_OUTLINE)
-                ctx.set_line_width(1)
-                ctx.stroke()
+                try:
+                    itm = self.module.get_item(item.item_id)
+                    sprite, x, y, w, h = self.sprite_provider.get_for_item(
+                        itm,
+                        lambda: GLib.idle_add(self._redraw)
+                    )
+                    ctx.translate(sx + 4, sy + 4)
+                    ctx.set_source_surface(sprite)
+                    ctx.get_source().set_filter(cairo.Filter.NEAREST)
+                    ctx.paint()
+                    ctx.translate(-sx - 4, -sy - 4)
+                except IndexError:
+                    ctx.arc(sx + DPCI_TILE_DIM * DPC_TILING_DIM / 2, sy + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
+                            DPCI_TILE_DIM * DPC_TILING_DIM / 2, 0, 2 * math.pi)
+                    ctx.set_source_rgba(*COLOR_ITEM)
+                    ctx.fill_preserve()
+                    ctx.set_source_rgba(*COLOR_OUTLINE)
+                    ctx.set_line_width(1)
+                    ctx.stroke()
             # Has Pokémon?
             if monster.md_idx > 0:
                 sprite, cx, cy, w, h = self.sprite_provider.get_monster(
@@ -444,20 +460,26 @@ class FixedRoomDrawer:
                 self._draw_placeholder(15, sx, sy, action.direction, ctx)
             # Key walls
             if action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0C or action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0D:
-                ctx.rectangle(sx + 5, sy + 5, DPCI_TILE_DIM * DPC_TILING_DIM - 10, DPCI_TILE_DIM * DPC_TILING_DIM - 10)
-                ctx.set_source_rgba(*COLOR_KEY_WALL)
-                ctx.fill_preserve()
-                ctx.set_source_rgba(*COLOR_OUTLINE)
-                ctx.set_line_width(1)
-                ctx.stroke()
+                sprite, x, y, w, h = self.sprite_provider.get_for_trap(
+                    31,
+                    lambda: GLib.idle_add(self._redraw)
+                )
+                ctx.translate(sx, sy)
+                ctx.set_source_surface(sprite)
+                ctx.get_source().set_filter(cairo.Filter.NEAREST)
+                ctx.paint()
+                ctx.translate(-sx, -sy)
             # Warp zone
             if action.tr_type == TileRuleType.WARP_ZONE or action.tr_type == TileRuleType.WARP_ZONE_2:
-                ctx.rectangle(sx + 5, sy + 5, DPCI_TILE_DIM * DPC_TILING_DIM - 10, DPCI_TILE_DIM * DPC_TILING_DIM - 10)
-                ctx.set_source_rgba(*COLOR_WARP_ZONE)
-                ctx.fill_preserve()
-                ctx.set_source_rgba(*COLOR_OUTLINE)
-                ctx.set_line_width(1)
-                ctx.stroke()
+                sprite, x, y, w, h = self.sprite_provider.get_for_trap(
+                    28,
+                    lambda: GLib.idle_add(self._redraw)
+                )
+                ctx.translate(sx, sy)
+                ctx.set_source_surface(sprite)
+                ctx.get_source().set_filter(cairo.Filter.NEAREST)
+                ctx.paint()
+                ctx.translate(-sx, -sy)
 
     def _draw_single_tile(self, ctx, action, x, y):
         type = DmaType.FLOOR

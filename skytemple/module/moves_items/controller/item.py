@@ -18,7 +18,8 @@ import logging
 from enum import Enum
 from typing import TYPE_CHECKING, Type, List
 
-from gi.repository import Gtk
+import cairo
+from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -83,6 +84,7 @@ class ItemController(AbstractController):
 
         self.builder = None
         self._string_provider = module.project.get_string_provider()
+        self._sprite_provider = module.project.get_sprite_provider()
 
         self._is_loading = True
 
@@ -105,6 +107,18 @@ class ItemController(AbstractController):
 
         return self.builder.get_object('box_main')
 
+    def on_draw_sprite_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
+        scale = 2
+        sprite, x, y, w, h = self._sprite_provider.get_for_item(self.item_p, lambda: GLib.idle_add(widget.queue_draw))
+        ctx.scale(scale, scale)
+        ctx.set_source_surface(sprite)
+        ctx.get_source().set_filter(cairo.Filter.NEAREST)
+        ctx.paint()
+        ctx.scale(1 / scale, 1 / scale)
+        if widget.get_size_request() != (w, h):
+            widget.set_size_request(w * scale, h * scale)
+        return True
+
     def on_entry_item_id_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()
@@ -112,6 +126,8 @@ class ItemController(AbstractController):
     def on_entry_sprite_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()
+        self._sprite_provider.reset()
+        self.builder.get_object('draw_sprite').queue_draw()
 
     def on_entry_buy_price_changed(self, w, *args):
         self._update_from_entry(w)
@@ -124,6 +140,8 @@ class ItemController(AbstractController):
     def on_entry_palette_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()
+        self._sprite_provider.reset()
+        self.builder.get_object('draw_sprite').queue_draw()
 
     def on_entry_move_id_changed(self, w, *args):
         self._update_from_entry(w)

@@ -16,14 +16,13 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Optional, Dict
+from typing import TYPE_CHECKING, Dict
 
 from gi.repository import Gtk
 
-from skytemple.controller.main import MainController
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import glib_async
-from skytemple.module.lists.controller.base import ListBaseController, ORANGE, PATTERN_MD_ENTRY
+from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
 
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
@@ -111,15 +110,13 @@ class RecruitmentListController(ListBaseController):
         tree: Gtk.TreeView = self.get_tree()
         self._list_store: Gtk.ListStore = tree.get_model()
         self._list_store.clear()
-        self._icon_pixbufs = {}
 
         # Iterate list
         for idx, (e_species, e_level, e_location) in enumerate(zip(self._species, self._levels, self._locations)):
-            l_iter = self._list_store.append([
+            self._list_store.append([
                 str(idx), str(e_level), str(e_location), self._get_icon(e_species, idx, False),
                 e_species, self._location_names[e_location], self._ent_names[e_species]
             ])
-            self._tree_iters_by_idx[idx] = l_iter
 
     def _init_locations_store(self):
         locations_store: Gtk.ListStore = self.builder.get_object('location_store')

@@ -131,6 +131,7 @@ class TrpItmImgController(AbstractController):
                 try:
                     self.img.from_pil(idx, img, import_palette)
                     self.module.mark_icons_as_modified(self.img_type, self.img)
+                    self.module.project.get_sprite_provider().reset()
                 except Exception as err:
                     display_error(
                         sys.exc_info(),

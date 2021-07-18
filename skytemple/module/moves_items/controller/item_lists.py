@@ -24,6 +24,7 @@ from functools import reduce
 from math import gcd
 from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
+from skytemple.core.list_icon_renderer import ListIconRenderer
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import glib_async
 from skytemple.module.dungeon.controller.floor import POKE_CATEGORY_ID, LINKBOX_CATEGORY_ID
@@ -361,6 +362,31 @@ class ItemListsController(AbstractController):
 
         store[path][0] = entid
         store[path][1] = self._item_names[entid]
+        item_icon_renderer = ListIconRenderer(5)
+        itm, _ = self.module.get_item(entid)
+        ##################
+        ##################
+        # DO NOT LOOK
+        # this is awful
+        liter = store.get_iter_first()
+        i = 0
+        found = False
+        while liter:
+            # dear god what is this
+            if str(store.get_path(liter)) == path:
+                found = True
+                break
+            liter = store.iter_next(liter)
+            i += 1
+        row_idx = i
+        assert found
+        # end of awfulness
+        ##################
+        ##################
+        item_icon = item_icon_renderer.load_icon(
+            store, self.module.project.get_sprite_provider().get_for_item, row_idx, row_idx, (itm,)
+        )
+        store[path][5] = item_icon
         self._save_item_spawn_rates()
 
     def _on_cat_item_weight_changed(self, store_name: str, path, text: str):
@@ -398,9 +424,15 @@ class ItemListsController(AbstractController):
                     'Can not add item.'
                 )
                 return
+        item_icon_renderer = ListIconRenderer(5)
+        itm, _ = self.module.get_item(first_item_id)
+        row_idx = len(store)
+        item_icon = item_icon_renderer.load_icon(
+            store, self.module.project.get_sprite_provider().get_for_item, row_idx, row_idx, (itm,)
+        )
         store.append([
             first_item_id, self._item_names[first_item_id],
-            False, "0%", "0"
+            False, "0%", "0", item_icon
         ])
         self._save_item_spawn_rates()
 
@@ -461,20 +493,25 @@ class ItemListsController(AbstractController):
         # Add items
         items_by_category = self._split_items_in_list_in_cats(il.items)
         for j, (category, store) in enumerate(item_stores.items()):
+            item_icon_renderer = ListIconRenderer(5)
             cat_items = items_by_category[category]
             relative_weights = self._calculate_relative_weights([v for v in cat_items.values()])
             sum_of_all_weights = sum(relative_weights)
             if sum_of_all_weights <= 0:
                 sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
             i = 0
-            for item, stored_weight in cat_items.items():
+            for row_idx, (item, stored_weight) in enumerate(cat_items.items()):
                 relative_weight = relative_weights[i]
                 i += 1
                 name = self._item_names[item.id]
                 chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
+                itm, _ = self.module.get_item(item.id)
+                item_icon = item_icon_renderer.load_icon(
+                    store, self.module.project.get_sprite_provider().get_for_item, row_idx, row_idx, (itm, )
+                )
                 store.append([
                     item.id, name, False,
-                    chance, str(relative_weight)
+                    chance, str(relative_weight), item_icon
                 ])
         self._update_cr_item_cat_name_store()
 

@@ -753,7 +753,9 @@ class BgController(AbstractController):
 
         info_bar = self.builder.get_object('editor_rest_room_note')
         if mode_10_or_11_level:
-            mapping = resolve_mapping_for_level(mode_10_or_11_level, *self.module.get_mapping_dungeon_assets())
+            mappings, mappa, fixed, dungeon_bin_context, dungeon_list = self.module.get_mapping_dungeon_assets()
+            with dungeon_bin_context as dungeon_bin:
+                mapping = resolve_mapping_for_level(mode_10_or_11_level, mappings, mappa, fixed, dungeon_bin, dungeon_list)
             if mapping:
                 dma, dpc, dpci, dpl, _, fixed_room = mapping
                 self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)

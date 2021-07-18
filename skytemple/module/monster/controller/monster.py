@@ -868,7 +868,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         # Genders
         self._comboxbox_for_enum(['cb_gender'], Gender)
         # Types
-        self._comboxbox_for_enum(['cb_type_primary', 'cb_type_secondary'], PokeType)
+        self._comboxbox_for_enum_with_strings(['cb_type_primary', 'cb_type_secondary'], PokeType, StringType.TYPE_NAMES)
         # Movement Types
         self._comboxbox_for_enum(['cb_movement_type'], MovementType)
         # IQ Groups
@@ -966,6 +966,13 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             enum = sorted(enum, key=lambda x:self._enum_entry_to_str(x))
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
+        for name in names:
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
+
+    def _comboxbox_for_enum_with_strings(self, names: List[str], enum: Type[Enum], string_type: StringType):
+        store = Gtk.ListStore(int, str)  # id, name
+        for entry in enum:
+            store.append([entry.value, self._string_provider.get_value(string_type, entry.value)])
         for name in names:
             self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 

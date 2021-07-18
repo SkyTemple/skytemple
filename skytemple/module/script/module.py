@@ -22,6 +22,7 @@ from gi.repository.Gtk import TreeStore
 
 from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.model_context import ModelContext
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST_TYPE_SCENE_SSE, REQUEST_TYPE_SCENE_SSA, \
     REQUEST_TYPE_SCENE_SSS
 from skytemple.core.rom_project import RomProject, BinaryName
@@ -435,7 +436,7 @@ class ScriptModule(AbstractModule):
 
     def get_mapping_dungeon_assets(
             self
-    ) -> Tuple[List[GroundTilesetMapping], MappaBin, FixedBin, DungeonBinPack, List[DungeonDefinition]]:
+    ) -> Tuple[List[GroundTilesetMapping], MappaBin, FixedBin, ModelContext[DungeonBinPack], List[DungeonDefinition]]:
         static_data = self.project.get_rom_module().get_static_data()
         mappings = self.get_dungeon_tilesets()
 
@@ -445,12 +446,12 @@ class ScriptModule(AbstractModule):
             static_data=static_data
         )
 
-        dungeon_bin: DungeonBinPack = self.project.open_file_in_rom(
-            'DUNGEON/dungeon.bin', FileType.DUNGEON_BIN, static_data=static_data
+        dungeon_bin_context: ModelContext[DungeonBinPack] = self.project.open_file_in_rom(
+            'DUNGEON/dungeon.bin', FileType.DUNGEON_BIN, static_data=static_data, threadsafe=True
         )
 
         dungeon_list = HardcodedDungeons.get_dungeon_list(
             self.project.get_binary(BinaryName.ARM9), static_data
         )
 
-        return mappings, mappa, fixed, dungeon_bin, dungeon_list
+        return mappings, mappa, fixed, dungeon_bin_context, dungeon_list

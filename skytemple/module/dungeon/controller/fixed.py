@@ -529,7 +529,7 @@ class FixedController(AbstractController):
     def _init_drawer(self):
         self.drawer = FixedRoomDrawer(self._draw, self.floor, self.module.project.get_sprite_provider(),
                                       self.entity_rule_container,
-                                      self.module.project.get_string_provider())
+                                      self.module.project.get_string_provider(), self.module)
         self.drawer.start()
 
         self.drawer.set_draw_tile_grid(self.builder.get_object(f'tool_scene_grid').get_active())
