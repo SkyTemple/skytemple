@@ -414,12 +414,12 @@ class FixedRoomDrawer:
                     itm = self.module.get_item(item.item_id)
                     sprite, x, y, w, h = self.sprite_provider.get_for_item(
                         itm,
-                        lambda: GLib.idle_add(self.draw_area.queue_draw())
+                        lambda: GLib.idle_add(self._redraw)
                     )
                     ctx.translate(sx + 4, sy + 4)
                     ctx.set_source_surface(sprite)
-                    ctx.paint()
                     ctx.get_source().set_filter(cairo.Filter.NEAREST)
+                    ctx.paint()
                     ctx.translate(-sx - 4, -sy - 4)
                 except IndexError:
                     ctx.arc(sx + DPCI_TILE_DIM * DPC_TILING_DIM / 2, sy + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
@@ -462,23 +462,23 @@ class FixedRoomDrawer:
             if action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0C or action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0D:
                 sprite, x, y, w, h = self.sprite_provider.get_for_trap(
                     31,
-                    lambda: GLib.idle_add(self.draw_area.queue_draw())
+                    lambda: GLib.idle_add(self._redraw)
                 )
                 ctx.translate(sx, sy)
                 ctx.set_source_surface(sprite)
-                ctx.paint()
                 ctx.get_source().set_filter(cairo.Filter.NEAREST)
+                ctx.paint()
                 ctx.translate(-sx, -sy)
             # Warp zone
             if action.tr_type == TileRuleType.WARP_ZONE or action.tr_type == TileRuleType.WARP_ZONE_2:
                 sprite, x, y, w, h = self.sprite_provider.get_for_trap(
                     28,
-                    lambda: GLib.idle_add(self.draw_area.queue_draw())
+                    lambda: GLib.idle_add(self._redraw)
                 )
                 ctx.translate(sx, sy)
                 ctx.set_source_surface(sprite)
-                ctx.paint()
                 ctx.get_source().set_filter(cairo.Filter.NEAREST)
+                ctx.paint()
                 ctx.translate(-sx, -sy)
 
     def _draw_single_tile(self, ctx, action, x, y):
