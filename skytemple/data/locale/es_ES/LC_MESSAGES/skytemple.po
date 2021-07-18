@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-07-18 04:24+0000\n"
-"PO-Revision-Date: 2021-07-18 04:36\n"
+"POT-Creation-Date: 2021-07-18 15:24+0000\n"
+"PO-Revision-Date: 2021-07-18 15:43\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3545,6 +3545,11 @@ msgstr "Utiliza filestreams para acceder a los datos de waza_p/waza_p2 en lugar 
 msgid "This patch adds a new overlay 36 to the game, which is loaded at address 0x023A7080 and provides extra space for patches to place code and data in."
 msgstr "Este parche añade un nuevo overlay (36) al juego, que se carga en la dirección 0x023A7080 y proporciona espacio adicional para que otros parches coloquen código y otros datos."
 
+#: skytemple-files/skytemple_files/patch/handler/extract_anims.py:45
+msgid "Extracts animation data and put it in files. \n"
+"Needs ActorAndLevelLoader patch to free some space. "
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/extract_bar_list.py:52
 msgid "Extracts Spinda bar's item list."
 msgstr "Extrae la lista de objetos del bar de Spinda."
@@ -3653,72 +3658,72 @@ msgstr "Ofrece soporte para los contenedores ATUPX, que utilizan un algoritmo di
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr "Corrige la función del valor aleatorio del atributo \"No utilizado\" de los pisos de los territorios. Esto determina la probabilidad de que una sala contenga aleatoriamente paredes en su interior, algunas de las cuales pueden ser sustituidas por terreno secundario."
 
-#: skytemple-files/skytemple_files/patch/patches.py:130
-#: skytemple-files/skytemple_files/patch/patches.py:140
+#: skytemple-files/skytemple_files/patch/patches.py:132
+#: skytemple-files/skytemple_files/patch/patches.py:142
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "El parche '{name}' no se ha encontrado."
 
-#: skytemple-files/skytemple_files/patch/patches.py:146
+#: skytemple-files/skytemple_files/patch/patches.py:148
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "El parche '{patch_name}' necesita ser aplicado antes de poder aplicar '{name}'."
 
-#: skytemple-files/skytemple_files/patch/patches.py:149
+#: skytemple-files/skytemple_files/patch/patches.py:151
 #: skytemple/skytemple/module/patch/controller/main.py:225
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr "El parche '{patch_name}' necesita ser aplicado antes de poder aplicar '{name}'. No se ha encontrado el parche."
 
-#: skytemple-files/skytemple_files/patch/patches.py:156
+#: skytemple-files/skytemple_files/patch/patches.py:158
 msgid "No configuration was given."
 msgstr "No se ha dado ninguna configuración."
 
-#: skytemple-files/skytemple_files/patch/patches.py:159
+#: skytemple-files/skytemple_files/patch/patches.py:161
 msgid "Missing configuration value."
 msgstr "Falta el valor de configuración."
 
-#: skytemple-files/skytemple_files/patch/patches.py:163
 #: skytemple-files/skytemple_files/patch/patches.py:165
 #: skytemple-files/skytemple_files/patch/patches.py:167
-#: skytemple-files/skytemple_files/patch/patches.py:171
-#: skytemple-files/skytemple_files/patch/patches.py:181
+#: skytemple-files/skytemple_files/patch/patches.py:169
+#: skytemple-files/skytemple_files/patch/patches.py:173
+#: skytemple-files/skytemple_files/patch/patches.py:183
 msgid "Invalid configuration value."
 msgstr "Valor de configuración inválido."
 
-#: skytemple-files/skytemple_files/patch/patches.py:165
+#: skytemple-files/skytemple_files/patch/patches.py:167
 msgid "Must be >= {}."
 msgstr "Debe ser >= {}."
 
-#: skytemple-files/skytemple_files/patch/patches.py:167
+#: skytemple-files/skytemple_files/patch/patches.py:169
 msgid "Must be <= {}."
 msgstr "Debe ser <= {}."
 
-#: skytemple-files/skytemple_files/patch/patches.py:215
+#: skytemple-files/skytemple_files/patch/patches.py:217
 msgid "config.xml missing in patch package."
 msgstr "falta el archivo config.xml en el paquete de parches."
 
-#: skytemple-files/skytemple_files/patch/patches.py:217
+#: skytemple-files/skytemple_files/patch/patches.py:219
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "Error de sintaxis en el archivo config.xml al leer el paquete de parches."
 
-#: skytemple-files/skytemple_files/patch/patches.py:227
+#: skytemple-files/skytemple_files/patch/patches.py:229
 msgid "patch.py missing in patch package."
 msgstr "Falta el archivo patch.py en el paquete de parches."
 
-#: skytemple-files/skytemple_files/patch/patches.py:229
+#: skytemple-files/skytemple_files/patch/patches.py:231
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr "Patch.py del paquete de parches contiene un error de sintaxis."
 
-#: skytemple-files/skytemple_files/patch/patches.py:234
+#: skytemple-files/skytemple_files/patch/patches.py:236
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "Patch.py del paquete de parches no contiene 'PatchHandler'."
 
-#: skytemple-files/skytemple_files/patch/patches.py:239
+#: skytemple-files/skytemple_files/patch/patches.py:241
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "El paquete de parches no contiene una entrada para el nombre del parche del manipulador en config.xml."
 
-#: skytemple-files/skytemple_files/patch/patches.py:245
+#: skytemple-files/skytemple_files/patch/patches.py:247
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "No se ha encontrado ningún parche para el manipulador '{handler.name}' en la configuración."
