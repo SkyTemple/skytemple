@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-07-18 15:24+0000\n"
+"POT-Creation-Date: 2021-07-18 19:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3588,22 +3588,14 @@ msgstr ""
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/move_growth.py:78
+#: skytemple-files/skytemple_files/patch/handler/move_growth.py:75
 msgid ""
 "Implements move growth (PoC/Unfinished). \n"
 "Needs ActorAndLevelLoader, ExtractAnimData and ChangeMoveStatsDisplay patches. \n"
-"Currently not compatible with MoveShortcuts. \n"
+"If MoveShortcuts is applied, must be re-applied after it. \n"
 "The last version of ChangeMoveStatsDisplay must be used with this.\n"
 "May be incompatible if markfont.dat has been modified (except for ChangeMoveStatsDisplay)\n"
 "Makes all prior save files incompatible. "
-msgstr ""
-
-#: skytemple-files/skytemple_files/patch/handler/move_growth.py:115
-#: skytemple-files/skytemple_files/patch/handler/move_growth.py:120
-#: skytemple-files/skytemple_files/patch/handler/move_growth.py:125
-#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:109
-#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:114
-msgid "This patch isn't compatible with this rom."
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:40
@@ -3632,7 +3624,7 @@ msgid ""
 "Needs ChooseStarter patch to be applied. "
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:71
+#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:54
 msgid ""
 "Replaces old move stats display with bars.\n"
 "This patch may not be compatible if the markfont.dat file has been modified."
