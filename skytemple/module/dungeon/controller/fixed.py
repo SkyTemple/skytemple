@@ -560,8 +560,8 @@ class FixedController(AbstractController):
 
     def _update_scales(self):
         self._draw.set_size_request(
-            (self.floor.width + 10) * DPCI_TILE_DIM * DPC_TILING_DIM * self._scale_factor,
-            (self.floor.height + 10) * DPCI_TILE_DIM * DPC_TILING_DIM * self._scale_factor
+            (self.floor.width + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor,
+            (self.floor.height + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor
         )
         if self.drawer:
             self.drawer.set_scale(self._scale_factor)

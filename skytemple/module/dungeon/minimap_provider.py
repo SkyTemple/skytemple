@@ -37,9 +37,13 @@ class MinimapProvider:
                     (x * ZMAPPAT_DIM, y * ZMAPPAT_DIM, (x + 1) * ZMAPPAT_DIM, (y + 1) * ZMAPPAT_DIM)
                 )))
         self._secondary = pil_to_cairo_surface(Image.open(os.path.join(data_dir(), 'minimap_secondary.png')))
+        self._buried = pil_to_cairo_surface(Image.open(os.path.join(data_dir(), 'minimap_buried.png')))
 
     def get_minimap_tile(self, idx: int) -> cairo.ImageSurface:
         return self._tiles[idx]
 
     def get_secondary_tile(self) -> cairo.ImageSurface:
         return self._secondary
+
+    def get_buried_item_tile(self):
+        return self._buried

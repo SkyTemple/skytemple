@@ -20,8 +20,10 @@ import cairo
 from gi.repository import GLib
 
 from skytemple.module.dungeon.fixed_room_entity_renderer.abstract import AbstractEntityRenderer
+from skytemple_files.common.dungeon_floor_generator.generator import TileType, RoomType
 from skytemple_files.dungeon_data.fixed_bin.model import EntityRule, FixedFloorActionRule, TileRuleType, TileRule, \
     DirectRule
+from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
 from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
 COLOR_ITEM = (0, 0.3, 1, 1)
@@ -34,28 +36,11 @@ class FullMapEntityRenderer(AbstractEntityRenderer):
             item, monster, tile, stats = self.parent.entity_rule_container.get(action.entity_rule_id)
             # Has trap?
             if tile.trap_id < 25:
-                sprite, x, y, w, h = self.parent.sprite_provider.get_for_trap(
-                    tile.trap_id,
-                    lambda: GLib.idle_add(self.parent.redraw)
-                )
-                ctx.translate(sx, sy)
-                ctx.set_source_surface(sprite)
-                ctx.paint()
-                ctx.get_source().set_filter(cairo.Filter.NEAREST)
-                ctx.translate(-sx, -sy)
+                self._draw_trap(ctx, tile.trap_id, sx, sy)
             # Has item?
             if item.item_id > 0:
                 try:
-                    itm = self.parent.module.get_item(item.item_id)
-                    sprite, x, y, w, h = self.parent.sprite_provider.get_for_item(
-                        itm,
-                        lambda: GLib.idle_add(self.parent.redraw)
-                    )
-                    ctx.translate(sx + 4, sy + 4)
-                    ctx.set_source_surface(sprite)
-                    ctx.get_source().set_filter(cairo.Filter.NEAREST)
-                    ctx.paint()
-                    ctx.translate(-sx - 4, -sy - 4)
+                    self._draw_item(ctx, item.item_id, sx, sy)
                 except IndexError:
                     ctx.arc(sx + DPCI_TILE_DIM * DPC_TILING_DIM / 2, sy + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
                             DPCI_TILE_DIM * DPC_TILING_DIM / 2, 0, 2 * math.pi)
@@ -66,20 +51,7 @@ class FullMapEntityRenderer(AbstractEntityRenderer):
                     ctx.stroke()
             # Has Pokémon?
             if monster.md_idx > 0:
-                sprite, cx, cy, w, h = self.parent.sprite_provider.get_monster(
-                    monster.md_idx,
-                    action.direction.ssa_id if action.direction is not None else 0,
-                    lambda: GLib.idle_add(self.parent.redraw)
-                )
-                ctx.translate(sx, sy)
-                ctx.set_source_surface(
-                    sprite,
-                    -cx + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
-                    -cy + DPCI_TILE_DIM * DPC_TILING_DIM * 0.75
-                )
-                ctx.get_source().set_filter(cairo.Filter.NEAREST)
-                ctx.paint()
-                ctx.translate(-sx, -sy)
+                self._draw_pokemon(ctx, monster.md_idx, action.direction, sx, sy)
         elif isinstance(action, TileRule):
             # Leader spawn tile
             if action.tr_type == TileRuleType.LEADER_SPAWN:
@@ -106,8 +78,11 @@ class FullMapEntityRenderer(AbstractEntityRenderer):
                 ctx.translate(-sx, -sy)
             # Warp zone
             if action.tr_type == TileRuleType.WARP_ZONE or action.tr_type == TileRuleType.WARP_ZONE_2:
+                self._draw_stairs(ctx, sx, sy)
+        elif isinstance(action, DirectRule):
+            if action.tile.room_type == RoomType.KECLEON_SHOP:
                 sprite, x, y, w, h = self.parent.sprite_provider.get_for_trap(
-                    28,
+                    30,
                     lambda: GLib.idle_add(self.parent.redraw)
                 )
                 ctx.translate(sx, sy)
@@ -115,5 +90,70 @@ class FullMapEntityRenderer(AbstractEntityRenderer):
                 ctx.get_source().set_filter(cairo.Filter.NEAREST)
                 ctx.paint()
                 ctx.translate(-sx, -sy)
-        elif isinstance(action, DirectRule):
-            pass  # TODO DIRECTRULE
+            if action.tile.typ == TileType.PLAYER_SPAWN or action.tile.typ == TileType.ENEMY:
+                self._draw_pokemon(ctx, action.itmtpmon_id, action.direction, sx, sy)
+            if action.tile.typ == TileType.STAIRS:
+                self._draw_stairs(ctx, sx, sy)
+            if action.tile.typ == TileType.TRAP:
+                self._draw_trap(ctx, action.itmtpmon_id, sx, sy)
+            if action.tile.typ == TileType.BURIED_ITEM:
+                self._draw_item(ctx, action.itmtpmon_id, sx, sy, buried=True)
+            if action.tile.typ == TileType.ITEM:
+                self._draw_item(ctx, action.itmtpmon_id, sx, sy)
+            if action.tile.room_type == RoomType.MONSTER_HOUSE:
+                ctx.set_source_rgba(230, 0, 0, 0.2)
+                ctx.rectangle(sx, sy, DPCI_TILE_DIM * DPC_TILING_DIM, DPCI_TILE_DIM * DPC_TILING_DIM)
+                ctx.fill()
+
+    def _draw_pokemon(self, ctx, md_idx, direction, sx, sy):
+        sprite, cx, cy, w, h = self.parent.sprite_provider.get_monster(
+            md_idx,
+            direction.ssa_id if direction is not None else 0,
+            lambda: GLib.idle_add(self.parent.redraw)
+        )
+        ctx.translate(sx, sy)
+        ctx.set_source_surface(
+            sprite,
+            -cx + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
+            -cy + DPCI_TILE_DIM * DPC_TILING_DIM * 0.75
+        )
+        ctx.get_source().set_filter(cairo.Filter.NEAREST)
+        ctx.paint()
+        ctx.translate(-sx, -sy)
+
+    def _draw_stairs(self, ctx, sx, sy):
+        sprite, x, y, w, h = self.parent.sprite_provider.get_for_trap(
+            28,
+            lambda: GLib.idle_add(self.parent.redraw)
+        )
+        ctx.translate(sx, sy)
+        ctx.set_source_surface(sprite)
+        ctx.get_source().set_filter(cairo.Filter.NEAREST)
+        ctx.paint()
+        ctx.translate(-sx, -sy)
+
+    def _draw_trap(self, ctx, trap_id, sx, sy):
+        sprite, x, y, w, h = self.parent.sprite_provider.get_for_trap(
+            trap_id,
+            lambda: GLib.idle_add(self.parent.redraw)
+        )
+        ctx.translate(sx, sy)
+        ctx.set_source_surface(sprite)
+        ctx.paint()
+        ctx.get_source().set_filter(cairo.Filter.NEAREST)
+        ctx.translate(-sx, -sy)
+
+    def _draw_item(self, ctx, item_id, sx, sy, buried=False):
+        itm = self.parent.module.get_item(item_id)
+        sprite, x, y, w, h = self.parent.sprite_provider.get_for_item(
+            itm,
+            lambda: GLib.idle_add(self.parent.redraw)
+        )
+        ctx.translate(sx + 4, sy + 4)
+        ctx.set_source_surface(sprite)
+        ctx.get_source().set_filter(cairo.Filter.NEAREST)
+        if buried:
+            ctx.paint_with_alpha(0.5)
+        else:
+            ctx.paint()
+        ctx.translate(-sx - 4, -sy - 4)

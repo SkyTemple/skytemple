@@ -14,7 +14,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-import math
 from enum import auto, Enum
 from typing import Union, Optional, Tuple, TYPE_CHECKING
 
@@ -109,6 +108,8 @@ class FixedRoomDrawer:
         self.draw_area.queue_draw()
 
     def draw(self, wdg, ctx: cairo.Context):
+        if not self.fixed_floor:
+            return
         ctx.set_antialias(cairo.Antialias.NONE)
         ctx.scale(self.scale, self.scale)
         # Background
@@ -165,7 +166,7 @@ class FixedRoomDrawer:
                     else:
                         row.append(DmaType.FLOOR)
                 elif isinstance(action, DirectRule):
-                    pass  # TODO DIRECTRULE
+                    row.append(action.tile.terrain)
                 ridx += 1
             if self.add_fixed_room_padding:
                 row += [outside, outside, outside, outside, outside]

@@ -18,8 +18,10 @@ import cairo
 
 from skytemple.module.dungeon.fixed_room_entity_renderer.abstract import AbstractEntityRenderer
 from skytemple.module.dungeon.minimap_provider import MinimapProvider, ZMAPPAT_DIM
+from skytemple_files.common.dungeon_floor_generator.generator import TileType, RoomType
 from skytemple_files.dungeon_data.fixed_bin.model import EntityRule, FixedFloorActionRule, TileRuleType, TileRule, \
     DirectRule
+from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
 
 COLOR_ITEM = (0, 0.3, 1, 1)
@@ -35,7 +37,9 @@ class MinimapEntityRenderer(AbstractEntityRenderer):
         if isinstance(action, EntityRule):
             item, monster, tile, stats = self.parent.entity_rule_container.get(action.entity_rule_id)
             # Has trap?
-            if tile.trap_id < 25:
+            if tile.trap_id == MappaTrapType.WONDER_TILE.value:
+                self.paint(ctx, self.minimap_provider.get_minimap_tile(7), x, y)
+            elif tile.trap_id < 25:
                 self.paint(ctx, self.minimap_provider.get_minimap_tile(4), x, y)
             # Has item?
             if item.item_id > 0:
@@ -72,7 +76,29 @@ class MinimapEntityRenderer(AbstractEntityRenderer):
             if action.tr_type == TileRuleType.WARP_ZONE or action.tr_type == TileRuleType.WARP_ZONE_2:
                 self.paint(ctx, self.minimap_provider.get_minimap_tile(5), x, y)
         elif isinstance(action, DirectRule):
-            pass  # TODO DIRECTRULE
+            if action.tile.typ == TileType.PLAYER_SPAWN:
+                self.paint(ctx, self.minimap_provider.get_minimap_tile(8), x, y)
+            if action.tile.typ == TileType.ENEMY:
+                self.paint(ctx, self.minimap_provider.get_minimap_tile(2), x, y)
+            if action.tile.typ == TileType.STAIRS:
+                self.paint(ctx, self.minimap_provider.get_minimap_tile(6), x, y)
+            if action.tile.typ == TileType.TRAP:
+                if action.itmtpmon_id == MappaTrapType.WONDER_TILE.value:
+                    self.paint(ctx, self.minimap_provider.get_minimap_tile(7), x, y)
+                else:
+                    self.paint(ctx, self.minimap_provider.get_minimap_tile(4), x, y)
+            if action.tile.typ == TileType.BURIED_ITEM:
+                self.paint(ctx, self.minimap_provider.get_buried_item_tile(), x, y)
+            if action.tile.typ == TileType.ITEM:
+                self.paint(ctx, self.minimap_provider.get_minimap_tile(3), x, y)
+            if action.tile.room_type == RoomType.KECLEON_SHOP:
+                ctx.set_source_rgba(230, 230, 0, 0.2)
+                ctx.rectangle(x, y, ZMAPPAT_DIM, ZMAPPAT_DIM)
+                ctx.fill()
+            if action.tile.room_type == RoomType.MONSTER_HOUSE:
+                ctx.set_source_rgba(230, 0, 0, 0.2)
+                ctx.rectangle(x, y, ZMAPPAT_DIM, ZMAPPAT_DIM)
+                ctx.fill()
 
     def paint(self, ctx, source, x, y):
         ctx.translate(x, y)
