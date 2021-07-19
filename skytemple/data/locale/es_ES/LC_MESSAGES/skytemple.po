@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-07-19 14:22+0000\n"
-"PO-Revision-Date: 2021-07-19 17:50\n"
+"PO-Revision-Date: 2021-07-19 18:46\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3602,7 +3602,12 @@ msgid "Implements move growth (PoC/Unfinished). \n"
 "The last version of ChangeMoveStatsDisplay must be used with this.\n"
 "May be incompatible if markfont.dat has been modified (except for ChangeMoveStatsDisplay)\n"
 "Makes all prior save files incompatible. "
-msgstr ""
+msgstr "Implementa el aumento de nivel de los movimientos (PoC/Inacabado). \n"
+"Necesita los parches \"ActorAndLevelLoader\", \"ExtractAnimData\" y \"ChangeMoveStatsDisplay\". \n"
+"Deberá volverse aplicar si \"MoveShortcuts\" se aplica. \n"
+"Se debe utilizar la última versión de \"ChangeMoveStatsDisplay\" junto al parche.\n"
+"Puede ser incompatible si markfont.dat ha sido modificado (excepto para \"ChangeMoveStatsDisplay\").\n"
+"Hace todos los archivos de guardado previos incompatibles. "
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:40
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
@@ -5661,7 +5666,7 @@ msgstr "Tr"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:441
 msgid "Show full map instead of minimap"
-msgstr ""
+msgstr "Muestra el mapa completo en vez del minimapa"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:486
 msgid "Select a tile \n"
