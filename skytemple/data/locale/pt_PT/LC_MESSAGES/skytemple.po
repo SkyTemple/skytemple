@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-07-18 15:24+0000\n"
-"PO-Revision-Date: 2021-07-18 15:43\n"
+"POT-Creation-Date: 2021-07-19 14:22+0000\n"
+"PO-Revision-Date: 2021-07-19 14:25\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -1489,8 +1489,8 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/md/model.py:63
 #: skytemple-files/skytemple_files/data/md/model.py:316
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:453
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:454
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:480
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:481
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:439
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:448
 #: skytemple/skytemple/module/map_bg/controller/bg.py:602
@@ -2488,7 +2488,7 @@ msgid "Straight line"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/waza_p/model.py:133
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1130
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1154
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4729
 #: skytemple/skytemple/module/dungeon/module.py:742
 msgid "Floor"
@@ -2531,103 +2531,103 @@ msgstr ""
 msgid "Current HP <= 25% or has at least one negative status condition"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:43
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:103
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:109
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:112
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:44
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:104
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:110
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:113
 msgid "Floor, Room"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:46
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:47
 msgid "Wall, Hallway; Absolute Mover"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:49
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:88
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:50
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:89
 msgid "Wall, Hallway; Impassable"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:52
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:91
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:53
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:92
 msgid "Wall, Hallway"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:55
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:56
 msgid "Leader Spawn Floor"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:58
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:59
 msgid "Secondary, Room"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:61
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:62
 msgid "Chasm, Hallway"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:63
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:76
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:64
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:77
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!)."
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:64
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:65
 msgid "Chasm, Hallway; All Chasm"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:66
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:67
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!). All tiles outside of defined room are made the tileset's defined secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:68
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:106
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:69
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:107
 msgid "Warp Zone, Room"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:70
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:108
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:71
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:109
 msgid "Creates a Warp Zone."
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:71
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:72
 msgid "Floor, Hallway"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:74
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:75
 msgid "Chasm, Hallway; Impassable"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:77
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:78
 msgid "Floor, Hallway; Flag 0xA"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:79
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:80
 msgid "Tile flag 0xA is set to 1 (Unknown what this does)."
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:80
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:81
 msgid "F/W, Room; Key Door (0xC)"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:82
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:83
 msgid "Tile flag 0xC is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:84
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:85
 msgid "F/W, Room; Key Door (0xD)"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:86
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:87
 msgid "Tile flag 0xD is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:94
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:95
 msgid "Attendant1 Spawn Floor"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:97
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:98
 msgid "Attendant2 Spawn Floor"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:100
+#: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:101
 msgid "Attendant3 Spawn Floor"
 msgstr ""
 
@@ -3575,21 +3575,13 @@ msgstr ""
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/move_growth.py:78
+#: skytemple-files/skytemple_files/patch/handler/move_growth.py:75
 msgid "Implements move growth (PoC/Unfinished). \n"
 "Needs ActorAndLevelLoader, ExtractAnimData and ChangeMoveStatsDisplay patches. \n"
-"Currently not compatible with MoveShortcuts. \n"
+"If MoveShortcuts is applied, must be re-applied after it. \n"
 "The last version of ChangeMoveStatsDisplay must be used with this.\n"
 "May be incompatible if markfont.dat has been modified (except for ChangeMoveStatsDisplay)\n"
 "Makes all prior save files incompatible. "
-msgstr ""
-
-#: skytemple-files/skytemple_files/patch/handler/move_growth.py:115
-#: skytemple-files/skytemple_files/patch/handler/move_growth.py:120
-#: skytemple-files/skytemple_files/patch/handler/move_growth.py:125
-#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:109
-#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:114
-msgid "This patch isn't compatible with this rom."
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:40
@@ -3617,7 +3609,7 @@ msgid "Skips the quiz, only leaving the gender question.\n"
 "Needs ChooseStarter patch to be applied. "
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:71
+#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:54
 msgid "Replaces old move stats display with bars.\n"
 "This patch may not be compatible if the markfont.dat file has been modified."
 msgstr ""
@@ -3820,7 +3812,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:340
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1571
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:88
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:367
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:394
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:318
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:331
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:484
@@ -4786,9 +4778,9 @@ msgid "Emulator"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2992
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:629
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:859
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:953
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:653
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:883
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:977
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:212
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:105
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:125
@@ -5369,8 +5361,8 @@ msgid "Names"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:450
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:578
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:799
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:602
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:823
 msgid "Direction:"
 msgstr ""
 
@@ -5602,19 +5594,23 @@ msgstr ""
 msgid "Tr"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:462
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:441
+msgid "Show full map instead of minimap"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:486
 msgid "Select a tile \n"
 "or entity to \n"
 "edit or copy."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:469
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1049
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:493
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1073
 #: skytemple/skytemple/skytemple.glade:1055
 msgid "page2"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:512
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:536
 msgid "<b>NAME</b>\n"
 "Type: Wall\n"
 "Hallway\n"
@@ -5624,23 +5620,23 @@ msgid "<b>NAME</b>\n"
 "All tiles outside of defined room are made the tileset\\'s defined secondary terrain."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:531
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:555
 msgid "Selected Tile Type"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:556
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:580
 msgid "Tile Type:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:590
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:614
 msgid "The direction is only relevant for the leader spawn tile."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:620
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:644
 msgid "Add new tile"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:679
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:703
 msgid "<b>Entity ID</b>\n\n"
 "Pokémon (ID):\n\n"
 "Stats (ID):\n\n"
@@ -5648,26 +5644,26 @@ msgid "<b>Entity ID</b>\n\n"
 "Tile Properties (ID):"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:714
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:738
 #: skytemple/skytemple/module/script/controller/ssa.glade:815
 msgid "Edit"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:752
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:776
 msgid "Selected Entity"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:777
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:801
 msgid "Entity:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:824
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:848
 msgid "Add new entity"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:833
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:907
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1001
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:857
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:931
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1025
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:250
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:429
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:803
@@ -5683,54 +5679,54 @@ msgstr ""
 msgid "page1"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:884
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:908
 msgid "<span foreground=\"#ff0000\">0</span>: Room 0\n"
 "<span foreground=\"#ff0000\">1</span>: Room 1\n"
 "<span foreground=\"#ffff00\">I</span>: Impassable\n"
 "<span foreground=\"#00ff00\">A</span>: Absolute Mover possible"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:898
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:922
 msgid "Tile Layer Legend"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:933
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:957
 msgid "NAME: Item name"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:944
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:968
 msgid "Item Layer Legend"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:979
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1003
 msgid "<span foreground=\"#00ff00\">A</span>: Ally\n"
 "<span foreground=\"#ff0000\">E</span>: Strong Enemy\n"
 "<span foreground=\"#ffff00\">O</span>: Other"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:992
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1016
 msgid "Pokémon Layer Legend"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1027
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1051
 msgid "NAME: Trap name\n"
 "<span foreground=\"#ff0000\">B</span>: Can be broken\n"
 "<span foreground=\"#ffff00\">V</span>: Is visible"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1040
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1064
 msgid "Trap Layer Legend"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1159
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1183
 msgid "Music:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1171
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1195
 msgid "Moves allowed:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1183
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1207
 #: skytemple/skytemple/module/monster/controller/monster.glade:1537
 #: skytemple/skytemple/module/moves_items/controller/item.glade:933
 #: skytemple/skytemple/module/moves_items/controller/move.glade:767
@@ -5738,135 +5734,135 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1250
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1274
 msgid "Orbs allowed:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1293
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1317
 msgid "Overrides"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1309
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1333
 msgid "Fixed Room to load \n"
 "if dungeon is cleared:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1365
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1389
 msgid "Dimensions"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1381
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1405
 msgid "Width:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1393
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1417
 msgid "Height:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1427
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1451
 msgid "Prevent \"Item Stealing\""
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1439
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1463
 msgid "Disable all warp effects:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1451
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1475
 msgid "Disable some traps:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1463
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1487
 msgid "Darkness disabled:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1475
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1499
 msgid "Exit floor when defeating all enemies:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1599
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1623
 msgid "Apply new size"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1617
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1641
 msgid "PLEASE NOTE: \n"
 "The game is hardcoded to check for stairs or warp zones on fixed rooms with ID >= 110.\n"
 "For rooms with ID >= 165 the game tries to place them as a room in a normal floor layout.\n"
 "If the game fails to generate a floor, it will fall back to a one-room monster house."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1660
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1684
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4326
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4591
 #: skytemple/skytemple/module/monster/controller/monster.glade:3478
 msgid "Settings"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:84
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:85
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:89
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:90
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:60
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:67
-#: skytemple/skytemple/module/dungeon/fixed_room_drawer.py:372
+#: skytemple/skytemple/module/dungeon/fixed_room_drawer.py:388
 #: skytemple/skytemple/module/dungeon/module.py:755
 msgid "(Special?)"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:354
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:381
 msgid "Width and height must be numbers >= 0."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:355
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:382
 msgid "Invalid values."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:366
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:393
 msgid "You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:378
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:405
 msgid "If not set, the track ID specified on the floor this fixed floor is assigned to will be used instead."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:382
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:409
 msgid "Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled)"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:387
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:414
 msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:390
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:417
 msgid "If enabled, the floor is exited after all the enemies have been defeated"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:393
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:420
 msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:396
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:423
 msgid "Prevents any kind of item pulling (such as with the Trawl Orb).\n"
 "If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:400
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:427
 msgid "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
 "This is used in dungeons where the content of a fixed floor varies depending on the story progress, such as in most of the dungeons with a legendary Pokémon at the end (first visit vs rematch)."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:418
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:445
 #, python-brace-format
 msgid "Background {i}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:420
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:447
 #, python-brace-format
 msgid "Tileset {i}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:425
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:452
 msgid "No override"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:427
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:454
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1591
 #, python-brace-format
 msgid "No. {i}"
