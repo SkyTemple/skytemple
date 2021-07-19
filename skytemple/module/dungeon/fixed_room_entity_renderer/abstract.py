@@ -15,27 +15,19 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from abc import ABC, abstractmethod
-from typing import Optional, List
+from typing import TYPE_CHECKING
 
 import cairo
 
-from skytemple_files.graphics.dma.model import DmaType
-from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
-from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
+from skytemple_files.dungeon_data.fixed_bin.model import FixedFloorActionRule
+if TYPE_CHECKING:
+    from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer
 
 
-class AbstractTilesetRenderer(ABC):
-    @abstractmethod
-    def get_background(self) -> Optional[cairo.Surface]:
-        """Returns the background as a surface"""
-
-    @abstractmethod
-    def get_dungeon(self, rules: List[List[DmaType]]) -> cairo.Surface:
-        """Returns the rendered dungeon tiles for the rules."""
+class AbstractEntityRenderer(ABC):
+    def __init__(self, parent: 'FixedRoomDrawer'):
+        self.parent = parent
 
     @abstractmethod
-    def get_single_tile(self, tile: DmaType) -> cairo.Surface:
-        """Returns a single tile image (wall/water/floor)."""
-
-    def chunk_dim(self):
-        return DPC_TILING_DIM * DPCI_TILE_DIM
+    def draw_action(self, ctx: cairo.Context, action: FixedFloorActionRule, sx: int, sy: int):
+        pass
