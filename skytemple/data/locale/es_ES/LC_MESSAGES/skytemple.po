@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-07-19 18:54+0000\n"
-"PO-Revision-Date: 2021-07-20 07:08\n"
+"PO-Revision-Date: 2021-07-20 14:37\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -6505,7 +6505,9 @@ msgstr "Recargar autom."
 msgid "Internal Error occured while trying to render floor.\n"
 "The floor may or may not work in the game. If it doesn't\n"
 "the game uses a 1-room floorwide Monster House instead."
-msgstr ""
+msgstr "Se ha producido un error interno al intentar renderizar el piso.\n"
+"Es posible que no funcione en el juego. En ese caso,\n"
+"se utilizará un nido de monstruos de 1 habitación en su lugar."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3134
 msgid "The random floor generator failed generating the floor\n"
@@ -6796,15 +6798,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1015
 msgid "Warning: Some traps spawns may be invalid. Unused traps will been spawned instead."
-msgstr ""
+msgstr "Advertencia: Algunas trampas podrían ser inválidas. En su lugar, se generarán trampas no utilizadas."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1020
 msgid "Note: Floor uses a fixed room, the preview doesn't take this into account.\n"
-msgstr ""
+msgstr "Nota: El piso utiliza una sala fija. La vista previa no tiene esto en cuenta.\n"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1061
 msgid "This seed is used as the base to randomly generate the actual seeds used by the dungeon generation engine. Note that generated previews might not be 100% accurate."
-msgstr ""
+msgstr "Esta semilla se utiliza como base para generar aleatoriamente las semillas utilizadas por el motor de generación de territorios. Ten en cuenta que las vistas previas generadas podrían no ser 100% exactas."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1067
 msgid "Change the chances of Pokémon, traps or items spawning.\n"
