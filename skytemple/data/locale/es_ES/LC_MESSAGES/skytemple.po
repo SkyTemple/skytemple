@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-07-19 18:54+0000\n"
-"PO-Revision-Date: 2021-07-20 14:37\n"
+"PO-Revision-Date: 2021-07-20 15:33\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -6515,7 +6515,11 @@ msgid "The random floor generator failed generating the floor\n"
 "settings can not generate valid floors.\n"
 "If it doesn't the game uses a 1-room floorwide \n"
 "Monster House instead."
-msgstr ""
+msgstr "El generador de pisos aleatorios ha fallado tres veces seguidas\n"
+"Esto probablemente significa que la configuración actual de\n"
+"no puede generar pisos válidos.\n"
+"Si no es así, el juego utilizará un nido de monstruos de 1\n"
+"habitación en su lugar."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3245
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3492
@@ -6790,15 +6794,15 @@ msgstr "No se puede añadir el objeto."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:976
 msgid "Warning: Some Pokémon spawns may be invalid. Kecleons will been spawned instead."
-msgstr ""
+msgstr "Advertencia: Algunos Pokémon podrían ser inválidos. En su lugar, se generarán Kecleons."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1003
 msgid "Warning: Some Item spawns may be invalid. Poké will been spawned instead."
-msgstr ""
+msgstr "Advertencia: Algunos objetos podrían ser inválidos. En su lugar, se generarán Pokés."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1015
 msgid "Warning: Some traps spawns may be invalid. Unused traps will been spawned instead."
-msgstr "Advertencia: Algunas trampas podrían ser inválidas. En su lugar, se generarán trampas no utilizadas."
+msgstr "Advertencia: Algunas trampas podrían ser inválidas. En su lugar, se generarán trampas sin usar."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1020
 msgid "Note: Floor uses a fixed room, the preview doesn't take this into account.\n"
