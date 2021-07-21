@@ -200,9 +200,11 @@ class DungeonGraphicsModule(AbstractModule):
 
     def mark_icons_as_modified(self, img_type, img_model):
         if img_type == ImgType.ITM:
-            self.dungeon_bin_context.set(ITEM_ICON_FILE, img_model)
+            with self.dungeon_bin_context as dungeon_bin:
+                dungeon_bin.set(ITEM_ICON_FILE, img_model)
         elif img_type == ImgType.TRP:
-            self.dungeon_bin_context.set(TRAP_ICON_FILE, img_model)
+            with self.dungeon_bin_context as dungeon_bin:
+                dungeon_bin.set(TRAP_ICON_FILE, img_model)
         else:
             raise ValueError("Invalid item type")
         self.project.mark_as_modified(DUNGEON_BIN)
