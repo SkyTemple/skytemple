@@ -20,6 +20,38 @@
   -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
+  <object class="GtkEntryCompletion" id="completion_monsters">
+    <property name="model">store_completion_monsters</property>
+    <property name="text-column">0</property>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+  <object class="GtkListStore" id="store_completion_monsters">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="store_completion_moves">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_moves">
+    <property name="model">store_completion_moves</property>
+    <property name="text-column">0</property>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
   <object class="GtkListStore" id="store_tree_extra_dungeon_data">
     <columns>
       <!-- column-name id -->
@@ -178,7 +210,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-top">20</property>
-                    <property name="label" translatable="yes">Dungeon guest pokémon</property>
+                    <property name="label" translatable="yes">Dungeon Guest Pokémon</property>
                     <style>
                       <class name="skytemple-view-main-label"/>
                     </style>
@@ -194,7 +226,8 @@ If you already have applied it, apply it again to be sure to use the last versio
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-top">5</property>
-                    <property name="label" translatable="yes">From this menu you can change which dungeons add additional guest pokémon to your party when they are uncleared. You can also set some additional restrictions and edit guest pokémon data.</property>
+                    <property name="label" translatable="yes">From this menu you can change which dungeons add additional guest pokémon to your party when they are &lt;b&gt;uncleared&lt;/b&gt;. You can also set some additional restrictions and edit guest pokémon data.</property>
+                    <property name="use-markup">True</property>
                     <property name="justify">center</property>
                     <property name="wrap">True</property>
                   </object>
@@ -250,6 +283,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                                 <property name="height-request">200</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
+                                <property name="halign">start</property>
                                 <property name="hscrollbar-policy">never</property>
                                 <property name="shadow-type">in</property>
                                 <child>
@@ -257,8 +291,6 @@ If you already have applied it, apply it again to be sure to use the last versio
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="margin-top">5</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="vexpand">True</property>
                                     <property name="model">store_tree_extra_dungeon_data</property>
                                     <property name="search-column">0</property>
                                     <child internal-child="selection">
@@ -280,6 +312,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                                         <property name="title" translatable="yes">Guest pokémon 1</property>
                                         <child>
                                           <object class="GtkCellRendererText" id="cr_extra_dungeon_data_guest_pokemon_1">
+                                            <property name="editable">True</property>
                                             <signal name="edited" handler="on_extra_dungeon_data_guest_pokemon_1_edited" swapped="no"/>
                                           </object>
                                           <attributes>
@@ -292,7 +325,10 @@ If you already have applied it, apply it again to be sure to use the last versio
                                       <object class="GtkTreeViewColumn">
                                         <property name="title" translatable="yes">Guest pokémon 2</property>
                                         <child>
-                                          <object class="GtkCellRendererText" id="cr_extra_dungeon_data_guest_pokemon_2"/>
+                                          <object class="GtkCellRendererText" id="cr_extra_dungeon_data_guest_pokemon_2">
+                                            <property name="editable">True</property>
+                                            <signal name="edited" handler="on_extra_dungeon_data_guest_pokemon_2_edited" swapped="no"/>
+                                          </object>
                                           <attributes>
                                             <attribute name="text">2</attribute>
                                           </attributes>
@@ -303,9 +339,10 @@ If you already have applied it, apply it again to be sure to use the last versio
                                       <object class="GtkTreeViewColumn">
                                         <property name="title" translatable="yes">HLR (uncleared)</property>
                                         <child>
-                                          <object class="GtkCellRendererToggle" id="cr_extra_dungeon_data_hlr_uncleared"/>
+                                          <object class="GtkCellRendererToggle" id="cr_extra_dungeon_data_hlr_uncleared">
+                                            <signal name="toggled" handler="on_extra_dungeon_data_hlr_uncleared_toggled" swapped="no"/>
+                                          </object>
                                           <attributes>
-                                            <attribute name="activatable">3</attribute>
                                             <attribute name="active">3</attribute>
                                           </attributes>
                                         </child>
@@ -315,9 +352,10 @@ If you already have applied it, apply it again to be sure to use the last versio
                                       <object class="GtkTreeViewColumn">
                                         <property name="title" translatable="yes">Disable recruiting</property>
                                         <child>
-                                          <object class="GtkCellRendererToggle" id="cr_extra_dungeon_data_disable_recruiting"/>
+                                          <object class="GtkCellRendererToggle" id="cr_extra_dungeon_data_disable_recruiting">
+                                            <signal name="toggled" handler="on_extra_dungeon_data_disable_recruiting_toggled" swapped="no"/>
+                                          </object>
                                           <attributes>
-                                            <attribute name="activatable">4</attribute>
                                             <attribute name="active">4</attribute>
                                           </attributes>
                                         </child>
@@ -327,9 +365,10 @@ If you already have applied it, apply it again to be sure to use the last versio
                                       <object class="GtkTreeViewColumn">
                                         <property name="title" translatable="yes">SIDE01 check</property>
                                         <child>
-                                          <object class="GtkCellRendererToggle" id="cr_extra_dungeon_data_side01_check"/>
+                                          <object class="GtkCellRendererToggle" id="cr_extra_dungeon_data_side01_check">
+                                            <signal name="toggled" handler="on_extra_dungeon_data_side01_check_toggled" swapped="no"/>
+                                          </object>
                                           <attributes>
-                                            <attribute name="activatable">5</attribute>
                                             <attribute name="active">5</attribute>
                                           </attributes>
                                         </child>
@@ -339,9 +378,10 @@ If you already have applied it, apply it again to be sure to use the last versio
                                       <object class="GtkTreeViewColumn">
                                         <property name="title" translatable="yes">HLR (cleared)</property>
                                         <child>
-                                          <object class="GtkCellRendererToggle" id="cr_extra_dungeon_data_hlr_cleared"/>
+                                          <object class="GtkCellRendererToggle" id="cr_extra_dungeon_data_hlr_cleared">
+                                            <signal name="toggled" handler="on_extra_dungeon_data_hlr_cleared_toggled" swapped="no"/>
+                                          </object>
                                           <attributes>
-                                            <attribute name="activatable">6</attribute>
                                             <attribute name="active">6</attribute>
                                           </attributes>
                                         </child>
@@ -421,6 +461,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                                           <object class="GtkCellRendererText" id="cr_guest_pokemon_poke_id">
                                             <property name="editable">True</property>
                                             <signal name="edited" handler="on_guest_pokemon_poke_id_edited" swapped="no"/>
+                                            <signal name="editing-started" handler="on_guest_pokemon_poke_id_editing_started" swapped="no"/>
                                           </object>
                                           <attributes>
                                             <attribute name="text">2</attribute>
@@ -430,11 +471,11 @@ If you already have applied it, apply it again to be sure to use the last versio
                                     </child>
                                     <child>
                                       <object class="GtkTreeViewColumn">
-                                        <property name="title" translatable="yes">Unk 2</property>
+                                        <property name="title" translatable="yes">Joined at</property>
                                         <child>
-                                          <object class="GtkCellRendererText" id="cr_guest_pokemon_unk2">
+                                          <object class="GtkCellRendererText" id="cr_guest_pokemon_joined_at">
                                             <property name="editable">True</property>
-                                            <signal name="edited" handler="on_guest_pokemon_unk2_edited" swapped="no"/>
+                                            <signal name="edited" handler="on_guest_pokemon_joined_at_edited" swapped="no"/>
                                           </object>
                                           <attributes>
                                             <attribute name="text">3</attribute>
@@ -449,6 +490,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                                           <object class="GtkCellRendererText" id="cr_guest_pokemon_move1">
                                             <property name="editable">True</property>
                                             <signal name="edited" handler="on_guest_pokemon_move1_edited" swapped="no"/>
+                                            <signal name="editing-started" handler="on_guest_pokemon_move_editing_started" swapped="no"/>
                                           </object>
                                           <attributes>
                                             <attribute name="text">4</attribute>
@@ -463,6 +505,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                                           <object class="GtkCellRendererText" id="cr_guest_pokemon_move2">
                                             <property name="editable">True</property>
                                             <signal name="edited" handler="on_guest_pokemon_move2_edited" swapped="no"/>
+                                            <signal name="editing-started" handler="on_guest_pokemon_move_editing_started" swapped="no"/>
                                           </object>
                                           <attributes>
                                             <attribute name="text">5</attribute>
@@ -477,6 +520,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                                           <object class="GtkCellRendererText" id="cr_guest_pokemon_move3">
                                             <property name="editable">True</property>
                                             <signal name="edited" handler="on_guest_pokemon_move3_edited" swapped="no"/>
+                                            <signal name="editing-started" handler="on_guest_pokemon_move_editing_started" swapped="no"/>
                                           </object>
                                           <attributes>
                                             <attribute name="text">6</attribute>
@@ -491,6 +535,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                                           <object class="GtkCellRendererText" id="cr_guest_pokemon_move4">
                                             <property name="editable">True</property>
                                             <signal name="edited" handler="on_guest_pokemon_move4_edited" swapped="no"/>
+                                            <signal name="editing-started" handler="on_guest_pokemon_move_editing_started" swapped="no"/>
                                           </object>
                                           <attributes>
                                             <attribute name="text">7</attribute>
@@ -713,7 +758,7 @@ If you already have applied it, apply it again to be sure to use the last versio
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Guest pokémon</property>
+                            <property name="label" translatable="yes">Guest Pokémon</property>
                           </object>
                           <packing>
                             <property name="position">1</property>

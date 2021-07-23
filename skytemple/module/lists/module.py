@@ -33,8 +33,11 @@ from skytemple.module.lists.controller.starters_list import StartersListControll
 from skytemple.module.lists.controller.recruitment_list import RecruitmentListController
 from skytemple.module.lists.controller.world_map import WorldMapController
 from skytemple.module.lists.controller.sp_effects import SPEffectsController
+from skytemple.module.monster.module import WAZA_P_BIN
+from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.data_cd.handler import DataCDHandler
 from skytemple_files.data.md.model import Md
+from skytemple_files.data.waza_p.model import WazaP
 from skytemple_files.hardcoded.dungeon_music import HardcodedDungeonMusic, DungeonMusicEntry
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement, HardcodedDungeons
 from skytemple_files.hardcoded.guest_pokemon import ExtraDungeonDataList, ExtraDungeonDataEntry, GuestPokemon, \
@@ -75,6 +78,8 @@ class ListsModule(AbstractModule):
         self._misc_settings_tree_iter = None
         self._guest_pokemon_root_iter = None
 
+        self.waza_p_bin: WazaP = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
+
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
             'skytemple-view-list-symbolic', GROUND_LISTS, self, MainController, 0, False, '', True
@@ -107,7 +112,7 @@ class ListsModule(AbstractModule):
             'skytemple-view-list-symbolic', _('Misc. Settings'), self, MiscSettingsController, 0, False, '', True
         ])
         self._guest_pokemon_root_iter = item_store.append(root, [
-            'skytemple-e-monster-symbolic', _('Guest pokémon'), self, GuestPokemonController, 0, False, '', True
+            'skytemple-e-monster-symbolic', _('Guest Pokémon'), self, GuestPokemonController, 0, False, '', True
         ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])
@@ -131,20 +136,20 @@ class ListsModule(AbstractModule):
 
     def get_sp_effects(self):
         return self.project.open_file_in_rom(SP_EFFECTS, DataCDHandler)
-    
+
     def mark_sp_effects_as_modified(self):
         """Mark as modified"""
         self.project.mark_as_modified(SP_EFFECTS)
         # Mark as modified in tree
         row = self._tree_model[self._sp_effects_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
-    
+
     def has_actor_list(self):
         return self.project.file_exists(ACTOR_LIST)
 
     def get_actor_list(self) -> ActorListBin:
         return self.project.open_sir0_file_in_rom(ACTOR_LIST, ActorListBin)
-    
+
     def mark_actors_as_modified(self):
         """Mark as modified"""
         self.project.mark_as_modified(ACTOR_LIST)
@@ -168,6 +173,9 @@ class ListsModule(AbstractModule):
 
     def get_monster_md(self) -> Md:
         return self.project.get_module('monster').monster_md
+
+    def get_waza_p(self) -> WazaP:
+        return self.waza_p_bin
 
     def get_starter_default_ids(self) -> Tuple[int, int]:
         """Returns players & partner default starters"""
