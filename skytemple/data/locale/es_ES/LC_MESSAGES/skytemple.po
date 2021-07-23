@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-07-23 08:54+0000\n"
-"PO-Revision-Date: 2021-07-23 09:14\n"
+"POT-Creation-Date: 2021-07-23 21:27+0000\n"
+"PO-Revision-Date: 2021-07-23 21:35\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2209,6 +2209,7 @@ msgstr "No es una forma evolucionada."
 #: skytemple-files/skytemple_files/data/md/model.py:290
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1074
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3231
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:562
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:120
 #: skytemple/skytemple/module/monster/controller/level_up.glade:215
 #: skytemple/skytemple/module/monster/controller/level_up.glade:416
@@ -2218,6 +2219,7 @@ msgid "Level"
 msgstr "Nivel"
 
 #: skytemple-files/skytemple_files/data/md/model.py:291
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:576
 msgid "IQ"
 msgstr "CI"
 
@@ -3926,6 +3928,8 @@ msgstr "Suspensión"
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:171
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:132
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:187
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:301
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:434
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:86
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:199
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:440
@@ -3993,7 +3997,7 @@ msgid "<Global>"
 msgstr "<Global>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
-#: skytemple/skytemple/module/lists/module.py:81
+#: skytemple/skytemple/module/lists/module.py:90
 #: skytemple/skytemple/module/script/controller/ssa.glade:1302
 #: skytemple/skytemple/module/script/controller/ssa.glade:1330
 msgid "Actors"
@@ -4868,6 +4872,7 @@ msgstr "Emulador"
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:212
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:105
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:142
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:798
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:125
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:159
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:631
@@ -5792,6 +5797,7 @@ msgstr "Añadir nueva entidad"
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:250
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:429
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:451
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:189
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:803
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:199
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:796
@@ -6148,6 +6154,7 @@ msgstr "Ir a las estadísticas"
 
 #. TRANSLATORS: Experience
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1088
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:548
 #: skytemple/skytemple/module/monster/level_up_graph.py:88
 msgid "HP"
 msgstr "PS"
@@ -6157,18 +6164,22 @@ msgid "Exp. Yield"
 msgstr "Puntos de exp."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1116
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:590
 msgid "Atk."
 msgstr "Atq."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1130
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:604
 msgid "Sp. Atk."
 msgstr "At. Esp."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1144
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:618
 msgid "Def."
 msgstr "Def."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1158
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:632
 msgid "Sp. Def."
 msgstr "Def. Esp."
 
@@ -6919,6 +6930,7 @@ msgstr "Ir a \"Territorios\""
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:53
 #: skytemple/skytemple/module/dungeon/controller/main.py:39
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:405
 msgid "Dungeons"
 msgstr "Territorios"
 
@@ -7922,6 +7934,7 @@ msgstr "<No disponible>\n\n"
 "desde el menú Parches ASM."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:646
 #: skytemple/skytemple/module/script/controller/ssa.py:1216
 msgid "Unk3"
 msgstr "Desc. 3"
@@ -7950,7 +7963,7 @@ msgstr "No implementado."
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:89
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:166
-#: skytemple/skytemple/module/lists/module.py:102
+#: skytemple/skytemple/module/lists/module.py:111
 msgid "Dungeon Interruptions"
 msgstr ""
 
@@ -8001,7 +8014,7 @@ msgid "Here you can edit dungeon interruptions. \n"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:80
-#: skytemple/skytemple/module/lists/module.py:105
+#: skytemple/skytemple/module/lists/module.py:114
 msgid "Dungeon Music"
 msgstr "Música del territorio"
 
@@ -8041,6 +8054,103 @@ msgstr "Música aleatoria"
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:122
 msgid "Invalid? (#999)"
 msgstr "¿Inválido? (#999)"
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:135
+msgid "Guest pokémon"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:151
+msgid "Edits which dungeons add guest pokémon to your party, as well as some additional dungeon restrictions."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:164
+msgid "<Not available>\n\n"
+"To view and edit guest pokémon data, please apply the \"EditExtraPokemon\" \n"
+"ASM patch from the \"ASM Patches\" menu.\n"
+"If you already have applied it, apply it again to be sure to use the last version. "
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:213
+msgid "Dungeon Guest Pokémon"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:229
+msgid "From this menu you can change which dungeons add additional guest pokémon to your party when they are <b>uncleared</b>. You can also set some additional restrictions and edit guest pokémon data."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:312
+msgid "Guest pokémon 1"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:326
+msgid "Guest pokémon 2"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:340
+msgid "HLR (uncleared)"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:353
+msgid "Disable recruiting"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:366
+msgid "SIDE01 check"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:379
+msgid "HLR (cleared)"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:445
+msgid "Unk 1"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:459
+msgid "Pokémon ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:474
+msgid "Joined at"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:488
+msgid "Move 1"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:503
+msgid "Move 2"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:518
+msgid "Move 3"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:533
+msgid "Move 4"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:660
+msgid "Exp"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:735
+msgid "Free entries left: XX"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:761
+#: skytemple/skytemple/module/lists/module.py:120
+msgid "Guest Pokémon"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.py:75
+msgid "Guest pokémon IDs refer to the entries in the guest pokémon tab. A value of -1 represents an empty entry (no guest pokémon).\n"
+"- HLR (uncleared): Whether Hidden Land restrictions should be active when the dungeon is uncleared.\n"
+"Hidden Land restrictions prevent sending pokémon home or changing leaders. In addition, if a team member faints you will get kicked out of the dungeon.\n"
+"- Disable recruiting: Only applies when the dungeon is uncleared. If enabled, recruiting will be disabled. This flag overrides the \"recruiting enabled\" flag in the dungeon restrictions.\n"
+"- SIDE01 check: If enabled, guest pokémon will only be added to the team if the ground variable SIDE01_BOSS2ND is 0.\n"
+"- HLR (cleared): Whether Hidden Land restrictions should be active when the dungeon has been cleared."
+msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/main.py:23
 msgid "Lists"
@@ -8104,7 +8214,7 @@ msgstr "Los menús están codificados, por lo que no puedes añadir ninguna opci
 " - Si se edita una cadena con un ID específico, se cambiarán todas las cadenas que utilicen ese ID."
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:34
-#: skytemple/skytemple/module/lists/module.py:108
+#: skytemple/skytemple/module/lists/module.py:117
 msgid "Misc. Settings"
 msgstr "Otros ajustes"
 
@@ -8209,7 +8319,7 @@ msgid "Sitrus Berry HP heal amount:"
 msgstr "Cantidad de PS de curación de Baya Zidra:"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
-#: skytemple/skytemple/module/lists/module.py:93
+#: skytemple/skytemple/module/lists/module.py:102
 msgid "Rank List"
 msgstr "Lista de rangos"
 
@@ -8226,7 +8336,7 @@ msgid "Item Reward"
 msgstr "Objetos de recompensa"
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
-#: skytemple/skytemple/module/lists/module.py:87
+#: skytemple/skytemple/module/lists/module.py:96
 msgid "Recruitment List"
 msgstr "Lista de reclutamiento"
 
@@ -8257,7 +8367,7 @@ msgstr "Para añadirlos al equipo de inmediato:\n"
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:149
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:296
-#: skytemple/skytemple/module/lists/module.py:99
+#: skytemple/skytemple/module/lists/module.py:108
 msgid "Special Process Effects"
 msgstr "Efectos de procesos especiales"
 
@@ -8544,7 +8654,7 @@ msgstr "Por favor, no selecciones un marcador que haga referencia a otro marcado
 "El comportamiento para esto no está definido."
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
-#: skytemple/skytemple/module/lists/module.py:90
+#: skytemple/skytemple/module/lists/module.py:99
 msgid "World Map Markers"
 msgstr "Marcadores del mapa del mundo"
 
@@ -8591,11 +8701,11 @@ msgstr "Debes seleccionar un mapa."
 msgid "You need to select a reference."
 msgstr "Necesitas seleccionar una referencia."
 
-#: skytemple/skytemple/module/lists/module.py:84
+#: skytemple/skytemple/module/lists/module.py:93
 msgid "Starters"
 msgstr "Iniciales"
 
-#: skytemple/skytemple/module/lists/module.py:96
+#: skytemple/skytemple/module/lists/module.py:105
 msgid "Menu List"
 msgstr "Listas de menú"
 
