@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-07-19 18:54+0000\n"
-"PO-Revision-Date: 2021-07-19 19:42\n"
+"POT-Creation-Date: 2021-07-23 08:54+0000\n"
+"PO-Revision-Date: 2021-07-23 09:14\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -1489,6 +1489,30 @@ msgstr ""
 msgid "To delete this effect, no items must use it."
 msgstr "Pour supprimer cet effet, aucun objet ne doit l'utiliser."
 
+#: skytemple-files/skytemple_files/data/inter_d/model.py:25
+msgid "Always"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/inter_d/model.py:26
+msgid "Flag Not Set"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/inter_d/model.py:27
+msgid "Flag Set"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/inter_d/model.py:28
+msgid "Scenario Equals"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/inter_d/model.py:29
+msgid "Scenario Below or Equal"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/inter_d/model.py:30
+msgid "Scenario Greater or Equal"
+msgstr ""
+
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:29
 #: skytemple-files/skytemple_files/data/md/model.py:63
 #: skytemple-files/skytemple_files/data/md/model.py:316
@@ -1529,6 +1553,7 @@ msgstr "Pokémon"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2267
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:930
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:200
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:309
 #: skytemple/skytemple/module/script/controller/main.glade:353
 #: skytemple/skytemple/module/script/controller/ssa.glade:2078
 #: skytemple/skytemple/module/script/controller/ssa.py:1272
@@ -2495,6 +2520,7 @@ msgstr "Ligne doite"
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1154
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5178
 #: skytemple/skytemple/module/dungeon/module.py:742
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:295
 msgid "Floor"
 msgstr "Étage"
 
@@ -3504,6 +3530,10 @@ msgstr "Appuyer sur Start dans un donjon permet de basculer entre le mode automa
 msgid "Disables the tip textboxes shown in dungeons at the beginning of the game."
 msgstr "Désactive les boîtes de dialogue d'aide affichées en donjon au début du jeu."
 
+#: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:43
+msgid "Implements dungeon interruptions. "
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/edit_extra_pokemon.py:40
 msgid "Changes the way the game determines when to add additional pokémon to the team so it can be edited more easily"
 msgstr ""
@@ -3634,72 +3664,72 @@ msgstr "Fournit le support pour les conteneurs ATUPX, qui utilisent un algorithm
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:132
-#: skytemple-files/skytemple_files/patch/patches.py:142
+#: skytemple-files/skytemple_files/patch/patches.py:134
+#: skytemple-files/skytemple_files/patch/patches.py:144
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "Le correctif « {name} » est introuvable."
 
-#: skytemple-files/skytemple_files/patch/patches.py:148
+#: skytemple-files/skytemple_files/patch/patches.py:150
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "Le correctif « {patch_name} » doit être appliqué avant d'appliquer le correctif « {name} »."
 
-#: skytemple-files/skytemple_files/patch/patches.py:151
+#: skytemple-files/skytemple_files/patch/patches.py:153
 #: skytemple/skytemple/module/patch/controller/main.py:225
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr "Le correctif « {patch_name} » doit être appliqué avant d'appliquer le correctif « {name} ». Ce correctif est introuvable."
 
-#: skytemple-files/skytemple_files/patch/patches.py:158
+#: skytemple-files/skytemple_files/patch/patches.py:160
 msgid "No configuration was given."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:161
+#: skytemple-files/skytemple_files/patch/patches.py:163
 msgid "Missing configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:165
 #: skytemple-files/skytemple_files/patch/patches.py:167
 #: skytemple-files/skytemple_files/patch/patches.py:169
-#: skytemple-files/skytemple_files/patch/patches.py:173
-#: skytemple-files/skytemple_files/patch/patches.py:183
+#: skytemple-files/skytemple_files/patch/patches.py:171
+#: skytemple-files/skytemple_files/patch/patches.py:175
+#: skytemple-files/skytemple_files/patch/patches.py:185
 msgid "Invalid configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:167
+#: skytemple-files/skytemple_files/patch/patches.py:169
 msgid "Must be >= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:169
+#: skytemple-files/skytemple_files/patch/patches.py:171
 msgid "Must be <= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:217
+#: skytemple-files/skytemple_files/patch/patches.py:219
 msgid "config.xml missing in patch package."
 msgstr "Fichier config.xml manquant dans le paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:219
+#: skytemple-files/skytemple_files/patch/patches.py:221
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "Erreur de syntaxe dans le fichier config.xml lors de la lecture du paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:229
+#: skytemple-files/skytemple_files/patch/patches.py:231
 msgid "patch.py missing in patch package."
 msgstr "Fichier patch.py manquant dans le paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:231
+#: skytemple-files/skytemple_files/patch/patches.py:233
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:236
+#: skytemple-files/skytemple_files/patch/patches.py:238
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "Le fichier patch.py du paquet de correctifs ne contient pas de gestionnaire de correctifs (« PatchHandler »)."
 
-#: skytemple-files/skytemple_files/patch/patches.py:241
+#: skytemple-files/skytemple_files/patch/patches.py:243
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "Le paquet de correctifs ne contient aucune entrée de configuration dans config.xml pour le nom du correctif géré par ce gestionnaire."
 
-#: skytemple-files/skytemple_files/patch/patches.py:247
+#: skytemple-files/skytemple_files/patch/patches.py:249
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "Aucun correctif trouvé dans la configuration pour le gestionnaire « {handler.name} »."
@@ -3946,7 +3976,7 @@ msgid "<Global>"
 msgstr "<Global>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
-#: skytemple/skytemple/module/lists/module.py:79
+#: skytemple/skytemple/module/lists/module.py:81
 #: skytemple/skytemple/module/script/controller/ssa.glade:1302
 #: skytemple/skytemple/module/script/controller/ssa.glade:1330
 msgid "Actors"
@@ -4737,6 +4767,8 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2356
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:288
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:310
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:386
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:408
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:356
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:378
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:232
@@ -4812,6 +4844,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3037
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:212
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:105
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:142
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:125
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:159
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:631
@@ -5727,6 +5760,7 @@ msgstr "Ajouter une nouvelle entité"
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3107
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:250
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:429
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:451
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:803
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:199
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:796
@@ -7775,8 +7809,60 @@ msgstr ""
 msgid "Not implemented."
 msgstr ""
 
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:89
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:166
+#: skytemple/skytemple/module/lists/module.py:102
+msgid "Dungeon Interruptions"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:105
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:182
+msgid "Edits all dungeon interruptions defined in the game."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:118
+msgid "<Not available>\n\n"
+"To create dungeon interruption, please apply the \"DungeonInterrupt\"\n"
+"ASM patch from the \"ASM Patches\" menu."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:206
+msgid "Dungeon: "
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:268
+msgid "Interruptions: "
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:325
+msgid "Game Variable"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:341
+msgid "Param 1"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:355
+msgid "Param 2"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.py:133
+msgid "Here you can edit dungeon interruptions. \n"
+"Interruptions can occur when transitioning to next floor (e.g. for an interruption defined at floor 3 it will occur when going from floor 2 to 3). \n"
+"Script-side, it works exactly as if you finished the dungeon (call to common routines GETOUT_SCENARIO_DUNGEON or GETOUT_REQUEST_DUNGEON). \n"
+"Only one interruption is allowed per floor. \n"
+"One condition can be defined for each interruption. If not met, the game goes to the next floor as normal. \n"
+"Parameters function by check type: \n"
+" - Always: 0, 0\n"
+" - Flag Not Set: flag_id, 0\n"
+" - Flag Set: flag_id, 0\n"
+" - Scenario Equals: scenario, level\n"
+" - Scenario Below or Equal: scenario, level\n"
+" - Scenario Greater or Equal: scenario, level"
+msgstr ""
+
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:80
-#: skytemple/skytemple/module/lists/module.py:100
+#: skytemple/skytemple/module/lists/module.py:105
 msgid "Dungeon Music"
 msgstr ""
 
@@ -7879,7 +7965,7 @@ msgstr "Les menus sont codés en dur, vous ne pouvez donc pas ajouter d'option, 
 " - La modification d'une chaîne avec un ID spécifique changera toutes les chaînes utilisant cet ID."
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:34
-#: skytemple/skytemple/module/lists/module.py:103
+#: skytemple/skytemple/module/lists/module.py:108
 msgid "Misc. Settings"
 msgstr ""
 
@@ -7978,7 +8064,7 @@ msgid "Sitrus Berry HP heal amount:"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
-#: skytemple/skytemple/module/lists/module.py:91
+#: skytemple/skytemple/module/lists/module.py:93
 msgid "Rank List"
 msgstr "Liste des rangs"
 
@@ -7995,7 +8081,7 @@ msgid "Item Reward"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
-#: skytemple/skytemple/module/lists/module.py:85
+#: skytemple/skytemple/module/lists/module.py:87
 msgid "Recruitment List"
 msgstr ""
 
@@ -8020,7 +8106,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:149
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:296
-#: skytemple/skytemple/module/lists/module.py:97
+#: skytemple/skytemple/module/lists/module.py:99
 msgid "Special Process Effects"
 msgstr ""
 
@@ -8301,7 +8387,7 @@ msgid "Please don't select a marker that already references another marker.\n"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
-#: skytemple/skytemple/module/lists/module.py:88
+#: skytemple/skytemple/module/lists/module.py:90
 msgid "World Map Markers"
 msgstr ""
 
@@ -8348,11 +8434,11 @@ msgstr "Vous devez sélectionner une carte."
 msgid "You need to select a reference."
 msgstr "Vous devez sélectionner une référence."
 
-#: skytemple/skytemple/module/lists/module.py:82
+#: skytemple/skytemple/module/lists/module.py:84
 msgid "Starters"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:94
+#: skytemple/skytemple/module/lists/module.py:96
 msgid "Menu List"
 msgstr ""
 
