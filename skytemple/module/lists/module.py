@@ -23,6 +23,7 @@ from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_MUSIC
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label
 from skytemple.module.lists.controller.dungeon_music import DungeonMusicController
+from skytemple.module.lists.controller.guest_pokemon import GuestPokemonController
 from skytemple.module.lists.controller.main import MainController, GROUND_LISTS
 from skytemple.module.lists.controller.actor_list import ActorListController
 from skytemple.module.lists.controller.misc_settings import MiscSettingsController
@@ -33,11 +34,16 @@ from skytemple.module.lists.controller.recruitment_list import RecruitmentListCo
 from skytemple.module.lists.controller.world_map import WorldMapController
 from skytemple.module.lists.controller.sp_effects import SPEffectsController
 from skytemple.module.lists.controller.dungeon_interrupt import DungeonInterruptController
+from skytemple.module.monster.module import WAZA_P_BIN
+from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.data_cd.handler import DataCDHandler
 from skytemple_files.data.inter_d.handler import InterDHandler
 from skytemple_files.data.md.model import Md
+from skytemple_files.data.waza_p.model import WazaP
 from skytemple_files.hardcoded.dungeon_music import HardcodedDungeonMusic, DungeonMusicEntry
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement, HardcodedDungeons
+from skytemple_files.hardcoded.guest_pokemon import ExtraDungeonDataList, ExtraDungeonDataEntry, GuestPokemon, \
+    GuestPokemonList
 from skytemple_files.hardcoded.personality_test_starters import HardcodedPersonalityTestStarters
 from skytemple_files.hardcoded.default_starters import HardcodedDefaultStarters
 from skytemple_files.hardcoded.rank_up_table import Rank, HardcodedRankUpTable
@@ -72,6 +78,9 @@ class ListsModule(AbstractModule):
         self._menu_list_tree_iter = None
         self._dungeon_music_tree_iter = None
         self._misc_settings_tree_iter = None
+        self._guest_pokemon_root_iter = None
+
+        self.waza_p_bin: WazaP = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
@@ -107,6 +116,9 @@ class ListsModule(AbstractModule):
         self._misc_settings_tree_iter = item_store.append(root, [
             'skytemple-view-list-symbolic', _('Misc. Settings'), self, MiscSettingsController, 0, False, '', True
         ])
+        self._guest_pokemon_root_iter = item_store.append(root, [
+            'skytemple-e-monster-symbolic', _('Guest Pokémon'), self, GuestPokemonController, 0, False, '', True
+        ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])
         generate_item_store_row_label(item_store[self._starters_tree_iter])
@@ -118,6 +130,7 @@ class ListsModule(AbstractModule):
         generate_item_store_row_label(item_store[self._dun_inter_tree_iter])
         generate_item_store_row_label(item_store[self._dungeon_music_tree_iter])
         generate_item_store_row_label(item_store[self._misc_settings_tree_iter])
+        generate_item_store_row_label(item_store[self._guest_pokemon_root_iter])
         self._tree_model = item_store
 
     def handle_request(self, request: OpenRequest) -> Optional[TreeIter]:
@@ -142,14 +155,14 @@ class ListsModule(AbstractModule):
 
     def get_dungeon_interrupts(self):
         return self.project.open_file_in_rom(DUNGEON_INTERRUPT, InterDHandler)
-    
+
     def mark_dungeon_interrupts_as_modified(self):
         """Mark as modified"""
         self.project.mark_as_modified(DUNGEON_INTERRUPT)
         # Mark as modified in tree
         row = self._tree_model[self._dun_inter_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
-    
+
     def has_actor_list(self):
         return self.project.file_exists(ACTOR_LIST)
 
@@ -162,6 +175,9 @@ class ListsModule(AbstractModule):
         # Mark as modified in tree
         row = self._tree_model[self._actor_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
+
+    def has_edit_extra_pokemon(self):
+        return self.project.is_patch_applied("EditExtraPokemon")
 
     def mark_str_as_modified(self):
         self.project.get_string_provider().mark_as_modified()
@@ -176,6 +192,9 @@ class ListsModule(AbstractModule):
 
     def get_monster_md(self) -> Md:
         return self.project.get_module('monster').monster_md
+
+    def get_waza_p(self) -> WazaP:
+        return self.waza_p_bin
 
     def get_starter_default_ids(self) -> Tuple[int, int]:
         """Returns players & partner default starters"""
@@ -331,4 +350,24 @@ class ListsModule(AbstractModule):
         self.project.modify_binary(BinaryName.OVERLAY_10, lambda ov10: HardcodedDungeonMusic.set_random_music_list(random, ov10, config))
 
         row = self._tree_model[self._dungeon_music_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+
+    def set_extra_dungeon_data(self, lst: List[ExtraDungeonDataEntry]):
+        """Updates the extra dungeon data list"""
+        def update(arm9):
+            static_data = self.project.get_rom_module().get_static_data()
+            ExtraDungeonDataList.write(lst, arm9, static_data)
+        self.project.modify_binary(BinaryName.ARM9, update)
+
+        row = self._tree_model[self._guest_pokemon_root_iter]
+        recursive_up_item_store_mark_as_modified(row)
+
+    def set_guest_pokemon_data(self, lst: List[GuestPokemon]):
+        """Updates the guest pokémon data list"""
+        def update(arm9):
+            static_data = self.project.get_rom_module().get_static_data()
+            GuestPokemonList.write(lst, arm9, static_data)
+        self.project.modify_binary(BinaryName.ARM9, update)
+
+        row = self._tree_model[self._guest_pokemon_root_iter]
         recursive_up_item_store_mark_as_modified(row)
