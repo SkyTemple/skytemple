@@ -424,6 +424,30 @@
                     <property name="homogeneous">False</property>
                   </packing>
                 </child>
+                <child>
+                  <object class="GtkSeparatorToolItem">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="homogeneous">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkToggleToolButton" id="tool_fullmap">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="tooltip-text" translatable="yes">Show full map instead of minimap</property>
+                    <property name="icon-name">skytemple-e-worldmap-symbolic</property>
+                    <property name="active">True</property>
+                    <signal name="toggled" handler="on_tool_fullmap_toggled" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="homogeneous">True</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>

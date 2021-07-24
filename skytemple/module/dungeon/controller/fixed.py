@@ -30,8 +30,12 @@ from skytemple.core.string_provider import StringType
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG, SPECIAL_MONSTERS
 from skytemple.module.dungeon.entity_rule_container import EntityRuleContainer
 from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer, InfoLayer, InteractionMode
+from skytemple.module.dungeon.fixed_room_entity_renderer.full_map import FullMapEntityRenderer
+from skytemple.module.dungeon.fixed_room_entity_renderer.minimap import MinimapEntityRenderer
 from skytemple.module.dungeon.fixed_room_tileset_renderer.bg import FixedFloorDrawerBackground
+from skytemple.module.dungeon.fixed_room_tileset_renderer.minimap import FixedFloorDrawerMinimap
 from skytemple.module.dungeon.fixed_room_tileset_renderer.tileset import FixedFloorDrawerTileset
+from skytemple.module.dungeon.minimap_provider import MinimapProvider
 from skytemple_files.data.md.model import MdProperties
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRuleType, TileRule, EntityRule
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
@@ -45,6 +49,7 @@ if TYPE_CHECKING:
 
 class FixedController(AbstractController):
     _last_scale_factor = None
+    _last_show_full_map = True
 
     def __init__(self, module: 'DungeonModule', item_id: int):
         self.floor_id = item_id
@@ -103,7 +108,9 @@ class FixedController(AbstractController):
         self._init_fixed_floor()
         self._load_settings()
         self._init_drawer()
-        self._init_tileset()
+        tool_fullmap = self.builder.get_object('tool_fullmap')
+        tool_fullmap.set_active(self._last_show_full_map)
+        self.on_tool_fullmap_toggled(tool_fullmap, ignore_scaling=True)
         self._update_scales()
 
         self.builder.connect_signals(self)
@@ -243,7 +250,7 @@ class FixedController(AbstractController):
     def on_tool_choose_tileset_cb_changed(self, w: Gtk.ComboBox):
         idx = w.get_active()
         self.tileset_id = idx
-        self._init_tileset()
+        self.on_tool_fullmap_toggled(self.builder.get_object('tool_fullmap'), ignore_scaling=True)
 
     def on_tool_scene_copy_toggled(self, *args):
         self._enable_copy_or_move_mode()
@@ -294,11 +301,31 @@ class FixedController(AbstractController):
 
     def on_tool_scene_zoom_in_clicked(self, *args):
         self._scale_factor *= 2
+        self.__class__._last_scale_factor = self._scale_factor
         self._update_scales()
 
     def on_tool_scene_zoom_out_clicked(self, *args):
         self._scale_factor /= 2
+        self.__class__._last_scale_factor = self._scale_factor
         self._update_scales()
+
+    def on_tool_fullmap_toggled(self, w: Gtk.ToggleToolButton, *args, ignore_scaling=False):
+        self.__class__._last_show_full_map = w.get_active()
+        if w.get_active():
+            if not ignore_scaling:
+                self._scale_factor /= 10
+                self.__class__._last_scale_factor = self._scale_factor
+            self.drawer.set_entity_renderer(FullMapEntityRenderer(self.drawer))
+            self._init_tileset()
+        else:
+            if not ignore_scaling:
+                self._scale_factor *= 10
+                self.__class__._last_scale_factor = self._scale_factor
+            minimap_provider = MinimapProvider(self.module.get_zmappa())
+            self.drawer.set_entity_renderer(MinimapEntityRenderer(self.drawer, minimap_provider))
+            self.drawer.set_tileset_renderer(FixedFloorDrawerMinimap(minimap_provider))
+        self._update_scales()
+        self._draw.queue_draw()
 
     # EDIT SETTINGS
 
@@ -511,8 +538,6 @@ class FixedController(AbstractController):
     def _init_fixed_floor(self):
         # Fixed floor data
         self.floor = self.module.get_fixed_floor(self.floor_id)
-        # TODO: Settings
-        # TODO: Overrides
 
     def _init_tileset(self):
         if self.tileset_id < TILESET_FIRST_BG:
@@ -524,7 +549,6 @@ class FixedController(AbstractController):
                 *self.module.get_dungeon_background(self.tileset_id - TILESET_FIRST_BG),
                 *self.module.get_dummy_tileset())
             )
-        self._draw.queue_draw()
 
     def _init_drawer(self):
         self.drawer = FixedRoomDrawer(self._draw, self.floor, self.module.project.get_sprite_provider(),
@@ -536,8 +560,8 @@ class FixedController(AbstractController):
 
     def _update_scales(self):
         self._draw.set_size_request(
-            (self.floor.width + 10) * DPCI_TILE_DIM * DPC_TILING_DIM * self._scale_factor,
-            (self.floor.height + 10) * DPCI_TILE_DIM * DPC_TILING_DIM * self._scale_factor
+            (self.floor.width + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor,
+            (self.floor.height + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor
         )
         if self.drawer:
             self.drawer.set_scale(self._scale_factor)

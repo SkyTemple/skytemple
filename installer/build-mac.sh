@@ -49,6 +49,7 @@ cat > $appdir/pre_run_skytemple << EOF
 
 # Fix paths
 export LD_LIBRARY_PATH="\$(dirname \$0)"
+export PYENCHANT_LIBRARY_PATH="\$(dirname \$0)/libenchant-2.dylib"
 export PATH="\$PATH:\$(dirname \$0)/skytemple_files/_resources"
 
 # Fix the language 🥲

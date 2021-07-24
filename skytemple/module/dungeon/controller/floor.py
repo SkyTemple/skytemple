@@ -14,8 +14,11 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import logging
+import random
 import re
 import sys
+import traceback
 from enum import Enum
 from functools import partial, reduce
 from itertools import zip_longest
@@ -36,12 +39,22 @@ from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import add_dialog_xml_filter, glib_async
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG
 from skytemple.module.dungeon.controller.dojos import DOJOS_NAME
+from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer
+from skytemple.module.dungeon.fixed_room_entity_renderer.full_map import FullMapEntityRenderer
+from skytemple.module.dungeon.fixed_room_entity_renderer.minimap import MinimapEntityRenderer
+from skytemple.module.dungeon.fixed_room_tileset_renderer.bg import FixedFloorDrawerBackground
+from skytemple.module.dungeon.fixed_room_tileset_renderer.minimap import FixedFloorDrawerMinimap
+from skytemple.module.dungeon.fixed_room_tileset_renderer.tileset import FixedFloorDrawerTileset
+from skytemple.module.dungeon.minimap_provider import MinimapProvider
+from skytemple_files.common.dungeon_floor_generator.generator import DungeonFloorGenerator, SIZE_X, SIZE_Y, Tile, \
+    TileType, RandomGenProperties, RoomType
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem, Pmd2DungeonItemCategory
 from skytemple_files.common.xml_util import prettify
+from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, DirectRule
 from skytemple_files.dungeon_data.mappa_bin.floor_layout import MappaFloorStructureType, MappaFloorSecondaryTerrainType, \
     MappaFloorDarknessLevel, MappaFloorWeather
 from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList, Probability, GUARANTEED, \
-    MAX_ITEM_ID
+    MAX_ITEM_ID, POKE_ID
 from skytemple_files.dungeon_data.mappa_bin.mappa_xml import mappa_floor_xml_export
 from skytemple_files.dungeon_data.mappa_bin.monster import DUMMY_MD_INDEX, MappaMonster
 from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType, MappaTrapList
@@ -63,6 +76,7 @@ PATTERN_MD_ENTRY = re.compile(r'.*\(#(\d+)\).*')
 CSS_HEADER_COLOR = 'dungeon_editor_column_header_invalid'
 POKE_CATEGORY_ID = 6
 LINKBOX_CATEGORY_ID = 10
+logger = logging.getLogger(__name__)
 
 
 class FloorEditItemList(Enum):
@@ -110,9 +124,12 @@ class FloorRanks(Enum):
     def print_name(self):
         return self._print_name_
 
+
 class FloorController(AbstractController):
     _last_open_tab_id = 0
     _last_open_tab_item_lists = FloorEditItemList.FLOOR
+    _last_scale_factor = None
+    _last_show_full_map = False
 
     def __init__(self, module: 'DungeonModule', item: 'FloorViewInfo'):
         self.module = module
@@ -120,10 +137,16 @@ class FloorController(AbstractController):
         self.entry = self.module.get_mappa_floor(item)
 
         self.builder = None
+        self._draw = None
         self._refresh_timer = None
         self._loading = False
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
+
+        if self.__class__._last_scale_factor is not None:
+            self._scale_factor = self.__class__._last_scale_factor
+        else:
+            self._scale_factor = 2
 
         self._item_list_edit_active = self.__class__._last_open_tab_item_lists
 
@@ -185,8 +208,15 @@ class FloorController(AbstractController):
         self._init_layout_values()
         self._loading = False
 
+        # Preview
+        self._draw = self.builder.get_object('fixed_draw')
+        self._init_drawer()
+        tool_fullmap = self.builder.get_object('tool_fullmap')
+        tool_fullmap.set_active(self._last_show_full_map)
+        self.on_tool_fullmap_toggled(tool_fullmap, ignore_scaling=True)
+        self._generate_floor()
+
         self.builder.connect_signals(self)
-        # TODO: Dungeon mini preview
 
         notebook: Gtk.Notebook = self.builder.get_object('floor_notebook')
         notebook.set_current_page(self.__class__._last_open_tab_id)
@@ -194,16 +224,14 @@ class FloorController(AbstractController):
         item_list_notebook: Gtk.Notebook = self.builder.get_object('item_list_notebook')
         item_list_notebook.set_current_page(self._item_list_edit_active.value)
 
-        self.builder.get_object('layout_grid').check_resize()
         return self.builder.get_object('box_editor')
 
     # <editor-fold desc="HANDLERS LAYOUT" defaultstate="collapsed">
 
     def on_floor_notebook_switch_page(self, notebook, page, page_num):
         self.__class__._last_open_tab_id = page_num
-
-    def on_btn_preview_clicked(self, *args):
-        pass  # todo
+        if page_num == 0:
+            self._generate_floor()
 
     def on_cb_floor_ranks_changed(self, w, *args):
         if self.module.has_floor_ranks():
@@ -866,6 +894,172 @@ class FloorController(AbstractController):
             model.remove(treeiter)
         self._recalculate_spawn_chances(Gtk.Buildable.get_name(tree.get_model()), 4, 3)
         self._save_item_spawn_rates()
+
+    # </editor-fold>
+
+    # <editor-fold desc="PREVIEW" defaultstate="collapsed">
+
+    def on_tool_scene_zoom_in_clicked(self, *args):
+        self._scale_factor *= 2
+        self.__class__._last_scale_factor = self._scale_factor
+        self._update_scales()
+
+    def on_tool_scene_zoom_out_clicked(self, *args):
+        self._scale_factor /= 2
+        self.__class__._last_scale_factor = self._scale_factor
+        self._update_scales()
+
+    def on_tool_scene_grid_toggled(self, w: Gtk.ToggleButton):
+        if self.drawer:
+            self.drawer.set_draw_tile_grid(w.get_active())
+
+    def on_tool_fullmap_toggled(self, w: Gtk.ToggleToolButton, *args, ignore_scaling=False):
+        self.__class__._last_show_full_map = w.get_active()
+        if w.get_active():
+            if not ignore_scaling:
+                self._scale_factor /= 10
+                self.__class__._last_scale_factor = self._scale_factor
+            self.drawer.set_entity_renderer(FullMapEntityRenderer(self.drawer))
+            self._init_tileset()
+        else:
+            if not ignore_scaling:
+                self._scale_factor *= 10
+                self.__class__._last_scale_factor = self._scale_factor
+            minimap_provider = MinimapProvider(self.module.get_zmappa())
+            self.drawer.set_entity_renderer(MinimapEntityRenderer(self.drawer, minimap_provider))
+            self.drawer.set_tileset_renderer(FixedFloorDrawerMinimap(minimap_provider))
+        self._update_scales()
+        self._draw.queue_draw()
+
+    def _init_drawer(self):
+        self.drawer = FixedRoomDrawer(self._draw, None, self.module.project.get_sprite_provider(),
+                                      None, self.module.project.get_string_provider(), self.module)
+        self.drawer.start()
+
+        self.drawer.set_draw_tile_grid(self.builder.get_object(f'tool_scene_grid').get_active())
+
+    def _generate_floor(self):
+        stack: Gtk.Stack = self.builder.get_object('preview_stack')
+        try:
+            try:
+                rng = random.Random(int(self.builder.get_object('tool_entry_seed').get_text()))
+            except ValueError:
+                rng = random.Random(hash(self.builder.get_object('tool_entry_seed').get_text()))
+
+            floor: List[Tile] = DungeonFloorGenerator(
+                unknown_dungeon_chance_patch_applied=self.module.project.is_patch_applied('UnusedDungeonChancePatch'),
+                gen_properties=RandomGenProperties.default(rng)
+            ).generate(self.entry.layout, max_retries=3, flat=True)
+            if floor is None:
+                stack.set_visible_child(self.builder.get_object('preview_error_infinite'))
+                return
+            stack.set_visible_child(self._draw)
+            item_cats = self.module.project.get_rom_module().get_static_data().dungeon_data.item_categories
+            actions = []
+            warnings = set()
+            open_guaranteed_floor = set(x.id for x, y in self.entry.floor_items.items.items() if y == GUARANTEED)
+            open_guaranteed_buried = set(x.id for x, y in self.entry.buried_items.items.items() if y == GUARANTEED)
+            for x in floor:
+                idx = None
+                if x.typ == TileType.PLAYER_SPAWN:
+                    idx = self._sprite_provider.get_standin_entities()[0]
+                if x.typ == TileType.ENEMY:
+                    ridx = rng.randrange(0, 10000)
+                    last = KECLEON_MD_INDEX  # fallback
+                    invalid = True
+                    for m in self.entry.monsters:
+                        if m.weight > ridx and m.weight != 0:
+                            last = m.md_index
+                            invalid = False
+                            break
+                    if invalid:
+                        warnings.add(_("Warning: Some Pokémon spawns may be invalid. Kecleons will been spawned instead."))
+                    idx = last
+                if x.typ == TileType.ITEM and len(open_guaranteed_floor) > 0:
+                    idx = open_guaranteed_floor.pop()
+                if x.typ == TileType.BURIED_ITEM and len(open_guaranteed_buried) > 0:
+                    idx = open_guaranteed_buried.pop()
+                if x.typ == TileType.ITEM or x.typ == TileType.BURIED_ITEM:
+                    ridx_cat = rng.randrange(0, 10000)
+                    ridx_itm = rng.randrange(0, 10000)
+                    last_cat = POKE_CATEGORY_ID  # fallback
+                    last_item = POKE_ID  # fallback
+                    invalid_cat = True
+                    invalid_itm = True
+                    item_list = self.entry.floor_items
+                    if x.typ == TileType.BURIED_ITEM:
+                        item_list = self.entry.buried_items
+                    for c, prop in item_list.categories.items():
+                        if prop > ridx_cat and prop != 0:
+                            last_cat = c.value
+                            invalid_cat = False
+                            break
+                    for itm, prop in item_list.items.items():
+                        if prop > ridx_itm and prop != GUARANTEED and prop != 0 and itm.id in item_cats[last_cat].item_ids():
+                            last_item = itm.id
+                            invalid_itm = False
+                            break
+                    if invalid_cat or invalid_itm:
+                        warnings.add(_("Warning: Some Item spawns may be invalid. Poké will been spawned instead."))
+                    idx = last_item
+                if x.typ == TileType.TRAP:
+                    ridx = rng.randrange(0, 10000)
+                    last = 0  # fallback
+                    invalid = True
+                    for trap, weight in self.entry.traps.weights.items():
+                        if weight > ridx and weight != 0:
+                            last = trap.value
+                            invalid = False
+                            break
+                    if invalid:
+                        warnings.add(_("Warning: Some traps spawns may be invalid. Unused traps will been spawned instead."))
+                    idx = last
+                actions.append(DirectRule(x, idx))
+            self.drawer.fixed_floor = FixedFloor.new(SIZE_Y, SIZE_X, actions)
+            if self.entry.layout.fixed_floor_id > 0:
+                self.builder.get_object('tool_label_info').set_text((_("Note: Floor uses a fixed room, the preview doesn't take this into account.\n") + '\n'.join(warnings)).strip('\n'))
+            else:
+                self.builder.get_object('tool_label_info').set_text('\n'.join(warnings))
+            self._update_scales()
+        except Exception as ex:
+            logger.error('Preview loading error', exc_info=ex)
+            tb: Gtk.TextBuffer = self.builder.get_object('preview_error_buffer')
+            tb.set_text(''.join(traceback.format_exception(etype=type(ex), value=ex, tb=ex.__traceback__)))
+            stack.set_visible_child(self.builder.get_object('preview_error'))
+
+
+    def _init_tileset(self):
+        if self.entry.layout.tileset_id < TILESET_FIRST_BG:
+            # Real tileset
+            self.drawer.set_tileset_renderer(FixedFloorDrawerTileset(*self.module.get_dungeon_tileset(self.entry.layout.tileset_id)))
+        else:
+            # Background to render using dummy tileset
+            self.drawer.set_tileset_renderer(FixedFloorDrawerBackground(
+                *self.module.get_dungeon_background(self.entry.layout.tileset_id - TILESET_FIRST_BG),
+                *self.module.get_dummy_tileset())
+            )
+
+    def _update_scales(self):
+        if self.drawer.fixed_floor is not None:
+            self._draw.set_size_request(
+                (self.drawer.fixed_floor.width + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor,
+                (self.drawer.fixed_floor.height + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor
+            )
+            if self.drawer:
+                self.drawer.set_scale(self._scale_factor)
+
+            self._draw.queue_draw()
+
+    def on_tool_refresh_clicked(self, *args):
+        self._generate_floor()
+
+    def on_tool_entry_seed_changed(self, *args):
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
+
+    def on_btn_help_tool_seed_clicked(self, *args):
+        self._help(_("This seed is used as the base to randomly generate the actual seeds used by the "
+                     "dungeon generation engine. Note that generated previews might not be 100% accurate."))
 
     # </editor-fold>
 
@@ -1626,10 +1820,13 @@ class FloorController(AbstractController):
 
     def _update_from_widget(self, w: Gtk.Widget):
         if isinstance(w, Gtk.ComboBox):
-            return self._update_from_cb(w)
+            self._update_from_cb(w)
         elif isinstance(w, Gtk.Entry):
-            return self._update_from_entry(w)
-        return self._update_from_scale(w)
+            self._update_from_entry(w)
+        else:
+            self._update_from_scale(w)
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     def _update_from_entry(self, w: Gtk.Entry):
         w_name = Gtk.Buildable.get_name(w)
