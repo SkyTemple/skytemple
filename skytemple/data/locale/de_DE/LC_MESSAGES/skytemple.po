@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-07-23 21:27+0000\n"
-"PO-Revision-Date: 2021-07-25 14:17\n"
+"PO-Revision-Date: 2021-07-25 15:29\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3690,7 +3690,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:163
 msgid "Missing configuration value."
-msgstr ""
+msgstr "Fehlender Konfigurationswert."
 
 #: skytemple-files/skytemple_files/patch/patches.py:167
 #: skytemple-files/skytemple_files/patch/patches.py:169
@@ -3698,7 +3698,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/patches.py:175
 #: skytemple-files/skytemple_files/patch/patches.py:185
 msgid "Invalid configuration value."
-msgstr ""
+msgstr "Ungültiger Konfigurationswert."
 
 #: skytemple-files/skytemple_files/patch/patches.py:169
 msgid "Must be >= {}."
@@ -7561,7 +7561,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.py:24
 msgid "Dungeon Graphics"
-msgstr ""
+msgstr "Dungeon-Grafik"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.py:36
 msgid "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged."
@@ -7836,7 +7836,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:113
 msgid "Import settings:"
-msgstr ""
+msgstr "Import-Einstellungen:"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:207
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:154
@@ -7858,7 +7858,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:81
 msgid "Export Images"
-msgstr ""
+msgstr "Bilder exportieren"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:86
 msgid "Export current image to folder..."
@@ -7937,7 +7937,7 @@ msgstr "Nicht implementiert."
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:166
 #: skytemple/skytemple/module/lists/module.py:111
 msgid "Dungeon Interruptions"
-msgstr ""
+msgstr "Dungeon-Unterbrechungen"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:105
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:182
@@ -7952,15 +7952,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:206
 msgid "Dungeon: "
-msgstr ""
+msgstr "Dungeon: "
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:268
 msgid "Interruptions: "
-msgstr ""
+msgstr "Unterbrechungen: "
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:325
 msgid "Game Variable"
-msgstr ""
+msgstr "Spiel-Variable"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:341
 msgid "Param 1"
@@ -8012,24 +8012,24 @@ msgstr "Titel 2"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:230
 msgid "Track 3"
-msgstr ""
+msgstr "Titel 3"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:246
 msgid "Track 4"
-msgstr ""
+msgstr "Titel 4"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:271
 msgid "Random Music"
-msgstr ""
+msgstr "Zufällige Musik"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:101
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:122
 msgid "Invalid? (#999)"
-msgstr ""
+msgstr "Ungültig? (#999)"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:135
 msgid "Guest pokémon"
-msgstr ""
+msgstr "Gast-Pokémon"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:151
 msgid "Edits which dungeons add guest pokémon to your party, as well as some additional dungeon restrictions."
@@ -8052,11 +8052,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:312
 msgid "Guest pokémon 1"
-msgstr ""
+msgstr "Gast-Pokémon 1"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:326
 msgid "Guest pokémon 2"
-msgstr ""
+msgstr "Gast-Pokémon 2"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:340
 msgid "HLR (uncleared)"
@@ -8076,11 +8076,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:445
 msgid "Unk 1"
-msgstr ""
+msgstr "Unb. 1"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:459
 msgid "Pokémon ID"
-msgstr ""
+msgstr "Pokémon-ID"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:474
 msgid "Joined at"
@@ -8088,32 +8088,32 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:488
 msgid "Move 1"
-msgstr ""
+msgstr "Attacke 1"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:503
 msgid "Move 2"
-msgstr ""
+msgstr "Attacke 2"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:518
 msgid "Move 3"
-msgstr ""
+msgstr "Attacke 3"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:533
 msgid "Move 4"
-msgstr ""
+msgstr "Attacke 4"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:660
 msgid "Exp"
-msgstr ""
+msgstr "Erf."
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:735
 msgid "Free entries left: XX"
-msgstr ""
+msgstr "Freie Einträge verbleibend: XX"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:761
 #: skytemple/skytemple/module/lists/module.py:120
 msgid "Guest Pokémon"
-msgstr ""
+msgstr "Gast-Pokémon"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.py:75
 msgid "Guest pokémon IDs refer to the entries in the guest pokémon tab. A value of -1 represents an empty entry (no guest pokémon).\n"
@@ -8196,32 +8196,33 @@ msgstr "Allgemein:"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:89
 msgid "Dungeon:"
-msgstr ""
+msgstr "Dungeon:"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:107
 msgid "Conditions:"
-msgstr ""
+msgstr "Zustände:"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:125
 msgid "IQ:"
-msgstr ""
+msgstr "IQ:"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:141
 msgid "Text Speed (debug mode uses 4):"
-msgstr ""
+msgstr "Textgeschwindigkeit (Debug-Modus verwendet 4):"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:153
 msgid "Normal spawn delay (turns):"
-msgstr ""
+msgstr "Normale Spawnrate (in Zügen):"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:165
 msgid "Spawn delay (turns) after stealing \n"
 "from shop:"
-msgstr ""
+msgstr "Spawnrate (in Zügen) nach Diebstahl \n"
+"von Items aus Shops:"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:202
 msgid "Main menu music track:"
-msgstr ""
+msgstr "Musik im Hauptmenü:"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:233
 msgid "Min. IQ required by enemies to learn \n"
@@ -8265,7 +8266,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:475
 msgid "Items:"
-msgstr ""
+msgstr "Items:"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:491
 msgid "Chance of Ginseng increasing \n"
@@ -8930,15 +8931,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/main.glade:98
 msgid "New Background"
-msgstr ""
+msgstr "Neuer Hintergrund"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:47
 msgid "Create Background"
-msgstr ""
+msgstr "Hintergrund erstellen"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:47
 msgid "Map Background Name"
-msgstr ""
+msgstr "Name des Kartenhintergrundes"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:57
 msgid "The length of the map background name must be between 1-8 characters."
@@ -10414,23 +10415,23 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2415
 msgid "HP: "
-msgstr ""
+msgstr "KP: "
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2439
 msgid "Atk: "
-msgstr ""
+msgstr "Angr: "
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2451
 msgid "Sp. Atk: "
-msgstr ""
+msgstr "Sp. Angr: "
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2463
 msgid "Def: "
-msgstr ""
+msgstr "Vert: "
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2475
 msgid "Sp. Def: "
-msgstr ""
+msgstr "Sp. Vert: "
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:2624
 msgid "Evolution"
@@ -10550,15 +10551,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.py:104
 msgid "Spinda Egg"
-msgstr ""
+msgstr "Pandir-Ei"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:105
 msgid "Spinda Recruit"
-msgstr ""
+msgstr "Pandir-Rekrut"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:106
 msgid "Don't appear in Missions"
-msgstr ""
+msgstr "Erscheint nicht in Missionen"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:107
 msgid "Don't appear in Missions during story"
@@ -11447,11 +11448,11 @@ msgstr "Anwenden"
 
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:48
 msgid "Settings for the \"{}\" Patch"
-msgstr ""
+msgstr "Einstellungen für den „{}“ Patch"
 
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:51
 msgid "The patch \"{}\" requires additional configuration:"
-msgstr ""
+msgstr "Der Patch \"{}\" benötigt zusätzliche Einstellungen:"
 
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:117
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:118
@@ -11559,11 +11560,11 @@ msgstr " (gespiegelt)"
 
 #: skytemple/skytemple/module/rom/controller/main.py:91
 msgid "Export game icon as PNG..."
-msgstr ""
+msgstr "Spielsymbol exportieren als PNG..."
 
 #: skytemple/skytemple/module/rom/controller/main.py:110
 msgid "Import game icon from PNG..."
-msgstr ""
+msgstr "Spielsymbol aus PNG importieren..."
 
 #: skytemple/skytemple/module/rom/controller/main.py:128
 msgid "Failed importing game icon:\n"
@@ -11583,31 +11584,31 @@ msgstr ""
 
 #: skytemple/skytemple/module/rom/controller/rom.glade:275
 msgid "Japanese:"
-msgstr ""
+msgstr "Japanisch:"
 
 #: skytemple/skytemple/module/rom/controller/rom.glade:287
 msgid "English:"
-msgstr ""
+msgstr "Englisch:"
 
 #: skytemple/skytemple/module/rom/controller/rom.glade:299
 msgid "French:"
-msgstr ""
+msgstr "Französisch:"
 
 #: skytemple/skytemple/module/rom/controller/rom.glade:311
 msgid "German:"
-msgstr ""
+msgstr "Deutsch:"
 
 #: skytemple/skytemple/module/rom/controller/rom.glade:323
 msgid "Italian:"
-msgstr ""
+msgstr "Italienisch:"
 
 #: skytemple/skytemple/module/rom/controller/rom.glade:335
 msgid "Spanish:"
-msgstr ""
+msgstr "Spanisch:"
 
 #: skytemple/skytemple/module/rom/controller/rom.glade:348
 msgid "Title:"
-msgstr ""
+msgstr "Titel:"
 
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.glade:286
 #: skytemple/skytemple/module/script/controller/ssa.glade:756
@@ -11669,15 +11670,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/main.glade:369
 msgid "Map Background"
-msgstr ""
+msgstr "Kartenhintergrund"
 
 #: skytemple/skytemple/module/script/controller/main.glade:385
 msgid "Default Weather"
-msgstr ""
+msgstr "Standard-Wetter"
 
 #: skytemple/skytemple/module/script/controller/main.glade:473
 msgid "Level List"
-msgstr ""
+msgstr "Level-Liste"
 
 #: skytemple/skytemple/module/script/controller/main.glade:591
 msgid "This maps ground levels using type #10 or #11 to dungeons and or fixed rooms. \n"
@@ -11695,11 +11696,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/main.py:123
 msgid "Create Level"
-msgstr ""
+msgstr "Level erstellen"
 
 #: skytemple/skytemple/module/script/controller/main.py:123
 msgid "Level Name"
-msgstr ""
+msgstr "Levelname"
 
 #: skytemple/skytemple/module/script/controller/main.py:124
 msgid "If you also need a new background for this level, you can create one under \"Map Backrgounds\" and assign it to this level afterwards."
@@ -11707,7 +11708,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/main.py:153
 msgid "New level created."
-msgstr ""
+msgstr "Neues Level wurde erstellt."
 
 #: skytemple/skytemple/module/script/controller/map.glade:102
 msgid "Add \"Enter\" scene"
@@ -11751,7 +11752,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/map.py:84
 #: skytemple/skytemple/module/script/controller/map.py:120
 msgid "Create Scene"
-msgstr ""
+msgstr "Szene erstellen"
 
 #: skytemple/skytemple/module/script/controller/map.py:84
 #: skytemple/skytemple/module/script/controller/map.py:120
