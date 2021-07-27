@@ -210,8 +210,9 @@ class GuestPokemonController(AbstractController):
         store.clear()
         dungeons : List[Pmd2DungeonDungeon] = self.static_data.dungeon_data.dungeons
         for idx, item in enumerate(ExtraDungeonDataList.read(self.arm9, self.static_data)):
+            name = self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, idx)
             store.append([
-                str(idx) + ": " + dungeons[idx].name, str(item.guest1_index), str(item.guest2_index),
+                str(idx) + ": " + name, str(item.guest1_index), str(item.guest2_index),
                 item.hlr_uncleared, item.disable_recruit, item.side01_check, item.hlr_cleared
             ])
 
