@@ -80,10 +80,6 @@ class ListBaseController(AbstractController, ABC):
     def refresh_list(self):
         pass
 
-    @abstractmethod
-    def get_tree(self) -> Union[List[Gtk.TreeView], Gtk.TreeView]:
-        pass
-
     def can_be_placeholder(self):
         return False
 

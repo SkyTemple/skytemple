@@ -20,6 +20,12 @@
   -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
+  <object class="GtkListStore" id="store_completion_monsters">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkEntryCompletion" id="completion_monsters">
     <property name="model">store_completion_monsters</property>
     <property name="text-column">0</property>
@@ -29,12 +35,6 @@
         <attribute name="text">0</attribute>
       </attributes>
     </child>
-  </object>
-  <object class="GtkListStore" id="store_completion_monsters">
-    <columns>
-      <!-- column-name label -->
-      <column type="gchararray"/>
-    </columns>
   </object>
   <object class="GtkListStore" id="store_completion_moves">
     <columns>
@@ -106,6 +106,8 @@
       <column type="gchararray"/>
       <!-- column-name exp -->
       <column type="gchararray"/>
+      <!-- column-name poke_img -->
+      <column type="GdkPixbuf"/>
     </columns>
   </object>
   <object class="GtkStack" id="list_stack">
@@ -457,6 +459,12 @@ If you already have applied it, apply it again to be sure to use the last versio
                                     <child>
                                       <object class="GtkTreeViewColumn">
                                         <property name="title" translatable="yes">Pokémon ID</property>
+                                        <child>
+                                          <object class="GtkCellRendererPixbuf"/>
+                                          <attributes>
+                                            <attribute name="pixbuf">17</attribute>
+                                          </attributes>
+                                        </child>
                                         <child>
                                           <object class="GtkCellRendererText" id="cr_guest_pokemon_poke_id">
                                             <property name="editable">True</property>
