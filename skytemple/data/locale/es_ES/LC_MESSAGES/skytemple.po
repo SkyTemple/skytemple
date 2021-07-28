@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-07-28 18:20+0000\n"
-"PO-Revision-Date: 2021-07-28 22:25\n"
+"PO-Revision-Date: 2021-07-28 23:24\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1495,23 +1495,23 @@ msgstr "Siempre"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:26
 msgid "Flag Not Set"
-msgstr ""
+msgstr "Marca no establecida"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:27
 msgid "Flag Set"
-msgstr ""
+msgstr "Marca establecida"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:28
 msgid "Scenario Equals"
-msgstr ""
+msgstr "Escenario Igual a"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:29
 msgid "Scenario Below or Equal"
-msgstr ""
+msgstr "Escenario Menor o Igual a"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:30
 msgid "Scenario Greater or Equal"
-msgstr ""
+msgstr "Escenario Mayor o Igual a"
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:29
 #: skytemple-files/skytemple_files/data/md/model.py:63
@@ -2632,11 +2632,11 @@ msgstr "Abismo, Pasillo; Intransitable"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:78
 msgid "Floor, Hallway; Flag 0xA"
-msgstr "Piso, Pasillo; Indicador 0xA"
+msgstr "Piso, Pasillo; Marca 0xA"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:80
 msgid "Tile flag 0xA is set to 1 (Unknown what this does)."
-msgstr "El indicador del tile 0xA se establece en 1 (Se desconoce la función de esto)."
+msgstr "La marca del tile 0xA se establece en 1 (Se desconoce la función de esto)."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:81
 msgid "F/W, Room; Key Door (0xC)"
@@ -2652,7 +2652,7 @@ msgstr "S/P, Sala; Puerta cerrada con llave (0xD)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:87
 msgid "Tile flag 0xD is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr "El indicador del tile 0xD se establece en 1 y genera una Puerta cerrada con llave. Si el ID fijo de la sala es &lt; 0xA5, será una pared. De lo contrario, será suelo."
+msgstr "La marca del tile 0xD se establece en 1 y genera una Puerta cerrada con llave. Si el ID fijo de la sala es &lt; 0xA5, será una pared. De lo contrario, será suelo."
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:95
 msgid "Attendant1 Spawn Floor"
@@ -3539,7 +3539,7 @@ msgstr "Desactiva las cajas de texto de ayuda mostradas en los territorios al pr
 
 #: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:43
 msgid "Implements dungeon interruptions. "
-msgstr ""
+msgstr "Implementa interrupciones de territorio. "
 
 #: skytemple-files/skytemple_files/patch/handler/edit_extra_pokemon.py:40
 msgid "Changes the way the game determines when to add additional pokémon to the team so it can be edited more easily"
@@ -4685,7 +4685,7 @@ msgstr "Territorios: Avanzar automáticamente al siguiente piso"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1593
 msgid "Debug Flags 1"
-msgstr "Indicadores de depuración 1"
+msgstr "Marcas de depuración 1"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1608
 msgid "Message Speed Up"
@@ -4745,11 +4745,11 @@ msgstr "Menús de depuración"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1812
 msgid "Debug Flags 2"
-msgstr "Indicadores de depuración 2"
+msgstr "Marcas de depuración 2"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2098
 msgid "Debug Flags"
-msgstr "Indicadores de depuración"
+msgstr "Marcas de depuración"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2119
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:302
@@ -7974,13 +7974,15 @@ msgstr "Interrupciones de territorio"
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:105
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:182
 msgid "Edits all dungeon interruptions defined in the game."
-msgstr ""
+msgstr "Edita todas las interrupciones de territorio definidas en el juego."
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:118
 msgid "<Not available>\n\n"
 "To create dungeon interruption, please apply the \"DungeonInterrupt\"\n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para crear interrupciones de territorio, aplica el parche ASM \"DungeonInterrupt\"\n"
+"desde el menú Parches ASM."
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:206
 msgid "Dungeon: "
@@ -8015,7 +8017,18 @@ msgid "Here you can edit dungeon interruptions. \n"
 " - Scenario Equals: scenario, level\n"
 " - Scenario Below or Equal: scenario, level\n"
 " - Scenario Greater or Equal: scenario, level"
-msgstr ""
+msgstr "Aquí puedes editar las interrupciones del territorio. \n"
+"Las interrupciones pueden ocurrir al pasar al siguiente piso (por ejemplo, para una interrupción definida en el piso 3, ocurrirá al pasar del piso 2 al 3). \n"
+"Del lado del script, funciona exactamente como si se terminara el territorio (llamada a las rutinas comunes GETOUT_SCENARIO_DUNGEON o GETOUT_REQUEST_DUNGEON). \n"
+"Solo se permite una interrupción por piso. \n"
+"Se puede definir una condición para cada interrupción. Si no se cumple, el juego pasa al siguiente piso de forma normal. \n"
+"Los parámetros funcionan por el siguiente tipo de comprobación: \n"
+" - Siempre: 0, 0\n"
+" - Marca no establecida: flag_id, 0\n"
+" - Marca establecida: flag_id, 0\n"
+" - Escenario Igual: escenario, nivel\n"
+" - Escenario Menor o Igual: escenario, nivel\n"
+" - Escenario Mayor o Igual: escenario, nivel"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:80
 #: skytemple/skytemple/module/lists/module.py:116
@@ -8061,38 +8074,41 @@ msgstr "¿Inválido? (#999)"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:137
 msgid "Guest pokémon"
-msgstr ""
+msgstr "Pokémon invitado"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:153
 msgid "Edits which dungeons add guest pokémon to your party, as well as some additional dungeon restrictions."
-msgstr ""
+msgstr "Edita qué territorios añaden Pokémon invitados a tu grupo, así como algunas restricciones adicionales de los territorios."
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:166
 msgid "<Not available>\n\n"
 "To view and edit guest pokémon data, please apply the \"EditExtraPokemon\" \n"
 "ASM patch from the \"ASM Patches\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar los datos de Pokémon invitados, aplica el parche \"EditExtraPokemon\" \n"
+"desde el menú Parches ASM.\n"
+"Si ya lo has aplicado, aplícalo de nuevo para asegurarte de usar la última versión. "
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:215
 msgid "Dungeon Guest Pokémon"
-msgstr ""
+msgstr "Pokémon invitados de territorios"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:231
 msgid "From this menu you can change which dungeons add additional guest pokémon to your party when they are <b>uncleared</b>. You can also set some additional restrictions and edit guest pokémon data."
-msgstr ""
+msgstr "Desde este menú puedes cambiar qué territorios añaden Pokémon adicionales a tu equipo cuando estén <b>sin despejar</b>. También puedes establecer restricciones adicionales y editar los datos de Pokémon invitados."
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:314
 msgid "Guest pokémon 1"
-msgstr ""
+msgstr "Pokémon invitado 1"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:328
 msgid "Guest pokémon 2"
-msgstr ""
+msgstr "Pokémon invitado 2"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:342
 msgid "HLR (uncleared)"
-msgstr ""
+msgstr "HLR (sin despejar)"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:355
 msgid "Disable recruiting"
@@ -8100,11 +8116,11 @@ msgstr "Desactivar reclutamiento"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:368
 msgid "SIDE01 check"
-msgstr ""
+msgstr "Comprobación de SIDE01"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:381
 msgid "HLR (cleared)"
-msgstr ""
+msgstr "HLR (despejado)"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:447
 msgid "Unk 1"
@@ -8144,12 +8160,12 @@ msgstr "Exp."
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:743
 msgid "Free entries left: XX"
-msgstr ""
+msgstr "Entradas libres restantes: XX"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:769
 #: skytemple/skytemple/module/lists/module.py:122
 msgid "Guest Pokémon"
-msgstr ""
+msgstr "Pokémon invitado"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.py:80
 msgid "Guest pokémon IDs refer to the entries in the guest pokémon tab. A value of -1 represents an empty entry (no guest pokémon).\n"
@@ -8158,7 +8174,12 @@ msgid "Guest pokémon IDs refer to the entries in the guest pokémon tab. A valu
 "- Disable recruiting: Only applies when the dungeon is uncleared. If enabled, recruiting will be disabled. This flag overrides the \"recruiting enabled\" flag in the dungeon restrictions.\n"
 "- SIDE01 check: If enabled, guest pokémon will only be added to the team if the ground variable SIDE01_BOSS2ND is 0.\n"
 "- HLR (cleared): Whether Hidden Land restrictions should be active when the dungeon has been cleared."
-msgstr ""
+msgstr "Los IDs de los Pokémon invitados hacen referencia a las entradas de la pestaña de Pokémon invitados. Un valor de -1 representa una entrada vacía (ningún Pokémon invitado).\n"
+"- HLR (sin superar): Determina si las restricciones de la Tierra Oculta (Hidden Land Restrictions) deben estar activas cuando el territorio no ha sido superado.\n"
+"Cuando se activa, impide que se puedan enviar Pokémon a casa o cambiar de líder. Además, si un miembro del equipo se desmaya, será expulsado del territorio.\n"
+"- Desactivar reclutamiento: Solo se aplica cuando el territorio no ha sido superado. Si se activa, el reclutamiento se desactivará. Esta marca anula la de \"Permitir reclutamiento\" en las restricciones del territorio.\n"
+"- Comprobación de SIDE01: Si se activa, los Pokémon invitados solo se añadirán al equipo si la variable de terreno SIDE01_BOSS2ND es 0.\n"
+"- HLR (superado): Determina si las restricciones de la Tierra Oculta deben estar activas cuando el territorio ha sido superado."
 
 #: skytemple/skytemple/module/lists/controller/main.py:23
 msgid "Lists"
@@ -8521,12 +8542,13 @@ msgstr "Ayuda para la Exportación / Importación de efectos de código"
 
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:68
 msgid "Special Episode Player Characters"
-msgstr ""
+msgstr "Personajes del Jugador de Capítulos Especiales"
 
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:84
 msgid "These are the special player characters used in special episodes.\n"
 "What entry is used when depends on the special episode and is hardcoded."
-msgstr ""
+msgstr "Estos son los personajes del jugador que se utilizan en capítulos especiales.\n"
+"La entrada que se utiliza depende del capítulo especial, y está codificada."
 
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:236
 msgid "Unk E"
@@ -8737,7 +8759,7 @@ msgstr "Listas de menú"
 
 #: skytemple/skytemple/module/lists/module.py:125
 msgid "Special Episode PCs"
-msgstr ""
+msgstr "PJs de Capítulos Especiales"
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:48
 msgid "- The image consists of 8x8 tiles.\n"
@@ -10962,19 +10984,19 @@ msgstr "Está en EdT/EdO:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1026
 msgid "AI Flag 1:"
-msgstr "Indicador de IA 1:"
+msgstr "Marca de IA 1:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1038
 msgid "AI Flag 2:"
-msgstr "Indicador de IA 2:"
+msgstr "Marca de IA 2:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1050
 msgid "AI Flag 3:"
-msgstr "Indicador de IA 3:"
+msgstr "Marca de IA 3:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1092
 msgid "Flags"
-msgstr "Indicadores"
+msgstr "Marcas"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1117
 msgid "Exclusive Item Type:"
