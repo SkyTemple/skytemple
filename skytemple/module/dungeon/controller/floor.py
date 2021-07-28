@@ -257,6 +257,8 @@ class FloorController(AbstractController):
     def on_cb_tileset_id_changed(self, w, *args):
         self._update_from_widget(w)
         self.mark_as_modified(modified_mappag=True)
+        if self.builder.get_object('tool_auto_refresh').get_active() and self.builder.get_object('tool_fullmap').get_active():
+            self._init_tileset()
 
     def on_cb_music_id_changed(self, w, *args):
         self._update_from_widget(w)
