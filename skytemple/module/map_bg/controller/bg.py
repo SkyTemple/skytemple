@@ -188,6 +188,33 @@ class BgController(AbstractController):
                 self.module.mark_level_list_as_modified()
         return self.builder.get_object('editor_map_bg')
 
+    def unload(self):
+        super().unload()
+        self.module = None
+        self.item_id = None
+        self.builder = None
+        self.notebook = None
+        self.bma = None
+        self.bpl = None
+        self.bpc = None
+        self.bpas = None
+        self.chunks_surfaces = None
+        self.bpa_durations = None
+        if self.drawer:
+            self.drawer.unload()
+        self.drawer = None
+        if self.current_icon_view_renderer:
+            self.current_icon_view_renderer.unload()
+        self.current_icon_view_renderer: DrawerCellRenderer = None
+        self.bg_draw: DrawingArea = None
+        self.bg_draw_event_box: EventBox = None
+        self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
+        self.scale_factor = 1
+        self.current_chunks_icon_layer = 0
+        self.bg_draw_is_clicked = False
+        self.menu_controller = None
+        self._was_asset_copied = False
+
     def on_bg_notebook_switch_page(self, notebook, page, *args):
         self._init_tab(page)
 

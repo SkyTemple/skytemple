@@ -40,6 +40,14 @@ class ListIconRenderer:
         self._registered_for_reload.append((store, idx, (store, load_fn, target_name, idx, parameters, is_placeholder)))
         return self._get_icon(store, load_fn, target_name, idx, parameters, is_placeholder)
 
+    def unload(self):
+        self._icon_pixbufs = None
+        self._refresh_timer = None
+        self.column_id = None
+        self.can_be_placeholder = None
+        self._registered_for_reload = None
+        self._loading = True
+
     def _get_icon(self, store, load_fn, target_name, idx, parameters, is_placeholder=False):
         was_loading = self._loading
         sprite, x, y, w, h = load_fn(*parameters,

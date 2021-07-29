@@ -226,6 +226,23 @@ class FloorController(AbstractController):
 
         return self.builder.get_object('box_editor')
 
+    def unload(self):
+        super().unload()
+        self.drawer.unload()
+        self.module = None
+        self.item = None
+        self.entry = None
+        self.builder = None
+        self._draw = None
+        self._refresh_timer = None
+        self._loading = False
+        self._string_provider = None
+        self._sprite_provider = None
+        self._scale_factor = None
+        self._item_list_edit_active = None
+        self._ent_names = {}
+        self._item_names = {}
+
     # <editor-fold desc="HANDLERS LAYOUT" defaultstate="collapsed">
 
     def on_floor_notebook_switch_page(self, notebook, page, page_num):

@@ -107,6 +107,17 @@ class ItemController(AbstractController):
 
         return self.builder.get_object('box_main')
 
+    def unload(self):
+        super().unload()
+        self.module = None
+        self.item_id = None
+        self.item_p = None
+        self.item_sp = None
+        self.builder = None
+        self._string_provider = None
+        self._sprite_provider = None
+        self._is_loading = True
+
     def on_draw_sprite_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
         scale = 2
         sprite, x, y, w, h = self._sprite_provider.get_for_item(self.item_p, lambda: GLib.idle_add(widget.queue_draw))

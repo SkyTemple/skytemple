@@ -130,7 +130,25 @@ class MonsterController(AbstractController):
         self._check_sprite_size(True)
 
         return self.builder.get_object('box_main')
-        
+
+    def unload(self):
+        super().unload()
+        self.module = None
+        self.item_id = None
+        self.entry = None
+
+        self._monster_bin = None
+
+        self.builder = None
+        self._is_loading = False
+        self._string_provider = None
+        self._sprite_provider = None
+        self._portrait_provider = None
+        self._level_up_controller: Optional[LevelUpController] = None
+        self._cached_sprite_page = None
+        self._render_graph_on_tab_change = True
+        self.item_names = {}
+
     def on_main_notebook_switch_page(self, notebook, page, page_num):
         self.__class__._last_open_tab_id = page_num
         if self._render_graph_on_tab_change:

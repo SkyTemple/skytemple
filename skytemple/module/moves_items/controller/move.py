@@ -61,6 +61,15 @@ class MoveController(AbstractController):
 
         return self.builder.get_object('box_main')
 
+    def unload(self):
+        super().unload()
+        self.module = None
+        self.move_id = None
+        self.move = None
+        self.builder = None
+        self._string_provider = None
+        self._is_loading = True
+
     def on_entry_move_id_changed(self, w, *args):
         self._update_from_entry(w)
         self.mark_as_modified()

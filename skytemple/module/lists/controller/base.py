@@ -50,6 +50,17 @@ class ListBaseController(AbstractController, ABC):
         self.builder.connect_signals(self)
         self._loading = False
 
+    def unload(self):
+        super().unload()
+        self.builder = None
+        self._sprite_provider = None
+        self._ent_names = None
+        self._list_store = None
+        if self.icon_renderer is not None:
+            self.icon_renderer.unload()
+        self.icon_renderer = None
+        self._loading = False
+
     def _init_monster_store(self):
         monster_md = self.module.get_monster_md()
         monster_store: Gtk.ListStore = self.builder.get_object('monster_store')

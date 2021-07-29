@@ -104,6 +104,7 @@ class MainController:
 
         self._search_text = None
         self._current_view_module = None
+        self._current_view_controller = None
         self._current_view_controller_class = None
         self._current_view_item_id = None
         self._resize_timeout_id = None
@@ -408,22 +409,32 @@ class MainController:
         assert current_thread() == main_thread
         # Check if current view still matches expected
         logger.debug('View loaded.')
+        # Insert the view at page 3 [0,1,2,3] of the stack. If there is already a page, remove it.
+        old_view = self._editor_stack.get_child_by_name('es__loaded_view')
         try:
             view = controller.get_view()
         except Exception as err:
             logger.debug("Error retreiving the loaded view")
             self.on_view_loaded_error(err)
+            if old_view:
+                logger.debug('Destroying old view...')
+                self._editor_stack.remove(old_view)
+                old_view.destroy()
+            if self._current_view_controller is not None:
+                self._current_view_controller.unload()
+            controller.unload()
             return
         if self._current_view_module != module or self._current_view_controller_class != controller.__class__ or self._current_view_item_id != item_id:
             logger.warning('Loaded view not matching selection.')
             view.destroy()
             return
-        # Insert the view at page 3 [0,1,2,3] of the stack. If there is already a page, remove it.
-        old_view = self._editor_stack.get_child_by_name('es__loaded_view')
         if old_view:
             logger.debug('Destroying old view...')
             self._editor_stack.remove(old_view)
             old_view.destroy()
+        if self._current_view_controller is not None:
+            self._current_view_controller.unload()
+        self._current_view_controller = controller
         logger.debug('Adding and showing new view...')
         self._editor_stack.add_named(view, 'es__loaded_view')
         view.show_all()

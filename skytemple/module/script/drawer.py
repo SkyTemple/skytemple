@@ -713,6 +713,28 @@ class Drawer:
             self.mouse_y - self._selected__drag[1]
         )
 
+    def unload(self):
+        self.draw_area = None
+        self.ssa = None
+        self.map_bg = None
+        self.position_marks = None
+        self.draw_tile_grid = False
+        self.interaction_mode = InteractionMode.SELECT
+        self.mouse_x = 99999
+        self.mouse_y = 99999
+        self.sprite_provider = None
+        self._cb_trigger_label = None
+        self._sectors_visible = None
+        self._sectors_solo = None
+        self._sector_highlighted = None
+        self._selected = None
+        self._selected__drag = None
+        self._edit_pos_marks = False
+        self.selection_plugin = None
+        self.tile_grid_plugin = None
+        self.scale = 1
+        self.drawing_is_active = False
+
     def _redraw(self):
         if self.draw_area is None or self.draw_area.get_parent() is None:
             return

@@ -379,6 +379,31 @@ class Drawer:
     def add_overlay(self, tileset_drawer_overlay):
         self._tileset_drawer_overlay = tileset_drawer_overlay
 
+    def unload(self):
+        self.draw_area = None
+        self.reset(None, None, None, None)
+        self.draw_chunk_grid = False
+        self.draw_tile_grid = False
+        self.use_pink_bg = False
+        self.interaction_mode = DrawerInteraction.NONE
+        self.interaction_chunks_selected_id = 0
+        self.interaction_col_solid = False
+        self.interaction_dat_value = 0
+        self.mouse_x = 99999
+        self.mouse_y = 99999
+        self.edited_layer = -1
+        self.edited_collision = -1
+        self.show_only_edited_layer = False
+        self.dim_layers = False
+        self.draw_collision1 = False
+        self.draw_collision2 = False
+        self.draw_data_layer = False
+        self.selection_plugin = None
+        self.tile_grid_plugin = None
+        self.chunk_grid_plugin = None
+        self.scale = 1
+        self.drawing_is_active = False
+
 
 class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
     __gproperties__ = {
