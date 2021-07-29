@@ -386,11 +386,6 @@ class MainController:
         self._current_view_module = selected_node[2]
         self._current_view_controller_class = selected_node[3]
         self._current_view_item_id = selected_node[4]
-        # Fully load the view and the controller
-        AsyncTaskRunner.instance().run_task(load_controller(
-            self._current_view_module, self._current_view_controller_class, self._current_view_item_id,
-            self
-        ))
         # Expand the node
         tree.expand_to_path(path)
         # Select node
@@ -400,6 +395,14 @@ class MainController:
             tree.scroll_to_cell(path, None, True, 0.5, 0.5)
         self._last_selected_view_model = model
         self._last_selected_view_iter = treeiter
+
+        # Fully load the view and the controller
+        # EXPERIMENT: No async loading
+        try:
+            controller: AbstractController = self._current_view_controller_class(self._current_view_module, self._current_view_item_id)
+            self.on_view_loaded(self._current_view_module, controller, self._current_view_item_id)
+        except Exception as ex:
+            self.on_view_loaded_error(ex)
 
     def on_view_loaded(
             self, module: AbstractModule, controller: AbstractController, item_id: int
