@@ -436,3 +436,22 @@ class FixedRoomDrawer:
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
         ctx.paint()
         ctx.translate(-x, -y)
+
+    def unload(self):
+        self.draw_area = None
+        self.module = None
+        self.fixed_floor = None
+        self.tileset_renderer = None
+        self.entity_renderer = None
+
+        self.draw_tile_grid = False
+        self.info_layer_active = None
+        self.entity_rule_container = None
+        self.add_fixed_room_padding = None
+        self.sprite_provider = None
+        self.string_provider = None
+        self._selected = None
+        self._selected__drag = None
+        self.selection_plugin = None
+        self.tile_grid_plugin = None
+        self.drawing_is_active = False

@@ -15,19 +15,19 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import re
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING, List, Union, Optional
 
 from gi.repository import Gtk
 from gi.repository.Gtk import Widget
 
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import BinaryName
 from skytemple.core.string_provider import StringType
+from skytemple.module.lists.controller.base import ListBaseController
 from skytemple_files.common.i18n_util import f, _
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonDungeon
-from skytemple_files.data.md.model import MdProperties, MdEntry
+from skytemple_files.data.md.model import MdProperties
 from skytemple_files.hardcoded.guest_pokemon import ExtraDungeonDataList, GuestPokemonList, GuestPokemon, \
     ExtraDungeonDataEntry
 
@@ -38,8 +38,10 @@ MONSTER_NAME_PATTERN = re.compile(r'.*\([#$](\d+)\).*')
 MOVE_NAME_PATTERN = re.compile(r'.*\((\d+)\).*')
 
 
-class GuestPokemonController(AbstractController):
+class GuestPokemonController(ListBaseController):
+
     def __init__(self, module: 'ListsModule', item_id: int):
+        super().__init__(module)
         self.module = module
         self.builder = None
         self.arm9 = module.project.get_binary(BinaryName.ARM9)
@@ -49,16 +51,19 @@ class GuestPokemonController(AbstractController):
 
     def get_view(self) -> Widget:
         self.builder = self._get_builder(__file__, 'guest_pokemon.glade')
+        self._list_store = self.builder.get_object('store_tree_guest_pokemon_data')
         stack: Gtk.Stack = self.builder.get_object('list_stack')
 
         if not self.module.has_edit_extra_pokemon():
             stack.set_visible_child(self.builder.get_object('box_na'))
             return stack
 
+        self._loading = True
         self._fill_extra_dungeon_data()
         self._fill_guest_pokemon_data()
         self._init_completion()
         self._update_free_entries_left()
+        self._loading = False
 
         stack.set_visible_child(self.builder.get_object('box_list'))
         self.builder.connect_signals(self)
@@ -115,11 +120,13 @@ class GuestPokemonController(AbstractController):
 
     def on_guest_pokemon_poke_id_edited(self, widget, path, text):
         try:
-            self._get_monster_id_from_display_name(text)
+            entid = self._get_monster_id_from_display_name(text)
         except ValueError:
             return
         store: Gtk.ListStore = self.builder.get_object('store_tree_guest_pokemon_data')
         store[path][2] = text
+        idx = int(store[path][0])
+        store[path][17] = self._get_icon(entid, idx, False)
         self._save_guest_pokemon_data()
 
     def on_guest_pokemon_joined_at_edited(self, widget, path, text):
@@ -204,14 +211,24 @@ class GuestPokemonController(AbstractController):
         self._update_extra_dungeon_data_boolean(widget, path, 6)
     # </editor-fold>
 
+    def refresh_list(self):
+        self._fill_guest_pokemon_data()
+
+    def _get_store_icon_id(self):
+        return 17
+
+    def _get_store_entid_id(self):
+        return 2
+
     def _fill_extra_dungeon_data(self):
         # Init extra dungeon data store
         store: Gtk.ListStore = self.builder.get_object('store_tree_extra_dungeon_data')
         store.clear()
         dungeons : List[Pmd2DungeonDungeon] = self.static_data.dungeon_data.dungeons
         for idx, item in enumerate(ExtraDungeonDataList.read(self.arm9, self.static_data)):
+            name = self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, idx)
             store.append([
-                str(idx) + ": " + dungeons[idx].name, str(item.guest1_index), str(item.guest2_index),
+                str(idx) + ": " + name, str(item.guest1_index), str(item.guest2_index),
                 item.hlr_uncleared, item.disable_recruit, item.side01_check, item.hlr_cleared
             ])
 
@@ -225,7 +242,7 @@ class GuestPokemonController(AbstractController):
                 self._get_move_display_name(item.moves[0]), self._get_move_display_name(item.moves[1]),
                 self._get_move_display_name(item.moves[2]), self._get_move_display_name(item.moves[3]), str(item.hp),
                 str(item.level), str(item.iq), str(item.atk), str(item.sp_atk), str(item.def_), str(item.sp_def),
-                str(item.unk3), str(item.exp)
+                str(item.unk3), str(item.exp), self._get_icon(item.poke_id, i)
             ])
 
     def _save_extra_dungeon_data(self):

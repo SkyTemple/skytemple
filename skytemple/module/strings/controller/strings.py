@@ -70,6 +70,20 @@ class StringsController(AbstractController):
         self.builder.connect_signals(self)
         return self.builder.get_object('main_box')
 
+    def unload(self):
+        super().unload()
+        self.module = None
+        self.langname = None
+        self.filename = None
+        self.builder = None
+        self._str = None
+        self._tree_iters_by_idx = {}
+        self._list_store = None
+        self._string_cats = None
+        self._filter = None
+        self._active_category = None
+        self._search_text = ""
+
     def on_cr_string_edited(self, widget, path, text):
         idx = self._filter[path][0] - 1
         logger.debug(f'String edited - {idx} - {path} - {self._str.strings[idx]} -> {text}')

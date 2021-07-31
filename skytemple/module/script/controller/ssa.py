@@ -168,6 +168,37 @@ class SsaController(AbstractController):
 
         return self.builder.get_object('editor_ssa')
 
+    def unload(self):
+        super().unload()
+        self.module = None
+        self.map_bg_module = None
+        self.static_data = None
+        self.mapname = None
+        self.filename = None
+        self.type = None
+        self.scripts = None
+        self.level = None
+        self.builder = None
+        self._scale_factor = 1
+        self._bg_draw_is_clicked__location = None
+        self._bg_draw_is_clicked__drag_active = False
+        self._map_bg_surface = None
+        self._suppress_events = False
+        self._currently_open_popover = None
+        self._currently_selected_entity = None
+        self._currently_selected_entity_layer: Optional[int] = None
+        self._selected_by_map_click = False
+        self._w_ssa_draw: Optional[Gtk.DrawingArea] = None
+        self._w_po_actors: Optional[Gtk.Popover] = None
+        self._w_po_objects: Optional[Gtk.Popover] = None
+        self._w_po_performers: Optional[Gtk.Popover] = None
+        self._w_po_triggers: Optional[Gtk.Popover] = None
+        self.ssa: Optional[Ssa] = None
+        if self.drawer:
+            self.drawer.unload()
+        self.drawer: Optional[Drawer] = None
+        self._tileset_drawer_overlay = None
+
     def on_ssa_utility_switch_page(self, util_notebook: Gtk.Notebook, p, pnum, *args):
         self.__class__._last_open_tab = pnum
 

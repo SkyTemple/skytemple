@@ -16,33 +16,36 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Dict
+from typing import TYPE_CHECKING, Dict, Optional, List
 
 from gi.repository import Gtk
 
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import glib_async
 from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
+from skytemple_files.hardcoded.default_starters import SpecialEpisodePc
 
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 
 PATTERN_LOCATION_ENTRY = re.compile(r'.*\((\d+)\).*')
+MOVE_NAME_PATTERN = re.compile(r'.*\((\d+)\).*')
 logger = logging.getLogger(__name__)
 
 
-class RecruitmentListController(ListBaseController):
+class SpecialPcsController(ListBaseController):
     def __init__(self, module: 'ListsModule', *args):
         super().__init__(module, *args)
-        self._species, self._levels, self._locations = None, None, None
+        self._list: Optional[List[SpecialEpisodePc]] = None
         self._location_names: Dict[int, str] = {}
+        self.move_entries = self.module.get_waza_p().moves
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'recruitment_list.glade')
+        self.builder = self._get_builder(__file__, 'special_pcs.glade')
         lst: Gtk.Box = self.builder.get_object('box_list')
-        self._species, self._levels, self._locations = self.module.get_recruitment_list()
+        self._list = self.module.get_special_pcs()
 
-        self._init_locations_store()
+        self._init_completions()
         self.load()
         return lst
 
@@ -52,6 +55,27 @@ class RecruitmentListController(ListBaseController):
         except ValueError:
             return
         self._list_store[path][1] = text
+
+    def on_cr_iq_edited(self, widget, path, text):
+        try:
+            int(text)  # this is only for validating.
+        except ValueError:
+            return
+        self._list_store[path][12] = text
+
+    def on_cr_unk_e_edited(self, widget, path, text):
+        try:
+            int(text)  # this is only for validating.
+        except ValueError:
+            return
+        self._list_store[path][11] = text
+
+    def on_cr_unk_12_edited(self, widget, path, text):
+        try:
+            int(text)  # this is only for validating.
+        except ValueError:
+            return
+        self._list_store[path][13] = text
 
     def on_cr_entity_edited(self, widget, path, text):
         match = PATTERN_MD_ENTRY.match(text)
@@ -84,8 +108,20 @@ class RecruitmentListController(ListBaseController):
         # ent_name:
         self._list_store[path][5] = self._location_names[location_id]
 
-    def on_completion_locations_match_selected(self, completion, model, tree_iter):
-        pass
+    def on_cr_move1_edited(self, widget, path, text):
+        self._update_move(path, text, 7)
+
+    def on_cr_move2_edited(self, widget, path, text):
+        self._update_move(path, text, 8)
+
+    def on_cr_move3_edited(self, widget, path, text):
+        self._update_move(path, text, 9)
+
+    def on_cr_move4_edited(self, widget, path, text):
+        self._update_move(path, text, 10)
+
+    def on_cr_move_editing_started(self, renderer, editable, path):
+        editable.set_completion(self.builder.get_object('completion_moves'))
 
     def on_cr_location_editing_started(self, renderer, editable, path):
         editable.set_completion(self.builder.get_object('completion_locations'))
@@ -95,14 +131,17 @@ class RecruitmentListController(ListBaseController):
         """Propagate changes to list store entries to the lists."""
         if self._loading:
             return
-        a_id, level, location_id, ent_icon, entid, location_name, ent_name = store[path][:]
+        a_id, level, location_id, ent_icon, entid, location_name, ent_name, \
+            move1, move2, move3, move4, unk_e, iq, unk12 = store[path][:]
         a_id = int(a_id)
-        self._species[a_id] = int(entid)
-        self._levels[a_id] = int(level)
-        self._locations[a_id] = int(location_id)
-        logger.debug(f"Updated list entry {a_id}: {entid}, {level}, {location_id}")
+        self._list[a_id] = SpecialEpisodePc(
+            int(entid), int(location_id),
+            self._get_move_id_from_display_name(move1), self._get_move_id_from_display_name(move2),
+            self._get_move_id_from_display_name(move3), self._get_move_id_from_display_name(move4),
+            int(unk_e), int(level), int(iq), int(unk12)
+        )
 
-        self.module.set_recruitment_list(self._species, self._levels, self._locations)
+        self.module.set_special_pcs(self._list)
 
     def refresh_list(self):
         tree: Gtk.TreeView = self.get_tree()
@@ -110,18 +149,42 @@ class RecruitmentListController(ListBaseController):
         self._list_store.clear()
 
         # Iterate list
-        for idx, (e_species, e_level, e_location) in enumerate(zip(self._species, self._levels, self._locations)):
+        for idx, entry in enumerate(self._list):
             self._list_store.append([
-                str(idx), str(e_level), str(e_location), self._get_icon(e_species, idx, False),
-                e_species, self._location_names[e_location], self._ent_names[e_species]
+                str(idx), str(entry.level), str(entry.joined_at), self._get_icon(entry.poke_id, idx, False),
+                entry.poke_id, self._location_names[entry.joined_at], self._ent_names[entry.poke_id],
+                self._get_move_display_name(entry.move1), self._get_move_display_name(entry.move2),
+                self._get_move_display_name(entry.move3), self._get_move_display_name(entry.move4),
+                str(entry.unk_e), str(entry.iq), str(entry.unk_12)
             ])
 
-    def _init_locations_store(self):
+    def _update_move(self, path, text, value_pos: int):
+        try:
+            self._get_move_id_from_display_name(text)
+        except ValueError:
+            return
+        self._list_store[path][value_pos] = text
+
+    def _init_completions(self):
         locations_store: Gtk.ListStore = self.builder.get_object('location_store')
         for idx in range(0, 256):
             name = self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_SELECTION, idx)
             self._location_names[idx] = f'{name} ({idx:04})'
             locations_store.append([self._location_names[idx]])
+
+        store: Gtk.ListStore = self.builder.get_object('store_completion_moves')
+        for i in range(len(self.move_entries)):
+            store.append([self._get_move_display_name(i)])
+
+    def _get_move_display_name(self, i: int):
+        name = self.module.project.get_string_provider().get_value(StringType.MOVE_NAMES, i)
+        return f'{name} ({i:03})'
+
+    def _get_move_id_from_display_name(self, display_name):
+        match = MOVE_NAME_PATTERN.match(display_name)
+        if match is None:
+            raise ValueError
+        return int(match.group(1))
 
     def get_tree(self):
         return self.builder.get_object('tree')

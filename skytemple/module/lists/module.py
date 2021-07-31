@@ -29,6 +29,7 @@ from skytemple.module.lists.controller.actor_list import ActorListController
 from skytemple.module.lists.controller.misc_settings import MiscSettingsController
 from skytemple.module.lists.controller.rank_list import RankListController
 from skytemple.module.lists.controller.menu_list import MenuListController
+from skytemple.module.lists.controller.special_pcs import SpecialPcsController
 from skytemple.module.lists.controller.starters_list import StartersListController
 from skytemple.module.lists.controller.recruitment_list import RecruitmentListController
 from skytemple.module.lists.controller.world_map import WorldMapController
@@ -45,7 +46,7 @@ from skytemple_files.hardcoded.dungeons import MapMarkerPlacement, HardcodedDung
 from skytemple_files.hardcoded.guest_pokemon import ExtraDungeonDataList, ExtraDungeonDataEntry, GuestPokemon, \
     GuestPokemonList
 from skytemple_files.hardcoded.personality_test_starters import HardcodedPersonalityTestStarters
-from skytemple_files.hardcoded.default_starters import HardcodedDefaultStarters
+from skytemple_files.hardcoded.default_starters import HardcodedDefaultStarters, SpecialEpisodePc
 from skytemple_files.hardcoded.rank_up_table import Rank, HardcodedRankUpTable
 from skytemple_files.hardcoded.recruitment_tables import HardcodedRecruitmentTables
 from skytemple_files.hardcoded.menus import HardcodedMenus, MenuEntry, MenuType
@@ -79,6 +80,7 @@ class ListsModule(AbstractModule):
         self._dungeon_music_tree_iter = None
         self._misc_settings_tree_iter = None
         self._guest_pokemon_root_iter = None
+        self._special_episodes_root_iter = None
 
         self.waza_p_bin: WazaP = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
 
@@ -119,6 +121,9 @@ class ListsModule(AbstractModule):
         self._guest_pokemon_root_iter = item_store.append(root, [
             'skytemple-e-monster-symbolic', _('Guest Pokémon'), self, GuestPokemonController, 0, False, '', True
         ])
+        self._special_episodes_root_iter = item_store.append(root, [
+            'skytemple-e-monster-symbolic', _('Special Episode PCs'), self, SpecialPcsController, 0, False, '', True
+        ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])
         generate_item_store_row_label(item_store[self._starters_tree_iter])
@@ -131,6 +136,7 @@ class ListsModule(AbstractModule):
         generate_item_store_row_label(item_store[self._dungeon_music_tree_iter])
         generate_item_store_row_label(item_store[self._misc_settings_tree_iter])
         generate_item_store_row_label(item_store[self._guest_pokemon_root_iter])
+        generate_item_store_row_label(item_store[self._special_episodes_root_iter])
         self._tree_model = item_store
 
     def handle_request(self, request: OpenRequest) -> Optional[TreeIter]:
@@ -213,6 +219,22 @@ class ListsModule(AbstractModule):
         self.project.modify_binary(BinaryName.ARM9, update)
 
         row = self._tree_model[self._starters_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+
+    def get_special_pcs(self) -> List[SpecialEpisodePc]:
+        """Returns players & partner default starters"""
+        arm9 = self.project.get_binary(BinaryName.ARM9)
+        static_data = self.project.get_rom_module().get_static_data()
+        return HardcodedDefaultStarters.get_special_episode_pcs(arm9, static_data)
+
+    def set_special_pcs(self, lst: List[SpecialEpisodePc]):
+        """Sets players & partner default starters"""
+        def update(arm9):
+            static_data = self.project.get_rom_module().get_static_data()
+            HardcodedDefaultStarters.set_special_episode_pcs(lst, arm9, static_data)
+        self.project.modify_binary(BinaryName.ARM9, update)
+
+        row = self._tree_model[self._special_episodes_root_iter]
         recursive_up_item_store_mark_as_modified(row)
     
     def get_starter_ids(self) -> Tuple[List[int], List[int]]:

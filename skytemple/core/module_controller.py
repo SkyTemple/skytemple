@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-
+import logging
 import os
 from abc import ABC, abstractmethod
 from typing import Optional
@@ -24,6 +24,7 @@ from gi.repository.Gtk import Widget
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.ui_utils import APP, make_builder
+logger = logging.getLogger(__name__)
 
 
 class AbstractController(ABC):
@@ -36,10 +37,29 @@ class AbstractController(ABC):
     def get_view(self) -> Widget:
         pass
 
+    def unload(self):
+        """
+        Perform additional unloading tasks to make sure no dangling references of this controller exist after
+        view switch.
+        """
+        # Delete all toplevel widgets introduced:
+        builder: Optional[Gtk.Builder] = None
+        if hasattr(self, 'builder'):
+            builder = getattr(self, 'builder')
+        if hasattr(self, '_builder'):
+            builder = getattr(self, '_builder')
+        if builder:
+            for obj in builder.get_objects():
+                if isinstance(obj, Gtk.Window) or isinstance(obj, Gtk.Widget):
+                    obj.destroy()
+
     @staticmethod
     def _get_builder(pymodule_path: str, glade_file: str):
         path = os.path.abspath(os.path.dirname(pymodule_path))
         return make_builder(os.path.join(path, glade_file))
+
+    def __del__(self):
+        logger.debug(f'{self.__class__.__name__} controller unloaded.')
 
 
 class NotImplementedController(AbstractController):

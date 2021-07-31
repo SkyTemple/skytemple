@@ -226,6 +226,23 @@ class FloorController(AbstractController):
 
         return self.builder.get_object('box_editor')
 
+    def unload(self):
+        super().unload()
+        self.drawer.unload()
+        self.module = None
+        self.item = None
+        self.entry = None
+        self.builder = None
+        self._draw = None
+        self._refresh_timer = None
+        self._loading = False
+        self._string_provider = None
+        self._sprite_provider = None
+        self._scale_factor = None
+        self._item_list_edit_active = None
+        self._ent_names = {}
+        self._item_names = {}
+
     # <editor-fold desc="HANDLERS LAYOUT" defaultstate="collapsed">
 
     def on_floor_notebook_switch_page(self, notebook, page, page_num):
@@ -257,6 +274,8 @@ class FloorController(AbstractController):
     def on_cb_tileset_id_changed(self, w, *args):
         self._update_from_widget(w)
         self.mark_as_modified(modified_mappag=True)
+        if self.builder.get_object('tool_auto_refresh').get_active() and self.builder.get_object('tool_fullmap').get_active():
+            self._init_tileset()
 
     def on_cb_music_id_changed(self, w, *args):
         self._update_from_widget(w)
