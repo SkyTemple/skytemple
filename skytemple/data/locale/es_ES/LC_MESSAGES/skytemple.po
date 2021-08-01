@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-07-29 18:26+0000\n"
-"PO-Revision-Date: 2021-07-29 18:28\n"
+"PO-Revision-Date: 2021-08-01 17:37\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -8290,7 +8290,7 @@ msgstr "CI mínimo requerido por los enemigos para aprender \n"
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:247
 msgid "Min. IQ required by enemies to learn \n"
 "Item Master:"
-msgstr "Mín. IQ requerido por los enemigos para aprender \n"
+msgstr "CI mínimo requerido por los enemigos para aprender \n"
 "Domina-objetos:"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:285
@@ -8301,7 +8301,7 @@ msgstr "Puntos de tripa se pierden al \n"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:311
 msgid "Intimidator activation chance (%):"
-msgstr "Probabilidad de activación de intimidación (%):"
+msgstr "Probabilidad de que se active Intimidación (%):"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:336
 msgid "Burn damage delay (turns):"
@@ -8341,11 +8341,11 @@ msgstr "Incremento máximo de PS de Semilla Vida:"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:530
 msgid "Oran Berry HP heal amount:"
-msgstr "Cantidad de PS de curación de Baya Aranja:"
+msgstr "Cantidad de PS que cura la Baya Aranja:"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:543
 msgid "Sitrus Berry HP heal amount:"
-msgstr "Cantidad de PS de curación de Baya Zidra:"
+msgstr "Cantidad de PS que cura la Baya Zidra:"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
 #: skytemple/skytemple/module/lists/module.py:104
@@ -8392,7 +8392,7 @@ msgstr "Para añadirlos al equipo de inmediato:\n"
 "ProcessSpecial(PROCESS_SPECIAL_PREPARE_MENU_ACCEPT_TEAM_MEMBER, XX, 0);\n"
 "message_Menu(MENU_ACCEPT_TEAM_MEMBER);\n\n"
 "El menú devolverá 1 si el jugador dijo que sí y 0 si dijo que no.\n"
-"* Ten en cuenta que para la entrada nº 16 el jugador no será preguntado, siempre será añadido al equipo."
+"* Ten en cuenta que para la entrada nº 16 al jugador no se le preguntará, siempre será añadido al equipo."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:149
