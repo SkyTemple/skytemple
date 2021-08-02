@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-07-29 18:26+0000\n"
-"PO-Revision-Date: 2021-07-29 18:28\n"
+"POT-Creation-Date: 2021-08-02 08:34+0000\n"
+"PO-Revision-Date: 2021-08-02 09:32\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -2730,6 +2730,7 @@ msgid "Medium Large (15)"
 msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:69
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:257
 msgid "Clear"
 msgstr ""
 
@@ -3135,6 +3136,196 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/cart_removed.py:67
 msgid "This image must be compressed better to fit in the arm9 ({len(data)} > {block.end-block.begin})."
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:205
+msgid "White"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:206
+msgid "Black"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:207
+msgid "Red"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:208
+msgid "Blue"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:209
+msgid "Green"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:210
+msgid "Yellow"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:211
+msgid "Orange"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:212
+msgid "Purple"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:213
+msgid "Pink"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:217
+msgid "Leaves"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:218
+msgid "Snowflakes"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:219
+msgid "Flames"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:220
+msgid "Sand"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:221
+msgid "Bubbles"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:222
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:243
+msgid "Earthquake"
+msgstr ""
+
+#. TRANSLATORS: Effect of a tileset's secret power move
+#. TRANSLATORS: Move name
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:226
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:230
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:232
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:239
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:240
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:241
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:242
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:244
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:245
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:247
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1704
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1720
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1736
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1752
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1768
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1827
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1843
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1859
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1875
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1891
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1907
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1923
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1939
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1955
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1971
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1987
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2003
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2019
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2035
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2051
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2067
+#: skytemple/skytemple/module/monster/controller/monster.py:1173
+#: skytemple/skytemple/module/monster/controller/monster.py:1174
+#: skytemple/skytemple/module/monster/controller/monster.py:1175
+#: skytemple/skytemple/module/monster/controller/monster.py:1176
+msgid "???"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:227
+msgid "Sleep"
+msgstr ""
+
+#. TRANSLATORS: Move name
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:228
+msgid "Speed -1"
+msgstr ""
+
+#. TRANSLATORS: Effect of a tileset's secret power move
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:229
+msgid "Attack -1"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:231
+msgid "Accuracy -1"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:233
+msgid "Cringe"
+msgstr ""
+
+#. TRANSLATORS: Move name
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:234
+msgid "Freeze"
+msgstr ""
+
+#. TRANSLATORS: Status
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:235
+msgid "Paralysis"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:246
+msgid "Rock Slide"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:248
+msgid "Tri Attack"
+msgstr ""
+
+#. TRANSLATORS: Move name
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:249
+msgid "Hydro Pump"
+msgstr ""
+
+#. TRANSLATORS: Move name
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:250
+msgid "Blizzard"
+msgstr ""
+
+#. TRANSLATORS: Move name
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:251
+msgid "Ice Beam"
+msgstr ""
+
+#. TRANSLATORS: Move name
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:252
+msgid "Seed Bomb"
+msgstr ""
+
+#. TRANSLATORS: Move name
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:253
+msgid "Mud Bomb"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:258
+msgid "Foggy 1"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:259
+msgid "Foggy 2"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:260
+msgid "Foggy 3"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:261
+msgid "Foggy 4"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:262
+msgid "Foggy 5"
+msgstr ""
+
+#: skytemple-files/skytemple_files/hardcoded/dungeons.py:263
+msgid "Foggy 6"
 msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:83
@@ -3898,6 +4089,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:904
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1063
 #: skytemple/skytemple/module/dungeon/controller/main.glade:417
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:102
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:171
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:132
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:187
@@ -4002,6 +4194,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:56
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:60
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:228
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:113
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:184
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:89
 #: skytemple/skytemple/module/lists/controller/world_map.glade:405
@@ -4664,34 +4857,6 @@ msgstr ""
 msgid "Stage NPC Dummy"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1704
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1720
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1736
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1752
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1768
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1827
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1843
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1859
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1875
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1891
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1907
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1923
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1939
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1955
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1971
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1987
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2003
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2019
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2035
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2051
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2067
-#: skytemple/skytemple/module/monster/controller/monster.py:1173
-#: skytemple/skytemple/module/monster/controller/monster.py:1174
-#: skytemple/skytemple/module/monster/controller/monster.py:1175
-#: skytemple/skytemple/module/monster/controller/monster.py:1176
-msgid "???"
-msgstr ""
-
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1784
 msgid "Debug Menus"
 msgstr ""
@@ -5006,7 +5171,7 @@ msgid "_OK"
 msgstr ""
 
 #: skytemple/skytemple/_i18n.py:36
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1764
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1767
 msgid "No"
 msgstr ""
 
@@ -5015,7 +5180,7 @@ msgid "_No"
 msgstr ""
 
 #: skytemple/skytemple/_i18n.py:38
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1765
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1768
 msgid "Yes"
 msgstr ""
 
@@ -5918,7 +6083,7 @@ msgid "No override"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:454
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1804
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1807
 #, python-brace-format
 msgid "No. {i}"
 msgstr ""
@@ -6773,22 +6938,22 @@ msgstr ""
 msgid "Error importing the floor."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1785
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1788
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:105
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:119
 msgid "Random "
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1788
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1791
 msgid "Invalid?"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1790
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1793
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:124
 msgid "INVALID!!!"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1802
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1805
 msgid "No fixed room"
 msgstr ""
 
@@ -7013,7 +7178,7 @@ msgid "More Info: "
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:329
-#: skytemple/skytemple/module/dungeon_graphics/module.py:118
+#: skytemple/skytemple/module/dungeon_graphics/module.py:121
 msgid "Color Map"
 msgstr ""
 
@@ -7412,12 +7577,46 @@ msgstr ""
 msgid "This section lets you edit the background images that are used for some special dungeon floors."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/main.py:24
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:40
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.py:30
 msgid "Dungeon Graphics"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/main.py:36
-msgid "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged."
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:55
+msgid "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged. \n"
+"It also lets you edit backgrounds used for boss fights and other dungeon maps."
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:124
+msgid "Minimap Color"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:139
+msgid "Stirring Effect"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:154
+msgid "Secret Power"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:169
+msgid "Camouflage"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:184
+msgid "Nature Power"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:199
+msgid "Weather"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:214
+msgid "Underwater?"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:239
+msgid "Tileset and Background Properties:"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:60
