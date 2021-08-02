@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.22"/>
+  <object class="GtkBox" id="box_list">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkAlignment">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="xscale">0.8000000119209289</property>
+        <property name="yscale">0.8000000119209289</property>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">5</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="pixel-size">124</property>
+                <property name="icon-name">skytemple-illust-dungeon_tileset</property>
+                <property name="icon_size">3</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">20</property>
+                <property name="label" translatable="yes">Dungeon Graphics</property>
+                <style>
+                  <class name="skytemple-view-main-label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged. 
+It also lets you edit backgrounds used for boss fights and other dungeon maps.</property>
+                <property name="justify">center</property>
+                <property name="wrap">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="box_edit">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">20</property>
+                <property name="margin-bottom">20</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">5</property>
+                <child>
+                  <!-- n-columns=7 n-rows=2 -->
+                  <object class="GtkGrid">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="row-spacing">5</property>
+                    <property name="column-spacing">5</property>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="shadow-type">in</property>
+                        <child>
+                          <object class="GtkTreeView" id="level_list_tree">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="model">list_tree_store</property>
+                            <property name="rules-hint">True</property>
+                            <property name="search-column">0</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection"/>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">ID</property>
+                                <child>
+                                  <object class="GtkCellRendererText"/>
+                                  <attributes>
+                                    <attribute name="text">0</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Name</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cr_name"/>
+                                  <attributes>
+                                    <attribute name="text">1</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Minimap Color</property>
+                                <child>
+                                  <object class="GtkCellRendererCombo" id="cr_map_color">
+                                    <property name="editable">True</property>
+                                    <property name="text-column">1</property>
+                                    <signal name="changed" handler="on_cr_map_color_changed" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">9</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Stirring Effect</property>
+                                <child>
+                                  <object class="GtkCellRendererCombo" id="cr_stirring_effect">
+                                    <property name="editable">True</property>
+                                    <property name="text-column">1</property>
+                                    <signal name="changed" handler="on_cr_stirring_effect_changed" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">10</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Secret Power</property>
+                                <child>
+                                  <object class="GtkCellRendererCombo" id="cr_secret_power_effect">
+                                    <property name="editable">True</property>
+                                    <property name="text-column">1</property>
+                                    <signal name="changed" handler="on_cr_secret_power_effect_changed" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">11</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Camouflage</property>
+                                <child>
+                                  <object class="GtkCellRendererCombo" id="cr_camouflage_type">
+                                    <property name="editable">True</property>
+                                    <property name="text-column">1</property>
+                                    <signal name="changed" handler="on_cr_camouflage_type_changed" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">12</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Nature Power</property>
+                                <child>
+                                  <object class="GtkCellRendererCombo" id="cr_nature_power_move_entry">
+                                    <property name="editable">True</property>
+                                    <property name="text-column">1</property>
+                                    <signal name="changed" handler="on_cr_nature_power_move_entry_changed" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">13</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Weather</property>
+                                <child>
+                                  <object class="GtkCellRendererCombo" id="cr_weather_effect">
+                                    <property name="editable">True</property>
+                                    <property name="text-column">1</property>
+                                    <signal name="changed" handler="on_cr_weather_effect_changed" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">14</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Underwater?</property>
+                                <child>
+                                  <object class="GtkCellRendererToggle" id="cr_full_water_floor">
+                                    <signal name="toggled" handler="on_cr_full_water_floor_toggled" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="active">8</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">1</property>
+                        <property name="width">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">Tileset and Background Properties:</property>
+                        <property name="wrap">True</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
+                        <property name="width">7</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
+  <object class="GtkListStore" id="list_tree_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="gchararray"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+      <!-- column-name map_color -->
+      <column type="gint"/>
+      <!-- column-name stirring_effect -->
+      <column type="gint"/>
+      <!-- column-name secret_power_effect -->
+      <column type="gint"/>
+      <!-- column-name camouflage_type -->
+      <column type="gint"/>
+      <!-- column-name nature_power_move_entry -->
+      <column type="gint"/>
+      <!-- column-name weather_effect -->
+      <column type="gint"/>
+      <!-- column-name full_water_floor -->
+      <column type="gboolean"/>
+      <!-- column-name map_color_text -->
+      <column type="gchararray"/>
+      <!-- column-name stirring_effect_text -->
+      <column type="gchararray"/>
+      <!-- column-name secret_power_effect_text -->
+      <column type="gchararray"/>
+      <!-- column-name camouflage_type_text -->
+      <column type="gchararray"/>
+      <!-- column-name nature_power_move_entry_text -->
+      <column type="gchararray"/>
+      <!-- column-name weather_effect_text -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+</interface>
