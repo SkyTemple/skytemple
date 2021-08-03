@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-08-03 17:40+0000\n"
-"PO-Revision-Date: 2021-08-03 17:45\n"
+"PO-Revision-Date: 2021-08-03 18:54\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3823,7 +3823,7 @@ msgstr "Corrige el fallo de evolución que congela el juego cuando se intenta ev
 
 #: skytemple-files/skytemple_files/patch/handler/fix_memory_softlock.py:41
 msgid "Prevents the game from crashing if it runs out of memory when trying to display a sprite (this can happen during cutscenes when using custom sprites or the randomizer). Instead, the game will be forced to continue, which will most likely prevent the crash but could cause glitches."
-msgstr ""
+msgstr "Evita que el juego se bloquee si se queda sin memoria al intentar mostrar un sprite (esto puede suceder durante las escenas en las que se usan objetos personalizados o el randomizador). En su lugar, el juego continuará, aunque pudiendo producirse fallos."
 
 #: skytemple-files/skytemple_files/patch/handler/move_growth.py:75
 msgid "Implements move growth (PoC/Unfinished). \n"
