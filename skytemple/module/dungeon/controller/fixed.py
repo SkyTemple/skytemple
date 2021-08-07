@@ -336,6 +336,28 @@ class FixedController(AbstractController):
             return
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
+    def on_settings_complete_active_notify(self, w, *args):
+        if w.get_active():
+            self.properties.null |= 0x1
+        else:
+            self.properties.null &= ~0x1
+        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+
+    def on_settings_boss_active_notify(self, w, *args):
+        if w.get_active():
+            self.properties.null |= 0x2
+        else:
+            self.properties.null &= ~0x2
+        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+
+    def on_settings_free_active_notify(self, w, *args):
+        if w.get_active():
+            self.properties.null |= 0x4
+        else:
+            self.properties.null &= ~0x4
+        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+
+
     def on_settings_moves_active_notify(self, w, *args):
         self.properties.moves_enabled = w.get_active()
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
@@ -411,17 +433,29 @@ class FixedController(AbstractController):
                      ")"))
 
     def on_btn_help_orbs_clicked(self, *args):
-        self._help(_("If the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."))
+        self._help(_("If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."))
 
     def on_btn_help_defeat_enemies_clicked(self, *args):
         self._help(_("If enabled, the floor is exited after all the enemies have been defeated"))
 
     def on_btn_help_unk8_clicked(self, *args):
-        self._help(_("If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."))
+        self._help(_("If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."))
 
     def on_btn_help_unk9_clicked(self, *args):
         self._help(_("Prevents any kind of item pulling (such as with the Trawl Orb)."
-                     "\nIf the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."))
+                     "\nIf ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."))
+    
+    def on_btn_help_complete_clicked(self, *args):
+        self._help(_("If enabled, the game will treat this fixed room as an entire floor, not a single room in a floor layout."
+                     "\nIf ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 164. "))
+    
+    def on_btn_help_boss_clicked(self, *args):
+        self._help(_("Enables boss fight conditions."
+                     "\nIf ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 80. "))
+    
+    def on_btn_help_free_clicked(self, *args):
+        self._help(_("Allows free layouts. For example, fixed rooms with this setting can omit stairs."
+                     "\nIf ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 110. "))
 
     def on_btn_help_override_clicked(self, *args):
         self._help(_("If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will "
@@ -534,6 +568,13 @@ class FixedController(AbstractController):
         self.builder.get_object('settings_override').set_active(self.override_id)
         self.builder.get_object('settings_width').set_text(str(self.floor.width))
         self.builder.get_object('settings_height').set_text(str(self.floor.height))
+        self.builder.get_object('settings_complete').set_active(bool(self.properties.null&0x1))
+        self.builder.get_object('settings_boss').set_active(bool(self.properties.null&0x2))
+        self.builder.get_object('settings_free').set_active(bool(self.properties.null&0x4))
+        if not self.module.project.is_patch_applied('ChangeFixedFloorProperties'):
+            self.builder.get_object('settings_complete').set_sensitive(False)
+            self.builder.get_object('settings_boss').set_sensitive(False)
+            self.builder.get_object('settings_free').set_sensitive(False)
 
     def _init_fixed_floor(self):
         # Fixed floor data
