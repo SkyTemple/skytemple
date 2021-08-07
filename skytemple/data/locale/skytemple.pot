@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-08-03 17:40+0000\n"
+"POT-Creation-Date: 2021-08-07 19:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1515,8 +1515,8 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/md/model.py:63
 #: skytemple-files/skytemple_files/data/md/model.py:316
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:480
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:481
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:514
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:515
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:439
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:448
 #: skytemple/skytemple/module/map_bg/controller/bg.py:629
@@ -3703,6 +3703,12 @@ msgstr ""
 msgid "Infinite recursion detected in pre evolutions for md entry {i}. "
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/change_ff_prop.py:43
+msgid ""
+"Changes and adds some properties for fixed floors.\n"
+"Removes restrictions. "
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/change_tbbg.py:43
 msgid "Provides support for editing textbox background color."
 msgstr ""
@@ -3870,72 +3876,72 @@ msgstr ""
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:136
-#: skytemple-files/skytemple_files/patch/patches.py:146
+#: skytemple-files/skytemple_files/patch/patches.py:138
+#: skytemple-files/skytemple_files/patch/patches.py:148
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:152
+#: skytemple-files/skytemple_files/patch/patches.py:154
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:155
+#: skytemple-files/skytemple_files/patch/patches.py:157
 #: skytemple/skytemple/module/patch/controller/main.py:225
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:162
+#: skytemple-files/skytemple_files/patch/patches.py:164
 msgid "No configuration was given."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:165
+#: skytemple-files/skytemple_files/patch/patches.py:167
 msgid "Missing configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:169
 #: skytemple-files/skytemple_files/patch/patches.py:171
 #: skytemple-files/skytemple_files/patch/patches.py:173
-#: skytemple-files/skytemple_files/patch/patches.py:177
-#: skytemple-files/skytemple_files/patch/patches.py:187
+#: skytemple-files/skytemple_files/patch/patches.py:175
+#: skytemple-files/skytemple_files/patch/patches.py:179
+#: skytemple-files/skytemple_files/patch/patches.py:189
 msgid "Invalid configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:171
+#: skytemple-files/skytemple_files/patch/patches.py:173
 msgid "Must be >= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:173
+#: skytemple-files/skytemple_files/patch/patches.py:175
 msgid "Must be <= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:221
+#: skytemple-files/skytemple_files/patch/patches.py:223
 msgid "config.xml missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:223
+#: skytemple-files/skytemple_files/patch/patches.py:225
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:233
+#: skytemple-files/skytemple_files/patch/patches.py:235
 msgid "patch.py missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:235
+#: skytemple-files/skytemple_files/patch/patches.py:237
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:240
+#: skytemple-files/skytemple_files/patch/patches.py:242
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:245
+#: skytemple-files/skytemple_files/patch/patches.py:247
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:251
+#: skytemple-files/skytemple_files/patch/patches.py:253
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
@@ -4061,7 +4067,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:340
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1571
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:88
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:394
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:416
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:318
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:331
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:484
@@ -6002,14 +6008,6 @@ msgid "Trap Layer Legend"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1183
-msgid "Music:"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1195
-msgid "Moves allowed:"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1207
 #: skytemple/skytemple/module/monster/controller/monster.glade:1537
 #: skytemple/skytemple/module/moves_items/controller/item.glade:933
 #: skytemple/skytemple/module/moves_items/controller/move.glade:767
@@ -6017,65 +6015,84 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1274
-msgid "Orbs allowed:"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1317
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1281
 msgid "Overrides"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1333
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1340
+msgid "Dimensions"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1490
+msgid "Apply new size"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1601
+msgid "Music:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1613
+msgid "Moves allowed:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1625
+msgid "Orbs allowed:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1637
 msgid ""
 "Fixed Room to load \n"
 "if dungeon is cleared:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1389
-msgid "Dimensions"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1405
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1650
 msgid "Width:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1417
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1662
 msgid "Height:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1451
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1674
 msgid "Prevent \"Item Stealing\""
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1463
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1686
 msgid "Disable all warp effects:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1475
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1698
 msgid "Disable some traps:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1487
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1710
 msgid "Darkness disabled:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1499
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1722
 msgid "Exit floor when defeating all enemies:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1623
-msgid "Apply new size"
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1734
+msgid "Is Complete Fixed Floor: "
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1641
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1746
+msgid "Is Boss Fight: "
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1758
+msgid "Is Free Layout: "
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1770
 msgid ""
 "PLEASE NOTE: \n"
-"The game is hardcoded to check for stairs or warp zones on fixed rooms with ID >= 110.\n"
-"For rooms with ID >= 165 the game tries to place them as a room in a normal floor layout.\n"
-"If the game fails to generate a floor, it will fall back to a one-room monster house."
+"The game has some hardcoded checks for those settings when ChangeFixedFloorProperties is not applied.\n"
+"Please check the help for each setting for more information."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1684
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:1812
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4326
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4591
 #: skytemple/skytemple/module/monster/controller/monster.glade:3478
@@ -6091,65 +6108,83 @@ msgstr ""
 msgid "(Special?)"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:381
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:403
 msgid "Width and height must be numbers >= 0."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:382
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:404
 msgid "Invalid values."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:393
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:415
 msgid "You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:405
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:427
 msgid "If not set, the track ID specified on the floor this fixed floor is assigned to will be used instead."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:409
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:431
 msgid "Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled)"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:414
-msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:436
+msgid "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:417
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:439
 msgid "If enabled, the floor is exited after all the enemies have been defeated"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:420
-msgid "If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:442
+msgid "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:423
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:445
 msgid ""
 "Prevents any kind of item pulling (such as with the Trawl Orb).\n"
-"If the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
+"If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:427
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:449
+msgid ""
+"If enabled, the game will treat this fixed room as an entire floor, not a single room in a floor layout.\n"
+"If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 164. "
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:453
+msgid ""
+"Enables boss fight conditions.\n"
+"If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 80. "
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:457
+msgid ""
+"Allows free layouts. For example, fixed rooms with this setting can omit stairs.\n"
+"If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 110. "
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:461
 msgid ""
 "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
 "This is used in dungeons where the content of a fixed floor varies depending on the story progress, such as in most of the dungeons with a legendary Pokémon at the end (first visit vs rematch)."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:445
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:479
 #, python-brace-format
 msgid "Background {i}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:447
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:481
 #, python-brace-format
 msgid "Tileset {i}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:452
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:486
 msgid "No override"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:454
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:488
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1807
 #, python-brace-format
 msgid "No. {i}"
