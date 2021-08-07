@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-08-07 19:31+0000\n"
-"PO-Revision-Date: 2021-08-07 19:44\n"
+"PO-Revision-Date: 2021-08-07 20:43\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3709,7 +3709,8 @@ msgstr "Recursión infinita detectada en preevoluciones para la entrada de MD {i
 #: skytemple-files/skytemple_files/patch/handler/change_ff_prop.py:43
 msgid "Changes and adds some properties for fixed floors.\n"
 "Removes restrictions. "
-msgstr ""
+msgstr "Cambia y añade algunas propiedades para los pisos fijos.\n"
+"Elimina las restricciones. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_tbbg.py:43
 msgid "Provides support for editing textbox background color."
@@ -6103,21 +6104,23 @@ msgstr "Salir del piso al derrotar a todos los enemigos:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1734
 msgid "Is Complete Fixed Floor: "
-msgstr ""
+msgstr "Es piso fijo completo: "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1746
 msgid "Is Boss Fight: "
-msgstr ""
+msgstr "Es un combate contra jefe: "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1758
 msgid "Is Free Layout: "
-msgstr ""
+msgstr "Es una distribución libre: "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1770
 msgid "PLEASE NOTE: \n"
 "The game has some hardcoded checks for those settings when ChangeFixedFloorProperties is not applied.\n"
 "Please check the help for each setting for more information."
-msgstr ""
+msgstr "NOTA: \n"
+"El juego tiene algunas comprobaciones codificadas para esos ajustes cuando no se aplica 'ChangeFixedFloorProperties'.\n"
+"Consulta la información de cada ajuste para obtener más información."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1812
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4326
@@ -6157,7 +6160,7 @@ msgstr "Determina si pueden utilizarse o no movimientos. No afecta al ataque nor
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:436
 msgid "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
-msgstr ""
+msgstr "Si no se aplica 'ChangeFixedFloorProperties' y el ID del piso fijo es 0 o >= 165, este ajuste se ignora. Los orbes siempre están permitidos."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:439
 msgid "If enabled, the floor is exited after all the enemies have been defeated"
@@ -6165,27 +6168,31 @@ msgstr "Si se activa, se sale del piso después de haber derrotado a todos los e
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:442
 msgid "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr ""
+msgstr "Si no se aplica 'ChangeFixedFloorProperties' y el ID del piso fijo es 0 o >= 165, este ajuste se ignora. Siempre está activado."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:445
 msgid "Prevents any kind of item pulling (such as with the Trawl Orb).\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr ""
+msgstr "Impide cualquier tipo de objetos de aspiración (como la Aspirosfera).\n"
+"Si no se aplica 'ChangeFixedFloorProperties' y el ID del piso fijo es 0 o >= 165, este ajuste se ignora. Siempre está activado."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:449
 msgid "If enabled, the game will treat this fixed room as an entire floor, not a single room in a floor layout.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 164. "
-msgstr ""
+msgstr "Si se activa, el juego tratará esta sala fija como un piso entero, no como una sala individual en una distribución de pisos.\n"
+"Si no se aplica 'ChangeFixedFloorProperties', solo se activará cuando el ID del piso fijo esté entre 1 y 164. "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:453
 msgid "Enables boss fight conditions.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 80. "
-msgstr ""
+msgstr "Activa las condiciones de combate de los jefes.\n"
+"Si no se aplica 'ChangeFixedFloorProperties', solo se activará cuando el ID del piso fijo esté entre 1 y 80. "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:457
 msgid "Allows free layouts. For example, fixed rooms with this setting can omit stairs.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 110. "
-msgstr ""
+msgstr "Permite la disposición libre. Por ejemplo, las salas fijas con este ajuste pueden omitir las escaleras.\n"
+"Si no se aplica 'ChangeFixedFloorProperties', solo se habilitará cuando el ID del piso fijo esté entre 1 y 110. "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:461
 msgid "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
@@ -6752,7 +6759,7 @@ msgid "Internal Error occured while trying to render floor.\n"
 "the game uses a 1-room floorwide Monster House instead."
 msgstr "Se ha producido un error interno al intentar renderizar el piso.\n"
 "Es posible que no funcione en el juego. En ese caso,\n"
-"se utilizará un nido de monstruos de 1 habitación en su lugar."
+"se utilizará un nido de monstruos de 1 sala en su lugar."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3134
 msgid "The random floor generator failed generating the floor\n"
@@ -6764,7 +6771,7 @@ msgstr "El generador de pisos aleatorios ha fallado tres veces seguidas\n"
 "Esto probablemente significa que la configuración actual de\n"
 "no puede generar pisos válidos.\n"
 "Si no es así, el juego utilizará un nido de monstruos de 1\n"
-"habitación en su lugar."
+"sala en su lugar."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3245
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3492
@@ -6936,13 +6943,13 @@ msgstr "Esta es la cantidad de lagos que se generarán durante la fase de genera
 msgid "Floor connectivity (Min 1, if it's 0 a valid map can't be generated and you will get the default single room that it's also a monster house).\n\n"
 "This is the amount of connections between cells that will be generated when the map is first created. More will be added later to ensure that all the rooms can be accessed.\n"
 "A cell is a point in the initial grid used to generate the map. It will end up being a room or a crossroad once the full map is generated."
-msgstr "Conexiones del piso (mínimo 1, si es 0 no se puede generar un mapa válido y obtendrás la habitación por defecto, será un nido de monstruos).\n\n"
+msgstr "Conexiones del piso (mínimo 1, si es 0 no se puede generar un mapa válido y obtendrás la sala por defecto, será un nido de monstruos).\n\n"
 "Esta es la cantidad de conexiones entre celdas que se generarán cuando se cree el mapa por primera vez. Más tarde se añadirá más para garantizar el acceso a todas las salas.\n"
-"Una celda es un punto en la cuadrícula inicial utilizada para generar el mapa. Terminará siendo una habitación o un cruce una vez que se genere el mapa completo."
+"Una celda es un punto en la cuadrícula inicial utilizada para generar el mapa. Terminará siendo una sala o un cruce una vez que se genere el mapa completo."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:332
 msgid "Used to generate additional hallways in the map (those \"donuts\" that lead to nowhere, multiple entrances to the same room, room exits connected to the same room, those dead ends that come out of a room, make a couple of twists and also lead to nowhere)"
-msgstr "Se utiliza para generar pasillos adicionales en el mapa (esos \"donuts\" que no llevan a ninguna parte, las entradas múltiples a una misma sala, las conexiones entre salas, los callejones sin salida que salen de una habitación, dan un par de vueltas y tampoco llevan a ninguna parte...)"
+msgstr "Se utiliza para generar pasillos adicionales en el mapa (esos \"donuts\" que no llevan a ninguna parte, las entradas múltiples a una misma sala, las conexiones entre salas, los callejones sin salida de alguna sala que dan un par de vueltas y tampoco llevan a ninguna parte...)"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:377
 msgid "The final value is randomized between density and density/2."
@@ -6970,7 +6977,7 @@ msgid "0 --> 100% secret bazaar\n"
 "Other values: 0% secret bazaar, 0% secret room (you just go to the next floor like normal stairs)."
 msgstr "0 --> Bazar secreto seguro\n"
 "1 --> Sala secreta segura\n"
-"255 --> 50% bazar secreto, 50% habitación secreta\n"
+"255 --> 50% bazar secreto, 50% sala secreta\n"
 "Otros valores: 0% bazar secreto, 0% sala secreta (se avanza al siguiente piso como si fueran escaleras normales)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:409
