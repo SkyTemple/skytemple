@@ -82,10 +82,13 @@ class ListIconRenderer:
         self._refresh_timer = GLib.timeout_add_seconds(0.5, self._reload_icons_in_tree)
 
     def _reload_icons_in_tree(self):
-        for model, idx, params in self._registered_for_reload:
-            model[get_list_store_iter_by_idx(model, idx)][self.column_id] = self._get_icon(*params)
-        self._loading = False
-        self._refresh_timer = None
+        try:
+            for model, idx, params in self._registered_for_reload:
+                model[get_list_store_iter_by_idx(model, idx)][self.column_id] = self._get_icon(*params)
+            self._loading = False
+            self._refresh_timer = None
+        except (AttributeError, TypeError):
+            pass  # This happens when the view was unloaded in the meantime.
 
 
 def grouper(iterable, n, fillvalue=None):

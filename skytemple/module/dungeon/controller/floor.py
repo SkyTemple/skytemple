@@ -1596,12 +1596,15 @@ class FloorController(AbstractController):
         self._refresh_timer = GLib.timeout_add_seconds(0.5, self._reload_icons_in_tree)
 
     def _reload_icons_in_tree(self):
-        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
-        self._loading = True
-        for i, entry in enumerate(store):
-            entry[1] = self._get_icon(entry[0], i)
-        self._loading = False
-        self._refresh_timer = None
+        try:
+            store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+            self._loading = True
+            for i, entry in enumerate(store):
+                entry[1] = self._get_icon(entry[0], i)
+            self._loading = False
+            self._refresh_timer = None
+        except (AttributeError, TypeError):
+            pass  # This happens when the view was unloaded in the meantime.
 
     def _save_monster_spawn_rates(self):
         store: Gtk.ListStore = self.builder.get_object('monster_spawns_store')

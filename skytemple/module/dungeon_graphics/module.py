@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import Optional
+from typing import Optional, List
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
@@ -23,7 +23,7 @@ from gi.repository.Gtk import TreeStore
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.model_context import ModelContext
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET
-from skytemple.core.rom_project import RomProject
+from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label
 from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController, \
@@ -44,6 +44,8 @@ from skytemple_files.graphics.colvec.model import Colvec
 from skytemple_files.common.i18n_util import f, _
 
 # TODO: Not so great that this is hard-coded, but how else can we really do it? - Maybe at least in the dungeondata.xml?
+from skytemple_files.hardcoded.dungeons import TilesetProperties, HardcodedDungeons
+
 NUMBER_OF_TILESETS = 170
 NUMBER_OF_BACKGROUNDS = 29
 DUNGEON_BIN = 'DUNGEON/dungeon.bin'
@@ -68,6 +70,7 @@ class DungeonGraphicsModule(AbstractModule):
         self._tree_model = None
         self._tree_level_iter = []
         self._colvec_pos = None
+        self._root_node = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         self.dungeon_bin_context: ModelContext[DungeonBinPack] = self.project.open_file_in_rom(
@@ -75,7 +78,7 @@ class DungeonGraphicsModule(AbstractModule):
             threadsafe=True
         )
 
-        root = item_store.append(root_node, [
+        root = self._root_node = item_store.append(root_node, [
             'skytemple-e-dungeon-tileset-symbolic', DUNGEON_GRAPHICS_NAME, self, MainController, 0, False, '', True
         ])
         tileset_root = item_store.append(root, [
@@ -208,3 +211,17 @@ class DungeonGraphicsModule(AbstractModule):
         else:
             raise ValueError("Invalid item type")
         self.project.mark_as_modified(DUNGEON_BIN)
+
+    def get_tileset_properties(self) -> List[TilesetProperties]:
+        return HardcodedDungeons.get_tileset_properties(
+            self.project.get_binary(BinaryName.OVERLAY_10),
+            self.project.get_rom_module().get_static_data()
+        )
+
+    def set_tileset_properties(self, lst: List[TilesetProperties]):
+        self.project.modify_binary(
+            BinaryName.OVERLAY_10, lambda binary: HardcodedDungeons.set_tileset_properties(
+                lst, binary, self.project.get_rom_module().get_static_data()
+        ))
+        row = self._tree_model[self._root_node]
+        recursive_up_item_store_mark_as_modified(row)
