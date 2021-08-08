@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-08-07 19:31+0000\n"
-"PO-Revision-Date: 2021-08-07 20:43\n"
+"POT-Creation-Date: 2021-08-08 12:01+0000\n"
+"PO-Revision-Date: 2021-08-08 12:05\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -6103,8 +6103,8 @@ msgid "Exit floor when defeating all enemies:"
 msgstr "Salir del piso al derrotar a todos los enemigos:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1734
-msgid "Is Complete Fixed Floor: "
-msgstr "Es piso fijo completo: "
+msgid "Is Whole Floor: "
+msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1746
 msgid "Is Boss Fight: "
@@ -6116,11 +6116,9 @@ msgstr "Es una distribución libre: "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1770
 msgid "PLEASE NOTE: \n"
-"The game has some hardcoded checks for those settings when ChangeFixedFloorProperties is not applied.\n"
+"The game has some hardcoded checks for those settings when the patch \"ChangeFixedFloorProperties\" is not applied.\n"
 "Please check the help for each setting for more information."
-msgstr "NOTA: \n"
-"El juego tiene algunas comprobaciones codificadas para esos ajustes cuando no se aplica 'ChangeFixedFloorProperties'.\n"
-"Consulta la información de cada ajuste para obtener más información."
+msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1812
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4326
