@@ -568,13 +568,17 @@ class FixedController(AbstractController):
         self.builder.get_object('settings_override').set_active(self.override_id)
         self.builder.get_object('settings_width').set_text(str(self.floor.width))
         self.builder.get_object('settings_height').set_text(str(self.floor.height))
-        self.builder.get_object('settings_complete').set_active(bool(self.properties.null&0x1))
-        self.builder.get_object('settings_boss').set_active(bool(self.properties.null&0x2))
-        self.builder.get_object('settings_free').set_active(bool(self.properties.null&0x4))
         if not self.module.project.is_patch_applied('ChangeFixedFloorProperties'):
             self.builder.get_object('settings_complete').set_sensitive(False)
             self.builder.get_object('settings_boss').set_sensitive(False)
             self.builder.get_object('settings_free').set_sensitive(False)
+            self.builder.get_object('settings_complete').set_active(bool(1<=self.floor_id<165))
+            self.builder.get_object('settings_boss').set_active(bool(1<=self.floor_id<=80))
+            self.builder.get_object('settings_free').set_active(bool(1<=self.floor_id<=110))
+        else:
+            self.builder.get_object('settings_complete').set_active(bool(self.properties.null&0x1))
+            self.builder.get_object('settings_boss').set_active(bool(self.properties.null&0x2))
+            self.builder.get_object('settings_free').set_active(bool(self.properties.null&0x4))
 
     def _init_fixed_floor(self):
         # Fixed floor data
