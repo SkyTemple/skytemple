@@ -37,6 +37,7 @@ from skytemple_files.common.i18n_util import _, f
 
 from gi.repository import Gtk
 
+from skytemple.core.ui_utils import glib_async
 from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -165,6 +166,7 @@ class DungeonInterruptController(AbstractController):
             return
         self._build_list()
     
+    @glib_async
     def on_combo_type_changed(self, w, treepath, treeiter):
         store_inter: Gtk.ListStore = self.builder.get_object('interrupt_store')
         store_type: Gtk.ListStore = self.builder.get_object('type_store')
@@ -172,6 +174,7 @@ class DungeonInterruptController(AbstractController):
         store_inter[treepath][5] = store_type[treeiter][1]
         self._build_list()
     
+    @glib_async
     def on_combo_game_var_changed(self, w, treepath, treeiter):
         store_inter: Gtk.ListStore = self.builder.get_object('interrupt_store')
         store_var: Gtk.ListStore = self.builder.get_object('var_store')
