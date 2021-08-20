@@ -95,7 +95,7 @@ class GuestPokemonController(ListBaseController):
         store.append([
             str(len(store)), "0", self._get_monster_display_name(0), "0", self._get_move_display_name(0),
             self._get_move_display_name(0), self._get_move_display_name(0), self._get_move_display_name(0),
-            "1", "1", "1", "0", "0", "0", "0", "0", "0"
+            "1", "1", "1", "0", "0", "0", "0", "0", "0", None
         ])
         self._update_free_entries_left()
         self._save_guest_pokemon_data()
