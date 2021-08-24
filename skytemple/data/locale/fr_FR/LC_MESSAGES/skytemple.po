@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-08-13 22:49+0000\n"
-"PO-Revision-Date: 2021-08-24 11:22\n"
+"PO-Revision-Date: 2021-08-24 12:19\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -129,7 +129,7 @@ msgstr "Autres chaînes: Donjon"
 
 #: /dev/fd/63:28 /dev/fd/63:128
 msgid "Something's Stirring String"
-msgstr ""
+msgstr "Chaînes: Quelque chose bouge"
 
 #: /dev/fd/63:29 /dev/fd/63:129
 msgid "Some Fake items Dialogue"
@@ -137,27 +137,27 @@ msgstr "Dialogue de certains objets trompeurs"
 
 #: /dev/fd/63:30 /dev/fd/63:130
 msgid "Shaymin Form Change Strings"
-msgstr ""
+msgstr "Chaînes: Formes de Shaymin"
 
 #: /dev/fd/63:31 /dev/fd/63:131
 msgid "Recruited A Pokemon Strings"
-msgstr ""
+msgstr "Chaînes: Recrutement de Pokemon"
 
 #: /dev/fd/63:32 /dev/fd/63:132
 msgid "Battle Feedback Messages"
-msgstr ""
+msgstr "Chaînes: Messages de combat"
 
 #: /dev/fd/63:33 /dev/fd/63:133
 msgid "Misson Feedback"
-msgstr ""
+msgstr "Chaînes: Missions"
 
 #: /dev/fd/63:34 /dev/fd/63:134
 msgid "Kecleon Dungeon Shop Strings"
-msgstr ""
+msgstr "Chaînes: Magasin Kecleon"
 
 #: /dev/fd/63:35 /dev/fd/63:135
 msgid "Misc Battle Events Strings"
-msgstr ""
+msgstr "Chaînes: Evènements en combat"
 
 #: /dev/fd/63:36 /dev/fd/63:136
 msgid "Secret Bazaar Stairs Found"
@@ -11003,96 +11003,98 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:169
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:178
 msgid "Edits the effects used by each move."
-msgstr ""
+msgstr "Édite les effets de chaque attaque."
 
 #: skytemple/skytemple/module/moves_items/controller/item_effects.py:123
 msgid "Import Item Effect ASM Code..."
-msgstr ""
+msgstr "Importer le code assembleur de l'objet..."
 
 #: skytemple/skytemple/module/moves_items/controller/item_effects.py:188
 msgid "Export Item Effect ASM Code..."
-msgstr "Exporter le code assembleur de l'item..."
+msgstr "Exporter le code assembleur de l'objet..."
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:527
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:604
 #: skytemple/skytemple/module/moves_items/module.py:82
 msgid "Item Lists"
-msgstr ""
+msgstr "Listes d'objets"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:543
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:620
 msgid "Edits the lists used for mission rewards, treasure boxes and Treasure Town Kecleon shops."
-msgstr ""
+msgstr "Modifie les listes pour les récompenses, coffres, et le Magasin Kecleon de Bourg-Trésor."
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:556
 msgid "<Not available>\n\n"
 "To view and edit those lists, please apply the \"ExtractHardcodedItemLists\" \n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<Not available>\n\n"
+"Pour voir et éditer ces listes, appliquez le patch assembleur\n"
+"\"ExtractHardcodedItemLists\" depuis le menu \"ASM Patches\"."
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:638
 msgid "Lists: "
-msgstr ""
+msgstr "Listes: "
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:43
 msgid "E Floors Rewards"
-msgstr ""
+msgstr "Récompenses Rang E"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:44
 msgid "D Floors Rewards"
-msgstr "Récompenses des Étages de rang D"
+msgstr "Récompenses Rang D"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:45
 msgid "C Floors Rewards"
-msgstr "Récompenses des Étages de rang C"
+msgstr "Récompenses Rang C"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:46
 msgid "B Floors Rewards"
-msgstr "Récompenses des Étages de rang B"
+msgstr "Récompenses Rang B"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:47
 msgid "A Floors Rewards"
-msgstr "Récompenses des Étages de rang A"
+msgstr "Récompenses Rang A"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:48
 msgid "S Floors Rewards"
-msgstr "Récompenses des Étages de rang S"
+msgstr "Récompenses Rang S"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:49
 msgid "★1 Floors Rewards"
-msgstr ""
+msgstr "Récompenses Rang ★1"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:50
 msgid "★2 Floors Rewards"
-msgstr ""
+msgstr "Récompenses Rang ★2"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:51
 msgid "★3 Floors Rewards"
-msgstr ""
+msgstr "Récompenses Rang ★3"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:52
 msgid "★4 Floors Rewards"
-msgstr ""
+msgstr "Récompenses Rang ★4"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:53
 msgid "★5 Floors Rewards"
-msgstr ""
+msgstr "Récompenses Rang ★5"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:54
 msgid "★6 Floors Rewards"
-msgstr ""
+msgstr "Récompenses Rang ★6"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:55
 msgid "★7 Floors Rewards"
-msgstr ""
+msgstr "Récompenses Rang ★7"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:56
 msgid "★8 Floors Rewards"
-msgstr ""
+msgstr "Récompenses Rang ★8"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:57
 msgid "★9 Floors Rewards"
-msgstr ""
+msgstr "Récompenses Rang ★9"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.py:58
 msgid "Kecleon Shop 1"
@@ -11142,116 +11144,116 @@ msgstr "Inconnu 3"
 
 #: skytemple/skytemple/module/moves_items/controller/main_items.py:35
 msgid "This section lets you edit settings related to items."
-msgstr ""
+msgstr "Cette section vous permet de changer les paramètres des objets."
 
 #: skytemple/skytemple/module/moves_items/controller/main_moves.py:35
 msgid "This section lets you edit settings related to moves."
-msgstr ""
+msgstr "Cette section vous permet de changer les paramètres des attaques."
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:101
 msgid "Base Power:"
-msgstr ""
+msgstr "Base Puissance:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:113
 msgid "Base PP:"
-msgstr ""
+msgstr "Base PP:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:373
 msgid "Description:"
-msgstr ""
+msgstr "Description:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:578
 #: skytemple/skytemple/module/moves_items/controller/move.py:222
 msgid "Accuracy:"
-msgstr ""
+msgstr "Précision:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:590
 #: skytemple/skytemple/module/moves_items/controller/move.py:234
 msgid "Miss Accuracy:"
-msgstr ""
+msgstr "Précision \"Raté\":"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:648
 #: skytemple/skytemple/module/moves_items/controller/move.py:245
 msgid "# of chained hits:"
-msgstr ""
+msgstr "# d'attaques consécutives:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:693
 msgid "Max Upgrade Level:"
-msgstr ""
+msgstr "Niveau Ginseng max:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:718
 msgid "Crit Chance:"
-msgstr ""
+msgstr "Taux de Critiques:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:792
 #: skytemple/skytemple/module/moves_items/controller/move.glade:912
 msgid "Target:"
-msgstr ""
+msgstr "Cible:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:804
 #: skytemple/skytemple/module/moves_items/controller/move.glade:924
 msgid "Range:"
-msgstr ""
+msgstr "Portée:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:816
 #: skytemple/skytemple/module/moves_items/controller/move.py:256
 msgid "Actual values:"
-msgstr ""
+msgstr "Valeurs propres:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:876
 #: skytemple/skytemple/module/moves_items/controller/move.py:270
 msgid "Values used for AI calculation:"
-msgstr ""
+msgstr "Valeurs IA:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:936
 #: skytemple/skytemple/module/moves_items/controller/move.py:281
 msgid "Required condition:"
-msgstr ""
+msgstr "Condition requise:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:983
 msgid "AI Weight:"
-msgstr ""
+msgstr "Poids IA:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1041
 msgid "AI Condition 1 Chance:"
-msgstr ""
+msgstr "Chance Condition 1 IA:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1057
 msgid "Range"
-msgstr ""
+msgstr "Portée"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1082
 #: skytemple/skytemple/module/moves_items/controller/move.py:292
 msgid "Affected by Magic Coat:"
-msgstr ""
+msgstr "Affecté par Reflet Magik:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1094
 msgid "Unk 13:"
-msgstr ""
+msgstr "Unk 13:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1119
 msgid "Unk 15:"
-msgstr ""
+msgstr "Unk 15:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1144
 #: skytemple/skytemple/module/moves_items/controller/move.py:303
 msgid "Is Snatchable:"
-msgstr ""
+msgstr "Affecté par Saisie:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1156
 #: skytemple/skytemple/module/moves_items/controller/move.py:314
 msgid "Uses Mouth:"
-msgstr ""
+msgstr "Affecté par Bâillon:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1168
 #: skytemple/skytemple/module/moves_items/controller/move.py:325
 msgid "Ignores Taunted:"
-msgstr ""
+msgstr "Ignore Provoc:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1336
 #: skytemple/skytemple/module/moves_items/controller/move.py:337
 msgid "Message ID:"
-msgstr ""
+msgstr "ID Message:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:220
 msgid "The percentage indicating the chances the move will succeed. 100 is perfect accuracy. Anything higher than 100 is a never-miss move."
@@ -11707,145 +11709,151 @@ msgid "This section contains all scenes for the map {self.name}.\n\n"
 "The player can usually not move the character in these scenes.\n\n"
 "\"Sub (sss)\" contains scenes that can be loaded on on top of the \"Enter\" scene,\n"
 "depending on the current story progress."
-msgstr ""
+msgstr "Cette section contient toutes les scènes de la carte {self.name}.\n\n"
+"\"Entrée (sse)\" contient la scène chargée quand le joueur entre\n"
+"dans la carte en \"marchant vers elle\" (si possible).\n\n"
+"\"Actions (ssa)\" contient les scènes cinématiques.\n"
+"Le joueur ne bouge pas de lui-même durant celles-ci.\n\n"
+"\"Sub (sss)\" contient les scènes pouvant être chargées avec les scènes \"Entrée\".\n"
+"Les scènes chargées dépendent de l'avancement dans le scénario."
 
 #: skytemple/skytemple/module/script/controller/map.py:68
 #: skytemple/skytemple/module/script/controller/map.py:105
 #: skytemple/skytemple/module/script/controller/map.py:141
 msgid "Could not add the scene: "
-msgstr ""
+msgstr "Impossible d'ajouter la scène: "
 
 #: skytemple/skytemple/module/script/controller/map.py:77
 #: skytemple/skytemple/module/script/controller/map.py:114
 #: skytemple/skytemple/module/script/controller/map.py:150
 msgid "Scene added successfully"
-msgstr ""
+msgstr "Scène ajoutée avec succès"
 
 #: skytemple/skytemple/module/script/controller/map.py:84
 #: skytemple/skytemple/module/script/controller/map.py:120
 msgid "Create Scene"
-msgstr ""
+msgstr "Créer Scène"
 
 #: skytemple/skytemple/module/script/controller/map.py:84
 #: skytemple/skytemple/module/script/controller/map.py:120
 msgid "Scene Name (without file extension)"
-msgstr ""
+msgstr "Nom de scène (sans l'extension du fichier)"
 
 #: skytemple/skytemple/module/script/controller/map.py:93
 #: skytemple/skytemple/module/script/controller/map.py:129
 msgid "The length of the scene name must be between 1-8 characters."
-msgstr ""
+msgstr "Le nom de scène doit être compris entre 1 et 8 caractères."
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:73
 #: skytemple/skytemple/module/script/controller/ssa.py:1244
 msgid "Triggered Script"
-msgstr ""
+msgstr "Script actif"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:84
 #: skytemple/skytemple/module/script/controller/ssa.py:1245
 msgid "Coroutine"
-msgstr ""
+msgstr "Co-routine"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:513
 #: skytemple/skytemple/module/script/controller/ssa.glade:514
 msgid "Add Actor"
-msgstr ""
+msgstr "Ajouter un Acteur"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:530
 #: skytemple/skytemple/module/script/controller/ssa.glade:531
 msgid "Add Object"
-msgstr ""
+msgstr "Ajouter un Objet"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:547
 #: skytemple/skytemple/module/script/controller/ssa.glade:548
 msgid "Add Performer"
-msgstr ""
+msgstr "Ajouter un Performer"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:564
 #: skytemple/skytemple/module/script/controller/ssa.glade:565
 msgid "Add Trigger"
-msgstr ""
+msgstr "Ajouter un Evènement"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:623
 msgid "Edit the currently selected map background"
-msgstr ""
+msgstr "Editer le fond de carte sélectionné actuellement"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:625
 msgid "Go to BG"
-msgstr ""
+msgstr "Aller au fond de carte"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:795
 #: skytemple/skytemple/module/script/controller/ssa.glade:1149
 msgid "Scene"
-msgstr ""
+msgstr "Scène"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:839
 #: skytemple/skytemple/module/script/controller/ssa.glade:964
 #: skytemple/skytemple/module/script/controller/ssa.glade:1088
 msgid "Add"
-msgstr ""
+msgstr "Ajouter"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:853
 #: skytemple/skytemple/module/script/controller/ssa.glade:978
 #: skytemple/skytemple/module/script/controller/ssa.glade:1102
 msgid "Remove"
-msgstr ""
+msgstr "Retirer"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:893
 msgid "Events"
-msgstr ""
+msgstr "Evènements"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1008
 msgid "Sectors (Layers)"
-msgstr ""
+msgstr "Secteurs (Couches)"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1064
 msgid "Edit Script"
-msgstr ""
+msgstr "Editer le script"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1200
 msgid "Scenes for this map"
-msgstr ""
+msgstr "Scènes de cette carte"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1738
 #: skytemple/skytemple/module/script/controller/ssa.glade:1890
 #: skytemple/skytemple/module/script/controller/ssa.py:1286
 #: skytemple/skytemple/module/script/controller/ssa.py:1295
 msgid "Talk Script"
-msgstr ""
+msgstr "Script associé"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1751
 #: skytemple/skytemple/module/script/controller/ssa.glade:1903
 #: skytemple/skytemple/module/script/controller/ssa.glade:2147
 msgid "Direction"
-msgstr ""
+msgstr "Direction"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1983
 #: skytemple/skytemple/module/script/controller/ssa.glade:2172
 #: skytemple/skytemple/module/script/controller/ssa.glade:2317
 msgid "Hitbox"
-msgstr ""
+msgstr "Collisions"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1996
 #: skytemple/skytemple/module/script/controller/ssa.glade:2185
 #: skytemple/skytemple/module/script/controller/ssa.glade:2330
 msgid "W"
-msgstr ""
+msgstr "L"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:2009
 #: skytemple/skytemple/module/script/controller/ssa.glade:2210
 #: skytemple/skytemple/module/script/controller/ssa.glade:2374
 msgid "H"
-msgstr ""
+msgstr "H"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:2267
 msgid "Event"
-msgstr ""
+msgstr "Evènement"
 
 #: skytemple/skytemple/module/script/controller/ssa.py:510
 #, python-brace-format
 msgid "Sector {new_index}"
-msgstr ""
+msgstr "Secteur {new_index}"
 
 #: skytemple/skytemple/module/script/controller/ssa.py:522
 msgid "Are you sure you want to remove this sector?\n"
@@ -11855,19 +11863,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.py:635
 msgid "Create Script"
-msgstr ""
+msgstr "Créer Script"
 
 #: skytemple/skytemple/module/script/controller/ssa.py:635
 msgid "Script Number"
-msgstr ""
+msgstr "Numéro Script"
 
 #: skytemple/skytemple/module/script/controller/ssa.py:645
 msgid "Please enter a valid number."
-msgstr ""
+msgstr "Entrez une valeur valide."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:658
 msgid "This script already exists."
-msgstr ""
+msgstr "Ce script existe déjà."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:695
 msgid "Acting scenes must have exactly one script assigned to them."
@@ -11880,7 +11888,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.py:1378
 #, python-brace-format
 msgid "Type {performer_type}"
-msgstr ""
+msgstr "Type {performer_type}"
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1398
 msgid "V"
@@ -11897,7 +11905,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.py:1428
 #, python-brace-format
 msgid "Sector {i}"
-msgstr ""
+msgstr "Secteur {i}"
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1520
 #, python-brace-format
@@ -11979,24 +11987,26 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:92
 msgid "Export\n"
 "Ground"
-msgstr ""
+msgstr "Exporter\n"
+"Hors donjon"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:138
 msgid "Import\n"
 "Ground"
-msgstr ""
+msgstr "Importer\n"
+"Hors donjon"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:184
 msgid "Import\n"
 "Attack"
 msgstr "Importer\n"
-"Capacité"
+"Attaque"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:230
 msgid "Export\n"
 "Attack"
 msgstr "Exporter\n"
-"Capacité"
+"Attaque"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:276
 msgid "Export\n"
@@ -12031,7 +12041,7 @@ msgstr "Ajouter un nouveau sprite"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:542
 msgid "Use a ZIP archive instead of a folder."
-msgstr ""
+msgstr "Utiliser une archive ZIP au lieu d'un dossier."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:565
 msgid "-- or --"
@@ -12144,16 +12154,17 @@ msgstr ""
 
 #: skytemple/skytemple/module/strings/controller/main.py:23
 msgid "Text Strings"
-msgstr ""
+msgstr "Chaînes de texte"
 
 #: skytemple/skytemple/module/strings/controller/main.py:35
 msgid "This section lets you edit the text strings in the game. Please note that some of these strings can also be edited in other places in the UI (eg. the Pokémon names under Pokémon).\n"
 "Not included are the strings of the game's scripts."
-msgstr ""
+msgstr "Cette section vous permet d'éditer les chaînes de texte dans le jeu. Notez bien que certaines de ces chaînes peuvent être éditées à d'autres endroits de l'interface (ex. les noms des Pokémon dans l'onglet Pokémon).\n"
+"Les chaînes de texte intégrées aux scripts ne sont pas incluses ici."
 
 #: skytemple/skytemple/module/strings/controller/strings.glade:45
 msgid "<LANG> Text Strings"
-msgstr ""
+msgstr "<LANG> Chaînes de texte"
 
 #: skytemple/skytemple/module/strings/controller/strings.glade:73
 msgid "Categories:"
@@ -12202,19 +12213,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/strings/controller/strings.py:193
 msgid "Export strings as..."
-msgstr ""
+msgstr "Exporter les chaînes..."
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:32
 msgid "Chunk Editor"
-msgstr ""
+msgstr "Editeur de blocs"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:136
 msgid "Add Chunk"
-msgstr ""
+msgstr "Ajouter un bloc"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:207
 msgid "Selected Chunk"
-msgstr ""
+msgstr "Sélectionner un bloc"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:261
 msgid "Flip X"
@@ -12273,19 +12284,19 @@ msgstr "Éditeur de Palette"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:103
 msgid "Make all colors unique"
-msgstr ""
+msgstr "Rendre toutes les couleurs uniques"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:170
 msgid "Add Frame (after current)"
-msgstr ""
+msgstr "Ajouter une image (après celle-ci)"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:174
 msgid "CTRL + Click to add before current"
-msgstr ""
+msgstr "CTRL + Clic pour ajouter avant celle-ci"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:187
 msgid "Remove current Frame"
-msgstr ""
+msgstr "Retirer cette image"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:97
 msgid "Some images editors have problems when editing indexed images that contain\n"
@@ -12299,19 +12310,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:104
 msgid "Make Colors Unique"
-msgstr ""
+msgstr "Rendre toutes les couleurs uniques"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:115
 msgid "Made colors unique."
-msgstr ""
+msgstr "Les couleurs sont uniques."
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:141
 msgid "You can not remove the last palette."
-msgstr ""
+msgstr "Vous ne pouvez pas retirer la dernière palette."
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:196
 msgid "Color "
-msgstr ""
+msgstr "Couleur "
 
 #: skytemple/skytemple/module/tiled_img/drawer_tiled.py:79
 msgid "Only 1x1 or 3x3 supported."
@@ -12408,11 +12419,11 @@ msgstr "SkyTemple"
 
 #: skytemple/skytemple/skytemple.glade:775
 msgid "A new version of SkyTemple is available: "
-msgstr ""
+msgstr "Une nouvelle version de SkyTemple est disponible: "
 
 #: skytemple/skytemple/skytemple.glade:800
 msgid "Update now!"
-msgstr ""
+msgstr "Mettez à jour!"
 
 #: skytemple/skytemple/skytemple.glade:828
 msgid "Support us!"
@@ -12436,11 +12447,11 @@ msgstr "Ouvrir"
 
 #: skytemple/skytemple/skytemple.glade:1152
 msgid "Save to ROM"
-msgstr ""
+msgstr "Sauvegarder la ROM"
 
 #: skytemple/skytemple/skytemple.glade:1166
 msgid "Reload current ROM"
-msgstr ""
+msgstr "Recharger la ROM"
 
 #: skytemple/skytemple/skytemple.glade:1188
 msgid "Open script editor / debugger"
@@ -12448,7 +12459,7 @@ msgstr "Ouvrir l'éditeur de script / débogueur"
 
 #: skytemple/skytemple/skytemple.glade:1215
 msgid "Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US)."
-msgstr ""
+msgstr "Application pour modifier une ROM de Pokémon Donjon Mystère: Explorateurs du Ciel (EU/US)."
 
 #: skytemple/skytemple/skytemple.glade:1217
 msgid "https://github.com/SkyTemple/skytemple"
@@ -12456,12 +12467,13 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1343
 msgid "Loading ROM \"NAME\"..."
-msgstr ""
+msgstr "Chargement de la ROM \"NAME\"..."
 
 #: skytemple/skytemple/skytemple.glade:1425
 msgid "You want to support SkyTemple and PMD2 ROM hacking?\n"
 "Thank you! You can support us..."
-msgstr ""
+msgstr "Vous voulez soutenir SkyTemple et le ROM Hacking PDM2?\n"
+"Merci beaucoup! Vous pouvez nous soutenir..."
 
 #: skytemple/skytemple/skytemple.glade:1445
 msgid "... by testing new features!"
@@ -12493,7 +12505,7 @@ msgstr "Nous sommes toujours à la recherche de gens pour aider à développer S
 
 #: skytemple/skytemple/skytemple.glade:1571
 msgid "... by helping to translate SkyTemple!"
-msgstr ""
+msgstr "... en assistant à la traduction de SkyTemple!"
 
 #: skytemple/skytemple/skytemple.glade:1587
 msgid "Do you want to help translating SkyTemple to your native\n"
@@ -12507,7 +12519,8 @@ msgstr "... en nous achetant un café !"
 #: skytemple/skytemple/skytemple.glade:1654
 msgid "If you like SkyTemple or other PMD2 hacking tools, you can\n"
 "support us with a small donation."
-msgstr ""
+msgstr "Si vous aimez SkyTemple ou d'autres outils de hacking sur\n"
+"PDM2, vous pouvez nous soutenir avec un petit don."
 
 #: skytemple/skytemple/skytemple.glade:1679
 msgid "Parakoopa"
@@ -12532,15 +12545,15 @@ msgstr "A compris la plupart du fonctionnement du jeu !\n"
 
 #: skytemple/skytemple/skytemple.glade:1837
 msgid "Dither: Ordered"
-msgstr ""
+msgstr "Dépolissage: Ordonné"
 
 #: skytemple/skytemple/skytemple.glade:1841
 msgid "Dither: Floyd Steinberg"
-msgstr ""
+msgstr "Dépolissage: Floyd Steinberg"
 
 #: skytemple/skytemple/skytemple.glade:1845
 msgid "No Dithering"
-msgstr ""
+msgstr "Aucun dépolissage"
 
 #: skytemple/skytemple/skytemple.glade:1849
 msgid "Reorganize colors only"
@@ -12548,7 +12561,7 @@ msgstr "Réorganiser les couleurs uniquement"
 
 #: skytemple/skytemple/skytemple.glade:1855
 msgid "Tilequant"
-msgstr ""
+msgstr "Tilequant"
 
 #: skytemple/skytemple/skytemple.glade:1904
 msgid "This tool converts any image into the image format required by Explorers of Sky.\n"
@@ -12578,7 +12591,7 @@ msgstr "Couleur"
 
 #: skytemple/skytemple/skytemple.glade:2163
 msgid "Dithering Level"
-msgstr ""
+msgstr "Niveau de dépolissage"
 
 #: skytemple/skytemple/skytemple.glade:2290
 msgid "Additional Input Image (optional)"
