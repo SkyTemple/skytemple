@@ -227,6 +227,9 @@ class FloorController(AbstractController):
         return self.builder.get_object('box_editor')
 
     def unload(self):
+        # We need to destroy this first.
+        # GTK is an enigma sometimes.
+        self.builder.get_object('export_dialog').destroy()
         super().unload()
         self.drawer.unload()
         self.module = None

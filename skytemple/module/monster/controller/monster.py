@@ -132,6 +132,9 @@ class MonsterController(AbstractController):
         return self.builder.get_object('box_main')
 
     def unload(self):
+        # We need to destroy this first.
+        # GTK is an enigma sometimes.
+        self.builder.get_object('export_dialog').destroy()
         super().unload()
         self.module = None
         self.item_id = None
