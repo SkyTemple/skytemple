@@ -33,6 +33,7 @@ from gi.repository.Gtk import TreeModelRow
 from skytemple_files.common.i18n_util import _
 
 APP = 'skytemple'
+URL_IRDKWIA_REPO_MOVE_EFFECTS = "https://github.com/theCapypara/irdkwia_move_effects"
 
 
 def recursive_up_item_store_mark_as_modified(row: TreeModelRow, modified=True):

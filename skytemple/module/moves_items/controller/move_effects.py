@@ -41,6 +41,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import URL_IRDKWIA_REPO_MOVE_EFFECTS
 from skytemple_files.common.util import open_utf8
 
 if TYPE_CHECKING:
@@ -230,7 +231,7 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
         md.destroy()
 
     def on_btn_irdkwia_clicked(self, *args):
-        webbrowser.open_new_tab('https://github.com/irdkwia/eos-move-effects')
+        webbrowser.open_new_tab(URL_IRDKWIA_REPO_MOVE_EFFECTS)
 
     def on_btn_asmeditor_clicked(self, *args):
         webbrowser.open_new_tab('https://asmeditor.skytemple.org/')
