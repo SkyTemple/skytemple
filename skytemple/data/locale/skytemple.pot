@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-05 18:41+0000\n"
+"POT-Creation-Date: 2021-09-05 19:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1537,7 +1537,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3220
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:216
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:98
-#: skytemple/skytemple/module/lists/controller/special_pcs.glade:124
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:114
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:447
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:574
 #: skytemple/skytemple/module/monster/controller/main.glade:71
@@ -2210,7 +2210,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3241
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:570
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:120
-#: skytemple/skytemple/module/lists/controller/special_pcs.glade:146
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:136
 #: skytemple/skytemple/module/monster/controller/level_up.glade:215
 #: skytemple/skytemple/module/monster/controller/level_up.glade:416
 #: skytemple/skytemple/module/monster/controller/level_up.py:45
@@ -2220,7 +2220,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:291
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:584
-#: skytemple/skytemple/module/lists/controller/special_pcs.glade:250
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:239
 msgid "IQ"
 msgstr ""
 
@@ -2234,6 +2234,7 @@ msgid "Items"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:293
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:151
 msgid "Recruited"
 msgstr ""
 
@@ -4111,7 +4112,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:86
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:199
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:440
-#: skytemple/skytemple/module/lists/controller/special_pcs.glade:112
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:102
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:411
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:562
 #: skytemple/skytemple/module/lists/controller/world_map.glade:394
@@ -8232,22 +8233,22 @@ msgid "Joined at"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:496
-#: skytemple/skytemple/module/lists/controller/special_pcs.glade:176
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:166
 msgid "Move 1"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:511
-#: skytemple/skytemple/module/lists/controller/special_pcs.glade:191
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:181
 msgid "Move 2"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:526
-#: skytemple/skytemple/module/lists/controller/special_pcs.glade:206
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:196
 msgid "Move 3"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:541
-#: skytemple/skytemple/module/lists/controller/special_pcs.glade:221
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:211
 msgid "Move 4"
 msgstr ""
 
@@ -8460,7 +8461,6 @@ msgid "You can add Pokémon from this list to the team via Script Engine command
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:135
-#: skytemple/skytemple/module/lists/controller/special_pcs.glade:161
 msgid "Location of Recruitment"
 msgstr ""
 
@@ -8619,22 +8619,28 @@ msgstr ""
 msgid "Export / Import Effect Code Help"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/special_pcs.glade:68
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:58
 msgid "Special Episode Player Characters"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/special_pcs.glade:84
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:74
 msgid ""
 "These are the special player characters used in special episodes.\n"
 "What entry is used when depends on the special episode and is hardcoded."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/special_pcs.glade:236
-msgid "Unk E"
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:226
+msgid "Not all moves are fixed"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/special_pcs.glade:264
-msgid "Unk 12"
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:253
+msgid "Fixed HP"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/special_pcs.glade:280
+msgid ""
+"If \"Not all moves are fixed\" the game generates additional moves for empty slots.\n"
+"If \"Fixed HP\" is zero, the HP value is auto-generated based on level."
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:91
