@@ -63,14 +63,10 @@ class SpecialPcsController(ListBaseController):
             return
         self._list_store[path][12] = text
 
-    def on_cr_unk_e_edited(self, widget, path, text):
-        try:
-            int(text)  # this is only for validating.
-        except ValueError:
-            return
-        self._list_store[path][11] = text
+    def on_cr_do_not_fix_entire_moveset_toggled(self, widget, path):
+        self._list_store[path][11] = not widget.get_active()
 
-    def on_cr_unk_12_edited(self, widget, path, text):
+    def on_cr_fixed_hp_edited(self, widget, path, text):
         try:
             int(text)  # this is only for validating.
         except ValueError:
@@ -155,7 +151,7 @@ class SpecialPcsController(ListBaseController):
                 entry.poke_id, self._location_names[entry.joined_at], self._ent_names[entry.poke_id],
                 self._get_move_display_name(entry.move1), self._get_move_display_name(entry.move2),
                 self._get_move_display_name(entry.move3), self._get_move_display_name(entry.move4),
-                str(entry.unk_e), str(entry.iq), str(entry.unk_12)
+                bool(entry.do_not_fix_entire_moveset), str(entry.iq), str(entry.fixed_hp)
             ])
 
     def _update_move(self, path, text, value_pos: int):

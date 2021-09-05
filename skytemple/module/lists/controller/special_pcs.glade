@@ -2,16 +2,6 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
-  <object class="GtkEntryCompletion" id="completion_moves">
-    <property name="model">store_completion_moves</property>
-    <property name="text-column">0</property>
-    <child>
-      <object class="GtkCellRendererText"/>
-      <attributes>
-        <attribute name="text">0</attribute>
-      </attributes>
-    </child>
-  </object>
   <object class="GtkListStore" id="list_store">
     <columns>
       <!-- column-name id -->
@@ -36,11 +26,11 @@
       <column type="gchararray"/>
       <!-- column-name move4 -->
       <column type="gchararray"/>
-      <!-- column-name unk_e -->
-      <column type="gchararray"/>
+      <!-- column-name do_not_fix_entire_moveset -->
+      <column type="gboolean"/>
       <!-- column-name iq -->
       <column type="gchararray"/>
-      <!-- column-name unk_12 -->
+      <!-- column-name fixed_hp -->
       <column type="gchararray"/>
     </columns>
     <signal name="row-changed" handler="on_list_store_row_changed" swapped="no"/>
@@ -158,7 +148,7 @@ What entry is used when depends on the special episode and is hardcoded.</proper
                     <child>
                       <object class="GtkTreeViewColumn">
                         <property name="resizable">True</property>
-                        <property name="title" translatable="yes">Location of Recruitment</property>
+                        <property name="title" translatable="yes">Recruited</property>
                         <child>
                           <object class="GtkCellRendererText" id="cr_location">
                             <property name="editable">True</property>
@@ -233,14 +223,13 @@ What entry is used when depends on the special episode and is hardcoded.</proper
                     </child>
                     <child>
                       <object class="GtkTreeViewColumn">
-                        <property name="title" translatable="yes">Unk E</property>
+                        <property name="title" translatable="yes">Not all moves are fixed</property>
                         <child>
-                          <object class="GtkCellRendererText" id="cr_unk_e">
-                            <property name="editable">True</property>
-                            <signal name="edited" handler="on_cr_unk_e_edited" swapped="no"/>
+                          <object class="GtkCellRendererToggle" id="cr_do_not_fix_entire_moveset">
+                            <signal name="toggled" handler="on_cr_do_not_fix_entire_moveset_toggled" swapped="no"/>
                           </object>
                           <attributes>
-                            <attribute name="text">11</attribute>
+                            <attribute name="active">11</attribute>
                           </attributes>
                         </child>
                       </object>
@@ -261,11 +250,11 @@ What entry is used when depends on the special episode and is hardcoded.</proper
                     </child>
                     <child>
                       <object class="GtkTreeViewColumn">
-                        <property name="title" translatable="yes">Unk 12</property>
+                        <property name="title" translatable="yes">Fixed HP</property>
                         <child>
-                          <object class="GtkCellRendererText" id="cr_unk_12">
+                          <object class="GtkCellRendererText" id="cr_fixed_hp">
                             <property name="editable">True</property>
-                            <signal name="edited" handler="on_cr_unk_12_edited" swapped="no"/>
+                            <signal name="edited" handler="on_cr_fixed_hp_edited" swapped="no"/>
                           </object>
                           <attributes>
                             <attribute name="text">13</attribute>
@@ -280,6 +269,21 @@ What entry is used when depends on the special episode and is hardcoded.</proper
                 <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="margin-top">5</property>
+                <property name="label" translatable="yes">If "Not all moves are fixed" the game generates additional moves for empty slots.
+If "Fixed HP" is zero, the HP value is auto-generated based on level.</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>
@@ -334,5 +338,15 @@ What entry is used when depends on the special episode and is hardcoded.</proper
       <!-- column-name label -->
       <column type="gchararray"/>
     </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_moves">
+    <property name="model">store_completion_moves</property>
+    <property name="text-column">0</property>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
   </object>
 </interface>
