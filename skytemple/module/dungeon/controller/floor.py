@@ -51,7 +51,7 @@ from skytemple_files.common.dungeon_floor_generator.generator import DungeonFloo
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem, Pmd2DungeonItemCategory
 from skytemple_files.common.xml_util import prettify
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, DirectRule
-from skytemple_files.dungeon_data.mappa_bin.floor_layout import MappaFloorStructureType, MappaFloorSecondaryTerrainType, \
+from skytemple_files.dungeon_data.mappa_bin.floor_layout import MappaFloorStructureType, \
     MappaFloorDarknessLevel, MappaFloorWeather
 from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList, Probability, GUARANTEED, \
     MAX_ITEM_ID, POKE_ID
@@ -337,7 +337,7 @@ class FloorController(AbstractController):
         self._update_from_widget(w)
         self.mark_as_modified()
 
-    def on_cb_secondary_terrain_changed(self, w, *args):
+    def on_entry_secondary_terrain_changed(self, w, *args):
         self._update_from_widget(w)
         self.mark_as_modified()
 
@@ -1282,8 +1282,6 @@ class FloorController(AbstractController):
         self._comboxbox_for_boolean(['cb_terrain_settings__generate_imperfect_rooms'])
         # cb_terrain_settings__has_secondary_terrain
         self._comboxbox_for_boolean(['cb_terrain_settings__has_secondary_terrain'])
-        # cb_secondary_terrain
-        self._comboxbox_for_enum(['cb_secondary_terrain'], MappaFloorSecondaryTerrainType)
         # cb_unk_e
         self._comboxbox_for_boolean(['cb_unk_e'])
         # cb_darkness_level
@@ -1330,7 +1328,7 @@ class FloorController(AbstractController):
             "cb_dead_ends",
             "entry_extra_hallway_density",
             "cb_terrain_settings__has_secondary_terrain",
-            "cb_secondary_terrain",
+            "entry_secondary_terrain",
             "cb_terrain_settings__generate_imperfect_rooms",
             "entry_water_density",
             "cb_darkness_level",
