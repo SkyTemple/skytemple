@@ -647,6 +647,16 @@ class SsaController(AbstractController):
             md.run()
             md.destroy()
             return
+        if number > 100 or number < 1:
+            md = SkyTempleMessageDialog(
+                MainController.window(),
+                Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
+                Gtk.ButtonsType.OK,
+                _("Please enter a valid number between 1 and 99.")
+            )
+            md.run()
+            md.destroy()
+            return
         # Calculate name
         ssb_path = f'{self.filename[:-4]}{number:02d}{SSB_EXT}'
         # Check if already exists
