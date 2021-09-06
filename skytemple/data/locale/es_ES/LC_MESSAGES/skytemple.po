@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-06 10:32+0000\n"
-"PO-Revision-Date: 2021-09-06 11:01\n"
+"POT-Creation-Date: 2021-09-06 11:11+0000\n"
+"PO-Revision-Date: 2021-09-06 12:08\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3222,10 +3222,10 @@ msgstr "Terremoto"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2035
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2051
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2067
-#: skytemple/skytemple/module/monster/controller/monster.py:1177
-#: skytemple/skytemple/module/monster/controller/monster.py:1178
-#: skytemple/skytemple/module/monster/controller/monster.py:1179
-#: skytemple/skytemple/module/monster/controller/monster.py:1180
+#: skytemple/skytemple/module/monster/controller/monster.py:1183
+#: skytemple/skytemple/module/monster/controller/monster.py:1184
+#: skytemple/skytemple/module/monster/controller/monster.py:1185
+#: skytemple/skytemple/module/monster/controller/monster.py:1186
 msgid "???"
 msgstr "???"
 
@@ -11036,51 +11036,51 @@ msgstr "Afecta al daño que recibe el Pokémon cuando es atacado con el movimien
 msgid "Affects the damage the Pokémon takes when attacked with a Sizebust Orb."
 msgstr "Afecta al daño que recibe el Pokémon cuando es atacado con una Tamañosfera."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:773
+#: skytemple/skytemple/module/monster/controller/monster.py:779
 msgid "Export Pokémon as..."
 msgstr "Exportar Pokémon como..."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:812
+#: skytemple/skytemple/module/monster/controller/monster.py:818
 msgid "Import Pokémon from..."
 msgstr "Importar Pokémon desde..."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1073
+#: skytemple/skytemple/module/monster/controller/monster.py:1079
 msgid "Stats and Moves"
 msgstr "Estadísticas y movimientos"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1076
+#: skytemple/skytemple/module/monster/controller/monster.py:1082
 msgid "Portraits"
 msgstr "Retratos"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1084
+#: skytemple/skytemple/module/monster/controller/monster.py:1090
 msgid "Sprites"
 msgstr "Sprites"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1117
+#: skytemple/skytemple/module/monster/controller/monster.py:1123
 msgid "??? Enter a valid parameter (#)"
 msgstr "??? Introduce un parámetro válido (#)"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1136
+#: skytemple/skytemple/module/monster/controller/monster.py:1142
 msgid "??? Enter a valid Base ID (#)"
 msgstr "??? Introduce un ID base válido (#)"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1151
+#: skytemple/skytemple/module/monster/controller/monster.py:1157
 msgid "??? Enter a valid Entry ID ($)"
 msgstr "??? Introduce una entrada de ID válida ($)"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1232
+#: skytemple/skytemple/module/monster/controller/monster.py:1238
 msgid "The sprite memory size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr "El tamaño en memoria del sprite de este pokémon no era consistente para su sprite asignado.\n"
 "SkyTemple lo ha corregido automáticamente."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1252
+#: skytemple/skytemple/module/monster/controller/monster.py:1258
 msgid "The sprite file size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr "El tamaño del archivo del sprite de este Pokémon no era consistente para su sprite asignado.\n"
 "SkyTemple lo ha corregido automáticamente."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1286
+#: skytemple/skytemple/module/monster/controller/monster.py:1292
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
 "After the patch is applied, this value defines the Base ID and therefore how Pokémon are grouped.\n"
 "Reload the project after making changes to this value, to reflect them in the tree on the left."
@@ -11088,45 +11088,45 @@ msgstr "Si no se aplica el parche \"ExpandPokeList\", no se utilizará. Sin emba
 "Después de aplicarse, este valor define el ID base y, por lo tanto, cómo se agrupan los Pokémon.\n"
 "Recarga el proyecto después de hacer cambios en este valor para mostrarlos en el panel de la izquierda."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1289
+#: skytemple/skytemple/module/monster/controller/monster.py:1295
 msgid "Entity ID"
 msgstr "ID de entidad"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1299
+#: skytemple/skytemple/module/monster/controller/monster.py:1305
 msgid "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "This list indicates this Pokémon's children. If no children exist, the game will default to that pokémon species. "
 msgstr "En las misiones con un huevo como recompensa, el huevo contiene un Pokémon aleatorio que se elige entre las crías de la lista de aparición del piso de la misión.\n"
 "Esta lista indica las crías de este Pokémon. Si no existen, el juego elegirá por defecto esa especie de Pokémon. "
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1301
+#: skytemple/skytemple/module/monster/controller/monster.py:1307
 msgid "Children Info"
 msgstr "Información de crías"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1311
+#: skytemple/skytemple/module/monster/controller/monster.py:1317
 msgid "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
 "Negative values are allowed."
 msgstr "Estas son las bonificaciones aplicadas a las estadísticas cuando un Pokémon evoluciona a esa especie.\n"
 "Se admiten valores negativos."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1313
+#: skytemple/skytemple/module/monster/controller/monster.py:1319
 msgid "Evolution Bonus Info"
 msgstr "Información de bonificación de evolución"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1373
+#: skytemple/skytemple/module/monster/controller/monster.py:1379
 #, python-brace-format
 msgid "A pokémon can't evolve into more than {MAX_EVOS} evolutions."
 msgstr "Un Pokémon no puede evolucionar más de {MAX_EVOS} evoluciones."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1380
+#: skytemple/skytemple/module/monster/controller/monster.py:1386
 msgid "Too much evolutions."
 msgstr "Demasiadas evoluciones."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1385
+#: skytemple/skytemple/module/monster/controller/monster.py:1391
 #, python-brace-format
 msgid "A pokémon can't have more than {MAX_EGGS} children."
 msgstr "Un Pokémon no puede tener más de {MAX_EGGS} crías."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1392
+#: skytemple/skytemple/module/monster/controller/monster.py:1398
 msgid "Too much children."
 msgstr "Demasiadas crías."
 
@@ -11165,11 +11165,11 @@ msgstr "Movimientos"
 msgid "at level {x[0]}"
 msgstr "en el nivel {x[0]}"
 
-#: skytemple/skytemple/module/monster/module.py:176
+#: skytemple/skytemple/module/monster/module.py:180
 msgid "This entry has no portraits."
 msgstr "Esta entrada no tiene retratos."
 
-#: skytemple/skytemple/module/monster/module.py:218
+#: skytemple/skytemple/module/monster/module.py:222
 msgid "Stats and moves are only editable for base forms."
 msgstr "Las estadísticas y movimientos sólo se pueden editar para las formas base."
 
@@ -11738,8 +11738,8 @@ msgid "Please save the ROM before applying the patch."
 msgstr "Por favor, guarda la ROM antes de aplicar el parche."
 
 #: skytemple/skytemple/module/patch/controller/main.py:94
-msgid "This patch extends the Pokémon list. It iss very experimental and WILL break a few things. Once applied you can not remove it again. Proceed?"
-msgstr "Este parche amplía la lista de Pokémon. Es muy experimental y algunas cosas no funcionarán bien. Una vez aplicado, no se eliminarse. ¿Continuar?"
+msgid "This patch extends the Pokémon list. It is very experimental and WILL break a few things. Once applied you can not remove it again. Proceed?"
+msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/main.py:109
 msgid "\n"
