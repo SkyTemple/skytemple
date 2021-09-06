@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-06 11:11+0000\n"
-"PO-Revision-Date: 2021-09-06 17:35\n"
+"POT-Creation-Date: 2021-09-06 17:43+0000\n"
+"PO-Revision-Date: 2021-09-06 18:35\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2213,6 +2213,7 @@ msgstr "No es una forma evolucionada."
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:570
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:120
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:136
+#: skytemple/skytemple/module/lists/controller/tactics.glade:102
 #: skytemple/skytemple/module/monster/controller/level_up.glade:215
 #: skytemple/skytemple/module/monster/controller/level_up.glade:416
 #: skytemple/skytemple/module/monster/controller/level_up.py:45
@@ -4126,6 +4127,7 @@ msgstr "Suspensión"
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:102
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:411
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:562
+#: skytemple/skytemple/module/lists/controller/tactics.glade:79
 #: skytemple/skytemple/module/lists/controller/world_map.glade:394
 #: skytemple/skytemple/module/monster/controller/main.glade:191
 #: skytemple/skytemple/module/monster/controller/monster.glade:2102
@@ -4188,7 +4190,7 @@ msgid "<Global>"
 msgstr "<Global>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
-#: skytemple/skytemple/module/lists/module.py:92
+#: skytemple/skytemple/module/lists/module.py:95
 #: skytemple/skytemple/module/script/controller/ssa.glade:1302
 #: skytemple/skytemple/module/script/controller/ssa.glade:1330
 msgid "Actors"
@@ -4222,6 +4224,7 @@ msgstr "Marcas de pos."
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:113
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:184
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:89
+#: skytemple/skytemple/module/lists/controller/tactics.glade:90
 #: skytemple/skytemple/module/lists/controller/world_map.glade:405
 #: skytemple/skytemple/module/monster/controller/monster.glade:1295
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:214
@@ -8203,7 +8206,7 @@ msgstr "No implementado."
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:89
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:166
-#: skytemple/skytemple/module/lists/module.py:113
+#: skytemple/skytemple/module/lists/module.py:116
 msgid "Dungeon Interruptions"
 msgstr "Interrupciones de territorio"
 
@@ -8267,7 +8270,7 @@ msgstr "Aquí puedes editar las interrupciones del territorio. \n"
 " - Escenario Mayor o Igual: escenario, nivel"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:80
-#: skytemple/skytemple/module/lists/module.py:116
+#: skytemple/skytemple/module/lists/module.py:119
 msgid "Dungeon Music"
 msgstr "Música del territorio"
 
@@ -8479,7 +8482,7 @@ msgstr "Los menús están codificados, por lo que no puedes añadir ninguna opci
 " - Si se edita una cadena con un ID específico, se cambiarán todas las cadenas que utilicen ese ID."
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:34
-#: skytemple/skytemple/module/lists/module.py:119
+#: skytemple/skytemple/module/lists/module.py:131
 msgid "Misc. Settings"
 msgstr "Otros ajustes"
 
@@ -8584,7 +8587,7 @@ msgid "Sitrus Berry HP heal amount:"
 msgstr "Cantidad de PS que cura la Baya Zidra:"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
-#: skytemple/skytemple/module/lists/module.py:104
+#: skytemple/skytemple/module/lists/module.py:107
 msgid "Rank List"
 msgstr "Lista de rangos"
 
@@ -8601,7 +8604,7 @@ msgid "Item Reward"
 msgstr "Objetos de recompensa"
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
-#: skytemple/skytemple/module/lists/module.py:98
+#: skytemple/skytemple/module/lists/module.py:101
 msgid "Recruitment List"
 msgstr "Lista de reclutamiento"
 
@@ -8632,7 +8635,7 @@ msgstr "Para añadirlos al equipo de inmediato:\n"
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:149
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:296
-#: skytemple/skytemple/module/lists/module.py:110
+#: skytemple/skytemple/module/lists/module.py:113
 msgid "Special Process Effects"
 msgstr "Efectos de procesos especiales"
 
@@ -8924,6 +8927,24 @@ msgstr "Alocada"
 msgid "Bold"
 msgstr "Osada"
 
+#: skytemple/skytemple/module/lists/controller/tactics.glade:36
+#: skytemple/skytemple/module/lists/module.py:128
+msgid "Tactics"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/tactics.glade:52
+msgid "These are the levels at which tactics are unlocked."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/tactics.glade:129
+msgid "-1 means unlocked by default.\n"
+"999 means unused."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/tactics.py:78
+msgid "<Not working>"
+msgstr ""
+
 #: skytemple/skytemple/module/lists/controller/world_map.glade:76
 msgid "Map:"
 msgstr "Mapa:"
@@ -8943,7 +8964,7 @@ msgstr "Por favor, no selecciones un marcador que haga referencia a otro marcado
 "El comportamiento para esto no está definido."
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
-#: skytemple/skytemple/module/lists/module.py:101
+#: skytemple/skytemple/module/lists/module.py:104
 msgid "World Map Markers"
 msgstr "Marcadores del mapa del mundo"
 
@@ -8990,11 +9011,11 @@ msgstr "Debes seleccionar un mapa."
 msgid "You need to select a reference."
 msgstr "Necesitas seleccionar una referencia."
 
-#: skytemple/skytemple/module/lists/module.py:95
+#: skytemple/skytemple/module/lists/module.py:98
 msgid "Starters"
 msgstr "Iniciales"
 
-#: skytemple/skytemple/module/lists/module.py:107
+#: skytemple/skytemple/module/lists/module.py:110
 msgid "Menu List"
 msgstr "Listas de menú"
 
