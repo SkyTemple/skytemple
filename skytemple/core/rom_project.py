@@ -249,6 +249,11 @@ class RomProject:
     def is_opened(self, filename):
         return filename in self._opened_files
 
+    def unload_opened_files(self):
+        """Unloads all opened files."""
+        self._opened_files = {}
+        self._opened_files_contexts = {}
+
     def mark_as_modified(self, file: Union[str, object]):
         """Mark a file as modified, either by filename or model. TODO: Input checking"""
         if isinstance(file, str):

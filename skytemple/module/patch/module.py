@@ -54,3 +54,5 @@ class PatchModule(AbstractModule):
         # Mark as modified in tree
         row = self._tree_model[self._tree_iter]
         recursive_up_item_store_mark_as_modified(row)
+        # Unload ALL models loaded
+        self.project.unload_opened_files()
