@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-06 09:21+0000\n"
+"POT-Creation-Date: 2021-09-06 09:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1523,9 +1523,9 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:203
 #: skytemple/skytemple/module/script/controller/main.py:242
 #: skytemple/skytemple/module/script/controller/main.py:243
-#: skytemple/skytemple/module/script/controller/ssa.py:1232
-#: skytemple/skytemple/module/script/controller/ssa.py:1346
-#: skytemple/skytemple/module/script/controller/ssa.py:1515
+#: skytemple/skytemple/module/script/controller/ssa.py:1242
+#: skytemple/skytemple/module/script/controller/ssa.py:1356
+#: skytemple/skytemple/module/script/controller/ssa.py:1525
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:52
 msgid "None"
 msgstr ""
@@ -1555,7 +1555,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:309
 #: skytemple/skytemple/module/script/controller/main.glade:353
 #: skytemple/skytemple/module/script/controller/ssa.glade:2078
-#: skytemple/skytemple/module/script/controller/ssa.py:1303
+#: skytemple/skytemple/module/script/controller/ssa.py:1313
 msgid "Type"
 msgstr ""
 
@@ -4133,8 +4133,8 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:86
 #: skytemple/skytemple/module/script/controller/ssa.glade:1712
 #: skytemple/skytemple/module/script/controller/ssa.glade:1864
-#: skytemple/skytemple/module/script/controller/ssa.py:1285
-#: skytemple/skytemple/module/script/controller/ssa.py:1294
+#: skytemple/skytemple/module/script/controller/ssa.py:1295
+#: skytemple/skytemple/module/script/controller/ssa.py:1304
 msgid "Kind"
 msgstr ""
 
@@ -4143,10 +4143,10 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.glade:1877
 #: skytemple/skytemple/module/script/controller/ssa.glade:2091
 #: skytemple/skytemple/module/script/controller/ssa.glade:2280
-#: skytemple/skytemple/module/script/controller/ssa.py:1284
-#: skytemple/skytemple/module/script/controller/ssa.py:1293
-#: skytemple/skytemple/module/script/controller/ssa.py:1302
-#: skytemple/skytemple/module/script/controller/ssa.py:1310
+#: skytemple/skytemple/module/script/controller/ssa.py:1294
+#: skytemple/skytemple/module/script/controller/ssa.py:1303
+#: skytemple/skytemple/module/script/controller/ssa.py:1312
+#: skytemple/skytemple/module/script/controller/ssa.py:1320
 msgid "Sector"
 msgstr ""
 
@@ -4219,9 +4219,9 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:493
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:892
 #: skytemple/skytemple/module/patch/controller/patch_main.glade:179
-#: skytemple/skytemple/module/script/controller/ssa.py:1256
-#: skytemple/skytemple/module/script/controller/ssa.py:1268
-#: skytemple/skytemple/module/script/controller/ssa.py:1404
+#: skytemple/skytemple/module/script/controller/ssa.py:1266
+#: skytemple/skytemple/module/script/controller/ssa.py:1278
+#: skytemple/skytemple/module/script/controller/ssa.py:1414
 msgid "Name"
 msgstr ""
 
@@ -4403,7 +4403,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:43
 #: skytemple/skytemple/module/script/controller/main.py:190
 #: skytemple/skytemple/module/script/controller/map.py:160
-#: skytemple/skytemple/module/script/controller/ssa.py:1605
+#: skytemple/skytemple/module/script/controller/ssa.py:1615
 msgid "Cancel"
 msgstr ""
 
@@ -4925,7 +4925,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2289
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5337
-#: skytemple/skytemple/module/script/controller/ssa.py:1246
+#: skytemple/skytemple/module/script/controller/ssa.py:1256
 msgid "Unk2"
 msgstr ""
 
@@ -6476,7 +6476,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:822
 #: skytemple/skytemple/module/monster/controller/monster.glade:468
-#: skytemple/skytemple/module/script/controller/ssa.py:1402
+#: skytemple/skytemple/module/script/controller/ssa.py:1412
 msgid "S"
 msgstr ""
 
@@ -8048,7 +8048,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:654
-#: skytemple/skytemple/module/script/controller/ssa.py:1247
+#: skytemple/skytemple/module/script/controller/ssa.py:1257
 msgid "Unk3"
 msgstr ""
 
@@ -8070,7 +8070,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/actor_list.py:64
 #: skytemple/skytemple/module/lists/controller/actor_list.py:75
-#: skytemple/skytemple/module/script/controller/ssa.py:705
+#: skytemple/skytemple/module/script/controller/ssa.py:715
 msgid "Not implemented."
 msgstr ""
 
@@ -11869,12 +11869,12 @@ msgid "The length of the scene name must be between 1-8 characters."
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:73
-#: skytemple/skytemple/module/script/controller/ssa.py:1244
+#: skytemple/skytemple/module/script/controller/ssa.py:1254
 msgid "Triggered Script"
 msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:84
-#: skytemple/skytemple/module/script/controller/ssa.py:1245
+#: skytemple/skytemple/module/script/controller/ssa.py:1255
 msgid "Coroutine"
 msgstr ""
 
@@ -11941,8 +11941,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1738
 #: skytemple/skytemple/module/script/controller/ssa.glade:1890
-#: skytemple/skytemple/module/script/controller/ssa.py:1286
-#: skytemple/skytemple/module/script/controller/ssa.py:1295
+#: skytemple/skytemple/module/script/controller/ssa.py:1296
+#: skytemple/skytemple/module/script/controller/ssa.py:1305
 msgid "Talk Script"
 msgstr ""
 
@@ -11998,66 +11998,70 @@ msgstr ""
 msgid "Please enter a valid number."
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:658
+#: skytemple/skytemple/module/script/controller/ssa.py:655
+msgid "Please enter a valid number between 1 and 99."
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/ssa.py:668
 msgid "This script already exists."
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:695
+#: skytemple/skytemple/module/script/controller/ssa.py:705
 msgid "Acting scenes must have exactly one script assigned to them."
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1311
+#: skytemple/skytemple/module/script/controller/ssa.py:1321
 msgid "Event Script"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1378
+#: skytemple/skytemple/module/script/controller/ssa.py:1388
 #, python-brace-format
 msgid "Type {performer_type}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1398
+#: skytemple/skytemple/module/script/controller/ssa.py:1408
 msgid "V"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1399
+#: skytemple/skytemple/module/script/controller/ssa.py:1409
 msgid "Visible"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1403
+#: skytemple/skytemple/module/script/controller/ssa.py:1413
 msgid "Solo"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1428
+#: skytemple/skytemple/module/script/controller/ssa.py:1438
 #, python-brace-format
 msgid "Sector {i}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1520
+#: skytemple/skytemple/module/script/controller/ssa.py:1530
 #, python-brace-format
 msgid "?INVALID? {script_id}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1541
+#: skytemple/skytemple/module/script/controller/ssa.py:1551
 #, python-brace-format
 msgid "{len_actors} acts, "
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1543
+#: skytemple/skytemple/module/script/controller/ssa.py:1553
 #, python-brace-format
 msgid "{len_objects} objs, "
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1545
+#: skytemple/skytemple/module/script/controller/ssa.py:1555
 #, python-brace-format
 msgid "{len_performers} prfs, "
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1547
+#: skytemple/skytemple/module/script/controller/ssa.py:1557
 #, python-brace-format
 msgid "{len_triggers} trgs"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1560
+#: skytemple/skytemple/module/script/controller/ssa.py:1570
 #, python-brace-format
 msgid "Type {performer.type}"
 msgstr ""
