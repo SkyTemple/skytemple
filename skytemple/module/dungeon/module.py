@@ -16,6 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import os
+import sys
 from typing import Optional, List, Union, Iterable, Tuple
 from xml.etree.ElementTree import Element
 
@@ -24,6 +25,7 @@ from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.error_handler import display_error
 from skytemple.core.model_context import ModelContext
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR, \
     REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, REQUEST_TYPE_DUNGEONS
@@ -113,23 +115,35 @@ class DungeonModule(AbstractModule):
         return 210
 
     def __init__(self, rom_project: RomProject):
-        self.project = rom_project
+        self._errored = False
+        try:
+            self.project = rom_project
 
-        self._tree_model: Optional[Gtk.TreeModel] = None
-        self._root_iter = None
-        self._dungeon_iters = {}
-        self._dungeon_floor_iters = {}
-        self._fixed_floor_iters = []
-        self._fixed_floor_root_iter = None
-        self._fixed_floor_data: Optional[FixedBin] = None
-        self._dungeon_bin_context: Optional[ModelContext[DungeonBinPack]] = None
-        self._cached_dungeon_list = None
+            self._tree_model: Optional[Gtk.TreeModel] = None
+            self._root_iter = None
+            self._dungeon_iters = {}
+            self._dungeon_floor_iters = {}
+            self._fixed_floor_iters = []
+            self._fixed_floor_root_iter = None
+            self._fixed_floor_data: Optional[FixedBin] = None
+            self._dungeon_bin_context: Optional[ModelContext[DungeonBinPack]] = None
+            self._cached_dungeon_list = None
 
-        # Preload mappa
-        self.get_mappa()
-        self._validator = None
+            # Preload mappa
+            self.get_mappa()
+            self._validator = None
+        except Exception:
+            self._errored = sys.exc_info()
 
     def load_tree_items(self, item_store: TreeStore, root_node):
+        if self._errored:
+            display_error(
+                self._errored,
+                _("The dungeon floor data of this ROM is corrupt. SkyTemple will still try to open it, "
+                  "but dungeon editing will not be available. Expect other bugs. Please fix your ROM."),
+                _("SkyTemple")
+            )
+            return
         self._validator = DungeonValidator(self.get_mappa().floor_lists)
         root = item_store.append(root_node, [
             ICON_ROOT, DUNGEONS_NAME, self, MainController, 0, False, '', True
