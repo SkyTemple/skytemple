@@ -35,7 +35,7 @@ from skytemple_files.data.val_list.handler import ValListHandler
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry
 from skytemple_files.data.tbl_talk.model import TblTalk, TalkType
 from skytemple_files.data.md.model import Md, MdEntry, MdProperties, ShadowSize
-from skytemple_files.data.monster_xml import monster_xml_import
+from skytemple_files.data.monster_xml import monster_xml_import, GenderedConvertEntry
 from skytemple_files.data.waza_p.model import WazaP
 from skytemple_files.graphics.kao.model import KaoImage, SUBENTRIES, Kao
 from skytemple_files.hardcoded.monster_sprite_data_table import HardcodedMonsterSpriteDataTable
@@ -306,7 +306,9 @@ class MonsterModule(AbstractModule):
         stats_and_portraits_id = getattr(entry, b_attr) - 1
         stats = self.get_m_level_bin_entry(stats_and_portraits_id)
         portraits, portraits2 = self.get_portraits_for_export(stats_and_portraits_id)
-        return names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2
+        return names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2, \
+               self.get_personality(md_gender1.md_index), \
+               self.get_personality(md_gender2.md_index) if md_gender2 is not None else None
 
     def update_monster_sort_lists(self, lang):
         sp = self.project.get_string_provider()
@@ -327,7 +329,7 @@ class MonsterModule(AbstractModule):
         b_attr = self.effective_base_attr
         for monster_id in selected_monsters:
             entry = self.get_entry(monster_id)
-            names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2 = self.get_export_data(entry)
+            names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2, personality1, personality2 = self.get_export_data(entry)
             we_are_gender1 = monster_id < MdProperties.NUM_ENTITIES
 
             md_gender1_imp = md_gender1
@@ -338,15 +340,29 @@ class MonsterModule(AbstractModule):
                 if we_are_gender1:
                     md_gender2_imp = None
                     portraits2_imp = None
+                    personality2 = None
                 else:
                     md_gender1_imp = None
                     portraits1_imp = None
+                    personality1 = None
+            md_gender1_imp_wrapped = GenderedConvertEntry(md_gender1, personality1)
+            md_gender2_imp_wrapped = GenderedConvertEntry(md_gender2, personality2)
 
             monster_xml_import(
-                xml, md_gender1_imp, md_gender2_imp,
+                xml, md_gender1_imp_wrapped, md_gender2_imp_wrapped,
                 names, moveset, moveset2, stats,
                 portraits1_imp, portraits2_imp
             )
+            if md_gender2:
+                if we_are_gender1:
+                    if md_gender1_imp_wrapped.personality is not None:
+                        self.set_personality(md_gender1.md_index, md_gender1_imp_wrapped.personality)
+                else:
+                    if md_gender2_imp_wrapped.personality is not None:
+                        self.set_personality(md_gender2.md_index, md_gender2_imp_wrapped.personality)
+            else:
+                if md_gender1_imp_wrapped.personality is not None:
+                    self.set_personality(md_gender1.md_index, md_gender1_imp_wrapped.personality)
             if stats:
                 self.set_m_level_bin_entry(getattr(entry, b_attr) - 1, stats)
             if names:

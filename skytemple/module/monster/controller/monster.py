@@ -693,7 +693,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                     ]
                 )
 
-        names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2 = self.module.get_export_data(self.entry)
+        names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2, personality1, personality2 = self.module.get_export_data(self.entry)
         we_are_gender1 = md_gender1 == self.entry
 
         if md_gender2 is None:
@@ -763,7 +763,8 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
             xml = monster_xml_export(
                 self.module.project.get_rom_module().get_static_data().game_version,
-                md_gender1, md_gender2, names, moveset, moveset2, stats, portraits, portraits2
+                md_gender1, md_gender2, names, moveset, moveset2, stats, portraits, portraits2,
+                personality1, personality2
             )
 
             # 1. Export to file
