@@ -123,8 +123,12 @@ class MonsterModule(AbstractModule):
         ]
 
     def generate_entry__entry(self, i, gender):
+        suffix = ''
+        if self.project.is_patch_applied('ExpandPokeList'):
+            # With the patch we actually want to include the sub entry name, since it can be different.
+            suffix = f' ({self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i)})'
         return [
-            'skytemple-e-monster-symbolic', f'${i:04}: {gender.print_name}',
+            'skytemple-e-monster-symbolic', f'${i:04}: {gender.print_name}{suffix}',
             self, MonsterController, i, False, '', True
         ]
 
