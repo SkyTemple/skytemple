@@ -297,9 +297,13 @@ class MonsterModule(AbstractModule):
     def get_export_data(self, entry):
         waza_p = self.get_waza_p()
         waza_p2 = self.get_waza_p2()
-        b_attr = self.effective_base_attr
+        b_attr = 'md_index_base'
+        if self.project.is_patch_applied('ExpandPokeList'):
+            b_attr = 'md_index'
+            md_gender1, md_gender2 = entry, None
+        else:
+            md_gender1, md_gender2 = self.get_entry_both(getattr(entry, b_attr))
 
-        md_gender1, md_gender2 = self.get_entry_both(getattr(entry, b_attr))
         names = self.get_pokemon_names_and_categories(getattr(entry, b_attr))
         moveset = None
         if getattr(entry, b_attr) < len(waza_p.learnsets):
@@ -330,7 +334,10 @@ class MonsterModule(AbstractModule):
         self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.n2m}")
         
     def import_from_xml(self, selected_monsters: List[int], xml: Element):
-        b_attr = self.effective_base_attr
+        b_attr = 'md_index_base'
+        if self.project.is_patch_applied('ExpandPokeList'):
+            b_attr = 'md_index'
+
         for monster_id in selected_monsters:
             entry = self.get_entry(monster_id)
             names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2, personality1, personality2 = self.get_export_data(entry)

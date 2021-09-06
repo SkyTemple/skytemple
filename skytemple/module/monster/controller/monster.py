@@ -696,6 +696,12 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2, personality1, personality2 = self.module.get_export_data(self.entry)
         we_are_gender1 = md_gender1 == self.entry
 
+        if self.module.project.is_patch_applied('ExpandPokeList'):
+            # We do not support multi gender export for now with this patch, too many edge cases.
+            md_gender2 = None
+            portraits2 = None
+            personality2 = None
+
         if md_gender2 is None:
             sw: Gtk.Switch = self.builder.get_object('export_type_other_gender')
             sw.set_active(False)
