@@ -439,12 +439,12 @@ class FloorController(AbstractController):
         self._update_from_widget(w)
         self.mark_as_modified()
 
-    def on_cb_iq_booster_enabled_changed(self, w, *args):
+    def on_entry_iq_booster_boost_changed(self, w, *args):
         self._update_from_widget(w)
         self.mark_as_modified()
 
-    def on_btn_help_iq_booster_enabled_clicked(self, *args):
-        self._help(_("If enabled, the IQ booster increases IQ on this floor."))
+    def on_btn_help_iq_booster_boost_clicked(self, *args):
+        self._help(_("If more than 0, the IQ booster increases IQ on this floor by this amount."))
 
     def on_entry_enemy_iq_changed(self, w, *args):
         self._update_from_widget(w)
@@ -1291,8 +1291,6 @@ class FloorController(AbstractController):
         self._comboxbox_for_enum(['cb_darkness_level'], MappaFloorDarknessLevel)
         # cb_weather
         self._comboxbox_for_enum(['cb_weather'], MappaFloorWeather)
-        # cb_iq_booster_enabled
-        self._comboxbox_for_boolean(['cb_iq_booster_enabled'])
         # cb_tileset_id
         self._comboxbox_for_tileset_id(['cb_tileset_id'])
         # cb_music_id
@@ -1349,7 +1347,7 @@ class FloorController(AbstractController):
             "scale_empty_monster_house_chance",
             "scale_sticky_item_chance",
             "entry_unk_hidden_stairs",
-            "cb_iq_booster_enabled",
+            "entry_iq_booster_boost",
             "entry_enemy_iq",
             "cb_unk_e"
         ]

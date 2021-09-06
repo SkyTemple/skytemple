@@ -2554,7 +2554,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">end</property>
-                                <property name="label" translatable="yes">IQ Booster enabled?:</property>
+                                <property name="label" translatable="yes">IQ Booster boost:</property>
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
@@ -2634,17 +2634,6 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkComboBox" id="cb_iq_booster_enabled">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <signal name="changed" handler="on_cb_iq_booster_enabled_changed" swapped="no"/>
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">2</property>
-                              </packing>
-                            </child>
-                            <child>
                               <object class="GtkEntry" id="entry_kecleon_shop_item_positions">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -2689,13 +2678,13 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkButton" id="btn_help_iq_booster_enabled">
+                              <object class="GtkButton" id="btn_help_iq_booster_boost">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_iq_booster_enabled_clicked" swapped="no"/>
+                                <signal name="clicked" handler="on_btn_help_iq_booster_boost_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
@@ -2791,6 +2780,17 @@
                               <packing>
                                 <property name="left-attach">2</property>
                                 <property name="top-attach">6</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="entry_iq_booster_boost">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <signal name="changed" handler="on_entry_iq_booster_boost_changed" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">2</property>
                               </packing>
                             </child>
                           </object>
