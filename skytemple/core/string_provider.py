@@ -53,6 +53,7 @@ class StringType(Enum):
     DIALOGUE_PINCH = auto(), 'Pokemon PINCH Dialogue'
     DIALOGUE_GROUND_WAIT = auto(), 'Pokemon GROUND_WAIT Dialogue'
     WEATHER_NAMES = auto(), 'Weather Names'
+    TACTICS_NAMES = auto(), 'Tactics Names'
 
     def __new__(cls, *args, **kwargs):
         obj = object.__new__(cls)

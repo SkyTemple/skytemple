@@ -32,6 +32,7 @@ from skytemple.module.lists.controller.menu_list import MenuListController
 from skytemple.module.lists.controller.special_pcs import SpecialPcsController
 from skytemple.module.lists.controller.starters_list import StartersListController
 from skytemple.module.lists.controller.recruitment_list import RecruitmentListController
+from skytemple.module.lists.controller.tactics import TacticsController
 from skytemple.module.lists.controller.world_map import WorldMapController
 from skytemple.module.lists.controller.sp_effects import SPEffectsController
 from skytemple.module.lists.controller.dungeon_interrupt import DungeonInterruptController
@@ -50,6 +51,7 @@ from skytemple_files.hardcoded.default_starters import HardcodedDefaultStarters,
 from skytemple_files.hardcoded.rank_up_table import Rank, HardcodedRankUpTable
 from skytemple_files.hardcoded.recruitment_tables import HardcodedRecruitmentTables
 from skytemple_files.hardcoded.menus import HardcodedMenus, MenuEntry, MenuType
+from skytemple_files.hardcoded.tactics import HardcodedTactics
 from skytemple_files.list.actor.model import ActorListBin
 from skytemple_files.common.i18n_util import _
 
@@ -81,6 +83,7 @@ class ListsModule(AbstractModule):
         self._misc_settings_tree_iter = None
         self._guest_pokemon_root_iter = None
         self._special_episodes_root_iter = None
+        self._tactics_root_iter = None
 
         self.waza_p_bin: WazaP = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
 
@@ -115,14 +118,17 @@ class ListsModule(AbstractModule):
         self._dungeon_music_tree_iter = item_store.append(root, [
             'skytemple-e-music-symbolic', _('Dungeon Music'), self, DungeonMusicController, 0, False, '', True
         ])
-        self._misc_settings_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', _('Misc. Settings'), self, MiscSettingsController, 0, False, '', True
-        ])
         self._guest_pokemon_root_iter = item_store.append(root, [
             'skytemple-e-monster-symbolic', _('Guest Pokémon'), self, GuestPokemonController, 0, False, '', True
         ])
         self._special_episodes_root_iter = item_store.append(root, [
             'skytemple-e-monster-symbolic', _('Special Episode PCs'), self, SpecialPcsController, 0, False, '', True
+        ])
+        self._tactics_root_iter = item_store.append(root, [
+            'skytemple-view-list-symbolic', _('Tactics'), self, TacticsController, 0, False, '', True
+        ])
+        self._misc_settings_tree_iter = item_store.append(root, [
+            'skytemple-view-list-symbolic', _('Misc. Settings'), self, MiscSettingsController, 0, False, '', True
         ])
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])
@@ -137,6 +143,7 @@ class ListsModule(AbstractModule):
         generate_item_store_row_label(item_store[self._misc_settings_tree_iter])
         generate_item_store_row_label(item_store[self._guest_pokemon_root_iter])
         generate_item_store_row_label(item_store[self._special_episodes_root_iter])
+        generate_item_store_row_label(item_store[self._tactics_root_iter])
         self._tree_model = item_store
 
     def handle_request(self, request: OpenRequest) -> Optional[TreeIter]:
@@ -222,19 +229,31 @@ class ListsModule(AbstractModule):
         recursive_up_item_store_mark_as_modified(row)
 
     def get_special_pcs(self) -> List[SpecialEpisodePc]:
-        """Returns players & partner default starters"""
         arm9 = self.project.get_binary(BinaryName.ARM9)
         static_data = self.project.get_rom_module().get_static_data()
         return HardcodedDefaultStarters.get_special_episode_pcs(arm9, static_data)
 
     def set_special_pcs(self, lst: List[SpecialEpisodePc]):
-        """Sets players & partner default starters"""
         def update(arm9):
             static_data = self.project.get_rom_module().get_static_data()
             HardcodedDefaultStarters.set_special_episode_pcs(lst, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
         row = self._tree_model[self._special_episodes_root_iter]
+        recursive_up_item_store_mark_as_modified(row)
+
+    def get_tactics(self) -> List[int]:
+        arm9 = self.project.get_binary(BinaryName.ARM9)
+        static_data = self.project.get_rom_module().get_static_data()
+        return HardcodedTactics.get_unlock_levels(arm9, static_data)
+
+    def set_tactics(self, lst: List[int]):
+        def update(arm9):
+            static_data = self.project.get_rom_module().get_static_data()
+            HardcodedTactics.set_unlock_levels(lst, arm9, static_data)
+        self.project.modify_binary(BinaryName.ARM9, update)
+
+        row = self._tree_model[self._tactics_root_iter]
         recursive_up_item_store_mark_as_modified(row)
     
     def get_starter_ids(self) -> Tuple[List[int], List[int]]:
