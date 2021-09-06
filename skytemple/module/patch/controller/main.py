@@ -91,7 +91,7 @@ class MainController(AbstractController):
                     md = SkyTempleMessageDialog(MainAppController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
                                                 Gtk.ButtonsType.YES_NO,
-                                                _("This patch extends the Pokémon list. It iss very experimental and "
+                                                _("This patch extends the Pokémon list. It is very experimental and "
                                                   "WILL break a few things. Once applied you can not remove it again. "
                                                   "Proceed?"))
                     md.set_position(Gtk.WindowPosition.CENTER)
