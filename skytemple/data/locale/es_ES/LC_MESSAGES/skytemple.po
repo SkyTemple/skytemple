@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-06 11:11+0000\n"
-"PO-Revision-Date: 2021-09-06 12:08\n"
+"PO-Revision-Date: 2021-09-06 15:43\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -6708,7 +6708,7 @@ msgstr "CI de enemigos:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2557
 msgid "IQ Booster boost:"
-msgstr ""
+msgstr "Potenciador de CI:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2569
 msgid "Shop item positions:"
@@ -6983,7 +6983,7 @@ msgstr "Se añadió en Exploradores del Cielo, así que ahora mismo solo se util
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:447
 msgid "If more than 0, the IQ booster increases IQ on this floor by this amount."
-msgstr ""
+msgstr "Si es mayor que 0, el potenciador de CI aumenta el CI en este piso la siguiente cantidad."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:492
 msgid "You can not spawn Kecleons or the Decoy Pokémon."
@@ -7231,7 +7231,7 @@ msgstr "Añade los pisos restantes al territorio."
 
 #: skytemple/skytemple/module/dungeon/module.py:142
 msgid "The dungeon floor data of this ROM is corrupt. SkyTemple will still try to open it, but dungeon editing will not be available. Expect other bugs. Please fix your ROM."
-msgstr ""
+msgstr "Los datos de piso del territorio en esta ROM están corruptos. SkyTemple intentará abrirlos, pero no se podrán editar. Pueden producirse otros errores. Por favor, corrige tu ROM."
 
 #: skytemple/skytemple/module/dungeon/module.py:144
 #: skytemple/skytemple/skytemple.glade:744
@@ -8787,16 +8787,17 @@ msgstr "Estos son los personajes del jugador que se utilizan en capítulos espec
 
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:226
 msgid "Not all moves are fixed"
-msgstr ""
+msgstr "No todos los movimientos son fijos"
 
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:253
 msgid "Fixed HP"
-msgstr ""
+msgstr "PS fijos"
 
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:280
 msgid "If \"Not all moves are fixed\" the game generates additional moves for empty slots.\n"
 "If \"Fixed HP\" is zero, the HP value is auto-generated based on level."
-msgstr ""
+msgstr "Si se ha seleccionado\"No todos los movimientos son fijos\", el juego generará movimientos adicionales para las ranuras vacías.\n"
+"Si los \"PS fijos\" son cero, el valor de PS se generará automáticamente en función del nivel."
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:91
 msgid "Starters List"
@@ -11739,7 +11740,7 @@ msgstr "Por favor, guarda la ROM antes de aplicar el parche."
 
 #: skytemple/skytemple/module/patch/controller/main.py:94
 msgid "This patch extends the Pokémon list. It is very experimental and WILL break a few things. Once applied you can not remove it again. Proceed?"
-msgstr ""
+msgstr "Este parche amplía la lista de Pokémon. Es muy experimental y algunas cosas no funcionarán bien. Una vez aplicado, no se podrá eliminar. ¿Continuar?"
 
 #: skytemple/skytemple/module/patch/controller/main.py:109
 msgid "\n"
@@ -12253,7 +12254,7 @@ msgstr "Por favor, introduce un número válido."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:655
 msgid "Please enter a valid number between 1 and 99."
-msgstr ""
+msgstr "Por favor, introduce un valor numérico comprendido entre 1 y 99."
 
 #: skytemple/skytemple/module/script/controller/ssa.py:668
 msgid "This script already exists."
