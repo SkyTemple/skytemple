@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-06 11:11+0000\n"
-"PO-Revision-Date: 2021-09-06 12:09\n"
+"POT-Creation-Date: 2021-09-06 17:43+0000\n"
+"PO-Revision-Date: 2021-09-06 18:36\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -2209,6 +2209,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:570
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:120
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:136
+#: skytemple/skytemple/module/lists/controller/tactics.glade:102
 #: skytemple/skytemple/module/monster/controller/level_up.glade:215
 #: skytemple/skytemple/module/monster/controller/level_up.glade:416
 #: skytemple/skytemple/module/monster/controller/level_up.py:45
@@ -4095,6 +4096,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:102
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:411
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:562
+#: skytemple/skytemple/module/lists/controller/tactics.glade:79
 #: skytemple/skytemple/module/lists/controller/world_map.glade:394
 #: skytemple/skytemple/module/monster/controller/main.glade:191
 #: skytemple/skytemple/module/monster/controller/monster.glade:2102
@@ -4157,7 +4159,7 @@ msgid "<Global>"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
-#: skytemple/skytemple/module/lists/module.py:92
+#: skytemple/skytemple/module/lists/module.py:95
 #: skytemple/skytemple/module/script/controller/ssa.glade:1302
 #: skytemple/skytemple/module/script/controller/ssa.glade:1330
 msgid "Actors"
@@ -4191,6 +4193,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:113
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:184
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:89
+#: skytemple/skytemple/module/lists/controller/tactics.glade:90
 #: skytemple/skytemple/module/lists/controller/world_map.glade:405
 #: skytemple/skytemple/module/monster/controller/monster.glade:1295
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:214
@@ -7959,7 +7962,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:89
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:166
-#: skytemple/skytemple/module/lists/module.py:113
+#: skytemple/skytemple/module/lists/module.py:116
 msgid "Dungeon Interruptions"
 msgstr ""
 
@@ -8010,7 +8013,7 @@ msgid "Here you can edit dungeon interruptions. \n"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:80
-#: skytemple/skytemple/module/lists/module.py:116
+#: skytemple/skytemple/module/lists/module.py:119
 msgid "Dungeon Music"
 msgstr ""
 
@@ -8206,7 +8209,7 @@ msgid "Menus are hardcoded so you can't add any option, but you can edit a few t
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:34
-#: skytemple/skytemple/module/lists/module.py:119
+#: skytemple/skytemple/module/lists/module.py:131
 msgid "Misc. Settings"
 msgstr ""
 
@@ -8305,7 +8308,7 @@ msgid "Sitrus Berry HP heal amount:"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
-#: skytemple/skytemple/module/lists/module.py:104
+#: skytemple/skytemple/module/lists/module.py:107
 msgid "Rank List"
 msgstr ""
 
@@ -8322,7 +8325,7 @@ msgid "Item Reward"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
-#: skytemple/skytemple/module/lists/module.py:98
+#: skytemple/skytemple/module/lists/module.py:101
 msgid "Recruitment List"
 msgstr ""
 
@@ -8347,7 +8350,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:149
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:296
-#: skytemple/skytemple/module/lists/module.py:110
+#: skytemple/skytemple/module/lists/module.py:113
 msgid "Special Process Effects"
 msgstr ""
 
@@ -8626,6 +8629,24 @@ msgstr ""
 msgid "Bold"
 msgstr ""
 
+#: skytemple/skytemple/module/lists/controller/tactics.glade:36
+#: skytemple/skytemple/module/lists/module.py:128
+msgid "Tactics"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/tactics.glade:52
+msgid "These are the levels at which tactics are unlocked."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/tactics.glade:129
+msgid "-1 means unlocked by default.\n"
+"999 means unused."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/tactics.py:78
+msgid "<Not working>"
+msgstr ""
+
 #: skytemple/skytemple/module/lists/controller/world_map.glade:76
 msgid "Map:"
 msgstr ""
@@ -8644,7 +8665,7 @@ msgid "Please don't select a marker that already references another marker.\n"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
-#: skytemple/skytemple/module/lists/module.py:101
+#: skytemple/skytemple/module/lists/module.py:104
 msgid "World Map Markers"
 msgstr ""
 
@@ -8691,11 +8712,11 @@ msgstr ""
 msgid "You need to select a reference."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:95
+#: skytemple/skytemple/module/lists/module.py:98
 msgid "Starters"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:107
+#: skytemple/skytemple/module/lists/module.py:110
 msgid "Menu List"
 msgstr ""
 
