@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-06 09:56+0000\n"
+"POT-Creation-Date: 2021-09-06 10:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2337,65 +2337,65 @@ msgstr ""
 msgid "Large"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:205
+#: skytemple-files/skytemple_files/data/monster_xml.py:206
 #, python-brace-format
 msgid "Invalid XML. '{XML_STRINGS__NAME}' missing for language {xml_lang.tag}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:207
+#: skytemple-files/skytemple_files/data/monster_xml.py:208
 #, python-brace-format
 msgid "Invalid XML. '{XML_STRINGS__CATEGORY}' missing for language {xml_lang.tag}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:345
+#: skytemple-files/skytemple_files/data/monster_xml.py:359
 #, python-brace-format
 msgid "Invalid XML. '{XML_GENENT_EXCLUSIVE_ITEMS}' needs four item IDs."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:420
+#: skytemple-files/skytemple_files/data/monster_xml.py:434
 #, python-brace-format
 msgid "Invalid XML. '{a}' missing for a {b}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:462
+#: skytemple-files/skytemple_files/data/monster_xml.py:476
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET_LEVEL_UP__LEVEL}' missing for a level up moveset entry."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:466
+#: skytemple-files/skytemple_files/data/monster_xml.py:480
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET__MOVE_ID}' missing for a level up moveset entry."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:503
+#: skytemple-files/skytemple_files/data/monster_xml.py:517
 msgid "Invalid XML. StatsGrowth must have exactly 100 levels."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:528
-#: skytemple-files/skytemple_files/data/monster_xml.py:533
-#: skytemple-files/skytemple_files/data/monster_xml.py:538
-#: skytemple-files/skytemple_files/data/monster_xml.py:543
-#: skytemple-files/skytemple_files/data/monster_xml.py:548
-#: skytemple-files/skytemple_files/data/monster_xml.py:553
+#: skytemple-files/skytemple_files/data/monster_xml.py:542
+#: skytemple-files/skytemple_files/data/monster_xml.py:547
+#: skytemple-files/skytemple_files/data/monster_xml.py:552
+#: skytemple-files/skytemple_files/data/monster_xml.py:557
+#: skytemple-files/skytemple_files/data/monster_xml.py:562
+#: skytemple-files/skytemple_files/data/monster_xml.py:567
 #, python-brace-format
 msgid "Invalid XML. '{x}' missing for a stats growth level entry."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:578
+#: skytemple-files/skytemple_files/data/monster_xml.py:592
 msgid "Incompatible XML. The number of portraits don't match with the expected value of {len(value_to_update)}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:592
+#: skytemple-files/skytemple_files/data/monster_xml.py:606
 #, python-brace-format
 msgid "Invalid XML. '{XML_PORTRAITS_PORTRAIT__IMAGE}' missing for a portrait."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:596
+#: skytemple-files/skytemple_files/data/monster_xml.py:610
 #, python-brace-format
 msgid "Invalid XML. '{XML_PORTRAITS_PORTRAIT__PALETTE}' missing for a portrait."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:604
+#: skytemple-files/skytemple_files/data/monster_xml.py:618
 #, python-brace-format
 msgid "Invalid XML. The portrait data of one of the portraits is invalid: {err}"
 msgstr ""
@@ -3220,10 +3220,10 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2035
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2051
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2067
-#: skytemple/skytemple/module/monster/controller/monster.py:1176
 #: skytemple/skytemple/module/monster/controller/monster.py:1177
 #: skytemple/skytemple/module/monster/controller/monster.py:1178
 #: skytemple/skytemple/module/monster/controller/monster.py:1179
+#: skytemple/skytemple/module/monster/controller/monster.py:1180
 msgid "???"
 msgstr ""
 
@@ -10788,96 +10788,96 @@ msgstr ""
 msgid "Affects the damage the Pokémon takes when attacked with a Sizebust Orb."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:772
+#: skytemple/skytemple/module/monster/controller/monster.py:773
 msgid "Export Pokémon as..."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:811
+#: skytemple/skytemple/module/monster/controller/monster.py:812
 msgid "Import Pokémon from..."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1072
+#: skytemple/skytemple/module/monster/controller/monster.py:1073
 msgid "Stats and Moves"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1075
+#: skytemple/skytemple/module/monster/controller/monster.py:1076
 msgid "Portraits"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1083
+#: skytemple/skytemple/module/monster/controller/monster.py:1084
 msgid "Sprites"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1116
+#: skytemple/skytemple/module/monster/controller/monster.py:1117
 msgid "??? Enter a valid parameter (#)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1135
+#: skytemple/skytemple/module/monster/controller/monster.py:1136
 msgid "??? Enter a valid Base ID (#)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1150
+#: skytemple/skytemple/module/monster/controller/monster.py:1151
 msgid "??? Enter a valid Entry ID ($)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1231
+#: skytemple/skytemple/module/monster/controller/monster.py:1232
 msgid ""
 "The sprite memory size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1251
+#: skytemple/skytemple/module/monster/controller/monster.py:1252
 msgid ""
 "The sprite file size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1285
+#: skytemple/skytemple/module/monster/controller/monster.py:1286
 msgid ""
 "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
 "After the patch is applied, this value defines the Base ID and therefore how Pokémon are grouped.\n"
 "Reload the project after making changes to this value, to reflect them in the tree on the left."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1288
+#: skytemple/skytemple/module/monster/controller/monster.py:1289
 msgid "Entity ID"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1298
+#: skytemple/skytemple/module/monster/controller/monster.py:1299
 msgid ""
 "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "This list indicates this Pokémon's children. If no children exist, the game will default to that pokémon species. "
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1300
+#: skytemple/skytemple/module/monster/controller/monster.py:1301
 msgid "Children Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1310
+#: skytemple/skytemple/module/monster/controller/monster.py:1311
 msgid ""
 "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
 "Negative values are allowed."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1312
+#: skytemple/skytemple/module/monster/controller/monster.py:1313
 msgid "Evolution Bonus Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1372
+#: skytemple/skytemple/module/monster/controller/monster.py:1373
 #, python-brace-format
 msgid "A pokémon can't evolve into more than {MAX_EVOS} evolutions."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1379
+#: skytemple/skytemple/module/monster/controller/monster.py:1380
 msgid "Too much evolutions."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1384
+#: skytemple/skytemple/module/monster/controller/monster.py:1385
 #, python-brace-format
 msgid "A pokémon can't have more than {MAX_EGGS} children."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1391
+#: skytemple/skytemple/module/monster/controller/monster.py:1392
 msgid "Too much children."
 msgstr ""
 
