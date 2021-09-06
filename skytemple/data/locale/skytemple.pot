@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-06 10:22+0000\n"
+"POT-Creation-Date: 2021-09-06 10:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2523,7 +2523,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/waza_p/model.py:133
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1154
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5188
-#: skytemple/skytemple/module/dungeon/module.py:742
+#: skytemple/skytemple/module/dungeon/module.py:756
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:295
 msgid "Floor"
 msgstr ""
@@ -4589,7 +4589,7 @@ msgid "Replace with"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:540
-#: skytemple/skytemple/module/dungeon/module.py:760
+#: skytemple/skytemple/module/dungeon/module.py:774
 msgid "Nothing"
 msgstr ""
 
@@ -6089,7 +6089,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:60
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:67
 #: skytemple/skytemple/module/dungeon/fixed_room_drawer.py:389
-#: skytemple/skytemple/module/dungeon/module.py:755
+#: skytemple/skytemple/module/dungeon/module.py:769
 msgid "(Special?)"
 msgstr ""
 
@@ -7186,37 +7186,47 @@ msgstr ""
 msgid "Add the remaining floors to the dungeon."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:161
+#: skytemple/skytemple/module/dungeon/module.py:142
+msgid "The dungeon floor data of this ROM is corrupt. SkyTemple will still try to open it, but dungeon editing will not be available. Expect other bugs. Please fix your ROM."
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/module.py:144
+#: skytemple/skytemple/skytemple.glade:744
+#: skytemple/skytemple/skytemple.glade:1085
+msgid "SkyTemple"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/module.py:175
 #, python-brace-format
 msgid "Fixed Room {i}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:421
+#: skytemple/skytemple/module/dungeon/module.py:435
 msgid "Some dungeons were missing in the new group list. This is a bug."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:453
+#: skytemple/skytemple/module/dungeon/module.py:467
 #, python-brace-format
 msgid "\"{dname}\" Group"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:460
+#: skytemple/skytemple/module/dungeon/module.py:474
 msgid "Floor {floor_i + 1}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:742
+#: skytemple/skytemple/module/dungeon/module.py:756
 msgid "Secondary"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:747
+#: skytemple/skytemple/module/dungeon/module.py:761
 msgid "Vis."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:749
+#: skytemple/skytemple/module/dungeon/module.py:763
 msgid "Unb."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:766
+#: skytemple/skytemple/module/dungeon/module.py:780
 #, python-brace-format
 msgid "{i} - Lvl: {entry.level}, Atk: {entry.attack}, Def: {entry.defense}, Sp. Atk: {entry.special_attack}, Sp. Def: {entry.special_defense}, HP: {entry.hp}"
 msgstr ""
@@ -12548,11 +12558,6 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:595
 msgid "About"
-msgstr ""
-
-#: skytemple/skytemple/skytemple.glade:744
-#: skytemple/skytemple/skytemple.glade:1085
-msgid "SkyTemple"
 msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:775
