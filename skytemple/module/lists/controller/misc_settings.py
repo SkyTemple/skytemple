@@ -180,33 +180,6 @@ class MiscSettingsController(AbstractController):
         self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedDungeonMisc.set_bad_poison_damage_delay(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
-    def on_entry_min_iq_exclusive_move_user_changed(self, widget, *args):
-        try:
-            val = int(widget.get_text())
-        except ValueError:
-            return
-        static_data = self.module.project.get_rom_module().get_static_data()
-        self.module.project.modify_binary(BinaryName.ARM9, lambda bin: HardcodedDungeonMisc.set_min_iq_for_exclusive_move_user(val, bin, static_data))
-        self.module.mark_misc_settings_as_modified()
-
-    def on_entry_min_iq_item_master_changed(self, widget, *args):
-        try:
-            val = int(widget.get_text())
-        except ValueError:
-            return
-        static_data = self.module.project.get_rom_module().get_static_data()
-        self.module.project.modify_binary(BinaryName.ARM9, lambda bin: HardcodedDungeonMisc.set_min_iq_for_item_master(val, bin, static_data))
-        self.module.mark_misc_settings_as_modified()
-
-    def on_intimidator_activation_chance_changed(self, widget, *args):
-        try:
-            val = int(widget.get_text())
-        except ValueError:
-            return
-        static_data = self.module.project.get_rom_module().get_static_data()
-        self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedDungeonMisc.set_intimidator_chance(val, bin, static_data))
-        self.module.mark_misc_settings_as_modified()
-
     def _init_combos(self):
         # Init music tracks
         cb_store: Gtk.ListStore = self.builder.get_object('store_main_menu_music')
@@ -236,6 +209,3 @@ class MiscSettingsController(AbstractController):
         self.builder.get_object('entry_burn_damage_delay').set_text(str(HardcodedDungeonMisc.get_burn_damage_delay(ov10, static_data)))
         self.builder.get_object('entry_poison_damage_delay').set_text(str(HardcodedDungeonMisc.get_poison_damage_delay(ov10, static_data)))
         self.builder.get_object('entry_bad_poison_damage_delay').set_text(str(HardcodedDungeonMisc.get_bad_poison_damage_delay(ov10, static_data)))
-        self.builder.get_object('entry_min_iq_exclusive_move_user').set_text(str(HardcodedDungeonMisc.get_min_iq_for_exclusive_move_user(arm9, static_data)))
-        self.builder.get_object('entry_min_iq_item_master').set_text(str(HardcodedDungeonMisc.get_min_iq_for_item_master(arm9, static_data)))
-        self.builder.get_object('intimidator_activation_chance').set_text(str(HardcodedDungeonMisc.get_intimidator_chance(ov10, static_data)))

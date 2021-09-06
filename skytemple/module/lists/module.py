@@ -24,6 +24,7 @@ from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label
 from skytemple.module.lists.controller.dungeon_music import DungeonMusicController
 from skytemple.module.lists.controller.guest_pokemon import GuestPokemonController
+from skytemple.module.lists.controller.iq import IqController
 from skytemple.module.lists.controller.main import MainController, GROUND_LISTS
 from skytemple.module.lists.controller.actor_list import ActorListController
 from skytemple.module.lists.controller.misc_settings import MiscSettingsController
@@ -84,6 +85,7 @@ class ListsModule(AbstractModule):
         self._guest_pokemon_root_iter = None
         self._special_episodes_root_iter = None
         self._tactics_root_iter = None
+        self._iq_tree_iter = None
 
         self.waza_p_bin: WazaP = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
 
@@ -127,6 +129,9 @@ class ListsModule(AbstractModule):
         self._tactics_root_iter = item_store.append(root, [
             'skytemple-view-list-symbolic', _('Tactics'), self, TacticsController, 0, False, '', True
         ])
+        self._iq_tree_iter = item_store.append(root, [
+            'skytemple-view-list-symbolic', _('IQ'), self, IqController, 0, False, '', True
+        ])
         self._misc_settings_tree_iter = item_store.append(root, [
             'skytemple-view-list-symbolic', _('Misc. Settings'), self, MiscSettingsController, 0, False, '', True
         ])
@@ -144,6 +149,7 @@ class ListsModule(AbstractModule):
         generate_item_store_row_label(item_store[self._guest_pokemon_root_iter])
         generate_item_store_row_label(item_store[self._special_episodes_root_iter])
         generate_item_store_row_label(item_store[self._tactics_root_iter])
+        generate_item_store_row_label(item_store[self._iq_tree_iter])
         self._tree_model = item_store
 
     def handle_request(self, request: OpenRequest) -> Optional[TreeIter]:
@@ -201,6 +207,11 @@ class ListsModule(AbstractModule):
     def mark_misc_settings_as_modified(self):
         # Mark as modified in tree
         row = self._tree_model[self._misc_settings_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+
+    def mark_iq_as_modified(self):
+        # Mark as modified in tree
+        row = self._tree_model[self._iq_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
 
     def get_monster_md(self) -> Md:
