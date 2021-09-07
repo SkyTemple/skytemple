@@ -17,6 +17,7 @@
 import logging
 import re
 from enum import Enum, auto
+from functools import partial
 from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
@@ -89,6 +90,108 @@ class IqController(AbstractController):
         self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedIq.set_intimidator_chance(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    def on_cr_other_iq_gain_edited(self, widget, path, text):
+        store: Gtk.ListStore = self.builder.get_object('iq_gain_other_items')
+        static_data = self.module.project.get_rom_module().get_static_data()
+        try:
+            val = int(text)
+        except ValueError:
+            return
+        typ: IqGainOtherItem = store[path][0]
+        store[path][2] = text
+
+        if typ == IqGainOtherItem.NECTAR:
+            self.module.project.modify_binary(
+                BinaryName.OVERLAY_29, lambda bin: HardcodedIq.set_nectar_gain(val, bin, static_data)
+            )
+            self.module.mark_iq_as_modified()
+        elif typ == IqGainOtherItem.WONDER_GUMMI:
+            self.module.project.modify_binary(
+                BinaryName.ARM9, lambda bin: HardcodedIq.set_wonder_gummi_gain(val, bin, static_data)
+            )
+            self.module.mark_iq_as_modified()
+        elif typ == IqGainOtherItem.JUICE_BAR_NECTAR:
+            self.module.project.modify_binary(
+                BinaryName.ARM9, lambda bin: HardcodedIq.set_juice_bar_nectar_gain(val, bin, static_data)
+            )
+            self.module.mark_iq_as_modified()
+
+    def on_cr_iq_pnts_edited(self, widget, path, text):
+        store: Gtk.ListStore = self.builder.get_object('iq_skills_store')
+        try:
+            val = int(text)
+        except ValueError:
+            return
+        store[path][2] = text
+
+        arm9 = self.module.project.get_binary(BinaryName.ARM9)
+        static_data = self.module.project.get_rom_module().get_static_data()
+        iq_skills = HardcodedIq.get_iq_skills(arm9, static_data)
+        iq_skills[int(store[path][0])].iq_required = val
+        self.module.project.modify_binary(
+            BinaryName.ARM9, lambda bin: HardcodedIq.set_iq_skills(iq_skills, bin, static_data)
+        )
+
+        self.module.mark_iq_as_modified()
+
+    def on_cr_unk2_edited(self, widget, path, text):
+        store: Gtk.ListStore = self.builder.get_object('iq_skills_store')
+        try:
+            val = int(text)
+        except ValueError:
+            return
+        store[path][3] = text
+
+        arm9 = self.module.project.get_binary(BinaryName.ARM9)
+        static_data = self.module.project.get_rom_module().get_static_data()
+        iq_skills = HardcodedIq.get_iq_skills(arm9, static_data)
+        iq_skills[int(store[path][0])].unk2 = val
+        self.module.project.modify_binary(
+            BinaryName.ARM9, lambda bin: HardcodedIq.set_iq_skills(iq_skills, bin, static_data)
+        )
+
+        self.module.mark_iq_as_modified()
+
+    def on_cr_iq_gain_edited(self, widget, path, text, *, type_id):
+        store: Gtk.ListStore = self.builder.get_object('tree_iq_gain').get_model()
+        try:
+            val = int(text)
+        except ValueError:
+            return
+        store[path][type_id + 2] = text
+        gummi_id = store[path][0]
+
+        arm9 = self.module.project.get_binary(BinaryName.ARM9)
+        patch_applied = self.module.project.is_patch_applied("AddTypes")
+        static_data = self.module.project.get_rom_module().get_static_data()
+        gains = HardcodedIq.get_gummi_iq_gains(arm9, static_data, patch_applied)
+        gains[type_id][gummi_id] = val
+        self.module.project.modify_binary(
+            BinaryName.ARM9, lambda bin: HardcodedIq.set_gummi_iq_gains(gains, bin, static_data, patch_applied)
+        )
+
+        self.module.mark_iq_as_modified()
+
+    def on_cr_belly_heal_edited(self, widget, path, text, *, type_id):
+        store: Gtk.ListStore = self.builder.get_object('tree_belly_gain').get_model()
+        try:
+            val = int(text)
+        except ValueError:
+            return
+        store[path][type_id + 2] = text
+        gummi_id = store[path][0]
+
+        arm9 = self.module.project.get_binary(BinaryName.ARM9)
+        patch_applied = self.module.project.is_patch_applied("AddTypes")
+        static_data = self.module.project.get_rom_module().get_static_data()
+        gains = HardcodedIq.get_gummi_belly_heal(arm9, static_data, patch_applied)
+        gains[type_id][gummi_id] = val
+        self.module.project.modify_binary(
+            BinaryName.ARM9, lambda bin: HardcodedIq.set_gummi_belly_heal(gains, bin, static_data, patch_applied)
+        )
+
+        self.module.mark_iq_as_modified()
+
     def _init_misc_settings(self):
         arm9 = self.module.project.get_binary(BinaryName.ARM9)
         ov10 = self.module.project.get_binary(BinaryName.OVERLAY_10)
@@ -137,10 +240,12 @@ class IqController(AbstractController):
             store_belly.append(data_belly)
 
             # column and cell renderer
-            renderer = Gtk.CellRendererText(editable=True)
+            renderer: Gtk.CellRendererText = Gtk.CellRendererText(editable=True)
+            renderer.connect('edited', partial(self.on_cr_iq_gain_edited, type_id=i))
             column = Gtk.TreeViewColumn(title=type_strings[i], cell_renderer=renderer, text=i + 2)
             tree.append_column(column)
-            renderer = Gtk.CellRendererText(editable=True)
+            renderer: Gtk.CellRendererText = Gtk.CellRendererText(editable=True)
+            renderer.connect('edited', partial(self.on_cr_belly_heal_edited, type_id=i))
             column = Gtk.TreeViewColumn(title=type_strings[i], cell_renderer=renderer, text=i + 2)
             tree_belly.append_column(column)
 

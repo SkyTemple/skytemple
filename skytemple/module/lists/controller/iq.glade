@@ -76,6 +76,9 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="search-column">0</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection"/>
+                            </child>
                             <child>
                               <object class="GtkTreeViewColumn">
                                 <property name="title" translatable="yes">Name</property>
@@ -107,6 +110,9 @@
                             <property name="can-focus">True</property>
                             <property name="model">iq_gain_other_items</property>
                             <property name="search-column">0</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection"/>
+                            </child>
                             <child>
                               <object class="GtkTreeViewColumn">
                                 <property name="title" translatable="yes">Name</property>
@@ -163,6 +169,9 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="search-column">0</property>
+                        <child internal-child="selection">
+                          <object class="GtkTreeSelection"/>
+                        </child>
                         <child>
                           <object class="GtkTreeViewColumn">
                             <property name="title" translatable="yes">Name</property>
@@ -210,6 +219,9 @@
                             <property name="can-focus">True</property>
                             <property name="model">iq_skills_store</property>
                             <property name="search-column">0</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection"/>
+                            </child>
                             <child>
                               <object class="GtkTreeViewColumn">
                                 <property name="title" translatable="yes">ID</property>
@@ -252,10 +264,10 @@
                                 <property name="title" translatable="yes">Unk 2</property>
                                 <child>
                                   <object class="GtkCellRendererText" id="cr_unk2">
+                                    <property name="editable">True</property>
                                     <signal name="edited" handler="on_cr_unk2_edited" swapped="no"/>
                                   </object>
                                   <attributes>
-                                    <attribute name="editable">3</attribute>
                                     <attribute name="text">3</attribute>
                                   </attributes>
                                 </child>
