@@ -134,24 +134,6 @@ class IqController(AbstractController):
 
         self.module.mark_iq_as_modified()
 
-    def on_cr_unk2_edited(self, widget, path, text):
-        store: Gtk.ListStore = self.builder.get_object('iq_skills_store')
-        try:
-            val = int(text)
-        except ValueError:
-            return
-        store[path][3] = text
-
-        arm9 = self.module.project.get_binary(BinaryName.ARM9)
-        static_data = self.module.project.get_rom_module().get_static_data()
-        iq_skills = HardcodedIq.get_iq_skills(arm9, static_data)
-        iq_skills[int(store[path][0])].unk2 = val
-        self.module.project.modify_binary(
-            BinaryName.ARM9, lambda bin: HardcodedIq.set_iq_skills(iq_skills, bin, static_data)
-        )
-
-        self.module.mark_iq_as_modified()
-
     def on_cr_iq_gain_edited(self, widget, path, text, *, type_id):
         store: Gtk.ListStore = self.builder.get_object('tree_iq_gain').get_model()
         try:
@@ -277,5 +259,5 @@ class IqController(AbstractController):
             store.append([
                 str(i), self._string_provider.get_value(
                     StringType.IQ_SKILL_NAMES, i - 1
-                ) if i > 0 else '/', str(skill.iq_required), str(skill.unk2)
+                ) if i > 0 else '/', str(skill.iq_required)
             ])
