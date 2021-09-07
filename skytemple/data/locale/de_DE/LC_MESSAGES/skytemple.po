@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-06 17:43+0000\n"
-"PO-Revision-Date: 2021-09-06 18:35\n"
+"POT-Creation-Date: 2021-09-07 21:14+0000\n"
+"PO-Revision-Date: 2021-09-07 21:16\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -2221,7 +2221,9 @@ msgstr "Level"
 
 #: skytemple-files/skytemple_files/data/md/model.py:291
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:584
+#: skytemple/skytemple/module/lists/controller/iq.glade:46
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:239
+#: skytemple/skytemple/module/lists/module.py:133
 msgid "IQ"
 msgstr "IQ"
 
@@ -4104,6 +4106,7 @@ msgstr "Hanger"
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:187
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:303
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:436
+#: skytemple/skytemple/module/lists/controller/iq.glade:225
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:86
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:199
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:440
@@ -4173,7 +4176,7 @@ msgid "<Global>"
 msgstr "<Global>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
-#: skytemple/skytemple/module/lists/module.py:95
+#: skytemple/skytemple/module/lists/module.py:97
 #: skytemple/skytemple/module/script/controller/ssa.glade:1302
 #: skytemple/skytemple/module/script/controller/ssa.glade:1330
 msgid "Actors"
@@ -4206,6 +4209,10 @@ msgstr "Positionsmarker"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:222
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:113
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:184
+#: skytemple/skytemple/module/lists/controller/iq.glade:82
+#: skytemple/skytemple/module/lists/controller/iq.glade:116
+#: skytemple/skytemple/module/lists/controller/iq.glade:175
+#: skytemple/skytemple/module/lists/controller/iq.glade:236
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:89
 #: skytemple/skytemple/module/lists/controller/tactics.glade:90
 #: skytemple/skytemple/module/lists/controller/world_map.glade:405
@@ -8171,7 +8178,7 @@ msgstr "Nicht implementiert."
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:89
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:166
-#: skytemple/skytemple/module/lists/module.py:116
+#: skytemple/skytemple/module/lists/module.py:118
 msgid "Dungeon Interruptions"
 msgstr "Dungeon-Unterbrechungen"
 
@@ -8206,7 +8213,7 @@ msgstr "Param. 1"
 msgid "Param 2"
 msgstr "Param. 2"
 
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.py:134
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.py:119
 msgid "Here you can edit dungeon interruptions. \n"
 "Interruptions can occur when transitioning to next floor (e.g. for an interruption defined at floor 3 it will occur when going from floor 2 to 3). \n"
 "Script-side, it works exactly as if you finished the dungeon (call to common routines GETOUT_SCENARIO_DUNGEON or GETOUT_REQUEST_DUNGEON). \n"
@@ -8222,7 +8229,7 @@ msgid "Here you can edit dungeon interruptions. \n"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:80
-#: skytemple/skytemple/module/lists/module.py:119
+#: skytemple/skytemple/module/lists/module.py:121
 msgid "Dungeon Music"
 msgstr "Dungeon-Musik"
 
@@ -8351,7 +8358,7 @@ msgid "Free entries left: XX"
 msgstr "Freie Einträge verbleibend: XX"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:769
-#: skytemple/skytemple/module/lists/module.py:122
+#: skytemple/skytemple/module/lists/module.py:124
 msgid "Guest Pokémon"
 msgstr "Gast-Pokémon"
 
@@ -8368,6 +8375,52 @@ msgstr "Gast-Pokémon-IDs beziehen sich auf die Einträge im Gast-Pokémon Tab. 
 "- Rekrutierung deaktivieren: Gilt nur, wenn der Dungeon bisher nicht passiert wurde. Wenn diese Option aktiviert ist, wird die Rekrutierung deaktiviert. Dieses Flag überschreibt die Flag „Rekrutierung aktiviert“ in den Dungeon-Beschränkungen.\n"
 "- SIDE01 Check: Wenn aktiviert, wird Gast-Pokémon dem Team nur hinzugefügt, wenn die Variable SIDE01_BOSS2ND 0 ist.\n"
 "- VLE (passiert): Ob \"Verborgenes Land\"-Einschränkungen aktiv sein sollten, wenn der Kerker geräumt wurde."
+
+#: skytemple/skytemple/module/lists/controller/iq.glade:127
+#: skytemple/skytemple/module/lists/controller/iq.glade:154
+msgid "IQ Gain"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/iq.glade:195
+msgid "Belly Heal"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/iq.glade:248
+msgid "IQ Points"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/iq.glade:275
+msgid "If 9999 IQ Points are required, the skill is unused.\n"
+"If -1 IQ Point is required, the skill is unlocked by default."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/iq.glade:293
+msgid "IQ Skills"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/iq.glade:318
+msgid "Min. IQ required by enemies to learn \n"
+"Exclusive Move-User:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/iq.glade:332
+msgid "Min. IQ required by enemies to learn \n"
+"Item Master:"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/iq.glade:346
+msgid "Intimidator activation chance (%):"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/iq.glade:399
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:34
+#: skytemple/skytemple/module/lists/module.py:136
+msgid "Misc. Settings"
+msgstr "Verschiedene Einstellungen"
+
+#: skytemple/skytemple/module/lists/controller/iq.py:250
+msgid "Juice Bar Nectar"
+msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/main.py:23
 msgid "Lists"
@@ -8430,11 +8483,6 @@ msgstr "Den Menüs können keine Optionen hinzufügt werden, aber es können ein
 "Außerdem wird die Aktion dieses Eintrags beim Drücken der B-Taste verwendet (wenn das Spiel das für dieses Menü zulässt). \n"
 " - Das Bearbeiten einer Zeichenketten mit einer ID führt dazu, dass alle Einträge, die diese Zeichenkette verwenden geändert werden."
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:34
-#: skytemple/skytemple/module/lists/module.py:131
-msgid "Misc. Settings"
-msgstr "Verschiedene Einstellungen"
-
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:71
 msgid "General:"
 msgstr "Allgemein:"
@@ -8447,91 +8495,73 @@ msgstr "Dungeon:"
 msgid "Conditions:"
 msgstr "Zustände:"
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:125
-msgid "IQ:"
-msgstr "IQ:"
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:250
+msgid "Items:"
+msgstr "Items:"
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:141
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:311
 msgid "Text Speed (debug mode uses 4):"
 msgstr "Textgeschwindigkeit (Debug-Modus verwendet 4):"
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:153
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:323
 msgid "Normal spawn delay (turns):"
 msgstr "Normale Spawnrate (in Zügen):"
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:165
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:335
 msgid "Spawn delay (turns) after stealing \n"
 "from shop:"
 msgstr "Spawnrate (in Zügen) nach Diebstahl \n"
 "von Items aus Shops:"
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:202
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:349
 msgid "Main menu music track:"
 msgstr "Musik im Hauptmenü:"
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:233
-msgid "Min. IQ required by enemies to learn \n"
-"Exclusive Move-User:"
-msgstr ""
-
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:247
-msgid "Min. IQ required by enemies to learn \n"
-"Item Master:"
-msgstr ""
-
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:285
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:361
 msgid "Belly points lost when \n"
 "walking through walls, per turn:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:311
-msgid "Intimidator activation chance (%):"
-msgstr ""
-
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:336
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:375
 msgid "Burn damage delay (turns):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:349
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:388
 msgid "Poison damage delay (turns):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:362
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:401
 msgid "Bad poison damage delay (turns):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:411
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:414
 msgid "Belly points lost, per turn:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:436
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:427
 msgid "1/1000 belly points lost when \n"
 "walking through walls, per turn:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:475
-msgid "Items:"
-msgstr "Items:"
-
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:491
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:441
 msgid "Chance of Ginseng increasing \n"
 "a move's power by 3 (%):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:517
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:455
 msgid "Life Seed Max HP increase:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:530
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:468
 msgid "Oran Berry HP heal amount:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/misc_settings.glade:543
+#: skytemple/skytemple/module/lists/controller/misc_settings.glade:481
 msgid "Sitrus Berry HP heal amount:"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
-#: skytemple/skytemple/module/lists/module.py:107
+#: skytemple/skytemple/module/lists/module.py:109
 msgid "Rank List"
 msgstr "Rank-Liste"
 
@@ -8548,7 +8578,7 @@ msgid "Item Reward"
 msgstr "Item Belohnung"
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
-#: skytemple/skytemple/module/lists/module.py:101
+#: skytemple/skytemple/module/lists/module.py:103
 msgid "Recruitment List"
 msgstr "Anwerber-Liste"
 
@@ -8579,7 +8609,7 @@ msgstr "Um sie sofort zum Team hinzuzufügen:\n"
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:149
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:296
-#: skytemple/skytemple/module/lists/module.py:113
+#: skytemple/skytemple/module/lists/module.py:115
 msgid "Special Process Effects"
 msgstr ""
 
@@ -8869,7 +8899,7 @@ msgid "Bold"
 msgstr "Kühn"
 
 #: skytemple/skytemple/module/lists/controller/tactics.glade:36
-#: skytemple/skytemple/module/lists/module.py:128
+#: skytemple/skytemple/module/lists/module.py:130
 msgid "Tactics"
 msgstr ""
 
@@ -8905,7 +8935,7 @@ msgstr "Bitte wähle keinen Marker, der einen anderen Marker referenziert.\n"
 "Das Verhalten für diesen Fall ist nicht definiert."
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
-#: skytemple/skytemple/module/lists/module.py:104
+#: skytemple/skytemple/module/lists/module.py:106
 msgid "World Map Markers"
 msgstr "Weltkarten-Marker"
 
@@ -8952,15 +8982,15 @@ msgstr "Du musst eine Karte auswählen."
 msgid "You need to select a reference."
 msgstr "Du musst eine Referenz auswählen."
 
-#: skytemple/skytemple/module/lists/module.py:98
+#: skytemple/skytemple/module/lists/module.py:100
 msgid "Starters"
 msgstr "Starter"
 
-#: skytemple/skytemple/module/lists/module.py:110
+#: skytemple/skytemple/module/lists/module.py:112
 msgid "Menu List"
 msgstr "Menü-Liste"
 
-#: skytemple/skytemple/module/lists/module.py:125
+#: skytemple/skytemple/module/lists/module.py:127
 msgid "Special Episode PCs"
 msgstr ""
 
