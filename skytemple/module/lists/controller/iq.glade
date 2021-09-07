@@ -245,7 +245,7 @@
                             <child>
                               <object class="GtkTreeViewColumn">
                                 <property name="resizable">True</property>
-                                <property name="title" translatable="yes">IQ Pnts.</property>
+                                <property name="title" translatable="yes">IQ Points</property>
                                 <child>
                                   <object class="GtkCellRendererText" id="cr_iq_pnts">
                                     <property name="editable">True</property>

@@ -209,10 +209,12 @@ class IqController(AbstractController):
         tree.set_model(store)
         tree_belly.set_model(store_belly)
         for i in range(0, num_types):
+            if i == 0:
+                continue
             gummi_item_id = FIRST_GUMMI_ITEM_ID + i - 1
             if i == 18:
                 gummi_item_id = FAIRY_GUMMI_ITEM_ID
-            gummi_name = self._string_provider.get_value(StringType.ITEM_NAMES, gummi_item_id) if i != 0 else '/'
+            gummi_name = self._string_provider.get_value(StringType.ITEM_NAMES, gummi_item_id)
             data = [i, gummi_name]
             data_belly = [i, gummi_name]
             for j in range(0, num_types):
@@ -256,8 +258,10 @@ class IqController(AbstractController):
         store: Gtk.ListStore = self.builder.get_object('iq_skills_store')
 
         for i, skill in enumerate(iq_skills):
+            if i == 0:
+                continue
             store.append([
                 str(i), self._string_provider.get_value(
                     StringType.IQ_SKILL_NAMES, i - 1
-                ) if i > 0 else '/', str(skill.iq_required)
+                ), str(skill.iq_required)
             ])
