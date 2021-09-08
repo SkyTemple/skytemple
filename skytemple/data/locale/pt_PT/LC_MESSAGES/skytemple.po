@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-07 21:14+0000\n"
-"PO-Revision-Date: 2021-09-07 21:16\n"
+"POT-Creation-Date: 2021-09-08 15:49+0000\n"
+"PO-Revision-Date: 2021-09-08 15:50\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -2219,7 +2219,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:291
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:584
-#: skytemple/skytemple/module/lists/controller/iq.glade:46
+#: skytemple/skytemple/module/lists/controller/iq.glade:48
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:239
 #: skytemple/skytemple/module/lists/module.py:133
 msgid "IQ"
@@ -3707,6 +3707,10 @@ msgstr ""
 msgid "Pressing start in a dungeon toggles between automatic and manual mode. In manual mode, you can control your partners on their turns. You must apply the extra code overlay made by End45 before applying this patch."
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/compress_iq_data.py:41
+msgid "Optimizes the way the list of IQ skills learnt by each IQ group is stored, removing the limit of max 25 skills per group."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/disable_tips.py:40
 msgid "Disables the tip textboxes shown in dungeons at the beginning of the game."
 msgstr ""
@@ -3846,72 +3850,72 @@ msgstr ""
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:138
-#: skytemple-files/skytemple_files/patch/patches.py:148
+#: skytemple-files/skytemple_files/patch/patches.py:140
+#: skytemple-files/skytemple_files/patch/patches.py:150
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:154
+#: skytemple-files/skytemple_files/patch/patches.py:156
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:157
+#: skytemple-files/skytemple_files/patch/patches.py:159
 #: skytemple/skytemple/module/patch/controller/main.py:225
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:164
+#: skytemple-files/skytemple_files/patch/patches.py:166
 msgid "No configuration was given."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:167
+#: skytemple-files/skytemple_files/patch/patches.py:169
 msgid "Missing configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:171
 #: skytemple-files/skytemple_files/patch/patches.py:173
 #: skytemple-files/skytemple_files/patch/patches.py:175
-#: skytemple-files/skytemple_files/patch/patches.py:179
-#: skytemple-files/skytemple_files/patch/patches.py:189
+#: skytemple-files/skytemple_files/patch/patches.py:177
+#: skytemple-files/skytemple_files/patch/patches.py:181
+#: skytemple-files/skytemple_files/patch/patches.py:191
 msgid "Invalid configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:173
+#: skytemple-files/skytemple_files/patch/patches.py:175
 msgid "Must be >= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:175
+#: skytemple-files/skytemple_files/patch/patches.py:177
 msgid "Must be <= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:223
+#: skytemple-files/skytemple_files/patch/patches.py:225
 msgid "config.xml missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:225
+#: skytemple-files/skytemple_files/patch/patches.py:227
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:235
+#: skytemple-files/skytemple_files/patch/patches.py:237
 msgid "patch.py missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:237
+#: skytemple-files/skytemple_files/patch/patches.py:239
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:242
+#: skytemple-files/skytemple_files/patch/patches.py:244
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:247
+#: skytemple-files/skytemple_files/patch/patches.py:249
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:253
+#: skytemple-files/skytemple_files/patch/patches.py:255
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
@@ -4092,7 +4096,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:187
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:303
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:436
-#: skytemple/skytemple/module/lists/controller/iq.glade:225
+#: skytemple/skytemple/module/lists/controller/iq.glade:227
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:86
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:199
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:440
@@ -4195,10 +4199,10 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:222
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:113
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:184
-#: skytemple/skytemple/module/lists/controller/iq.glade:82
-#: skytemple/skytemple/module/lists/controller/iq.glade:116
-#: skytemple/skytemple/module/lists/controller/iq.glade:175
-#: skytemple/skytemple/module/lists/controller/iq.glade:236
+#: skytemple/skytemple/module/lists/controller/iq.glade:84
+#: skytemple/skytemple/module/lists/controller/iq.glade:118
+#: skytemple/skytemple/module/lists/controller/iq.glade:177
+#: skytemple/skytemple/module/lists/controller/iq.glade:238
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:89
 #: skytemple/skytemple/module/lists/controller/tactics.glade:90
 #: skytemple/skytemple/module/lists/controller/world_map.glade:405
@@ -8162,49 +8166,54 @@ msgid "Guest pokémon IDs refer to the entries in the guest pokémon tab. A valu
 "- HLR (cleared): Whether Hidden Land restrictions should be active when the dungeon has been cleared."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:127
-#: skytemple/skytemple/module/lists/controller/iq.glade:154
+#: skytemple/skytemple/module/lists/controller/iq.glade:129
+#: skytemple/skytemple/module/lists/controller/iq.glade:156
 msgid "IQ Gain"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:195
+#: skytemple/skytemple/module/lists/controller/iq.glade:197
 msgid "Belly Heal"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:248
+#: skytemple/skytemple/module/lists/controller/iq.glade:250
 msgid "IQ Points"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:275
-msgid "If 9999 IQ Points are required, the skill is unused.\n"
-"If -1 IQ Point is required, the skill is unlocked by default."
+#: skytemple/skytemple/module/lists/controller/iq.glade:265
+msgid "Restriction Group"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:293
+#: skytemple/skytemple/module/lists/controller/iq.glade:292
+msgid "If 9999 IQ Points are required, the skill is unused.\n"
+"If -1 IQ Point is required, the skill is unlocked by default.\n"
+"If two skills have the same restriction group they can not be enabled at the same time."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/iq.glade:312
 msgid "IQ Skills"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:318
+#: skytemple/skytemple/module/lists/controller/iq.glade:337
 msgid "Min. IQ required by enemies to learn \n"
 "Exclusive Move-User:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:332
+#: skytemple/skytemple/module/lists/controller/iq.glade:351
 msgid "Min. IQ required by enemies to learn \n"
 "Item Master:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:346
+#: skytemple/skytemple/module/lists/controller/iq.glade:365
 msgid "Intimidator activation chance (%):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:399
+#: skytemple/skytemple/module/lists/controller/iq.glade:418
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:34
 #: skytemple/skytemple/module/lists/module.py:136
 msgid "Misc. Settings"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.py:250
+#: skytemple/skytemple/module/lists/controller/iq.py:268
 msgid "Juice Bar Nectar"
 msgstr ""
 
