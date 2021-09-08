@@ -26,7 +26,8 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple_files.common.i18n_util import _
-from skytemple_files.hardcoded.iq import HardcodedIq
+from skytemple_files.data.md.model import IQGroup
+from skytemple_files.hardcoded.iq import HardcodedIq, IqGroupsSkills
 
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
@@ -37,6 +38,7 @@ FIRST_GUMMI_ITEM_ID = 119
 WONDER_GUMMI_ITEM_ID = 136
 FAIRY_GUMMI_ITEM_ID = 138
 NECTAR_ITEM_ID = 103
+PATCH_IQ_SKILL_GROUPS = 'CompressIQData'
 
 
 class IqGainOtherItem(Enum):
@@ -117,7 +119,7 @@ class IqController(AbstractController):
             self.module.mark_iq_as_modified()
 
     def on_cr_iq_pnts_edited(self, widget, path, text):
-        store: Gtk.ListStore = self.builder.get_object('iq_skills_store')
+        store: Gtk.ListStore = self.builder.get_object('tree_iq_skills').get_model()
         try:
             val = int(text)
         except ValueError:
@@ -135,7 +137,7 @@ class IqController(AbstractController):
         self.module.mark_iq_as_modified()
 
     def on_cr_iq_restrictions_edited(self, widget, path, text):
-        store: Gtk.ListStore = self.builder.get_object('iq_skills_store')
+        store: Gtk.ListStore = self.builder.get_object('tree_iq_skills').get_model()
         try:
             val = int(text)
         except ValueError:
@@ -188,6 +190,29 @@ class IqController(AbstractController):
         gains[type_id][gummi_id] = val
         self.module.project.modify_binary(
             BinaryName.ARM9, lambda bin: HardcodedIq.set_gummi_belly_heal(gains, bin, static_data, patch_applied)
+        )
+
+        self.module.mark_iq_as_modified()
+
+    def on_cr_skill_to_group(self, widget, path, *, group_id):
+        selected = not widget.get_active()
+        store: Gtk.ListStore = self.builder.get_object('tree_iq_skills').get_model()
+        store[path][group_id + 4] = selected
+        skill_id = int(store[path][0])
+
+        arm9 = self.module.project.get_binary(BinaryName.ARM9)
+        static_data = self.module.project.get_rom_module().get_static_data()
+        assert self.module.project.is_patch_applied(PATCH_IQ_SKILL_GROUPS)
+        groups = IqGroupsSkills.read_compressed(arm9, static_data)
+        if selected:
+            if skill_id not in groups[group_id]:
+                groups[group_id].append(skill_id)
+                groups[group_id].sort()
+        else:
+            if skill_id in groups[group_id]:
+                groups[group_id].remove(skill_id)
+        self.module.project.modify_binary(
+            BinaryName.ARM9, lambda bin: IqGroupsSkills.write_compressed(bin, groups, static_data)
         )
 
         self.module.mark_iq_as_modified()
@@ -273,13 +298,38 @@ class IqController(AbstractController):
         arm9 = self.module.project.get_binary(BinaryName.ARM9)
         static_data = self.module.project.get_rom_module().get_static_data()
         iq_skills = HardcodedIq.get_iq_skills(arm9, static_data)
-        store: Gtk.ListStore = self.builder.get_object('iq_skills_store')
+        if self.module.project.is_patch_applied(PATCH_IQ_SKILL_GROUPS):
+            restrictions = IqGroupsSkills.read_compressed(arm9, static_data)
+        else:
+            restrictions = IqGroupsSkills.read_uncompressed(arm9, static_data)
+        assert len(restrictions) == len(IQGroup)
+        # Ignore invalid
+        restrictions.pop()
+
+        # noinspection PyTypeChecker
+        store: Gtk.ListStore = Gtk.ListStore(*([str, str, str, str] + [bool] * (len(IQGroup) - 1)))
+        tree: Gtk.TreeView = self.builder.get_object('tree_iq_skills')
+        tree.set_model(store)
 
         for i, skill in enumerate(iq_skills):
             if i == 0:
+                # Add columns and cell renderers for IQ groups
+                for entry_i, entry in enumerate(IQGroup):
+                    if entry == IQGroup.INVALID:
+                        continue
+                    renderer: Gtk.CellRendererToggle = Gtk.CellRendererToggle(activatable=self.module.project.is_patch_applied(PATCH_IQ_SKILL_GROUPS))
+                    renderer.connect('toggled', partial(self.on_cr_skill_to_group, group_id=entry_i))
+                    column = Gtk.TreeViewColumn(title=entry.print_name, cell_renderer=renderer, active=entry_i + 4)
+                    tree.append_column(column)
                 continue
+
+            iq_group_assignments = []
+            for group in restrictions:
+                iq_group_assignments.append(i in group)
+
+            # noinspection PyTypeChecker
             store.append([
                 str(i), self._string_provider.get_value(
                     StringType.IQ_SKILL_NAMES, i - 1
                 ), str(skill.iq_required), str(skill.restriction_group)
-            ])
+            ] + iq_group_assignments)
