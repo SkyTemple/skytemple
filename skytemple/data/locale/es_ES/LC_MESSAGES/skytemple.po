@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-08 15:49+0000\n"
-"PO-Revision-Date: 2021-09-08 15:50\n"
+"PO-Revision-Date: 2021-09-08 17:19\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3720,7 +3720,7 @@ msgstr "Al pulsar el botón Start en un territorio, se alterna entre el modo aut
 
 #: skytemple-files/skytemple_files/patch/handler/compress_iq_data.py:41
 msgid "Optimizes the way the list of IQ skills learnt by each IQ group is stored, removing the limit of max 25 skills per group."
-msgstr ""
+msgstr "Optimiza la forma en que se almacena la lista de habilidades de CI aprendidas por cada grupo de CI, eliminando el límite de 25 habilidades máximas por grupo."
 
 #: skytemple-files/skytemple_files/patch/handler/disable_tips.py:40
 msgid "Disables the tip textboxes shown in dungeons at the beginning of the game."
@@ -8442,21 +8442,23 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:250
 msgid "IQ Points"
-msgstr ""
+msgstr "Puntos de CI"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:265
 msgid "Restriction Group"
-msgstr ""
+msgstr "Grupo de restricción"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:292
 msgid "If 9999 IQ Points are required, the skill is unused.\n"
 "If -1 IQ Point is required, the skill is unlocked by default.\n"
 "If two skills have the same restriction group they can not be enabled at the same time."
-msgstr ""
+msgstr "Si se requieren 9999 puntos de CI, la habilidad no se utiliza.\n"
+"Si se requiere -1 punto de CI, la habilidad se desbloquea de forma predeterminada.\n"
+"Si dos habilidades tienen el mismo grupo de restricción, no se pueden habilitar al mismo tiempo."
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:312
 msgid "IQ Skills"
-msgstr ""
+msgstr "Habilidades de CI"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:337
 msgid "Min. IQ required by enemies to learn \n"
