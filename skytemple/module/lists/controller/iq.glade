@@ -20,6 +20,8 @@
       <column type="gchararray"/>
       <!-- column-name iq_required -->
       <column type="gchararray"/>
+      <!-- column-name iq_restrictions -->
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkBox" id="box_list">
@@ -257,6 +259,21 @@
                                 </child>
                               </object>
                             </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="resizable">True</property>
+                                <property name="title" translatable="yes">Restriction Group</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="cr_iq_restrictions">
+                                    <property name="editable">True</property>
+                                    <signal name="edited" handler="on_cr_iq_restrictions_edited" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">3</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
@@ -273,7 +290,9 @@
                         <property name="halign">start</property>
                         <property name="margin-start">10</property>
                         <property name="label" translatable="yes">If 9999 IQ Points are required, the skill is unused.
-If -1 IQ Point is required, the skill is unlocked by default.</property>
+If -1 IQ Point is required, the skill is unlocked by default.
+If two skills have the same restriction group they can not be enabled at the same time.</property>
+                        <property name="wrap">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
