@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-08 15:49+0000\n"
+"POT-Creation-Date: 2021-09-08 20:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -8320,36 +8320,38 @@ msgstr ""
 msgid ""
 "If 9999 IQ Points are required, the skill is unused.\n"
 "If -1 IQ Point is required, the skill is unlocked by default.\n"
-"If two skills have the same restriction group they can not be enabled at the same time."
+"If two skills have the same restriction group they can not be enabled at the same time.\n"
+"\n"
+"Editing IQ Group assignments requires the 'CompressIQData' patch to be applied."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:312
+#: skytemple/skytemple/module/lists/controller/iq.glade:314
 msgid "IQ Skills"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:337
+#: skytemple/skytemple/module/lists/controller/iq.glade:339
 msgid ""
 "Min. IQ required by enemies to learn \n"
 "Exclusive Move-User:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:351
+#: skytemple/skytemple/module/lists/controller/iq.glade:353
 msgid ""
 "Min. IQ required by enemies to learn \n"
 "Item Master:"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:365
+#: skytemple/skytemple/module/lists/controller/iq.glade:367
 msgid "Intimidator activation chance (%):"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.glade:418
+#: skytemple/skytemple/module/lists/controller/iq.glade:420
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:34
 #: skytemple/skytemple/module/lists/module.py:136
 msgid "Misc. Settings"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/iq.py:268
+#: skytemple/skytemple/module/lists/controller/iq.py:293
 msgid "Juice Bar Nectar"
 msgstr ""
 
