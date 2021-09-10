@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-08 20:37+0000\n"
-"PO-Revision-Date: 2021-09-10 18:33\n"
+"PO-Revision-Date: 2021-09-10 21:47\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -2293,11 +2293,11 @@ msgstr "Femelle (2e forme)"
 
 #: skytemple-files/skytemple_files/data/md/model.py:328
 msgid "Knows AncientPower"
-msgstr "Connaît AncientPower"
+msgstr "Connaît Pouvoir Antique"
 
 #: skytemple-files/skytemple_files/data/md/model.py:329
 msgid "Knows Rollout"
-msgstr ""
+msgstr "Connait Roulade"
 
 #: skytemple-files/skytemple_files/data/md/model.py:330
 msgid "Knows Double Hit"
@@ -3748,18 +3748,24 @@ msgid "Expand the pokemon entries allowed to 2048, and makes all the entries ind
 "Needs ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile patches to work.\n"
 "It is strongly recommended to fix any dungeon error before applying this patch,\n"
 "and to save a backup of your ROM before applying this."
-msgstr ""
+msgstr "Permet d'avoir jusqu'a 2048 entrées de pokémon, et les rends indépendante.\n"
+"À besoin des patches ''ChangeEvoSystem', 'ExternalizeWazaFile' et 'ExternalizeMappaFile' pour fonctionner\n"
+"Il est fortement recommander de corriger toutes les erreurs des donjons avant d'appliquer ce patch,\n"
+"et de faire une backup de votre de ROM avant d'appliquer ce patch."
 
 #: skytemple-files/skytemple_files/patch/handler/externalize_mappa.py:42
 msgid "Use filestreams to access mappa_t/mappa_y/mappa_s data instead of loading them entirely.\n"
 "This patch is useless on its own, unless you have a too big mappa file."
-msgstr ""
+msgstr "Accède à mappa_t/mappa_y/mappa_s à la volé plutot que de les charger en entier.\n"
+"Ce patch est inutile à lui seul, à moins que vous n'ayez un fichier mappa trop volumineux."
 
 #: skytemple-files/skytemple_files/patch/handler/externalize_waza.py:41
 msgid "Use filestreams to access waza_p/waza_p2 data instead of loading them entirely.\n"
 "This patch is useless on its own.\n"
 "Depends on the ActorAndLevelLoader patch, as it needs some space provided by this one."
-msgstr ""
+msgstr "Accède à waza_p/wara_p2 à la volé plutot que de les charger en entier.\n"
+"Ce patch est inutile à lui seul.\n"
+"Necessite le patch 'ActorAndLevelLoader', car il utilise un de l'espace qu'il fournit."
 
 #: skytemple-files/skytemple_files/patch/handler/extra_space.py:40
 msgid "This patch adds a new overlay 36 to the game, which is loaded at address 0x023A7080 and provides extra space for patches to place code and data in."
@@ -3768,7 +3774,8 @@ msgstr "Ce correctif ajoute un nouvel overlay (36) au jeu, qui est chargé à l'
 #: skytemple-files/skytemple_files/patch/handler/extract_anims.py:45
 msgid "Extracts animation data and put it in files. \n"
 "Needs ActorAndLevelLoader patch to free some space. "
-msgstr ""
+msgstr "Extraie les données d'animation, et les stockes dans des fichiers.\n"
+"Necessite le patch 'ActorAndLevelLoader' pour l'espace qu'il libère. "
 
 #: skytemple-files/skytemple_files/patch/handler/extract_bar_list.py:52
 msgid "Extracts Spinda bar's item list."
@@ -3780,7 +3787,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_code.py:57
 msgid "Extracts item effects code and put it in files."
-msgstr ""
+msgstr "Extraie le code des effets d'objets et les mets dans des fichiers."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_item_lists.py:47
 msgid "Extracts the hardcoded item lists, used for mission rewards/treasure boxes content as well as Kecleon shop items, and put them in files. Provides support for reading them from the rom file system."
@@ -3792,11 +3799,11 @@ msgstr "Pas assez d'espace pour mettre les noms de fichier ! "
 
 #: skytemple-files/skytemple_files/patch/handler/extract_move_code.py:58
 msgid "Extracts move effects code and put it in files."
-msgstr ""
+msgstr "Extraie le code des attaques et les mets dans des fichiers."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_sp_code.py:54
 msgid "Extracts special processes code and put it in files."
-msgstr ""
+msgstr "Extraie le code des procedures spéciales et les mets dans des fichiers."
 
 #: skytemple-files/skytemple_files/patch/handler/fairy_gummies.py:96
 msgid "Implements Fairy-type specialized gummies. Uses unused item 138.\n"
@@ -3814,7 +3821,7 @@ msgstr "Corrige le bug de l'évolution qui fait planter le jeu en essayant de fa
 
 #: skytemple-files/skytemple_files/patch/handler/fix_memory_softlock.py:41
 msgid "Prevents the game from crashing if it runs out of memory when trying to display a sprite (this can happen during cutscenes when using custom sprites or the randomizer). Instead, the game will be forced to continue, which will most likely prevent the crash but could cause glitches."
-msgstr ""
+msgstr "Empèche le jeu de planter s'il manque de mémoire lors de la tentative d'affichage d'un sprite (cela risque d'arrivé durant les cinématiques lors de l'usage de sprites personnalisé ou le randomizer). À la place, il forcera le jeu de continuer, ce qui empèchera probablement le jeu de planter, mais qui pourrait entrainer des pépin."
 
 #: skytemple-files/skytemple_files/patch/handler/move_growth.py:75
 msgid "Implements move growth (PoC/Unfinished). \n"
@@ -3843,7 +3850,7 @@ msgstr "Autorise le partenaire à être du même type que le joueur dans le test
 
 #: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:39
 msgid "Who would you like to be?"
-msgstr ""
+msgstr "Qui souhaiteriez vous être ?"
 
 #: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:50
 msgid "Skips the quiz, only leaving the gender question.\n"
@@ -4856,16 +4863,16 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1548
 msgid "Enable Debugging Mode"
-msgstr ""
+msgstr "Activer le mode débogage"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1552
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1569
 msgid "branch_Debug (if debug) commands will activate."
-msgstr ""
+msgstr "Les commandes 'branch_Debug' (si débug) s'activeront."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1565
 msgid "Dungeons: Auto Next Floor"
-msgstr ""
+msgstr "Donjons : prochain étage automatique"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1593
 msgid "Debug Flags 1"
@@ -4918,15 +4925,15 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2165
 msgid "Entries: "
-msgstr ""
+msgstr "Entrées : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2199
 msgid "Header: "
-msgstr ""
+msgstr "Entête : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2211
 msgid "Data: "
-msgstr ""
+msgstr "Données : "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2278
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5307
@@ -4941,11 +4948,11 @@ msgstr "Unk2"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2311
 msgid "Available"
-msgstr ""
+msgstr "Disponible"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2322
 msgid "Used"
-msgstr ""
+msgstr "Utilisé"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2342
 msgid "Dump Selected Block"
@@ -5002,7 +5009,7 @@ msgstr "Bienvenue dans le débogueur du moteur de script \n"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2513
 msgid "The Script Engine is currently not running."
-msgstr ""
+msgstr "Le moteur de script n'est pas actif."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2645
 msgid "Run the game from the start or stop the emulator."
@@ -5205,7 +5212,7 @@ msgstr ""
 
 #: skytemple/skytemple/_i18n.py:33
 msgid "_Stop"
-msgstr ""
+msgstr "_Arrêter"
 
 #: skytemple/skytemple/_i18n.py:34
 msgid "_New"
@@ -5378,7 +5385,7 @@ msgstr "Les pixels de cette couleur exacte seront considérés comme transparent
 
 #: skytemple/skytemple/controller/tilequant.py:87
 msgid "You can use this to convert multiple images at once with the same palettes. This is useful for map backgrounds with multiple layers, that need to share the same palettes."
-msgstr ""
+msgstr "Vous pouvez utiliser ceci pour convertir plusieurs images à la fois avec les mêmes palettes. C'est utilise pour les arrière-plan avec plusieurs couches, qui doivent partager les mêmes palettes."
 
 #: skytemple/skytemple/controller/tilequant.py:93
 msgid "Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they \"blend into\" each other. This will make the image look like it contains more colors but also might decrease the overall visual quality. Two different algorithms are available.\n\n"
@@ -5478,7 +5485,7 @@ msgstr "PyGObject a été compilé sans le support pour Cairo. Impossible de dé
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:35
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1090
 msgid "Background"
-msgstr ""
+msgstr "Arrière-plan"
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:44
 msgid "Import..."
@@ -5802,7 +5809,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:253
 msgid "Change the tileset or dungeon background (editor preview only)"
-msgstr "Modifie le tileset ou l'arrière-plan du donjon (uniquement pour l'aperçu de l'éditeur)"
+msgstr "Modifie le tileset ou l'arrière-plan du donjon (aperçu de l'éditeur uniquement)"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:262
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.glade:144
@@ -5810,7 +5817,7 @@ msgstr "Modifie le tileset ou l'arrière-plan du donjon (uniquement pour l'aper�
 #: skytemple/skytemple/module/script/controller/ssa.glade:591
 #: skytemple/skytemple/module/script/controller/ssa.glade:600
 msgid "Change the map background (editor preview only)"
-msgstr ""
+msgstr "Modifie l'arrière-plan de la carte (aperçu de l'éditeur uniquement)"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:285
 msgid "Edit the currently selected tileset or background"
@@ -5826,43 +5833,43 @@ msgstr "Afficher plus d'informations"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:333
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:353
 msgid "Hide Info Layer"
-msgstr ""
+msgstr "Cache la couche d'information"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:367
 msgid "Show Tile Info"
-msgstr ""
+msgstr "Montrer les informations des tuiles"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:368
 msgid "Ti"
-msgstr ""
+msgstr "Tu"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:383
 msgid "Show Item Info"
-msgstr ""
+msgstr "Montrer les informations des objets"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:384
 msgid "I"
-msgstr ""
+msgstr "O"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:399
 msgid "Show Pokémon Info"
-msgstr ""
+msgstr "Montrer les information des pokémons"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:400
 msgid "P"
-msgstr ""
+msgstr "P"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:415
 msgid "Show Trap Info"
-msgstr ""
+msgstr "Montrez les informations des pièges"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:416
 msgid "Tr"
-msgstr ""
+msgstr "Pi"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:441
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2892
@@ -6092,7 +6099,9 @@ msgstr ""
 msgid "PLEASE NOTE: \n"
 "The game has some hardcoded checks for those settings when the patch \"ChangeFixedFloorProperties\" is not applied.\n"
 "Please check the help for each setting for more information."
-msgstr ""
+msgstr "REMARQUE :\n"
+"Le jeu comporte quelques vérifications codé en dur pour ces paramètres si le patch 'ChangeFixedFloorProperties' n'est pas appliqué.\n"
+"Consulter l'aide de chaqun des paramètres pour plus d'informations."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1812
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4326
