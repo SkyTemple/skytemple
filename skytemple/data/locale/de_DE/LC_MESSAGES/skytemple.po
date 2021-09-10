@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-08 20:37+0000\n"
-"PO-Revision-Date: 2021-09-10 14:17\n"
+"PO-Revision-Date: 2021-09-10 18:33\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3827,11 +3827,17 @@ msgid "Implements move growth (PoC/Unfinished). \n"
 "The last version of ChangeMoveStatsDisplay must be used with this.\n"
 "May be incompatible if markfont.dat has been modified (except for ChangeMoveStatsDisplay)\n"
 "Makes all prior save files incompatible. "
-msgstr ""
+msgstr "Implementiert Wachstum/Verbesserung von Attacken\n"
+"(Proof of Concept / noch nicht fertig).\n"
+"Benötigt die Patches ActorAndLevelLoader, ExtractAnimData und ChangeMoveStatsDisplay.\n"
+"Wenn MoveShortcuts angewendet ist, muss es nach diesem Patch neu angewendet werden. \n"
+"Die neuste Version von ChangeMoveStatsDisplay muss für diesen Patch verwendet werden.\n"
+"Ist möglicherweise inkompatibel, falls die markfont.dat bearbeitet wurde (mit Ausnahme von Bearbeitungen des ChangeMoveStatsDisplay Patches).\n"
+"Macht alle Speicherdateien inkompatibel. "
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:40
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
-msgstr ""
+msgstr "Ersetzt die fixierte Attacke (L+A) mit einer Schnellauswahl wie in PidU oder Super (L+A/B/X/Y). Der ExtraSpace-Patch muss vor diesem Patch angewendet werden."
 
 #: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:42
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
@@ -3839,7 +3845,7 @@ msgstr "Empfohlen für CTC. Ohne diesen Patch können Partner keine versteckten 
 
 #: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:42
 msgid "Reduces the amount of time the game pauses for before changing the PoV, like when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
-msgstr ""
+msgstr "Reduziert die Zeit, die das Spiel wartet, wenn es den Fokus auf ein anderes Teammitglied legt. Die Zeit wird von 60 auf 12 Frames reduziert. Der CTC Patch enthält diesen Patch bereits."
 
 #: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:39
 msgid "Allows the partner to be of the same type as the player in the personality test."
@@ -6171,7 +6177,8 @@ msgstr "Wenn aktiviert, wird das Spiel diesen statischen Raum als Layout für di
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:453
 msgid "Enables boss fight conditions.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 80. "
-msgstr ""
+msgstr "Aktiviert Bosskampf Bedingungen.\n"
+"Falls ChangeFixedFloorProperties nicht angewendet ist, wird diese Bedingung nur aktiviert, wenn die ID des Raumes ist zwischen 1 und 80. "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:457
 msgid "Allows free layouts. For example, fixed rooms with this setting can omit stairs.\n"
@@ -8254,7 +8261,17 @@ msgid "Here you can edit dungeon interruptions. \n"
 " - Scenario Equals: scenario, level\n"
 " - Scenario Below or Equal: scenario, level\n"
 " - Scenario Greater or Equal: scenario, level"
-msgstr ""
+msgstr "Hier kannst du Dungeon-Unterbrechungen bearbeiten. \n"
+"Unterbrechungen können auftreten, wenn zu einer neuen Ebene gewechselt wird (bspw. wird eine Unterbrechung definiert bei Ebene 3 ausgelöst, wenn zwischen Ebene 2 und 3 gewechselt wird). \n"
+"In den Scripts funktioniert es genau so als ob der Dungeon geschafft wurde (die Coroutinen GETOUT_SCENARIO_DUNGEON oder GETOUT_REQUEST_DUNGEON werden ausgelöst) .\n"
+"Es ist nur eine Unterbrechung pro Ebene erlaubt. \n"
+"Eine Bedingung kann pro Unterbrechung festgelegt werden. Wenn sie nicht erfüllt ist, fährt das Spiel mit der nächsten Ebene fort. \n"
+"Parameter:\n"
+"- Immer: 0, 0\n"
+"- Flag ist nicht gesetzt: Flag ID, 0\n"
+"- Szenario gleich: Szenario, Level\n"
+"- Szenario kleiner oder gleich: Szenario, Level\n"
+"- Szenario größer oder gleich: Szenario, Level"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:80
 #: skytemple/skytemple/module/lists/module.py:121
@@ -8263,7 +8280,7 @@ msgstr "Dungeon-Musik"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:96
 msgid "Here you can edit the tracks selectable for dungeon floors. The tracks can either be assigned to single music tracks or to sets of four random tracks."
-msgstr ""
+msgstr "Hier kannst du bearbeiten, welche Musik-Tracks für Dungeon Ebenen auswählbar sind. Diese Tracks können entweder einzelnen Musik-Tracks zugeordnet werden oder einer Liste von vier, aus denen zufällig gewählt wird."
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:143
 msgid "Track"
@@ -8304,7 +8321,7 @@ msgstr "Gast-Pokémon"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:153
 msgid "Edits which dungeons add guest pokémon to your party, as well as some additional dungeon restrictions."
-msgstr ""
+msgstr "Bearbeitet, welche Dungeon Gast-Pokémon zu deinem Team hinzufügen, sowie einige weitere Dungeon-Einschränkungen."
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:166
 msgid "<Not available>\n\n"
@@ -8321,7 +8338,7 @@ msgstr "Dungeon Gast-Pokémon"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:231
 msgid "From this menu you can change which dungeons add additional guest pokémon to your party when they are <b>uncleared</b>. You can also set some additional restrictions and edit guest pokémon data."
-msgstr ""
+msgstr "Aus diesem Menü kannst du auswählen, welche Dungeons zusätzliche Gast-Pokémon zu deinem Team hinzufügen, wenn sie <b>noch nicht passiert</b> wurden. Du kannst auch zusätzliche Einschränkungen hinzufügen und die Statuswerte der Pokémon anpassen."
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:314
 msgid "Guest pokémon 1"
@@ -8804,7 +8821,8 @@ msgstr "Protagonisten in Bonusepisoden"
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:74
 msgid "These are the special player characters used in special episodes.\n"
 "What entry is used when depends on the special episode and is hardcoded."
-msgstr ""
+msgstr "Dies sind die speziellen Protagonisten, die in Bonusepisoden verwendet werden.\n"
+"Wekcher Eintrag verwendet wird hängt von der Bonusepisode ab und ist fest codiert."
 
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:226
 msgid "Not all moves are fixed"
@@ -9295,7 +9313,8 @@ msgstr "Kartenhintergründe"
 msgid "This section lets you edit map backgrounds. \n"
 "These backgrounds are usually loaded by the game for scenes and serve many purposes \n"
 "(actual backgrounds for maps, title screen backgrounds, cutscenes, etc.)."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du Kartenhintergründe bearbeiten. \n"
+"Diese Hintergründe werden üblicherweise vom Spiel für Szenen geladen und haben viele verschiedene Zwecke (echte Hintergründe für Karten, Titelbildschirm-Hintergründe, Zwischensequenzen, etc.)."
 
 #: skytemple/skytemple/module/map_bg/controller/main.glade:98
 msgid "New Background"
@@ -9311,7 +9330,7 @@ msgstr "Name des Kartenhintergrundes"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:57
 msgid "The length of the map background name must be between 1-8 characters."
-msgstr ""
+msgstr "Die Länge des Kartenhintergrundnamens muss zwischen 1 und 8 Zeichen betragen."
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:72
 msgid "A map background with this name already exists."
@@ -9798,7 +9817,7 @@ msgstr "Umschalten"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5230
 msgid "One of the levels assigned to this background use mode #10 or #11. The background will be rendered in game using the assigned dungeon tileset. If it's mode #10 you can build the layout above. Mode #11 uses the fixed room of the assigned floor."
-msgstr ""
+msgstr "Eine der diesem Hintergrund zugewiesenen Level verwendet den Modus #10 oder #11. Der Hintergrund wird im Spiel mit dem zugewiesenen Dungeon-Tileset gerendert. Wenn es Modus #10 ist, kannst du oben das Layout erstellen. Modus #11 verwendet den statischen Raum der zugewiesenen Ebene."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5299
 msgid "This background uses weird palette values for some chunks, so the game will not render this background the same as it is displayed here.\n"
@@ -10965,7 +10984,8 @@ msgstr "Entwicklungsparameter"
 #: skytemple/skytemple/module/monster/controller/monster.py:386
 msgid "This value indicates the family of a pokemon.\n"
 "This is used by a certain type of exclusive items that benefits to a family."
-msgstr ""
+msgstr "Dieser Wert legt die Familie eines Pokémon fest.\n"
+"Dieser wird von bestimmten Typen von exklusiven Items benutzt, die dieser Familie zugeordnet sind."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:388
 msgid "Base Form Info"
@@ -10979,7 +10999,12 @@ msgid "This value indicates the previous evolution of the pokémon.\n"
 "3 - For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "Child Pokémon are computed using the pre evolution value and going recursively until one pokémon without a pre evolution is found.\n"
 "If the ChangeEvoSystem patch is applied, only point 2 applies, the other points are handled with other data."
-msgstr ""
+msgstr "Dieser Wert bestimmt die vorherigen Entwicklung der Pokémon.\n"
+"Das Spiel verwendet das für bestimmte Fälle: \n"
+"1 - Für Entwicklungen\n"
+"2 - Wenn Attacken in Elevolteks Shop wieder gelernt werden sollen, kannst du auch die Attacken von zwei Generationen früher erlernen\n"
+"3 - Für Missionen bei denen es Eier als Belohnung gibt, enthält das Ei ein zufälliges Pokémon basierend auf der Spawn-Listn der Missions-Ebene. Die Pokémon die gewählt werden, sind die Pokémon ohne Vorstufen oder die Vorstufen, die hier definiert werden (tiefste Vorstufen).\n"
+"Falls der ChangeEvoSystem Patch angewendet wird, trifft nur Punkt 2 zu. Die anderen Punkte werden über andere Daten abgebildet."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:405
 msgid "Pre Evolution Info"
@@ -11120,7 +11145,9 @@ msgstr "Der Wert für die Dateigröße des Sprites vom Pokémon war inkonsistent
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
 "After the patch is applied, this value defines the Base ID and therefore how Pokémon are grouped.\n"
 "Reload the project after making changes to this value, to reflect them in the tree on the left."
-msgstr ""
+msgstr "Falls der \"ExpandPokeList\" Patch nicht angewendet ist, ist dieser Wert unbenutzt. Beachte aber, dass er benutzt wird um Gruppen zu bilden, während der Patch angewendet wird.\n"
+"Nachdem der Patch angewendet ist, definiert dieser Wert die Basis-ID und damit wie Pokémon gruppiert sind.\n"
+"Lade das Projekt neu, nachdem du diesen Wert geändert hast, sodass der Wert auch im Dateibaum links aktualisiert wird."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1295
 msgid "Entity ID"
@@ -11129,7 +11156,8 @@ msgstr "Entität-ID"
 #: skytemple/skytemple/module/monster/controller/monster.py:1305
 msgid "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "This list indicates this Pokémon's children. If no children exist, the game will default to that pokémon species. "
-msgstr ""
+msgstr "Für Missionen mit einem Ei als Belohnung enthält das Ei ein zufälliges Pokémon, das unter den Kinder-Pokémon der Spawnliste der Missions-Ebene ausgewählt wird.\n"
+"Diese Liste zeigt die Kinder dieses Pokémons an. Wenn keine Kinder existieren, wird das Spiel standardmäßig auf diese Pokémon-Spezies auswählen. "
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1307
 msgid "Children Info"
