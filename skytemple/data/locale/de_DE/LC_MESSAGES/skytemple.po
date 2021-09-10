@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-08 20:37+0000\n"
-"PO-Revision-Date: 2021-09-08 20:39\n"
+"PO-Revision-Date: 2021-09-10 12:14\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3683,17 +3683,20 @@ msgstr "Ermöglicht das Rekrutieren der anderen Deoxys-Formen und der Regis in D
 msgid "Change the evolution system.\n"
 "After applying this, every single Pokémon will have two lists for their evolution and children, and different stat bonuses when a Pokémon evolves into them.\n"
 "This supposedly removes most of the particular cases the game handles for evolutions. "
-msgstr ""
+msgstr "Ändert das Entwicklungssystem.\n"
+"Nachdem dieser Patch angewendet wurde, hat jedes Pokémon zwei Listen für seine Entwicklung und Kind-Pokémon. Es können außerdem verschiedene Boni für Statuswerte definiert werden.\n"
+"Dieser Patch sollte die meisten speziellen EInzelfälle entfernen, die das Spiel für Entwicklungen hat. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:170
 #, python-brace-format
 msgid "Infinite recursion detected in pre evolutions for md entry {i}. "
-msgstr ""
+msgstr "Endlose Rekursion in Vorentwicklungen für den MD Eintrag {i} erkannt. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_ff_prop.py:43
 msgid "Changes and adds some properties for fixed floors.\n"
 "Removes restrictions. "
-msgstr ""
+msgstr "Ändert einige Eigenschaften von statischen Räumen und fügt weitere hinzu.\n"
+"Einschränkungen werden entfernt. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_tbbg.py:43
 msgid "Provides support for editing textbox background color."
@@ -8383,40 +8386,45 @@ msgstr "Gast-Pokémon-IDs beziehen sich auf die Einträge im Gast-Pokémon Tab. 
 #: skytemple/skytemple/module/lists/controller/iq.glade:129
 #: skytemple/skytemple/module/lists/controller/iq.glade:156
 msgid "IQ Gain"
-msgstr ""
+msgstr "IQ-Gewinn"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:197
 msgid "Belly Heal"
-msgstr ""
+msgstr "Magen-Heilung"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:250
 msgid "IQ Points"
-msgstr ""
+msgstr "IQ Punkte"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:265
 msgid "Restriction Group"
-msgstr ""
+msgstr "Beschränkungsgruppe"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:292
 msgid "If 9999 IQ Points are required, the skill is unused.\n"
 "If -1 IQ Point is required, the skill is unlocked by default.\n"
 "If two skills have the same restriction group they can not be enabled at the same time.\n\n"
 "Editing IQ Group assignments requires the 'CompressIQData' patch to be applied."
-msgstr ""
+msgstr "Wenn 9999 IQ Punkte benötigt werden, ist eine Fähigkeit unbenutzt.\n"
+"Wenn -1 IQ Punkt benötigt wird, ist die Fähigkeit standardmäßig freigeschaltet.\n"
+"Wenn zwei Fähigkeiten dieselbe Beschränkungsgruppe haben, können sie nicht gleichzeitig aktiviert werden.\n\n"
+"Damit Zuweisungen zu IQ-Gruppen bearbeitet werden können, muss der 'CompressIQData' Patch angewendet sein."
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:314
 msgid "IQ Skills"
-msgstr ""
+msgstr "IQ-Fähigkeiten"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:339
 msgid "Min. IQ required by enemies to learn \n"
 "Exclusive Move-User:"
-msgstr ""
+msgstr "Min. IQ benötigt damit Attacken-Nutzer \n"
+"gelernt werden kann:"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:353
 msgid "Min. IQ required by enemies to learn \n"
 "Item Master:"
-msgstr ""
+msgstr "Min. IQ benötigt damit Item-Meister \n"
+"gelernt werden kann:"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:367
 msgid "Intimidator activation chance (%):"
@@ -8430,7 +8438,7 @@ msgstr "Verschiedene Einstellungen"
 
 #: skytemple/skytemple/module/lists/controller/iq.py:293
 msgid "Juice Bar Nectar"
-msgstr ""
+msgstr "Saftbar-Nektar"
 
 #: skytemple/skytemple/module/lists/controller/main.py:23
 msgid "Lists"
@@ -8530,7 +8538,8 @@ msgstr "Musik im Hauptmenü:"
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:361
 msgid "Belly points lost when \n"
 "walking through walls, per turn:"
-msgstr ""
+msgstr "Magen-Verlust, wenn durch\n"
+"die Wand gegangen wird, pro Zug:"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:375
 msgid "Burn damage delay (turns):"
