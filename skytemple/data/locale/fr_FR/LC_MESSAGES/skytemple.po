@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-08 20:37+0000\n"
-"PO-Revision-Date: 2021-09-08 20:38\n"
+"PO-Revision-Date: 2021-09-10 15:20\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -786,7 +786,7 @@ msgstr "Accélération"
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:102
 msgid "Lid"
-msgstr ""
+msgstr "Veille"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:7
 msgid "3D rom"
@@ -1191,7 +1191,7 @@ msgstr "Select : "
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:184
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:890
 msgid "Lid : "
-msgstr ""
+msgstr "Veille : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:202
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:926
@@ -1206,7 +1206,7 @@ msgstr "R : "
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:233
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:1060
 msgid "Debug : "
-msgstr ""
+msgstr "Débug : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:249
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:1111
@@ -1236,7 +1236,7 @@ msgstr "Appuyer sur un bouton..."
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:443
 msgid "Key definition"
-msgstr ""
+msgstr "Configuration de la touche"
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:506
 msgid "Press a key..."
@@ -3772,7 +3772,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/extract_bar_list.py:52
 msgid "Extracts Spinda bar's item list."
-msgstr ""
+msgstr "Extrait la liste des objets du Bar à Jus Spinda."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_dungeon_data.py:54
 msgid "Extracts the floor ranks, forbidden mission floors, items available in dungeon tables and put them in files. Provides support for reading them from the rom file system."
@@ -3896,15 +3896,15 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/patches.py:181
 #: skytemple-files/skytemple_files/patch/patches.py:191
 msgid "Invalid configuration value."
-msgstr ""
+msgstr "Valeur de configuration invalide."
 
 #: skytemple-files/skytemple_files/patch/patches.py:175
 msgid "Must be >= {}."
-msgstr ""
+msgstr "Doit être >= {}."
 
 #: skytemple-files/skytemple_files/patch/patches.py:177
 msgid "Must be <= {}."
-msgstr ""
+msgstr "Doit être <= {}."
 
 #: skytemple-files/skytemple_files/patch/patches.py:225
 msgid "config.xml missing in patch package."
@@ -3920,7 +3920,7 @@ msgstr "Fichier patch.py manquant dans le paquet de correctifs."
 
 #: skytemple-files/skytemple_files/patch/patches.py:239
 msgid "The patch.py of the patch package contains a syntax error."
-msgstr ""
+msgstr "patch.py du paquet du patch contient un erreur syntaxique."
 
 #: skytemple-files/skytemple_files/patch/patches.py:244
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
@@ -4001,11 +4001,11 @@ msgstr "Impossible de compiler le script : toutes les langues doivent avoir le m
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:175
 msgid "BOOST"
-msgstr ""
+msgstr "BOOST"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:178
 msgid "Debugging disabled."
-msgstr ""
+msgstr "Débugage désactivé."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:320
 #, python-brace-format
@@ -4020,7 +4020,7 @@ msgstr "Ne pas sauvegarder"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:324
 #: skytemple/skytemple/_i18n.py:24
 msgid "_Cancel"
-msgstr ""
+msgstr "_Annuler"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:325
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:965
@@ -4038,7 +4038,7 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:142
 #: skytemple/skytemple/module/sprite/module.py:191
 msgid "_Save"
-msgstr ""
+msgstr "_Sauvegarder"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:326
 #: skytemple/skytemple/controller/main.py:773
@@ -4504,7 +4504,7 @@ msgstr "Désactiver les points d’arrêt (tous les fichiers)."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:19
 msgid "Disable Breaks"
-msgstr ""
+msgstr "Désactiver les points d'arrêt"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:44
 msgid "Resume."
@@ -4516,21 +4516,21 @@ msgstr "Reprendre"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:60
 msgid "Step over the current instruction."
-msgstr ""
+msgstr "Saute par dessus l'instruction actuelle."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:61
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:403
 msgid "Step Over"
-msgstr ""
+msgstr "Sauter"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:76
 msgid "Step into the current instruction, if it's a call, otherwise step over."
-msgstr ""
+msgstr "Entre dans l'instruction actuelle si c'est un appel, autrement, le saute."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:77
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:413
 msgid "Step Into"
-msgstr ""
+msgstr "Entrer"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:92
 msgid "Step out of the current function call."
@@ -4670,19 +4670,21 @@ msgstr "Divers"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:259
 msgid "The variable must have a number as value."
-msgstr ""
+msgstr "La variable doit avoir une valeur numérique."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:284
 #, python-brace-format
 msgid "Invalid variable value:\n"
 "{err}\n"
 "The value was not written to RAM."
-msgstr ""
+msgstr "Valeur de la variable incorrecte :\n"
+"{err}\n"
+"La valeur n'a pas été écrite dans la RAM."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:285
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:142
 msgid "Error!"
-msgstr ""
+msgstr "Erreur !"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:319
 msgid "Unable to load variables!"
@@ -4722,7 +4724,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:378
 msgid "_Debugger"
-msgstr ""
+msgstr "_Débogueur"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:388
 msgid "Disable Breakpoints"
@@ -4763,7 +4765,7 @@ msgstr "Capture d'écran"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:710
 msgid "_Help"
-msgstr ""
+msgstr "_Aide"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:720
 msgid "ExplorerScript documentation"
@@ -5012,11 +5014,11 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2690
 msgid "Reset the emulator."
-msgstr ""
+msgstr "Réinitialisez l'émulateur."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2926
 msgid "Savestate"
-msgstr ""
+msgstr "Sauvegarde instantané"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2978
 msgid "Emulator"
@@ -5158,31 +5160,31 @@ msgstr "Action non prise en charge"
 
 #: skytemple/skytemple/_i18n.py:21
 msgid "_About"
-msgstr ""
+msgstr "_A propos"
 
 #: skytemple/skytemple/_i18n.py:22
 msgid "_Add"
-msgstr ""
+msgstr "_Ajouter"
 
 #: skytemple/skytemple/_i18n.py:23
 msgid "_Apply"
-msgstr ""
+msgstr "_Appliquer"
 
 #: skytemple/skytemple/_i18n.py:25
 msgid "_Close"
-msgstr ""
+msgstr "_Fermer"
 
 #: skytemple/skytemple/_i18n.py:26
 msgid "_Copy"
-msgstr ""
+msgstr "_Copier"
 
 #: skytemple/skytemple/_i18n.py:27
 msgid "Cu_t"
-msgstr ""
+msgstr "C_ouper"
 
 #: skytemple/skytemple/_i18n.py:28
 msgid "_Delete"
-msgstr ""
+msgstr "_Supprimer"
 
 #: skytemple/skytemple/_i18n.py:29
 msgid "_Forward"
