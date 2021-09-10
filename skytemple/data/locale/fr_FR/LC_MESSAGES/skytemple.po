@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-08 20:37+0000\n"
-"PO-Revision-Date: 2021-09-10 17:24\n"
+"PO-Revision-Date: 2021-09-10 18:33\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -2293,7 +2293,7 @@ msgstr "Femelle (2e forme)"
 
 #: skytemple-files/skytemple_files/data/md/model.py:328
 msgid "Knows AncientPower"
-msgstr ""
+msgstr "Connaît AncientPower"
 
 #: skytemple-files/skytemple_files/data/md/model.py:329
 msgid "Knows Rollout"
@@ -3721,7 +3721,7 @@ msgstr "Appuyer sur Start dans un donjon permet de basculer entre le mode automa
 
 #: skytemple-files/skytemple_files/patch/handler/compress_iq_data.py:41
 msgid "Optimizes the way the list of IQ skills learnt by each IQ group is stored, removing the limit of max 25 skills per group."
-msgstr ""
+msgstr "Optimise le stockage de l'apprentisage des compétences QI pour les groupes QI, en supprimant la limites de 25 compétences par groupes."
 
 #: skytemple-files/skytemple_files/patch/handler/disable_tips.py:40
 msgid "Disables the tip textboxes shown in dungeons at the beginning of the game."
@@ -4869,7 +4869,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1593
 msgid "Debug Flags 1"
-msgstr ""
+msgstr "Drapeaux de débogage 1"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1608
 msgid "Message Speed Up"
@@ -4901,11 +4901,11 @@ msgstr "Menu de débogage"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1812
 msgid "Debug Flags 2"
-msgstr ""
+msgstr "Drapeaux de débogage 2"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2098
 msgid "Debug Flags"
-msgstr ""
+msgstr "Drapeaux de débogage"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2119
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:302
@@ -4977,7 +4977,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/patch_main.glade:79
 #: skytemple/skytemple/module/script/controller/main.glade:416
 msgid "Reload"
-msgstr ""
+msgstr "Recharger"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2377
 msgid "Allocated Memory"
@@ -4986,7 +4986,7 @@ msgstr "Mémoire allouée"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2392
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2412
 msgid "State / Debugging"
-msgstr ""
+msgstr "État/Débogage"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2463
 msgid "Welcome to \n"
@@ -5010,7 +5010,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2673
 msgid "Pause the emulator."
-msgstr ""
+msgstr "Mettre en pause l'émulateur."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2690
 msgid "Reset the emulator."
@@ -5022,7 +5022,7 @@ msgstr "Sauvegarde instantané"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2978
 msgid "Emulator"
-msgstr ""
+msgstr "Émulateur"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2992
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:653
@@ -5048,15 +5048,15 @@ msgstr "page0"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3077
 msgid "Game Internal"
-msgstr ""
+msgstr "Intèrieur du jeu"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3092
 msgid "OpCodes"
-msgstr ""
+msgstr "OpCodes"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3107
 msgid "Script Debug"
-msgstr ""
+msgstr "Débogage du script"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3123
 msgid "Engine Events"
@@ -5064,7 +5064,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3183
 msgid "Debug Log"
-msgstr ""
+msgstr "Journal de débogage"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3210
 msgid "Powered by DeSmuME, the Nintendo DS Emulator:\n"
@@ -5136,11 +5136,12 @@ msgstr ""
 #, python-brace-format
 msgid "The script contains a syntax error, please fix it before editing the Position Mark.\n"
 "Parse error: {err}"
-msgstr ""
+msgstr "Le script contient une erreur de syntaxe, veuillez la corriger avant d'ajout la PositionMark.\n"
+"Erreur de décodage : {err}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/constants.py:40
 msgid "Constants & Variables"
-msgstr ""
+msgstr "Constantes et variables"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/exps_statements.py:32
 msgid "Statements"
@@ -5196,7 +5197,7 @@ msgstr ""
 
 #: skytemple/skytemple/_i18n.py:31
 msgid "P_ause"
-msgstr ""
+msgstr "P_ause"
 
 #: skytemple/skytemple/_i18n.py:32
 msgid "_Play"
@@ -5208,25 +5209,25 @@ msgstr ""
 
 #: skytemple/skytemple/_i18n.py:34
 msgid "_New"
-msgstr ""
+msgstr "_Nouveau"
 
 #: skytemple/skytemple/_i18n.py:35
 msgid "_OK"
-msgstr ""
+msgstr "_OK"
 
 #: skytemple/skytemple/_i18n.py:36
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1766
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: skytemple/skytemple/_i18n.py:37
 msgid "_No"
-msgstr ""
+msgstr "_Non"
 
 #: skytemple/skytemple/_i18n.py:38
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1767
 msgid "Yes"
-msgstr ""
+msgstr "Oui"
 
 #: skytemple/skytemple/_i18n.py:39
 msgid "_Yes"
@@ -7508,19 +7509,19 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1577
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4623
 msgid "Palettes"
-msgstr ""
+msgstr "Palettes"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1207
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1586
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4632
 msgid "Edit Palettes"
-msgstr ""
+msgstr "Modifier les palettes"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1222
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1601
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4647
 msgid "Animation Settings"
-msgstr ""
+msgstr "Paramètres des animations"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1231
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1609
@@ -7535,7 +7536,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1317
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:34
 msgid "Zoom-"
-msgstr ""
+msgstr "Zoom-"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1341
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:58
@@ -7556,7 +7557,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1173
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5571
 msgid "Tiles Export"
-msgstr ""
+msgstr "Exportation des tuiles"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1597
 msgid "This will export all tiles.\n\n"
@@ -7568,7 +7569,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1649
 msgid "Background Export"
-msgstr ""
+msgstr "Exportation de l'arrière-plan"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1712
 msgid "This will export the entire background an image.\n\n"
@@ -7576,7 +7577,12 @@ msgid "This will export the entire background an image.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Ceci exportera l'arrière-plan entier en une image.\n\n"
+"Vous pouvez modifier, puis importer l'image d'arrière-plan\n"
+"à nouveau.\n"
+"Noter que vous pourriez avoir besoin de la convertir pour\n"
+"pouvoir l'utiliser.\n"
+"Regarder le dialogue d'importation pour plus d'information."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1764
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:7
@@ -7622,11 +7628,11 @@ msgstr "Fragments d'image"
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2523
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5914
 msgid "Replace palettes"
-msgstr ""
+msgstr "Remplacer les palettes"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2136
 msgid "Background Import"
-msgstr ""
+msgstr "Importation de l'arrière-plan"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2205
 msgid "This will import the entire background.\n\n"
@@ -7669,17 +7675,16 @@ msgid "- The image consists of 8x8 tiles.\n"
 "  chunk mapping (Chunks > Edit Chunks).\n"
 "- Each import must result in a maximum of 1024 unique 8x8 tiles \n"
 "  (=not existing with another palette or flipped or rotated).\n"
-msgstr "- L'image est constituée de tuiles 8x8.\n"
-"- L'image est un fichier PNG indexé à 256 couleurs.\n"
-"- Les 256 couleurs sont divisées en 16 palettes de 16 couleurs.\n"
-"- Chaque tuile 8x8 présente dans l'image DOIT utiliser les couleurs\n"
-" d'une seule des 16 palettes.\n"
-"- La première couleur de chaque palette correspond à la transparence.\n"
+msgstr "- L'image consiste de tuiles de 8×8 pixels.\n"
+"- L'image est une PNG indexé de 256 couleurs.\n"
+"- Les 256 couleurs sont divisé en 16 palettes de 16 couleurs.\n"
+"- Chaque tuile de 8×8 pixel dans l'image DOIVENT n'utiliser qu'une couleurs de l'une des 16 palettes.\n"
+"- La première couleurs de chaques palettes est transparente.\n"
 "- Les palettes exportées servent uniquement à vous aider.\n"
-"- Elles correspondent aux palettes des tuiles lors de leur première\n"
-" utilisation dans un mappage de fragments (Fragments > Éditer les Fragments)\n"
-"- Chaque importation doit résulter d'un maximum de 1024 tuiles 8x8 uniques.\n"
-" (c'est-à-dire qui n'existe pas en utilisant une autre palette ou en la retournant).\n"
+"  Elles correspondent aux palettes des tuiles lors de leur première\n"
+"  utilisation dans une cartographie de fragments (Fragments > Éditer les fragments).\n"
+"-  Chaque import doit résulter en un maximum de 1024 tuile unique de 8x8 pixels\n"
+"  (c'est-à-dire qui n'existe pas en utilisant une autre palette ou en la renversant).\n"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:56
 msgid "- The image is a 256-color indexed PNG.\n"
@@ -7869,7 +7874,9 @@ msgstr ""
 msgid "Here you can edit what chunks get rendered for which dungeon field configuration. Select the configuration you want to edit, select a chunk from the \"Chunk Picker\" to use and then click on the dungeon field you want to edit.\n"
 "Use the menus above to edit chunks and tile graphics.\n"
 "<b>Please note</b>: The animations previewed here are not accurate to how they look in-game."
-msgstr ""
+msgstr "Ici, vous pouvez changer quel fragment est rendu pour chaque configuration de champ de donjon. Sélectionnez la configuration que vous voulez changer, sélectionner un fragment du « Sélecteur de fragment », puis cliquer sur le champ de donjon que vous voulez éditer.\n"
+"Utilisez les menus ci-dessus pour éditer les fragments et les graphiques de tuiles.\n"
+"<b>À noter</b> : Les animations prévisualisés ici ne correspondent pas exactement à leurs apparence dans le jeu."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1993
 msgid "Field Variations #1"
@@ -7897,7 +7904,7 @@ msgstr "Règles du tileset de dongeon X"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2238
 msgid "Chunk Picker"
-msgstr ""
+msgstr "Sélecteur de fragments"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2274
 msgid "Advanced Mode (Manual)"
@@ -7926,7 +7933,17 @@ msgid "This will import the chunks. \n"
 "Colors that are in the wrong palette are replaced wth\n"
 "transparency.\n\n"
 "Palette animation settings are not changed."
-msgstr ""
+msgstr "Ceci importera les fragments. \n"
+"Les cartographie existantes seront remplacé.\n\n"
+"Le fichier doit avoir le format suivant.\n"
+"- L'image consiste de clusters (fragments) de 3×3 tuiles eu même de 8×8 pixels.\n"
+"- L'image un PNG indexé.\n"
+"- Les couleurs sont divisé en 12 palettes de 16 couleurs\n"
+"  (les autres couleurs sont ignorés)\n"
+"- Chaque groupe de 8×8 pixels (tuile) DOIT n'utiliser qu'une seule des 12 palettes.\n"
+"- La première couleurs de chaque palette doit être et sera convertie en transparant.\n\n"
+"Les couleurs qui sont dans la mauvaises palette seront rendu transparente.\n\n"
+"Les paramètres d'animation des palette restent inchangé."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2624
 msgid "This will import the tiles.\n\n"
@@ -8016,7 +8033,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:297
 msgid "Palette: "
-msgstr ""
+msgstr "Palette : "
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:79
 msgid "This will export the currently selected image with the currently selected palette. The image file itself contains all palettes, you can choose to import the edited palettes on import."
@@ -8024,7 +8041,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:81
 msgid "Export Images"
-msgstr ""
+msgstr "Exporter les images"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:86
 msgid "Export current image to folder..."
@@ -8036,7 +8053,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.glade:7
 msgid "gfxcrunch"
-msgstr ""
+msgstr "gfxcrunch"
 
 #: skytemple/skytemple/module/gfxcrunch/controller/gfxcrunch.glade:84
 msgid "The sprite im- or export is done via <a href=\"gfxcrunch\">gfxcrunch</a>."
@@ -8073,11 +8090,11 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:654
 #: skytemple/skytemple/module/script/controller/ssa.py:1257
 msgid "Unk3"
-msgstr ""
+msgstr "Inc3"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:255
 msgid "Unk4"
-msgstr ""
+msgstr "Inc4"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:350
 msgid "Actors with outlines "
@@ -8918,7 +8935,17 @@ msgid "- The image consists of 8x8 tiles.\n"
 "- Each import must result in a maximum of 1024 unique 8x8 tiles \n"
 "  (=not existing with another palette or flipped or rotated).\n\n"
 "Animated tiles are not imported."
-msgstr ""
+msgstr "- L'image consiste de tuiles de 8×8 pixels.\n"
+"- L'image est une PNG indexé de 256 couleurs.\n"
+"- Les 256 couleurs sont divisé en 16 palettes de 16 couleurs.\n"
+"- Chaque tuile de 8×8 pixel dans l'image DOIVENT n'utiliser qu'une couleurs de l'une des 16 palettes.\n"
+"- La première couleurs de chaques palettes est transparente.\n"
+"- Les palettes exportées servent uniquement à vous aider.\n"
+"  Elles correspondent aux palettes des tuiles lors de leur première\n"
+"  utilisation dans une cartographie de fragments (Fragments > Éditer les fragments).\n"
+"-  Chaque import doit résulter en un maximum de 1024 tuile unique de 8x8 pixels\n"
+"  (c'est-à-dire qui n'existe pas en utilisant une autre palette ou en la renversant)\n\n"
+"Les tuiles animées ne sont pas importé."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:62
 msgid "- The image consists of 8x8 tiles.\n"
