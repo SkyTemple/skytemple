@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-08 20:37+0000\n"
-"PO-Revision-Date: 2021-09-10 16:26\n"
+"PO-Revision-Date: 2021-09-10 17:24\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -5642,7 +5642,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:688
 msgid "Level reset to 1:"
-msgstr ""
+msgstr "Niveau remis à 1 :"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:701
 msgid "Money reset to 0:"
@@ -6242,7 +6242,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:569
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3485
 msgid "Trap"
-msgstr ""
+msgstr "Piège"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:585
 msgid "Unbreakable?"
@@ -6290,7 +6290,7 @@ msgstr "Unk32"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:742
 msgid "Secondary Terrain?"
-msgstr ""
+msgstr "Terrain secondaire ?"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:755
 msgid "Unk34"
@@ -6315,7 +6315,7 @@ msgstr "Unk37"
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:77
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4508
 msgid "Tiles"
-msgstr ""
+msgstr "Tuiles"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:946
 #: skytemple/skytemple/module/monster/controller/level_up.glade:381
@@ -6427,16 +6427,16 @@ msgstr "Catégorie :"
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1852
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2006
 msgid "Chance"
-msgstr ""
+msgstr "Chance"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:400
 msgid "Export Dungeon Floor"
-msgstr ""
+msgstr "Exporter l'étage du donjon"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:579
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3186
 msgid "Layout"
-msgstr ""
+msgstr "Disposition"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:593
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3449
@@ -6590,7 +6590,7 @@ msgstr "Densité de la salle :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1681
 msgid "Dead Ends?:"
-msgstr ""
+msgstr "Impasse ? :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1762
 msgid "Structure"
@@ -6614,7 +6614,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1900
 msgid "Darkness Level:"
-msgstr ""
+msgstr "Niveau d'obscurité :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1912
 msgid "Weather:"
@@ -6622,11 +6622,11 @@ msgstr "Météo :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1958
 msgid "% (Chance)"
-msgstr ""
+msgstr "% (Chance)"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1978
 msgid "Terrain Settings"
-msgstr ""
+msgstr "Paramètres du terrain"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2013
 msgid "Floor item density:"
@@ -6654,7 +6654,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2238
 msgid "Kecleon Shop:"
-msgstr ""
+msgstr "Magasin Kecleon :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2250
 msgid "Hidden Stairs:"
@@ -6670,19 +6670,19 @@ msgstr "Maison de monstres vide :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2286
 msgid "Unused:"
-msgstr ""
+msgstr "Inutilisé :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2298
 msgid "Sticky Items:"
-msgstr ""
+msgstr "Objets collants :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2498
 msgid "Chances"
-msgstr ""
+msgstr "Chances"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2533
 msgid "Unknown E:"
-msgstr ""
+msgstr "Inconnu E :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2545
 msgid "Enemy IQ:"
@@ -6690,7 +6690,7 @@ msgstr "QI Ennemi :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2557
 msgid "IQ Booster boost:"
-msgstr ""
+msgstr "Boost du Boost Q.I. :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2569
 msgid "Shop item positions:"
@@ -6926,7 +6926,8 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.py:390
 msgid "Every Kecleon shop has a minimum amount of guaranteed items.\n"
 "This value controls where in the shop they will be placed."
-msgstr ""
+msgstr "Chaque magasin Kecleon dispose un nombre minimum d'objets garantis.\n"
+"Cette valeur contrôle l'endroit où ils seront placés dans le magasin."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:394
 #, python-format
@@ -7094,15 +7095,15 @@ msgstr "Cette section vous permet de modifier la disposition des donjons dans le
 #: skytemple/skytemple/module/dungeon/controller/main.py:112
 #: skytemple/skytemple/module/dungeon/controller/main.py:120
 msgid "Fix Dungeon Errors"
-msgstr ""
+msgstr "Corriger les erreurs des donjons"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:105
 msgid "Edit Groups"
-msgstr ""
+msgstr "Éditer les groupes"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:235
 msgid "Fix"
-msgstr ""
+msgstr "Corriger"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:248
 #: skytemple/skytemple/module/dungeon/controller/main.glade:428
@@ -7120,69 +7121,73 @@ msgstr "Détails"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:281
 msgid "Solution"
-msgstr ""
+msgstr "Solution"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:304
 msgid "Clicking apply will fix all selected errors and additionally\n"
 "correct the floor counts of all dungeons."
-msgstr ""
+msgstr "Cliquer sur appliquer corrigera toutes les erreur selectionner,\n"
+"et corrigera le nom d'étage pour tout les donjons."
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:340
 msgid "Edit Dungeon Groups"
-msgstr ""
+msgstr "Éditer les groupes de donjon"
 
 #: skytemple/skytemple/module/dungeon/controller/main.glade:451
 msgid "Drag and Drop dungeons to build groups.\n"
 "Dungeons that are in groups build \"real\" full dungeons,\n"
 "you can seperate dungeons in a group with overworld maps (eg. rest rooms)."
-msgstr ""
+msgstr "Glisser/Déposer les donjons pour construire des groupes.\n"
+"Les donjons qui sont dans des groupes font de « véritables » donjon complet.\n"
+"Vous pouvez séparer les donjons dans un groupe sur la carte du monde (comme les salles de repos)."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:110
 msgid "Dungeon Errors were fixed.\n"
 "However there are still errors left. Re-open the dialog to fix the rest. If they are still not fixed, please report a bug!"
-msgstr ""
+msgstr "Les erreurs des donjons ont été corrigé.\n"
+"Cependant, il reste encore des erreur. Ré-ouvrer ce dialogue pour les corriger. S'il ne sont toujour pas corriger, rapporter un bogue !"
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:119
 msgid "Dungeon Errors were successfully fixed."
-msgstr ""
+msgstr "Les erreurs des donjon ont bien été corrigé."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:137
 msgid "The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first."
-msgstr ""
+msgstr "Le jeu contient des donjons non valides. Veuillez les corriger avec « Corriger les erreurs des donjons »."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:158
 msgid "Dungeons were missing in the list. This is a bug in SkyTemple! Please try again and report this!"
-msgstr ""
+msgstr "Il manquait des donjons dans la liste. C'est un bogue dans SkyTemple ! Veuillez réessayer et signaler ce problème !"
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:160
 #: skytemple/skytemple/module/dungeon/controller/main.py:169
 msgid "Failed regrouping the dungeons."
-msgstr ""
+msgstr "Le regroupement des donjons a échoué."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:168
 msgid "An internal error occurred: "
-msgstr ""
+msgstr "Une erreur interne est survenue: "
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:406
 #: skytemple/skytemple/module/dungeon/controller/main.py:410
 msgid "Create a new floor list with one empty floor for this dungeon."
-msgstr ""
+msgstr "Créez une nouvelle liste d'étages avec un étage vide pour ce donjon."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:408
 msgid "Correct the floor count for this dungeon. If no floor exists, generate one."
-msgstr ""
+msgstr "Corrigez le nombre d'étage pour ce donjon. S'il n'y a pas d'étage, faites-en un."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:414
 msgid "Remove the unused floor."
-msgstr ""
+msgstr "Supprimez l'étage inutilisé."
 
 #: skytemple/skytemple/module/dungeon/controller/main.py:415
 msgid "Add the remaining floors to the dungeon."
-msgstr ""
+msgstr "Ajoutez les étages restants au donjon."
 
 #: skytemple/skytemple/module/dungeon/module.py:142
 msgid "The dungeon floor data of this ROM is corrupt. SkyTemple will still try to open it, but dungeon editing will not be available. Expect other bugs. Please fix your ROM."
-msgstr ""
+msgstr "Les données d'étages des donjons de cette ROM sont corrompus. SkyTemple essaiera de l'ouvrir, mais l'édition des donjons ne sera pas disponible. Attendez vous à d'autres bogues. Veuillez corriger votre ROM."
 
 #: skytemple/skytemple/module/dungeon/module.py:144
 #: skytemple/skytemple/skytemple.glade:744
@@ -7197,12 +7202,12 @@ msgstr "Salle fixe {i}"
 
 #: skytemple/skytemple/module/dungeon/module.py:435
 msgid "Some dungeons were missing in the new group list. This is a bug."
-msgstr ""
+msgstr "Certains donjons étaient absents de la nouvelles liste de groupes. C'est un bogue."
 
 #: skytemple/skytemple/module/dungeon/module.py:467
 #, python-brace-format
 msgid "\"{dname}\" Group"
-msgstr ""
+msgstr "Groupe « {dname} »"
 
 #: skytemple/skytemple/module/dungeon/module.py:474
 msgid "Floor {floor_i + 1}"
@@ -7210,20 +7215,20 @@ msgstr "Étage {floor_i + 1}"
 
 #: skytemple/skytemple/module/dungeon/module.py:756
 msgid "Secondary"
-msgstr ""
+msgstr "Secondaire"
 
 #: skytemple/skytemple/module/dungeon/module.py:761
 msgid "Vis."
-msgstr ""
+msgstr "Vis."
 
 #: skytemple/skytemple/module/dungeon/module.py:763
 msgid "Unb."
-msgstr ""
+msgstr "Inc."
 
 #: skytemple/skytemple/module/dungeon/module.py:780
 #, python-brace-format
 msgid "{i} - Lvl: {entry.level}, Atk: {entry.attack}, Def: {entry.defense}, Sp. Atk: {entry.special_attack}, Sp. Def: {entry.special_defense}, HP: {entry.hp}"
-msgstr ""
+msgstr "{i} - Niv : {entry.level}, Atq : {entry.attack}, Def : {entry.defense}, Atq. Sp : {entry.special_attack}, Def. Sp : {entry.special_defense}, PV : {entry.hp}"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:64
 msgid "Export PNG of map..."
@@ -7232,7 +7237,7 @@ msgstr "Exporter une image PNG de la carte..."
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:131
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:735
 msgid "Export PNG of chunks..."
-msgstr ""
+msgstr "Exporter le PNG des fragments..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:152
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:226
@@ -7466,14 +7471,14 @@ msgstr "Importer l'arrière-plan de l'image..."
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4401
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:165
 msgid "Chunks"
-msgstr ""
+msgstr "Fragments"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1130
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1509
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4420
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4467
 msgid "Edit Chunks"
-msgstr ""
+msgstr "Editer les Fragments"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1145
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1524
@@ -7535,7 +7540,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1341
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:58
 msgid "Show Chunks Grid"
-msgstr ""
+msgstr "Montrer la grille des fragments"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1385
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:117
@@ -7577,7 +7582,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:7
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5340
 msgid "Chunks Export"
-msgstr ""
+msgstr "Exporter les fragments"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1827
 msgid "This will export all chunks.\n\n"
@@ -7585,26 +7590,33 @@ msgid "This will export all chunks.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Ceci exportera tous les fragments.\n\n"
+"Vous pouvez éditer, puis ré-importer les fragments.\n"
+"Noter que pourriez avoir à les convertir pour\n"
+"pouvoir les utiliser.\n"
+"Regarder le dialogue d'importation pour plus d'information."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1909
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2390
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5730
 msgid "Chunks Import"
-msgstr ""
+msgstr "Importations des fragments"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1979
 msgid "This will import the chunks.\n"
 "The existing mappings are replaced.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Cela importera les fragments. Les cartographie\n"
+"existants seront remplacés.\n\n"
+"Vous devriez peut-être convertir l'image d'entrée avant de\n"
+"pouvoir l'importer. Regardez les \"Détails du format\"."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2055
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2484
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5875
 msgid "Chunks Image"
-msgstr ""
+msgstr "Fragments d'image"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2094
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2523
@@ -11089,16 +11101,17 @@ msgstr "Certains objets exclusifs sont attribués à des Pokémon, d'autres à d
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:325
 msgid "Exclusive Item Type"
-msgstr ""
+msgstr "Type de l'object exclusif"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:335
 msgid "Action name displayed in dungeon menus (Use, Eat, Ingest, Equip...).\n"
 "See 'Text Strings' for actual values."
-msgstr ""
+msgstr "Nom de l'action affiché dans les menus des donjons (Utiliser, Manger, Ingérer, Équiper...).\n"
+"Voir « Chaînes de texte » pour connaître leurs valeurs."
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:337
 msgid "Action Name"
-msgstr ""
+msgstr "Nom de l'action"
 
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:76
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:153
@@ -11109,13 +11122,15 @@ msgstr "Effets de l'objet"
 
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:92
 msgid "Edits the item effects used by the game."
-msgstr ""
+msgstr "Édite les effets d'objets utilisés par le jeu."
 
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:105
 msgid "<Not available>\n\n"
 "To view and edit item effects, please apply the \"ExtractItemCode\"\n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<Indisponible>\n\n"
+"Pour voir et éditer les effets des objets, appliquer le patch assembleur\n"
+"« ExtractItemCode » dans le menu « Patch ASM »."
 
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:169
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:178
@@ -11498,7 +11513,8 @@ msgstr "Sauvegardez la ROM avant d'appliquer le patch."
 
 #: skytemple/skytemple/module/patch/controller/main.py:94
 msgid "This patch extends the Pokémon list. It is very experimental and WILL break a few things. Once applied you can not remove it again. Proceed?"
-msgstr ""
+msgstr "Ce patch étend la liste des Pokémon. Il est extremement expérimental et EMPÈCHERA certaine chose de fonctionner. Une fois appliqué, vous ne pourrez plus le supprimer.\n"
+"Continuer ?"
 
 #: skytemple/skytemple/module/patch/controller/main.py:109
 msgid "\n"
@@ -11588,74 +11604,79 @@ msgstr "ASM Patches"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:231
 msgid "... from separate images"
-msgstr ""
+msgstr "... à partir d'images séparés"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:240
 msgid "... from one sheet (SpriteBot format)"
-msgstr ""
+msgstr "... depuis une feuille (format SpriteBot)"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:270
 msgid "... as separate images"
-msgstr ""
+msgstr "... en tant qu'images séparés"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:279
 msgid "... as one sheet (SpriteBot format)"
-msgstr ""
+msgstr "... en une feuille (format SpriteBot)"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:385
 msgid "If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.\n"
 "If that is also missing, the behaviour is undefined.\n"
 "If flipped versions are empty, the game will automatically flip the image."
-msgstr ""
+msgstr "S'il manque un portrait, le jeu essaiera de charger le premier portrait à la place.\n"
+"S'il est également manquant, le comportement est indéfini.\n"
+"Si la version renversé est manquante, le jeu le renversera automatiquement l'image."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:111
 msgid "Export all portraits as PNGs..."
-msgstr ""
+msgstr "Exporter tout les portraits en PNG..."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:135
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 40."
-msgstr ""
+msgstr "Pour importer, selectionner le dossier à partir duquel importer. Les fichiers sous la forme '{self.item_id + 1}_XX.png'\n"
+"seront importé, où XX est un nombre entre 0 et 40."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:137
 msgid "Import Portraits"
-msgstr ""
+msgstr "Importer des portraits"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:142
 msgid "Import portraits from PNGs..."
-msgstr ""
+msgstr "Importer des portraits depuis des PNG..."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:173
 #: skytemple/skytemple/module/portrait/controller/portrait.py:230
 #, python-brace-format
 msgid "Failed importing image \"{name}\":\n"
 "{err}"
-msgstr ""
+msgstr "Échec de l'importation de l'image « {name} »:\n"
+"{err}"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:174
 #: skytemple/skytemple/module/portrait/controller/portrait.py:231
 #, python-brace-format
 msgid "Error for '{name}'."
-msgstr ""
+msgstr "Erreur pour « {name} »."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:183
 msgid "Export portrait as PNG sheet..."
-msgstr ""
+msgstr "Exporter les portraits sous forme d'une feuille PNG..."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:202
 msgid "Import portraits from PNG sheet..."
-msgstr ""
+msgstr "Importer les portraits depuis une feuille PNG..."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:237
 #, python-brace-format
 msgid "Failed importing portraits sheet:\n"
 "{err}"
-msgstr ""
+msgstr "Échec de l'importation de la feuille des portraits :\n"
+"{err}"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:238
 #: skytemple/skytemple/module/rom/controller/main.py:129
 msgid "Could not import."
-msgstr ""
+msgstr "Le fichier n'a pas pu être importé."
 
 #: skytemple/skytemple/module/portrait/controller/portrait.py:255
 msgid " (flip)"
@@ -12253,15 +12274,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/module.py:117
 msgid "Import WAN sprite..."
-msgstr ""
+msgstr "Importer le sprite WAN..."
 
 #: skytemple/skytemple/module/sprite/module.py:135
 msgid "Export WAN sprite..."
-msgstr ""
+msgstr "Exporter le sprite WAN..."
 
 #: skytemple/skytemple/module/sprite/module.py:141
 msgid "WAN sprite (*.wan)"
-msgstr ""
+msgstr "sprite WAN (*.wan)"
 
 #: skytemple/skytemple/module/sprite/module.py:159
 msgid "To import select the directory of the sprite export. If it is still zipped, unzip it first."
@@ -12269,15 +12290,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/module.py:165
 msgid "Import gfxcrunch sprite..."
-msgstr ""
+msgstr "Importer un sprite «·gfxcrunch·» ..."
 
 #: skytemple/skytemple/module/sprite/module.py:182
 msgid "Error importing the sprite."
-msgstr ""
+msgstr "Error lors de l'importation du sprite."
 
 #: skytemple/skytemple/module/sprite/module.py:205
 msgid "Error exporting the sprite."
-msgstr ""
+msgstr "Erreur lors de l'exportation du sprite."
 
 #: skytemple/skytemple/module/sprite/module.py:248
 msgid "Error with sprite files: They don't have the same length!"
