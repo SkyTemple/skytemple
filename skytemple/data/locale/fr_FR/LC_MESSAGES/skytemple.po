@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-08 20:37+0000\n"
-"PO-Revision-Date: 2021-09-10 21:47\n"
+"PO-Revision-Date: 2021-09-10 22:50\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -6724,21 +6724,24 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2924
 msgid "Seed:"
-msgstr ""
+msgstr "Graine :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2979
 msgid "Refresh"
-msgstr ""
+msgstr "Rafraîchir"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2993
 msgid "Auto Refresh"
-msgstr ""
+msgstr "Rafraichissement automatique"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3073
 msgid "Internal Error occured while trying to render floor.\n"
 "The floor may or may not work in the game. If it doesn't\n"
 "the game uses a 1-room floorwide Monster House instead."
-msgstr ""
+msgstr "Une erreur interne s'est produite lors du rendu de l'étage.\n"
+"L'étage marchera peut-être dans le jeu. S'il ne march pas,\n"
+"le jeu utilisera un donjon avec une salle maison de monstre,\n"
+"occupant l'étage."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3144
 msgid "The random floor generator failed generating the floor\n"
@@ -6746,7 +6749,11 @@ msgid "The random floor generator failed generating the floor\n"
 "settings can not generate valid floors.\n"
 "If it doesn't the game uses a 1-room floorwide \n"
 "Monster House instead."
-msgstr ""
+msgstr "Le générateur procedural d'étage à été incapble de\n"
+"générer l'étage trois fois de suite. Cela signifie probablement\n"
+"que les paramètres ne permettent pas génerer un étage valide.\n"
+"Si le jeu n'y arrive pas, le jeu utilisera une salle maison de\n"
+"monstre occupant l'étage."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3255
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3502
@@ -6810,11 +6817,11 @@ msgstr "Catégories"
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4865
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5032
 msgid "Guaranteed"
-msgstr ""
+msgstr "Garanti"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5160
 msgid "Items<span size=\"small\"> - Only Items with IDs smaller than 363 can be added.</span>"
-msgstr ""
+msgstr "Objets <span size=\"small\"> - Seuls les objets dont l'identifiant est inférieur à 363 peuvent être ajoutés.</span>"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5217
 msgid "Shop"
@@ -6826,7 +6833,7 @@ msgstr "Maison de monstres"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5277
 msgid "Buried"
-msgstr ""
+msgstr "Enterré"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:92
 msgid "E Rank"
@@ -7057,7 +7064,7 @@ msgstr "Erreur lors de l'import de l'étage."
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:105
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:119
 msgid "Random "
-msgstr ""
+msgstr "Aléatoire "
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1790
 msgid "Invalid?"
