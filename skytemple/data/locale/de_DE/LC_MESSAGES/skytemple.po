@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-08 20:37+0000\n"
-"PO-Revision-Date: 2021-09-10 13:14\n"
+"PO-Revision-Date: 2021-09-10 14:17\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3751,13 +3751,16 @@ msgstr "Erweitert die Anzahl der erlaubten Pokémon auf 2048 und macht alle Eint
 #: skytemple-files/skytemple_files/patch/handler/externalize_mappa.py:42
 msgid "Use filestreams to access mappa_t/mappa_y/mappa_s data instead of loading them entirely.\n"
 "This patch is useless on its own, unless you have a too big mappa file."
-msgstr ""
+msgstr "Verwendet Filestreams um mappa_t, mappa_y und mappa_s Daten zu laden, anstatt sie direkt vollständig zu laden.\n"
+"Dieser Patch ist allein nutzlos, es sei denn eine deiner Mappa-Dateien ist zu groß."
 
 #: skytemple-files/skytemple_files/patch/handler/externalize_waza.py:41
 msgid "Use filestreams to access waza_p/waza_p2 data instead of loading them entirely.\n"
 "This patch is useless on its own.\n"
 "Depends on the ActorAndLevelLoader patch, as it needs some space provided by this one."
-msgstr ""
+msgstr "Verwendet Filestreams um waza_p und waza_p2 Daten zu laden, anstatt sie direkt vollständig zu laden.\n"
+"Dieser Patch ist allein nutzlos.\n"
+"Benötigt den ActorAndLevelLoader-Patch, da der Platz benötigt wird, der von diesem Patch freigegeben wird."
 
 #: skytemple-files/skytemple_files/patch/handler/extra_space.py:40
 msgid "This patch adds a new overlay 36 to the game, which is loaded at address 0x023A7080 and provides extra space for patches to place code and data in."
@@ -3766,7 +3769,8 @@ msgstr "Dieser Patch fügt dem Spiel ein neues Overlay 36 hinzu, welcher unter d
 #: skytemple-files/skytemple_files/patch/handler/extract_anims.py:45
 msgid "Extracts animation data and put it in files. \n"
 "Needs ActorAndLevelLoader patch to free some space. "
-msgstr ""
+msgstr "Extrahiert Animationsdaten und legt sie in Dateien ab. \n"
+"Benötigt ActorandLevelLoader Patch, um etwas Platz freizugeben. "
 
 #: skytemple-files/skytemple_files/patch/handler/extract_bar_list.py:52
 msgid "Extracts Spinda bar's item list."
@@ -3854,7 +3858,8 @@ msgstr "Überspringt das Persönlichkeitsquiz. Der Spieler wird nur nach dem Ges
 #: skytemple-files/skytemple_files/patch/handler/stat_disp.py:54
 msgid "Replaces old move stats display with bars.\n"
 "This patch may not be compatible if the markfont.dat file has been modified."
-msgstr ""
+msgstr "Ersetzt die Anzeige der Attacken-Werte mit Balken (statt Sternen).\n"
+"Dieser Patch ist möglicherweise nicht kompatibel, falls die markfont.dat Datei bearbeitet wurde."
 
 #: skytemple-files/skytemple_files/patch/handler/support_atupx.py:40
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
@@ -6154,12 +6159,14 @@ msgstr "Wenn ChangeFixedFloorProperties nicht angewendet wurde und die ID des st
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:445
 msgid "Prevents any kind of item pulling (such as with the Trawl Orb).\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr ""
+msgstr "Verhindert, dass Items an den Spieler herangezogen werden (beispielsweise durch den Sogorb).\n"
+"Falls der ChangeFixedFloorProperties nicht angwendet ist und die ID des statischen Raums 0 oder >= 165 ist, wird diese Einstellung ignoriert. Sie ist dann immer aktiviert."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:449
 msgid "If enabled, the game will treat this fixed room as an entire floor, not a single room in a floor layout.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 164. "
-msgstr ""
+msgstr "Wenn aktiviert, wird das Spiel diesen statischen Raum als Layout für die gesamte Etage verwenden (statt nur eines einzelnen Raumes).\n"
+"Falls der ChangeFixedFloorProperties nicht angwendet ist, wird diese EInstellung nur aktiviert, wenn die ID des Raumes zwischen 1 und 164 ist. "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:453
 msgid "Enables boss fight conditions.\n"
@@ -6169,7 +6176,8 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:457
 msgid "Allows free layouts. For example, fixed rooms with this setting can omit stairs.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 110. "
-msgstr ""
+msgstr "Erlaubt freie Layouts. Beispielsweise können statische Räume mit dieser Einstellung Treppen weglassen.\n"
+"Falls der ChangeFixedFloorProperties nicht angwendet ist, wird diese Einstellung nur aktiviert falls die ID des statischen Raumes zwischen 1 und 110 ist. "
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:461
 msgid "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
@@ -6738,7 +6746,10 @@ msgstr "Automatisch aktualisieren"
 msgid "Internal Error occured while trying to render floor.\n"
 "The floor may or may not work in the game. If it doesn't\n"
 "the game uses a 1-room floorwide Monster House instead."
-msgstr ""
+msgstr "Beim Versuch diese Ebene zu rendern ist ein interner Fehler aufgetreten.\n"
+"Die Ebene funktioniert im Spiel möglicherweise nicht. Wenn sie nicht\n"
+"funktioniert, wird stattdessen ein Monster-Raum generiert, der die gesamte\n"
+"Ebene abdeckt."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3144
 msgid "The random floor generator failed generating the floor\n"
@@ -6746,7 +6757,10 @@ msgid "The random floor generator failed generating the floor\n"
 "settings can not generate valid floors.\n"
 "If it doesn't the game uses a 1-room floorwide \n"
 "Monster House instead."
-msgstr ""
+msgstr "Der Generator hat es dreimal hintereinander nicht geschafft ein gültiges\n"
+"Layout zu generieren. Die Ebene funktioniert im Spiel wahrscheinlich nicht. \n"
+"Wenn sie nicht funktioniert, wird stattdessen ein Monster-Raum generiert, \n"
+"der die gesamte Ebene abdeckt."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3255
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3502
@@ -7217,7 +7231,7 @@ msgstr "Übrige Ebene zu Dungeon hinzufügen."
 
 #: skytemple/skytemple/module/dungeon/module.py:142
 msgid "The dungeon floor data of this ROM is corrupt. SkyTemple will still try to open it, but dungeon editing will not be available. Expect other bugs. Please fix your ROM."
-msgstr ""
+msgstr "Die Dungeon-Ebenen-Daten dieser ROM sind beschädigt. SkyTemple wird trotzdem versuchen die ROM zu öffnen, aber Dungeon-Bearbeitung wird nicht verfügbar sein. Du kannst außerdem mit weiteren Problemen rechnen. Bitte repariere die ROM."
 
 #: skytemple/skytemple/module/dungeon/module.py:144
 #: skytemple/skytemple/skytemple.glade:744
@@ -7776,7 +7790,7 @@ msgstr "- Das Bild muss ein indiziertes PNG mit 256 Farben sein.\n"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:93
 msgid "This section lets you edit the background images that are used for some special dungeon floors."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du die Hintergrundbilder bearbeiten, die von einigen speziellen Dungeon-Ebenen verwendet werden."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:40
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.py:30
@@ -7786,7 +7800,8 @@ msgstr "Dungeon-Grafik"
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:55
 msgid "This section lets you edit the graphics of dungeon tiles and how the dungeon tiles are arranged. \n"
 "It also lets you edit backgrounds used for boss fights and other dungeon maps."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du die Grafiken von Dungeon Kacheln bearbeiten und wie diese Kacheln angeordnet werden. \n"
+"Du kannst außerdem die Hintergründe bearbeiten, die für Bosskämpfe und einige andere spezielle Ebenen verwendet werden."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:124
 msgid "Minimap Color"
@@ -8035,7 +8050,7 @@ msgstr "Tilesets"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:80
 msgid "This section lets you edit the tilesets that are used for dungeons."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du die Tilesets bearbeiten, die für Dungeons verwendet werden."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:128
 #, python-brace-format
@@ -8108,7 +8123,7 @@ msgstr "Palette: "
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:79
 msgid "This will export the currently selected image with the currently selected palette. The image file itself contains all palettes, you can choose to import the edited palettes on import."
-msgstr ""
+msgstr "Dadurch wird das aktuell ausgewählte Bild mit der aktuell ausgewählten Palette exportiert. Die Bilddatei selbst enthält alle Paletten. Beim Importieren kannst du auswählen, ob du die bearbeiteten Paletten wieder importieren willst oder nicht."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:81
 msgid "Export Images"
@@ -10935,7 +10950,13 @@ msgid "Value depends on Main Requirement:\n"
 "- Items: ID of the item required\n"
 "- Recruited: ID of the Pokémon you have to recruit\n"
 "- No Main Requirement: Unused"
-msgstr ""
+msgstr "Der Wert hängt von der Hauptvoraussetzung ab:\n"
+"- Keine weiterentwickelte Form: Unbenutzt\n"
+"- Level: Das Level, dass für die Entwicklung erreicht werden muss\n"
+"- IQ: IQ-Punkte die benötigt werden\n"
+"- Items: ID des benötigten Items\n"
+"- Angeworben: ID des Pokémon, dass zuvor angeworben werden muss\n"
+"- Keine Hauptvoraussetzung: Unbenutzt"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:376
 msgid "Evolution Parameters"
@@ -11117,7 +11138,8 @@ msgstr "Kind-Info"
 #: skytemple/skytemple/module/monster/controller/monster.py:1317
 msgid "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
 "Negative values are allowed."
-msgstr ""
+msgstr "Dies sind die Boni, die auf Statuswerte angewendet werden, wenn sich ein Poémon in diese Spezies entwickelt.\n"
+"Negative Werte sind erlaubt."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1319
 msgid "Evolution Bonus Info"
