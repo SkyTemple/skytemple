@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-08 20:37+0000\n"
-"PO-Revision-Date: 2021-09-08 20:38\n"
+"PO-Revision-Date: 2021-09-10 18:33\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -8434,11 +8434,11 @@ msgstr "Los IDs de los Pokémon invitados hacen referencia a las entradas de la 
 #: skytemple/skytemple/module/lists/controller/iq.glade:129
 #: skytemple/skytemple/module/lists/controller/iq.glade:156
 msgid "IQ Gain"
-msgstr ""
+msgstr "Ganancia de CI"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:197
 msgid "Belly Heal"
-msgstr ""
+msgstr "Recuperado de Tripa"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:250
 msgid "IQ Points"
@@ -8453,7 +8453,10 @@ msgid "If 9999 IQ Points are required, the skill is unused.\n"
 "If -1 IQ Point is required, the skill is unlocked by default.\n"
 "If two skills have the same restriction group they can not be enabled at the same time.\n\n"
 "Editing IQ Group assignments requires the 'CompressIQData' patch to be applied."
-msgstr ""
+msgstr "Si se requieren 9999 puntos de CI, la habilidad no se utiliza.\n"
+"Si se requiere -1 punto de CI, la habilidad se adquiere de forma predeterminada.\n"
+"Si dos habilidades tienen el mismo grupo de restricción, no se pueden habilitar al mismo tiempo.\n\n"
+"Para editar las asignaciones de grupos de CI se requiere que se aplique el parche «CompressIQData»."
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:314
 msgid "IQ Skills"
@@ -8483,7 +8486,7 @@ msgstr "Otros ajustes"
 
 #: skytemple/skytemple/module/lists/controller/iq.py:293
 msgid "Juice Bar Nectar"
-msgstr ""
+msgstr "Zumo de Miel"
 
 #: skytemple/skytemple/module/lists/controller/main.py:23
 msgid "Lists"
