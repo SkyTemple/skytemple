@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-08 20:37+0000\n"
-"PO-Revision-Date: 2021-09-10 18:33\n"
+"PO-Revision-Date: 2021-09-11 19:30\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3873,7 +3873,7 @@ msgstr "Sustituye la visualización antigua de estadísticas de movimiento por b
 msgid "Provide support for ATUPX containers, which use a different algorithm than PX compression.\n"
 "Requires the ActorAndLevelLoader, as it frees the space needed to implement this."
 msgstr "Ofrece soporte para los contenedores ATUPX, que utilizan un algoritmo diferente al de la compresión PX.\n"
-"Necesita \"ActorAndLevelLoader\" para funcionar, ya que libera el espacio necesario para implementarlo."
+"Necesita el parche \"ActorAndLevelLoader\" para funcionar, ya que libera el espacio necesario para implementarlo."
 
 #: skytemple-files/skytemple_files/patch/handler/unused_dungeon_chance.py:40
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
@@ -8456,7 +8456,7 @@ msgid "If 9999 IQ Points are required, the skill is unused.\n"
 msgstr "Si se requieren 9999 puntos de CI, la habilidad no se utiliza.\n"
 "Si se requiere -1 punto de CI, la habilidad se adquiere de forma predeterminada.\n"
 "Si dos habilidades tienen el mismo grupo de restricción, no se pueden habilitar al mismo tiempo.\n\n"
-"Para editar las asignaciones de grupos de CI se requiere que se aplique el parche «CompressIQData»."
+"Para editar las asignaciones de grupos de CI se requiere aplicar el parche \"CompressIQData\"."
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:314
 msgid "IQ Skills"
