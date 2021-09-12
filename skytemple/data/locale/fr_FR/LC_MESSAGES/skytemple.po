@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-08 20:37+0000\n"
-"PO-Revision-Date: 2021-09-12 17:02\n"
+"PO-Revision-Date: 2021-09-12 18:02\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -4175,7 +4175,7 @@ msgstr "<Vide>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:194
 msgid "1 (Enter)"
-msgstr ""
+msgstr "1 (Entrée)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:197
 msgid "2 (Sub)"
@@ -4359,7 +4359,7 @@ msgstr "Commun"
 #: skytemple/skytemple/module/script/module.py:147
 #: skytemple/skytemple/module/script/module.py:360
 msgid "Enter (sse)"
-msgstr ""
+msgstr "Entrée (sse)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:915
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1353
@@ -6141,15 +6141,15 @@ msgstr "Détermine si les capacités peuvent être utilisées. Cela n'affecte pa
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:436
 msgid "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
-msgstr ""
+msgstr "Si le patch 'ChangeFixedFloorProperties' n'est pas appliquer et que l'ID de la chambre fixe est 0 ou >= 165, ce paramètre est ignoré. Les orbres seront toujours utilisable."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:439
 msgid "If enabled, the floor is exited after all the enemies have been defeated"
-msgstr ""
+msgstr "Si activé, l'étage est complété après la défaite de tout les énnemies"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:442
 msgid "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr ""
+msgstr "Si le patch 'ChangeFixedFloorProperties' n'est pas appliqué et l'ID de l'étage fixe est 0 ou >= 165, ce paramètre est ignoré. Il est toujours actif."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:445
 msgid "Prevents any kind of item pulling (such as with the Trawl Orb).\n"
@@ -6247,7 +6247,7 @@ msgstr "Aller à l'object"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:492
 msgid "Go To Tile"
-msgstr ""
+msgstr "Aller à la tuile"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:569
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3485
@@ -6345,7 +6345,7 @@ msgstr "PV"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1102
 msgid "Exp. Yield"
-msgstr ""
+msgstr "Gain d'Exp"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1116
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:598
@@ -6508,7 +6508,7 @@ msgstr "Donjon / Étage"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:863
 msgid "(and/or) <b>2b. Copy to other floor(s)</b>"
-msgstr ""
+msgstr "(et/ou) <b>2b : Copier vers d'autres étage·s</b>"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1115
 msgid "Dungeon Name"
@@ -6612,7 +6612,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1808
 msgid "Secondary Terrain:"
-msgstr ""
+msgstr "Terrain secondaire :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1820
 msgid "Secondary T. density:"
@@ -6912,7 +6912,7 @@ msgstr "Le jeu rajoute un nombre aléatoire entre 0 et 2 pour obtenir la valeur 
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:307
 msgid "Controls whether dead end hallways can be generated in the floor. Dead ends can still appear in the map even if they are disabled due to a bug in the map generator and because extra hallways can also produce them."
-msgstr ""
+msgstr "Contrôle si des impasses peuvent être généré à cet étage. Des impasses peuvent toujours apparaitre sur la carte, même avec cette option désactivé, à cause d'un bogue dans le générateur d'étage, et car des couloirs supplementaire peuvent également en créer."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:320
 msgid "This is the amount of lakes that will be generated during the water generation phase."
@@ -6922,7 +6922,9 @@ msgstr "Il s'agit de la quantité de lacs qui seront générés pendant la phase
 msgid "Floor connectivity (Min 1, if it's 0 a valid map can't be generated and you will get the default single room that it's also a monster house).\n\n"
 "This is the amount of connections between cells that will be generated when the map is first created. More will be added later to ensure that all the rooms can be accessed.\n"
 "A cell is a point in the initial grid used to generate the map. It will end up being a room or a crossroad once the full map is generated."
-msgstr ""
+msgstr "Connectivité de l'étage (Minimum 1, 0 empéche la génération d'une carte valide, et vous aurez l'étage par défaut, c'est-à-dire une chambre unique, qui est une maison de monstre).\n\n"
+"Il s'agit du nombre de connections entres les chambres qui seront généré lors du début de la génération de l'étage. D'autres seront ensuite ajouté pour garantir que toutes les chambres sont accessible.\n"
+"Une cellule est un point sur la grille initiale pour générer la carte. Il finira par devenir un croisement ou une chambre une fois l'étage completement généré."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:335
 msgid "Used to generate additional hallways in the map (those \"donuts\" that lead to nowhere, multiple entrances to the same room, room exits connected to the same room, those dead ends that come out of a room, make a couple of twists and also lead to nowhere)"
@@ -7304,14 +7306,14 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:239
 msgid "Weather: "
-msgstr ""
+msgstr "Météo : "
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:269
 #: skytemple/skytemple/module/lists/controller/menu_list.glade:246
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.glade:103
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.glade:319
 msgid "More Info: "
-msgstr ""
+msgstr "Plus d'informations : "
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:329
 #: skytemple/skytemple/module/dungeon_graphics/module.py:121
@@ -7659,13 +7661,13 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2279
 #: skytemple/skytemple/skytemple.glade:2238
 msgid "Input Image"
-msgstr ""
+msgstr "Image d'entrée"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2323
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2565
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6182
 msgid "Tiles Import"
-msgstr ""
+msgstr "Importation des tuiles"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2392
 msgid "This will import the tiles.\n\n"
@@ -7714,7 +7716,18 @@ msgid "- The image is a 256-color indexed PNG.\n"
 "images, that contain the same color multiple times. You can\n"
 "make all colors on the map unique before exporting at\n"
 "Palettes > Edit Palettes."
-msgstr ""
+msgstr "- L'image est un PNG indexé à 256 couleurs.\n"
+"- Les 256 couleurs sont divisées en 16 palettes de 16 couleurs.\n"
+"- Chaque pavé 8×8 de l'image DOIT utiliser uniquement les couleurs de\n"
+"  de l'une de ces 16 palettes.\n"
+"- La première couleur de chaque palette est totalement transparente.\n"
+"- Chaque importation doit aboutir à un maximum de 1024 tuiles 8×8 uniques \n"
+"  (= n'existant pas avec une autre palette, ou inversées, ou pivotées).\n\n"
+"Certains éditeurs d'images rencontrent des problèmes lorsqu'ils\n"
+"travaillent avec des images indexées, qui contiennent plusieurs\n"
+"fois la même couleur. Vous pouvez rendre toutes les couleurs\n"
+"de la carte uniques avant d'exporter dans Palettes > Modifier les\n"
+"palettes."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:69
 msgid "- The images is a 256-color indexed PNG.\n"
@@ -7766,7 +7779,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:199
 msgid "Weather"
-msgstr ""
+msgstr "Météo"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:214
 msgid "Underwater?"
@@ -8061,7 +8074,7 @@ msgstr "Exporter les images"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:86
 msgid "Export current image to folder..."
-msgstr ""
+msgstr "Exporter l'image actuelle vers un dossier..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:103
 msgid "Import image..."
@@ -8128,7 +8141,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/actor_list.py:75
 #: skytemple/skytemple/module/script/controller/ssa.py:715
 msgid "Not implemented."
-msgstr ""
+msgstr "Non implémenté."
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:89
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:166
@@ -8149,7 +8162,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:206
 msgid "Dungeon: "
-msgstr ""
+msgstr "Donjon : "
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:268
 msgid "Interruptions: "
@@ -11877,7 +11890,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/map.glade:102
 msgid "Add \"Enter\" scene"
-msgstr ""
+msgstr "Ajouter une scène d'« Entrée »"
 
 #: skytemple/skytemple/module/script/controller/map.glade:147
 msgid "Add \"Acting\" scene"
