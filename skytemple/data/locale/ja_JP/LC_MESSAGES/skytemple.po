@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-08 20:37+0000\n"
-"PO-Revision-Date: 2021-09-08 20:39\n"
+"POT-Creation-Date: 2021-09-15 15:53+0000\n"
+"PO-Revision-Date: 2021-09-15 16:32\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -2666,13 +2666,19 @@ msgstr ""
 msgid "Attendant3 Spawn Floor"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor.py:240
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor.py:64
+msgid "Could not save floor: It contains too much empty data.\n"
+"This probably happened because a lot of spawn lists are empty.\n"
+"Please check the floors you edited and fill them with more data. If you are using the randomizer, check your allowed item list."
+msgstr ""
+
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor.py:244
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:72
 #, python-brace-format
 msgid "Floor parsing: Unexpected {child.tag}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor.py:244
+#: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor.py:248
 #, python-brace-format
 msgid "Missing {k} for Floor data."
 msgstr ""
@@ -4899,12 +4905,10 @@ msgid "Data: "
 msgstr "データ: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2278
-#: skytemple/skytemple/module/dungeon/controller/floor.glade:5307
 msgid "Unk1"
 msgstr "不明1"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2289
-#: skytemple/skytemple/module/dungeon/controller/floor.glade:5337
 #: skytemple/skytemple/module/script/controller/ssa.py:1256
 msgid "Unk2"
 msgstr "不明2"
@@ -6750,6 +6754,14 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5277
 msgid "Buried"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/floor.glade:5307
+msgid "Grab Bag"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/floor.glade:5337
+msgid "Secret Room"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:92
