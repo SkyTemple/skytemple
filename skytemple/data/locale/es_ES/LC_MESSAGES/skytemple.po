@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-15 15:53+0000\n"
-"PO-Revision-Date: 2021-09-15 16:32\n"
+"PO-Revision-Date: 2021-09-16 16:34\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -2674,7 +2674,9 @@ msgstr "Posición del Acompañante 3"
 msgid "Could not save floor: It contains too much empty data.\n"
 "This probably happened because a lot of spawn lists are empty.\n"
 "Please check the floors you edited and fill them with more data. If you are using the randomizer, check your allowed item list."
-msgstr ""
+msgstr "No se ha guardado el piso: contiene demasiados datos vacíos.\n"
+"Es posible que se deba a la existencia muchas listas de generación de Pokémon vacías.\n"
+"Por favor, comprueba los pisos que has editado y llénalos con más datos. Si estás usando el randomizador, comprueba tu lista de elementos permitidos."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor.py:244
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:72
@@ -6866,7 +6868,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5337
 msgid "Secret Room"
-msgstr ""
+msgstr "Sala secreta"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:92
 msgid "E Rank"
