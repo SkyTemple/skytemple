@@ -58,7 +58,7 @@ class ParamDialogController:
         controls = {}
 
         for i, param in enumerate(parameters.values()):
-            grid.attach(Gtk.Label.new(param.label + ':'), 0, i, 1, 1)
+            grid.attach(Gtk.Label.new(_(param.label) + ':'), 0, i, 1, 1)
             controls[param.name] = self._generate_control(param)
             grid.attach(controls[param.name], 1, i, 1, 1)
 
