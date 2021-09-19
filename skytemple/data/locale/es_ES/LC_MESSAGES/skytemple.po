@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-15 15:53+0000\n"
-"PO-Revision-Date: 2021-09-16 16:34\n"
+"POT-Creation-Date: 2021-09-19 10:23+0000\n"
+"PO-Revision-Date: 2021-09-19 10:33\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3834,16 +3834,11 @@ msgstr "Evita que el juego se bloquee si se queda sin memoria al intentar mostra
 #: skytemple-files/skytemple_files/patch/handler/move_growth.py:75
 msgid "Implements move growth (PoC/Unfinished). \n"
 "Needs ActorAndLevelLoader, ExtractAnimData and ChangeMoveStatsDisplay patches. \n"
-"If MoveShortcuts is applied, must be re-applied after it. \n"
+"MoveGrowth patch must be (re-)applied after MoveShortcuts to combine both effects. \n"
 "The last version of ChangeMoveStatsDisplay must be used with this.\n"
 "May be incompatible if markfont.dat has been modified (except for ChangeMoveStatsDisplay)\n"
 "Makes all prior save files incompatible. "
-msgstr "Implementa el aumento de nivel de los movimientos (PoC/Inacabado). \n"
-"Necesita los parches \"ActorAndLevelLoader\", \"ExtractAnimData\" y \"ChangeMoveStatsDisplay\". \n"
-"Deberá volverse aplicar si \"MoveShortcuts\" se aplica. \n"
-"Se debe utilizar la última versión de \"ChangeMoveStatsDisplay\" junto al parche.\n"
-"Puede ser incompatible si markfont.dat ha sido modificado (excepto para \"ChangeMoveStatsDisplay\").\n"
-"Hace todos los archivos de guardado previos incompatibles. "
+msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:40
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
@@ -5456,7 +5451,7 @@ msgstr "Se ha convertido la imagen."
 msgid "Trying to display the error failed. Wow!"
 msgstr "Error al intentar mostrar el error. ¡Guau!"
 
-#: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:99
+#: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:103
 msgid "SkyTemple - Error!"
 msgstr "SkyTemple - ¡Error!"
 
@@ -5495,7 +5490,7 @@ msgstr "Documento XML (*.xml)"
 msgid "CSV file (*.csv)"
 msgstr "Archivo CSV (*.csv)"
 
-#: skytemple/skytemple/main.py:98
+#: skytemple/skytemple/main.py:102
 msgid "PyGObject compiled without Cairo support. Can't start!"
 msgstr "PyGObject compilado sin soporte de Cairo. ¡No se puede iniciar!"
 
