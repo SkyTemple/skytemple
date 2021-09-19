@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-15 15:53+0000\n"
-"PO-Revision-Date: 2021-09-15 16:32\n"
+"POT-Creation-Date: 2021-09-19 10:23+0000\n"
+"PO-Revision-Date: 2021-09-19 10:33\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -3811,7 +3811,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/handler/move_growth.py:75
 msgid "Implements move growth (PoC/Unfinished). \n"
 "Needs ActorAndLevelLoader, ExtractAnimData and ChangeMoveStatsDisplay patches. \n"
-"If MoveShortcuts is applied, must be re-applied after it. \n"
+"MoveGrowth patch must be (re-)applied after MoveShortcuts to combine both effects. \n"
 "The last version of ChangeMoveStatsDisplay must be used with this.\n"
 "May be incompatible if markfont.dat has been modified (except for ChangeMoveStatsDisplay)\n"
 "Makes all prior save files incompatible. "
@@ -5397,7 +5397,7 @@ msgstr ""
 msgid "Trying to display the error failed. Wow!"
 msgstr ""
 
-#: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:99
+#: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:103
 msgid "SkyTemple - Error!"
 msgstr ""
 
@@ -5436,7 +5436,7 @@ msgstr ""
 msgid "CSV file (*.csv)"
 msgstr ""
 
-#: skytemple/skytemple/main.py:98
+#: skytemple/skytemple/main.py:102
 msgid "PyGObject compiled without Cairo support. Can't start!"
 msgstr ""
 
