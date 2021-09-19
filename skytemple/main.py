@@ -34,7 +34,11 @@ elif sys.platform.startswith('win'):
         lang, enc = locale.getdefaultlocale()
         os.environ['LANG'] = lang
         ctypes.cdll.msvcrt._putenv ("LANG=" + lang)
-    libintl = ctypes.cdll.LoadLibrary(ctypes.util.find_library('libintl-8'))
+    libintl_loc = os.path.join(os.path.dirname(__file__), 'libintl-8.dll')
+    if os.path.exists(libintl_loc):
+        libintl = ctypes.cdll.LoadLibrary(libintl_loc)
+    else:
+        libintl = ctypes.cdll.LoadLibrary(ctypes.util.find_library('libintl-8'))
 elif sys.platform == 'darwin':
     import ctypes
     libintl = ctypes.cdll.LoadLibrary('libintl.dylib')
