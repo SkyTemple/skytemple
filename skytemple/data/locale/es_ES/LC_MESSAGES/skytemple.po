@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-09-19 10:42+0000\n"
-"PO-Revision-Date: 2021-09-19 12:38\n"
+"PO-Revision-Date: 2021-09-19 13:42\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3875,7 +3875,12 @@ msgid "Implements move growth (PoC/Unfinished). \n"
 "The last version of ChangeMoveStatsDisplay must be used with this.\n"
 "May be incompatible if markfont.dat has been modified (except for ChangeMoveStatsDisplay)\n"
 "Makes all prior save files incompatible. "
-msgstr ""
+msgstr "Implementa el aumento de nivel de los movimientos (PoC/Inacabado). \n"
+"Necesita los parches \"ActorAndLevelLoader\", \"ExtractAnimData\" y \"ChangeMoveStatsDisplay\". \n"
+"El parche \"MoveGrowth\" debe ser (re)aplicado después de \"MoveShortcuts\" para combinar sus efectos. \n"
+"Se debe utilizar la última versión de \"ChangeMoveStatsDisplay\" junto al parche.\n"
+"Puede ser incompatible si markfont.dat ha sido modificado (excepto para \"ChangeMoveStatsDisplay\").\n"
+"Hace todos los archivos de guardado previos incompatibles. "
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:40
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
@@ -6896,7 +6901,7 @@ msgstr "Enterrado"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5307
 msgid "Grab Bag"
-msgstr ""
+msgstr "Bolsa"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5337
 msgid "Secret Room"
