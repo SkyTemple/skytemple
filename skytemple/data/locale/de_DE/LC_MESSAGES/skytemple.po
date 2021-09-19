@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-15 15:53+0000\n"
-"PO-Revision-Date: 2021-09-15 16:32\n"
+"POT-Creation-Date: 2021-09-19 10:23+0000\n"
+"PO-Revision-Date: 2021-09-19 10:33\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -2672,7 +2672,9 @@ msgstr "Begleiter 3 Spawn Boden"
 msgid "Could not save floor: It contains too much empty data.\n"
 "This probably happened because a lot of spawn lists are empty.\n"
 "Please check the floors you edited and fill them with more data. If you are using the randomizer, check your allowed item list."
-msgstr ""
+msgstr "Konnte die Ebene nicht speichern: Sie enthält zu viele leere Daten.\n"
+"Das ist vermutlich passiert, da viele Spawn-Listen leer sind.\n"
+"Bitte prüfe die Ebenen, die du bearbeitet hast und fülle sie mit mehr Daten. Wenn du den Randomizer verwendest, bitte überprüfe die Liste der erlaubten Items."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor.py:244
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:72
@@ -3829,17 +3831,11 @@ msgstr "Verhindert, dass das Spiel abstürzt, wenn beim Versuch, ein Sprite anzu
 #: skytemple-files/skytemple_files/patch/handler/move_growth.py:75
 msgid "Implements move growth (PoC/Unfinished). \n"
 "Needs ActorAndLevelLoader, ExtractAnimData and ChangeMoveStatsDisplay patches. \n"
-"If MoveShortcuts is applied, must be re-applied after it. \n"
+"MoveGrowth patch must be (re-)applied after MoveShortcuts to combine both effects. \n"
 "The last version of ChangeMoveStatsDisplay must be used with this.\n"
 "May be incompatible if markfont.dat has been modified (except for ChangeMoveStatsDisplay)\n"
 "Makes all prior save files incompatible. "
-msgstr "Implementiert Wachstum/Verbesserung von Attacken\n"
-"(Proof of Concept / noch nicht fertig).\n"
-"Benötigt die Patches ActorAndLevelLoader, ExtractAnimData und ChangeMoveStatsDisplay.\n"
-"Wenn MoveShortcuts angewendet ist, muss es nach diesem Patch neu angewendet werden. \n"
-"Die neuste Version von ChangeMoveStatsDisplay muss für diesen Patch verwendet werden.\n"
-"Ist möglicherweise inkompatibel, falls die markfont.dat bearbeitet wurde (mit Ausnahme von Bearbeitungen des ChangeMoveStatsDisplay Patches).\n"
-"Macht alle Speicherdateien inkompatibel. "
+msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/move_shortcuts.py:40
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
@@ -5452,7 +5448,7 @@ msgstr "Das Bild wurde umgewandelt."
 msgid "Trying to display the error failed. Wow!"
 msgstr "Es ist ein Fehler aufgetreten beim Versuch den Fehler darzustellen. Wow!"
 
-#: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:99
+#: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:103
 msgid "SkyTemple - Error!"
 msgstr "SkyTemple - Fehler!"
 
@@ -5491,7 +5487,7 @@ msgstr "XML Dokument (*.xml)"
 msgid "CSV file (*.csv)"
 msgstr "CSV Datei (*.csv)"
 
-#: skytemple/skytemple/main.py:98
+#: skytemple/skytemple/main.py:102
 msgid "PyGObject compiled without Cairo support. Can't start!"
 msgstr "PyGObject wurde ohne Cairo Unterstützung kompiliert. Kann nicht starten!"
 
@@ -6855,11 +6851,11 @@ msgstr "Vergraben"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5307
 msgid "Grab Bag"
-msgstr ""
+msgstr "Wundertüte"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5337
 msgid "Secret Room"
-msgstr ""
+msgstr "Geheimer Raum"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:92
 msgid "E Rank"
