@@ -1,4 +1,4 @@
-#  Copyright 2020-2021 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2021 Parakoopa and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -17,6 +17,7 @@
 
 import itertools
 from typing import TYPE_CHECKING, Optional
+from copy import deepcopy
 
 import gi
 from gi.repository import Gtk, Gdk
@@ -124,6 +125,8 @@ class BgController(AbstractController):
         self.bpl = module.get_bpl(item_id)
         self.bpc = module.get_bpc(item_id)
         self.bpas = module.get_bpas(item_id)
+        self.first_cursor_pos = (0,0)
+        self.last_bma = None
 
         # Cairo surfaces for each tile in each layer for each frame
         # chunks_surfaces[layer_number][chunk_idx][palette_animation_frame][frame]
@@ -222,18 +225,21 @@ class BgController(AbstractController):
         correct_mouse_x = int(button.x / self.scale_factor)
         correct_mouse_y = int(button.y / self.scale_factor)
         if button.button == 1:
+            if not self.bg_draw_is_clicked:
+                self.last_bma = deepcopy(self.bma)
             self.bg_draw_is_clicked = True
             if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
                 snap_x = correct_mouse_x - correct_mouse_x % (self.bma.tiling_width * BPC_TILE_DIM)
                 snap_y = correct_mouse_y - correct_mouse_y % (self.bma.tiling_height * BPC_TILE_DIM)
+            else:
+                snap_x = correct_mouse_x - correct_mouse_x % BPC_TILE_DIM
+                snap_y = correct_mouse_y - correct_mouse_y % BPC_TILE_DIM
+            self.first_cursor_pos = (snap_x,snap_y)
+            if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
                 self._set_chunk_at_pos(snap_x, snap_y)
             elif self.drawer.get_interaction_mode() == DrawerInteraction.COL:
-                snap_x = correct_mouse_x - correct_mouse_x % BPC_TILE_DIM
-                snap_y = correct_mouse_y - correct_mouse_y % BPC_TILE_DIM
                 self._set_col_at_pos(snap_x, snap_y)
             elif self.drawer.get_interaction_mode() == DrawerInteraction.DAT:
-                snap_x = correct_mouse_x - correct_mouse_x % BPC_TILE_DIM
-                snap_y = correct_mouse_y - correct_mouse_y % BPC_TILE_DIM
                 self._set_data_at_pos(snap_x, snap_y)
 
     def on_bg_draw_release(self, box, button: Gdk.EventButton):
@@ -247,21 +253,46 @@ class BgController(AbstractController):
             if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
                 snap_x = correct_mouse_x - correct_mouse_x % (self.bma.tiling_width * BPC_TILE_DIM)
                 snap_y = correct_mouse_y - correct_mouse_y % (self.bma.tiling_height * BPC_TILE_DIM)
-                self.drawer.set_mouse_position(snap_x, snap_y)
-                if self.bg_draw_is_clicked:
-                    self._set_chunk_at_pos(snap_x, snap_y)
-            elif self.drawer.get_interaction_mode() == DrawerInteraction.COL:
+                tilling_x = self.bma.tiling_width * BPC_TILE_DIM
+                tilling_y = self.bma.tiling_height * BPC_TILE_DIM
+            else:
                 snap_x = correct_mouse_x - correct_mouse_x % BPC_TILE_DIM
                 snap_y = correct_mouse_y - correct_mouse_y % BPC_TILE_DIM
-                self.drawer.set_mouse_position(snap_x, snap_y)
-                if self.bg_draw_is_clicked:
-                    self._set_col_at_pos(snap_x, snap_y)
-            elif self.drawer.get_interaction_mode() == DrawerInteraction.DAT:
-                snap_x = correct_mouse_x - correct_mouse_x % BPC_TILE_DIM
-                snap_y = correct_mouse_y - correct_mouse_y % BPC_TILE_DIM
-                self.drawer.set_mouse_position(snap_x, snap_y)
-                if self.bg_draw_is_clicked:
-                    self._set_data_at_pos(snap_x, snap_y)
+                tilling_x = BPC_TILE_DIM
+                tilling_y = BPC_TILE_DIM
+            self.drawer.set_mouse_position(snap_x, snap_y)
+            if self.bg_draw_is_clicked:
+                if self.builder.get_object("tb_rectangle").get_active():
+                    #TODO: Clearly not optimized
+                    self.bma.layer0 = deepcopy(self.last_bma.layer0)
+                    self.bma.layer1 = deepcopy(self.last_bma.layer1)
+                    self.bma.collision = deepcopy(self.last_bma.collision)
+                    self.bma.collision2 = deepcopy(self.last_bma.collision2)
+                    self.bma.unknown_data_block = deepcopy(self.last_bma.unknown_data_block)
+                    self.drawer.reset_bma(self.bma)
+                    x_pos = [snap_x, self.first_cursor_pos[0]]
+                    x_pos.sort()
+                    y_pos = [snap_y, self.first_cursor_pos[1]]
+                    y_pos.sort()
+                    y = y_pos[0]
+                    while y<y_pos[1]+tilling_y:
+                        x = x_pos[0]
+                        while x<x_pos[1]+tilling_x:
+                            if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
+                                self._set_chunk_at_pos(x, y)
+                            elif self.drawer.get_interaction_mode() == DrawerInteraction.COL:
+                                self._set_col_at_pos(x, y)
+                            elif self.drawer.get_interaction_mode() == DrawerInteraction.DAT:
+                                self._set_data_at_pos(x, y)
+                            x += tilling_x
+                        y += tilling_y
+                else:
+                    if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
+                        self._set_chunk_at_pos(snap_x, snap_y)
+                    elif self.drawer.get_interaction_mode() == DrawerInteraction.COL:
+                        self._set_col_at_pos(snap_x, snap_y)
+                    elif self.drawer.get_interaction_mode() == DrawerInteraction.DAT:
+                        self._set_data_at_pos(snap_x, snap_y)
 
     def _set_chunk_at_pos(self, mouse_x, mouse_y):
         if self.drawer:
