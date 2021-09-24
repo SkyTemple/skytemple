@@ -88,9 +88,8 @@ class Drawer:
         self.scale = 1
 
         self.drawing_is_active = False
-
-    # noinspection PyAttributeOutsideInit
-    def reset(self, bma, bpa_durations, pal_ani_durations, chunks_surfaces):
+    
+    def reset_bma(self, bma):
         if isinstance(bma, Bma):
             self.tiling_width = bma.tiling_width
             self.tiling_height = bma.tiling_height
@@ -113,6 +112,10 @@ class Drawer:
             self.collision1 = None
             self.collision2 = None
             self.data_layer = None
+
+    # noinspection PyAttributeOutsideInit
+    def reset(self, bma, bpa_durations, pal_ani_durations, chunks_surfaces):
+        self.reset_bma(bma)
 
         self.animation_context = AnimationContext(chunks_surfaces, bpa_durations, pal_ani_durations)
         self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
