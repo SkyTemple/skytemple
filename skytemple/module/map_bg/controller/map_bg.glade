@@ -136,6 +136,7 @@
           <object class="GtkToggleToolButton" id="tb_bg_color">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="tooltip-text" translatable="yes">Toggle Background Color</property>
             <property name="is-important">True</property>
             <property name="label" translatable="yes">BG Color</property>
             <property name="use-underline">True</property>
