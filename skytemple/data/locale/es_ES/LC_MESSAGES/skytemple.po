@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-19 10:42+0000\n"
-"PO-Revision-Date: 2021-09-20 14:56\n"
+"POT-Creation-Date: 2021-09-25 22:54+0000\n"
+"PO-Revision-Date: 2021-09-25 22:56\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -12717,8 +12717,8 @@ msgid "The CSV file must contain exactly {len(self._str.strings)} strings, has {
 msgstr "El archivo CSV debe contener exactamente {len(self._str.strings)} cadenas, tiene {len(strings)}."
 
 #: skytemple/skytemple/module/strings/controller/strings.py:177
-msgid "Error exporting the strings."
-msgstr "Error al exportar las cadenas."
+msgid "Error importing the strings."
+msgstr ""
 
 #: skytemple/skytemple/module/strings/controller/strings.py:185
 msgid "Export is done to a CSV file with the following specifications:\n"
