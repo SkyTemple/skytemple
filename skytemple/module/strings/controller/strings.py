@@ -174,7 +174,7 @@ class StringsController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     str(err),
-                    _("Error exporting the strings.")
+                    _("Error importing the strings.")
                 )
 
     def on_btn_export_clicked(self, *args):
