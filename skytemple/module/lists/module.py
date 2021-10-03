@@ -37,10 +37,12 @@ from skytemple.module.lists.controller.tactics import TacticsController
 from skytemple.module.lists.controller.world_map import WorldMapController
 from skytemple.module.lists.controller.sp_effects import SPEffectsController
 from skytemple.module.lists.controller.dungeon_interrupt import DungeonInterruptController
+from skytemple.module.lists.controller.animations import AnimationsController
 from skytemple.module.monster.module import WAZA_P_BIN
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.data_cd.handler import DataCDHandler
 from skytemple_files.data.inter_d.handler import InterDHandler
+from skytemple_files.data.anim.handler import AnimHandler
 from skytemple_files.data.md.model import Md
 from skytemple_files.data.waza_p.model import WazaP
 from skytemple_files.hardcoded.dungeon_music import HardcodedDungeonMusic, DungeonMusicEntry
@@ -59,6 +61,7 @@ from skytemple_files.common.i18n_util import _
 ACTOR_LIST = 'BALANCE/actor_list.bin'
 SP_EFFECTS = 'BALANCE/process.bin'
 DUNGEON_INTERRUPT = "BALANCE/inter_d.bin"
+ANIMATIONS = "BALANCE/anim.bin"
 
 class ListsModule(AbstractModule):
     """Module to modify lists."""
@@ -117,6 +120,9 @@ class ListsModule(AbstractModule):
         self._dun_inter_tree_iter = item_store.append(root, [
             'skytemple-view-list-symbolic', _('Dungeon Interruptions'), self, DungeonInterruptController, 0, False, '', True
         ])
+        self._animations_tree_iter = item_store.append(root, [
+            'skytemple-view-list-symbolic', _('Animations'), self, AnimationsController, 0, False, '', True
+        ])
         self._dungeon_music_tree_iter = item_store.append(root, [
             'skytemple-e-music-symbolic', _('Dungeon Music'), self, DungeonMusicController, 0, False, '', True
         ])
@@ -144,6 +150,7 @@ class ListsModule(AbstractModule):
         generate_item_store_row_label(item_store[self._menu_list_tree_iter])
         generate_item_store_row_label(item_store[self._sp_effects_tree_iter])
         generate_item_store_row_label(item_store[self._dun_inter_tree_iter])
+        generate_item_store_row_label(item_store[self._animations_tree_iter])
         generate_item_store_row_label(item_store[self._dungeon_music_tree_iter])
         generate_item_store_row_label(item_store[self._misc_settings_tree_iter])
         generate_item_store_row_label(item_store[self._guest_pokemon_root_iter])
@@ -180,6 +187,19 @@ class ListsModule(AbstractModule):
         self.project.mark_as_modified(DUNGEON_INTERRUPT)
         # Mark as modified in tree
         row = self._tree_model[self._dun_inter_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+    
+    def has_animations(self):
+        return self.project.file_exists(ANIMATIONS)
+
+    def get_animations(self):
+        return self.project.open_file_in_rom(ANIMATIONS, AnimHandler)
+
+    def mark_animations_as_modified(self):
+        """Mark as modified"""
+        self.project.mark_as_modified(ANIMATIONS)
+        # Mark as modified in tree
+        row = self._tree_model[self._animations_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
 
     def has_actor_list(self):
