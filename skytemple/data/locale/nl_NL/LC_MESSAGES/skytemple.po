@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-25 22:54+0000\n"
-"PO-Revision-Date: 2021-09-25 22:56\n"
+"POT-Creation-Date: 2021-10-05 18:45+0000\n"
+"PO-Revision-Date: 2021-10-05 18:54\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -3905,7 +3905,7 @@ msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:159
-#: skytemple/skytemple/module/patch/controller/main.py:225
+#: skytemple/skytemple/module/patch/controller/main.py:229
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
@@ -4041,7 +4041,7 @@ msgid "Do you want to save changes to {filename}?"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:322
-#: skytemple/skytemple/controller/main.py:769
+#: skytemple/skytemple/controller/main.py:779
 msgid "Don't Save"
 msgstr ""
 
@@ -4069,7 +4069,7 @@ msgid "_Save"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:326
-#: skytemple/skytemple/controller/main.py:773
+#: skytemple/skytemple/controller/main.py:783
 msgid "If you don't save, your changes will be lost."
 msgstr ""
 
@@ -4430,7 +4430,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1626
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1637
-#: skytemple/skytemple/controller/main.py:771
+#: skytemple/skytemple/controller/main.py:781
 #: skytemple/skytemple/module/map_bg/controller/main.py:105
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:43
 #: skytemple/skytemple/module/script/controller/main.py:190
@@ -4819,7 +4819,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1089
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2762
-#: skytemple/skytemple/controller/main.py:772
+#: skytemple/skytemple/controller/main.py:782
 #: skytemple/skytemple/skytemple.glade:1147
 msgid "Save"
 msgstr ""
@@ -5299,48 +5299,48 @@ msgstr ""
 msgid "Zoom _Out"
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:237
+#: skytemple/skytemple/controller/main.py:244
 msgid "Open ROM..."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:342
+#: skytemple/skytemple/controller/main.py:349
 msgid "Error opening the ROM"
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:364
+#: skytemple/skytemple/controller/main.py:374
 msgid "Error saving the ROM"
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:484
+#: skytemple/skytemple/controller/main.py:494
 msgid "A project must be opened to use this."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:564
-#: skytemple/skytemple/controller/main.py:565
+#: skytemple/skytemple/controller/main.py:574
+#: skytemple/skytemple/controller/main.py:575
 msgid "Open a ROM"
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:590
+#: skytemple/skytemple/controller/main.py:600
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:592
+#: skytemple/skytemple/controller/main.py:602
 #, python-brace-format
 msgid "Opening {filename}."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:752
+#: skytemple/skytemple/controller/main.py:762
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:754
+#: skytemple/skytemple/controller/main.py:764
 #, python-brace-format
 msgid "Saving {rom.filename}."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:767
+#: skytemple/skytemple/controller/main.py:777
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
 msgstr ""
@@ -11393,23 +11393,27 @@ msgid "Error applying the patch:\n"
 msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/main.py:130
-msgid "Patch was successfully applied. You should re-open the project, to make sure all data is correctly loaded."
+msgid "Patch was successfully applied. The ROM will now be reloaded."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:180
+#: skytemple/skytemple/module/patch/controller/main.py:133
+msgid "Not all patches were applied successfully. The ROM will now be reloaded."
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/main.py:184
 msgid "Error loading patch package {os.path.basename(fname)}:\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:185
+#: skytemple/skytemple/module/patch/controller/main.py:189
 msgid "Not compatible"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:187
+#: skytemple/skytemple/module/patch/controller/main.py:191
 msgid "Applied"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:187
+#: skytemple/skytemple/module/patch/controller/main.py:191
 msgid "Compatible"
 msgstr ""
 
