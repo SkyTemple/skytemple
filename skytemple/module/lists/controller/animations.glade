@@ -1,0 +1,1262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<!--
+  ~ Copyright 2020-2021 Parakoopa and the SkyTemple Contributors
+  ~
+  ~ This file is part of SkyTemple.
+  ~
+  ~ SkyTemple is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ SkyTemple is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+<interface>
+  <requires lib="gtk+" version="3.22"/>
+  <object class="GtkListStore" id="general_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="guint"/>
+      <!-- column-name file_type -->
+      <column type="guint"/>
+      <!-- column-name file_id -->
+      <column type="guint"/>
+      <!-- column-name unk1 -->
+      <column type="guint"/>
+      <!-- column-name unk2 -->
+      <column type="guint"/>
+      <!-- column-name sfx -->
+      <column type="gint"/>
+      <!-- column-name unk3 -->
+      <column type="guint"/>
+      <!-- column-name unk4 -->
+      <column type="gboolean"/>
+      <!-- column-name point -->
+      <column type="guint"/>
+      <!-- column-name unk5 -->
+      <column type="gboolean"/>
+      <!-- column-name loop -->
+      <column type="gboolean"/>
+      <!-- column-name file_type_str -->
+      <column type="gchararray"/>
+      <!-- column-name point_str -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="items_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="guint"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+      <!-- column-name anim1 -->
+      <column type="guint"/>
+      <!-- column-name anim2 -->
+      <column type="guint"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="monster_store">
+    <columns>
+      <!-- column-name label -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="completion_entities">
+    <property name="model">monster_store</property>
+    <property name="text-column">0</property>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+  <object class="GtkListStore" id="move_filter">
+    <columns>
+      <!-- column-name id -->
+      <column type="gint"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="moves_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="guint"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+      <!-- column-name anim1 -->
+      <column type="guint"/>
+      <!-- column-name anim2 -->
+      <column type="guint"/>
+      <!-- column-name anim3 -->
+      <column type="guint"/>
+      <!-- column-name anim4 -->
+      <column type="guint"/>
+      <!-- column-name dir -->
+      <column type="guint"/>
+      <!-- column-name flag1 -->
+      <column type="gboolean"/>
+      <!-- column-name flag2 -->
+      <column type="gboolean"/>
+      <!-- column-name flag3 -->
+      <column type="gboolean"/>
+      <!-- column-name flag4 -->
+      <column type="gboolean"/>
+      <!-- column-name speed -->
+      <column type="guint"/>
+      <!-- column-name animation -->
+      <column type="guint"/>
+      <!-- column-name point -->
+      <column type="guint"/>
+      <!-- column-name sfx -->
+      <column type="guint"/>
+      <!-- column-name spec_entries -->
+      <column type="guint"/>
+      <!-- column-name spec_start -->
+      <column type="guint"/>
+      <!-- column-name point_str -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="point_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="guint"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="spec_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="guint"/>
+      <!-- column-name ent_id -->
+      <column type="guint"/>
+      <!-- column-name animation -->
+      <column type="guint"/>
+      <!-- column-name point -->
+      <column type="guint"/>
+      <!-- column-name sfx -->
+      <column type="guint"/>
+      <!-- column-name ent_name -->
+      <column type="gchararray"/>
+      <!-- column-name point_name -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="traps_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="guint"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+      <!-- column-name anim -->
+      <column type="guint"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="type_store">
+    <columns>
+      <!-- column-name id -->
+      <column type="guint"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkStack" id="list_stack">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkBox" id="box_na">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkAlignment">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="xscale">0.8000000119209289</property>
+            <property name="yscale">0.8000000119209289</property>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">64</property>
+                    <property name="label" translatable="yes">Animations</property>
+                    <style>
+                      <class name="skytemple-view-main-label"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">5</property>
+                    <property name="label" translatable="yes">Edits the animation tables used by the game.</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">40</property>
+                    <property name="label" translatable="yes">&lt;Not available&gt;
+
+To view and edit animation tables, please apply the "ExtractAnimData"
+ASM patch from the "ASM Patches" menu.</property>
+                    <property name="justify">center</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="name">page0</property>
+        <property name="title" translatable="yes">page0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox" id="box_list">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkAlignment">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="xscale">0.8000000119209289</property>
+            <property name="yscale">0.8000000119209289</property>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">64</property>
+                    <property name="label" translatable="yes">Animation Tables</property>
+                    <style>
+                      <class name="skytemple-view-main-label"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">5</property>
+                    <property name="label" translatable="yes">Edits the animation attributes.</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkNotebook" id="animations_notebook">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkScrolledWindow">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="shadow-type">in</property>
+                            <child>
+                              <object class="GtkTreeView" id="general_tree">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="model">general_store</property>
+                                <property name="search-column">0</property>
+                                <child internal-child="selection">
+                                  <object class="GtkTreeSelection">
+                                    <property name="mode">multiple</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">ID</property>
+                                    <child>
+                                      <object class="GtkCellRendererText"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">File Type</property>
+                                    <child>
+                                      <object class="GtkCellRendererCombo" id="gen_file_type">
+                                        <property name="editable">True</property>
+                                        <property name="model">type_store</property>
+                                        <property name="text-column">1</property>
+                                        <signal name="changed" handler="on_gen_file_type_changed" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">11</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">File ID</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="gen_file_id">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_gen_file_id_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">2</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Unk 1</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="gen_unk1">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_gen_unk1_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">3</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Unk 2</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="gen_unk2">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_gen_unk2_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">4</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">SFX</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="gen_sfx">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_gen_sfx_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">5</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Unk 3</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="gen_unk3">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_gen_unk3_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">6</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Unk 4</property>
+                                    <child>
+                                      <object class="GtkCellRendererToggle" id="gen_unk4">
+                                        <signal name="toggled" handler="on_gen_unk4_toggled" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="active">7</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Point</property>
+                                    <child>
+                                      <object class="GtkCellRendererCombo" id="gen_point">
+                                        <property name="editable">True</property>
+                                        <property name="model">point_store</property>
+                                        <property name="text-column">1</property>
+                                        <signal name="changed" handler="on_gen_point_changed" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">12</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Unk 5</property>
+                                    <child>
+                                      <object class="GtkCellRendererToggle" id="gen_unk5">
+                                        <signal name="toggled" handler="on_gen_unk5_toggled" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="active">9</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Loop</property>
+                                    <child>
+                                      <object class="GtkCellRendererToggle" id="gen_loop">
+                                        <signal name="toggled" handler="on_gen_loop_toggled" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="active">10</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-bottom">20</property>
+                            <property name="spacing">5</property>
+                            <child>
+                              <object class="GtkButton" id="btn_add_general">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Reload</property>
+                                <signal name="clicked" handler="on_btn_add_general_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-list-add-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack-type">end</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="btn_remove_general">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Reload</property>
+                                <signal name="clicked" handler="on_btn_remove_general_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-list-remove-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack-type">end</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">General</property>
+                      </object>
+                      <packing>
+                        <property name="tab-fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkScrolledWindow">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="shadow-type">in</property>
+                            <child>
+                              <object class="GtkTreeView" id="moves_tree">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="model">moves_store</property>
+                                <property name="search-column">0</property>
+                                <child internal-child="selection">
+                                  <object class="GtkTreeSelection">
+                                    <property name="mode">multiple</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">ID</property>
+                                    <child>
+                                      <object class="GtkCellRendererText"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="resizable">True</property>
+                                    <property name="title" translatable="yes">Name</property>
+                                    <child>
+                                      <object class="GtkCellRendererText"/>
+                                      <attributes>
+                                        <attribute name="text">1</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Anim 1 ID</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="move_anim1">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_move_anim1_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">2</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Anim 2 ID</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="move_anim2">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_move_anim2_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">3</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Anim 3 ID</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="move_anim3">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_move_anim3_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">4</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Anim 4 ID</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="move_anim4">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_move_anim4_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">5</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Dir</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="move_dir">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_move_dir_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">6</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Flag 1</property>
+                                    <child>
+                                      <object class="GtkCellRendererToggle" id="move_flag1">
+                                        <signal name="toggled" handler="on_move_flag1_toggled" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="active">7</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Flag 2</property>
+                                    <child>
+                                      <object class="GtkCellRendererToggle" id="move_flag2">
+                                        <signal name="toggled" handler="on_move_flag2_toggled" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="active">8</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Flag 3</property>
+                                    <child>
+                                      <object class="GtkCellRendererToggle" id="move_flag3">
+                                        <signal name="toggled" handler="on_move_flag3_toggled" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="active">9</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Flag 4</property>
+                                    <child>
+                                      <object class="GtkCellRendererToggle" id="move_flag4">
+                                        <signal name="toggled" handler="on_move_flag4_toggled" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="active">10</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Speed</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="move_speed">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_move_speed_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">11</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Animation</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="move_anim">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_move_anim_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">12</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Point</property>
+                                    <child>
+                                      <object class="GtkCellRendererCombo" id="move_point">
+                                        <property name="editable">True</property>
+                                        <property name="model">point_store</property>
+                                        <property name="text-column">1</property>
+                                        <signal name="changed" handler="on_move_point_changed" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">17</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">SFX</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="move_sfx">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_move_sfx_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">14</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">First Spec. Entry</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="move_spec_start">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_move_spec_start_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">16</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes"># of Spec. Entries</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="move_spec_entries">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_move_spec_entries_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">15</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-bottom">20</property>
+                            <property name="spacing">5</property>
+                            <child>
+                              <object class="GtkButton" id="btn_add_move">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Reload</property>
+                                <signal name="clicked" handler="on_btn_add_move_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-list-add-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack-type">end</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="btn_remove_move">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Reload</property>
+                                <signal name="clicked" handler="on_btn_remove_move_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-list-remove-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack-type">end</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Move</property>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                        <property name="tab-fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Filter by move: </property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkComboBox" id="cb_filter_move">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="model">move_filter</property>
+                                <signal name="changed" handler="on_cb_filter_move_changed" swapped="no"/>
+                                <child>
+                                  <object class="GtkCellRendererText"/>
+                                  <attributes>
+                                    <attribute name="text">1</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkScrolledWindow">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="shadow-type">in</property>
+                            <child>
+                              <object class="GtkTreeView" id="spec_tree">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="model">spec_store</property>
+                                <property name="search-column">0</property>
+                                <child internal-child="selection">
+                                  <object class="GtkTreeSelection">
+                                    <property name="mode">multiple</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">ID</property>
+                                    <child>
+                                      <object class="GtkCellRendererText"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="resizable">True</property>
+                                    <property name="title" translatable="yes">Pokémon</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="spec_entity">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_spec_entity_edited" swapped="no"/>
+                                        <signal name="editing-started" handler="on_spec_entity_editing_started" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">5</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Animation</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="spec_anim">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_spec_anim_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">2</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Point</property>
+                                    <child>
+                                      <object class="GtkCellRendererCombo" id="spec_point">
+                                        <property name="editable">True</property>
+                                        <property name="model">point_store</property>
+                                        <property name="text-column">1</property>
+                                        <signal name="changed" handler="on_spec_point_changed" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">6</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">SFX</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="spec_sfx">
+                                        <property name="editable">True</property>
+                                        <signal name="edited" handler="on_spec_sfx_edited" swapped="no"/>
+                                      </object>
+                                      <attributes>
+                                        <attribute name="text">4</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-bottom">20</property>
+                            <property name="spacing">5</property>
+                            <child>
+                              <object class="GtkButton" id="btn_add_spec">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Reload</property>
+                                <signal name="clicked" handler="on_btn_add_spec_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-list-add-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack-type">end</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="btn_remove_spec">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Reload</property>
+                                <signal name="clicked" handler="on_btn_remove_spec_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-list-remove-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack-type">end</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Move Special</property>
+                      </object>
+                      <packing>
+                        <property name="position">2</property>
+                        <property name="tab-fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="shadow-type">in</property>
+                        <child>
+                          <object class="GtkTreeView" id="traps_tree">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="model">traps_store</property>
+                            <property name="search-column">0</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection"/>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Name</property>
+                                <child>
+                                  <object class="GtkCellRendererText"/>
+                                  <attributes>
+                                    <attribute name="text">1</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Anim ID</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="trap_anim">
+                                    <property name="editable">True</property>
+                                    <signal name="edited" handler="on_trap_anim_edited" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">2</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Traps</property>
+                      </object>
+                      <packing>
+                        <property name="position">3</property>
+                        <property name="tab-fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="shadow-type">in</property>
+                        <child>
+                          <object class="GtkTreeView" id="items_tree">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="model">items_store</property>
+                            <property name="search-column">0</property>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection"/>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Name</property>
+                                <child>
+                                  <object class="GtkCellRendererText"/>
+                                  <attributes>
+                                    <attribute name="text">1</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Use Anim ID</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="item_anim1">
+                                    <property name="editable">True</property>
+                                    <signal name="edited" handler="on_item_anim1_edited" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">2</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Throw Anim ID</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="item_anim2">
+                                    <property name="editable">True</property>
+                                    <signal name="edited" handler="on_item_anim2_edited" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="text">3</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">5</property>
+                      </packing>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Items</property>
+                      </object>
+                      <packing>
+                        <property name="position">4</property>
+                        <property name="tab-fill">False</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="name">page1</property>
+        <property name="title" translatable="yes">page1</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <style>
+      <class name="back_illust"/>
+      <class name="sps"/>
+    </style>
+  </object>
+</interface>

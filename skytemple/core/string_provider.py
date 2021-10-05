@@ -35,6 +35,7 @@ class StringType(Enum):
     MOVE_DESCRIPTIONS = auto(), 'Move Descriptions'
     ITEM_LONG_DESCRIPTIONS = auto(), 'Item Long Descriptions'
     ITEM_SHORT_DESCRIPTIONS = auto(), 'Item Short Descriptions'
+    TRAP_NAMES = auto(), 'Trap Names'
     TYPE_NAMES = auto(), 'Type Names'
     ABILITY_NAMES = auto(), 'Ability Names'
     ABILITY_DESCRIPTIONS = auto(), 'Ability Descriptions'
