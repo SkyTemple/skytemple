@@ -69,6 +69,15 @@ class MainController:
         return cls._instance.window
 
     @classmethod
+    def reload_project(cls):
+        if RomProject.get_current().filename:
+            cls._instance._open_file(RomProject.get_current().filename)
+
+    @classmethod
+    def save(cls, after_save_action=None):
+        cls._instance._save(after_save_action=after_save_action)
+
+    @classmethod
     def debugger_manager(cls) -> DebuggerManager:
         """Utility method to get debugger manager from modules"""
         return cls._instance._debugger_manager
@@ -110,6 +119,7 @@ class MainController:
         self._resize_timeout_id = None
         self._loaded_map_bg_module = None
         self._current_breadcrumbs = []
+        self._after_save_action = None
 
         if not sys.platform.startswith('darwin'):
             # Don't load the window position on macOS to prevent
@@ -146,9 +156,7 @@ class MainController:
                 return False
             elif response == 1:
                 # Save (True on success, False on failure. Don't close the file if we can't save it...)
-                self._save()
-                # TODO: we just cancel atm, because the saving is done async. It would probably be nice to also
-                #       exit, when it's done without error
+                self._save(after_save_action=lambda: self.window.destroy())
                 return True
             else:
                 # Cancel
@@ -200,8 +208,7 @@ class MainController:
         self._save()
 
     def on_reload_button_clicked(self, wdg):
-        if RomProject.get_current().filename:
-            self._open_file(RomProject.get_current().filename)
+        self.reload_project()
 
     def on_debugger_button_clicked(self, wdg):
         self._debugger_manager.open(self.window)
@@ -350,6 +357,9 @@ class MainController:
         rom = RomProject.get_current()
         self._set_title(os.path.basename(rom.filename), False)
         recursive_down_item_store_mark_as_modified(self._item_store[self._item_store.get_iter_first()], False)
+        if self._after_save_action is not None:
+            self._after_save_action()
+            self._after_save_action = None
 
     def on_file_saved_error(self, exc_info, exception):
         """Handle errors during file saving."""
@@ -582,7 +592,7 @@ class MainController:
 
     def _open_file(self, filename: str):
         """Open a file"""
-        if self._check_open_file():
+        if self._check_open_file(filename):
             self._loading_dialog = self.builder.get_object('file_opening_dialog')
             # noinspection PyUnusedLocal
             rom_name = os.path.basename(filename)
@@ -596,7 +606,7 @@ class MainController:
             # Show loading spinner
             self._loading_dialog.run()
 
-    def _check_open_file(self):
+    def _check_open_file(self, filename):
         """Check for open files, and ask the user what to do. Returns false if they cancel."""
         rom = RomProject.get_current()
         if not self._debugger_manager.check_save():
@@ -610,8 +620,7 @@ class MainController:
                 return True
             elif response == 1:
                 # Save (True on success, False on failure. Don't close the file if we can't save it...)
-                # TODO: NOT TRUE. We are using signals. This is broken right now!
-                return self._save()
+                return self._save(after_save_action=lambda: self._open_file(filename))
             else:
                 # Cancel
                 return False
@@ -741,10 +750,11 @@ class MainController:
         # TODO: Unlock the other two!
         self._main_item_list.set_sensitive(True)
 
-    def _save(self, force=False):
+    def _save(self, force=False, after_save_action=None):
         rom = RomProject.get_current()
 
         if rom.has_modifications() or force:
+            self._after_save_action = after_save_action
             self._loading_dialog = self.builder.get_object('file_opening_dialog')
             # noinspection PyUnusedLocal
             rom_name = os.path.basename(rom.filename)

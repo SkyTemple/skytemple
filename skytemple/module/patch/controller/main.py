@@ -127,11 +127,15 @@ class MainController(AbstractController):
                 self._error(f(_("Error applying the patch:\n{err}")), exc_info=sys.exc_info())
             else:
                 if not some_skipped:
-                    self._error(_("Patch was successfully applied. You should re-open the project, to make sure all data "
-                                  "is correctly loaded."), Gtk.MessageType.INFO, is_success=True)
+                    self._error(_("Patch was successfully applied. The ROM will now be reloaded."),
+                                Gtk.MessageType.INFO, is_success=True)
+                else:
+                    self._error(_("Not all patches were applied successfully. The ROM will now be reloaded."),
+                                Gtk.MessageType.INFO)
             finally:
                 self.module.mark_as_modified()
                 self.refresh(self._current_tab)
+                MainSkyTempleController.save(lambda: MainSkyTempleController.reload_project())
 
     def on_btn_refresh_clicked(self, *args):
         self.refresh(self._current_tab)
