@@ -184,10 +184,13 @@ class BgMenuController:
                     int(map_width_chunks.get_text()), int(map_height_chunks.get_text()),
                     int(map_width_tiles.get_text()), int(map_height_tiles.get_text()),
                 )
+                for x in params:
+                    if x<=0 or x>=256:
+                        raise ValueError("Invalid parameter.")
             except ValueError:
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                            Gtk.ButtonsType.OK, _("Please only enter numbers for the map size."))
+                                            Gtk.ButtonsType.OK, _("Incorrect values.\nOnly enter numbers from 1 to 255 for chunks and tiles dimensions."))
                 md.set_position(Gtk.WindowPosition.CENTER)
                 md.run()
                 md.destroy()
