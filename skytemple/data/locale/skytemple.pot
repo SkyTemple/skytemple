@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-10-05 18:55+0000\n"
+"POT-Creation-Date: 2021-10-05 19:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1505,6 +1505,73 @@ msgstr ""
 msgid "Invalid XML. Expected attribute {attrib} for XML tag {ele.tag}."
 msgstr ""
 
+#: skytemple-files/skytemple_files/data/anim/model.py:26
+msgid "Head"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:27
+msgid "Left Hand"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:28
+msgid "Right Hand"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:29
+msgid "Center"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:30
+#: skytemple-files/skytemple_files/data/item_s_p/model.py:29
+#: skytemple-files/skytemple_files/data/md/model.py:63
+#: skytemple-files/skytemple_files/data/md/model.py:316
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:514
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:515
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:439
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:448
+#: skytemple/skytemple/module/map_bg/controller/bg.py:660
+#: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:203
+#: skytemple/skytemple/module/script/controller/main.py:242
+#: skytemple/skytemple/module/script/controller/main.py:243
+#: skytemple/skytemple/module/script/controller/ssa.py:1242
+#: skytemple/skytemple/module/script/controller/ssa.py:1356
+#: skytemple/skytemple/module/script/controller/ssa.py:1525
+#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:52
+msgid "None"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:44
+#: skytemple-files/skytemple_files/data/md/model.py:37
+#: skytemple-files/skytemple_files/data/md/model.py:266
+#: skytemple/skytemple/module/dungeon/controller/floor.py:91
+msgid "Invalid"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:45
+msgid "WAN File 0"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:46
+msgid "WAN File 1"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:47
+msgid "WAN"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:48
+msgid "WAT"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:49
+msgid "Screen"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:50
+msgid "WBA"
+msgstr ""
+
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:59
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:146
 msgid "ARMIPS could not be found. Make sure, that 'armips' is inside your system's PATH."
@@ -1548,31 +1615,13 @@ msgstr ""
 msgid "Scenario Greater or Equal"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/item_s_p/model.py:29
-#: skytemple-files/skytemple_files/data/md/model.py:63
-#: skytemple-files/skytemple_files/data/md/model.py:316
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:514
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:515
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:439
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:448
-#: skytemple/skytemple/module/map_bg/controller/bg.py:660
-#: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:203
-#: skytemple/skytemple/module/script/controller/main.py:242
-#: skytemple/skytemple/module/script/controller/main.py:243
-#: skytemple/skytemple/module/script/controller/ssa.py:1242
-#: skytemple/skytemple/module/script/controller/ssa.py:1356
-#: skytemple/skytemple/module/script/controller/ssa.py:1525
-#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:52
-msgid "None"
-msgstr ""
-
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:30
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:346
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:915
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1040
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3220
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:216
+#: skytemple/skytemple/module/lists/controller/animations.glade:967
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:98
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:114
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:447
@@ -1602,12 +1651,6 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:62
 msgid "? (Only all the Eeveelutions, and the Tyrogue line have items with this type!)"
-msgstr ""
-
-#: skytemple-files/skytemple_files/data/md/model.py:37
-#: skytemple-files/skytemple_files/data/md/model.py:266
-#: skytemple/skytemple/module/dungeon/controller/floor.py:91
-msgid "Invalid"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:38
@@ -2260,7 +2303,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:584
 #: skytemple/skytemple/module/lists/controller/iq.glade:48
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:239
-#: skytemple/skytemple/module/lists/module.py:133
+#: skytemple/skytemple/module/lists/module.py:139
 msgid "IQ"
 msgstr ""
 
@@ -2268,6 +2311,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:874
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5353
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:63
+#: skytemple/skytemple/module/lists/controller/animations.glade:1227
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2107
 #: skytemple/skytemple/module/moves_items/controller/main_items.py:23
 msgid "Items"
@@ -4156,6 +4200,9 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/main.glade:417
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:102
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:171
+#: skytemple/skytemple/module/lists/controller/animations.glade:325
+#: skytemple/skytemple/module/lists/controller/animations.glade:579
+#: skytemple/skytemple/module/lists/controller/animations.glade:955
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:132
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:187
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:303
@@ -4230,7 +4277,7 @@ msgid "<Global>"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
-#: skytemple/skytemple/module/lists/module.py:97
+#: skytemple/skytemple/module/lists/module.py:100
 #: skytemple/skytemple/module/script/controller/ssa.glade:1302
 #: skytemple/skytemple/module/script/controller/ssa.glade:1330
 msgid "Actors"
@@ -4263,6 +4310,9 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:222
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:113
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:184
+#: skytemple/skytemple/module/lists/controller/animations.glade:591
+#: skytemple/skytemple/module/lists/controller/animations.glade:1122
+#: skytemple/skytemple/module/lists/controller/animations.glade:1179
 #: skytemple/skytemple/module/lists/controller/iq.glade:84
 #: skytemple/skytemple/module/lists/controller/iq.glade:118
 #: skytemple/skytemple/module/lists/controller/iq.glade:177
@@ -5000,6 +5050,12 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2356
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:288
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:310
+#: skytemple/skytemple/module/lists/controller/animations.glade:495
+#: skytemple/skytemple/module/lists/controller/animations.glade:517
+#: skytemple/skytemple/module/lists/controller/animations.glade:828
+#: skytemple/skytemple/module/lists/controller/animations.glade:850
+#: skytemple/skytemple/module/lists/controller/animations.glade:1044
+#: skytemple/skytemple/module/lists/controller/animations.glade:1066
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:386
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:408
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:356
@@ -5075,6 +5131,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3047
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:212
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:105
+#: skytemple/skytemple/module/lists/controller/animations.glade:250
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:142
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:806
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:125
@@ -5822,6 +5879,7 @@ msgid "Move / Select"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:167
+#: skytemple/skytemple/module/lists/controller/animations.glade:883
 #: skytemple/skytemple/module/monster/controller/level_up.glade:430
 #: skytemple/skytemple/module/monster/controller/level_up.glade:550
 #: skytemple/skytemple/module/monster/controller/level_up.glade:670
@@ -5991,6 +6049,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3117
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:250
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:429
+#: skytemple/skytemple/module/lists/controller/animations.glade:1253
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:451
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:191
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:803
@@ -6049,6 +6108,7 @@ msgid "Trap Layer Legend"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1183
+#: skytemple/skytemple/module/lists/controller/animations.glade:550
 #: skytemple/skytemple/module/monster/controller/monster.glade:1537
 #: skytemple/skytemple/module/moves_items/controller/item.glade:933
 #: skytemple/skytemple/module/moves_items/controller/move.glade:767
@@ -6823,6 +6883,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3605
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:65
+#: skytemple/skytemple/module/lists/controller/animations.glade:1156
 msgid "Traps"
 msgstr ""
 
@@ -8148,9 +8209,156 @@ msgstr ""
 msgid "Not implemented."
 msgstr ""
 
+#: skytemple/skytemple/module/lists/controller/animations.glade:197
+#: skytemple/skytemple/module/lists/module.py:124
+msgid "Animations"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:213
+msgid "Edits the animation tables used by the game."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:226
+msgid ""
+"<Not available>\n"
+"\n"
+"To view and edit animation tables, please apply the \"ExtractAnimData\"\n"
+"ASM patch from the \"ASM Patches\" menu."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:274
+msgid "Animation Tables"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:290
+msgid "Edits the animation attributes."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:336
+msgid "File Type"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:352
+msgid "File ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:366
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:447
+msgid "Unk 1"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:380
+msgid "Unk 2"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:394
+#: skytemple/skytemple/module/lists/controller/animations.glade:768
+#: skytemple/skytemple/module/lists/controller/animations.glade:1012
+msgid "SFX"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:408
+msgid "Unk 3"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:422
+msgid "Unk 4"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:435
+#: skytemple/skytemple/module/lists/controller/animations.glade:752
+#: skytemple/skytemple/module/lists/controller/animations.glade:996
+msgid "Point"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:451
+msgid "Unk 5"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:464
+msgid "Loop"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:602
+msgid "Anim 1 ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:616
+msgid "Anim 2 ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:630
+msgid "Anim 3 ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:644
+msgid "Anim 4 ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:658
+msgid "Dir"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:672
+msgid "Flag 1"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:685
+msgid "Flag 2"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:698
+msgid "Flag 3"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:711
+msgid "Flag 4"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:724
+msgid "Speed"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:738
+#: skytemple/skytemple/module/lists/controller/animations.glade:982
+msgid "Animation"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:782
+msgid "First Spec. Entry"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:796
+msgid "# of Spec. Entries"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:903
+msgid "Filter by move: "
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:1099
+msgid "Move Special"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:1133
+msgid "Anim ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:1190
+msgid "Use Anim ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:1204
+msgid "Throw Anim ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.py:95
+msgid "Show All"
+msgstr ""
+
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:89
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:166
-#: skytemple/skytemple/module/lists/module.py:118
+#: skytemple/skytemple/module/lists/module.py:121
 msgid "Dungeon Interruptions"
 msgstr ""
 
@@ -8204,7 +8412,7 @@ msgid ""
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:80
-#: skytemple/skytemple/module/lists/module.py:121
+#: skytemple/skytemple/module/lists/module.py:127
 msgid "Dungeon Music"
 msgstr ""
 
@@ -8294,10 +8502,6 @@ msgstr ""
 msgid "HLR (cleared)"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:447
-msgid "Unk 1"
-msgstr ""
-
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:461
 msgid "Pokémon ID"
 msgstr ""
@@ -8335,7 +8539,7 @@ msgid "Free entries left: XX"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:769
-#: skytemple/skytemple/module/lists/module.py:124
+#: skytemple/skytemple/module/lists/module.py:130
 msgid "Guest Pokémon"
 msgstr ""
 
@@ -8397,7 +8601,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:420
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:34
-#: skytemple/skytemple/module/lists/module.py:136
+#: skytemple/skytemple/module/lists/module.py:142
 msgid "Misc. Settings"
 msgstr ""
 
@@ -8540,7 +8744,7 @@ msgid "Sitrus Berry HP heal amount:"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
-#: skytemple/skytemple/module/lists/module.py:109
+#: skytemple/skytemple/module/lists/module.py:112
 msgid "Rank List"
 msgstr ""
 
@@ -8557,7 +8761,7 @@ msgid "Item Reward"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
-#: skytemple/skytemple/module/lists/module.py:103
+#: skytemple/skytemple/module/lists/module.py:106
 msgid "Recruitment List"
 msgstr ""
 
@@ -8585,7 +8789,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:149
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:296
-#: skytemple/skytemple/module/lists/module.py:115
+#: skytemple/skytemple/module/lists/module.py:118
 msgid "Special Process Effects"
 msgstr ""
 
@@ -8873,7 +9077,7 @@ msgid "Bold"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/tactics.glade:36
-#: skytemple/skytemple/module/lists/module.py:130
+#: skytemple/skytemple/module/lists/module.py:136
 msgid "Tactics"
 msgstr ""
 
@@ -8910,7 +9114,7 @@ msgid ""
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
-#: skytemple/skytemple/module/lists/module.py:106
+#: skytemple/skytemple/module/lists/module.py:109
 msgid "World Map Markers"
 msgstr ""
 
@@ -8957,15 +9161,15 @@ msgstr ""
 msgid "You need to select a reference."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:100
+#: skytemple/skytemple/module/lists/module.py:103
 msgid "Starters"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:112
+#: skytemple/skytemple/module/lists/module.py:115
 msgid "Menu List"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:127
+#: skytemple/skytemple/module/lists/module.py:133
 msgid "Special Episode PCs"
 msgstr ""
 
