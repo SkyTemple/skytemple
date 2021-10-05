@@ -1,4 +1,4 @@
-__version__ = '1.3.1'
+__version__ = '1.3.2'
 
 import glob
 import os
@@ -66,7 +66,7 @@ setup(
         'ndspy >= 3.0.0',
         'skytemple-files >= 1.3.1',
         'skytemple-dtef >= 1.1.4',
-        'skytemple-icons >= 1.2.0',
+        'skytemple-icons >= 1.3.2',
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',

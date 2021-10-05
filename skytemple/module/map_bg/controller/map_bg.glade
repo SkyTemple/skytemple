@@ -114,8 +114,8 @@
           <object class="GtkToggleToolButton" id="tb_rectangle">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">Rect</property>
-            <property name="use-underline">True</property>
+            <property name="tooltip-text" translatable="yes">Draw filled rectangles when holding down the left mouse button</property>
+            <property name="icon-name">skytemple-view-rectangle-cursor-symbolic</property>
           </object>
           <packing>
             <property name="expand">False</property>
