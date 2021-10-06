@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-10-05 19:05+0000\n"
-"PO-Revision-Date: 2021-10-05 19:50\n"
+"PO-Revision-Date: 2021-10-06 15:41\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1507,19 +1507,19 @@ msgstr "Ungültiges XML. Erwartete Attribut {attrib} für XML-Tag {ele.tag}."
 
 #: skytemple-files/skytemple_files/data/anim/model.py:26
 msgid "Head"
-msgstr ""
+msgstr "Kopf"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:27
 msgid "Left Hand"
-msgstr ""
+msgstr "Linke Hand"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:28
 msgid "Right Hand"
-msgstr ""
+msgstr "Rechte Hand"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:29
 msgid "Center"
-msgstr ""
+msgstr "Mitte"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:30
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:29
@@ -1550,27 +1550,27 @@ msgstr "Ungültig"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:45
 msgid "WAN File 0"
-msgstr ""
+msgstr "WAN-Datei 0"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:46
 msgid "WAN File 1"
-msgstr ""
+msgstr "WAN-Datei 1"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:47
 msgid "WAN"
-msgstr ""
+msgstr "WAN"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:48
 msgid "WAT"
-msgstr ""
+msgstr "WAT"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:49
 msgid "Screen"
-msgstr ""
+msgstr "Bildschirm"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:50
 msgid "WBA"
-msgstr ""
+msgstr "WBA"
 
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:59
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:146
@@ -12087,11 +12087,11 @@ msgstr "Fehler beim Anwenden des Patchs:\n"
 
 #: skytemple/skytemple/module/patch/controller/main.py:130
 msgid "Patch was successfully applied. The ROM will now be reloaded."
-msgstr ""
+msgstr "Patch wurde erfolgreich angewendet. Die ROM wird jetzt neu geladen."
 
 #: skytemple/skytemple/module/patch/controller/main.py:133
 msgid "Not all patches were applied successfully. The ROM will now be reloaded."
-msgstr ""
+msgstr "Nicht alle Patches wurden erfolgreich angewendet. Die ROM wird jetzt neu geladen."
 
 #: skytemple/skytemple/module/patch/controller/main.py:184
 msgid "Error loading patch package {os.path.basename(fname)}:\n"
@@ -12924,7 +12924,7 @@ msgstr "Die CSV-Datei muss genau {len(self._str.strings)} Zeichenketten enthalte
 
 #: skytemple/skytemple/module/strings/controller/strings.py:177
 msgid "Error importing the strings."
-msgstr ""
+msgstr "Fehler beim Importieren der Zeichenketten."
 
 #: skytemple/skytemple/module/strings/controller/strings.py:185
 msgid "Export is done to a CSV file with the following specifications:\n"
