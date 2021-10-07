@@ -1299,7 +1299,7 @@ If you choose to export both genders, upon import the matching gender entry will
                       </packing>
                     </child>
                     <child>
-                      <!-- n-columns=4 n-rows=7 -->
+                      <!-- n-columns=4 n-rows=8 -->
                       <object class="GtkGrid">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
@@ -1388,7 +1388,7 @@ If you choose to export both genders, upon import the matching gender entry will
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">end</property>
-                            <property name="label" translatable="yes">Personality:</property>
+                            <property name="label" translatable="yes">Talk Group:</property>
                           </object>
                           <packing>
                             <property name="left-attach">0</property>
@@ -1523,6 +1523,31 @@ If you choose to export both genders, upon import the matching gender entry will
                             <property name="left-attach">2</property>
                             <property name="top-attach">3</property>
                             <property name="width">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">end</property>
+                            <property name="label" translatable="yes">Idle Animation Type:</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">7</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="entry_idle_anim">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="width-chars">10</property>
+                            <signal name="changed" handler="on_entry_idle_anim_changed" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">7</property>
+                            <property name="width">3</property>
                           </packing>
                         </child>
                       </object>
