@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-10-05 19:05+0000\n"
-"PO-Revision-Date: 2021-10-08 14:56\n"
+"PO-Revision-Date: 2021-10-08 15:56\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -8340,7 +8340,9 @@ msgstr "Edita las tablas de animación utilizadas por el juego."
 msgid "<Not available>\n\n"
 "To view and edit animation tables, please apply the \"ExtractAnimData\"\n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar los las tablas de animación, aplica el parche\n"
+"\"ExtractAnimData\" desde el menú Parches ASM."
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:274
 msgid "Animation Tables"
@@ -8442,11 +8444,11 @@ msgstr "Animación"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:782
 msgid "First Spec. Entry"
-msgstr ""
+msgstr "Primera entrada de especif."
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:796
 msgid "# of Spec. Entries"
-msgstr ""
+msgstr "Nº de entradas de especif."
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:903
 msgid "Filter by move: "
@@ -8466,7 +8468,7 @@ msgstr "Usar ID de anim."
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:1204
 msgid "Throw Anim ID"
-msgstr ""
+msgstr "ID de anim. (Arrojar)"
 
 #: skytemple/skytemple/module/lists/controller/animations.py:95
 msgid "Show All"
@@ -9491,7 +9493,8 @@ msgstr "Paletas de fondo"
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:193
 msgid "Incorrect values.\n"
 "Only enter numbers from 1 to 255 for chunks and tiles dimensions."
-msgstr ""
+msgstr "Valores incorrectos.\n"
+"Introduce números del 1 al 255 para las dimensiones de tiles y chunks."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:205
 msgid "Save GIF of map..."
@@ -9608,7 +9611,7 @@ msgstr "Ocultar otros"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:117
 msgid "Draw filled rectangles when holding down the left mouse button"
-msgstr ""
+msgstr "Dibuja rectángulos rellenos al mantener clic izquierdo en el ratón"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:167
 msgid "Go to Scenes"
@@ -12093,11 +12096,11 @@ msgstr "Error al aplicar el parche:\n"
 
 #: skytemple/skytemple/module/patch/controller/main.py:130
 msgid "Patch was successfully applied. The ROM will now be reloaded."
-msgstr ""
+msgstr "El parche se ha aplicado correctamente. La ROM se volverá a cargar."
 
 #: skytemple/skytemple/module/patch/controller/main.py:133
 msgid "Not all patches were applied successfully. The ROM will now be reloaded."
-msgstr ""
+msgstr "No todos los parches se han aplicado correctamente. La ROM se volverá a cargar."
 
 #: skytemple/skytemple/module/patch/controller/main.py:184
 msgid "Error loading patch package {os.path.basename(fname)}:\n"
