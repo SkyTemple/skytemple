@@ -43,6 +43,7 @@ KEY_WINDOW_SIZE_X = 'width'
 KEY_WINDOW_SIZE_Y = 'height'
 KEY_WINDOW_POS_X = 'pos_x'
 KEY_WINDOW_POS_Y = 'pos_y'
+KEY_WINDOW_IS_MAX = 'is_max'
 
 KEY_INTEGRATION_DISCORD_DISCORD_ENABLED = 'enabled'
 logger = logging.getLogger(__name__)
