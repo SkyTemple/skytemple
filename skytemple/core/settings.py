@@ -157,7 +157,7 @@ class SkyTempleSettingsStore:
     
     def get_window_maximized(self) -> bool:
         if SECT_WINDOW in self.loaded_config:
-            if KEY_WINDOW_IS_MAX in self.loaded_config[SECT_WINDOW] and self.loaded_config[SECT_WINDOW][KEY_WINDOW_IS_MAX]:
+            if KEY_WINDOW_IS_MAX in self.loaded_config[SECT_WINDOW] and self.loaded_config[SECT_WINDOW][KEY_WINDOW_IS_MAX] == 'True':
                 return True
         return False
     
