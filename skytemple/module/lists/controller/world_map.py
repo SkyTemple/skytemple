@@ -79,8 +79,8 @@ class WorldMapController(AbstractController):
 
         self._init_list()
         self._init_drawer()
-        self._level_id = WORLD_MAP_DEFAULT_ID
-        self._change_map_bg(WORLD_MAP_DEFAULT_ID, self.builder.get_object('draw'), self.drawer)
+        self._level_id = WORLD_MAP_DEFAULT_ID if WORLD_MAP_DEFAULT_ID in self._config.script_data.level_list__by_id else 0
+        self._change_map_bg(self._level_id, self.builder.get_object('draw'), self.drawer)
         self.builder.connect_signals(self)
         return lst
 
