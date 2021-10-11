@@ -273,6 +273,7 @@ class MainController:
     def on_main_window_configure_event__handle(self):
         self.settings.set_window_position(self.window.get_position())
         self.settings.set_window_size(self.window.get_size())
+        self.settings.set_window_maximized(self.window.is_maximized())
         self._resize_timeout_id = None
 
     def on_main_window_state_event(self, w: Gtk.Window, evt: Gdk.EventWindowState):
@@ -536,6 +537,9 @@ class MainController:
         window_position = self.settings.get_window_position()
         if window_position is not None:
             self.window.move(*window_position)
+        window_maximized = self.settings.get_window_maximized()
+        if window_maximized:
+            self.window.maximize()
 
     def _configure_csd(self):
         tb: Gtk.HeaderBar = self.window.get_titlebar()

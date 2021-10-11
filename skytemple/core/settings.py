@@ -43,6 +43,7 @@ KEY_WINDOW_SIZE_X = 'width'
 KEY_WINDOW_SIZE_Y = 'height'
 KEY_WINDOW_POS_X = 'pos_x'
 KEY_WINDOW_POS_Y = 'pos_y'
+KEY_WINDOW_IS_MAX = 'is_max'
 
 KEY_INTEGRATION_DISCORD_DISCORD_ENABLED = 'enabled'
 logger = logging.getLogger(__name__)
@@ -152,6 +153,18 @@ class SkyTempleSettingsStore:
             self.loaded_config[SECT_WINDOW] = {}
         self.loaded_config[SECT_WINDOW][KEY_WINDOW_POS_X] = str(pos[0])
         self.loaded_config[SECT_WINDOW][KEY_WINDOW_POS_Y] = str(pos[1])
+        self._save()
+    
+    def get_window_maximized(self) -> bool:
+        if SECT_WINDOW in self.loaded_config:
+            if KEY_WINDOW_IS_MAX in self.loaded_config[SECT_WINDOW] and self.loaded_config[SECT_WINDOW][KEY_WINDOW_IS_MAX] == 'True':
+                return True
+        return False
+    
+    def set_window_maximized(self, value: bool):
+        if SECT_WINDOW not in self.loaded_config:
+            self.loaded_config[SECT_WINDOW] = {}
+        self.loaded_config[SECT_WINDOW][KEY_WINDOW_IS_MAX] = str(value)
         self._save()
 
     def get_integration_discord_enabled(self) -> bool:
