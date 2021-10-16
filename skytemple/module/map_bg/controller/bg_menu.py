@@ -544,6 +544,8 @@ class BgMenuController:
             pal = self.parent.bpl.palettes[0]
             try:
                 if is_single_mode:
+                    if '.png' not in fn:
+                        fn += '.png'
                     active_bpa.tiles_to_pil(pal).save(fn)
                 else:
                     for i, img in enumerate(active_bpa.tiles_to_pil_separate(pal, 20)):
