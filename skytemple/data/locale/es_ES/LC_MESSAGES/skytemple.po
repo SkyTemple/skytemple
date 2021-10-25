@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-10-11 18:26+0000\n"
-"PO-Revision-Date: 2021-10-11 19:25\n"
+"POT-Creation-Date: 2021-10-25 08:14+0000\n"
+"PO-Revision-Date: 2021-10-25 08:17\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -4163,8 +4163,8 @@ msgstr "El archivo sigue cargado en la memoria RAM. Todavía puede depurarse uti
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:318
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:331
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:487
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:690
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:708
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:692
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:710
 #: skytemple/skytemple/module/script/controller/ssa.py:525
 msgid "Warning!"
 msgstr "¡Advertencia!"
@@ -7405,7 +7405,7 @@ msgid "Export PNG of map..."
 msgstr "Exportar PNG del mapa..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:131
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:738
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:740
 msgid "Export PNG of chunks..."
 msgstr "Exportar PNG de chunks..."
 
@@ -7417,8 +7417,8 @@ msgstr "Error al exportar el tileset."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:177
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:248
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:777
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:839
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:779
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:841
 msgid "An image must be selected."
 msgstr "Se debe seleccionar una imagen."
 
@@ -7429,13 +7429,13 @@ msgid "Error importing the tileset."
 msgstr "Error al importar el tileset."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:205
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:803
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:805
 msgid "Export PNG of tiles..."
 msgstr "Exportar PNG de tiles..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:316
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:485
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:688
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:690
 msgid "Some values were invalid (not a number). They were replaced with 0."
 msgstr "Algunos valores no eran válidos (no son números). Han sido reemplazados por 0."
 
@@ -9514,36 +9514,36 @@ msgstr "Este BPA no tiene fotogramas.\n"
 msgid "Export animated tiles (BPA)"
 msgstr "Exportar tiles animados (BPA)"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:553
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:555
 msgid "The animated tiles were successfully exported."
 msgstr "Los tiles animados se han exportado correctamente."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:554
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:613
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:556
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:615
 msgid "SkyTemple - Success!"
 msgstr "SkyTemple - ¡Éxito!"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:558
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:560
 msgid "Error during BPA export"
 msgstr "Error durante la exportación de BPA"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:571
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:573
 msgid "Import animated tiles (BPA)"
 msgstr "Importar tiles animados (BPA)"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:611
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:613
 msgid "The animated tiles were successfully imported, using the files: "
 msgstr "Los tiles animados se han importado con éxito, utilizando los archivos: "
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:617
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:619
 msgid "Error during BPA import"
 msgstr "Error durante la importación de BPA"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:707
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:709
 msgid "Palette Animation is not enabled."
 msgstr "La animación de paleta no está activada."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:857
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:859
 msgid "This map has no second layer."
 msgstr "Este mapa no tiene segunda capa."
 
