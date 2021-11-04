@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-10-25 08:14+0000\n"
-"PO-Revision-Date: 2021-11-04 10:19\n"
+"PO-Revision-Date: 2021-11-04 12:01\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -5610,7 +5610,7 @@ msgstr "Convertir en image PNG indexée pour PDM2..."
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:141
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5477
 msgid "Map Layer Export"
-msgstr ""
+msgstr "Export du calque de la carte"
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:204
 msgid "This will export the background as one image.\n\n"
@@ -5640,7 +5640,7 @@ msgstr "Détails du format"
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:264
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5978
 msgid "Map Layer Import"
-msgstr ""
+msgstr "Import du calque de la carte"
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:333
 msgid "This will import the entire background from an image.\n\n"
@@ -8828,7 +8828,13 @@ msgid "To add them to the team right away:\n"
 "message_Menu(MENU_ACCEPT_TEAM_MEMBER);\n\n"
 "The menu returns 1 if the player said yes and 0 if they said no.\n"
 "* Please note that for entry no. 16 the player will not be asked, it will always be added to the team."
-msgstr ""
+msgstr "Pour en ajouter sur-le-champ à l'équipe:\n"
+"ProcessSpecial(PROCESS_SPECIAL_ADD_RECRUITABLE_TO_TEAM, XX, 0);\n\n"
+"Pour en ajouter à l'équipe tout en le demandant au joueur*, et lui demande un surnom.\n"
+"ProcessSpecial(PROCESS_SPECIAL_PREPARE_MENU_ACCEPT_TEAM_MEMBER, XX, 0);\n"
+"message_Menu(MENU_ACCEPT_TEAM_MEMBER);\n\n"
+"Le menu retourne 1 si le joueur dit oui et 0 s'il dit non.\n"
+"* La question ne sera pas posé pour l'entrée n°16, car il sera toujours ajouté à l'équipe."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:149
@@ -8976,7 +8982,7 @@ msgstr "Aide pour l'import/export du code d'effet"
 
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:58
 msgid "Special Episode Player Characters"
-msgstr ""
+msgstr "Personnages joueurs des épisodes spéciaux"
 
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:74
 msgid "These are the special player characters used in special episodes.\n"
