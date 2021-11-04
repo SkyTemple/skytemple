@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-10-25 08:14+0000\n"
-"PO-Revision-Date: 2021-11-04 12:01\n"
+"PO-Revision-Date: 2021-11-04 12:57\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -1371,43 +1371,43 @@ msgstr "Aucune correspondance trouvée pour la règle {orig_rule}. Le jeu de tui
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:124
 msgid "One Layer (#00)"
-msgstr "Une couche (#00)"
+msgstr "Un calque (#00)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:125
 msgid "One Layer (#01)"
-msgstr "Une couche (#01)"
+msgstr "Un calque (#01)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:126
 msgid "One Layer (#02)"
-msgstr "Une couche (#02)"
+msgstr "Un calque (#02)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:127
 msgid "One Layer (#03)"
-msgstr "Une couche (#03)"
+msgstr "Un calque (#03)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:128
 msgid "One Layer (#04)"
-msgstr "Une couche (#04)"
+msgstr "Un calque (#04)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:129
 msgid "Two Layers (#05)"
-msgstr "Deux couches (#05)"
+msgstr "Deux calques (#05)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:130
 msgid "Two Layers (#06)"
-msgstr "Deux couches (#06)"
+msgstr "Deux calques (#06)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:131
 msgid "Two Layers (#07)"
-msgstr "Deux couches (#07)"
+msgstr "Deux calques (#07)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:132
 msgid "Two Layers (#08)"
-msgstr "Deux couches (#08)"
+msgstr "Deux calques (#08)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:133
 msgid "Two Layers (#09)"
-msgstr "Deux couches (#09)"
+msgstr "Deux calques (#09)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:134
 msgid "Dungeon Tileset (#10)"
@@ -5483,7 +5483,7 @@ msgstr "Les pixels de cette couleur exacte seront considérés comme transparent
 
 #: skytemple/skytemple/controller/tilequant.py:87
 msgid "You can use this to convert multiple images at once with the same palettes. This is useful for map backgrounds with multiple layers, that need to share the same palettes."
-msgstr "Vous pouvez utiliser ceci pour convertir plusieurs images à la fois avec les mêmes palettes. C'est utilise pour les arrière-plan avec plusieurs couches, qui doivent partager les mêmes palettes."
+msgstr "Vous pouvez utiliser cet outil pour convertir plusieurs images à la fois avec les mêmes palettes. C'est utile pour les arrière-plan avec plusieurs calques, qui doivent partager les mêmes palettes."
 
 #: skytemple/skytemple/controller/tilequant.py:93
 msgid "Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they \"blend into\" each other. This will make the image look like it contains more colors but also might decrease the overall visual quality. Two different algorithms are available.\n\n"
@@ -5936,7 +5936,7 @@ msgstr ":"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:353
 msgid "Hide Info Layer"
-msgstr "Cache la couche d'information"
+msgstr "Cache le calque d'information"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:367
 msgid "Show Tile Info"
@@ -7457,7 +7457,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:81
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:174
 msgid "Enable Palette Animations for Palette 10"
-msgstr ""
+msgstr "Activer l'animation de la palette n°10"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:130
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:621
@@ -7581,7 +7581,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:572
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:665
 msgid "Enable Palette Animations for Palette 11"
-msgstr ""
+msgstr "Activer l'animation de la palette n°11"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1099
 msgid "Export Background to Image..."
@@ -7654,12 +7654,12 @@ msgstr "Paramètres des animations"
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1231
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1609
 msgid "Edit Animation Palette 10"
-msgstr ""
+msgstr "Éditer la palette animé n°10"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1240
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1618
 msgid "Edit Animation Palette 11"
-msgstr ""
+msgstr "Éditer la palette animé N°11"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1317
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:34
@@ -8223,7 +8223,9 @@ msgstr ""
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ActorAndLevelLoader\" \n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<Indisponible>\n\n"
+"Pour voir et éditer cette liste, appliquer le correctif\n"
+"« ActorAndLevelLoader » depuis le menu « correctif ASM »."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:654
@@ -8987,7 +8989,8 @@ msgstr "Personnages joueurs des épisodes spéciaux"
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:74
 msgid "These are the special player characters used in special episodes.\n"
 "What entry is used when depends on the special episode and is hardcoded."
-msgstr ""
+msgstr "Ces la liste des des personnages joueurs spéciaux utilisé dans les épisodes spéciaux.\n"
+"L'usage des entrées dépends de l'épisode spécial et est codée en dur."
 
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:226
 msgid "Not all moves are fixed"
@@ -9307,7 +9310,8 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/bg.py:690
 msgid "This map only has one layer.\n"
 "You can add a second layer at Map > Settings."
-msgstr ""
+msgstr "Cette carte ne dispose que d'un calque.\n"
+"Vous pouvez ajouter un second calque dans Carte > Paramètres."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:711
 msgid "This map has no collision.\n"
@@ -9317,12 +9321,14 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/bg.py:720
 msgid "This map has no second collision layer.\n"
 "You can add a second collision layer at Map > Settings."
-msgstr ""
+msgstr "Cette carte n'a pas de second calque de collision.\n"
+"Vous pouvez ajoutez un second calque de collision via Carte > Paramètres."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:740
 msgid "This map has no data layer.\n"
 "You can add a data layer at Map > Settings."
-msgstr ""
+msgstr "Cette carte n'a pas de calque de donné.\n"
+"Vous pouvez un calque de donné via Carte > Paramètres."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:874
 msgid "Map backgrounds can be used as primary or secondary.\n"
@@ -9389,7 +9395,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:859
 msgid "This map has no second layer."
-msgstr ""
+msgstr "Cette carte n'a pas de second calque."
 
 #: skytemple/skytemple/module/map_bg/controller/folder.py:31
 #, python-brace-format
@@ -9446,7 +9452,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:92
 msgid "Hide Other Layers"
-msgstr ""
+msgstr "Cache les autres calques"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:93
 msgid "Hide Other"
@@ -9599,7 +9605,9 @@ msgstr "Nombre de calques "
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2508
 msgid "Decreasing the number of layers will remove\n"
 "all tiles and chunks of the upper layer."
-msgstr ""
+msgstr "Réduire le nombre de calque supprimera\n"
+"toutes les tuiles et fragments du calque\n"
+"supérieur."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2522
 msgid "NOTE: The number of layers for the level that uses this\n"
@@ -9608,11 +9616,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2554
 msgid "Number of Collision Layers"
-msgstr ""
+msgstr "Nombre de calques de collision"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2600
 msgid "Has Data Layer?"
-msgstr ""
+msgstr "Possède un calque de donné ?"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2639
 msgid "Import/Export Animated Tiles "
@@ -9785,13 +9793,13 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4539
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4741
 msgid "Layer 1"
-msgstr ""
+msgstr "Calque 1"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4479
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4571
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4764
 msgid "Layer 2"
-msgstr ""
+msgstr "Calque 2"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4549
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4581
@@ -9825,7 +9833,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4836
 msgid "Data Layer"
-msgstr ""
+msgstr "Calque de donnée"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4859
 msgid "BMA Filename:"
@@ -9913,10 +9921,10 @@ msgid "This will export all chunks of the selected layer.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr "Ceci exportera toutes les fragments de la couche selectionné.\n\n"
+msgstr "Ceci exportera tout les fragments du calque sélectionné.\n\n"
 "Vous pouvez modifier et importer le fragment à nouveau.\n"
-"Noter que vous pourriez avoir besoin de le convertir avant \n"
-"de pouvoir l'utiliser. \n"
+"Noter que vous pourriez avoir besoin de le convertir à\n"
+"nouveau avant de pouvoir l'utiliser. \n"
 "Regardez la boite de dialogue d'importation pour plus d'information."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5540
@@ -9927,7 +9935,7 @@ msgid "This will export the entire map as one or two images,\n"
 "to use it. \n"
 "See the import dialog for more information."
 msgstr "Ceci exportera la carte entière en une ou deux image,\n"
-"selon le nombre de couches.\n\n"
+"selon le nombre de calque.\n\n"
 "Vous pouvez modifier, puis importer le·s image·s d'arrière-plan\n"
 "à nouveau.\n"
 "Noter que vous pourriez avoir besoin de la convertir pour\n"
@@ -9940,7 +9948,7 @@ msgid "This will export all tiles of the selected layer.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr "Ceci exportera toutes les tuiles de la couche selectionné.\n\n"
+msgstr "Ceci exportera toutes les tuiles du calque sélectionné.\n\n"
 "Vous pourriez l'éditer, puis les ré-importer.\n"
 "Noter que vous pourriez avoir à les convertir pour\n"
 "pouvoir les utiliser. \n"
@@ -9951,7 +9959,7 @@ msgid "This will import the chunks for the selected layer\n"
 "using an image. The existing mappings are replaced.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr "Cela importera les fragments dans la couche sélectionné\n"
+msgstr "Cela importera les fragments dans le calque sélectionné\n"
 "en utilisant une image. Les cartographie existants seront\n"
 "remplacés.\n\n"
 "Vous devrez peut-être convertir l'image d'entrée avant de\n"
@@ -9963,7 +9971,7 @@ msgid "This will import the entire map from one image\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
 msgstr "Cela importera la carte complète avec une image par\n"
-"couche.\n\n"
+"calque.\n\n"
 "Vous devrez peut-être convertir les images d'entrée avant de\n"
 "pouvoir l'importer. Regardez les \"Détails du format\"."
 
@@ -11458,8 +11466,8 @@ msgid "<Not available>\n\n"
 "To view and edit item effects, please apply the \"ExtractItemCode\"\n"
 "ASM patch from the \"ASM Patches\" menu."
 msgstr "<Indisponible>\n\n"
-"Pour voir et éditer les effets des objets, appliquer le patch assembleur\n"
-"« ExtractItemCode » dans le menu « Patch ASM »."
+"Pour voir et éditer les effets des objets, appliquer le correctif assembleur\n"
+"« ExtractItemCode » depuis le menu « Correctif ASM »."
 
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:169
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:178
@@ -11933,7 +11941,7 @@ msgstr "Etat"
 
 #: skytemple/skytemple/module/patch/module.py:44
 msgid "ASM Patches"
-msgstr "ASM Patches"
+msgstr "Correctif ASM"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:231
 msgid "... from separate images"
@@ -12286,7 +12294,7 @@ msgstr "Evènements"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1008
 msgid "Sectors (Layers)"
-msgstr "Secteurs (Couches)"
+msgstr "Secteurs (Calques)"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1064
 msgid "Edit Script"
