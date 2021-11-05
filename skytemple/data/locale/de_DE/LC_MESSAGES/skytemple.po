@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-10-25 08:14+0000\n"
-"PO-Revision-Date: 2021-10-25 08:17\n"
+"POT-Creation-Date: 2021-11-05 14:44+0000\n"
+"PO-Revision-Date: 2021-11-05 14:57\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3813,6 +3813,10 @@ msgstr "Optimiert die Art und Weise, wie die Liste der von jeder IQ-Gruppe erler
 msgid "Disables the tip textboxes shown in dungeons at the beginning of the game."
 msgstr "Deaktiviert die Tipp-Textboxen die in Dungeons angezeigt werden am Anfang des Spiels."
 
+#: skytemple-files/skytemple_files/patch/handler/disarm_one_room_mh.py:36
+msgid "Disarms one-room Monster House floors, which can appear in cases like a layout generation failure. These floors will still be one giant room, but will no longer be Monster Houses."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:43
 msgid "Implements dungeon interruptions. "
 msgstr "Implementiert Dungeon-Unterbrechungen. "
@@ -3966,72 +3970,72 @@ msgstr "Bietet Unterstützung für ATUPX Container, welche einen andere Komprimi
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr "Korrigierte die 'unbenutzte' Chance für Dungeons. Sie wird nun benutzt um zu ermitteln, ob ein Raum in der Ebene nun ein Labyrinth aus Wänden beinhaltet, mit einigen Kacheln ersetzt mit dem sekundären Terrain."
 
-#: skytemple-files/skytemple_files/patch/patches.py:140
-#: skytemple-files/skytemple_files/patch/patches.py:150
+#: skytemple-files/skytemple_files/patch/patches.py:142
+#: skytemple-files/skytemple_files/patch/patches.py:152
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "Der Patch '{name}' wurde nicht gefunden."
 
-#: skytemple-files/skytemple_files/patch/patches.py:156
+#: skytemple-files/skytemple_files/patch/patches.py:158
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "Der Patch '{patch_name}' muss angewendet werden, bevor du '{name} ' anwenden kannst."
 
-#: skytemple-files/skytemple_files/patch/patches.py:159
+#: skytemple-files/skytemple_files/patch/patches.py:161
 #: skytemple/skytemple/module/patch/controller/main.py:229
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr "Der Patch '{patch_name}' muss angewendet werden, bevor du '{name} ' anwenden kannst. Dieser Patch wurde nicht gefunden."
 
-#: skytemple-files/skytemple_files/patch/patches.py:166
+#: skytemple-files/skytemple_files/patch/patches.py:168
 msgid "No configuration was given."
 msgstr "Es wurde keine Konfiguration angegeben."
 
-#: skytemple-files/skytemple_files/patch/patches.py:169
+#: skytemple-files/skytemple_files/patch/patches.py:171
 msgid "Missing configuration value."
 msgstr "Fehlender Konfigurationswert."
 
-#: skytemple-files/skytemple_files/patch/patches.py:173
 #: skytemple-files/skytemple_files/patch/patches.py:175
 #: skytemple-files/skytemple_files/patch/patches.py:177
-#: skytemple-files/skytemple_files/patch/patches.py:181
-#: skytemple-files/skytemple_files/patch/patches.py:191
+#: skytemple-files/skytemple_files/patch/patches.py:179
+#: skytemple-files/skytemple_files/patch/patches.py:183
+#: skytemple-files/skytemple_files/patch/patches.py:193
 msgid "Invalid configuration value."
 msgstr "Ungültiger Konfigurationswert."
 
-#: skytemple-files/skytemple_files/patch/patches.py:175
+#: skytemple-files/skytemple_files/patch/patches.py:177
 msgid "Must be >= {}."
 msgstr "Muss >= {} sein."
 
-#: skytemple-files/skytemple_files/patch/patches.py:177
+#: skytemple-files/skytemple_files/patch/patches.py:179
 msgid "Must be <= {}."
 msgstr "Muss <= {} sein."
 
-#: skytemple-files/skytemple_files/patch/patches.py:225
+#: skytemple-files/skytemple_files/patch/patches.py:227
 msgid "config.xml missing in patch package."
 msgstr "config.xml fehlt im Patch-Paket."
 
-#: skytemple-files/skytemple_files/patch/patches.py:227
+#: skytemple-files/skytemple_files/patch/patches.py:229
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "Syntax-Fehler in der config.xml des Patch-Paketes."
 
-#: skytemple-files/skytemple_files/patch/patches.py:237
+#: skytemple-files/skytemple_files/patch/patches.py:239
 msgid "patch.py missing in patch package."
 msgstr "patch.py fehlt im Patch-Paket."
 
-#: skytemple-files/skytemple_files/patch/patches.py:239
+#: skytemple-files/skytemple_files/patch/patches.py:241
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr "Die patch.py von diesem Patch-Paket enthält einen Syntaxfehler."
 
-#: skytemple-files/skytemple_files/patch/patches.py:244
+#: skytemple-files/skytemple_files/patch/patches.py:246
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "Die patch.py des Patch-Paketes enthält keinen 'PatchHandler'."
 
-#: skytemple-files/skytemple_files/patch/patches.py:249
+#: skytemple-files/skytemple_files/patch/patches.py:251
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "Das Patch-Paket enthält keinen Eintrag für den Namen des Handlers in der config.xml."
 
-#: skytemple-files/skytemple_files/patch/patches.py:255
+#: skytemple-files/skytemple_files/patch/patches.py:257
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "Kein Patch für Handler '{handler.name}' gefunden in der Konfiguration."
