@@ -63,6 +63,7 @@ additional_binaries = [
     (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "bin", "libhunspell-1.7-0.dll"), '.'),
     (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "bin", "libcrypto-1_1*.dll"), '.'),
     (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "bin", "libssl-1_1*.dll"), '.'),
+    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "bin", "libraqm-0.dll"), '.'),
 ]
 
 if mingw == 'mingw64':

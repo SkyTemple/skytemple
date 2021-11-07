@@ -105,6 +105,7 @@ jobs:
             mingw-w64-${{ matrix.arch }}-hunspell
             mingw-w64-${{ matrix.arch }}-hunspell-en
             mingw-w64-${{ matrix.arch }}-openssl
+            mingw-w64-${{ matrix.arch }}-libraqm
       - name: Checkout
         uses: actions/checkout@v2
       - name: Rewrite version for dev if not tag
