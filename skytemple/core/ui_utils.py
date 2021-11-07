@@ -153,12 +153,19 @@ def make_builder(gui_file) -> Gtk.Builder:
                 node.text = _(node.text)
         with NamedTemporaryFile() as temp_file:
             tree.write(temp_file.file, encoding='utf-8', xml_declaration=True)
-            return Gtk.Builder.new_from_file(temp_file.name)
+            builder = Gtk.Builder.new_from_file(temp_file.name)
     else:
         builder = Gtk.Builder()
         builder.set_translation_domain(APP)
         builder.add_from_file(gui_file)
-        return builder
+
+    # TODO: A bit of a dirty quickfix to make all switches look better
+    for object in builder.get_objects():
+        if isinstance(object, Gtk.Switch):
+            object.set_halign(Gtk.Align.CENTER)
+            object.set_valign(Gtk.Align.CENTER)
+
+    return builder
 
 
 GDK_BACKEND_BROADWAY = 'broadway'
