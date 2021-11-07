@@ -812,11 +812,11 @@ class BgMenuController:
 
             response = dialog.run()
             fn = dialog.get_filename()
-            if '.' not in fn:
-                fn += '.png'
             dialog.destroy()
 
             if response == Gtk.ResponseType.ACCEPT:
+                if '.' not in fn:
+                    fn += '.png'
                 self.parent.bpc.tiles_to_pil(layer, self.parent.bpl.palettes, 20).save(fn)
 
     def _import_tiles(self, layer):
