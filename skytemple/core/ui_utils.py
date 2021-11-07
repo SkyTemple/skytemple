@@ -20,6 +20,7 @@ import os
 import pathlib
 import sys
 from io import BytesIO
+from tempfile import NamedTemporaryFile
 from xml.etree import ElementTree
 
 import gi
@@ -150,10 +151,9 @@ def make_builder(gui_file) -> Gtk.Builder:
         for node in tree.iter():
             if 'translatable' in node.attrib:
                 node.text = _(node.text)
-        temp_file = BytesIO()
-        tree.write(temp_file, encoding='utf-8', xml_declaration=True)
-        xml_text = temp_file.getvalue().decode()
-        return Gtk.Builder.new_from_string(xml_text, len(xml_text))
+        with NamedTemporaryFile() as temp_file:
+            tree.write(temp_file.file, encoding='utf-8', xml_declaration=True)
+            return Gtk.Builder.new_from_file(temp_file.name)
     else:
         builder = Gtk.Builder()
         builder.set_translation_domain(APP)
