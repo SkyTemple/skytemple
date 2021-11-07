@@ -125,9 +125,11 @@ jobs:
           # Download armips and other binary depedencies
           ./download-windows-dependencies.sh ${{ matrix.arch }}
 
-          # Download and prepare the Arc theme
+          # Install themes
           curl https://skytemple.org/build_deps/Arc.zip -O
           unzip Arc.zip
+          curl https://skytemple.org/build_deps/ZorinGrey.zip -O
+          unzip ZorinGrey.zip
 
           # Install NSIS
           curl https://skytemple.org/build_deps/nsis.zip -O
@@ -189,6 +191,8 @@ jobs:
           # Install themes
           curl https://skytemple.org/build_deps/Arc.zip -O
           unzip Arc.zip > /dev/null
+          curl https://skytemple.org/build_deps/ZorinGrey.zip -O
+          unzip ZorinGrey.zip > /dev/null
 
           # Download armips
           curl https://skytemple.org/build_deps/mac/armips -O

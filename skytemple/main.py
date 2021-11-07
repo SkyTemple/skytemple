@@ -197,7 +197,21 @@ def main():
 
 def _load_theme(settings: SkyTempleSettingsStore):
     gtk_settings = Gtk.Settings.get_default()
-    gtk_settings.set_property("gtk-theme-name", settings.get_gtk_theme(default='Arc-Dark'))
+    theme = settings.get_gtk_theme()
+    if theme is None:
+        theme = 'Arc-Dark'
+        if sys.platform.startswith('win'):
+            from skytemple_files.common.platform_utils.win import win_use_light_theme
+            theme = 'ZorinGrey-Light'
+            if not win_use_light_theme():
+                theme = 'ZorinGrey-Dark'
+        if sys.platform.startswith('darwin'):
+            from skytemple_files.common.platform_utils.macos import macos_use_light_theme
+            theme = 'ZorinGrey-Light'
+            if not macos_use_light_theme():
+                theme = 'ZorinGrey-Dark'
+    gtk_settings.set_property("gtk-theme-name", theme)
+
 
 if __name__ == '__main__':
     # TODO: At the moment doesn't support any cli arguments.

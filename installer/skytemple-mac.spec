@@ -32,6 +32,8 @@ additional_datas = [
     # Themes
     ('Arc', 'share/themes/Arc'),
     ('Arc-Dark', 'share/themes/Arc-Dark'),
+    ('ZorinGrey-Light', 'share/themes/ZorinGrey-Light'),
+    ('ZorinGrey-Dark', 'share/themes/ZorinGrey-Dark'),
 ]
 
 additional_binaries = [
