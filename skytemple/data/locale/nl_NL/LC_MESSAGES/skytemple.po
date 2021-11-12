@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-09-19 10:42+0000\n"
-"PO-Revision-Date: 2021-09-19 11:38\n"
+"POT-Creation-Date: 2021-11-07 17:56+0000\n"
+"PO-Revision-Date: 2021-11-07 18:03\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -1503,6 +1503,73 @@ msgstr ""
 msgid "Invalid XML. Expected attribute {attrib} for XML tag {ele.tag}."
 msgstr ""
 
+#: skytemple-files/skytemple_files/data/anim/model.py:26
+msgid "Head"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:27
+msgid "Left Hand"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:28
+msgid "Right Hand"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:29
+msgid "Center"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:30
+#: skytemple-files/skytemple_files/data/item_s_p/model.py:29
+#: skytemple-files/skytemple_files/data/md/model.py:63
+#: skytemple-files/skytemple_files/data/md/model.py:316
+#: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:514
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:515
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:439
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:448
+#: skytemple/skytemple/module/map_bg/controller/bg.py:660
+#: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:203
+#: skytemple/skytemple/module/script/controller/main.py:242
+#: skytemple/skytemple/module/script/controller/main.py:243
+#: skytemple/skytemple/module/script/controller/ssa.py:1242
+#: skytemple/skytemple/module/script/controller/ssa.py:1356
+#: skytemple/skytemple/module/script/controller/ssa.py:1525
+#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:52
+msgid "None"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:44
+#: skytemple-files/skytemple_files/data/md/model.py:37
+#: skytemple-files/skytemple_files/data/md/model.py:266
+#: skytemple/skytemple/module/dungeon/controller/floor.py:91
+msgid "Invalid"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:45
+msgid "WAN File 0"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:46
+msgid "WAN File 1"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:47
+msgid "WAN"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:48
+msgid "WAT"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:49
+msgid "Screen"
+msgstr ""
+
+#: skytemple-files/skytemple_files/data/anim/model.py:50
+msgid "WBA"
+msgstr ""
+
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:59
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:146
 msgid "ARMIPS could not be found. Make sure, that 'armips' is inside your system's PATH."
@@ -1546,31 +1613,13 @@ msgstr ""
 msgid "Scenario Greater or Equal"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/item_s_p/model.py:29
-#: skytemple-files/skytemple_files/data/md/model.py:63
-#: skytemple-files/skytemple_files/data/md/model.py:316
-#: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:514
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:515
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:439
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:448
-#: skytemple/skytemple/module/map_bg/controller/bg.py:629
-#: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:203
-#: skytemple/skytemple/module/script/controller/main.py:242
-#: skytemple/skytemple/module/script/controller/main.py:243
-#: skytemple/skytemple/module/script/controller/ssa.py:1242
-#: skytemple/skytemple/module/script/controller/ssa.py:1356
-#: skytemple/skytemple/module/script/controller/ssa.py:1525
-#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:52
-msgid "None"
-msgstr ""
-
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:30
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:346
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:915
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1040
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3220
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:216
+#: skytemple/skytemple/module/lists/controller/animations.glade:967
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:98
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:114
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:447
@@ -1600,12 +1649,6 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:62
 msgid "? (Only all the Eeveelutions, and the Tyrogue line have items with this type!)"
-msgstr ""
-
-#: skytemple-files/skytemple_files/data/md/model.py:37
-#: skytemple-files/skytemple_files/data/md/model.py:266
-#: skytemple/skytemple/module/dungeon/controller/floor.py:91
-msgid "Invalid"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/model.py:38
@@ -2258,7 +2301,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:584
 #: skytemple/skytemple/module/lists/controller/iq.glade:48
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:239
-#: skytemple/skytemple/module/lists/module.py:133
+#: skytemple/skytemple/module/lists/module.py:139
 msgid "IQ"
 msgstr ""
 
@@ -2266,6 +2309,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:874
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5353
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:63
+#: skytemple/skytemple/module/lists/controller/animations.glade:1227
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2107
 #: skytemple/skytemple/module/moves_items/controller/main_items.py:23
 msgid "Items"
@@ -3758,6 +3802,10 @@ msgstr ""
 msgid "Disables the tip textboxes shown in dungeons at the beginning of the game."
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/disarm_one_room_mh.py:36
+msgid "Disarms one-room Monster House floors, which can appear in cases like a layout generation failure. These floors will still be one giant room, but will no longer be Monster Houses."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:43
 msgid "Implements dungeon interruptions. "
 msgstr ""
@@ -3893,72 +3941,72 @@ msgstr ""
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:140
-#: skytemple-files/skytemple_files/patch/patches.py:150
+#: skytemple-files/skytemple_files/patch/patches.py:142
+#: skytemple-files/skytemple_files/patch/patches.py:152
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:156
+#: skytemple-files/skytemple_files/patch/patches.py:158
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:159
-#: skytemple/skytemple/module/patch/controller/main.py:225
+#: skytemple-files/skytemple_files/patch/patches.py:161
+#: skytemple/skytemple/module/patch/controller/main.py:229
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:166
+#: skytemple-files/skytemple_files/patch/patches.py:168
 msgid "No configuration was given."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:169
+#: skytemple-files/skytemple_files/patch/patches.py:171
 msgid "Missing configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:173
 #: skytemple-files/skytemple_files/patch/patches.py:175
 #: skytemple-files/skytemple_files/patch/patches.py:177
-#: skytemple-files/skytemple_files/patch/patches.py:181
-#: skytemple-files/skytemple_files/patch/patches.py:191
+#: skytemple-files/skytemple_files/patch/patches.py:179
+#: skytemple-files/skytemple_files/patch/patches.py:183
+#: skytemple-files/skytemple_files/patch/patches.py:193
 msgid "Invalid configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:175
+#: skytemple-files/skytemple_files/patch/patches.py:177
 msgid "Must be >= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:177
+#: skytemple-files/skytemple_files/patch/patches.py:179
 msgid "Must be <= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:225
+#: skytemple-files/skytemple_files/patch/patches.py:227
 msgid "config.xml missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:227
+#: skytemple-files/skytemple_files/patch/patches.py:229
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:237
+#: skytemple-files/skytemple_files/patch/patches.py:239
 msgid "patch.py missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:239
+#: skytemple-files/skytemple_files/patch/patches.py:241
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:244
+#: skytemple-files/skytemple_files/patch/patches.py:246
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:249
+#: skytemple-files/skytemple_files/patch/patches.py:251
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:255
+#: skytemple-files/skytemple_files/patch/patches.py:257
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
@@ -4041,7 +4089,7 @@ msgid "Do you want to save changes to {filename}?"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:322
-#: skytemple/skytemple/controller/main.py:769
+#: skytemple/skytemple/controller/main.py:783
 msgid "Don't Save"
 msgstr ""
 
@@ -4054,7 +4102,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:965
 #: skytemple/skytemple/_i18n.py:50
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:89
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:245
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:248
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:78
 #: skytemple/skytemple/module/misc_graphics/controller/chr.py:68
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:74
@@ -4069,7 +4117,7 @@ msgid "_Save"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:326
-#: skytemple/skytemple/controller/main.py:773
+#: skytemple/skytemple/controller/main.py:787
 msgid "If you don't save, your changes will be lost."
 msgstr ""
 
@@ -4085,9 +4133,9 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:416
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:318
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:331
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:484
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:687
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:705
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:487
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:692
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:710
 #: skytemple/skytemple/module/script/controller/ssa.py:525
 msgid "Warning!"
 msgstr ""
@@ -4135,6 +4183,9 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/main.glade:417
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:102
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:171
+#: skytemple/skytemple/module/lists/controller/animations.glade:325
+#: skytemple/skytemple/module/lists/controller/animations.glade:579
+#: skytemple/skytemple/module/lists/controller/animations.glade:955
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:132
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:187
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:303
@@ -4209,7 +4260,7 @@ msgid "<Global>"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:239
-#: skytemple/skytemple/module/lists/module.py:97
+#: skytemple/skytemple/module/lists/module.py:100
 #: skytemple/skytemple/module/script/controller/ssa.glade:1302
 #: skytemple/skytemple/module/script/controller/ssa.glade:1330
 msgid "Actors"
@@ -4242,6 +4293,9 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:222
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:113
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:184
+#: skytemple/skytemple/module/lists/controller/animations.glade:591
+#: skytemple/skytemple/module/lists/controller/animations.glade:1122
+#: skytemple/skytemple/module/lists/controller/animations.glade:1179
 #: skytemple/skytemple/module/lists/controller/iq.glade:84
 #: skytemple/skytemple/module/lists/controller/iq.glade:118
 #: skytemple/skytemple/module/lists/controller/iq.glade:177
@@ -4268,7 +4322,7 @@ msgid "Value"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:150
-#: skytemple/skytemple/core/ui_utils.py:69
+#: skytemple/skytemple/core/ui_utils.py:70
 msgid "Nintendo DS ROMs (*.nds)"
 msgstr ""
 
@@ -4430,7 +4484,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1626
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1637
-#: skytemple/skytemple/controller/main.py:771
+#: skytemple/skytemple/controller/main.py:785
 #: skytemple/skytemple/module/map_bg/controller/main.py:105
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:43
 #: skytemple/skytemple/module/script/controller/main.py:190
@@ -4566,7 +4620,7 @@ msgid "Step Next"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:143
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:143
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:165
 msgid "Edit the scene with the same name as the map background"
 msgstr ""
 
@@ -4819,7 +4873,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1089
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2762
-#: skytemple/skytemple/controller/main.py:772
+#: skytemple/skytemple/controller/main.py:786
 #: skytemple/skytemple/skytemple.glade:1147
 msgid "Save"
 msgstr ""
@@ -4965,6 +5019,12 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2356
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:288
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:310
+#: skytemple/skytemple/module/lists/controller/animations.glade:495
+#: skytemple/skytemple/module/lists/controller/animations.glade:517
+#: skytemple/skytemple/module/lists/controller/animations.glade:828
+#: skytemple/skytemple/module/lists/controller/animations.glade:850
+#: skytemple/skytemple/module/lists/controller/animations.glade:1044
+#: skytemple/skytemple/module/lists/controller/animations.glade:1066
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:386
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:408
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:356
@@ -5038,6 +5098,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3047
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:212
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:105
+#: skytemple/skytemple/module/lists/controller/animations.glade:250
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:142
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:806
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:125
@@ -5299,48 +5360,48 @@ msgstr ""
 msgid "Zoom _Out"
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:237
+#: skytemple/skytemple/controller/main.py:244
 msgid "Open ROM..."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:342
+#: skytemple/skytemple/controller/main.py:350
 msgid "Error opening the ROM"
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:364
+#: skytemple/skytemple/controller/main.py:375
 msgid "Error saving the ROM"
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:484
+#: skytemple/skytemple/controller/main.py:495
 msgid "A project must be opened to use this."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:564
-#: skytemple/skytemple/controller/main.py:565
+#: skytemple/skytemple/controller/main.py:578
+#: skytemple/skytemple/controller/main.py:579
 msgid "Open a ROM"
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:590
+#: skytemple/skytemple/controller/main.py:604
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:592
+#: skytemple/skytemple/controller/main.py:606
 #, python-brace-format
 msgid "Opening {filename}."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:752
+#: skytemple/skytemple/controller/main.py:766
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:754
+#: skytemple/skytemple/controller/main.py:768
 #, python-brace-format
 msgid "Saving {rom.filename}."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:767
+#: skytemple/skytemple/controller/main.py:781
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
 msgstr ""
@@ -5358,7 +5419,7 @@ msgid "You need to restart SkyTemple to apply some of the settings."
 msgstr ""
 
 #: skytemple/skytemple/controller/tilequant.py:54
-#: skytemple/skytemple/core/ui_utils.py:90
+#: skytemple/skytemple/core/ui_utils.py:91
 msgid "PNG image (*.png)"
 msgstr ""
 
@@ -5367,7 +5428,7 @@ msgid "JPEG image (*.jpg, *.jpeg)"
 msgstr ""
 
 #: skytemple/skytemple/controller/tilequant.py:65
-#: skytemple/skytemple/core/ui_utils.py:75
+#: skytemple/skytemple/core/ui_utils.py:76
 #: skytemple/skytemple/module/monster/controller/level_up.py:541
 msgid "Any files"
 msgstr ""
@@ -5453,7 +5514,7 @@ msgstr ""
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:143
 #: skytemple/skytemple/core/ssb_debugger/context.py:157
-#: skytemple/skytemple/module/map_bg/controller/bg.py:356
+#: skytemple/skytemple/module/map_bg/controller/bg.py:387
 msgid "No Scenes Found"
 msgstr ""
 
@@ -5461,15 +5522,15 @@ msgstr ""
 msgid "SkyTemple Script Engine Debugger - Error!"
 msgstr ""
 
-#: skytemple/skytemple/core/ui_utils.py:82
+#: skytemple/skytemple/core/ui_utils.py:83
 msgid "GIF image (*.gif)"
 msgstr ""
 
-#: skytemple/skytemple/core/ui_utils.py:98
+#: skytemple/skytemple/core/ui_utils.py:99
 msgid "XML document (*.xml)"
 msgstr ""
 
-#: skytemple/skytemple/core/ui_utils.py:106
+#: skytemple/skytemple/core/ui_utils.py:107
 msgid "CSV file (*.csv)"
 msgstr ""
 
@@ -5493,19 +5554,19 @@ msgstr ""
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:66
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1252
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1631
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4669
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4691
 msgid "Tools"
 msgstr ""
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:76
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1262
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1641
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4679
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4701
 msgid "Convert image to PMD2 indexed PNG..."
 msgstr ""
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:141
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5455
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5477
 msgid "Map Layer Export"
 msgstr ""
 
@@ -5525,17 +5586,17 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2015
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2240
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2427
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5418
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5534
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5649
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5835
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6061
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6287
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5440
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5556
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5671
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5857
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6083
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6309
 msgid "Format Details"
 msgstr ""
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:264
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5956
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5978
 msgid "Map Layer Import"
 msgstr ""
 
@@ -5549,9 +5610,9 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1998
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2223
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2410
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5818
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6044
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6270
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5840
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6066
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6292
 msgid "Converter"
 msgstr ""
 
@@ -5772,6 +5833,7 @@ msgid "Move / Select"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:167
+#: skytemple/skytemple/module/lists/controller/animations.glade:883
 #: skytemple/skytemple/module/monster/controller/level_up.glade:430
 #: skytemple/skytemple/module/monster/controller/level_up.glade:550
 #: skytemple/skytemple/module/monster/controller/level_up.glade:670
@@ -5933,6 +5995,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3117
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:250
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:429
+#: skytemple/skytemple/module/lists/controller/animations.glade:1253
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:451
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:191
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:803
@@ -5988,6 +6051,7 @@ msgid "Trap Layer Legend"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1183
+#: skytemple/skytemple/module/lists/controller/animations.glade:550
 #: skytemple/skytemple/module/monster/controller/monster.glade:1537
 #: skytemple/skytemple/module/moves_items/controller/item.glade:933
 #: skytemple/skytemple/module/moves_items/controller/move.glade:767
@@ -6071,8 +6135,8 @@ msgid "PLEASE NOTE: \n"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1812
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4326
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4591
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4348
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4613
 #: skytemple/skytemple/module/monster/controller/monster.glade:3478
 msgid "Settings"
 msgstr ""
@@ -6288,7 +6352,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1360
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1546
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:77
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4508
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4530
 msgid "Tiles"
 msgstr ""
 
@@ -6500,7 +6564,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:50
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1357
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:167
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2879
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2901
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.glade:34
 #: skytemple/skytemple/module/misc_graphics/controller/chr.glade:34
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:122
@@ -6521,7 +6585,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:65
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1402
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:182
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2865
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2887
 #: skytemple/skytemple/module/misc_graphics/controller/cart_removed.glade:49
 #: skytemple/skytemple/module/misc_graphics/controller/chr.glade:49
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:137
@@ -6752,6 +6816,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3605
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:65
+#: skytemple/skytemple/module/lists/controller/animations.glade:1156
 msgid "Traps"
 msgstr ""
 
@@ -7213,7 +7278,7 @@ msgid "Export PNG of map..."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:131
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:735
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:740
 msgid "Export PNG of chunks..."
 msgstr ""
 
@@ -7225,8 +7290,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:177
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:248
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:774
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:836
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:779
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:841
 msgid "An image must be selected."
 msgstr ""
 
@@ -7237,13 +7302,13 @@ msgid "Error importing the tileset."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:205
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:800
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:805
 msgid "Export PNG of tiles..."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:316
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:482
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:685
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:485
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:690
 msgid "Some values were invalid (not a number). They were replaced with 0."
 msgstr ""
 
@@ -7299,7 +7364,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:13
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:106
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:393
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:415
 msgid "Palette Animation Settings"
 msgstr ""
 
@@ -7445,32 +7510,32 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1439
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1500
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:60
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:351
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4401
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:373
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4423
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:165
 msgid "Chunks"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1130
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1509
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4420
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4467
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4442
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4489
 msgid "Edit Chunks"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1145
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1524
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1555
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4435
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4482
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4457
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4504
 msgid "Export to Image..."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1154
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1533
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1564
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4444
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4491
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4466
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4513
 msgid "Import from Image..."
 msgstr ""
 
@@ -7484,19 +7549,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1198
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1577
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4623
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4645
 msgid "Palettes"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1207
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1586
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4632
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4654
 msgid "Edit Palettes"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1222
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1601
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4647
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4669
 msgid "Animation Settings"
 msgstr ""
 
@@ -7521,18 +7586,18 @@ msgid "Show Chunks Grid"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1385
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:117
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:139
 msgid "Toggle Background Color"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1387
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:119
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:141
 msgid "BG Color"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1534
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1173
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5571
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5593
 msgid "Tiles Export"
 msgstr ""
 
@@ -7558,7 +7623,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1764
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:7
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5340
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5362
 msgid "Chunks Export"
 msgstr ""
 
@@ -7572,7 +7637,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1909
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2390
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5730
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5752
 msgid "Chunks Import"
 msgstr ""
 
@@ -7585,13 +7650,13 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2055
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2484
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5875
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5897
 msgid "Chunks Image"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2094
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2523
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5914
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5936
 msgid "Replace palettes"
 msgstr ""
 
@@ -7612,7 +7677,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2323
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2565
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6182
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6204
 msgid "Tiles Import"
 msgstr ""
 
@@ -7624,7 +7689,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2466
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2652
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6326
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6348
 msgid "Tiles Image"
 msgstr ""
 
@@ -8020,9 +8085,154 @@ msgstr ""
 msgid "Not implemented."
 msgstr ""
 
+#: skytemple/skytemple/module/lists/controller/animations.glade:197
+#: skytemple/skytemple/module/lists/module.py:124
+msgid "Animations"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:213
+msgid "Edits the animation tables used by the game."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:226
+msgid "<Not available>\n\n"
+"To view and edit animation tables, please apply the \"ExtractAnimData\"\n"
+"ASM patch from the \"ASM Patches\" menu."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:274
+msgid "Animation Tables"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:290
+msgid "Edits the animation attributes."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:336
+msgid "File Type"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:352
+msgid "File ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:366
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:447
+msgid "Unk 1"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:380
+msgid "Unk 2"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:394
+#: skytemple/skytemple/module/lists/controller/animations.glade:768
+#: skytemple/skytemple/module/lists/controller/animations.glade:1012
+msgid "SFX"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:408
+msgid "Unk 3"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:422
+msgid "Unk 4"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:435
+#: skytemple/skytemple/module/lists/controller/animations.glade:752
+#: skytemple/skytemple/module/lists/controller/animations.glade:996
+msgid "Point"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:451
+msgid "Unk 5"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:464
+msgid "Loop"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:602
+msgid "Anim 1 ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:616
+msgid "Anim 2 ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:630
+msgid "Anim 3 ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:644
+msgid "Anim 4 ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:658
+msgid "Dir"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:672
+msgid "Flag 1"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:685
+msgid "Flag 2"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:698
+msgid "Flag 3"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:711
+msgid "Flag 4"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:724
+msgid "Speed"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:738
+#: skytemple/skytemple/module/lists/controller/animations.glade:982
+msgid "Animation"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:782
+msgid "First Spec. Entry"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:796
+msgid "# of Spec. Entries"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:903
+msgid "Filter by move: "
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:1099
+msgid "Move Special"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:1133
+msgid "Anim ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:1190
+msgid "Use Anim ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.glade:1204
+msgid "Throw Anim ID"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/animations.py:95
+msgid "Show All"
+msgstr ""
+
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:89
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:166
-#: skytemple/skytemple/module/lists/module.py:118
+#: skytemple/skytemple/module/lists/module.py:121
 msgid "Dungeon Interruptions"
 msgstr ""
 
@@ -8073,7 +8283,7 @@ msgid "Here you can edit dungeon interruptions. \n"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:80
-#: skytemple/skytemple/module/lists/module.py:121
+#: skytemple/skytemple/module/lists/module.py:127
 msgid "Dungeon Music"
 msgstr ""
 
@@ -8161,10 +8371,6 @@ msgstr ""
 msgid "HLR (cleared)"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:447
-msgid "Unk 1"
-msgstr ""
-
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:461
 msgid "Pokémon ID"
 msgstr ""
@@ -8202,7 +8408,7 @@ msgid "Free entries left: XX"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:769
-#: skytemple/skytemple/module/lists/module.py:124
+#: skytemple/skytemple/module/lists/module.py:130
 msgid "Guest Pokémon"
 msgstr ""
 
@@ -8259,7 +8465,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:420
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:34
-#: skytemple/skytemple/module/lists/module.py:136
+#: skytemple/skytemple/module/lists/module.py:142
 msgid "Misc. Settings"
 msgstr ""
 
@@ -8397,7 +8603,7 @@ msgid "Sitrus Berry HP heal amount:"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
-#: skytemple/skytemple/module/lists/module.py:109
+#: skytemple/skytemple/module/lists/module.py:112
 msgid "Rank List"
 msgstr ""
 
@@ -8414,7 +8620,7 @@ msgid "Item Reward"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:44
-#: skytemple/skytemple/module/lists/module.py:103
+#: skytemple/skytemple/module/lists/module.py:106
 msgid "Recruitment List"
 msgstr ""
 
@@ -8439,7 +8645,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:149
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:296
-#: skytemple/skytemple/module/lists/module.py:115
+#: skytemple/skytemple/module/lists/module.py:118
 msgid "Special Process Effects"
 msgstr ""
 
@@ -8719,7 +8925,7 @@ msgid "Bold"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/tactics.glade:36
-#: skytemple/skytemple/module/lists/module.py:130
+#: skytemple/skytemple/module/lists/module.py:136
 msgid "Tactics"
 msgstr ""
 
@@ -8754,7 +8960,7 @@ msgid "Please don't select a marker that already references another marker.\n"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:281
-#: skytemple/skytemple/module/lists/module.py:106
+#: skytemple/skytemple/module/lists/module.py:109
 msgid "World Map Markers"
 msgstr ""
 
@@ -8767,7 +8973,7 @@ msgid "Preview"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:417
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4317
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4339
 #: skytemple/skytemple/module/script/controller/ssa.glade:1221
 msgid "Map"
 msgstr ""
@@ -8801,19 +9007,19 @@ msgstr ""
 msgid "You need to select a reference."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:100
+#: skytemple/skytemple/module/lists/module.py:103
 msgid "Starters"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:112
+#: skytemple/skytemple/module/lists/module.py:115
 msgid "Menu List"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/module.py:127
+#: skytemple/skytemple/module/lists/module.py:133
 msgid "Special Episode PCs"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:48
+#: skytemple/skytemple/module/map_bg/controller/bg.py:49
 msgid "- The image consists of 8x8 tiles.\n"
 "- The image is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
@@ -8828,7 +9034,7 @@ msgid "- The image consists of 8x8 tiles.\n"
 "Animated tiles are not imported."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:62
+#: skytemple/skytemple/module/map_bg/controller/bg.py:63
 msgid "- The image consists of 8x8 tiles.\n"
 "- The image is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
@@ -8854,7 +9060,7 @@ msgid "- The image consists of 8x8 tiles.\n"
 "Animated tiles and palette animation settings are not changed.\n"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:91
+#: skytemple/skytemple/module/map_bg/controller/bg.py:92
 msgid "- The image is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
 "- Each 8x8 tile in the image MUST only use colors from\n"
@@ -8875,40 +9081,40 @@ msgid "- The image is a 256-color indexed PNG.\n"
 "to be (re-)assigned to chunks after the import."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:180
+#: skytemple/skytemple/module/map_bg/controller/bg.py:183
 msgid "This map background shared some asset files with other map backgrounds.\n"
 "SkyTemple can't edit shared files, so those assets were copied."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:184
+#: skytemple/skytemple/module/map_bg/controller/bg.py:187
 msgid "SkyTemple - Notice"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:354
+#: skytemple/skytemple/module/map_bg/controller/bg.py:385
 msgid "A script map with the same name as this background does not exist."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:659
+#: skytemple/skytemple/module/map_bg/controller/bg.py:690
 msgid "This map only has one layer.\n"
 "You can add a second layer at Map > Settings."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:680
+#: skytemple/skytemple/module/map_bg/controller/bg.py:711
 msgid "This map has no collision.\n"
 "You can add collision at Map > Settings."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:689
+#: skytemple/skytemple/module/map_bg/controller/bg.py:720
 msgid "This map has no second collision layer.\n"
 "You can add a second collision layer at Map > Settings."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:709
+#: skytemple/skytemple/module/map_bg/controller/bg.py:740
 msgid "This map has no data layer.\n"
 "You can add a data layer at Map > Settings."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:843
+#: skytemple/skytemple/module/map_bg/controller/bg.py:874
 msgid "Map backgrounds can be used as primary or secondary.\n"
 "When used as primary, the background can have up to 14 palettes, using slots from 0 to 13.\n"
 "When used as secondary, the background can only have 1 palette, using slot 14, and every palette value will have a new value of (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
@@ -8916,61 +9122,62 @@ msgid "Map backgrounds can be used as primary or secondary.\n"
 "Note: in the original game, almost every background is used as primary, the exceptions being mainly the weather (W) backgrounds.\n"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:848
+#: skytemple/skytemple/module/map_bg/controller/bg.py:879
 msgid "Background Palettes"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:190
-msgid "Please only enter numbers for the map size."
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:193
+msgid "Incorrect values.\n"
+"Only enter numbers from 1 to 255 for chunks and tiles dimensions."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:202
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:205
 msgid "Save GIF of map..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:242
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:245
 msgid "Export PNGs of map..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:414
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:417
 msgid "This BPA has no frames.\n"
 "Enable the BPA and import images for a BPA to add frames."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:526
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:529
 msgid "Export animated tiles (BPA)"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:550
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:555
 msgid "The animated tiles were successfully exported."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:551
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:610
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:556
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:615
 msgid "SkyTemple - Success!"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:555
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:560
 msgid "Error during BPA export"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:568
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:573
 msgid "Import animated tiles (BPA)"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:608
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:613
 msgid "The animated tiles were successfully imported, using the files: "
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:614
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:619
 msgid "Error during BPA import"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:704
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:709
 msgid "Palette Animation is not enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:854
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:859
 msgid "This map has no second layer."
 msgstr ""
 
@@ -9035,177 +9242,181 @@ msgstr ""
 msgid "Hide Other"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:145
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:117
+msgid "Draw filled rectangles when holding down the left mouse button"
+msgstr ""
+
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:167
 msgid "Go to Scenes"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:213
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:235
 msgid "Collision"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:239
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:261
 msgid "Air"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:263
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:285
 msgid "Solid"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:293
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:315
 msgid "Data Value"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:459
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:481
 msgid "Enable Palette Animations"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:522
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:635
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:748
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:861
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:974
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1087
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1200
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1313
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1439
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1552
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1665
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1778
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1891
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2004
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2117
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2230
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:544
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:657
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:770
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:883
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:996
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1109
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1222
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1335
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1461
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1574
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1687
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1800
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1913
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2026
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2139
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2252
 msgid "Frame Time"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:561
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:674
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:787
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:900
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1013
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1126
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1239
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1352
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1478
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1591
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1704
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1817
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1930
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2043
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2156
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2269
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:583
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:696
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:809
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:922
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1035
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1148
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1261
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1374
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1500
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1613
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1726
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1839
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1952
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2065
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2178
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2291
 msgid "# of Frames"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:599
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:621
 msgid "Palette 1"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:712
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:734
 msgid "Palette 2"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:825
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:847
 msgid "Palette 3"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:938
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:960
 msgid "Palette 4"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1051
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1073
 msgid "Palette 5"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1164
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1186
 msgid "Palette 6"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1277
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1299
 msgid "Palette 7"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1390
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1412
 msgid "Palette 8"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1516
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1538
 msgid "Palette 9"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1629
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1651
 msgid "Palette 10"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1742
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1764
 msgid "Palette 11"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1855
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1877
 msgid "Palette 12"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1968
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:1990
 msgid "Palette 13"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2081
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2103
 msgid "Palette 14"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2194
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2216
 msgid "Palette 15"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2307
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2329
 msgid "Palette 16"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2343
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2365
 msgid "Please note, that setting the number of frames of animations higher than the number of frames\n"
 "specified in the \"Edit Palette Animation\" section can lead to undefined behavior or crashes."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2373
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2395
 msgid "Map Settings"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2451
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2473
 msgid "Number of Layers "
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2486
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2508
 msgid "Decreasing the number of layers will remove\n"
 "all tiles and chunks of the upper layer."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2500
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2522
 msgid "NOTE: The number of layers for the level that uses this\n"
 "map must match."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2532
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2554
 msgid "Number of Collision Layers"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2578
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2600
 msgid "Has Data Layer?"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2617
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2639
 msgid "Import/Export Animated Tiles "
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2662
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2684
 msgid "This will export or import the selected set of animated tiles."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2683
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2723
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2705
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2745
 msgid "Using separate images"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2699
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2721
 msgid "Exports and imports multiple images.\n\n"
 "Each frame of animated tiles is a separate PNG.\n\n"
 "The images are expected in the following format:\n"
@@ -9219,12 +9430,12 @@ msgid "Exports and imports multiple images.\n\n"
 "the last frame is copied."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2755
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2793
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2777
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2815
 msgid "Using a single image"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2772
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2794
 msgid "Exports and imports using a single image.\n\n"
 "The image is expected in the following format:\n"
 "- The images consists of 8x8 tiles.\n"
@@ -9237,15 +9448,15 @@ msgid "Exports and imports using a single image.\n\n"
 "the last frame is copied."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2831
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2853
 msgid "BPA to export or import:"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2913
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2935
 msgid "BPA Settings"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2976
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2998
 msgid "Animated Tile blocks are called BPA.\n"
 "If the map has one layer:\n"
 "    BPA 1-4: Layer 1\n"
@@ -9253,85 +9464,85 @@ msgid "Animated Tile blocks are called BPA.\n"
 "    BPA 1-4: Layer 2     |    BPA 5-8: Layer 1"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3011
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3128
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3249
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3370
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3491
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3612
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3733
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3854
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3033
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3150
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3271
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3392
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3513
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3634
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3755
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3876
 msgid "Enabled"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3049
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3166
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3287
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3408
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3529
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3650
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3771
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3892
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3071
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3188
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3309
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3430
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3551
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3672
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3793
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3914
 msgid "Durations per Frame:"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3103
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3125
 msgid "BPA 1"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3223
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3245
 msgid "BPA 2"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3344
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3366
 msgid "BPA 3"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3465
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3487
 msgid "BPA 4"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3586
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3608
 msgid "BPA 5"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3707
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3729
 msgid "BPA 6"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3828
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3850
 msgid "BPA 7"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3949
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3971
 msgid "BPA 8"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3979
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4001
 msgid "Map Dimensions"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4051
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4073
 msgid "Map Width in Chunks"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4095
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4117
 msgid "Map Height in Chunks"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4155
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4177
 msgid "Link Tile Width and Height"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4194
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4216
 msgid "Map Width in Tiles"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4239
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4261
 msgid "Map Height in Tiles"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4275
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4297
 msgid "Usually the width and height in tiles should be linked\n"
 "to the width and height in chunks. If this is not the case,\n"
 "please note, that the dimensions in tiles are used for\n"
@@ -9339,151 +9550,151 @@ msgid "Usually the width and height in tiles should be linked\n"
 "are used for the image data on Layer 1 and 2."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4335
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4357
 msgid "Width and Height"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4350
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4372
 msgid "Export Map as GIF..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4365
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4387
 msgid "Export Layers to Image..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4374
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4396
 msgid "Import Layers from Image..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4389
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4411
 msgid "Go to Scripts..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4410
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4517
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4719
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4432
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4539
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4741
 msgid "Layer 1"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4457
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4549
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4742
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4479
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4571
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4764
 msgid "Layer 2"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4527
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4559
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4549
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4581
 msgid "Export Static Tiles to Image..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4536
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4568
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4558
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4590
 msgid "Import Static Tiles from Image..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4581
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4603
 msgid "Animated Tiles"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4606
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4628
 msgid "Import and Export..."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4656
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4678
 msgid "Edit Animation Palette"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4766
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4788
 msgid "Collision 1"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4790
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4812
 msgid "Collision 2"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4814
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4836
 msgid "Data Layer"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4837
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4859
 msgid "BMA Filename:"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4849
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4871
 msgid "BPC Filename:"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4861
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4883
 msgid "BPL Filename:"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4873
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4895
 msgid "BPA1 Filename:"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4885
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4907
 msgid "BPA2 Filename:"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4897
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4919
 msgid "BPA4 Filename:"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4909
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4931
 msgid "BPA3 Filename:"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4921
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4943
 msgid "BPA5 Filename:"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4933
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4955
 msgid "BPA7 Filename:"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4945
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4967
 msgid "BPA6 Filename:"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4957
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4979
 msgid "BPA8 Filename:"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4969
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4981
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4993
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5005
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5017
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5029
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5041
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5053
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5065
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5077
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5089
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4991
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5003
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5015
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5027
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5039
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5051
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5063
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5075
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5087
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5099
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5111
 msgid "<>"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5142
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5164
 msgid "Metadata"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5194
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5216
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.glade:252
 #: skytemple/skytemple/module/script/controller/ssa.glade:722
 msgid "Toggle"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5230
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5252
 msgid "One of the levels assigned to this background use mode #10 or #11. The background will be rendered in game using the assigned dungeon tileset. If it's mode #10 you can build the layout above. Mode #11 uses the fixed room of the assigned floor."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5299
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5321
 msgid "This background uses weird palette values for some chunks, so the game will not render this background the same as it is displayed here.\n"
 "You should click on the help button get more information before continuing.\n"
 "If this is intentional and you know what you are doing, you can ignore  this."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5403
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5425
 msgid "This will export all chunks of the selected layer.\n\n"
 "You can edit and import the chunks again.\n"
 "Please note, that you might need to convert it \n"
@@ -9491,7 +9702,7 @@ msgid "This will export all chunks of the selected layer.\n\n"
 "See the import dialog for more information."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5518
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5540
 msgid "This will export the entire map as one or two images,\n"
 "depending on the number of layers.\n\n"
 "You can edit and import the background image(s) again.\n"
@@ -9500,7 +9711,7 @@ msgid "This will export the entire map as one or two images,\n"
 "See the import dialog for more information."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5634
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5656
 msgid "This will export all tiles of the selected layer.\n\n"
 "You can edit and import the tiles again.\n"
 "Please note, that you might need to convert it \n"
@@ -9508,29 +9719,29 @@ msgid "This will export all tiles of the selected layer.\n\n"
 "See the import dialog for more information."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5799
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5821
 msgid "This will import the chunks for the selected layer\n"
 "using an image. The existing mappings are replaced.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6025
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6047
 msgid "This will import the entire map from one image\n"
 "per layer.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6100
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6122
 msgid "Layer 1 Image"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6138
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6160
 msgid "Layer 2 Image"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6251
+#: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6273
 msgid "This will import the tiles for the selected layer\n"
 "using an image.\n\n"
 "You may need to convert the input image first,\n"
@@ -11393,23 +11604,27 @@ msgid "Error applying the patch:\n"
 msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/main.py:130
-msgid "Patch was successfully applied. You should re-open the project, to make sure all data is correctly loaded."
+msgid "Patch was successfully applied. The ROM will now be reloaded."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:180
+#: skytemple/skytemple/module/patch/controller/main.py:133
+msgid "Not all patches were applied successfully. The ROM will now be reloaded."
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/main.py:184
 msgid "Error loading patch package {os.path.basename(fname)}:\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:185
+#: skytemple/skytemple/module/patch/controller/main.py:189
 msgid "Not compatible"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:187
+#: skytemple/skytemple/module/patch/controller/main.py:191
 msgid "Applied"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/main.py:187
+#: skytemple/skytemple/module/patch/controller/main.py:191
 msgid "Compatible"
 msgstr ""
 
@@ -12185,7 +12400,7 @@ msgid "The CSV file must contain exactly {len(self._str.strings)} strings, has {
 msgstr ""
 
 #: skytemple/skytemple/module/strings/controller/strings.py:177
-msgid "Error exporting the strings."
+msgid "Error importing the strings."
 msgstr ""
 
 #: skytemple/skytemple/module/strings/controller/strings.py:185
