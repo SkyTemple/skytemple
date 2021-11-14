@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 from enum import Enum
-from typing import TYPE_CHECKING, Type, List
+from typing import TYPE_CHECKING, Type, List, Optional
 
 from gi.repository import Gtk
 
@@ -41,7 +41,7 @@ class MoveController(AbstractController):
         self.move_id = move_id
         self.move = self.module.get_move(move_id)
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._string_provider = module.project.get_string_provider()
 
         self._is_loading = True
@@ -66,7 +66,7 @@ class MoveController(AbstractController):
         self.module = None
         self.move_id = None
         self.move = None
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._string_provider = None
         self._is_loading = True
 
@@ -421,11 +421,11 @@ class MoveController(AbstractController):
     def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum], sort_by_name=False):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
-            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))
+            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))  # type: ignore
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
 
     def _comboxbox_for_enum_with_strings(self, names: List[str], enum: Type[Enum], string_type: StringType):
         store = Gtk.ListStore(int, str)  # id, name

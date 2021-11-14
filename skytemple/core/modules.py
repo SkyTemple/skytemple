@@ -18,13 +18,14 @@
 import logging
 
 import pkg_resources
+from typing import Dict
 
 MODULE_ENTRYPOINT_KEY = 'skytemple.module'
 logger = logging.getLogger(__name__)
 
 
 class Modules:
-    _modules = {}
+    _modules: Dict = {}
 
     @classmethod
     def load(cls):

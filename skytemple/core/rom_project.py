@@ -18,7 +18,7 @@
 import logging
 import sys
 from enum import Enum, auto
-from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Type, Tuple
+from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Type, Tuple, Any, List, overload, Literal
 
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
@@ -50,13 +50,7 @@ if TYPE_CHECKING:
     from skytemple.module.rom.module import RomModule
 
 
-try:
-    from contextlib import nullcontext
-except ImportError:  # < Python 3.7
-    from contextlib import contextmanager
-    @contextmanager
-    def nullcontext(enter_result=None):
-        yield enter_result
+from contextlib import nullcontext
 
 
 class BinaryName(Enum):
@@ -90,10 +84,10 @@ class BinaryName(Enum):
 
 
 class RomProject:
-    _current: 'RomProject' = None
+    _current: Optional['RomProject'] = None
 
     @classmethod
-    def get_current(cls) -> Union['RomProject', None]:
+    def get_current(cls) -> Optional['RomProject']:
         """Returns the currently open RomProject or None"""
         return cls._current
 
@@ -103,10 +97,10 @@ class RomProject:
         Open a file (in a new thread).
         If the main controller is set, it will be informed about this.
         """
-        AsyncTaskDelegator.run_task(cls._open_impl(filename, main_controller))
+        AsyncTaskDelegator.run_task(cls._open_impl(filename, main_controller))  # type: ignore
 
     @classmethod
-    async def _open_impl(cls, filename, main_controller: Optional['MainController']):
+    async def _open_impl(cls, filename, main_controller: 'MainController'):
         cls._current = RomProject(filename, main_controller.load_view_main_list)
         try:
             await cls._current.load()
@@ -126,16 +120,16 @@ class RomProject:
         self._sprite_renderer: Optional[SpriteProvider] = None
         self._string_provider: Optional[StringProvider] = None
         # Dict of filenames -> models
-        self._opened_files = {}
-        self._opened_files_contexts = {}
+        self._opened_files: Dict[str, Any] = {}
+        self._opened_files_contexts: Dict[str, ModelContext] = {}
         # List of filenames that were requested to be opened threadsafe.
-        self._files_threadsafe = []
-        self._files_unsafe = []
+        self._files_threadsafe: List[str] = []
+        self._files_unsafe: List[str] = []
         # Dict of filenames -> file handler object
-        self._file_handlers = {}
-        self._file_handler_kwargs = {}
+        self._file_handlers: Dict[str, Type[DataHandler]] = {}
+        self._file_handler_kwargs: Dict[str, Dict[str, Any]] = {}
         # List of modified filenames
-        self._modified_files = []
+        self._modified_files: List[str] = []
         self._forced_modified = False
         # Callback for opening views using iterators from the main view list.
         self._cb_open_view: Callable[[Gtk.TreeIter], None] = cb_open_view
@@ -166,7 +160,7 @@ class RomProject:
         self._icon_banner = IconBanner(self._rom)
 
     def get_rom_module(self) -> 'RomModule':
-        return self._rom_module
+        return self._rom_module  # type: ignore
 
     def get_project_file_manager(self):
         return self._project_fm
@@ -174,13 +168,14 @@ class RomProject:
     def get_modules(self, include_rom_module=True) -> Iterator[AbstractModule]:
         """Iterate over loaded modules"""
         if include_rom_module:
-            return iter(list(self._loaded_modules.values()) + [self._rom_module])
+            return iter(list(self._loaded_modules.values()) + [self._rom_module])  # type: ignore
         return iter(self._loaded_modules.values())
 
     def get_module(self, name):
         return self._loaded_modules[name]
 
     def get_icon_banner(self) -> IconBanner:
+        assert self._icon_banner
         return self._icon_banner
 
     def get_rom_name(self) -> str:
@@ -195,8 +190,18 @@ class RomProject:
     def set_id_code(self, id_code: str):
         self._rom.idCode = id_code.encode('ascii')
 
+    @overload
     def open_file_in_rom(self, file_path_in_rom: str, file_handler_class: Type[DataHandler[T]],
-                         threadsafe=False, **kwargs) -> Union[T, ModelContext[T]]:
+                         threadsafe: Literal[False] = False, **kwargs) -> T:
+        ...
+
+    @overload
+    def open_file_in_rom(self, file_path_in_rom: str, file_handler_class: Type[DataHandler[T]],
+                         threadsafe: Literal[True], **kwargs) -> ModelContext[T]:
+        ...
+
+    def open_file_in_rom(self, file_path_in_rom: str, file_handler_class: Type[DataHandler[T]],
+                         threadsafe=False, **kwargs):
         """
         Open a file. If already open, the opened object is returned.
         The second parameter is a file handler to use. Please note, that the file handler is only
@@ -263,7 +268,7 @@ class RomProject:
             filename = list(self._opened_files.keys())[list(self._opened_files.values()).index(file)]
             self._modified_files.append(filename)
             if file not in self._modified_files:
-                self._modified_files.append(file)
+                self._modified_files.append(file)  # type: ignore
 
     def force_mark_as_modified(self):
         self._forced_modified = True
@@ -365,9 +370,6 @@ class RomProject:
         if not folder_in_rom_exists(self._rom, dir_name):
             create_folder_in_rom(self._rom, dir_name)
 
-    def file_exists(self, filename):
-        return self._rom.filenames.idOf(filename) is not None
-
     def load_rom_data(self):
         return get_ppmdu_config_for_rom(self._rom)
 
@@ -385,10 +387,10 @@ class RomProject:
             raise ValueError("No handler for request.")
 
     def get_sprite_provider(self) -> SpriteProvider:
-        return self._sprite_renderer
+        return self._sprite_renderer  # type: ignore
 
     def get_string_provider(self) -> StringProvider:
-        return self._string_provider
+        return self._string_provider  # type: ignore
 
     def create_patcher(self):
         if self._patcher==None:
@@ -398,7 +400,7 @@ class RomProject:
     def get_binary(self, binary: Union[Pmd2Binary, BinaryName, str]) -> bytes:
         if not isinstance(binary, Pmd2Binary):
             binary = self.get_rom_module().get_static_data().binaries[str(binary)]
-        return get_binary_from_rom_ppmdu(self._rom, binary)
+        return get_binary_from_rom_ppmdu(self._rom, binary)  # type: ignore
 
     def modify_binary(self, binary: Union[Pmd2Binary, BinaryName, str], modify_cb: Callable[[bytearray], None]):
         """Modify one of the binaries (such as arm9 or overlay) and save it to the ROM"""
@@ -406,7 +408,7 @@ class RomProject:
             binary = self.get_rom_module().get_static_data().binaries[str(binary)]
         data = bytearray(self.get_binary(binary))
         modify_cb(data)
-        set_binary_in_rom_ppmdu(self._rom, binary, data)
+        set_binary_in_rom_ppmdu(self._rom, binary, data)  # type: ignore
         self.force_mark_as_modified()
 
     def is_patch_applied(self, patch_name):

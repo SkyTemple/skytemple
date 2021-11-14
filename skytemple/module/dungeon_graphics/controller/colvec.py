@@ -60,7 +60,7 @@ class ColvecController(AbstractController):
         self.dpc = None
         self.dpci = None
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'colvec.glade')

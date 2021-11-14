@@ -17,7 +17,7 @@
 import os
 import sys
 from enum import Enum, auto
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING, Union, Optional
 
 import cairo
 from PIL import Image
@@ -53,12 +53,13 @@ class TrpItmImgController(AbstractController):
         self.img_type = img_type
         self.img: Union[ImgItm, ImgTrp] = self.module.get_icons(img_type)
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self.image_idx = 0
         self.palette_idx = 0
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'trp_itm_img.glade')
+        assert self.builder
         if self.img_type == ImgType.ITM:
             self.builder.get_object('lbl_name').set_text(_('Items'))
         else:
@@ -111,7 +112,8 @@ class TrpItmImgController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
-            dialog: Gtk.Dialog = self.builder.get_object('dialog_import')
+            assert self.builder
+            dialog = self.builder.get_object('dialog_import')
 
             dialog.set_attached_to(MainController.window())
             dialog.set_transient_for(MainController.window())
@@ -124,7 +126,7 @@ class TrpItmImgController(AbstractController):
                 img = Image.open(fn)
                 if import_new:
                     idx = len(self.img.sprites)
-                    self.img.sprites.append(None)
+                    self.img.sprites.append(None)  # type: ignore
                 else:
                     idx = self.image_idx
                 try:

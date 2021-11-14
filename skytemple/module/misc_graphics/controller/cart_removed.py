@@ -47,7 +47,7 @@ class CartRemovedController(AbstractController):
     def __init__(self, module: 'MiscGraphicsModule', _: str):
         self.module = module
         
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'cart_removed.glade')

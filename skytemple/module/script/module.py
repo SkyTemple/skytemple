@@ -84,7 +84,7 @@ class ScriptModule(AbstractModule):
         self._tree_model: Optional[TreeStore] = None
         self._root = None
         self._other_node = None
-        self._sub_nodes = None
+        self._sub_nodes: Optional[Dict[str, Gtk.TreeIter]] = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         # -> Script [main]
@@ -208,14 +208,14 @@ class ScriptModule(AbstractModule):
             if request.identifier[0] in self._map_ssas:
                 for it in self._map_ssas[request.identifier[0]].values():
                     # Check if the filename of the tree iter entry (see load_tree_items) matches the request filename.
-                    file_name = self._tree_model[it][4]['file'].split('/')[-1]
+                    file_name = self._tree_model[it][4]['file'].split('/')[-1]  # type: ignore
                     if file_name == request.identifier[1]:
                         return it
         if request.type == REQUEST_TYPE_SCENE_SSS:
             if request.identifier[0] in self._map_ssss:
                 for it in self._map_ssss[request.identifier[0]].values():
                     # Check if the filename of the tree iter entry (see load_tree_items) matches the request filename.
-                    file_name = self._tree_model[it][4]['file'].split('/')[-1]
+                    file_name = self._tree_model[it][4]['file'].split('/')[-1]  # type: ignore
                     if file_name == request.identifier[1]:
                         return it
         return None
@@ -312,7 +312,7 @@ class ScriptModule(AbstractModule):
                 value, binary, config
             )
         )
-        recursive_up_item_store_mark_as_modified(self._tree_model[self._root])
+        recursive_up_item_store_mark_as_modified(self._tree_model[self._root])  # type: ignore
 
     def create_new_level(self, new_name):
         parent = self._other_node

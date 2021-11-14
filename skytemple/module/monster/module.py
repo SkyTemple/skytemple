@@ -70,9 +70,9 @@ class MonsterModule(AbstractModule):
         self.waza_p2_bin: WazaP = self.project.open_file_in_rom(WAZA_P2_BIN, FileType.WAZA_P)
         self.tbl_talk: TblTalk = self.project.open_file_in_rom(TBL_TALK_FILE, FileType.TBL_TALK)
 
-        self._tree_model = None
-        self._tree_iter__entity_roots = {}
-        self._tree_iter__entries = []
+        self._tree_model: Optional[Gtk.TreeModel] = None
+        self._tree_iter__entity_roots: Dict[int, Gtk.TreeIter] = {}
+        self._tree_iter__entries: Dict[int, Gtk.TreeIter] = {}
         self.effective_base_attr = 'md_index_base'
 
     def load_tree_items(self, item_store: TreeStore, root_node):

@@ -55,7 +55,7 @@ class GraphicFontController(AbstractController):
         self.spec = item
         self.font: Optional[GraphicFont] = self.module.get_graphic_font(self.spec)
         
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'graphic_font.glade')
@@ -79,6 +79,7 @@ class GraphicFontController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
+            assert self.font
             for i in range(self.font.get_nb_entries()):
                 e = self.font.get_entry(i)
                 if e:
@@ -96,23 +97,24 @@ class GraphicFontController(AbstractController):
         )
         md.run()
         md.destroy()
-        dialog = Gtk.FileChooserNative.new(
+        fdialog = Gtk.FileChooserNative.new(
             _("Import font from folder..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
             None, None
         )
 
-        response = dialog.run()
-        fn = dialog.get_filename()
-        dialog.destroy()
+        response = fdialog.run()
+        fn = fdialog.get_filename()
+        fdialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
+            assert self.builder
             dialog: Gtk.Dialog = self.builder.get_object('dialog_import')
 
             self.builder.get_object('nb_entries_import').set_increments(1,1)
             self.builder.get_object('nb_entries_import').set_range(1, MAX_ENTRIES-1)
-            self.builder.get_object('nb_entries_import').set_text(str(self.font.get_nb_entries()))
+            self.builder.get_object('nb_entries_import').set_text(str(self.font.get_nb_entries()))  # type: ignore
             
             dialog.set_attached_to(MainController.window())
             dialog.set_transient_for(MainController.window())
@@ -128,7 +130,7 @@ class GraphicFontController(AbstractController):
                             lst_entries.append(Image.open(path, 'r'))
                         else:
                             lst_entries.append(None)
-                    self.font.set_entries(lst_entries)
+                    self.font.set_entries(lst_entries)  # type: ignore
                     self.module.mark_font_as_modified(self.spec)
                 except Exception as err:
                     display_error(

@@ -20,7 +20,7 @@ import os
 import re
 import sys
 from functools import partial
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional, List
 
 import cairo
 
@@ -52,11 +52,11 @@ class PortraitController(AbstractController):
         self.module = module
         self.item_id = item_id
         self._portrait_provider = self.module.get_portrait_provider()
-        self._draws = []
+        self._draws: List[Gtk.DrawingArea] = []
         self._mark_as_modified_cb = mark_as_modified_cb
         self.kao = self.module.kao
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
     def re_render(self):
         self._portrait_provider.reset()

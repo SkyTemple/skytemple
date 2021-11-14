@@ -32,7 +32,7 @@
 import logging
 import sys
 import webbrowser
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING, Optional, List, Dict
 
 from skytemple_files.common.i18n_util import _, f
 
@@ -50,7 +50,7 @@ from skytemple_files.common.util import open_utf8
 from skytemple.module.lists.controller.base import PATTERN_MD_ENTRY
 
 if TYPE_CHECKING:
-    from skytemple.module.moves_items.module import MovesItemsModule
+    from skytemple.module.lists.module import ListsModule
 from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
@@ -76,7 +76,7 @@ class AnimationsController(AbstractController):
             return stack
         self.animations = self.module.get_animations()
 
-        self._ent_names = dict()
+        self._ent_names: Dict[str, str] = dict()
         self._init_monster_store()
         self._init_combos()
         self._init_trees()
@@ -97,14 +97,14 @@ class AnimationsController(AbstractController):
             cb_store.append([i, f'{i}: {self._string_provider.get_value(StringType.MOVE_NAMES, i)}'])
         cb.set_active(0)
     
-    def _init_trees(self) -> Optional[int]:
+    def _init_trees(self):
         store: Gtk.ListStore = self.builder.get_object('type_store')
         store.clear()
         for v in AnimType:
             store.append([v.value, v.description])
 
         
-        store: Gtk.ListStore = self.builder.get_object('point_store')
+        store = self.builder.get_object('point_store')
         store.clear()
         for v in AnimPointType:
             store.append([v.value, v.description])
@@ -117,7 +117,7 @@ class AnimationsController(AbstractController):
         for x in sorted(tmp_view,key=lambda x:x[1]):
             tree_store.append(x)
         
-        tree_store: Gtk.ListStore = self.builder.get_object('items_store')
+        tree_store = self.builder.get_object('items_store')
         tree_store.clear()
         tmp_view = []
         for i, e in enumerate(self.animations.item_table):

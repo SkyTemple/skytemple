@@ -49,7 +49,7 @@ class StringsController(AbstractController):
         self.langname = lang.name_localized
         self.filename = lang.filename
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._str: Optional[Str] = None
         self._tree_iters_by_idx: Dict[int, Gtk.TreeIter] = {}
         self._list_store: Optional[Gtk.ListStore] = None
@@ -60,6 +60,7 @@ class StringsController(AbstractController):
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'strings.glade')
+        assert self.builder
         self.builder.get_object('lang_name').set_text(f(_('{self.langname} Text Strings')))
 
         self._str = self.module.get_string_file(self.filename)
@@ -76,7 +77,7 @@ class StringsController(AbstractController):
         self.module = None
         self.langname = None
         self.filename = None
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._str = None
         self._tree_iters_by_idx = {}
         self._list_store = None
@@ -128,11 +129,11 @@ class StringsController(AbstractController):
         model, treeiter = selection.get_selected()
         if treeiter is not None and model is not None:
             self._active_category = model[treeiter][1]
-            self._filter.refilter()
+            self._filter.refilter()  # type: ignore
 
     def on_search_search_changed(self, search: Gtk.SearchEntry):
         self._search_text = search.get_text()
-        self._filter.refilter()
+        self._filter.refilter()  # type: ignore
 
     def on_btn_import_clicked(self, *args):
         md = SkyTempleMessageDialog(

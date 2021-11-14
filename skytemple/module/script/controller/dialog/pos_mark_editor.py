@@ -64,7 +64,7 @@ class PosMarkEditorController:
         self._bg_draw_is_clicked__drag_active = False
         self._map_bg_width = SIZE_REQUEST_NONE
         self._map_bg_height = SIZE_REQUEST_NONE
-        self._map_bg_surface = None
+        self._map_bg_surface: Optional[cairo.Surface] = None
         self._currently_selected_mark: Optional[SourceMapPositionMark] = None
 
         self._w_ssa_draw: Gtk.DrawingArea = self.builder.get_object('ssa_draw')
@@ -96,6 +96,7 @@ class PosMarkEditorController:
         correct_mouse_x = int((button.x - 4) / self._scale_factor)
         correct_mouse_y = int((button.y - 4) / self._scale_factor)
         if button.button == 1:
+            assert self.drawer
             self._bg_draw_is_clicked__drag_active = False
             self._bg_draw_is_clicked__location = (int(button.x), int(button.y))
             self.drawer.set_mouse_position(correct_mouse_x, correct_mouse_y)
@@ -180,7 +181,7 @@ class PosMarkEditorController:
             self.mapbg_id = item_id
             bma = self.map_bg_module.get_bma(item_id)
             if self._tileset_drawer_overlay and self._tileset_drawer_overlay.enabled:
-                self._map_bg_surface = self._tileset_drawer_overlay.create(bma.layer0, bma.map_width_chunks, bma.map_height_chunks)
+                self._map_bg_surface = self._tileset_drawer_overlay.create(bma.layer0, bma.map_width_chunks, bma.map_height_chunks)  # type: ignore
                 bma_width = bma.map_width_camera * BPC_TILE_DIM
                 bma_height = bma.map_height_camera * BPC_TILE_DIM
             else:
@@ -224,7 +225,7 @@ class PosMarkEditorController:
         self._w_ssa_draw.set_size_request(
             self._map_bg_width * self._scale_factor, self._map_bg_height * self._scale_factor
         )
-        self.drawer.map_bg = surface
+        self.drawer.map_bg = surface  # type: ignore
         self._w_ssa_draw.queue_draw()
 
     def _update_scales(self):

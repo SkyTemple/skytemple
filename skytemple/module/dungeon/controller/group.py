@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
 
@@ -38,7 +38,7 @@ class GroupController(SimpleController):
               'You can edit groups under "Dungeons".')
         )
 
-    def get_icon(self) -> str:
+    def get_icon(self) -> Optional[str]:
         return None
 
     def get_back_illust(self) -> str:

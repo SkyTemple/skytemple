@@ -66,10 +66,10 @@ class MapBgModule(AbstractModule):
         self.project = rom_project
         self.bgs: BgList = rom_project.open_file_in_rom(MAP_BG_LIST, FileType.BG_LIST_DAT)
 
-        self._tree_model = None
-        self._tree_level_iter = []
-        self._sub_nodes = None
-        self._other_node = None
+        self._tree_model: Optional[Gtk.TreeModel] = None
+        self._tree_level_iter: List[Gtk.TreeIter] = []
+        self._sub_nodes: Optional[Gtk.TreeIter] = None
+        self._other_node: Optional[Gtk.TreeIter] = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
@@ -141,9 +141,9 @@ class MapBgModule(AbstractModule):
         l = self.bgs.level[item_id]
         return self.project.open_file_in_rom(f'{MAP_BG_PATH}{l.bpl_name.lower()}.bpl', FileType.BPL)
 
-    def get_bpas(self, item_id) -> List[Union[None, Bpa]]:
+    def get_bpas(self, item_id) -> List[Optional[Bpa]]:
         l = self.bgs.level[item_id]
-        bpas = []
+        bpas: List[Optional[Bpa]] = []
         for bpa in l.bpa_names:
             if bpa is None:
                 bpas.append(None)

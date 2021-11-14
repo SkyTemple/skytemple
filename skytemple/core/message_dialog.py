@@ -49,11 +49,11 @@ class SkyTempleMessageDialog(Gtk.MessageDialog):
         super().__init__(parent, dialog_flags, message_type, buttons_type, *args, **kwargs)
 
         box: Gtk.Box = self.get_message_area()
-        parent: Gtk.Box = box.get_parent()
+        p: Gtk.Box = box.get_parent()
         box.set_valign(Gtk.Align.CENTER)
 
-        parent.pack_start(self.img, False, False, 0)
-        parent.pack_start(box, False, False, 0)
+        p.pack_start(self.img, False, False, 0)
+        p.pack_start(box, False, False, 0)
 
-        parent.child_set_property(self.img, 'position', 0)
+        p.child_set_property(self.img, 'position', 0)
         self.img.show()

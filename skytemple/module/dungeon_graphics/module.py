@@ -67,14 +67,14 @@ class DungeonGraphicsModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self.dungeon_bin_context: Optional[DungeonBinPack] = None
-        self._tree_model = None
-        self._tree_level_iter = []
-        self._colvec_pos = None
-        self._root_node = None
+        self.dungeon_bin_context: Optional[ModelContext[DungeonBinPack]] = None
+        self._tree_model: Gtk.TreeModel = None
+        self._tree_level_iter: List[Gtk.TreeIter] = []
+        self._colvec_pos: Optional[int] = None
+        self._root_node: Gtk.TreeIter = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
-        self.dungeon_bin_context: ModelContext[DungeonBinPack] = self.project.open_file_in_rom(
+        self.dungeon_bin_context = self.project.open_file_in_rom(
             DUNGEON_BIN, FileType.DUNGEON_BIN, static_data=self.project.get_rom_module().get_static_data(),
             threadsafe=True
         )
@@ -129,49 +129,50 @@ class DungeonGraphicsModule(AbstractModule):
     def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
         if request.type == REQUEST_TYPE_DUNGEON_TILESET:
             return self._tree_level_iter[request.identifier]
+        return None
 
     def get_colvec(self) -> Colvec:
-        with self.dungeon_bin_context as dungeon_bin:
+        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'colormap.colvec')
     
     def get_dma(self, item_id) -> Dma:
-        with self.dungeon_bin_context as dungeon_bin:
+        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon{item_id}.dma')
 
     def get_dpl(self, item_id) -> Dpl:
-        with self.dungeon_bin_context as dungeon_bin:
+        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon{item_id}.dpl')
 
     def get_dpla(self, item_id) -> Dpla:
-        with self.dungeon_bin_context as dungeon_bin:
+        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon{item_id}.dpla')
 
     def get_dpc(self, item_id) -> Dpc:
-        with self.dungeon_bin_context as dungeon_bin:
+        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon{item_id}.dpc')
 
     def get_dpci(self, item_id) -> Dpci:
-        with self.dungeon_bin_context as dungeon_bin:
+        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon{item_id}.dpci')
 
     def get_bg_dbg(self, item_id) -> Dbg:
-        with self.dungeon_bin_context as dungeon_bin:
+        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon_bg{item_id}.dbg')
 
     def get_bg_dpl(self, item_id) -> Dpl:
-        with self.dungeon_bin_context as dungeon_bin:
+        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon_bg{item_id}.dpl')
 
     def get_bg_dpla(self, item_id) -> Dpla:
-        with self.dungeon_bin_context as dungeon_bin:
+        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon_bg{item_id}.dpla')
 
     def get_bg_dpc(self, item_id) -> Dpc:
-        with self.dungeon_bin_context as dungeon_bin:
+        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon_bg{item_id}.dpc')
 
     def get_bg_dpci(self, item_id) -> Dpci:
-        with self.dungeon_bin_context as dungeon_bin:
+        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon_bg{item_id}.dpci')
 
     def mark_as_modified(self, item_id, is_background):

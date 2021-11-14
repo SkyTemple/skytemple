@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import sys
 import webbrowser
-from typing import TYPE_CHECKING, Union, Optional
+from typing import TYPE_CHECKING, Union, Optional, Dict
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
@@ -63,8 +63,8 @@ class SpriteModule(AbstractModule):
         self.project = rom_project
         self.list_of_obj_sprites = self.project.get_files_with_ext(WAN_FILE_EXT, GROUND_DIR)
 
-        self._tree_model = None
-        self._tree_level_iter = {}
+        self._tree_model: Optional[Gtk.TreeModel] = None
+        self._tree_level_iter: Dict[str, Gtk.TreeIter] = {}
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
@@ -84,7 +84,7 @@ class SpriteModule(AbstractModule):
                                   modified_callback, assign_new_sprite_id_cb,
                                   get_shadow_size_cb, set_shadow_size_cb) -> Gtk.Widget:
         """Returns the view for one portrait slots"""
-        controller = MonsterSpriteController(self, sprite_id,
+        controller = MonsterSpriteController(self, sprite_id,  # type: ignore
                                              modified_callback, assign_new_sprite_id_cb,
                                              get_shadow_size_cb, set_shadow_size_cb)
         return controller.get_view()
@@ -96,7 +96,7 @@ class SpriteModule(AbstractModule):
     def save_object_sprite(self, filename, data: bytes):
         assert filename in self.list_of_obj_sprites
         self.project.save_file_manually(GROUND_DIR + '/' + filename, data)
-        row = self._tree_model[self._tree_level_iter[filename]]
+        row = self._tree_model[self._tree_level_iter[filename]]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
 
     def get_sprite_provider(self):
@@ -115,7 +115,7 @@ class SpriteModule(AbstractModule):
             return self.export_a_sprite__gfxcrunch(sprite)
         return self.export_a_sprite__wan(sprite)
 
-    def import_a_sprite__wan(self) -> bytes:
+    def import_a_sprite__wan(self) -> Optional[bytes]:
         dialog = Gtk.FileChooserNative.new(
             _("Import WAN sprite..."),
             MainController.window(),
@@ -131,6 +131,7 @@ class SpriteModule(AbstractModule):
             fn = add_extension_if_missing(fn, 'wan')
             with open(fn, 'rb') as f:
                 return f.read()
+        return None
 
     def export_a_sprite__wan(self, sprite: bytes):
         dialog = Gtk.FileChooserNative.new(
@@ -182,7 +183,7 @@ class SpriteModule(AbstractModule):
                     str(e),
                     _("Error importing the sprite.")
                 )
-                return None
+        return None
 
     def export_a_sprite__gfxcrunch(self, sprite: bytes):
         dialog = Gtk.FileChooserNative.new(
@@ -278,8 +279,8 @@ class SpriteModule(AbstractModule):
     def save_monster_monster_sprite(self, id, data: Union[bytes, WanFile], raw=False):
         with self.get_monster_bin_ctx() as bin_pack:
             if not raw:
-                data = FileType.WAN.CHARA.serialize(data)
-            data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data))
+                data = FileType.WAN.CHARA.serialize(data)  # type: ignore
+            data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data))  # type: ignore
             if id == len(bin_pack):
                 bin_pack.append(data)
             else:
@@ -289,7 +290,7 @@ class SpriteModule(AbstractModule):
     def save_monster_ground_sprite(self, id, data: Union[bytes, WanFile], raw=False):
         with self.get_ground_bin_ctx() as bin_pack:
             if not raw:
-                data = FileType.WAN.CHARA.serialize(data)
+                data = FileType.WAN.CHARA.serialize(data)  # type: ignore
             if id == len(bin_pack):
                 bin_pack.append(data)
             else:
@@ -299,8 +300,8 @@ class SpriteModule(AbstractModule):
     def save_monster_attack_sprite(self, id, data: Union[bytes, WanFile], raw=False):
         with self.get_attack_bin_ctx() as bin_pack:
             if not raw:
-                data = FileType.WAN.CHARA.serialize(data)
-            data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data))
+                data = FileType.WAN.CHARA.serialize(data)  # type: ignore
+            data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data))  # type: ignore
             if id == len(bin_pack):
                 bin_pack.append(data)
             else:
