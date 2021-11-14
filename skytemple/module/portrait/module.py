@@ -23,7 +23,7 @@ from skytemple.core.rom_project import RomProject
 from skytemple.module.portrait.portrait_provider import PortraitProvider
 from skytemple.module.portrait.controller.portrait import PortraitController
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.graphics.kao.model import Kao, KaoImage
+from skytemple_files.graphics.kao.protocol import KaoProtocol
 
 PORTRAIT_FILE = 'FONT/kaomado.kao'
 
@@ -41,7 +41,7 @@ class PortraitModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         """Loads the list of backgrounds for the ROM."""
         self.project = rom_project
-        self.kao: Kao = self.project.open_file_in_rom(PORTRAIT_FILE, FileType.KAO)
+        self.kao: KaoProtocol = self.project.open_file_in_rom(PORTRAIT_FILE, FileType.KAO)
         self._portrait_provider = PortraitProvider(self.kao)
         self._portrait_provider__was_init = False
 
