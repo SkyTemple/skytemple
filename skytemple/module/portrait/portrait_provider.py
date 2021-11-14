@@ -23,7 +23,8 @@ from gi.repository import Gdk, GdkPixbuf, Gtk
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_files.data.md.model import MdProperties
-from skytemple_files.graphics.kao.model import Kao, KAO_IMG_METAPIXELS_DIM, KAO_IMG_IMG_DIM
+from skytemple_files.graphics.kao.model import KAO_IMG_METAPIXELS_DIM, KAO_IMG_IMG_DIM
+from skytemple_files.graphics.kao.protocol import KaoProtocol
 
 IMG_DIM = KAO_IMG_METAPIXELS_DIM * KAO_IMG_IMG_DIM
 portrait_provider_lock = threading.Lock()
@@ -34,7 +35,7 @@ class PortraitProvider:
     PortraitProvider. This class renders portraits using Threads. If a portrait is requested, a loading icon
     is returned instead, until it is loaded by the AsyncTaskRunner.
     """
-    def __init__(self, kao: Kao):
+    def __init__(self, kao: KaoProtocol):
         self._kao = kao
         self._loader_surface: Optional[cairo.ImageSurface] = None
         self._error_surface: Optional[cairo.ImageSurface] = None
