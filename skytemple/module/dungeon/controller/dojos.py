@@ -14,6 +14,8 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from typing import Optional
+
 from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
@@ -35,7 +37,7 @@ class DojosController(SimpleController):
             _("Dojo Dungeons are the dungeons used in the Marowak Dojo.\nYou can not change the number of floors for Dojo Dungeons.")
         )
 
-    def get_icon(self) -> str:
+    def get_icon(self) -> Optional[str]:
         return None
 
     def get_back_illust(self) -> str:

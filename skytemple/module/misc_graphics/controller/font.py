@@ -17,7 +17,7 @@
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, Optional, Dict, List
+from typing import TYPE_CHECKING, Optional, Dict, List, Tuple
 
 from xml.etree.ElementTree import Element, ElementTree
 
@@ -56,11 +56,13 @@ class FontController(AbstractController):
         self.spec = item
         self.font: Optional[AbstractFont] = self.module.get_font(self.spec)
         
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'font.glade')
+        assert self.builder
         self._init_font()
+        assert self.font
 
         # Generate Automatically the columns since we don't know what properties we will be using
         self.entry_properties = self.font.get_entry_properties()
@@ -93,6 +95,7 @@ class FontController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
+            assert self.font
             xml, tables = self.font.export_to_xml()
             with open(os.path.join(fn, f'char_tables.xml'), 'w') as f:
                 f.write(prettify(xml))
@@ -130,7 +133,8 @@ class FontController(AbstractController):
                     path = os.path.join(fn, f'table-{i}.png')
                     if os.path.exists(path):
                         tables[i] = Image.open(path, 'r')
-                        
+
+                assert self.font
                 self.font.import_from_xml(xml, tables)
                 self.module.mark_font_as_modified(self.spec)
             except Exception as err:
@@ -268,6 +272,9 @@ class FontController(AbstractController):
     
     def draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:
+            if TYPE_CHECKING:
+                assert self.font
+                assert self.builder
             wdg.set_size_request(self.surface.get_width(), self.surface.get_height())
             ctx.fill()
             ctx.set_source_surface(self.surface, 0, 0)

@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import TYPE_CHECKING, Type, Union
+from typing import TYPE_CHECKING, Type, Union, Optional
 
 from gi.repository import Gtk
 
@@ -34,11 +34,12 @@ class MainController(AbstractController):
     def __init__(self, module: 'DungeonGraphicsModule', *args):
         self.module = module
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self.lst = self.module.get_tileset_properties()
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'main.glade')
+        assert self.builder
 
         self._init_combo_stores()
         self._init_values()
@@ -117,7 +118,7 @@ class MainController(AbstractController):
         store = Gtk.ListStore(int, str)  # id, name
         cr.props.model = store
         for e in en:
-            store.append([e.value, e.print_name])
+            store.append([e.value, e.print_name])  # type: ignore
 
     def _init_values(self):
         from skytemple.module.dungeon_graphics.module import NUMBER_OF_TILESETS

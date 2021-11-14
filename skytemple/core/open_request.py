@@ -35,7 +35,7 @@ class OpenRequest:
     The request will be forwarded to all modules and the first module to take it, will get it's returned
     view opened and focused in the view tree.
     """
-    def __init__(self, type: str, identifier: any):
+    def __init__(self, type: str, identifier):
         """
         :param type:       A string identifier for the type of the requested resource
         :param identifier: The identifier for the instance of the type to open the view for, usually str or int.

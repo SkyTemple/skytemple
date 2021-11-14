@@ -50,7 +50,7 @@ class ZMappaTController(AbstractController):
         self.filename = item
         self.zmappat: ZMappaT = self.module.get_dungeon_bin_file(self.filename)
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'zmappat.glade')

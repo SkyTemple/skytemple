@@ -16,14 +16,14 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 import itertools
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Iterable, List
 from copy import deepcopy
 
+import cairo
 import gi
 from gi.repository import Gtk, Gdk
 from gi.repository.GObject import TYPE_PYOBJECT
 from gi.repository.GdkPixbuf import Pixbuf, Colorspace
-from gi.repository.Gtk import *
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
@@ -36,7 +36,7 @@ from skytemple.module.map_bg.drawer import Drawer, DrawerCellRenderer, DrawerInt
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevelMapType
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.graphics.bg_list_dat.model import BMA_EXT, BPC_EXT, BPL_EXT, BPA_EXT, DIR
-from skytemple_files.graphics.bma.model import MASK_PAL
+from skytemple_files.graphics.bma.model import MASK_PAL, Bma
 from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 from skytemple_files.graphics.bpl.model import BPL_NORMAL_MAX_PAL
 from skytemple_files.common.i18n_util import _
@@ -118,26 +118,26 @@ class BgController(AbstractController):
         self.module = module
         self.item_id = item_id
 
-        self.builder = None
-        self.notebook: Notebook = None
+        self.builder: Optional[Gtk.Builder] = None
+        self.notebook: Optional[Gtk.Notebook] = None
 
         self.bma = module.get_bma(item_id)
         self.bpl = module.get_bpl(item_id)
         self.bpc = module.get_bpc(item_id)
         self.bpas = module.get_bpas(item_id)
-        self.first_cursor_pos = (0,0)
-        self.last_bma = None
+        self.first_cursor_pos = (0, 0)
+        self.last_bma: Optional[Bma] = None
 
         # Cairo surfaces for each tile in each layer for each frame
         # chunks_surfaces[layer_number][chunk_idx][palette_animation_frame][frame]
-        self.chunks_surfaces = []
+        self.chunks_surfaces: List[Iterable[Iterable[List[cairo.Surface]]]] = []
         self.bpa_durations = 0
 
-        self.drawer: Drawer = None
-        self.current_icon_view_renderer: DrawerCellRenderer = None
+        self.drawer: Optional[Drawer] = None
+        self.current_icon_view_renderer: Optional[DrawerCellRenderer] = None
 
-        self.bg_draw: DrawingArea = None
-        self.bg_draw_event_box: EventBox = None
+        self.bg_draw: Optional[Gtk.DrawingArea] = None
+        self.bg_draw_event_box: Optional[Gtk.EventBox] = None
 
         self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
 
@@ -148,7 +148,7 @@ class BgController(AbstractController):
 
         self._init_chunk_imgs()
 
-        self.menu_controller = BgMenuController(self)
+        self.menu_controller = BgMenuController(self)  # type: ignore
 
         # SkyTemple can not correctly edit MapBG files which are shared between multiple MapBGs.
         # We have to copy them!
@@ -161,7 +161,7 @@ class BgController(AbstractController):
             self.bpc = module.get_bpc(item_id)
             self.bpas = module.get_bpas(item_id)
 
-    def get_view(self) -> Widget:
+    def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'map_bg.glade')
         self.set_warning_palette()
         self.notebook = self.builder.get_object('bg_notebook')
@@ -195,7 +195,7 @@ class BgController(AbstractController):
         super().unload()
         self.module = None
         self.item_id = None
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self.notebook = None
         self.bma = None
         self.bpl = None
@@ -209,8 +209,8 @@ class BgController(AbstractController):
         if self.current_icon_view_renderer:
             self.current_icon_view_renderer.unload()
         self.current_icon_view_renderer: DrawerCellRenderer = None
-        self.bg_draw: DrawingArea = None
-        self.bg_draw_event_box: EventBox = None
+        self.bg_draw: Optional[Gtk.DrawingArea] = None
+        self.bg_draw_event_box: Optional[Gtk.EventBox] = None
         self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
         self.scale_factor = 1
         self.current_chunks_icon_layer = 0
@@ -225,6 +225,7 @@ class BgController(AbstractController):
         correct_mouse_x = int(button.x / self.scale_factor)
         correct_mouse_y = int(button.y / self.scale_factor)
         if button.button == 1:
+            assert self.drawer
             if not self.bg_draw_is_clicked:
                 self.last_bma = deepcopy(self.bma)
             self.bg_draw_is_clicked = True
@@ -262,8 +263,10 @@ class BgController(AbstractController):
                 tilling_y = BPC_TILE_DIM
             self.drawer.set_mouse_position(snap_x, snap_y)
             if self.bg_draw_is_clicked:
+                assert self.builder
                 if self.builder.get_object("tb_rectangle").get_active():
                     #TODO: Clearly not optimized
+                    assert self.last_bma
                     self.bma.layer0 = deepcopy(self.last_bma.layer0)
                     self.bma.layer1 = deepcopy(self.last_bma.layer1)
                     self.bma.collision = deepcopy(self.last_bma.collision)
@@ -330,7 +333,7 @@ class BgController(AbstractController):
                 self.mark_as_modified()
                 self.bma.unknown_data_block[tile_idx] = self.drawer.get_interaction_dat_value()
 
-    def on_current_icon_view_selection_changed(self, icon_view: IconView):
+    def on_current_icon_view_selection_changed(self, icon_view: Gtk.IconView):
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
         if model is not None and treeiter is not None and treeiter != []:
             chunk_id = model[treeiter][0]
@@ -341,7 +344,7 @@ class BgController(AbstractController):
         if self.drawer:
             self.drawer.set_interaction_col_solid(state)
 
-    def on_data_combo_box_changed(self, cb: ComboBox):
+    def on_data_combo_box_changed(self, cb: Gtk.ComboBox):
         if self.drawer:
             self.drawer.set_interaction_dat_value(cb.get_active())
 
@@ -561,7 +564,7 @@ class BgController(AbstractController):
 
     def _init_drawer(self):
         """(Re)-initialize the main drawing area"""
-        bg_draw_sw: ScrolledWindow = self.builder.get_object('bg_draw_sw')
+        bg_draw_sw: Gtk.ScrolledWindow = self.builder.get_object('bg_draw_sw')
         for child in bg_draw_sw.get_children():
             bg_draw_sw.remove(child)
         if self.bg_draw_event_box:
@@ -578,7 +581,7 @@ class BgController(AbstractController):
         self.bg_draw_event_box.connect("button-release-event", self.on_bg_draw_release)
         self.bg_draw_event_box.connect("motion-notify-event", self.on_bg_draw_mouse_move)
 
-        self.bg_draw: DrawingArea = Gtk.DrawingArea.new()
+        self.bg_draw: Gtk.DrawingArea = Gtk.DrawingArea.new()
         self.bg_draw_event_box.add(self.bg_draw)
 
         bg_draw_sw.add(self.bg_draw_event_box)
@@ -613,7 +616,7 @@ class BgController(AbstractController):
 
     def _init_drawer_data_layer_selected(self):
         self.drawer.set_edit_data_layer()
-        cb: ComboBox = self.builder.get_object('data_combo_box')
+        cb: Gtk.ComboBox = self.builder.get_object('data_combo_box')
         self.drawer.set_interaction_dat_value(cb.get_active())
 
         # Set drawer state based on some buttons
@@ -626,7 +629,7 @@ class BgController(AbstractController):
 
         self.current_chunks_icon_layer = layer_number
 
-        icon_view: IconView = self.builder.get_object(f'bg_chunks_view')
+        icon_view: Gtk.IconView = self.builder.get_object(f'bg_chunks_view')  # type: ignore
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         self.current_icon_view_renderer = DrawerCellRenderer(icon_view, layer_number,
                                                              self.bpa_durations, self.pal_ani_durations,
@@ -637,22 +640,22 @@ class BgController(AbstractController):
         icon_view.add_attribute(self.current_icon_view_renderer, 'chunkidx', 0)
         icon_view.connect('selection-changed', self.on_current_icon_view_selection_changed)
 
-        for idx in range(0, len(self.chunks_surfaces[layer_number])):
+        for idx in range(0, len(self.chunks_surfaces[layer_number])):  # type: ignore
             store.append([idx])
 
         icon_view.select_path(store.get_path(store.get_iter_first()))
         self.current_icon_view_renderer.start()
 
-        self.current_icon_view_renderer.set_pink_bg(self.builder.get_object(f'tb_bg_color').get_active())
+        self.current_icon_view_renderer.set_pink_bg(self.builder.get_object(f'tb_bg_color').get_active())  # type: ignore
 
     def _deinit_chunks_icon_view(self):
         """Remove the icon view for the specified layer"""
-        icon_view: IconView = self.builder.get_object(f'bg_chunks_view')
+        icon_view: Gtk.IconView = self.builder.get_object(f'bg_chunks_view')
         icon_view.clear()
         icon_view.set_model(None)
 
     def _init_data_layer_combobox(self):
-        cb: ComboBox = self.builder.get_object(f'data_combo_box')
+        cb: Gtk.ComboBox = self.builder.get_object(f'data_combo_box')
         if cb.get_model() is None:
             store = Gtk.ListStore(str, int)
             for i in range(0, 256):
@@ -669,7 +672,8 @@ class BgController(AbstractController):
     def mark_as_modified(self):
         self.module.mark_as_modified(self.item_id)
 
-    def _init_tab(self, notebook_page: Box):
+    def _init_tab(self, notebook_page: Gtk.Box):
+        assert self.builder
         layers_box = self.builder.get_object('bg_layers')
 
         toolbox_box = self.builder.get_object('bg_layers_toolbox')
@@ -707,7 +711,7 @@ class BgController(AbstractController):
             self._init_drawer_layer_selected()
         elif page_name == 'bg_col1' and self.bma.number_of_collision_layers < 1:
             # Collision 1: Does not exist
-            label: Gtk.Label = Gtk.Label.new(
+            label = Gtk.Label.new(
                 _('This map has no collision.\n'
                   'You can add collision at Map > Settings.')
             )
@@ -716,7 +720,7 @@ class BgController(AbstractController):
             notebook_page.add(label)
         elif page_name == 'bg_col2' and self.bma.number_of_collision_layers < 2:
             # Collision 2: Does not exist
-            label: Gtk.Label = Gtk.Label.new(
+            label = Gtk.Label.new(
                 _('This map has no second collision layer.\n'
                   'You can add a second collision layer at Map > Settings.')
             )
@@ -736,7 +740,7 @@ class BgController(AbstractController):
             self._init_drawer_collision_selected(0 if page_name == 'bg_col1' else 1)
         elif page_name == 'bg_data' and self.bma.unk6 < 1:
             # Data Layer: Does not exist
-            label: Gtk.Label = Gtk.Label.new(
+            label = Gtk.Label.new(
                 _('This map has no data layer.\n'
                   'You can add a data layer at Map > Settings.')
             )
@@ -789,7 +793,7 @@ class BgController(AbstractController):
                 int(BPC_TILE_DIM * 3 * self.scale_factor), int(BPC_TILE_DIM * 3 * self.scale_factor)
             )
 
-            icon_view: IconView = self.builder.get_object(f'bg_chunks_view')
+            icon_view: Gtk.IconView = self.builder.get_object(f'bg_chunks_view')
             icon_view.queue_resize()
 
     def reload_all(self):

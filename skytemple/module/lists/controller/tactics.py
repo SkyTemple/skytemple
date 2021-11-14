@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 
 class TacticsController(AbstractController):
-    def __init__(self, module: 'ListsModule', item_id: any):
+    def __init__(self, module: 'ListsModule', item_id):
         super().__init__(module, item_id)
         self.module = module
         self._list: Optional[List[int]] = None

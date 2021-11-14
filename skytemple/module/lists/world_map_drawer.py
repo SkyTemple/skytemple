@@ -53,9 +53,9 @@ class WorldMapDrawer:
         self.mouse_x = 99999
         self.mouse_y = 99999
         self._selected: Optional[MapMarkerPlacement] = None
-        self._editing = None
-        self._editing_pos = None
-        self._hide = None
+        self._editing: Optional[MapMarkerPlacement] = None
+        self._editing_pos: Optional[Tuple[int, int]] = None
+        self._hide: Optional[MapMarkerPlacement] = None
 
         self.tile_grid_plugin = GridDrawerPlugin(
             BPC_TILE_DIM, BPC_TILE_DIM, color=(0.2, 0.2, 0.2, 0.1)
@@ -127,12 +127,6 @@ class WorldMapDrawer:
                     return marker
         return None
 
-    def selection_draw_callback(self, ctx: cairo.Context, x: int, y: int):
-        if self._selected is not None and self._selected__drag is not None:
-            # Draw dragged:
-            x, y = self.get_current_drag_entity_pos()
-            self._draw_marker(ctx, self._selected, x, y)
-
     def set_mouse_position(self, x, y):
         self.mouse_x = x
         self.mouse_y = y
@@ -201,6 +195,7 @@ class WorldMapDrawer:
                     editing_pos: Tuple[int, int] = None, hide: Optional[MapMarkerPlacement] = None):
         self._editing = entity
         if editing_pos is None:
+            assert entity
             editing_pos = (entity.x, entity.y)
         self._editing_pos = editing_pos
         self._selected = entity

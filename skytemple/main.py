@@ -48,10 +48,10 @@ if not os.getenv('LC_ALL'):
         locale.setlocale(locale.LC_ALL, settings.get_locale())
     except locale.Error as ex:
         logging.error("Failed setting locale", exc_info=ex)
-libintl.bindtextdomain(APP, LOCALE_DIR)
+libintl.bindtextdomain(APP, LOCALE_DIR)  # type: ignore
 try:
-    libintl.bind_textdomain_codeset(APP, 'UTF-8')
-    libintl.libintl_setlocale(0, settings.get_locale())
+    libintl.bind_textdomain_codeset(APP, 'UTF-8')  # type: ignore
+    libintl.libintl_setlocale(0, settings.get_locale())  # type: ignore
 except:
     pass
 gettext.bindtextdomain(APP, LOCALE_DIR)
@@ -60,7 +60,7 @@ try:
     if os.environ['LC_ALL'] != 'C':
         loc = os.environ['LC_ALL']
         if loc == '':
-            loc = locale.getdefaultlocale()[0]
+            loc = locale.getdefaultlocale()[0]  # type: ignore
         from skytemple_files.common.i18n_util import reload_locale
         base_loc = loc.split('_')[0]
         fallback_loc = base_loc

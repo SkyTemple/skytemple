@@ -19,6 +19,7 @@ import itertools
 import os
 from typing import Union, List, Optional
 
+import cairo
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType, IconView, ScrolledWindow
 
@@ -59,7 +60,7 @@ class ChunkEditorController:
         self.pal_ani_durations = pal_ani_durations
 
         self.current_tile_id = 0
-        self.current_tile_drawer: DrawerTiled = None
+        self.current_tile_drawer: Optional[DrawerTiled] = None
 
         self.switching_tile = False
 
@@ -71,7 +72,7 @@ class ChunkEditorController:
         # For each palette
         for pal in range(0, len(self.palettes.get())):
             all_bpc_tiles_for_current_pal = self.tile_graphics.get_pil(self.palettes.get(), pal)
-            tiles_current_pal = []
+            tiles_current_pal: List[List[List[cairo.Surface]]] = []
             self.tile_surfaces.append(tiles_current_pal)
 
             has_pal_ani = self.palettes.is_palette_affected_by_animation(pal)
@@ -81,7 +82,7 @@ class ChunkEditorController:
             # For each tile...
             for tile_idx in range(0, self.tile_graphics.count()):
                 # For each frame of palette animation...
-                pal_ani_tile = []
+                pal_ani_tile: List[List[cairo.Surface]] = []
                 tiles_current_pal.append(pal_ani_tile)
                 for pal_ani in range(0, len_pal_ani):
                     # Switch out the palette with that from the palette animation
@@ -105,7 +106,7 @@ class ChunkEditorController:
                             tiles_current_pal.append(pal_ani_tile)
                             # For each frame of palette animation...
                             for pal_ani in range(0, len_pal_ani):
-                                bpa_ani_tile = []
+                                bpa_ani_tile: List[cairo.Surface] = []
                                 pal_ani_tile.append(bpa_ani_tile)
                                 # For each frame of BPA animation...
                                 for frame in all_bpa_tiles_for_current_pal:
@@ -133,7 +134,7 @@ class ChunkEditorController:
 
             if self.animated_tile_graphics:
                 self.bpa_starts_cursor = len(self.dummy_tile_map)
-                self.bpa_starts = [None, None, None, None]
+                self.bpa_starts: List[Optional[int]] = [None, None, None, None]
                 for i, ani_tile_g in enumerate(self.animated_tile_graphics):
                     if ani_tile_g is not None:
                         self.bpa_starts[i] = self.bpa_starts_cursor
@@ -204,7 +205,7 @@ class ChunkEditorController:
             self.current_tile_id = model[treeiter][0]
 
             mapping = self.edited_mappings[self.current_tile_id]
-            self.current_tile_drawer.set_tile_mappings([mapping])
+            self.current_tile_drawer.set_tile_mappings([mapping])  # type: ignore
 
             self.builder.get_object('flip_x').set_active(mapping.flip_x)
             self.builder.get_object('flip_y').set_active(mapping.flip_y)
@@ -230,9 +231,9 @@ class ChunkEditorController:
                 icon_view_static_tiles.unselect_all()
                 for i, bpa_view in enumerate(bpa_views):
                     obj = self.builder.get_object(bpa_view)
-                    if self.animated_tile_graphics[i]:
+                    if self.animated_tile_graphics[i]:  # type: ignore
                         if obj and mapping.idx >= self.bpa_starts[i]:
-                            store: Gtk.ListStore = obj.get_model()
+                            store = obj.get_model()
                             for e in store:
                                 if e[0] == mapping.idx:
                                     obj.select_path(e.path)

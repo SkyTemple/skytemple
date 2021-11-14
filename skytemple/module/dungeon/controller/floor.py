@@ -87,6 +87,7 @@ class FloorEditItemList(Enum):
     UNK1 = 4
     UNK2 = 5
 
+
 class FloorRanks(Enum):
     INVALID = 0, _("Invalid")
     E_RANK = 1, _("E Rank")
@@ -111,7 +112,7 @@ class FloorRanks(Enum):
         return obj
 
     # ignore the first param since it's already set by __new__
-    def __init__(self, _: str, print_name: str = None):
+    def __init__(self, _: int, print_name: str = None):
         self._print_name_ = print_name
 
     def __str__(self):
@@ -136,7 +137,7 @@ class FloorController(AbstractController):
         self.item = item
         self.entry = self.module.get_mappa_floor(item)
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._draw = None
         self._refresh_timer = None
         self._loading = False
@@ -144,14 +145,14 @@ class FloorController(AbstractController):
         self._sprite_provider = module.project.get_sprite_provider()
 
         if self.__class__._last_scale_factor is not None:
-            self._scale_factor = self.__class__._last_scale_factor
+            self._scale_factor: int = self.__class__._last_scale_factor
         else:
             self._scale_factor = 2
 
         self._item_list_edit_active = self.__class__._last_open_tab_item_lists
 
-        self._ent_names = {}
-        self._item_names = {}
+        self._ent_names: Dict[int, str] = {}
+        self._item_names: Dict[int, str] = {}
         orig_cats = module.project.get_rom_module().get_static_data().dungeon_data.item_categories
 
         # TODO: Support editing other item categories?
@@ -235,7 +236,7 @@ class FloorController(AbstractController):
         self.module = None
         self.item = None
         self.entry = None
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._draw = None
         self._refresh_timer = None
         self._loading = False
@@ -795,7 +796,7 @@ class FloorController(AbstractController):
         self._on_cat_item_remove_clicked('item_cat_others_tree')
 
     def _on_cat_item_name_changed(self, store_name: str, path, text: str):
-        store: Gtk.Store = self.builder.get_object(store_name)
+        store: Gtk.Store = self.builder.get_object(store_name)  # type: ignore
         match = PATTERN_MD_ENTRY.match(text)
         if match is None:
             return
@@ -855,7 +856,7 @@ class FloorController(AbstractController):
         self._save_item_spawn_rates()
 
     def _on_cat_item_guaranteed_toggled(self, store_name: str, path, old_state: bool):
-        store: Gtk.Store = self.builder.get_object(store_name)
+        store: Gtk.Store = self.builder.get_object(store_name)  # type: ignore
         store[path][2] = not old_state
         if not old_state:
             store[path][4] = "0"
@@ -868,7 +869,7 @@ class FloorController(AbstractController):
             assert v >= 0
         except:
             return
-        store: Gtk.Store = self.builder.get_object(store_name)
+        store: Gtk.Store = self.builder.get_object(store_name)  # type: ignore
         if store[path][2]:
             return
         store[path][4] = text
@@ -877,7 +878,7 @@ class FloorController(AbstractController):
         self._save_item_spawn_rates()
 
     def _on_cat_item_add_clicked(self, store_name: str):
-        store: Gtk.ListStore = self.builder.get_object(store_name)
+        store: Gtk.ListStore = self.builder.get_object(store_name)  # type: ignore
 
         item_ids_already_in = []
         for row in store:
@@ -910,7 +911,7 @@ class FloorController(AbstractController):
         self._save_item_spawn_rates()
 
     def _on_cat_item_remove_clicked(self, tree_name: str):
-        tree: Gtk.TreeView = self.builder.get_object(tree_name)
+        tree: Gtk.TreeView = self.builder.get_object(tree_name)  # type: ignore
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
             model.remove(treeiter)
@@ -939,7 +940,7 @@ class FloorController(AbstractController):
         self.__class__._last_show_full_map = w.get_active()
         if w.get_active():
             if not ignore_scaling:
-                self._scale_factor /= 10
+                self._scale_factor //= 10
                 self.__class__._last_scale_factor = self._scale_factor
             self.drawer.set_entity_renderer(FullMapEntityRenderer(self.drawer))
             self._init_tileset()
@@ -951,7 +952,7 @@ class FloorController(AbstractController):
             self.drawer.set_entity_renderer(MinimapEntityRenderer(self.drawer, minimap_provider))
             self.drawer.set_tileset_renderer(FixedFloorDrawerMinimap(minimap_provider))
         self._update_scales()
-        self._draw.queue_draw()
+        self._draw.queue_draw()  # type: ignore
 
     def _init_drawer(self):
         self.drawer = FixedRoomDrawer(self._draw, None, self.module.project.get_sprite_provider(),
@@ -1214,6 +1215,7 @@ class FloorController(AbstractController):
                 )
 
     def on_cr_export_selected_toggled(self, w: Gtk.CellRendererToggle, path, *args):
+        assert self.builder
         store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')
         is_active = not w.get_active()
         store[path][5] = is_active
@@ -1249,6 +1251,7 @@ class FloorController(AbstractController):
         mark_active_recurse(store.get_iter(path))
 
     def on_item_list_notebook_switch_page(self, w: Gtk.Notebook, page: Gtk.Box, page_num: int, *args):
+        assert self.builder
         self._item_list_edit_active = FloorEditItemList(page_num)
         self.__class__._last_open_tab_item_lists = FloorEditItemList(page_num)
         sw: Gtk.ScrolledWindow = self.builder.get_object('sw_item_editor')
@@ -1501,7 +1504,7 @@ class FloorController(AbstractController):
     def _split_items_in_list_in_cats(
             self, items: Dict[Pmd2DungeonItem, Probability]
     ) -> Dict[Pmd2DungeonItemCategory, Dict[Pmd2DungeonItem, Probability]]:
-        out_items = {}
+        out_items: Dict[Pmd2DungeonItemCategory, Dict[Pmd2DungeonItem, Probability]] = {}
         for cat in self.item_categories.values():
             out_items[cat] = {}
             for item, probability in items.items():
@@ -1759,14 +1762,14 @@ class FloorController(AbstractController):
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
 
     def _comboxbox_for_boolean(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
         store.append([0, _("No")])
         store.append([1, _("Yes")])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
 
     def _comboxbox_for_tileset_id(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
@@ -1776,7 +1779,7 @@ class FloorController(AbstractController):
             else:
                 store.append([i, f"{'Tileset'} {i}"])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
 
     def _comboxbox_for_music_id(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
@@ -1797,7 +1800,7 @@ class FloorController(AbstractController):
                         name = music_entries[track.track_or_ref].name
             store.append([i, name + f" (#{i:03})"])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
 
     def _comboxbox_for_fixed_floor_id(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
@@ -1805,7 +1808,7 @@ class FloorController(AbstractController):
         for i in range(1, COUNT_VALID_FIXED_FLOORS):
             store.append([i, f(_("No. {i}"))])  # TRANSLATORS: Number {i}
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):
@@ -1846,7 +1849,7 @@ class FloorController(AbstractController):
             self._update_from_entry(w)
         else:
             self._update_from_scale(w)
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if self.builder.get_object('tool_auto_refresh').get_active():  # type: ignore
             self._generate_floor()
 
     def _update_from_entry(self, w: Gtk.Entry):
@@ -1855,7 +1858,7 @@ class FloorController(AbstractController):
             obj = self.entry.layout.terrain_settings
             attr_name = w_name[len(ENTRY_TERRAIN_SETTINGS):]
         else:
-            obj = self.entry.layout
+            obj = self.entry.layout  # type: ignore
             attr_name = w_name[len(ENTRY):]
         try:
             val = int(w.get_text())
@@ -1869,7 +1872,7 @@ class FloorController(AbstractController):
             obj = self.entry.layout.terrain_settings
             attr_name = w_name[len(CB_TERRAIN_SETTINGS):]
         else:
-            obj = self.entry.layout
+            obj = self.entry.layout  # type: ignore
             attr_name = w_name[len(CB):]
         val = w.get_model()[w.get_active_iter()][0]
         current_val = getattr(obj, attr_name)
@@ -1898,6 +1901,7 @@ class FloorController(AbstractController):
             return self.entry.unk_items1
         if self._item_list_edit_active == FloorEditItemList.UNK2:
             return self.entry.unk_items2
+        raise ValueError("Unknown floor edit item type")
 
     def _help(self, msg):
         md = SkyTempleMessageDialog(MainController.window(),

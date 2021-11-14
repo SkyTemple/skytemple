@@ -161,8 +161,8 @@ class SpriteProvider:
     """
     def __init__(self, project: 'RomProject'):
         self._project = project
-        self._loader_surface_dims = None
-        self._loader_surface = None
+        self._loader_surface_dims: Optional[Tuple[int, int]] = None
+        self._loader_surface: Optional[cairo.ImageSurface] = None
 
         self._loaded__monsters: Dict[ActorSpriteKey, SpriteAndOffsetAndDims] = {}
         self._loaded__monsters_outlines: Dict[ActorSpriteKey, SpriteAndOffsetAndDims] = {}
@@ -284,10 +284,10 @@ class SpriteProvider:
         self._load_dungeon_bin()
         with sprite_provider_lock:
             if trp in self._loaded__traps:
-                return self._loaded__traps[trp]
+                return self._loaded__traps[trp]  # type: ignore
             if trp not in self._requests__traps:
-                self._requests__traps.append(trp)
-                self._load_trap(trp, after_load_cb)
+                self._requests__traps.append(trp)  # type: ignore
+                self._load_trap(trp, after_load_cb)  # type: ignore
         return self.get_loader()
 
     def get_for_item(self, itm: ItemPEntry, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
@@ -439,6 +439,7 @@ class SpriteProvider:
 
     async def _load_trap__impl(self, trp: int, after_load_cb):
         try:
+            assert self._dungeon_bin is not None
             with self._dungeon_bin as dungeon_bin:
                 traps: ImgTrp = dungeon_bin.get(TRP_FILENAME)
             surf = pil_to_cairo_surface(traps.to_pil(trp, TRAP_PALETTE_MAP[trp]).convert('RGBA'))
@@ -459,6 +460,7 @@ class SpriteProvider:
 
     async def _load_item__impl(self, item: ItemPEntry, after_load_cb):
         try:
+            assert self._dungeon_bin is not None
             with self._dungeon_bin as dungeon_bin:
                 items: ImgItm = dungeon_bin.get(ITM_FILENAME)
             img = items.to_pil(item.sprite, item.palette)
@@ -490,6 +492,8 @@ class SpriteProvider:
         """
         Returns the loader sprite. A "loading" icon with the size ~24x24px.
         """
+        assert self._loader_surface_dims
+        assert self._loader_surface
         w, h = self._loader_surface_dims
         return self._loader_surface, int(w/2), h, w, h
 

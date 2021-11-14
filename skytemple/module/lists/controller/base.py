@@ -34,7 +34,7 @@ class ListBaseController(AbstractController, ABC):
     def __init__(self, module: 'ListsModule', *args):
         self.module = module
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._sprite_provider = self.module.project.get_sprite_provider()
         self._ent_names: Dict[int, str] = {}
         self._list_store: Optional[Gtk.ListStore] = None
@@ -52,7 +52,7 @@ class ListBaseController(AbstractController, ABC):
 
     def unload(self):
         super().unload()
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._sprite_provider = None
         self._ent_names = None
         self._list_store = None
@@ -73,7 +73,7 @@ class ListBaseController(AbstractController, ABC):
 
     def on_draw_example_placeholder_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
         sprite, x, y, w, h = self._sprite_provider.get_actor_placeholder(
-            9999, 0, lambda: GLib.idle_add(lambda: self.builder.get_object('draw_example_placeholder').queue_draw())
+            9999, 0, lambda: GLib.idle_add(lambda: self.builder.get_object('draw_example_placeholder').queue_draw())  # type: ignore
         )
         ctx.set_source_surface(sprite)
         ctx.get_source().set_filter(cairo.Filter.NEAREST)

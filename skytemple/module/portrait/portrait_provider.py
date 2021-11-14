@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import threading
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Optional
 
 import cairo
 from gi.repository import Gdk, GdkPixbuf, Gtk
@@ -36,8 +36,8 @@ class PortraitProvider:
     """
     def __init__(self, kao: Kao):
         self._kao = kao
-        self._loader_surface = None
-        self._error_surface = None
+        self._loader_surface: Optional[cairo.ImageSurface] = None
+        self._error_surface: Optional[cairo.ImageSurface] = None
 
         self._loaded: Dict[Tuple[int, int], cairo.Surface] = {}
         self._loaded__is_fallback: Dict[Tuple[int, int], bool] = {}
@@ -118,10 +118,10 @@ class PortraitProvider:
         """
         Returns the loader sprite. A "loading" icon with the size ~24x24px.
         """
-        return self._loader_surface
+        return self._loader_surface  # type: ignore
 
     def get_error(self) -> cairo.Surface:
         """
         Returns the error sprite. An "error" icon with the size ~24x24px.
         """
-        return self._error_surface
+        return self._error_surface  # type: ignore

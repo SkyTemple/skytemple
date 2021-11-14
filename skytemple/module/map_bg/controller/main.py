@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
 
@@ -35,7 +35,7 @@ MAPBG_NAME = _('Map Backgrounds')
 class MainController(AbstractController):
     def __init__(self, module: 'MapBgModule', item_id: int):
         self.module = module
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'main.glade')
