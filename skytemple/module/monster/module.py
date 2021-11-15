@@ -38,7 +38,8 @@ from skytemple_files.data.tbl_talk.model import TblTalk, TalkType
 from skytemple_files.data.md.model import Md, MdEntry, MdProperties, ShadowSize
 from skytemple_files.data.monster_xml import monster_xml_import, GenderedConvertEntry
 from skytemple_files.data.waza_p.model import WazaP
-from skytemple_files.graphics.kao.model import KaoImage, SUBENTRIES, Kao
+from skytemple_files.graphics.kao.model import SUBENTRIES, Kao
+from skytemple_files.graphics.kao.protocol import KaoImageProtocol, KaoProtocol
 from skytemple_files.hardcoded.monster_sprite_data_table import HardcodedMonsterSpriteDataTable, HardcodedMonsterGroundIdleAnimTable, IdleAnimType
 from skytemple_files.common.i18n_util import _
 from skytemple_files.common.util import normalize_string
@@ -201,7 +202,7 @@ class MonsterModule(AbstractModule):
         v.show_all()
         return v
 
-    def get_portraits_for_export(self, item_id) -> Tuple[Optional[List[KaoImage]], Optional[List[KaoImage]]]:
+    def get_portraits_for_export(self, item_id) -> Tuple[Optional[List[KaoImageProtocol]], Optional[List[KaoImageProtocol]]]:
         portraits = None
         portraits2 = None
         portrait_module = self.project.get_module('portrait')
@@ -417,19 +418,12 @@ class MonsterModule(AbstractModule):
                 sp.mark_as_modified()
 
             portrait_module = self.project.get_module('portrait')
-            kao: Kao = portrait_module.kao
+            kao: KaoProtocol = portrait_module.kao
             portraits = portraits if we_are_gender1 else portraits2
             if portraits:
                 for i, portrait in enumerate(portraits):
-                    existing = kao.get(monster_id - 1, i)
                     if portrait:
-                        if existing:
-                            existing.compressed_img_data = portrait.compressed_img_data
-                            existing.pal_data = portrait.pal_data
-                            existing.modified = True
-                            existing.as_pil = None
-                        else:
-                            kao.set(monster_id - 1, i, portrait)
+                        kao.set(monster_id - 1, i, portrait)
                     else:
                         # TODO: Support removing portraits
                         pass
