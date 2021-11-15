@@ -38,7 +38,7 @@ from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.graphics.kao.model import SUBENTRIES, KaoImage
+from skytemple_files.graphics.kao.model import SUBENTRIES
 from skytemple_files.common.i18n_util import _, f
 
 if TYPE_CHECKING:
@@ -156,13 +156,7 @@ class PortraitController(AbstractController):
                 try:
                     with open(os.path.join(fn, image_fn), 'rb') as file:
                         image = Image.open(file)
-                        kao = self.kao.get(self.item_id, subindex)
-                        if kao:
-                            # Replace
-                            kao.set(image)
-                        else:
-                            # New
-                            self.kao.set(self.item_id, subindex, KaoImage.new(image))
+                        self.kao.set_from_img(self.item_id, subindex, image)
                 except Exception as err:
                     name = self._get_portrait_name(subindex)
                     logger.error(f"Failed importing image '{name}'.", exc_info=err)
@@ -213,13 +207,7 @@ class PortraitController(AbstractController):
             try:
                 for subindex, image in SpriteBotSheet.load(fn, self._get_portrait_name):
                     try:
-                        kao = self.kao.get(self.item_id, subindex)
-                        if kao:
-                            # Replace
-                            kao.set(image)
-                        else:
-                            # New
-                            self.kao.set(self.item_id, subindex, KaoImage.new(image))
+                        self.kao.set_from_img(self.item_id, subindex, image)
                     except Exception as err:
                         name = self._get_portrait_name(subindex)
                         logger.error(f"Failed importing image '{name}'.", exc_info=err)
