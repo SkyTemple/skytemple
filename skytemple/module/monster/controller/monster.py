@@ -39,6 +39,7 @@ from skytemple_files.data.md.model import Gender, PokeType, MovementType, IQGrou
     AdditionalRequirement, MdProperties, ShadowSize, MONSTER_BIN, MdEntry
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.data.monster_xml import monster_xml_export
+from skytemple_files.hardcoded.monster_sprite_data_table import IdleAnimType
 from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
@@ -211,9 +212,10 @@ class MonsterController(AbstractController):
         except ValueError:
             pass
     
-    def on_entry_idle_anim_changed(self, w, *args):
+    def on_cb_idle_anim_changed(self, w, *args):
         try:
-            self.module.set_idle_anim_type(self.item_id, int(w.get_text()))
+            val = w.get_model()[w.get_active_iter()][0]
+            self.module.set_idle_anim_type(self.item_id, IdleAnimType(val))
         except ValueError:
             pass
         
@@ -367,6 +369,18 @@ class MonsterController(AbstractController):
         self._update_param_label()
         self.mark_as_modified()
 
+    def on_btn_help_idle_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("This value can only be edited with the ChangePokemonGroundAnim patch. \n"
+              "This tells how idle animations should be handled for each pokemon. "),
+            title=_("Idle Animation Types")
+        )
+        md.run()
+        md.destroy()
+    
     def on_btn_help_evo_params_clicked(self, w, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
@@ -914,6 +928,8 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         self._comboxbox_for_enum(['cb_evo_method'], EvolutionMethod)
         # Additional Requirement
         self._comboxbox_for_enum(['cb_evo_param2'], AdditionalRequirement)
+        # Idle Animation Type
+        self._comboxbox_for_enum(['cb_idle_anim'], IdleAnimType)
         
         # Shadow Size
         self._comboxbox_for_enum(['cb_shadow_size'], ShadowSize)
@@ -941,9 +957,9 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         # Stats
         a = self.module.get_idle_anim_type(self.item_id)
         if a==None:
-            self.builder.get_object('entry_idle_anim').set_sensitive(False)
+            self.builder.get_object('cb_idle_anim').set_sensitive(False)
         else:
-            self._set_entry('entry_idle_anim', a)
+            self._set_cb('cb_idle_anim', a.value)
         self._set_entry('entry_personality', self.module.get_personality(self.item_id))
         self._set_entry('entry_unk31', self.entry.unk31)
         self._set_entry('entry_national_pokedex_number', self.entry.national_pokedex_number)

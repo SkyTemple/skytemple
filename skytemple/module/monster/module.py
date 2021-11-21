@@ -38,7 +38,7 @@ from skytemple_files.data.md.model import Md, MdEntry, MdProperties, ShadowSize
 from skytemple_files.data.monster_xml import monster_xml_import, GenderedConvertEntry
 from skytemple_files.data.waza_p.model import WazaP
 from skytemple_files.graphics.kao.model import KaoImage, SUBENTRIES, Kao
-from skytemple_files.hardcoded.monster_sprite_data_table import HardcodedMonsterSpriteDataTable, HardcodedMonsterGroundIdleAnimTable
+from skytemple_files.hardcoded.monster_sprite_data_table import HardcodedMonsterSpriteDataTable, HardcodedMonsterGroundIdleAnimTable, IdleAnimType
 from skytemple_files.common.i18n_util import _
 from skytemple_files.common.util import normalize_string
 MONSTER_MD_FILE = 'BALANCE/monster.md'
