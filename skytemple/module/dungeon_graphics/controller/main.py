@@ -19,6 +19,7 @@ from typing import TYPE_CHECKING, Type, Union
 from gi.repository import Gtk
 
 from skytemple.core.module_controller import AbstractController
+from skytemple.core.ui_utils import glib_async
 from skytemple_files.common.i18n_util import f, _
 from skytemple_files.data.md.model import PokeType
 from skytemple_files.hardcoded.dungeons import TilesetMapColor, TilesetStirringEffect, TilesetBaseEnum, \
@@ -46,6 +47,7 @@ class MainController(AbstractController):
         self.builder.connect_signals(self)
         return self.builder.get_object('box_list')
 
+    @glib_async
     def on_cr_map_color_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('list_tree_store')
         cb_store: Gtk.Store = widget.props.model
@@ -54,6 +56,7 @@ class MainController(AbstractController):
         store[path][9] = cb_store[new_iter][1]
         self._save_list()
 
+    @glib_async
     def on_cr_stirring_effect_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('list_tree_store')
         cb_store: Gtk.Store = widget.props.model
@@ -62,6 +65,7 @@ class MainController(AbstractController):
         store[path][10] = cb_store[new_iter][1]
         self._save_list()
 
+    @glib_async
     def on_cr_secret_power_effect_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('list_tree_store')
         cb_store: Gtk.Store = widget.props.model
@@ -70,6 +74,7 @@ class MainController(AbstractController):
         store[path][11] = cb_store[new_iter][1]
         self._save_list()
 
+    @glib_async
     def on_cr_camouflage_type_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('list_tree_store')
         cb_store: Gtk.Store = widget.props.model
@@ -78,6 +83,7 @@ class MainController(AbstractController):
         store[path][12] = cb_store[new_iter][1]
         self._save_list()
 
+    @glib_async
     def on_cr_nature_power_move_entry_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('list_tree_store')
         cb_store: Gtk.Store = widget.props.model
@@ -86,6 +92,7 @@ class MainController(AbstractController):
         store[path][13] = cb_store[new_iter][1]
         self._save_list()
 
+    @glib_async
     def on_cr_weather_effect_changed(self, widget, path, new_iter, *args):
         store: Gtk.Store = self.builder.get_object('list_tree_store')
         cb_store: Gtk.Store = widget.props.model
