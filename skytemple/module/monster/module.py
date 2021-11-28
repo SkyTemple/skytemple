@@ -425,8 +425,7 @@ class MonsterModule(AbstractModule):
                     if portrait:
                         kao.set(monster_id - 1, i, portrait)
                     else:
-                        # TODO: Support removing portraits
-                        pass
+                        kao.delete(monster_id - 1, i)
             self.refresh(monster_id)
             self.mark_md_as_modified(monster_id)
             self.project.mark_as_modified(WAZA_P_BIN)
