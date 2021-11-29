@@ -399,7 +399,7 @@ class SpriteProvider:
             with self._monster_bin as monster_bin:
                 sprite = self._load_sprite_from_bin_pack(monster_bin, actor_sprite_id)
 
-                ani_group = sprite.get_animations_for_group(sprite.anim_groups[0])
+                ani_group = sprite.anim_groups[0]
                 frame_id = direction_id - 1 if direction_id > 0 else 0
                 mfg_id = ani_group[frame_id].frames[0].frame_id
 
@@ -416,7 +416,7 @@ class SpriteProvider:
     async def _load_object__impl(self, name, after_load_cb):
         try:
             with self._load_sprite_from_rom(f'GROUND/{name}.wan') as sprite:
-                ani_group = sprite.get_animations_for_group(sprite.anim_groups[0])
+                ani_group = sprite.anim_groups[0]
                 frame_id = 0
                 mfg_id = ani_group[frame_id].frames[0].frame_id
 
