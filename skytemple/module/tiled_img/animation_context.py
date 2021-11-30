@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import List, Iterable, Optional
+from typing import List, Iterable, Optional, Tuple
 
 import cairo
 FRAME_COUNTER_MAX = 1000000
@@ -43,7 +43,7 @@ class AnimationContext:
         self._pal_counter = 0
 
         # The current pal_ani/bpa_ani frame numbers as tuple. This is the current cache "hash"!
-        self._current_cache_hash = (None, None)
+        self._current_cache_hash: Tuple[Optional[int], Optional[int]] = (None, None)
         # The current cached surfaces for each collection:
         self._current_cache: List[List[cairo.Surface]] = []
 

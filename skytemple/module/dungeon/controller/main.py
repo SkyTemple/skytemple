@@ -17,7 +17,7 @@
 import sys
 import textwrap
 from itertools import chain
-from typing import TYPE_CHECKING, Optional, List, Union
+from typing import TYPE_CHECKING, Optional, List, Union, Sequence
 
 from gi.repository import Gtk, Gdk
 
@@ -46,12 +46,13 @@ class MainController(AbstractController):
     def __init__(self, module: 'DungeonModule', *args):
         self.module = module
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
         self.string_provider = self.module.project.get_string_provider()
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'main.glade')
+        assert self.builder
 
         # Enable drag and drop
         dungeons_tree: Gtk.TreeView = self.builder.get_object('tree_grouped')
@@ -374,8 +375,9 @@ class MainController(AbstractController):
 
     # </editor-fold>
 
-    def _collect_new_groups_from_dialog(self, start=None, allow_groups=True) -> List[Union['DungeonGroup', int]]:
+    def _collect_new_groups_from_dialog(self, start=None, allow_groups=True) -> Sequence[Union['DungeonGroup', int]]:
         from skytemple.module.dungeon.module import DungeonGroup
+        assert self.builder
         model: Gtk.TreeStore = self.builder.get_object('store_grouped_dungeons')
         treeiter: Gtk.TreeIter
         if start is None:
@@ -392,11 +394,11 @@ class MainController(AbstractController):
                 sub_group_dungeons = self._collect_new_groups_from_dialog(model.iter_nth_child(treeiter, 0), False)
                 assert len(sub_group_dungeons) > 0 and all(isinstance(x, int) for x in sub_group_dungeons)
                 dungeons.append(DungeonGroup(
-                    sub_group_dungeons[0], sub_group_dungeons, []
+                    sub_group_dungeons[0], sub_group_dungeons, []  # type: ignore
                 ))
             else:
                 assert not model[treeiter][0], "Empty groups are not allowed."
-                dungeons.append(int(model[treeiter][1]))
+                dungeons.append(int(model[treeiter][1]))  # type: ignore
 
             treeiter = model.iter_next(treeiter)
         return dungeons

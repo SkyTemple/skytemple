@@ -17,7 +17,7 @@
 import logging
 import os
 import sys
-from typing import Optional, List, Union, Iterable, Tuple
+from typing import Optional, List, Union, Iterable, Tuple, Dict, Literal, Sequence
 from xml.etree.ElementTree import Element
 
 from PIL import Image
@@ -96,7 +96,7 @@ class FloorViewInfo:
 
 
 class DungeonGroup:
-    def __init__(self, base_dungeon_id: int, dungeon_ids: List[int], start_ids: List[int]):
+    def __init__(self, base_dungeon_id: int, dungeon_ids: Sequence[int], start_ids: Sequence[int]):
         self.base_dungeon_id = base_dungeon_id
         self.dungeon_ids = dungeon_ids
         self.start_ids = start_ids
@@ -115,23 +115,23 @@ class DungeonModule(AbstractModule):
         return 210
 
     def __init__(self, rom_project: RomProject):
-        self._errored = False
+        self._errored: Union[Literal[False], Tuple] = False
         try:
             self.project = rom_project
 
             self._tree_model: Optional[Gtk.TreeModel] = None
             self._root_iter = None
-            self._dungeon_iters = {}
-            self._dungeon_floor_iters = {}
-            self._fixed_floor_iters = []
+            self._dungeon_iters: Dict[DungeonDefinition, Gtk.TreeIter] = {}
+            self._dungeon_floor_iters: Dict[int, Dict[int, Gtk.TreeIter]] = {}
+            self._fixed_floor_iters: List[Gtk.TreeIter] = []
             self._fixed_floor_root_iter = None
             self._fixed_floor_data: Optional[FixedBin] = None
             self._dungeon_bin_context: Optional[ModelContext[DungeonBinPack]] = None
-            self._cached_dungeon_list = None
+            self._cached_dungeon_list: Optional[List[DungeonDefinition]] = None
 
             # Preload mappa
             self.get_mappa()
-            self._validator = None
+            self._validator: Optional[DungeonValidator] = None
         except Exception:
             self._errored = sys.exc_info()
 
@@ -156,7 +156,7 @@ class DungeonModule(AbstractModule):
             FIXED_PATH, FileType.FIXED_BIN,
             static_data=static_data
         )
-        self._dungeon_bin_context: ModelContext[DungeonBinPack] = self.project.open_file_in_rom(
+        self._dungeon_bin_context = self.project.open_file_in_rom(
             DUNGEON_BIN, FileType.DUNGEON_BIN,
             static_data=static_data,
             threadsafe=True
@@ -215,8 +215,10 @@ class DungeonModule(AbstractModule):
         if request.type == REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY:
             FixedRoomsController.focus_entity_on_open = request.identifier
             return self._fixed_floor_root_iter
+        return None
 
     def get_validator(self) -> DungeonValidator:
+        assert self._validator
         return self._validator
 
     def get_mappa(self) -> MappaBin:
@@ -247,11 +249,12 @@ class DungeonModule(AbstractModule):
         else:
             self.project.mark_as_modified(MAPPA_PATH)
         # Mark as modified in tree
+        assert self._tree_model
         row = self._tree_model[self._dungeon_floor_iters[item.dungeon.dungeon_id][item.floor_id]]
         recursive_up_item_store_mark_as_modified(row)
 
     def get_dungeon_list(self) -> List[DungeonDefinition]:
-        if self._cached_dungeon_list==None:
+        if self._cached_dungeon_list is None:
             self._cached_dungeon_list = HardcodedDungeons.get_dungeon_list(
                 self.project.get_binary(BinaryName.ARM9), self.project.get_rom_module().get_static_data()
             )
@@ -356,7 +359,7 @@ class DungeonModule(AbstractModule):
         by their IDs.
         """
         lst = self.get_dungeon_list()
-        groups = {}
+        groups: Dict[int, List[int]] = {}
         yielded = set()
         for idx, dungeon in enumerate(lst):
             if dungeon.mappa_index not in groups:
@@ -394,9 +397,9 @@ class DungeonModule(AbstractModule):
         """
         mappa = self.get_mappa()
         old_floor_lists = mappa.floor_lists
-        reorder_list = []
+        reorder_list: List[List[Tuple[int, Optional[int], Optional[int]]]] = []
         dojo_floors = old_floor_lists[DOJO_MAPPA_ENTRY]
-        new_floor_lists = []
+        new_floor_lists: List[List[MappaFloor]] = []
         dungeons = self.get_dungeon_list()
         # Sanity check list.
         dungeons_not_visited = set((i for i in range(0, len(dungeons))))
@@ -410,7 +413,7 @@ class DungeonModule(AbstractModule):
             reorder_list.append([])
             # Process this entry
             next_index = len(new_floor_lists)
-            new_floor_list = []
+            new_floor_list: List[MappaFloor] = []
             if isinstance(group_or_dungeon, DungeonGroup):
                 group = group_or_dungeon.dungeon_ids
             else:
@@ -446,6 +449,7 @@ class DungeonModule(AbstractModule):
                     reorder_list.append([])
         
         mappa.floor_lists = new_floor_lists
+        assert self._validator
         self._validator.floors = new_floor_lists
         self.mark_root_as_modified()
         self.save_mappa()
@@ -581,7 +585,7 @@ class DungeonModule(AbstractModule):
             self.mark_floor_as_modified(floor_info, modified_mappag=True)
 
     def get_dungeon_tileset(self, tileset_id) -> Tuple[Dma, Dpci, Dpc, Dpl]:
-        with self._dungeon_bin_context as dungeon_bin:
+        with self._dungeon_bin_context as dungeon_bin:  # type: ignore
             return (
                 dungeon_bin.get(f'dungeon{tileset_id}.dma'),
                 dungeon_bin.get(f'dungeon{tileset_id}.dpci'),
@@ -590,7 +594,7 @@ class DungeonModule(AbstractModule):
             )
 
     def get_dungeon_background(self, background_id) -> Tuple[Dbg, Dpci, Dpc, Dpl]:
-        with self._dungeon_bin_context as dungeon_bin:
+        with self._dungeon_bin_context as dungeon_bin:  # type: ignore
             return (
                 dungeon_bin.get(f'dungeon_bg{background_id}.dbg'),
                 dungeon_bin.get(f'dungeon_bg{background_id}.dpci'),
@@ -702,7 +706,7 @@ class DungeonModule(AbstractModule):
         row = self._tree_model[self._fixed_floor_root_iter]
         recursive_up_item_store_mark_as_modified(row)
 
-    def get_dummy_tileset(self) -> [Dma, Image.Image]:
+    def get_dummy_tileset(self) -> Tuple[Dma, Image.Image]:
         with open(os.path.join(data_dir(), 'fixed_floor', 'dummy.dma'), 'rb') as f:
             dma = FileType.DMA.deserialize(f.read())
         return (

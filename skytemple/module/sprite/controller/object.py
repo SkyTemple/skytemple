@@ -19,7 +19,7 @@ import os
 import re
 import sys
 from functools import partial
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional, List
 
 import cairo
 
@@ -46,10 +46,10 @@ class ObjectController(AbstractController):
         self.module = module
         self.item_id = item_id
         self._sprite_provider = module.get_sprite_provider()
-        self._draws = []
-        self._surfaces = []
+        self._draws: List[Gtk.DrawingArea] = []
+        self._surfaces: List[cairo.Surface] = []
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'object.glade')

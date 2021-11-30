@@ -55,14 +55,15 @@ class WteWtuController(AbstractController):
             if item.wtu_filename is not None:
                 self.wtu = self.module.get_dungeon_bin_file(item.wtu_filename)
         else:
-            self.wte: Wte = self.module.get_wte(item.wte_filename)
+            self.wte = self.module.get_wte(item.wte_filename)
             if item.wtu_filename is not None:
                 self.wtu = self.module.get_wtu(item.wtu_filename)
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'wte_wtu.glade')
+        assert self.builder
         self._init_wtu()
         self._reinit_image()
         self._init_wte()
@@ -276,8 +277,8 @@ class WteWtuController(AbstractController):
             ctx.paint()
             # Draw rectangles on the WTE image representing the selected WTU entries
             # Allows multiple selections
-            active_rows : List[Gtk.TreePath] = self.builder.get_object('wtu_tree').get_selection().get_selected_rows()[1]
-            store: Gtk.ListStore = self.builder.get_object('wtu_store')
+            active_rows : List[Gtk.TreePath] = self.builder.get_object('wtu_tree').get_selection().get_selected_rows()[1]  # type: ignore
+            store: Gtk.ListStore = self.builder.get_object('wtu_store')  # type: ignore
             for x in active_rows:
                 row = store[x.get_indices()[0]]
                 ctx.set_line_width(4)

@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Dict
 
 from gi.repository import Gtk
 
@@ -67,12 +67,13 @@ class StartersListController(ListBaseController):
         super().__init__(module, *args)
         self._player, self._partner = self.module.get_starter_ids()
         self._default_player, self._default_partner = self.module.get_starter_default_ids()
-        self._player_iters = {}
-        self._partner_iters = {}
+        self._player_iters: Dict[str, Gtk.TreeIter] = {}
+        self._partner_iters: Dict[str, Gtk.TreeIter] = {}
         self.string_provider = self.module.project.get_string_provider()
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'starters_list.glade')
+        assert self.builder
 
         default_player_name: Gtk.Entry = self.builder.get_object('default_player_name')
         default_partner_name: Gtk.Entry = self.builder.get_object('default_partner_name')

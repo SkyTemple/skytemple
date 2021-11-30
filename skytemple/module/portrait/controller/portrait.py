@@ -20,7 +20,7 @@ import os
 import re
 import sys
 from functools import partial
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional, List
 
 import cairo
 
@@ -38,7 +38,7 @@ from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.graphics.kao.model import SUBENTRIES, KaoImage
+from skytemple_files.graphics.kao.model import SUBENTRIES
 from skytemple_files.common.i18n_util import _, f
 
 if TYPE_CHECKING:
@@ -51,11 +51,11 @@ class PortraitController(AbstractController):
         self.module = module
         self.item_id = item_id
         self._portrait_provider = self.module.get_portrait_provider()
-        self._draws = []
+        self._draws: List[Gtk.DrawingArea] = []
         self._mark_as_modified_cb = mark_as_modified_cb
         self.kao = self.module.kao
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
     def re_render(self):
         self._portrait_provider.reset()
@@ -98,9 +98,7 @@ class PortraitController(AbstractController):
 
     def on_delete_clicked(self, label: Gtk.Label):
         index = int(label.get_label().split(":")[0])
-        kao = self.kao.loaded_kaos[self.item_id][index]
-        kao.empty = True
-        kao.modified = True
+        self.kao.delete(self.item_id, index)
         self.re_render()
         # Mark as modified
         self.module.mark_as_modified()
@@ -158,13 +156,7 @@ class PortraitController(AbstractController):
                 try:
                     with open(os.path.join(fn, image_fn), 'rb') as file:
                         image = Image.open(file)
-                        kao = self.kao.get(self.item_id, subindex)
-                        if kao:
-                            # Replace
-                            kao.set(image)
-                        else:
-                            # New
-                            self.kao.set(self.item_id, subindex, KaoImage.new(image))
+                        self.kao.set_from_img(self.item_id, subindex, image)
                 except Exception as err:
                     name = self._get_portrait_name(subindex)
                     logger.error(f"Failed importing image '{name}'.", exc_info=err)
@@ -215,13 +207,7 @@ class PortraitController(AbstractController):
             try:
                 for subindex, image in SpriteBotSheet.load(fn, self._get_portrait_name):
                     try:
-                        kao = self.kao.get(self.item_id, subindex)
-                        if kao:
-                            # Replace
-                            kao.set(image)
-                        else:
-                            # New
-                            self.kao.set(self.item_id, subindex, KaoImage.new(image))
+                        self.kao.set_from_img(self.item_id, subindex, image)
                     except Exception as err:
                         name = self._get_portrait_name(subindex)
                         logger.error(f"Failed importing image '{name}'.", exc_info=err)

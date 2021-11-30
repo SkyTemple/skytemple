@@ -80,7 +80,7 @@ class ItemEffectsController(AbstractController):
 
     def _get_current_item_effect(self) -> Optional[int]:
         tree_store: Gtk.ListStore = self.builder.get_object('item_effects_store')
-        active_rows : List[Gtk.TreePath] = self.builder.get_object('items_tree').get_selection().get_selected_rows()[1]
+        active_rows: List[Gtk.TreePath] = self.builder.get_object('items_tree').get_selection().get_selected_rows()[1]
 
         item_effect = None
         for x in active_rows:
@@ -167,7 +167,7 @@ class ItemEffectsController(AbstractController):
         text = buff.get_text(buff.get_start_iter(), buff.get_end_iter(), False)
         buff.delete(buff.get_start_iter(), buff.get_end_iter())
         try:
-            self.item_effects.import_armips_effect_code(self._get_current_effect(), text)
+            self.item_effects.import_armips_effect_code(self._get_current_effect(), text)  # type: ignore
             self.module.mark_item_effects_as_modified()
             md = SkyTempleMessageDialog(
                 MainController.window(),

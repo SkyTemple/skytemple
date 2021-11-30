@@ -49,7 +49,7 @@ class ChrController(AbstractController):
         self.filename = filename
         self.chr: Chr = self.module.get_chr(self.filename)
         
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'chr.glade')

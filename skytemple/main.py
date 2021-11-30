@@ -20,61 +20,67 @@ import sys
 import locale
 import gettext
 from skytemple.core.ui_utils import data_dir, APP, gdk_backend, GDK_BACKEND_BROADWAY
-
-# Setup locale :(
 from skytemple.core.settings import SkyTempleSettingsStore
-LOCALE_DIR = os.path.abspath(os.path.join(data_dir(), 'locale'))
-settings = SkyTempleSettingsStore()
-if hasattr(locale, 'bindtextdomain'):
-    libintl = locale
-elif sys.platform.startswith('win'):
-    import ctypes
-    import ctypes.util
-    if os.getenv('LANG') is None:
-        lang, enc = locale.getdefaultlocale()
-        os.environ['LANG'] = lang
-        ctypes.cdll.msvcrt._putenv ("LANG=" + lang)
-    libintl_loc = os.path.join(os.path.dirname(__file__), 'libintl-8.dll')
-    if os.path.exists(libintl_loc):
-        libintl = ctypes.cdll.LoadLibrary(libintl_loc)
-    else:
-        libintl = ctypes.cdll.LoadLibrary(ctypes.util.find_library('libintl-8'))
-elif sys.platform == 'darwin':
-    import ctypes
-    libintl = ctypes.cdll.LoadLibrary('libintl.dylib')
-if not os.getenv('LC_ALL'):
+from skytemple_files.common.impl_cfg import ENV_SKYTEMPLE_USE_NATIVE, change_implementation_type
+
+if __name__ == '__main__':
+    settings = SkyTempleSettingsStore()
+    # Setup native library integration
+    if ENV_SKYTEMPLE_USE_NATIVE not in os.environ:
+        change_implementation_type(settings.get_implementation_type())
+
+    # Setup locale :(
+    LOCALE_DIR = os.path.abspath(os.path.join(data_dir(), 'locale'))
+    if hasattr(locale, 'bindtextdomain'):
+        libintl = locale
+    elif sys.platform.startswith('win'):
+        import ctypes
+        import ctypes.util
+        if os.getenv('LANG') is None:
+            lang, enc = locale.getdefaultlocale()
+            os.environ['LANG'] = lang
+            ctypes.cdll.msvcrt._putenv ("LANG=" + lang)
+        libintl_loc = os.path.join(os.path.dirname(__file__), 'libintl-8.dll')
+        if os.path.exists(libintl_loc):
+            libintl = ctypes.cdll.LoadLibrary(libintl_loc)
+        else:
+            libintl = ctypes.cdll.LoadLibrary(ctypes.util.find_library('libintl-8'))
+    elif sys.platform == 'darwin':
+        import ctypes
+        libintl = ctypes.cdll.LoadLibrary('libintl.dylib')
+    if not os.getenv('LC_ALL'):
+        try:
+            os.environ['LC_ALL'] = settings.get_locale()
+            locale.setlocale(locale.LC_ALL, settings.get_locale())
+        except locale.Error as ex:
+            logging.error("Failed setting locale", exc_info=ex)
+    libintl.bindtextdomain(APP, LOCALE_DIR)  # type: ignore
     try:
-        os.environ['LC_ALL'] = settings.get_locale()
-        locale.setlocale(locale.LC_ALL, settings.get_locale())
-    except locale.Error as ex:
-        logging.error("Failed setting locale", exc_info=ex)
-libintl.bindtextdomain(APP, LOCALE_DIR)
-try:
-    libintl.bind_textdomain_codeset(APP, 'UTF-8')
-    libintl.libintl_setlocale(0, settings.get_locale())
-except:
-    pass
-gettext.bindtextdomain(APP, LOCALE_DIR)
-gettext.textdomain(APP)
-try:
-    if os.environ['LC_ALL'] != 'C':
-        loc = os.environ['LC_ALL']
-        if loc == '':
-            loc = locale.getdefaultlocale()[0]
-        from skytemple_files.common.i18n_util import reload_locale
-        base_loc = loc.split('_')[0]
-        fallback_loc = base_loc
-        for subdir in next(os.walk(LOCALE_DIR))[1]:
-            if subdir.startswith(base_loc):
-                fallback_loc = subdir
-                break
-        reload_locale(APP, localedir=LOCALE_DIR, main_languages=list({loc, base_loc, fallback_loc}))
-except Exception as ex:
-    print("Faild setting up Python locale.")
-    print(ex)
-from skytemple.core import ui_utils
-from importlib import reload
-reload(ui_utils)
+        libintl.bind_textdomain_codeset(APP, 'UTF-8')  # type: ignore
+        libintl.libintl_setlocale(0, settings.get_locale())  # type: ignore
+    except:
+        pass
+    gettext.bindtextdomain(APP, LOCALE_DIR)
+    gettext.textdomain(APP)
+    try:
+        if os.environ['LC_ALL'] != 'C':
+            loc = os.environ['LC_ALL']
+            if loc == '':
+                loc = locale.getdefaultlocale()[0]  # type: ignore
+            from skytemple_files.common.i18n_util import reload_locale
+            base_loc = loc.split('_')[0]
+            fallback_loc = base_loc
+            for subdir in next(os.walk(LOCALE_DIR))[1]:
+                if subdir.startswith(base_loc):
+                    fallback_loc = subdir
+                    break
+            reload_locale(APP, localedir=LOCALE_DIR, main_languages=list({loc, base_loc, fallback_loc}))
+    except Exception as ex:
+        print("Faild setting up Python locale.")
+        print(ex)
+    from skytemple.core import ui_utils
+    from importlib import reload
+    reload(ui_utils)
 
 import gi
 from skytemple_files.common.i18n_util import _

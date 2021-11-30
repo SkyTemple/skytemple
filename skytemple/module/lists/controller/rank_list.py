@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING, Optional, List, Dict
 
 from gi.repository import Gtk
 
@@ -37,7 +37,7 @@ class RankListController(AbstractController):
         super().__init__(module, *args)
         self.module = module
         self._rank_up_table: Optional[List[Rank]] = None
-        self._item_names = {}
+        self._item_names: Dict[int, str] = {}
         self._list_store = None
         self._loading = True
 

@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from threading import Lock
-from typing import TYPE_CHECKING, Optional, List, Iterable
+from typing import TYPE_CHECKING, Optional, List, Iterable, Set
 
 from gi.repository import Gtk
 
@@ -50,7 +50,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
 
     def __init__(self, manager: 'DebuggerManager'):
         self._manager = manager
-        self._special_words_cache = None
+        self._special_words_cache: Optional[Set[str]] = None
 
     def allows_interactive_file_management(self) -> bool:
         return False
@@ -80,27 +80,27 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         return self._project_fm.dir()
 
     def load_script_files(self) -> ScriptFiles:
-        return load_script_files(RomProject.get_current().get_rom_folder(SCRIPT_DIR))
+        return load_script_files(RomProject.get_current().get_rom_folder(SCRIPT_DIR))  # type: ignore
 
     def is_project_loaded(self) -> bool:
         return RomProject.get_current() is not None
 
     def get_rom_filename(self) -> str:
-        return RomProject.get_current().filename
+        return RomProject.get_current().filename  # type: ignore
 
     def save_rom(self):
         # We only save the current ROM contents!
         RomProject.get_current().save_as_is()
 
     def get_static_data(self) -> Pmd2Data:
-        return RomProject.get_current().get_rom_module().get_static_data()
+        return RomProject.get_current().get_rom_module().get_static_data()  # type: ignore
 
     def get_project_filemanager(self) -> ProjectFileManager:
         return self._project_fm
 
     @synchronized_now(file_load_lock)
     def get_ssb(self, filename, ssb_file_manager: 'SsbFileManager') -> 'SsbLoadedFile':
-        f: 'SsbLoadedFile' = RomProject.get_current().open_file_in_rom(filename, SsbLoadedFileHandler,
+        f: 'SsbLoadedFile' = RomProject.get_current().open_file_in_rom(filename, SsbLoadedFileHandler,  # type: ignore
                                                                        filename=filename,
                                                                        static_data=self.get_static_data(),
                                                                        project_fm=self._project_fm)
@@ -113,6 +113,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     @synchronized_now(save_lock)
     def save_ssb(self, filename, ssb_model, ssb_file_manager: 'SsbFileManager'):
         project = RomProject.get_current()
+        assert project
         ssb_loaded_file = self.get_ssb(filename, ssb_file_manager)
         ssb_loaded_file.ssb_model = ssb_model
         project.prepare_save_model(filename, assert_that=ssb_loaded_file)
@@ -161,7 +162,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     def edit_position_mark(self, mapname: str, scene_name: str, scene_type: str, pos_marks: List[SourceMapPositionMark],
                            pos_mark_to_edit: int) -> bool:
         try:
-            cntrl: PosMarkEditorController = RomProject.get_current().get_module('script').get_pos_mark_editor_controller(
+            cntrl: PosMarkEditorController = RomProject.get_current().get_module('script').get_pos_mark_editor_controller(  # type: ignore
                 self._manager.get_window(), mapname, scene_name.split('/')[-1], scene_type, pos_marks, pos_mark_to_edit
             )
             return cntrl.run() == Gtk.ResponseType.OK
@@ -178,6 +179,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
                                         Gtk.ButtonsType.OK, str(err))
             md.run()
             md.destroy()
+        return False
 
     @property
     def _project_fm(self):

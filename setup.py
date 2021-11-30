@@ -84,13 +84,11 @@ setup(
         'Development Status :: 4 - Beta',
         'Programming Language :: Python',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
     ],
-    package_data={'skytemple': ['*.css'] + recursive_pkg_files('.glade') + recursive_pkg_files_in('data/') + create_mo_files()},
+    package_data={'skytemple': ['*.css', 'py.typed'] + recursive_pkg_files('.glade') + recursive_pkg_files_in('data/') + create_mo_files()},
     entry_points='''
         [skytemple.module]
         rom=          skytemple.module.rom.module:RomModule

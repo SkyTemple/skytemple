@@ -14,6 +14,8 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from typing import Optional
+
 from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
@@ -36,7 +38,7 @@ class LsdController(SimpleController):
                 'The player can usually not move the character in them.'))
         )
 
-    def get_icon(self) -> str:
+    def get_icon(self) -> Optional[str]:
         return None
 
     def get_back_illust(self) -> str:
