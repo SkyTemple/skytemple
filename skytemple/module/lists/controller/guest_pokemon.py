@@ -43,7 +43,7 @@ class GuestPokemonController(ListBaseController):
     def __init__(self, module: 'ListsModule', item_id: int):
         super().__init__(module)
         self.module = module
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self.arm9 = module.project.get_binary(BinaryName.ARM9)
         self.static_data = module.project.get_rom_module().get_static_data()
         self.monster_md_entries = self.module.get_monster_md().entries
@@ -51,6 +51,7 @@ class GuestPokemonController(ListBaseController):
 
     def get_view(self) -> Widget:
         self.builder = self._get_builder(__file__, 'guest_pokemon.glade')
+        assert self.builder
         self._list_store = self.builder.get_object('store_tree_guest_pokemon_data')
         stack: Gtk.Stack = self.builder.get_object('list_stack')
 
@@ -300,12 +301,13 @@ class GuestPokemonController(ListBaseController):
         Updates IDs and references to entries from the extra dungeon data list.
         Must be called after removing a guest pokémon entry from the list.
         """
+        assert self.builder
         store: Gtk.ListStore = self.builder.get_object('store_tree_guest_pokemon_data')
         for i, row in enumerate(store):
             row[0] = str(i)
 
         # Update references
-        store: Gtk.ListStore = self.builder.get_object('store_tree_extra_dungeon_data')
+        store = self.builder.get_object('store_tree_extra_dungeon_data')
         for row in enumerate(store):
             if int(row[1][1]) == pos:
                 row[1][1] = "-1"
@@ -319,11 +321,13 @@ class GuestPokemonController(ListBaseController):
         self._save_extra_dungeon_data()
 
     def _update_extra_dungeon_data_boolean(self, widget, path, value_pos: int):
+        assert self.builder
         store: Gtk.ListStore = self.builder.get_object('store_tree_extra_dungeon_data')
         store[path][value_pos] = not widget.get_active()
         self._save_extra_dungeon_data()
 
     def _update_guest_pokemon_int(self, path, text, value_pos: int, min_val: int, max_val: int):
+        assert self.builder
         try:
             v = int(text)
             if v < min_val:
@@ -337,6 +341,7 @@ class GuestPokemonController(ListBaseController):
         self._save_guest_pokemon_data()
 
     def _update_guest_pokemon_move(self, path, text, value_pos: int):
+        assert self.builder
         try:
             self._get_move_id_from_display_name(text)
         except ValueError:

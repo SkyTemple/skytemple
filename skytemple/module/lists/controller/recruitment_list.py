@@ -40,7 +40,7 @@ class RecruitmentListController(ListBaseController):
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'recruitment_list.glade')
         lst: Gtk.Box = self.builder.get_object('box_list')
-        self._species, self._levels, self._locations = self.module.get_recruitment_list()
+        self._species, self._levels, self._locations = self.module.get_recruitment_list()  # type: ignore
 
         self._init_locations_store()
         self.load()

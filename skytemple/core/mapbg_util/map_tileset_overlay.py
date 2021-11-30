@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional, List
+from typing import Optional, List, Iterable
 
 import cairo
 
@@ -37,11 +37,11 @@ class MapTilesetOverlay:
         self.dpl = dpl
         self.fixed_room = fixed_room
         self.enabled = True
-        self._cached = None
-        self._cached__bma_chunk_width = None
-        self._cached__bma_chunks = None
+        self._cached: Optional[cairo.ImageSurface] = None
+        self._cached__bma_chunk_width: Optional[int] = None
+        self._cached__bma_chunks: List[int] = []
 
-    def draw_full(self, ctx: cairo.Context, bma_chunks: List[int], bma_chunk_width: int, bma_chunk_height: int):
+    def draw_full(self, ctx: cairo.Context, bma_chunks: Iterable[int], bma_chunk_width: int, bma_chunk_height: int):
         if bma_chunk_width != self._cached__bma_chunk_width or self._cached__bma_chunks != bma_chunks:
             self._cached__bma_chunk_width = bma_chunk_width
             self._cached__bma_chunks = list(bma_chunks)

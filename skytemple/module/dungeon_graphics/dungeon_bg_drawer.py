@@ -205,7 +205,7 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
                  chunks_surfaces: List[List[List[cairo.Surface]]]):
 
         super().__init__(icon_view, None, pal_ani_durations, chunks_surfaces)
-        super(Gtk.CellRenderer, self).__init__()
+        super(Gtk.CellRenderer, self).__init__()  # type: ignore
 
         self.chunkidx = 0
 

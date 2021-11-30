@@ -38,7 +38,8 @@ from skytemple_files.data.tbl_talk.model import TblTalk, TalkType
 from skytemple_files.data.md.model import Md, MdEntry, MdProperties, ShadowSize
 from skytemple_files.data.monster_xml import monster_xml_import, GenderedConvertEntry
 from skytemple_files.data.waza_p.model import WazaP
-from skytemple_files.graphics.kao.model import KaoImage, SUBENTRIES, Kao
+from skytemple_files.graphics.kao.model import SUBENTRIES, Kao
+from skytemple_files.graphics.kao.protocol import KaoImageProtocol, KaoProtocol
 from skytemple_files.hardcoded.monster_sprite_data_table import HardcodedMonsterSpriteDataTable, HardcodedMonsterGroundIdleAnimTable, IdleAnimType
 from skytemple_files.common.i18n_util import _
 from skytemple_files.common.util import normalize_string
@@ -70,9 +71,9 @@ class MonsterModule(AbstractModule):
         self.waza_p2_bin: WazaP = self.project.open_file_in_rom(WAZA_P2_BIN, FileType.WAZA_P)
         self.tbl_talk: TblTalk = self.project.open_file_in_rom(TBL_TALK_FILE, FileType.TBL_TALK)
 
-        self._tree_model = None
-        self._tree_iter__entity_roots = {}
-        self._tree_iter__entries = []
+        self._tree_model: Optional[Gtk.TreeModel] = None
+        self._tree_iter__entity_roots: Dict[int, Gtk.TreeIter] = {}
+        self._tree_iter__entries: Dict[int, Gtk.TreeIter] = {}
         self.effective_base_attr = 'md_index_base'
 
     def load_tree_items(self, item_store: TreeStore, root_node):
@@ -201,17 +202,17 @@ class MonsterModule(AbstractModule):
         v.show_all()
         return v
 
-    def get_portraits_for_export(self, item_id) -> Tuple[Optional[List[KaoImage]], Optional[List[KaoImage]]]:
-        portraits = None
-        portraits2 = None
+    def get_portraits_for_export(self, item_id) -> Tuple[Optional[List[Optional[KaoImageProtocol]]], Optional[List[Optional[KaoImageProtocol]]]]:
+        portraits: Optional[List[Optional[KaoImageProtocol]]] = None
+        portraits2: Optional[List[Optional[KaoImageProtocol]]] = None
         portrait_module = self.project.get_module('portrait')
-        kao = portrait_module.kao
-        if item_id > -1 and item_id < kao.toc_len:
+        kao: KaoProtocol = portrait_module.kao
+        if -1 < item_id < kao.n_entries():
             portraits = []
             for kao_i in range(0, SUBENTRIES):
                 portraits.append(kao.get(item_id, kao_i))
 
-        if item_id > -1 and MdProperties.NUM_ENTITIES + item_id < kao.toc_len:
+        if item_id > -1 and MdProperties.NUM_ENTITIES + item_id < kao.n_entries():
             portraits2 = []
             for kao_i in range(0, SUBENTRIES):
                 portraits2.append(kao.get(MdProperties.NUM_ENTITIES + item_id, kao_i))
@@ -417,22 +418,14 @@ class MonsterModule(AbstractModule):
                 sp.mark_as_modified()
 
             portrait_module = self.project.get_module('portrait')
-            kao: Kao = portrait_module.kao
+            kao: KaoProtocol = portrait_module.kao
             portraits = portraits if we_are_gender1 else portraits2
             if portraits:
                 for i, portrait in enumerate(portraits):
-                    existing = kao.get(monster_id - 1, i)
                     if portrait:
-                        if existing:
-                            existing.compressed_img_data = portrait.compressed_img_data
-                            existing.pal_data = portrait.pal_data
-                            existing.modified = True
-                            existing.as_pil = None
-                        else:
-                            kao.set(monster_id - 1, i, portrait)
+                        kao.set(monster_id - 1, i, portrait)
                     else:
-                        # TODO: Support removing portraits
-                        pass
+                        kao.delete(monster_id - 1, i)
             self.refresh(monster_id)
             self.mark_md_as_modified(monster_id)
             self.project.mark_as_modified(WAZA_P_BIN)

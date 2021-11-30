@@ -135,8 +135,10 @@ class SkyTempleSettingsStore:
 
     def get_window_size(self) -> Optional[Tuple[int, int]]:
         if SECT_WINDOW in self.loaded_config:
-            if KEY_WINDOW_SIZE_X in self.loaded_config[SECT_WINDOW] and KEY_WINDOW_SIZE_Y in self.loaded_config[SECT_WINDOW]:
-                return int(self.loaded_config[SECT_WINDOW][KEY_WINDOW_SIZE_X]), int(self.loaded_config[SECT_WINDOW][KEY_WINDOW_SIZE_Y])
+            if KEY_WINDOW_SIZE_X in self.loaded_config[SECT_WINDOW] and KEY_WINDOW_SIZE_Y in self.loaded_config[
+                SECT_WINDOW]:
+                return int(self.loaded_config[SECT_WINDOW][KEY_WINDOW_SIZE_X]), int(
+                    self.loaded_config[SECT_WINDOW][KEY_WINDOW_SIZE_Y])
         return None
 
     def set_window_size(self, dim: Tuple[int, int]):
@@ -148,8 +150,10 @@ class SkyTempleSettingsStore:
 
     def get_window_position(self) -> Optional[Tuple[int, int]]:
         if SECT_WINDOW in self.loaded_config:
-            if KEY_WINDOW_POS_X in self.loaded_config[SECT_WINDOW] and KEY_WINDOW_POS_Y in self.loaded_config[SECT_WINDOW]:
-                return int(self.loaded_config[SECT_WINDOW][KEY_WINDOW_POS_X]), int(self.loaded_config[SECT_WINDOW][KEY_WINDOW_POS_Y])
+            if KEY_WINDOW_POS_X in self.loaded_config[SECT_WINDOW] and KEY_WINDOW_POS_Y in self.loaded_config[
+                SECT_WINDOW]:
+                return int(self.loaded_config[SECT_WINDOW][KEY_WINDOW_POS_X]), int(
+                    self.loaded_config[SECT_WINDOW][KEY_WINDOW_POS_Y])
         return None
 
     def set_window_position(self, pos: Tuple[int, int]):
@@ -158,13 +162,14 @@ class SkyTempleSettingsStore:
         self.loaded_config[SECT_WINDOW][KEY_WINDOW_POS_X] = str(pos[0])
         self.loaded_config[SECT_WINDOW][KEY_WINDOW_POS_Y] = str(pos[1])
         self._save()
-    
+
     def get_window_maximized(self) -> bool:
         if SECT_WINDOW in self.loaded_config:
-            if KEY_WINDOW_IS_MAX in self.loaded_config[SECT_WINDOW] and self.loaded_config[SECT_WINDOW][KEY_WINDOW_IS_MAX] == 'True':
+            if KEY_WINDOW_IS_MAX in self.loaded_config[SECT_WINDOW] and self.loaded_config[SECT_WINDOW][
+                KEY_WINDOW_IS_MAX] == 'True':
                 return True
         return False
-    
+
     def set_window_maximized(self, value: bool):
         if SECT_WINDOW not in self.loaded_config:
             self.loaded_config[SECT_WINDOW] = {}
@@ -212,6 +217,19 @@ class SkyTempleSettingsStore:
             if KEY_ALLOW_SENTRY in self.loaded_config[SECT_GENERAL]:
                 return True
         return False
+
+    def get_implementation_type(self) -> ImplementationType:
+        if SECT_GENERAL in self.loaded_config:
+            if KEY_USE_NATIVE_FILE_HANDLERS in self.loaded_config[SECT_GENERAL]:
+                if int(self.loaded_config[SECT_GENERAL][KEY_USE_NATIVE_FILE_HANDLERS]) <= 0:
+                    return ImplementationType.PYTHON
+        return ImplementationType.NATIVE
+
+    def set_implementation_type(self, value: ImplementationType):
+        if SECT_GENERAL not in self.loaded_config:
+            self.loaded_config[SECT_GENERAL] = {}
+        self.loaded_config[SECT_GENERAL][KEY_USE_NATIVE_FILE_HANDLERS] = '1' if value == ImplementationType.NATIVE else '0'
+        self._save()
 
     def _save(self):
         with open_utf8(self.config_file, 'w') as f:

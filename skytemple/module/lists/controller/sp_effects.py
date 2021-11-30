@@ -47,7 +47,7 @@ from skytemple.core.string_provider import StringType
 from skytemple_files.common.util import open_utf8
 
 if TYPE_CHECKING:
-    from skytemple.module.moves_items.module import MovesItemsModule
+    from skytemple.module.lists.module import ListsModule
 from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
@@ -161,7 +161,7 @@ class SPEffectsController(AbstractController):
         text = buff.get_text(buff.get_start_iter(), buff.get_end_iter(), False)
         buff.delete(buff.get_start_iter(), buff.get_end_iter())
         try:
-            self.sp_effects.import_armips_effect_code(self._get_current_effect(), text)
+            self.sp_effects.import_armips_effect_code(self._get_current_effect(), text)  # type: ignore
             self.module.mark_sp_effects_as_modified()
             md = SkyTempleMessageDialog(
                 MainController.window(),

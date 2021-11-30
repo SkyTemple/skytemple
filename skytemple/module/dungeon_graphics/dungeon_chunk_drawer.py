@@ -110,7 +110,7 @@ class DungeonChunkCellDrawer(DungeonChunkDrawer, Gtk.CellRenderer):
                  chunks_surfaces: Iterable[Iterable[List[cairo.Surface]]], selection_draw_solid):
 
         super().__init__(icon_view, pal_ani_durations, chunks_surfaces)
-        super(Gtk.CellRenderer, self).__init__()
+        super(Gtk.CellRenderer, self).__init__()  # type: ignore
         self.selection_draw_solid = selection_draw_solid
 
     def do_get_size(self, widget, cell_area):

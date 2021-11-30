@@ -46,7 +46,7 @@ class Drawer:
     def __init__(
             self, draw_area: Widget, bma: Union[Bma, None], bpa_durations: int, pal_ani_durations: int,
             # chunks_surfaces[layer_number][chunk_idx][palette_animation_frame][frame]
-            chunks_surfaces: List[Iterable[Iterable[List[cairo.Surface]]]]
+            chunks_surfaces: Iterable[Iterable[Iterable[Iterable[cairo.Surface]]]]
     ):
         """
         Initialize a drawer...
@@ -414,10 +414,10 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
     }
 
     def __init__(self, icon_view, layer: int, bpa_durations: int, pal_ani_durations: int,
-                 chunks_surfaces: List[List[List[List[cairo.Surface]]]]):
+                 chunks_surfaces: Iterable[Iterable[Iterable[Iterable[cairo.Surface]]]]):
 
         super().__init__(icon_view, None, bpa_durations, pal_ani_durations, chunks_surfaces)
-        super(Gtk.CellRenderer, self).__init__()
+        super(Gtk.CellRenderer, self).__init__()  # type: ignore
         self.layer = layer
 
         self.chunkidx = 0

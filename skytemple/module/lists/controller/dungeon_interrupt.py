@@ -18,6 +18,7 @@ import logging
 import sys
 import webbrowser
 from typing import TYPE_CHECKING, Optional, List
+
 from skytemple_files.common.i18n_util import _, f
 
 from gi.repository import Gtk
@@ -33,6 +34,7 @@ from skytemple_files.data.inter_d.model import InterDEntry, InterDEntryType
 
 if TYPE_CHECKING:
     from skytemple.module.moves_items.module import MovesItemsModule
+    from skytemple.module.lists.module import ListsModule
 from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)

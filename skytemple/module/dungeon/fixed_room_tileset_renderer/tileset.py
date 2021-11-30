@@ -30,8 +30,8 @@ from skytemple_files.graphics.dpl.model import Dpl
 class FixedFloorDrawerTileset(AbstractTilesetRenderer):
 
     def __init__(self, dma: Dma, dpci: Dpci, dpc: Dpc, dpl: Dpl):
-        self._cached_rules = None
-        self._cached_dungeon_surface = None
+        self._cached_rules: Optional[List[List[DmaType]]] = None
+        self._cached_dungeon_surface: Optional[cairo.ImageSurface] = None
         self.dma = dma
         self.dpci = dpci
         self.dpc = dpc
@@ -55,7 +55,7 @@ class FixedFloorDrawerTileset(AbstractTilesetRenderer):
                 self.dma_drawer.draw(mappings, self.dpci, self.dpc, self.dpl, None)[0].convert('RGBA')
             )
             self._cached_rules = rules
-        return self._cached_dungeon_surface
+        return self._cached_dungeon_surface  # type: ignore
 
     def get_single_tile(self, tile: DmaType) -> cairo.Surface:
         return self.single_tiles[tile]

@@ -16,6 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from typing import List, Tuple, Optional
 
+from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore, TreeIter
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
@@ -64,6 +65,7 @@ SP_EFFECTS = 'BALANCE/process.bin'
 DUNGEON_INTERRUPT = "BALANCE/inter_d.bin"
 ANIMATIONS = "BALANCE/anim.bin"
 
+
 class ListsModule(AbstractModule):
     """Module to modify lists."""
     @classmethod
@@ -77,19 +79,19 @@ class ListsModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self._tree_model = None
-        self._actor_tree_iter = None
-        self._starters_tree_iter = None
-        self._recruitment_tree_iter = None
-        self._world_map_tree_iter = None
-        self._rank_list_tree_iter = None
-        self._menu_list_tree_iter = None
-        self._dungeon_music_tree_iter = None
-        self._misc_settings_tree_iter = None
-        self._guest_pokemon_root_iter = None
-        self._special_episodes_root_iter = None
-        self._tactics_root_iter = None
-        self._iq_tree_iter = None
+        self._tree_model: Optional[Gtk.TreeModel] = None
+        self._actor_tree_iter: Optional[Gtk.TreeIter] = None
+        self._starters_tree_iter: Optional[Gtk.TreeIter] = None
+        self._recruitment_tree_iter: Optional[Gtk.TreeIter] = None
+        self._world_map_tree_iter: Optional[Gtk.TreeIter] = None
+        self._rank_list_tree_iter: Optional[Gtk.TreeIter] = None
+        self._menu_list_tree_iter: Optional[Gtk.TreeIter] = None
+        self._dungeon_music_tree_iter: Optional[Gtk.TreeIter] = None
+        self._misc_settings_tree_iter: Optional[Gtk.TreeIter] = None
+        self._guest_pokemon_root_iter: Optional[Gtk.TreeIter] = None
+        self._special_episodes_root_iter: Optional[Gtk.TreeIter] = None
+        self._tactics_root_iter: Optional[Gtk.TreeIter] = None
+        self._iq_tree_iter: Optional[Gtk.TreeIter] = None
 
         self.waza_p_bin: WazaP = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
 
@@ -163,6 +165,7 @@ class ListsModule(AbstractModule):
     def handle_request(self, request: OpenRequest) -> Optional[TreeIter]:
         if request.type == REQUEST_TYPE_DUNGEON_MUSIC:
             return self._dungeon_music_tree_iter
+        return None
 
     def has_sp_effects(self):
         return self.project.file_exists(SP_EFFECTS)
@@ -271,7 +274,7 @@ class ListsModule(AbstractModule):
             HardcodedDefaultStarters.set_special_episode_pcs(lst, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._special_episodes_root_iter]
+        row = self._tree_model[self._special_episodes_root_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
 
     def get_tactics(self) -> List[int]:
@@ -285,7 +288,7 @@ class ListsModule(AbstractModule):
             HardcodedTactics.set_unlock_levels(lst, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._tactics_root_iter]
+        row = self._tree_model[self._tactics_root_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
     
     def get_starter_ids(self) -> Tuple[List[int], List[int]]:
@@ -317,7 +320,7 @@ class ListsModule(AbstractModule):
             HardcodedDefaultStarters.set_player_level(level, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._starters_tree_iter]
+        row = self._tree_model[self._starters_tree_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
     
     def get_starter_level_partner(self) -> int:
@@ -331,7 +334,7 @@ class ListsModule(AbstractModule):
             HardcodedDefaultStarters.set_partner_level(level, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._starters_tree_iter]
+        row = self._tree_model[self._starters_tree_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
 
     def get_recruitment_list(self) -> Tuple[List[int], List[int], List[int]]:
@@ -369,7 +372,7 @@ class ListsModule(AbstractModule):
             HardcodedDungeons.set_marker_placements(markers, arm9bin, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._world_map_tree_iter]
+        row = self._tree_model[self._world_map_tree_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
 
     def get_rank_list(self) -> List[Rank]:
@@ -385,14 +388,14 @@ class ListsModule(AbstractModule):
             HardcodedRankUpTable.set_rank_up_table(values, arm9bin, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._rank_list_tree_iter]
+        row = self._tree_model[self._rank_list_tree_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
     
     def get_menu(self, menu_id) -> List[MenuEntry]:
         """Returns the rank up table."""
-        binary = self.project.get_binary(MenuType(menu_id).binary)
+        binary = self.project.get_binary(MenuType(menu_id).binary)  # type: ignore
         static_data = self.project.get_rom_module().get_static_data()
-        return HardcodedMenus.get_menu(MenuType(menu_id), binary, static_data)
+        return HardcodedMenus.get_menu(MenuType(menu_id), binary, static_data)  # type: ignore
 
     def set_menu(self, menu_id, values: List[MenuEntry]):
         """Sets the rank up table."""
@@ -400,9 +403,9 @@ class ListsModule(AbstractModule):
             static_data = self.project.get_rom_module().get_static_data()
             HardcodedMenus.set_menu(MenuType(menu_id), values, binary, static_data)
         
-        self.project.modify_binary(MenuType(menu_id).binary, update)
+        self.project.modify_binary(MenuType(menu_id).binary, update)  # type: ignore
 
-        row = self._tree_model[self._menu_list_tree_iter]
+        row = self._tree_model[self._menu_list_tree_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
     
     def mark_string_as_modified(self):
@@ -432,7 +435,7 @@ class ListsModule(AbstractModule):
             ExtraDungeonDataList.write(lst, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._guest_pokemon_root_iter]
+        row = self._tree_model[self._guest_pokemon_root_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
 
     def set_guest_pokemon_data(self, lst: List[GuestPokemon]):
@@ -442,7 +445,7 @@ class ListsModule(AbstractModule):
             GuestPokemonList.write(lst, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._guest_pokemon_root_iter]
+        row = self._tree_model[self._guest_pokemon_root_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
 
     def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:

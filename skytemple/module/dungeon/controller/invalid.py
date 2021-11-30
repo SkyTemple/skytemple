@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
@@ -37,10 +37,11 @@ class InvalidDungeonController(AbstractController):
             StringType.DUNGEON_NAMES_MAIN, self.dungeon_info.dungeon_id
         )
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'invalid.glade')
+        assert self.builder
 
         self.builder.get_object('label_dungeon_name').set_text(self.dungeon_name)
         self.builder.connect_signals(self)

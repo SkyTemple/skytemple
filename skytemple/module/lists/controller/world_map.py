@@ -15,11 +15,10 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import TYPE_CHECKING, Optional, Dict, List
+from typing import TYPE_CHECKING, Optional, Dict, List, Tuple
 
 from gi.repository import Gtk, Gdk
 
-from desmume.emulator import SCREEN_WIDTH, SCREEN_HEIGHT
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.img_utils import pil_to_cairo_surface
@@ -50,19 +49,20 @@ class WorldMapController(AbstractController):
     def __init__(self, module: 'ListsModule', *args):
         self.module = module
         self.map_bg_module: 'MapBgModule' = module.project.get_module('map_bg')
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self.drawer: Optional[WorldMapDrawer] = None
         self.dialog_drawer: Optional[WorldMapDrawer] = None
         self._location_names: Dict[int, str] = {}
         self._markers: Optional[List[MapMarkerPlacement]] = []
         self._config: Optional[Pmd2Data] = None
-        self._tree_iters_by_idx = {}
-        self._level_id = None
+        self._tree_iters_by_idx: Dict[int, Gtk.TreeIter] = {}
+        self._level_id: Optional[int] = None
         self._edited_marker = None
-        self._edited_pos = None
+        self._edited_pos: Optional[Tuple[int, int]] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'world_map.glade')
+        assert self.builder
         lst: Gtk.Box = self.builder.get_object('box_list')
         self._markers = self.module.get_world_map_markers()
         self._config = self.module.project.get_rom_module().get_static_data()
@@ -110,6 +110,11 @@ class WorldMapController(AbstractController):
 
     def on_tree_selection_changed(self, selection: Gtk.TreeSelection, *args):
         model, treeiter = selection.get_selected()
+        if TYPE_CHECKING:
+            assert self.drawer
+            assert self._markers
+            assert self._config
+            assert self.builder
         if model is not None and treeiter is not None:
             idx = model[treeiter][0]
             self.drawer.set_selected(self._markers[int(idx)])
@@ -127,6 +132,9 @@ class WorldMapController(AbstractController):
         correct_mouse_x = int(button.x / SCALE)
         correct_mouse_y = int(button.y / SCALE)
         if button.button == 1:
+            if TYPE_CHECKING:
+                assert self._markers
+                assert self.builder
             self.drawer.set_mouse_position(correct_mouse_x, correct_mouse_y)
             # Select.
             selected = self.drawer.get_under_mouse()
@@ -184,11 +192,11 @@ class WorldMapController(AbstractController):
     def _get_map_name(self, entry: MapMarkerPlacement):
         if entry.level_id < 0:
             return ''
-        return self._config.script_data.level_list__by_id[entry.level_id].name
+        return self._config.script_data.level_list__by_id[entry.level_id].name  # type: ignore
     def _get_map_id(self, level_id: int):
         if level_id < 0:
             return -1
-        return int(self._config.script_data.level_list__by_id[level_id].mapid)
+        return int(self._config.script_data.level_list__by_id[level_id].mapid)  # type: ignore
 
     def _get_position(self, entry: MapMarkerPlacement):
         if entry.level_id < 0:
@@ -340,24 +348,27 @@ class WorldMapController(AbstractController):
                 self.module.set_world_map_markers(self._markers)
 
     def on_cb_map_changed(self, cb: Gtk.ComboBox):
+        assert self.builder
         model, cbiter = cb.get_model(), cb.get_active_iter()
         if model is not None and cbiter is not None and cbiter != []:
             self._change_map_bg(model[cbiter][0], self.builder.get_object('diag_draw'), self.dialog_drawer)
 
     def on_radio_reference_toggled(self, w: Gtk.RadioButton):
+        assert self.builder
         if w.get_active():
             cb_reference = self.builder.get_object('cb_reference')
             cb_reference.set_sensitive(True)
             model, cbiter = cb_reference.get_model(), cb_reference.get_active_iter()
             if model is not None and cbiter is not None and cbiter != []:
                 if self.dialog_drawer:
-                    self.dialog_drawer.set_editing(self._markers[model[cbiter][0]], hide=self._edited_marker)
+                    self.dialog_drawer.set_editing(self._markers[model[cbiter][0]], hide=self._edited_marker)  # type: ignore
         else:
             self.builder.get_object('cb_reference').set_sensitive(False)
             if self.dialog_drawer and self._edited_marker and self._edited_pos:
                 self.dialog_drawer.set_editing(self._edited_marker, editing_pos=self._edited_pos)
 
     def on_cb_reference_changed(self, cb: Gtk.ComboBox):
+        assert self._markers
         model, cbiter = cb.get_model(), cb.get_active_iter()
         if model is not None and cbiter is not None and cbiter != []:
             if self.dialog_drawer:
@@ -368,8 +379,8 @@ class WorldMapController(AbstractController):
             return
         x = int(button.x / SCALE)
         y = int(button.y / SCALE)
-        x = x - x % (BPC_TILE_DIM / 2)
-        y = y - y % (BPC_TILE_DIM / 2)
+        x = x - x % (BPC_TILE_DIM // 2)
+        y = y - y % (BPC_TILE_DIM // 2)
 
         if button.button == 1:
             self.dialog_drawer.set_mouse_position(x, y)

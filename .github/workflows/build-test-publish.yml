@@ -17,6 +17,22 @@ on:
       - '*'
 
 jobs:
+  typechecks:
+    runs-on: ubuntu-latest
+    name: Type checks
+    strategy:
+      max-parallel: 5
+      matrix:
+        python-version: [ "3.8", "3.9", "3.10" ]
+    steps:
+    - uses: actions/checkout@v1
+    - uses: theCapypara/mypy-check@rust-support
+      name: Run type checks
+      with:
+        mypy_flags: '--config-file mypy.ini'
+        requirements: '-r requirements.txt'
+        python_version: '${{ matrix.python-version }}'
+        
   build:
     runs-on: ubuntu-latest
     name: Build the Python wheel

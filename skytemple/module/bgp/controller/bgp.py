@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import sys
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 import cairo
 
@@ -57,14 +57,14 @@ class BgpController(AbstractController):
         self.item_id = item_id
         self.bgp = self.module.get_bgp(self.item_id)
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'bgp.glade')
-        self.builder.connect_signals(self)
+        self.builder.connect_signals(self)  # type: ignore
         self._reinit_image()
-        self.builder.get_object('draw').connect('draw', self.draw)
-        return self.builder.get_object('editor_bgp')
+        self.builder.get_object('draw').connect('draw', self.draw)  # type: ignore
+        return self.builder.get_object('editor_bgp')  # type: ignore
 
     def on_men_bg_export_activate(self, *args):
         dialog: Gtk.Dialog = self.builder.get_object('dialog_bg_export')

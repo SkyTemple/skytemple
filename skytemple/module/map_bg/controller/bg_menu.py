@@ -872,7 +872,7 @@ class BgMenuController:
 
         bpa_start = 0 if bpc_layer_to_use == 0 else 4
         bpas = bpas[bpa_start:bpa_start+4]
-        animated_tiles = []
+        animated_tiles: List[Optional[MapBgAnimatedTileProvider]] = []
         for bpa in bpas:
             if bpa is None:
                 animated_tiles.append(None)

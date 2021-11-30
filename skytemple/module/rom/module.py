@@ -71,7 +71,7 @@ class RomModule(AbstractModule):
         self._static_data = self.project.load_rom_data()
 
     def get_static_data(self) -> Pmd2Data:
-        return self._static_data
+        return self._static_data  # type: ignore
 
     def mark_as_modified(self):
         self.project.force_mark_as_modified()

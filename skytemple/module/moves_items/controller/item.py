@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 from enum import Enum
-from typing import TYPE_CHECKING, Type, List
+from typing import TYPE_CHECKING, Type, List, Optional
 
 import cairo
 from gi.repository import Gtk, GLib
@@ -28,7 +28,7 @@ from skytemple.core.string_provider import StringType
 from skytemple_files.common.i18n_util import _
 from skytemple_files.data.item_s_p.model import ItemSPType
 from skytemple_files.data.md.model import PokeType
-from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemCategory
+from skytemple_files.dungeon_data.mappa_bin._deprecated import MappaItemCategory
 
 
 class UseType(Enum):
@@ -82,7 +82,7 @@ class ItemController(AbstractController):
         self.item_id = item_id
         self.item_p, self.item_sp = self.module.get_item(item_id)
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
 
@@ -113,7 +113,7 @@ class ItemController(AbstractController):
         self.item_id = None
         self.item_p = None
         self.item_sp = None
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._string_provider = None
         self._sprite_provider = None
         self._is_loading = True
@@ -421,11 +421,11 @@ class ItemController(AbstractController):
     def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum], sort_by_name=False):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
-            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))
+            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))  # type: ignore
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):

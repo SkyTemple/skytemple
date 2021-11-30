@@ -27,6 +27,7 @@ from skytemple.core.async_tasks.delegator import AsyncConfiguration
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple_files.common.i18n_util import _
+from skytemple_files.common.impl_cfg import ImplementationType
 
 logger = logging.getLogger(__name__)
 LANGS = [
@@ -50,6 +51,7 @@ class SettingsController:
         self.builder = builder
         self.settings = settings
 
+        self.builder.get_object('setting_help_native_enable').connect('clicked', self.on_setting_help_native_enable_clicked)
         self.builder.get_object('setting_help_async').connect('clicked', self.on_setting_help_async_clicked)
         self.builder.get_object('setting_help_privacy').connect('activate-link', self.on_help_privacy_activate_link)
 
@@ -97,6 +99,11 @@ class SettingsController:
         if active is not None:
             cb.set_active(active)
 
+        # Native file handler
+        native_impl_enabled_previous = self.settings.get_implementation_type() == ImplementationType.NATIVE
+        settings_native_enable = self.builder.get_object('setting_native_enable')
+        settings_native_enable.set_active(native_impl_enabled_previous)
+
         # Async modes
         cb: Gtk.ComboBox = self.builder.get_object('setting_async')
         store: Gtk.ListStore = self.builder.get_object('async_store')
@@ -141,6 +148,12 @@ class SettingsController:
             before = self.settings.get_locale()
             if before != lang_name:
                 self.settings.set_locale(lang_name)
+                have_to_restart = True
+
+            # Native file handler enabled state
+            native_impl_enabled = settings_native_enable.get_active()
+            if native_impl_enabled != native_impl_enabled_previous:
+                self.settings.set_implementation_type(ImplementationType.NATIVE if native_impl_enabled else ImplementationType.PYTHON)
                 have_to_restart = True
 
             # Async modes

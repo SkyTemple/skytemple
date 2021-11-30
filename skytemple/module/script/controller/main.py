@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING, Optional, List, Dict
 
 from gi.repository import Gtk
 
@@ -41,17 +41,18 @@ SCRIPT_SCENES = _('Script Scenes')
 class MainController(AbstractController):
     def __init__(self, module: 'ScriptModule', item_id: int):
         self.module = module
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._list: Optional[LevelListBin] = None
         self._dungeon_tilesets: Optional[List[GroundTilesetMapping]] = None
-        self._labels_mapid = {}
-        self._labels_maptype = {}
-        self._labels_overworld_strings = {}
-        self._labels_td_level = {}
-        self._labels_td_dungeon = {}
+        self._labels_mapid: Dict[int, str] = {}
+        self._labels_maptype: Dict[int, str] = {}
+        self._labels_overworld_strings: Dict[int, str] = {}
+        self._labels_td_level: Dict[int, str] = {}
+        self._labels_td_dungeon: Dict[int, str] = {}
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'main.glade')
+        assert self.builder
         stack: Gtk.Stack = self.builder.get_object('list_stack')
 
         if not self.module.has_level_list():

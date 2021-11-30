@@ -94,7 +94,7 @@ class LevelUpController(AbstractController):
 
     def __init__(self, module: 'MonsterModule', item_id: int):
         self.module = module
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self.item_id = item_id
         self._string_provider = self.module.project.get_string_provider()
         self._move_names: Dict[int, str] = {}

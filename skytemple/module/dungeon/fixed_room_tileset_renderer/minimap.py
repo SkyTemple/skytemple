@@ -28,8 +28,8 @@ from skytemple_files.graphics.dma.model import DmaType
 class FixedFloorDrawerMinimap(AbstractTilesetRenderer):
     def __init__(self, minimap_provider: MinimapProvider):
         self.minimap_provider = minimap_provider
-        self._cached_rules = None
-        self._cached_dungeon_surface = None
+        self._cached_rules: Optional[List[List[DmaType]]] = None
+        self._cached_dungeon_surface: Optional[cairo.ImageSurface] = None
 
     def get_background(self) -> Optional[cairo.Surface]:
         return None
@@ -57,7 +57,7 @@ class FixedFloorDrawerMinimap(AbstractTilesetRenderer):
 
             self._cached_dungeon_surface = surf
             self._cached_rules = rules
-        return self._cached_dungeon_surface
+        return self._cached_dungeon_surface  # type: ignore
 
     def get_single_tile(self, tile: DmaType) -> cairo.Surface:
         if tile == DmaType.WALL:
@@ -66,6 +66,7 @@ class FixedFloorDrawerMinimap(AbstractTilesetRenderer):
             return self.minimap_provider.get_minimap_tile(16)
         if tile == DmaType.WATER:
             return self.minimap_provider.get_secondary_tile()
+        raise ValueError()
 
     def paint(self, ctx, source, x, y):
         ctx.translate(x, y)

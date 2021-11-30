@@ -72,7 +72,7 @@ class ItemListsController(AbstractController):
     def __init__(self, module: 'MovesItemsModule', *args):
         self.module = module
         self._item_list: Optional[MappaItemList] = None
-        self._item_names = {}
+        self._item_names: Dict[int, str] = {}
         orig_cats = module.project.get_rom_module().get_static_data().dungeon_data.item_categories
 
         # TODO: Support editing other item categories?
@@ -518,7 +518,7 @@ class ItemListsController(AbstractController):
     def _split_items_in_list_in_cats(
             self, items: Dict[Pmd2DungeonItem, Probability]
     ) -> Dict[Pmd2DungeonItemCategory, Dict[Pmd2DungeonItem, Probability]]:
-        out_items = {}
+        out_items: Dict[Pmd2DungeonItemCategory, Dict[Pmd2DungeonItem, Probability]] = {}
         for cat in self.item_categories.values():
             out_items[cat] = {}
             for item, probability in items.items():

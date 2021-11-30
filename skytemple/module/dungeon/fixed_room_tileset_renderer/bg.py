@@ -38,9 +38,9 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
         self.dma = dma
         self.chunks = chunks
         self.dma_drawer = DmaDrawer(self.dma)
-        self._cached_bg = None
-        self._cached_rules = None
-        self._cached_dungeon_surface = None
+        self._cached_bg: Optional[cairo.ImageSurface] = None
+        self._cached_rules: List[List[DmaType]] = []
+        self._cached_dungeon_surface: Optional[cairo.ImageSurface] = None
         self.single_tiles = {
             DmaType.FLOOR: self._single_tile(DmaType.FLOOR),
             DmaType.WALL: self._single_tile(DmaType.WALL),
@@ -62,7 +62,7 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
                 self._draw_dungeon(mappings)
             )
             self._cached_rules = rules
-        return self._cached_dungeon_surface
+        return self._cached_dungeon_surface  # type: ignore
 
     def get_single_tile(self, tile: DmaType) -> cairo.Surface:
         return self.single_tiles[tile]
