@@ -201,17 +201,17 @@ class MonsterModule(AbstractModule):
         v.show_all()
         return v
 
-    def get_portraits_for_export(self, item_id) -> Tuple[Optional[List[KaoImageProtocol]], Optional[List[KaoImageProtocol]]]:
-        portraits = None
-        portraits2 = None
+    def get_portraits_for_export(self, item_id) -> Tuple[Optional[List[Optional[KaoImageProtocol]]], Optional[List[Optional[KaoImageProtocol]]]]:
+        portraits: Optional[List[Optional[KaoImageProtocol]]] = None
+        portraits2: Optional[List[Optional[KaoImageProtocol]]] = None
         portrait_module = self.project.get_module('portrait')
-        kao = portrait_module.kao
-        if item_id > -1 and item_id < kao.toc_len:
+        kao: KaoProtocol = portrait_module.kao
+        if -1 < item_id < kao.n_entries():
             portraits = []
             for kao_i in range(0, SUBENTRIES):
                 portraits.append(kao.get(item_id, kao_i))
 
-        if item_id > -1 and MdProperties.NUM_ENTITIES + item_id < kao.toc_len:
+        if item_id > -1 and MdProperties.NUM_ENTITIES + item_id < kao.n_entries():
             portraits2 = []
             for kao_i in range(0, SUBENTRIES):
                 portraits2.append(kao.get(MdProperties.NUM_ENTITIES + item_id, kao_i))

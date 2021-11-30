@@ -96,7 +96,7 @@ class PortraitProvider:
         is_fallback = False
         try:
             kao = self._kao.get(entry_id, sub_id)
-            if kao is None or kao.empty is True:
+            if kao is None:
                 if allow_fallback:
                     is_fallback = True
                     kao = self._kao.get(entry_id % MdProperties.NUM_ENTITIES, sub_id)
