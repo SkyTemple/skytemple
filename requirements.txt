@@ -7,7 +7,7 @@ pycairo==1.18.2; sys_platform != "win32"
 natsort==8.1.0
 tilequant==0.4.0.post0
 git+git://github.com/skytemple/skytemple-ssb-debugger@master#egg=skytemple_ssb_debugger
-git+git://github.com/skytemple/skytemple-eventserver@master#egg=skytemple_eventserver
+git+git://github.com/skytemple/skytemple-eventserver@main#egg=skytemple_eventserver
 pypresence==4.2.1
 pygal==3.0.0
 CairoSVG==2.5.2
