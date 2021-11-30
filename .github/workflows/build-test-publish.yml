@@ -25,7 +25,7 @@ jobs:
         python-version: [ "3.8", "3.9", "3.10" ]
     steps:
     - uses: actions/checkout@v1
-    - uses: theCapypara/mypy-check@master
+    - uses: theCapypara/mypy-check@rust-support
       name: Run type checks
       with:
         mypy_flags: '--config-file mypy.ini'

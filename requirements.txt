@@ -1,13 +1,13 @@
 ndspy==3.0.0
-skytemple-files==1.3.2
-skytemple-dtef==1.1.4
-skytemple-icons==1.3.2
+git+git://github.com/skytemple/skytemple-files@master#egg=skytemple_files
+git+git://github.com/skytemple/skytemple-dtef@master#egg=skytemple_dtef
+git+git://github.com/skytemple/skytemple-icons@master#egg=skytemple_icons
 pygobject==3.40.1
 pycairo==1.18.2; sys_platform != "win32"
 natsort==7.1.1
 tilequant==0.4.0.post0
-skytemple-ssb-debugger==1.3.0
-skytemple-eventserver >= 1.0.0
+git+git://github.com/skytemple/skytemple-ssb-debugger@master#egg=skytemple_ssb_debugger
+git+git://github.com/skytemple/skytemple-eventserver@master#egg=skytemple_eventserver
 pypresence==4.2.0
 pygal==2.4.0
 CairoSVG==2.5.2
