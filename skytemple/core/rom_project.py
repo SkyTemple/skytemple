@@ -171,7 +171,58 @@ class RomProject:
             return iter(list(self._loaded_modules.values()) + [self._rom_module])  # type: ignore
         return iter(self._loaded_modules.values())
 
-    def get_module(self, name):
+    if TYPE_CHECKING:
+        from skytemple.module.rom.module import RomModule
+        from skytemple.module.bgp.module import BgpModule
+        from skytemple.module.tiled_img.module import TiledImgModule
+        from skytemple.module.map_bg.module import MapBgModule
+        from skytemple.module.script.module import ScriptModule
+        from skytemple.module.monster.module import MonsterModule
+        from skytemple.module.portrait.module import PortraitModule
+        from skytemple.module.patch.module import PatchModule
+        from skytemple.module.lists.module import ListsModule
+        from skytemple.module.misc_graphics.module import MiscGraphicsModule
+        from skytemple.module.dungeon.module import DungeonModule
+        from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
+        from skytemple.module.strings.module import StringsModule
+        from skytemple.module.gfxcrunch.module import GfxcrunchModule
+        from skytemple.module.sprite.module import SpriteModule
+        from skytemple.module.moves_items.module import MovesItemsModule
+
+    @overload
+    def get_module(self, name: Literal['rom']) -> 'RomModule': ...
+    @overload
+    def get_module(self, name: Literal['bgp']) -> 'BgpModule': ...
+    @overload
+    def get_module(self, name: Literal['tiled_img']) -> 'TiledImgModule': ...
+    @overload
+    def get_module(self, name: Literal['map_bg']) -> 'MapBgModule': ...
+    @overload
+    def get_module(self, name: Literal['script']) -> 'ScriptModule': ...
+    @overload
+    def get_module(self, name: Literal['gfxcrunch']) -> 'GfxcrunchModule': ...
+    @overload
+    def get_module(self, name: Literal['sprite']) -> 'SpriteModule': ...
+    @overload
+    def get_module(self, name: Literal['monster']) -> 'MonsterModule': ...
+    @overload
+    def get_module(self, name: Literal['portrait']) -> 'PortraitModule': ...
+    @overload
+    def get_module(self, name: Literal['patch']) -> 'PatchModule': ...
+    @overload
+    def get_module(self, name: Literal['lists']) -> 'ListsModule': ...
+    @overload
+    def get_module(self, name: Literal['moves_items']) -> 'MovesItemsModule': ...
+    @overload
+    def get_module(self, name: Literal['misc_graphics']) -> 'MiscGraphicsModule': ...
+    @overload
+    def get_module(self, name: Literal['dungeon']) -> 'DungeonModule': ...
+    @overload
+    def get_module(self, name: Literal['dungeon_graphics']) -> 'DungeonGraphicsModule': ...
+    @overload
+    def get_module(self, name: Literal['strings']) -> 'StringsModule': ...
+
+    def get_module(self, name: str) -> AbstractModule:
         return self._loaded_modules[name]
 
     def get_icon_banner(self) -> IconBanner:
