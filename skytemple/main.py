@@ -21,6 +21,7 @@ import locale
 import gettext
 from skytemple.core.ui_utils import data_dir, APP, gdk_backend, GDK_BACKEND_BROADWAY
 from skytemple.core.settings import SkyTempleSettingsStore
+from skytemple_files.common.impl_cfg import ENV_SKYTEMPLE_USE_NATIVE, change_implementation_type
 
 settings = SkyTempleSettingsStore()
 
@@ -28,6 +29,10 @@ settings = SkyTempleSettingsStore()
 if settings.get_allow_sentry():
     from skytemple.core import sentry
     sentry.init()
+
+# Setup native library integration
+if ENV_SKYTEMPLE_USE_NATIVE not in os.environ:
+    change_implementation_type(settings.get_implementation_type())
 
 # Setup locale :(
 LOCALE_DIR = os.path.abspath(os.path.join(data_dir(), 'locale'))

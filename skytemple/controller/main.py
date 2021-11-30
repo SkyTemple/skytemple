@@ -33,6 +33,7 @@ from skytemple.controller.tilequant import TilequantController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.controller_loader import load_controller
 from skytemple.core.error_handler import display_error, capture_error
+from skytemple.core.events import impl
 from skytemple.core.events.events import EVT_VIEW_SWITCH, EVT_PROJECT_OPEN
 from skytemple.core.events.manager import EventManager
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -40,6 +41,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple.core.ssb_debugger.manager import DebuggerManager
+from skytemple_files.common.impl_cfg import ImplementationType, get_implementation_type
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir, \
@@ -133,6 +135,7 @@ class MainController:
         self._configure_error_view()
         self._check_for_updates()
         self._check_for_banner()
+        self._check_for_native()
 
         self._debugger_manager = DebuggerManager()
 
@@ -876,6 +879,10 @@ class MainController:
             pass
         # else/except:
         self.builder.get_object('banner_info').hide()
+
+    def _check_for_native(self):
+        if get_implementation_type() != ImplementationType.NATIVE:
+            self.builder.get_object('native_info').hide()
 
     def _ask_for_sentry(self):
         if not self.settings.is_allow_sentry_set():
