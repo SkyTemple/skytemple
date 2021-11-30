@@ -1,7 +1,7 @@
 ndspy==3.0.0
 git+git://github.com/skytemple/skytemple-files@master#egg=skytemple_files
-git+git://github.com/skytemple/skytemple-dtef@master#egg=skytemple_dtef
-git+git://github.com/skytemple/skytemple-icons@master#egg=skytemple_icons
+git+git://github.com/skytemple/skytemple-dtef@main#egg=skytemple_dtef
+git+git://github.com/skytemple/skytemple-icons@main#egg=skytemple_icons
 pygobject==3.40.1
 pycairo==1.18.2; sys_platform != "win32"
 natsort==7.1.1
