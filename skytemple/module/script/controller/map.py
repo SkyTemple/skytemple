@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
 
@@ -33,7 +33,7 @@ if TYPE_CHECKING:
 class MapController(AbstractController):
     def __init__(self, module: 'ScriptModule', name):
         self.module = module
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self.name = name
         self._sub_enter = None
         self._sub_acting = None

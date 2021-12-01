@@ -14,7 +14,9 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
+from typing import Dict, Optional
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
@@ -24,7 +26,7 @@ from skytemple.module.strings.controller.main import MainController, TEXT_STRING
 from skytemple.module.strings.controller.strings import StringsController
 
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.list.actor.model import ActorListBin
+from skytemple_files.data.str.model import Str
 
 
 class StringsModule(AbstractModule):
@@ -40,8 +42,8 @@ class StringsModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self._tree_model = None
-        self._tree_iters = {}
+        self._tree_model: Optional[Gtk.TreeModel] = None
+        self._tree_iters: Dict[str, Gtk.TreeIter] = {}
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
@@ -55,12 +57,12 @@ class StringsModule(AbstractModule):
         self._tree_model = item_store
         recursive_generate_item_store_row_label(self._tree_model[root])
 
-    def get_string_file(self, filename: str) -> ActorListBin:
+    def get_string_file(self, filename: str) -> Str:
         return self.project.open_file_in_rom(f"MESSAGE/{filename}", FileType.STR)
 
     def mark_as_modified(self, filename: str):
         """Mark as modified"""
         self.project.mark_as_modified(f"MESSAGE/{filename}")
         # Mark as modified in tree
-        row = self._tree_model[self._tree_iters[filename]]
+        row = self._tree_model[self._tree_iters[filename]]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)

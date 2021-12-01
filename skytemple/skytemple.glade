@@ -238,7 +238,7 @@ the top-right of the main window.</property>
             <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkFrame" id="frame_setting_gtk_theme1">
+              <object class="GtkFrame" id="frame_setting_general">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="label-xalign">0</property>
@@ -249,16 +249,19 @@ the top-right of the main window.</property>
                     <property name="can-focus">False</property>
                     <property name="left-padding">12</property>
                     <child>
-                      <object class="GtkBox">
+                      <!-- n-columns=2 n-rows=3 -->
+                      <object class="GtkGrid">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="halign">start</property>
                         <property name="margin-left">5</property>
                         <property name="margin-right">5</property>
                         <property name="margin-start">5</property>
                         <property name="margin-end">5</property>
                         <property name="margin-top">5</property>
                         <property name="margin-bottom">5</property>
-                        <property name="spacing">10</property>
+                        <property name="row-spacing">10</property>
+                        <property name="column-spacing">10</property>
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
@@ -266,9 +269,8 @@ the top-right of the main window.</property>
                             <property name="label" translatable="yes">Language</property>
                           </object>
                           <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>
@@ -284,9 +286,47 @@ the top-right of the main window.</property>
                             </child>
                           </object>
                           <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Use Native File Handlers</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="setting_native_enable">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="halign">start</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">Try to disable this if you run into issues.</property>
+                            <property name="wrap">True</property>
+                            <attributes>
+                              <attribute name="style" value="italic"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">2</property>
+                            <property name="width">2</property>
                           </packing>
                         </child>
                       </object>
@@ -328,9 +368,10 @@ the top-right of the main window.</property>
                         <property name="margin-bottom">5</property>
                         <property name="spacing">10</property>
                         <child>
-                          <object class="GtkSwitch" id="setting_discord_enable">
+                          <object class="GtkLabel">
                             <property name="visible">True</property>
-                            <property name="can-focus">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Enable Discord integration</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -339,10 +380,9 @@ the top-right of the main window.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkSwitch" id="setting_discord_enable">
                             <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Enable Discord integration</property>
+                            <property name="can-focus">True</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -940,6 +980,22 @@ the top-right of the main window.</property>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="native_info">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">end</property>
+                            <property name="margin-end">5</property>
+                            <property name="label" translatable="yes">Native File Handlers enabled.</property>
+                            <property name="justify">right</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="pack-type">end</property>
+                            <property name="position">6</property>
                           </packing>
                         </child>
                       </object>

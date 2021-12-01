@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import sys
-from typing import TYPE_CHECKING, Optional, Callable, Mapping
+from typing import TYPE_CHECKING, Optional, Callable, Mapping, Tuple
 
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import Widget
@@ -56,10 +56,10 @@ class FixedController(AbstractController):
         self.module = module
         self.tileset_id = 0
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
 
         if self.__class__._last_scale_factor is not None:
-            self._scale_factor = self.__class__._last_scale_factor
+            self._scale_factor: int = self.__class__._last_scale_factor
         else:
             self._scale_factor = 1
 
@@ -94,13 +94,14 @@ class FixedController(AbstractController):
 
         self._bg_draw_is_clicked__press_active = False
         self._bg_draw_is_clicked__drag_active = False
-        self._bg_draw_is_clicked__location = None
+        self._bg_draw_is_clicked__location: Optional[Tuple[int, int]] = None
         self._currently_selected = None
 
         self.script_data = self.module.project.get_rom_module().get_static_data().script_data
 
     def get_view(self) -> Widget:
         self.builder = self._get_builder(__file__, 'fixed.glade')
+        assert self.builder
         self._draw = self.builder.get_object('fixed_draw')
 
         self._init_comboboxes()
@@ -123,6 +124,8 @@ class FixedController(AbstractController):
         correct_mouse_x = int((button.x - 4) / self._scale_factor)
         correct_mouse_y = int((button.y - 4) / self._scale_factor)
         if button.button == 1:
+            assert self.floor
+            assert self.builder
             self._bg_draw_is_clicked__press_active = True
             self._bg_draw_is_clicked__drag_active = False
             self._bg_draw_is_clicked__location = (int(button.x), int(button.y))
@@ -161,7 +164,7 @@ class FixedController(AbstractController):
                 ):
                     self._currently_selected = self.drawer.get_cursor_pos_in_grid(True)
 
-        self._draw.queue_draw()
+        self._draw.queue_draw()  # type: ignore
 
     def on_fixed_draw_event_button_release_event(self, box, button: Gdk.EventButton):
         if button.button == 1 and self.drawer is not None:
@@ -191,8 +194,8 @@ class FixedController(AbstractController):
         self._currently_selected = None
         self._bg_draw_is_clicked__location = None
         self._bg_draw_is_clicked__drag_active = False
-        self.drawer.end_drag()
-        self._draw.queue_draw()
+        self.drawer.end_drag()  # type: ignore
+        self._draw.queue_draw()  # type: ignore
 
     def on_fixed_draw_event_motion_notify_event(self, box, motion: Gdk.EventMotion):
         correct_mouse_x = int((motion.x - 4) / self._scale_factor)
@@ -222,7 +225,7 @@ class FixedController(AbstractController):
                                 int((start_y - 4) / self._scale_factor) - self._currently_selected[1]
                             )
 
-            self._draw.queue_draw()
+            self._draw.queue_draw()  # type: ignore
 
     def on_utility_entity_direction_changed(self, *args):
         self._reapply_selected_entity()
@@ -250,7 +253,7 @@ class FixedController(AbstractController):
     def on_tool_choose_tileset_cb_changed(self, w: Gtk.ComboBox):
         idx = w.get_active()
         self.tileset_id = idx
-        self.on_tool_fullmap_toggled(self.builder.get_object('tool_fullmap'), ignore_scaling=True)
+        self.on_tool_fullmap_toggled(self.builder.get_object('tool_fullmap'), ignore_scaling=True)  # type: ignore
 
     def on_tool_scene_copy_toggled(self, *args):
         self._enable_copy_or_move_mode()
@@ -313,19 +316,19 @@ class FixedController(AbstractController):
         self.__class__._last_show_full_map = w.get_active()
         if w.get_active():
             if not ignore_scaling:
-                self._scale_factor /= 10
+                self._scale_factor //= 10
                 self.__class__._last_scale_factor = self._scale_factor
-            self.drawer.set_entity_renderer(FullMapEntityRenderer(self.drawer))
+            self.drawer.set_entity_renderer(FullMapEntityRenderer(self.drawer))  # type: ignore
             self._init_tileset()
         else:
             if not ignore_scaling:
                 self._scale_factor *= 10
                 self.__class__._last_scale_factor = self._scale_factor
             minimap_provider = MinimapProvider(self.module.get_zmappa())
-            self.drawer.set_entity_renderer(MinimapEntityRenderer(self.drawer, minimap_provider))
-            self.drawer.set_tileset_renderer(FixedFloorDrawerMinimap(minimap_provider))
+            self.drawer.set_entity_renderer(MinimapEntityRenderer(self.drawer, minimap_provider))  # type: ignore
+            self.drawer.set_tileset_renderer(FixedFloorDrawerMinimap(minimap_provider))  # type: ignore
         self._update_scales()
-        self._draw.queue_draw()
+        self._draw.queue_draw()  # type: ignore
 
     # EDIT SETTINGS
 
@@ -675,7 +678,7 @@ class FixedController(AbstractController):
         )
 
     def _select_combobox(self, cb_name: str, callback: Callable[[Mapping], bool]):
-        cb: Gtk.ComboBox = self.builder.get_object(cb_name)
+        cb: Gtk.ComboBox = self.builder.get_object(cb_name)  # type: ignore
         l_iter = cb.get_model().get_iter_first()
         while l_iter is not None:
             if callback(cb.get_model()[l_iter]):

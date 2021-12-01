@@ -46,7 +46,7 @@ class MainController(AbstractController):
     def __init__(self, module: 'PatchModule', *args):
         self.module = module
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._patcher: Optional[Patcher] = None
 
         self._category_tabs: Dict[PatchCategory, Gtk.Widget] = {}  # category -> page
@@ -145,7 +145,7 @@ class MainController(AbstractController):
 
     def on_patch_categories_switch_page(self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num):
         cat = self._category_tabs_reverse[page]
-        sw: Gtk.ScrolledWindow = self.builder.get_object('patch_window')
+        sw: Gtk.ScrolledWindow = self.builder.get_object('patch_window')  # type: ignore
         sw.get_parent().remove(sw)
         self.refresh(cat)
 
@@ -167,6 +167,7 @@ class MainController(AbstractController):
 
     def refresh(self, patch_category: PatchCategory):
         # ATTACH
+        assert self.builder
         page = self._category_tabs[patch_category]
         page.pack_start(self.builder.get_object('patch_window'), True, True, 0)
         self._current_tab = patch_category
@@ -178,17 +179,17 @@ class MainController(AbstractController):
         # Load zip patches
         for fname in glob(os.path.join(self.patch_dir(), '*.skypatch')):
             try:
-                self._patcher.add_pkg(fname)
+                self._patcher.add_pkg(fname)  # type: ignore
             except BaseException as err:
                 logger.error(f"Error loading patch package {os.path.basename(fname)}", exc_info=sys.exc_info())
                 self._error(f(_("Error loading patch package {os.path.basename(fname)}:\n{err}")))
         # List patches:
-        for patch in sorted(self._patcher.list(), key=lambda p: p.name):
+        for patch in sorted(self._patcher.list(), key=lambda p: p.name):  # type: ignore
             if patch.category != patch_category:
                 continue
             applied_str = _('Not compatible')
             try:
-                applied_str = _('Applied') if self._patcher.is_applied(patch.name) else _('Compatible')
+                applied_str = _('Applied') if self._patcher.is_applied(patch.name) else _('Compatible')  # type: ignore
             except NotImplementedError:
                 pass
             model.append([
@@ -239,4 +240,4 @@ class MainController(AbstractController):
                 parameter_data = ParamDialogController(
                     MainSkyTempleController.window()
                 ).run(patch, patches[patch].parameters)
-        self._patcher.apply(patch, parameter_data)
+        self._patcher.apply(patch, parameter_data)  # type: ignore

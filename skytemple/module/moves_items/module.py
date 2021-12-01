@@ -16,6 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from typing import Dict, Tuple, Optional, List
 
+from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore, TreeIter
 
 from skytemple.core.abstract_module import AbstractModule
@@ -66,8 +67,8 @@ class MovesItemsModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self._tree_model = None
-        self._item_lists_tree_iter = None
+        self._tree_model: Optional[Gtk.TreeModel] = None
+        self._item_lists_tree_iter: Optional[Dict[str, Gtk.TreeIter]] = None
         self._item_effects_tree_iter = None
         self._item_keys_tree_iter = None
         self._move_effects_tree_iter = None
@@ -94,13 +95,13 @@ class MovesItemsModule(AbstractModule):
             'skytemple-view-list-symbolic', _('Move Effects'), self, MoveEffectsController, 0, False, '', True
         ])
 
-        for i, item in enumerate(self.get_item_p().item_list):
+        for i, _item in enumerate(self.get_item_p().item_list):
             name = self.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
             self.item_iters[i] = (item_store.append(root_items, [
                 'skytemple-e-item-symbolic', f'#{i:04}: {name}', self, ItemController, i, False, '', True
             ]))
 
-        for i, item in enumerate(self.get_waza_p().moves):
+        for i, __item in enumerate(self.get_waza_p().moves):
             name = self.project.get_string_provider().get_value(StringType.MOVE_NAMES, i)
             self.move_iters[i] = (item_store.append(root_moves, [
                 'skytemple-e-move-symbolic', f'#{i:04}: {name}', self, MoveController, i, False, '', True

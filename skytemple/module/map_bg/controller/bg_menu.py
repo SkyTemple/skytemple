@@ -544,6 +544,8 @@ class BgMenuController:
             pal = self.parent.bpl.palettes[0]
             try:
                 if is_single_mode:
+                    if not fn.endswith('.png'):
+                        fn += '.png'
                     active_bpa.tiles_to_pil(pal).save(fn)
                 else:
                     for i, img in enumerate(active_bpa.tiles_to_pil_separate(pal, 20)):
@@ -810,11 +812,11 @@ class BgMenuController:
 
             response = dialog.run()
             fn = dialog.get_filename()
-            if '.' not in fn:
-                fn += '.png'
             dialog.destroy()
 
             if response == Gtk.ResponseType.ACCEPT:
+                if '.' not in fn:
+                    fn += '.png'
                 self.parent.bpc.tiles_to_pil(layer, self.parent.bpl.palettes, 20).save(fn)
 
     def _import_tiles(self, layer):
@@ -872,7 +874,7 @@ class BgMenuController:
 
         bpa_start = 0 if bpc_layer_to_use == 0 else 4
         bpas = bpas[bpa_start:bpa_start+4]
-        animated_tiles = []
+        animated_tiles: List[Optional[MapBgAnimatedTileProvider]] = []
         for bpa in bpas:
             if bpa is None:
                 animated_tiles.append(None)

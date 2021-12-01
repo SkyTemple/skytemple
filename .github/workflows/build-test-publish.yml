@@ -16,8 +16,24 @@ on:
       - '*'
 
 jobs:
+  typechecks:
+    runs-on: ubuntu-latest
+    name: Type checks
+    strategy:
+      max-parallel: 5
+      matrix:
+        python-version: [ "3.8", "3.9", "3.10" ]
+    steps:
+    - uses: actions/checkout@v1
+    - uses: theCapypara/mypy-check@rust-support
+      name: Run type checks
+      with:
+        mypy_flags: '--config-file mypy.ini'
+        requirements: '-r requirements.txt'
+        python_version: '${{ matrix.python-version }}'
+        
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     name: Build the Python wheel
     steps:
       # For tags we assume the version in setup.py is correct!
@@ -38,9 +54,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
       - name: Build Python wheels
-        uses: RalfG/python-wheels-manylinux-build@v0.3.3-manylinux2010_x86_64
+        uses: RalfG/python-wheels-manylinux-build@v0.3.4-manylinux2010_x86_64
         with:
-          python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38 cp39-cp39'
+          python-versions: 'cp38-cp38 cp39-cp39 cp310-cp310'
           system-packages: 'gettext'
       - name: Upload wheels
         uses: actions/upload-artifact@v2
@@ -50,7 +66,7 @@ jobs:
   deploy:
     if: startsWith(github.ref, 'refs/tags/')
     needs: build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     name: Deploy wheels to PyPI
     steps:
       - name: Download wheels
@@ -105,6 +121,7 @@ jobs:
             mingw-w64-${{ matrix.arch }}-hunspell
             mingw-w64-${{ matrix.arch }}-hunspell-en
             mingw-w64-${{ matrix.arch }}-openssl
+            mingw-w64-${{ matrix.arch }}-libraqm
       - name: Checkout
         uses: actions/checkout@v2
       - name: Rewrite version for dev if not tag
@@ -125,9 +142,11 @@ jobs:
           # Download armips and other binary depedencies
           ./download-windows-dependencies.sh ${{ matrix.arch }}
 
-          # Download and prepare the Arc theme
+          # Install themes
           curl https://skytemple.org/build_deps/Arc.zip -O
           unzip Arc.zip
+          curl https://skytemple.org/build_deps/ZorinBlue.zip -O
+          unzip ZorinBlue.zip
 
           # Install NSIS
           curl https://skytemple.org/build_deps/nsis.zip -O
@@ -189,6 +208,8 @@ jobs:
           # Install themes
           curl https://skytemple.org/build_deps/Arc.zip -O
           unzip Arc.zip > /dev/null
+          curl https://skytemple.org/build_deps/ZorinBlue.zip -O
+          unzip ZorinBlue.zip > /dev/null
 
           # Download armips
           curl https://skytemple.org/build_deps/mac/armips -O

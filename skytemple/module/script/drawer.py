@@ -79,7 +79,7 @@ class Drawer:
         self._sectors_visible = [True for _ in range(0, len(self.ssa.layer_list))]
         self._sectors_solo = [False for _ in range(0, len(self.ssa.layer_list))]
         self._sector_highlighted = None
-        self._selected = None
+        self._selected: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent, SourceMapPositionMark]] = None
         # If not None, drag is active and value is coordinate
         self._selected__drag: Optional[Tuple[int, int]] = None
         self._edit_pos_marks = False
@@ -189,8 +189,8 @@ class Drawer:
                 sx, sy = self.get_current_drag_entity_pos()
             else:
                 sx, sy = self._snap_pos(self.mouse_x, self.mouse_y)
-            sx /= BPC_TILE_DIM
-            sy /= BPC_TILE_DIM
+            sx //= BPC_TILE_DIM
+            sy //= BPC_TILE_DIM
             ctx.text_path(f"X: {sx}, Y: {sy}")
             ctx.set_source_rgb(*COLOR_BLACK)
             ctx.set_line_width(0.3)
@@ -290,9 +290,9 @@ class Drawer:
         if y is None:
             y = actor.pos.y_absolute
         if actor.actor.entid <= 0:
-            _, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(actor.actor.id, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))
+            _, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(actor.actor.id, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))  # type: ignore
         else:
-            _, cx, cy, w, h = self.sprite_provider.get_monster(actor.actor.entid, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))
+            _, cx, cy, w, h = self.sprite_provider.get_monster(actor.actor.entid, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))  # type: ignore
         return x - cx, y - cy, w, h
 
     def _draw_hitbox_actor(self, ctx: cairo.Context, actor: SsaActor):
@@ -330,7 +330,7 @@ class Drawer:
             self._draw_object_sprite(ctx, object, sprite_coords[0], sprite_coords[1])
             self._draw_name(ctx, COLOR_OBJECTS, object.object.name, sprite_coords[0], sprite_coords[1])
             return
-        self._draw_generic_placeholder(ctx, COLOR_OBJECTS, object.object.unique_name, *sprite_coords, object.pos.direction)
+        self._draw_generic_placeholder(ctx, COLOR_OBJECTS, object.object.unique_name, *sprite_coords, object.pos.direction)  # type: ignore
 
     def get_bb_performer(self, performer: SsaPerformer, x=None, y=None) -> Tuple[int, int, int, int]:
         if x is None:
@@ -353,7 +353,7 @@ class Drawer:
         ctx.move_to(x - 4, y - 8)
         ctx.show_text(f'{performer.type}')
         # Direction arrow
-        self._triangle(ctx, x, y, BPC_TILE_DIM, COLOR_PERFORMER, performer.pos.direction.id)
+        self._triangle(ctx, x, y, BPC_TILE_DIM, COLOR_PERFORMER, performer.pos.direction.id)  # type: ignore
 
     def get_bb_trigger(self, trigger: SsaEvent, x=None, y=None) -> Tuple[int, int, int, int]:
         if x is None:
@@ -547,11 +547,11 @@ class Drawer:
         """Draws the sprite for an actor"""
         if actor.actor.entid == 0:
             sprite = self.sprite_provider.get_actor_placeholder(
-                actor.actor.id, actor.pos.direction.id, self._redraw
+                actor.actor.id, actor.pos.direction.id, self._redraw  # type: ignore
             )[0]
         else:
             sprite = self.sprite_provider.get_monster(
-                actor.actor.entid, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw)
+                actor.actor.entid, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw)  # type: ignore
             )[0]
         ctx.translate(x, y)
         ctx.set_source_surface(sprite)
@@ -709,8 +709,8 @@ class Drawer:
 
     def get_current_drag_entity_pos(self) -> Tuple[int, int]:
         return self._snap_pos(
-            self.mouse_x - self._selected__drag[0],
-            self.mouse_y - self._selected__drag[1]
+            self.mouse_x - self._selected__drag[0],  # type: ignore
+            self.mouse_y - self._selected__drag[1]  # type: ignore
         )
 
     def unload(self):

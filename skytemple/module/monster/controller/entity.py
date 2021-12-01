@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-
+from typing import Optional
 from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
@@ -36,7 +36,7 @@ class EntityController(SimpleController):
               "as a fallback in some cases, when the data for the second form doesn't exist.")
         )
 
-    def get_icon(self) -> str:
+    def get_icon(self) -> Optional[str]:
         return None
 
     def get_back_illust(self) -> str:

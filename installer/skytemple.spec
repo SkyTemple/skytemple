@@ -29,19 +29,21 @@ additional_datas = [
     (os.path.join(site_packages, "cairosvg", "VERSION"), "cairosvg"),
     (os.path.join(site_packages, "pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "share", "hunspell", "*"), 'share/hunspell'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "share", "hunspell", "*"), 'share/hunspell'),
 
     # These aren't auto dectected for some reason :(
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, 'share', 'fontconfig'), 'share/fontconfig'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, 'share', 'glib-2.0'), 'share/glib-2.0'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, 'share', 'gtksourceview-3.0'), 'share/gtksourceview-3.0'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, 'share', 'icons'), 'share/icons'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, 'share', 'locale'), 'share/locale'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, 'share', 'themes'), 'share/themes'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'fontconfig'), 'share/fontconfig'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'glib-2.0'), 'share/glib-2.0'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'gtksourceview-3.0'), 'share/gtksourceview-3.0'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'icons'), 'share/icons'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'locale'), 'share/locale'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'themes'), 'share/themes'),
 
     # Themes
     ('Arc', 'share/themes/Arc'),
-    ('Arc-Dark', 'share/themes/Arc-Dark')
+    ('Arc-Dark', 'share/themes/Arc-Dark'),
+    ('ZorinBlue-Light', 'share/themes/ZorinBlue-Light'),
+    ('ZorinBlue-Dark', 'share/themes/ZorinBlue-Dark'),
 ]
 # Add all module *.glade files.
 paths = []
@@ -54,13 +56,14 @@ for (path, directories, filenames) in os.walk(os.path.join(pkg_path, 'module')):
 additional_binaries = [
     (os.path.join(site_packages, "desmume", "libdesmume.dll"), "."),
     (os.path.join(site_packages, "skytemple_tilequant", "aikku", "libtilequant.dll"), "skytemple_tilequant/aikku"),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "bin", "libenchant-2.dll"), f'enchant/data/{mingw}/bin'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "bin", "libglib-2.0-0.dll"), f'enchant/data/{mingw}/bin'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "bin", "libgmodule-2.0-0.dll"), f'enchant/data/{mingw}/bin'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "lib", "enchant-2", "enchant_hunspell.dll"), 'lib/enchant-2'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "bin", "libhunspell-1.7-0.dll"), '.'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "bin", "libcrypto-1_1*.dll"), '.'),
-    (os.path.join("D:/", "a", "_temp", "msys", "msys64", mingw, "bin", "libssl-1_1*.dll"), '.'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libenchant-2.dll"), f'enchant/data/{mingw}/bin'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libglib-2.0-0.dll"), f'enchant/data/{mingw}/bin'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libgmodule-2.0-0.dll"), f'enchant/data/{mingw}/bin'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "lib", "enchant-2", "enchant_hunspell.dll"), 'lib/enchant-2'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libhunspell-1.7-0.dll"), '.'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libcrypto-1_1*.dll"), '.'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libssl-1_1*.dll"), '.'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libraqm-0.dll"), '.'),
 ]
 
 if mingw == 'mingw64':

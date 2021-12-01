@@ -14,21 +14,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-#
-#  This file is part of SkyTemple.
-#
-#  SkyTemple is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 3 of the License, or
-#  (at your option) any later version.
-#
-#  SkyTemple is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import sys
 import webbrowser
@@ -68,7 +53,7 @@ class MoveEffectsController(AbstractController):
             return stack
         self.move_effects = self.module.get_move_effects()
         self.metronome = self.module.get_metronome_pool()
-        self._metronome_pool = self.metronome.get_list(4)
+        self._metronome_pool = self.metronome.get_list(4)  # type: ignore
 
         self._init_move_list()
         self._init_combos()
@@ -177,7 +162,7 @@ class MoveEffectsController(AbstractController):
         text = buff.get_text(buff.get_start_iter(), buff.get_end_iter(), False)
         buff.delete(buff.get_start_iter(), buff.get_end_iter())
         try:
-            self.move_effects.import_armips_effect_code(self._get_current_effect(), text)
+            self.move_effects.import_armips_effect_code(self._get_current_effect(), text)  # type: ignore
             self.module.mark_move_effects_as_modified()
             md = SkyTempleMessageDialog(
                 MainController.window(),

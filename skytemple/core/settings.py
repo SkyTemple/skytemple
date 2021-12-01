@@ -19,6 +19,7 @@ import logging
 import os
 from typing import Optional, Tuple, List
 
+from skytemple_files.common.impl_cfg import ImplementationType
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.util import open_utf8
 
@@ -38,11 +39,13 @@ KEY_RECENT_5 = 'file5'
 KEY_ASSISTANT_SHOWN = 'assistant_shown'
 KEY_GTK_THEME = 'gtk_theme'
 KEY_LOCALE = 'locale'
+KEY_USE_NATIVE_FILE_HANDLERS = 'use_native_file_handlers'
 
 KEY_WINDOW_SIZE_X = 'width'
 KEY_WINDOW_SIZE_Y = 'height'
 KEY_WINDOW_POS_X = 'pos_x'
 KEY_WINDOW_POS_Y = 'pos_y'
+KEY_WINDOW_IS_MAX = 'is_max'
 
 KEY_INTEGRATION_DISCORD_DISCORD_ENABLED = 'enabled'
 logger = logging.getLogger(__name__)
@@ -153,6 +156,18 @@ class SkyTempleSettingsStore:
         self.loaded_config[SECT_WINDOW][KEY_WINDOW_POS_X] = str(pos[0])
         self.loaded_config[SECT_WINDOW][KEY_WINDOW_POS_Y] = str(pos[1])
         self._save()
+    
+    def get_window_maximized(self) -> bool:
+        if SECT_WINDOW in self.loaded_config:
+            if KEY_WINDOW_IS_MAX in self.loaded_config[SECT_WINDOW] and self.loaded_config[SECT_WINDOW][KEY_WINDOW_IS_MAX] == 'True':
+                return True
+        return False
+    
+    def set_window_maximized(self, value: bool):
+        if SECT_WINDOW not in self.loaded_config:
+            self.loaded_config[SECT_WINDOW] = {}
+        self.loaded_config[SECT_WINDOW][KEY_WINDOW_IS_MAX] = str(value)
+        self._save()
 
     def get_integration_discord_enabled(self) -> bool:
         if SECT_INTEGRATION_DISCORD in self.loaded_config:
@@ -166,7 +181,21 @@ class SkyTempleSettingsStore:
         self.loaded_config[SECT_INTEGRATION_DISCORD][KEY_INTEGRATION_DISCORD_DISCORD_ENABLED] = '1' if value else '0'
         self._save()
 
+    def get_implementation_type(self) -> ImplementationType:
+        if SECT_GENERAL in self.loaded_config:
+            if KEY_USE_NATIVE_FILE_HANDLERS in self.loaded_config[SECT_GENERAL]:
+                if int(self.loaded_config[SECT_GENERAL][KEY_USE_NATIVE_FILE_HANDLERS]) <= 0:
+                    return ImplementationType.PYTHON
+        return ImplementationType.NATIVE
+
+    def set_implementation_type(self, value: ImplementationType):
+        if SECT_GENERAL not in self.loaded_config:
+            self.loaded_config[SECT_GENERAL] = {}
+        self.loaded_config[SECT_GENERAL][KEY_USE_NATIVE_FILE_HANDLERS] = '1' if value == ImplementationType.NATIVE else '0'
+        self._save()
+
     def _save(self):
         with open_utf8(self.config_file, 'w') as f:
             self.loaded_config.write(f)
+
 

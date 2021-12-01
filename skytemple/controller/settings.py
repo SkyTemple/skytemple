@@ -25,6 +25,7 @@ from gi.repository import Gtk, GLib
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple_files.common.i18n_util import _
+from skytemple_files.common.impl_cfg import ImplementationType
 
 logger = logging.getLogger(__name__)
 LANGS = [
@@ -86,6 +87,11 @@ class SettingsController:
         if active is not None:
             cb.set_active(active)
 
+        # Native file handler
+        native_impl_enabled_previous = self.settings.get_implementation_type() == ImplementationType.NATIVE
+        settings_native_enable = self.builder.get_object('setting_native_enable')
+        settings_native_enable.set_active(native_impl_enabled_previous)
+
         response = self.window.run()
 
         have_to_restart = False
@@ -112,6 +118,12 @@ class SettingsController:
             before = self.settings.get_locale()
             if before != lang_name:
                 self.settings.set_locale(lang_name)
+                have_to_restart = True
+
+            # Native file handler enabled state
+            native_impl_enabled = settings_native_enable.get_active()
+            if native_impl_enabled != native_impl_enabled_previous:
+                self.settings.set_implementation_type(ImplementationType.NATIVE if native_impl_enabled else ImplementationType.PYTHON)
                 have_to_restart = True
 
         self.window.hide()

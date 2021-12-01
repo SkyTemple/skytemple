@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import typing
 from enum import auto, Enum
 from typing import Union, Optional, Tuple, TYPE_CHECKING
 
@@ -77,7 +78,7 @@ class FixedRoomDrawer:
         self.entity_renderer: Optional[AbstractEntityRenderer] = None
 
         self.draw_tile_grid = False
-        self.info_layer_active = None
+        self.info_layer_active: Optional[InfoLayer] = None
         self.entity_rule_container = entity_rule_container
         self.add_fixed_room_padding = add_fixed_room_padding
 
@@ -91,10 +92,10 @@ class FixedRoomDrawer:
 
         # Depending on the mode this is either a coordinate tuple or a FixedFloorActionRule to place.
         self._selected: Optional[Union[Tuple[int, int], FixedFloorActionRule]] = None
-        self._selected__drag = None
+        self._selected__drag: Optional[Tuple[int, int]] = None
 
-        self.selection_plugin = None
-        self.tile_grid_plugin = None
+        self.selection_plugin: Optional[SelectionDrawerPlugin] = None
+        self.tile_grid_plugin: Optional[GridDrawerPlugin] = None
 
         self.scale = 1
 
@@ -107,6 +108,7 @@ class FixedRoomDrawer:
             self.draw_area.connect('draw', self.draw)
         self.draw_area.queue_draw()
 
+    @typing.no_type_check
     def draw(self, wdg, ctx: cairo.Context):
         if not self.fixed_floor:
             return
@@ -266,7 +268,7 @@ class FixedRoomDrawer:
         if self.interaction_mode == InteractionMode.SELECT:
             if self._selected is not None and self._selected__drag is not None:
                 # Draw dragged:
-                selected_x, selected_y = self._selected
+                selected_x, selected_y = self._selected  # type: ignore
                 selected = self.fixed_floor.actions[self.fixed_floor.width * selected_y + selected_x]
                 self._draw_single_tile(ctx, selected, x, y)
                 self._draw_action(ctx, selected, x, y)

@@ -87,32 +87,32 @@ class ParamDialogController:
             return entry
         elif param.type == Pmd2PatchParameterType.SELECT:
             combobox_text: Gtk.ComboBoxText = Gtk.ComboBoxText()
+            assert param.options
             for option in param.options:
                 combobox_text.append(str(option.value), option.label)
             combobox_text.set_active(0)
             return combobox_text
-        raise TypeError("Unknown parameter type " + param.type)
+        raise TypeError(f"Unknown parameter type {param.type}")
 
     def _process_control(self, control: Gtk.Widget, param: Pmd2PatchParameter) -> Union[int, str]:
         try:
             if param.type == Pmd2PatchParameterType.INTEGER or param.type == Pmd2PatchParameterType.STRING:
                 assert isinstance(control, Gtk.Entry)
-                control: Gtk.Entry
                 value = control.get_text()
                 if param.type == Pmd2PatchParameterType.INTEGER:
                     return int(value)
                 return value
             elif param.type == Pmd2PatchParameterType.SELECT:
                 assert isinstance(control, Gtk.ComboBoxText)
-                control: Gtk.ComboBoxText
                 selected_id = control.get_active_id()
+                assert param.options
                 for option in param.options:
                     # We do it like this, because option.value has the correct type,
                     # selected_id is always a string.
                     if option.value == selected_id:
                         return option.value
                 raise TypeError("Unknown option " + selected_id)
-            raise TypeError("Unknown parameter type " + param.type)
+            raise TypeError(f"Unknown parameter type {param.type}")
         except ValueError:
             raise PatchNotConfiguredError(_("Invalid values for some settings provided. Please try again."), "*",
                                           _("Invalid values for some settings provided. Please try again."))

@@ -50,6 +50,7 @@ logger = logging.getLogger(__name__)
 MAX_EVOS = 8
 MAX_EGGS = 6
 
+
 class MonsterController(AbstractController):
     _last_open_tab_id = 0
 
@@ -60,7 +61,7 @@ class MonsterController(AbstractController):
 
         self._monster_bin = self.module.project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._is_loading = False
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
@@ -77,6 +78,7 @@ class MonsterController(AbstractController):
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'monster.glade')
+        assert self.builder
 
         self._sprite_provider.reset()
         self._portrait_provider.reset()
@@ -109,7 +111,7 @@ class MonsterController(AbstractController):
             self.builder.get_object('lbl_unk_17').set_text(_("Sprite Size"))
             self.builder.get_object('lbl_unk_18').set_text(_("Sprite File Size"))
 
-        self._ent_names = {}
+        self._ent_names: Dict[int, str] = {}
         
         self._init_monster_store()
 
@@ -143,7 +145,7 @@ class MonsterController(AbstractController):
 
         self._monster_bin = None
 
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self._is_loading = False
         self._string_provider = None
         self._sprite_provider = None
@@ -852,7 +854,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             SkyTempleMainController.reload_view()
 
     def on_cr_export_selected_toggled(self, w: Gtk.CellRendererToggle, path, *args):
-        store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')
+        store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')  # type: ignore
         is_active = not w.get_active()
         store[path][5] = is_active
         store[path][6] = False
@@ -1019,18 +1021,18 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
     def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum], sort_by_name = False):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
-            enum = sorted(enum, key=lambda x:self._enum_entry_to_str(x))
+            enum = sorted(enum, key=lambda x:self._enum_entry_to_str(x))  # type: ignore
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
 
     def _comboxbox_for_enum_with_strings(self, names: List[str], enum: Type[Enum], string_type: StringType):
         store = Gtk.ListStore(int, str)  # id, name
         for entry in enum:
             store.append([entry.value, self._string_provider.get_value(string_type, entry.value)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):
@@ -1398,7 +1400,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             val = int(w.get_text())
         except ValueError:
             return
-        setattr(self._md_evo.evo_stats[self.item_id], attr_name, val)
+        setattr(self._md_evo.evo_stats[self.item_id], attr_name, val)  # type: ignore
         self.module.mark_md_evo_as_modified(self.item_id)
     
     def on_btn_add_evo_clicked(self, *args):

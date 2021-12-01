@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import re
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
 from gi.repository.Gtk import Widget
@@ -43,7 +43,7 @@ class FixedRoomsController(AbstractController):
 
     def __init__(self, module: 'DungeonModule', item_id: int):
         self.module = module
-        self.builder = None
+        self.builder: Optional[Gtk.Builder] = None
         self.lst_entity, self.lst_item, self.lst_monster, self.lst_tile, self.lst_stats = \
             module.get_fixed_floor_entity_lists()
 
@@ -68,6 +68,7 @@ class FixedRoomsController(AbstractController):
 
     def get_view(self) -> Widget:
         self.builder = self._get_builder(__file__, 'fixed_rooms.glade')
+        assert self.builder
 
         self._fill_entities()
         if self.__class__.focus_entity_on_open:
