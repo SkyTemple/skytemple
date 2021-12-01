@@ -29,7 +29,7 @@ from skytemple.core.string_provider import StringType
 from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
-    from skytemple.module.lists.module import ListsModule
+    from skytemple.module.moves_items.module import MovesItemsModule
 
 PATTERN_ITEM_ENTRY = re.compile(r'.*\(#(\d+)\).*')
 logger = logging.getLogger(__name__)

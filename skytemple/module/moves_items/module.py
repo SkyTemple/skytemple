@@ -201,19 +201,19 @@ class MovesItemsModule(AbstractModule):
     def get_move(self, move_id) -> WazaMove:
         return self.get_waza_p().moves[move_id]
 
-    def get_i2n(self, lang: int) -> List[int]:
+    def get_i2n(self, in_lang: str) -> List[int]:
         sp = self.project.get_string_provider()
-        lang = sp.get_language(lang)
+        lang = sp.get_language(in_lang)
         i2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.i2n}", ValListHandler)
         return i2n_model.get_list()
     
-    def set_i2n(self, lang: int, values: List[int]):
+    def set_i2n(self, in_lang: str, values: List[int]):
         sp = self.project.get_string_provider()
-        lang = sp.get_language(lang)
+        lang = sp.get_language(in_lang)
         i2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.i2n}", ValListHandler)
         i2n_model.set_list(values)
         self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.i2n}")
-        row = self._tree_model[self._item_keys_tree_iter]
+        row = self._tree_model[self._item_keys_tree_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
 
     def mark_move_as_modified(self, move_id):
