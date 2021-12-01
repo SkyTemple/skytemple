@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-12-01 17:11+0000\n"
-"PO-Revision-Date: 2021-12-01 17:15\n"
+"PO-Revision-Date: 2021-12-01 18:26\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3710,19 +3710,19 @@ msgstr "¡Este menú debe tener {num_entries} entradas!"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:75
 msgid "Standing Animation (loop)"
-msgstr ""
+msgstr "Animación de pie (bucle)"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:76
 msgid "Standing Animation (1st frame)"
-msgstr ""
+msgstr "Animación de pie (primer fotograma)"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:77
 msgid "Special"
-msgstr ""
+msgstr "Especial"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:78
 msgid "Walking Animation (1st frame)"
-msgstr ""
+msgstr "Animación de caminar (primer fotograma)"
 
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:185
 #, python-brace-format
@@ -3956,7 +3956,7 @@ msgstr "Recomendado para el parche 'CompleteTeamControl'. Sin él, los compañer
 
 #: skytemple-files/skytemple_files/patch/handler/pkmn_ground_anim.py:55
 msgid "Changes implementation of idle animation to an editable table."
-msgstr ""
+msgstr "Cambia la implementación de la animación en reposo a una tabla editable."
 
 #: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:42
 msgid "Reduces the amount of time the game pauses for before changing the PoV, like when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
@@ -11014,7 +11014,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1533
 msgid "Idle Animation Type:"
-msgstr ""
+msgstr "Tipo de animación en reposo:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1606
 msgid "Base HP:"
@@ -11263,7 +11263,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.py:381
 msgid "Idle Animation Types"
-msgstr ""
+msgstr "Tipos de animación en reposo"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:391
 msgid "Value depends on Main Requirement:\n"
@@ -11739,42 +11739,45 @@ msgstr "Exportar código ASM de efectos de objeto..."
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:67
 msgid "Item/Remove Key Placeholder Title"
-msgstr ""
+msgstr "Objetos/Quitar título del marcador de posición"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:94
 msgid "Item/Remove Key Placeholder Description"
-msgstr ""
+msgstr "Objetos/Quitar descripción del marcador de posición"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:139
 msgid "Item Keys"
-msgstr ""
+msgstr "Claves de objetos"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:213
 msgid "Sort Key"
-msgstr ""
+msgstr "Claves de clasificación"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:228
 msgid "Item Name"
-msgstr ""
+msgstr "Nombre del objeto"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:253
 msgid "Insert Key..."
-msgstr ""
+msgstr "Insertar clave..."
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:270
 msgid "Remove Key..."
-msgstr ""
+msgstr "Quitar clave..."
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:287
 msgid "Add Missing Keys"
-msgstr ""
+msgstr "Añadir claves que faltan"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:68
 msgid "Sort keys are used to sort items in your inventory when using the sort feature in game.\n"
 "The game sorts items starting from the one with the lowest key to the highest.\n"
 "Several items can have the same key; this means they will be mixed together while sorting (e.g. Lookalike items).\n"
 "Only keys from 0 to 2047 should be used."
-msgstr ""
+msgstr "Las claves de clasificación se utilizan para ordenar los objetos del inventario dentro del juego.\n"
+"El juego ordena los objetos empezando por el que tiene la clave más baja hasta la más alta.\n"
+"Varios objetos pueden tener la misma clave, lo que significa que se mezclarán al clasificarlos (por ejemplo, los objetos similares).\n"
+"Solo se deben usar las claves de 0 a 2047."
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:134
 msgid "Keys have now been added for all the 1400 items."
@@ -11782,7 +11785,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:142
 msgid "Insert Key Before: "
-msgstr ""
+msgstr "Insertar clave antes: "
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:143
 msgid "Insert an item key id before the one selected.\n"
@@ -11791,7 +11794,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:162
 msgid "Remove Key: "
-msgstr ""
+msgstr "Quitar clave: "
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:163
 msgid "Remove the item key id selected.\n"
@@ -11801,11 +11804,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:178
 msgid "This key is still used by these items: {', '.join(no_key)}."
-msgstr ""
+msgstr "Esta clave sigue siendo utilizada por estos objetos: {', '.join(no_key)}."
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:179
 msgid "Error removing key."
-msgstr ""
+msgstr "Error al eliminar la clave."
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:527
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:604
@@ -12158,7 +12161,7 @@ msgstr "Corregir número de movimientos"
 
 #: skytemple/skytemple/module/moves_items/module.py:92
 msgid "Item Sort Keys"
-msgstr ""
+msgstr "Claves de clasificación de objetos"
 
 #: skytemple/skytemple/module/patch/controller/main.py:39
 #: skytemple/skytemple/module/patch/controller/patch_main.glade:25
