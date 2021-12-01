@@ -38,7 +38,7 @@ from skytemple_files.data.md.model import Md, MdEntry, MdProperties, ShadowSize
 from skytemple_files.data.monster_xml import monster_xml_import, GenderedConvertEntry
 from skytemple_files.data.waza_p.model import WazaP
 from skytemple_files.graphics.kao.model import KaoImage, SUBENTRIES, Kao
-from skytemple_files.hardcoded.monster_sprite_data_table import HardcodedMonsterSpriteDataTable
+from skytemple_files.hardcoded.monster_sprite_data_table import HardcodedMonsterSpriteDataTable, HardcodedMonsterGroundIdleAnimTable, IdleAnimType
 from skytemple_files.common.i18n_util import _
 from skytemple_files.common.util import normalize_string
 MONSTER_MD_FILE = 'BALANCE/monster.md'
@@ -223,6 +223,26 @@ class MonsterModule(AbstractModule):
         controller = LevelUpController(self, item_id)
         return controller.get_view(), controller
 
+    def set_idle_anim_type(self, item_id, value):
+        """Set idle value of the monster"""
+        if self.project.is_patch_applied('ChangePokemonGroundAnim'):
+            def update(ov11):
+                static_data = self.project.get_rom_module().get_static_data()
+                values = HardcodedMonsterGroundIdleAnimTable.get(ov11, static_data)
+                values[item_id] = value
+                HardcodedMonsterGroundIdleAnimTable.set(values, ov11, static_data)
+            self.project.modify_binary(BinaryName.OVERLAY_11, update)
+            self._mark_as_modified_in_tree(item_id)
+
+    def get_idle_anim_type(self, item_id):
+        """Get idle value of the monster"""
+        if self.project.is_patch_applied('ChangePokemonGroundAnim'):
+            ov11 = self.project.get_binary(BinaryName.OVERLAY_11)
+            static_data = self.project.get_rom_module().get_static_data()
+            return HardcodedMonsterGroundIdleAnimTable.get(ov11, static_data)[item_id]
+        else:
+            return None
+
     def set_personality(self, item_id, value):
         """Set personality value of the monster"""
         self.tbl_talk.set_monster_personality(item_id, value)
@@ -316,7 +336,9 @@ class MonsterModule(AbstractModule):
         portraits, portraits2 = self.get_portraits_for_export(stats_and_portraits_id)
         return names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2, \
                self.get_personality(md_gender1.md_index), \
-               self.get_personality(md_gender2.md_index) if md_gender2 is not None else None
+               self.get_personality(md_gender2.md_index) if md_gender2 is not None else None, \
+               self.get_idle_anim_type(md_gender1.md_index), \
+               self.get_idle_anim_type(md_gender2.md_index) if md_gender2 is not None else None
 
     def update_monster_sort_lists(self, lang):
         sp = self.project.get_string_provider()
@@ -340,7 +362,7 @@ class MonsterModule(AbstractModule):
 
         for monster_id in selected_monsters:
             entry = self.get_entry(monster_id)
-            names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2, personality1, personality2 = self.get_export_data(entry)
+            names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2, personality1, personality2, idle_anim1, idle_anim2 = self.get_export_data(entry)
             we_are_gender1 = monster_id < MdProperties.NUM_ENTITIES
 
             md_gender1_imp = md_gender1
@@ -352,12 +374,14 @@ class MonsterModule(AbstractModule):
                     md_gender2_imp = None
                     portraits2_imp = None
                     personality2 = None
+                    idle_anim2 = None
                 else:
                     md_gender1_imp = None
                     portraits1_imp = None
                     personality1 = None
-            md_gender1_imp_wrapped = GenderedConvertEntry(md_gender1, personality1)
-            md_gender2_imp_wrapped = GenderedConvertEntry(md_gender2, personality2)
+                    idle_anim1 = None
+            md_gender1_imp_wrapped = GenderedConvertEntry(md_gender1, personality1, idle_anim1)
+            md_gender2_imp_wrapped = GenderedConvertEntry(md_gender2, personality2, idle_anim2)
 
             monster_xml_import(
                 xml, md_gender1_imp_wrapped, md_gender2_imp_wrapped,
@@ -368,12 +392,18 @@ class MonsterModule(AbstractModule):
                 if we_are_gender1:
                     if md_gender1_imp_wrapped.personality is not None:
                         self.set_personality(md_gender1.md_index, md_gender1_imp_wrapped.personality)
+                    if md_gender1_imp_wrapped.idle_anim is not None:
+                        self.set_idle_anim_type(md_gender1.md_index, md_gender1_imp_wrapped.idle_anim)
                 else:
                     if md_gender2_imp_wrapped.personality is not None:
                         self.set_personality(md_gender2.md_index, md_gender2_imp_wrapped.personality)
+                    if md_gender2_imp_wrapped.idle_anim is not None:
+                        self.set_idle_anim_type(md_gender2.md_index, md_gender2_imp_wrapped.idle_anim)
             else:
                 if md_gender1_imp_wrapped.personality is not None:
                     self.set_personality(md_gender1.md_index, md_gender1_imp_wrapped.personality)
+                if md_gender1_imp_wrapped.idle_anim is not None:
+                    self.set_idle_anim_type(md_gender1.md_index, md_gender1_imp_wrapped.idle_anim)
             if stats:
                 self.set_m_level_bin_entry(getattr(entry, b_attr) - 1, stats)
             if names:
