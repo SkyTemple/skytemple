@@ -32,7 +32,7 @@ from skytemple.core.string_provider import StringProvider, StringType
 from skytemple_files.data.md.model import MdProperties
 from skytemple_files.common.ppmdu_config.data import Pmd2Binary
 from skytemple_files.common.project_file_manager import ProjectFileManager
-from skytemple_files.common.task_runner import AsyncTaskRunner
+from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
@@ -103,7 +103,7 @@ class RomProject:
         Open a file (in a new thread).
         If the main controller is set, it will be informed about this.
         """
-        AsyncTaskRunner().instance().run_task(cls._open_impl(filename, main_controller))
+        AsyncTaskDelegator.instance().run_task(cls._open_impl(filename, main_controller))
 
     @classmethod
     async def _open_impl(cls, filename, main_controller: Optional['MainController']):
@@ -269,7 +269,7 @@ class RomProject:
 
     def save(self, main_controller: Optional['MainController']):
         """Save the rom. The main controller will be informed about this, if given."""
-        AsyncTaskRunner().instance().run_task(self._save_impl(main_controller))
+        AsyncTaskDelegator.instance().run_task(self._save_impl(main_controller))
 
     def open_file_manually(self, filename: str):
         """Returns the raw bytes of a file. GENERALLY NOT RECOMMENDED."""

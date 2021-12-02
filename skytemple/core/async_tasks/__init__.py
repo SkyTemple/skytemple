@@ -14,24 +14,16 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-import threading
-from typing import TypeVar, Generic
-
-T = TypeVar('T')
+from abc import abstractmethod
+from typing import Protocol, Coroutine
 
 
-class ModelContext(Generic[T]):
-    """
-    ContextManager that wraps a model for thread-safe data access.
-    References to the model are invalid outside of the context provided.
-    """
-    def __init__(self, model: T):
-        self._model = model
-        self._lock = threading.RLock()
+class AsyncTaskRunnerProtocol(Protocol):
+    @classmethod
+    @abstractmethod
+    def instance(cls) -> 'AsyncTaskRunnerProtocol':
+        pass
 
-    def __enter__(self) -> T:
-        self._lock.acquire()
-        return self._model
-
-    def __exit__(self, exc_type, value, traceback):
-        self._lock.release()
+    @abstractmethod
+    def run_task(self, coro: Coroutine):
+        """Runs an asynchronous task"""

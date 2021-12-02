@@ -33,12 +33,12 @@ try:
     from PIL import Image, ImageFilter
 except ImportError:
     from pil import Image, ImageFilter
-from gi.repository import Gdk, Gtk, GdkPixbuf
+from gi.repository import Gdk, Gtk, GdkPixbuf, GLib
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.model_context import ModelContext
 from skytemple.core.ui_utils import data_dir
-from skytemple_files.common.task_runner import AsyncTaskRunner
+from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import MONSTER_MD, MONSTER_BIN, open_utf8, DUNGEON_BIN
 from skytemple_files.container.bin_pack.model import BinPack
@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 
 SpriteAndOffsetAndDims = Tuple[cairo.ImageSurface, int, int, int, int]
 ActorSpriteKey = Tuple[Union[str, int], int]
-sprite_provider_lock = threading.Lock()
+sprite_provider_lock = threading.RLock()
 logger = logging.getLogger(__name__)
 
 FALLBACK_STANDIN_ENTITIY = 1
@@ -157,7 +157,7 @@ FILE_NAME_STANDIN_SPRITES = '.standin_sprites.json'
 class SpriteProvider:
     """
     SpriteProvider. This class renders sprites using Threads. If a Sprite is requested, a loading icon
-    is returned instead, until it is loaded by the AsyncTaskRunner.
+    is returned instead, until it is loaded by the AsyncTaskDelegator.
     """
     def __init__(self, project: 'RomProject'):
         self._project = project
@@ -305,7 +305,7 @@ class SpriteProvider:
         return self.get_loader()
 
     def _load_actor_placeholder(self, actor_id, direction_id: int, after_load_cb):
-        AsyncTaskRunner.instance().run_task(self._load_actor_placeholder__impl(actor_id, direction_id, after_load_cb))
+        AsyncTaskDelegator.instance().run_task(self._load_actor_placeholder__impl(actor_id, direction_id, after_load_cb))
 
     async def _load_actor_placeholder__impl(self, actor_id, direction_id: int, after_load_cb):
         md_index = FALLBACK_STANDIN_ENTITIY
@@ -348,10 +348,10 @@ class SpriteProvider:
         with sprite_provider_lock:
             self._loaded__actor_placeholders[(actor_id, direction_id)] = loaded
             self._requests__actor_placeholders.remove((actor_id, direction_id))
-        after_load_cb()
+        GLib.idle_add(after_load_cb)
 
     def _load_monster(self, md_index, direction_id: int, after_load_cb):
-        AsyncTaskRunner.instance().run_task(self._load_monster__impl(md_index, direction_id, after_load_cb))
+        AsyncTaskDelegator.instance().run_task(self._load_monster__impl(md_index, direction_id, after_load_cb))
 
     async def _load_monster__impl(self, md_index, direction_id: int, after_load_cb):
         try:
@@ -363,10 +363,10 @@ class SpriteProvider:
         with sprite_provider_lock:
             self._loaded__monsters[(md_index, direction_id)] = loaded
             self._requests__monsters.remove((md_index, direction_id))
-        after_load_cb()
+        GLib.idle_add(after_load_cb)
 
     def _load_monster_outline(self, md_index, direction_id: int, after_load_cb):
-        AsyncTaskRunner.instance().run_task(self._load_monster_outline__impl(md_index, direction_id, after_load_cb))
+        AsyncTaskDelegator.instance().run_task(self._load_monster_outline__impl(md_index, direction_id, after_load_cb))
 
     async def _load_monster_outline__impl(self, md_index, direction_id: int, after_load_cb):
         try:
@@ -388,7 +388,7 @@ class SpriteProvider:
         with sprite_provider_lock:
             self._loaded__monsters_outlines[(md_index, direction_id)] = loaded
             self._requests__monsters_outlines.remove((md_index, direction_id))
-        after_load_cb()
+        GLib.idle_add(after_load_cb)
 
     def _retrieve_monster_sprite(self, md_index, direction_id: int) -> Tuple[Image.Image, int, int, int, int]:
         try:
@@ -411,7 +411,7 @@ class SpriteProvider:
             raise RuntimeError(f"Error loading monster sprite for {md_index}") from e
 
     def _load_object(self, name, after_load_cb):
-        AsyncTaskRunner.instance().run_task(self._load_object__impl(name, after_load_cb))
+        AsyncTaskDelegator.instance().run_task(self._load_object__impl(name, after_load_cb))
 
     async def _load_object__impl(self, name, after_load_cb):
         try:
@@ -432,10 +432,10 @@ class SpriteProvider:
                 self._loaded__objects[name] = self.get_error()
         with sprite_provider_lock:
             self._requests__objects.remove(name)
-        after_load_cb()
+        GLib.idle_add(after_load_cb)
 
     def _load_trap(self, trp: int, after_load_cb):
-        AsyncTaskRunner.instance().run_task(self._load_trap__impl(trp, after_load_cb))
+        AsyncTaskDelegator.instance().run_task(self._load_trap__impl(trp, after_load_cb))
 
     async def _load_trap__impl(self, trp: int, after_load_cb):
         try:
@@ -452,10 +452,10 @@ class SpriteProvider:
                 self._loaded__traps[trp] = self.get_error()
         with sprite_provider_lock:
             self._requests__traps.remove(trp)
-        after_load_cb()
+        GLib.idle_add(after_load_cb)
 
     def _load_item(self, itm: ItemPEntry, after_load_cb):
-        AsyncTaskRunner.instance().run_task(self._load_item__impl(itm, after_load_cb))
+        AsyncTaskDelegator.instance().run_task(self._load_item__impl(itm, after_load_cb))
 
     async def _load_item__impl(self, item: ItemPEntry, after_load_cb):
         try:
@@ -477,7 +477,7 @@ class SpriteProvider:
                 self._loaded__items[item.item_id] = self.get_error()
         with sprite_provider_lock:
             self._requests__items.remove(item.item_id)
-        after_load_cb()
+        GLib.idle_add(after_load_cb)
 
     def _load_sprite_from_bin_pack(self, bin_pack: BinPack, file_id) -> Wan:
         # TODO: Support of bin_pack item management via the RomProject instead?
