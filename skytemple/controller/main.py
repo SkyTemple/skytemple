@@ -145,7 +145,9 @@ class MainController:
         GLib.idle_add(lambda: self._ask_for_sentry())
 
     def on_destroy(self, *args):
-        logger.debug('Window destroyed.')
+        logger.debug('Window destroyed. Ending task runner.')
+        # TODO: Currently always required for Debugger compatibility (since that ALWAYS uses this async implementation)
+        AsyncTaskDelegator.end()
         Gtk.main_quit()
         self._debugger_manager.destroy()
 
@@ -402,7 +404,7 @@ class MainController:
         self._current_view_controller_class = selected_node[3]
         self._current_view_item_id = selected_node[4]
         # Fully load the view and the controller
-        AsyncTaskDelegator.run_task(load_controller(
+        AsyncTaskRunner.instance().run_task(load_controller(
             self._current_view_module, self._current_view_controller_class, self._current_view_item_id,  # type: ignore
             self  # type: ignore
         ))
