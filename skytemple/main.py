@@ -174,9 +174,6 @@ def main():
         Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
     )
 
-    # Load async task runner thread
-    AsyncTaskRunner.instance()
-
     # Init. core events
     event_manager = EventManager.instance()
     if settings.get_integration_discord_enabled():
@@ -198,6 +195,7 @@ def main():
     try:
         Gtk.main()
     except (KeyboardInterrupt, SystemExit):
+        # TODO: Currently always required for Debugger compatibility (since that ALWAYS uses this async implementation)
         AsyncTaskRunner.end()
 
 
