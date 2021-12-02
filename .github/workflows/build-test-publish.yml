@@ -124,6 +124,11 @@ jobs:
             mingw-w64-${{ matrix.arch }}-libraqm
       - name: Checkout
         uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        name: Install Rust Toolchain
+        with:
+          toolchain: nightly
+          override: true
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
         shell: msys2 {0}
@@ -180,6 +185,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        name: Install Rust Toolchain
+        with:
+          toolchain: nightly
+          override: true
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
         run: |
@@ -196,7 +206,7 @@ jobs:
 
 
           # Install other dependencies and SkyTemple itself
-          pip3 install py-desmume skytemple-rust pyinstaller
+          pip3 install py-desmume pyinstaller
           pip3 install -r requirements-mac-windows.txt
           pip3 install .
           if [ -n "$IS_DEV_BUILD" ]; then
