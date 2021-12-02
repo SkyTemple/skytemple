@@ -130,6 +130,7 @@ jobs:
         with:
           toolchain: nightly
           override: true
+          target: "${{ matrix.arch }}-pc-windows-gnu"
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
         shell: msys2 {0}
