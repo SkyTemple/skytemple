@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-12-01 17:11+0000\n"
-"PO-Revision-Date: 2021-12-02 21:31\n"
+"POT-Creation-Date: 2021-12-02 22:11+0000\n"
+"PO-Revision-Date: 2021-12-02 22:41\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -4140,7 +4140,7 @@ msgid "Do you want to save changes to {filename}?"
 msgstr "¿Quieres guardar los cambios en {filename}?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:330
-#: skytemple/skytemple/controller/main.py:785
+#: skytemple/skytemple/controller/main.py:787
 msgid "Don't Save"
 msgstr "No guardar"
 
@@ -4168,7 +4168,7 @@ msgid "_Save"
 msgstr "_Guardar"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:334
-#: skytemple/skytemple/controller/main.py:789
+#: skytemple/skytemple/controller/main.py:791
 msgid "If you don't save, your changes will be lost."
 msgstr "Si no guardas, se perderán los cambios."
 
@@ -4542,7 +4542,7 @@ msgstr "Eliminar"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1637
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1648
-#: skytemple/skytemple/controller/main.py:787
+#: skytemple/skytemple/controller/main.py:789
 #: skytemple/skytemple/module/map_bg/controller/main.py:105
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:43
 #: skytemple/skytemple/module/script/controller/main.py:191
@@ -4940,7 +4940,7 @@ msgstr "Estado del terreno"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1089
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2762
-#: skytemple/skytemple/controller/main.py:788
+#: skytemple/skytemple/controller/main.py:790
 #: skytemple/skytemple/skytemple.glade:1203
 msgid "Save"
 msgstr "Guardar"
@@ -5437,48 +5437,48 @@ msgstr "Ampliar"
 msgid "Zoom _Out"
 msgstr "Alejar"
 
-#: skytemple/skytemple/controller/main.py:246
+#: skytemple/skytemple/controller/main.py:248
 msgid "Open ROM..."
 msgstr "Abrir ROM..."
 
-#: skytemple/skytemple/controller/main.py:352
+#: skytemple/skytemple/controller/main.py:354
 msgid "Error opening the ROM"
 msgstr "Error al abrir la ROM"
 
-#: skytemple/skytemple/controller/main.py:377
+#: skytemple/skytemple/controller/main.py:379
 msgid "Error saving the ROM"
 msgstr "Error al guardar la ROM"
 
-#: skytemple/skytemple/controller/main.py:497
+#: skytemple/skytemple/controller/main.py:499
 msgid "A project must be opened to use this."
 msgstr "Debe abrirse un proyecto para utilizarlo."
 
-#: skytemple/skytemple/controller/main.py:580
-#: skytemple/skytemple/controller/main.py:581
+#: skytemple/skytemple/controller/main.py:582
+#: skytemple/skytemple/controller/main.py:583
 msgid "Open a ROM"
 msgstr "Abrir una ROM"
 
-#: skytemple/skytemple/controller/main.py:606
+#: skytemple/skytemple/controller/main.py:608
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
 msgstr "Cargando ROM \"{rom_name}\"..."
 
-#: skytemple/skytemple/controller/main.py:608
+#: skytemple/skytemple/controller/main.py:610
 #, python-brace-format
 msgid "Opening {filename}."
 msgstr "Abriendo {filename}."
 
-#: skytemple/skytemple/controller/main.py:768
+#: skytemple/skytemple/controller/main.py:770
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
 msgstr "Guardando ROM \"{rom_name}\"..."
 
-#: skytemple/skytemple/controller/main.py:770
+#: skytemple/skytemple/controller/main.py:772
 #, python-brace-format
 msgid "Saving {rom.filename}."
 msgstr "Guardando {rom.filename}."
 
-#: skytemple/skytemple/controller/main.py:783
+#: skytemple/skytemple/controller/main.py:785
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
 msgstr "¿Quieres guardar los cambios en {rom_name}?"
@@ -11259,7 +11259,8 @@ msgstr "Tamaño del archivo de sprite"
 #: skytemple/skytemple/module/monster/controller/monster.py:379
 msgid "This value can only be edited with the ChangePokemonGroundAnim patch. \n"
 "This tells how idle animations should be handled for each pokemon. "
-msgstr ""
+msgstr "Este valor solo puede editarse con el parche 'ChangePokemonGroundAnim'. \n"
+"Permite indicar cómo deben gestionarse las animaciones en reposo de cada Pokémon. "
 
 #: skytemple/skytemple/module/monster/controller/monster.py:381
 msgid "Idle Animation Types"
