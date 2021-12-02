@@ -29,7 +29,7 @@ rm -rf tmp_rust || true
 
 mkdir tmp_rust
 cd tmp_rust
-curl -O $url
+curl -LO $url
 unzip *.zip
 pip3 install *.whl
 
