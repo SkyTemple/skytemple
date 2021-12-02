@@ -23,13 +23,14 @@ if [ -n "$IS_MACOS" ]; then
   py_version="3.9"
 fi
 
-url= "https://nightly.link/SkyTemple/skytemple-rust/workflows/build-test-publish/$branch/wheels-$platform-py$py_version-$arch.zip"
+url="https://nightly.link/SkyTemple/skytemple-rust/workflows/build-test-publish/$branch/wheels-$platform-py$py_version-$arch.zip"
 
 rm -rf tmp_rust || true
 
 mkdir tmp_rust
 cd tmp_rust
 curl -O $url
+unzip *.zip
 pip3 install *.whl
 
 rm -rf tmp_rust || true
