@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-12-01 17:11+0000\n"
-"PO-Revision-Date: 2021-12-01 18:26\n"
+"PO-Revision-Date: 2021-12-02 21:31\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -11010,7 +11010,7 @@ msgstr "Ratio de reclutamiento:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1391
 msgid "Talk Group:"
-msgstr ""
+msgstr "Grupo de conversación:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1533
 msgid "Idle Animation Type:"
@@ -11781,7 +11781,7 @@ msgstr "Las claves de clasificación se utilizan para ordenar los objetos del in
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:134
 msgid "Keys have now been added for all the 1400 items."
-msgstr ""
+msgstr "Se han añadido claves para los 1400 objetos."
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:142
 msgid "Insert Key Before: "
@@ -11790,7 +11790,8 @@ msgstr "Insertar clave antes: "
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:143
 msgid "Insert an item key id before the one selected.\n"
 "This means all keys with id >= that one will be incremented by 1. "
-msgstr ""
+msgstr "Inserta un ID de clave de elemento anterior al seleccionado.\n"
+"Esto significa que todas las claves con Id >= 1 incrementarán en 1. "
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:162
 msgid "Remove Key: "
@@ -11800,7 +11801,9 @@ msgstr "Quitar clave: "
 msgid "Remove the item key id selected.\n"
 "This means all keys with id > that one will be decremented by 1.\n"
 "A key can't be removed if it's still used by one item. "
-msgstr ""
+msgstr "Elimina el ID de clave del elemento seleccionado.\n"
+"Esto significa que todas las claves con Id >= 1 disminuirán en 1. \n"
+"Una clave no puede ser eliminada si todavía es usada por un objeto. "
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:178
 msgid "This key is still used by these items: {', '.join(no_key)}."
