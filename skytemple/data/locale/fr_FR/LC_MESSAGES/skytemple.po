@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-12-01 17:11+0000\n"
-"PO-Revision-Date: 2021-12-01 17:15\n"
+"POT-Creation-Date: 2021-12-02 22:11+0000\n"
+"PO-Revision-Date: 2021-12-02 22:41\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -4131,7 +4131,7 @@ msgid "Do you want to save changes to {filename}?"
 msgstr "Voulez-vous sauvegarder les changements faits dans {filename} ?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:330
-#: skytemple/skytemple/controller/main.py:785
+#: skytemple/skytemple/controller/main.py:787
 msgid "Don't Save"
 msgstr "Ne pas sauvegarder"
 
@@ -4159,7 +4159,7 @@ msgid "_Save"
 msgstr "_Sauvegarder"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:334
-#: skytemple/skytemple/controller/main.py:789
+#: skytemple/skytemple/controller/main.py:791
 msgid "If you don't save, your changes will be lost."
 msgstr "Si vous n'enregistrez pas, vos modifications seront perdues."
 
@@ -4533,7 +4533,7 @@ msgstr "Supprimer"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1637
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1648
-#: skytemple/skytemple/controller/main.py:787
+#: skytemple/skytemple/controller/main.py:789
 #: skytemple/skytemple/module/map_bg/controller/main.py:105
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:43
 #: skytemple/skytemple/module/script/controller/main.py:191
@@ -4930,7 +4930,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1089
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2762
-#: skytemple/skytemple/controller/main.py:788
+#: skytemple/skytemple/controller/main.py:790
 #: skytemple/skytemple/skytemple.glade:1203
 msgid "Save"
 msgstr "Sauvegarder"
@@ -5424,48 +5424,48 @@ msgstr "Zoom _avant"
 msgid "Zoom _Out"
 msgstr "Zoom _arrière"
 
-#: skytemple/skytemple/controller/main.py:246
+#: skytemple/skytemple/controller/main.py:248
 msgid "Open ROM..."
 msgstr "Ouvrir une ROM..."
 
-#: skytemple/skytemple/controller/main.py:352
+#: skytemple/skytemple/controller/main.py:354
 msgid "Error opening the ROM"
 msgstr "Erreur lors de l'ouverture de la ROM"
 
-#: skytemple/skytemple/controller/main.py:377
+#: skytemple/skytemple/controller/main.py:379
 msgid "Error saving the ROM"
 msgstr "Erreur lors de la sauvegarde de la ROM"
 
-#: skytemple/skytemple/controller/main.py:497
+#: skytemple/skytemple/controller/main.py:499
 msgid "A project must be opened to use this."
 msgstr "Il faut ouvrir un projet pour l'utiliser."
 
-#: skytemple/skytemple/controller/main.py:580
-#: skytemple/skytemple/controller/main.py:581
+#: skytemple/skytemple/controller/main.py:582
+#: skytemple/skytemple/controller/main.py:583
 msgid "Open a ROM"
 msgstr "Ouvrir une ROM"
 
-#: skytemple/skytemple/controller/main.py:606
+#: skytemple/skytemple/controller/main.py:608
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
 msgstr "Chargement de la ROM « {rom_name} »..."
 
-#: skytemple/skytemple/controller/main.py:608
+#: skytemple/skytemple/controller/main.py:610
 #, python-brace-format
 msgid "Opening {filename}."
 msgstr "Ouverture de {filename}."
 
-#: skytemple/skytemple/controller/main.py:768
+#: skytemple/skytemple/controller/main.py:770
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
 msgstr "Enregistrement de la ROM « {rom_name} »..."
 
-#: skytemple/skytemple/controller/main.py:770
+#: skytemple/skytemple/controller/main.py:772
 #, python-brace-format
 msgid "Saving {rom.filename}."
 msgstr "Sauvegarde de {rom.filename}."
 
-#: skytemple/skytemple/controller/main.py:783
+#: skytemple/skytemple/controller/main.py:785
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
 msgstr "Voulez vous enregistrer les changement vers {rom_name} ?"
