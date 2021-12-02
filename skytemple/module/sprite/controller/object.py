@@ -90,3 +90,10 @@ Warning: SkyTemple does not validate the files you import."""))
             return
         self.module.save_object_sprite(self.item_id, sprite)
         MainController.reload_view()
+
+    def on_importimage_clicked(self, *args):
+        sprite = self.module.import_an_image()
+        if sprite is None:
+            return
+        self.module.save_object_sprite(self.item_id, sprite)
+        MainController.reload_view()
