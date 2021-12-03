@@ -20,6 +20,7 @@ from typing import TYPE_CHECKING, Union, Optional, Dict
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
+from PIL import Image
 
 from skytemple.controller.main import MainController
 from skytemple.core.abstract_module import AbstractModule
@@ -36,6 +37,7 @@ from skytemple_files.common.util import MONSTER_BIN
 from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.graphics.chara_wan.model import WanFile
 from skytemple_files.common.i18n_util import f, _
+from skytemple_rust import pmd_wan
 if TYPE_CHECKING:
     from skytemple.module.gfxcrunch.module import GfxcrunchModule
 
@@ -205,6 +207,31 @@ class SpriteModule(AbstractModule):
                     str(e),
                     _("Error exporting the sprite.")
                 )
+    
+    def import_an_image(self) -> Optional[bytes]:
+        dialog = Gtk.FileChooserNative.new(
+            _("Import image file..."),
+            MainController.window(),
+            Gtk.FileChooserAction.OPEN,
+            None, None
+        )
+
+        response = dialog.run()
+        fn = dialog.get_filename()
+        dialog.destroy()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            try:
+                img = Image.open(fn, 'r')
+                return pmd_wan.encode_image_to_static_wan_file(img)
+            except Exception as err:
+                display_error(
+                    sys.exc_info(),
+                    str(err),
+                    _("Error importing image to object.")
+                )
+        return None
+
 
     def open_spritebot_explanation(self):
         webbrowser.open_new_tab('https://docs.google.com/document/d/1EceEEjyeoFwoKXdNj4vpXdoYRWp8CID64e-ZqY954_Q/edit')

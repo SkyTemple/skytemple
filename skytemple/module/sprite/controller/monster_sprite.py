@@ -321,7 +321,7 @@ Warning: SkyTemple does not validate the files you import."""))
         with self._monster_bin as monster_bin:
             sprite = self._load_sprite_from_bin_pack(monster_bin, self.item_id)
 
-            ani_group = sprite.get_animations_for_group(sprite.anim_groups[0])
+            ani_group = sprite.anim_groups[0]
             frame_id = 2
             for frame in ani_group[frame_id].frames:
                 mfg_id = frame.frame_id
