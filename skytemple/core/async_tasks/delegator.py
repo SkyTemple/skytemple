@@ -23,7 +23,7 @@ from skytemple_files.common.i18n_util import _
 
 gi.require_version('Gtk', '3.0')
 import asyncio
-from collections import Coroutine
+from typing import Coroutine
 from enum import Enum, auto
 
 import gbulb
