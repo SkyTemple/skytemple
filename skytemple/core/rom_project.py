@@ -97,7 +97,7 @@ class RomProject:
         Open a file (in a new thread).
         If the main controller is set, it will be informed about this.
         """
-        AsyncTaskDelegator.instance().run_task(cls._open_impl(filename, main_controller))  # type: ignore
+        AsyncTaskDelegator.run_task(cls._open_impl(filename, main_controller))  # type: ignore
 
     @classmethod
     async def _open_impl(cls, filename, main_controller: 'MainController'):
@@ -329,7 +329,7 @@ class RomProject:
 
     def save(self, main_controller: Optional['MainController']):
         """Save the rom. The main controller will be informed about this, if given."""
-        AsyncTaskDelegator.instance().run_task(self._save_impl(main_controller))
+        AsyncTaskDelegator.run_task(self._save_impl(main_controller))
 
     def open_file_manually(self, filename: str):
         """Returns the raw bytes of a file. GENERALLY NOT RECOMMENDED."""

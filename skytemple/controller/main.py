@@ -404,7 +404,7 @@ class MainController:
         self._current_view_controller_class = selected_node[3]
         self._current_view_item_id = selected_node[4]
         # Fully load the view and the controller
-        AsyncTaskRunner.instance().run_task(load_controller(
+        AsyncTaskRunner.run_task(load_controller(
             self._current_view_module, self._current_view_controller_class, self._current_view_item_id,  # type: ignore
             self  # type: ignore
         ))
