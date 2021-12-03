@@ -23,8 +23,8 @@ from skytemple.core.ui_utils import data_dir, APP, gdk_backend, GDK_BACKEND_BROA
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple_files.common.impl_cfg import ENV_SKYTEMPLE_USE_NATIVE, change_implementation_type
 
+settings = SkyTempleSettingsStore()
 if __name__ == '__main__':
-    settings = SkyTempleSettingsStore()
     # Setup native library integration
     if ENV_SKYTEMPLE_USE_NATIVE not in os.environ:
         change_implementation_type(settings.get_implementation_type())
@@ -93,7 +93,6 @@ setup_logging()
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.events.manager import EventManager
 from skytemple.core.modules import Modules
-from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple_icons import icons
 from skytemple_ssb_debugger.main import get_debugger_data_dir
 from skytemple.core.ui_utils import make_builder
@@ -118,12 +117,9 @@ from skytemple.controller.main import MainController
 SKYTEMPLE_LOGLEVEL = logging.INFO
 
 
-def main():
+def main(settings: SkyTempleSettingsStore):
     # TODO: Gtk.Application: https://python-gtk-3-tutorial.readthedocs.io/en/latest/application.html
     path = os.path.abspath(os.path.dirname(__file__))
-
-    # Load settings
-    settings = SkyTempleSettingsStore()
 
     if sys.platform.startswith('win'):
         # Load theming under Windows
@@ -192,11 +188,6 @@ def main():
 
     main_window.present()
     main_window.set_icon_name('skytemple')
-    try:
-        Gtk.main()
-    except (KeyboardInterrupt, SystemExit):
-        # TODO: Currently always required for Debugger compatibility (since that ALWAYS uses this async implementation)
-        AsyncTaskRunner.end()
 
 
 def _load_theme(settings: SkyTempleSettingsStore):
@@ -221,4 +212,5 @@ if __name__ == '__main__':
     # TODO: At the moment doesn't support any cli arguments.
     logging.basicConfig()
     logging.getLogger().setLevel(SKYTEMPLE_LOGLEVEL)
-    main()
+    from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
+    AsyncTaskDelegator.run_main(main, settings)

@@ -22,6 +22,7 @@ from glob import glob
 
 from gi.repository import Gtk, GLib
 
+from skytemple.core.async_tasks.delegator import AsyncConfiguration
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple_files.common.i18n_util import _
@@ -49,6 +50,9 @@ class SettingsController:
         self.builder = builder
         self.settings = settings
 
+        self.builder.get_object('setting_help_native_enable').connect('clicked', self.on_setting_help_native_enable_clicked)
+        self.builder.get_object('setting_help_async').connect('clicked', self.on_setting_help_async_clicked)
+
     def run(self):
         """
         Shows the settings dialog and processes settings changes. Doesn't return anything.
@@ -73,7 +77,13 @@ class SettingsController:
             if active is not None:
                 cb.set_active(active)
         else:
-            self.builder.get_object('frame_setting_gtk_theme').hide()
+            gbox: Gtk.Box = self.builder.get_object('setting_gtk_theme_box')
+            for child in gbox:
+                gbox.remove(child)
+            label = Gtk.Label()
+            label.set_markup(_("<i>Use System Settings to set this under Linux.</i>"))
+            gbox.pack_start(label, False, False, 0)
+            label.show()
 
         # Languages
         cb: Gtk.ComboBox = self.builder.get_object('setting_language')
@@ -91,6 +101,19 @@ class SettingsController:
         native_impl_enabled_previous = self.settings.get_implementation_type() == ImplementationType.NATIVE
         settings_native_enable = self.builder.get_object('setting_native_enable')
         settings_native_enable.set_active(native_impl_enabled_previous)
+
+        # Async modes
+        cb: Gtk.ComboBox = self.builder.get_object('setting_async')
+        store: Gtk.ListStore = self.builder.get_object('async_store')
+        store.clear()
+        active = None
+        for mode in AsyncConfiguration:
+            if mode.available():
+                store.append([mode.value, mode.name_localized])
+                if mode == self.settings.get_async_configuration():
+                    active = mode.value
+        if active is not None:
+            cb.set_active_id(active)
 
         response = self.window.run()
 
@@ -126,6 +149,14 @@ class SettingsController:
                 self.settings.set_implementation_type(ImplementationType.NATIVE if native_impl_enabled else ImplementationType.PYTHON)
                 have_to_restart = True
 
+            # Async modes
+            cb: Gtk.ComboBox = self.builder.get_object('setting_async')
+            async_mode = AsyncConfiguration(cb.get_model()[cb.get_active_iter()][0])
+            before = self.settings.get_async_configuration()
+            if before != async_mode:
+                self.settings.set_async_configuration(async_mode)
+                have_to_restart = True
+
         self.window.hide()
 
         if have_to_restart:
@@ -136,6 +167,37 @@ class SettingsController:
                                         title="SkyTemple")
             md.run()
             md.destroy()
+
+    def on_setting_help_native_enable_clicked(self, *args):
+        md = SkyTempleMessageDialog(
+            self.window,
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("If this is enabled a new and faster (but slightly experimental) codebase is "
+              "used to load and manipulate game files. Try to disable this if you run into "
+              "crashes or other issues.")
+        )
+        md.run()
+        md.destroy()
+
+    def on_setting_help_async_clicked(self, *args):
+        md = SkyTempleMessageDialog(
+            self.window,
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("This changes the way SkyTemple behaves when asynchronous operations are done "
+              "(eg. loading files and views). You usually don't want to change this, "
+              "unless you know what you are doing or are running into crashes or other issues.\n\n\n"
+              "Thread-based: SkyTemple spawns an extra thread to run asynchronous operations. "
+              "This could lead to thread safety issues, but is the 'smoothest' loading experience.\n\n"
+              "Synchronous: Asynchronous operations run immediately. The SkyTemple UI freezes briefly during that.\n\n"
+              "GLib: Same has 'Synchronous' but the UI gets the chance to finish displaying loaders etc. "
+              "before they are run.\n\n"
+              "Using Gbulb event loop: This enables Single-Thread asynchronous loading. It is generally the preferred"
+              "option if available.")
+        )
+        md.run()
+        md.destroy()
 
     def _list_gtk_themes(self):
         dirs = [

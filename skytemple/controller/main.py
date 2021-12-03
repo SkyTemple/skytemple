@@ -43,7 +43,6 @@ from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple.core.ssb_debugger.manager import DebuggerManager
 from skytemple_files.common.impl_cfg import ImplementationType, get_implementation_type
 from skytemple_files.common.project_file_manager import ProjectFileManager
-from skytemple_files.common.task_runner import AsyncTaskRunner
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir, \
     version, open_dir
@@ -143,9 +142,7 @@ class MainController:
         self.settings_controller = SettingsController(self._window, self.builder, self.settings)
 
     def on_destroy(self, *args):
-        logger.debug('Window destroyed. Ending task runner.')
-        # TODO: Currently always required for Debugger compatibility (since that ALWAYS uses this async implementation)
-        AsyncTaskRunner.end()
+        logger.debug('Window destroyed.')
         Gtk.main_quit()
         self._debugger_manager.destroy()
 
@@ -403,7 +400,7 @@ class MainController:
         self._current_view_controller_class = selected_node[3]
         self._current_view_item_id = selected_node[4]
         # Fully load the view and the controller
-        AsyncTaskDelegator.instance().run_task(load_controller(
+        AsyncTaskDelegator.run_task(load_controller(
             self._current_view_module, self._current_view_controller_class, self._current_view_item_id,  # type: ignore
             self  # type: ignore
         ))

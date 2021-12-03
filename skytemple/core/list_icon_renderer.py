@@ -73,6 +73,8 @@ class ListIconRenderer:
         return self._icon_pixbufs[target_name]
 
     def _reload_icon(self, parameters, idx, store, load_fn, target_name, was_loading):
+        if store == None:
+            return
         if not self._loading and not was_loading:
             row = store[get_list_store_iter_by_idx(store, idx)]
             row[self.column_id] = self._get_icon(store, load_fn, target_name, idx, parameters, row[8] == ORANGE if self.can_be_placeholder else False)
