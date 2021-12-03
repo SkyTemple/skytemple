@@ -178,9 +178,9 @@ Warning: SkyTemple does not validate the files you import.</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">You can also replace this object with a static sprite.
-They need to have a resolution inferior to 512 pixel wide and 256 pixel high.
-It also need to have less than 16 color, plus (optionally) a transparent "color".
-This feature hasn't been thorougly tested, so you should check it display properly in-game,
+It needs to have a resolution of less than 512x256px.
+It also needs to have less than 16 color, plus (optionally) a transparent "color".
+This feature hasn't been thoroughly tested, so you should check that it displays properly in-game,
 even if it is correctly displayed by the editor.</property>
                 <property name="justify">center</property>
               </object>
