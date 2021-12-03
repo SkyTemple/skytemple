@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-12-02 22:11+0000\n"
-"PO-Revision-Date: 2021-12-02 22:41\n"
+"POT-Creation-Date: 2021-12-03 17:04+0000\n"
+"PO-Revision-Date: 2021-12-03 17:13\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -4163,7 +4163,7 @@ msgstr "_Cancelar"
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:94
 #: skytemple/skytemple/module/portrait/controller/portrait.py:112
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:143
-#: skytemple/skytemple/module/sprite/module.py:192
+#: skytemple/skytemple/module/sprite/module.py:194
 msgid "_Save"
 msgstr "_Guardar"
 
@@ -12951,6 +12951,18 @@ msgstr "SkyTemple no puede editar sprites. \n"
 "Sin embargo, puedes exportar el sprite y editarlo con la herramienta <a href=\"gfxcrunch\">gfxcrunch</a> de PsyCommando.\n"
 "Advertencia: SkyTemple no valida los archivos que importas."
 
+#: skytemple/skytemple/module/sprite/controller/object.glade:180
+msgid "You can also replace this object with a static sprite.\n"
+"It needs to have a resolution of less than 512x256px.\n"
+"It also needs to have less than 16 color, plus (optionally) a transparent \"color\".\n"
+"This feature hasn't been thoroughly tested, so you should check that it displays properly in-game,\n"
+"even if it is correctly displayed by the editor."
+msgstr ""
+
+#: skytemple/skytemple/module/sprite/controller/object.glade:195
+msgid "Import image"
+msgstr ""
+
 #: skytemple/skytemple/module/sprite/controller/object.py:60
 msgid "SkyTemple can not edit sprites. \n"
 "However you can export the sprite in the gfxcrunch format and import it back again.\n"
@@ -12967,35 +12979,43 @@ msgstr "Sprites de objetos"
 msgid "This section lets you import and export object sprites."
 msgstr "Esta sección te permite importar y exportar sprites de diferentes elementos."
 
-#: skytemple/skytemple/module/sprite/module.py:117
+#: skytemple/skytemple/module/sprite/module.py:119
 msgid "Import WAN sprite..."
 msgstr "Importar sprite WAN..."
 
-#: skytemple/skytemple/module/sprite/module.py:136
+#: skytemple/skytemple/module/sprite/module.py:138
 msgid "Export WAN sprite..."
 msgstr "Exportar sprite WAN..."
 
-#: skytemple/skytemple/module/sprite/module.py:142
+#: skytemple/skytemple/module/sprite/module.py:144
 msgid "WAN sprite (*.wan)"
 msgstr "Sprite WAN (*.wan)"
 
-#: skytemple/skytemple/module/sprite/module.py:160
+#: skytemple/skytemple/module/sprite/module.py:162
 msgid "To import select the directory of the sprite export. If it is still zipped, unzip it first."
 msgstr "Para importar, selecciona el directorio de la exportación de sprites. Si está comprimido, descomprímelo antes."
 
-#: skytemple/skytemple/module/sprite/module.py:166
+#: skytemple/skytemple/module/sprite/module.py:168
 msgid "Import gfxcrunch sprite..."
 msgstr "Importar sprite de gfxcrunch..."
 
-#: skytemple/skytemple/module/sprite/module.py:183
+#: skytemple/skytemple/module/sprite/module.py:185
 msgid "Error importing the sprite."
 msgstr "Error al importar el sprite."
 
-#: skytemple/skytemple/module/sprite/module.py:206
+#: skytemple/skytemple/module/sprite/module.py:208
 msgid "Error exporting the sprite."
 msgstr "Error al exportar el sprite."
 
-#: skytemple/skytemple/module/sprite/module.py:249
+#: skytemple/skytemple/module/sprite/module.py:213
+msgid "Import image file..."
+msgstr ""
+
+#: skytemple/skytemple/module/sprite/module.py:231
+msgid "Error importing image to object."
+msgstr ""
+
+#: skytemple/skytemple/module/sprite/module.py:276
 msgid "Error with sprite files: They don't have the same length!"
 msgstr "Error con los sprites: ¡No tienen la misma longitud!"
 
