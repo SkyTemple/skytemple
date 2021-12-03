@@ -38,7 +38,7 @@ class Modules:
             logger.warning("Failed loading modules.", exc_info=ex)
 
         if len(cls._modules) < 1:
-            logger.warning("No module fount, falling back to default.")
+            logger.warning("No module found, falling back to default.")
             # PyInstaller under Windows has no idea what (custom) entrypoints are...
             # TODO: Figure out a better way to do this...
             cls._modules = cls._load_windows_modules()

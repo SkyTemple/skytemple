@@ -74,6 +74,7 @@ setup(
         'skytemple-ssb-debugger >= 1.3.0',
         'pygal >= 2.4.0',
         'CairoSVG >= 2.4.2',
+        'gbulb >= 0.6.2',
         'packaging'
     ],
     extras_require={

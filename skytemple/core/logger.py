@@ -20,6 +20,7 @@ import logging
 import os
 import sys
 import traceback
+from asyncio import AbstractEventLoop
 from logging.handlers import RotatingFileHandler
 
 from gi.repository import GLib
@@ -29,6 +30,15 @@ from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.i18n_util import _, f
 
 logger = logging.getLogger('system')
+
+
+def async_handle_exeception(loop: AbstractEventLoop, context):
+    """Exception handler for asyncio-like event loops"""
+    if "exception" in context:
+        handle_exception(type(context['exception']), context['exception'], context['exception'].__traceback__)
+    # TODO: The exception really should always be there, but what if not?
+    else:
+        loop.default_exception_handler(context)
 
 
 def handle_exception(exc_type, exc_value, exc_traceback):

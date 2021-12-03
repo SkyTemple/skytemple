@@ -19,6 +19,7 @@ import logging
 import os
 from typing import Optional, Tuple, List
 
+from skytemple.core.async_tasks.delegator import AsyncConfiguration
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.util import open_utf8
 
@@ -38,6 +39,8 @@ KEY_RECENT_5 = 'file5'
 KEY_ASSISTANT_SHOWN = 'assistant_shown'
 KEY_GTK_THEME = 'gtk_theme'
 KEY_LOCALE = 'locale'
+KEY_USE_NATIVE_FILE_HANDLERS = 'use_native_file_handlers'
+KEY_ASYNC_CONFIGURATION = 'async_configuration'
 
 KEY_WINDOW_SIZE_X = 'width'
 KEY_WINDOW_SIZE_Y = 'height'
@@ -177,6 +180,18 @@ class SkyTempleSettingsStore:
         if SECT_INTEGRATION_DISCORD not in self.loaded_config:
             self.loaded_config[SECT_INTEGRATION_DISCORD] = {}
         self.loaded_config[SECT_INTEGRATION_DISCORD][KEY_INTEGRATION_DISCORD_DISCORD_ENABLED] = '1' if value else '0'
+        self._save()
+
+    def get_async_configuration(self) -> AsyncConfiguration:
+        if SECT_GENERAL in self.loaded_config:
+            if KEY_ASYNC_CONFIGURATION in self.loaded_config[SECT_GENERAL]:
+                return AsyncConfiguration(self.loaded_config[SECT_GENERAL][KEY_ASYNC_CONFIGURATION])
+        return AsyncConfiguration.default()
+
+    def set_async_configuration(self, value: AsyncConfiguration):
+        if SECT_GENERAL not in self.loaded_config:
+            self.loaded_config[SECT_GENERAL] = {}
+        self.loaded_config[SECT_GENERAL][KEY_ASYNC_CONFIGURATION] = value.value
         self._save()
 
     def _save(self):

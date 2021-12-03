@@ -20,6 +20,7 @@ from typing import TYPE_CHECKING
 
 from gi.repository import GLib
 
+from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple.core.module_controller import AbstractController
 
 if TYPE_CHECKING:
@@ -30,6 +31,7 @@ if TYPE_CHECKING:
 async def load_controller(module: 'AbstractModule', controller_class, item_id: int, main_controller: 'MainController'):
     try:
         controller: AbstractController = controller_class(module, item_id)
+        await controller.async_init()
         GLib.idle_add(lambda: main_controller.on_view_loaded(module, controller, item_id))
     except Exception as ex:
         GLib.idle_add(lambda ex=ex: main_controller.on_view_loaded_error(ex))

@@ -33,6 +33,12 @@ class AbstractController(ABC):
         """NO Gtk operations allowed here, not threadsafe!"""
         pass
 
+    async def async_init(self):
+        """
+        Optional asynchronous initialization, called after __init__.
+        NO Gtk operations allowed here, not threadsafe!
+        """
+
     @abstractmethod
     def get_view(self) -> Widget:
         pass

@@ -61,7 +61,7 @@ class GfxcrunchController:
     def import_sprite(self, dir_fn: str) -> bytes:
         with tempfile.TemporaryDirectory() as tmp_path:
             tmp_path = os.path.join(tmp_path, 'tmp.wan')
-            AsyncTaskDelegator.instance().run_task(self._run_gfxcrunch([dir_fn, tmp_path]))
+            AsyncTaskDelegator.run_task(self._run_gfxcrunch([dir_fn, tmp_path]))
             self._run_window()
             if self.status == GfxcrunchStatus.SUCCESS:
                 with open(tmp_path, 'rb') as f:
@@ -74,7 +74,7 @@ class GfxcrunchController:
             tmp_path = os.path.join(tmp_path, 'tmp.wan')
             with open(tmp_path, 'wb') as f:
                 f.write(wan)
-            AsyncTaskDelegator.instance().run_task(self._run_gfxcrunch([tmp_path, dir_fn]))
+            AsyncTaskDelegator.run_task(self._run_gfxcrunch([tmp_path, dir_fn]))
             self._run_window()
             if self.status != GfxcrunchStatus.SUCCESS:
                 raise RuntimeError(_("The gfxcrunch process failed."))

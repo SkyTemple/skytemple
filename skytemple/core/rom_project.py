@@ -103,13 +103,13 @@ class RomProject:
         Open a file (in a new thread).
         If the main controller is set, it will be informed about this.
         """
-        AsyncTaskDelegator.instance().run_task(cls._open_impl(filename, main_controller))
+        AsyncTaskDelegator.run_task(cls._open_impl(filename, main_controller))
 
     @classmethod
     async def _open_impl(cls, filename, main_controller: Optional['MainController']):
         cls._current = RomProject(filename, main_controller.load_view_main_list)
         try:
-            cls._current.load()
+            await cls._current.load()
             if main_controller:
                 GLib.idle_add(lambda: main_controller.on_file_opened())
         except BaseException as ex:
@@ -146,9 +146,10 @@ class RomProject:
         # Lazy
         self._patcher = None
 
-    def load(self):
+    async def load(self):
         """Load the ROM into memory and initialize all modules"""
         self._rom = NintendoDSRom.fromFile(self.filename)
+        await AsyncTaskDelegator.buffer()
         self._loaded_modules = {}
         for name, module in Modules.all().items():
             logger.debug(f"Loading module {name} for ROM...")
@@ -156,9 +157,12 @@ class RomProject:
                 self._rom_module = module(self)
             else:
                 self._loaded_modules[name] = module(self)
+            await AsyncTaskDelegator.buffer()
 
         self._sprite_renderer = SpriteProvider(self)
+        await AsyncTaskDelegator.buffer()
         self._string_provider = StringProvider(self)
+        await AsyncTaskDelegator.buffer()
         self._icon_banner = IconBanner(self._rom)
 
     def get_rom_module(self) -> 'RomModule':
@@ -269,7 +273,7 @@ class RomProject:
 
     def save(self, main_controller: Optional['MainController']):
         """Save the rom. The main controller will be informed about this, if given."""
-        AsyncTaskDelegator.instance().run_task(self._save_impl(main_controller))
+        AsyncTaskDelegator.run_task(self._save_impl(main_controller))
 
     def open_file_manually(self, filename: str):
         """Returns the raw bytes of a file. GENERALLY NOT RECOMMENDED."""
@@ -293,12 +297,15 @@ class RomProject:
         try:
             for name in self._modified_files:
                 self.prepare_save_model(name)
+                await AsyncTaskDelegator.buffer()
             self._modified_files = []
             if self._icon_banner:
                 self._icon_banner.save_to_rom()
             self._forced_modified = False
             logger.debug(f"Saving ROM to {self.filename}")
+            await AsyncTaskDelegator.buffer()
             self.save_as_is()
+            await AsyncTaskDelegator.buffer()
             if main_controller:
                 GLib.idle_add(lambda: main_controller.on_file_saved())
 

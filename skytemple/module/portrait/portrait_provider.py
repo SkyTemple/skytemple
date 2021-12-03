@@ -18,7 +18,7 @@ import threading
 from typing import List, Dict, Tuple
 
 import cairo
-from gi.repository import Gdk, GdkPixbuf, Gtk, GLib
+from gi.repository import Gdk, GdkPixbuf, Gtk
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
@@ -89,7 +89,7 @@ class PortraitProvider:
         return self.get_loader()
 
     def _load(self, entry_id, sub_id, after_load_cb, allow_fallback):
-        AsyncTaskDelegator.instance().run_task(self._load__impl(entry_id, sub_id, after_load_cb, allow_fallback))
+        AsyncTaskDelegator.run_task(self._load__impl(entry_id, sub_id, after_load_cb, allow_fallback))
 
     async def _load__impl(self, entry_id, sub_id, after_load_cb, allow_fallback):
         is_fallback = False
@@ -106,13 +106,13 @@ class PortraitProvider:
             portrait_pil = kao.get()
             surf = pil_to_cairo_surface(portrait_pil.convert('RGBA'))
             loaded = surf
-        except (RuntimeError, ValueError):
+        except (RuntimeError, ValueError, OverflowError):
             loaded = self.get_error()
         with portrait_provider_lock:
             self._loaded[(entry_id, sub_id)] = loaded
             self._loaded__is_fallback[(entry_id, sub_id)] = is_fallback
             self._requests.remove((entry_id, sub_id))
-        GLib.idle_add(after_load_cb)
+        after_load_cb()
 
     def get_loader(self) -> cairo.Surface:
         """
