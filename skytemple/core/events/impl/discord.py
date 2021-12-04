@@ -26,6 +26,7 @@ from typing import List, Optional
 from gi.repository import GLib
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple.core.events.abstract_listener import AbstractListener
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
@@ -48,7 +49,7 @@ class DiscordPresence(AbstractListener):
         Tries to initialize the connection with Discord.
         :raises: ConnectionRefusedError
         """
-        self.rpc: Presence = Presence(CLIENT_ID)
+        self.rpc: Presence = Presence(CLIENT_ID, loop=AsyncTaskDelegator.event_loop())
         self.rpc.connect()
         self._idle_timeout_id = None
 
