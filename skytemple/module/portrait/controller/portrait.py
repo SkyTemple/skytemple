@@ -30,10 +30,7 @@ from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple_files.graphics.kao.sprite_bot_sheet import SpriteBotSheet
 from skytemple_files.common.i18n_util import f, _
 
-try:
-    from PIL import Image
-except:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController

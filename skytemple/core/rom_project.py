@@ -114,7 +114,7 @@ class RomProject:
 
     def __init__(self, filename: str, cb_open_view: Callable[[Gtk.TreeIter], None]):
         self.filename = filename
-        self._rom: NintendoDSRom = None
+        self._rom: NintendoDSRom = None  # type: ignore
         self._rom_module: Optional['RomModule'] = None
         self._loaded_modules: Dict[str, AbstractModule] = {}
         self._sprite_renderer: Optional[SpriteProvider] = None
@@ -397,7 +397,7 @@ class RomProject:
         if folder_name is None:
             return get_files_from_rom_with_extension(self._rom, ext)
         else:
-            return get_files_from_folder_with_extension(self._rom.filenames.subfolder(folder_name), ext)
+            return get_files_from_folder_with_extension(self._rom.filenames.subfolder(folder_name), ext)  # type: ignore
 
     def get_rom_folder(self, path):
         return get_rom_folder(self._rom, path)

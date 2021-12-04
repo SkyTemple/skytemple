@@ -26,10 +26,7 @@ from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple_files.graphics.wte.model import Wte, WteImageType
 from skytemple_files.graphics.wtu.model import Wtu, WtuEntry
 
-try:
-    from PIL import Image
-except:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
 

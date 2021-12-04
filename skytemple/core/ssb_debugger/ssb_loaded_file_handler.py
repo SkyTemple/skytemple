@@ -17,6 +17,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from typing import Optional
 
+from skytemple_files.common.util import OptionalKwargs
 from skytemple_files.common.types.data_handler import DataHandler
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.script.ssb.handler import SsbHandler
@@ -26,7 +27,7 @@ from skytemple_ssb_debugger.model.ssb_files.file_manager import SsbFileManager
 
 class SsbLoadedFileHandler(DataHandler['SsbLoadedFile']):
     @classmethod
-    def deserialize(cls, data: bytes, *, filename, static_data, project_fm, **kwargs) -> 'SsbLoadedFile':  # type: ignore
+    def deserialize(cls, data: bytes, *, filename, static_data, project_fm, **kwargs: OptionalKwargs) -> 'SsbLoadedFile':  # type: ignore
         f = SsbLoadedFile(
             filename, FileType.SSB.deserialize(data, static_data),
             None, project_fm
@@ -35,7 +36,7 @@ class SsbLoadedFileHandler(DataHandler['SsbLoadedFile']):
         return f
 
     @classmethod
-    def serialize(cls, data: 'SsbLoadedFile', *, static_data, **kwargs) -> bytes:  # type: ignore
+    def serialize(cls, data: 'SsbLoadedFile', *, static_data, **kwargs: OptionalKwargs) -> bytes:  # type: ignore
         return FileType.SSB.serialize(data.ssb_model, static_data)
 
     @classmethod

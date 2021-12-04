@@ -26,10 +26,7 @@ import cairo
 from skytemple.core.error_handler import display_error
 from skytemple_files.common.i18n_util import f, _
 
-try:
-    from PIL import Image
-except:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController

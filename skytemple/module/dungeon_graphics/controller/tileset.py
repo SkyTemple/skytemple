@@ -42,10 +42,7 @@ from skytemple_dtef.explorers_dtef_importer import ExplorersDtefImporter
 from skytemple_files.common.xml_util import prettify
 from skytemple_files.hardcoded.dungeons import SecondaryTerrainTableEntry, HardcodedDungeons
 
-try:
-    from PIL import Image
-except ImportError:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk
 
 from skytemple.controller.main import MainController

@@ -45,10 +45,7 @@ from skytemple_files.graphics.chr.model import Chr
 from skytemple_files.graphics.zmappat.model import ZMappaT
 from skytemple_files.hardcoded.cart_removed import HardcodedCartRemoved
 
-try:
-    from PIL import Image
-except:
-    from pil import Image
+from PIL import Image
 
 W16_FILE_EXT = 'w16'
 WTE_FILE_EXT = 'wte'

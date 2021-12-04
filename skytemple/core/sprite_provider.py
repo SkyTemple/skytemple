@@ -29,10 +29,7 @@ from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
 from skytemple_files.graphics.img_itm.model import ImgItm
 from skytemple_files.graphics.img_trp.model import ImgTrp
 
-try:
-    from PIL import Image, ImageFilter
-except ImportError:
-    from pil import Image, ImageFilter
+from PIL import Image, ImageFilter
 from gi.repository import Gdk, Gtk, GdkPixbuf
 
 from skytemple.core.img_utils import pil_to_cairo_surface
@@ -337,7 +334,7 @@ class SpriteProvider:
                     new_data.append((255, 255, 255, 0))
                 else:
                     new_data.append(item)
-            out_sprite.putdata(new_data)
+            out_sprite.putdata(new_data)  # type: ignore
 
             # /
 

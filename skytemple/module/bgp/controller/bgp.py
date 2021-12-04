@@ -24,10 +24,7 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_png_filter
 
-try:
-    from PIL import Image
-except:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
 

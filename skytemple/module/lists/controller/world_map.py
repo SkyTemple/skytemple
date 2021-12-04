@@ -32,10 +32,7 @@ from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement
 from skytemple_files.common.i18n_util import f, _
 
-try:
-    from PIL import Image
-except:
-    from pil import Image
+from PIL import Image
 
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule

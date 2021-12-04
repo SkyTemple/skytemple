@@ -18,10 +18,7 @@ import os
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 
-try:
-    from PIL import Image
-except:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk
 
 from skytemple.core.ui_utils import data_dir

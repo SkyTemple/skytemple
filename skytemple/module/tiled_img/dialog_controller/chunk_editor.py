@@ -232,7 +232,7 @@ class ChunkEditorController:
                 for i, bpa_view in enumerate(bpa_views):
                     obj = self.builder.get_object(bpa_view)
                     if self.animated_tile_graphics[i]:  # type: ignore
-                        if obj and mapping.idx >= self.bpa_starts[i]:
+                        if obj and mapping.idx >= self.bpa_starts[i]:  # type: ignore
                             store = obj.get_model()
                             for e in store:
                                 if e[0] == mapping.idx:
