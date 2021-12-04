@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-12-04 16:58+0000\n"
-"PO-Revision-Date: 2021-12-04 18:03\n"
+"POT-Creation-Date: 2021-12-04 21:27+0000\n"
+"PO-Revision-Date: 2021-12-04 22:35\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Language: vi_VN\n"
@@ -1636,7 +1636,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2267
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:930
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:200
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:309
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:311
 #: skytemple/skytemple/module/script/controller/main.glade:353
 #: skytemple/skytemple/module/script/controller/ssa.glade:2078
 #: skytemple/skytemple/module/script/controller/ssa.py:1320
@@ -2606,7 +2606,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1154
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5188
 #: skytemple/skytemple/module/dungeon/module.py:760
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:295
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:297
 msgid "Floor"
 msgstr ""
 
@@ -5045,8 +5045,8 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/animations.glade:850
 #: skytemple/skytemple/module/lists/controller/animations.glade:1044
 #: skytemple/skytemple/module/lists/controller/animations.glade:1066
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:386
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:408
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:401
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:423
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:356
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:378
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:232
@@ -5119,7 +5119,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:212
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:105
 #: skytemple/skytemple/module/lists/controller/animations.glade:250
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:142
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:144
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:806
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:125
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:159
@@ -6044,7 +6044,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:250
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:429
 #: skytemple/skytemple/module/lists/controller/animations.glade:1253
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:451
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:466
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:191
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:803
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:199
@@ -8279,44 +8279,48 @@ msgstr ""
 msgid "Show All"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:89
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:166
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:91
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:168
 #: skytemple/skytemple/module/lists/module.py:123
 msgid "Dungeon Interruptions"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:105
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:182
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:107
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:184
 msgid "Edits all dungeon interruptions defined in the game."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:118
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:120
 msgid "<Not available>\n\n"
 "To create dungeon interruption, please apply the \"DungeonInterrupt\"\n"
 "ASM patch from the \"ASM Patches\" menu."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:206
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:208
 msgid "Dungeon: "
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:268
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:270
 msgid "Interruptions: "
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:325
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:327
 msgid "Game Variable"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:341
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:343
 msgid "Param 1"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:355
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:357
 msgid "Param 2"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.py:121
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:371
+msgid "Continue Music"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/dungeon_interrupt.py:122
 msgid "Here you can edit dungeon interruptions. \n"
 "Interruptions can occur when transitioning to next floor (e.g. for an interruption defined at floor 3 it will occur when going from floor 2 to 3). \n"
 "Script-side, it works exactly as if you finished the dungeon (call to common routines GETOUT_SCENARIO_DUNGEON or GETOUT_REQUEST_DUNGEON). \n"
