@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2021-12-03 17:24+0000\n"
-"PO-Revision-Date: 2021-12-03 18:21\n"
+"POT-Creation-Date: 2021-12-04 16:58+0000\n"
+"PO-Revision-Date: 2021-12-04 18:03\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1435,62 +1435,62 @@ msgstr "Oben links"
 msgid "Down Left"
 msgstr "Unten links"
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:42
+#: skytemple-files/skytemple_files/common/tiled_image.py:39
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
 msgstr "Kachelzuordnung kann nicht verarbeitet werden. Die referenzierte Kachel ({idx}) ist größer als die maximale Kachelanzahl ({0x3FF}). Falls du ein Bild importierst, versuche bitte, die Anzahl einmaliger Kacheln zu reduzieren."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:100
+#: skytemple-files/skytemple_files/common/tiled_image.py:97
 msgid "Only 4bpp and 8bpp images are supported."
 msgstr "Nur 4bpp und 8bpp-Bilder werden unterstützt."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:205
+#: skytemple-files/skytemple_files/common/tiled_image.py:202
 msgid "Can not convert PIL image to PMD tiled image: Must be indexed image (=using a palette)"
 msgstr "PIL Bild kann nicht in ein gekacheltes PMD Bild umgewandelt werden: Es muss ein indiziertes Bild sein (=eine Palette nutzen)"
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:209
+#: skytemple-files/skytemple_files/common/tiled_image.py:206
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Palette must contain max {max_len_pal} RGB colors and be divisible by {single_palette_size}."
 msgstr "PIL Bild kann nicht in ein gekacheltes PMD Bild umgewandelt werden: Palette darf maximal {max_len_pal} RGB Farben beinhalten und muss durch {single_palette_size} teilbar sein."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:213
+#: skytemple-files/skytemple_files/common/tiled_image.py:210
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Image dimensions must be {img_width}x{img_height}px."
 msgstr "PIL-Bild kann nicht in gekacheltes PMD-Bild umgewandelt werden: Bildgröße muss {img_width}x{img_height}px sein."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:273
-#: skytemple-files/skytemple_files/common/tiled_image.py:281
+#: skytemple-files/skytemple_files/common/tiled_image.py:270
+#: skytemple-files/skytemple_files/common/tiled_image.py:278
 msgid "Can not convert PIL image to PMD tiled image: The color {pix} (from palette {math.floor(pix / single_palette_size)}) used by pixel {x+(idx % 2)}x{y} in tile {tile_id} ({tile_x}x{tile_y} is out of range. Expected are colors from palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 msgstr "PIL Bild kann nicht in ein gekacheltes PMD Bild umgewandelt werden: Die Farbe {pix} (aus der Palette {math.floor(pix / single_palette_size)}), benutzt von Pixel {x+(idx % 2)}x{y} in Kachel {tile_id} ({tile_x}x{tile_y} ist außerhalb der erlaubten Palette. Farben werden erwartet aus der Palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:321
+#: skytemple-files/skytemple_files/common/tiled_image.py:318
 #, python-brace-format
 msgid "An image selected to import is too complex. It has too many unique tiles ({len_final_tiles}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr "Ein Bild, das importiert werden sollte, ist zu komplex. Es hat zu viele einzigartige Kacheln ({len_final_tiles}). Maximal sind 1024 erlaubt.\n"
 "Versuche, weniger einzigartige Kacheln im Bild zu haben. Einzigartige Kacheln sind 8x8 Bereiche im Bild, die nirgendwo sonst im Bild vorkommen (inklusive gedrehter oder gespiegelter Variationen oder mit einer anderen Palette)."
 
-#: skytemple-files/skytemple_files/common/util.py:323
+#: skytemple-files/skytemple_files/common/util.py:322
 msgid "This ROM is not supported by SkyTemple."
 msgstr "Diese ROM wird nicht unterstützt von SkyTemple."
 
-#: skytemple-files/skytemple_files/common/util.py:349
-#: skytemple-files/skytemple_files/common/util.py:371
+#: skytemple-files/skytemple_files/common/util.py:348
+#: skytemple-files/skytemple_files/common/util.py:370
 #, python-brace-format
 msgid "Binary {binary.filepath} not found."
 msgstr "Binärdatei {binary.filepath} wurde nicht gefunden."
 
-#: skytemple-files/skytemple_files/common/util.py:381
-#: skytemple-files/skytemple_files/common/util.py:412
+#: skytemple-files/skytemple_files/common/util.py:380
+#: skytemple-files/skytemple_files/common/util.py:411
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr "Ordner {dir_name} existiert nicht."
 
-#: skytemple-files/skytemple_files/common/util.py:384
+#: skytemple-files/skytemple_files/common/util.py:383
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
 msgstr "Datei {file_name} existiert in diesem Ordner bereits."
 
-#: skytemple-files/skytemple_files/common/util.py:407
+#: skytemple-files/skytemple_files/common/util.py:406
 #, python-brace-format
 msgid "Folder {path} already exists."
 msgstr "Ordner {path} existiert bereits."
@@ -1524,7 +1524,7 @@ msgstr "Mitte"
 #: skytemple-files/skytemple_files/data/anim/model.py:33
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:29
 #: skytemple-files/skytemple_files/data/md/model.py:64
-#: skytemple-files/skytemple_files/data/md/model.py:317
+#: skytemple-files/skytemple_files/data/md/model.py:318
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:517
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:518
@@ -1707,7 +1707,7 @@ msgid "Fire"
 msgstr "Feuer"
 
 #: skytemple-files/skytemple_files/data/md/model.py:67
-#: skytemple-files/skytemple_files/data/md/model.py:360
+#: skytemple-files/skytemple_files/data/md/model.py:361
 msgid "Water"
 msgstr "Wasser"
 
@@ -2326,98 +2326,98 @@ msgstr "Angeworben"
 msgid "No Main Requirement"
 msgstr "Keine Hauptvoraussetzung"
 
-#: skytemple-files/skytemple_files/data/md/model.py:318
+#: skytemple-files/skytemple_files/data/md/model.py:319
 msgid "Link Cable"
 msgstr "Linkkabel"
 
-#: skytemple-files/skytemple_files/data/md/model.py:319
+#: skytemple-files/skytemple_files/data/md/model.py:320
 msgid "Attack > Defense"
 msgstr "Angriff > Verteidigung"
 
-#: skytemple-files/skytemple_files/data/md/model.py:320
+#: skytemple-files/skytemple_files/data/md/model.py:321
 msgid "Attack < Defense"
 msgstr "Angriff < Verteidigung"
 
-#: skytemple-files/skytemple_files/data/md/model.py:321
+#: skytemple-files/skytemple_files/data/md/model.py:322
 msgid "Attack = Defense"
 msgstr "Angriff = Verteidigung"
 
-#: skytemple-files/skytemple_files/data/md/model.py:322
+#: skytemple-files/skytemple_files/data/md/model.py:323
 msgid "Sun Ribbon"
 msgstr "Sonnenband"
 
-#: skytemple-files/skytemple_files/data/md/model.py:323
+#: skytemple-files/skytemple_files/data/md/model.py:324
 msgid "Lunar Ribbon"
 msgstr "Mondband"
 
-#: skytemple-files/skytemple_files/data/md/model.py:324
+#: skytemple-files/skytemple_files/data/md/model.py:325
 msgid "Beauty Scarf"
 msgstr "Feiner Schal"
 
-#: skytemple-files/skytemple_files/data/md/model.py:325
+#: skytemple-files/skytemple_files/data/md/model.py:326
 msgid "Internal Value 0x1 = 1"
 msgstr "Interner Wert 0x1 = 1"
 
-#: skytemple-files/skytemple_files/data/md/model.py:326
+#: skytemple-files/skytemple_files/data/md/model.py:327
 msgid "Internal Value 0x1 = 0"
 msgstr "Interner Wert 0x1 = 0"
 
-#: skytemple-files/skytemple_files/data/md/model.py:327
+#: skytemple-files/skytemple_files/data/md/model.py:328
 msgid "Male (1st form)"
 msgstr "Männlich (1. Form)"
 
-#: skytemple-files/skytemple_files/data/md/model.py:328
+#: skytemple-files/skytemple_files/data/md/model.py:329
 msgid "Female (2nd form)"
 msgstr "Weiblich (2. Form)"
 
-#: skytemple-files/skytemple_files/data/md/model.py:329
+#: skytemple-files/skytemple_files/data/md/model.py:330
 msgid "Knows AncientPower"
 msgstr "Kennt Antik-Kraft"
 
-#: skytemple-files/skytemple_files/data/md/model.py:330
+#: skytemple-files/skytemple_files/data/md/model.py:331
 msgid "Knows Rollout"
 msgstr "Kennt Walzer"
 
-#: skytemple-files/skytemple_files/data/md/model.py:331
+#: skytemple-files/skytemple_files/data/md/model.py:332
 msgid "Knows Double Hit"
 msgstr "Kennt Doppelschlag"
 
-#: skytemple-files/skytemple_files/data/md/model.py:332
+#: skytemple-files/skytemple_files/data/md/model.py:333
 msgid "Knows Mimic"
 msgstr "Kennt Mimikry"
 
-#: skytemple-files/skytemple_files/data/md/model.py:355
+#: skytemple-files/skytemple_files/data/md/model.py:356
 msgid "Standard"
 msgstr "Standard"
 
-#: skytemple-files/skytemple_files/data/md/model.py:356
+#: skytemple-files/skytemple_files/data/md/model.py:357
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: skytemple-files/skytemple_files/data/md/model.py:357
+#: skytemple-files/skytemple_files/data/md/model.py:358
 msgid "Hovering"
 msgstr "Schwebend"
 
-#: skytemple-files/skytemple_files/data/md/model.py:358
+#: skytemple-files/skytemple_files/data/md/model.py:359
 msgid "Phase Through Walls"
 msgstr "Kann durch Wände gehen"
 
 #. TRANSLATORS: Movement Type
-#: skytemple-files/skytemple_files/data/md/model.py:359
+#: skytemple-files/skytemple_files/data/md/model.py:360
 msgid "Lava"
 msgstr "Lava"
 
-#: skytemple-files/skytemple_files/data/md/model.py:383
+#: skytemple-files/skytemple_files/data/md/model.py:384
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:35
 msgid "Small"
 msgstr "Klein"
 
-#: skytemple-files/skytemple_files/data/md/model.py:384
+#: skytemple-files/skytemple_files/data/md/model.py:385
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor_layout.py:45
 msgid "Medium"
 msgstr "Mittel"
 
-#: skytemple-files/skytemple_files/data/md/model.py:385
+#: skytemple-files/skytemple_files/data/md/model.py:386
 msgid "Large"
 msgstr "Groß"
 
@@ -3056,45 +3056,45 @@ msgstr "Unbenutzte Ebenen"
 msgid "Has {len(self.floors_in_mappa_not_referenced)} extra floors in it's floor list, which are not assigned to any dungeon."
 msgstr "Hat {len(self.floors_in_mappa_not_referenced)} zusätzliche Ebenen in seiner Ebenen-Liste, welche keinem Dungeon zugeordnet sind."
 
-#: skytemple-files/skytemple_files/graphics/bma/model.py:453
+#: skytemple-files/skytemple_files/graphics/bma/model.py:450
 #, python-brace-format
 msgid "Can not import map background: Width of both images must match the current map width: {expected_width}px"
 msgstr "Kartenhintergrund kann nicht importiert werden: Breite von beiden Bildern muss mit der aktuellen Größe übereinstimmen: {expected_width}px"
 
-#: skytemple-files/skytemple_files/graphics/bma/model.py:457
+#: skytemple-files/skytemple_files/graphics/bma/model.py:454
 #, python-brace-format
 msgid "Can not import map background: Height of both images must match the current map height: {expected_height}px"
 msgstr "Kartenhintergrund kann nicht importiert werden: Höhe von beiden Bildern muss mit der aktuellen Kartenhöhe übereinstimmen: {expected_height}px"
 
-#: skytemple-files/skytemple_files/graphics/bpa/model.py:168
+#: skytemple-files/skytemple_files/graphics/bpa/model.py:165
 msgid "The dimensions of all images must be the same."
 msgstr "Die Maße aller Bilder müssen übereinstimmen."
 
-#: skytemple-files/skytemple_files/graphics/chr/model.py:71
+#: skytemple-files/skytemple_files/graphics/chr/model.py:68
 msgid "Cannot convert PIL image to CHR: Must be indexed image (=using a palette)"
 msgstr "PIL-Bild kann nicht in CHR-Datei konvertiert werden: Bild muss indiziert sein (= eine Palette nutzen)"
 
-#: skytemple-files/skytemple_files/graphics/chr/model.py:73
+#: skytemple-files/skytemple_files/graphics/chr/model.py:70
 #, python-brace-format
 msgid "Cannot convert PIL image to CHR: width and height must be a multiple of {CHR_TILE_WIDTH}"
 msgstr "Kann PIL-Bild nicht in CHR-Datei umwandeln: Höhe und Breite müssen ein Vielfaches von {CHR_TILE_WIDTH} sein"
 
-#: skytemple-files/skytemple_files/graphics/dbg/model.py:85
+#: skytemple-files/skytemple_files/graphics/dbg/model.py:82
 #, python-brace-format
 msgid "Can not import map background: Width of image must match the expected width: {expected_width}px"
 msgstr "Kartenhintergrund kann nicht importiert werden: Breite des Bildes muss mit der erwarteten Breite übereinstimmen: {expected_width}px"
 
-#: skytemple-files/skytemple_files/graphics/dbg/model.py:88
+#: skytemple-files/skytemple_files/graphics/dbg/model.py:85
 #, python-brace-format
 msgid "Can not import map background: Height of image must match the expected height: {expected_height}px"
 msgstr "Kartenhintergrund kann nicht importiert werden: Höhe des Bildes muss mit der erwarteten Höhe übereinstimmen: {expected_height}px"
 
-#: skytemple-files/skytemple_files/graphics/dpc/model.py:93
+#: skytemple-files/skytemple_files/graphics/dpc/model.py:90
 #, python-brace-format
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {tm.pal_idx}"
 msgstr "Das Bild darf nur die ersten 12 Paletten verwenden. Versuchte Palette {tm.pal_idx} zu verwenden"
 
-#: skytemple-files/skytemple_files/graphics/dpc/model.py:129
+#: skytemple-files/skytemple_files/graphics/dpc/model.py:126
 msgid "A dungeon background or tilemap can not have more than 400 chunks."
 msgstr "Ein Dungeon-Hintergrund oder eine Tilemap kann nicht mehr als 400 Blöcke beinhalten."
 
@@ -3102,13 +3102,13 @@ msgstr "Ein Dungeon-Hintergrund oder eine Tilemap kann nicht mehr als 400 Blöck
 msgid "This palette has no animation."
 msgstr "Diese Palette hat keine Animationen."
 
-#: skytemple-files/skytemple_files/graphics/fonts/banner_font/model.py:70
-#: skytemple-files/skytemple_files/graphics/fonts/font_dat/model.py:87
-#: skytemple-files/skytemple_files/graphics/fonts/font_sir0/model.py:83
+#: skytemple-files/skytemple_files/graphics/fonts/banner_font/model.py:67
+#: skytemple-files/skytemple_files/graphics/fonts/font_dat/model.py:84
+#: skytemple-files/skytemple_files/graphics/fonts/font_sir0/model.py:80
 msgid "This must be a color indexed image!"
 msgstr "Dieses Bild muss indiziert sein!"
 
-#: skytemple-files/skytemple_files/graphics/fonts/banner_font/model.py:206
+#: skytemple-files/skytemple_files/graphics/fonts/banner_font/model.py:203
 #, python-brace-format
 msgid "Font parsing: Unexpected {child.tag}"
 msgstr "Verarbeitung der Schrift: Unerwartetes {child.tag}"
@@ -3123,17 +3123,17 @@ msgstr "Zeichen {e.char} in der Tabelle {e.table} ist mehrfach definiert in eine
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
 msgstr "Zeichen {e.char} in der Tabelle {e.table} ist mehrfach definiert in einer Schrift-Datei!"
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:249
+#: skytemple-files/skytemple_files/graphics/kao/model.py:246
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
 msgstr "Konnte KAO bei Index {old_index},{old_subindex} nicht laden: {ex}"
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:307
+#: skytemple-files/skytemple_files/graphics/kao/model.py:304
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
 msgstr "Kann PIL Bild nicht in KAO umwandeln: Bilddimensionen müssen {img_dim}x{img_dim}px. sein."
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:403
+#: skytemple-files/skytemple_files/graphics/kao/model.py:400
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr "Dieses Portrait lässt sich nicht gut komprimieren, die Größe nach dem Komprimieren ist größer als 800 Bytes ({len(new_img_compressed)} Bytes insgesamt).\n"
@@ -3163,58 +3163,58 @@ msgstr "Die folgenden Emotionen haben transparente Pixel: {rogue_tiles}"
 msgid "File should have original and flipped versions of emotions: {str(flipped_tiles)}"
 msgstr "Die Datei sollte die originalen und gedrehten Versionen der Emotionen haben: {str(flipped_tiles)}"
 
-#: skytemple-files/skytemple_files/graphics/wte/model.py:35
+#: skytemple-files/skytemple_files/graphics/wte/model.py:32
 msgid "Palette Only"
 msgstr "Nur Palette"
 
-#: skytemple-files/skytemple_files/graphics/wte/model.py:36
+#: skytemple-files/skytemple_files/graphics/wte/model.py:33
 msgid "2 bits per pixel (4 colors)"
 msgstr "2 Bits pro Pixel (4 Farben)"
 
-#: skytemple-files/skytemple_files/graphics/wte/model.py:37
+#: skytemple-files/skytemple_files/graphics/wte/model.py:34
 msgid "4 bits per pixel (16 colors)"
 msgstr "4 Bits pro Pixel (16 Farben)"
 
-#: skytemple-files/skytemple_files/graphics/wte/model.py:38
+#: skytemple-files/skytemple_files/graphics/wte/model.py:35
 msgid "8 bits per pixel (256 colors)"
 msgstr "8 Bits pro Pixel (256 Farben)"
 
-#: skytemple-files/skytemple_files/graphics/wte/model.py:190
+#: skytemple-files/skytemple_files/graphics/wte/model.py:187
 msgid "Can not convert PIL image to WTE: Must be indexed image (=using a palette)"
 msgstr "Kann PIL Bild nicht in WTE umwandeln: Es muss ein indiziertes Bild sein (=eine Palette nutzen)"
 
-#: skytemple-files/skytemple_files/graphics/wte/model.py:196
+#: skytemple-files/skytemple_files/graphics/wte/model.py:193
 msgid "This image is too big to fit into a WTE file."
 msgstr "Dieses Bild ist zu groß, um in eine WTE Datei zu passen."
 
-#: skytemple-files/skytemple_files/graphics/zmappat/model.py:36
+#: skytemple-files/skytemple_files/graphics/zmappat/model.py:33
 msgid "Semi-Opaque"
 msgstr "Semi-Durchsichtig"
 
-#: skytemple-files/skytemple_files/graphics/zmappat/model.py:37
+#: skytemple-files/skytemple_files/graphics/zmappat/model.py:34
 msgid "Transparent"
 msgstr "Durchsichtig"
 
-#: skytemple-files/skytemple_files/graphics/zmappat/model.py:38
+#: skytemple-files/skytemple_files/graphics/zmappat/model.py:35
 msgid "Opaque"
 msgstr "Undurchsichtig"
 
-#: skytemple-files/skytemple_files/graphics/zmappat/model.py:169
-#: skytemple-files/skytemple_files/graphics/zmappat/model.py:190
+#: skytemple-files/skytemple_files/graphics/zmappat/model.py:166
+#: skytemple-files/skytemple_files/graphics/zmappat/model.py:187
 msgid "Tile and masks list must have exactly 3 items"
 msgstr "Kachel- und Maskenliste muss genau 3 Elemente beinhalten"
 
-#: skytemple-files/skytemple_files/graphics/zmappat/model.py:174
-#: skytemple-files/skytemple_files/graphics/zmappat/model.py:195
+#: skytemple-files/skytemple_files/graphics/zmappat/model.py:171
+#: skytemple-files/skytemple_files/graphics/zmappat/model.py:192
 msgid "Can not convert PIL image to ZMAPPAT: Must be indexed images (=using a palette)"
 msgstr "Kann PIL Bild nicht in ZMAPPAT umwandeln: Muss ein indiziertes Bild sein (=eine Palette nutzen)"
 
-#: skytemple-files/skytemple_files/hardcoded/cart_removed.py:56
+#: skytemple-files/skytemple_files/hardcoded/cart_removed.py:53
 #, python-brace-format
 msgid "The image must have dimensions {IMG_WIDTH}x{IMG_HEIGHT}."
 msgstr "Das Bild muss die Maße {IMG_WIDTH}x{IMG_HEIGHT} haben."
 
-#: skytemple-files/skytemple_files/hardcoded/cart_removed.py:67
+#: skytemple-files/skytemple_files/hardcoded/cart_removed.py:64
 msgid "This image must be compressed better to fit in the arm9 ({len(data)} > {block.end-block.begin})."
 msgstr "Dieses Bild muss komprimiert werden um besser in die arm9 Binärdatei zu passen ({len(data)} > {block.end-block.begin})."
 
@@ -3408,88 +3408,88 @@ msgstr "Neblig 5"
 msgid "Foggy 6"
 msgstr "Neblig 6"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:83
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:106
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:77
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:100
 msgid "Normal Enemy"
 msgstr "Gewöhnlicher Gegner"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:85
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:79
 msgid "Outlaw"
 msgstr "Ganove"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:87
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:81
 msgid "Outlaw Enemy"
 msgstr "Ganove-Gegner"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:89
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:83
 msgid "Outlaw Running Away"
 msgstr "Ganove läuft weg"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:93
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:87
 msgid "Rival Team Leader"
 msgstr "Rivalen-Team Anführer"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:95
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:89
 msgid "Rival Team Member"
 msgstr "Rivalen-Team Mitglied"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:97
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:91
 msgid "Strong Enemy"
 msgstr "Starker Gegner"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:100
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:94
 msgid "Waiting for Rescue Ally"
 msgstr "Verbündeter der auf Rettung wartet"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:108
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:102
 msgid "Helping Ally"
 msgstr "Helfender Verbündeter"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:111
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:105
 msgid "Other Game Team Leader"
 msgstr "Teamanführer aus einem anderen Spiel"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:112
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:106
 msgid "Other Game Team Member 2"
 msgstr "Teammitglied 2 aus einem anderen Spiel"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:113
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:107
 msgid "Other Game Team Member 3"
 msgstr "Teammitglied 3 aus einem anderen Spiel"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:114
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:108
 msgid "Other Game Team Member 4"
 msgstr "Teammitglied 4 aus einem anderen Spiel"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:117
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:111
 msgid "Unknown 5"
 msgstr "Unbekannt 5"
 
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:120
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:114
 msgid "Bazaar Host"
 msgstr "Basar-Host"
 
 #. TRANSLATORS: 'Name' of one of the Bazar NPC types
 #. The shop that lets you heal all your HP, PP and belly
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:122
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:116
 msgid "Bazaar Healer"
 msgstr "Basar Heiler"
 
 #. TRANSLATORS: 'Name' of one of the Bazar NPC types
 #. The shop that lets you buy surprise boxes which contain a random item
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:124
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:118
 msgid "Bazaar Surprise"
 msgstr "Basar Wundertüten"
 
 #. TRANSLATORS: 'Name' of one of the Bazar NPC types
 #. The shop that lets you clean all your sticky items
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:126
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:120
 msgid "Bazaar Clean Sticky Items"
 msgstr "Basar Reinigung"
 
 #. TRANSLATORS: 'Name' of one of the Bazar NPC types
 #. The shop that lets you escape the dungeon
-#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:128
+#: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:122
 msgid "Bazaar Escape"
 msgstr "Basar Fluchthelfer"
 
@@ -3503,205 +3503,205 @@ msgstr "'{guest1_index}' ist kein gültiger Gast-Pokémon-Index"
 msgid "'{guest2_index}' is not a valid guest pokémon index"
 msgstr "'{guest2_index}' ist kein gültiger Gast-Pokémon-Index"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:34
+#: skytemple-files/skytemple_files/hardcoded/menus.py:31
 msgid "Game Main Menu"
 msgstr "Spiel-Hauptmenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:35
+#: skytemple-files/skytemple_files/hardcoded/menus.py:32
 msgid "Game Sub Menu"
 msgstr "Spiel-Untermenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:36
+#: skytemple-files/skytemple_files/hardcoded/menus.py:33
 msgid "Continue Choice"
 msgstr "Fortsetzen-Auswahl"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:37
-#: skytemple-files/skytemple_files/hardcoded/menus.py:38
+#: skytemple-files/skytemple_files/hardcoded/menus.py:34
+#: skytemple-files/skytemple_files/hardcoded/menus.py:35
 msgid "Main Debug Menu"
 msgstr "Haupt-Debug-Menü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:39
+#: skytemple-files/skytemple_files/hardcoded/menus.py:36
 msgid "Unknown Menu"
 msgstr "Unbekanntes Menü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:40
+#: skytemple-files/skytemple_files/hardcoded/menus.py:37
 msgid "Footprint Debug Menu"
 msgstr "Debug-Menü für Fußabdruck-Minispiel"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:41
+#: skytemple-files/skytemple_files/hardcoded/menus.py:38
 msgid "Bank Main Menu"
 msgstr "Bank-Hauptmenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:42
+#: skytemple-files/skytemple_files/hardcoded/menus.py:39
 msgid "Evolution Menu Confirm"
 msgstr "Entwicklungs-Menü: Bestätigen"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:43
+#: skytemple-files/skytemple_files/hardcoded/menus.py:40
 msgid "Evolution Sub Menu"
 msgstr "Entwicklungs-Untermenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:44
+#: skytemple-files/skytemple_files/hardcoded/menus.py:41
 msgid "Evolution Main Menu"
 msgstr "Entwicklungs-Hauptmenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:45
+#: skytemple-files/skytemple_files/hardcoded/menus.py:42
 msgid "Assembly Menu Confirm"
 msgstr "Treffpunkt-Menü: Bestätigen"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:46
-#: skytemple-files/skytemple_files/hardcoded/menus.py:47
+#: skytemple-files/skytemple_files/hardcoded/menus.py:43
+#: skytemple-files/skytemple_files/hardcoded/menus.py:44
 msgid "Assembly Main Menu"
 msgstr "Treffpunkt-Hauptmenü"
 
+#: skytemple-files/skytemple_files/hardcoded/menus.py:45
+#: skytemple-files/skytemple_files/hardcoded/menus.py:46
+#: skytemple-files/skytemple_files/hardcoded/menus.py:47
 #: skytemple-files/skytemple_files/hardcoded/menus.py:48
 #: skytemple-files/skytemple_files/hardcoded/menus.py:49
 #: skytemple-files/skytemple_files/hardcoded/menus.py:50
 #: skytemple-files/skytemple_files/hardcoded/menus.py:51
-#: skytemple-files/skytemple_files/hardcoded/menus.py:52
-#: skytemple-files/skytemple_files/hardcoded/menus.py:53
-#: skytemple-files/skytemple_files/hardcoded/menus.py:54
 msgid "Assembly Sub Menu"
 msgstr "Treffpunkt-Untermenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:55
+#: skytemple-files/skytemple_files/hardcoded/menus.py:52
 msgid "Moves Menu Confirm"
 msgstr "Attacken-Menü: Bestätigen"
 
+#: skytemple-files/skytemple_files/hardcoded/menus.py:53
+#: skytemple-files/skytemple_files/hardcoded/menus.py:54
 #: skytemple-files/skytemple_files/hardcoded/menus.py:56
 #: skytemple-files/skytemple_files/hardcoded/menus.py:57
+#: skytemple-files/skytemple_files/hardcoded/menus.py:58
 #: skytemple-files/skytemple_files/hardcoded/menus.py:59
 #: skytemple-files/skytemple_files/hardcoded/menus.py:60
-#: skytemple-files/skytemple_files/hardcoded/menus.py:61
-#: skytemple-files/skytemple_files/hardcoded/menus.py:62
-#: skytemple-files/skytemple_files/hardcoded/menus.py:63
 msgid "Moves Sub Menu"
 msgstr "Attacken-Untermenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:58
+#: skytemple-files/skytemple_files/hardcoded/menus.py:55
 msgid "Moves Main Menu"
 msgstr "Attacken-Hauptmenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:64
-#: skytemple-files/skytemple_files/hardcoded/menus.py:65
+#: skytemple-files/skytemple_files/hardcoded/menus.py:61
+#: skytemple-files/skytemple_files/hardcoded/menus.py:62
 msgid "Bar Menu Confirm"
 msgstr "Safbar-Menü: Bestätigen"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:66
+#: skytemple-files/skytemple_files/hardcoded/menus.py:63
 msgid "Bar Main Menu"
 msgstr "Saftbar-Hauptmenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:67
-#: skytemple-files/skytemple_files/hardcoded/menus.py:68
+#: skytemple-files/skytemple_files/hardcoded/menus.py:64
+#: skytemple-files/skytemple_files/hardcoded/menus.py:65
 msgid "Bar Sub Menu"
 msgstr "Saftbar-Untermenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:69
-#: skytemple-files/skytemple_files/hardcoded/menus.py:70
+#: skytemple-files/skytemple_files/hardcoded/menus.py:66
+#: skytemple-files/skytemple_files/hardcoded/menus.py:67
 msgid "Recycle Menu Confirm"
 msgstr "Wiederverwertungsladen-Menü: Bestätigen"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:71
-#: skytemple-files/skytemple_files/hardcoded/menus.py:72
+#: skytemple-files/skytemple_files/hardcoded/menus.py:68
+#: skytemple-files/skytemple_files/hardcoded/menus.py:69
 msgid "Recycle Sub Menu"
 msgstr "Wiederverwertungsladen-Untermenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:73
-#: skytemple-files/skytemple_files/hardcoded/menus.py:74
-#: skytemple-files/skytemple_files/hardcoded/menus.py:75
+#: skytemple-files/skytemple_files/hardcoded/menus.py:70
+#: skytemple-files/skytemple_files/hardcoded/menus.py:71
+#: skytemple-files/skytemple_files/hardcoded/menus.py:72
 msgid "Recycle Main Menu"
 msgstr "Wiederverwertungsladen-Hauptmenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:76
+#: skytemple-files/skytemple_files/hardcoded/menus.py:73
 msgid "Synthesis Menu Confirm"
 msgstr "Synthese-Menü: Bestätigen"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:77
+#: skytemple-files/skytemple_files/hardcoded/menus.py:74
+#: skytemple-files/skytemple_files/hardcoded/menus.py:75
 #: skytemple-files/skytemple_files/hardcoded/menus.py:78
-#: skytemple-files/skytemple_files/hardcoded/menus.py:81
 msgid "Synthesis Sub Menu"
 msgstr "Synthese-Untermenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:79
-#: skytemple-files/skytemple_files/hardcoded/menus.py:80
+#: skytemple-files/skytemple_files/hardcoded/menus.py:76
+#: skytemple-files/skytemple_files/hardcoded/menus.py:77
 msgid "Synthesis Main Menu"
 msgstr "Synthese-Hauptmenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:82
+#: skytemple-files/skytemple_files/hardcoded/menus.py:79
 msgid "Shop Menu Confirm"
 msgstr "Shop-Menü: Bestätigen"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:83
-#: skytemple-files/skytemple_files/hardcoded/menus.py:84
-#: skytemple-files/skytemple_files/hardcoded/menus.py:85
+#: skytemple-files/skytemple_files/hardcoded/menus.py:80
+#: skytemple-files/skytemple_files/hardcoded/menus.py:81
+#: skytemple-files/skytemple_files/hardcoded/menus.py:82
 msgid "Shop Main Menu"
 msgstr "Shop-Hauptmenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:86
+#: skytemple-files/skytemple_files/hardcoded/menus.py:83
 msgid "Storage Menu Confirm"
 msgstr "Lager-Menü: Bestätigen"
 
+#: skytemple-files/skytemple_files/hardcoded/menus.py:84
+#: skytemple-files/skytemple_files/hardcoded/menus.py:85
+#: skytemple-files/skytemple_files/hardcoded/menus.py:86
 #: skytemple-files/skytemple_files/hardcoded/menus.py:87
-#: skytemple-files/skytemple_files/hardcoded/menus.py:88
-#: skytemple-files/skytemple_files/hardcoded/menus.py:89
-#: skytemple-files/skytemple_files/hardcoded/menus.py:90
 msgid "Storage Main Menu"
 msgstr "Lager-Hauptmenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:91
+#: skytemple-files/skytemple_files/hardcoded/menus.py:88
 msgid "Hatcher Menu Confirm"
 msgstr "Tagesstätte-Menü: Bestätigen"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:92
+#: skytemple-files/skytemple_files/hardcoded/menus.py:89
 msgid "Hatcher Main Menu"
 msgstr "Tagesstätte-Hauptmenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:93
+#: skytemple-files/skytemple_files/hardcoded/menus.py:90
 msgid "Appraiser Menu Confirm"
 msgstr "Begutachtung-Menü: Bestätigen"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:94
+#: skytemple-files/skytemple_files/hardcoded/menus.py:91
 msgid "Appraiser Main Menu"
 msgstr "Begutachtung-Hauptmenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:95
+#: skytemple-files/skytemple_files/hardcoded/menus.py:92
 msgid "Appraiser Sub Menu"
 msgstr "Begutachtung-Untermenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:96
+#: skytemple-files/skytemple_files/hardcoded/menus.py:93
 msgid "Discard Items Menu Confirm"
 msgstr "Items verwerfen: Bestätigen"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:97
-#: skytemple-files/skytemple_files/hardcoded/menus.py:98
+#: skytemple-files/skytemple_files/hardcoded/menus.py:94
+#: skytemple-files/skytemple_files/hardcoded/menus.py:95
 msgid "Discard Items Sub Menu"
 msgstr "Items verwerfen-Untermenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:99
+#: skytemple-files/skytemple_files/hardcoded/menus.py:96
 msgid "Discard Items Main Menu"
 msgstr "Items verwerfen-Hauptmenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:100
+#: skytemple-files/skytemple_files/hardcoded/menus.py:97
 msgid "Dungeon Main Menu"
 msgstr "Dungeon-Hauptmenü"
 
+#: skytemple-files/skytemple_files/hardcoded/menus.py:98
+#: skytemple-files/skytemple_files/hardcoded/menus.py:99
+#: skytemple-files/skytemple_files/hardcoded/menus.py:100
 #: skytemple-files/skytemple_files/hardcoded/menus.py:101
 #: skytemple-files/skytemple_files/hardcoded/menus.py:102
 #: skytemple-files/skytemple_files/hardcoded/menus.py:103
-#: skytemple-files/skytemple_files/hardcoded/menus.py:104
-#: skytemple-files/skytemple_files/hardcoded/menus.py:105
-#: skytemple-files/skytemple_files/hardcoded/menus.py:106
 msgid "Dungeon Sub Menu"
 msgstr "Dungeon-Untermenü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:107
+#: skytemple-files/skytemple_files/hardcoded/menus.py:104
 msgid "Unknown Menu Confirm"
 msgstr "Unbekanntes Menü: Bestätigen"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:108
+#: skytemple-files/skytemple_files/hardcoded/menus.py:105
 msgid "Dungeon Debug Menu"
 msgstr "Dungeon-Debug-Menü"
 
-#: skytemple-files/skytemple_files/hardcoded/menus.py:163
+#: skytemple-files/skytemple_files/hardcoded/menus.py:160
 #, python-brace-format
 msgid "This menu must have {num_entries} entries!"
 msgstr "Dieses Menü muss {num_entries} Einträge haben!"
@@ -3974,7 +3974,7 @@ msgid "Skips the quiz, only leaving the gender question.\n"
 msgstr "Überspringt das Persönlichkeitsquiz. Der Spieler wird nur nach dem Geschlecht gefragt.\n"
 "Der \"ChooseStarter\"-Patch muss angewendet sein. "
 
-#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:55
+#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:52
 msgid "Replaces old move stats display with bars.\n"
 "This patch may not be compatible if the markfont.dat file has been modified."
 msgstr "Ersetzt die Anzeige der Attacken-Werte mit Balken (statt Sternen).\n"
@@ -4071,51 +4071,51 @@ msgstr "Ungültiger DungeonMode: {string}"
 msgid "Unknown constant {constant_as_string}."
 msgstr "Unbekannte Konstante {constant_as_string}."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:107
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:108
 msgid "The routine data lists for the decompiler must have the same lengths."
 msgstr "Die Routinen-Daten-Listen für den Dekompilierer müssen die gleiche Länge haben."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:120
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:121
 #, python-brace-format
 msgid "Routine {i} not found."
 msgstr "Routine {i} wurde nicht gefunden."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:137
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:138
 msgid "The script must contain exactly {len(self.rom_data.script_data.common_routine_info)} coroutines."
 msgstr "Das Skript muss genau {len(self.rom_data.script_data.common_routine_info)} Coroutinen enthalten."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:140
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:141
 msgid "The script must not contain any duplicate coroutines."
 msgstr "Das Skript darf keine doppelten Coroutinen enthalten."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:146
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:147
 #, python-brace-format
 msgid "Unknown coroutine {err}"
 msgstr "Unbekannte Coroutine {err}"
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:161
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:162
 msgid "Coroutines and regular routines can not be mixed in a script file."
 msgstr "Coroutinen und reguläre Routinen dürfen nicht in derselben Skript-Datei verwendet werden."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:173
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:174
 #, python-brace-format
 msgid "Unknown operation {in_op.op_code.name}."
 msgstr "Unbekannte Operation {in_op.op_code.name}."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:184
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:185
 msgid "The number of parameters for {normal_op_code.name} must be at least {normal_op_code.params}, is {self._correct_param_list_len(in_op.params)}."
 msgstr "Die Anzahl der Parameter für {normal_op_code.name} muss mindestens {normal_op_code.params} betragen, ist aber {self._correct_param_list_len(in_op.params)}."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:198
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:199
 msgid "The number of parameters for {op_code.name} must be {op_code.params}, is {self._correct_param_list_len(in_op.params)}."
 msgstr "Die Anzahl der Parameter für {op_code.name} muss genau {op_code.params} betragen, ist aber {self._correct_param_list_len(in_op.params)}."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:277
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:278
 #, python-brace-format
 msgid "Unknown language for string: {lang}"
 msgstr "Unbekannte Sprache für Zeichenkette: {lang}"
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:281
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:282
 #, python-brace-format
 msgid "Invalid parameter supplied for an operation: {param}"
 msgstr "Ungültiger Parameter angegeben für Operation: {param}"
@@ -4151,16 +4151,16 @@ msgstr "_Abbrechen"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:964
 #: skytemple/skytemple/_i18n.py:50
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:90
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:248
-#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:78
-#: skytemple/skytemple/module/misc_graphics/controller/chr.py:68
-#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:74
-#: skytemple/skytemple/module/misc_graphics/controller/w16.py:79
-#: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:79
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:75
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:94
-#: skytemple/skytemple/module/portrait/controller/portrait.py:112
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:143
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:245
+#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:75
+#: skytemple/skytemple/module/misc_graphics/controller/chr.py:65
+#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:71
+#: skytemple/skytemple/module/misc_graphics/controller/w16.py:76
+#: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:76
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:72
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:91
+#: skytemple/skytemple/module/portrait/controller/portrait.py:109
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:140
 #: skytemple/skytemple/module/sprite/module.py:194
 msgid "_Save"
 msgstr "_Speichern"
@@ -4182,11 +4182,11 @@ msgstr "Diese Datei ist noch in den RAM geladen! Aktuell kannst du mit dem alten
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1576
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:88
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:419
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:318
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:331
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:487
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:692
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:710
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:315
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:328
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:484
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:689
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:707
 #: skytemple/skytemple/module/script/controller/ssa.py:528
 msgid "Warning!"
 msgstr "Warnung!"
@@ -5374,8 +5374,8 @@ msgid "_Yes"
 msgstr "_Ja"
 
 #: skytemple/skytemple/_i18n.py:40
-#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:96
-#: skytemple/skytemple/module/misc_graphics/controller/chr.py:87
+#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:93
+#: skytemple/skytemple/module/misc_graphics/controller/chr.py:84
 msgid "_Open"
 msgstr "_Öffnen"
 
@@ -5509,34 +5509,34 @@ msgid "This changes the way SkyTemple behaves when asynchronous operations are d
 "Using Gbulb event loop: This enables Single-Thread asynchronous loading. It is generally the preferredoption if available."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:54
+#: skytemple/skytemple/controller/tilequant.py:51
 #: skytemple/skytemple/core/ui_utils.py:91
 msgid "PNG image (*.png)"
 msgstr "PNG-Bild (*.png)"
 
-#: skytemple/skytemple/controller/tilequant.py:59
+#: skytemple/skytemple/controller/tilequant.py:56
 msgid "JPEG image (*.jpg, *.jpeg)"
 msgstr "JPEG-Bild (*.jpg, *.jpeg)"
 
-#: skytemple/skytemple/controller/tilequant.py:65
+#: skytemple/skytemple/controller/tilequant.py:62
 #: skytemple/skytemple/core/ui_utils.py:76
 #: skytemple/skytemple/module/monster/controller/level_up.py:541
 msgid "Any files"
 msgstr "Alle Dateien"
 
-#: skytemple/skytemple/controller/tilequant.py:79
+#: skytemple/skytemple/controller/tilequant.py:76
 msgid "The maximum number of palettes that can be used. For normal backgrounds, this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes (since the last 2 palettes are not rendered in game)."
 msgstr "Die Anzahl der verfügbaren Paletten. Für gewöhnliche Hintergründe können 16 Paletten verwendet werden. Für Kartenhintergründe teilen sich beide Ebenen maximal 14 Paletten (da zwei Paletten nicht im Spiel dargestellt werden können)."
 
-#: skytemple/skytemple/controller/tilequant.py:84
+#: skytemple/skytemple/controller/tilequant.py:81
 msgid "This exact color of the image will be imported as transparency (default: #12ab56)."
 msgstr "Dieser Farbwert wird als Transparenz importiert (Standard: #12ab56)."
 
-#: skytemple/skytemple/controller/tilequant.py:87
+#: skytemple/skytemple/controller/tilequant.py:84
 msgid "You can use this to convert multiple images at once with the same palettes. This is useful for map backgrounds with multiple layers, that need to share the same palettes."
 msgstr "Du kannst diese Einstellung verwenden, um mehrere Bilder gleichzeitig unter Verwendung der gleichen Paletten umzuwandeln. Das ist praktisch für Kartenhintergründen, da diese sich dieselben Paletten teilen."
 
-#: skytemple/skytemple/controller/tilequant.py:93
+#: skytemple/skytemple/controller/tilequant.py:90
 msgid "Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they \"blend into\" each other. This will make the image look like it contains more colors but also might decrease the overall visual quality. Two different algorithms are available.\n\n"
 "No Dithering: Color will be reorganized and reduced if necessary. No dithering will be performed.\n\n"
 "Reorganize colors only: Colors will be reorganized so that they fit the game's format. SkyTemple will not attempt to reduce the amount of overall colors to make this work, so you will get an error, if it's not possible with the current amount. However if it does work, the output image will look identical to the original image."
@@ -5544,55 +5544,55 @@ msgstr "Dithering: Die Farben werden neu angeordnet und die Farbanzahl wird verr
 "Kein Dithering: Die Farben werden neu angeordnet und bei Bedarf wird die Farbanzahl verringert. Es wird kein Dithering durchgeführt.\n\n"
 "Farben nur neu sortieren: Farben werden neu angeordnet, sodass sie dem Format des Spiels entsprechen. SkyTemple wird nicht versuchen, die Anzahl der Farben zu reduzieren. Du wirst eine Fehlermeldung erhalten, wenn SkyTemple das mit den aktuellen Farben nicht schaft. Wenn es jedoch funktioniert, werden das Ausgabebild und das Originalbild visuell identisch sein."
 
-#: skytemple/skytemple/controller/tilequant.py:104
+#: skytemple/skytemple/controller/tilequant.py:101
 msgid "Only relevant if dithering is enabled: This controls the amount of dithering applied."
 msgstr "Nur relevant, wenn Dithering aktiviert ist: Steuert die Stärke des angewendeten Ditherings."
 
-#: skytemple/skytemple/controller/tilequant.py:130
+#: skytemple/skytemple/controller/tilequant.py:127
 msgid "Please select an input image."
 msgstr "Bitte wähle ein Bild zum konvertieren aus."
 
-#: skytemple/skytemple/controller/tilequant.py:135
+#: skytemple/skytemple/controller/tilequant.py:132
 msgid "Since you selected two images to convert, you will be asked for both images where to save them to."
 msgstr "Da du zwei Bilder zum Umwandeln ausgewählt hast, wirst du nacheinander für jedes gefragt, wo du es speichern möchtest."
 
-#: skytemple/skytemple/controller/tilequant.py:141
+#: skytemple/skytemple/controller/tilequant.py:138
 msgid "Save first image as (PNG)..."
 msgstr "Speichere erstes Bild als (PNG)..."
 
-#: skytemple/skytemple/controller/tilequant.py:162
+#: skytemple/skytemple/controller/tilequant.py:159
 msgid "Save second image as (PNG)..."
 msgstr "Speichere zweites Bild als (PNG)..."
 
-#: skytemple/skytemple/controller/tilequant.py:194
+#: skytemple/skytemple/controller/tilequant.py:191
 msgid "You entered invalid numbers."
 msgstr "Du hast ungültige Zahlen eingegeben."
 
-#: skytemple/skytemple/controller/tilequant.py:197
+#: skytemple/skytemple/controller/tilequant.py:194
 msgid "The input image does not exist."
 msgstr "Das Eingabe-Bild existiert nicht."
 
-#: skytemple/skytemple/controller/tilequant.py:200
+#: skytemple/skytemple/controller/tilequant.py:197
 msgid "The second input image does not exist."
 msgstr "Das zweite Eingabe-Bild existiert nicht."
 
-#: skytemple/skytemple/controller/tilequant.py:219
+#: skytemple/skytemple/controller/tilequant.py:216
 msgid "The input image is not a supported format."
 msgstr "Das Eingabe-Bild ist in einem nicht unterstütztes Format."
 
-#: skytemple/skytemple/controller/tilequant.py:236
+#: skytemple/skytemple/controller/tilequant.py:233
 msgid "Image was converted."
 msgstr "Das Bild wurde umgewandelt."
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:57
+#: skytemple/skytemple/core/async_tasks/delegator.py:58
 msgid "Thread-based"
 msgstr ""
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:58
+#: skytemple/skytemple/core/async_tasks/delegator.py:59
 msgid "Synchronous"
 msgstr ""
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:60
+#: skytemple/skytemple/core/async_tasks/delegator.py:61
 msgid "Using Gbulb event loop"
 msgstr ""
 
@@ -5729,7 +5729,7 @@ msgstr "Umwandler"
 msgid "Image"
 msgstr "Bild"
 
-#: skytemple/skytemple/module/bgp/controller/bgp.py:42
+#: skytemple/skytemple/module/bgp/controller/bgp.py:39
 msgid "- The image is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
 "- Each 8x8 tile in the image MUST only use colors from\n"
@@ -5745,7 +5745,7 @@ msgstr "- Das Bild muss ein indiziertes PNG mit 256 Farben sein.\n"
 "- Nach dem Import darf es nur 1024 einzigartige 8x8 Kacheln geben\n"
 "  (=nicht doppelt vorhanden, auch nicht gedreht oder gespielt)."
 
-#: skytemple/skytemple/module/bgp/controller/bgp.py:113
+#: skytemple/skytemple/module/bgp/controller/bgp.py:110
 msgid "Error importing the image."
 msgstr "Fehler beim Importieren des Bildes."
 
@@ -6968,7 +6968,7 @@ msgid "Traps"
 msgstr "Fallen"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3681
-#: skytemple/skytemple/module/misc_graphics/controller/font.py:52
+#: skytemple/skytemple/module/misc_graphics/controller/font.py:49
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:732
 msgid "Category"
 msgstr "Kategorie"
@@ -7445,46 +7445,46 @@ msgstr "Unzerstörb."
 msgid "{i} - Lvl: {entry.level}, Atk: {entry.attack}, Def: {entry.defense}, Sp. Atk: {entry.special_attack}, Sp. Def: {entry.special_defense}, HP: {entry.hp}"
 msgstr "{i} - Lvl.: {entry.level}, Angr.: {entry.attack}, Vert.: {entry.defense}, Sp. Angr.: {entry.special_attack}, Sp. Vert.: {entry.special_defense}, KP: {entry.hp}"
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:64
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:61
 msgid "Export PNG of map..."
 msgstr "PNG der Karte exportieren..."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:131
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:740
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:128
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:737
 msgid "Export PNG of chunks..."
 msgstr "PNG der Blöcke exportieren..."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:152
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:226
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:234
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:149
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:223
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:231
 msgid "Error exporting the tileset."
 msgstr "Fehler beim Exportieren des Tilesets."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:177
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:248
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:779
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:841
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:174
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:245
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:776
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:838
 msgid "An image must be selected."
 msgstr "Ein Bild muss ausgewählt sein."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:191
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:259
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:195
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:188
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:256
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:192
 msgid "Error importing the tileset."
 msgstr "Fehler beim Importieren des Tilesets."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:205
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:805
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:202
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:802
 msgid "Export PNG of tiles..."
 msgstr "PNG von Kacheln exportieren..."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:316
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:485
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:690
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:313
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:482
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:687
 msgid "Some values were invalid (not a number). They were replaced with 0."
 msgstr "Einige Werte waren ungültig (keine Zahl). Sie wurden durch 0 ersetzt."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:330
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:327
 msgid "Palette Animation is not enabled for this palette."
 msgstr "Die Palettenanimation ist für diese Palette nicht aktiviert."
 
@@ -7517,19 +7517,19 @@ msgstr "Weitere Infos: "
 msgid "Color Map"
 msgstr "Farbkarte"
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/colvec.py:79
+#: skytemple/skytemple/module/dungeon_graphics/controller/colvec.py:76
 msgid "Export current colormap as PNG..."
 msgstr "Aktuelle Farbkarte als PNG exportieren..."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/colvec.py:102
+#: skytemple/skytemple/module/dungeon_graphics/controller/colvec.py:99
 msgid "Import current colormap from PNG..."
 msgstr "Importiere aktuelle Farbkarte aus PNG..."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/colvec.py:121
+#: skytemple/skytemple/module/dungeon_graphics/controller/colvec.py:118
 msgid "Error importing colormap."
 msgstr "Fehler beim Importieren der Farbkarte."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/colvec.py:137
+#: skytemple/skytemple/module/dungeon_graphics/controller/colvec.py:134
 msgid "This colormap defines color palette transformations used by the game during dungeons (for weather effects).\n"
 "Each color color component (RGB) is changed to the corresponding color component of the n-th color map entry (where n is the old color component value).\n"
 "This transformation also applies to monsters and items sprites."
@@ -8216,52 +8216,52 @@ msgstr "Dies wird die Kacheln importieren.\n\n"
 "  Paletten verwenden.\n"
 "- Die erste Farbe jeder Palette wird als Transparenz importiert."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:68
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:65
 msgid "Tilesets"
 msgstr "Tilesets"
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:80
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:77
 msgid "This section lets you edit the tilesets that are used for dungeons."
 msgstr "In diesem Abschnitt kannst du die Tilesets bearbeiten, die für Dungeons verwendet werden."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:129
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:126
 #, python-brace-format
 msgid "Dungeon Tileset {self.item_id} Rules"
 msgstr "Regeln für Dungeon Tileset {self.item_id}"
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:130
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:127
 #, python-brace-format
 msgid "Dungeon Tileset {self.item_id}"
 msgstr "Dungeon-Tileset {self.item_id}"
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:148
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:145
 msgid "To import select the XML file in the DTEF tileset package. If it is still zipped, unzip it first."
 msgstr "Zum Importieren wähle die XML-Datei im DTEF-Tileset-Paket. Falls es noch ein ZIP-Archiv ist, entpacke es zuerst."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:155
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:152
 msgid "Import dungeon tileset..."
 msgstr "Dungeon Tileset importieren..."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:162
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:159
 msgid "DTEF XML document (*.dtef.xml)"
 msgstr "DTEF XML-Dokument (*.dtef.xml)"
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:185
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:182
 msgid "The tileset was successfully imported."
 msgstr "Das Tileset wurde erfolgreich importiert."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:186
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:227
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:178
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:246
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:183
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:224
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:175
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:243
 msgid "Success!"
 msgstr "Erfolg!"
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:200
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:197
 msgid "Export dungeon tileset..."
 msgstr "Dungeon Tileset exportieren..."
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:226
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:223
 msgid "The tileset was successfully exported."
 msgstr "Das Tileset wurde erfolgreich exportiert."
 
@@ -9337,24 +9337,24 @@ msgstr "Position"
 msgid "Edit Selected"
 msgstr "Bearbeiten"
 
-#: skytemple/skytemple/module/lists/controller/world_map.py:203
+#: skytemple/skytemple/module/lists/controller/world_map.py:200
 msgid "<Not on map>"
 msgstr "<Nicht auf der Karte>"
 
-#: skytemple/skytemple/module/lists/controller/world_map.py:205
+#: skytemple/skytemple/module/lists/controller/world_map.py:202
 #, python-brace-format
 msgid "<Uses marker of entry {entry.reference_id}>"
 msgstr "<Nutzt Marker von Eintrag {entry.reference_id}>"
 
-#: skytemple/skytemple/module/lists/controller/world_map.py:246
+#: skytemple/skytemple/module/lists/controller/world_map.py:243
 msgid "<Don't show on map>"
 msgstr "<Nicht auf Karte anzeigen>"
 
-#: skytemple/skytemple/module/lists/controller/world_map.py:305
+#: skytemple/skytemple/module/lists/controller/world_map.py:302
 msgid "You need to select a map."
 msgstr "Du musst eine Karte auswählen."
 
-#: skytemple/skytemple/module/lists/controller/world_map.py:318
+#: skytemple/skytemple/module/lists/controller/world_map.py:315
 msgid "You need to select a reference."
 msgstr "Du musst eine Referenz auswählen."
 
@@ -9540,60 +9540,60 @@ msgstr "Kartenhintergründe können als \"primär\" oder \"sekundär\" verwendet
 msgid "Background Palettes"
 msgstr "Hintergrund-Paletten"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:193
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:190
 msgid "Incorrect values.\n"
 "Only enter numbers from 1 to 255 for chunks and tiles dimensions."
 msgstr "Falsche Werte.\n"
 "Geben nur Zahlen von 1 bis 255 für die Dimensionen von Chunks und Kacheln ein."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:205
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:202
 msgid "Save GIF of map..."
 msgstr "GIF der Karte speichern..."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:245
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:242
 msgid "Export PNGs of map..."
 msgstr "PNGs der Karte exportieren..."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:417
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:414
 msgid "This BPA has no frames.\n"
 "Enable the BPA and import images for a BPA to add frames."
 msgstr "Diese BPA hat keine Frames.\n"
 "Aktiviere die BPA und importiere Bilder für ein BPA, um Frames hinzuzufügen."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:529
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:526
 msgid "Export animated tiles (BPA)"
 msgstr "Animierte Kacheln exportieren (BPA)"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:555
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:552
 msgid "The animated tiles were successfully exported."
 msgstr "Die animierten Kacheln wurden erfolgreich exportiert."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:556
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:615
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:553
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:612
 msgid "SkyTemple - Success!"
 msgstr "SkyTemple - Erfolg!"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:560
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:557
 msgid "Error during BPA export"
 msgstr "Fehler beim BPA-Export"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:573
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:570
 msgid "Import animated tiles (BPA)"
 msgstr "Animierte Kacheln (BPA) importieren"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:613
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:610
 msgid "The animated tiles were successfully imported, using the files: "
 msgstr "Die animierten Kacheln wurden erfolgreich importiert. Quelldateien: "
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:619
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:616
 msgid "Error during BPA import"
 msgstr "Fehler beim BPA-Import"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:709
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:706
 msgid "Palette Animation is not enabled."
 msgstr "Palettenanimation ist nicht aktiviert."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:859
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:856
 msgid "This map has no second layer."
 msgstr "Diese Karte hat keine zweite Ebene."
 
@@ -10269,7 +10269,7 @@ msgstr "Das Logo wurde erfolgreich hinzugefügt. Vielen Dank!"
 msgid "Cartridge Removed"
 msgstr "Karte entfernt"
 
-#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:65
+#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:62
 msgid "This is what the game shows when the cartridge is removed while playing.\n"
 "IMPORTANT! The game stores this compressed in the ARM9, so this is limited in space.\n"
 "It is recommended to only edit this to change the text color/content."
@@ -10277,21 +10277,21 @@ msgstr "Dieses Bild zeigt das Spiel an, falls die Karte des Spiels während dem 
 "WICHTIG! Das Spiel speichert diese Grafik komprimiert in der ARM9-Datei, daher gibt es eine Größenbeschränkung.\n"
 "Es wird empfohlen das nur zu ändern um die Textfarbe oder den Inhalt zu ändern."
 
-#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:68
+#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:65
 msgid "Cartridge Removed Image Info"
 msgstr "Informationen über das \"Karte entfernt\"-Bild"
 
-#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:75
-#: skytemple/skytemple/module/misc_graphics/controller/chr.py:65
-#: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:76
+#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:72
+#: skytemple/skytemple/module/misc_graphics/controller/chr.py:62
+#: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:73
 msgid "Export image as PNG..."
 msgstr "Bild als PNG exportieren..."
 
-#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:93
+#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:90
 msgid "Import image as PNG..."
 msgstr "Bild aus PNG importieren..."
 
-#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:113
+#: skytemple/skytemple/module/misc_graphics/controller/cart_removed.py:110
 msgid "Error importing cart removed image."
 msgstr "Fehler beim Importieren des \"Karte entfernt\"-Bildes."
 
@@ -10304,11 +10304,11 @@ msgstr "Paletten-Variante: "
 msgid "Chr"
 msgstr "Chr"
 
-#: skytemple/skytemple/module/misc_graphics/controller/chr.py:84
+#: skytemple/skytemple/module/misc_graphics/controller/chr.py:81
 msgid "Import image as indexed PNG..."
 msgstr "Bild aus indiziertem PNG importieren..."
 
-#: skytemple/skytemple/module/misc_graphics/controller/chr.py:104
+#: skytemple/skytemple/module/misc_graphics/controller/chr.py:101
 msgid "Error importing chr image."
 msgstr "Fehler beim Importieren des Chr-Bildes."
 
@@ -10323,28 +10323,28 @@ msgstr "Wähle das Zeichen aus, dass\n"
 msgid "Font"
 msgstr "Schrift"
 
-#: skytemple/skytemple/module/misc_graphics/controller/font.py:51
+#: skytemple/skytemple/module/misc_graphics/controller/font.py:48
 msgid "Char ID"
 msgstr "Char ID"
 
-#: skytemple/skytemple/module/misc_graphics/controller/font.py:51
+#: skytemple/skytemple/module/misc_graphics/controller/font.py:48
 msgid "Width"
 msgstr "Breite"
 
-#: skytemple/skytemple/module/misc_graphics/controller/font.py:52
+#: skytemple/skytemple/module/misc_graphics/controller/font.py:49
 msgid "Bytes per row"
 msgstr "Bytes pro Zeile"
 
-#: skytemple/skytemple/module/misc_graphics/controller/font.py:52
+#: skytemple/skytemple/module/misc_graphics/controller/font.py:49
 msgid "Padding"
 msgstr "Auffüllung"
 
-#: skytemple/skytemple/module/misc_graphics/controller/font.py:87
-#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:71
+#: skytemple/skytemple/module/misc_graphics/controller/font.py:84
+#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:68
 msgid "Export font in folder..."
 msgstr "Schrift exportieren..."
 
-#: skytemple/skytemple/module/misc_graphics/controller/font.py:110
+#: skytemple/skytemple/module/misc_graphics/controller/font.py:107
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
 "IMPORTANT: All image files must be indexed PNGs!\n"
 "For banner fonts, all images must have the same palette."
@@ -10352,27 +10352,27 @@ msgstr "Zum Importieren, wähle einen Ordner aus, der alle Dateien enthält, die
 "WICHTIG: Alle Dateien müssen indizierte PNGs sein!\n"
 "Für Banner-Schriften gilt, dass alle Bilder dieselbe Palette haben müssen."
 
-#: skytemple/skytemple/module/misc_graphics/controller/font.py:113
-#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:96
+#: skytemple/skytemple/module/misc_graphics/controller/font.py:110
+#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:93
 msgid "Import Font"
 msgstr "Schrift importieren"
 
-#: skytemple/skytemple/module/misc_graphics/controller/font.py:118
-#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:101
+#: skytemple/skytemple/module/misc_graphics/controller/font.py:115
+#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:98
 msgid "Import font from folder..."
 msgstr "Schrift aus Ordner importieren..."
 
-#: skytemple/skytemple/module/misc_graphics/controller/font.py:144
-#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:139
+#: skytemple/skytemple/module/misc_graphics/controller/font.py:141
+#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:136
 msgid "Error importing font."
 msgstr "Fehler beim Importieren der Schrift."
 
-#: skytemple/skytemple/module/misc_graphics/controller/font.py:216
+#: skytemple/skytemple/module/misc_graphics/controller/font.py:213
 #, python-brace-format
 msgid "Character {char} already exists in the table!"
 msgstr "Zeichen {char} ist bereits in der Tabelle vorhanden!"
 
-#: skytemple/skytemple/module/misc_graphics/controller/font.py:229
+#: skytemple/skytemple/module/misc_graphics/controller/font.py:226
 msgid "Error adding character."
 msgstr "Fehler beim Hinzufügen des Zeichens."
 
@@ -10382,7 +10382,7 @@ msgid "Choose how many characters\n"
 msgstr "Wähle die Anzahl Zeichen,\n"
 "die in der Liste sein sollen: "
 
-#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:94
+#: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:91
 msgid "To import, select a folder containing all the files that were created when exporting the font.\n"
 "IMPORTANT: All image files must be indexed PNGs and use the same palette!"
 msgstr "Zum Importieren, wähle einen Ordner aus, der alle Dateien enthält, die beim Export der Schrift erstellt wurden.\n"
@@ -10402,54 +10402,54 @@ msgid "The images in this preview are scaled to 64x64px.\n"
 msgstr "Die Bilder in dieser Vorschau werden auf 64x64px skaliert.\n"
 "Bildmaße müssen beim Import ein Vielfaches von 8 sein."
 
-#: skytemple/skytemple/module/misc_graphics/controller/w16.py:76
+#: skytemple/skytemple/module/misc_graphics/controller/w16.py:73
 msgid "Export all images as PNGs..."
 msgstr "Alle Bilder als PNG exportieren..."
 
-#: skytemple/skytemple/module/misc_graphics/controller/w16.py:97
+#: skytemple/skytemple/module/misc_graphics/controller/w16.py:94
 msgid "To import, select a directory to import from. Files with the pattern 'XX.png'\n"
 "will be imported, where XX is a number between 0 and 99. The image dimensions must be a multiple of 8."
 msgstr "Um zu importieren, wählen einen Ordner aus, aus dem du importieren möchtest. Dateien werden nach \n"
 "dem Muster 'XX.png' importiert, wobei XX eine Zahl zwischen 0 und 99 ist. Die Bildgröße muss ein Vielfaches von 8 sein."
 
-#: skytemple/skytemple/module/misc_graphics/controller/w16.py:99
+#: skytemple/skytemple/module/misc_graphics/controller/w16.py:96
 msgid "Import Images"
 msgstr "Bilder importieren"
 
-#: skytemple/skytemple/module/misc_graphics/controller/w16.py:104
+#: skytemple/skytemple/module/misc_graphics/controller/w16.py:101
 msgid "Import images from PNGs..."
 msgstr "Bilder aus PNGs importieren..."
 
-#: skytemple/skytemple/module/misc_graphics/controller/w16.py:125
+#: skytemple/skytemple/module/misc_graphics/controller/w16.py:122
 #, python-brace-format
 msgid "Failed importing image \"{i}\":\n"
 "Image for number {i} missing."
 msgstr "Fehler beim Importieren des Bildes \"{i}\":\n"
 "Bild für Nummer {i}."
 
-#: skytemple/skytemple/module/misc_graphics/controller/w16.py:126
+#: skytemple/skytemple/module/misc_graphics/controller/w16.py:123
 #, python-brace-format
 msgid "Image for number {i} missing."
 msgstr "Bild für Nummer {i} fehlt."
 
-#: skytemple/skytemple/module/misc_graphics/controller/w16.py:133
-#: skytemple/skytemple/module/misc_graphics/controller/w16.py:134
+#: skytemple/skytemple/module/misc_graphics/controller/w16.py:130
+#: skytemple/skytemple/module/misc_graphics/controller/w16.py:131
 msgid "No images found."
 msgstr "Keine Bilder gefunden."
 
-#: skytemple/skytemple/module/misc_graphics/controller/w16.py:147
+#: skytemple/skytemple/module/misc_graphics/controller/w16.py:144
 #, python-brace-format
 msgid "Failed importing image '{index}'."
 msgstr "Fehler beim Importieren des Bildes '{index}'."
 
-#: skytemple/skytemple/module/misc_graphics/controller/w16.py:150
+#: skytemple/skytemple/module/misc_graphics/controller/w16.py:147
 #, python-brace-format
 msgid "Failed importing image \"{index}\":\n"
 "{err}"
 msgstr "Importieren des Bildes \"{index}\":\n"
 "{err}"
 
-#: skytemple/skytemple/module/misc_graphics/controller/w16.py:151
+#: skytemple/skytemple/module/misc_graphics/controller/w16.py:148
 #, python-brace-format
 msgid "Error for '{index}'."
 msgstr "Fehler für '{index}'."
@@ -10538,15 +10538,15 @@ msgstr "Die WTU-Daten beeinflussen wahrscheinlich entweder, wie das Bild zusamme
 msgid "WTU"
 msgstr "WTU"
 
-#: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:123
+#: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:120
 msgid "Filename not specified."
 msgstr "Dateiname nicht angegeben."
 
-#: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:134
+#: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:131
 msgid "Imported image size too big."
 msgstr "Die Bildgröße ist zu groß."
 
-#: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:140
+#: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:137
 msgid "Not an indexed image."
 msgstr "Kein indiziertes Bild."
 
@@ -10584,33 +10584,33 @@ msgstr "Dies zeigt die wahre Form der Datei an, wenn deaktiviert."
 msgid "ZMappaT"
 msgstr "ZMappaT"
 
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:72
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:69
 msgid "Export zmappat minimized in folder..."
 msgstr "Exportiere geschrumpfte ZMappaT..."
 
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:91
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:88
 msgid "Export full zmappat in folder..."
 msgstr "Exportiere vollständige ZMappaT..."
 
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:113
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:110
 msgid "To import, select a folder containing all the image files that were created when exporting the minimized version.\n"
 "IMPORTANT: All image files must be indexed PNGs and use the same palette!"
 msgstr "Zum Importieren, wähle einen Ordner aus, der alle Dateien enthält, die beim Export erstellt wurden.\n"
 "WICHTIG: Alle Dateien müssen indizierte PNGs sein und dieselbe Palette verwenden!"
 
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:115
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:112
 msgid "Import Minimized Version"
 msgstr "Geschrumpfte Version importieren"
 
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:120
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:117
 msgid "Import zmappat minimized from folder..."
 msgstr "Importiere geschrumpfte ZMappaT aus Ordner..."
 
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:145
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:142
 msgid "Error importing minimized zmappat."
 msgstr "Fehler beim Importieren der geschrumpften ZMappaT."
 
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:154
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:151
 msgid "The game uses 4x4 'mini-tiles' tiles to render the map.\n"
 "However, as the system only uses 8x8 tiles, the game render each 8x8 tile by applying 4 mini-tiles with their respective masks.\n"
 "To do this, all mini-tiles have been duplicated to cover the 4 possibilites for placing the mini-tile in 8x8 tiles (top left, top right, bottom left, bottom right).\n"
@@ -10624,23 +10624,23 @@ msgstr "Das Spiel verwendet 4x4 „Mini-Kacheln“ -Kacheln, um die Karte zu ren
 "Die geschrumpfte Version reduziert das Tileset auf nur 4x4-Mini-Kacheln. Beim Import wurd dann entsprechend dupliziert.\n"
 "Denke aber daran, dass das vollständige Tileset mehr Möglichkeiten zulässt, da du die Kacheln je nach Platzierung unterschiedlich rendern kannst."
 
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:160
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:157
 msgid "Minimized Version Info"
 msgstr "Infos über die geschrumpfte Version"
 
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:170
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:167
 msgid "To import, select a folder containing all the image files that were created when exporting the full tileset."
 msgstr "Um zu importieren, wähle einen Ordner mit allen Bilddateien, die beim Export des vollständigen Tilesets erstellt wurden."
 
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:171
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:168
 msgid "Import Full Tileset"
 msgstr "Komplettes Tileset importieren"
 
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:176
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:173
 msgid "Import full zmappat from folder..."
 msgstr "Importiere vollständige ZMappaT aus Ordner..."
 
-#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:201
+#: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:198
 msgid "Error importing full zmappat."
 msgstr "Fehler beim Importieren der vollständigen ZMappaT."
 
@@ -12317,58 +12317,58 @@ msgstr "Wenn ein Portrait fehlt, versucht das Spiel stattdessen das Portrait der
 "Wenn das ebenfalls fehlt, ist das Verhalten undefiniert.\n"
 "Falls eine gedrehte Version fehlt, dreht das Spiel das Portrait automatisch."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:109
+#: skytemple/skytemple/module/portrait/controller/portrait.py:106
 msgid "Export all portraits as PNGs..."
 msgstr "Alle Portraits als PNGs exportieren..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:133
+#: skytemple/skytemple/module/portrait/controller/portrait.py:130
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 40."
 msgstr "Um zu importieren, wähle einen Ordner aus. Dateien nach dem Muster '{self.item_id + 1}_XX.png' werden importiert. Dabei muss XX eine Zahl zwischen 0 und 40 sein."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:135
+#: skytemple/skytemple/module/portrait/controller/portrait.py:132
 msgid "Import Portraits"
 msgstr "Portraits importieren"
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:140
+#: skytemple/skytemple/module/portrait/controller/portrait.py:137
 msgid "Import portraits from PNGs..."
 msgstr "Importiere Portraits aus PNG..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:165
-#: skytemple/skytemple/module/portrait/controller/portrait.py:216
+#: skytemple/skytemple/module/portrait/controller/portrait.py:162
+#: skytemple/skytemple/module/portrait/controller/portrait.py:213
 #, python-brace-format
 msgid "Failed importing image \"{name}\":\n"
 "{err}"
 msgstr "Fehler beim Importieren von Bild \"{name}\":\n"
 "{err}"
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:166
-#: skytemple/skytemple/module/portrait/controller/portrait.py:217
+#: skytemple/skytemple/module/portrait/controller/portrait.py:163
+#: skytemple/skytemple/module/portrait/controller/portrait.py:214
 #, python-brace-format
 msgid "Error for '{name}'."
 msgstr "Fehler für '{name}'."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:175
+#: skytemple/skytemple/module/portrait/controller/portrait.py:172
 msgid "Export portrait as PNG sheet..."
 msgstr "Portrait als PNG-Sheet exportieren..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:194
+#: skytemple/skytemple/module/portrait/controller/portrait.py:191
 msgid "Import portraits from PNG sheet..."
 msgstr "Importiere Portraits aus PNG-Sheet..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:223
+#: skytemple/skytemple/module/portrait/controller/portrait.py:220
 #, python-brace-format
 msgid "Failed importing portraits sheet:\n"
 "{err}"
 msgstr "Import der Portraits fehlgeschlagen:\n"
 "{err}"
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:224
+#: skytemple/skytemple/module/portrait/controller/portrait.py:221
 #: skytemple/skytemple/module/rom/controller/main.py:129
 msgid "Could not import."
 msgstr "Import fehlgeschlagen."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:241
+#: skytemple/skytemple/module/portrait/controller/portrait.py:238
 msgid " (flip)"
 msgstr " (gespiegelt)"
 
@@ -12907,11 +12907,11 @@ msgstr "-- oder --"
 msgid "Warning: This will edit the sprite with the ID assigned to this Pokémon. Other Pokémon that use this sprite are also affected."
 msgstr "Warnung: Dadurch wird der Sprite mit der ID bearbeitet, die diesem Pokémon zugewiesen wurde. Andere Pokémon, die diesen Sprite verwenden, sind ebenfalls betroffen."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:73
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:70
 msgid "Invalid Sprite ID."
 msgstr "Invalid Sprite-ID."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:77
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:74
 msgid "Alternatively you can export the sprite files \n"
 "in the gfxcrunch format and edit them manually.\n"
 "Warning: SkyTemple does not validate the files you import."
@@ -12919,43 +12919,43 @@ msgstr "Alternativ kannst du die Sprite-Datei \n"
 "im gfxcrunch Format exportieren und manuell bearbeiten.\n"
 "Warnung: SkyTemple überprüft die Dateien die du importierst nicht."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:140
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:137
 msgid "Export spritesheet..."
 msgstr "Spritesheet exportieren..."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:177
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:174
 msgid "The spritesheet was successfully exported."
 msgstr "Das Spritesheet wurde erfolgreich exportiert."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:185
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:182
 msgid "Error exporting the spritesheet."
 msgstr "Fehler beim Exportieren des Spritesheets."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:191
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:208
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:188
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:205
 msgid "To import select the archive that contains the spritesheets."
 msgstr "Zum Importieren wähle das Archiv, das die Spritesheets enthält."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:193
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:210
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:190
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:207
 msgid "To import select the directory of the spritesheets. If it is still zipped, unzip it first."
 msgstr "Wähle den Ordner aus, aus dem die Spritesheets importiert werden sollen. Falls es noch ein ZIP-Archiv ist, entpacke es zuerst."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:204
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:201
 msgid "This will insert a completely new sprite into the game's sprite file and assign the new ID to the Pokémon.\n"
 "If you want to instead replace the currently assigned sprite, choose 'Import'.\n"
 msgstr "Dadurch wird ein komplett neuer Sprite in die Sprite-Datei des Spiels eingefügt und dem Pokémon die neue ID zugewiesen.\n"
 "Wenn du stattdessen den derzeit zugewiesenen Sprite ersetzen möchtest, wähle „Import“.\n"
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:224
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:221
 msgid "Import spritesheet..."
 msgstr "Spritesheet importieren..."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:245
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:242
 msgid "The spritesheet was successfully imported."
 msgstr "Das Spritesheet wurde erfolgreich importiert."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:268
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:265
 msgid "Error importing the spritesheet."
 msgstr "Fehler beim Importieren des Spritesheets."
 
@@ -12979,7 +12979,7 @@ msgstr ""
 msgid "Import image"
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/object.py:60
+#: skytemple/skytemple/module/sprite/controller/object.py:57
 msgid "SkyTemple can not edit sprites. \n"
 "However you can export the sprite in the gfxcrunch format and import it back again.\n"
 "Warning: SkyTemple does not validate the files you import."
