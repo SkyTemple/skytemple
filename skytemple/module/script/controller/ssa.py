@@ -276,9 +276,9 @@ class SsaController(AbstractController):
                                  open_popover=True)
                 else:
                     # END DRAG / UPDATE POSITION
-                    tile_x, tile_y = self.drawer.get_current_drag_entity_pos()
-                    tile_x //= BPC_TILE_DIM
-                    tile_y //= BPC_TILE_DIM
+                    rtile_x, rtile_y = self.drawer.get_current_drag_entity_pos()
+                    tile_x = rtile_x / BPC_TILE_DIM
+                    tile_y = rtile_y / BPC_TILE_DIM
                     # Out of bounds failsafe:
                     if tile_x < 0:
                         tile_x = 0
