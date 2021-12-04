@@ -15,6 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import sys
+from asyncio import AbstractEventLoop
 
 import gi
 
@@ -23,7 +24,7 @@ from skytemple_files.common.i18n_util import _
 
 gi.require_version('Gtk', '3.0')
 import asyncio
-from typing import Coroutine
+from typing import Coroutine, Optional
 from enum import Enum, auto
 
 import gbulb
@@ -136,3 +137,8 @@ class AsyncTaskDelegator:
             from skytemple.core.settings import SkyTempleSettingsStore
             cls._config_type = SkyTempleSettingsStore().get_async_configuration()
         return cls._config_type
+
+    @classmethod
+    def event_loop(cls) -> Optional[AbstractEventLoop]:
+        """Returns the current event loop."""
+        return asyncio.get_event_loop()
