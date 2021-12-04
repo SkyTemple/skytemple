@@ -27,10 +27,7 @@ from skytemple_tilequant.aikku.image_converter import AikkuImageConverter, Dithe
 from skytemple_tilequant.image_converter import ImageConverter
 from skytemple_files.common.i18n_util import _
 
-try:
-    from PIL import Image
-except ImportError:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk
 logger = logging.getLogger(__name__)
 

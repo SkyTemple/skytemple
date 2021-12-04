@@ -26,10 +26,7 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple_files.graphics.zmappat.model import ZMappaT, ZMappaTVariation
 from skytemple_files.graphics.zmappat import *
 
-try:
-    from PIL import Image
-except:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
 

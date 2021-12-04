@@ -29,10 +29,7 @@ from skytemple_files.common.util import chunks, add_extension_if_missing
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
 from skytemple_files.common.i18n_util import f, _
 
-try:
-    from PIL import Image
-except ImportError:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
 

@@ -28,10 +28,7 @@ from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple_files.graphics.w16.model import W16, W16AtImage, W16TocEntry
 
-try:
-    from PIL import Image
-except:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk
 
 from skytemple.controller.main import MainController

@@ -27,10 +27,7 @@ from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.graphics.wte.model import Wte, WteImageType
 from skytemple_files.graphics.wtu.model import Wtu, WtuEntry
 
-try:
-    from PIL import Image
-except:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
 

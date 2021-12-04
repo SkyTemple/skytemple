@@ -35,10 +35,7 @@ from skytemple_files.graphics.chara_wan.model import WanFile
 from skytemple_files.graphics.wan_wat.model import Wan
 from skytemple_files.common.i18n_util import f, _
 
-try:
-    from PIL import Image
-except:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk, GLib
 
 from skytemple.core.module_controller import AbstractController

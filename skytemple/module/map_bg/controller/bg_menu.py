@@ -36,10 +36,7 @@ from skytemple_files.graphics.bpa.model import BpaFrameInfo, Bpa
 from skytemple_files.graphics.bpc.model import Bpc
 from skytemple_files.common.i18n_util import _
 
-try:
-    from PIL import Image
-except ImportError:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
 from natsort import ns, natsorted

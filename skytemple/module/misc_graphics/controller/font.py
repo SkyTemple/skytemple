@@ -29,10 +29,7 @@ import cairo
 from skytemple.core.error_handler import display_error
 from skytemple_files.graphics.fonts.abstract import AbstractFont
 
-try:
-    from PIL import Image
-except:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
 

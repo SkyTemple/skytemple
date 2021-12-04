@@ -17,7 +17,7 @@
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, Optional, Dict
+from typing import TYPE_CHECKING, Optional, Dict, List
 
 from xml.etree.ElementTree import Element, ElementTree
 
@@ -29,10 +29,7 @@ import cairo
 from skytemple.core.error_handler import display_error
 from skytemple_files.graphics.fonts.graphic_font.model import GraphicFont
 
-try:
-    from PIL import Image
-except:
-    from pil import Image
+from PIL import Image
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
 
@@ -123,7 +120,7 @@ class GraphicFontController(AbstractController):
             dialog.hide()
             if resp == Gtk.ResponseType.OK:
                 try:
-                    lst_entries = []
+                    lst_entries: List[Optional[Image.Image]] = []
                     for i in range(int(self.builder.get_object('nb_entries_import').get_text())):
                         path = os.path.join(fn, f'{i:0>4}.png')
                         if os.path.exists(path):
