@@ -44,6 +44,8 @@
       <column type="gchararray"/>
       <!-- column-name game_var_str -->
       <column type="gchararray"/>
+      <!-- column-name continue_music -->
+      <column type="gboolean"/>
     </columns>
   </object>
   <object class="GtkListStore" id="type_store">
@@ -360,6 +362,19 @@ ASM patch from the "ASM Patches" menu.</property>
                                   </object>
                                   <attributes>
                                     <attribute name="text">4</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Continue Music</property>
+                                <child>
+                                  <object class="GtkCellRendererToggle" id="continue_music">
+                                    <signal name="toggled" handler="on_continue_music_toggled" swapped="no"/>
+                                  </object>
+                                  <attributes>
+                                    <attribute name="active">7</attribute>
                                   </attributes>
                                 </child>
                               </object>
