@@ -942,6 +942,8 @@ class SsaController(AbstractController):
         if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
             new_layer_id = model[cbiter][0]
             if self._currently_selected_entity is not None:
+                assert self.ssa is not None
+                assert self._currently_selected_entity_layer is not None
                 if isinstance(self._currently_selected_entity, SsaActor):
                     index = self.ssa.layer_list[self._currently_selected_entity_layer].actors.index(self._currently_selected_entity)
                     del self.ssa.layer_list[self._currently_selected_entity_layer].actors[index]
