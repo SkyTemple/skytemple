@@ -19,9 +19,10 @@ If the extra dependencies are not installed, importing this module will raise an
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import asyncio
+import inspect
 import logging
 import os
-from typing import List, Optional
+from typing import List, Optional, Union, Coroutine, Callable
 
 from gi.repository import GLib
 
@@ -30,7 +31,7 @@ from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple.core.events.abstract_listener import AbstractListener
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
-from pypresence import Presence
+from pypresence import Presence, BaseClient, AioPresence
 import time
 
 from skytemple.core.string_provider import StringType
@@ -49,8 +50,12 @@ class DiscordPresence(AbstractListener):
         Tries to initialize the connection with Discord.
         :raises: ConnectionRefusedError
         """
-        self.rpc: Presence = Presence(CLIENT_ID, loop=AsyncTaskDelegator.event_loop())
-        self.rpc.connect()
+        self.rpc: BaseClient
+        if AsyncTaskDelegator.support_aio():
+            self.rpc = AioPresence(CLIENT_ID)
+        else:
+            self.rpc = Presence(CLIENT_ID)
+            self.rpc.connect()
         self._idle_timeout_id = None
 
         self.start = None
@@ -61,6 +66,9 @@ class DiscordPresence(AbstractListener):
         self.rom_name = None
         self.debugger_script_name = None
         self.project: Optional[RomProject] = None
+
+    async def on_event_loop_started(self):
+        await self.rpc.connect()
 
     def on_main_window_focus(self):
         if self._idle_timeout_id is not None:
@@ -313,10 +321,24 @@ class DiscordPresence(AbstractListener):
             large_text, large_image='skytemple',
             small_image=None, small_text=None
     ):
-        result = self.rpc.update(state=state, details=details, start=start, large_image=large_image,
-                                 large_text=large_text, small_image=small_image, small_text=small_text,
-                                 buttons=[{"label": "Get SkyTemple", "url": "https://skytemple.org"}])
-        logger.debug(f"Presence update result: {result}")
+        if self.rpc.sock_writer is not None:
+            self._schedule(
+                self.rpc.update,
+                state=state, details=details, start=start, large_image=large_image,
+                large_text=large_text, small_image=small_image, small_text=small_text,
+                buttons=[{"label": "Get SkyTemple", "url": "https://skytemple.org"}]
+            )
 
     def _reset_playtime(self):
         self.start = int(time.time())
+
+    @staticmethod
+    def _schedule(f: Callable, *args, **kwargs):
+        """
+        Depending on whether f is a normal or a coroutine function,
+        run it now or send it to the event loop to run soon.
+        """
+        if inspect.iscoroutinefunction(f):
+            asyncio.create_task(f(*args, **kwargs))  # type: ignore
+        else:
+            f(*args, **kwargs)

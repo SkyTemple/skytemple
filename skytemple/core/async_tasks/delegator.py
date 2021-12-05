@@ -97,6 +97,8 @@ class AsyncTaskDelegator:
             elif cls.config_type().event_loop_type == AsyncEventLoopType.GBULB:
                 gbulb.install(gtk=True)
                 gbulb.get_event_loop().set_exception_handler(async_handle_exeception)
+                from skytemple.core.events.manager import EventManager
+                GLib.idle_add(EventManager.instance().async_init)
                 asyncio.get_event_loop().run_forever()
             else:
                 raise RuntimeError("Invalid async configuration")
@@ -137,6 +139,10 @@ class AsyncTaskDelegator:
             from skytemple.core.settings import SkyTempleSettingsStore
             cls._config_type = SkyTempleSettingsStore().get_async_configuration()
         return cls._config_type
+
+    @classmethod
+    def support_aio(cls):
+        return cls.config_type().async_task_runner_type == AsyncTaskRunnerType.EVENT_LOOP_CONCURRENT
 
     @classmethod
     def event_loop(cls) -> Optional[AbstractEventLoop]:
