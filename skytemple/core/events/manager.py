@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import asyncio
 import logging
 from typing import List
 
@@ -97,3 +98,7 @@ class EventManager:
         if self._a_window_had_focus and not self._debugger_window_focus and not self._main_window_focus:
             self._a_window_had_focus = False
             self.trigger(EVT_FOCUS_LOST)
+
+    def async_init(self):
+        for listener in self._listeners:
+            asyncio.create_task(listener.on_event_loop_started())

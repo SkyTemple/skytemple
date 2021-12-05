@@ -29,6 +29,12 @@ class AbstractListener(ABC):
     event listener. This method will receive all events first and can also handle custom
     events.
     """
+    async def on_event_loop_started(self):
+        """
+        Called IF SkyTemple is running an asyncio-compatible event loop for concurrency and it was started.
+        If SkyTemple is NOT using one, this is NEVER called. Use AsyncTaskDelegator.support_aio() to find out.
+        """
+
     def on_main_window_focus(self):
         """Triggered when the main window (re)-gains focus."""
 

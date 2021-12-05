@@ -177,8 +177,8 @@ def main(settings: SkyTempleSettingsStore):
             from skytemple.core.events.impl.discord import DiscordPresence
             discord_listener = DiscordPresence()
             event_manager.register_listener(discord_listener)
-        except BaseException:
-            pass
+        except BaseException as exc:
+            logging.warning("Error setting up Discord integration:", exc_info=exc)
 
     # Load modules
     Modules.load()
