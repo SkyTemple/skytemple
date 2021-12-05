@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2021-12-04 21:27+0000\n"
-"PO-Revision-Date: 2021-12-05 12:10\n"
+"PO-Revision-Date: 2021-12-05 13:09\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -5493,7 +5493,7 @@ msgstr "Portugués, Brasileño"
 
 #: skytemple/skytemple/controller/settings.py:84
 msgid "<i>Use System Settings to set this under Linux.</i>"
-msgstr ""
+msgstr "<i>Usar la configuración del sistema para configurarlo en Linux.</i>"
 
 #: skytemple/skytemple/controller/settings.py:165
 msgid "You need to restart SkyTemple to apply some of the settings."
@@ -5501,7 +5501,7 @@ msgstr "Necesitas reiniciar SkyTemple para aplicar algunos ajustes."
 
 #: skytemple/skytemple/controller/settings.py:176
 msgid "If this is enabled a new and faster (but slightly experimental) codebase is used to load and manipulate game files. Try to disable this if you run into crashes or other issues."
-msgstr ""
+msgstr "Si se habilita, se utilizará una base de código nueva y más rápida (pero ligeramente experimental) para cargar y manipular los archivos del juego. Si te encuentras con bloqueos u otros problemas, prueba a desactivarla."
 
 #: skytemple/skytemple/controller/settings.py:188
 msgid "This changes the way SkyTemple behaves when asynchronous operations are done (eg. loading files and views). You usually don't want to change this, unless you know what you are doing or are running into crashes or other issues.\n\n\n"
@@ -5509,7 +5509,11 @@ msgid "This changes the way SkyTemple behaves when asynchronous operations are d
 "Synchronous: Asynchronous operations run immediately. The SkyTemple UI freezes briefly during that.\n\n"
 "GLib: Same has 'Synchronous' but the UI gets the chance to finish displaying loaders etc. before they are run.\n\n"
 "Using Gbulb event loop: This enables Single-Thread asynchronous loading. It is generally the preferredoption if available."
-msgstr ""
+msgstr "Esto cambia la forma en que SkyTemple se comporta cuando se realizan operaciones asíncronas (por ejemplo, cargar archivos y vistas). Por lo general, no necesitarás modificar estas opciones a menos que sepas lo que estás haciendo o tengas problemas.\n\n"
+"Basado en hilos: SkyTemple genera un hilo adicional para ejecutar operaciones asíncronas. Esto podría llevar a problemas de seguridad de los hilos, pero es la experiencia de carga más fluida.\n\n"
+"Sincrónico: Las operaciones asíncronas se ejecutan inmediatamente. La interfaz de usuario de SkyTemple se congela brevemente durante las mismas.\n\n"
+"GLib: Lo mismo que \"Sincrónico\", pero la interfaz de usuario tiene la oportunidad de terminar de mostrar los cargadores, etc., antes de que se ejecuten.\n\n"
+"Usar bucle de eventos Gbulb: Permite la carga asíncrona de un solo hilo. Generalmente es la opción preferida si está disponible."
 
 #: skytemple/skytemple/controller/tilequant.py:51
 #: skytemple/skytemple/core/ui_utils.py:91
@@ -5588,7 +5592,7 @@ msgstr "Se ha convertido la imagen."
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:58
 msgid "Thread-based"
-msgstr "Basado en subprocesos"
+msgstr "Basado en hilos"
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:59
 msgid "Synchronous"
