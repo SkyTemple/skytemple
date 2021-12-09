@@ -72,6 +72,7 @@ class AsyncConfiguration(Enum):
         self.async_task_runner_type = async_task_runner_type
 
     def available(self):
+        return self != AsyncConfiguration.GBULB  # TODO: Need to iron out some issues.
         if self == AsyncConfiguration.GBULB and sys.platform.startswith('win'):
             # Currently not available under Windows!
             return False
