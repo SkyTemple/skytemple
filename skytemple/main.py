@@ -119,7 +119,7 @@ from skytemple.controller.main import MainController
 SKYTEMPLE_LOGLEVEL = logging.INFO
 
 
-def main(settings: SkyTempleSettingsStore):
+def run_main(settings: SkyTempleSettingsStore):
     # TODO: Gtk.Application: https://python-gtk-3-tutorial.readthedocs.io/en/latest/application.html
     path = os.path.abspath(os.path.dirname(__file__))
 
@@ -210,9 +210,13 @@ def _load_theme(settings: SkyTempleSettingsStore):
     gtk_settings.set_property("gtk-theme-name", theme)
 
 
-if __name__ == '__main__':
+def main():
     # TODO: At the moment doesn't support any cli arguments.
     logging.basicConfig()
     logging.getLogger().setLevel(SKYTEMPLE_LOGLEVEL)
     from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
-    AsyncTaskDelegator.run_main(main, settings)
+    AsyncTaskDelegator.run_main(run_main, settings)
+
+
+if __name__ == '__main__':
+    main()
