@@ -4,7 +4,7 @@ git+git://github.com/skytemple/skytemple-dtef@main#egg=skytemple_dtef
 git+git://github.com/skytemple/skytemple-icons@main#egg=skytemple_icons
 pygobject==3.40.1
 pycairo==1.18.2; sys_platform != "win32"
-natsort==7.1.1
+natsort==8.0.1
 tilequant==0.4.0.post0
 git+git://github.com/skytemple/skytemple-ssb-debugger@master#egg=skytemple_ssb_debugger
 git+git://github.com/skytemple/skytemple-eventserver@main#egg=skytemple_eventserver
