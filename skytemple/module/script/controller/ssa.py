@@ -36,8 +36,7 @@ from skytemple.module.script.drawer import Drawer, InteractionMode
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine, Pmd2ScriptLevel, Pmd2ScriptLevelMapType
 from skytemple_files.common.script_util import SSB_EXT
-from skytemple_files.graphics.bg_list_dat.model import BgList
-from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
+from skytemple_files.graphics.bpc import BPC_TILE_DIM
 from skytemple_files.hardcoded.ground_dungeon_tilesets import resolve_mapping_for_level
 from skytemple_files.script.ssa_sse_sss.actor import SsaActor
 from skytemple_files.script.ssa_sse_sss.event import SsaEvent
@@ -1243,7 +1242,7 @@ class SsaController(AbstractController):
     def _init_all_the_stores(self):
         self._suppress_events = True
         # MAP BGS
-        map_bg_list: BgList = self.map_bg_module.bgs
+        map_bg_list = self.map_bg_module.bgs
         tool_choose_map_bg_cb: Gtk.ComboBox = self.builder.get_object('tool_choose_map_bg_cb')
         map_bg_store = Gtk.ListStore(int, str)  # ID, BMA name
         default_bg = map_bg_store.append([-1, _("None")])

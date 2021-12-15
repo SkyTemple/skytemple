@@ -17,9 +17,7 @@
 from abc import ABC
 from typing import List
 
-from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import AbstractTilePalettesProvider
 from skytemple_files.common.util import lcm
-from skytemple_files.graphics.bpl.model import Bpl
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import AbstractTilePalettesProvider
 from skytemple_files.graphics.dpl.model import Dpl
 from skytemple_files.graphics.dpla.model import Dpla

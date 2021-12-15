@@ -28,7 +28,7 @@ from skytemple.core.string_provider import StringType
 from skytemple.module.lists.controller import WORLD_MAP_DEFAULT_ID
 from skytemple.module.lists.world_map_drawer import WorldMapDrawer
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
-from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
+from skytemple_files.graphics.bpc import BPC_TILE_DIM
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement
 from skytemple_files.common.i18n_util import f, _
 

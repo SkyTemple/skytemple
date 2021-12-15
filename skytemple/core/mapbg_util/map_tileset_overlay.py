@@ -20,7 +20,7 @@ import cairo
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor
-from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
+from skytemple_files.graphics.bpc import BPC_TILE_DIM
 from skytemple_files.graphics.dma.dma_drawer import DmaDrawer
 from skytemple_files.graphics.dma.model import Dma
 from skytemple_files.graphics.dpc.model import Dpc

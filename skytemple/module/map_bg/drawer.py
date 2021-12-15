@@ -28,10 +28,10 @@ from skytemple.core.mapbg_util.drawer_plugin.grid import GridDrawerPlugin
 from skytemple.core.mapbg_util.drawer_plugin.selection import SelectionDrawerPlugin
 from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.module.tiled_img.animation_context import AnimationContext
-from skytemple_files.graphics.bma.model import Bma
+from skytemple_files.graphics.bma.protocol import BmaProtocol
 import cairo
 
-from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
+from skytemple_files.graphics.bpc import BPC_TILE_DIM
 FPS = 60
 
 
@@ -44,7 +44,7 @@ class DrawerInteraction(Enum):
 
 class Drawer:
     def __init__(
-            self, draw_area: Widget, bma: Union[Bma, None], bpa_durations: int, pal_ani_durations: int,
+            self, draw_area: Widget, bma: Union[BmaProtocol, None], bpa_durations: int, pal_ani_durations: int,
             # chunks_surfaces[layer_number][chunk_idx][palette_animation_frame][frame]
             chunks_surfaces: Iterable[Iterable[Iterable[Iterable[cairo.Surface]]]]
     ):
@@ -90,7 +90,7 @@ class Drawer:
         self.drawing_is_active = False
     
     def reset_bma(self, bma):
-        if isinstance(bma, Bma):
+        if isinstance(bma, BmaProtocol):
             self.tiling_width = bma.tiling_width
             self.tiling_height = bma.tiling_height
             self.mappings = [bma.layer0, bma.layer1]

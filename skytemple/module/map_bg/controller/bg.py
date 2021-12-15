@@ -35,10 +35,11 @@ from skytemple.module.map_bg.controller.bg_menu import BgMenuController
 from skytemple.module.map_bg.drawer import Drawer, DrawerCellRenderer, DrawerInteraction
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevelMapType
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.graphics.bg_list_dat.model import BMA_EXT, BPC_EXT, BPL_EXT, BPA_EXT, DIR
-from skytemple_files.graphics.bma.model import MASK_PAL, Bma
-from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
-from skytemple_files.graphics.bpl.model import BPL_NORMAL_MAX_PAL
+from skytemple_files.graphics.bg_list_dat import BMA_EXT, BPC_EXT, BPL_EXT, BPA_EXT, DIR
+from skytemple_files.graphics.bma import MASK_PAL
+from skytemple_files.graphics.bma.protocol import BmaProtocol
+from skytemple_files.graphics.bpc import BPC_TILE_DIM
+from skytemple_files.graphics.bpl import BPL_NORMAL_MAX_PAL
 from skytemple_files.common.i18n_util import _
 from skytemple_files.hardcoded.ground_dungeon_tilesets import resolve_mapping_for_level
 
@@ -126,7 +127,7 @@ class BgController(AbstractController):
         self.bpc = module.get_bpc(item_id)
         self.bpas = module.get_bpas(item_id)
         self.first_cursor_pos = (0, 0)
-        self.last_bma: Optional[Bma] = None
+        self.last_bma: Optional[BmaProtocol] = None
 
         # Cairo surfaces for each tile in each layer for each frame
         # chunks_surfaces[layer_number][chunk_idx][palette_animation_frame][frame]
