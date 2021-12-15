@@ -36,7 +36,7 @@ from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.graphics.kao.model import SUBENTRIES
+from skytemple_files.graphics.kao import SUBENTRIES
 from skytemple_files.common.i18n_util import _, f
 
 if TYPE_CHECKING:

@@ -23,7 +23,7 @@ from gi.repository import Gdk, GdkPixbuf, Gtk
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.data.md.model import MdProperties
-from skytemple_files.graphics.kao.model import KAO_IMG_METAPIXELS_DIM, KAO_IMG_IMG_DIM
+from skytemple_files.graphics.kao import KAO_IMG_METAPIXELS_DIM, KAO_IMG_IMG_DIM
 from skytemple_files.graphics.kao.protocol import KaoProtocol
 
 IMG_DIM = KAO_IMG_METAPIXELS_DIM * KAO_IMG_IMG_DIM
