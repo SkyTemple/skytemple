@@ -18,11 +18,11 @@ from abc import ABC
 from typing import List
 
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import AbstractTilePalettesProvider
-from skytemple_files.graphics.bpl.model import Bpl
+from skytemple_files.graphics.bpl.protocol import BplProtocol
 
 
 class MapBgPaletteProvider(AbstractTilePalettesProvider):
-    def __init__(self, bpl: Bpl):
+    def __init__(self, bpl: BplProtocol):
         self.bpl = bpl
 
     def get(self) -> List[List[int]]:

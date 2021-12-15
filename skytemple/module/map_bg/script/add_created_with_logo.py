@@ -23,9 +23,11 @@ from gi.repository import Gtk
 
 from skytemple.core.ui_utils import data_dir
 from skytemple_files.common.tiled_image import from_pil
-from skytemple_files.graphics.bma.model import Bma
-from skytemple_files.graphics.bpc.model import Bpc, BPC_TILE_DIM
-from skytemple_files.graphics.bpl.model import Bpl, BPL_IMG_PAL_LEN, BPL_MAX_PAL
+from skytemple_files.graphics.bma.protocol import BmaProtocol
+from skytemple_files.graphics.bpc.protocol import BpcProtocol
+from skytemple_files.graphics.bpl.protocol import BplProtocol
+from skytemple_files.graphics.bpc import BPC_TILE_DIM
+from skytemple_files.graphics.bpl import BPL_IMG_PAL_LEN, BPL_MAX_PAL
 
 PAL_OFFSET = 6
 
@@ -42,7 +44,7 @@ class AddCreatedWithLogo:
 
     Error messages are displayed with GTK.
     """
-    def __init__(self, bma: Bma, bpc: Bpc, bpl: Bpl):
+    def __init__(self, bma: BmaProtocol, bpc: BpcProtocol, bpl: BplProtocol):
         self.bma = bma
         self.bpc = bpc
         self.bpl = bpl

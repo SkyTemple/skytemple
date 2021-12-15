@@ -21,7 +21,7 @@ from gi.repository import Gtk
 
 from skytemple.core.mapbg_util.drawer_plugin.grid import GridDrawerPlugin
 from skytemple.module.lists.controller import WORLD_MAP_DEFAULT_ID
-from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
+from skytemple_files.graphics.bpc import BPC_TILE_DIM
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement
 
 

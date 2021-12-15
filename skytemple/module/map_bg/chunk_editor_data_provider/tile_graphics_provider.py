@@ -18,12 +18,12 @@ from abc import ABC
 from typing import List
 
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_graphics_provider import AbstractTileGraphicsProvider
-from skytemple_files.graphics.bpa.model import Bpa
-from skytemple_files.graphics.bpc.model import Bpc
+from skytemple_files.graphics.bpa.protocol import BpaProtocol
+from skytemple_files.graphics.bpc.protocol import BpcProtocol
 
 
 class MapBgStaticTileProvider(AbstractTileGraphicsProvider):
-    def __init__(self, bpc: Bpc, layer_number: int):
+    def __init__(self, bpc: BpcProtocol, layer_number: int):
         self.bpc = bpc
         self.layer_number = layer_number
 
@@ -35,7 +35,7 @@ class MapBgStaticTileProvider(AbstractTileGraphicsProvider):
 
 
 class MapBgAnimatedTileProvider(AbstractTileGraphicsProvider):
-    def __init__(self, bpa: Bpa):
+    def __init__(self, bpa: BpaProtocol):
         self.bpa = bpa
 
     def get_pil(self, palettes: List[List[int]], pal_idx: int):
