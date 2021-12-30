@@ -189,12 +189,12 @@ class PortraitController(AbstractController):
         add_dialog_png_filter(dialog)
 
         response = dialog.run()
-        fn = dialog.get_filename()
-        if '.' not in fn:
-            fn += '.png'
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
+            fn = dialog.get_filename()
+            if '.' not in fn:
+                fn += '.png'
             SpriteBotSheet.create(self.kao, self.item_id).save(fn)
 
     def on_spritebot_import_activate(self, *args):
