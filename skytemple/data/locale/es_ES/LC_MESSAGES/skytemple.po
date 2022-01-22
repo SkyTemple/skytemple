@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-01-22 14:42+0000\n"
-"PO-Revision-Date: 2022-01-22 14:44\n"
+"PO-Revision-Date: 2022-01-22 22:04\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -9059,7 +9059,7 @@ msgstr "Exportar código"
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:693
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:735
 msgid "Effect Library"
-msgstr ""
+msgstr "Librería de efectos"
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:725
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:737
@@ -9124,7 +9124,13 @@ msgid "Export and import effect code.\n"
 "If you import armips ASM code, an effect code library is available.\n\n"
 "You can use the ASM Editor tool to generate patch files.\n"
 "The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to import.\n"
-msgstr ""
+msgstr "Exportar e importar código de efectos.\n"
+"Solo se puede exportar código máquina en bruto. NO se desensambla.\n"
+"La importación acepta tanto el código ASM de armips como el código máquina binario en bruto.\n"
+"Por favor, ten en cuenta que SkyTemple no comprueba el código en bruto que intentas importar.\n"
+"Si importas código ASM de armips, una biblioteca de código de efectos estará disponible.\n\n"
+"Puedes utilizar la herramienta Editor de ASM para generar archivos de parche.\n"
+"El parche ASM debe generar un archivo 'code_out.bin', que SkyTemple intentará importar.\n"
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.py:212
 #: skytemple/skytemple/module/moves_items/controller/item_effects.py:218
