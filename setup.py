@@ -78,7 +78,7 @@ setup(
         'packaging'
     ],
     extras_require={
-        'discord':  ["pypresence >= 4.2.0"],
+        'discord':  ["pypresence >= 4.2.1"],
         'eventserver': ["skytemple-eventserver >= 1.0.0"]
     },
     classifiers=[
