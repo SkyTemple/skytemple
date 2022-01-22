@@ -10,3 +10,6 @@ else
   curl https://skytemple.org/build_deps/igraph-0.8.2-cp39-cp39-mingw_x86_64.whl -O
   curl https://skytemple.org/build_deps/armips.exe -O
 fi
+
+# Dummy python-igraph package to force not trying to install it (it has been renamed to igraph, see above.)
+curl https://skytemple.org/build_deps/python_igraph-99.0.0-py3-none-any.whl -O

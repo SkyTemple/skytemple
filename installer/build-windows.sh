@@ -9,6 +9,8 @@ export XDG_DATA_DIRS="${BUILD_ROOT}/${MINGW}/share"
 rm build -rf || true
 rm dist -rf || true
 
+# Dummy python-igraph package to force not trying to install it (it has been renamed to igraph.)
+pip3 install python_igraph*.whl
 pip3 install igraph-*-mingw*.whl
 pip3 install py_desmume-*-mingw*.whl
 pip3 install tilequant-*-mingw*.whl
