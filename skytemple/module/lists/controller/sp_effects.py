@@ -34,7 +34,7 @@ import sys
 import webbrowser
 from typing import TYPE_CHECKING, Optional, List
 
-from skytemple.core.ui_utils import URL_IRDKWIA_REPO_MOVE_EFFECTS
+from skytemple.core.ui_utils import REPO_MOVE_EFFECTS
 from skytemple_files.common.i18n_util import _, f
 
 from gi.repository import Gtk
@@ -204,7 +204,7 @@ class SPEffectsController(AbstractController):
 The export only exports the raw machine code. It is NOT disassembled.
 The import accepts both armips ASM code or the raw binary machine code.
 Please note, that SkyTemple does not check the raw code you try to import.
-If you import armips ASM code, irdkwia's effect code library is available.
+If you import armips ASM code, an effect code library is available.
 
 You can use the ASM Editor tool to generate patch files.
 The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to import.
@@ -214,8 +214,8 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
         md.run()
         md.destroy()
 
-    def on_btn_irdkwia_clicked(self, *args):
-        webbrowser.open_new_tab(URL_IRDKWIA_REPO_MOVE_EFFECTS)
+    def on_btn_repo_clicked(self, *args):
+        webbrowser.open_new_tab(REPO_MOVE_EFFECTS)
 
     def on_btn_asmeditor_clicked(self, *args):
         webbrowser.open_new_tab('https://asmeditor.skytemple.org/')

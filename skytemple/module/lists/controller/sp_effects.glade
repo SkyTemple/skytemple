@@ -664,11 +664,11 @@ ASM patch from the "ASM Patches" menu.</property>
                                 <property name="halign">center</property>
                                 <property name="spacing">5</property>
                                 <child>
-                                  <object class="GtkButton" id="btn_irdkwia">
+                                  <object class="GtkButton" id="btn_repo">
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
-                                    <signal name="clicked" handler="on_btn_irdkwia_clicked" swapped="no"/>
+                                    <signal name="clicked" handler="on_btn_repo_clicked" swapped="no"/>
                                     <child>
                                       <object class="GtkBox">
                                         <property name="visible">True</property>
@@ -678,7 +678,7 @@ ASM patch from the "ASM Patches" menu.</property>
                                           <object class="GtkLabel">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">irdkwia's Effect Library</property>
+                                            <property name="label" translatable="yes">Effect Library</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
