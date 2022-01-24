@@ -296,8 +296,8 @@ class ScriptModule(AbstractModule):
         if nameid == 0:
             return sp.get_value(StringType.GROUND_MAP_NAMES, 0), sp.get_index(StringType.GROUND_MAP_NAMES, 0)
         if nameid < 181:
-            return sp.get_value(StringType.DUNGEON_NAMES_SELECTION, nameid - 1), sp.get_index(StringType.DUNGEON_NAMES_SELECTION, nameid - 1)
-        return sp.get_value(StringType.GROUND_MAP_NAMES, nameid - 182), sp.get_index(StringType.GROUND_MAP_NAMES, nameid - 182)
+            return sp.get_value(StringType.DUNGEON_NAMES_SELECTION, nameid + 1), sp.get_index(StringType.DUNGEON_NAMES_SELECTION, nameid + 1)
+        return sp.get_value(StringType.GROUND_MAP_NAMES, nameid - 180), sp.get_index(StringType.GROUND_MAP_NAMES, nameid - 180)
 
     def get_dungeon_tilesets(self) -> List[GroundTilesetMapping]:
         config = self.project.get_rom_module().get_static_data()
