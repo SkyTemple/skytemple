@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from abc import ABC
-from typing import List
+from typing import List, Sequence
 
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_graphics_provider import AbstractTileGraphicsProvider
 from skytemple_files.graphics.bpa.protocol import BpaProtocol
@@ -27,7 +27,7 @@ class MapBgStaticTileProvider(AbstractTileGraphicsProvider):
         self.bpc = bpc
         self.layer_number = layer_number
 
-    def get_pil(self, palettes: List[List[int]], pal_idx: int):
+    def get_pil(self, palettes: Sequence[Sequence[int]], pal_idx: int):
         return self.bpc.tiles_to_pil(self.layer_number, palettes, 1, pal_idx)
 
     def count(self):
@@ -38,7 +38,7 @@ class MapBgAnimatedTileProvider(AbstractTileGraphicsProvider):
     def __init__(self, bpa: BpaProtocol):
         self.bpa = bpa
 
-    def get_pil(self, palettes: List[List[int]], pal_idx: int):
+    def get_pil(self, palettes: Sequence[Sequence[int]], pal_idx: int):
         return self.bpa.tiles_to_pil_separate(palettes[pal_idx], 1)
 
     def count(self):

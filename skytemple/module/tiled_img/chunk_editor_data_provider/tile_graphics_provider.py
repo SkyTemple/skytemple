@@ -15,14 +15,14 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Sequence
 
 
 class AbstractTileGraphicsProvider(ABC):
     """Provides tile graphics for the ChunkEditor."""
 
     @abstractmethod
-    def get_pil(self, palettes: List[List[int]], pal_idx: int):
+    def get_pil(self, palettes: Sequence[Sequence[int]], pal_idx: int):
         """Returns an image with all tiles on it (1 tile per row).
         The tiles are colored in the palette with index pal_idx."""
 
