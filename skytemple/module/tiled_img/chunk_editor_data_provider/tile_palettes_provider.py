@@ -15,14 +15,14 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Sequence
 
 
 class AbstractTilePalettesProvider(ABC):
     """Provides tile palettes for the ChunkEditor."""
 
     @abstractmethod
-    def get(self) -> List[List[int]]:
+    def get(self) -> Sequence[Sequence[int]]:
         """Returns the palettes as a list of RGB color streams."""
 
     @abstractmethod

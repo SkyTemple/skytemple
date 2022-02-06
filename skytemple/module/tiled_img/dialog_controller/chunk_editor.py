@@ -28,6 +28,7 @@ from skytemple.core.ui_utils import APP, make_builder
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_graphics_provider import AbstractTileGraphicsProvider
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import AbstractTilePalettesProvider
 from skytemple.module.tiled_img.drawer_tiled import DrawerTiledCellRenderer, DrawerTiled
+from skytemple_files.common.protocol import TilemapEntryProtocol
 from skytemple_files.common.tiled_image import TilemapEntry
 from skytemple_files.common.i18n_util import f, _
 bpa_views = [
@@ -39,7 +40,7 @@ TILE_DIM = 8
 
 class ChunkEditorController:
     def __init__(self,
-                 parent_window, incoming_mappings: List[TilemapEntry],
+                 parent_window, incoming_mappings: List[TilemapEntryProtocol],
                  tile_graphics: AbstractTileGraphicsProvider,
                  palettes: AbstractTilePalettesProvider,
                  pal_ani_durations: int,

@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from abc import ABC
-from typing import List
+from typing import List, Sequence
 
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import AbstractTilePalettesProvider
 from skytemple_files.graphics.bpl.protocol import BplProtocol
@@ -25,7 +25,7 @@ class MapBgPaletteProvider(AbstractTilePalettesProvider):
     def __init__(self, bpl: BplProtocol):
         self.bpl = bpl
 
-    def get(self) -> List[List[int]]:
+    def get(self) -> Sequence[Sequence[int]]:
         return self.bpl.palettes
 
     def is_palette_affected_by_animation(self, pal_idx) -> bool:
