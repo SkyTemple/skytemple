@@ -38,12 +38,13 @@ from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
 from skytemple_files.dungeon_data.fixed_bin.model import FixedBin
 from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
-from skytemple_files.graphics.bg_list_dat.model import BgList, BgListEntry
-from skytemple_files.graphics.bma.model import Bma
-from skytemple_files.graphics.bpa.model import Bpa
-from skytemple_files.graphics.bpc.model import Bpc
-from skytemple_files.graphics.bpl.model import Bpl
+from skytemple_files.graphics.bg_list_dat.protocol import BgListProtocol, BgListEntryProtocol
+from skytemple_files.graphics.bma.protocol import BmaProtocol
+from skytemple_files.graphics.bpa.protocol import BpaProtocol
+from skytemple_files.graphics.bpc.protocol import BpcProtocol
+from skytemple_files.graphics.bpl.protocol import BplProtocol
 from skytemple_files.common.i18n_util import f, _
+from skytemple_files.graphics.bg_list_dat.protocol import BgListProtocol
 from skytemple_files.hardcoded.dungeons import DungeonDefinition, HardcodedDungeons
 from skytemple_files.hardcoded.ground_dungeon_tilesets import GroundTilesetMapping, HardcodedGroundDungeonTilesets
 
@@ -64,7 +65,7 @@ class MapBgModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         """Loads the list of backgrounds for the ROM."""
         self.project = rom_project
-        self.bgs: BgList = rom_project.open_file_in_rom(MAP_BG_LIST, FileType.BG_LIST_DAT)
+        self.bgs: BgListProtocol = rom_project.open_file_in_rom(MAP_BG_LIST, FileType.BG_LIST_DAT)
 
         self._tree_model: Optional[Gtk.TreeModel] = None
         self._tree_level_iter: List[Gtk.TreeIter] = []
@@ -129,21 +130,21 @@ class MapBgModule(AbstractModule):
     def get_level_entry(self, item_id):
         return self.bgs.level[item_id]
 
-    def get_bma(self, item_id) -> Bma:
+    def get_bma(self, item_id) -> BmaProtocol:
         l = self.bgs.level[item_id]
         return self.project.open_file_in_rom(f'{MAP_BG_PATH}{l.bma_name.lower()}.bma', FileType.BMA)
 
-    def get_bpc(self, item_id) -> Bpc:
+    def get_bpc(self, item_id) -> BpcProtocol:
         l = self.bgs.level[item_id]
         return self.project.open_file_in_rom(f'{MAP_BG_PATH}{l.bpc_name.lower()}.bpc', FileType.BPC)
 
-    def get_bpl(self, item_id) -> Bpl:
+    def get_bpl(self, item_id) -> BplProtocol:
         l = self.bgs.level[item_id]
         return self.project.open_file_in_rom(f'{MAP_BG_PATH}{l.bpl_name.lower()}.bpl', FileType.BPL)
 
-    def get_bpas(self, item_id) -> List[Optional[Bpa]]:
+    def get_bpas(self, item_id) -> List[Optional[BpaProtocol]]:
         l = self.bgs.level[item_id]
-        bpas: List[Optional[Bpa]] = []
+        bpas: List[Optional[BpaProtocol]] = []
         for bpa in l.bpa_names:
             if bpa is None:
                 bpas.append(None)
@@ -154,7 +155,7 @@ class MapBgModule(AbstractModule):
     def add_map(self, map_name):
         item_id = len(self.bgs.level)
         self.bgs.level.append(
-            BgListEntry(map_name, map_name, map_name, [None] * 8)
+            FileType.BG_LIST_DAT.get_entry_model_cls()(map_name, map_name, map_name, [None] * 8)
         )
         parent = self._other_node
         if map_name[0] in self._sub_nodes.keys():

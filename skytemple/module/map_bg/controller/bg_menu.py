@@ -28,12 +28,13 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.module.map_bg.chunk_editor_data_provider.tile_graphics_provider import MapBgStaticTileProvider, \
     MapBgAnimatedTileProvider
 from skytemple.module.map_bg.chunk_editor_data_provider.tile_palettes_provider import MapBgPaletteProvider
-from skytemple_files.common.tiled_image import TilemapEntry
+from skytemple_files.common.protocol import TilemapEntryProtocol
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import add_extension_if_missing
-from skytemple_files.graphics.bg_list_dat.model import BPA_EXT, DIR
-from skytemple_files.graphics.bpa.model import BpaFrameInfo, Bpa
-from skytemple_files.graphics.bpc.model import Bpc
+from skytemple_files.graphics.bg_list_dat import BPA_EXT, DIR
+from skytemple_files.graphics.bpa.protocol import BpaProtocol
+from skytemple_files.graphics.bpc.protocol import BpcProtocol
+from skytemple_files.graphics.bpl.protocol import BplProtocol
 from skytemple_files.common.i18n_util import _
 
 from PIL import Image
@@ -47,7 +48,6 @@ from skytemple.module.tiled_img.dialog_controller.chunk_editor import ChunkEdito
 from skytemple.module.map_bg.controller.bg_menu_dialogs.map_width_height import on_map_width_chunks_changed, \
     on_map_height_chunks_changed, on_map_wh_link_state_set
 from skytemple.module.tiled_img.dialog_controller.palette_editor import PaletteEditorController
-from skytemple_files.graphics.bpl.model import BplAnimationSpec, Bpl
 
 if TYPE_CHECKING:
     from skytemple.module.map_bg.controller.bg import BgController
@@ -473,7 +473,7 @@ class BgMenuController:
                         except ValueError:
                             number_of_frames = 0
                             had_errors = True
-                        new_frame_info.append(BpaFrameInfo(number_of_frames, 0))
+                        new_frame_info.append(FileType.BPA.get_frame_info_model_cls()(number_of_frames, 0))
                     bpa.frame_info = new_frame_info
 
             if had_errors:
@@ -669,9 +669,8 @@ class BgMenuController:
                     except ValueError:
                         number_of_frames = 0
                         had_errors = True
-                    self.parent.bpl.animation_specs.append(BplAnimationSpec(
-                        duration_per_frame=duration_per_frame,
-                        number_of_frames=number_of_frames
+                    self.parent.bpl.animation_specs.append(FileType.BPL.get_animation_spec_model_cls()(
+                        duration_per_frame, number_of_frames
                     ))
                 # Add at least one palette if palette animation was just enabled
                 if self.parent.bpl.animation_palette is None or self.parent.bpl.animation_palette == []:
@@ -860,9 +859,9 @@ class BgMenuController:
         return f'{self.parent.module.bgs.level[self.parent.item_id].bma_name}_bpa{bpa_number}_{frame_number}.png'
 
     def _get_chunk_editor_provider(
-        self, bpc_layer_to_use, bpc: Bpc, bpl: Bpl, bpas: List[Optional[Bpa]]
+        self, bpc_layer_to_use, bpc: BpcProtocol, bpl: BplProtocol, bpas: List[Optional[BpaProtocol]]
     ) -> Tuple[
-        List[TilemapEntry], MapBgStaticTileProvider, List[Optional[MapBgAnimatedTileProvider]], MapBgPaletteProvider
+        List[TilemapEntryProtocol], MapBgStaticTileProvider, List[Optional[MapBgAnimatedTileProvider]], MapBgPaletteProvider
     ]:
         palettes = MapBgPaletteProvider(bpl)
         static_tiles = MapBgStaticTileProvider(bpc, bpc_layer_to_use)

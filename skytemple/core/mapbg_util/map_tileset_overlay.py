@@ -14,13 +14,13 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional, List, Iterable
+from typing import Optional, List, Iterable, Sequence
 
 import cairo
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor
-from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
+from skytemple_files.graphics.bpc import BPC_TILE_DIM
 from skytemple_files.graphics.dma.dma_drawer import DmaDrawer
 from skytemple_files.graphics.dma.model import Dma
 from skytemple_files.graphics.dpc.model import Dpc
@@ -59,7 +59,7 @@ class MapTilesetOverlay:
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
         ctx.paint()
 
-    def create(self, bma_chunks: List[int], bma_chunk_width: int, bma_chunk_height: int) -> cairo.Surface:
+    def create(self, bma_chunks: Sequence[int], bma_chunk_width: int, bma_chunk_height: int) -> cairo.Surface:
         surface = cairo.ImageSurface(cairo.FORMAT_RGB24,
                                      bma_chunk_width * BPC_TILE_DIM * 3, bma_chunk_height * BPC_TILE_DIM * 3)
         self.draw_full(cairo.Context(surface), bma_chunks, bma_chunk_width, bma_chunk_height)

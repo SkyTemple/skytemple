@@ -30,7 +30,7 @@ from skytemple.module.tiled_img.animation_context import AnimationContext
 from skytemple_files.common.tiled_image import TilemapEntry
 import cairo
 
-from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
+from skytemple_files.graphics.bpc import BPC_TILE_DIM
 from skytemple_files.common.i18n_util import f, _
 
 FPS = 60

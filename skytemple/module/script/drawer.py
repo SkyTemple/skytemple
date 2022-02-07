@@ -25,7 +25,7 @@ from skytemple.core.mapbg_util.drawer_plugin.grid import GridDrawerPlugin
 from skytemple.core.mapbg_util.drawer_plugin.selection import SelectionDrawerPlugin
 from skytemple.core.sprite_provider import SpriteProvider
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptDirection
-from skytemple_files.graphics.bpc.model import BPC_TILE_DIM
+from skytemple_files.graphics.bpc import BPC_TILE_DIM
 from skytemple_files.script.ssa_sse_sss.actor import SsaActor
 from skytemple_files.script.ssa_sse_sss.event import SsaEvent
 from skytemple_files.script.ssa_sse_sss.model import Ssa
