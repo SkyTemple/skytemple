@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-02-07 05:14+0000\n"
-"PO-Revision-Date: 2022-02-07 05:23\n"
+"POT-Creation-Date: 2022-02-07 07:31+0000\n"
+"PO-Revision-Date: 2022-02-07 07:32\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -3063,6 +3063,7 @@ msgid "Can not import map background: Height of both images must match the curre
 msgstr ""
 
 #: skytemple-files/skytemple_files/graphics/bpa/_model.py:161
+#: skytemple-rust/src/st_bpa.rs:189
 msgid "The dimensions of all images must be the same."
 msgstr ""
 
@@ -4093,6 +4094,28 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/script/ssb/writer.py:142
 msgid "Could not compile script: All languages must have the same amount of strings."
+msgstr ""
+
+#: skytemple-rust/src/image/tiled.rs:195
+msgid "An image selected to import is too complex. It has too many unique tiles ({}, max allowed are 1024).\n"
+"Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
+msgstr ""
+
+#: skytemple-rust/src/st_bma.rs:371
+msgid "Can not import map background: Width of both images must match the current map width: {}px"
+msgstr ""
+
+#: skytemple-rust/src/st_bma.rs:379
+msgid "Can not import map background: Height of both images must match the current map width: {}px"
+msgstr ""
+
+#: skytemple-rust/src/st_bpc.rs:391
+msgid "new tilemapping for this chunk must contain {} tiles."
+msgstr ""
+
+#: skytemple-rust/src/st_kao.rs:91
+msgid "This portrait does not compress well, the result size is greater than 800 bytes ({} bytes total).\n"
+" If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:175
