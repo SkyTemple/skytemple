@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-01-22 14:42+0000\n"
-"PO-Revision-Date: 2022-01-22 14:44\n"
+"POT-Creation-Date: 2022-02-07 05:14+0000\n"
+"PO-Revision-Date: 2022-02-07 05:23\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1435,62 +1435,62 @@ msgstr "Oben links"
 msgid "Down Left"
 msgstr "Unten links"
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:39
+#: skytemple-files/skytemple_files/common/tiled_image.py:40
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
 msgstr "Kachelzuordnung kann nicht verarbeitet werden. Die referenzierte Kachel ({idx}) ist größer als die maximale Kachelanzahl ({0x3FF}). Falls du ein Bild importierst, versuche bitte, die Anzahl einmaliger Kacheln zu reduzieren."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:97
+#: skytemple-files/skytemple_files/common/tiled_image.py:101
 msgid "Only 4bpp and 8bpp images are supported."
 msgstr "Nur 4bpp und 8bpp-Bilder werden unterstützt."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:202
+#: skytemple-files/skytemple_files/common/tiled_image.py:206
 msgid "Can not convert PIL image to PMD tiled image: Must be indexed image (=using a palette)"
 msgstr "PIL Bild kann nicht in ein gekacheltes PMD Bild umgewandelt werden: Es muss ein indiziertes Bild sein (=eine Palette nutzen)"
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:206
+#: skytemple-files/skytemple_files/common/tiled_image.py:210
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Palette must contain max {max_len_pal} RGB colors and be divisible by {single_palette_size}."
 msgstr "PIL Bild kann nicht in ein gekacheltes PMD Bild umgewandelt werden: Palette darf maximal {max_len_pal} RGB Farben beinhalten und muss durch {single_palette_size} teilbar sein."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:210
+#: skytemple-files/skytemple_files/common/tiled_image.py:214
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Image dimensions must be {img_width}x{img_height}px."
 msgstr "PIL-Bild kann nicht in gekacheltes PMD-Bild umgewandelt werden: Bildgröße muss {img_width}x{img_height}px sein."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:270
-#: skytemple-files/skytemple_files/common/tiled_image.py:278
+#: skytemple-files/skytemple_files/common/tiled_image.py:274
+#: skytemple-files/skytemple_files/common/tiled_image.py:282
 msgid "Can not convert PIL image to PMD tiled image: The color {pix} (from palette {math.floor(pix / single_palette_size)}) used by pixel {x+(idx % 2)}x{y} in tile {tile_id} ({tile_x}x{tile_y} is out of range. Expected are colors from palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 msgstr "PIL Bild kann nicht in ein gekacheltes PMD Bild umgewandelt werden: Die Farbe {pix} (aus der Palette {math.floor(pix / single_palette_size)}), benutzt von Pixel {x+(idx % 2)}x{y} in Kachel {tile_id} ({tile_x}x{tile_y} ist außerhalb der erlaubten Palette. Farben werden erwartet aus der Palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:318
+#: skytemple-files/skytemple_files/common/tiled_image.py:322
 #, python-brace-format
 msgid "An image selected to import is too complex. It has too many unique tiles ({len_final_tiles}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr "Ein Bild, das importiert werden sollte, ist zu komplex. Es hat zu viele einzigartige Kacheln ({len_final_tiles}). Maximal sind 1024 erlaubt.\n"
 "Versuche, weniger einzigartige Kacheln im Bild zu haben. Einzigartige Kacheln sind 8x8 Bereiche im Bild, die nirgendwo sonst im Bild vorkommen (inklusive gedrehter oder gespiegelter Variationen oder mit einer anderen Palette)."
 
-#: skytemple-files/skytemple_files/common/util.py:322
+#: skytemple-files/skytemple_files/common/util.py:324
 msgid "This ROM is not supported by SkyTemple."
 msgstr "Diese ROM wird nicht unterstützt von SkyTemple."
 
-#: skytemple-files/skytemple_files/common/util.py:348
-#: skytemple-files/skytemple_files/common/util.py:370
+#: skytemple-files/skytemple_files/common/util.py:350
+#: skytemple-files/skytemple_files/common/util.py:372
 #, python-brace-format
 msgid "Binary {binary.filepath} not found."
 msgstr "Binärdatei {binary.filepath} wurde nicht gefunden."
 
-#: skytemple-files/skytemple_files/common/util.py:380
-#: skytemple-files/skytemple_files/common/util.py:411
+#: skytemple-files/skytemple_files/common/util.py:382
+#: skytemple-files/skytemple_files/common/util.py:413
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr "Ordner {dir_name} existiert nicht."
 
-#: skytemple-files/skytemple_files/common/util.py:383
+#: skytemple-files/skytemple_files/common/util.py:385
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
 msgstr "Datei {file_name} existiert in diesem Ordner bereits."
 
-#: skytemple-files/skytemple_files/common/util.py:406
+#: skytemple-files/skytemple_files/common/util.py:408
 #, python-brace-format
 msgid "Folder {path} already exists."
 msgstr "Ordner {path} existiert bereits."
@@ -1530,13 +1530,13 @@ msgstr "Mitte"
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:518
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:440
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:449
-#: skytemple/skytemple/module/map_bg/controller/bg.py:663
-#: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:204
+#: skytemple/skytemple/module/map_bg/controller/bg.py:664
+#: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:203
 #: skytemple/skytemple/module/script/controller/main.py:243
 #: skytemple/skytemple/module/script/controller/main.py:244
-#: skytemple/skytemple/module/script/controller/ssa.py:1249
-#: skytemple/skytemple/module/script/controller/ssa.py:1363
-#: skytemple/skytemple/module/script/controller/ssa.py:1532
+#: skytemple/skytemple/module/script/controller/ssa.py:1248
+#: skytemple/skytemple/module/script/controller/ssa.py:1362
+#: skytemple/skytemple/module/script/controller/ssa.py:1531
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:52
 msgid "None"
 msgstr "Keine(s)"
@@ -1641,7 +1641,7 @@ msgstr "Pokémon"
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:311
 #: skytemple/skytemple/module/script/controller/main.glade:353
 #: skytemple/skytemple/module/script/controller/ssa.glade:2078
-#: skytemple/skytemple/module/script/controller/ssa.py:1320
+#: skytemple/skytemple/module/script/controller/ssa.py:1319
 msgid "Type"
 msgstr "Typ"
 
@@ -3056,17 +3056,17 @@ msgstr "Unbenutzte Ebenen"
 msgid "Has {len(self.floors_in_mappa_not_referenced)} extra floors in it's floor list, which are not assigned to any dungeon."
 msgstr "Hat {len(self.floors_in_mappa_not_referenced)} zusätzliche Ebenen in seiner Ebenen-Liste, welche keinem Dungeon zugeordnet sind."
 
-#: skytemple-files/skytemple_files/graphics/bma/model.py:450
+#: skytemple-files/skytemple_files/graphics/bma/_model.py:439
 #, python-brace-format
 msgid "Can not import map background: Width of both images must match the current map width: {expected_width}px"
 msgstr "Kartenhintergrund kann nicht importiert werden: Breite von beiden Bildern muss mit der aktuellen Größe übereinstimmen: {expected_width}px"
 
-#: skytemple-files/skytemple_files/graphics/bma/model.py:454
+#: skytemple-files/skytemple_files/graphics/bma/_model.py:443
 #, python-brace-format
 msgid "Can not import map background: Height of both images must match the current map height: {expected_height}px"
 msgstr "Kartenhintergrund kann nicht importiert werden: Höhe von beiden Bildern muss mit der aktuellen Kartenhöhe übereinstimmen: {expected_height}px"
 
-#: skytemple-files/skytemple_files/graphics/bpa/model.py:165
+#: skytemple-files/skytemple_files/graphics/bpa/_model.py:161
 msgid "The dimensions of all images must be the same."
 msgstr "Die Maße aller Bilder müssen übereinstimmen."
 
@@ -3079,12 +3079,12 @@ msgstr "PIL-Bild kann nicht in CHR-Datei konvertiert werden: Bild muss indiziert
 msgid "Cannot convert PIL image to CHR: width and height must be a multiple of {CHR_TILE_WIDTH}"
 msgstr "Kann PIL-Bild nicht in CHR-Datei umwandeln: Höhe und Breite müssen ein Vielfaches von {CHR_TILE_WIDTH} sein"
 
-#: skytemple-files/skytemple_files/graphics/dbg/model.py:82
+#: skytemple-files/skytemple_files/graphics/dbg/model.py:83
 #, python-brace-format
 msgid "Can not import map background: Width of image must match the expected width: {expected_width}px"
 msgstr "Kartenhintergrund kann nicht importiert werden: Breite des Bildes muss mit der erwarteten Breite übereinstimmen: {expected_width}px"
 
-#: skytemple-files/skytemple_files/graphics/dbg/model.py:85
+#: skytemple-files/skytemple_files/graphics/dbg/model.py:86
 #, python-brace-format
 msgid "Can not import map background: Height of image must match the expected height: {expected_height}px"
 msgstr "Kartenhintergrund kann nicht importiert werden: Höhe des Bildes muss mit der erwarteten Höhe übereinstimmen: {expected_height}px"
@@ -3123,17 +3123,17 @@ msgstr "Zeichen {e.char} in der Tabelle {e.table} ist mehrfach definiert in eine
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
 msgstr "Zeichen {e.char} in der Tabelle {e.table} ist mehrfach definiert in einer Schrift-Datei!"
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:246
+#: skytemple-files/skytemple_files/graphics/kao/_model.py:237
 #, python-brace-format
 msgid "Could not load KAO at {old_index},{old_subindex}: {ex}"
 msgstr "Konnte KAO bei Index {old_index},{old_subindex} nicht laden: {ex}"
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:304
+#: skytemple-files/skytemple_files/graphics/kao/_model.py:295
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
 msgstr "Kann PIL Bild nicht in KAO umwandeln: Bilddimensionen müssen {img_dim}x{img_dim}px. sein."
 
-#: skytemple-files/skytemple_files/graphics/kao/model.py:400
+#: skytemple-files/skytemple_files/graphics/kao/_model.py:391
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr "Dieses Portrait lässt sich nicht gut komprimieren, die Größe nach dem Komprimieren ist größer als 800 Bytes ({len(new_img_compressed)} Bytes insgesamt).\n"
@@ -3749,7 +3749,7 @@ msgstr "Hilfsmittel"
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:26
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5144
-#: skytemple/skytemple/module/map_bg/module.py:105
+#: skytemple/skytemple/module/map_bg/module.py:106
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2091
 #: skytemple/skytemple/module/script/module.py:127
 msgid "Others"
@@ -4185,9 +4185,9 @@ msgstr "Diese Datei ist noch in den RAM geladen! Aktuell kannst du mit dem alten
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:315
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:328
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:484
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:689
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:707
-#: skytemple/skytemple/module/script/controller/ssa.py:528
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:688
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:706
+#: skytemple/skytemple/module/script/controller/ssa.py:527
 msgid "Warning!"
 msgstr "Warnung!"
 
@@ -4267,8 +4267,8 @@ msgstr "ID"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:86
 #: skytemple/skytemple/module/script/controller/ssa.glade:1712
 #: skytemple/skytemple/module/script/controller/ssa.glade:1864
-#: skytemple/skytemple/module/script/controller/ssa.py:1302
-#: skytemple/skytemple/module/script/controller/ssa.py:1311
+#: skytemple/skytemple/module/script/controller/ssa.py:1301
+#: skytemple/skytemple/module/script/controller/ssa.py:1310
 msgid "Kind"
 msgstr "Art"
 
@@ -4277,10 +4277,10 @@ msgstr "Art"
 #: skytemple/skytemple/module/script/controller/ssa.glade:1877
 #: skytemple/skytemple/module/script/controller/ssa.glade:2091
 #: skytemple/skytemple/module/script/controller/ssa.glade:2280
-#: skytemple/skytemple/module/script/controller/ssa.py:1301
-#: skytemple/skytemple/module/script/controller/ssa.py:1310
-#: skytemple/skytemple/module/script/controller/ssa.py:1319
-#: skytemple/skytemple/module/script/controller/ssa.py:1327
+#: skytemple/skytemple/module/script/controller/ssa.py:1300
+#: skytemple/skytemple/module/script/controller/ssa.py:1309
+#: skytemple/skytemple/module/script/controller/ssa.py:1318
+#: skytemple/skytemple/module/script/controller/ssa.py:1326
 msgid "Sector"
 msgstr "Sektor"
 
@@ -4361,9 +4361,9 @@ msgstr "Positionsmarker"
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:493
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:892
 #: skytemple/skytemple/module/patch/controller/patch_main.glade:179
-#: skytemple/skytemple/module/script/controller/ssa.py:1273
-#: skytemple/skytemple/module/script/controller/ssa.py:1285
-#: skytemple/skytemple/module/script/controller/ssa.py:1421
+#: skytemple/skytemple/module/script/controller/ssa.py:1272
+#: skytemple/skytemple/module/script/controller/ssa.py:1284
+#: skytemple/skytemple/module/script/controller/ssa.py:1420
 msgid "Name"
 msgstr "Name"
 
@@ -4545,7 +4545,7 @@ msgstr "Löschen"
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:43
 #: skytemple/skytemple/module/script/controller/main.py:191
 #: skytemple/skytemple/module/script/controller/map.py:160
-#: skytemple/skytemple/module/script/controller/ssa.py:1622
+#: skytemple/skytemple/module/script/controller/ssa.py:1621
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -5068,7 +5068,7 @@ msgid "Unk1"
 msgstr "Unb1"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2289
-#: skytemple/skytemple/module/script/controller/ssa.py:1263
+#: skytemple/skytemple/module/script/controller/ssa.py:1262
 msgid "Unk2"
 msgstr "Unb2"
 
@@ -5619,7 +5619,7 @@ msgstr "Eine Szene für dieses Skript wurde nicht gefunden."
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:144
 #: skytemple/skytemple/core/ssb_debugger/context.py:158
-#: skytemple/skytemple/module/map_bg/controller/bg.py:390
+#: skytemple/skytemple/module/map_bg/controller/bg.py:391
 msgid "No Scenes Found"
 msgstr "Keine Szenen gefunden"
 
@@ -6668,7 +6668,7 @@ msgstr "2a. Exportiere in Datei"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:822
 #: skytemple/skytemple/module/monster/controller/monster.glade:468
-#: skytemple/skytemple/module/script/controller/ssa.py:1419
+#: skytemple/skytemple/module/script/controller/ssa.py:1418
 msgid "S"
 msgstr "S"
 
@@ -7450,7 +7450,7 @@ msgid "Export PNG of map..."
 msgstr "PNG der Karte exportieren..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:128
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:737
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:736
 msgid "Export PNG of chunks..."
 msgstr "PNG der Blöcke exportieren..."
 
@@ -7462,8 +7462,8 @@ msgstr "Fehler beim Exportieren des Tilesets."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:174
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:245
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:776
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:838
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:775
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:837
 msgid "An image must be selected."
 msgstr "Ein Bild muss ausgewählt sein."
 
@@ -7474,13 +7474,13 @@ msgid "Error importing the tileset."
 msgstr "Fehler beim Importieren des Tilesets."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:202
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:802
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:801
 msgid "Export PNG of tiles..."
 msgstr "PNG von Kacheln exportieren..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:313
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:482
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:687
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:686
 msgid "Some values were invalid (not a number). They were replaced with 0."
 msgstr "Einige Werte waren ungültig (keine Zahl). Sie wurden durch 0 ersetzt."
 
@@ -8348,7 +8348,7 @@ msgstr "<Nicht verfügbar>\n\n"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:654
-#: skytemple/skytemple/module/script/controller/ssa.py:1264
+#: skytemple/skytemple/module/script/controller/ssa.py:1263
 msgid "Unk3"
 msgstr "Unb3"
 
@@ -8370,7 +8370,7 @@ msgstr "Durch das ändern des \"Pokémon\"-Eintrags für diese Akteure änderst 
 
 #: skytemple/skytemple/module/lists/controller/actor_list.py:64
 #: skytemple/skytemple/module/lists/controller/actor_list.py:75
-#: skytemple/skytemple/module/script/controller/ssa.py:718
+#: skytemple/skytemple/module/script/controller/ssa.py:717
 msgid "Not implemented."
 msgstr "Nicht implementiert."
 
@@ -9368,7 +9368,7 @@ msgstr "Menü-Liste"
 msgid "Special Episode PCs"
 msgstr "Protagonisten in Bonusepisoden"
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:49
+#: skytemple/skytemple/module/map_bg/controller/bg.py:50
 msgid "- The image consists of 8x8 tiles.\n"
 "- The image is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
@@ -9395,7 +9395,7 @@ msgstr "- Das Bild muss aus 8x8 Kacheln bestehen.\n"
 "  (=nicht doppelt vorhanden, auch nicht gedreht oder gespielt).\n\n"
 "Animierte Kacheln werden nicht importiert."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:63
+#: skytemple/skytemple/module/map_bg/controller/bg.py:64
 msgid "- The image consists of 8x8 tiles.\n"
 "- The image is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
@@ -9446,7 +9446,7 @@ msgstr "- Das Bild muss aus 8x8 Kacheln bestehen.\n"
 "Animierte Kacheln und Palettenanimationen werden nicht geändert.\n\n"
 "Animierte Kacheln werden nicht importiert.\n"
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:92
+#: skytemple/skytemple/module/map_bg/controller/bg.py:93
 msgid "- The image is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
 "- Each 8x8 tile in the image MUST only use colors from\n"
@@ -9484,45 +9484,45 @@ msgstr "- Das Bild muss ein indiziertes PNG mit 256 Farben sein.\n"
 "Da keine animierten Kacheln importiert werden, müssen sie\n"
 "nach dem Import neu zugeordnet werden."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:183
+#: skytemple/skytemple/module/map_bg/controller/bg.py:184
 msgid "This map background shared some asset files with other map backgrounds.\n"
 "SkyTemple can't edit shared files, so those assets were copied."
 msgstr "Dieser Kartenhintergrund teilte einige Asset-Dateien mit anderen Kartenhintergründen.\n"
 "SkyTemple kann keine geteilten Dateien bearbeiten, daher wurden diese Assets kopiert."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:187
+#: skytemple/skytemple/module/map_bg/controller/bg.py:188
 msgid "SkyTemple - Notice"
 msgstr "SkyTemple - Hinweis"
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:388
+#: skytemple/skytemple/module/map_bg/controller/bg.py:389
 msgid "A script map with the same name as this background does not exist."
 msgstr "Eine Skriptkarte mit dem gleichen Namen wie dieser Hintergrund existiert nicht."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:694
+#: skytemple/skytemple/module/map_bg/controller/bg.py:695
 msgid "This map only has one layer.\n"
 "You can add a second layer at Map > Settings."
 msgstr "Diese Karte hat nur eine -Ebene.\n"
 "Du kannst eine zweite Ebene unter Karte > Einstellungen hinzufügen."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:715
+#: skytemple/skytemple/module/map_bg/controller/bg.py:716
 msgid "This map has no collision.\n"
 "You can add collision at Map > Settings."
 msgstr "Diese Karte hat zweite Kollisionsebene.\n"
 "Du kannst unter Karte > Einstellungen eine Kollisionsebene hinzufügen."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:724
+#: skytemple/skytemple/module/map_bg/controller/bg.py:725
 msgid "This map has no second collision layer.\n"
 "You can add a second collision layer at Map > Settings."
 msgstr "Diese Karte hat keine zweite Kollisionsebene.\n"
 "Du kannst unter Karte > Einstellungen eine zweite Kollisionsebene hinzufügen."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:744
+#: skytemple/skytemple/module/map_bg/controller/bg.py:745
 msgid "This map has no data layer.\n"
 "You can add a data layer at Map > Settings."
 msgstr "Diese Karte hat keine Daten-Ebene.\n"
 "Du kannst eine Daten-Ebene unter Karte > Einstellungen hinzufügen."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:878
+#: skytemple/skytemple/module/map_bg/controller/bg.py:879
 msgid "Map backgrounds can be used as primary or secondary.\n"
 "When used as primary, the background can have up to 14 palettes, using slots from 0 to 13.\n"
 "When used as secondary, the background can only have 1 palette, using slot 14, and every palette value will have a new value of (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
@@ -9534,7 +9534,7 @@ msgstr "Kartenhintergründe können als \"primär\" oder \"sekundär\" verwendet
 "Es ist immer noch möglich, Palettenwerte über diesen Grenzen zu verwenden, aber nur in Fällen, in denen der Hintergrund auf eine Palette aus dem anderen geladenen Hintergrund verweist.\n"
 "Hinweis: Im Originalspiel wird fast jeder Hintergrund als primär verwendet, wobei die Ausnahmen hauptsächlich die Wetter-Hintergründe (W) sind.\n"
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:883
+#: skytemple/skytemple/module/map_bg/controller/bg.py:884
 msgid "Background Palettes"
 msgstr "Hintergrund-Paletten"
 
@@ -9587,11 +9587,11 @@ msgstr "Die animierten Kacheln wurden erfolgreich importiert. Quelldateien: "
 msgid "Error during BPA import"
 msgstr "Fehler beim BPA-Import"
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:706
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:705
 msgid "Palette Animation is not enabled."
 msgstr "Palettenanimation ist nicht aktiviert."
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:856
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:855
 msgid "This map has no second layer."
 msgstr "Diese Karte hat keine zweite Ebene."
 
@@ -10216,50 +10216,50 @@ msgstr "Dies wird die Kacheln der gewählten Ebene\n"
 "Beachte bitte, dass du das Bild eventuell umwandeln musst, \n"
 "bevor du es importieren kannst. Siehe die \"Format-Details\"."
 
-#: skytemple/skytemple/module/map_bg/module.py:79
+#: skytemple/skytemple/module/map_bg/module.py:80
 #: skytemple/skytemple/module/script/module.py:104
 msgid "S - System"
 msgstr "S - System"
 
-#: skytemple/skytemple/module/map_bg/module.py:82
+#: skytemple/skytemple/module/map_bg/module.py:83
 #: skytemple/skytemple/module/script/module.py:107
 msgid "T - Town"
 msgstr "T - Stadt"
 
-#: skytemple/skytemple/module/map_bg/module.py:85
+#: skytemple/skytemple/module/map_bg/module.py:86
 #: skytemple/skytemple/module/script/module.py:110
 msgid "D - Dungeon"
 msgstr "D - Dungeon"
 
-#: skytemple/skytemple/module/map_bg/module.py:88
+#: skytemple/skytemple/module/map_bg/module.py:89
 #: skytemple/skytemple/module/script/module.py:113
 msgid "G - Guild"
 msgstr "G - Gilde"
 
-#: skytemple/skytemple/module/map_bg/module.py:91
+#: skytemple/skytemple/module/map_bg/module.py:92
 #: skytemple/skytemple/module/script/module.py:116
 msgid "H - Habitat"
 msgstr "H - Habitat"
 
-#: skytemple/skytemple/module/map_bg/module.py:94
+#: skytemple/skytemple/module/map_bg/module.py:95
 #: skytemple/skytemple/module/script/module.py:119
 msgid "P - Places"
 msgstr "P - Plätze"
 
-#: skytemple/skytemple/module/map_bg/module.py:97
+#: skytemple/skytemple/module/map_bg/module.py:98
 #: skytemple/skytemple/module/script/module.py:122
 msgid "V - Visual"
 msgstr "V - Visuell"
 
-#: skytemple/skytemple/module/map_bg/module.py:100
+#: skytemple/skytemple/module/map_bg/module.py:101
 msgid "W - Weather"
 msgstr "W - Wetter"
 
-#: skytemple/skytemple/module/map_bg/module.py:211
+#: skytemple/skytemple/module/map_bg/module.py:212
 msgid "Error adding the logo."
 msgstr "Fehler beim Hinzufügen des Logos."
 
-#: skytemple/skytemple/module/map_bg/module.py:216
+#: skytemple/skytemple/module/map_bg/module.py:217
 msgid "Logo added successfully. Thank you!"
 msgstr "Das Logo wurde erfolgreich hinzugefügt. Vielen Dank!"
 
@@ -12427,7 +12427,7 @@ msgstr "Titel:"
 msgid "This level uses mode #10 or #11. It is using dungeon tiles for rendering (and if mode #11 a fixed room assigned). Changing the map background may result in unexpected results because of this."
 msgstr "Dieses Level verwendet den Modus #10 oder #11. Es verwendet Dungeon-Kacheln zum Rendern (und bei Modus #11 ist ein statischer Raum zugewiesen). Das Ändern des Kartenhintergrunds kann aus diesem Grund zu unerwarteten Ergebnissen führen."
 
-#: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:78
+#: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:77
 msgid "Edit Position Marks"
 msgstr "Positionsmarken bearbeiten"
 
@@ -12585,12 +12585,12 @@ msgid "The length of the scene name must be between 1-8 characters."
 msgstr "Die Länge des Szenennamens muss zwischen 1 und 8 Zeichen betragen."
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:73
-#: skytemple/skytemple/module/script/controller/ssa.py:1261
+#: skytemple/skytemple/module/script/controller/ssa.py:1260
 msgid "Triggered Script"
 msgstr "Ausgelöstes Skript"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:84
-#: skytemple/skytemple/module/script/controller/ssa.py:1262
+#: skytemple/skytemple/module/script/controller/ssa.py:1261
 msgid "Coroutine"
 msgstr "Coroutine"
 
@@ -12657,8 +12657,8 @@ msgstr "Szenen für diese Karte"
 
 #: skytemple/skytemple/module/script/controller/ssa.glade:1738
 #: skytemple/skytemple/module/script/controller/ssa.glade:1890
-#: skytemple/skytemple/module/script/controller/ssa.py:1303
-#: skytemple/skytemple/module/script/controller/ssa.py:1312
+#: skytemple/skytemple/module/script/controller/ssa.py:1302
+#: skytemple/skytemple/module/script/controller/ssa.py:1311
 msgid "Talk Script"
 msgstr "Sprech-Skript"
 
@@ -12690,12 +12690,12 @@ msgstr "H"
 msgid "Event"
 msgstr "Ereignis"
 
-#: skytemple/skytemple/module/script/controller/ssa.py:513
+#: skytemple/skytemple/module/script/controller/ssa.py:512
 #, python-brace-format
 msgid "Sector {new_index}"
 msgstr "Sektor {new_index}"
 
-#: skytemple/skytemple/module/script/controller/ssa.py:525
+#: skytemple/skytemple/module/script/controller/ssa.py:524
 msgid "Are you sure you want to remove this sector?\n"
 "Removing the sector will re-number all following sectors (eg. if you remove Sector 70, sector 71 will become 70, 72 -> 71, etc.)\n"
 "Removing a sector may cause serious issues when the game tries to load the scene."
@@ -12703,82 +12703,82 @@ msgstr "Möchten du diesen Sektor wirklich entfernen?\n"
 "Durch das Entfernen des Sektors werden alle folgenden Sektoren neu nummeriert (wenn du z. B. Sektor 70 entfernst, wird Sektor 71 zu 70, 72 -> 71 usw.)\n"
 "Das Entfernen eines Sektors kann schwerwiegende Probleme verursachen, wenn das Spiel versucht, die Szene zu laden."
 
-#: skytemple/skytemple/module/script/controller/ssa.py:638
+#: skytemple/skytemple/module/script/controller/ssa.py:637
 msgid "Create Script"
 msgstr "Skript erstellen"
 
-#: skytemple/skytemple/module/script/controller/ssa.py:638
+#: skytemple/skytemple/module/script/controller/ssa.py:637
 msgid "Script Number"
 msgstr "Skript-Nummer"
 
-#: skytemple/skytemple/module/script/controller/ssa.py:648
+#: skytemple/skytemple/module/script/controller/ssa.py:647
 msgid "Please enter a valid number."
 msgstr "Bitte gebe eine gültige Zahl ein."
 
-#: skytemple/skytemple/module/script/controller/ssa.py:658
+#: skytemple/skytemple/module/script/controller/ssa.py:657
 msgid "Please enter a valid number between 1 and 99."
 msgstr "Bitte gib eine Zahl zwischen 1 und 99 ein."
 
-#: skytemple/skytemple/module/script/controller/ssa.py:671
+#: skytemple/skytemple/module/script/controller/ssa.py:670
 msgid "This script already exists."
 msgstr "Dieses Skript existiert bereits."
 
-#: skytemple/skytemple/module/script/controller/ssa.py:708
+#: skytemple/skytemple/module/script/controller/ssa.py:707
 msgid "Acting scenes must have exactly one script assigned to them."
 msgstr "Handlungsszenen müssen genau ein Skript zugewiesen haben."
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1328
+#: skytemple/skytemple/module/script/controller/ssa.py:1327
 msgid "Event Script"
 msgstr "Ereignisskript"
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1395
+#: skytemple/skytemple/module/script/controller/ssa.py:1394
 #, python-brace-format
 msgid "Type {performer_type}"
 msgstr "Typ {performer_type}"
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1415
+#: skytemple/skytemple/module/script/controller/ssa.py:1414
 msgid "V"
 msgstr "V"
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1416
+#: skytemple/skytemple/module/script/controller/ssa.py:1415
 msgid "Visible"
 msgstr "Sichtbar"
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1420
+#: skytemple/skytemple/module/script/controller/ssa.py:1419
 msgid "Solo"
 msgstr "Solo"
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1445
+#: skytemple/skytemple/module/script/controller/ssa.py:1444
 #, python-brace-format
 msgid "Sector {i}"
 msgstr "Sektor {i}"
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1537
+#: skytemple/skytemple/module/script/controller/ssa.py:1536
 #, python-brace-format
 msgid "?INVALID? {script_id}"
 msgstr "?UNGÜLTIG? {script_id}"
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1558
+#: skytemple/skytemple/module/script/controller/ssa.py:1557
 #, python-brace-format
 msgid "{len_actors} acts, "
 msgstr "{len_actors} Akt., "
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1560
+#: skytemple/skytemple/module/script/controller/ssa.py:1559
 #, python-brace-format
 msgid "{len_objects} objs, "
 msgstr "{len_objects} Obj., "
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1562
+#: skytemple/skytemple/module/script/controller/ssa.py:1561
 #, python-brace-format
 msgid "{len_performers} prfs, "
 msgstr "{len_performers} Perf., "
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1564
+#: skytemple/skytemple/module/script/controller/ssa.py:1563
 #, python-brace-format
 msgid "{len_triggers} trgs"
 msgstr "{len_triggers} Trig."
 
-#: skytemple/skytemple/module/script/controller/ssa.py:1577
+#: skytemple/skytemple/module/script/controller/ssa.py:1576
 #, python-brace-format
 msgid "Type {performer.type}"
 msgstr "Typ {performer.type}"
@@ -13156,7 +13156,7 @@ msgstr "Animierte Kacheln: Slot 3"
 msgid "Animated Tiles Slot 4"
 msgstr "Animierte Kacheln: Slot 4"
 
-#: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.py:342
+#: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.py:343
 msgid "BPA slot is empty.\n\n"
 "Go to Tiles > Animated Tiles to\n"
 "manage animated tiles."
