@@ -37,7 +37,7 @@ from skytemple_files.data.tbl_talk.model import TblTalk, TalkType
 from skytemple_files.data.md.model import Md, MdEntry, MdProperties, ShadowSize
 from skytemple_files.data.monster_xml import monster_xml_import, GenderedConvertEntry
 from skytemple_files.data.waza_p.model import WazaP
-from skytemple_files.graphics.kao.model import SUBENTRIES, Kao
+from skytemple_files.graphics.kao import SUBENTRIES
 from skytemple_files.graphics.kao.protocol import KaoImageProtocol, KaoProtocol
 from skytemple_files.hardcoded.monster_sprite_data_table import HardcodedMonsterSpriteDataTable, HardcodedMonsterGroundIdleAnimTable, IdleAnimType
 from skytemple_files.common.i18n_util import _
