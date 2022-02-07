@@ -45,6 +45,15 @@ jobs:
         with:
           repository: skytemple/tilequant
           path: tilequant
+      - name: Checkout skytemple-rust
+        uses: actions/checkout@v2
+        with:
+          repository: skytemple/skytemple-rust
+          path: skytemple-rust
+      # xgettext can not parse "gettext!" but it can parse "gettext"
+      - name: Recursively replace gettext macros in Rust
+        run: |
+          find skytemple-rust \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i 's/gettext!/gettext/g'
       - name: Backup current string file
         run: |
           cp skytemple/skytemple/data/locale/skytemple.pot /tmp/skytemple.pot
@@ -54,6 +63,7 @@ jobs:
               -type f \
               \( \
                   -name "*.py" -or \
+                  -name "*.rs" -or \
                   -name "*.glade" \
               \) \
               ! -path "py_desmume/desmume/frontend/PyDeSmuMe.glade" \
