@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-02-07 07:31+0000\n"
-"PO-Revision-Date: 2022-02-07 07:32\n"
+"PO-Revision-Date: 2022-02-08 08:33\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -4130,24 +4130,26 @@ msgstr "No se ha podido compilar el script: Todos los idiomas deben tener la mis
 #: skytemple-rust/src/image/tiled.rs:195
 msgid "An image selected to import is too complex. It has too many unique tiles ({}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
-msgstr ""
+msgstr "La imagen seleccionada para importar es demasiado compleja. Tiene demasiados tiles únicos ({} tiles, pero el máximo permitido es 1024).\n"
+"Intenta reducir los tiles únicos. Estos tiles son secciones 8x8 de las imágenes que no se pueden encontrar en ninguna otra parte de la imagen (ni siquiera invertidas o con una subpaleta diferente)."
 
 #: skytemple-rust/src/st_bma.rs:371
 msgid "Can not import map background: Width of both images must match the current map width: {}px"
-msgstr ""
+msgstr "No se puede importar el fondo del mapa: la anchura de ambas imágenes debe coincidir con la anchura actual del mapa: {}px"
 
 #: skytemple-rust/src/st_bma.rs:379
 msgid "Can not import map background: Height of both images must match the current map width: {}px"
-msgstr ""
+msgstr "No se puede importar el fondo del mapa: la altura de ambas imágenes debe coincidir con la anchura actual del mapa: {}px"
 
 #: skytemple-rust/src/st_bpc.rs:391
 msgid "new tilemapping for this chunk must contain {} tiles."
-msgstr ""
+msgstr "el nuevo mapeo de tiles para este chunk debe contener {} tiles."
 
 #: skytemple-rust/src/st_kao.rs:91
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({} bytes total).\n"
 " If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
-msgstr ""
+msgstr "Este retrato no se comprime bien, el tamaño resultante es superior a 800 bytes ({} en total).\n"
+"Si aún no lo has hecho, prueba a aplicar el parche 'ProvideATUPXSupport' para instalar un algoritmo de compresión optimizado que podría ser capaz de comprimir mejor la imagen."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:175
 msgid "BOOST"
