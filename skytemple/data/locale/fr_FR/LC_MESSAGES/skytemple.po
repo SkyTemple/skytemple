@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-02-07 07:31+0000\n"
-"PO-Revision-Date: 2022-02-07 07:32\n"
+"PO-Revision-Date: 2022-02-15 16:01\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -422,19 +422,19 @@ msgstr "Objets exclusifs"
 
 #: /dev/fd/63:97 /dev/fd/63:206
 msgid "Red component"
-msgstr ""
+msgstr "Composante rouge"
 
 #: /dev/fd/63:98 /dev/fd/63:207
 msgid "Green component"
-msgstr ""
+msgstr "Composante vert"
 
 #: /dev/fd/63:99 /dev/fd/63:208
 msgid "Blue component"
-msgstr ""
+msgstr "Composant bleu"
 
 #: /dev/fd/63:100 /dev/fd/63:209
 msgid "Alpha component"
-msgstr ""
+msgstr "Composant alpha"
 
 #: /dev/fd/63:101 /dev/fd/63:210
 msgid "ID of the first icon in markfont.dat (23 entries used)"
@@ -1513,11 +1513,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/anim/model.py:30
 msgid "Left Hand"
-msgstr ""
+msgstr "Main gauche"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:31
 msgid "Right Hand"
-msgstr ""
+msgstr "Main droite"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:32
 msgid "Center"
@@ -4709,7 +4709,7 @@ msgstr "Aller à la scène"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:170
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:729
 msgid "Textbox Preview Tool"
-msgstr ""
+msgstr "Aperçu de la boite de dialogue"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:259
 msgid "ExplorerScript"
@@ -4721,7 +4721,7 @@ msgstr "SSBScript"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:392
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:428
 msgid "Search and Replace"
@@ -5353,7 +5353,7 @@ msgstr "P_ause"
 
 #: skytemple/skytemple/_i18n.py:32
 msgid "_Play"
-msgstr ""
+msgstr "_Démarrer"
 
 #: skytemple/skytemple/_i18n.py:33
 msgid "_Stop"
@@ -5503,7 +5503,7 @@ msgstr "Portugais, brésilien"
 
 #: skytemple/skytemple/controller/settings.py:84
 msgid "<i>Use System Settings to set this under Linux.</i>"
-msgstr ""
+msgstr "<i>Utilisez les paramètres systèmes sous Linux.</i>"
 
 #: skytemple/skytemple/controller/settings.py:165
 msgid "You need to restart SkyTemple to apply some of the settings."
@@ -5602,11 +5602,11 @@ msgstr ""
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:59
 msgid "Synchronous"
-msgstr ""
+msgstr "Synchrone"
 
 #: skytemple/skytemple/core/async_tasks/delegator.py:61
 msgid "Using Gbulb event loop"
-msgstr ""
+msgstr "Utilisation de la boucle d'événement Gbulb"
 
 #: skytemple/skytemple/core/error_handler.py:63
 msgid "Trying to display the error failed. Wow!"
@@ -5693,7 +5693,11 @@ msgid "This will export the background as one image.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Ceci exportera l'arrière-plan dans une image.\n\n"
+"Vous pouvez modifier, puis réimporter l'image d'arrière-plan.\n"
+"Noter que vous pourriez avoir besoin de le convertir pour\n"
+"pouvoir l'utiliser.\n"
+"Regarder le dialogue d'importation pour plus d'information."
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:219
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:368
@@ -5760,7 +5764,7 @@ msgstr "Erreur lors de l'importation de l'image."
 #: skytemple/skytemple/module/bgp/controller/main.py:23
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:81
 msgid "Backgrounds"
-msgstr ""
+msgstr "Arrière-plans"
 
 #: skytemple/skytemple/module/bgp/controller/main.py:35
 msgid "This section lets you edit static backgrounds used in various places of the game."
@@ -7769,7 +7773,11 @@ msgid "This will export all tiles.\n\n"
 "Please note, that you might need to convert it \n"
 "to be able to use it. \n"
 "See the import dialog for more information."
-msgstr ""
+msgstr "Ceci exportera toutes les tuiles.\n\n"
+"Vous pouvez les éditer, puis les réimporter.\n"
+"Noter que vous pourriez avoir à les convertir pour\n"
+"pouvoir les utiliser.\n"
+"Regarder le dialogue d'importation pour plus d'information."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1649
 msgid "Background Export"
@@ -7782,8 +7790,7 @@ msgid "This will export the entire background an image.\n\n"
 "to be able to use it. \n"
 "See the import dialog for more information."
 msgstr "Ceci exportera l'arrière-plan entier en une image.\n\n"
-"Vous pouvez modifier, puis importer l'image d'arrière-plan\n"
-"à nouveau.\n"
+"Vous pouvez modifier, puis réimporter l'image d'arrière-plan.\n"
 "Noter que vous pourriez avoir besoin de la convertir pour\n"
 "pouvoir l'utiliser.\n"
 "Regarder le dialogue d'importation pour plus d'information."
@@ -7801,7 +7808,7 @@ msgid "This will export all chunks.\n\n"
 "to be able to use it. \n"
 "See the import dialog for more information."
 msgstr "Ceci exportera tous les fragments.\n\n"
-"Vous pouvez éditer, puis ré-importer les fragments.\n"
+"Vous pouvez éditer, puis réimporter les fragments.\n"
 "Noter que pourriez avoir à les convertir pour\n"
 "pouvoir les utiliser.\n"
 "Regarder le dialogue d'importation pour plus d'information."
@@ -8115,7 +8122,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2188
 msgid "Dungeon Tileset X Rules"
-msgstr "Règles du tileset de dongeon X"
+msgstr "Règles du jeu de tuiles du donjon X"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2238
 msgid "Chunk Picker"
@@ -8131,7 +8138,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2369
 msgid "Tileset Settings"
-msgstr "Paramètres du tileset"
+msgstr "Paramètres du jeu de tuiles"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2449
 msgid "This will import the chunks. \n"
@@ -8175,7 +8182,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:65
 msgid "Tilesets"
-msgstr "Tilesets"
+msgstr "Jeu de tuiles"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:77
 msgid "This section lets you edit the tilesets that are used for dungeons."
@@ -9997,7 +10004,7 @@ msgid "This will export all chunks of the selected layer.\n\n"
 "to be able to use it. \n"
 "See the import dialog for more information."
 msgstr "Ceci exportera tout les fragments du calque sélectionné.\n\n"
-"Vous pouvez modifier et importer le fragment à nouveau.\n"
+"Vous pouvez modifier et réimporter le fragment.\n"
 "Noter que vous pourriez avoir besoin de le convertir à\n"
 "nouveau avant de pouvoir l'utiliser. \n"
 "Regardez la boite de dialogue d'importation pour plus d'information."
@@ -10011,8 +10018,7 @@ msgid "This will export the entire map as one or two images,\n"
 "See the import dialog for more information."
 msgstr "Ceci exportera la carte entière en une ou deux image,\n"
 "selon le nombre de calque.\n\n"
-"Vous pouvez modifier, puis importer le·s image·s d'arrière-plan\n"
-"à nouveau.\n"
+"Vous pouvez modifier, puis réimporter le·s image·s d'arrière-plan.\n"
 "Noter que vous pourriez avoir besoin de la convertir pour\n"
 "pouvoir l'utiliser.\n"
 "Regarder le dialogue d'importation pour plus d'information."
@@ -10024,7 +10030,7 @@ msgid "This will export all tiles of the selected layer.\n\n"
 "to be able to use it. \n"
 "See the import dialog for more information."
 msgstr "Ceci exportera toutes les tuiles du calque sélectionné.\n\n"
-"Vous pourriez l'éditer, puis les ré-importer.\n"
+"Vous pourriez l'éditer, puis les réimporter.\n"
 "Noter que vous pourriez avoir à les convertir pour\n"
 "pouvoir les utiliser. \n"
 "Regarder le dialogue d'importation pour plus d'information."
