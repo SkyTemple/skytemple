@@ -21,18 +21,11 @@ import locale
 import gettext
 from skytemple.core.ui_utils import data_dir, APP, gdk_backend, GDK_BACKEND_BROADWAY
 from skytemple.core.settings import SkyTempleSettingsStore
-from skytemple_files.common.impl_cfg import ENV_SKYTEMPLE_USE_NATIVE, change_implementation_type
 
 settings = SkyTempleSettingsStore()
-if __name__ == '__main__':
-    # Setup native library integration
-    if ENV_SKYTEMPLE_USE_NATIVE not in os.environ:
-        change_implementation_type(settings.get_implementation_type())
 
 # Setup locale :(
-from skytemple.core.settings import SkyTempleSettingsStore
 LOCALE_DIR = os.path.abspath(os.path.join(data_dir(), 'locale'))
-settings = SkyTempleSettingsStore()
 if hasattr(locale, 'bindtextdomain'):
     libintl = locale
 elif sys.platform.startswith('win'):
@@ -56,10 +49,10 @@ if not os.getenv('LC_ALL'):
         locale.setlocale(locale.LC_ALL, settings.get_locale())
     except locale.Error as ex:
         logging.error("Failed setting locale", exc_info=ex)
-libintl.bindtextdomain(APP, LOCALE_DIR)
+libintl.bindtextdomain(APP, LOCALE_DIR)  # type: ignore
 try:
-    libintl.bind_textdomain_codeset(APP, 'UTF-8')
-    libintl.libintl_setlocale(0, settings.get_locale())
+    libintl.bind_textdomain_codeset(APP, 'UTF-8')  # type: ignore
+    libintl.libintl_setlocale(0, settings.get_locale())  # type: ignore
 except:
     pass
 gettext.bindtextdomain(APP, LOCALE_DIR)
@@ -68,7 +61,7 @@ try:
     if os.environ['LC_ALL'] != 'C':
         loc = os.environ['LC_ALL']
         if loc == '':
-            loc = locale.getdefaultlocale()[0]
+            loc = locale.getdefaultlocale()[0]  # type: ignore
         from skytemple_files.common.i18n_util import reload_locale
         base_loc = loc.split('_')[0]
         fallback_loc = base_loc
@@ -78,7 +71,7 @@ try:
                 break
         reload_locale(APP, localedir=LOCALE_DIR, main_languages=list({loc, base_loc, fallback_loc}))
 except Exception as ex:
-    print("Faild setting up Python locale.")
+    print("Failed setting up Python locale.")
     print(ex)
 from skytemple.core import ui_utils
 from importlib import reload
