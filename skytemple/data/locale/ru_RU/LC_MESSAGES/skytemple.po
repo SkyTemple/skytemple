@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-02-07 07:31+0000\n"
-"PO-Revision-Date: 2022-02-07 07:32\n"
+"POT-Creation-Date: 2022-02-20 11:16+0000\n"
+"PO-Revision-Date: 2022-02-20 11:44\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -4096,9 +4096,149 @@ msgstr ""
 msgid "Could not compile script: All languages must have the same amount of strings."
 msgstr ""
 
+#: skytemple-rust/src/dse/st_smdl/eoc.rs:35
+#: skytemple-rust/src/dse/st_smdl/trk.rs:82
+msgid "SMDL file too short (EOC EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_smdl/eoc.rs:37
+msgid "Invalid SMDL/EOC header."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_smdl/smdl.rs:58
+msgid "SMDL file too short (Header EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_smdl/smdl.rs:60
+msgid "Invalid SMDL/Header header."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_smdl/song.rs:67
+msgid "SMDL file too short (Song EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_smdl/song.rs:69
+msgid "Invalid SMDL/Song header."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_smdl/trk.rs:50
+msgid "SMDL file too short (Track EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_smdl/trk.rs:52
+msgid "Invalid SMDL/Track header."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/kgrp.rs:41
+msgid "SWDL file too short (Keygroup EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/kgrp.rs:76
+#: skytemple-rust/src/dse/st_swdl/kgrp.rs:82
+msgid "SWDL file too short (Kgrp EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/kgrp.rs:78
+msgid "Invalid SWDL/Kgrp header."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/pcmd.rs:35
+#: skytemple-rust/src/dse/st_swdl/pcmd.rs:41
+msgid "SWDL file too short (Pcmd EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/pcmd.rs:37
+msgid "Invalid SWDL/Pcmd header."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:45
+msgid "SWDL file too short (LFO EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:120
+msgid "SWDL file too short (Split EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:128
+msgid "SWDL file: Invalid lowkey duplicate (Split EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:129
+msgid "SWDL file: Invalid hikey duplicate (Split EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:132
+msgid "SWDL file: Invalid lolevel duplicate (Split EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:133
+msgid "SWDL file: Invalid hilevel duplicate (Split EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:238
+msgid "SWDL file too short (PRG EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:298
+msgid "SWDL file too short (Prgi EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:300
+msgid "Invalid PRGI/Prgi header."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:308
+msgid "SWDL Prgi length invalid; tried to read past EOF."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/swdl.rs:47
+msgid "SWDL file too short (SwdlPcmdLen EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/swdl.rs:107
+msgid "SWDL file too short (Header EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/swdl.rs:109
+msgid "Invalid SWDL/Header header."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/swdl.rs:196
+msgid "Swdl read error (inconsistent Wavi length)"
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/swdl.rs:221
+msgid "Swdl read: Invalid sample data"
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/wavi.rs:103
+msgid "SWDL file too short (Sample Table EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/wavi.rs:224
+#: skytemple-rust/src/dse/st_swdl/wavi.rs:237
+msgid "SWDL file too short (Wavi EOF)."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/wavi.rs:226
+msgid "Invalid SWDL/Wavi header."
+msgstr ""
+
+#: skytemple-rust/src/dse/st_swdl/wavi.rs:234
+msgid "SWDL Wavi length invalid; tried to read past EOF."
+msgstr ""
+
 #: skytemple-rust/src/image/tiled.rs:195
 msgid "An image selected to import is too complex. It has too many unique tiles ({}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
+msgstr ""
+
+#: skytemple-rust/src/romfs.rs:69
+msgid "ROM Header checksum does not match contents."
+msgstr ""
+
+#: skytemple-rust/src/romfs.rs:75
+msgid "Error reading the filesystem from ROM: {}"
 msgstr ""
 
 #: skytemple-rust/src/st_bma.rs:371
@@ -4113,7 +4253,7 @@ msgstr ""
 msgid "new tilemapping for this chunk must contain {} tiles."
 msgstr ""
 
-#: skytemple-rust/src/st_kao.rs:91
+#: skytemple-rust/src/st_kao.rs:90
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({} bytes total).\n"
 " If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr ""
@@ -5566,7 +5706,7 @@ msgstr ""
 msgid "Trying to display the error failed. Wow!"
 msgstr ""
 
-#: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:108
+#: skytemple/skytemple/core/error_handler.py:71 skytemple/skytemple/main.py:107
 msgid "SkyTemple - Error!"
 msgstr ""
 
@@ -5605,7 +5745,7 @@ msgstr ""
 msgid "CSV file (*.csv)"
 msgstr ""
 
-#: skytemple/skytemple/main.py:107
+#: skytemple/skytemple/main.py:106
 msgid "PyGObject compiled without Cairo support. Can't start!"
 msgstr ""
 
