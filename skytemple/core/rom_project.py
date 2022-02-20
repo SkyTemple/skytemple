@@ -30,7 +30,7 @@ from skytemple.core.model_context import ModelContext
 from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.string_provider import StringProvider, StringType
 from skytemple_files.data.md.model import MdProperties
-from skytemple_files.common.ppmdu_config.data import Pmd2Binary
+from skytemple_files.common.ppmdu_config.pmdsky_debug.data import Pmd2Binary
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.types.data_handler import DataHandler, T
