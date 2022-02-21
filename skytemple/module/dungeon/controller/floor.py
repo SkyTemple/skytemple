@@ -144,7 +144,7 @@ class FloorController(AbstractController):
         self._sprite_provider = module.project.get_sprite_provider()
 
         if self.__class__._last_scale_factor is not None:
-            self._scale_factor = self.__class__._last_scale_factor
+            self._scale_factor: float = self.__class__._last_scale_factor
         else:
             self._scale_factor = 2
 
