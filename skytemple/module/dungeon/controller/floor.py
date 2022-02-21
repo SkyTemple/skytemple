@@ -145,7 +145,7 @@ class FloorController(AbstractController):
         self._sprite_provider = module.project.get_sprite_provider()
 
         if self.__class__._last_scale_factor is not None:
-            self._scale_factor: int = self.__class__._last_scale_factor
+            self._scale_factor: float = self.__class__._last_scale_factor
         else:
             self._scale_factor = 2
 
@@ -940,7 +940,7 @@ class FloorController(AbstractController):
         self.__class__._last_show_full_map = w.get_active()
         if w.get_active():
             if not ignore_scaling:
-                self._scale_factor //= 10
+                self._scale_factor /= 10
                 self.__class__._last_scale_factor = self._scale_factor
             self.drawer.set_entity_renderer(FullMapEntityRenderer(self.drawer))
             self._init_tileset()
