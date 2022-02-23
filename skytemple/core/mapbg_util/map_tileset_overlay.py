@@ -22,15 +22,15 @@ from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor
 from skytemple_files.graphics.bpc import BPC_TILE_DIM
 from skytemple_files.graphics.dma.dma_drawer import DmaDrawer
-from skytemple_files.graphics.dma.model import Dma
-from skytemple_files.graphics.dpc.model import Dpc
-from skytemple_files.graphics.dpci.model import Dpci
-from skytemple_files.graphics.dpl.model import Dpl
+from skytemple_files.graphics.dma.protocol import DmaProtocol
+from skytemple_files.graphics.dpc.protocol import DpcProtocol
+from skytemple_files.graphics.dpci.protocol import DpciProtocol
+from skytemple_files.graphics.dpl.protocol import DplProtocol
 
 
 class MapTilesetOverlay:
     """Drawer overlay for rendering mode 10 or 11 ground maps using dungeon tiles and/or fixed rooms."""
-    def __init__(self, dma: Dma, dpc: Dpc, dpci: Dpci, dpl: Dpl, fixed_room: Optional[FixedFloor]):
+    def __init__(self, dma: DmaProtocol, dpc: DpcProtocol, dpci: DpciProtocol, dpl: DplProtocol, fixed_room: Optional[FixedFloor]):
         self.dma = dma
         self.dpc = dpc
         self.dpci = dpci

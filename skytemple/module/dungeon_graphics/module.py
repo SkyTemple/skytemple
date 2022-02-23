@@ -35,12 +35,12 @@ from skytemple.module.dungeon_graphics.controller.main import MainController, DU
 from skytemple.module.dungeon_graphics.controller.trp_itm_img import ImgType, TrpItmImgController
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
-from skytemple_files.graphics.dbg.model import Dbg
-from skytemple_files.graphics.dma.model import Dma
-from skytemple_files.graphics.dpc.model import Dpc
-from skytemple_files.graphics.dpci.model import Dpci
-from skytemple_files.graphics.dpl.model import Dpl
-from skytemple_files.graphics.dpla.model import Dpla
+from skytemple_files.graphics.dbg.protocol import DbgProtocol
+from skytemple_files.graphics.dma.protocol import DmaProtocol
+from skytemple_files.graphics.dpc.protocol import DpcProtocol
+from skytemple_files.graphics.dpci.protocol import DpciProtocol
+from skytemple_files.graphics.dpl.protocol import DplProtocol
+from skytemple_files.graphics.dpla.protocol import DplaProtocol
 from skytemple_files.graphics.colvec.model import Colvec
 from skytemple_files.common.i18n_util import f, _
 
@@ -135,43 +135,43 @@ class DungeonGraphicsModule(AbstractModule):
         with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'colormap.colvec')
     
-    def get_dma(self, item_id) -> Dma:
+    def get_dma(self, item_id) -> DmaProtocol:
         with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon{item_id}.dma')
 
-    def get_dpl(self, item_id) -> Dpl:
+    def get_dpl(self, item_id) -> DplProtocol:
         with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon{item_id}.dpl')
 
-    def get_dpla(self, item_id) -> Dpla:
+    def get_dpla(self, item_id) -> DplaProtocol:
         with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon{item_id}.dpla')
 
-    def get_dpc(self, item_id) -> Dpc:
+    def get_dpc(self, item_id) -> DpcProtocol:
         with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon{item_id}.dpc')
 
-    def get_dpci(self, item_id) -> Dpci:
+    def get_dpci(self, item_id) -> DpciProtocol:
         with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon{item_id}.dpci')
 
-    def get_bg_dbg(self, item_id) -> Dbg:
+    def get_bg_dbg(self, item_id) -> DbgProtocol:
         with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon_bg{item_id}.dbg')
 
-    def get_bg_dpl(self, item_id) -> Dpl:
+    def get_bg_dpl(self, item_id) -> DplProtocol:
         with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon_bg{item_id}.dpl')
 
-    def get_bg_dpla(self, item_id) -> Dpla:
+    def get_bg_dpla(self, item_id) -> DplaProtocol:
         with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon_bg{item_id}.dpla')
 
-    def get_bg_dpc(self, item_id) -> Dpc:
+    def get_bg_dpc(self, item_id) -> DpcProtocol:
         with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon_bg{item_id}.dpc')
 
-    def get_bg_dpci(self, item_id) -> Dpci:
+    def get_bg_dpci(self, item_id) -> DpciProtocol:
         with self.dungeon_bin_context as dungeon_bin:  # type: ignore
             return dungeon_bin.get(f'dungeon_bg{item_id}.dpci')
 

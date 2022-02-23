@@ -28,7 +28,7 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_graphics_provider import DungeonTilesProvider
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_palettes_provider import DungeonPalettesProvider
 from skytemple_files.common.util import chunks, add_extension_if_missing
-from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
+from skytemple_files.graphics.dpc import DPC_TILING_DIM
 from skytemple_files.common.i18n_util import f, _
 
 from PIL import Image

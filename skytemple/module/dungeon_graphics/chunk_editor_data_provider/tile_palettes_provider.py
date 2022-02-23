@@ -14,17 +14,16 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from abc import ABC
 from typing import List, Sequence
 
 from skytemple_files.common.util import lcm
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import AbstractTilePalettesProvider
-from skytemple_files.graphics.dpl.model import Dpl
-from skytemple_files.graphics.dpla.model import Dpla
+from skytemple_files.graphics.dpl.protocol import DplProtocol
+from skytemple_files.graphics.dpla.protocol import DplaProtocol
 
 
 class DungeonPalettesProvider(AbstractTilePalettesProvider):
-    def __init__(self, dpl: Dpl, dpla: Dpla):
+    def __init__(self, dpl: DplProtocol, dpla: DplaProtocol):
         self.dpl = dpl
         self.dpla = dpla
 

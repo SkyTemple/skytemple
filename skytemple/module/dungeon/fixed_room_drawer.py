@@ -32,7 +32,7 @@ from skytemple.module.dungeon.fixed_room_tileset_renderer.abstract import Abstra
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRule, TileRuleType, FloorType, EntityRule, \
     RoomType, FixedFloorActionRule, DirectRule
 from skytemple_files.dungeon_data.mappa_bin.protocol import MappaTrapType
-from skytemple_files.graphics.dma.model import DmaType
+from skytemple_files.graphics.dma.protocol import DmaType
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
 from skytemple_files.common.i18n_util import _
 if TYPE_CHECKING:

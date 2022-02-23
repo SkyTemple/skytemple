@@ -53,11 +53,11 @@ from skytemple_files.dungeon_data.mappa_bin.mappa_xml import mappa_floor_xml_imp
     mappa_floor_to_xml
 from skytemple_files.dungeon_data.mappa_bin.validator.validator import DungeonValidator
 from skytemple_files.dungeon_data.mappa_g_bin.mappa_converter import convert_mappa_to_mappag
-from skytemple_files.graphics.dbg.model import Dbg
-from skytemple_files.graphics.dma.model import Dma
-from skytemple_files.graphics.dpc.model import Dpc
-from skytemple_files.graphics.dpci.model import Dpci
-from skytemple_files.graphics.dpl.model import Dpl
+from skytemple_files.graphics.dbg.protocol import DbgProtocol
+from skytemple_files.graphics.dma.protocol import DmaProtocol
+from skytemple_files.graphics.dpc.protocol import DpcProtocol
+from skytemple_files.graphics.dpci.protocol import DpciProtocol
+from skytemple_files.graphics.dpl.protocol import DplProtocol
 from skytemple_files.hardcoded.dungeon_music import HardcodedDungeonMusic, DungeonMusicEntry
 from skytemple_files.hardcoded.dungeons import HardcodedDungeons, DungeonDefinition, DungeonRestriction
 from skytemple_files.dungeon_data.floor_attribute.handler import FloorAttributeHandler
@@ -608,7 +608,7 @@ class DungeonModule(AbstractModule):
             )
             self.mark_floor_as_modified(floor_info, modified_mappag=True)
 
-    def get_dungeon_tileset(self, tileset_id) -> Tuple[Dma, Dpci, Dpc, Dpl]:
+    def get_dungeon_tileset(self, tileset_id) -> Tuple[DmaProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
         with self._dungeon_bin_context as dungeon_bin:  # type: ignore
             return (
                 dungeon_bin.get(f'dungeon{tileset_id}.dma'),
@@ -617,7 +617,7 @@ class DungeonModule(AbstractModule):
                 dungeon_bin.get(f'dungeon{tileset_id}.dpl'),
             )
 
-    def get_dungeon_background(self, background_id) -> Tuple[Dbg, Dpci, Dpc, Dpl]:
+    def get_dungeon_background(self, background_id) -> Tuple[DbgProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
         with self._dungeon_bin_context as dungeon_bin:  # type: ignore
             return (
                 dungeon_bin.get(f'dungeon_bg{background_id}.dbg'),
@@ -730,7 +730,7 @@ class DungeonModule(AbstractModule):
         row = self._tree_model[self._fixed_floor_root_iter]
         recursive_up_item_store_mark_as_modified(row)
 
-    def get_dummy_tileset(self) -> Tuple[Dma, Image.Image]:
+    def get_dummy_tileset(self) -> Tuple[DmaProtocol, Image.Image]:
         with open(os.path.join(data_dir(), 'fixed_floor', 'dummy.dma'), 'rb') as f:
             dma = FileType.DMA.deserialize(f.read())
         return (

@@ -17,11 +17,11 @@
 from typing import List, Sequence
 
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_graphics_provider import AbstractTileGraphicsProvider
-from skytemple_files.graphics.dpci.model import Dpci
+from skytemple_files.graphics.dpci.protocol import DpciProtocol
 
 
 class DungeonTilesProvider(AbstractTileGraphicsProvider):
-    def __init__(self, dpci: Dpci):
+    def __init__(self, dpci: DpciProtocol):
         self.dpci = dpci
 
     def get_pil(self, palettes: Sequence[Sequence[int]], pal_idx: int):

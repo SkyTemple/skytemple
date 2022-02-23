@@ -19,9 +19,8 @@ from typing import Optional, List
 
 import cairo
 
-from skytemple_files.graphics.dma.model import DmaType
-from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
-from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
+from skytemple_files.graphics.dpc import DPC_TILING_DIM
+from skytemple_files.graphics.dpci import DPCI_TILE_DIM
 
 
 class AbstractTilesetRenderer(ABC):
@@ -30,11 +29,11 @@ class AbstractTilesetRenderer(ABC):
         """Returns the background as a surface"""
 
     @abstractmethod
-    def get_dungeon(self, rules: List[List[DmaType]]) -> cairo.Surface:
+    def get_dungeon(self, rules: List[List[int]]) -> cairo.Surface:
         """Returns the rendered dungeon tiles for the rules."""
 
     @abstractmethod
-    def get_single_tile(self, tile: DmaType) -> cairo.Surface:
+    def get_single_tile(self, tile: int) -> cairo.Surface:
         """Returns a single tile image (wall/water/floor)."""
 
     def chunk_dim(self):

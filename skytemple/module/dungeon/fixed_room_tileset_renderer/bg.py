@@ -21,16 +21,18 @@ from PIL import Image
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.module.dungeon.fixed_room_tileset_renderer.abstract import AbstractTilesetRenderer
-from skytemple_files.graphics.dbg.model import Dbg
+from skytemple_files.graphics.dbg.protocol import DbgProtocol
 from skytemple_files.graphics.dma.dma_drawer import DmaDrawer
-from skytemple_files.graphics.dma.model import DmaType, Dma
-from skytemple_files.graphics.dpc.model import Dpc, DPC_TILING_DIM
-from skytemple_files.graphics.dpci.model import Dpci, DPCI_TILE_DIM
-from skytemple_files.graphics.dpl.model import Dpl
+from skytemple_files.graphics.dma.protocol import DmaType, DmaProtocol
+from skytemple_files.graphics.dpc.protocol import DpcProtocol
+from skytemple_files.graphics.dpc import DPC_TILING_DIM
+from skytemple_files.graphics.dpci.protocol import DpciProtocol
+from skytemple_files.graphics.dpci import DPCI_TILE_DIM
+from skytemple_files.graphics.dpl.protocol import DplProtocol
 
 
 class FixedFloorDrawerBackground(AbstractTilesetRenderer):
-    def __init__(self, dbg: Dbg, dbg_dpci: Dpci, dbg_dpc: Dpc, dbg_dpl: Dpl, dma: Dma, chunks: Image.Image):
+    def __init__(self, dbg: DbgProtocol, dbg_dpci: DpciProtocol, dbg_dpc: DpcProtocol, dbg_dpl: DplProtocol, dma: DmaProtocol, chunks: Image.Image):
         self.dbg = dbg
         self.dbg_dpci = dbg_dpci
         self.dbg_dpc = dbg_dpc
@@ -39,7 +41,7 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
         self.chunks = chunks
         self.dma_drawer = DmaDrawer(self.dma)
         self._cached_bg: Optional[cairo.ImageSurface] = None
-        self._cached_rules: List[List[DmaType]] = []
+        self._cached_rules: List[List[int]] = []
         self._cached_dungeon_surface: Optional[cairo.ImageSurface] = None
         self.single_tiles = {
             DmaType.FLOOR: self._single_tile(DmaType.FLOOR),
@@ -54,7 +56,7 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
             )
         return self._cached_bg
 
-    def get_dungeon(self, rules: List[List[DmaType]]) -> cairo.Surface:
+    def get_dungeon(self, rules: List[List[int]]) -> cairo.Surface:
         # TODO: If rules change only update the parts that need to be updated
         if rules != self._cached_rules:
             mappings = self.dma_drawer.get_mappings_for_rules(rules, treat_outside_as_wall=True, variation_index=0)
@@ -64,7 +66,7 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
             self._cached_rules = rules
         return self._cached_dungeon_surface  # type: ignore
 
-    def get_single_tile(self, tile: DmaType) -> cairo.Surface:
+    def get_single_tile(self, tile: int) -> cairo.Surface:
         return self.single_tiles[tile]
 
     def _single_tile(self, type):
