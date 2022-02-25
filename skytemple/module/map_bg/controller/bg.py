@@ -17,7 +17,6 @@
 
 import itertools
 from typing import TYPE_CHECKING, Optional, Iterable, List
-from copy import deepcopy
 
 import cairo
 import gi
@@ -228,7 +227,7 @@ class BgController(AbstractController):
         if button.button == 1:
             assert self.drawer
             if not self.bg_draw_is_clicked:
-                self.last_bma = deepcopy(self.bma)
+                self.last_bma = self.bma.deepcopy()
             self.bg_draw_is_clicked = True
             if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
                 snap_x = correct_mouse_x - correct_mouse_x % (self.bma.tiling_width * BPC_TILE_DIM)
@@ -236,7 +235,7 @@ class BgController(AbstractController):
             else:
                 snap_x = correct_mouse_x - correct_mouse_x % BPC_TILE_DIM
                 snap_y = correct_mouse_y - correct_mouse_y % BPC_TILE_DIM
-            self.first_cursor_pos = (snap_x,snap_y)
+            self.first_cursor_pos = (snap_x, snap_y)
             if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
                 self._set_chunk_at_pos(snap_x, snap_y)
             elif self.drawer.get_interaction_mode() == DrawerInteraction.COL:
@@ -266,22 +265,22 @@ class BgController(AbstractController):
             if self.bg_draw_is_clicked:
                 assert self.builder
                 if self.builder.get_object("tb_rectangle").get_active():
-                    #TODO: Clearly not optimized
+                    # TODO: Clearly not optimized
                     assert self.last_bma
-                    self.bma.layer0 = deepcopy(self.last_bma.layer0)
-                    self.bma.layer1 = deepcopy(self.last_bma.layer1)
-                    self.bma.collision = deepcopy(self.last_bma.collision)
-                    self.bma.collision2 = deepcopy(self.last_bma.collision2)
-                    self.bma.unknown_data_block = deepcopy(self.last_bma.unknown_data_block)
-                    self.drawer.reset_bma(self.bma)
+                    last_bma_copy = self.last_bma.deepcopy()
+                    self.bma.layer0 = last_bma_copy.layer0
+                    self.bma.layer1 = last_bma_copy.layer1
+                    self.bma.collision = last_bma_copy.collision
+                    self.bma.collision2 = last_bma_copy.collision2
+                    self.bma.unknown_data_block = last_bma_copy.unknown_data_block
                     x_pos = [snap_x, self.first_cursor_pos[0]]
                     x_pos.sort()
                     y_pos = [snap_y, self.first_cursor_pos[1]]
                     y_pos.sort()
                     y = y_pos[0]
-                    while y<y_pos[1]+tilling_y:
+                    while y < y_pos[1]+tilling_y:
                         x = x_pos[0]
-                        while x<x_pos[1]+tilling_x:
+                        while x < x_pos[1]+tilling_x:
                             if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
                                 self._set_chunk_at_pos(x, y)
                             elif self.drawer.get_interaction_mode() == DrawerInteraction.COL:
@@ -297,42 +296,34 @@ class BgController(AbstractController):
                         self._set_col_at_pos(snap_x, snap_y)
                     elif self.drawer.get_interaction_mode() == DrawerInteraction.DAT:
                         self._set_data_at_pos(snap_x, snap_y)
+                self.drawer.reset_bma(self.bma)
 
     def _set_chunk_at_pos(self, mouse_x, mouse_y):
         if self.drawer:
             chunk_x = int(mouse_x / (self.bma.tiling_width * BPC_TILE_DIM))
             chunk_y = int(mouse_y / (self.bma.tiling_height * BPC_TILE_DIM))
             if 0 <= chunk_x < self.bma.map_width_chunks and 0 <= chunk_y < self.bma.map_height_chunks:
-                chunk_mapping_idx = int(chunk_y * self.bma.map_width_chunks + chunk_x)
                 # Set chunk at current position
                 self.mark_as_modified()
-                if self.current_chunks_icon_layer == 0:
-                    self.bma.layer0[chunk_mapping_idx] = self.drawer.get_selected_chunk_id()
-                elif self.current_chunks_icon_layer == 1:
-                    self.bma.layer1[chunk_mapping_idx] = self.drawer.get_selected_chunk_id()
+                self.bma.place_chunk(self.current_chunks_icon_layer, chunk_x, chunk_y, self.drawer.get_selected_chunk_id())
 
     def _set_col_at_pos(self, mouse_x, mouse_y):
         if self.drawer:
             tile_x = int(mouse_x / BPC_TILE_DIM)
             tile_y = int(mouse_y / BPC_TILE_DIM)
             if 0 <= tile_x < self.bma.map_width_camera and 0 <= tile_y < self.bma.map_height_camera:
-                tile_idx = int(tile_y * self.bma.map_width_camera + tile_x)
                 # Set collision at current position
                 self.mark_as_modified()
-                if self.drawer.get_edited_collision() == 0:
-                    self.bma.collision[tile_idx] = self.drawer.get_interaction_col_solid()
-                elif self.drawer.get_edited_collision() == 1:
-                    self.bma.collision2[tile_idx] = self.drawer.get_interaction_col_solid()
+                self.bma.place_collision(self.drawer.get_edited_collision(), tile_x, tile_y, self.drawer.get_interaction_col_solid())
 
     def _set_data_at_pos(self, mouse_x, mouse_y):
         if self.drawer:
             tile_x = int(mouse_x / BPC_TILE_DIM)
             tile_y = int(mouse_y / BPC_TILE_DIM)
             if 0 <= tile_x < self.bma.map_width_camera and 0 <= tile_y < self.bma.map_height_camera:
-                tile_idx = int(tile_y * self.bma.map_width_camera + tile_x)
                 # Set data value at current position
                 self.mark_as_modified()
-                self.bma.unknown_data_block[tile_idx] = self.drawer.get_interaction_dat_value()
+                self.bma.place_data(tile_x, tile_y, self.drawer.get_interaction_dat_value())
 
     def on_current_icon_view_selection_changed(self, icon_view: Gtk.IconView):
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
