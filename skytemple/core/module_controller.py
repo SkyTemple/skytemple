@@ -57,7 +57,7 @@ class AbstractController(ABC):
         if builder:
             for obj in builder.get_objects():
                 if isinstance(obj, Gtk.Window) or isinstance(obj, Gtk.Widget):
-                    obj.destroy()
+                    obj.hide()
 
     @staticmethod
     def _get_builder(pymodule_path: str, glade_file: str) -> Gtk.Builder:
