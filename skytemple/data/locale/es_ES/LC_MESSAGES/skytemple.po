@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-02-23 20:37+0000\n"
-"PO-Revision-Date: 2022-02-23 20:44\n"
+"POT-Creation-Date: 2022-02-25 23:49+0000\n"
+"PO-Revision-Date: 2022-02-26 00:01\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1069,7 +1069,7 @@ msgstr "Centro"
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:518
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:440
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:449
-#: skytemple/skytemple/module/map_bg/controller/bg.py:664
+#: skytemple/skytemple/module/map_bg/controller/bg.py:655
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:203
 #: skytemple/skytemple/module/script/controller/main.py:243
 #: skytemple/skytemple/module/script/controller/main.py:244
@@ -2595,18 +2595,18 @@ msgstr "Pisos no usados"
 msgid "Has {len(self.floors_in_mappa_not_referenced)} extra floors in it's floor list, which are not assigned to any dungeon."
 msgstr "Hay {len(self.floors_in_mappa_not_referenced)} pisos adicionales en tu lista de pisos que no están asignados a ningún territorio."
 
-#: skytemple-files/skytemple_files/graphics/bma/_model.py:439
+#: skytemple-files/skytemple_files/graphics/bma/_model.py:440
 #, python-brace-format
 msgid "Can not import map background: Width of both images must match the current map width: {expected_width}px"
 msgstr "No se puede importar el fondo del mapa: la anchura de ambas imágenes debe coincidir con la anchura actual del mapa: {expected_width}px"
 
-#: skytemple-files/skytemple_files/graphics/bma/_model.py:443
+#: skytemple-files/skytemple_files/graphics/bma/_model.py:444
 #, python-brace-format
 msgid "Can not import map background: Height of both images must match the current map height: {expected_height}px"
 msgstr "No se puede importar el fondo del mapa: la altura ambas imágenes debe coincidir con la altura actual del mapa: {expected_height}px"
 
 #: skytemple-files/skytemple_files/graphics/bpa/_model.py:161
-#: skytemple-rust/src/st_bpa.rs:189
+#: skytemple-rust/src/st_bpa.rs:192
 msgid "The dimensions of all images must be the same."
 msgstr "Las dimensiones de todas las imágenes deben ser iguales."
 
@@ -5351,7 +5351,7 @@ msgstr "No se ha encontrado una escena para este script."
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:144
 #: skytemple/skytemple/core/ssb_debugger/context.py:158
-#: skytemple/skytemple/module/map_bg/controller/bg.py:391
+#: skytemple/skytemple/module/map_bg/controller/bg.py:382
 msgid "No Scenes Found"
 msgstr "No se han encontrado escenas"
 
@@ -9145,7 +9145,7 @@ msgstr "Listas de menú"
 msgid "Special Episode PCs"
 msgstr "PJs de Capítulos Especiales"
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:50
+#: skytemple/skytemple/module/map_bg/controller/bg.py:49
 msgid "- The image consists of 8x8 tiles.\n"
 "- The image is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
@@ -9171,7 +9171,7 @@ msgstr "- La imagen consta de tiles de 8x8.\n"
 "  (=no repetidos en otra paleta ni invertidos o rotados).\n\n"
 "Los tiles animados no se importan."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:64
+#: skytemple/skytemple/module/map_bg/controller/bg.py:63
 msgid "- The image consists of 8x8 tiles.\n"
 "- The image is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
@@ -9219,7 +9219,7 @@ msgstr "- La imagen consta de tiles de 8x8.\n"
 "Los tiles, chunks y paletas estáticas se reemplazan al importar. \n"
 "Los tiles animados y los ajustes de animación de las paletas no se modifican.\n"
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:93
+#: skytemple/skytemple/module/map_bg/controller/bg.py:92
 msgid "- The image is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
 "- Each 8x8 tile in the image MUST only use colors from\n"
@@ -9259,45 +9259,45 @@ msgstr "- La imagen es un PNG indexado de 256 colores.\n"
 "Dado que no se importan tiles animados, necesitan\n"
 "ser (re)asignados a los chunks después de la importación."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:184
+#: skytemple/skytemple/module/map_bg/controller/bg.py:183
 msgid "This map background shared some asset files with other map backgrounds.\n"
 "SkyTemple can't edit shared files, so those assets were copied."
 msgstr "Este fondo de mapa comparte algunos assets con otros fondos de mapa.\n"
 "SkyTemple no puede editar los archivos compartidos, por lo que esos assets se han copiado."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:188
+#: skytemple/skytemple/module/map_bg/controller/bg.py:187
 msgid "SkyTemple - Notice"
 msgstr "SkyTemple - Aviso"
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:389
+#: skytemple/skytemple/module/map_bg/controller/bg.py:380
 msgid "A script map with the same name as this background does not exist."
 msgstr "No existe un script de mapa con el mismo nombre que este fondo."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:695
+#: skytemple/skytemple/module/map_bg/controller/bg.py:686
 msgid "This map only has one layer.\n"
 "You can add a second layer at Map > Settings."
 msgstr "Este mapa solo tiene una capa.\n"
 "Puedes añadir una segunda capa desde Mapa > Ajustes."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:716
+#: skytemple/skytemple/module/map_bg/controller/bg.py:707
 msgid "This map has no collision.\n"
 "You can add collision at Map > Settings."
 msgstr "Este mapa no tiene colisiones.\n"
 "Puedes añadirlas desde Mapa > Ajustes."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:725
+#: skytemple/skytemple/module/map_bg/controller/bg.py:716
 msgid "This map has no second collision layer.\n"
 "You can add a second collision layer at Map > Settings."
 msgstr "Este mapa no tiene segunda capa de colisiones.\n"
 "Puedes añadirla desde Mapa > Ajustes."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:745
+#: skytemple/skytemple/module/map_bg/controller/bg.py:736
 msgid "This map has no data layer.\n"
 "You can add a data layer at Map > Settings."
 msgstr "Este mapa no tiene capa de datos.\n"
 "Puedes añadir una desde Mapa > Ajustes."
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:879
+#: skytemple/skytemple/module/map_bg/controller/bg.py:870
 msgid "Map backgrounds can be used as primary or secondary.\n"
 "When used as primary, the background can have up to 14 palettes, using slots from 0 to 13.\n"
 "When used as secondary, the background can only have 1 palette, using slot 14, and every palette value will have a new value of (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
@@ -9309,7 +9309,7 @@ msgstr "Los fondos de mapa pueden utilizarse como primarios o secundarios.\n"
 "Todavía es posible utilizar valores de paleta por encima de esos límites, pero esto es solo en los casos en que un fondo necesita hacer referencia a una paleta del otro fondo.\n"
 "Nota: en el juego original, casi todos los fondos se utilizan como primarios, siendo las excepciones principalmente los fondos de clima (W).\n"
 
-#: skytemple/skytemple/module/map_bg/controller/bg.py:884
+#: skytemple/skytemple/module/map_bg/controller/bg.py:875
 msgid "Background Palettes"
 msgstr "Paletas de fondo"
 
