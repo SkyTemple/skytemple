@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-02-25 23:49+0000\n"
-"PO-Revision-Date: 2022-02-26 00:01\n"
+"PO-Revision-Date: 2022-02-27 18:16\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3667,61 +3667,61 @@ msgstr "No se ha podido compilar el script: Todos los idiomas deben tener la mis
 #: skytemple-rust/src/dse/st_smdl/eoc.rs:35
 #: skytemple-rust/src/dse/st_smdl/trk.rs:82
 msgid "SMDL file too short (EOC EOF)."
-msgstr ""
+msgstr "Archivo SMDL demasiado corto (EOC EOF)."
 
 #: skytemple-rust/src/dse/st_smdl/eoc.rs:37
 msgid "Invalid SMDL/EOC header."
-msgstr ""
+msgstr "SMDL inválido/Encabezado de EOC."
 
 #: skytemple-rust/src/dse/st_smdl/smdl.rs:58
 msgid "SMDL file too short (Header EOF)."
-msgstr ""
+msgstr "Archivo SMDL demasiado corto (Encabezado EOF)."
 
 #: skytemple-rust/src/dse/st_smdl/smdl.rs:60
 msgid "Invalid SMDL/Header header."
-msgstr ""
+msgstr "SMDL inválido/Encabezado del encabezado."
 
 #: skytemple-rust/src/dse/st_smdl/song.rs:67
 msgid "SMDL file too short (Song EOF)."
-msgstr ""
+msgstr "Archivo SMDL demasiado corto (Canción EOF)."
 
 #: skytemple-rust/src/dse/st_smdl/song.rs:69
 msgid "Invalid SMDL/Song header."
-msgstr ""
+msgstr "SMDL inválido/Encabezado de canción."
 
 #: skytemple-rust/src/dse/st_smdl/trk.rs:50
 msgid "SMDL file too short (Track EOF)."
-msgstr ""
+msgstr "Archivo SMDL demasiado corto (Pista EOF)."
 
 #: skytemple-rust/src/dse/st_smdl/trk.rs:52
 msgid "Invalid SMDL/Track header."
-msgstr ""
+msgstr "SMDL inválido/Encabezado de pista."
 
 #: skytemple-rust/src/dse/st_swdl/kgrp.rs:41
 msgid "SWDL file too short (Keygroup EOF)."
-msgstr ""
+msgstr "Archivo SWDL demasiado corto (Grupo de claves EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/kgrp.rs:76
 #: skytemple-rust/src/dse/st_swdl/kgrp.rs:82
 msgid "SWDL file too short (Kgrp EOF)."
-msgstr ""
+msgstr "Archivo SWDL demasiado corto (Grupo de claves EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/kgrp.rs:78
 msgid "Invalid SWDL/Kgrp header."
-msgstr ""
+msgstr "SWDL inválido/Encabezado del grupo de claves."
 
 #: skytemple-rust/src/dse/st_swdl/pcmd.rs:35
 #: skytemple-rust/src/dse/st_swdl/pcmd.rs:41
 msgid "SWDL file too short (Pcmd EOF)."
-msgstr ""
+msgstr "Archivo SWDL demasiado corto (Pcmd EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/pcmd.rs:37
 msgid "Invalid SWDL/Pcmd header."
-msgstr ""
+msgstr "SWDL inválido/Encabezado de Pcmd."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:45
 msgid "SWDL file too short (LFO EOF)."
-msgstr ""
+msgstr "Archivo SWDL demasiado corto (LFO EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:120
 msgid "SWDL file too short (Split EOF)."
@@ -3790,11 +3790,11 @@ msgstr ""
 
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:226
 msgid "Invalid SWDL/Wavi header."
-msgstr ""
+msgstr "SWDL inválido/Encabezado de Wavi."
 
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:234
 msgid "SWDL Wavi length invalid; tried to read past EOF."
-msgstr ""
+msgstr "La longitud de SWDL Wavi no es válida; se ha intentado leer el EOF previo."
 
 #: skytemple-rust/src/image/tiled.rs:195
 msgid "An image selected to import is too complex. It has too many unique tiles ({}, max allowed are 1024).\n"
@@ -3804,7 +3804,7 @@ msgstr "La imagen seleccionada para importar es demasiado compleja. Tiene demasi
 
 #: skytemple-rust/src/romfs.rs:69
 msgid "ROM Header checksum does not match contents."
-msgstr ""
+msgstr "La suma de comprobación de encabezado de la ROM no coincide con el contenido."
 
 #: skytemple-rust/src/romfs.rs:75
 msgid "Error reading the filesystem from ROM: {}"
