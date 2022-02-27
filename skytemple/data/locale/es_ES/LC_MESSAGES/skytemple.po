@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-02-25 23:49+0000\n"
-"PO-Revision-Date: 2022-02-27 18:16\n"
+"PO-Revision-Date: 2022-02-27 19:11\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3725,68 +3725,68 @@ msgstr "Archivo SWDL demasiado corto (LFO EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:120
 msgid "SWDL file too short (Split EOF)."
-msgstr ""
+msgstr "Archivo SWDL demasiado corto (Split EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:128
 msgid "SWDL file: Invalid lowkey duplicate (Split EOF)."
-msgstr ""
+msgstr "Archivo SWDL: duplicado lowkey no válido (Split EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:129
 msgid "SWDL file: Invalid hikey duplicate (Split EOF)."
-msgstr ""
+msgstr "Archivo SWDL: duplicado hikey no válido (Split EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:132
 msgid "SWDL file: Invalid lolevel duplicate (Split EOF)."
-msgstr ""
+msgstr "Archivo SWDL: duplicado lolevel no válido (Split EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:133
 msgid "SWDL file: Invalid hilevel duplicate (Split EOF)."
-msgstr ""
+msgstr "Archivo SWDL: duplicado hilevel no válido (Split EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:238
 msgid "SWDL file too short (PRG EOF)."
-msgstr ""
+msgstr "Archivo SWDL demasiado corto (PRG EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:298
 msgid "SWDL file too short (Prgi EOF)."
-msgstr ""
+msgstr "Archivo SWDL demasiado corto (Prgi EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:300
 msgid "Invalid PRGI/Prgi header."
-msgstr ""
+msgstr "PRGI inválido/Encabezado de Prgi."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:308
 msgid "SWDL Prgi length invalid; tried to read past EOF."
-msgstr ""
+msgstr "La longitud de SWDL Prgi no es válida; se ha intentado leer el EOF previo."
 
 #: skytemple-rust/src/dse/st_swdl/swdl.rs:47
 msgid "SWDL file too short (SwdlPcmdLen EOF)."
-msgstr ""
+msgstr "Archivo SWDL demasiado corto (SwdlPcmdLen EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/swdl.rs:107
 msgid "SWDL file too short (Header EOF)."
-msgstr ""
+msgstr "Archivo SWDL demasiado corto (Encabezado EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/swdl.rs:109
 msgid "Invalid SWDL/Header header."
-msgstr ""
+msgstr "SWDL inválido/Encabezado del encabezado."
 
 #: skytemple-rust/src/dse/st_swdl/swdl.rs:196
 msgid "Swdl read error (inconsistent Wavi length)"
-msgstr ""
+msgstr "Error de lectura de SWDL (longitud de Wavi inconsistente)"
 
 #: skytemple-rust/src/dse/st_swdl/swdl.rs:220
 msgid "Swdl read: Invalid sample data"
-msgstr ""
+msgstr "Lectura de SWDL: datos de muestra inválidos"
 
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:103
 msgid "SWDL file too short (Sample Table EOF)."
-msgstr ""
+msgstr "Archivo SWDL demasiado corto (Tabla de muestras EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:224
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:237
 msgid "SWDL file too short (Wavi EOF)."
-msgstr ""
+msgstr "Archivo SWDL demasiado corto (Wavi EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:226
 msgid "Invalid SWDL/Wavi header."
