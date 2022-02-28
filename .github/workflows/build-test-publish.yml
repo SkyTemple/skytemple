@@ -8,6 +8,7 @@ on:
       - master
       - l10n_master
       - release
+      - version/*
   pull_request:
     branches-ignore:
       - l10n_master
