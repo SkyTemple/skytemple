@@ -187,20 +187,7 @@ def run_main(settings: SkyTempleSettingsStore):
 
 def _load_theme(settings: SkyTempleSettingsStore):
     gtk_settings = Gtk.Settings.get_default()
-    theme = settings.get_gtk_theme()
-    if theme is None:
-        theme = 'Arc-Dark'
-        if sys.platform.startswith('win'):
-            from skytemple_files.common.platform_utils.win import win_use_light_theme
-            theme = 'ZorinBlue-Light'
-            if not win_use_light_theme():
-                theme = 'ZorinBlue-Dark'
-        if sys.platform.startswith('darwin'):
-            from skytemple_files.common.platform_utils.macos import macos_use_light_theme
-            theme = 'ZorinBlue-Light'
-            if not macos_use_light_theme():
-                theme = 'ZorinBlue-Dark'
-    gtk_settings.set_property("gtk-theme-name", theme)
+    gtk_settings.set_property("gtk-theme-name", settings.get_gtk_theme(default='Arc-Dark'))
 
 
 def main():
