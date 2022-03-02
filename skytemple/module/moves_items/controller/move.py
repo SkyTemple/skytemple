@@ -364,7 +364,7 @@ class MoveController(AbstractController):
 
     def _init_stores(self):
         self._comboxbox_for_enum(['cb_category'], WazaMoveCategory)
-        self._comboxbox_for_enum(['cb_type'], PokeType)
+        self._comboxbox_for_enum_with_strings(['cb_type'], PokeType, StringType.TYPE_NAMES)
         self._comboxbox_for_enum(['cb_settings_range_target'], WazaMoveRangeTarget)
         self._comboxbox_for_enum(['cb_settings_range_range'], WazaMoveRangeRange)
         self._comboxbox_for_enum(['cb_settings_range_ai_target'], WazaMoveRangeTarget)
@@ -424,6 +424,13 @@ class MoveController(AbstractController):
             enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
+        for name in names:
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
+
+    def _comboxbox_for_enum_with_strings(self, names: List[str], enum: Type[Enum], string_type: StringType):
+        store = Gtk.ListStore(int, str)  # id, name
+        for entry in enum:
+            store.append([entry.value, self._string_provider.get_value(string_type, entry.value)])
         for name in names:
             self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 

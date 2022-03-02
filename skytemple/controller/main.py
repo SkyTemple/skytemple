@@ -461,7 +461,7 @@ class MainController:
         assert current_thread() == main_thread
         logger.debug('View load error. Unlocking.')
         tb: TextBuffer = self.builder.get_object('es_error_text_buffer')
-        tb.set_text(''.join(traceback.format_exception(etype=type(ex), value=ex, tb=ex.__traceback__)))
+        tb.set_text(''.join(traceback.format_exception(type(ex), value=ex, tb=ex.__traceback__)))
         controller = "<<unknown>>"
         if self._current_view_controller_class is not None:
             controller = self._current_view_controller_class.__qualname__

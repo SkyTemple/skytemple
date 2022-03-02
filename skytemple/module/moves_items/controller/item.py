@@ -304,7 +304,7 @@ class ItemController(AbstractController):
         text = _("Either the ID of a type or of a Pokémon, depending on the type of the exclusive item.\n\n"
                  "IDs for Types:\n")
         for typ in PokeType:
-            text += f'{typ.value}: {str(typ)}\n'
+            text += f'{typ.value}: {self._string_provider.get_value(StringType.TYPE_NAMES, typ.value)}\n'
         md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
