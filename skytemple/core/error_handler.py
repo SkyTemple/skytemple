@@ -25,7 +25,6 @@ from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import Union, Type, Tuple, Any, Optional, Dict
 
-from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple_files.common.util import Capturable
 
 try:
@@ -113,6 +112,7 @@ def display_error(
 
 
 def capture_error(exc_info: Optional[ExceptionInfo], **error_context: Capturable):
+    from skytemple.core.settings import SkyTempleSettingsStore
     try:
         settings = SkyTempleSettingsStore()
         if settings.get_allow_sentry():

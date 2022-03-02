@@ -17,6 +17,7 @@
 import logging
 import os
 import sys
+import webbrowser
 from functools import partial
 from glob import glob
 
@@ -49,8 +50,8 @@ class SettingsController:
         self.builder = builder
         self.settings = settings
 
-        self.builder.get_object('setting_help_native_enable').connect('clicked', self.on_setting_help_native_enable_clicked)
         self.builder.get_object('setting_help_async').connect('clicked', self.on_setting_help_async_clicked)
+        self.builder.get_object('setting_help_privacy').connect('activate-link', self.on_help_privacy_activate_link)
 
     def run(self):
         """
@@ -109,6 +110,11 @@ class SettingsController:
         if active is not None:
             cb.set_active_id(active)
 
+        # Sentry
+        allow_sentry_previous = self.settings.get_integration_discord_enabled()
+        settings_allow_sentry_enable = self.builder.get_object('setting_allow_sentry')
+        settings_allow_sentry_enable.set_active(allow_sentry_previous)
+
         response = self.window.run()
 
         have_to_restart = False
@@ -144,6 +150,16 @@ class SettingsController:
             if before != async_mode:
                 self.settings.set_async_configuration(async_mode)
                 have_to_restart = True
+
+            # Sentry
+            allow_sentry_enabled = settings_allow_sentry_enable.get_active()
+            if allow_sentry_enabled != allow_sentry_previous:
+                self.settings.set_allow_sentry(allow_sentry_enabled)
+                if not allow_sentry_enabled:
+                    have_to_restart = True
+                else:
+                    from skytemple.core import sentry
+                    sentry.init()
 
         self.window.hide()
 
@@ -186,6 +202,9 @@ class SettingsController:
         )
         md.run()
         md.destroy()
+
+    def on_help_privacy_activate_link(self, *args):
+        webbrowser.open_new_tab("https://skytemple.org/privacy.html")
 
     def _list_gtk_themes(self):
         dirs = [

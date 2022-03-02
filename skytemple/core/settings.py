@@ -207,6 +207,12 @@ class SkyTempleSettingsStore:
         self.loaded_config[SECT_GENERAL][KEY_ALLOW_SENTRY] = '1' if value else '0'
         self._save()
 
+    def is_allow_sentry_set(self) -> bool:
+        if SECT_GENERAL in self.loaded_config:
+            if KEY_ALLOW_SENTRY in self.loaded_config[SECT_GENERAL]:
+                return True
+        return False
+
     def _save(self):
         with open_utf8(self.config_file, 'w') as f:
             self.loaded_config.write(f)

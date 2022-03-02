@@ -139,6 +139,8 @@ class MainController:
         self.tilequant_controller = TilequantController(self.window, self.builder)
         self.settings_controller = SettingsController(self.window, self.builder, self.settings)
 
+        GLib.idle_add(lambda: self._ask_for_sentry())
+
     def on_destroy(self, *args):
         logger.debug('Window destroyed.')
         Gtk.main_quit()
@@ -524,6 +526,9 @@ class MainController:
     def on_update_button_clicked(self, *args):
         webbrowser.open_new_tab("https://projectpokemon.org/home/files/file/4193-skytemple-pmd2-rom-edtior/")
 
+    def on_label_privacy_activate_link(self, *args):
+        webbrowser.open_new_tab("https://skytemple.org/privacy.html")
+
     def gtk_widget_hide_on_delete(self, w: Gtk.Widget, *args):
         w.hide_on_delete()
         return True
@@ -872,3 +877,14 @@ class MainController:
             pass
         # else/except:
         self.builder.get_object('banner_info').hide()
+
+    def _ask_for_sentry(self):
+        if not self.settings.is_allow_sentry_set():
+            response = self.builder.get_object('dialog_ask_for_sentry').run()
+            self.builder.get_object('dialog_ask_for_sentry').hide()
+            if response == Gtk.ResponseType.YES:
+                self.settings.set_allow_sentry(True)
+                from skytemple.core import sentry
+                sentry.init()
+            else:
+                self.settings.set_allow_sentry(False)
