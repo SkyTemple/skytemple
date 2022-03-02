@@ -293,7 +293,8 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_room_density_clicked(self, *args):
-        self._help(_("The game randomly adds a number between 0 and 2 to obtain the final value."))
+        self._help(_("The game randomly adds a number between 0 and 2 to obtain the final value. "
+                     "If the room density is negative, its absolute value is used without adding a random variation."))
 
     def on_cb_structure_changed(self, w, *args):
         self._update_from_widget(w)
@@ -378,6 +379,13 @@ class FloorController(AbstractController):
 
     def on_btn_help_trap_density_clicked(self, *args):
         self._help(_("The final value is randomized between density and density/2."))
+
+    def on_btn_help_item_density_clicked(self, *args):
+        self._help(_("The final value is randomized between randomized between density - 2 and density + 1."))
+
+    def on_btn_help_initial_enemy_density_clicked(self, *args):
+        self._help(_("The final value is randomized between randomized density / 2 and density - 1 if the value is positive. "
+                     "If it's negative, its absolute value is used (no random variation is applied in this case)."))
 
     def on_btn_help_max_coin_amount_clicked(self, *args):
         self._help(_("The value stored in the ROM is actually the value divided by 5. Because of this the saved value "

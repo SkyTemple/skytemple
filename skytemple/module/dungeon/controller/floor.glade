@@ -1955,7 +1955,7 @@
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="label" translatable="yes">% (Chance)</property>
+                                <property name="label" translatable="yes">(no. of rooms)</property>
                               </object>
                               <packing>
                                 <property name="left-attach">2</property>
@@ -2074,7 +2074,6 @@
                               <packing>
                                 <property name="left-attach">1</property>
                                 <property name="top-attach">0</property>
-                                <property name="width">2</property>
                               </packing>
                             </child>
                             <child>
@@ -2086,7 +2085,6 @@
                               <packing>
                                 <property name="left-attach">1</property>
                                 <property name="top-attach">1</property>
-                                <property name="width">2</property>
                               </packing>
                             </child>
                             <child>
@@ -2120,7 +2118,6 @@
                               <packing>
                                 <property name="left-attach">1</property>
                                 <property name="top-attach">4</property>
-                                <property name="width">2</property>
                               </packing>
                             </child>
                             <child>
@@ -2163,6 +2160,58 @@
                               <packing>
                                 <property name="left-attach">2</property>
                                 <property name="top-attach">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="btn_help_item_density">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <signal name="clicked" handler="on_btn_help_item_density_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="btn_help_initial_enemy_density">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <signal name="clicked" handler="on_btn_help_initial_enemy_density_clicked" swapped="no"/>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">4</property>
                               </packing>
                             </child>
                           </object>
