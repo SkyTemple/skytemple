@@ -98,7 +98,7 @@ def try_ignore_err(source: Callable[[], T], sink: Callable[[T], None]):
         logger.error(f"Ignored exception (fn: {source.__name__}) while setting up Sentry.", exc_info=ex)
 
 
-def collect_device_context() -> Dict[str, Captured]:
+def collect_device_context() -> Dict[str, 'Captured']:
     import platform
     import socket
     import psutil
@@ -135,7 +135,7 @@ def collect_device_context() -> Dict[str, Captured]:
     }, **screen_info)
 
 
-def collect_os_context() -> Dict[str, Captured]:
+def collect_os_context() -> Dict[str, 'Captured']:
     import platform
     uname = platform.uname()
     return {
@@ -145,7 +145,7 @@ def collect_os_context() -> Dict[str, Captured]:
     }
 
 
-def collect_runtime_context() -> Dict[str, Captured]:
+def collect_runtime_context() -> Dict[str, 'Captured']:
     import platform
     return {
         "name": platform.python_implementation(),
@@ -154,7 +154,7 @@ def collect_runtime_context() -> Dict[str, Captured]:
     }
 
 
-def collect_app_context() -> Dict[str, Captured]:
+def collect_app_context() -> Dict[str, 'Captured']:
     return {
         "app_start_time": APP_START_TIME.isoformat(),
         "app_version": version()
@@ -253,7 +253,7 @@ def debugger_emulator_state(manager: 'DebuggerManager'):
 
 
 # noinspection PyProtectedMember
-def collect_state_context() -> Dict[str, Captured]:
+def collect_state_context() -> Dict[str, 'Captured']:
     from skytemple.controller.main import MainController
     from skytemple.core.rom_project import RomProject
     rom_project = RomProject.get_current()
@@ -294,7 +294,7 @@ def collect_state_context() -> Dict[str, Captured]:
     }
 
 
-def collect_config_context(settings: 'SkyTempleSettingsStore') -> Dict[str, Captured]:
+def collect_config_context(settings: 'SkyTempleSettingsStore') -> Dict[str, 'Captured']:
     return dict(settings.loaded_config.items())
 
 
