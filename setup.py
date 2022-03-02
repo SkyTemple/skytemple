@@ -1,4 +1,4 @@
-__version__ = '1.4.0'
+__version__ = '1.3.4'
 
 import glob
 import os
@@ -64,7 +64,7 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files >= 1.3.2',
+        'skytemple-files >= 1.3.4',
         'skytemple-dtef >= 1.1.4',
         'skytemple-icons >= 1.3.2',
         'pygobject >= 3.26.0',
@@ -75,6 +75,8 @@ setup(
         'pygal >= 2.4.0',
         'CairoSVG >= 2.4.2',
         'gbulb >= 0.6.2',
+        'psutil >= 5.9.0',
+        'sentry-sdk >= 1.5'
         'packaging'
     ],
     extras_require={
@@ -85,8 +87,6 @@ setup(
         'Development Status :: 4 - Beta',
         'Programming Language :: Python',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
