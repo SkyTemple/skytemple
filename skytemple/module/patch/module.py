@@ -57,8 +57,3 @@ class PatchModule(AbstractModule):
         # Mark as modified in tree
         row = self._tree_model[self._tree_iter]
         recursive_up_item_store_mark_as_modified(row)
-
-    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
-        if isinstance(open_controller, MainController):
-            pass  # todo
-        return None

@@ -75,5 +75,9 @@ class BgpModule(AbstractModule):
 
     def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
         if isinstance(open_controller, BgpController):
-            pass  # todo
+            return {
+                "models": {
+                    self.list_of_bgps[open_controller.item_id]: open_controller.bgp
+                }
+            }
         return None

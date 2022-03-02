@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 from abc import ABC, abstractmethod
-from typing import Optional, List, TypedDict, Dict, TYPE_CHECKING
+from typing import Optional, List, TypedDict, Dict, TYPE_CHECKING, Any
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore, TreeIter
@@ -29,7 +29,7 @@ if TYPE_CHECKING:
 
 
 class DebuggingInfo(TypedDict, total=False):
-    models: Dict[str, Captured]
+    models: Dict[str, Any]
     additional: Optional[Captured]
 
 

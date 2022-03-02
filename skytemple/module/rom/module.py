@@ -27,6 +27,7 @@ from skytemple.module.rom.controller.main import MainController
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified
 
+
 class RomModule(AbstractModule):
     @classmethod
     def depends_on(cls):

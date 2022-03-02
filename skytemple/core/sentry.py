@@ -27,7 +27,7 @@ from skytemple.core.ui_utils import version
 
 if TYPE_CHECKING:
     from skytemple.core.error_handler import ExceptionInfo
-    from skytemple_files.common.util import Capturable, capture_capturable, Captured
+    from skytemple_files.common.util import Capturable, capture_capturable, Captured, capture_any
     from skytemple.core.settings import SkyTempleSettingsStore
     from skytemple.core.ssb_debugger.manager import DebuggerManager
 
@@ -257,11 +257,12 @@ def collect_state_context() -> Dict[str, 'Captured']:
     from skytemple.controller.main import MainController
     from skytemple.core.rom_project import RomProject
     rom_project = RomProject.get_current()
-    view_state = None
     try:
         view_state = MainController._instance._current_view_module.collect_debugging_info(
             MainController._instance._current_view_controller
         )
+        if "models" in view_state:
+            view_state["models"] = {k: capture_any(v) for k, v in view_state["models"]}
     except Exception as ex:
         view_state = {
             "error_collecting": str(ex)
