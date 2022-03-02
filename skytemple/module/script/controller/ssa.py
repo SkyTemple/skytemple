@@ -756,11 +756,12 @@ class SsaController(AbstractController):
             self._refresh_for_selected()
 
     def on_po_actor_delete_clicked(self, widget: Gtk.ComboBox, *args):
-        # Remove from list
         tree, l_iter = self._get_list_tree_and_iter_for(self._currently_selected_entity)
-        tree.get_model().remove(l_iter)
+        current_layer = self._currently_selected_entity_layer
         # Remove from model
         self.ssa.layer_list[self._currently_selected_entity_layer].actors.remove(self._currently_selected_entity)
+        # Remove from list
+        tree.get_model().remove(l_iter)
         # Remove now invalid references:
         self._currently_selected_entity = None
         self._bg_draw_is_clicked__drag_active = False
@@ -769,7 +770,7 @@ class SsaController(AbstractController):
             self._currently_open_popover.popdown()
         self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
-        self._refresh_layer(self._currently_selected_entity_layer)
+        self._refresh_layer(current_layer)
         # Mark as modified
         self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
@@ -817,11 +818,12 @@ class SsaController(AbstractController):
             self._refresh_for_selected()
 
     def on_po_object_delete_clicked(self, widget: Gtk.ComboBox, *args):
-        # Remove from list
         tree, l_iter = self._get_list_tree_and_iter_for(self._currently_selected_entity)
-        tree.get_model().remove(l_iter)
+        current_layer = self._currently_selected_entity_layer
         # Remove from model
         self.ssa.layer_list[self._currently_selected_entity_layer].objects.remove(self._currently_selected_entity)
+        # Remove from list
+        tree.get_model().remove(l_iter)
         # Remove now invalid references:
         self._currently_selected_entity = None
         self._bg_draw_is_clicked__drag_active = False
@@ -830,7 +832,7 @@ class SsaController(AbstractController):
             self._currently_open_popover.popdown()
         self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
-        self._refresh_layer(self._currently_selected_entity_layer)
+        self._refresh_layer(current_layer)
         # Mark as modified
         self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
@@ -871,11 +873,12 @@ class SsaController(AbstractController):
             self._refresh_for_selected()
 
     def on_po_performer_delete_clicked(self, widget: Gtk.ComboBox, *args):
-        # Remove from list
         tree, l_iter = self._get_list_tree_and_iter_for(self._currently_selected_entity)
-        tree.get_model().remove(l_iter)
+        current_layer = self._currently_selected_entity_layer
         # Remove from model
         self.ssa.layer_list[self._currently_selected_entity_layer].performers.remove(self._currently_selected_entity)
+        # Remove from list
+        tree.get_model().remove(l_iter)
         # Remove now invalid references:
         self._currently_selected_entity = None
         self._bg_draw_is_clicked__drag_active = False
@@ -884,7 +887,7 @@ class SsaController(AbstractController):
             self._currently_open_popover.popdown()
         self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
-        self._refresh_layer(self._currently_selected_entity_layer)
+        self._refresh_layer(current_layer)
         # Mark as modified
         self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
@@ -919,11 +922,12 @@ class SsaController(AbstractController):
                 self._refresh_for_selected()
 
     def on_po_trigger_delete_clicked(self, widget: Gtk.ComboBox, *args):
-        # Remove from list
         tree, l_iter = self._get_list_tree_and_iter_for(self._currently_selected_entity)
-        tree.get_model().remove(l_iter)
+        current_layer = self._currently_selected_entity_layer
         # Remove from model
         self.ssa.layer_list[self._currently_selected_entity_layer].events.remove(self._currently_selected_entity)
+        # Remove from list
+        tree.get_model().remove(l_iter)
         # Remove now invalid references:
         self._currently_selected_entity = None
         self._bg_draw_is_clicked__drag_active = False
@@ -932,7 +936,7 @@ class SsaController(AbstractController):
             self._currently_open_popover.popdown()
         self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
-        self._refresh_layer(self._currently_selected_entity_layer)
+        self._refresh_layer(current_layer)
         # Mark as modified
         self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
