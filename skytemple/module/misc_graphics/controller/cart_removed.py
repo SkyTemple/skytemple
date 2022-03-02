@@ -24,6 +24,7 @@ import cairo
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple_files.common.util import add_extension_if_missing
 
 try:
     from PIL import Image
@@ -85,8 +86,7 @@ class CartRemovedController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
-            if '.' not in fn:
-                fn += '.png'
+            fn = add_extension_if_missing(fn, 'png')
             self.module.get_cart_removed_data().save(fn)
     def on_import_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(

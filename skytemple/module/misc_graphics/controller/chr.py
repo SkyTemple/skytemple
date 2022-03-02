@@ -23,6 +23,7 @@ import cairo
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.graphics.chr.model import Chr
 
 try:
@@ -75,8 +76,7 @@ class ChrController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
-            if '.' not in fn:
-                fn += '.png'
+            fn = add_extension_if_missing(fn, 'png')
             self.chr.to_pil().save(fn)
 
     def on_import_clicked(self, w: Gtk.MenuToolButton):

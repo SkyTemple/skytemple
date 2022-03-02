@@ -23,6 +23,7 @@ import cairo
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple_files.common.util import add_extension_if_missing
 
 try:
     from PIL import Image
@@ -84,8 +85,7 @@ class BgpController(AbstractController):
 
             response = dialog.run()
             fn = dialog.get_filename()
-            if '.' not in fn:
-                fn += '.png'
+            fn = add_extension_if_missing(fn, 'png')
             dialog.destroy()
 
             if response == Gtk.ResponseType.ACCEPT:

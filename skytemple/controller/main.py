@@ -45,6 +45,7 @@ from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir, \
     version, open_dir
 from skytemple_files.common.i18n_util import _, f
+from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.common.version_util import check_newest_release, ReleaseType, get_event_banner
 
 gi.require_version('Gtk', '3.0')
@@ -229,8 +230,7 @@ class MainController:
 
         response = dialog.run()
         fn = dialog.get_filename()
-        if '.' not in fn:
-            fn += '.nds'
+        fn = add_extension_if_missing(fn, 'nds')
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:

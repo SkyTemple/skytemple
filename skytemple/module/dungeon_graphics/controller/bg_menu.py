@@ -25,7 +25,7 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_graphics_provider import DungeonTilesProvider
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_palettes_provider import DungeonPalettesProvider
-from skytemple_files.common.util import chunks
+from skytemple_files.common.util import chunks, add_extension_if_missing
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
 from skytemple_files.common.i18n_util import f, _
 
@@ -69,8 +69,7 @@ class BgMenuController:
 
             response = dialog.run()
             fn = dialog.get_filename()
-            if '.' not in fn:
-                fn += '.png'
+            fn = add_extension_if_missing(fn, 'png')
             dialog.destroy()
 
             if response == Gtk.ResponseType.ACCEPT:
@@ -138,8 +137,7 @@ class BgMenuController:
 
             response = dialog.run()
             fn = dialog.get_filename()
-            if '.' not in fn:
-                fn += '.png'
+            fn = add_extension_if_missing(fn, 'png')
             dialog.destroy()
 
             if response == Gtk.ResponseType.ACCEPT:
@@ -212,8 +210,7 @@ class BgMenuController:
 
             response = dialog.run()
             fn = dialog.get_filename()
-            if '.' not in fn:
-                fn += '.png'
+            fn = add_extension_if_missing(fn, 'png')
             dialog.destroy()
 
             if response == Gtk.ResponseType.ACCEPT:

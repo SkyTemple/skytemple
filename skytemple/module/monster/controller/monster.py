@@ -34,6 +34,7 @@ from skytemple.core.ui_utils import add_dialog_xml_filter
 from skytemple.module.monster.controller.level_up import LevelUpController
 from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.common.types.file_types import FileType
+from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.common.xml_util import prettify
 from skytemple_files.data.md.model import Gender, PokeType, MovementType, IQGroup, Ability, EvolutionMethod, \
     AdditionalRequirement, MdProperties, ShadowSize, MONSTER_BIN, MdEntry
@@ -806,8 +807,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 add_dialog_xml_filter(save_diag)
                 response = save_diag.run()
                 fn = save_diag.get_filename()
-                if '.' not in fn:
-                    fn += '.xml'
+                fn = add_extension_if_missing(fn, 'xml')
                 save_diag.destroy()
 
                 if response == Gtk.ResponseType.ACCEPT:

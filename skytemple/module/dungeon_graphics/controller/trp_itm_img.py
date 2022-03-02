@@ -30,7 +30,7 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple_files.common.i18n_util import _
-from skytemple_files.common.util import make_palette_colors_unique
+from skytemple_files.common.util import make_palette_colors_unique, add_extension_if_missing
 from skytemple_files.graphics.img_itm.model import ImgItm
 from skytemple_files.graphics.img_trp.model import ImgTrp
 
@@ -94,8 +94,7 @@ class TrpItmImgController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
-            if '.' not in fn:
-                fn += '.png'
+            fn = add_extension_if_missing(fn, 'png')
             self.img.to_pil(self.image_idx, self.palette_idx).save(fn)
 
     def on_import_clicked(self, w: Gtk.MenuToolButton):

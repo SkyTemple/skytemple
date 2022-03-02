@@ -30,6 +30,7 @@ from skytemple.module.map_bg.chunk_editor_data_provider.tile_graphics_provider i
 from skytemple.module.map_bg.chunk_editor_data_provider.tile_palettes_provider import MapBgPaletteProvider
 from skytemple_files.common.tiled_image import TilemapEntry
 from skytemple_files.common.types.file_types import FileType
+from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.graphics.bg_list_dat.model import BPA_EXT, DIR
 from skytemple_files.graphics.bpa.model import BpaFrameInfo, Bpa
 from skytemple_files.graphics.bpc.model import Bpc
@@ -212,8 +213,7 @@ class BgMenuController:
 
         response = dialog.run()
         fn = dialog.get_filename()
-        if '.' not in fn:
-            fn += '.gif'
+        fn = add_extension_if_missing(fn, 'gif')
         dialog.destroy()
 
         duration = 1000
@@ -747,8 +747,7 @@ class BgMenuController:
 
             response = dialog.run()
             fn = dialog.get_filename()
-            if '.' not in fn:
-                fn += '.png'
+            fn = add_extension_if_missing(fn, 'png')
             dialog.destroy()
 
             if response == Gtk.ResponseType.ACCEPT:
@@ -815,8 +814,7 @@ class BgMenuController:
             dialog.destroy()
 
             if response == Gtk.ResponseType.ACCEPT:
-                if '.' not in fn:
-                    fn += '.png'
+                fn = add_extension_if_missing(fn, 'png')
                 self.parent.bpc.tiles_to_pil(layer, self.parent.bpl.palettes, 20).save(fn)
 
     def _import_tiles(self, layer):

@@ -33,7 +33,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import is_dark_theme
 from skytemple.module.monster.level_up_graph import LevelUpGraphProvider
-from skytemple_files.common.util import open_utf8
+from skytemple_files.common.util import open_utf8, add_extension_if_missing
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry
 from skytemple_files.data.waza_p.model import WazaP, MoveLearnset, LevelUpMove
 from skytemple_files.common.i18n_util import f, _
@@ -212,8 +212,7 @@ class LevelUpController(AbstractController):
 
         response = dialog.run()
         fn = dialog.get_filename()
-        if '.' not in fn:
-            fn += '.csv'
+        fn = add_extension_if_missing(fn, 'csv')
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:

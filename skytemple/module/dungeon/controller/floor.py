@@ -49,6 +49,7 @@ from skytemple.module.dungeon.minimap_provider import MinimapProvider
 from skytemple_files.common.dungeon_floor_generator.generator import DungeonFloorGenerator, SIZE_X, SIZE_Y, Tile, \
     TileType, RandomGenProperties, RoomType
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem, Pmd2DungeonItemCategory
+from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.common.xml_util import prettify
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, DirectRule
 from skytemple_files.dungeon_data.mappa_bin.floor_layout import MappaFloorStructureType, \
@@ -1166,8 +1167,7 @@ class FloorController(AbstractController):
                 add_dialog_xml_filter(save_diag)
                 response = save_diag.run()
                 fn = save_diag.get_filename()
-                if '.' not in fn:
-                    fn += '.xml'
+                fn = add_extension_if_missing(fn, 'xml')
                 save_diag.destroy()
 
                 if response == Gtk.ResponseType.ACCEPT:

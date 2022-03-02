@@ -30,6 +30,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.third_party_util.cellrenderercustomtext import CellRendererTextView
 from skytemple.core.ui_utils import add_dialog_csv_filter
 from skytemple_files.common.ppmdu_config.data import Pmd2Language, Pmd2StringBlock
+from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.data.str.model import Str, open_utf8
 from skytemple_files.common.i18n_util import f, _
 
@@ -202,8 +203,7 @@ class StringsController(AbstractController):
         save_diag.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
-            if '.' not in fn:
-                fn += '.csv'
+            fn = add_extension_if_missing(fn, 'csv')
             with open_utf8(fn, 'w') as result_file:
                 wr = csv.writer(result_file)
                 wr.writerows([[x] for x in self._str.strings])

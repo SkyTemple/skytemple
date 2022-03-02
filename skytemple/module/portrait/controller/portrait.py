@@ -27,6 +27,7 @@ import cairo
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.graphics.kao.sprite_bot_sheet import SpriteBotSheet
 from skytemple_files.common.i18n_util import f, _
 
@@ -193,8 +194,7 @@ class PortraitController(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT:
             fn = dialog.get_filename()
-            if '.' not in fn:
-                fn += '.png'
+            fn = add_extension_if_missing(fn, 'png')
             SpriteBotSheet.create(self.kao, self.item_id).save(fn)
 
     def on_spritebot_import_activate(self, *args):

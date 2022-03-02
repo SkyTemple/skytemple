@@ -34,7 +34,7 @@ from skytemple.module.sprite.controller.monster_sprite import MonsterSpriteContr
 from skytemple.module.sprite.controller.object import ObjectController
 from skytemple.module.sprite.controller.object_main import OBJECT_SPRTIES, ObjectMainController
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.common.util import MONSTER_BIN
+from skytemple_files.common.util import MONSTER_BIN, add_extension_if_missing
 from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.graphics.chara_wan.model import WanFile
 from skytemple_files.common.i18n_util import f, _
@@ -128,8 +128,7 @@ class SpriteModule(AbstractModule):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
-            if '.' not in fn:
-                fn += '.wan'
+            fn = add_extension_if_missing(fn, 'wan')
             with open(fn, 'rb') as f:
                 return f.read()
 
@@ -151,8 +150,7 @@ class SpriteModule(AbstractModule):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
-            if '.' not in fn:
-                fn += '.wan'
+            fn = add_extension_if_missing(fn, 'wan')
             with open(fn, 'wb') as f:
                 f.write(sprite)
 

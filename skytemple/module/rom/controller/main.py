@@ -28,6 +28,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple_files.common.i18n_util import _, f
 from skytemple.controller.main import MainController as SkyTempleMainController
+from skytemple_files.common.util import add_extension_if_missing
 
 if TYPE_CHECKING:
     from skytemple.module.rom.module import RomModule
@@ -98,8 +99,7 @@ class MainController(AbstractController):
 
         response = dialog.run()
         fn = dialog.get_filename()
-        if '.' not in fn:
-            fn += '.png'
+        fn = add_extension_if_missing(fn, 'png')
         dialog.destroy()
 
         if response == ResponseType.ACCEPT:

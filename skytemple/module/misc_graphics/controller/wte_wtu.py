@@ -23,6 +23,7 @@ import cairo
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.graphics.wte.model import Wte, WteImageType
 from skytemple_files.graphics.wtu.model import Wtu, WtuEntry
 
@@ -85,8 +86,7 @@ class WteWtuController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
-            if '.' not in fn:
-                fn += '.png'
+            fn = add_extension_if_missing(fn, 'png')
             if self.wte.has_image():
                 self.wte.to_pil_canvas(int(self.builder.get_object('wte_palette_variant').get_text())).save(fn)
             else:

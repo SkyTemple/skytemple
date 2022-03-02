@@ -23,6 +23,7 @@ import cairo
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
+from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.graphics.colvec.model import Colvec
 from skytemple_files.graphics.colvec import *
 from skytemple_dtef.explorers_dtef import ExplorersDtef
@@ -89,8 +90,7 @@ class ColvecController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
-            if '.' not in fn:
-                fn += '.png'
+            fn = add_extension_if_missing(fn, 'png')
             self.colvec.to_pil(v).save(fn)
         
     def on_import_clicked(self, *args):
