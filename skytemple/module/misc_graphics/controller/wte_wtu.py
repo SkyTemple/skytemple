@@ -88,7 +88,7 @@ class WteWtuController(AbstractController):
             if '.' not in fn:
                 fn += '.png'
             if self.wte.has_image():
-                self.wte.to_pil_canvas().save(fn)
+                self.wte.to_pil_canvas(int(self.builder.get_object('wte_palette_variant').get_text())).save(fn)
             else:
                 self.wte.to_pil_palette().save(fn)
             
