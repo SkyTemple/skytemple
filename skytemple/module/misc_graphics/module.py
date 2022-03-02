@@ -18,8 +18,9 @@ from typing import Optional
 
 from gi.repository.Gtk import TreeStore
 
-from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.model_context import ModelContext
+from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.misc_graphics.controller.w16 import W16Controller
@@ -346,3 +347,20 @@ class MiscGraphicsModule(AbstractModule):
             # Mark as modified in tree
             row = self._tree_model[self._tree_level_iter[item.wte_filename]]
             recursive_up_item_store_mark_as_modified(row)
+
+    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
+        if isinstance(open_controller, CartRemovedController):
+            pass  # todo
+        if isinstance(open_controller, ChrController):
+            pass  # todo
+        if isinstance(open_controller, FontController):
+            pass  # todo
+        if isinstance(open_controller, GraphicFontController):
+            pass  # todo
+        if isinstance(open_controller, W16Controller):
+            pass  # todo
+        if isinstance(open_controller, WteWtuController):
+            pass  # todo
+        if isinstance(open_controller, ZMappaTController):
+            pass  # todo
+        return None

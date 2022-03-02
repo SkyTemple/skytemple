@@ -16,13 +16,21 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 from abc import ABC, abstractmethod
-from typing import Optional, List
+from typing import Optional, List, TypedDict, Dict, TYPE_CHECKING
 
-import pkg_resources
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore, TreeIter
 
 from skytemple.core.open_request import OpenRequest
+from skytemple_files.common.util import Captured
+
+if TYPE_CHECKING:
+    from skytemple.core.module_controller import AbstractController
+
+
+class DebuggingInfo(TypedDict, total=False):
+    models: Dict[str, Captured]
+    additional: Optional[Captured]
 
 
 class AbstractModule(ABC):
@@ -55,10 +63,18 @@ class AbstractModule(ABC):
         """Add the module nodes to the item tree"""
         pass
 
+    def collect_debugging_info(self, open_controller: 'AbstractController') -> Optional[DebuggingInfo]:
+        """
+        Return debugging information for the currently opened controller (passed in). If this module can't provide
+        this information for that controller, returns None.
+        If not implemented, always returns None.
+        """
+        return None
+
     def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
         """
         Handle an OpenRequest. Must return the iterator for the view in the main view list, as generated
         in load_tree_items.
-        If not implemented, always returns None
+        If not implemented, always returns None.
         """
         return None

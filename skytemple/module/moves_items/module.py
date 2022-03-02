@@ -18,7 +18,8 @@ from typing import Dict, Tuple, Optional, List
 
 from gi.repository.Gtk import TreeStore, TreeIter
 
-from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
+from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label, \
@@ -221,3 +222,18 @@ class MovesItemsModule(AbstractModule):
         # Mark as modified in tree
         row = self._tree_model[self.move_iters[move_id]]
         recursive_up_item_store_mark_as_modified(row)
+
+    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
+        if isinstance(open_controller, MoveController):
+            pass  # todo
+        if isinstance(open_controller, ItemController):
+            pass  # todo
+        if isinstance(open_controller, MoveEffectsController):
+            pass  # todo
+        if isinstance(open_controller, ItemEffectsController):
+            pass  # todo
+        if isinstance(open_controller, ItemKeysController):
+            pass  # todo
+        if isinstance(open_controller, ItemListsController):
+            pass  # todo
+        return None

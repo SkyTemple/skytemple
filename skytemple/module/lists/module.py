@@ -18,7 +18,8 @@ from typing import List, Tuple, Optional
 
 from gi.repository.Gtk import TreeStore, TreeIter
 
-from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
+from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_MUSIC
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label
@@ -443,3 +444,36 @@ class ListsModule(AbstractModule):
 
         row = self._tree_model[self._guest_pokemon_root_iter]
         recursive_up_item_store_mark_as_modified(row)
+
+    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
+        if isinstance(open_controller, ActorListController):
+            pass  # todo
+        if isinstance(open_controller, StartersListController):
+            pass  # todo
+        if isinstance(open_controller, RecruitmentListController):
+            pass  # todo
+        if isinstance(open_controller, WorldMapController):
+            pass  # todo
+        if isinstance(open_controller, RankListController):
+            pass  # todo
+        if isinstance(open_controller, MenuListController):
+            pass  # todo
+        if isinstance(open_controller, SPEffectsController):
+            pass  # todo
+        if isinstance(open_controller, DungeonInterruptController):
+            pass  # todo
+        if isinstance(open_controller, AnimationsController):
+            pass  # todo
+        if isinstance(open_controller, DungeonMusicController):
+            pass  # todo
+        if isinstance(open_controller, GuestPokemonController):
+            pass  # todo
+        if isinstance(open_controller, SpecialPcsController):
+            pass  # todo
+        if isinstance(open_controller, TacticsController):
+            pass  # todo
+        if isinstance(open_controller, IqController):
+            pass  # todo
+        if isinstance(open_controller, MiscSettingsController):
+            pass  # todo
+        return None

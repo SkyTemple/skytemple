@@ -23,10 +23,11 @@ from gi.repository.Gtk import TreeStore
 from PIL import Image
 
 from skytemple.controller.main import MainController
-from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.model_context import ModelContext
+from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.sprite.controller.monster_sprite import MonsterSpriteController
@@ -276,7 +277,6 @@ class SpriteModule(AbstractModule):
                 return -1
             return len(monster_bin)
 
-
     def save_monster_monster_sprite(self, id, data: Union[bytes, WanFile], raw=False):
         with self.get_monster_bin_ctx() as bin_pack:
             if not raw:
@@ -308,3 +308,8 @@ class SpriteModule(AbstractModule):
             else:
                 bin_pack[id] = data
         self.project.mark_as_modified(ATTACK_BIN)
+
+    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
+        if isinstance(open_controller, ObjectController):
+            pass  # todo
+        return None

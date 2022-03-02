@@ -32,7 +32,7 @@ from skytemple.controller.settings import SettingsController
 from skytemple.controller.tilequant import TilequantController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.controller_loader import load_controller
-from skytemple.core.error_handler import display_error
+from skytemple.core.error_handler import display_error, capture_error
 from skytemple.core.events.events import EVT_VIEW_SWITCH, EVT_PROJECT_OPEN
 from skytemple.core.events.manager import EventManager
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -460,6 +460,10 @@ class MainController:
         logger.debug('View load error. Unlocking.')
         tb: TextBuffer = self.builder.get_object('es_error_text_buffer')
         tb.set_text(''.join(traceback.format_exception(etype=type(ex), value=ex, tb=ex.__traceback__)))
+        controller = "<<unknown>>"
+        if self._current_view_controller_class is not None:
+            controller = self._current_view_controller_class.__qualname__
+        capture_error(ex, event="View load error.", controller=controller)
         self._editor_stack.set_visible_child(self.builder.get_object('es_error'))
         self._unlock_trees()
 

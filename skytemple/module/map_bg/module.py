@@ -21,10 +21,11 @@ from typing import Union, List, Optional, Tuple
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
-from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.model_context import ModelContext
+from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
@@ -265,3 +266,8 @@ class MapBgModule(AbstractModule):
         )
 
         return mappings, mappa, fixed, dungeon_bin_context, dungeon_list
+
+    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
+        if isinstance(open_controller, BgController):
+            pass  # todo
+        return None

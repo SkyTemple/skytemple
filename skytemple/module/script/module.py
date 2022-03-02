@@ -21,8 +21,9 @@ from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from explorerscript.source_map import SourceMapPositionMark
-from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.model_context import ModelContext
+from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST_TYPE_SCENE_SSE, REQUEST_TYPE_SCENE_SSA, \
     REQUEST_TYPE_SCENE_SSS
 from skytemple.core.rom_project import RomProject, BinaryName
@@ -455,3 +456,8 @@ class ScriptModule(AbstractModule):
         )
 
         return mappings, mappa, fixed, dungeon_bin_context, dungeon_list
+
+    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
+        if isinstance(open_controller, SsaController):
+            pass  # todo
+        return None

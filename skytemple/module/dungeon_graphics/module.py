@@ -20,8 +20,9 @@ from typing import Optional, List
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
-from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.model_context import ModelContext
+from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
@@ -225,3 +226,14 @@ class DungeonGraphicsModule(AbstractModule):
         ))
         row = self._tree_model[self._root_node]
         recursive_up_item_store_mark_as_modified(row)
+
+    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
+        if isinstance(open_controller, DungeonBgController):
+            pass  # todo
+        if isinstance(open_controller, ColvecController):
+            pass  # todo
+        if isinstance(open_controller, TilesetController):
+            pass  # todo
+        if isinstance(open_controller, TrpItmImgController):
+            pass  # todo
+        return None

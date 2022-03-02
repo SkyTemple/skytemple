@@ -15,12 +15,12 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from threading import Lock
-from typing import TYPE_CHECKING, Optional, List, Iterable
+from typing import TYPE_CHECKING, Optional, List, Iterable, Dict
 
 from gi.repository import Gtk
 
 from explorerscript.source_map import SourceMapPositionMark
-from skytemple.core.error_handler import display_error
+from skytemple.core.error_handler import display_error, capture_error
 from skytemple.core.events.events import EVT_DEBUGGER_SCRIPT_OPEN, EVT_DEBUGGER_SELECTED_STRING_CHANGED
 from skytemple.core.events.manager import EventManager
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -33,6 +33,7 @@ from skytemple.module.script.controller.dialog.pos_mark_editor import PosMarkEdi
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.script_util import ScriptFiles, load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT, SSB_EXT
+from skytemple_files.common.util import Capturable
 from skytemple_files.script.ssb.constants import SsbConstant
 from skytemple_ssb_debugger.context.abstract import AbstractDebuggerControlContext, EXPS_KEYWORDS
 from skytemple_ssb_debugger.threadsafe import synchronized_now
@@ -183,10 +184,20 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     def _project_fm(self):
         return RomProject.get_current().get_project_file_manager()
 
-    def display_error(self, exc_info, error_message, error_title=None):
+    def display_error(
+            self, exc_info, error_message,
+            error_title='SkyTemple Script Engine Debugger - Error',
+            *, context: Optional[Dict[str, Capturable]] = None
+    ):
         if error_title is None:
             error_title = _('SkyTemple Script Engine Debugger - Error!')
-        display_error(exc_info, error_message, error_title, self._manager.get_window())
+        display_error(exc_info, error_message, error_title, self._manager.get_window(), context)
+
+    def capture_error(
+            self, exc_info,
+            *, context: Optional[Dict[str, Capturable]] = None
+    ):
+        capture_error(exc_info, **context)
 
     def get_special_words(self) -> Iterable[str]:
         def q():

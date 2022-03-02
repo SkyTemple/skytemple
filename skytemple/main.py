@@ -24,6 +24,11 @@ from skytemple.core.settings import SkyTempleSettingsStore
 
 settings = SkyTempleSettingsStore()
 
+# Setup Sentry
+if settings.get_allow_sentry():
+    from skytemple.core import sentry
+    sentry.init()
+
 # Setup locale :(
 LOCALE_DIR = os.path.abspath(os.path.join(data_dir(), 'locale'))
 if hasattr(locale, 'bindtextdomain'):

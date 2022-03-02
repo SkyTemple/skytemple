@@ -21,7 +21,8 @@ from xml.etree.ElementTree import Element
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
-from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
+from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
@@ -448,3 +449,8 @@ class MonsterModule(AbstractModule):
     def mark_md_evo_as_modified(self, item_id):
         self.project.mark_as_modified(MEVO_FILE)
         self._mark_as_modified_in_tree(item_id)
+
+    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
+        if isinstance(open_controller, MonsterController):
+            pass  # todo
+        return None

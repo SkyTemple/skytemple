@@ -24,9 +24,10 @@ from PIL import Image
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
-from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.error_handler import display_error
 from skytemple.core.model_context import ModelContext
+from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR, \
     REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, REQUEST_TYPE_DUNGEONS
 from skytemple.core.rom_project import RomProject, BinaryName
@@ -804,3 +805,14 @@ class DungeonModule(AbstractModule):
     def get_zmappa(self):
         with self._dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get('minimap.zmappat')
+
+    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
+        if isinstance(open_controller, DungeonController):
+            pass  # todo
+        if isinstance(open_controller, FloorController):
+            pass  # todo
+        if isinstance(open_controller, FixedRoomsController):
+            pass  # todo
+        if isinstance(open_controller, FixedController):
+            pass  # todo
+        return None

@@ -41,6 +41,7 @@ KEY_GTK_THEME = 'gtk_theme'
 KEY_LOCALE = 'locale'
 KEY_USE_NATIVE_FILE_HANDLERS = 'use_native_file_handlers'
 KEY_ASYNC_CONFIGURATION = 'async_configuration'
+KEY_ALLOW_SENTRY = 'send_error_reports'
 
 KEY_WINDOW_SIZE_X = 'width'
 KEY_WINDOW_SIZE_Y = 'height'
@@ -192,6 +193,18 @@ class SkyTempleSettingsStore:
         if SECT_GENERAL not in self.loaded_config:
             self.loaded_config[SECT_GENERAL] = {}
         self.loaded_config[SECT_GENERAL][KEY_ASYNC_CONFIGURATION] = value.value
+        self._save()
+    
+    def get_allow_sentry(self) -> bool:
+        if SECT_GENERAL in self.loaded_config:
+            if KEY_ALLOW_SENTRY in self.loaded_config[SECT_GENERAL]:
+                return int(self.loaded_config[SECT_GENERAL][KEY_ALLOW_SENTRY]) > 0
+        return False  # default is disabled.
+
+    def set_allow_sentry(self, value: bool):
+        if SECT_GENERAL not in self.loaded_config:
+            self.loaded_config[SECT_GENERAL] = {}
+        self.loaded_config[SECT_GENERAL][KEY_ALLOW_SENTRY] = '1' if value else '0'
         self._save()
 
     def _save(self):

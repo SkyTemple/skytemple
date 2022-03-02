@@ -130,8 +130,8 @@ def open_dir(directory):
         AppInfo.launch_default_for_uri(pathlib.Path(directory).as_uri())
 
 
-def version():
-    if os.path.exists(os.path.abspath(os.path.join(data_dir(), '..', '..', '.git'))):
+def version(*, ignore_dev=False):
+    if not ignore_dev and os.path.exists(os.path.abspath(os.path.join(data_dir(), '..', '..', '.git'))):
         return 'dev'
     try:
         return pkg_resources.get_distribution("skytemple").version

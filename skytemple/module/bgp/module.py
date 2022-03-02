@@ -14,10 +14,12 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from typing import Optional
 
 from gi.repository.Gtk import TreeStore
 
-from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
+from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.module.bgp.controller.bgp import BgpController
@@ -70,3 +72,8 @@ class BgpModule(AbstractModule):
     def get_bgp(self, item_id):
         bgp_filename = self.list_of_bgps[item_id]
         return self.project.open_file_in_rom(bgp_filename, FileType.BGP)
+
+    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
+        if isinstance(open_controller, BgpController):
+            pass  # todo
+        return None

@@ -23,6 +23,15 @@ import webbrowser
 from os.path import expanduser
 from pathlib import Path
 from tempfile import NamedTemporaryFile
+from typing import Union, Type, Tuple, Any, Optional, Dict
+
+from skytemple.core.settings import SkyTempleSettingsStore
+from skytemple_files.common.util import Capturable
+
+try:
+    from types import TracebackType
+except ImportError:
+    TracebackType = Any
 
 import gi
 
@@ -33,6 +42,7 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
+ExceptionInfo = Union[BaseException, Tuple[Type[BaseException], BaseException, TracebackType]]
 
 
 def show_error_web(exc_info):
@@ -66,7 +76,10 @@ def show_error_web(exc_info):
                 md.destroy()
 
 
-def display_error(exc_info, error_message, error_title=None, window=None, log=True):
+def display_error(
+    exc_info, error_message, error_title=None, window=None, log=True,
+    *, context: Optional[Dict[str, Capturable]] = None
+):
     if error_title is None:
         error_title = _('SkyTemple - Error!')
     # In case the current working directory is corrupted. Yes, this may happen.
@@ -79,6 +92,7 @@ def display_error(exc_info, error_message, error_title=None, window=None, log=Tr
         window = MainController.window()
     if log:
         logger.error(error_message, exc_info=exc_info)
+        capture_error(exc_info, message=error_message, **context)
     md = SkyTempleMessageDialog(window,
                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
                                 Gtk.ButtonsType.OK,
@@ -96,3 +110,13 @@ def display_error(exc_info, error_message, error_title=None, window=None, log=Tr
         md.get_content_area().set_spacing(0)
     md.run()
     md.destroy()
+
+
+def capture_error(exc_info: Optional[ExceptionInfo], **error_context: Capturable):
+    try:
+        settings = SkyTempleSettingsStore()
+        if settings.get_allow_sentry():
+            from skytemple.core import sentry
+            sentry.capture(settings, exc_info, **error_context)
+    except Exception as ex:
+        logger.error("Failed capturing error", exc_info=ex)

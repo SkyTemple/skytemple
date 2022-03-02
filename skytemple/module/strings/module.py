@@ -14,9 +14,12 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from typing import Optional
+
 from gi.repository.Gtk import TreeStore
 
-from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
+from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label, \
     recursive_generate_item_store_row_label
@@ -64,3 +67,8 @@ class StringsModule(AbstractModule):
         # Mark as modified in tree
         row = self._tree_model[self._tree_iters[filename]]
         recursive_up_item_store_mark_as_modified(row)
+
+    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
+        if isinstance(open_controller, StringsController):
+            pass  # todo
+        return None
