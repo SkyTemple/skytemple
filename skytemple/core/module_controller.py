@@ -56,7 +56,8 @@ class AbstractController(ABC):
             builder = getattr(self, '_builder')
         if builder:
             for obj in builder.get_objects():
-                if isinstance(obj, Gtk.Window) or isinstance(obj, Gtk.Widget):
+                # We are excluding Switches due to a PyGobject bug.
+                if isinstance(obj, Gtk.Widget) and not isinstance(obj, Gtk.Switch):
                     obj.destroy()
 
     @staticmethod
