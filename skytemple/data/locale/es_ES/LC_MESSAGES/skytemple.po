@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-03-02 22:13+0000\n"
-"PO-Revision-Date: 2022-03-02 22:24\n"
+"PO-Revision-Date: 2022-03-02 23:21\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -6539,7 +6539,7 @@ msgstr "Clima:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1958
 msgid "(no. of rooms)"
-msgstr ""
+msgstr "(nº de salas)"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1978
 msgid "Terrain Settings"
@@ -13033,7 +13033,14 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "  ROM. Things <i>will</i> break.\n"
 "- A project directory was created next to the ROM.\n"
 "- Please report any issues."
-msgstr ""
+msgstr "<span size=\"large\">¡Bienvenido a SkyTemple!</span>\n\n"
+"Con esta herramienta puedes editar múltiples parámetros en las \n"
+"ROMs de Pokémon Mundo Misterioso: Exploradores del Cielo.\n\n"
+"Por favor, ten en cuenta lo siguiente:\n"
+"- Este software aún se encuentra en desarrollo, por lo que recomendamos que\n"
+"  hagas copias de seguridad de tu ROM. Algunas cosas <i>no</i> funcionarán.\n"
+"- Se ha creado un directorio del proyecto junto a la ROM.\n"
+"- Por favor, infórmanos si tienes cualquier problema."
 
 #: skytemple/skytemple/skytemple.glade:102
 msgid "Can we add a \"Created with SkyTemple\" message\n"
@@ -13044,7 +13051,14 @@ msgid "Can we add a \"Created with SkyTemple\" message\n"
 "If you want to do it later, or for another project,\n"
 "you can reopen this dialog, using the menu on\n"
 "the top-right of the main window."
-msgstr ""
+msgstr "¿Podemos añadir un mensaje de \"Creado con SkyTemple\"\n"
+" a los logotipos que aparecen al iniciar el juego?\n\n"
+"Este mensaje se colocará en la capa 2 del fondo de\n"
+"mapa S05P01A. Si no te gusta, puedes\n"
+"quitarlo o personalizarlo fácilmente.\n\n"
+"Si quieres hacerlo más tarde, o para otro proyecto, \n"
+"puedes volver a abrir este diálogo utilizando el menú en \n"
+"la parte superior derecha de la ventana principal."
 
 #: skytemple/skytemple/skytemple.glade:122
 msgid "Add \"Created with SkyTemple\""
@@ -13076,11 +13090,11 @@ msgstr "Operaciones asincrónicas"
 
 #: skytemple/skytemple/skytemple.glade:512
 msgid "Error Reports"
-msgstr ""
+msgstr "Notificar errores"
 
 #: skytemple/skytemple/skytemple.glade:527
 msgid "Send error reports"
-msgstr ""
+msgstr "Enviar informes de errores"
 
 #: skytemple/skytemple/skytemple.glade:539
 msgid "<i>If enabled, error reports are sent to sentry.io,\n"
@@ -13167,15 +13181,15 @@ msgstr "https://github.com/SkyTemple/skytemple"
 
 #: skytemple/skytemple/skytemple.glade:1450
 msgid "Privacy Information"
-msgstr ""
+msgstr "Información sobre privacidad"
 
 #: skytemple/skytemple/skytemple.glade:1470
 msgid "Don't allow"
-msgstr ""
+msgstr "No permitir"
 
 #: skytemple/skytemple/skytemple.glade:1483
 msgid "Allow sending error reports"
-msgstr ""
+msgstr "Permitir el envío de informes de errores"
 
 #: skytemple/skytemple/skytemple.glade:1510
 msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
