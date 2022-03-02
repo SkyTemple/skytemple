@@ -91,7 +91,9 @@ def display_error(
         window = MainController.window()
     if log:
         logger.error(error_message, exc_info=exc_info)
-        capture_error(exc_info, message=error_message, **context)
+    if context is None:
+        context = {}
+    capture_error(exc_info, message=error_message, **context)
     md = SkyTempleMessageDialog(window,
                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
                                 Gtk.ButtonsType.OK,

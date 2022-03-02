@@ -27,7 +27,7 @@ from skytemple.core.ui_utils import version
 
 if TYPE_CHECKING:
     from skytemple.core.error_handler import ExceptionInfo
-    from skytemple_files.common.util import Capturable, capture_capturable, Captured, capture_any
+    from skytemple_files.common.util import Capturable, Captured
     from skytemple.core.settings import SkyTempleSettingsStore
     from skytemple.core.ssb_debugger.manager import DebuggerManager
 
@@ -213,7 +213,7 @@ def debugger_emulator_state(manager: 'DebuggerManager'):
                 ({
                     "id": x.id,
                     "hanger": x.hanger,
-                    "direction": x.direction.ssa_id,
+                    "direction": x.direction.ssa_id if x.direction is not None else None,
                     "kind": x.kind.name,
                     "sector": x.sector
                  } if x is not None else None) for x in ges.actors
@@ -222,7 +222,7 @@ def debugger_emulator_state(manager: 'DebuggerManager'):
                 ({
                     "id": x.id,
                     "hanger": x.hanger,
-                    "direction": x.direction.ssa_id,
+                    "direction": x.direction.ssa_id if x.direction is not None else None,
                     "kind": x.kind.unique_name,
                     "sector": x.sector
                  } if x is not None else None) for x in ges.objects
@@ -231,7 +231,7 @@ def debugger_emulator_state(manager: 'DebuggerManager'):
                 ({
                     "id": x.id,
                     "hanger": x.hanger,
-                    "direction": x.direction.ssa_id,
+                    "direction": x.direction.ssa_id if x.direction is not None else None,
                     "kind": x.kind,
                     "sector": x.sector
                  } if x is not None else None) for x in ges.performers
@@ -256,41 +256,43 @@ def debugger_emulator_state(manager: 'DebuggerManager'):
 def collect_state_context() -> Dict[str, 'Captured']:
     from skytemple.controller.main import MainController
     from skytemple.core.rom_project import RomProject
+    from skytemple_files.common.util import capture_any
     rom_project = RomProject.get_current()
     try:
         view_state = MainController._instance._current_view_module.collect_debugging_info(
             MainController._instance._current_view_controller
         )
         if "models" in view_state:
-            view_state["models"] = {k: capture_any(v) for k, v in view_state["models"]}
+            view_state["models"] = {k: capture_any(v) for k, v in view_state["models"].items()}
     except Exception as ex:
         view_state = {
             "error_collecting": str(ex)
         }
+    w, h = MainController.window().get_size()
+    dw = if_not_none(MainController.debugger_manager()._opened_main_window, lambda w: w.get_size()[0])
+    dh = if_not_none(MainController.debugger_manager()._opened_main_window, lambda w: w.get_size()[1])
     return {
-        "value": {
-            "skytemple": {
-                "window": {
-                    "width": MainController.window().get_width(),
-                    "height": MainController.window().get_height(),
-                },
-                "rom": {
-                    "filename": if_not_none(rom_project, lambda p: p.get_rom_name()),
-                    "edition": if_not_none(rom_project, lambda p: p.get_static_data()),
-                },
-                "module": type(MainController._instance._current_view_module).__qualname__(),
-                "view": MainController._instance._current_view_controller_class.__qualname__(),
-                "view_state": view_state
+        "skytemple": {
+            "window": {
+                "width": w,
+                "height": h,
             },
-            "ssb_debugger": {
-                "window": {
-                    "width": if_not_none(MainController.debugger_manager()._opened_main_window, lambda w: w.get_width()),
-                    "height": if_not_none(MainController.debugger_manager()._opened_main_window, lambda w: w.get_height()),
-                },
-                "open_scripts": debugger_open_scripts(MainController.debugger_manager()),
-                "focused_script": debugger_focused_script(MainController.debugger_manager()),
-                "emulator_state": debugger_emulator_state(MainController.debugger_manager())
-            }
+            "rom": {
+                "filename": if_not_none(rom_project, lambda p: p.get_rom_name()),
+                "edition": if_not_none(rom_project, lambda p: p.get_rom_module().get_static_data()),
+            },
+            "module": type(MainController._instance._current_view_module).__qualname__,
+            "view": MainController._instance._current_view_controller_class.__qualname__,
+            "view_state": view_state
+        },
+        "ssb_debugger": {
+            "window": {
+                "width": dw,
+                "height": dh,
+            },
+            "open_scripts": debugger_open_scripts(MainController.debugger_manager()),
+            "focused_script": debugger_focused_script(MainController.debugger_manager()),
+            #"emulator_state": debugger_emulator_state(MainController.debugger_manager())
         }
     }
 
@@ -300,12 +302,13 @@ def collect_config_context(settings: 'SkyTempleSettingsStore') -> Dict[str, 'Cap
 
 
 def capture(settings: 'SkyTempleSettingsStore', exc_info: Optional['ExceptionInfo'], **error_context: 'Capturable'):
-    error_context: Dict[str, Union[str, int]] = {k: capture_capturable(v) for k, v in error_context}
+    from skytemple_files.common.util import capture_capturable
+    error_context: Dict[str, Union[str, int]] = {k: capture_capturable(v) for k, v in error_context.items()}
     try_ignore_err(collect_device_context, lambda c: sentry_sdk.set_context("device", c))
     try_ignore_err(collect_os_context, lambda c: sentry_sdk.set_context("os", c))
     try_ignore_err(collect_runtime_context, lambda c: sentry_sdk.set_context("runtime", c))
     try_ignore_err(collect_app_context, lambda c: sentry_sdk.set_context("app", c))
-    try_ignore_err(collect_state_context, lambda c: sentry_sdk.set_context("state", c))
+    try_ignore_err(collect_state_context, lambda c: sentry_sdk.set_context("skytemple_state", c))
     try_ignore_err(partial(collect_config_context, settings), lambda c: sentry_sdk.set_context("config", c))
     sentry_sdk.set_context("error", error_context)
     if exc_info:

@@ -197,6 +197,8 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
             self, exc_info,
             *, context: Optional[Dict[str, Capturable]] = None
     ):
+        if context is None:
+            context = {}
         capture_error(exc_info, **context)
 
     def get_special_words(self) -> Iterable[str]:
