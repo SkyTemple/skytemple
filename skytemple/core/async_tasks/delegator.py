@@ -103,6 +103,13 @@ class AsyncTaskDelegator:
                 asyncio.get_event_loop().run_forever()
             else:
                 raise RuntimeError("Invalid async configuration")
+        except OSError as ex:
+            if hasattr(ex, 'winerror') and ex.winerror == 6:
+                # [WinError 6] The handle is invalid
+                # Originates in gi/_ossighelper.py - Some issues with socket cleanup. We will ignore that.
+                pass
+            else:
+                raise
         except (SystemExit, KeyboardInterrupt):
             pass
         finally:
