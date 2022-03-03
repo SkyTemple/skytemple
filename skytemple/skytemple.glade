@@ -1514,8 +1514,7 @@ We would like to collect some error information if things go wrong.
 You can find more information about the data we collect and how we
 use it in our &lt;a href="privacy"&gt;privacy information&lt;/a&gt;.
 
-This is used so we can improve SkyTemple, so enabling this will help
-us improve SkyTemple.</property>
+This is used so we can improve SkyTemple.</property>
             <property name="use-markup">True</property>
             <signal name="activate-link" handler="on_label_privacy_activate_link" swapped="no"/>
           </object>
