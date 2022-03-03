@@ -52,7 +52,7 @@ def release_version(is_dev_version: bool):
             if git_bin is None:
                 import subprocess
                 try:
-                    return subprocess.check_output([git_bin, 'rev-parse', 'HEAD']).decode('utf-8')[:8]
+                    return subprocess.check_output([git_bin, 'rev-parse', 'HEAD']).decode('utf-8')[:8]  # type: ignore
                 except subprocess.CalledProcessError as ex:
                     raise ValueError("Was unable to determine dev version") from ex
         else:
@@ -171,7 +171,7 @@ def if_not_none(obj, cb):
 def debugger_open_scripts(manager: 'DebuggerManager'):
     if not manager.is_opened():
         return None
-    notebook = manager.get_controller().editor_notebook
+    notebook = manager.get_controller().editor_notebook  # type: ignore
     if notebook is None or not hasattr(notebook, '_open_editors') or notebook._open_editors is None:
         return None
     return list(notebook._open_editors.keys())
@@ -181,7 +181,7 @@ def debugger_open_scripts(manager: 'DebuggerManager'):
 def debugger_focused_script(manager: 'DebuggerManager'):
     if not manager.is_opened():
         return None
-    notebook = manager.get_controller().editor_notebook
+    notebook = manager.get_controller().editor_notebook  # type: ignore
     if notebook is None or notebook.currently_open is None or not hasattr(notebook.currently_open, '_explorerscript_view'):
         return None
     exps_view = notebook.currently_open._explorerscript_view
@@ -197,8 +197,8 @@ def debugger_focused_script(manager: 'DebuggerManager'):
 def debugger_emulator_state(manager: 'DebuggerManager'):
     if not manager.is_opened():
         return None
-    debugger = manager.get_controller().debugger
-    vars = manager.get_controller().variable_controller
+    debugger = manager.get_controller().debugger  # type: ignore
+    vars = manager.get_controller().variable_controller  # type: ignore
     if debugger is None or vars is None:
         return None
     ges = debugger.ground_engine_state
@@ -259,11 +259,11 @@ def collect_state_context() -> Dict[str, 'Captured']:
     from skytemple_files.common.util import capture_any
     rom_project = RomProject.get_current()
     try:
-        view_state = MainController._instance._current_view_module.collect_debugging_info(
-            MainController._instance._current_view_controller
+        view_state = MainController._instance._current_view_module.collect_debugging_info(  # type: ignore
+            MainController._instance._current_view_controller  # type: ignore
         )
-        if "models" in view_state:
-            view_state["models"] = {k: capture_any(v) for k, v in view_state["models"].items()}
+        if "models" in view_state:  # type: ignore
+            view_state["models"] = {k: capture_any(v) for k, v in view_state["models"].items()}  # type: ignore
     except Exception as ex:
         view_state = {
             "error_collecting": str(ex)
@@ -282,7 +282,7 @@ def collect_state_context() -> Dict[str, 'Captured']:
                 "edition": if_not_none(rom_project, lambda p: p.get_rom_module().get_static_data()),
             },
             "module": type(MainController._instance._current_view_module).__qualname__,
-            "view": MainController._instance._current_view_controller_class.__qualname__,
+            "view": MainController._instance._current_view_controller_class.__qualname__,  # type: ignore
             "view_state": view_state
         },
         "ssb_debugger": {
@@ -301,9 +301,9 @@ def collect_config_context(settings: 'SkyTempleSettingsStore') -> Dict[str, 'Cap
     return dict(settings.loaded_config.items())
 
 
-def capture(settings: 'SkyTempleSettingsStore', exc_info: Optional['ExceptionInfo'], **error_context: 'Capturable'):
+def capture(settings: 'SkyTempleSettingsStore', exc_info: Optional['ExceptionInfo'], **error_context_in: 'Capturable'):
     from skytemple_files.common.util import capture_capturable
-    error_context: Dict[str, Union[str, int]] = {k: capture_capturable(v) for k, v in error_context.items()}
+    error_context: Dict[str, Union[str, int]] = {k: capture_capturable(v) for k, v in error_context_in.items()}  # type: ignore
     try_ignore_err(collect_device_context, lambda c: sentry_sdk.set_context("device", c))
     try_ignore_err(collect_os_context, lambda c: sentry_sdk.set_context("os", c))
     try_ignore_err(collect_runtime_context, lambda c: sentry_sdk.set_context("runtime", c))

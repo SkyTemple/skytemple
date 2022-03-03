@@ -432,7 +432,7 @@ class MoveController(AbstractController):
         for entry in enum:
             store.append([entry.value, self._string_provider.get_value(string_type, entry.value)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):

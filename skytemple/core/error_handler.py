@@ -30,7 +30,7 @@ from skytemple_files.common.util import Capturable
 try:
     from types import TracebackType
 except ImportError:
-    TracebackType = Any
+    TracebackType = Any  # type: ignore
 
 import gi
 

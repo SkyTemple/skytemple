@@ -86,7 +86,7 @@ class WteWtuController(AbstractController):
         if response == Gtk.ResponseType.ACCEPT:
             fn = add_extension_if_missing(fn, 'png')
             if self.wte.has_image():
-                self.wte.to_pil_canvas(int(self.builder.get_object('wte_palette_variant').get_text())).save(fn)
+                self.wte.to_pil_canvas(int(self.builder.get_object('wte_palette_variant').get_text())).save(fn)  # type: ignore
             else:
                 self.wte.to_pil_palette().save(fn)
             
