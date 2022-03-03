@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-03-03 14:21+0000\n"
-"PO-Revision-Date: 2022-03-03 14:26\n"
+"PO-Revision-Date: 2022-03-03 17:48\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -6861,7 +6861,7 @@ msgstr "Si este atributo se establece en \"Sí\", no se generarán misiones para
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:298
 msgid "The game randomly adds a number between 0 and 2 to obtain the final value. If the room density is negative, its absolute value is used without adding a random variation."
-msgstr ""
+msgstr "El juego suma aleatoriamente un número entre 0 y 2 para obtener el valor final. Si la densidad de la habitación es negativa, se utiliza su valor absoluto sin añadir una variación aleatoria."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:310
 msgid "Controls whether dead end hallways can be generated in the floor. Dead ends can still appear in the map even if they are disabled due to a bug in the map generator and because extra hallways can also produce them."
@@ -6889,11 +6889,11 @@ msgstr "El valor final es aleatorizado entre densidad y densidad/2."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:386
 msgid "The final value is randomized between randomized between density - 2 and density + 1."
-msgstr ""
+msgstr "El valor final se aleatoriza entre la densidad -2 y la densidad +1."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:389
 msgid "The final value is randomized between randomized density / 2 and density - 1 if the value is positive. If it's negative, its absolute value is used (no random variation is applied in this case)."
-msgstr ""
+msgstr "El valor final se aleatoriza entre la densidad / 2 y la densidad -1 si el valor es positivo. Si es negativo, se usa su valor absoluto (en este caso, no se aplica ninguna variación aleatoria)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:393
 msgid "The value stored in the ROM is actually the value divided by 5. Because of this the saved value will be rounded to the next multiple of 5."
@@ -13100,7 +13100,9 @@ msgstr "Enviar informes de errores"
 msgid "<i>If enabled, error reports are sent to sentry.io,\n"
 "allowing us to improve SkyTemple.\n"
 "See the <a href=\"privacy\">privacy information</a> for more details.</i>"
-msgstr ""
+msgstr "<i>Si se activa, los informes de errores se enviarán a sentry.io,\n"
+"lo que nos permitirá mejorar SkyTemple.\n"
+"Consulta la <a href=\"privacy\">Información sobre Privacidad</a> para obtener más información.</i>"
 
 #: skytemple/skytemple/skytemple.glade:630
 #: skytemple/skytemple/skytemple.glade:1038
@@ -13197,7 +13199,11 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "You can find more information about the data we collect and how we\n"
 "use it in our <a href=\"privacy\">privacy information</a>.\n\n"
 "This is used so we can improve SkyTemple."
-msgstr ""
+msgstr "<span size=\"large\">¡Bienvenido a SkyTemple!</span>\n\n"
+"Nos gustaría recopilar alguna información sobre lo ocurrido si algo sale mal.\n\n"
+"Puedes encontrar más información sobre los datos que recopilamos y cómo\n"
+"los usamos en nuestra <a href=\"privacy\">Información sobre Privacidad</a>.\n\n"
+"Con ellos, nos permitirás mejorar el SkyTemple."
 
 #: skytemple/skytemple/skytemple.glade:1576
 msgid "Loading ROM \"NAME\"..."
