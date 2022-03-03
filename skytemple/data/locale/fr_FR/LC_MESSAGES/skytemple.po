@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-03-03 14:21+0000\n"
-"PO-Revision-Date: 2022-03-03 14:26\n"
+"POT-Creation-Date: 2022-03-03 19:08+0000\n"
+"PO-Revision-Date: 2022-03-03 19:12\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -1008,28 +1008,28 @@ msgid "An image selected to import is too complex. It has too many unique tiles 
 msgstr "L'image sélectionnée pour l'importation est trop complexe. Elle contient trop de tuiles uniques ({len_final_tiles}, 1024 maximum sont autorisées).\n"
 "Veuillez faire en sorte qu'il y ait moins de tuiles uniques. Les tuiles uniques sont des portions de dimensions 8x8 de l'image d'origine qui sont identiques à aucune autre (qu'elles soient retournées ou qu'elles utilisent une sous-palette différente)."
 
-#: skytemple-files/skytemple_files/common/util.py:394
+#: skytemple-files/skytemple_files/common/util.py:395
 msgid "This ROM is not supported by SkyTemple."
 msgstr "Cette ROM n'est pas supportée par SkyTemple."
 
-#: skytemple-files/skytemple_files/common/util.py:420
-#: skytemple-files/skytemple_files/common/util.py:442
+#: skytemple-files/skytemple_files/common/util.py:421
+#: skytemple-files/skytemple_files/common/util.py:443
 #, python-brace-format
 msgid "Binary {binary.filepath} not found."
 msgstr "Fichier binaire {binary.filepath} introuvable."
 
-#: skytemple-files/skytemple_files/common/util.py:452
-#: skytemple-files/skytemple_files/common/util.py:483
+#: skytemple-files/skytemple_files/common/util.py:453
+#: skytemple-files/skytemple_files/common/util.py:484
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr "Dossier {dir_name} non existant."
 
-#: skytemple-files/skytemple_files/common/util.py:455
+#: skytemple-files/skytemple_files/common/util.py:456
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
 msgstr "Le fichier {file_name} existe déjà dans ce dossier."
 
-#: skytemple-files/skytemple_files/common/util.py:478
+#: skytemple-files/skytemple_files/common/util.py:479
 #, python-brace-format
 msgid "Folder {path} already exists."
 msgstr "Le dossier {path} existe déjà."
