@@ -123,6 +123,7 @@ jobs:
             mingw-w64-${{ matrix.arch }}-hunspell-en
             mingw-w64-${{ matrix.arch }}-openssl
             mingw-w64-${{ matrix.arch }}-libraqm
+            mingw-w64-${{ matrix.arch }}-python-psutil
       - name: Checkout
         uses: actions/checkout@v2
       - name: Rewrite version for dev if not tag
