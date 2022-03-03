@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-03-03 14:21+0000\n"
-"PO-Revision-Date: 2022-03-03 14:26\n"
+"POT-Creation-Date: 2022-03-03 19:08+0000\n"
+"PO-Revision-Date: 2022-03-03 19:12\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Language: vi_VN\n"
@@ -1004,28 +1004,28 @@ msgid "An image selected to import is too complex. It has too many unique tiles 
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:394
+#: skytemple-files/skytemple_files/common/util.py:395
 msgid "This ROM is not supported by SkyTemple."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:420
-#: skytemple-files/skytemple_files/common/util.py:442
+#: skytemple-files/skytemple_files/common/util.py:421
+#: skytemple-files/skytemple_files/common/util.py:443
 #, python-brace-format
 msgid "Binary {binary.filepath} not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:452
-#: skytemple-files/skytemple_files/common/util.py:483
+#: skytemple-files/skytemple_files/common/util.py:453
+#: skytemple-files/skytemple_files/common/util.py:484
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:455
+#: skytemple-files/skytemple_files/common/util.py:456
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:478
+#: skytemple-files/skytemple_files/common/util.py:479
 #, python-brace-format
 msgid "Folder {path} already exists."
 msgstr ""
