@@ -26,6 +26,7 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import glib_async
 from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
 from skytemple_files.list.actor.model import ActorListBin
+from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptEntity
 from skytemple_files.common.i18n_util import _
 from skytemple_files.user_error import UserValueError
 
@@ -69,15 +70,21 @@ class ActorListController(ListBaseController):
         md.destroy()
 
     def on_btn_add_clicked(self, *args):
-        # TODO
-        md = SkyTempleMessageDialog(
-            MainController.window(),
-            Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
-            Gtk.ButtonsType.OK,
-            _("Not implemented.")
-        )
-        md.run()
-        md.destroy()
+        idx = len(self._list.list)
+        self._list_store.append([
+            str(idx), "NEW", str(0), self._get_icon(1, idx, False),
+            1, str(0), str(0), self._ent_names[1],
+            None
+        ])
+        self._list.list.append(Pmd2ScriptEntity(
+            id=idx,
+            type=0,
+            entid=1,
+            name="NEW",
+            unk3=0,
+            unk4=0
+        ))
+        self.module.mark_actors_as_modified()
 
     def on_cr_name_edited(self, widget, path, text):
         self._list_store[path][1] = text
