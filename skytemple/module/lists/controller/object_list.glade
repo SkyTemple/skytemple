@@ -316,6 +316,22 @@ ASM patch from the "ASM Patches" menu.</property>
                     <property name="position">3</property>
                   </packing>
                 </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">The Name is used by the game to determine if a ground sprite should be used. 
+An object with Name 'x' will use the sprite named 'x.wan' in the Object Sprites section.
+A 'NULL' or empty string means there is no sprite attached.
+To create a new object sprite, go to the Object Sprites section.</property>
+                    <property name="justify">center</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">4</property>
+                  </packing>
+                </child>
               </object>
             </child>
           </object>
