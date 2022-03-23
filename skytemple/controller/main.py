@@ -127,6 +127,7 @@ class MainController:
             # the window from getting stuck on a disconnected screen
             self._load_position_and_size()
 
+        self.builder.get_object('native_info').hide()
         self._configure_csd()
         self._load_icon()
         self._load_recent_files()
