@@ -6,7 +6,6 @@ on:
   push:
     branches:
       - master
-      - l10n_master
       - release
       - version/*
   pull_request:
