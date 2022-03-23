@@ -43,6 +43,9 @@ appdir=dist/SkyTemple.app/Contents/MacOS
 # Change "run_skytemple" to "pre_run_skytemple" in the launcher info to launch the shell script instead of the app
 sed -i '' 's/run_skytemple/pre_run_skytemple/' dist/SkyTemple.app/Contents/Info.plist
 
+# Set the rpath (https://blog.krzyzanowskim.com/2018/12/05/rpath-what/)
+install_name_tool -add_rpath @executable_path/. dist/SkyTemple.app/Contents/MacOS/run_skytemple
+
 # Create a shell script that sets LD_LIBRARY_PATH and the working directory, then launches SkyTemple
 cat > $appdir/pre_run_skytemple << EOF
 #!/bin/sh
