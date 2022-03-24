@@ -68,7 +68,8 @@ class RomModule(AbstractModule):
         generate_item_store_row_label(self._item_store[self._root_node])
 
     def load_rom_data(self):
-        self._static_data = self.project.load_rom_data()
+        if self._static_data is None:
+            self._static_data = self.project.load_rom_data()
 
     def get_static_data(self) -> Pmd2Data:
         return self._static_data

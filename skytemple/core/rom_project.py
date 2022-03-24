@@ -151,10 +151,13 @@ class RomProject:
         self._rom = NintendoDSRom.fromFile(self.filename)
         await AsyncTaskDelegator.buffer()
         self._loaded_modules = {}
+
+        self._rom_module = Modules.get_rom_module()(self)
+        self._rom_module.load_rom_data()
         for name, module in Modules.all().items():
             logger.debug(f"Loading module {name} for ROM...")
             if name == 'rom':
-                self._rom_module = module(self)
+                continue
             else:
                 self._loaded_modules[name] = module(self)
             await AsyncTaskDelegator.buffer()
