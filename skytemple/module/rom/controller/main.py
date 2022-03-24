@@ -99,10 +99,10 @@ class MainController(AbstractController):
 
         response = dialog.run()
         fn = dialog.get_filename()
-        fn = add_extension_if_missing(fn, 'png')
         dialog.destroy()
 
         if response == ResponseType.ACCEPT:
+            fn = add_extension_if_missing(fn, 'png')
             self.icon_banner.icon.to_pil().save(fn)
 
     def on_import_icon_clicked(self, *args):

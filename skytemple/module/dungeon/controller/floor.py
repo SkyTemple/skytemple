@@ -61,6 +61,7 @@ from skytemple_files.dungeon_data.mappa_bin.monster import DUMMY_MD_INDEX, Mappa
 from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType, MappaTrapList
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.i18n_util import _, f
+from skytemple_files.user_error import UserValueError
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, FloorViewInfo
@@ -503,13 +504,15 @@ class FloorController(AbstractController):
                 should_report=False
             )
             return
-
+        # ent_name:
+        try:
+            store[path][2] = self._ent_names[entid]
+        except KeyError as e:
+            raise UserValueError(_("No Pokémon with this ID found."))
         store[path][0] = entid
         # ent_icon:
         # If color is orange it's special.
         store[path][1] = self._get_icon(entid, path)
-        # ent_name:
-        store[path][2] = self._ent_names[entid]
         self._save_monster_spawn_rates()
 
     def on_cr_monster_spawns_entity_editing_started(self, renderer, editable, path):

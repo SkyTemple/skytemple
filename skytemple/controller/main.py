@@ -231,10 +231,10 @@ class MainController:
 
         response = dialog.run()
         fn = dialog.get_filename()
-        fn = add_extension_if_missing(fn, 'nds')
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
+            fn = add_extension_if_missing(fn, 'nds')
             project.filename = fn
             self._save(True)
             project.get_rom_module().update_filename()
@@ -473,10 +473,12 @@ class MainController:
     def on_item_store_row_changed(self, model, path, iter):
         """Update the window title for the current selected tree model row if it changed"""
         if model is not None and iter is not None:
-            selection_model, selection_iter = self._main_item_list.get_selection().get_selected()
-            if selection_model is not None and selection_iter is not None:
-                if selection_model[selection_iter].path == path:
-                    self._init_window_before_view_load(model[iter])
+            selection = self._main_item_list.get_selection()
+            if selection is not None:
+                selection_model, selection_iter = selection.get_selected()
+                if selection_model is not None and selection_iter is not None:
+                    if selection_model[selection_iter].path == path:
+                        self._init_window_before_view_load(model[iter])
 
     def on_main_item_list_search_search_changed(self, search: Gtk.SearchEntry):
         """Filter the main item view using the search field"""

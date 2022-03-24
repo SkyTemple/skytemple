@@ -27,6 +27,8 @@ from skytemple.core.ui_utils import glib_async
 from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
 from skytemple_files.list.actor.model import ActorListBin
 from skytemple_files.common.i18n_util import _
+from skytemple_files.user_error import UserValueError
+
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 
@@ -106,14 +108,18 @@ class ActorListController(ListBaseController):
             standins[idx] = entid
             self._sprite_provider.set_standin_entities(standins)
 
+        # ent_name:
+        try:
+            self._list_store[path][7] = self._ent_names[entid]
+        except KeyError as e:
+            raise UserValueError(_("No Pokémon with this ID found."))
+
         # entid:
         self._list_store[path][4] = entid
         # ent_icon:
         # If color is orange it's special.
         # TODO: it's a bit weird doing this over the color
         self._list_store[path][3] = self._get_icon(entid, idx, self._list_store[path][8] == ORANGE)
-        # ent_name:
-        self._list_store[path][7] = self._ent_names[entid]
 
     def on_cr_unk3_edited(self, widget, path, text):
         try:

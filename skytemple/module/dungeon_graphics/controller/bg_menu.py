@@ -137,10 +137,10 @@ class BgMenuController:
 
             response = dialog.run()
             fn = dialog.get_filename()
-            fn = add_extension_if_missing(fn, 'png')
             dialog.destroy()
 
             if response == Gtk.ResponseType.ACCEPT:
+                fn = add_extension_if_missing(fn, 'png')
                 try:
                     self.parent.dpc.chunks_to_pil(self.parent.dpci, self.parent.dpl.palettes, 16).save(fn)
                 except BaseException as err:

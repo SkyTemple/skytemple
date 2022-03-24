@@ -347,7 +347,10 @@ class SpriteProvider:
             loaded = self.get_error()
         with sprite_provider_lock:
             self._loaded__actor_placeholders[(actor_id, direction_id)] = loaded
-            self._requests__actor_placeholders.remove((actor_id, direction_id))
+            try:
+                self._requests__actor_placeholders.remove((actor_id, direction_id))
+            except ValueError:
+                pass
         after_load_cb()
 
     def _load_monster(self, md_index, direction_id: int, after_load_cb):
@@ -362,7 +365,10 @@ class SpriteProvider:
             loaded = self.get_error()
         with sprite_provider_lock:
             self._loaded__monsters[(md_index, direction_id)] = loaded
-            self._requests__monsters.remove((md_index, direction_id))
+            try:
+                self._requests__monsters.remove((md_index, direction_id))
+            except ValueError:
+                pass
         after_load_cb()
 
     def _load_monster_outline(self, md_index, direction_id: int, after_load_cb):
@@ -387,7 +393,10 @@ class SpriteProvider:
             loaded = self.get_error()
         with sprite_provider_lock:
             self._loaded__monsters_outlines[(md_index, direction_id)] = loaded
-            self._requests__monsters_outlines.remove((md_index, direction_id))
+            try:
+                self._requests__monsters_outlines.remove((md_index, direction_id))
+            except ValueError:
+                pass
         after_load_cb()
 
     def _retrieve_monster_sprite(self, md_index, direction_id: int) -> Tuple[Image.Image, int, int, int, int]:
@@ -431,7 +440,10 @@ class SpriteProvider:
             with sprite_provider_lock:
                 self._loaded__objects[name] = self.get_error()
         with sprite_provider_lock:
-            self._requests__objects.remove(name)
+            try:
+                self._requests__objects.remove(name)
+            except ValueError:
+                pass
         after_load_cb()
 
     def _load_trap(self, trp: int, after_load_cb):
@@ -451,7 +463,10 @@ class SpriteProvider:
             with sprite_provider_lock:
                 self._loaded__traps[trp] = self.get_error()
         with sprite_provider_lock:
-            self._requests__traps.remove(trp)
+            try:
+                self._requests__traps.remove(trp)
+            except ValueError:
+                pass
         after_load_cb()
 
     def _load_item(self, itm: ItemPEntry, after_load_cb):
@@ -476,7 +491,10 @@ class SpriteProvider:
             with sprite_provider_lock:
                 self._loaded__items[item.item_id] = self.get_error()
         with sprite_provider_lock:
-            self._requests__items.remove(item.item_id)
+            try:
+                self._requests__items.remove(item.item_id)
+            except ValueError:
+                pass
         after_load_cb()
 
     def _load_sprite_from_bin_pack(self, bin_pack: BinPack, file_id) -> Wan:

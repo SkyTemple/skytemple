@@ -37,6 +37,7 @@ from skytemple_files.common.util import open_utf8, add_extension_if_missing
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry
 from skytemple_files.data.waza_p.model import WazaP, MoveLearnset, LevelUpMove
 from skytemple_files.common.i18n_util import f, _
+from skytemple_files.user_error import UserValueError
 
 if TYPE_CHECKING:
     from skytemple.module.monster.module import MonsterModule
@@ -212,10 +213,10 @@ class LevelUpController(AbstractController):
 
         response = dialog.run()
         fn = dialog.get_filename()
-        fn = add_extension_if_missing(fn, 'csv')
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
+            fn = add_extension_if_missing(fn, 'csv')
             try:
                 rows = [[CSV_LEVEL, CSV_EXP_POINTS, CSV_HP, CSV_ATK, CSV_SP_ATK, CSV_DEF, CSV_SP_DEF]]
                 for i, level in enumerate(self._level_bin_entry.levels):
@@ -369,7 +370,10 @@ class LevelUpController(AbstractController):
         except ValueError:
             return
         # move name:
-        store[path][index_name] = self._move_names[move_id]
+        try:
+            store[path][index_name] = self._move_names[move_id]
+        except KeyError as e:
+            raise UserValueError(_("No move with this ID found."))
         # move id:
         store[path][index_id] = move_id
 

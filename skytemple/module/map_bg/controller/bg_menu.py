@@ -213,7 +213,6 @@ class BgMenuController:
 
         response = dialog.run()
         fn = dialog.get_filename()
-        fn = add_extension_if_missing(fn, 'gif')
         dialog.destroy()
 
         duration = 1000
@@ -223,6 +222,7 @@ class BgMenuController:
             duration = round(1000 / 60 * non_none_bpas[0].frame_info[0].duration_per_frame)
 
         if response == Gtk.ResponseType.ACCEPT:
+            fn = add_extension_if_missing(fn, 'gif')
             frames = self.parent.bma.to_pil(self.parent.bpc, self.parent.bpl, self.parent.bpas, False, False)
             frames[0].save(
                 fn,

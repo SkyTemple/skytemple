@@ -807,10 +807,10 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 add_dialog_xml_filter(save_diag)
                 response = save_diag.run()
                 fn = save_diag.get_filename()
-                fn = add_extension_if_missing(fn, 'xml')
                 save_diag.destroy()
 
                 if response == Gtk.ResponseType.ACCEPT:
+                    fn = add_extension_if_missing(fn, 'xml')
                     with open(fn, 'w') as f:
                         f.write(prettify(xml))
                 else:

@@ -230,7 +230,7 @@ class MonsterModule(AbstractModule):
             def update(ov11):
                 static_data = self.project.get_rom_module().get_static_data()
                 values = HardcodedMonsterGroundIdleAnimTable.get(ov11, static_data)
-                values[item_id] = value
+                values[item_id] = value if isinstance(value, IdleAnimType) else IdleAnimType(value)  # type: ignore
                 HardcodedMonsterGroundIdleAnimTable.set(values, ov11, static_data)
             self.project.modify_binary(BinaryName.OVERLAY_11, update)
             self._mark_as_modified_in_tree(item_id)
@@ -381,8 +381,8 @@ class MonsterModule(AbstractModule):
                     portraits1_imp = None
                     personality1 = None
                     idle_anim1 = None
-            md_gender1_imp_wrapped = GenderedConvertEntry(md_gender1, personality1, idle_anim1)
-            md_gender2_imp_wrapped = GenderedConvertEntry(md_gender2, personality2, idle_anim2)
+            md_gender1_imp_wrapped = GenderedConvertEntry(md_gender1, personality1, idle_anim1.value if idle_anim1 else None)
+            md_gender2_imp_wrapped = GenderedConvertEntry(md_gender2, personality2, idle_anim2.value if idle_anim2 else None)
 
             monster_xml_import(
                 xml, md_gender1_imp_wrapped, md_gender2_imp_wrapped,
