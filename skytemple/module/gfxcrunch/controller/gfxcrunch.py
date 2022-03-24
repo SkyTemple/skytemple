@@ -27,6 +27,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.ui_utils import data_dir, APP, make_builder
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.i18n_util import f, _
+from skytemple_files.user_error import make_user_err
 
 if TYPE_CHECKING:
     from skytemple.module.gfxcrunch.module import GfxcrunchModule
@@ -67,7 +68,7 @@ class GfxcrunchController:
                 with open(tmp_path, 'rb') as f:
                     return f.read()
             else:
-                raise RuntimeError(_("The gfxcrunch process failed."))
+                raise make_user_err(RuntimeError, _("The gfxcrunch process failed."))
 
     def export_sprite(self, wan: bytes, dir_fn: str):
         with tempfile.TemporaryDirectory() as tmp_path:
@@ -77,7 +78,7 @@ class GfxcrunchController:
             AsyncTaskDelegator.run_task(self._run_gfxcrunch([tmp_path, dir_fn]))
             self._run_window()
             if self.status != GfxcrunchStatus.SUCCESS:
-                raise RuntimeError(_("The gfxcrunch process failed."))
+                raise make_user_err(RuntimeError, _("The gfxcrunch process failed."))
 
     def _run_window(self):
         dialog: Gtk.Dialog = self.builder.get_object('dialog')

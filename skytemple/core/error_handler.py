@@ -26,6 +26,7 @@ from tempfile import NamedTemporaryFile
 from typing import Union, Type, Tuple, Any, Optional, Dict
 
 from skytemple_files.common.util import Capturable
+from skytemple_files.user_error import USER_ERROR_MARK
 
 try:
     from types import TracebackType
@@ -77,8 +78,11 @@ def show_error_web(exc_info):
 
 def display_error(
     exc_info, error_message, error_title=None, window=None, log=True,
-    *, context: Optional[Dict[str, Capturable]] = None
+    *, context: Optional[Dict[str, Capturable]] = None, should_report=True
 ):
+    """
+    :param should_report: Whether or not the error should be reported. UserValueErrors are never to be reported.
+    """
     if error_title is None:
         error_title = _('SkyTemple - Error!')
     # In case the current working directory is corrupted. Yes, this may happen.
@@ -93,7 +97,8 @@ def display_error(
         logger.error(error_message, exc_info=exc_info)
     if context is None:
         context = {}
-    capture_error(exc_info, message=error_message, **context)
+    if should_report and should_be_reported(exc_info):
+        capture_error(exc_info, message=error_message, **context)
     md = SkyTempleMessageDialog(window,
                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
                                 Gtk.ButtonsType.OK,
@@ -122,3 +127,14 @@ def capture_error(exc_info: Optional[ExceptionInfo], **error_context: Capturable
             sentry.capture(settings, exc_info, **error_context)
     except Exception as ex:
         logger.error("Failed capturing error", exc_info=ex)
+
+
+def should_be_reported(exc_info: Optional[ExceptionInfo]):
+    if exc_info is None:
+        return True
+    if isinstance(exc_info, tuple):
+        exc = exc_info[1]
+    else:
+        exc = exc_info
+
+    return not hasattr(exc, USER_ERROR_MARK)

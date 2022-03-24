@@ -499,7 +499,8 @@ class FloorController(AbstractController):
             display_error(
                 None,
                 f(_("You can not spawn Kecleons or the Decoy Pokémon.")),
-                _("SkyTemple: Invalid Pokémon")
+                _("SkyTemple: Invalid Pokémon"),
+                should_report=False
             )
             return
 
@@ -651,7 +652,8 @@ class FloorController(AbstractController):
             display_error(
                 None,
                 _("The last category can not be removed."),
-                _("Can't remove category.")
+                _("Can't remove category."),
+                should_report=False
             )
             return
         if model is not None and treeiter is not None:
@@ -822,7 +824,8 @@ class FloorController(AbstractController):
             display_error(
                 None,
                 _('This item does not belong in this category. Please chose another item.'),
-                _('Invalid item id')
+                _('Invalid item id'),
+                should_report=False
             )
             return
 
@@ -830,7 +833,8 @@ class FloorController(AbstractController):
             display_error(
                 None,
                 _('This item is already in the list.'),
-                _('Can not use this item')
+                _('Can not use this item'),
+                should_report=False
             )
             return
 
@@ -903,7 +907,8 @@ class FloorController(AbstractController):
                 display_error(
                     None,
                     _('All items are already in the list'),
-                    _('Can not add item.')
+                    _('Can not add item.'),
+                    should_report=False
                 )
                 return
         item_icon_renderer = ListIconRenderer(5)

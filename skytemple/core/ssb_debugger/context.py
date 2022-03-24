@@ -187,11 +187,11 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     def display_error(
             self, exc_info, error_message,
             error_title='SkyTemple Script Engine Debugger - Error',
-            *, context: Optional[Dict[str, Capturable]] = None
+            *, context: Optional[Dict[str, Capturable]] = None, should_report=True
     ):
         if error_title is None:
             error_title = _('SkyTemple Script Engine Debugger - Error!')
-        display_error(exc_info, error_message, error_title, self._manager.get_window(), context)
+        display_error(exc_info, error_message, error_title, self._manager.get_window(), context, should_report=should_report)
 
     def capture_error(
             self, exc_info,

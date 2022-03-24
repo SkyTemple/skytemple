@@ -307,7 +307,8 @@ class WorldMapController(AbstractController):
                     else:
                         display_error(
                             None,
-                            _('You need to select a reference.')
+                            _('You need to select a reference.'),
+                            should_report=False
                         )
                         return
                 if map_id_selected == -1:

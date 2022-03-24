@@ -201,7 +201,8 @@ class ItemListsController(AbstractController):
             display_error(
                 None,
                 "The last category can not be removed.",
-                "Can't remove category."
+                "Can't remove category.",
+                should_report=False
             )
             return
         if model is not None and treeiter is not None:
@@ -348,7 +349,8 @@ class ItemListsController(AbstractController):
             display_error(
                 None,
                 'This item does not belong in this category. Please chose another item.',
-                'Invalid item id'
+                'Invalid item id',
+                should_report=False
             )
             return
 
@@ -356,7 +358,8 @@ class ItemListsController(AbstractController):
             display_error(
                 None,
                 'This item is already in the list.',
-                'Can not use this item'
+                'Can not use this item',
+                should_report=False
             )
             return
 
@@ -421,7 +424,8 @@ class ItemListsController(AbstractController):
                 display_error(
                     None,
                     'All items are already in the list',
-                    'Can not add item.'
+                    'Can not add item.',
+                    should_report=False
                 )
                 return
         item_icon_renderer = ListIconRenderer(5)
