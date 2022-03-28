@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-03-03 19:08+0000\n"
-"PO-Revision-Date: 2022-03-03 19:12\n"
+"POT-Creation-Date: 2022-03-28 18:26+0000\n"
+"PO-Revision-Date: 2022-03-28 18:28\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -3634,7 +3634,7 @@ msgid "Could not compile script: All languages must have the same amount of stri
 msgstr ""
 
 #: skytemple-rust/src/dse/st_smdl/eoc.rs:35
-#: skytemple-rust/src/dse/st_smdl/trk.rs:82
+#: skytemple-rust/src/dse/st_smdl/trk.rs:84
 msgid "SMDL file too short (EOC EOF)."
 msgstr ""
 
@@ -3642,27 +3642,27 @@ msgstr ""
 msgid "Invalid SMDL/EOC header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/smdl.rs:58
+#: skytemple-rust/src/dse/st_smdl/smdl.rs:178
 msgid "SMDL file too short (Header EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/smdl.rs:60
+#: skytemple-rust/src/dse/st_smdl/smdl.rs:180
 msgid "Invalid SMDL/Header header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/song.rs:67
+#: skytemple-rust/src/dse/st_smdl/song.rs:68
 msgid "SMDL file too short (Song EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/song.rs:69
+#: skytemple-rust/src/dse/st_smdl/song.rs:70
 msgid "Invalid SMDL/Song header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/trk.rs:50
+#: skytemple-rust/src/dse/st_smdl/trk.rs:52
 msgid "SMDL file too short (Track EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/trk.rs:52
+#: skytemple-rust/src/dse/st_smdl/trk.rs:54
 msgid "Invalid SMDL/Track header."
 msgstr ""
 
@@ -3770,11 +3770,11 @@ msgid "An image selected to import is too complex. It has too many unique tiles 
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr ""
 
-#: skytemple-rust/src/romfs.rs:69
+#: skytemple-rust/src/romfs.rs:92
 msgid "ROM Header checksum does not match contents."
 msgstr ""
 
-#: skytemple-rust/src/romfs.rs:75
+#: skytemple-rust/src/romfs.rs:98
 msgid "Error reading the filesystem from ROM: {}"
 msgstr ""
 
