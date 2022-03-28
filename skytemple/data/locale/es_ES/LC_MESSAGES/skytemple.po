@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-03-03 19:08+0000\n"
-"PO-Revision-Date: 2022-03-03 19:12\n"
+"POT-Creation-Date: 2022-03-28 18:26+0000\n"
+"PO-Revision-Date: 2022-03-28 18:28\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3665,7 +3665,7 @@ msgid "Could not compile script: All languages must have the same amount of stri
 msgstr "No se ha podido compilar el script: Todos los idiomas deben tener la misma cantidad de cadenas."
 
 #: skytemple-rust/src/dse/st_smdl/eoc.rs:35
-#: skytemple-rust/src/dse/st_smdl/trk.rs:82
+#: skytemple-rust/src/dse/st_smdl/trk.rs:84
 msgid "SMDL file too short (EOC EOF)."
 msgstr "Archivo SMDL demasiado corto (EOC EOF)."
 
@@ -3673,27 +3673,27 @@ msgstr "Archivo SMDL demasiado corto (EOC EOF)."
 msgid "Invalid SMDL/EOC header."
 msgstr "SMDL inválido/Encabezado de EOC."
 
-#: skytemple-rust/src/dse/st_smdl/smdl.rs:58
+#: skytemple-rust/src/dse/st_smdl/smdl.rs:178
 msgid "SMDL file too short (Header EOF)."
 msgstr "Archivo SMDL demasiado corto (Encabezado EOF)."
 
-#: skytemple-rust/src/dse/st_smdl/smdl.rs:60
+#: skytemple-rust/src/dse/st_smdl/smdl.rs:180
 msgid "Invalid SMDL/Header header."
 msgstr "SMDL inválido/Encabezado del encabezado."
 
-#: skytemple-rust/src/dse/st_smdl/song.rs:67
+#: skytemple-rust/src/dse/st_smdl/song.rs:68
 msgid "SMDL file too short (Song EOF)."
 msgstr "Archivo SMDL demasiado corto (Canción EOF)."
 
-#: skytemple-rust/src/dse/st_smdl/song.rs:69
+#: skytemple-rust/src/dse/st_smdl/song.rs:70
 msgid "Invalid SMDL/Song header."
 msgstr "SMDL inválido/Encabezado de canción."
 
-#: skytemple-rust/src/dse/st_smdl/trk.rs:50
+#: skytemple-rust/src/dse/st_smdl/trk.rs:52
 msgid "SMDL file too short (Track EOF)."
 msgstr "Archivo SMDL demasiado corto (Pista EOF)."
 
-#: skytemple-rust/src/dse/st_smdl/trk.rs:52
+#: skytemple-rust/src/dse/st_smdl/trk.rs:54
 msgid "Invalid SMDL/Track header."
 msgstr "SMDL inválido/Encabezado de pista."
 
@@ -3802,11 +3802,11 @@ msgid "An image selected to import is too complex. It has too many unique tiles 
 msgstr "La imagen seleccionada para importar es demasiado compleja. Tiene demasiados tiles únicos ({} tiles, pero el máximo permitido es 1024).\n"
 "Intenta reducir los tiles únicos. Estos tiles son secciones 8x8 de las imágenes que no se pueden encontrar en ninguna otra parte de la imagen (ni siquiera invertidas o con una subpaleta diferente)."
 
-#: skytemple-rust/src/romfs.rs:69
+#: skytemple-rust/src/romfs.rs:92
 msgid "ROM Header checksum does not match contents."
 msgstr "La suma de comprobación de encabezado de la ROM no coincide con el contenido."
 
-#: skytemple-rust/src/romfs.rs:75
+#: skytemple-rust/src/romfs.rs:98
 msgid "Error reading the filesystem from ROM: {}"
 msgstr "Error al leer el sistema de archivos de la ROM: {}"
 
