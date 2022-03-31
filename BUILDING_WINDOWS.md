@@ -8,9 +8,9 @@ All of these commands should be run in the MSys environment that is set up in st
 2. Install additional packages: `pacman -S mingw-w64-x86_64-python-pip mingw-w64-x86_64-gtksourceview4 mingw-w64-x86_64-python-pillow mingw-w64-x86_64-toolchain mingw-w64-x86_64-gtksourceview3`
 3. Install the binary wheels from https://skytemple.org/build_deps/:
    ```
-   pip install py_desmume-0.0.3-cp38-cp38-mingw.whl
-   pip install python_igraph-0.8.2-cp38-cp38-mingw.whl
-   pip install skytemple_rust-0.0.1-cp38-cp38-mingw.whl
+   pip install py_desmume-0.0.4-cp39-cp39-mingw.whl
+   pip install python_igraph-0.8.2-cp39-cp39-mingw.whl
+   pip install skytemple_rust-0.0.1-cp39-cp39-mingw.whl
    ```
    If you want to know how to build these yourself, see "Building binary dependencies".
 4. Clone the SkyTemple repositories:
