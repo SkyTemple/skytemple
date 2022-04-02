@@ -37,7 +37,7 @@ additional_datas = [
 ]
 
 additional_binaries = [
-    (os.path.join(site_packages, "desmume", "libdesmume.so"), "."),
+    (os.path.join(site_packages, "desmume", "libdesmume.dylib"), "."),
     (os.path.join(os.sep, "usr", "local", "lib", "libSDL-1.2.0.dylib"), "."), # Must be installed with Homebrew
     (os.path.join(os.sep, "usr", "local", "lib", "libSDL2-2.0.0.dylib"), "."), # Must be installed with Homebrew
     (os.path.join(os.sep, "usr", "local", "lib", "libenchant-2.dylib"), "."), # Must be installed with Homebrew
