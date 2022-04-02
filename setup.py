@@ -1,4 +1,4 @@
-__version__ = '1.3.7'
+__version__ = '1.3.8'
 
 import glob
 import os
@@ -64,14 +64,14 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files >= 1.3.7',
+        'skytemple-files >= 1.3.8',
         'skytemple-dtef >= 1.1.4',
         'skytemple-icons >= 1.3.2',
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
         'tilequant >= 0.4.0',
-        'skytemple-ssb-debugger >= 1.3.7',
+        'skytemple-ssb-debugger >= 1.3.8',
         'pygal >= 2.4.0',
         'CairoSVG >= 2.4.2',
         'gbulb >= 0.6.2',
