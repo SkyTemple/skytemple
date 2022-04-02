@@ -65,20 +65,21 @@ class SpriteModule(AbstractModule):
 
         self._tree_model = None
         self._tree_level_iter = {}
+        self._root = None
 
     def load_tree_items(self, item_store: TreeStore, root_node):
-        root = item_store.append(root_node, [
+        self._root = item_store.append(root_node, [
             'skytemple-e-object-symbolic', OBJECT_SPRTIES, self, ObjectMainController, 0, False, '', True
         ])
         self._tree_model = item_store
         self._tree_level_iter = {}
 
         for name in self.list_of_obj_sprites:
-            self._tree_level_iter[name] = item_store.append(root, [
+            self._tree_level_iter[name] = item_store.append(self._root, [
                 'skytemple-e-object-symbolic', name, self,  ObjectController, name, False, '', True
             ])
 
-        recursive_generate_item_store_row_label(self._tree_model[root])
+        recursive_generate_item_store_row_label(self._tree_model[self._root])
 
     def get_monster_sprite_editor(self, sprite_id: int,
                                   modified_callback, assign_new_sprite_id_cb,
@@ -104,6 +105,12 @@ class SpriteModule(AbstractModule):
 
     def get_gfxcrunch(self) -> 'GfxcrunchModule':
         return self.project.get_module('gfxcrunch')
+
+    def add_wan(self, obj_name):
+        self._tree_level_iter[obj_name] = self._tree_model.append(self._root, [
+            'skytemple-e-object-symbolic', obj_name, self, ObjectController, obj_name, False, '', True
+        ])
+        recursive_generate_item_store_row_label(self._tree_model[self._root])
 
     def import_a_sprite(self) -> Optional[bytes]:
         if self.get_gfxcrunch().is_available():

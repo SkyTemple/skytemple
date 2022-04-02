@@ -295,6 +295,13 @@ class RomProject:
             del self._opened_files_contexts[filename]
         self._rom.setFileByName(filename, data)
         self.force_mark_as_modified()
+        
+    def create_file_manually(self, filename: str, data: bytes):
+        """
+        Manually create a file in the ROM. 
+        """
+        create_file_in_rom(self._rom, filename, data)
+        self.force_mark_as_modified()
 
     async def _save_impl(self, main_controller: Optional['MainController']):
         try:
