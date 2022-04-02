@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-03-28 18:26+0000\n"
-"PO-Revision-Date: 2022-03-28 18:28\n"
+"POT-Creation-Date: 2022-04-02 20:10+0000\n"
+"PO-Revision-Date: 2022-04-02 20:27\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -974,62 +974,62 @@ msgstr "En haut à gauche"
 msgid "Down Left"
 msgstr "En bas à gauche"
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:40
+#: skytemple-files/skytemple_files/common/tiled_image.py:41
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
 msgstr "Le mappage des tuiles ne peut pas être effectué. Le numéro de tuile référencé ({idx}) est plus grand que le maximum autorisé ({0x3FF}). Si vous essayez d'importer une image, faites en sorte qu'elle ait moins de tuiles uniques."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:101
+#: skytemple-files/skytemple_files/common/tiled_image.py:102
 msgid "Only 4bpp and 8bpp images are supported."
 msgstr "Seules les images à 4 bpp et 8 bpp sont supportées."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:206
+#: skytemple-files/skytemple_files/common/tiled_image.py:207
 msgid "Can not convert PIL image to PMD tiled image: Must be indexed image (=using a palette)"
 msgstr "Impossible de convertir l'image PIL en images tuiles pour PDM : l'image doit être indexée (c'est-à-dire utiliser une palette)."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:210
+#: skytemple-files/skytemple_files/common/tiled_image.py:211
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Palette must contain max {max_len_pal} RGB colors and be divisible by {single_palette_size}."
 msgstr "Impossible de convertir l'image PIL en images tuiles pour PDM : la palette doit contenir au maximum {max_len_pal} couleurs RVB et le nombre de couleurs doit être divisible par {single_palette_size}."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:214
+#: skytemple-files/skytemple_files/common/tiled_image.py:215
 #, python-brace-format
 msgid "Can not convert PIL image to PMD tiled image: Image dimensions must be {img_width}x{img_height}px."
 msgstr "Impossible de convertir l'image PIL en images tuiles pour PDM : les dimensions de l'image doivent être de {img_width}x{img_height} pixels."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:274
-#: skytemple-files/skytemple_files/common/tiled_image.py:282
+#: skytemple-files/skytemple_files/common/tiled_image.py:275
+#: skytemple-files/skytemple_files/common/tiled_image.py:283
 msgid "Can not convert PIL image to PMD tiled image: The color {pix} (from palette {math.floor(pix / single_palette_size)}) used by pixel {x+(idx % 2)}x{y} in tile {tile_id} ({tile_x}x{tile_y} is out of range. Expected are colors from palette {tile_palette_indices[tile_id]} ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 msgstr "Impossible de convertir l'image PIL en images tuiles pour PDM : la couleur {pix} (de la palette {math.floor(pix / single_palette_size)}) utilisée par le pixel ({x+(idx % 2)}, {y}) dans la tuile {tile_id} ({tile_x}, {tile_y}) est en dehors des limites autorisées. Seules les couleurs de la palette {tile_palette_indices[tile_id]} sont attendues ({tile_palette_indices[tile_id] * single_palette_size} - {(tile_palette_indices[tile_id]+1) * single_palette_size - 1})."
 
-#: skytemple-files/skytemple_files/common/tiled_image.py:322
+#: skytemple-files/skytemple_files/common/tiled_image.py:323
 #, python-brace-format
 msgid "An image selected to import is too complex. It has too many unique tiles ({len_final_tiles}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr "L'image sélectionnée pour l'importation est trop complexe. Elle contient trop de tuiles uniques ({len_final_tiles}, 1024 maximum sont autorisées).\n"
 "Veuillez faire en sorte qu'il y ait moins de tuiles uniques. Les tuiles uniques sont des portions de dimensions 8x8 de l'image d'origine qui sont identiques à aucune autre (qu'elles soient retournées ou qu'elles utilisent une sous-palette différente)."
 
-#: skytemple-files/skytemple_files/common/util.py:395
+#: skytemple-files/skytemple_files/common/util.py:396
 msgid "This ROM is not supported by SkyTemple."
 msgstr "Cette ROM n'est pas supportée par SkyTemple."
 
-#: skytemple-files/skytemple_files/common/util.py:421
-#: skytemple-files/skytemple_files/common/util.py:443
+#: skytemple-files/skytemple_files/common/util.py:422
+#: skytemple-files/skytemple_files/common/util.py:444
 #, python-brace-format
 msgid "Binary {binary.filepath} not found."
 msgstr "Fichier binaire {binary.filepath} introuvable."
 
-#: skytemple-files/skytemple_files/common/util.py:453
-#: skytemple-files/skytemple_files/common/util.py:484
+#: skytemple-files/skytemple_files/common/util.py:454
+#: skytemple-files/skytemple_files/common/util.py:485
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr "Dossier {dir_name} non existant."
 
-#: skytemple-files/skytemple_files/common/util.py:456
+#: skytemple-files/skytemple_files/common/util.py:457
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
 msgstr "Le fichier {file_name} existe déjà dans ce dossier."
 
-#: skytemple-files/skytemple_files/common/util.py:479
+#: skytemple-files/skytemple_files/common/util.py:480
 #, python-brace-format
 msgid "Folder {path} already exists."
 msgstr "Le dossier {path} existe déjà."
@@ -1111,22 +1111,22 @@ msgstr "Écran"
 msgid "WBA"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:59
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:147
+#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:60
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:148
 msgid "ARMIPS could not be found. Make sure, that 'armips' is inside your system's PATH."
 msgstr "ARMIPS introuvable. Assurez-vous que « armips » se trouve dans la variable path de votre système."
 
-#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:63
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:157
+#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:64
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:158
 msgid "ARMIPS reported an error while applying the patch."
 msgstr "ARMIPS a renvoyé une erreur lors de l'application du correctif."
 
-#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:69
+#: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:70
 #, python-brace-format
 msgid "The armips source file did not create a {OUT_BIN}."
 msgstr "Le fichier source armips n'a pas pu créer {OUT_BIN}."
 
-#: skytemple-files/skytemple_files/data/data_cd/model.py:66
+#: skytemple-files/skytemple_files/data/data_cd/model.py:67
 msgid "To delete this effect, no items must use it."
 msgstr "Pour supprimer cet effet, aucun objet ne doit l'utiliser."
 
@@ -1960,65 +1960,65 @@ msgstr "Moyenne"
 msgid "Large"
 msgstr "Large"
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:207
+#: skytemple-files/skytemple_files/data/monster_xml.py:209
 #, python-brace-format
 msgid "Invalid XML. '{XML_STRINGS__NAME}' missing for language {xml_lang.tag}."
 msgstr "XML invalide. « {XML_STRINGS__NAME} » est absent pour la langue « {xml_lang.tag} »."
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:209
+#: skytemple-files/skytemple_files/data/monster_xml.py:211
 #, python-brace-format
 msgid "Invalid XML. '{XML_STRINGS__CATEGORY}' missing for language {xml_lang.tag}."
 msgstr "XML invalide. « {XML_STRINGS__CATEGORY} » est manquant pour la langue {xml_lang.tag}."
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:366
+#: skytemple-files/skytemple_files/data/monster_xml.py:368
 #, python-brace-format
 msgid "Invalid XML. '{XML_GENENT_EXCLUSIVE_ITEMS}' needs four item IDs."
 msgstr "XML invalide. « {XML_GENENT_EXCLUSIVE_ITEMS} » a besoin de quatre identifiants d'objet."
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:441
+#: skytemple-files/skytemple_files/data/monster_xml.py:443
 #, python-brace-format
 msgid "Invalid XML. '{a}' missing for a {b}."
 msgstr "XML invalide. « {a} » manquant pour un {b}."
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:483
+#: skytemple-files/skytemple_files/data/monster_xml.py:485
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET_LEVEL_UP__LEVEL}' missing for a level up moveset entry."
 msgstr "XML invalide. « {XML_MOVESET_LEVEL_UP__LEVEL} » manquant pour une capacité apprise par montée de niveau."
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:487
+#: skytemple-files/skytemple_files/data/monster_xml.py:489
 #, python-brace-format
 msgid "Invalid XML. '{XML_MOVESET__MOVE_ID}' missing for a level up moveset entry."
 msgstr "XML invalide. « {XML_MOVESET__MOVE_ID} » manquant pour une capacité apprise par montée de niveau."
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:524
+#: skytemple-files/skytemple_files/data/monster_xml.py:526
 msgid "Invalid XML. StatsGrowth must have exactly 100 levels."
 msgstr "XML invalide. « StatsGrowth » (augmentation des statistiques) doit avoir exactement 100 niveaux."
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:549
-#: skytemple-files/skytemple_files/data/monster_xml.py:554
-#: skytemple-files/skytemple_files/data/monster_xml.py:559
-#: skytemple-files/skytemple_files/data/monster_xml.py:564
-#: skytemple-files/skytemple_files/data/monster_xml.py:569
-#: skytemple-files/skytemple_files/data/monster_xml.py:574
+#: skytemple-files/skytemple_files/data/monster_xml.py:551
+#: skytemple-files/skytemple_files/data/monster_xml.py:556
+#: skytemple-files/skytemple_files/data/monster_xml.py:561
+#: skytemple-files/skytemple_files/data/monster_xml.py:566
+#: skytemple-files/skytemple_files/data/monster_xml.py:571
+#: skytemple-files/skytemple_files/data/monster_xml.py:576
 #, python-brace-format
 msgid "Invalid XML. '{x}' missing for a stats growth level entry."
 msgstr "XML invalide. « {x} » manquant pour une entrée d'augmentation des statistiques par niveau."
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:600
+#: skytemple-files/skytemple_files/data/monster_xml.py:602
 msgid "Incompatible XML. The number of portraits don't match with the expected value of {len(value_to_update)}"
 msgstr "XML invalide. Le nombre de portraits ne correspond pas à la valeur attendue de {len(value_to_update)}."
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:614
+#: skytemple-files/skytemple_files/data/monster_xml.py:616
 #, python-brace-format
 msgid "Invalid XML. '{XML_PORTRAITS_PORTRAIT__IMAGE}' missing for a portrait."
 msgstr "XML invalide. « {XML_PORTRAITS_PORTRAIT__IMAGE} » manquant pour un portrait."
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:618
+#: skytemple-files/skytemple_files/data/monster_xml.py:620
 #, python-brace-format
 msgid "Invalid XML. '{XML_PORTRAITS_PORTRAIT__PALETTE}' missing for a portrait."
 msgstr "XML invalide. « {XML_PORTRAITS_PORTRAIT__PALETTE} » manquant pour un portrait."
 
-#: skytemple-files/skytemple_files/data/monster_xml.py:626
+#: skytemple-files/skytemple_files/data/monster_xml.py:628
 #, python-brace-format
 msgid "Invalid XML. The portrait data of one of the portraits is invalid: {err}"
 msgstr "XML invalide. Les données d'un des portraits sont invalides : {err}"
@@ -2618,12 +2618,12 @@ msgstr "Impossible de convertir l'image PIL en fichier CHR : l'image doit être 
 msgid "Cannot convert PIL image to CHR: width and height must be a multiple of {CHR_TILE_WIDTH}"
 msgstr "Impossible de convertir l'image PIL en fichier CHR : la longueur et la hauteur doivent être un mulitple de {CHR_TILE_WIDTH}"
 
-#: skytemple-files/skytemple_files/graphics/dbg/model.py:83
+#: skytemple-files/skytemple_files/graphics/dbg/model.py:84
 #, python-brace-format
 msgid "Can not import map background: Width of image must match the expected width: {expected_width}px"
 msgstr "Impossible d'importer l'arrière-plan de la carte : la largeur de l'image doit correspondre à la largeur attendue : {expected_width}px"
 
-#: skytemple-files/skytemple_files/graphics/dbg/model.py:86
+#: skytemple-files/skytemple_files/graphics/dbg/model.py:87
 #, python-brace-format
 msgid "Can not import map background: Height of image must match the expected height: {expected_height}px"
 msgstr "Impossible d'importer l'arrière-plan de la carte : la hauteur de l'image doit correspondre à la hauteur attendue : {expected_height}px"
@@ -2678,27 +2678,27 @@ msgid "This portrait does not compress well, the result size is greater than 800
 msgstr "Ce portrait ne se compresse pas bien, la taille résultante est plus grande que 800 octets ({len(new_img_compressed)} au total).\n"
 "Si ce n'est pas encore fait, essayez d'appliquer le patch « ProvideATUPXSupport » pour installer un algorithme de compression plus optimisé, qui est susceptible de mieux compresser l'image."
 
-#: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:87
+#: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:88
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, Not divisble by {PORTRAIT_SIZE}x{PORTRAIT_SIZE}"
 msgstr "Le portrait a une taille invalide de {img.size}, non divisible par {PORTRAIT_SIZE}x{PORTRAIT_SIZE}"
 
-#: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:92
+#: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:93
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, exceeding max of {max_size}"
 msgstr "Le portrait a une taille invalide de {img.size}, ce qui excède la taille maximale de {max_size}"
 
-#: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:128
+#: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:129
 #, python-brace-format
 msgid "Semi-transparent pixels found at: {rogue_pixels}"
 msgstr "Pixels semi-transparents trouvés aux positions suivantes : {rogue_pixels}"
 
-#: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:130
+#: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:131
 #, python-brace-format
 msgid "The following emotions have transparent pixels: {rogue_tiles}"
 msgstr "Les émotions suivantes ont des pixels transparents : {rogue_tiles}"
 
-#: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:148
+#: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:149
 msgid "File should have original and flipped versions of emotions: {str(flipped_tiles)}"
 msgstr "Le fichier doit contenir les versions originales et retournées de ces émotions : {str(flipped_tiles)}"
 
@@ -3261,7 +3261,7 @@ msgstr ""
 msgid "Walking Animation (1st frame)"
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:186
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:188
 #, python-brace-format
 msgid "Error while applying the patch: {ex}"
 msgstr "Erreur lors de l'application du correctif : {ex}"
@@ -3294,20 +3294,20 @@ msgstr "Utilitaires"
 msgid "Others"
 msgstr "Autres"
 
-#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:43
+#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:44
 msgid "Tells the game, to load the actor and level lists from a separate file. Extracts both files on applying the patch."
 msgstr "Indique au jeu de charger les listes d'acteurs et de niveaux à partir de fichiers séparés. Extrait les deux fichiers lors de l'application de ce correctif."
 
-#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:74
+#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:75
 msgid "This patch can not be re-applied."
 msgstr "Ce correctif ne peut pas être réappliqué."
 
-#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:80
-#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:88
+#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:81
+#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:89
 msgid "The source data specification was not found in the configuration."
 msgstr "La spécification des données source est introuvable dans la configuration."
 
-#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:99
+#: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:100
 msgid "\n\n"
 "The list was extracted anyway.\n"
 "You can already edit it through SkyTemple, but it won't be used in game, until you successfully apply the patch."
@@ -3375,6 +3375,10 @@ msgstr ""
 #: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:43
 msgid "Implements dungeon interruptions. "
 msgstr "Implémente les interruptions à mi-donjon. "
+
+#: skytemple-files/skytemple_files/patch/handler/dynamic_bosses_everywhere.py:40
+msgid "Allows placing special fixed room entities #124-127 (Explorer Maze enemies) in any fixed room without causing the game to crash."
+msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/edit_extra_pokemon.py:40
 msgid "Changes the way the game determines when to add additional pokémon to the team so it can be edited more easily"
@@ -3521,132 +3525,132 @@ msgstr "Fournit le support pour les conteneurs ATUPX, qui utilisent un algorithm
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:144
-#: skytemple-files/skytemple_files/patch/patches.py:154
+#: skytemple-files/skytemple_files/patch/patches.py:146
+#: skytemple-files/skytemple_files/patch/patches.py:156
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "Le correctif « {name} » est introuvable."
 
-#: skytemple-files/skytemple_files/patch/patches.py:160
+#: skytemple-files/skytemple_files/patch/patches.py:162
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "Le correctif « {patch_name} » doit être appliqué avant d'appliquer le correctif « {name} »."
 
-#: skytemple-files/skytemple_files/patch/patches.py:163
+#: skytemple-files/skytemple_files/patch/patches.py:165
 #: skytemple/skytemple/module/patch/controller/main.py:230
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr "Le correctif « {patch_name} » doit être appliqué avant d'appliquer le correctif « {name} ». Ce correctif est introuvable."
 
-#: skytemple-files/skytemple_files/patch/patches.py:170
+#: skytemple-files/skytemple_files/patch/patches.py:172
 msgid "No configuration was given."
 msgstr "Aucune configuration fournie."
 
-#: skytemple-files/skytemple_files/patch/patches.py:173
+#: skytemple-files/skytemple_files/patch/patches.py:175
 msgid "Missing configuration value."
 msgstr "Valeur de configuration manquante."
 
-#: skytemple-files/skytemple_files/patch/patches.py:177
 #: skytemple-files/skytemple_files/patch/patches.py:179
 #: skytemple-files/skytemple_files/patch/patches.py:181
-#: skytemple-files/skytemple_files/patch/patches.py:185
-#: skytemple-files/skytemple_files/patch/patches.py:195
+#: skytemple-files/skytemple_files/patch/patches.py:183
+#: skytemple-files/skytemple_files/patch/patches.py:187
+#: skytemple-files/skytemple_files/patch/patches.py:197
 msgid "Invalid configuration value."
 msgstr "Valeur de configuration invalide."
 
-#: skytemple-files/skytemple_files/patch/patches.py:179
+#: skytemple-files/skytemple_files/patch/patches.py:181
 msgid "Must be >= {}."
 msgstr "Doit être >= {}."
 
-#: skytemple-files/skytemple_files/patch/patches.py:181
+#: skytemple-files/skytemple_files/patch/patches.py:183
 msgid "Must be <= {}."
 msgstr "Doit être <= {}."
 
-#: skytemple-files/skytemple_files/patch/patches.py:229
+#: skytemple-files/skytemple_files/patch/patches.py:231
 msgid "config.xml missing in patch package."
 msgstr "Fichier config.xml manquant dans le paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:231
+#: skytemple-files/skytemple_files/patch/patches.py:233
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "Erreur de syntaxe dans le fichier config.xml lors de la lecture du paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:242
+#: skytemple-files/skytemple_files/patch/patches.py:244
 msgid "patch.py missing in patch package."
 msgstr "Fichier patch.py manquant dans le paquet de correctifs."
 
-#: skytemple-files/skytemple_files/patch/patches.py:244
+#: skytemple-files/skytemple_files/patch/patches.py:246
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr "patch.py du paquet du patch contient un erreur syntaxique."
 
-#: skytemple-files/skytemple_files/patch/patches.py:249
+#: skytemple-files/skytemple_files/patch/patches.py:251
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "Le fichier patch.py du paquet de correctifs ne contient pas de gestionnaire de correctifs (« PatchHandler »)."
 
-#: skytemple-files/skytemple_files/patch/patches.py:254
+#: skytemple-files/skytemple_files/patch/patches.py:256
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "Le paquet de correctifs ne contient aucune entrée de configuration dans config.xml pour le nom du correctif géré par ce gestionnaire."
 
-#: skytemple-files/skytemple_files/patch/patches.py:260
+#: skytemple-files/skytemple_files/patch/patches.py:262
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "Aucun correctif trouvé dans la configuration pour le gestionnaire « {handler.name} »."
 
-#: skytemple-files/skytemple_files/script/ssb/constants.py:75
+#: skytemple-files/skytemple_files/script/ssb/constants.py:76
 #, python-brace-format
 msgid "Invalid DungeonMode: {string}"
 msgstr "DungeonMode invalide : {string}"
 
-#: skytemple-files/skytemple_files/script/ssb/constants.py:202
 #: skytemple-files/skytemple_files/script/ssb/constants.py:203
+#: skytemple-files/skytemple_files/script/ssb/constants.py:204
 #, python-brace-format
 msgid "Unknown constant {constant_as_string}."
 msgstr "Constante inconnue : {constant_as_string}."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:108
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:114
 msgid "The routine data lists for the decompiler must have the same lengths."
 msgstr "Les listes de données de routine doivent avoir la même taille pour le décompilateur."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:121
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:127
 #, python-brace-format
 msgid "Routine {i} not found."
 msgstr "Routine {i} introuvable."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:138
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:144
 msgid "The script must contain exactly {len(self.rom_data.script_data.common_routine_info)} coroutines."
 msgstr "Le script doit contenir exactement {len(self.rom_data.script_data.common_routine_info)} coroutines."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:141
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:147
 msgid "The script must not contain any duplicate coroutines."
 msgstr "Le script ne doit pas contenir de coroutine dupliquée."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:147
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:153
 #, python-brace-format
 msgid "Unknown coroutine {err}"
 msgstr "Coroutine inconnue : {err}"
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:162
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:168
 msgid "Coroutines and regular routines can not be mixed in a script file."
 msgstr "Coroutines et routines ordinaires ne peuvent pas être ensemble dans un même fichier de script."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:174
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:180
 #, python-brace-format
 msgid "Unknown operation {in_op.op_code.name}."
 msgstr "Opération inconnue : {in_op.op_code.name}."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:185
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:191
 msgid "The number of parameters for {normal_op_code.name} must be at least {normal_op_code.params}, is {self._correct_param_list_len(in_op.params)}."
 msgstr "Le nombre de paramètres pour {normal_op_code.name} doit être d'au moins {normal_op_code.params}, or il est de {self._correct_param_list_len(in_op.params)}."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:199
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:205
 msgid "The number of parameters for {op_code.name} must be {op_code.params}, is {self._correct_param_list_len(in_op.params)}."
 msgstr "Le nombre de paramètres pour {op_code.name} doit être de {op_code.params}, or il est de {self._correct_param_list_len(in_op.params)}."
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:278
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:284
 #, python-brace-format
 msgid "Unknown language for string: {lang}"
 msgstr "Langue inconnue pour une chaîne de caractères : {lang}"
 
-#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:282
+#: skytemple-files/skytemple_files/script/ssb/script_compiler.py:288
 #, python-brace-format
 msgid "Invalid parameter supplied for an operation: {param}"
 msgstr "Paramètre invalide pour une opération : {param}"
