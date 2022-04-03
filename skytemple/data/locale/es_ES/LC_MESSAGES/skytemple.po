@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-04-03 16:44+0000\n"
-"PO-Revision-Date: 2022-04-03 16:49\n"
+"PO-Revision-Date: 2022-04-03 18:11\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3495,7 +3495,7 @@ msgstr "Reemplaza el movimiento fijo (L+A) con una funcionalidad de acceso direc
 
 #: skytemple-files/skytemple_files/patch/handler/obj_table.py:55
 msgid "Extracts the object table to a separate file in the ROM."
-msgstr ""
+msgstr "Extrae la tabla de objetos en un archivo separado en la ROM."
 
 #: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:42
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
@@ -6967,7 +6967,7 @@ msgstr "SkyTemple: Pokémon inválido"
 #: skytemple/skytemple/module/lists/controller/recruitment_list.py:71
 #: skytemple/skytemple/module/lists/controller/starters_list.py:180
 msgid "No Pokémon with this ID found."
-msgstr ""
+msgstr "No se ha encontrado ningún Pokémon con este ID."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:635
 msgid "All categories are already in the list."
@@ -8745,25 +8745,27 @@ msgstr "Cantidad de PS que cura la Baya Zidra:"
 #: skytemple/skytemple/module/lists/controller/object_list.glade:46
 #: skytemple/skytemple/module/lists/controller/object_list.glade:123
 msgid "Object List"
-msgstr ""
+msgstr "Lista de objetos"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:75
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ExtractObjectTable\" \n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar esta lista, aplica el parche \"ExtractObjectTable\" \n"
+"desde el menú Parches ASM."
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:210
 msgid "Unk2_1"
-msgstr ""
+msgstr "Desc2_1"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:226
 msgid "Unk2_2"
-msgstr ""
+msgstr "Desc2_2"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:242
 msgid "Flag"
-msgstr ""
+msgstr "Marca"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:323
 msgid "The Name is used by the game to determine if a ground sprite should be used. \n"
@@ -8774,7 +8776,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/object_list.py:93
 msgid "Invalid object name"
-msgstr ""
+msgstr "Nombre de objeto no válido"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
 #: skytemple/skytemple/module/lists/module.py:121
@@ -10610,7 +10612,7 @@ msgstr "Advertencia: La vista de las estadísticas puede estar dañada ahora,\n"
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:376
 msgid "No move with this ID found."
-msgstr ""
+msgstr "No se ha encontrado ningún movimiento con este ID."
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:409
 #: skytemple/skytemple/module/monster/controller/level_up.py:481
@@ -12864,27 +12866,27 @@ msgstr "Esta sección te permite importar y exportar sprites de diferentes eleme
 
 #: skytemple/skytemple/module/sprite/controller/object_main.glade:96
 msgid "New Object Sprite"
-msgstr ""
+msgstr "Nuevo sprite de objeto"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:47
 msgid "Create Object Sprite"
-msgstr ""
+msgstr "Crear sprite de objeto"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:47
 msgid "Sprite Name"
-msgstr ""
+msgstr "Nombre del sprite"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:56
 msgid "The length of the sprite name must be between 1-10 characters."
-msgstr ""
+msgstr "La longitud del nombre del sprite debe tener entre 1-10 caracteres."
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:67
 msgid "A sprite with this name already exists."
-msgstr ""
+msgstr "Ya existe un sprite con este nombre."
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:84
 msgid "Object sprite added successfully"
-msgstr ""
+msgstr "El sprite de objeto se ha añadido correctamente"
 
 #: skytemple/skytemple/module/sprite/module.py:127
 msgid "Import WAN sprite..."
