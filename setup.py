@@ -1,4 +1,4 @@
-__version__ = '1.3.8rc3'
+__version__ = '1.3.8'
 
 import glob
 import os
