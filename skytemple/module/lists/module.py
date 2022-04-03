@@ -29,6 +29,7 @@ from skytemple.module.lists.controller.guest_pokemon import GuestPokemonControll
 from skytemple.module.lists.controller.iq import IqController
 from skytemple.module.lists.controller.main import MainController, GROUND_LISTS
 from skytemple.module.lists.controller.actor_list import ActorListController
+from skytemple.module.lists.controller.object_list import ObjectListController
 from skytemple.module.lists.controller.misc_settings import MiscSettingsController
 from skytemple.module.lists.controller.rank_list import RankListController
 from skytemple.module.lists.controller.menu_list import MenuListController
@@ -58,9 +59,11 @@ from skytemple_files.hardcoded.recruitment_tables import HardcodedRecruitmentTab
 from skytemple_files.hardcoded.menus import HardcodedMenus, MenuEntry, MenuType
 from skytemple_files.hardcoded.tactics import HardcodedTactics
 from skytemple_files.list.actor.model import ActorListBin
+from skytemple_files.list.object.model import ObjectListBin
 from skytemple_files.common.i18n_util import _
 
 ACTOR_LIST = 'BALANCE/actor_list.bin'
+OBJECT_LIST = 'BALANCE/objects.bin'
 SP_EFFECTS = 'BALANCE/process.bin'
 DUNGEON_INTERRUPT = "BALANCE/inter_d.bin"
 ANIMATIONS = "BALANCE/anim.bin"
@@ -105,6 +108,9 @@ class ListsModule(AbstractModule):
         self._starters_tree_iter = item_store.append(root, [
             'skytemple-e-monster-symbolic', _('Starters'), self, StartersListController, 0, False, '', True
         ])
+        self._object_tree_iter = item_store.append(root, [
+            'skytemple-e-object-symbolic', _('Objects'), self, ObjectListController, 0, False, '', True
+        ])
         self._recruitment_tree_iter = item_store.append(root, [
             'skytemple-e-monster-symbolic', _('Recruitment List'), self, RecruitmentListController, 0, False, '', True
         ])
@@ -147,6 +153,7 @@ class ListsModule(AbstractModule):
         generate_item_store_row_label(item_store[root])
         generate_item_store_row_label(item_store[self._actor_tree_iter])
         generate_item_store_row_label(item_store[self._starters_tree_iter])
+        generate_item_store_row_label(item_store[self._object_tree_iter])
         generate_item_store_row_label(item_store[self._recruitment_tree_iter])
         generate_item_store_row_label(item_store[self._world_map_tree_iter])
         generate_item_store_row_label(item_store[self._rank_list_tree_iter])
@@ -206,6 +213,19 @@ class ListsModule(AbstractModule):
         row = self._tree_model[self._animations_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
 
+    def has_object_list(self):
+        return self.project.file_exists(OBJECT_LIST)
+
+    def get_object_list(self) -> ObjectListBin:
+        return self.project.open_file_in_rom(OBJECT_LIST, FileType.OBJECT_LIST_BIN)
+    
+    def mark_objects_as_modified(self):
+        """Mark as modified"""
+        self.project.mark_as_modified(OBJECT_LIST)
+        # Mark as modified in tree
+        row = self._tree_model[self._object_tree_iter]
+        recursive_up_item_store_mark_as_modified(row)
+    
     def has_actor_list(self):
         return self.project.file_exists(ACTOR_LIST)
 

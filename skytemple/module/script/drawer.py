@@ -704,7 +704,7 @@ class Drawer:
         del self._sectors_visible[id]
         if self._sector_highlighted == id:
             self._sector_highlighted = None
-        elif self._sector_highlighted > id:
+        elif self._sector_highlighted is not None and self._sector_highlighted > id:
             self._sector_highlighted -= 1
 
     def get_current_drag_entity_pos(self) -> Tuple[int, int]:

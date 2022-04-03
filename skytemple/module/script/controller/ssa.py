@@ -1542,7 +1542,9 @@ class SsaController(AbstractController):
         for script_name in self.scripts:
             if self._talk_script_matches(script_name, script_id):
                 return script_name
-        return self.scripts[script_id]
+        if script_id in self.scripts:
+            return self.scripts[script_id]
+        return '???'
 
     @staticmethod
     def _get_file_shortname(path: str):

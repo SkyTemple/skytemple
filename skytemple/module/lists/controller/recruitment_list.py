@@ -23,6 +23,8 @@ from gi.repository import Gtk
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import glib_async
 from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
+from skytemple_files.common.i18n_util import _
+from skytemple_files.user_error import UserValueError
 
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
@@ -62,13 +64,15 @@ class RecruitmentListController(ListBaseController):
         except ValueError:
             return
         idx = int(self._list_store[path][0])
-
+        # ent_name:
+        try:
+            self._list_store[path][6] = self._ent_names[entid]
+        except KeyError as e:
+            raise UserValueError(_("No Pokémon with this ID found."))
         # entid:
         self._list_store[path][4] = entid
         # ent_icon:
         self._list_store[path][3] = self._get_icon(entid, idx, False)
-        # ent_name:
-        self._list_store[path][6] = self._ent_names[entid]
 
     def on_cr_location_edited(self, widget, path, text):
         match = PATTERN_LOCATION_ENTRY.match(text)

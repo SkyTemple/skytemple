@@ -20,9 +20,9 @@ All of these commands should be run in the MSys environment that is set up in st
    ```
 3. Download the required binary wheels from https://skytemple.org/build_deps/, place them in the folder where you're making the installation, then run `pip install` for each one of them. You only have to download one version for each wheel (usually the latest one available for your platform).
    ```
-   pip install py_desmume-0.0.3-cp39-cp39-mingw_x86_64.whl
+   pip install py_desmume-0.0.4.post2-cp39-cp39-mingw_x86_64.whl
    pip install python_igraph-0.8.2-cp39-cp39-mingw_x86_64.whl
-   pip install skytemple_rust-1.3.4.post0-cp39-cp39-mingw_x86_64.whl
+   pip install skytemple_rust-1.3.7.post0-cp39-cp39-mingw_x86_64.whl
    pip install tilequant-0.4.0.post0-cp39-cp39-mingw_x86_64.whl
    ```
    If you want to know how to build these yourself, see "Building binary dependencies".

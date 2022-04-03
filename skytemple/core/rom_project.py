@@ -145,10 +145,13 @@ class RomProject:
         self._rom = NintendoDSRom.fromFile(self.filename)
         await AsyncTaskDelegator.buffer()
         self._loaded_modules = {}
+
+        self._rom_module = Modules.get_rom_module()(self)
+        self._rom_module.load_rom_data()
         for name, module in Modules.all().items():
             logger.debug(f"Loading module {name} for ROM...")
             if name == 'rom':
-                self._rom_module = module(self)
+                continue
             else:
                 self._loaded_modules[name] = module(self)
             await AsyncTaskDelegator.buffer()
@@ -347,6 +350,13 @@ class RomProject:
         if filename in self._opened_files_contexts:
             del self._opened_files_contexts[filename]
         self._rom.setFileByName(filename, data)
+        self.force_mark_as_modified()
+        
+    def create_file_manually(self, filename: str, data: bytes):
+        """
+        Manually create a file in the ROM. 
+        """
+        create_file_in_rom(self._rom, filename, data)
         self.force_mark_as_modified()
 
     async def _save_impl(self, main_controller: Optional['MainController']):

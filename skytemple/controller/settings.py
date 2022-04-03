@@ -118,7 +118,7 @@ class SettingsController:
             cb.set_active_id(active)
 
         # Sentry
-        allow_sentry_previous = self.settings.get_integration_discord_enabled()
+        allow_sentry_previous = self.settings.get_allow_sentry()
         settings_allow_sentry_enable = self.builder.get_object('setting_allow_sentry')
         settings_allow_sentry_enable.set_active(allow_sentry_previous)
 

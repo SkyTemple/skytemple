@@ -39,6 +39,10 @@ logger = logging.getLogger(__name__)
 
 PATTERN_MD_ENTRY = re.compile(r'.*\(#(\d+)\).*')
 
+# This is the normal item ID of the link box
+# TODO: Have a way to configure this
+LINKBOX_ITEM_ID = 362
+
 
 ITEM_LISTS = [_("E Floors Rewards"),
               _("D Floors Rewards"),
@@ -201,7 +205,8 @@ class ItemListsController(AbstractController):
             display_error(
                 None,
                 "The last category can not be removed.",
-                "Can't remove category."
+                "Can't remove category.",
+                should_report=False
             )
             return
         if model is not None and treeiter is not None:
@@ -348,7 +353,8 @@ class ItemListsController(AbstractController):
             display_error(
                 None,
                 'This item does not belong in this category. Please chose another item.',
-                'Invalid item id'
+                'Invalid item id',
+                should_report=False
             )
             return
 
@@ -356,7 +362,8 @@ class ItemListsController(AbstractController):
             display_error(
                 None,
                 'This item is already in the list.',
-                'Can not use this item'
+                'Can not use this item',
+                should_report=False
             )
             return
 
@@ -421,7 +428,8 @@ class ItemListsController(AbstractController):
                 display_error(
                     None,
                     'All items are already in the list',
-                    'Can not add item.'
+                    'Can not add item.',
+                    should_report=False
                 )
                 return
         item_icon_renderer = ListIconRenderer(5)
@@ -630,7 +638,7 @@ class ItemListsController(AbstractController):
                 # Add Poké and Link Box items for those categories
                 if not cat:
                     if row[0] == POKE_CATEGORY_ID:
-                        item_weights[Pmd2DungeonItem(self.item_categories[POKE_CATEGORY_ID].item_ids()[0], '')] = 10000
+                        item_weights[Pmd2DungeonItem(self._get_link_box_item_id(), '')] = 10000
                     if row[0] == LINKBOX_CATEGORY_ID:
                         item_weights[Pmd2DungeonItem(self.item_categories[LINKBOX_CATEGORY_ID].item_ids()[0], '')] = 10000
                 was_set = False
@@ -665,3 +673,9 @@ class ItemListsController(AbstractController):
         il.items = item_weights
 
         self.module.mark_item_list_as_modified(self._get_list_id())
+
+    def _get_link_box_item_id(self):
+        item_ids = self.item_categories[POKE_CATEGORY_ID].item_ids()
+        if LINKBOX_ITEM_ID in item_ids:
+            return LINKBOX_ITEM_ID
+        return item_ids[0]

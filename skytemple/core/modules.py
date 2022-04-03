@@ -16,9 +16,13 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+from typing import TYPE_CHECKING, Type
 
 import pkg_resources
 from typing import Dict
+
+if TYPE_CHECKING:
+    from skytemple.module.rom.module import RomModule
 
 MODULE_ENTRYPOINT_KEY = 'skytemple.module'
 logger = logging.getLogger(__name__)
@@ -55,6 +59,11 @@ class Modules:
     def all(cls):
         """Returns a list of all loaded modules, ordered by dependencies"""
         return cls._modules
+
+    @classmethod
+    def get_rom_module(cls) -> Type['RomModule']:
+        assert cls._modules["rom"] is not None
+        return cls._modules["rom"]
 
     @classmethod
     def _load_windows_modules(cls):

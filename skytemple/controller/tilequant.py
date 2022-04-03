@@ -23,6 +23,7 @@ from functools import partial
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple_files.user_error import USER_ERROR_MARK
 from skytemple_tilequant.aikku.image_converter import AikkuImageConverter, DitheringMode
 from skytemple_tilequant.image_converter import ImageConverter
 from skytemple_files.common.i18n_util import _
@@ -124,7 +125,7 @@ class TilequantController:
         has_second_image = self.builder.get_object('tq_second_file').get_filename() is not None
 
         if not has_first_image:
-            self.error(_("Please select an input image."))
+            self.error(_("Please select an input image."), should_report=False)
             return
         if has_second_image:
             md = SkyTempleMessageDialog(self.window,
@@ -188,13 +189,13 @@ class TilequantController:
                 int(transparent_color.blue_float * 255)
             )
         except ValueError:
-            self.error(_("You entered invalid numbers."))
+            self.error(_("You entered invalid numbers."), should_report=False)
         else:
             if not os.path.exists(input_image):
-                self.error(_("The input image does not exist."))
+                self.error(_("The input image does not exist."), should_report=False)
                 return
             if has_second_image and not os.path.exists(second_input_file):
-                self.error(_("The second input image does not exist."))
+                self.error(_("The second input image does not exist."), should_report=False)
                 return
             with open(input_image, 'rb') as input_file:
                 try:
@@ -213,7 +214,7 @@ class TilequantController:
                         image.paste(image1, (0, 0))
                         image.paste(image2, (0, image1.height))
                 except OSError:
-                    self.error(_("The input image is not a supported format."))
+                    self.error(_("The input image is not a supported format."), should_report=False)
                     return
                 try:
                     img = self._convert(image, transparent_color, mode, num_pals, dither_level)
@@ -241,17 +242,22 @@ class TilequantController:
         md.run()
         md.destroy()
 
-    def error(self, msg):
+    def error(self, msg, should_report=True):
         display_error(
             sys.exc_info(),
-            msg
+            msg,
+            should_report=should_report
         )
 
     def _convert(self, image, transparent_color, mode, num_pals, dither_level):
         if mode == ImageConversionMode.JUST_REORGANIZE:
             converter = ImageConverter(image, transparent_color=transparent_color)
-            return converter.convert(num_pals, colors_per_palette=16, color_steps=-1, max_colors=256,
-                                     low_to_high=False, mosaic_limiting=False)
+            try:
+                return converter.convert(num_pals, colors_per_palette=16, color_steps=-1, max_colors=256,
+                                         low_to_high=False, mosaic_limiting=False)
+            except ValueError as e:
+                setattr(e, USER_ERROR_MARK, True)
+                raise e
         converter = AikkuImageConverter(image, transparent_color)
         dither_mode = DitheringMode.NONE
         if mode == ImageConversionMode.DITHERING_ORDERED:

@@ -22,6 +22,8 @@ from gi.repository import Gtk
 from skytemple.core.string_provider import StringType
 from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
 from skytemple_files.common.i18n_util import _
+from skytemple_files.user_error import UserValueError
+
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 
@@ -171,13 +173,16 @@ class StartersListController(ListBaseController):
         except ValueError:
             return
         idx = int(store[path][0])
+        # ent_name:
+        try:
+            store[path][3] = self._ent_names[entid]
+        except KeyError as e:
+            raise UserValueError(_("No Pokémon with this ID found."))
         # entid:
         store[path][2] = entid
         # ent_icon:
         # If color is orange it's special.
         store[path][1] = self._get_icon(entid, idx, False, store, iters)
-        # ent_name:
-        store[path][3] = self._ent_names[entid]
         self._apply()
 
     def refresh_list(self):

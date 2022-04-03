@@ -56,6 +56,7 @@ for (path, directories, filenames) in os.walk(os.path.join(pkg_path, 'module')):
 
 additional_binaries = [
     (os.path.join(site_packages, "desmume", "libdesmume.dll"), "."),
+    (os.path.join(site_packages, "desmume", "SDL2.dll"), "."),
     (os.path.join(site_packages, "skytemple_tilequant", "aikku", "libtilequant.dll"), "skytemple_tilequant/aikku"),
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libenchant-2.dll"), f'enchant/data/{mingw}/bin'),
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libglib-2.0-0.dll"), f'enchant/data/{mingw}/bin'),
@@ -66,17 +67,6 @@ additional_binaries = [
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libssl-1_1*.dll"), '.'),
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libraqm-0.dll"), '.'),
 ]
-
-if mingw == 'mingw64':
-    # 64-bit uses py-desmume 0.0.3 for performance reasons.
-    additional_binaries.append(
-        (os.path.join(site_packages, "desmume", "SDL.dll"), "."),
-    )
-else:
-    # 32-bit uses py-desmume 0.0.3.post2+
-    additional_binaries.append(
-        (os.path.join(site_packages, "desmume", "SDL2.dll"), "."),
-    )
 
 block_cipher = None
 

@@ -122,9 +122,9 @@ class MainController(AbstractController):
                 err = str(ex)
                 if ex.config_parameter != "*":
                     err += _('\nConfiguration field with errors: "{}"\nError: {}').format(ex.config_parameter, ex.error)
-                self._error(f(_("Error applying the patch:\n{err}")), exc_info=sys.exc_info())
+                self._error(f(_("Error applying the patch:\n{err}")), exc_info=sys.exc_info(), should_report=True)
             except RuntimeError as err:
-                self._error(f(_("Error applying the patch:\n{err}")), exc_info=sys.exc_info())
+                self._error(f(_("Error applying the patch:\n{err}")), exc_info=sys.exc_info(), should_report=True)
             else:
                 if not some_skipped:
                     self._error(_("Patch was successfully applied. The ROM will now be reloaded."),
@@ -182,7 +182,7 @@ class MainController(AbstractController):
                 self._patcher.add_pkg(fname)  # type: ignore
             except BaseException as err:
                 logger.error(f"Error loading patch package {os.path.basename(fname)}", exc_info=sys.exc_info())
-                self._error(f(_("Error loading patch package {os.path.basename(fname)}:\n{err}")))
+                self._error(f(_("Error loading patch package {os.path.basename(fname)}:\n{err}")), should_report=True)
         # List patches:
         for patch in sorted(self._patcher.list(), key=lambda p: p.name):  # type: ignore
             if patch.category != patch_category:
@@ -196,11 +196,12 @@ class MainController(AbstractController):
                 patch.name, patch.author, patch.description, applied_str
             ])
 
-    def _error(self, msg, type=Gtk.MessageType.ERROR, exc_info=None, is_success=False):
+    def _error(self, msg, type=Gtk.MessageType.ERROR, exc_info=None, is_success=False, should_report=False):
         if type == Gtk.MessageType.ERROR:
             display_error(
                 exc_info,
-                msg
+                msg,
+                should_report=should_report
             )
         else:
             md = SkyTempleMessageDialog(MainAppController.window(),
