@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-04-03 16:44+0000\n"
-"PO-Revision-Date: 2022-04-03 16:49\n"
+"POT-Creation-Date: 2022-04-14 06:00+0000\n"
+"PO-Revision-Date: 2022-04-14 06:06\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -1072,7 +1072,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.py:1252
 #: skytemple/skytemple/module/script/controller/ssa.py:1366
 #: skytemple/skytemple/module/script/controller/ssa.py:1535
-#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:52
+#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:55
 msgid "None"
 msgstr ""
 
@@ -3578,6 +3578,10 @@ msgstr ""
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
 
+#: skytemple-files/skytemple_files/script/ssa_sse_sss/writer.py:53
+msgid "Can not save a scene event without a defined triggered script."
+msgstr ""
+
 #: skytemple-files/skytemple_files/script/ssb/constants.py:76
 #, python-brace-format
 msgid "Invalid DungeonMode: {string}"
@@ -4221,7 +4225,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:43
 #: skytemple/skytemple/module/script/controller/main.py:191
 #: skytemple/skytemple/module/script/controller/map.py:160
-#: skytemple/skytemple/module/script/controller/ssa.py:1627
+#: skytemple/skytemple/module/script/controller/ssa.py:1634
 #: skytemple/skytemple/module/sprite/controller/object_main.py:94
 msgid "Cancel"
 msgstr ""
@@ -5783,7 +5787,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1025
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3166
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:250
-#: skytemple/skytemple/module/lists/controller/actor_list.glade:429
+#: skytemple/skytemple/module/lists/controller/actor_list.glade:445
 #: skytemple/skytemple/module/lists/controller/animations.glade:1253
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:466
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:191
@@ -7901,24 +7905,27 @@ msgid "<Not available>\n\n"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
-#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:654
-#: skytemple/skytemple/module/script/controller/ssa.py:1267
-msgid "Unk3"
+msgid "Text String for Name"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:255
 msgid "Unk4"
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/actor_list.glade:350
+#: skytemple/skytemple/module/lists/controller/actor_list.glade:345
+msgid "If \"Text String for Name\" is not 0, the Text String with this ID will be used as the name for the actor. \n"
+"Otherwise the species name is used."
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/actor_list.glade:366
 msgid "Actors with outlines "
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/actor_list.glade:379
+#: skytemple/skytemple/module/lists/controller/actor_list.glade:395
 msgid " as sprites are <span foreground=\"orange\">special</span> and replaced with another Pokémon when the game is running."
 msgstr ""
 
-#: skytemple/skytemple/module/lists/controller/actor_list.glade:402
+#: skytemple/skytemple/module/lists/controller/actor_list.glade:418
 msgid "By changing the 'Pokémon' entry for these actors, you will only change which outline is rendered in SkyTemple."
 msgstr ""
 
@@ -8244,6 +8251,11 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:541
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:211
 msgid "Move 4"
+msgstr ""
+
+#: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:654
+#: skytemple/skytemple/module/script/controller/ssa.py:1267
+msgid "Unk3"
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:668
@@ -12124,12 +12136,16 @@ msgstr ""
 msgid "Type {performer.type}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:43
+#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:44
 #, python-brace-format
 msgid "Edit {script_name}"
 msgstr ""
 
-#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:45
+#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:46
+msgid "Edit Event"
+msgstr ""
+
+#: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:48
 msgid "New Event"
 msgstr ""
 
