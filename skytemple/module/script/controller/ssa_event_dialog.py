@@ -38,9 +38,12 @@ class SsaEventDialogController:
         self.window.set_transient_for(main_window)
         self.window.set_attached_to(main_window)
         if self.edit is not None:
-            # noinspection PyUnusedLocal
-            script_name = self.talk_script_names[self.edit.script_id]
-            self.title = f(_('Edit {script_name}')) + f' / {self.scriptdata.common_routine_info__by_id[self.edit.coroutine.id].name}'
+            try:
+                # noinspection PyUnusedLocal
+                script_name = self.talk_script_names[self.edit.script_id]
+                self.title = f(_('Edit {script_name}')) + f' / {self.scriptdata.common_routine_info__by_id[self.edit.coroutine.id].name}'
+            except KeyError:
+                self.title = _('Edit Event')
         else:
             self.title = _('New Event')
 

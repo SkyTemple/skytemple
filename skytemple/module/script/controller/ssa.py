@@ -1590,6 +1590,13 @@ class SsaController(AbstractController):
         return name
 
     def _script_id(self, name, as_int=False) -> Union[str, int]:
+        # First try to parse as an int, if this fails, the event has no script assigned.
+        try:
+            int(name[-6:-4])
+        except ValueError:
+            if not as_int:
+                return "??"
+            return -1
         if not as_int:
             return name[-6:-4]
         try:

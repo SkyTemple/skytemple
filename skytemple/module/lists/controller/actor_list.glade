@@ -236,7 +236,7 @@ ASM patch from the "ASM Patches" menu.</property>
                         <child>
                           <object class="GtkTreeViewColumn">
                             <property name="resizable">True</property>
-                            <property name="title" translatable="yes">Unk3</property>
+                            <property name="title" translatable="yes">Text String for Name</property>
                             <child>
                               <object class="GtkCellRendererText" id="cr_unk3">
                                 <property name="editable">True</property>
@@ -337,6 +337,22 @@ ASM patch from the "ASM Patches" menu.</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="margin-bottom">10</property>
+                        <property name="label" translatable="yes">If "Text String for Name" is not 0, the Text String with this ID will be used as the name for the actor. 
+Otherwise the species name is used.</property>
+                        <property name="wrap">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
@@ -389,7 +405,7 @@ ASM patch from the "ASM Patches" menu.</property>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -404,7 +420,7 @@ ASM patch from the "ASM Patches" menu.</property>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
