@@ -38,7 +38,7 @@ logger = logging.getLogger(__name__)
 class ObjectListController(ListBaseController):
     def __init__(self, module: 'ListsModule', *args):
         super().__init__(module, *args)
-        self._list: Optional[ActorListBin] = None
+        self._list: Optional[ObjectListBin] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'object_list.glade')
