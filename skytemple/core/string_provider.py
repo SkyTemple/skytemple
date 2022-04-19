@@ -127,7 +127,10 @@ class StringProvider:
         Returns the string table model for the given language.
         If language is not set, the default ROM language is used.
         """
-        return self.project.open_file_in_rom(f'{MESSAGE_DIR}/{self.get_language(language).filename}', FileType.STR)
+        return self.project.open_file_in_rom(
+            f'{MESSAGE_DIR}/{self.get_language(language).filename}', FileType.STR,
+            string_encoding=self.project.get_rom_module().get_static_data().string_encoding
+        )
 
     def get_languages(self) -> List[Pmd2Language]:
         """Returns all supported languages."""
