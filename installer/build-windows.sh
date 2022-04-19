@@ -14,7 +14,8 @@ pip3 install python_igraph*.whl
 pip3 install igraph-*-mingw*.whl
 pip3 install py_desmume-*-mingw*.whl
 pip3 install tilequant-*-mingw*.whl
-pip3 install -r ../requirements-mac-windows.txt
+# we allow pre releases here for skytemple-rust master builds.
+pip3 install --pre -r ../requirements-mac-windows.txt
 pip3 install ..
 
 
@@ -25,7 +26,7 @@ fi
 pyinstaller skytemple.spec
 
 # Write the version number to files that are read at runtime
-version=$PACKAGE_VERSION || $(python3 -c "import pkg_resources; print(pkg_resources.get_distribution(\"skytemple\").version)")
+version=$PACKAGE_VERSION || $(python3 -c "import pkg_resources; print(pkg_resources.get_distribution(\"skytemple\").version)")
 
 echo $version > dist/skytemple/VERSION
 echo $version > dist/skytemple/data/VERSION
