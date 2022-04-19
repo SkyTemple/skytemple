@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-04-14 06:00+0000\n"
-"PO-Revision-Date: 2022-04-14 06:06\n"
+"PO-Revision-Date: 2022-04-19 20:57\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3611,7 +3611,7 @@ msgstr "No se ha encontrado ningún parche para el manipulador '{handler.name}' 
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/writer.py:53
 msgid "Can not save a scene event without a defined triggered script."
-msgstr ""
+msgstr "No se puede guardar un evento de escena sin un script definido y activo."
 
 #: skytemple-files/skytemple_files/script/ssb/constants.py:76
 #, python-brace-format
@@ -8158,7 +8158,7 @@ msgstr "<No disponible>\n\n"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
 msgid "Text String for Name"
-msgstr ""
+msgstr "Cadena de texto para el nombre"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:255
 msgid "Unk4"
@@ -8167,7 +8167,8 @@ msgstr "Desc. 4"
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:345
 msgid "If \"Text String for Name\" is not 0, the Text String with this ID will be used as the name for the actor. \n"
 "Otherwise the species name is used."
-msgstr ""
+msgstr "Si «Cadena de texto para el nombre» no es 0, la cadena de texto con este ID se utilizará como nombre para el actor. \n"
+"De lo contrario, se utilizará el nombre de la especie del Pokémon."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:366
 msgid "Actors with outlines "
@@ -8784,7 +8785,10 @@ msgid "The Name is used by the game to determine if a ground sprite should be us
 "An object with Name 'x' will use the sprite named 'x.wan' in the Object Sprites section.\n"
 "A 'NULL' or empty string means there is no sprite attached.\n"
 "To create a new object sprite, go to the Object Sprites section."
-msgstr ""
+msgstr "El juego usa el nombre para determinar si se debe usar un sprite de terreno. \n"
+"Un objeto con el nombre 'x' utilizará el sprite denominado 'x.wan' en la sección Sprites de objetos.\n"
+"Una cadena 'NULL' o vacía significa que no tiene ningún sprite adjunto.\n"
+"Para crear un nuevo sprite de objeto, ve a la sección Sprites de objetos."
 
 #: skytemple/skytemple/module/lists/controller/object_list.py:93
 msgid "Invalid object name"
@@ -12670,7 +12674,7 @@ msgstr "Editar {script_name}"
 
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:46
 msgid "Edit Event"
-msgstr ""
+msgstr "Editar evento"
 
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:48
 msgid "New Event"
