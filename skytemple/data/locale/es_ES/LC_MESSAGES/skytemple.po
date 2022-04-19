@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-04-14 06:00+0000\n"
-"PO-Revision-Date: 2022-04-19 21:59\n"
+"POT-Creation-Date: 2022-04-19 23:08+0000\n"
+"PO-Revision-Date: 2022-04-19 23:23\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3374,7 +3374,7 @@ msgstr "Desactiva las cajas de texto de ayuda mostradas en los territorios al pr
 msgid "Disarms one-room Monster House floors, which can appear in cases like a layout generation failure. These floors will still be one giant room, but will no longer be Monster Houses."
 msgstr "Desarma los pisos de nidos de monstruos de una sola sala, que pueden aparecer en casos como fallos de generación. Estos pisos seguirán siendo una sala gigante, pero ya no serán nidos."
 
-#: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:43
+#: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:42
 msgid "Implements dungeon interruptions. "
 msgstr "Implementa interrupciones de territorio. "
 
@@ -3394,7 +3394,7 @@ msgstr "Implementa puntos de experiencia compartidos entre todos los miembros (c
 "Se desactiva durante los Capítulos especiales y los territorios con nivel 1 o sin restricciones de exp. \n"
 "Necesita que se aplique el parche 'ExtractDungeonData' para liberar algo de espacio utilizado por este."
 
-#: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:97
+#: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:96
 msgid "Expand the pokemon entries allowed to 2048, and makes all the entries independent.\n"
 "Needs ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile patches to work.\n"
 "It is strongly recommended to fix any dungeon error before applying this patch,\n"
@@ -3493,7 +3493,7 @@ msgstr "Implementa el aumento de nivel de los movimientos (PoC/Inacabado). \n"
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
 msgstr "Reemplaza el movimiento fijo (L+A) con una funcionalidad de acceso directo como en Portales al Infinito o Super Mystery Dungeon (L+A/B/X/Y). Se debe aplicar antes el parche \"ExtraSpace\"."
 
-#: skytemple-files/skytemple_files/patch/handler/obj_table.py:55
+#: skytemple-files/skytemple_files/patch/handler/obj_table.py:54
 msgid "Extracts the object table to a separate file in the ROM."
 msgstr "Extrae la tabla de objetos en un archivo separado en la ROM."
 
@@ -3523,7 +3523,7 @@ msgid "Skips the quiz, only leaving the gender question.\n"
 msgstr "Se salta la prueba, dejando solo la pregunta de género.\n"
 "Necesita que se aplique el parche 'ChooseStarter'. "
 
-#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:52
+#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:51
 msgid "Replaces old move stats display with bars.\n"
 "This patch may not be compatible if the markfont.dat file has been modified."
 msgstr "Sustituye la visualización antigua de estadísticas de movimiento por barras.\n"
