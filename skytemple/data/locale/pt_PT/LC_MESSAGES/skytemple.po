@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-04-14 06:00+0000\n"
-"PO-Revision-Date: 2022-04-14 06:06\n"
+"POT-Creation-Date: 2022-04-19 23:08+0000\n"
+"PO-Revision-Date: 2022-04-19 23:23\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -3361,7 +3361,7 @@ msgstr ""
 msgid "Disarms one-room Monster House floors, which can appear in cases like a layout generation failure. These floors will still be one giant room, but will no longer be Monster Houses."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:43
+#: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:42
 msgid "Implements dungeon interruptions. "
 msgstr ""
 
@@ -3379,7 +3379,7 @@ msgid "Implements shared experience points between all members (GtI style). \n"
 "Needs the ExtractDungeonData patch to be applied to free some space used by this."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:97
+#: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:96
 msgid "Expand the pokemon entries allowed to 2048, and makes all the entries independent.\n"
 "Needs ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile patches to work.\n"
 "It is strongly recommended to fix any dungeon error before applying this patch,\n"
@@ -3465,7 +3465,7 @@ msgstr ""
 msgid "Replaces the fixed move (L+A) with a move shortcut functionality like in GtI or Super (L+A/B/X/Y). The ExtraSpace patch must be applied before this one."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/obj_table.py:55
+#: skytemple-files/skytemple_files/patch/handler/obj_table.py:54
 msgid "Extracts the object table to a separate file in the ROM."
 msgstr ""
 
@@ -3494,7 +3494,7 @@ msgid "Skips the quiz, only leaving the gender question.\n"
 "Needs ChooseStarter patch to be applied. "
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:52
+#: skytemple-files/skytemple_files/patch/handler/stat_disp.py:51
 msgid "Replaces old move stats display with bars.\n"
 "This patch may not be compatible if the markfont.dat file has been modified."
 msgstr ""
