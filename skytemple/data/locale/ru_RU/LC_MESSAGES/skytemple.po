@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-04-19 23:08+0000\n"
-"PO-Revision-Date: 2022-04-19 23:23\n"
+"POT-Creation-Date: 2022-04-20 13:01+0000\n"
+"PO-Revision-Date: 2022-04-20 13:23\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -3647,7 +3647,7 @@ msgid "Could not compile script: All languages must have the same amount of stri
 msgstr ""
 
 #: skytemple-rust/src/dse/st_smdl/eoc.rs:35
-#: skytemple-rust/src/dse/st_smdl/trk.rs:84
+#: skytemple-rust/src/dse/st_smdl/trk.rs:103
 msgid "SMDL file too short (EOC EOF)."
 msgstr ""
 
@@ -3655,11 +3655,11 @@ msgstr ""
 msgid "Invalid SMDL/EOC header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/smdl.rs:178
+#: skytemple-rust/src/dse/st_smdl/smdl.rs:156
 msgid "SMDL file too short (Header EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/smdl.rs:180
+#: skytemple-rust/src/dse/st_smdl/smdl.rs:158
 msgid "Invalid SMDL/Header header."
 msgstr ""
 
@@ -3671,11 +3671,11 @@ msgstr ""
 msgid "Invalid SMDL/Song header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/trk.rs:52
+#: skytemple-rust/src/dse/st_smdl/trk.rs:60
 msgid "SMDL file too short (Track EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/trk.rs:54
+#: skytemple-rust/src/dse/st_smdl/trk.rs:62
 msgid "Invalid SMDL/Track header."
 msgstr ""
 
