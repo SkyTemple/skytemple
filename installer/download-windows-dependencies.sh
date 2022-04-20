@@ -9,7 +9,7 @@ else
   curl https://skytemple.org/build_deps/py_desmume-0.0.4.post2-cp39-cp39-mingw_x86_64.whl -O
   curl https://skytemple.org/build_deps/tilequant-0.4.0.post0-cp39-cp39-mingw_x86_64.whl -O
   curl https://skytemple.org/build_deps/igraph-0.8.2-cp39-cp39-mingw_x86_64.whl -O
-  curl https://skytemple.org/build_deps/win32/skytemple_rust-1.3.7-cp39-cp39-mingw_x86_64.whl -O
+  curl https://skytemple.org/build_deps/skytemple_rust-1.3.7-cp39-cp39-mingw_x86_64.whl -O
   curl https://skytemple.org/build_deps/armips.exe -O
 fi
 
