@@ -2,7 +2,7 @@
 
 # Call with "PACKAGE_VERSION=[version number] ./build-windows.sh"
 # The version from the current pip install of SkyTemple is used if no version number is set.
-set -e
+set -ex
 
 export XDG_DATA_DIRS="${BUILD_ROOT}/${MINGW}/share"
 
@@ -14,8 +14,11 @@ pip3 install python_igraph*.whl
 pip3 install igraph-*-mingw*.whl
 pip3 install py_desmume-*-mingw*.whl
 pip3 install tilequant-*-mingw*.whl
-# we allow pre releases here for skytemple-rust master builds.
-pip3 install --pre -r ../requirements-mac-windows.txt
+# We need to install skytemple-rust from wheel, even though we also install it later
+# again from the Github action because for dev builds pip is being stupid and NEEDS
+# a stable release matching skytemple-file's constraint.
+pip3 install skytemple_rust-*-mingw*.whl
+pip3 install -r ../requirements-mac-windows.txt
 pip3 install ..
 
 

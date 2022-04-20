@@ -142,7 +142,6 @@ jobs:
 
           # Download armips and other binary depedencies
           ./download-windows-dependencies.sh ${{ matrix.arch }}
-          ./install-skytemple-rust.sh ${{ matrix.arch }}
 
           # Install themes
           curl https://skytemple.org/build_deps/Arc.zip -O
@@ -160,6 +159,9 @@ jobs:
 
           # Package
           ./build-windows.sh $PACKAGE_VERSION
+          
+          # Install latest skytemple-rust
+          ./install-skytemple-rust.sh ${{ matrix.arch }}
         env:
           MINGW_VERSION: ${{ matrix.path }}
       - name: Create installer
