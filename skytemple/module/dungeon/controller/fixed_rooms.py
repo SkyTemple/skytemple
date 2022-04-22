@@ -280,6 +280,16 @@ class FixedRoomsController(AbstractController):
         self.lst_item[int(store[path][0])].item_id = idx
         self._save()
 
+    def on_cr_items_item_quantity_edited(self, widget, path, text):
+        store: Gtk.Store = self.builder.get_object('model_items')
+        try:
+            quantity = int(text)
+        except ValueError:
+            return
+        self.lst_item[int(store[path][0])].quantity = quantity
+        store[path][3] = quantity
+        self._save()
+
     def on_cr_monsters_monster_editing_started(self, renderer, editable, path):
         editable.set_completion(self.builder.get_object('completion_monsters'))
 
@@ -469,7 +479,7 @@ class FixedRoomsController(AbstractController):
         store.clear()
         for idx, item in enumerate(self.lst_item):
             store.append([
-                str(idx), item.item_id, self.item_names[item.item_id]
+                str(idx), item.item_id, self.item_names[item.item_id], item.quantity
             ])
 
     def _init_monsters(self):
