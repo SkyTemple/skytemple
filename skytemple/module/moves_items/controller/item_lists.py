@@ -638,9 +638,9 @@ class ItemListsController(AbstractController):
                 # Add Poké and Link Box items for those categories
                 if not cat:
                     if row[0] == POKE_CATEGORY_ID:
-                        item_weights[Pmd2DungeonItem(self._get_link_box_item_id(), '')] = 10000
+                        item_weights[Pmd2DungeonItem(self.item_categories[POKE_CATEGORY_ID].item_ids()[0], '')] = 10000
                     if row[0] == LINKBOX_CATEGORY_ID:
-                        item_weights[Pmd2DungeonItem(self.item_categories[LINKBOX_CATEGORY_ID].item_ids()[0], '')] = 10000
+                        item_weights[Pmd2DungeonItem(self._get_link_box_item_id(), '')] = 10000
                 was_set = False
                 weight = 0
                 if row[4] != "0":
@@ -675,7 +675,7 @@ class ItemListsController(AbstractController):
         self.module.mark_item_list_as_modified(self._get_list_id())
 
     def _get_link_box_item_id(self):
-        item_ids = self.item_categories[POKE_CATEGORY_ID].item_ids()
+        item_ids = self.item_categories[LINKBOX_CATEGORY_ID].item_ids()
         if LINKBOX_ITEM_ID in item_ids:
             return LINKBOX_ITEM_ID
         return item_ids[0]
