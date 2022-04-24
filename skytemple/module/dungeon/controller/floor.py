@@ -78,6 +78,9 @@ PATTERN_MD_ENTRY = re.compile(r'.*\(#(\d+)\).*')
 CSS_HEADER_COLOR = 'dungeon_editor_column_header_invalid'
 POKE_CATEGORY_ID = 6
 LINKBOX_CATEGORY_ID = 10
+# This is the normal item ID of the link box
+# TODO: Have a way to configure this
+LINKBOX_ITEM_ID = 362
 logger = logging.getLogger(__name__)
 
 
@@ -1729,7 +1732,7 @@ class FloorController(AbstractController):
                     if row[0] == POKE_CATEGORY_ID:
                         item_weights[Pmd2DungeonItem(self.item_categories[POKE_CATEGORY_ID].item_ids()[0], '')] = 10000
                     if row[0] == LINKBOX_CATEGORY_ID:
-                        item_weights[Pmd2DungeonItem(self.item_categories[LINKBOX_CATEGORY_ID].item_ids()[0], '')] = 10000
+                        item_weights[Pmd2DungeonItem(self._get_link_box_item_id(), '')] = 10000
                 was_set = False
                 weight = 0
                 if row[2]:
@@ -1921,6 +1924,12 @@ class FloorController(AbstractController):
                                     Gtk.ButtonsType.OK, msg)
         md.run()
         md.destroy()
+
+    def _get_link_box_item_id(self):
+        item_ids = self.item_categories[LINKBOX_CATEGORY_ID].item_ids()
+        if LINKBOX_ITEM_ID in item_ids:
+            return LINKBOX_ITEM_ID
+        return item_ids[0]
 
 
 def grouper(iterable, n, fillvalue=None):
