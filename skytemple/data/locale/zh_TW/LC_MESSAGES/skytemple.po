@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-04-24 10:37+0000\n"
-"PO-Revision-Date: 2022-04-24 10:43\n"
+"PO-Revision-Date: 2022-04-24 12:51\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
@@ -381,28 +381,28 @@ msgstr ""
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:119
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:593
 msgid "Save State"
-msgstr ""
+msgstr "儲存存檔"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:128
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:250
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:603
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:647
 msgid "State 1"
-msgstr ""
+msgstr "存檔1"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:138
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:260
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:613
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:657
 msgid "State 2"
-msgstr ""
+msgstr "存檔2"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:148
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:270
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:623
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:667
 msgid "State 3"
-msgstr ""
+msgstr "存檔3"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:158
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:280
@@ -446,7 +446,7 @@ msgstr ""
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:241
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:637
 msgid "Load State"
-msgstr ""
+msgstr "載入存檔"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:350
 msgid "From File..."
@@ -767,12 +767,12 @@ msgstr ""
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:202
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:926
 msgid "L : "
-msgstr ""
+msgstr "L : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:217
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:976
 msgid "R : "
-msgstr ""
+msgstr "R : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:233
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:1060
@@ -782,7 +782,7 @@ msgstr ""
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:249
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:1111
 msgid "Start : "
-msgstr ""
+msgstr "Start鍵 : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:265
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:1162
@@ -799,7 +799,7 @@ msgstr ""
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:351
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:872
 msgid "B : "
-msgstr ""
+msgstr "B : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:427
 msgid "Press a button..."
@@ -815,19 +815,19 @@ msgstr ""
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:748
 msgid "Left : "
-msgstr ""
+msgstr "左 : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:764
 msgid "Up : "
-msgstr ""
+msgstr "上 : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:782
 msgid "Right : "
-msgstr ""
+msgstr "右 : "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:854
 msgid "Down : "
-msgstr ""
+msgstr "下 : "
 
 #: py_desmume/desmume/frontend/control_ui/joystick_controls.py:58
 msgid "You don't have any joypads!"
@@ -1128,7 +1128,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:25
 msgid "Always"
-msgstr ""
+msgstr "總是"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:26
 msgid "Flag Not Set"
@@ -4078,7 +4078,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:315
 msgid "Error loading the emulator!"
-msgstr ""
+msgstr "加載模擬器時出錯！"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:466
 msgid "Open..."
@@ -4536,7 +4536,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:453
 msgid "_Emulator"
-msgstr ""
+msgstr "_Emulator"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:463
 msgid "Run / Pause"
@@ -4841,15 +4841,15 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2645
 msgid "Run the game from the start or stop the emulator."
-msgstr ""
+msgstr "從開始運行遊戲或停止模擬器。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2673
 msgid "Pause the emulator."
-msgstr ""
+msgstr "暫停模擬器。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2690
 msgid "Reset the emulator."
-msgstr ""
+msgstr "重啟模擬器。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2926
 msgid "Savestate"
@@ -4907,7 +4907,9 @@ msgstr "調試日誌"
 msgid "Powered by DeSmuME, the Nintendo DS Emulator:\n"
 "Originally licensed under GPLv2. See https://github.com/TASVideos/desmume/blob/master/desmume/AUTHORS for a list of authors!\n"
 "Thanks for making this great emulator!"
-msgstr ""
+msgstr "本Nintendo DS模擬器由DeSmuME提供：\n"
+"最初在GPLv2下授权。有關作者列表，請參閱 https://github.com/TASVideos/desmume/blob/master/desmume/AUTHORS ！\n"
+"感謝您製作這個偉大的模擬器！"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3213
 msgid "Interactive debugger for the script engine of Pokémon Mystery Dungeon Explorers of Sky (EU/US)"
@@ -5716,7 +5718,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:416
 msgid "Tr"
-msgstr ""
+msgstr "陷阱"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:441
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2941
@@ -6663,7 +6665,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4525
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1475
 msgid "Foods, Gummies"
-msgstr ""
+msgstr "食物、軟糖"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4692
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1629
@@ -6690,7 +6692,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5296
 msgid "Monster House"
-msgstr ""
+msgstr "怪獸屋"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5326
 msgid "Buried"
@@ -6947,7 +6949,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:105
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:119
 msgid "Random "
-msgstr ""
+msgstr "隨機 "
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1812
 msgid "Invalid?"
@@ -8180,7 +8182,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:271
 msgid "Random Music"
-msgstr ""
+msgstr "隨機音樂"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:101
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:122
