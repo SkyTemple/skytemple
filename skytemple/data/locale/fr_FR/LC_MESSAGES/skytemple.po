@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-04-24 10:37+0000\n"
-"PO-Revision-Date: 2022-04-24 10:43\n"
+"PO-Revision-Date: 2022-04-24 11:53\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -8752,21 +8752,22 @@ msgstr "Pour en ajouter sur-le-champ à l'équipe:\n"
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:296
 #: skytemple/skytemple/module/lists/module.py:127
 msgid "Special Process Effects"
-msgstr ""
+msgstr "Effets des procédures spéciales"
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:88
 msgid "Edits the special process effects used by the game."
-msgstr ""
+msgstr "Éditer les effets des procédures spéciales utilisés par le jeu."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:101
 msgid "<Not available>\n\n"
 "To view and edit special process effects, please apply the \"ExtractSPCode\"\n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<Indisponible>\n\n"
+"Pour voir et éditer les effets des procédures spéciales, appliquer le correctif ASM \"ExtractSPCode\" depuis le menu « correctif ASM »."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:165
 msgid "Edits the effects used by each special process."
-msgstr ""
+msgstr "Éditez les effets de chaque procédure spéciale."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:210
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:225
@@ -8776,13 +8777,13 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:278
 msgid "Add Special Process"
-msgstr ""
+msgstr "Ajouter une procédure spéciale"
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:318
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:319
 #: skytemple/skytemple/module/moves_items/controller/move_effects.glade:360
 msgid "Effect ID: "
-msgstr ""
+msgstr "ID de l'effet : "
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.glade:415
 #: skytemple/skytemple/module/moves_items/controller/item_effects.glade:416
@@ -8828,7 +8829,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.py:119
 msgid "Import Special Process Effect ASM Code..."
-msgstr ""
+msgstr "Importez un code ASM de procédure spéciale..."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.py:126
 #: skytemple/skytemple/module/moves_items/controller/item_effects.py:132
@@ -8861,11 +8862,11 @@ msgstr "Erreur lors de l'importation du code assembleur."
 #: skytemple/skytemple/module/moves_items/controller/item_effects.py:176
 #: skytemple/skytemple/module/moves_items/controller/move_effects.py:171
 msgid "Patch successfully imported."
-msgstr "Correctif correctement importé."
+msgstr "Modification correctement importée."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.py:184
 msgid "Export Special Process Effect ASM Code..."
-msgstr ""
+msgstr "Exporter le code ASM d'une procédure spéciale..."
 
 #: skytemple/skytemple/module/lists/controller/sp_effects.py:203
 #: skytemple/skytemple/module/moves_items/controller/item_effects.py:209
