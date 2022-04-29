@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-04-24 10:37+0000\n"
-"PO-Revision-Date: 2022-04-29 09:45\n"
+"PO-Revision-Date: 2022-04-29 10:45\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -3452,7 +3452,7 @@ msgstr "Extraie le code des attaques et les mets dans des fichiers."
 
 #: skytemple-files/skytemple_files/patch/handler/extract_sp_code.py:55
 msgid "Extracts special processes code and put it in files."
-msgstr "Extraie le code des procedures spéciales et les mets dans des fichiers."
+msgstr "Extrait le code des procédures spéciales et les mets dans des fichiers."
 
 #: skytemple-files/skytemple_files/patch/handler/fairy_gummies.py:97
 msgid "Implements Fairy-type specialized gummies. Uses unused item 138.\n"
@@ -7842,12 +7842,12 @@ msgid "You can export and import the tiles from an easy-to-modify\n"
 "You can also manually import chunks and assign tile rules,\n"
 "by switching to the Advanced Mode."
 msgstr "Vous pouvez importer et exporter les tuiles dans un format\n"
-"facile à modifié basé sur la règle des 47 tuiles (format DTEF).\n"
-"Des paramètres additionnel peuvent être configuré en\n"
+"facile à modifier basé sur la règle des 47 tuiles (format DTEF).\n"
+"Des paramètres supplémentaire peuvent être configuré en\n"
 "modifiant le fichier XML dans l'export.\n"
 "Pour plus d'information sur le format DTEF, cliquer sur le\n"
 "bouton \"Aide\".\n"
-"Vous pouvez également manuellement importer des chunks\n"
+"Vous pouvez de plus manuellement importer des blocs\n"
 "et leurs assigner des règles dans le mode avancé."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1481
@@ -7896,7 +7896,7 @@ msgstr "Ce sont des règles supplémentaires. Leur but est actuellement inconnu,
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2168
 msgid "Extra Rules"
-msgstr ""
+msgstr "Règles supplémentaires"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2188
 msgid "Dungeon Tileset X Rules"
@@ -7908,7 +7908,7 @@ msgstr "Sélecteur de fragments"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2274
 msgid "Advanced Mode (Manual)"
-msgstr ""
+msgstr "Mode avancé (manuel)"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2328
 msgid "Secondary Terrain Type"
@@ -7987,7 +7987,7 @@ msgstr "Import d'un tileset de donjon..."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:159
 msgid "DTEF XML document (*.dtef.xml)"
-msgstr ""
+msgstr "Document XML DTEF (*.dtef.xml)"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:182
 msgid "The tileset was successfully imported."
@@ -8211,11 +8211,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:672
 msgid "Flag 1"
-msgstr ""
+msgstr "Drapeau 1"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:685
 msgid "Flag 2"
-msgstr ""
+msgstr "Drapeau 2"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:698
 msgid "Flag 3"
@@ -8344,36 +8344,36 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:143
 msgid "Track"
-msgstr ""
+msgstr "Piste"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:165
 msgid "Tracks"
-msgstr ""
+msgstr "Pistes"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:198
 msgid "Track 1"
-msgstr ""
+msgstr "Piste 1"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:214
 msgid "Track 2"
-msgstr ""
+msgstr "Piste 2"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:230
 msgid "Track 3"
-msgstr ""
+msgstr "Piste 3"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:246
 msgid "Track 4"
-msgstr ""
+msgstr "Piste 4"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:271
 msgid "Random Music"
-msgstr ""
+msgstr "Musique aléatoire"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:101
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:122
 msgid "Invalid? (#999)"
-msgstr ""
+msgstr "Invalide ? (#999)"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:137
 msgid "Guest pokémon"
@@ -8457,7 +8457,7 @@ msgstr "Inc3"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:668
 msgid "Exp"
-msgstr ""
+msgstr "Exp"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:743
 msgid "Free entries left: XX"
@@ -8681,11 +8681,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:210
 msgid "Unk2_1"
-msgstr ""
+msgstr "Unk2_1"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:226
 msgid "Unk2_2"
-msgstr ""
+msgstr "Unk2_2"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:242
 msgid "Flag"
@@ -9048,7 +9048,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/tactics.py:78
 msgid "<Not working>"
-msgstr ""
+msgstr "<Non fonctionnel>"
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:76
 msgid "Map:"
@@ -9078,7 +9078,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:364
 msgid "Preview"
-msgstr ""
+msgstr "Aperçu"
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:417
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4339
@@ -9206,7 +9206,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:187
 msgid "SkyTemple - Notice"
-msgstr ""
+msgstr "SkyTemple - Information"
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:380
 msgid "A script map with the same name as this background does not exist."
@@ -9254,7 +9254,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:203
 msgid "Save GIF of map..."
-msgstr ""
+msgstr "Enregistrer un GIF de la carte..."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:242
 msgid "Export PNGs of map..."
@@ -12906,7 +12906,7 @@ msgstr "Paramètres de SkyTemple"
 
 #: skytemple/skytemple/skytemple.glade:276
 msgid "Advanced"
-msgstr ""
+msgstr "Avancé"
 
 #: skytemple/skytemple/skytemple.glade:319
 msgid "Use Native File Handlers"
@@ -12922,7 +12922,7 @@ msgstr "Thème"
 
 #: skytemple/skytemple/skytemple.glade:432
 msgid "Async Operations"
-msgstr ""
+msgstr "Taches asynchrones"
 
 #: skytemple/skytemple/skytemple.glade:512
 msgid "Error Reports"
