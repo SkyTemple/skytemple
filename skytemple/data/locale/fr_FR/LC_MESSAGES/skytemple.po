@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-04-24 10:37+0000\n"
-"PO-Revision-Date: 2022-04-24 14:02\n"
+"PO-Revision-Date: 2022-04-29 09:45\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -3399,7 +3399,7 @@ msgid "Expand the pokemon entries allowed to 2048, and makes all the entries ind
 "It is strongly recommended to fix any dungeon error before applying this patch,\n"
 "and to save a backup of your ROM before applying this."
 msgstr "Permet d'avoir jusqu'a 2048 entrées de pokémon, et les rends indépendante.\n"
-"À besoin des patches ''ChangeEvoSystem', 'ExternalizeWazaFile' et 'ExternalizeMappaFile' pour fonctionner\n"
+"À besoin des correctifs ''ChangeEvoSystem', 'ExternalizeWazaFile' et 'ExternalizeMappaFile' pour fonctionner\n"
 "Il est fortement recommander de corriger toutes les erreurs des donjons avant d'appliquer ce patch, et de faire une backup de votre de ROM avant d'appliquer ce patch."
 
 #: skytemple-files/skytemple_files/patch/handler/externalize_mappa.py:42
@@ -6849,7 +6849,9 @@ msgstr "Rang ★9"
 msgid "This attribute is the base rank of this floor. \n"
 "The floor rank determines the item list used for mission rewards and treasure boxes content. \n"
 "Needs the 'ExtractDungeonData' patch to be applied to edit this attribute."
-msgstr ""
+msgstr "Cet attribut est le rang de base de cet étage.\n"
+"Le rang de l'étage détermine la liste des objets de récompense de missions, et le contenu des Coffres.\n"
+"À besoin du correctif « ExtractDungeonData » pour modifier cet attribut."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:280
 msgid "If this attribute is set to 'Yes', no missions will be generated for this floor, and Wonder Mail S codes targetting this floor will be considered as invalid. \n"
@@ -6941,7 +6943,7 @@ msgstr "SkyTemple: Pokémon invalide"
 #: skytemple/skytemple/module/lists/controller/recruitment_list.py:71
 #: skytemple/skytemple/module/lists/controller/starters_list.py:180
 msgid "No Pokémon with this ID found."
-msgstr ""
+msgstr "Aucun Pokémon avec cet identifiant trouvé."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:638
 msgid "All categories are already in the list."
