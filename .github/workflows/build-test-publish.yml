@@ -195,7 +195,8 @@ jobs:
       - name: Install and package
         run: |
           brew install enchant
-          brew install git@2.35.1 pygobject3 gtk+3 python@3.9 gtksourceview3 adwaita-icon-theme sdl sdl2 cmake
+          # git is already installed.
+          brew install pygobject3 gtk+3 python@3.9 gtksourceview3 adwaita-icon-theme sdl sdl2 cmake
           PATH=/usr/local/opt/python@3.9/bin:/usr/local/bin:$PATH
 
 
