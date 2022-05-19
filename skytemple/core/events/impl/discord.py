@@ -170,8 +170,21 @@ class DiscordPresence(AbstractListener):
             self.module_info = 'Editing the world map'
 
     def on_view_switch__PatchModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
-        self.module_info = 'Editing patches'
-        self.module_state = self.rom_name
+        from skytemple.module.patch.controller.item_effects import ItemEffectsController
+        from skytemple.module.patch.controller.move_effects import MoveEffectsController
+        from skytemple.module.patch.controller.sp_effects import SPEffectsController
+        if isinstance(controller, ItemEffectsController):
+            self.module_info = 'Editing item effects'
+            self.module_state = self.rom_name
+        elif isinstance(controller, MoveEffectsController):
+            self.module_info = 'Editing move effects'
+            self.module_state = self.rom_name
+        elif isinstance(controller, SPEffectsController):
+            self.module_info = 'Editing special processes'
+            self.module_state = self.rom_name
+        else:
+            self.module_info = 'Editing patches'
+            self.module_state = self.rom_name
 
     def on_view_switch__MapBgModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
         from skytemple.module.map_bg.module import MapBgModule
@@ -247,12 +260,10 @@ class DiscordPresence(AbstractListener):
 
     def on_view_switch__MovesItemsModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
         from skytemple.module.moves_items.controller.item import ItemController
-        from skytemple.module.moves_items.controller.item_effects import ItemEffectsController
         from skytemple.module.moves_items.controller.item_lists import ItemListsController
         from skytemple.module.moves_items.controller.main_items import MainItemsController
         from skytemple.module.moves_items.controller.main_moves import MainMovesController
         from skytemple.module.moves_items.controller.move import MoveController
-        from skytemple.module.moves_items.controller.move_effects import MoveEffectsController
 
         if isinstance(controller, MainItemsController):
             self.module_info = 'Editing Items'
@@ -266,12 +277,6 @@ class DiscordPresence(AbstractListener):
         elif isinstance(controller, MoveController):
             self.module_info = 'Editing Moves'
             self.module_state = breadcrumbs[0]
-        elif isinstance(controller, ItemEffectsController):
-            self.module_info = 'Editing Item Effects'
-            self.module_state = self.rom_name
-        elif isinstance(controller, MoveEffectsController):
-            self.module_info = 'Editing Move Effects'
-            self.module_state = self.rom_name
         elif isinstance(controller, ItemListsController):
             self.module_info = 'Editing Item Lists'
             self.module_state = self.rom_name

@@ -47,14 +47,14 @@ from skytemple.core.string_provider import StringType
 from skytemple_files.common.util import open_utf8
 
 if TYPE_CHECKING:
-    from skytemple.module.moves_items.module import MovesItemsModule
+    from skytemple.module.patch.module import PatchModule
 from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
 
 
 class ItemEffectsController(AbstractController):
-    def __init__(self, module: 'MovesItemsModule', *args):
+    def __init__(self, module: 'PatchModule', *args):
         super().__init__(module, *args)
         self.module = module
         self.item_effects = None

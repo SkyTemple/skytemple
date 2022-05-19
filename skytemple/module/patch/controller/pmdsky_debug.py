@@ -23,12 +23,12 @@ from skytemple_files.common.i18n_util import _
 PATCHES = _('Patches')
 
 
-class MainController(NotImplementedController):
+class PmdSkyDebugController(NotImplementedController):
     def __init__(self, module: AbstractModule, item_id: int):
         pass
 
     def get_title(self) -> str:
-        return PATCHES
+        return ""  # todo
 
     def get_content(self) -> Gtk.Widget:
         pass  # todo

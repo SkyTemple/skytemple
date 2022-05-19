@@ -28,20 +28,16 @@
       <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkListStore" id="effect_items_store">
+  <object class="GtkListStore" id="effect_sps_store">
     <columns>
       <!-- column-name id -->
       <column type="guint"/>
-      <!-- column-name name -->
-      <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkListStore" id="item_effects_store">
+  <object class="GtkListStore" id="sp_effects_store">
     <columns>
       <!-- column-name id -->
       <column type="guint"/>
-      <!-- column-name name -->
-      <column type="gchararray"/>
       <!-- column-name effect -->
       <column type="guint"/>
     </columns>
@@ -73,7 +69,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-top">64</property>
-                    <property name="label" translatable="yes">Item Effects</property>
+                    <property name="label" translatable="yes">Special Process Effects</property>
                     <style>
                       <class name="skytemple-view-main-label"/>
                     </style>
@@ -89,7 +85,9 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-top">5</property>
-                    <property name="label" translatable="yes">Edits the item effects used by the game.</property>
+                    <property name="label" translatable="yes">Edits the special process effects used by the game.
+This does not list effects added by C or Rust code.</property>
+                    <property name="justify">center</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -104,9 +102,10 @@
                     <property name="margin-top">40</property>
                     <property name="label" translatable="yes">&lt;Not available&gt;
 
-To view and edit item effects, please apply the "ExtractItemCode"
+To view and edit special process effects, please apply the "ExtractSPCode"
 ASM patch from the "ASM Patches" menu.</property>
                     <property name="justify">center</property>
+                    <property name="wrap">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -150,7 +149,7 @@ ASM patch from the "ASM Patches" menu.</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-top">64</property>
-                    <property name="label" translatable="yes">Item Effects</property>
+                    <property name="label" translatable="yes">Special Process Effects</property>
                     <style>
                       <class name="skytemple-view-main-label"/>
                     </style>
@@ -166,7 +165,10 @@ ASM patch from the "ASM Patches" menu.</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-top">5</property>
-                    <property name="label" translatable="yes">Edits the effects used by each move.</property>
+                    <property name="margin-bottom">15</property>
+                    <property name="label" translatable="yes">Edits the effects used by each special process.
+This does not list effects added by C or Rust code.</property>
+                    <property name="justify">center</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -190,10 +192,10 @@ ASM patch from the "ASM Patches" menu.</property>
                             <property name="vexpand">True</property>
                             <property name="shadow-type">in</property>
                             <child>
-                              <object class="GtkTreeView" id="items_tree">
+                              <object class="GtkTreeView" id="sps_tree">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <property name="model">item_effects_store</property>
+                                <property name="model">sp_effects_store</property>
                                 <property name="search-column">0</property>
                                 <child internal-child="selection">
                                   <object class="GtkTreeSelection"/>
@@ -211,25 +213,14 @@ ASM patch from the "ASM Patches" menu.</property>
                                 </child>
                                 <child>
                                   <object class="GtkTreeViewColumn">
-                                    <property name="title" translatable="yes">Name</property>
-                                    <child>
-                                      <object class="GtkCellRendererText"/>
-                                      <attributes>
-                                        <attribute name="text">1</attribute>
-                                      </attributes>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkTreeViewColumn">
                                     <property name="title" translatable="yes">Effect</property>
                                     <child>
-                                      <object class="GtkCellRendererText" id="item_effect_id">
+                                      <object class="GtkCellRendererText" id="sp_effect_id">
                                         <property name="editable">True</property>
-                                        <signal name="edited" handler="on_item_effect_id_edited" swapped="no"/>
+                                        <signal name="edited" handler="on_sp_effect_id_edited" swapped="no"/>
                                       </object>
                                       <attributes>
-                                        <attribute name="text">2</attribute>
+                                        <attribute name="text">1</attribute>
                                       </attributes>
                                     </child>
                                   </object>
@@ -288,13 +279,27 @@ ASM patch from the "ASM Patches" menu.</property>
                             <property name="position">1</property>
                           </packing>
                         </child>
+                        <child>
+                          <object class="GtkButton" id="btn_add_sp">
+                            <property name="label" translatable="yes">Add Special Process</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <signal name="clicked" handler="on_btn_add_sp_clicked" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
                       </object>
                     </child>
                     <child type="tab">
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Item Effects</property>
+                        <property name="label" translatable="yes">Special Process Effects</property>
                       </object>
                       <packing>
                         <property name="tab-fill">False</property>
@@ -304,9 +309,27 @@ ASM patch from the "ASM Patches" menu.</property>
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="margin-start">5</property>
+                        <property name="margin-end">5</property>
+                        <property name="margin-top">5</property>
                         <property name="margin-bottom">5</property>
                         <property name="orientation">vertical</property>
                         <property name="spacing">5</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">This section allows you to insert custom ASM code for effects.
+Please note that C and Rust effects are not listed here.
+See the "C/Rust" section for more information.</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
@@ -404,7 +427,7 @@ ASM patch from the "ASM Patches" menu.</property>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">0</property>
+                            <property name="position">1</property>
                           </packing>
                         </child>
                         <child>
@@ -418,7 +441,7 @@ ASM patch from the "ASM Patches" menu.</property>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">1</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
                         <child>
@@ -431,7 +454,7 @@ ASM patch from the "ASM Patches" menu.</property>
                               <object class="GtkTreeView" id="effect_tree">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <property name="model">effect_items_store</property>
+                                <property name="model">effect_sps_store</property>
                                 <property name="search-column">0</property>
                                 <child internal-child="selection">
                                   <object class="GtkTreeSelection"/>
@@ -447,24 +470,13 @@ ASM patch from the "ASM Patches" menu.</property>
                                     </child>
                                   </object>
                                 </child>
-                                <child>
-                                  <object class="GtkTreeViewColumn">
-                                    <property name="title" translatable="yes">Name</property>
-                                    <child>
-                                      <object class="GtkCellRendererText"/>
-                                      <attributes>
-                                        <attribute name="text">1</attribute>
-                                      </attributes>
-                                    </child>
-                                  </object>
-                                </child>
                               </object>
                             </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">2</property>
+                            <property name="position">3</property>
                           </packing>
                         </child>
                         <child>
@@ -774,7 +786,7 @@ ASM patch from the "ASM Patches" menu.</property>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">3</property>
+                            <property name="position">4</property>
                           </packing>
                         </child>
                       </object>
@@ -818,7 +830,7 @@ ASM patch from the "ASM Patches" menu.</property>
     </child>
     <style>
       <class name="back_illust"/>
-      <class name="items"/>
+      <class name="script"/>
     </style>
   </object>
 </interface>

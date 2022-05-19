@@ -29,15 +29,11 @@ from skytemple.module.moves_items.controller.item import ItemController
 from skytemple.module.moves_items.controller.main_moves import MainMovesController, MOVES
 from skytemple.module.moves_items.controller.main_items import MainItemsController, ITEMS
 from skytemple.module.moves_items.controller.item_lists import ItemListsController
-from skytemple.module.moves_items.controller.item_effects import ItemEffectsController
 from skytemple.module.moves_items.controller.item_keys import ItemKeysController
 from skytemple.module.moves_items.controller.move import MoveController
-from skytemple.module.moves_items.controller.move_effects import MoveEffectsController
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.data.data_cd.handler import DataCDHandler
 from skytemple_files.data.item_p.model import ItemP, ItemPEntry
 from skytemple_files.data.item_s_p.model import ItemSP, ItemSPEntry
-from skytemple_files.data.val_list.handler import ValListHandler
 from skytemple_files.data.waza_p.model import WazaP, WazaMove
 from skytemple_files.list.items.handler import ItemListHandler
 from skytemple_files.data.val_list.handler import ValListHandler
@@ -48,9 +44,6 @@ MOVE_FILE = 'BALANCE/waza_p.bin'
 ITEM_S_FILE = 'BALANCE/item_s_p.bin'
 ITEM_FILE = 'BALANCE/item_p.bin'
 ITEM_LISTS = 'TABLEDAT/list_%02d.bin'
-METRONOME_POOL = 'BALANCE/metrono.bin'
-MOVE_EFFECTS = 'BALANCE/waza_cd.bin'
-ITEM_EFFECTS = 'BALANCE/item_cd.bin'
 FIRST_EXCLUSIVE_ITEM_ID = 444
 
 
@@ -70,9 +63,7 @@ class MovesItemsModule(AbstractModule):
 
         self._tree_model: Optional[Gtk.TreeModel] = None
         self._item_lists_tree_iter: Optional[Dict[str, Gtk.TreeIter]] = None
-        self._item_effects_tree_iter = None
         self._item_keys_tree_iter = None
-        self._move_effects_tree_iter = None
         self.item_iters: Dict[int, TreeIter] = {}
         self.move_iters: Dict[int, TreeIter] = {}
 
@@ -86,14 +77,8 @@ class MovesItemsModule(AbstractModule):
         self._item_lists_tree_iter = item_store.append(root_items, [
             'skytemple-view-list-symbolic', _('Item Lists'), self, ItemListsController, 0, False, '', True
         ])
-        self._item_effects_tree_iter = item_store.append(root_items, [
-            'skytemple-view-list-symbolic', _('Item Effects'), self, ItemEffectsController, 0, False, '', True
-        ])
         self._item_keys_tree_iter = item_store.append(root_items, [
             'skytemple-view-list-symbolic', _('Item Sort Keys'), self, ItemKeysController, 0, False, '', True
-        ])
-        self._move_effects_tree_iter = item_store.append(root_moves, [
-            'skytemple-view-list-symbolic', _('Move Effects'), self, MoveEffectsController, 0, False, '', True
         ])
 
         for i, _item in enumerate(self.get_item_p().item_list):
@@ -111,45 +96,6 @@ class MovesItemsModule(AbstractModule):
         recursive_generate_item_store_row_label(item_store[root_items])
         recursive_generate_item_store_row_label(item_store[root_moves])
         self._tree_model = item_store
-
-    def has_item_effects(self):
-        return self.project.file_exists(ITEM_EFFECTS)
-
-    def get_item_effects(self):
-        return self.project.open_file_in_rom(ITEM_EFFECTS, DataCDHandler)
-
-    def mark_item_effects_as_modified(self):
-        """Mark as modified"""
-        self.project.mark_as_modified(ITEM_EFFECTS)
-        # Mark as modified in tree
-        row = self._tree_model[self._item_effects_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
-
-    def has_metronome_pool(self):
-        return self.project.file_exists(METRONOME_POOL)
-
-    def get_metronome_pool(self):
-        return self.project.open_file_in_rom(METRONOME_POOL, ValListHandler)
-
-    def mark_metronome_pool_as_modified(self):
-        """Mark as modified"""
-        self.project.mark_as_modified(METRONOME_POOL)
-        # Mark as modified in tree
-        row = self._tree_model[self._move_effects_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
-
-    def has_move_effects(self):
-        return self.project.file_exists(MOVE_EFFECTS)
-
-    def get_move_effects(self):
-        return self.project.open_file_in_rom(MOVE_EFFECTS, DataCDHandler)
-
-    def mark_move_effects_as_modified(self):
-        """Mark as modified"""
-        self.project.mark_as_modified(MOVE_EFFECTS)
-        # Mark as modified in tree
-        row = self._tree_model[self._move_effects_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
 
     def has_item_lists(self):
         return self.project.file_exists(ITEM_LISTS % 0)
@@ -228,10 +174,6 @@ class MovesItemsModule(AbstractModule):
         if isinstance(open_controller, MoveController):
             pass  # todo
         if isinstance(open_controller, ItemController):
-            pass  # todo
-        if isinstance(open_controller, MoveEffectsController):
-            pass  # todo
-        if isinstance(open_controller, ItemEffectsController):
             pass  # todo
         if isinstance(open_controller, ItemKeysController):
             pass  # todo
