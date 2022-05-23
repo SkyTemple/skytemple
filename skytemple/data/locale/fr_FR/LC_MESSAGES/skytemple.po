@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-05-19 20:29+0000\n"
-"PO-Revision-Date: 2022-05-23 11:00\n"
+"PO-Revision-Date: 2022-05-23 12:04\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -3756,7 +3756,7 @@ msgstr ""
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:300
 msgid "Invalid PRGI/Prgi header."
-msgstr ""
+msgstr "En-tête PRGI/Prgi invalide."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:308
 msgid "SWDL Prgi length invalid; tried to read past EOF."
@@ -7754,7 +7754,7 @@ msgstr "Météo"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:214
 msgid "Underwater?"
-msgstr ""
+msgstr "Sous-marin ?"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:239
 msgid "Tileset and Background Properties:"
@@ -8336,7 +8336,7 @@ msgstr "Vous pouvez ici modifier les interruptons de donjon.\n"
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:80
 #: skytemple/skytemple/module/lists/module.py:131
 msgid "Dungeon Music"
-msgstr ""
+msgstr "Musique du donjon"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_music.glade:96
 msgid "Here you can edit the tracks selectable for dungeon floors. The tracks can either be assigned to single music tracks or to sets of four random tracks."
@@ -8480,7 +8480,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/iq.glade:129
 #: skytemple/skytemple/module/lists/controller/iq.glade:156
 msgid "IQ Gain"
-msgstr ""
+msgstr "Gain de QI"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:197
 msgid "Belly Heal"
@@ -9137,7 +9137,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:553
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:612
 msgid "SkyTemple - Success!"
-msgstr ""
+msgstr "SkyTemple - Succès !"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:557
 msgid "Error during BPA export"
@@ -9458,7 +9458,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3755
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3876
 msgid "Enabled"
-msgstr ""
+msgstr "Activé"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3071
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3188
@@ -10017,12 +10017,15 @@ msgstr ""
 msgid "Warning: this WTE file doesn't contain any palette data.\n"
 "The palette data used for this file may be in another WTE file.\n"
 "A default grayscale palette has been generated in order to distinct the different color indices."
-msgstr ""
+msgstr "Attention : Ce fichier WTE ne contient pas de donnée de palette.\n"
+"Il se peut que la palette de ce fichier soit dans un autre fichier WTE.\n"
+"Une palette par défaut en ton de gris a été généré afin de distinguer les différents indices de couleurs."
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:459
 msgid "Warning: this WTE file doesn't contain any image data.\n"
 "Thus, the palette is displayed instead of the image."
-msgstr ""
+msgstr "Attention : Ce fichier WTE ne contient aucune image.\n"
+"La palette sera donc affichée à la place de l'image."
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:518
 msgid "Image Size: "
@@ -12555,7 +12558,9 @@ msgstr "Importer\n"
 msgid "Alternatively you can export the raw WAN sprite files \n"
 "and edit them with a tool like PsyCommando's <a href=\"gfxcrunch\">gfxcrunch</a>.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "Vous pouvez également exporter le fichier de sprites WAN\n"
+"brut et les éditez avec un outil tel <a href=\"gfxcrunch\">gfxcrunch</a> de PsyCommando\n"
+"Attention : SkyTemple ne vérifie pas ce fichier lors de l'import."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:388
 msgid "<span size=\"large\">Manual Im-/Export</span>"
@@ -12580,7 +12585,7 @@ msgstr "-- ou --"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:613
 msgid "Warning: This will edit the sprite with the ID assigned to this Pokémon. Other Pokémon that use this sprite are also affected."
-msgstr ""
+msgstr "Attention : Ceci éditera le sprite dont l'identifiant est associé à ce Pokémon. Les autres Pokémon utilisant également ce sprite seront aussi affecté."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:70
 msgid "Invalid Sprite ID."
