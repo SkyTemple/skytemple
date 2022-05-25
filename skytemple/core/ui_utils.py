@@ -19,11 +19,12 @@ import functools
 import os
 import pathlib
 import sys
-from io import BytesIO
 from tempfile import NamedTemporaryFile
+from typing import Union, Type
 from xml.etree import ElementTree
 
 import gi
+from range_typed_integers import u8, u16, u32, i8, i16, get_range, i32
 
 gi.require_version('Gtk', '3.0')
 
@@ -181,6 +182,34 @@ def glib_async(f):
         return GLib.idle_add(lambda: f(*args, **kwargs))
 
     return wrapper
+
+
+def catch_overflow(typ: Union[Type[u8], Type[u16], Type[u32], Type[i8], Type[i16], Type[i32]]):
+    """
+    Decorator to display a friendly error message with OverflowErrors occur
+    (to inform the user of valid value ranges).
+
+    This is only to be used for values directly input by the user.
+    """
+    def catch_overflow_decorator(f):
+        @functools.wraps(f)
+        def wrapper(*args, **kwargs):
+            try:
+                return f(*args, **kwargs)
+            except OverflowError:
+                from skytemple.core.error_handler import display_error
+                rg = get_range(typ)
+                if rg:
+                    GLib.idle_add(lambda: display_error(
+                        sys.exc_info(),
+                        _("The value you entered is invalid.\n\nValid values must be in the range [{},{}].").format(rg.min, rg.max),
+                        _("SkyTemple - Value out of range"), log=False
+                    ))
+                else:
+                    raise
+
+        return wrapper
+    return catch_overflow_decorator
 
 
 def get_list_store_iter_by_idx(store: Gtk.ListStore, idx, get_iter=False):

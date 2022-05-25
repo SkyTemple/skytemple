@@ -27,6 +27,7 @@ from typing import TYPE_CHECKING, List, Type, Dict, Tuple, Optional
 from xml.etree import ElementTree
 
 from gi.repository import Gtk, GLib, GdkPixbuf
+from range_typed_integers import u8, u8_checked
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
@@ -36,7 +37,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET, REQUEST_TYPE_DUNGEON_FIXED_FLOOR, \
     REQUEST_TYPE_DUNGEON_MUSIC
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import add_dialog_xml_filter, glib_async
+from skytemple.core.ui_utils import add_dialog_xml_filter, glib_async, catch_overflow
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG
 from skytemple.module.dungeon.controller.dojos import DOJOS_NAME
 from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer
@@ -559,10 +560,13 @@ class FloorController(AbstractController):
         self._recalculate_spawn_chances('monster_spawns_store', 5, 4)
         self._save_monster_spawn_rates()
 
+    @catch_overflow(u8)
     def on_kecleon_level_entry_changed(self, w: Gtk.Entry, *args):
         try:
-            level = int(w.get_text())
-        except:
+            level = u8_checked(int(w.get_text()))
+        except OverflowError:
+            raise
+        except Exception:
             return
         for i, monster in enumerate(self.entry.monsters):
             if monster.md_index in KECLEON_MD_INDEX:
