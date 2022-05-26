@@ -21,10 +21,12 @@ from functools import partial
 from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
+from range_typed_integers import u16, u16_checked, u8, u8_checked, i32, i32_checked, i16, i16_checked
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import BinaryName
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import catch_overflow
 from skytemple_files.common.i18n_util import _
 from skytemple_files.data.md.model import IQGroup
 from skytemple_files.hardcoded.iq import HardcodedIq, IqGroupsSkills
@@ -52,7 +54,7 @@ class IqController(AbstractController):
         super().__init__(module, *args)
         self.module = module
         self._string_provider = module.project.get_string_provider()
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'iq.glade')
@@ -65,38 +67,42 @@ class IqController(AbstractController):
         self.builder.connect_signals(self)
         return box
 
+    @catch_overflow(u16)
     def on_entry_min_iq_exclusive_move_user_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(BinaryName.ARM9, lambda bin: HardcodedIq.set_min_iq_for_exclusive_move_user(val, bin, static_data))
         self.module.mark_iq_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_min_iq_item_master_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(BinaryName.ARM9, lambda bin: HardcodedIq.set_min_iq_for_item_master(val, bin, static_data))
         self.module.mark_iq_as_modified()
 
+    @catch_overflow(u16)
     def on_intimidator_activation_chance_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedIq.set_intimidator_chance(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    @catch_overflow(u8)
     def on_cr_other_iq_gain_edited(self, widget, path, text):
         store: Gtk.ListStore = self.builder.get_object('iq_gain_other_items')
         static_data = self.module.project.get_rom_module().get_static_data()
         try:
-            val = int(text)
+            val = u8_checked(int(text))
         except ValueError:
             return
         typ: IqGainOtherItem = store[path][0]
@@ -118,10 +124,11 @@ class IqController(AbstractController):
             )
             self.module.mark_iq_as_modified()
 
+    @catch_overflow(i32)
     def on_cr_iq_pnts_edited(self, widget, path, text):
         store: Gtk.ListStore = self.builder.get_object('tree_iq_skills').get_model()
         try:
-            val = int(text)
+            val = i32_checked(int(text))
         except ValueError:
             return
         store[path][2] = text
@@ -136,10 +143,11 @@ class IqController(AbstractController):
 
         self.module.mark_iq_as_modified()
 
+    @catch_overflow(i16)
     def on_cr_iq_restrictions_edited(self, widget, path, text):
         store: Gtk.ListStore = self.builder.get_object('tree_iq_skills').get_model()
         try:
-            val = int(text)
+            val = i16_checked(int(text))
         except ValueError:
             return
         store[path][3] = text
@@ -154,10 +162,11 @@ class IqController(AbstractController):
 
         self.module.mark_iq_as_modified()
 
+    @catch_overflow(u8)
     def on_cr_iq_gain_edited(self, widget, path, text, *, type_id):
         store: Gtk.ListStore = self.builder.get_object('tree_iq_gain').get_model()
         try:
-            val = int(text)
+            val = u8_checked(int(text))
         except ValueError:
             return
         store[path][type_id + 2] = text
@@ -174,10 +183,11 @@ class IqController(AbstractController):
 
         self.module.mark_iq_as_modified()
 
+    @catch_overflow(u8)
     def on_cr_belly_heal_edited(self, widget, path, text, *, type_id):
         store: Gtk.ListStore = self.builder.get_object('tree_belly_gain').get_model()
         try:
-            val = int(text)
+            val = u8_checked(int(text))
         except ValueError:
             return
         store[path][type_id + 2] = text
@@ -194,11 +204,12 @@ class IqController(AbstractController):
 
         self.module.mark_iq_as_modified()
 
+    @catch_overflow(u8)
     def on_cr_skill_to_group(self, widget, path, *, group_id):
         selected = not widget.get_active()
         store: Gtk.ListStore = self.builder.get_object('tree_iq_skills').get_model()
         store[path][group_id + 4] = selected
-        skill_id = int(store[path][0])
+        skill_id = u8_checked(int(store[path][0]))
 
         arm9 = self.module.project.get_binary(BinaryName.ARM9)
         static_data = self.module.project.get_rom_module().get_static_data()
@@ -271,7 +282,7 @@ class IqController(AbstractController):
             renderer.connect('edited', partial(self.on_cr_iq_gain_edited, type_id=i))
             column = Gtk.TreeViewColumn(title=type_strings[i], cell_renderer=renderer, text=i + 2)
             tree.append_column(column)
-            renderer: Gtk.CellRendererText = Gtk.CellRendererText(editable=True)
+            renderer = Gtk.CellRendererText(editable=True)
             renderer.connect('edited', partial(self.on_cr_belly_heal_edited, type_id=i))
             column = Gtk.TreeViewColumn(title=type_strings[i], cell_renderer=renderer, text=i + 2)
             tree_belly.append_column(column)
@@ -307,7 +318,7 @@ class IqController(AbstractController):
         restrictions.pop()
 
         # noinspection PyTypeChecker
-        store: Gtk.ListStore = Gtk.ListStore(*([str, str, str, str] + [bool] * (len(IQGroup) - 1)))
+        store: Gtk.ListStore = Gtk.ListStore(*([str, str, str, str] + [bool] * (len(IQGroup) - 1)))  # type: ignore
         tree: Gtk.TreeView = self.builder.get_object('tree_iq_skills')
         tree.set_model(store)
 
@@ -332,4 +343,4 @@ class IqController(AbstractController):
                 str(i), self._string_provider.get_value(
                     StringType.IQ_SKILL_NAMES, i - 1
                 ), str(skill.iq_required), str(skill.restriction_group)
-            ] + iq_group_assignments)
+            ] + iq_group_assignments)  # type: ignore

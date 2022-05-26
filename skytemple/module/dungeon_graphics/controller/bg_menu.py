@@ -19,7 +19,9 @@ import itertools
 import logging
 import sys
 from collections import OrderedDict
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING, Union, List
+
+from range_typed_integers import u16_checked, u16
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -70,6 +72,9 @@ class BgMenuController:
             dialog.destroy()
 
             if response == Gtk.ResponseType.ACCEPT:
+                if TYPE_CHECKING:
+                    from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController
+                    assert isinstance(self.parent, DungeonBgController)
                 img = self.parent.dbg.to_pil(self.parent.dpc, self.parent.dpci, self.parent.dpl.palettes)
                 img.save(fn)
 
@@ -90,6 +95,9 @@ class BgMenuController:
         if resp == ResponseType.OK:
             try:
                 img_path = bg_import_file.get_filename()
+                if TYPE_CHECKING:
+                    from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController
+                    assert isinstance(self.parent, DungeonBgController)
                 self.parent.dbg.from_pil(self.parent.dpc, self.parent.dpci, self.parent.dpl, Image.open(img_path), True)
             except Exception as err:
                 display_error(
@@ -298,9 +306,9 @@ class BgMenuController:
                     self.parent.dpla.disable_for_palette(palid)
                 for cidx in range(0, 16):
                     try:
-                        time = int(self.parent.builder.get_object(f'palette_animation{aidx}_frame_time{cidx}').get_text())
+                        time = u16_checked(int(self.parent.builder.get_object(f'palette_animation{aidx}_frame_time{cidx}').get_text()))
                     except:
-                        time = 0
+                        time = u16(0)
                         had_errors = True
                     self.parent.dpla.durations_per_frame_for_colors[offset + cidx] = time
 
@@ -332,7 +340,7 @@ class BgMenuController:
 
         list_of_colors = self.parent.dpla.colors[ani_pal_id*16:(ani_pal_id+1)*16]
         # We need to transpose the list to instead have a list of frames.
-        list_of_frames = list([] for _ in range(0, int(len(list_of_colors[0]) / 3)))
+        list_of_frames: List[List[int]] = list([] for _ in range(0, int(len(list_of_colors[0]) / 3)))
         for color in list_of_colors:
             for frame_idx, c in enumerate(chunks(color, 3)):
                 list_of_frames[frame_idx] += c
@@ -345,7 +353,7 @@ class BgMenuController:
         edited_palettes = cntrl.show()
         if edited_palettes:
             # Transpose back
-            edited_colors = list([] for _ in range(0, int(len(edited_palettes[0]) / 3)))
+            edited_colors: List[List[int]] = list([] for _ in range(0, int(len(edited_palettes[0]) / 3)))
             for palette in edited_palettes:
                 for color_idx, c in enumerate(chunks(palette, 3)):
                     edited_colors[color_idx] += c

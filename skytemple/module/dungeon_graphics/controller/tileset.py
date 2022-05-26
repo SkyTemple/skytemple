@@ -87,7 +87,7 @@ class TilesetController(AbstractController):
         self.module = module
         self.item_id = item_id
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
         self.dma: Dma = module.get_dma(item_id)
         self.dpl: Dpl = module.get_dpl(item_id)
@@ -203,6 +203,7 @@ class TilesetController(AbstractController):
         response = dialog.run()
         fn = dialog.get_filename()
         dialog.destroy()
+        assert self.dtef is not None
 
         if response == Gtk.ResponseType.ACCEPT:
             try:
@@ -365,7 +366,7 @@ class TilesetController(AbstractController):
         # For each chunk...
         for chunk_idx in range(0, len(self.dpc.chunks)):
             # For each frame of palette animation... ( applicable for this chunk )
-            pal_ani_frames = []
+            pal_ani_frames: List[List[cairo.Surface]] = []
             self.chunks_surfaces.append(pal_ani_frames)
 
             chunk_data = self.dpc.chunks[chunk_idx]
@@ -382,7 +383,7 @@ class TilesetController(AbstractController):
 
             for pal_ani in range(0, len_pal_ani):
                 # We don't have animated tiles, so ani_frames just has one entry.
-                ani_frames = []
+                ani_frames: List[cairo.Surface] = []
                 pal_ani_frames.append(ani_frames)
                 # Switch out the palette with that from the palette animation
                 if has_pal_ani:
@@ -459,7 +460,9 @@ class TilesetController(AbstractController):
     def _init_rules(self):
         def ia(i):
             return self.builder.get_object(f'rules_a{i}').get_active()
-        self.rules = list(chunks([ia(i) for i in range(0, 9)], 3))
+        self.rules = list(chunks(  # type: ignore
+            [ia(i) for i in range(0, 9)], 3)
+        )
 
     def update_chunks_from_current_rules(self):
         solid_type = self._get_current_solid_type()
@@ -506,6 +509,7 @@ class TilesetController(AbstractController):
 
     def _load_dtef_rendering(self):
         self.dtef = ExplorersDtef(self.dma, self.dpc, self.dpci, self.dpl, self.dpla)
+        assert self.dtef is not None  # mypy is silly sometimes.
         box: Gtk.Box = self.builder.get_object('dungeon_image_placeholder')
         for child in box:
             box.remove(child)

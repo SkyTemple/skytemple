@@ -18,7 +18,7 @@ import logging
 import os
 import sys
 from glob import glob
-from typing import TYPE_CHECKING, Optional, Dict
+from typing import TYPE_CHECKING, Optional, Dict, List
 
 from gi.repository import Gtk
 
@@ -46,12 +46,12 @@ class AsmController(AbstractController):
     def __init__(self, module: 'PatchModule', *args):
         self.module = module
 
-        self.builder: Optional[Gtk.Builder] = None
-        self._patcher: Optional[Patcher] = None
+        self.builder: Gtk.Builder = None  # type: ignore
+        self._patcher: Patcher
 
         self._category_tabs: Dict[PatchCategory, Gtk.Widget] = {}  # category -> page
         self._category_tabs_reverse: Dict[Gtk.Widget, PatchCategory] = {}  # page -> category
-        self._current_tab: Optional[PatchCategory] = None
+        self._current_tab: PatchCategory
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'asm.glade')
@@ -216,7 +216,7 @@ class AsmController(AbstractController):
 
     def _get_dependencies(self, name):
         to_check = [name]
-        collected_deps = []
+        collected_deps: List[str] = []
         while len(to_check) > 0:
             patch = self._patcher.get(to_check.pop())
             if isinstance(patch, DependantPatch):

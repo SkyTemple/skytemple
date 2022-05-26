@@ -18,6 +18,7 @@ from typing import List, Tuple, Optional
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore, TreeIter
+from range_typed_integers import i16, u16, u8
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.module_controller import AbstractController
@@ -80,19 +81,19 @@ class ListsModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self._tree_model: Optional[Gtk.TreeModel] = None
-        self._actor_tree_iter: Optional[Gtk.TreeIter] = None
-        self._starters_tree_iter: Optional[Gtk.TreeIter] = None
-        self._recruitment_tree_iter: Optional[Gtk.TreeIter] = None
-        self._world_map_tree_iter: Optional[Gtk.TreeIter] = None
-        self._rank_list_tree_iter: Optional[Gtk.TreeIter] = None
-        self._menu_list_tree_iter: Optional[Gtk.TreeIter] = None
-        self._dungeon_music_tree_iter: Optional[Gtk.TreeIter] = None
-        self._misc_settings_tree_iter: Optional[Gtk.TreeIter] = None
-        self._guest_pokemon_root_iter: Optional[Gtk.TreeIter] = None
-        self._special_episodes_root_iter: Optional[Gtk.TreeIter] = None
-        self._tactics_root_iter: Optional[Gtk.TreeIter] = None
-        self._iq_tree_iter: Optional[Gtk.TreeIter] = None
+        self._tree_model: Gtk.TreeModel
+        self._actor_tree_iter: Gtk.TreeIter
+        self._starters_tree_iter: Gtk.TreeIter
+        self._recruitment_tree_iter: Gtk.TreeIter
+        self._world_map_tree_iter: Gtk.TreeIter
+        self._rank_list_tree_iter: Gtk.TreeIter
+        self._menu_list_tree_iter: Gtk.TreeIter
+        self._dungeon_music_tree_iter: Gtk.TreeIter
+        self._misc_settings_tree_iter: Gtk.TreeIter
+        self._guest_pokemon_root_iter: Gtk.TreeIter
+        self._special_episodes_root_iter: Gtk.TreeIter
+        self._tactics_root_iter: Gtk.TreeIter
+        self._iq_tree_iter: Gtk.TreeIter
 
         self.waza_p_bin: WazaP = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
 
@@ -245,7 +246,7 @@ class ListsModule(AbstractModule):
     def get_waza_p(self) -> WazaP:
         return self.waza_p_bin
 
-    def get_starter_default_ids(self) -> Tuple[int, int]:
+    def get_starter_default_ids(self) -> Tuple[u16, u16]:
         """Returns players & partner default starters"""
         arm9 = self.project.get_binary(BinaryName.ARM9)
         static_data = self.project.get_rom_module().get_static_data()
@@ -253,7 +254,7 @@ class ListsModule(AbstractModule):
         partner = HardcodedDefaultStarters.get_partner_md_id(arm9, static_data)
         return player, partner
 
-    def set_starter_default_ids(self, player, partner):
+    def set_starter_default_ids(self, player: u16, partner: u16):
         """Sets players & partner default starters"""
         def update(arm9):
             static_data = self.project.get_rom_module().get_static_data()
@@ -261,7 +262,7 @@ class ListsModule(AbstractModule):
             HardcodedDefaultStarters.set_partner_md_id(partner, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._starters_tree_iter]
+        row = self._tree_model[self._starters_tree_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
 
     def get_special_pcs(self) -> List[SpecialEpisodePc]:
@@ -278,12 +279,12 @@ class ListsModule(AbstractModule):
         row = self._tree_model[self._special_episodes_root_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
 
-    def get_tactics(self) -> List[int]:
+    def get_tactics(self) -> List[i16]:
         arm9 = self.project.get_binary(BinaryName.ARM9)
         static_data = self.project.get_rom_module().get_static_data()
         return HardcodedTactics.get_unlock_levels(arm9, static_data)
 
-    def set_tactics(self, lst: List[int]):
+    def set_tactics(self, lst: List[i16]):
         def update(arm9):
             static_data = self.project.get_rom_module().get_static_data()
             HardcodedTactics.set_unlock_levels(lst, arm9, static_data)
@@ -292,7 +293,7 @@ class ListsModule(AbstractModule):
         row = self._tree_model[self._tactics_root_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
     
-    def get_starter_ids(self) -> Tuple[List[int], List[int]]:
+    def get_starter_ids(self) -> Tuple[List[u16], List[u16]]:
         """Returns players & partner starters"""
         ov13 = self.project.get_binary(BinaryName.OVERLAY_13)
         static_data = self.project.get_rom_module().get_static_data()
@@ -315,7 +316,7 @@ class ListsModule(AbstractModule):
         static_data = self.project.get_rom_module().get_static_data()
         return HardcodedDefaultStarters.get_player_level(arm9, static_data)
 
-    def set_starter_level_player(self, level: int):
+    def set_starter_level_player(self, level: u8):
         def update(arm9):
             static_data = self.project.get_rom_module().get_static_data()
             HardcodedDefaultStarters.set_player_level(level, arm9, static_data)
@@ -324,12 +325,12 @@ class ListsModule(AbstractModule):
         row = self._tree_model[self._starters_tree_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
     
-    def get_starter_level_partner(self) -> int:
+    def get_starter_level_partner(self) -> u8:
         arm9 = self.project.get_binary(BinaryName.ARM9)
         static_data = self.project.get_rom_module().get_static_data()
         return HardcodedDefaultStarters.get_partner_level(arm9, static_data)
 
-    def set_starter_level_partner(self, level: int):
+    def set_starter_level_partner(self, level: u8):
         def update(arm9):
             static_data = self.project.get_rom_module().get_static_data()
             HardcodedDefaultStarters.set_partner_level(level, arm9, static_data)
@@ -338,7 +339,7 @@ class ListsModule(AbstractModule):
         row = self._tree_model[self._starters_tree_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
 
-    def get_recruitment_list(self) -> Tuple[List[int], List[int], List[int]]:
+    def get_recruitment_list(self) -> Tuple[List[u16], List[u16], List[u8]]:
         """Returns the recruitment lists: species, levels, locations"""
         ov11 = self.project.get_binary(BinaryName.OVERLAY_11)
         static_data = self.project.get_rom_module().get_static_data()
@@ -347,7 +348,7 @@ class ListsModule(AbstractModule):
         location = HardcodedRecruitmentTables.get_monster_locations_list(ov11, static_data)
         return species, level, location
 
-    def set_recruitment_list(self, species, level, location):
+    def set_recruitment_list(self, species: List[u16], level: List[u16], location: List[u8]):
         """Sets the recruitment lists: species, levels, locations"""
         def update(ov11):
             static_data = self.project.get_rom_module().get_static_data()
@@ -356,7 +357,7 @@ class ListsModule(AbstractModule):
             HardcodedRecruitmentTables.set_monster_locations_list(location, ov11, static_data)
         self.project.modify_binary(BinaryName.OVERLAY_11, update)
 
-        row = self._tree_model[self._recruitment_tree_iter]
+        row = self._tree_model[self._recruitment_tree_iter]  # type: ignore
         recursive_up_item_store_mark_as_modified(row)
 
     def get_world_map_markers(self) -> List[MapMarkerPlacement]:
@@ -402,7 +403,10 @@ class ListsModule(AbstractModule):
         """Sets the rank up table."""
         def update(binary):
             static_data = self.project.get_rom_module().get_static_data()
-            HardcodedMenus.set_menu(MenuType(menu_id), values, binary, static_data)
+            HardcodedMenus.set_menu(
+                MenuType(menu_id),  # type: ignore
+                values, binary, static_data
+            )
         
         self.project.modify_binary(MenuType(menu_id).binary, update)  # type: ignore
 
@@ -413,7 +417,7 @@ class ListsModule(AbstractModule):
         """Mark as modified"""
         self.project.get_string_provider().mark_as_modified()
 
-    def get_dungeon_music_spec(self) -> Tuple[List[DungeonMusicEntry], List[Tuple[int, int, int, int]]]:
+    def get_dungeon_music_spec(self) -> Tuple[List[DungeonMusicEntry], List[Tuple[u16, u16, u16, u16]]]:
         config = self.project.get_rom_module().get_static_data()
         ov10 = self.project.get_binary(BinaryName.OVERLAY_10)
         return (

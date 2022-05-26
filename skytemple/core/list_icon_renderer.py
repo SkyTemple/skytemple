@@ -14,9 +14,10 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import typing
 from functools import partial
 from itertools import zip_longest
-from typing import Dict
+from typing import Dict, Any
 
 import cairo
 from gi.repository import GdkPixbuf, GLib
@@ -29,7 +30,7 @@ ORANGE_RGB = (1, 0.65, 0)
 
 class ListIconRenderer:
     def __init__(self, column_id, can_be_placeholder=False):
-        self._icon_pixbufs: Dict[any, GdkPixbuf.Pixbuf] = {}
+        self._icon_pixbufs: Dict[Any, GdkPixbuf.Pixbuf] = {}
         self._refresh_timer = None
         self.column_id = column_id
         self.can_be_placeholder = can_be_placeholder
@@ -40,6 +41,7 @@ class ListIconRenderer:
         self._registered_for_reload.append((store, idx, (store, load_fn, target_name, idx, parameters, is_placeholder)))
         return self._get_icon(store, load_fn, target_name, idx, parameters, is_placeholder)
 
+    @typing.no_type_check
     def unload(self):
         self._icon_pixbufs = None
         self._refresh_timer = None

@@ -19,6 +19,7 @@ import random
 import re
 import sys
 import traceback
+import typing
 from enum import Enum
 from functools import partial, reduce
 from itertools import zip_longest
@@ -27,7 +28,7 @@ from typing import TYPE_CHECKING, List, Type, Dict, Tuple, Optional
 from xml.etree import ElementTree
 
 from gi.repository import Gtk, GLib, GdkPixbuf
-from range_typed_integers import u8, u8_checked
+from range_typed_integers import u8, u8_checked, i8, i8_checked, i16, i16_checked, u16, u16_checked
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
@@ -52,7 +53,7 @@ from skytemple_files.common.dungeon_floor_generator.generator import DungeonFloo
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem, Pmd2DungeonItemCategory
 from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.common.xml_util import prettify
-from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, DirectRule
+from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, DirectRule, FixedFloorActionRule
 from skytemple_files.dungeon_data.mappa_bin.floor_layout import MappaFloorStructureType, \
     MappaFloorDarknessLevel, MappaFloorWeather
 from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList, Probability, GUARANTEED, \
@@ -143,8 +144,9 @@ class FloorController(AbstractController):
         self.item = item
         self.entry = self.module.get_mappa_floor(item)
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self._draw = None
+        self.drawer: Optional[FixedRoomDrawer]
         self._refresh_timer = None
         self._loading = False
         self._string_provider = module.project.get_string_provider()
@@ -233,16 +235,18 @@ class FloorController(AbstractController):
 
         return self.builder.get_object('box_editor')
 
+    @typing.no_type_check
     def unload(self):
         # We need to destroy this first.
         # GTK is an enigma sometimes.
         self.builder.get_object('export_dialog').destroy()
         super().unload()
-        self.drawer.unload()
+        if self.drawer:
+            self.drawer.unload()
         self.module = None
         self.item = None
         self.entry = None
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder = None
         self._draw = None
         self._refresh_timer = None
         self._loading = False
@@ -295,8 +299,13 @@ class FloorController(AbstractController):
         self._update_from_widget(w)
         self.mark_as_modified(modified_mappag=True)
 
+    @catch_overflow(i8)
     def on_entry_room_density_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = i8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.layout.room_density = val
         self.mark_as_modified()
 
     def on_btn_help_room_density_clicked(self, *args):
@@ -316,19 +325,34 @@ class FloorController(AbstractController):
                      "Dead ends can still appear in the map even if they are disabled due to a bug in the "
                      "map generator and because extra hallways can also produce them."))
 
+    @catch_overflow(u8)
     def on_entry_floor_connectivity_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.layout.floor_connectivity = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_water_density_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.layout.water_density = val
         self.mark_as_modified()
 
     def on_btn_help_water_density_clicked(self, *args):
         self._help(_("This is the amount of lakes that will be generated during the water generation phase."))
 
+    @catch_overflow(u8)
     def on_entry_extra_hallway_density_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.layout.extra_hallway_density = val
         self.mark_as_modified()
 
     def on_btn_help_floor_connectivity_clicked(self, *args):
@@ -348,8 +372,13 @@ class FloorController(AbstractController):
         self._update_from_widget(w)
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_secondary_terrain_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.layout.secondary_terrain = val
         self.mark_as_modified()
 
     def on_cb_terrain_settings__generate_imperfect_rooms_changed(self, w, *args):
@@ -364,24 +393,48 @@ class FloorController(AbstractController):
         self._update_from_widget(w)
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_item_density_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.layout.item_density = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_trap_density_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.layout.trap_density = val
         self.mark_as_modified()
 
+    @catch_overflow(i8)
     def on_entry_initial_enemy_density_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = i8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.layout.initial_enemy_density = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_buried_item_density_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.layout.buried_item_density = val
         self.mark_as_modified()
 
     def on_entry_max_coin_amount_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = int(w.get_text())
+        except ValueError:
+            return
+        self.entry.layout.max_coin_amount = val
         self.mark_as_modified()
 
     def on_btn_help_trap_density_clicked(self, *args):
@@ -433,8 +486,13 @@ class FloorController(AbstractController):
         self._update_from_widget(w)
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_kecleon_shop_item_positions_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.layout.kecleon_shop_item_positions = val
         self.mark_as_modified()
 
     def on_scale_empty_monster_house_chance_value_changed(self, w, *args):
@@ -450,19 +508,34 @@ class FloorController(AbstractController):
         self._update_from_widget(w)
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_unk_hidden_stairs_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.layout.unk_hidden_stairs = val
         self.mark_as_modified()
 
+    @catch_overflow(i16)
     def on_entry_iq_booster_boost_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.layout.iq_booster_boost = val
         self.mark_as_modified()
 
     def on_btn_help_iq_booster_boost_clicked(self, *args):
         self._help(_("If more than 0, the IQ booster increases IQ on this floor by this amount."))
 
+    @catch_overflow(u16)
     def on_entry_enemy_iq_changed(self, w, *args):
-        self._update_from_widget(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.layout.enemy_iq = val
         self.mark_as_modified()
 
     def on_cb_unk_e_changed(self, w, *args):
@@ -491,17 +564,18 @@ class FloorController(AbstractController):
 
     # <editor-fold desc="HANDLERS MONSTERS" defaultstate="collapsed">
 
+    @catch_overflow(u16)
     def on_cr_monster_spawns_entity_edited(self, widget, path, text):
         store: Gtk.Store = self.builder.get_object('monster_spawns_store')
         match = PATTERN_MD_ENTRY.match(text)
         if match is None:
             return
         try:
-            entid = int(match.group(1))
+            entid = u16_checked(int(match.group(1)))
         except ValueError:
             return
 
-        if entid in KECLEON_MD_INDEX or entid==DUMMY_MD_INDEX:
+        if entid in KECLEON_MD_INDEX or entid == DUMMY_MD_INDEX:
             display_error(
                 None,
                 f(_("You can not spawn Kecleons or the Decoy Pokémon.")),
@@ -523,11 +597,11 @@ class FloorController(AbstractController):
     def on_cr_monster_spawns_entity_editing_started(self, renderer, editable, path):
         editable.set_completion(self.builder.get_object('completion_monsters'))
 
+    @catch_overflow(u16)
     def on_cr_monster_spawns_weight_edited(self, widget, path, text):
         try:
-            v = int(text)
-            assert v >= 0
-        except:
+            u16_checked(int(text))
+        except ValueError:
             return
         store: Gtk.Store = self.builder.get_object('monster_spawns_store')
         store[path][5] = text
@@ -535,10 +609,11 @@ class FloorController(AbstractController):
         self._recalculate_spawn_chances('monster_spawns_store', 5, 4)
         self._save_monster_spawn_rates()
 
+    @catch_overflow(u8)
     def on_cr_monster_spawns_level_edited(self, widget, path, text):
         try:
-            int(text)
-        except:
+            u8_checked(int(text))
+        except ValueError:
             return
         store: Gtk.Store = self.builder.get_object('monster_spawns_store')
         store[path][3] = text
@@ -566,7 +641,7 @@ class FloorController(AbstractController):
             level = u8_checked(int(w.get_text()))
         except OverflowError:
             raise
-        except Exception:
+        except ValueError:
             return
         for i, monster in enumerate(self.entry.monsters):
             if monster.md_index in KECLEON_MD_INDEX:
@@ -581,18 +656,18 @@ class FloorController(AbstractController):
             new_index = KECLEON_MD_INDEX[0]
         for i, monster in enumerate(self.entry.monsters):
             if monster.md_index in KECLEON_MD_INDEX:
-                monster.md_index = new_index
+                monster.md_index = u16(new_index)
                 break
         self.mark_as_modified()
     # </editor-fold>
 
     # <editor-fold desc="HANDLERS TRAPS" defaultstate="collapsed">
 
+    @catch_overflow(u16)
     def on_cr_trap_spawns_weight_edited(self, widget, path, text):
         try:
-            v = int(text)
-            assert v >= 0
-        except:
+            u16_checked(int(text))
+        except ValueError:
             return
         store: Gtk.Store = self.builder.get_object('trap_spawns_store')
         store[path][3] = text
@@ -613,11 +688,11 @@ class FloorController(AbstractController):
         self._save_item_spawn_rates()
         self._update_cr_item_cat_name_store()
 
+    @catch_overflow(u16)
     def on_cr_items_cat_weight_edited(self, widget, path, text):
         try:
-            v = int(text)
-            assert v >= 0
-        except:
+            u16_checked(int(text))
+        except ValueError:
             return
         store: Gtk.Store = self.builder.get_object('item_categories_store')
         store[path][4] = text
@@ -961,6 +1036,7 @@ class FloorController(AbstractController):
             self.drawer.set_draw_tile_grid(w.get_active())
 
     def on_tool_fullmap_toggled(self, w: Gtk.ToggleToolButton, *args, ignore_scaling=False):
+        assert self.drawer is not None
         self.__class__._last_show_full_map = w.get_active()
         if w.get_active():
             if not ignore_scaling:
@@ -993,7 +1069,7 @@ class FloorController(AbstractController):
             except ValueError:
                 rng = random.Random(hash(self.builder.get_object('tool_entry_seed').get_text()))
 
-            floor: List[Tile] = DungeonFloorGenerator(
+            floor: List[Tile] = DungeonFloorGenerator(  # type: ignore
                 unknown_dungeon_chance_patch_applied=self.module.project.is_patch_applied('UnusedDungeonChancePatch'),
                 gen_properties=RandomGenProperties.default(rng)
             ).generate(self.entry.layout, max_retries=3, flat=True)
@@ -1002,7 +1078,7 @@ class FloorController(AbstractController):
                 return
             stack.set_visible_child(self._draw)
             item_cats = self.module.project.get_rom_module().get_static_data().dungeon_data.item_categories
-            actions = []
+            actions: List[FixedFloorActionRule] = []
             warnings = set()
             open_guaranteed_floor = set(x.id for x, y in self.entry.floor_items.items.items() if y == GUARANTEED)
             open_guaranteed_buried = set(x.id for x, y in self.entry.buried_items.items.items() if y == GUARANTEED)
@@ -1012,7 +1088,7 @@ class FloorController(AbstractController):
                     idx = self._sprite_provider.get_standin_entities()[0]
                 if x.typ == TileType.ENEMY:
                     ridx = rng.randrange(0, 10000)
-                    last = KECLEON_MD_INDEX  # fallback
+                    last = u16(KECLEON_MD_INDEX[0])  # fallback
                     invalid = True
                     for m in self.entry.monsters:
                         if m.weight > ridx and m.weight != 0:
@@ -1051,7 +1127,7 @@ class FloorController(AbstractController):
                     idx = last_item
                 if x.typ == TileType.TRAP:
                     ridx = rng.randrange(0, 10000)
-                    last = 0  # fallback
+                    last = u16(0)  # fallback
                     invalid = True
                     for trap, weight in self.entry.traps.weights.items():
                         if weight > ridx and weight != 0:
@@ -1062,7 +1138,7 @@ class FloorController(AbstractController):
                         warnings.add(_("Warning: Some traps spawns may be invalid. Unused traps will been spawned instead."))
                     idx = last
                 actions.append(DirectRule(x, idx))
-            self.drawer.fixed_floor = FixedFloor.new(SIZE_Y, SIZE_X, actions)
+            self.drawer.fixed_floor = FixedFloor.new(u16(SIZE_Y), u16(SIZE_X), actions)
             if self.entry.layout.fixed_floor_id > 0:
                 self.builder.get_object('tool_label_info').set_text((_("Note: Floor uses a fixed room, the preview doesn't take this into account.\n") + '\n'.join(warnings)).strip('\n'))
             else:
@@ -1071,11 +1147,11 @@ class FloorController(AbstractController):
         except Exception as ex:
             logger.error('Preview loading error', exc_info=ex)
             tb: Gtk.TextBuffer = self.builder.get_object('preview_error_buffer')
-            tb.set_text(''.join(traceback.format_exception(etype=type(ex), value=ex, tb=ex.__traceback__)))
+            tb.set_text(''.join(traceback.format_exception(type(ex), value=ex, tb=ex.__traceback__)))
             stack.set_visible_child(self.builder.get_object('preview_error'))
 
-
     def _init_tileset(self):
+        assert self.drawer is not None
         if self.entry.layout.tileset_id < TILESET_FIRST_BG:
             # Real tileset
             self.drawer.set_tileset_renderer(FixedFloorDrawerTileset(*self.module.get_dungeon_tileset(self.entry.layout.tileset_id)))
@@ -1087,7 +1163,9 @@ class FloorController(AbstractController):
             )
 
     def _update_scales(self):
+        assert self.drawer is not None
         if self.drawer.fixed_floor is not None:
+            assert self._draw is not None
             self._draw.set_size_request(
                 (self.drawer.fixed_floor.width + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor,
                 (self.drawer.fixed_floor.height + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor
@@ -1411,7 +1489,7 @@ class FloorController(AbstractController):
             if monster.md_index in KECLEON_MD_INDEX:
                 self.builder.get_object('kecleon_level_entry').set_text(str(monster.level))
                 switch = self.builder.get_object('switch_kecleon_gender')
-                if monster.md_index==KECLEON_MD_INDEX[0]:
+                if monster.md_index == KECLEON_MD_INDEX[0]:
                     switch.set_active(False)
                 else:
                     switch.set_active(True)
@@ -1442,7 +1520,6 @@ class FloorController(AbstractController):
         if sum_of_all_weights <= 0:
             sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
         for i, (trap, weight) in enumerate(self.entry.traps.weights.items()):
-            trap: MappaTrapType
             relative_weight = relative_weights[i]
             chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
             trap_icon = trap_icon_renderer.load_icon(
@@ -1491,10 +1568,10 @@ class FloorController(AbstractController):
             if category.value not in self.item_categories.keys():
                 continue  # TODO: Support editing other item categories?
             name = self.item_categories[category.value].name_localized
-            chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
+            chance_str = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
             item_categories_store.append([
                 category.value, name, False,
-                chance, str(relative_weight)
+                chance_str, str(relative_weight)
             ])
 
         # Add items
@@ -1513,14 +1590,14 @@ class FloorController(AbstractController):
                     relative_weight = relative_weights[i]
                     i += 1
                 name = self._item_names[item.id]
-                chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
+                chance_str = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
                 itm = self.module.get_item(item.id)
                 item_icon = item_icon_renderer.load_icon(
                     store, self.module.project.get_sprite_provider().get_for_item, row_idx, row_idx, (itm, )
                 )
                 store.append([
                     item.id, name, stored_weight == GUARANTEED,
-                    chance, str(relative_weight), item_icon
+                    chance_str, str(relative_weight), item_icon
                 ])
         self._update_cr_item_cat_name_store()
 
@@ -1660,15 +1737,15 @@ class FloorController(AbstractController):
                 last_weight_set_idx = i
             self.entry.monsters.append(MappaMonster(
                 md_index=row[0],
-                level=int(row[3]),
-                weight=weight,
-                weight2=weight
+                level=u8(int(row[3])),
+                weight=u16(weight),
+                weight2=u16(weight)
             ))
         if last_weight != 0 and last_weight != 10000:
             # We did not sum up to exactly 10000, so the values we entered are not evenly
             # divisible. Find the last non-zero we set and set it to 10000.
-            self.entry.monsters[last_weight_set_idx].weight = 10000
-            self.entry.monsters[last_weight_set_idx].weight2 = 10000
+            self.entry.monsters[last_weight_set_idx].weight = u16(10000)
+            self.entry.monsters[last_weight_set_idx].weight2 = u16(10000)
         self.mark_as_modified()
 
     def _save_trap_spawn_rates(self):
@@ -1685,11 +1762,11 @@ class FloorController(AbstractController):
                 weight = last_weight + int(10000 * (int(row[3]) / sum_of_weights))
                 last_weight = weight
                 last_weight_set_idx = i
-            weights.append(weight)
+            weights.append(u16_checked(weight))
         if last_weight != 0 and last_weight != 10000:
             # We did not sum up to exactly 10000, so the values we entered are not evenly
             # divisible. Find the last non-zero we set and set it to 10000.
-            weights[last_weight_set_idx] = 10000
+            weights[last_weight_set_idx] = u16(10000)
         self.entry.traps = MappaTrapList(weights)
         self.mark_as_modified()
 
@@ -1750,7 +1827,7 @@ class FloorController(AbstractController):
                         last_weight = weight
                         was_set = True
                 if cat is None:
-                    set_idx = self.item_categories[row[0]]
+                    set_idx: typing.Union[Pmd2DungeonItemCategory, Pmd2DungeonItem] = self.item_categories[row[0]]
                     category_weights[set_idx] = weight
                     if was_set:
                         last_weight_set_idx = set_idx
@@ -1766,17 +1843,17 @@ class FloorController(AbstractController):
                     if cat is None:
                         category_weights[last_weight_set_idx] = 10000
                     else:
-                        item_weights[last_weight_set_idx] = 10000
+                        item_weights[last_weight_set_idx] = 10000  # type: ignore
 
         item_weights = {k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0].id)}
 
         il = self.get_current_item_list()
-        il.categories = category_weights
+        il.categories = category_weights  # type: ignore
         il.items = item_weights
 
         self.mark_as_modified()
 
-    def mark_as_modified(self, modified_mappag = False):
+    def mark_as_modified(self, modified_mappag=False):
         if not self._loading:
             self.module.mark_floor_as_modified(self.item, modified_mappag)
 
@@ -1869,25 +1946,11 @@ class FloorController(AbstractController):
         if isinstance(w, Gtk.ComboBox):
             self._update_from_cb(w)
         elif isinstance(w, Gtk.Entry):
-            self._update_from_entry(w)
+            raise RuntimeError("Internal error: Do not call _update_from_widget() on an entry. Set manually instead.")
         else:
             self._update_from_scale(w)
         if self.builder.get_object('tool_auto_refresh').get_active():  # type: ignore
             self._generate_floor()
-
-    def _update_from_entry(self, w: Gtk.Entry):
-        w_name = Gtk.Buildable.get_name(w)
-        if w_name.startswith(ENTRY_TERRAIN_SETTINGS):
-            obj = self.entry.layout.terrain_settings
-            attr_name = w_name[len(ENTRY_TERRAIN_SETTINGS):]
-        else:
-            obj = self.entry.layout  # type: ignore
-            attr_name = w_name[len(ENTRY):]
-        try:
-            val = int(w.get_text())
-        except ValueError:
-            return
-        setattr(obj, attr_name, val)
 
     def _update_from_cb(self, w: Gtk.ComboBox):
         w_name = Gtk.Buildable.get_name(w)

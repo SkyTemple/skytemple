@@ -180,7 +180,7 @@ class SpriteProvider:
         self._dungeon_bin: Optional[ModelContext[DungeonBinPack]] = None
 
         self._stripes = Image.open(os.path.join(data_dir(), 'stripes.png'))
-        self._loaded_standins = None
+        self._loaded_standins: Optional[Dict[int, int]] = None
 
         # init_loader MUST be called next!
 
@@ -526,7 +526,7 @@ class SpriteProvider:
             if os.path.exists(p):
                 with open_utf8(p, 'r') as f:
                     try:
-                        self._loaded_standins = {int(k): v for k, v in json.load(f).items()}
+                        self._loaded_standins = {int(k): v for k, v in json.load(f).items()}  # type: ignore
                     except BaseException as err:
                         logger.error(f"Failed to load standin sprites from {p}, falling back to default: {err}.")
         return self._loaded_standins

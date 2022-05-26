@@ -20,14 +20,17 @@ import webbrowser
 from typing import TYPE_CHECKING, Optional, List
 
 from gi.repository import Gtk
+from range_typed_integers import u16, u16_checked
 
 from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import REPO_MOVE_EFFECTS
+from skytemple.core.ui_utils import REPO_MOVE_EFFECTS, catch_overflow
 from skytemple_files.common.util import open_utf8
+from skytemple_files.data.data_cd.model import DataCD
+from skytemple_files.data.val_list.model import ValList
 
 if TYPE_CHECKING:
     from skytemple.module.patch.module import PatchModule
@@ -40,8 +43,9 @@ class MoveEffectsController(AbstractController):
     def __init__(self, module: 'PatchModule', *args):
         super().__init__(module, *args)
         self.module = module
-        self.move_effects = None
-        self.metronome = None
+        self.builder: Gtk.Builder
+        self.move_effects: DataCD
+        self.metronome: ValList
         self._string_provider = module.project.get_string_provider()
 
     def get_view(self) -> Gtk.Widget:
@@ -93,7 +97,7 @@ class MoveEffectsController(AbstractController):
             non_sorted.append([i,
                                self._string_provider.get_value(StringType.MOVE_NAMES, i),
                                self.move_effects.get_item_effect_id(i)])
-        for x in sorted(non_sorted, key=lambda x:x[1]):
+        for x in sorted(non_sorted, key=lambda x: x[1]):  # type: ignore
             move_store.append(x)
         
         # Init available metronome moves
@@ -266,7 +270,7 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
         # Allows multiple deletions
         active_rows : List[Gtk.TreePath] = self.builder.get_object('metronome_tree').get_selection().get_selected_rows()[1]
         metronome_store: Gtk.ListStore = self.builder.get_object('metronome_store')
-        for x in reversed(sorted(active_rows, key=lambda x:x.get_indices())):
+        for x in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             index = x.get_indices()[0]
             del self._metronome_pool[index]
             del metronome_store[index]
@@ -291,17 +295,18 @@ used to fix the previous amount of move effects extracted by the previous versio
         )
         md.run()
         md.destroy()
-        while self.move_effects.nb_items()<559:
-            self.move_effects.add_item_effect_id(0)
+        while self.move_effects.nb_items() < 559:
+            self.move_effects.add_item_effect_id(u16(0))
         self.module.mark_move_effects_as_modified()
         self._init_move_list()
-        
+
+    @catch_overflow(u16)
     def on_move_effect_id_edited(self, widget, path, text):
         try:
-            if int(text)>=self.move_effects.nb_effects() or int(text)<0:
+            if int(text) >= self.move_effects.nb_effects() or int(text)<0:
                 return
             tree_store: Gtk.ListStore = self.builder.get_object('move_effects_store')
-            tree_store[path][2] = int(text)
+            tree_store[path][2] = u16_checked(int(text))
         except ValueError:
             return
         self.move_effects.set_item_effect_id(tree_store[path][0], tree_store[path][2])

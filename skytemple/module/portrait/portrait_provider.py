@@ -108,7 +108,7 @@ class PortraitProvider:
             surf = pil_to_cairo_surface(portrait_pil.convert('RGBA'))
             loaded = surf
         except (RuntimeError, ValueError, OverflowError):
-            loaded = self.get_error()
+            loaded = self.get_error()  # type: ignore
         with portrait_provider_lock:
             self._loaded[(entry_id, sub_id)] = loaded
             self._loaded__is_fallback[(entry_id, sub_id)] = is_fallback

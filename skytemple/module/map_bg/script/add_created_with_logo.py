@@ -15,6 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
+from typing import List
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 
@@ -62,7 +63,9 @@ class AddCreatedWithLogo:
                     index = 1
                 self.bma.place_chunk(0, x + 11, y, index)
         # BPL:
-        self.bpl.palettes[6:14] = palettes[0:8]
+        pals: List[List[int]] = list(list(p) for p in self.bpl.palettes)
+        pals[6:14] = pals[0:8]
+        self.bpl.set_palettes(pals)
 
     def _error(self, error_msg):
         md = SkyTempleMessageDialog(None,

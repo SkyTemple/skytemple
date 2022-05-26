@@ -19,7 +19,7 @@ Tile based instead of chunk based.
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-from typing import List, Union
+from typing import List, Optional
 
 from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
@@ -39,7 +39,7 @@ FRAME_COUNTER_MAX = 1000000
 
 class DrawerTiled:
     def __init__(
-            self, draw_area: Widget, tile_mappings: Union[None, List[TilemapEntry]],
+            self, draw_area: Widget, tile_mappings: Optional[List[TilemapEntry]],
             bpa_durations: int, pal_ani_durations: int,
             # Format: tile_surfaces[pal][tile_idx][pal_frame][frame]
             tile_surfaces: List[List[List[List[cairo.Surface]]]]
@@ -58,7 +58,7 @@ class DrawerTiled:
         self.tiling_width = 3
         self.tiling_height = 3
 
-        if tile_mappings:
+        if tile_mappings is not None:
             self.set_tile_mappings(tile_mappings)
 
         self.animation_context = AnimationContext(tile_surfaces, bpa_durations, pal_ani_durations)
@@ -67,7 +67,7 @@ class DrawerTiled:
 
         self.drawing_is_active = False
 
-    def set_tile_mappings(self, tile_mappings):
+    def set_tile_mappings(self, tile_mappings: List[TilemapEntry]):
         self.tile_mappings = tile_mappings
         if len(self.tile_mappings) == 1:
             self.width = BPC_TILE_DIM

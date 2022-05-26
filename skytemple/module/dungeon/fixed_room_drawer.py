@@ -66,8 +66,8 @@ class InfoLayer(Enum):
 
 class FixedRoomDrawer:
     def __init__(
-            self, draw_area: Gtk.Widget, fixed_floor: FixedFloor,
-            sprite_provider: SpriteProvider, entity_rule_container: EntityRuleContainer,
+            self, draw_area: Gtk.Widget, fixed_floor: Optional[FixedFloor],
+            sprite_provider: SpriteProvider, entity_rule_container: Optional[EntityRuleContainer],
             string_provider: StringProvider, module: 'DungeonModule', add_fixed_room_padding=True
     ):
         self.draw_area = draw_area
@@ -267,6 +267,7 @@ class FixedRoomDrawer:
     def selection_draw_callback(self, ctx: cairo.Context, x: int, y: int):
         if self.interaction_mode == InteractionMode.SELECT:
             if self._selected is not None and self._selected__drag is not None:
+                assert self.fixed_floor is not None
                 # Draw dragged:
                 selected_x, selected_y = self._selected  # type: ignore
                 selected = self.fixed_floor.actions[self.fixed_floor.width * selected_y + selected_x]
@@ -330,8 +331,9 @@ class FixedRoomDrawer:
         return x > -1 and y > - 1 and x < w and y < h
 
     def get_pos_in_grid(self, x, y, real_offset=False):
-        x = int(x / self.tileset_renderer.chunk_dim())
-        y = int(y / self.tileset_renderer.chunk_dim())
+        assert self.tileset_renderer is not None
+        x = x // self.tileset_renderer.chunk_dim()
+        y = y // self.tileset_renderer.chunk_dim()
         if real_offset:
             x -= 5
             y -= 5
@@ -343,6 +345,7 @@ class FixedRoomDrawer:
         self.draw_area.queue_draw()
 
     def draw_placeholder(self, actor_id, sx, sy, direction, ctx):
+        assert self.tileset_renderer is not None
         sprite, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(
             actor_id,
             direction.ssa_id if direction is not None else 0,
@@ -414,9 +417,11 @@ class FixedRoomDrawer:
         ctx.show_text(text)
 
     def _draw_action(self, ctx, action, sx, sy):
+        assert self.entity_renderer is not None
         self.entity_renderer.draw_action(ctx, action, sx, sy)
 
     def _draw_single_tile(self, ctx, action, x, y):
+        assert self.tileset_renderer is not None
         type = DmaType.FLOOR
         if isinstance(action, TileRule):
             if action.tr_type.floor_type == FloorType.WALL:
@@ -426,6 +431,7 @@ class FixedRoomDrawer:
             elif action.tr_type.floor_type == FloorType.FLOOR_OR_WALL:
                 type = DmaType.WALL
         else:
+            assert self.entity_rule_container is not None
             item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
             if tile.is_secondary_terrain():
                 type = DmaType.WATER
@@ -439,6 +445,7 @@ class FixedRoomDrawer:
         ctx.paint()
         ctx.translate(-x, -y)
 
+    @typing.no_type_check
     def unload(self):
         self.draw_area = None
         self.module = None

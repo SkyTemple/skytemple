@@ -20,6 +20,7 @@ from itertools import chain
 from typing import TYPE_CHECKING, Optional, List, Union, Sequence
 
 from gi.repository import Gtk, Gdk
+from range_typed_integers import u8, u8_checked
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -46,7 +47,7 @@ class MainController(AbstractController):
     def __init__(self, module: 'DungeonModule', *args):
         self.module = module
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
         self.string_provider = self.module.project.get_string_provider()
 
@@ -427,16 +428,16 @@ class MainController(AbstractController):
             dungeons[e.dungeon_id].number_floors_in_group = e.expected_floor_count_in_group
         elif isinstance(e, InvalidFloorListReferencedError) or isinstance(e, FloorReusedError):
             dungeons[e.dungeon_id].mappa_index = self.module.mappa_generate_and_insert_new_floor_list()
-            dungeons[e.dungeon_id].start_after = 0
-            dungeons[e.dungeon_id].number_floors = 1
-            dungeons[e.dungeon_id].number_floors_in_group = 1
+            dungeons[e.dungeon_id].start_after = u8(0)
+            dungeons[e.dungeon_id].number_floors = u8(1)
+            dungeons[e.dungeon_id].number_floors_in_group = u8(1)
         elif isinstance(e, InvalidFloorReferencedError):
             valid_floors = len(mappa.floor_lists[e.dungeon.mappa_index]) - e.dungeon.start_after
             if valid_floors > 0:
-                dungeons[e.dungeon_id].number_floors = valid_floors
+                dungeons[e.dungeon_id].number_floors = u8_checked(valid_floors)
             else:
                 mappa.floor_lists[e.dungeon.mappa_index].append(self.module.mappa_generate_new_floor())
-                dungeons[e.dungeon_id].number_floors = 1
+                dungeons[e.dungeon_id].number_floors = u8(1)
         elif isinstance(e, DungeonMissingFloorError):
             # Special case for Regigigas Chamber
             if self._is_regigias_special_case(dungeons, e):
@@ -451,7 +452,7 @@ class MainController(AbstractController):
                 if min(e.floors_in_mappa_not_referenced) == e.dungeon.start_after + e.dungeon.number_floors:
                     if check_consecutive(e.floors_in_mappa_not_referenced):
                         max_floor_id = max(e.floors_in_mappa_not_referenced)
-                        dungeons[e.dungeon_id].number_floors = max_floor_id - dungeons[e.dungeon_id].start_after + 1
+                        dungeons[e.dungeon_id].number_floors = u8_checked(max_floor_id - dungeons[e.dungeon_id].start_after + 1)
 
 
 def check_consecutive(l):

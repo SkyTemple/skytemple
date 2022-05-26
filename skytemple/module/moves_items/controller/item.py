@@ -15,16 +15,19 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import typing
 from enum import Enum
 from typing import TYPE_CHECKING, Type, List, Optional
 
 import cairo
 from gi.repository import Gtk, GLib
+from range_typed_integers import u16, u16_checked, u8, u8_checked
 
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import catch_overflow
 from skytemple_files.common.i18n_util import _
 from skytemple_files.data.item_s_p.model import ItemSPType
 from skytemple_files.data.md.model import PokeType
@@ -82,7 +85,7 @@ class ItemController(AbstractController):
         self.item_id = item_id
         self.item_p, self.item_sp = self.module.get_item(item_id)
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
 
@@ -107,13 +110,14 @@ class ItemController(AbstractController):
 
         return self.builder.get_object('box_main')
 
+    @typing.no_type_check
     def unload(self):
         super().unload()
         self.module = None
         self.item_id = None
         self.item_p = None
         self.item_sp = None
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self._string_provider = None
         self._sprite_provider = None
         self._is_loading = True
@@ -130,40 +134,80 @@ class ItemController(AbstractController):
             widget.set_size_request(w * scale, h * scale)
         return True
 
+    @catch_overflow(u16)
     def on_entry_item_id_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.item_p.item_id = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_sprite_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.item_p.sprite = val
         self.mark_as_modified()
         self._sprite_provider.reset()
         self.builder.get_object('draw_sprite').queue_draw()
 
+    @catch_overflow(u16)
     def on_entry_buy_price_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.item_p.buy_price = val
         self.mark_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_sell_price_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.item_p.sell_price = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_palette_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.item_p.palette = val
         self.mark_as_modified()
         self._sprite_provider.reset()
         self.builder.get_object('draw_sprite').queue_draw()
 
+    @catch_overflow(u16)
     def on_entry_move_id_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.item_p.move_id = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_range_min_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.item_p.range_min = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_range_max_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.item_p.range_max = val
         self.mark_as_modified()
 
     def on_cb_category_changed(self, w, *args):
@@ -257,14 +301,16 @@ class ItemController(AbstractController):
 
     def on_cb_excl_type_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.item_sp.type = ItemSPType(val)
+        self.item_sp.type = ItemSPType(val)  # type: ignore
         self.mark_as_modified()
 
+    @catch_overflow(u16)
     def on_cb_excl_parameter_changed(self, w, *args):
         try:
-            val = int(w.get_text())
+            val = u16_checked(int(w.get_text()))
         except ValueError:
             return
+        assert self.item_sp is not None
         self.item_sp.parameter = val
 
     def on_btn_help_range_min_clicked(self, w, *args):
@@ -454,14 +500,6 @@ class ItemController(AbstractController):
 
     def _set_switch(self, switch_name, value):
         self.builder.get_object(switch_name).set_active(value)
-
-    def _update_from_entry(self, w: Gtk.Entry):
-        attr_name = Gtk.Buildable.get_name(w)[6:]
-        try:
-            val = int(w.get_text())
-        except ValueError:
-            return
-        setattr(self.item_p, attr_name, val)
 
     def _update_from_switch(self, w: Gtk.Entry):
         attr_name = Gtk.Buildable.get_name(w)[7:]

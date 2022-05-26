@@ -19,10 +19,11 @@ import re
 from typing import TYPE_CHECKING, Optional, List, Dict
 
 from gi.repository import Gtk
+from range_typed_integers import u32_checked, u32
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import glib_async
+from skytemple.core.ui_utils import glib_async, catch_overflow
 from skytemple_files.hardcoded.rank_up_table import Rank
 
 if TYPE_CHECKING:
@@ -36,9 +37,9 @@ class RankListController(AbstractController):
     def __init__(self, module: 'ListsModule', *args):
         super().__init__(module, *args)
         self.module = module
-        self._rank_up_table: Optional[List[Rank]] = None
+        self._rank_up_table: List[Rank] = None  # type: ignore
         self._item_names: Dict[int, str] = {}
-        self._list_store = None
+        self._list_store: Gtk.ListStore = None  # type: ignore
         self._loading = True
 
     def get_view(self) -> Gtk.Widget:
@@ -55,26 +56,29 @@ class RankListController(AbstractController):
     def on_cr_rank_name_edited(self, widget, path, text):
         self._list_store[path][1] = text
 
+    @catch_overflow(u32)
     def on_cr_points_needed_next_edited(self, widget, path, text):
         try:
-            int(text)
+            u32_checked(int(text))
         except ValueError:
             return
         self._list_store[path][2] = text
 
+    @catch_overflow(u32)
     def on_cr_storage_capacity_edited(self, widget, path, text):
         try:
-            int(text)
+            u32_checked(int(text))
         except ValueError:
             return
         self._list_store[path][3] = text
 
+    @catch_overflow(u32)
     def on_cr_item_awarded_edited(self, widget, path, text):
         match = PATTERN_ITEM_ENTRY.match(text)
         if match is None:
             return
         try:
-            item_id = int(match.group(1))
+            item_id = u32_checked(int(match.group(1)))
         except ValueError:
             return
 
@@ -93,7 +97,7 @@ class RankListController(AbstractController):
             return
         name_string_id, name_string, points_needed_next, storage_capacity, item_id, item_name, idx = store[path][:]
         self._rank_up_table[idx] = Rank(
-            name_string_id, int(points_needed_next), int(storage_capacity), item_id
+            u32(name_string_id), u32(int(points_needed_next)), u32(int(storage_capacity)), u32(item_id)
         )
         # Update the actual name_string
         sp = self.module.project.get_string_provider()
@@ -107,7 +111,7 @@ class RankListController(AbstractController):
 
     def refresh_list(self):
         tree: Gtk.TreeView = self.builder.get_object('tree')
-        self._list_store: Gtk.ListStore = tree.get_model()
+        self._list_storee = tree.get_model()
         self._list_store.clear()
 
         # Iterate list

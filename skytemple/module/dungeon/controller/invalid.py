@@ -37,7 +37,7 @@ class InvalidDungeonController(AbstractController):
             StringType.DUNGEON_NAMES_MAIN, self.dungeon_info.dungeon_id
         )
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'invalid.glade')

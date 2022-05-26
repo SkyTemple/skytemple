@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import os.path
 from threading import Lock
 from typing import TYPE_CHECKING, Optional, List, Iterable, Dict, Set
 
@@ -48,7 +49,6 @@ save_lock = Lock()
 
 
 class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
-
     def __init__(self, manager: 'DebuggerManager'):
         self._manager = manager
         self._special_words_cache: Optional[Set[str]] = None
@@ -78,7 +78,9 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         return NotImplementedError()
 
     def get_project_dir(self) -> str:
-        return self._project_fm.dir()
+        current = RomProject.get_current()
+        assert current is not None
+        return os.path.dirname(current.filename)
 
     def load_script_files(self) -> ScriptFiles:
         return load_script_files(RomProject.get_current().get_rom_folder(SCRIPT_DIR))  # type: ignore
@@ -91,13 +93,17 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
 
     def save_rom(self):
         # We only save the current ROM contents!
-        RomProject.get_current().save_as_is()
+        current = RomProject.get_current()
+        if current:
+            current.save_as_is()
 
     def get_static_data(self) -> Pmd2Data:
         return RomProject.get_current().get_rom_module().get_static_data()  # type: ignore
 
     def get_project_filemanager(self) -> ProjectFileManager:
-        return self._project_fm
+        current = RomProject.get_current()
+        assert current is not None
+        return current._project_fm
 
     @synchronized_now(file_load_lock)
     def get_ssb(self, filename, ssb_file_manager: 'SsbFileManager') -> 'SsbLoadedFile':
@@ -124,20 +130,27 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         try:
             map_name, filename = path.split('/')[-2:]
             if type_of_scene == 'ssa':
-                RomProject.get_current().request_open(OpenRequest(
+                current = RomProject.get_current()
+                assert current is not None
+                current.request_open(OpenRequest(
                     REQUEST_TYPE_SCENE_SSA, (map_name, filename.replace(SSB_EXT, SSA_EXT))
                 ), True)
             elif type_of_scene == 'sss':
-                RomProject.get_current().request_open(OpenRequest(
+                current = RomProject.get_current()
+                assert current is not None
+                current.request_open(OpenRequest(
                     REQUEST_TYPE_SCENE_SSS, (map_name, filename.replace(SSB_EXT, SSS_EXT))
                 ), True)
             elif type_of_scene == 'sse':
-                RomProject.get_current().request_open(OpenRequest(
+                current = RomProject.get_current()
+                assert current is not None
+                current.request_open(OpenRequest(
                     REQUEST_TYPE_SCENE_SSE, map_name
                 ), True)
             else:
                 raise ValueError()
-            self._manager.main_window.present()
+            if self._manager.main_window is not None:
+                self._manager.main_window.present()
         except ValueError:
             md = SkyTempleMessageDialog(self._manager.get_window(),
                                         Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
@@ -148,10 +161,13 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
 
     def open_scene_editor_for_map(self, map_name):
         try:
-            RomProject.get_current().request_open(OpenRequest(
+            current = RomProject.get_current()
+            assert current is not None
+            current.request_open(OpenRequest(
                 REQUEST_TYPE_SCENE, map_name
             ), True)
-            self._manager.main_window.present()
+            if self._manager.main_window is not None:
+                self._manager.main_window.present()
         except ValueError:
             md = SkyTempleMessageDialog(self._manager.get_window(),
                                         Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
@@ -183,8 +199,10 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         return False
 
     @property
-    def _project_fm(self):
-        return RomProject.get_current().get_project_file_manager()
+    def _project_fm(self) -> Optional[ProjectFileManager]:
+        current = RomProject.get_current()
+        assert current is not None
+        return current.get_project_file_manager()
 
     def display_error(
             self, exc_info, error_message,
@@ -214,6 +232,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
 
     def _get_special_words_uncached(self):
         pro = RomProject.get_current()
+        assert pro is not None
         yield from self.get_static_data().script_data.op_codes__by_name.keys()
         yield from (x.name.replace('$', '') for x in SsbConstant.collect_all(self.get_static_data().script_data))
         yield from EXPS_KEYWORDS

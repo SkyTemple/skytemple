@@ -68,13 +68,13 @@ class DungeonInterruptController(AbstractController):
         store.clear()
         for v in InterDEntryType:
             store.append([v.value, v.explanation])
-        store: Gtk.ListStore = self.builder.get_object('var_store')
+        store = self.builder.get_object('var_store')
         store.clear()
         self.var_names = []
         for i,g in enumerate(self.module.project.get_rom_module().get_static_data().script_data.game_variables):
             self.var_names.append(g.name)
             store.append([i,g.name])
-        store: Gtk.ListStore = self.builder.get_object('dungeon_store')
+        store = self.builder.get_object('dungeon_store')
         store.clear()
         for i in range(len(self.inter_d.list_dungeons)):
             store.append([i, self._string_provider.get_value(StringType.DUNGEON_NAMES_MAIN, i)])
@@ -106,7 +106,7 @@ class DungeonInterruptController(AbstractController):
         for v in store_inter:
             e = InterDEntry()
             e.floor = v[0]
-            e.ent_type = InterDEntryType(v[1])
+            e.ent_type = InterDEntryType(v[1])  # type: ignore
             e.game_var_id = v[2]
             e.param1 = v[3]
             e.param2 = v[4]
@@ -136,7 +136,11 @@ class DungeonInterruptController(AbstractController):
         
     def on_btn_add_clicked(self, *args):
         store: Gtk.ListStore = self.builder.get_object('interrupt_store')
-        store.append([0,0,0,0,0,InterDEntryType(0).explanation,self.var_names[0],0])
+        store.append([
+            0, 0, 0, 0, 0,
+            InterDEntryType(0).explanation,  # type: ignore
+            self.var_names[0], 0
+        ])
         self._build_list()
         
     def on_btn_remove_clicked(self, *args):

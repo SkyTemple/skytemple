@@ -16,13 +16,14 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Dict, Optional, List
+from typing import TYPE_CHECKING, Optional, List
 
 from gi.repository import Gtk
+from range_typed_integers import i16, i16_checked
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import glib_async
+from skytemple.core.ui_utils import glib_async, catch_overflow
 from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
@@ -37,8 +38,8 @@ class TacticsController(AbstractController):
     def __init__(self, module: 'ListsModule', item_id):
         super().__init__(module, item_id)
         self.module = module
-        self._list: Optional[List[int]] = None
-        self.builder: Optional[Gtk.Builder] = None
+        self._list: List[i16]
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'tactics.glade')
@@ -49,9 +50,10 @@ class TacticsController(AbstractController):
         self.builder.connect_signals(self)
         return lst
 
+    @catch_overflow(i16)
     def on_cr_level_edited(self, widget, path, text):
         try:
-            int(text)  # this is only for validating.
+            i16_checked(int(text))  # this is only for validating.
         except ValueError:
             return
         self.builder.get_object('list_store')[path][1] = text
@@ -61,7 +63,7 @@ class TacticsController(AbstractController):
         """Propagate changes to list store entries to the lists."""
         a_id, level, _ = store[path][:]
         a_id = int(a_id)
-        self._list[a_id] = int(level)
+        self._list[a_id] = i16(int(level))
 
         self.module.set_tactics(self._list)
 

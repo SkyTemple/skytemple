@@ -18,6 +18,7 @@ import logging
 from typing import TYPE_CHECKING, Optional, Dict, List, Tuple
 
 from gi.repository import Gtk, Gdk
+from range_typed_integers import i16, i16_checked
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
@@ -46,15 +47,15 @@ class WorldMapController(AbstractController):
     def __init__(self, module: 'ListsModule', *args):
         self.module = module
         self.map_bg_module: 'MapBgModule' = module.project.get_module('map_bg')
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self.drawer: Optional[WorldMapDrawer] = None
         self.dialog_drawer: Optional[WorldMapDrawer] = None
         self._location_names: Dict[int, str] = {}
-        self._markers: Optional[List[MapMarkerPlacement]] = []
-        self._config: Optional[Pmd2Data] = None
+        self._markers: List[MapMarkerPlacement] = []
+        self._config: Pmd2Data
         self._tree_iters_by_idx: Dict[int, Gtk.TreeIter] = {}
-        self._level_id: Optional[int] = None
-        self._edited_marker = None
+        self._level_id: int
+        self._edited_marker: Optional[MapMarkerPlacement] = None
         self._edited_pos: Optional[Tuple[int, int]] = None
 
     def get_view(self) -> Gtk.Widget:
@@ -317,20 +318,20 @@ class WorldMapController(AbstractController):
                         )
                         return
                 if map_id_selected == -1:
-                    marker.level_id = -1
-                    marker.reference_id = -1
-                    marker.x = -1
-                    marker.y = -1
+                    marker.level_id = i16(-1)
+                    marker.reference_id = i16(-1)
+                    marker.x = i16(-1)
+                    marker.y = i16(-1)
                 elif use_reference:
                     marker.level_id = map_id_selected
-                    marker.reference_id = reference_id_selected
-                    marker.x = 0
-                    marker.y = 0
+                    marker.reference_id = i16(reference_id_selected)
+                    marker.x = i16(0)
+                    marker.y = i16(0)
                 else:
                     marker.level_id = map_id_selected
-                    marker.reference_id = -1
-                    marker.x = int(self._edited_pos[0])
-                    marker.y = int(self._edited_pos[1])
+                    marker.reference_id = i16(-1)
+                    marker.x = i16_checked(int(self._edited_pos[0]))
+                    marker.y = i16_checked(int(self._edited_pos[1]))
 
                 tree = self.builder.get_object('tree')
                 tree.get_model()[self._tree_iters_by_idx[idx]][:] = [
@@ -340,7 +341,7 @@ class WorldMapController(AbstractController):
                 if marker.level_id != self._level_id:
                     self._level_id = marker.level_id
                     self._change_map_bg(marker.level_id, self.builder.get_object('draw'), self.drawer)
-                else:
+                elif self.drawer is not None:
                     self.drawer.draw_area.queue_draw()
 
                 self.module.set_world_map_markers(self._markers)

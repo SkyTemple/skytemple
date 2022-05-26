@@ -61,8 +61,8 @@ class MenuListController(AbstractController):
         cb.set_active(0)
         
         # Init available languages
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_store_lang')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_lang')
+        cb_store = self.builder.get_object('cb_store_lang')
+        cb = self.builder.get_object('cb_lang')
         # Init combobox
         cb_store.clear()
         for lang in self._string_provider.get_languages():

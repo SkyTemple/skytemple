@@ -75,7 +75,7 @@ ITEM_LISTS = [_("E Floors Rewards"),
 class ItemListsController(AbstractController):
     def __init__(self, module: 'MovesItemsModule', *args):
         self.module = module
-        self._item_list: Optional[MappaItemList] = None
+        self._item_list: MappaItemList
         self._item_names: Dict[int, str] = {}
         orig_cats = module.project.get_rom_module().get_static_data().dungeon_data.item_categories
 
@@ -492,10 +492,10 @@ class ItemListsController(AbstractController):
             if category.value not in self.item_categories.keys():
                 continue  # TODO: Support editing other item categories?
             name = self.item_categories[category.value].name_localized
-            chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
+            chance_str = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
             item_categories_store.append([
                 category.value, name, False,
-                chance, str(relative_weight)
+                chance_str, str(relative_weight)
             ])
 
         # Add items
@@ -512,14 +512,14 @@ class ItemListsController(AbstractController):
                 relative_weight = relative_weights[i]
                 i += 1
                 name = self._item_names[item.id]
-                chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
+                chance_str = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
                 itm, _ = self.module.get_item(item.id)
                 item_icon = item_icon_renderer.load_icon(
                     store, self.module.project.get_sprite_provider().get_for_item, row_idx, row_idx, (itm, )
                 )
                 store.append([
                     item.id, name, False,
-                    chance, str(relative_weight), item_icon
+                    chance_str, str(relative_weight), item_icon
                 ])
         self._update_cr_item_cat_name_store()
 
@@ -653,7 +653,7 @@ class ItemListsController(AbstractController):
                     if was_set:
                         last_weight_set_idx = set_idx
                 else:
-                    set_idx = Pmd2DungeonItem(row[0], '')
+                    set_idx = Pmd2DungeonItem(row[0], '')  # type: ignore
                     item_weights[Pmd2DungeonItem(row[0], '')] = weight
                     if was_set:
                         last_weight_set_idx = set_idx
@@ -664,12 +664,12 @@ class ItemListsController(AbstractController):
                     if cat is None:
                         category_weights[last_weight_set_idx] = 10000
                     else:
-                        item_weights[last_weight_set_idx] = 10000
+                        item_weights[last_weight_set_idx] = 10000  # type: ignore
 
         item_weights = {k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0].id)}
 
         il = self._item_list
-        il.categories = category_weights
+        il.categories = category_weights  # type: ignore
         il.items = item_weights
 
         self.module.mark_item_list_as_modified(self._get_list_id())

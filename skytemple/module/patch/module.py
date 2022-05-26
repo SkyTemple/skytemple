@@ -16,6 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from typing import Optional
 
+from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
@@ -30,7 +31,9 @@ from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, recursive_generate_item_store_row_label
 from skytemple.module.patch.controller.asm import AsmController
 from skytemple_files.common.i18n_util import _
+from skytemple_files.data.data_cd.model import DataCD
 from skytemple_files.data.val_list.handler import ValListHandler
+from skytemple_files.data.val_list.model import ValList
 
 SP_EFFECTS = 'BALANCE/process.bin'
 MOVE_EFFECTS = 'BALANCE/waza_cd.bin'
@@ -51,13 +54,13 @@ class PatchModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self._tree_model = None
-        self._asm_iter = None
-        self._asm_special_procs = None
-        self._asm_item_effects = None
-        self._asm_move_effects = None
-        self._c_of_time_iter = None
-        self.pmdsky_debug_iter = None
+        self._tree_model: Gtk.TreeModel
+        self._asm_iter: Gtk.TreeIter
+        self._asm_special_procs: Gtk.TreeIter
+        self._asm_item_effects: Gtk.TreeIter
+        self._asm_move_effects: Gtk.TreeIter
+        self._c_of_time_iter: Gtk.TreeIter
+        self.pmdsky_debug_iter: Gtk.TreeIter
 
 
     def load_tree_items(self, item_store: TreeStore, root_node):
@@ -93,7 +96,7 @@ class PatchModule(AbstractModule):
     def has_sp_effects(self):
         return self.project.file_exists(SP_EFFECTS)
 
-    def get_sp_effects(self):
+    def get_sp_effects(self) -> DataCD:
         return self.project.open_file_in_rom(SP_EFFECTS, DataCDHandler)
 
     def mark_sp_effects_as_modified(self):
@@ -106,7 +109,7 @@ class PatchModule(AbstractModule):
     def has_item_effects(self):
         return self.project.file_exists(ITEM_EFFECTS)
 
-    def get_item_effects(self):
+    def get_item_effects(self) -> DataCD:
         return self.project.open_file_in_rom(ITEM_EFFECTS, DataCDHandler)
 
     def mark_item_effects_as_modified(self):
@@ -119,7 +122,7 @@ class PatchModule(AbstractModule):
     def has_move_effects(self):
         return self.project.file_exists(MOVE_EFFECTS)
 
-    def get_move_effects(self):
+    def get_move_effects(self) -> DataCD:
         return self.project.open_file_in_rom(MOVE_EFFECTS, DataCDHandler)
 
     def mark_move_effects_as_modified(self):
@@ -132,7 +135,7 @@ class PatchModule(AbstractModule):
     def has_metronome_pool(self):
         return self.project.file_exists(METRONOME_POOL)
 
-    def get_metronome_pool(self):
+    def get_metronome_pool(self) -> ValList:
         return self.project.open_file_in_rom(METRONOME_POOL, ValListHandler)
 
     def mark_metronome_pool_as_modified(self):

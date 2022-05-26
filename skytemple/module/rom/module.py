@@ -17,7 +17,7 @@
 import os
 from typing import Optional
 
-from gi.repository.Gtk import TreeStore, TreeIter
+from gi.repository.Gtk import TreeStore, TreeIter, TreeModel
 from ndspy.rom import NintendoDSRom
 
 from skytemple.core.abstract_module import AbstractModule
@@ -40,8 +40,8 @@ class RomModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         """Main ROM metadata management module."""
         self.project = rom_project
-        self._item_store = None
-        self._root_node: Optional[TreeIter] = None
+        self._item_store: TreeModel
+        self._root_node: TreeIter
         self._static_data: Optional[Pmd2Data] = None
         self._rom = Optional[NintendoDSRom]
 

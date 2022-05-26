@@ -19,6 +19,7 @@ from typing import TYPE_CHECKING, Optional, Callable, Mapping, Tuple
 
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import Widget
+from range_typed_integers import u32_checked, u32
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
@@ -27,6 +28,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, \
     REQUEST_TYPE_DUNGEON_TILESET
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import catch_overflow
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG, SPECIAL_MONSTERS
 from skytemple.module.dungeon.entity_rule_container import EntityRuleContainer
 from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer, InfoLayer, InteractionMode
@@ -48,7 +50,7 @@ if TYPE_CHECKING:
 
 
 class FixedController(AbstractController):
-    _last_scale_factor = None
+    _last_scale_factor: Optional[float] = None
     _last_show_full_map = True
 
     def __init__(self, module: 'DungeonModule', item_id: int):
@@ -56,12 +58,12 @@ class FixedController(AbstractController):
         self.module = module
         self.tileset_id = 0
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
         if self.__class__._last_scale_factor is not None:
-            self._scale_factor: int = self.__class__._last_scale_factor
+            self._scale_factor: float = self.__class__._last_scale_factor
         else:
-            self._scale_factor = 1
+            self._scale_factor = 1.0
 
         self.drawer: Optional[FixedRoomDrawer] = None
         self.entity_rule_container: EntityRuleContainer = EntityRuleContainer(
@@ -332,32 +334,33 @@ class FixedController(AbstractController):
 
     # EDIT SETTINGS
 
+    @catch_overflow(u32)
     def on_settings_music_changed(self, w):
         try:
-            self.properties.music_track = int(w.get_text())
+            self.properties.music_track = u32_checked(int(w.get_text()))
         except ValueError:
             return
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
     def on_settings_complete_active_notify(self, w, *args):
         if w.get_active():
-            self.properties.null |= 0x1
+            self.properties.null |= 0x1  # type: ignore
         else:
-            self.properties.null &= ~0x1
+            self.properties.null &= ~0x1  # type: ignore
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
     def on_settings_boss_active_notify(self, w, *args):
         if w.get_active():
-            self.properties.null |= 0x2
+            self.properties.null |= 0x2  # type: ignore
         else:
-            self.properties.null &= ~0x2
+            self.properties.null &= ~0x2  # type: ignore
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
     def on_settings_free_active_notify(self, w, *args):
         if w.get_active():
-            self.properties.null |= 0x4
+            self.properties.null |= 0x4  # type: ignore
         else:
-            self.properties.null &= ~0x4
+            self.properties.null &= ~0x4  # type: ignore
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
 
@@ -409,6 +412,7 @@ class FixedController(AbstractController):
             return
 
         confirm = True
+        assert self.floor is not None
         if width < self.floor.width or height < self.floor.height:
             md = SkyTempleMessageDialog(
                 MainController.window(),
@@ -538,6 +542,7 @@ class FixedController(AbstractController):
         return desc
 
     def _place(self):
+        assert self.floor is not None and self.drawer is not None
         if self._bg_draw_is_clicked__press_active and self.drawer.get_cursor_is_in_bounds(
                 self.floor.width, self.floor.height, True
         ):
@@ -560,6 +565,7 @@ class FixedController(AbstractController):
         cb.set_active(self.tileset_id)
 
     def _load_settings(self):
+        assert self.floor is not None
         self.builder.get_object('settings_music').set_text(str(self.properties.music_track))
         self.builder.get_object('settings_moves').set_active(self.properties.moves_enabled)
         self.builder.get_object('settings_orbs').set_active(self.properties.orbs_enabled)
@@ -588,6 +594,7 @@ class FixedController(AbstractController):
         self.floor = self.module.get_fixed_floor(self.floor_id)
 
     def _init_tileset(self):
+        assert self.drawer is not None
         if self.tileset_id < TILESET_FIRST_BG:
             # Real tileset
             self.drawer.set_tileset_renderer(FixedFloorDrawerTileset(*self.module.get_dungeon_tileset(self.tileset_id)))
@@ -599,6 +606,7 @@ class FixedController(AbstractController):
             )
 
     def _init_drawer(self):
+        assert self.drawer is not None
         self.drawer = FixedRoomDrawer(self._draw, self.floor, self.module.project.get_sprite_provider(),
                                       self.entity_rule_container,
                                       self.module.project.get_string_provider(), self.module)
@@ -607,6 +615,7 @@ class FixedController(AbstractController):
         self.drawer.set_draw_tile_grid(self.builder.get_object(f'tool_scene_grid').get_active())
 
     def _update_scales(self):
+        assert self.drawer is not None and self._draw is not None
         self._draw.set_size_request(
             (self.floor.width + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor,
             (self.floor.height + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor
@@ -639,6 +648,7 @@ class FixedController(AbstractController):
             dir = self.script_data.directions__by_ssa_id[dir_id]
         w = self.builder.get_object('utility_entity_type')
         entity_id = w.get_model()[w.get_active_iter()][0]
+        assert self.drawer is not None
         self.drawer.set_selected(EntityRule(
             entity_id,
             dir
@@ -662,7 +672,8 @@ class FixedController(AbstractController):
         if dir_id > 0:
             dir = self.script_data.directions__by_ssa_id[dir_id]
         w = self.builder.get_object('utility_tile_type')
-        tile_rule = TileRuleType(w.get_model()[w.get_active_iter()][0])
+        tile_rule = TileRuleType(w.get_model()[w.get_active_iter()][0])  # type: ignore
+        assert self.drawer is not None
         self.drawer.set_selected(TileRule(
             tile_rule,
             dir

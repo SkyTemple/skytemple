@@ -18,19 +18,21 @@ import logging
 import math
 import re
 import sys
+import typing
 from enum import Enum
 from typing import TYPE_CHECKING, Type, List, Optional, Dict
 from xml.etree import ElementTree
 
 import cairo
 from gi.repository import Gtk, GLib
+from range_typed_integers import u16, u16_checked, u8, u8_checked, i16, i16_checked, i8, i8_checked
 
 from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import add_dialog_xml_filter
+from skytemple.core.ui_utils import add_dialog_xml_filter, catch_overflow
 from skytemple.module.monster.controller.level_up import LevelUpController
 from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.common.types.file_types import FileType
@@ -62,7 +64,7 @@ class MonsterController(AbstractController):
 
         self._monster_bin = self.module.project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self._is_loading = False
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
@@ -103,7 +105,7 @@ class MonsterController(AbstractController):
         self._update_base_form_label()
         self._update_param_label()
         self._update_chance_label()
-        
+
         if self.module.project.is_patch_applied("ExpandPokeList"):
             self.builder.get_object('lbl_unk_1_0').set_text(_("Spinda Egg"))
             self.builder.get_object('lbl_unk_1_1').set_text(_("Spinda Recruit"))
@@ -113,7 +115,7 @@ class MonsterController(AbstractController):
             self.builder.get_object('lbl_unk_18').set_text(_("Sprite File Size"))
 
         self._ent_names: Dict[int, str] = {}
-        
+
         self._init_monster_store()
 
         stack: Gtk.Stack = self.builder.get_object('evo_stack')
@@ -135,6 +137,7 @@ class MonsterController(AbstractController):
 
         return self.builder.get_object('box_main')
 
+    @typing.no_type_check
     def unload(self):
         # We need to destroy this first.
         # GTK is an enigma sometimes.
@@ -146,12 +149,12 @@ class MonsterController(AbstractController):
 
         self._monster_bin = None
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder = None
         self._is_loading = False
         self._string_provider = None
         self._sprite_provider = None
         self._portrait_provider = None
-        self._level_up_controller: Optional[LevelUpController] = None
+        self._level_up_controller = None
         self._cached_sprite_page = None
         self._render_graph_on_tab_change = True
         self.item_names = {}
@@ -201,29 +204,48 @@ class MonsterController(AbstractController):
         self._update_from_cb(w)
         self.mark_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_national_pokedex_number_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.national_pokedex_number = val
         self.mark_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_entid_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.entid = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_personality_changed(self, w, *args):
         try:
-            self.module.set_personality(self.item_id, int(w.get_text()))
+            self.module.set_personality(self.item_id, u8_checked(int(w.get_text())))
         except ValueError:
             pass
-    
+
     def on_cb_idle_anim_changed(self, w, *args):
         try:
             val = w.get_model()[w.get_active_iter()][0]
-            self.module.set_idle_anim_type(self.item_id, IdleAnimType(val))
+            self.module.set_idle_anim_type(
+                self.item_id,
+                IdleAnimType(val)  # type: ignore
+            )
         except ValueError:
             pass
-        
+
+    @catch_overflow(i16)
     def on_entry_sprite_index_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.sprite_index = val
         self.mark_as_modified()
         self._sprite_provider.reset()
         self._check_sprite_size(False)
@@ -232,7 +254,7 @@ class MonsterController(AbstractController):
 
     def on_cb_gender_changed(self, w, *args):
         self._update_from_cb(w)
-        #Changing the gender should also refresh the tree, as the gender is marked here.
+        # Changing the gender should also refresh the tree, as the gender is marked here.
         self.module.refresh(self.item_id)
         self.mark_as_modified()
 
@@ -278,8 +300,13 @@ class MonsterController(AbstractController):
         self._update_lang_cat_from_entry(w, 4)
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_body_size_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.body_size = val
         self.mark_as_modified()
 
     def on_cb_movement_type_changed(self, w, *args):
@@ -298,63 +325,118 @@ class MonsterController(AbstractController):
         self._update_from_cb(w)
         self.mark_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_exp_yield_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.exp_yield = val
         self.mark_as_modified()
 
+    @catch_overflow(i16)
     def on_entry_recruit_rate1_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.recruit_rate1 = val
         self.mark_as_modified()
 
+    @catch_overflow(i16)
     def on_entry_recruit_rate2_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.recruit_rate2 = val
         self.mark_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_base_hp_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.base_hp = val
         if self._level_up_controller is not None:
             self._level_up_controller.queue_render_graph()
             self._render_graph_on_tab_change = True
         self.mark_as_modified()
 
+    @catch_overflow(i16)
     def on_entry_weight_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.weight = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_base_atk_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.base_atk = val
         if self._level_up_controller is not None:
             self._level_up_controller.queue_render_graph()
             self._render_graph_on_tab_change = True
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_base_sp_atk_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.base_sp_atk = val
         if self._level_up_controller is not None:
             self._level_up_controller.queue_render_graph()
             self._render_graph_on_tab_change = True
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_base_def_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.base_def = val
         if self._level_up_controller is not None:
             self._level_up_controller.queue_render_graph()
             self._render_graph_on_tab_change = True
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_base_sp_def_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.base_sp_def = val
         if self._level_up_controller is not None:
             self._level_up_controller.queue_render_graph()
             self._render_graph_on_tab_change = True
         self.mark_as_modified()
 
+    @catch_overflow(i16)
     def on_entry_size_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.size = val
         self.mark_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_evo_param1_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.evo_param1 = val
         self._update_param_label()
         self.mark_as_modified()
 
@@ -362,8 +444,13 @@ class MonsterController(AbstractController):
         self._update_from_cb(w)
         self.mark_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_pre_evo_index_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.pre_evo_index = val
         self._update_pre_evo_label()
         self.mark_as_modified()
 
@@ -383,7 +470,7 @@ class MonsterController(AbstractController):
         )
         md.run()
         md.destroy()
-    
+
     def on_btn_help_evo_params_clicked(self, w, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
@@ -412,7 +499,7 @@ class MonsterController(AbstractController):
         )
         md.run()
         md.destroy()
-    
+
     def on_btn_help_pre_evo_clicked(self, w, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
@@ -429,7 +516,7 @@ class MonsterController(AbstractController):
         )
         md.run()
         md.destroy()
-    
+
     def on_btn_help_recruit_rate_clicked(self, w, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
@@ -470,7 +557,7 @@ class MonsterController(AbstractController):
         )
         md.run()
         md.destroy()
-    
+
     def on_btn_help_can_throw_clicked(self, w, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
@@ -481,7 +568,7 @@ class MonsterController(AbstractController):
         )
         md.run()
         md.destroy()
-        
+
     def on_btn_help_chest_drop_clicked(self, w, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
@@ -493,7 +580,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         )
         md.run()
         md.destroy()
-    
+
     def on_btn_help_can_evolve_clicked(self, w, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
@@ -551,104 +638,168 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         md.run()
         md.destroy()
 
+    @catch_overflow(i16)
     def on_entry_exclusive_item1_changed(self, w, *args):
         match = PATTERN.match(w.get_text())
         if match is None:
             return
         try:
-            val = int(match.group(1))
+            val = i16_checked(int(match.group(1)))
         except ValueError:
             return
-        setattr(self.entry, 'exclusive_item1', val)
+        self.entry.exclusive_item1 = val
         self.mark_as_modified()
 
+    @catch_overflow(i16)
     def on_entry_exclusive_item2_changed(self, w, *args):
         match = PATTERN.match(w.get_text())
         if match is None:
             return
         try:
-            val = int(match.group(1))
+            val = i16_checked(int(match.group(1)))
         except ValueError:
             return
-        setattr(self.entry, 'exclusive_item2', val)
+        self.entry.exclusive_item2 = val
         self.mark_as_modified()
 
+    @catch_overflow(i16)
     def on_entry_exclusive_item3_changed(self, w, *args):
         match = PATTERN.match(w.get_text())
         if match is None:
             return
         try:
-            val = int(match.group(1))
+            val = i16_checked(int(match.group(1)))
         except ValueError:
             return
-        setattr(self.entry, 'exclusive_item3', val)
+        self.entry.exclusive_item3 = val
         self.mark_as_modified()
 
+    @catch_overflow(i16)
     def on_entry_exclusive_item4_changed(self, w, *args):
         match = PATTERN.match(w.get_text())
         if match is None:
             return
         try:
-            val = int(match.group(1))
+            val = i16_checked(int(match.group(1)))
         except ValueError:
             return
-        setattr(self.entry, 'exclusive_item4', val)
+        self.entry.exclusive_item4 = val
         self.mark_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_unk31_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.unk31 = val
         self.mark_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_base_movement_speed_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.base_movement_speed = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_unk17_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.unk17 = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_unk18_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.unk18 = val
         self.mark_as_modified()
 
     def on_cb_shadow_size_changed(self, w, *args):
         self._update_from_cb(w)
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_hp_regeneration_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.hp_regeneration = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_unk21_h_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.unk21_h = val
         self.mark_as_modified()
 
+    @catch_overflow(i8)
     def on_entry_chance_spawn_asleep_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = i8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.chance_spawn_asleep = val
         self.mark_as_modified()
 
+    @catch_overflow(i16)
     def on_entry_unk27_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.unk27 = val
         self._update_chance_label()
         self.mark_as_modified()
 
+    @catch_overflow(i16)
     def on_entry_unk29_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.unk29 = val
         self._update_chance_label()
         self.mark_as_modified()
 
+    @catch_overflow(i16)
     def on_entry_unk28_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.unk28 = val
         self._update_chance_label()
         self.mark_as_modified()
 
+    @catch_overflow(i16)
     def on_entry_unk30_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.unk30 = val
         self._update_chance_label()
         self.mark_as_modified()
 
+    @catch_overflow(i16)
     def on_entry_base_form_index_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.entry.base_form_index = val
         self._update_base_form_label()
         self.mark_as_modified()
 
@@ -716,7 +867,8 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                     ]
                 )
 
-        names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2, personality1, personality2, idle_anim1, idle_anim2 = self.module.get_export_data(self.entry)
+        names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2, personality1, personality2, idle_anim1, idle_anim2 = self.module.get_export_data(
+            self.entry)
         we_are_gender1 = md_gender1 == self.entry
 
         if self.module.project.is_patch_applied('ExpandPokeList'):
@@ -726,33 +878,34 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             personality2 = None
             idle_anim2 = None
 
+        sw: Gtk.Switch
         if md_gender2 is None:
-            sw: Gtk.Switch = self.builder.get_object('export_type_other_gender')
+            sw = self.builder.get_object('export_type_other_gender')
             sw.set_active(False)
             sw.set_sensitive(False)
 
         if portraits is None:
-            sw: Gtk.Switch = self.builder.get_object('export_type_portraits_current_gender')
+            sw = self.builder.get_object('export_type_portraits_current_gender')
             sw.set_active(False)
             sw.set_sensitive(False)
 
         if portraits2 is None:
-            sw: Gtk.Switch = self.builder.get_object('export_type_portraits_other_gender')
+            sw = self.builder.get_object('export_type_portraits_other_gender')
             sw.set_active(False)
             sw.set_sensitive(False)
 
         if stats is None:
-            sw: Gtk.Switch = self.builder.get_object('export_type_stats')
+            sw = self.builder.get_object('export_type_stats')
             sw.set_active(False)
             sw.set_sensitive(False)
 
         if moveset is None:
-            sw: Gtk.Switch = self.builder.get_object('export_type_moveset1')
+            sw = self.builder.get_object('export_type_moveset1')
             sw.set_active(False)
             sw.set_sensitive(False)
 
         if moveset2 is None:
-            sw: Gtk.Switch = self.builder.get_object('export_type_moveset2')
+            sw = self.builder.get_object('export_type_moveset2')
             sw.set_active(False)
             sw.set_sensitive(False)
 
@@ -826,6 +979,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
             # 2. Import to selected Pokémon
             selected_monsters: List[int] = []
+
             def collect_monsters_recurse(titer: Optional[Gtk.TreeIter]):
                 for i in range(store.iter_n_children(titer)):
                     child = store.iter_nth_child(titer, i)
@@ -858,6 +1012,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         is_active = not w.get_active()
         store[path][5] = is_active
         store[path][6] = False
+
         # Update inconsistent state for all parents
         def mark_inconsistent_recurse(titer: Gtk.TreeIter, force_inconstent=False):
             parent = store.iter_parent(titer)
@@ -870,7 +1025,8 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                         child = store.iter_nth_child(parent, i)
                         children.append(child)
                     states = [store[child][5] for child in children]
-                    should_be_inconsistent = any([store[child][6] for child in children]) or not states.count(states[0]) == len(states)
+                    should_be_inconsistent = any([store[child][6] for child in children]) or not states.count(
+                        states[0]) == len(states)
                 store[parent][6] = should_be_inconsistent
                 if should_be_inconsistent:
                     store[parent][5] = False
@@ -879,6 +1035,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 mark_inconsistent_recurse(parent, should_be_inconsistent)
 
         mark_inconsistent_recurse(store.get_iter(path))
+
         # Update state for all children
         def mark_active_recurse(titer: Gtk.TreeIter):
             for i in range(store.iter_n_children(titer)):
@@ -886,6 +1043,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 store[child][5] = is_active
                 store[child][6] = False
                 mark_active_recurse(child)
+
         mark_active_recurse(store.get_iter(path))
 
     def _init_language_labels(self):
@@ -932,7 +1090,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         self._comboxbox_for_enum(['cb_evo_param2'], AdditionalRequirement)
         # Idle Animation Type
         self._comboxbox_for_enum(['cb_idle_anim'], IdleAnimType)
-        
+
         # Shadow Size
         self._comboxbox_for_enum(['cb_shadow_size'], ShadowSize)
 
@@ -958,7 +1116,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
         # Stats
         a = self.module.get_idle_anim_type(self.item_id)
-        if a==None:
+        if a is None:
             self.builder.get_object('cb_idle_anim').set_sensitive(False)
         else:
             self._set_cb('cb_idle_anim', a.value)
@@ -1018,10 +1176,10 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         if not self._is_loading:
             self.module.mark_md_as_modified(self.item_id)
 
-    def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum], sort_by_name = False):
+    def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum], sort_by_name=False):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
-            enum = sorted(enum, key=lambda x:self._enum_entry_to_str(x))  # type: ignore
+            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))  # type: ignore
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
@@ -1062,14 +1220,6 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
     def _set_switch(self, switch_name, value):
         self.builder.get_object(switch_name).set_active(value)
 
-    def _update_from_entry(self, w: Gtk.Entry):
-        attr_name = Gtk.Buildable.get_name(w)[6:]
-        try:
-            val = int(w.get_text())
-        except ValueError:
-            return
-        setattr(self.entry, attr_name, val)
-
     def _update_from_switch(self, w: Gtk.Entry):
         attr_name = Gtk.Buildable.get_name(w)[7:]
         setattr(self.entry, attr_name, w.get_active())
@@ -1109,7 +1259,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         tab_label: Gtk.Label = Gtk.Label.new(_('Stats and Moves'))
         level_up_view, self._level_up_controller = self.module.get_level_up_view(self.item_id)
         notebook.append_page(level_up_view, tab_label)
-        tab_label: Gtk.Label = Gtk.Label.new(_('Portraits'))
+        tab_label = Gtk.Label.new(_('Portraits'))
         notebook.append_page(self.module.get_portrait_view(self.item_id), tab_label)
         self._reload_sprite_page()
 
@@ -1130,12 +1280,12 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         val = cb.get_model()[cb.get_active_iter()][0]
         try:
             entry_id = int(entry.get_text())
-            if val==3:
+            if val == 3:
                 if entry_id >= MAX_ITEMS:
                     raise ValueError()
                 name = self._string_provider.get_value(StringType.ITEM_NAMES, entry_id)
                 label.set_text(f'#{entry_id:03d}: {name}')
-            elif val==4:
+            elif val == 4:
                 if entry_id > MdProperties.NUM_ENTITIES:
                     raise ValueError()
                 entry = self.module.monster_md[entry_id]
@@ -1151,7 +1301,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 label.set_text(f'')
         except BaseException:
             label.set_text(_('??? Enter a valid parameter (#)'))
-        
+
     def _update_base_form_label(self):
         label: Gtk.Label = self.builder.get_object('label_base_form_index')
         entry: Gtk.Entry = self.builder.get_object('entry_base_form_index')
@@ -1185,7 +1335,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             label.set_text(f'${entry.md_index:04d}: {name} ({entry.gender.name[0]})')
         except BaseException:
             label.set_text(_('??? Enter a valid Entry ID ($)'))
-    
+
     def _update_chance_label(self):
         label1: Gtk.Label = self.builder.get_object('label_chance_no_drop')
         entry1: Gtk.Entry = self.builder.get_object('entry_unk27')
@@ -1197,18 +1347,18 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         entry4: Gtk.Entry = self.builder.get_object('entry_unk30')
         try:
             entry1_value = int(entry1.get_text())
-            if entry1_value==0:
+            if entry1_value == 0:
                 entry1_value = 1
                 entry2_value = entry3_value = entry4_value = 0
             else:
                 entry2_value = int(entry2.get_text())
                 entry3_value = int(entry3.get_text())
                 entry4_value = int(entry4.get_text())
-            sum_values = entry1_value+entry2_value+entry3_value+entry4_value
-            label1.set_text(f'{entry1_value/sum_values*100:2.02f}%')
-            label2.set_text(f'{entry2_value/sum_values*100:2.02f}%')
-            label3.set_text(f'{entry3_value/sum_values*100:2.02f}%')
-            label4.set_text(f'{entry4_value/sum_values*100:2.02f}%')
+            sum_values = entry1_value + entry2_value + entry3_value + entry4_value
+            label1.set_text(f'{entry1_value / sum_values * 100:2.02f}%')
+            label2.set_text(f'{entry2_value / sum_values * 100:2.02f}%')
+            label3.set_text(f'{entry3_value / sum_values * 100:2.02f}%')
+            label4.set_text(f'{entry4_value / sum_values * 100:2.02f}%')
         except BaseException:
             label1.set_text(_('???'))
             label2.set_text(_('???'))
@@ -1217,7 +1367,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
     def _get_sprite_properties(self, entry):
         if entry.sprite_index < 0:
-            return 0,0
+            return 0, 0
         with self._monster_bin as sprites:
             sprite_bin = sprites[entry.sprite_index]
             sprite_bytes = FileType.COMMON_AT.deserialize(sprite_bin).decompress()
@@ -1232,7 +1382,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         max_tile_slots_needed = max((6, max_tile_slots_needed))
         max_file_size_needed = math.ceil(len(sprite_bytes) / 512)
         return max_tile_slots_needed, max_file_size_needed
-    
+
     def _check_sprite_size(self, show_warning):
         """
         Check that the data in the unknown Pokémon sprite-related metadata
@@ -1252,7 +1402,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 check_value = sprite_size_table[md_gender1.md_index_base].sprite_tile_slots
                 check_value_file = sprite_size_table[md_gender1.md_index_base].unk1
                 max_tile_slots_needed, max_file_size_needed = self._get_sprite_properties(md_gender1)
-                if md_gender2!=None:
+                if md_gender2 != None:
                     max_tile_slots_needed2, max_file_size_needed2 = self._get_sprite_properties(md_gender2)
                     max_tile_slots_needed = max(max_tile_slots_needed, max_tile_slots_needed2)
                     max_file_size_needed = max(max_file_size_needed, max_file_size_needed2)
@@ -1261,7 +1411,8 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                     self.entry.unk17 = max_tile_slots_needed
                     self._set_entry('entry_unk17', self.entry.unk17)
                 else:
-                    sprite_size_table[getattr(md_gender1, self.module.effective_base_attr)].sprite_tile_slots = max_tile_slots_needed
+                    sprite_size_table[
+                        getattr(md_gender1, self.module.effective_base_attr)].sprite_tile_slots = max_tile_slots_needed
                     self.module.set_pokemon_sprite_data_table(sprite_size_table)
 
                 if show_warning:
@@ -1313,7 +1464,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, sidx)
             self._ent_names[idx] = f'{name} ({entry.gender.print_name}) (#{idx:04})'
             monster_store.append([self._ent_names[idx]])
-    
+
     def on_cr_entity_editing_started(self, renderer, editable, path):
         editable.set_completion(self.builder.get_object('completion_entities'))
 
@@ -1356,9 +1507,10 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
     def on_evo_species_edited(self, widget, path, text):
         self._edit_species_store('evo_store', path, text)
+
     def on_egg_species_edited(self, widget, path, text):
         self._edit_species_store('egg_store', path, text)
-    
+
     def _edit_species_store(self, store_name, path, text):
         store = self.builder.get_object(store_name)
         match = PATTERN.match(text)
@@ -1373,7 +1525,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         # ent_name:
         store[path][1] = self._ent_names[entid]
         self._rebuild_evo_lists()
-        
+
     def _init_evo_lists(self):
         current_evo = self._md_evo.evo_entries[self.item_id]
         current_stats = self._md_evo.evo_stats[self.item_id]
@@ -1384,7 +1536,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             store.append([
                 entry, self._ent_names[entry]
             ])
-        tree: Gtk.TreeView = self.builder.get_object('egg_tree')
+        tree = self.builder.get_object('egg_tree')
         store = tree.get_model()
         store.clear()
         for entry in current_evo.eggs:
@@ -1396,19 +1548,55 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         self._set_entry('entry_spatk_bonus', current_stats.spatk_bonus)
         self._set_entry('entry_def_bonus', current_stats.def_bonus)
         self._set_entry('entry_spdef_bonus', current_stats.spdef_bonus)
-    
-    def on_entry_evo_stats_changed(self, w: Gtk.Entry, *args):
-        attr_name = Gtk.Buildable.get_name(w)[6:]
+
+    @catch_overflow(i16)
+    def on_entry_entry_hp_bonus_changed(self, w: Gtk.Entry, *args):
         try:
-            val = int(w.get_text())
+            val = i16_checked(int(w.get_text()))
         except ValueError:
             return
-        setattr(self._md_evo.evo_stats[self.item_id], attr_name, val)  # type: ignore
+        self._md_evo.evo_stats[self.item_id].hp_bonus = val
         self.module.mark_md_evo_as_modified(self.item_id)
-    
+
+    @catch_overflow(i16)
+    def on_entry_entry_atk_bonus_changed(self, w: Gtk.Entry, *args):
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self._md_evo.evo_stats[self.item_id].atk_bonus = val
+        self.module.mark_md_evo_as_modified(self.item_id)
+
+    @catch_overflow(i16)
+    def on_entry_entry_spatk_bonus_changed(self, w: Gtk.Entry, *args):
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self._md_evo.evo_stats[self.item_id].spatk_bonus = val
+        self.module.mark_md_evo_as_modified(self.item_id)
+
+    @catch_overflow(i16)
+    def on_entry_entry_def_bonus_changed(self, w: Gtk.Entry, *args):
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self._md_evo.evo_stats[self.item_id].def_bonus = val
+        self.module.mark_md_evo_as_modified(self.item_id)
+
+    @catch_overflow(i16)
+    def on_entry_entry_spdef_bonus_changed(self, w: Gtk.Entry, *args):
+        try:
+            val = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self._md_evo.evo_stats[self.item_id].spdef_bonus = val
+        self.module.mark_md_evo_as_modified(self.item_id)
+
     def on_btn_add_evo_clicked(self, *args):
         try:
-            if len(self._md_evo.evo_entries[self.item_id].evos)>=MAX_EVOS:
+            if len(self._md_evo.evo_entries[self.item_id].evos) >= MAX_EVOS:
                 raise ValueError(_(f"A pokémon can't evolve into more than {MAX_EVOS} evolutions."))
             else:
                 self._add_monster_to_store('evo_tree')
@@ -1418,9 +1606,10 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 str(err),
                 _("Too much evolutions.")
             )
+
     def on_btn_add_egg_clicked(self, *args):
         try:
-            if len(self._md_evo.evo_entries[self.item_id].eggs)>=MAX_EGGS:
+            if len(self._md_evo.evo_entries[self.item_id].eggs) >= MAX_EGGS:
                 raise ValueError(_(f"A pokémon can't have more than {MAX_EGGS} children."))
             else:
                 self._add_monster_to_store('egg_tree')
@@ -1438,32 +1627,32 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             1, self._ent_names[1]
         ])
         self._rebuild_evo_lists()
-    
+
     def on_btn_remove_evo_clicked(self, *args):
         self._remove_monster_to_store('evo_tree')
+
     def on_btn_remove_egg_clicked(self, *args):
         self._remove_monster_to_store('egg_tree')
-        
+
     def _remove_monster_to_store(self, tree_name):
         tree: Gtk.TreeView = self.builder.get_object(tree_name)
-        store = tree.get_model()
+        store: Gtk.ListStore = tree.get_model()
         # Deletes all selected dialogue entries
         # Allows multiple deletion
-        active_rows : List[Gtk.TreePath] = tree.get_selection().get_selected_rows()[1]
-        store: Gtk.ListStore = store
-        for x in reversed(sorted(active_rows, key=lambda x:x.get_indices())):
+        active_rows: List[Gtk.TreePath] = tree.get_selection().get_selected_rows()[1]
+        for x in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             del store[x.get_indices()[0]]
         self._rebuild_evo_lists()
         self._init_evo_lists()
-        
+
     def _rebuild_evo_lists(self):
         tree: Gtk.TreeView = self.builder.get_object('evo_tree')
-        store = tree.get_model()
+        store: Gtk.ListStore = tree.get_model()
         evo_entries = []
         for entry in store:
             evo_entries.append(entry[0])
         self._md_evo.evo_entries[self.item_id].evos = evo_entries
-        tree: Gtk.TreeView = self.builder.get_object('egg_tree')
+        tree = self.builder.get_object('egg_tree')
         store = tree.get_model()
         eggs_entries = []
         for entry in store:

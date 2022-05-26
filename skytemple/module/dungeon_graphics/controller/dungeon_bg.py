@@ -112,7 +112,7 @@ class DungeonBgController(AbstractController):
 
         # Cairo surfaces for each tile in each layer for each frame
         # chunks_surfaces[chunk_idx][palette_animation_frame]
-        self.chunks_surfaces: List[List[cairo.Surface]] = []
+        self.chunks_surfaces: List[List[List[cairo.Surface]]] = []
 
         self.drawer: Optional[Drawer] = None
         self.current_icon_view_renderer: Optional[DrawerCellRenderer] = None
@@ -120,7 +120,7 @@ class DungeonBgController(AbstractController):
         self.bg_draw: Gtk.DrawingArea = None
         self.bg_draw_event_box: Gtk.EventBox = None
 
-        self.scale_factor = 1
+        self.scale_factor: float = 1.0
 
         self.bg_draw_is_clicked = False
 
@@ -267,7 +267,7 @@ class DungeonBgController(AbstractController):
         # For each chunk...
         for chunk_idx in range(0, len(self.dpc.chunks)):
             # For each frame of palette animation... ( applicable for this chunk )
-            pal_ani_frames = []
+            pal_ani_frames: List[List[cairo.Surface]] = []
             self.chunks_surfaces.append(pal_ani_frames)
 
             chunk_data = self.dpc.chunks[chunk_idx]
@@ -285,7 +285,7 @@ class DungeonBgController(AbstractController):
 
             for pal_ani in range(0, len_pal_ani):
                 # We don't have animated tiles, so ani_frames just has one entry.
-                ani_frames = []
+                ani_frames: List[cairo.Surface] = []
                 pal_ani_frames.append(ani_frames)
                 # Switch out the palette with that from the palette animation
                 if has_pal_ani:
@@ -322,7 +322,7 @@ class DungeonBgController(AbstractController):
         self.bg_draw_event_box.connect("button-release-event", self.on_bg_draw_release)
         self.bg_draw_event_box.connect("motion-notify-event", self.on_bg_draw_mouse_move)
 
-        self.bg_draw: Gtk.DrawingArea = Gtk.DrawingArea.new()
+        self.bg_draw = Gtk.DrawingArea.new()
         self.bg_draw_event_box.add(self.bg_draw)
 
         bg_draw_sw.add(self.bg_draw_event_box)
@@ -392,5 +392,6 @@ class DungeonBgController(AbstractController):
         if self.current_icon_view_renderer:
             self.current_icon_view_renderer.stop()
         self._init_chunk_imgs()
+        assert self.drawer is not None
         self.drawer.reset(self.dbg, self.pal_ani_durations, self.chunks_surfaces)
         self._init_main_area()

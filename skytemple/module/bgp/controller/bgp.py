@@ -54,7 +54,7 @@ class BgpController(AbstractController):
         self.item_id = item_id
         self.bgp = self.module.get_bgp(self.item_id)
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'bgp.glade')

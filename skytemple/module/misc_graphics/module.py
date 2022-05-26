@@ -58,14 +58,14 @@ CHR_FILE_EXT = 'chr'
 ZMAPPAT_FILE_EXT = 'zmappat'
 CART_REMOVED_NAME = "cart_removed.at"
 DUNGEON_BIN_PATH = 'DUNGEON/dungeon.bin'
-VALID_FONT_DAT_FILES = set(['FONT/kanji_rd.dat', 'FONT/unkno_rd.dat'])
-VALID_GRAPHIC_FONT_FILES = set(['FONT/staffont.dat', 'FONT/markfont.dat'])
-VALID_FONT_SIR0_FILES = set(['FONT/kanji.dat', 'FONT/kanji_b.dat', 'FONT/unknown.dat'])
-VALID_BANNER_FONT_FILES = set( ["FONT/banner.bin", "FONT/banner_c.bin", "FONT/banner_s.bin"])
-FONT_PAL_ASSOC = [("FONT/banner.bin","FONT/b_pal.bin"), \
-                  ("FONT/banner.bin","FONT/b_pal2.bin"), \
-                  ("FONT/banner_c.bin","FONT/b_pal_r.bin"), \
-                  ("FONT/banner_c.bin","FONT/b_pal_p.bin"), \
+VALID_FONT_DAT_FILES = {'FONT/kanji_rd.dat', 'FONT/unkno_rd.dat'}
+VALID_GRAPHIC_FONT_FILES = {'FONT/staffont.dat', 'FONT/markfont.dat'}
+VALID_FONT_SIR0_FILES = {'FONT/kanji.dat', 'FONT/kanji_b.dat', 'FONT/unknown.dat'}
+VALID_BANNER_FONT_FILES = {"FONT/banner.bin", "FONT/banner_c.bin", "FONT/banner_s.bin"}
+FONT_PAL_ASSOC = [("FONT/banner.bin","FONT/b_pal.bin"),
+                  ("FONT/banner.bin","FONT/b_pal2.bin"),
+                  ("FONT/banner_c.bin","FONT/b_pal_r.bin"),
+                  ("FONT/banner_c.bin","FONT/b_pal_p.bin"),
                   ("FONT/banner_s.bin",None)]
 
 
@@ -76,8 +76,8 @@ class FontOpenSpec:
         self.font_type = font_type
 
     def get_row_name(self):
-        if self.font_type == FontType.BANNER_FONT and self.pal_filename!=None:
-            return self.font_filename+':'+self.pal_filename
+        if self.font_type == FontType.BANNER_FONT and self.pal_filename is not None:
+            return self.font_filename + ':' + self.pal_filename
         else:
             return self.font_filename
         
@@ -110,12 +110,12 @@ class MiscGraphicsModule(AbstractModule):
         self.list_of_pals = self.project.get_files_with_ext(PAL_FILE_EXT)
         self.list_of_chrs = self.project.get_files_with_ext(CHR_FILE_EXT)
         self.list_of_banner_fonts = sorted(list(set(self.list_of_bins) & VALID_BANNER_FONT_FILES))
-        self.dungeon_bin_context: Optional[ModelContext[DungeonBinPack]] = None
-        self.list_of_wtes_dungeon_bin: Optional[List[Wte]] = None
-        self.list_of_wtus_dungeon_bin: Optional[List[Wtu]] = None
+        self.dungeon_bin_context: ModelContext[DungeonBinPack]
+        self.list_of_wtes_dungeon_bin: List[Wte]
+        self.list_of_wtus_dungeon_bin: List[Wtu]
         self.list_of_zmappats_dungeon_bin: Optional[List[ZMappaT]] = None
 
-        self._tree_model = None
+        self._tree_model: Gtk.TreeModel
         self._tree_level_iter: Dict[str, Gtk.TreeIter] = {}
         self._tree_level_dungeon_iter: Dict[str, Gtk.TreeIter] = {}
 

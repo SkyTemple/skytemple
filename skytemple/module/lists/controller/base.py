@@ -15,6 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import re
+import typing
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Optional, Dict, List, Union
 
@@ -34,11 +35,11 @@ class ListBaseController(AbstractController, ABC):
     def __init__(self, module: 'ListsModule', *args):
         self.module = module
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self._sprite_provider = self.module.project.get_sprite_provider()
         self._ent_names: Dict[int, str] = {}
         self._list_store: Optional[Gtk.ListStore] = None
-        self.icon_renderer = None
+        self.icon_renderer: Optional[ListIconRenderer] = None
         self._loading = False
 
     def load(self):
@@ -50,9 +51,10 @@ class ListBaseController(AbstractController, ABC):
         self.builder.connect_signals(self)
         self._loading = False
 
+    @typing.no_type_check
     def unload(self):
         super().unload()
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder = None  # type: ignore
         self._sprite_provider = None
         self._ent_names = None
         self._list_store = None
@@ -101,7 +103,7 @@ class ListBaseController(AbstractController, ABC):
         if store is None:
             store = self._list_store
         if entid <= 0 or force_placeholder:
-            load_fn = self._sprite_provider.get_actor_placeholder
+            load_fn: typing.Callable = self._sprite_provider.get_actor_placeholder
             target_name = f'pl{idx}'
             parameters = idx, 0
             is_placeholder = True

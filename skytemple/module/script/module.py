@@ -18,7 +18,7 @@ import os
 from typing import Optional, Dict, List, Tuple
 
 from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore
+from gi.repository.Gtk import TreeStore, TreeIter
 
 from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
@@ -81,10 +81,10 @@ class ScriptModule(AbstractModule):
         self._map_sse: Dict[str, Gtk.TreeIter] = {}
         self._map_ssss: Dict[str, Dict[str, Gtk.TreeIter]] = {}
 
-        self._tree_model: Optional[TreeStore] = None
-        self._root = None
-        self._other_node = None
-        self._sub_nodes: Optional[Dict[str, Gtk.TreeIter]] = None
+        self._tree_model: TreeStore
+        self._root: TreeIter
+        self._other_node: TreeIter
+        self._sub_nodes: Dict[str, Gtk.TreeIter] = {}
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         # -> Script [main]

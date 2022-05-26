@@ -67,10 +67,10 @@ class MapBgModule(AbstractModule):
         self.project = rom_project
         self.bgs: BgListProtocol = rom_project.open_file_in_rom(MAP_BG_LIST, FileType.BG_LIST_DAT)
 
-        self._tree_model: Optional[Gtk.TreeModel] = None
+        self._tree_model: Gtk.TreeModel
         self._tree_level_iter: List[Gtk.TreeIter] = []
-        self._sub_nodes: Optional[Gtk.TreeIter] = None
-        self._other_node: Optional[Gtk.TreeIter] = None
+        self._sub_nodes: Gtk.TreeIter
+        self._other_node: Gtk.TreeIter
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
@@ -154,7 +154,7 @@ class MapBgModule(AbstractModule):
 
     def add_map(self, map_name):
         item_id = len(self.bgs.level)
-        self.bgs.level.append(
+        self.bgs.add_level(
             FileType.BG_LIST_DAT.get_entry_model_cls()(map_name, map_name, map_name, [None] * 8)
         )
         parent = self._other_node

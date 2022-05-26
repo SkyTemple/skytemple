@@ -33,6 +33,7 @@ COLOR_OUTLINE = (0, 0, 0, 1)
 class FullMapEntityRenderer(AbstractEntityRenderer):
     def draw_action(self, ctx: cairo.Context, action: FixedFloorActionRule, sx: int, sy: int):
         if isinstance(action, EntityRule):
+            assert self.parent.entity_rule_container is not None
             item, monster, tile, stats = self.parent.entity_rule_container.get(action.entity_rule_id)
             # Has trap?
             if tile.trap_id < 25:

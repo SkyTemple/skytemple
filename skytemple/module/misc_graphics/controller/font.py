@@ -53,7 +53,7 @@ class FontController(AbstractController):
         self.spec = item
         self.font: Optional[AbstractFont] = self.module.get_font(self.spec)
         
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'font.glade')
@@ -143,6 +143,7 @@ class FontController(AbstractController):
             self._init_font()
         
     def _init_font(self):
+        assert self.font is not None
         # Init available tables
         self.tables = self.font.to_pil()
         
@@ -154,7 +155,7 @@ class FontController(AbstractController):
 
     def _add_property_row(self, store, entry):
         prop = entry.get_properties()
-        row = [None]*len(self.entry_properties)
+        row: List[Optional[str]] = [None] * len(self.entry_properties)
         for i, c in enumerate(self.entry_properties):
             if c in prop:
                 row[i] = str(prop[c])
@@ -163,8 +164,9 @@ class FontController(AbstractController):
     def _switch_table(self):
         cb_store: Gtk.ListStore = self.builder.get_object('table_store')
         cb: Gtk.ComboBoxText = self.builder.get_object('cb_table_select')
-        if cb.get_active_iter()!=None:
-            v : int = cb_store[cb.get_active_iter()][0]
+        if cb.get_active_iter() is not None:
+            assert self.font is not None
+            v: int = cb_store[cb.get_active_iter()][0]
             self.entries = self.font.get_entries_from_table(v)
             
             entry_tree: Gtk.TreeView = self.builder.get_object('entry_tree')

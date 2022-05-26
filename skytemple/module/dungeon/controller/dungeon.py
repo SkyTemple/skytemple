@@ -18,10 +18,12 @@ from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
+from range_typed_integers import i8, i8_checked, i16, i16_checked
 
 from skytemple.controller.main import MainController
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import catch_overflow
 from skytemple_files.hardcoded.dungeons import DungeonRestrictionDirection
 from skytemple_files.common.i18n_util import _, f
 
@@ -41,7 +43,7 @@ class DungeonController(AbstractController):
         if self.dungeon_info.length_can_be_edited:
             self.restrictions = self.module.get_dungeon_restrictions()[dungeon_info.dungeon_id]
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self._is_loading = True
 
     # noinspection PyUnusedLocal
@@ -225,79 +227,98 @@ class DungeonController(AbstractController):
     # <editor-fold desc="HANDLERS RESTRICTIONS" defaultstate="collapsed">
 
     def on_cb_direction_changed(self, w: Gtk.ComboBox, *args):
-        self.restrictions.direction = DungeonRestrictionDirection(int(w.get_active_id()))  # type: ignore
+        assert self.restrictions is not None
+        self.restrictions.direction = DungeonRestrictionDirection(int(w.get_active_id()))
         self._save_dungeon_restrictions()
 
     def on_switch_enemies_evolve_when_team_member_koed_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.restrictions.enemies_evolve_when_team_member_koed = state  # type: ignore
+        assert self.restrictions is not None
+        self.restrictions.enemies_evolve_when_team_member_koed = state
         self._save_dungeon_restrictions()
 
     def on_switch_enemies_grant_exp_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.restrictions.enemies_grant_exp = state  # type: ignore
+        assert self.restrictions is not None
+        self.restrictions.enemies_grant_exp = state
         self._save_dungeon_restrictions()
 
     def on_switch_recruiting_allowed_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.restrictions.recruiting_allowed = state  # type: ignore
+        assert self.restrictions is not None
+        self.restrictions.recruiting_allowed = state
         self._save_dungeon_restrictions()
 
     def on_switch_level_reset_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.restrictions.level_reset = state  # type: ignore
+        assert self.restrictions is not None
+        self.restrictions.level_reset = state
         self._save_dungeon_restrictions()
 
     def on_switch_money_allowed_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.restrictions.money_allowed = not state  # type: ignore
+        assert self.restrictions is not None
+        self.restrictions.money_allowed = not state
         self._save_dungeon_restrictions()
 
     def on_switch_leader_can_be_changed_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.restrictions.leader_can_be_changed = state  # type: ignore
+        assert self.restrictions is not None
+        self.restrictions.leader_can_be_changed = state
         self._save_dungeon_restrictions()
 
     def on_switch_dont_save_before_entering_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.restrictions.dont_save_before_entering = not state  # type: ignore
+        assert self.restrictions is not None
+        self.restrictions.dont_save_before_entering = not state
         self._save_dungeon_restrictions()
 
     def on_switch_iq_skills_disabled_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.restrictions.iq_skills_disabled = not state  # type: ignore
+        assert self.restrictions is not None
+        self.restrictions.iq_skills_disabled = not state
         self._save_dungeon_restrictions()
 
     def on_switch_traps_remain_invisible_on_attack_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.restrictions.traps_remain_invisible_on_attack = not state  # type: ignore
+        assert self.restrictions is not None
+        self.restrictions.traps_remain_invisible_on_attack = not state
         self._save_dungeon_restrictions()
 
     def on_switch_enemies_can_drop_chests_state_set(self, w: Gtk.Switch, state: bool, *args):
-        self.restrictions.enemies_can_drop_chests = state  # type: ignore
+        assert self.restrictions is not None
+        self.restrictions.enemies_can_drop_chests = state
         self._save_dungeon_restrictions()
 
+    @catch_overflow(i8)
     def on_entry_max_rescue_attempts_changed(self, w: Gtk.Entry, *args):
+        assert self.restrictions is not None
         try:
-            value = int(w.get_text())
+            value = i8_checked(int(w.get_text()))
         except ValueError:
             return
-        self.restrictions.max_rescue_attempts = value  # type: ignore
+        self.restrictions.max_rescue_attempts = value
         self._save_dungeon_restrictions()
 
+    @catch_overflow(i8)
     def on_entry_max_items_allowed_changed(self, w: Gtk.Entry, *args):
+        assert self.restrictions is not None
         try:
-            value = int(w.get_text())
+            value = i8_checked(int(w.get_text()))
         except ValueError:
             return
-        self.restrictions.max_items_allowed = value  # type: ignore
+        self.restrictions.max_items_allowed = value
         self._save_dungeon_restrictions()
 
+    @catch_overflow(i8)
     def on_entry_max_party_members_changed(self, w: Gtk.Entry, *args):
+        assert self.restrictions is not None
         try:
-            value = int(w.get_text())
+            value = i8_checked(int(w.get_text()))
         except ValueError:
             return
-        self.restrictions.max_party_members = value  # type: ignore
+        self.restrictions.max_party_members = value
         self._save_dungeon_restrictions()
 
+    @catch_overflow(i16)
     def on_entry_turn_limit_changed(self, w: Gtk.Entry, *args):
+        assert self.restrictions is not None
         try:
-            value = int(w.get_text())
+            value = i16_checked(int(w.get_text()))
         except ValueError:
             return
-        self.restrictions.turn_limit = value  # type: ignore
+        self.restrictions.turn_limit = value
         self._save_dungeon_restrictions()
 
     # </editor-fold>

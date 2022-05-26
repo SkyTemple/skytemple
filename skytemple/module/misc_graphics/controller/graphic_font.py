@@ -52,7 +52,7 @@ class GraphicFontController(AbstractController):
         self.spec = item
         self.font: Optional[GraphicFont] = self.module.get_graphic_font(self.spec)
         
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'graphic_font.glade')

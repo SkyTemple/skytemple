@@ -43,7 +43,7 @@ class DebuggerManager:
             self._context = SkyTempleMainDebuggerControlContext(self)
 
             builder = make_builder(os.path.join(get_debugger_package_dir(), "debugger.glade"))
-            self._opened_main_window: Gtk.Window = builder.get_object("main_window")
+            self._opened_main_window = builder.get_object("main_window")
             self._opened_main_window.set_role("SkyTemple Script Engine Debugger")
             self._opened_main_window.set_title("SkyTemple Script Engine Debugger")
 
@@ -53,6 +53,7 @@ class DebuggerManager:
             self.handle_project_change()
             self.main_window = main_window
 
+        assert self._opened_main_window is not None
         self._opened_main_window.present()
 
     def close(self):
@@ -62,12 +63,14 @@ class DebuggerManager:
         """
         if not self.is_opened():
             return True
+        assert self._opened_main_controller is not None
         return not self._opened_main_controller.on_main_window_delete_event()
 
     def check_save(self):
         """Checks if unsaved files exist, if so asks the user to save them."""
         if not self.is_opened():
             return True
+        assert self._opened_main_controller is not None
         return self._opened_main_controller.editor_notebook.close_all_tabs()
 
     def destroy(self):
@@ -94,11 +97,13 @@ class DebuggerManager:
         """
         project = RomProject.get_current()
         if project is not None and self.is_opened():
+            assert self._opened_main_controller is not None
             self._opened_main_controller.load_rom()
 
     def open_ssb(self, ssb_filename, main_window):
         """Open a SSB file in the debugger and focus it."""
         self.open(main_window)
+        assert self._opened_main_controller is not None
         self._opened_main_controller.editor_notebook.open_ssb(ssb_filename)
 
     def get_context(self) -> Optional[SkyTempleMainDebuggerControlContext]:
@@ -108,11 +113,13 @@ class DebuggerManager:
     def on_script_added(self, ssb_path, mapname, scene_type, scene_name):
         """Inform the debugger about a newly created SSB file."""
         if self.is_opened():
+            assert self._opened_main_controller is not None
             self._opened_main_controller.on_script_added(ssb_path, mapname, scene_type, scene_name)
 
     def on_script_removed(self, ssb_path):
         """Inform the debugger about a removed SSB file."""
         if self.is_opened():
+            assert self._opened_main_controller is not None
             self._opened_main_controller.on_script_removed(ssb_path)
 
     # CONTEXT PRIVATE:

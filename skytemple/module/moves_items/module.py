@@ -18,6 +18,7 @@ from typing import Dict, Tuple, Optional, List
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore, TreeIter
+from range_typed_integers import u16
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.module_controller import AbstractController
@@ -31,6 +32,7 @@ from skytemple.module.moves_items.controller.main_items import MainItemsControll
 from skytemple.module.moves_items.controller.item_lists import ItemListsController
 from skytemple.module.moves_items.controller.item_keys import ItemKeysController
 from skytemple.module.moves_items.controller.move import MoveController
+from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItemCategory
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.item_p.model import ItemP, ItemPEntry
 from skytemple_files.data.item_s_p.model import ItemSP, ItemSPEntry
@@ -61,9 +63,9 @@ class MovesItemsModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self._tree_model: Optional[Gtk.TreeModel] = None
-        self._item_lists_tree_iter: Optional[Dict[str, Gtk.TreeIter]] = None
-        self._item_keys_tree_iter = None
+        self._tree_model: Gtk.TreeModel
+        self._item_lists_tree_iter: Dict[str, Gtk.TreeIter] = {}
+        self._item_keys_tree_iter: Gtk.TreeIter
         self.item_iters: Dict[int, TreeIter] = {}
         self.move_iters: Dict[int, TreeIter] = {}
 
@@ -134,7 +136,7 @@ class MovesItemsModule(AbstractModule):
 
         # Reload item categories:
         conf = self.project.get_rom_module().get_static_data()
-        cats = {x: [] for x in conf.dungeon_data.item_categories.values()}
+        cats: Dict[Pmd2DungeonItemCategory, List[int]] = {x: [] for x in conf.dungeon_data.item_categories.values()}
 
         for idx, entry in enumerate(self.get_item_p().item_list):
             cats[entry.category_pmd2obj(conf.dungeon_data.item_categories)].append(idx)
@@ -148,13 +150,13 @@ class MovesItemsModule(AbstractModule):
     def get_move(self, move_id) -> WazaMove:
         return self.get_waza_p().moves[move_id]
 
-    def get_i2n(self, in_lang: str) -> List[int]:
+    def get_i2n(self, in_lang: str) -> List[u16]:
         sp = self.project.get_string_provider()
         lang = sp.get_language(in_lang)
         i2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.i2n}", ValListHandler)
         return i2n_model.get_list()
     
-    def set_i2n(self, in_lang: str, values: List[int]):
+    def set_i2n(self, in_lang: str, values: List[u16]):
         sp = self.project.get_string_provider()
         lang = sp.get_language(in_lang)
         i2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.i2n}", ValListHandler)

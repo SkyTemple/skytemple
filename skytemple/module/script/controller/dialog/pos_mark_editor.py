@@ -58,7 +58,7 @@ class PosMarkEditorController:
         self.level = level
         self.mapbg_id = self.level.mapid
 
-        self._scale_factor = 1
+        self._scale_factor: float = 1.0
         self._bg_draw_is_clicked__location: Optional[Tuple[int, int]] = None
         self._bg_draw_is_clicked__drag_active = False
         self._map_bg_width = SIZE_REQUEST_NONE
@@ -258,5 +258,6 @@ class PosMarkEditorController:
             info_bar.destroy()
 
     def on_btn_toggle_overlay_rendering_clicked(self, *args):
+        assert self._tileset_drawer_overlay is not None
         self._tileset_drawer_overlay.enabled = not self._tileset_drawer_overlay.enabled
         self.on_tool_choose_map_bg_cb_changed(self.builder.get_object('tool_choose_map_bg_cb'))

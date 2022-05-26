@@ -18,12 +18,13 @@ import os
 from typing import TYPE_CHECKING, Optional, List, Dict
 
 from gi.repository import Gtk
+from range_typed_integers import i16, i16_checked, u8, u32, u8_checked
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import BinaryName
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import data_dir, glib_async
+from skytemple.core.ui_utils import data_dir, glib_async, catch_overflow
 from skytemple_files.common.i18n_util import _, f
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevelMapType, Pmd2ScriptLevel
@@ -41,9 +42,9 @@ SCRIPT_SCENES = _('Script Scenes')
 class MainController(AbstractController):
     def __init__(self, module: 'ScriptModule', item_id: int):
         self.module = module
-        self.builder: Optional[Gtk.Builder] = None
-        self._list: Optional[LevelListBin] = None
-        self._dungeon_tilesets: Optional[List[GroundTilesetMapping]] = None
+        self.builder: Gtk.Builder = None  # type: ignore
+        self._list: LevelListBin
+        self._dungeon_tilesets: List[GroundTilesetMapping]
         self._labels_mapid: Dict[int, str] = {}
         self._labels_maptype: Dict[int, str] = {}
         self._labels_overworld_strings: Dict[int, str] = {}
@@ -111,11 +112,12 @@ class MainController(AbstractController):
         store[path][8] = cb_store[new_iter][1]
         self._save()
 
+    @catch_overflow(i16)
     def on_cr_weather_edited(self, widget, path, text):
         store: Gtk.ListStore = self.builder.get_object('level_list_tree_store')
         try:
-            v = int(text)
-        except:
+            i16_checked(int(text))
+        except ValueError:
             return
         store[path][5] = text
         self._save()
@@ -172,11 +174,12 @@ class MainController(AbstractController):
         store[path][4] = cb_store[new_iter][1]
         self._save_td()
 
+    @catch_overflow(u8)
     def on_cr_td_floor_number_edited(self, widget, path, text):
         store: Gtk.ListStore = self.builder.get_object('dungeon_tileset_store')
         try:
-            v = int(text)
-        except:
+            u8_checked(int(text))
+        except ValueError:
             return
         store[path][5] = text
         self._save_td()
@@ -215,12 +218,12 @@ class MainController(AbstractController):
             self._labels_mapid[i] = lbl
             store.append([i, lbl])
 
-        store: Gtk.ListStore = self.builder.get_object('maptype_store')
+        store = self.builder.get_object('maptype_store')
         for val in Pmd2ScriptLevelMapType:
             self._labels_maptype[val.value] = val.name_localized
             store.append([val.value, val.name_localized])
 
-        store: Gtk.ListStore = self.builder.get_object('nameid_store')
+        store = self.builder.get_object('nameid_store')
         for i in range(0, 312):
             lbl, lbl_id = self.module.get_map_display_name(i)
             self._labels_overworld_strings[i] = lbl + f' (#{(lbl_id + 1):04})'
@@ -257,7 +260,7 @@ class MainController(AbstractController):
         dungeons = HardcodedDungeons.get_dungeon_list(
             self.module.project.get_binary(BinaryName.ARM9), static
         )
-        store: Gtk.ListStore = self.builder.get_object('td_dungeon_store')
+        store = self.builder.get_object('td_dungeon_store')
         for i, dungeon in enumerate(dungeons):
             lbl = f'{self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_SELECTION, i)} (#{i:03})'
             self._labels_td_dungeon[i] = lbl
@@ -281,7 +284,7 @@ class MainController(AbstractController):
                     mapty=row[3],
                     nameid=row[2],
                     mapid=row[4],
-                    weather=int(row[5]),
+                    weather=i16(int(row[5])),
                     name=row[1]
                 )
             )
@@ -296,8 +299,8 @@ class MainController(AbstractController):
                 GroundTilesetMapping(
                     row[1],
                     row[2],
-                    int(row[5]),
-                    0,
+                    u8(int(row[5])),
+                    u32(0),
                 )
             )
         self.module.save_dungeon_tilesets(self._dungeon_tilesets)

@@ -17,6 +17,7 @@
 from typing import Dict, Optional, Callable, Mapping, List
 
 from gi.repository import Gtk
+from range_typed_integers import u16_checked, u16
 
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine, Pmd2ScriptData
 from skytemple_files.script.ssa_sse_sss.trigger import SsaTrigger
@@ -60,7 +61,7 @@ class SsaEventDialogController:
         self._fast_set_comboxbox_store(script_cb, script_store, 1)
         # Set Script IDs Combobox
         if self.edit:
-            self._select_in_combobox_where_callback(script_cb, lambda r: self.edit.script_id == r[0])
+            self._select_in_combobox_where_callback(script_cb, lambda r: self.edit.script_id == r[0])  # type: ignore
         else:
             script_cb.set_active_iter(script_store.get_iter_first())
         # Fill Coroutine Combobox
@@ -72,7 +73,7 @@ class SsaEventDialogController:
         self._fast_set_comboxbox_store(routine_cb, routine_store, 1)
         # Set Coroutine Combobox
         if self.edit:
-            self._select_in_combobox_where_callback(routine_cb, lambda r: self.edit.coroutine.id == r[0])
+            self._select_in_combobox_where_callback(routine_cb, lambda r: self.edit.coroutine.id == r[0])  # type: ignore
         else:
             routine_cb.set_active_iter(routine_store.get_iter_first())
         # Clear / Set Unk2
@@ -93,13 +94,13 @@ class SsaEventDialogController:
             script_id = script_store[script_cb.get_active_iter()][0]
             coroutine_id = routine_store[routine_cb.get_active_iter()][0]
             try:
-                unk2 = int(self.builder.get_object('event_unk2').get_text())
-            except ValueError:
-                unk2 = 0
+                unk2 = u16_checked(int(self.builder.get_object('event_unk2').get_text()))
+            except (ValueError, OverflowError):
+                unk2 = u16(0)
             try:
-                unk3 = int(self.builder.get_object('event_unk3').get_text())
-            except ValueError:
-                unk3 = 0
+                unk3 = u16_checked(int(self.builder.get_object('event_unk3').get_text()))
+            except (ValueError, OverflowError):
+                unk3 = u16(0)
             self.new_model = SsaTrigger(
                 self.scriptdata, coroutine_id, unk2, unk3, script_id
             )

@@ -17,7 +17,7 @@
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, List
 
 import cairo
 
@@ -28,7 +28,6 @@ from skytemple_files.graphics.zmappat import *
 
 from PIL import Image
 from gi.repository import Gtk
-from gi.repository.Gtk import ResponseType
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
@@ -47,7 +46,7 @@ class ZMappaTController(AbstractController):
         self.filename = item
         self.zmappat: ZMappaT = self.module.get_dungeon_bin_file(self.filename)
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'zmappat.glade')
@@ -80,8 +79,8 @@ class ZMappaTController(AbstractController):
             for v in ZMappaTVariation:
                 fn_tiles = os.path.join(fn, f'zmappat-{v.filename}-tiles.min.png')
                 fn_masks = os.path.join(fn, f'zmappat-{v.filename}-masks.min.png')
-                surface = self.zmappat.to_pil_tiles_minimized(v).save(fn_tiles, "PNG")
-                mask = self.zmappat.to_pil_masks_minimized(v).save(fn_masks, "PNG")
+                self.zmappat.to_pil_tiles_minimized(v).save(fn_tiles, "PNG")
+                self.zmappat.to_pil_masks_minimized(v).save(fn_masks, "PNG")
 
     def on_export_full_activate(self, *args):
         dialog = Gtk.FileChooserNative.new(
@@ -99,8 +98,8 @@ class ZMappaTController(AbstractController):
             for v in ZMappaTVariation:
                 fn_tiles = os.path.join(fn, f'zmappat-{v.filename}-tiles.png')
                 fn_masks = os.path.join(fn, f'zmappat-{v.filename}-masks.png')
-                surface = self.zmappat.to_pil_tiles(v).save(fn_tiles, "PNG")
-                mask = self.zmappat.to_pil_masks(v).save(fn_masks, "PNG")
+                self.zmappat.to_pil_tiles(v).save(fn_tiles, "PNG")
+                self.zmappat.to_pil_masks(v).save(fn_masks, "PNG")
         
     def on_import_minimized_activate(self, *args):
         md = SkyTempleMessageDialog(
@@ -126,8 +125,8 @@ class ZMappaTController(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT:
             try:
-                imgs = [None]*ZMAPPAT_NB_VARIATIONS
-                masks = [None]*ZMAPPAT_NB_VARIATIONS
+                imgs: List[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
+                masks: List[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
                 for v in ZMappaTVariation:
                     fn_tiles = os.path.join(fn, f'zmappat-{v.filename}-tiles.min.png')
                     fn_masks = os.path.join(fn, f'zmappat-{v.filename}-masks.min.png')
@@ -182,8 +181,8 @@ class ZMappaTController(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT:
             try:
-                imgs = [None]*ZMAPPAT_NB_VARIATIONS
-                masks = [None]*ZMAPPAT_NB_VARIATIONS
+                imgs: List[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
+                masks: List[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
                 for v in ZMappaTVariation:
                     fn_tiles = os.path.join(fn, f'zmappat-{v.filename}-tiles.png')
                     fn_masks = os.path.join(fn, f'zmappat-{v.filename}-masks.png')
@@ -212,11 +211,11 @@ class ZMappaTController(AbstractController):
         cb: Gtk.ComboBoxText = self.builder.get_object('zmappat_variation')
         v : int = cb_store[cb.get_active_iter()][0]
         if self.builder.get_object('switch_minimized').get_active():
-            surface = self.zmappat.to_pil_tiles_minimized(ZMappaTVariation(v))
-            mask = self.zmappat.to_pil_masks_minimized(ZMappaTVariation(v))
+            surface = self.zmappat.to_pil_tiles_minimized(ZMappaTVariation(v))  # type: ignore
+            mask = self.zmappat.to_pil_masks_minimized(ZMappaTVariation(v))  # type: ignore
         else:
-            surface = self.zmappat.to_pil_tiles(ZMappaTVariation(v))
-            mask = self.zmappat.to_pil_masks(ZMappaTVariation(v))
+            surface = self.zmappat.to_pil_tiles(ZMappaTVariation(v))  # type: ignore
+            mask = self.zmappat.to_pil_masks(ZMappaTVariation(v))  # type: ignore
         surface = surface.resize((surface.width*4, surface.height*4))
         self.surface = pil_to_cairo_surface(surface.convert('RGBA'))
         mask = mask.resize((mask.width*4, mask.height*4))

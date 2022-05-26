@@ -16,12 +16,13 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Dict
+from typing import TYPE_CHECKING, Dict, List
 
 from gi.repository import Gtk
+from range_typed_integers import u8, u16, u16_checked, u8_checked
 
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import glib_async
+from skytemple.core.ui_utils import glib_async, catch_overflow
 from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
 from skytemple_files.common.i18n_util import _
 from skytemple_files.user_error import UserValueError
@@ -36,31 +37,35 @@ logger = logging.getLogger(__name__)
 class RecruitmentListController(ListBaseController):
     def __init__(self, module: 'ListsModule', *args):
         super().__init__(module, *args)
-        self._species, self._levels, self._locations = None, None, None
+        self._species: List[u16]
+        self._levels: List[u16]
+        self._locations: List[u8]
         self._location_names: Dict[int, str] = {}
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'recruitment_list.glade')
         lst: Gtk.Box = self.builder.get_object('box_list')
-        self._species, self._levels, self._locations = self.module.get_recruitment_list()  # type: ignore
+        self._species, self._levels, self._locations = self.module.get_recruitment_list()
 
         self._init_locations_store()
         self.load()
         return lst
 
+    @catch_overflow(u16)
     def on_cr_level_edited(self, widget, path, text):
         try:
-            int(text)  # this is only for validating.
+            u16_checked(int(text))  # this is only for validating.
         except ValueError:
             return
         self._list_store[path][1] = text
 
+    @catch_overflow(u16)
     def on_cr_entity_edited(self, widget, path, text):
         match = PATTERN_MD_ENTRY.match(text)
         if match is None:
             return
         try:
-            entid = int(match.group(1))
+            entid = u16_checked(int(match.group(1)))
         except ValueError:
             return
         idx = int(self._list_store[path][0])
@@ -74,12 +79,13 @@ class RecruitmentListController(ListBaseController):
         # ent_icon:
         self._list_store[path][3] = self._get_icon(entid, idx, False)
 
+    @catch_overflow(u8)
     def on_cr_location_edited(self, widget, path, text):
         match = PATTERN_LOCATION_ENTRY.match(text)
         if match is None:
             return
         try:
-            location_id = int(match.group(1))
+            location_id = u8_checked(int(match.group(1)))
         except ValueError:
             return
 
@@ -101,9 +107,9 @@ class RecruitmentListController(ListBaseController):
             return
         a_id, level, location_id, ent_icon, entid, location_name, ent_name = store[path][:]
         a_id = int(a_id)
-        self._species[a_id] = int(entid)
-        self._levels[a_id] = int(level)
-        self._locations[a_id] = int(location_id)
+        self._species[a_id] = u16(int(entid))
+        self._levels[a_id] = u16(int(level))
+        self._locations[a_id] = u8(int(location_id))
         logger.debug(f"Updated list entry {a_id}: {entid}, {level}, {location_id}")
 
         self.module.set_recruitment_list(self._species, self._levels, self._locations)

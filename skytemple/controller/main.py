@@ -20,7 +20,7 @@ import sys
 import traceback
 import webbrowser
 from threading import current_thread
-from typing import Optional, List, Type
+from typing import Optional, List, Type, TYPE_CHECKING
 import packaging.version
 
 import gi
@@ -33,7 +33,6 @@ from skytemple.controller.tilequant import TilequantController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.controller_loader import load_controller
 from skytemple.core.error_handler import display_error, capture_error
-from skytemple.core.events import impl
 from skytemple.core.events.events import EVT_VIEW_SWITCH, EVT_PROJECT_OPEN
 from skytemple.core.events.manager import EventManager
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -49,6 +48,10 @@ from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item
 from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.common.version_util import check_newest_release, ReleaseType, get_event_banner
+
+if TYPE_CHECKING:
+    from skytemple.module.map_bg.module import MapBgModule
+
 
 gi.require_version('Gtk', '3.0')
 
@@ -72,8 +75,10 @@ class MainController:
 
     @classmethod
     def reload_project(cls):
-        if RomProject.get_current().filename:
-            cls._instance._open_file(RomProject.get_current().filename)
+        current = RomProject.get_current()
+        assert current is not None
+        if current.filename:
+            cls._instance._open_file(current.filename)
 
     @classmethod
     def save(cls, after_save_action=None):
@@ -100,11 +105,11 @@ class MainController:
         self._load_support_images()
 
         # Created on demand
-        self._loading_dialog: Gtk.Dialog = None
-        self._main_item_list: Gtk.TreeView = None
-        self._main_item_filter: Gtk.TreeModel = None
-        self._last_selected_view_model = None
-        self._last_selected_view_iter = None
+        self._loading_dialog: Gtk.Dialog
+        self._main_item_list: Gtk.TreeView
+        self._main_item_filter: Gtk.TreeModel
+        self._last_selected_view_model: Optional[Gtk.TreeModel] = None
+        self._last_selected_view_iter: Optional[Gtk.TreeIter] = None
 
         self._recent_files_store: Gtk.ListStore = self.builder.get_object('recent_files_store')
         self._item_store: Gtk.TreeStore = builder.get_object('item_store')
@@ -119,7 +124,7 @@ class MainController:
         self._current_view_controller_class: Optional[Type[AbstractController]] = None
         self._current_view_item_id: Optional[int] = None
         self._resize_timeout_id: Optional[int] = None
-        self._loaded_map_bg_module = None
+        self._loaded_map_bg_module: Optional['MapBgModule'] = None
         self._current_breadcrumbs: List[str] = []
         self._after_save_action = None
 
@@ -219,9 +224,11 @@ class MainController:
 
     def on_save_as_button_clicked(self, wdg):
         project = RomProject.get_current()
+        if project is None:
+            return
 
         dialog = Gtk.FileChooserNative.new(
-            "Save As...",
+            _("Save As..."),
             self._window,
             Gtk.FileChooserAction.SAVE,
             None, None
@@ -291,12 +298,13 @@ class MainController:
         assert current_thread() == main_thread
         logger.debug('File opened.')
         # Init the sprite provider
-        RomProject.get_current().get_sprite_provider().init_loader(self._window.get_screen())
+        project = RomProject.get_current()
+        assert project is not None
+        project.get_sprite_provider().init_loader(self._window.get_screen())
 
-        self._init_window_after_rom_load(os.path.basename(RomProject.get_current().filename))
+        self._init_window_after_rom_load(os.path.basename(project.filename))
         try:
             # Load root node, ROM
-            project = RomProject.get_current()
             rom_module = project.get_rom_module()
             rom_module.load_rom_data()
             
@@ -317,7 +325,7 @@ class MainController:
                 logger.debug(f"Loading {module.__class__.__name__} module tree items...")
                 module.load_tree_items(self._item_store, root_node)
                 if module.__class__.__name__ == 'MapBgModule':
-                    self._loaded_map_bg_module = module
+                    self._loaded_map_bg_module = module  # type: ignore
             # TODO: Load settings from ROM for history, bookmarks, etc? - separate module?
             logger.debug(f"Loaded all modules.")
 
@@ -359,11 +367,12 @@ class MainController:
             self._loading_dialog = None
 
         rom = RomProject.get_current()
-        self._set_title(os.path.basename(rom.filename), False)
-        recursive_down_item_store_mark_as_modified(self._item_store[self._item_store.get_iter_first()], False)
-        if self._after_save_action is not None:
-            self._after_save_action()
-            self._after_save_action = None
+        if rom is not None:
+            self._set_title(os.path.basename(rom.filename), False)
+            recursive_down_item_store_mark_as_modified(self._item_store[self._item_store.get_iter_first()], False)
+            if self._after_save_action is not None:
+                self._after_save_action()
+                self._after_save_action = None
 
     def on_file_saved_error(self, exc_info, exception):
         """Handle errors during file saving."""
@@ -561,7 +570,7 @@ class MainController:
         # TODO. Following code disables CSD.
         return
         self._window.set_titlebar(None)
-        main_box: Box = self._window.get_child()
+        main_box: Gtk.Box = self._window.get_child()
         main_box.add(tb)
         main_box.reorder_child(tb, 0)
         tb.set_show_close_button(False)
@@ -769,7 +778,7 @@ class MainController:
     def _save(self, force=False, after_save_action=None):
         rom = RomProject.get_current()
 
-        if rom.has_modifications() or force:
+        if rom is not None and (rom.has_modifications() or force):
             self._after_save_action = after_save_action
             self._loading_dialog = self.builder.get_object('file_opening_dialog')
             # noinspection PyUnusedLocal
@@ -780,7 +789,7 @@ class MainController:
             logger.debug(f(_('Saving {rom.filename}.')))
 
             # This will trigger a signal.
-            rom.save(self)
+            rom.save(self)  # type: ignore
             self._loading_dialog.run()
 
     def _show_are_you_sure(self, rom):
@@ -860,7 +869,8 @@ class MainController:
                 image.set_from_pixbuf(pixbuf)
 
                 def open_web(*args):
-                    webbrowser.open_new_tab(url)
+                    if url is not None:
+                        webbrowser.open_new_tab(url)
 
                 def cursor_change(w: Gtk.Widget, evt: Gdk.EventCrossing):
                     cursor = None

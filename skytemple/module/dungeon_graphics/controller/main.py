@@ -35,7 +35,7 @@ class MainController(AbstractController):
     def __init__(self, module: 'DungeonGraphicsModule', *args):
         self.module = module
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self.lst = self.module.get_tileset_properties()
 
     def get_view(self) -> Gtk.Widget:

@@ -46,7 +46,7 @@ class ObjectController(AbstractController):
         self._draws: List[Gtk.DrawingArea] = []
         self._surfaces: List[cairo.Surface] = []
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'object.glade')

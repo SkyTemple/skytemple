@@ -37,6 +37,11 @@ from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple.core.string_provider import StringType
 from skytemple.core.module_controller import AbstractController
 from skytemple_files.common.i18n_util import f, _
+from skytemple_files.graphics.dma.model import Dma
+from skytemple_files.graphics.dpc.model import Dpc
+from skytemple_files.graphics.dpci.model import Dpci
+from skytemple_files.graphics.dpl.model import Dpl
+from skytemple_files.graphics.dpla.model import Dpla
 
 logger = logging.getLogger(__name__)
 
@@ -51,13 +56,13 @@ class ColvecController(AbstractController):
         self.filename = item
         self.colvec: Colvec = self.module.get_colvec()
         
-        self.dma = None
-        self.dpl = None
-        self.dpla = None
-        self.dpc = None
-        self.dpci = None
+        self.dma: Dma
+        self.dpl: Dpl
+        self.dpla: Dpla
+        self.dpc: Dpc
+        self.dpci: Dpci
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'colvec.glade')
@@ -156,8 +161,8 @@ class ColvecController(AbstractController):
         cb.set_active(0)
         
         # Init available tilesets
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_tileset_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_tileset')
+        cb_store = self.builder.get_object('cb_tileset_store')
+        cb = self.builder.get_object('cb_tileset')
         self._fill_available_tilesets_into_store(cb_store)
         self._load_tileset(0)
         cb.set_active(0)

@@ -18,8 +18,10 @@ import logging
 from typing import TYPE_CHECKING, Optional, Dict
 
 from gi.repository import Gtk
+from range_typed_integers import u8_checked, u8
 
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import catch_overflow
 from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
 from skytemple_files.common.i18n_util import _
 from skytemple_files.user_error import UserValueError
@@ -143,16 +145,18 @@ class StartersListController(ListBaseController):
             ] = w.get_text()
         self.module.mark_str_as_modified()
 
+    @catch_overflow(u8)
     def on_player_start_level_changed(self, w: Gtk.Entry):
         try:
-            val = int(w.get_text())
+            val = u8_checked(int(w.get_text()))
         except ValueError:
             return
         self.module.set_starter_level_player(val)
 
+    @catch_overflow(u8)
     def on_partner_start_level_changed(self, w: Gtk.Entry):
         try:
-            val = int(w.get_text())
+            val = u8_checked(int(w.get_text()))
         except ValueError:
             return
         self.module.set_starter_level_partner(val)

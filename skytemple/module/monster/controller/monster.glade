@@ -2468,7 +2468,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
                                         <property name="width-chars">10</property>
-                                        <signal name="changed" handler="on_entry_evo_stats_changed" swapped="no"/>
+                                        <signal name="changed" handler="on_entry_entry_hp_bonus_changed" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="left-attach">1</property>
@@ -2528,7 +2528,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
                                         <property name="width-chars">10</property>
-                                        <signal name="changed" handler="on_entry_evo_stats_changed" swapped="no"/>
+                                        <signal name="changed" handler="on_entry_entry_atk_bonus_changed" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="left-attach">1</property>
@@ -2540,7 +2540,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
                                         <property name="width-chars">10</property>
-                                        <signal name="changed" handler="on_entry_evo_stats_changed" swapped="no"/>
+                                        <signal name="changed" handler="on_entry_entry_spatk_bonus_changed" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="left-attach">1</property>
@@ -2552,7 +2552,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
                                         <property name="width-chars">10</property>
-                                        <signal name="changed" handler="on_entry_evo_stats_changed" swapped="no"/>
+                                        <signal name="changed" handler="on_entry_entry_def_bonus_changed" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="left-attach">1</property>
@@ -2564,7 +2564,7 @@ If you choose to export both genders, upon import the matching gender entry will
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
                                         <property name="width-chars">10</property>
-                                        <signal name="changed" handler="on_entry_evo_stats_changed" swapped="no"/>
+                                        <signal name="changed" handler="on_entry_entry_spdef_bonus_changed" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="left-attach">1</property>

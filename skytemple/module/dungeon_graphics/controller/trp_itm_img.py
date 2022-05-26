@@ -53,7 +53,7 @@ class TrpItmImgController(AbstractController):
         self.img_type = img_type
         self.img: Union[ImgItm, ImgTrp] = self.module.get_icons(img_type)
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self.image_idx = 0
         self.palette_idx = 0
 

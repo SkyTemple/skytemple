@@ -19,10 +19,11 @@ from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
 from gi.repository.Gtk import Widget
+from range_typed_integers import u8, u8_checked, u16_checked, u16
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import glib_async
+from skytemple.core.ui_utils import glib_async, catch_overflow
 from skytemple.module.dungeon import MAX_ITEMS, SPECIAL_ITEMS, SPECIAL_MONSTERS
 from skytemple_files.data.md.model import MdProperties
 from skytemple_files.dungeon_data.fixed_bin.model import TileRuleType
@@ -43,7 +44,7 @@ class FixedRoomsController(AbstractController):
 
     def __init__(self, module: 'DungeonModule', item_id: int):
         self.module = module
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self.lst_entity, self.lst_item, self.lst_monster, self.lst_tile, self.lst_stats = \
             module.get_fixed_floor_entity_lists()
 
@@ -220,11 +221,12 @@ class FixedRoomsController(AbstractController):
     def on_cr_tiles_bf1_7_toggled(self, widget, path):
         self._set_tiles_trap_data_bitflag(7, not widget.get_active(), path)
 
+    @catch_overflow(u8)
     def on_cr_tiles_room_id_edited(self, widget, path, text):
         store: Gtk.Store = self.builder.get_object('model_tiles')
         try:
-            v = int(text)
-        except:
+            v = u8_checked(int(text))
+        except ValueError:
             return
         store[path][10] = text
         self.lst_tile[int(store[path][0])].room_id = v
@@ -266,13 +268,14 @@ class FixedRoomsController(AbstractController):
     def on_cr_items_item_name_editing_started(self, renderer, editable, path):
         editable.set_completion(self.builder.get_object('completion_items'))
 
+    @catch_overflow(u16)
     def on_cr_items_item_name_edited(self, widget, path, text):
         store: Gtk.Store = self.builder.get_object('model_items')
         match = PATTERN.match(text)
         if match is None:
             return
         try:
-            idx = int(match.group(1))
+            idx = u16_checked(int(match.group(1)))
         except ValueError:
             return
         store[path][1] = idx
@@ -280,10 +283,11 @@ class FixedRoomsController(AbstractController):
         self.lst_item[int(store[path][0])].item_id = idx
         self._save()
 
+    @catch_overflow(u16)
     def on_cr_items_item_quantity_edited(self, widget, path, text):
         store: Gtk.Store = self.builder.get_object('model_items')
         try:
-            quantity = int(text)
+            quantity = u16_checked(int(text))
         except ValueError:
             return
         self.lst_item[int(store[path][0])].quantity = quantity
@@ -293,13 +297,14 @@ class FixedRoomsController(AbstractController):
     def on_cr_monsters_monster_editing_started(self, renderer, editable, path):
         editable.set_completion(self.builder.get_object('completion_monsters'))
 
+    @catch_overflow(u16)
     def on_cr_monsters_monster_edited(self, widget, path, text):
         store: Gtk.Store = self.builder.get_object('model_monsters')
         match = PATTERN.match(text)
         if match is None:
             return
         try:
-            idx = int(match.group(1))
+            idx = u16_checked(int(match.group(1)))
         except ValueError:
             return
         store[path][1] = idx
@@ -313,7 +318,7 @@ class FixedRoomsController(AbstractController):
         cb_store: Gtk.Store = self.builder.get_object('model_monsters__type')
         store[path][3] = cb_store[new_iter][0]
         store[path][4] = cb_store[new_iter][1]
-        self.lst_monster[int(store[path][0])].enemy_settings = MonsterSpawnType(cb_store[new_iter][0])
+        self.lst_monster[int(store[path][0])].enemy_settings = MonsterSpawnType(cb_store[new_iter][0])  # type: ignore
         self._save()
 
     @glib_async
@@ -325,81 +330,89 @@ class FixedRoomsController(AbstractController):
         self.lst_monster[int(store[path][0])].stats_entry = cb_store[new_iter][0]
         self._save()
 
+    @catch_overflow(u16)
     def on_cr_stats_level_edited(self, widget, path, text):
         store: Gtk.Store = self.builder.get_object('model_stats')
         try:
-            v = int(text)
-        except:
+            v = u16_checked(int(text))
+        except ValueError:
             return
         store[path][1] = text
         self.lst_stats[int(store[path][0])].level = v
         self._save()
 
+    @catch_overflow(u16)
     def on_cr_stats_hp_edited(self, widget, path, text):
         store: Gtk.Store = self.builder.get_object('model_stats')
         try:
-            v = int(text)
-        except:
+            v = u16_checked(int(text))
+        except ValueError:
             return
         store[path][2] = text
         self.lst_stats[int(store[path][0])].hp = v
         self._save()
 
+    @catch_overflow(u16)
     def on_cr_stats_exp_yield_edited(self, widget, path, text):
         store: Gtk.Store = self.builder.get_object('model_stats')
         try:
-            v = int(text)
-        except:
+            v = u16_checked(int(text))
+        except ValueError:
             return
         store[path][3] = text
         self.lst_stats[int(store[path][0])].exp_yield = v
         self._save()
 
+    @catch_overflow(u8)
     def on_cr_stats_atk_edited(self, widget, path, text):
         store: Gtk.Store = self.builder.get_object('model_stats')
         try:
-            v = int(text)
-        except:
+            v = u8_checked(int(text))
+        except ValueError:
             return
         store[path][4] = text
         self.lst_stats[int(store[path][0])].attack = v
         self._save()
 
+    @catch_overflow(u8)
     def on_cr_stats_sp_atk_edited(self, widget, path, text):
         store: Gtk.Store = self.builder.get_object('model_stats')
         try:
-            v = int(text)
-        except:
+            v = u8_checked(int(text))
+        except ValueError:
             return
         store[path][5] = text
         self.lst_stats[int(store[path][0])].special_attack = v
         self._save()
 
+    @catch_overflow(u8)
     def on_cr_stats_def_edited(self, widget, path, text):
         store: Gtk.Store = self.builder.get_object('model_stats')
         try:
-            v = int(text)
-        except:
+            v = u8_checked(int(text))
+        except ValueError:
             return
         store[path][6] = text
         self.lst_stats[int(store[path][0])].defense = v
         self._save()
 
+    @catch_overflow(u8)
     def on_cr_stats_sp_def_edited(self, widget, path, text):
         store: Gtk.Store = self.builder.get_object('model_stats')
         try:
-            v = int(text)
-        except:
+            v = u8_checked(int(text))
+        except ValueError:
             return
         store[path][7] = text
         self.lst_stats[int(store[path][0])].special_defense = v
         self._save()
 
+    @catch_overflow(u16)
     def on_cr_stats_unka_edited(self, widget, path, text):
         store: Gtk.Store = self.builder.get_object('model_stats')
         try:
-            v = int(text)
-        except:
+            v = u16_checked(int(text))
+        except ValueError:
             return
         store[path][8] = text
         self.lst_stats[int(store[path][0])].unkA = v
@@ -412,7 +425,7 @@ class FixedRoomsController(AbstractController):
         for i in range(0, len(self.lst_tile)):
             store.append([i, f"{_('Tile')} {i} ({self.module.desc_fixed_floor_tile(self.lst_tile[i])})"])
         # Init Monsters Store
-        store: Gtk.ListStore = self.builder.get_object('model_entities__monsters')
+        store = self.builder.get_object('model_entities__monsters')
         store.clear()
         for i in range(0, len(self.lst_monster)):
             monster = self.lst_monster[i]
@@ -421,13 +434,13 @@ class FixedRoomsController(AbstractController):
             )
             store.append([i, f"Pokémon {i} ({monster_desc})"])
         # Init Items Store
-        store: Gtk.ListStore = self.builder.get_object('model_entities__items')
+        store = self.builder.get_object('model_entities__items')
         store.clear()
         for i in range(0, len(self.lst_item)):
             store.append([i, f"{_('Item')} {i} ({self.module.desc_fixed_floor_item(self.lst_item[i].item_id)})"])
 
         # Init Entities Store
-        store: Gtk.ListStore = self.builder.get_object('model_entities')
+        store = self.builder.get_object('model_entities')
         store.clear()
         reserved_ids = [x.value for x in TileRuleType]
         for idx, entity in enumerate(self.lst_entity):
@@ -490,7 +503,7 @@ class FixedRoomsController(AbstractController):
             store.append([item])
 
         # Init Monsters Types
-        store: Gtk.ListStore = self.builder.get_object('model_monsters__type')
+        store = self.builder.get_object('model_monsters__type')
         for i, entry in enumerate(self.enemy_settings_name):
             store.append([i, entry])
 
@@ -502,7 +515,7 @@ class FixedRoomsController(AbstractController):
             store.append([i, self._generate_stats_label(i, entry)])
 
         # Init Monsters Store
-        store: Gtk.ListStore = self.builder.get_object('model_monsters')
+        store = self.builder.get_object('model_monsters')
         store.clear()
         for idx, monster in enumerate(self.lst_monster):
             store.append([

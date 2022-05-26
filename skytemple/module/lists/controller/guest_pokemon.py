@@ -43,7 +43,7 @@ class GuestPokemonController(ListBaseController):
     def __init__(self, module: 'ListsModule', item_id: int):
         super().__init__(module)
         self.module = module
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self.arm9 = module.project.get_binary(BinaryName.ARM9)
         self.static_data = module.project.get_rom_module().get_static_data()
         self.monster_md_entries = self.module.get_monster_md().entries
