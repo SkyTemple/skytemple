@@ -127,6 +127,7 @@ class MainController:
         self._loaded_map_bg_module: Optional['MapBgModule'] = None
         self._current_breadcrumbs: List[str] = []
         self._after_save_action = None
+        self.csd_enabled = self.settings.csd_enabled()
 
         if not sys.platform.startswith('darwin'):
             # Don't load the window position on macOS to prevent
@@ -564,16 +565,17 @@ class MainController:
 
     def _configure_csd(self):
         tb: Gtk.HeaderBar = self._window.get_titlebar()
-        # On macOS, the buttons need to be on the left.
-        if sys.platform.startswith('darwin'):
-            tb.set_decoration_layout("close,minimize,maximize,menu:")
-        # TODO. Following code disables CSD.
-        return
-        self._window.set_titlebar(None)
-        main_box: Gtk.Box = self._window.get_child()
-        main_box.add(tb)
-        main_box.reorder_child(tb, 0)
-        tb.set_show_close_button(False)
+        if self.csd_enabled:
+            # On macOS, the buttons need to be on the left.
+            if sys.platform.startswith('darwin'):
+                tb.set_decoration_layout("close,minimize,maximize,menu:")
+        else:
+            self._window.set_titlebar(None)
+            main_box: Gtk.Box = self._window.get_child()
+            main_box.add(tb)
+            main_box.reorder_child(tb, 0)
+            tb.set_show_close_button(False)
+            tb.set_title("")
 
     def _load_icon(self):
         if not self._window.get_icon():
@@ -739,7 +741,6 @@ class MainController:
         self.builder.get_object('save_as_button').set_sensitive(True)
         self.builder.get_object('main_item_list_search').set_sensitive(True)
         self.builder.get_object('debugger_button').set_sensitive(True)
-        # TODO: Titlebar for Non-CSD situation
         self._set_title(rom_name, False)
 
     def _init_window_before_view_load(self, node: Gtk.TreeModelRow):
@@ -763,9 +764,11 @@ class MainController:
             logger.warning("Failed updating window titles.", exc_info=ex)
 
     def _set_title(self, rom_name, is_modified):
-        # TODO: Titlebar for Non-CSD situation
-        tb: Gtk.HeaderBar = self._window.get_titlebar()
-        tb.set_title(f"{'*' if is_modified else ''}{rom_name} (SkyTemple)")
+        if self.csd_enabled:
+            tb: Gtk.HeaderBar = self._window.get_titlebar()
+            tb.set_title(f"{'*' if is_modified else ''}{rom_name} (SkyTemple)")
+        else:
+            self._window.set_title(f"{'*' if is_modified else ''}{rom_name} (SkyTemple)")
 
     def _lock_trees(self):
         # TODO: Lock the other two!

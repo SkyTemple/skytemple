@@ -241,7 +241,7 @@ the top-right of the main window.</property>
           </packing>
         </child>
         <child>
-          <!-- n-columns=3 n-rows=10 -->
+          <!-- n-columns=3 n-rows=11 -->
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
@@ -516,7 +516,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">7</property>
+                <property name="top-attach">8</property>
                 <property name="width">3</property>
               </packing>
             </child>
@@ -528,7 +528,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">8</property>
+                <property name="top-attach">9</property>
               </packing>
             </child>
             <child>
@@ -544,7 +544,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">9</property>
+                <property name="top-attach">10</property>
                 <property name="width">3</property>
               </packing>
             </child>
@@ -557,7 +557,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">8</property>
+                <property name="top-attach">9</property>
               </packing>
             </child>
             <child>
@@ -567,8 +567,34 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
               </object>
               <packing>
                 <property name="left-attach">2</property>
-                <property name="top-attach">8</property>
+                <property name="top-attach">9</property>
               </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">Use Client Side Decorations</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">7</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="setting_csd_enable">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">7</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
             </child>
           </object>
           <packing>

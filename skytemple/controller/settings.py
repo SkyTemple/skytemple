@@ -122,6 +122,11 @@ class SettingsController:
         settings_allow_sentry_enable = self.builder.get_object('setting_allow_sentry')
         settings_allow_sentry_enable.set_active(allow_sentry_previous)
 
+        # CSD
+        csd_before = self.settings.csd_enabled()
+        settings_csd_enable = self.builder.get_object('setting_csd_enable')
+        settings_csd_enable.set_active(csd_before)
+
         response = self.window.run()
 
         have_to_restart = False
@@ -173,6 +178,13 @@ class SettingsController:
                 else:
                     from skytemple.core import sentry
                     sentry.init()
+
+            # CSD
+            csd_new = settings_csd_enable.get_active()
+            before_csd = self.settings.csd_enabled()
+            if before_csd != csd_new:
+                self.settings.set_csd_enabled(csd_new)
+                have_to_restart = True
 
         self.window.hide()
 
