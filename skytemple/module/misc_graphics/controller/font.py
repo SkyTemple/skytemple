@@ -21,6 +21,8 @@ from typing import TYPE_CHECKING, Optional, Dict, List, Tuple
 
 from xml.etree.ElementTree import Element, ElementTree
 
+from range_typed_integers import u8
+
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple_files.common.xml_util import prettify
 
@@ -53,7 +55,7 @@ class FontController(AbstractController):
         self.spec = item
         self.font: Optional[AbstractFont] = self.module.get_font(self.spec)
         
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'font.glade')
@@ -143,6 +145,7 @@ class FontController(AbstractController):
             self._init_font()
         
     def _init_font(self):
+        assert self.font is not None
         # Init available tables
         self.tables = self.font.to_pil()
         
@@ -154,7 +157,7 @@ class FontController(AbstractController):
 
     def _add_property_row(self, store, entry):
         prop = entry.get_properties()
-        row = [None]*len(self.entry_properties)
+        row: List[Optional[str]] = [None] * len(self.entry_properties)
         for i, c in enumerate(self.entry_properties):
             if c in prop:
                 row[i] = str(prop[c])
@@ -163,9 +166,10 @@ class FontController(AbstractController):
     def _switch_table(self):
         cb_store: Gtk.ListStore = self.builder.get_object('table_store')
         cb: Gtk.ComboBoxText = self.builder.get_object('cb_table_select')
-        if cb.get_active_iter()!=None:
-            v : int = cb_store[cb.get_active_iter()][0]
-            self.entries = self.font.get_entries_from_table(v)
+        if cb.get_active_iter() is not None:
+            assert self.font is not None
+            v: int = cb_store[cb.get_active_iter()][0]
+            self.entries = self.font.get_entries_from_table(u8(v))
             
             entry_tree: Gtk.TreeView = self.builder.get_object('entry_tree')
             store: Gtk.ListStore = entry_tree.get_model()
@@ -205,13 +209,14 @@ class FontController(AbstractController):
         if resp == ResponseType.OK:
             cb_store: Gtk.ListStore = self.builder.get_object('table_store')
             cb: Gtk.ComboBoxText = self.builder.get_object('cb_table_select')
-            v : int = cb_store[cb.get_active_iter()][0]
+            v: int = cb_store[cb.get_active_iter()][0]
             char = int(self.builder.get_object('entry_char_id').get_text())
             try:
                 for e in self.entries:
-                    if e.get_properties()["char"]==char:
+                    if e.get_properties()["char"] == char:
                         raise ValueError(f(_("Character {char} already exists in the table!")))
-                entry = self.font.create_entry_for_table(v)
+                assert self.font is not None
+                entry = self.font.create_entry_for_table(u8(v))
                 entry.set_properties({"char": char})
                 self.entries.append(entry)
                 
@@ -232,7 +237,8 @@ class FontController(AbstractController):
         entry_tree: Gtk.TreeView = self.builder.get_object('entry_tree')
         active_rows : List[Gtk.TreePath] = entry_tree.get_selection().get_selected_rows()[1]
         store: Gtk.ListStore = entry_tree.get_model()
-        for x in sorted(active_rows, key=lambda x:-x.get_indices()[0]):
+        assert self.font is not None
+        for x in sorted(active_rows, key=lambda x: -x.get_indices()[0]):
             elt = self.entries[x.get_indices()[0]]
             self.font.delete_entry(elt)
             del self.entries[x.get_indices()[0]]

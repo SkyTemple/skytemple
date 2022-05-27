@@ -30,24 +30,16 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-import sys
-import webbrowser
-from typing import TYPE_CHECKING, Optional, List, Dict
-
-from skytemple_files.common.i18n_util import _, f
+from typing import TYPE_CHECKING, List, Dict
 
 from gi.repository import Gtk
 
-from skytemple_files.data.anim import *
-from skytemple_files.data.anim.model import *
 from skytemple.core.ui_utils import glib_async
-from skytemple.core.error_handler import display_error
-from skytemple.controller.main import MainController
-from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple_files.common.util import open_utf8
 from skytemple.module.lists.controller.base import PATTERN_MD_ENTRY
+from skytemple_files.data.anim import SPECIAL_MOVE_DATA_SIZE, MOVE_DATA_SIZE, GENERAL_DATA_SIZE
+from skytemple_files.data.anim.model import AnimType, AnimPointType, SpecMoveAnim, MoveAnim, GeneralAnim
 
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
@@ -55,11 +47,13 @@ from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
 
-mapping = {"traps_store":"trap_table",
-           "items_store":"item_table",
-           "general_store":"general_table",
-           "moves_store":"move_table",
-           "spec_store":"special_move_table"}
+mapping = {"traps_store": "trap_table",
+           "items_store": "item_table",
+           "general_store": "general_table",
+           "moves_store": "move_table",
+           "spec_store": "special_move_table"}
+
+
 class AnimationsController(AbstractController):
     def __init__(self, module: 'ListsModule', *args):
         super().__init__(module, *args)
@@ -76,7 +70,7 @@ class AnimationsController(AbstractController):
             return stack
         self.animations = self.module.get_animations()
 
-        self._ent_names: Dict[str, str] = dict()
+        self._ent_names: Dict[int, str] = dict()
         self._init_monster_store()
         self._init_combos()
         self._init_trees()
@@ -103,26 +97,25 @@ class AnimationsController(AbstractController):
         for v in AnimType:
             store.append([v.value, v.description])
 
-        
         store = self.builder.get_object('point_store')
         store.clear()
-        for v in AnimPointType:
-            store.append([v.value, v.description])
+        for v2 in AnimPointType:
+            store.append([v2.value, v2.description])
         
         tree_store: Gtk.ListStore = self.builder.get_object('traps_store')
         tree_store.clear()
         tmp_view = []
         for i, e in enumerate(self.animations.trap_table):
-            tmp_view.append([i,self._string_provider.get_value(StringType.TRAP_NAMES, i),e.anim])
-        for x in sorted(tmp_view,key=lambda x:x[1]):
+            tmp_view.append([i, self._string_provider.get_value(StringType.TRAP_NAMES, i), e.anim])
+        for x in sorted(tmp_view,key=lambda x: x[1]):
             tree_store.append(x)
         
         tree_store = self.builder.get_object('items_store')
         tree_store.clear()
         tmp_view = []
         for i, e in enumerate(self.animations.item_table):
-            tmp_view.append([i,self._string_provider.get_value(StringType.ITEM_NAMES, i),e.anim1,e.anim2])
-        for x in sorted(tmp_view,key=lambda x:x[1]):
+            tmp_view.append([i, self._string_provider.get_value(StringType.ITEM_NAMES, i), e.anim1, e.anim2])
+        for x in sorted(tmp_view, key=lambda x: x[1]):
             tree_store.append(x)
 
         self._update_general()
@@ -140,9 +133,11 @@ class AnimationsController(AbstractController):
         tree_store: Gtk.ListStore = self.builder.get_object('moves_store')
         tree_store.clear()
         for i, e in enumerate(self.animations.move_table):
-            tree_store.append([i,self._string_provider.get_value(StringType.MOVE_NAMES, i), \
-                             e.anim1,e.anim2,e.anim3,e.anim4,e.dir,e.flag1,e.flag2,e.flag3,e.flag4,\
-                             e.speed,e.animation,e.point.value,e.sfx,e.spec_entries,e.spec_start,e.point.description])
+            tree_store.append([
+                i, self._string_provider.get_value(StringType.MOVE_NAMES, i),
+                e.anim1, e.anim2, e.anim3, e.anim4, e.dir, e.flag1, e.flag2, e.flag3, e.flag4,
+                e.speed, e.animation, e.point.value, e.sfx, e.spec_entries, e.spec_start, e.point.description
+            ])
         
     def _update_general(self, *args):
         tree_store: Gtk.ListStore = self.builder.get_object('general_store')
@@ -159,7 +154,7 @@ class AnimationsController(AbstractController):
     
     def on_cb_filter_move_changed(self, *args):
         cb: Gtk.ComboBoxText = self.builder.get_object('cb_filter_move')
-        if cb.get_active_iter()==None:
+        if cb.get_active_iter() is None:
             return
         tree_store: Gtk.ListStore = self.builder.get_object('spec_store')
         tree_store.clear()
@@ -172,9 +167,11 @@ class AnimationsController(AbstractController):
             delta = mv.spec_start
             data = self.animations.special_move_table[mv.spec_start:mv.spec_start+mv.spec_entries]
         for i, e in enumerate(data):
-            tree_store.append([delta+i,e.pkmn_id,e.animation,e.point.value,e.sfx,self._get_pkmn_name(e.pkmn_id),e.point.description])
+            tree_store.append([
+                delta+i, e.pkmn_id, e.animation, e.point.value, e.sfx,
+                self._get_pkmn_name(e.pkmn_id), e.point.description
+            ])
 
-        
     def on_spec_entity_editing_started(self, renderer, editable, path):
         editable.set_completion(self.builder.get_object('completion_entities'))
 
@@ -185,7 +182,7 @@ class AnimationsController(AbstractController):
             midx = entry.md_index_base
             if self.module.project.is_patch_applied("ExpandPokeList"):
                 midx = entry.entid
-            if not midx in self._ent_names:
+            if midx not in self._ent_names:
                 name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, entry.md_index_base)
                 self._ent_names[midx] = f'{name} (${midx:04})'
                 monster_store.append([self._ent_names[midx]])
@@ -245,23 +242,23 @@ class AnimationsController(AbstractController):
         store_type: Gtk.ListStore = self.builder.get_object('point_store')
         store_spec[treepath][3] = store_type[treeiter][0]
         store_spec[treepath][6] = store_type[treeiter][1]
-        self.animations.special_move_table[store_spec[treepath][0]].point = AnimPointType(store_type[treeiter][0])
+        self.animations.special_move_table[store_spec[treepath][0]].point = AnimPointType(store_type[treeiter][0])  # type: ignore
         self.module.mark_animations_as_modified()
 
     def on_btn_remove_spec_clicked(self, *args):
         # Deletes all selected entries
         # Allows multiple deletion
         move_id = self._get_move_filter_id()
-        active_rows : List[Gtk.TreePath] = self.builder.get_object('spec_tree').get_selection().get_selected_rows()[1]
+        active_rows: List[Gtk.TreePath] = self.builder.get_object('spec_tree').get_selection().get_selected_rows()[1]
         store: Gtk.ListStore = self.builder.get_object('spec_store')
-        for v in reversed(sorted(active_rows, key=lambda x:x.get_indices())):
+        for v in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             delta = store[v.get_indices()[0]][0]
-            for i,x in enumerate(self.animations.move_table):
+            for i, x in enumerate(self.animations.move_table):
                 new_spec_end = x.spec_start+x.spec_entries
                 new_spec_start = x.spec_start
-                if new_spec_end>delta:
+                if new_spec_end > delta:
                     new_spec_end -= 1
-                if new_spec_start>delta:
+                if new_spec_start > delta:
                     new_spec_start -= 1
                 x.spec_start = new_spec_start
                 x.spec_entries = new_spec_end-new_spec_start
@@ -293,7 +290,9 @@ class AnimationsController(AbstractController):
         e = SpecMoveAnim(bytes(SPECIAL_MOVE_DATA_SIZE))
         self.animations.special_move_table.insert(delta, e)
         tree_store: Gtk.ListStore = self.builder.get_object('spec_store')
-        tree_store.append([delta,e.pkmn_id,e.animation,e.point.value,e.sfx,self._get_pkmn_name(e.pkmn_id),e.point.description])
+        tree_store.append([
+            delta, e.pkmn_id, e.animation, e.point.value, e.sfx, self._get_pkmn_name(e.pkmn_id), e.point.description
+        ])
         self._update_moves()
         self.module.mark_animations_as_modified()
 
@@ -336,7 +335,7 @@ class AnimationsController(AbstractController):
         store_type: Gtk.ListStore = self.builder.get_object('point_store')
         store_move[treepath][13] = store_type[treeiter][0]
         store_move[treepath][17] = store_type[treeiter][1]
-        self.animations.move_table[store_move[treepath][0]].point = AnimPointType(store_type[treeiter][0])
+        self.animations.move_table[store_move[treepath][0]].point = AnimPointType(store_type[treeiter][0])  # type: ignore
         self.module.mark_animations_as_modified()
         
     def on_move_sfx_edited(self, widget, path, text):
@@ -351,9 +350,9 @@ class AnimationsController(AbstractController):
     def on_btn_remove_move_clicked(self, *args):
         # Deletes all selected entries
         # Allows multiple deletion
-        active_rows : List[Gtk.TreePath] = self.builder.get_object('moves_tree').get_selection().get_selected_rows()[1]
+        active_rows: List[Gtk.TreePath] = self.builder.get_object('moves_tree').get_selection().get_selected_rows()[1]
         store: Gtk.ListStore = self.builder.get_object('moves_store')
-        for v in reversed(sorted(active_rows, key=lambda x:x.get_indices())):
+        for v in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             move_id = store[v.get_indices()[0]][0]
             del self.animations.move_table[move_id]
             del store[v.get_indices()[0]]
@@ -366,9 +365,11 @@ class AnimationsController(AbstractController):
         self.animations.move_table.append(e)
         tree_store: Gtk.ListStore = self.builder.get_object('moves_store')
         i = len(self.animations.move_table)-1
-        tree_store.append([i,self._string_provider.get_value(StringType.MOVE_NAMES, i), \
-                         e.anim1,e.anim2,e.anim3,e.anim4,e.dir,e.flag1,e.flag2,e.flag3,e.flag4,\
-                         e.speed,e.animation,e.point.value,e.sfx,e.spec_entries,e.spec_start,e.point.description])
+        tree_store.append([
+            i, self._string_provider.get_value(StringType.MOVE_NAMES, i),
+            e.anim1, e.anim2, e.anim3, e.anim4, e.dir, e.flag1, e.flag2, e.flag3, e.flag4,
+            e.speed, e.animation, e.point.value, e.sfx, e.spec_entries, e.spec_start, e.point.description
+        ])
         self.module.mark_animations_as_modified()
     
     @glib_async
@@ -377,7 +378,7 @@ class AnimationsController(AbstractController):
         store_type: Gtk.ListStore = self.builder.get_object('type_store')
         store_gen[treepath][1] = store_type[treeiter][0]
         store_gen[treepath][11] = store_type[treeiter][1]
-        self.animations.general_table[store_gen[treepath][0]].anim_type = AnimType(store_type[treeiter][0])
+        self.animations.general_table[store_gen[treepath][0]].anim_type = AnimType(store_type[treeiter][0])  # type: ignore
         self.module.mark_animations_as_modified()
     
     def on_gen_file_id_edited(self, widget, path, text):
@@ -404,7 +405,7 @@ class AnimationsController(AbstractController):
         store_type: Gtk.ListStore = self.builder.get_object('point_store')
         store_gen[treepath][8] = store_type[treeiter][0]
         store_gen[treepath][12] = store_type[treeiter][1]
-        self.animations.general_table[store_gen[treepath][0]].point = AnimPointType(store_type[treeiter][0])
+        self.animations.general_table[store_gen[treepath][0]].point = AnimPointType(store_type[treeiter][0])  # type: ignore
         self.module.mark_animations_as_modified()
         
     def on_gen_unk5_toggled(self, widget, path):
@@ -430,6 +431,8 @@ class AnimationsController(AbstractController):
         self.animations.general_table.append(e)
         tree_store: Gtk.ListStore = self.builder.get_object('general_store')
         i = len(self.animations.general_table)-1
-        tree_store.append([i, e.anim_type.value,e.anim_file,e.unk1,e.unk2,e.sfx,e.unk3,e.unk4, \
-                            e.point.value,e.unk5,e.loop,e.anim_type.description,e.point.description])
+        tree_store.append([
+            i, e.anim_type.value, e.anim_file, e.unk1, e.unk2, e.sfx, e.unk3, e.unk4,
+            e.point.value, e.unk5, e.loop, e.anim_type.description, e.point.description
+        ])
         self.module.mark_animations_as_modified()

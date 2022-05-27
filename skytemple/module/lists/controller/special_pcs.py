@@ -19,9 +19,10 @@ import re
 from typing import TYPE_CHECKING, Dict, Optional, List
 
 from gi.repository import Gtk
+from range_typed_integers import u16, u16_checked
 
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import glib_async
+from skytemple.core.ui_utils import glib_async, catch_overflow
 from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
 from skytemple_files.hardcoded.default_starters import SpecialEpisodePc
 
@@ -36,7 +37,7 @@ logger = logging.getLogger(__name__)
 class SpecialPcsController(ListBaseController):
     def __init__(self, module: 'ListsModule', *args):
         super().__init__(module, *args)
-        self._list: Optional[List[SpecialEpisodePc]] = None
+        self._list: List[SpecialEpisodePc]
         self._location_names: Dict[int, str] = {}
         self.move_entries = self.module.get_waza_p().moves
 
@@ -49,16 +50,18 @@ class SpecialPcsController(ListBaseController):
         self.load()
         return lst
 
+    @catch_overflow(u16)
     def on_cr_level_edited(self, widget, path, text):
         try:
-            int(text)  # this is only for validating.
+            u16_checked(int(text))  # this is only for validating.
         except ValueError:
             return
         self._list_store[path][1] = text
 
+    @catch_overflow(u16)
     def on_cr_iq_edited(self, widget, path, text):
         try:
-            int(text)  # this is only for validating.
+            u16_checked(int(text))  # this is only for validating.
         except ValueError:
             return
         self._list_store[path][12] = text
@@ -66,19 +69,21 @@ class SpecialPcsController(ListBaseController):
     def on_cr_do_not_fix_entire_moveset_toggled(self, widget, path):
         self._list_store[path][11] = not widget.get_active()
 
+    @catch_overflow(u16)
     def on_cr_fixed_hp_edited(self, widget, path, text):
         try:
-            int(text)  # this is only for validating.
+            u16_checked(int(text))  # this is only for validating.
         except ValueError:
             return
         self._list_store[path][13] = text
 
+    @catch_overflow(u16)
     def on_cr_entity_edited(self, widget, path, text):
         match = PATTERN_MD_ENTRY.match(text)
         if match is None:
             return
         try:
-            entid = int(match.group(1))
+            entid = u16_checked(int(match.group(1)))
         except ValueError:
             return
         idx = int(self._list_store[path][0])
@@ -90,12 +95,13 @@ class SpecialPcsController(ListBaseController):
         # ent_name:
         self._list_store[path][6] = self._ent_names[entid]
 
+    @catch_overflow(u16)
     def on_cr_location_edited(self, widget, path, text):
         match = PATTERN_LOCATION_ENTRY.match(text)
         if match is None:
             return
         try:
-            location_id = int(match.group(1))
+            location_id = u16_checked(int(match.group(1)))
         except ValueError:
             return
 
@@ -104,15 +110,19 @@ class SpecialPcsController(ListBaseController):
         # ent_name:
         self._list_store[path][5] = self._location_names[location_id]
 
+    @catch_overflow(u16)
     def on_cr_move1_edited(self, widget, path, text):
         self._update_move(path, text, 7)
 
+    @catch_overflow(u16)
     def on_cr_move2_edited(self, widget, path, text):
         self._update_move(path, text, 8)
 
+    @catch_overflow(u16)
     def on_cr_move3_edited(self, widget, path, text):
         self._update_move(path, text, 9)
 
+    @catch_overflow(u16)
     def on_cr_move4_edited(self, widget, path, text):
         self._update_move(path, text, 10)
 
@@ -131,10 +141,10 @@ class SpecialPcsController(ListBaseController):
             move1, move2, move3, move4, unk_e, iq, unk12 = store[path][:]
         a_id = int(a_id)
         self._list[a_id] = SpecialEpisodePc(
-            int(entid), int(location_id),
-            self._get_move_id_from_display_name(move1), self._get_move_id_from_display_name(move2),
-            self._get_move_id_from_display_name(move3), self._get_move_id_from_display_name(move4),
-            int(unk_e), int(level), int(iq), int(unk12)
+            u16(int(entid)), u16(int(location_id)),
+            u16(self._get_move_id_from_display_name(move1)), u16(self._get_move_id_from_display_name(move2)),
+            u16(self._get_move_id_from_display_name(move3)), u16(self._get_move_id_from_display_name(move4)),
+            int(unk_e) > 0, u16(int(level)), u16(int(iq)), u16(int(unk12))
         )
 
         self.module.set_special_pcs(self._list)
@@ -156,7 +166,7 @@ class SpecialPcsController(ListBaseController):
 
     def _update_move(self, path, text, value_pos: int):
         try:
-            self._get_move_id_from_display_name(text)
+            u16_checked(self._get_move_id_from_display_name(text))
         except ValueError:
             return
         self._list_store[path][value_pos] = text

@@ -15,13 +15,14 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-
+import typing
 from enum import Enum, auto
-from typing import List, Union, Iterable, Optional
+from typing import List, Union, Iterable, Optional, Sequence
 
 from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
 from gi.repository.Gtk import Widget
+from range_typed_integers import u8
 
 from skytemple.core.events.manager import EventManager
 from skytemple.core.mapbg_util.drawer_plugin.grid import GridDrawerPlugin
@@ -93,20 +94,20 @@ class Drawer:
         if isinstance(bma, BmaProtocol):
             self.tiling_width = bma.tiling_width
             self.tiling_height = bma.tiling_height
-            self.mappings = [bma.layer0, bma.layer1]
+            self.mappings: List[Sequence[int]] = [bma.layer0, bma.layer1]  # type: ignore
             self.width_in_chunks = bma.map_width_chunks
             self.height_in_chunks = bma.map_height_chunks
-            self.width_in_tiles = bma.map_width_camera
-            self.height_in_tiles = bma.map_height_camera
+            self.width_in_tiles: Optional[u8] = bma.map_width_camera
+            self.height_in_tiles: Optional[u8] = bma.map_height_camera
             self.collision1 = bma.collision
             self.collision2 = bma.collision2
             self.data_layer = bma.unknown_data_block
         else:
-            self.tiling_width = 3
-            self.tiling_height = 3
+            self.tiling_width = u8(3)
+            self.tiling_height = u8(3)
             self.mappings = [[], []]
-            self.width_in_chunks = 1
-            self.height_in_chunks = 1
+            self.width_in_chunks = u8(1)
+            self.height_in_chunks = u8(1)
             self.width_in_tiles = None
             self.height_in_tiles = None
             self.collision1 = None
@@ -210,51 +211,52 @@ class Drawer:
             if should_draw:
                 if col_index == 0:
                     ctx.set_source_rgba(1, 0, 0, 0.4)
-                    col = self.collision1
+                    col: Sequence[bool] = self.collision1  # type: ignore
                 else:
                     ctx.set_source_rgba(0, 1, 0, 0.4)
-                    col = self.collision2
+                    col = self.collision2  # type: ignore
 
-                for i, col in enumerate(col):
-                    if col:
+                for i, c in enumerate(col):
+                    if c:
                         ctx.rectangle(
                             0, 0,
                             BPC_TILE_DIM,
                             BPC_TILE_DIM
                         )
                         ctx.fill()
-                    if (i + 1) % self.width_in_tiles == 0:
+                    if (i + 1) % self.width_in_tiles == 0:  # type: ignore
                         # Move to beginning of next line
                         if do_translates:
-                            ctx.translate(-BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM)
+                            ctx.translate(-BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM)  # type: ignore
                     else:
                         # Move to next tile in line
                         if do_translates:
                             ctx.translate(BPC_TILE_DIM, 0)
                 # Move back to beginning
                 if do_translates:
-                    ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)
+                    ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)  # type: ignore
 
         # Data
         if self.draw_data_layer:
             ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
             ctx.set_font_size(6)
             ctx.set_source_rgb(0, 0, 1)
+            assert self.data_layer is not None
             for i, dat in enumerate(self.data_layer):
                 if dat > 0:
                     ctx.move_to(0, BPC_TILE_DIM - 2)
                     ctx.show_text(f"{dat:02x}")
-                if (i + 1) % self.width_in_tiles == 0:
+                if (i + 1) % self.width_in_tiles == 0:  # type: ignore
                     # Move to beginning of next line
                     if do_translates:
-                        ctx.translate(-BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM)
+                        ctx.translate(-BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM)  # type: ignore
                 else:
                     # Move to next tile in line
                     if do_translates:
                         ctx.translate(BPC_TILE_DIM, 0)
             # Move back to beginning
             if do_translates:
-                ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)
+                ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)  # type: ignore
 
         size_w, size_h = self.draw_area.get_size_request()
         size_w /= self.scale
@@ -382,6 +384,7 @@ class Drawer:
     def add_overlay(self, tileset_drawer_overlay):
         self._tileset_drawer_overlay = tileset_drawer_overlay
 
+    @typing.no_type_check
     def unload(self):
         self.draw_area = None
         self.reset(None, None, None, None)

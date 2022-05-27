@@ -19,11 +19,13 @@ import re
 from typing import TYPE_CHECKING, Optional, List
 
 from gi.repository import Gtk
+from range_typed_integers import i32_checked, i32, u16_checked, u16
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import catch_overflow
 from skytemple_files.hardcoded.menus import MenuEntry, MenuType
 from skytemple_files.common.i18n_util import _
 
@@ -61,8 +63,8 @@ class MenuListController(AbstractController):
         cb.set_active(0)
         
         # Init available languages
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_store_lang')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_lang')
+        cb_store = self.builder.get_object('cb_store_lang')
+        cb = self.builder.get_object('cb_lang')
         # Init combobox
         cb_store.clear()
         for lang in self._string_provider.get_languages():
@@ -109,36 +111,38 @@ class MenuListController(AbstractController):
             new_list.append(MenuEntry(row[0], row[2], row[4]))
         self.module.set_menu(menu_id, new_list)
         self._refresh_list()
-        
+
+    @catch_overflow(u16)
     def on_id_name_edited(self, widget, path, text):
         try:
             tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
-            tree_store[path][0] = int(text)
+            tree_store[path][0] = u16_checked(int(text))
         except ValueError:
             return
         
         self._regenerate_list()
-        
+
+    @catch_overflow(u16)
     def on_id_description_edited(self, widget, path, text):
         try:
             tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
-            tree_store[path][2] = int(text)
+            tree_store[path][2] = u16_checked(int(text))
         except ValueError:
             return
         
         self._regenerate_list()
-        
+
+    @catch_overflow(i32)
     def on_action_edited(self, widget, path, text):
         try:
             tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
-            tree_store[path][4] = int(text)
+            tree_store[path][4] = i32_checked(int(text))
         except ValueError:
             return
         
         self._regenerate_list()
     
     def on_string_name_edited(self, widget, path, text):
-        
         tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
         current_id = int(tree_store[path][0])
         if current_id>0:
@@ -149,7 +153,6 @@ class MenuListController(AbstractController):
             self.module.mark_string_as_modified()
             
     def on_string_description_edited(self, widget, path, text):
-        
         tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
         current_id = int(tree_store[path][2])
         if current_id>0:

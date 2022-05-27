@@ -105,8 +105,8 @@ class SettingsController:
         settings_native_enable.set_active(native_impl_enabled_previous)
 
         # Async modes
-        cb: Gtk.ComboBox = self.builder.get_object('setting_async')
-        store: Gtk.ListStore = self.builder.get_object('async_store')
+        cb = self.builder.get_object('setting_async')
+        store = self.builder.get_object('async_store')
         store.clear()
         active = None
         for mode in AsyncConfiguration:
@@ -135,15 +135,15 @@ class SettingsController:
 
             # Gtk Theme
             if not sys.platform.startswith('linux'):
-                cb: Gtk.ComboBox = self.builder.get_object('setting_gtk_theme')
+                cb = self.builder.get_object('setting_gtk_theme')
                 iter = cb.get_active_iter()
-                if (iter != None):
+                if iter is not None:
                     theme_name = cb.get_model()[iter][0]
                     gtk_settings.set_property("gtk-theme-name", theme_name)
                     self.settings.set_gtk_theme(theme_name)
 
             # Languages
-            cb: Gtk.ComboBox = self.builder.get_object('setting_language')
+            cb = self.builder.get_object('setting_language')
             lang_name = cb.get_model()[cb.get_active_iter()][0]
             before = self.settings.get_locale()
             if before != lang_name:
@@ -157,10 +157,10 @@ class SettingsController:
                 have_to_restart = True
 
             # Async modes
-            cb: Gtk.ComboBox = self.builder.get_object('setting_async')
+            cb = self.builder.get_object('setting_async')
             async_mode = AsyncConfiguration(cb.get_model()[cb.get_active_iter()][0])
-            before = self.settings.get_async_configuration()
-            if before != async_mode:
+            before_async = self.settings.get_async_configuration()
+            if before_async != async_mode:
                 self.settings.set_async_configuration(async_mode)
                 have_to_restart = True
 

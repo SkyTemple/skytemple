@@ -67,11 +67,11 @@ class DungeonGraphicsModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self.dungeon_bin_context: Optional[ModelContext[DungeonBinPack]] = None
-        self._tree_model: Gtk.TreeModel = None
+        self.dungeon_bin_context: ModelContext[DungeonBinPack]
+        self._tree_model: Gtk.TreeModel
         self._tree_level_iter: List[Gtk.TreeIter] = []
-        self._colvec_pos: Optional[int] = None
-        self._root_node: Gtk.TreeIter = None
+        self._colvec_pos: int
+        self._root_node: Gtk.TreeIter
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         self.dungeon_bin_context = self.project.open_file_in_rom(

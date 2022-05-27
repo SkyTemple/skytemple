@@ -83,7 +83,7 @@ def init():
                 traces_sample_rate=0.2,
                 release=release_version(is_dev),
                 integrations=[sentry_logging],
-                **settings
+                **settings  # type: ignore
             )
         except Exception as ex:
             logger.error("Failed setting up Sentry", exc_info=ex)
@@ -298,7 +298,7 @@ def collect_state_context() -> Dict[str, 'Captured']:
 
 
 def collect_config_context(settings: 'SkyTempleSettingsStore') -> Dict[str, 'Captured']:
-    return dict(settings.loaded_config.items())
+    return dict(settings.loaded_config.items())  # type: ignore
 
 
 def capture(settings: 'SkyTempleSettingsStore', exc_info: Optional['ExceptionInfo'], **error_context_in: 'Capturable'):

@@ -19,11 +19,13 @@ import sys
 import webbrowser
 from typing import TYPE_CHECKING, Optional, List
 
+from range_typed_integers import u16, u8_checked, u16_checked, u8
+
 from skytemple_files.common.i18n_util import _, f
 
 from gi.repository import Gtk
 
-from skytemple.core.ui_utils import glib_async
+from skytemple.core.ui_utils import glib_async, catch_overflow
 from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -68,13 +70,13 @@ class DungeonInterruptController(AbstractController):
         store.clear()
         for v in InterDEntryType:
             store.append([v.value, v.explanation])
-        store: Gtk.ListStore = self.builder.get_object('var_store')
+        store = self.builder.get_object('var_store')
         store.clear()
         self.var_names = []
         for i,g in enumerate(self.module.project.get_rom_module().get_static_data().script_data.game_variables):
             self.var_names.append(g.name)
             store.append([i,g.name])
-        store: Gtk.ListStore = self.builder.get_object('dungeon_store')
+        store = self.builder.get_object('dungeon_store')
         store.clear()
         for i in range(len(self.inter_d.list_dungeons)):
             store.append([i, self._string_provider.get_value(StringType.DUNGEON_NAMES_MAIN, i)])
@@ -105,11 +107,11 @@ class DungeonInterruptController(AbstractController):
         
         for v in store_inter:
             e = InterDEntry()
-            e.floor = v[0]
-            e.ent_type = InterDEntryType(v[1])
-            e.game_var_id = v[2]
-            e.param1 = v[3]
-            e.param2 = v[4]
+            e.floor = u8_checked(v[0])
+            e.ent_type = InterDEntryType(v[1])  # type: ignore
+            e.game_var_id = u16_checked(v[2])
+            e.param1 = u8_checked(v[3])
+            e.param2 = u8_checked(v[4])
             e.continue_music = v[7]
             self.inter_d.list_dungeons[dungeon].append(e)
         
@@ -136,7 +138,11 @@ class DungeonInterruptController(AbstractController):
         
     def on_btn_add_clicked(self, *args):
         store: Gtk.ListStore = self.builder.get_object('interrupt_store')
-        store.append([0,0,0,0,0,InterDEntryType(0).explanation,self.var_names[0],0])
+        store.append([
+            0, 0, 0, 0, 0,
+            InterDEntryType(0).explanation,  # type: ignore
+            self.var_names[0], 0
+        ])
         self._build_list()
         
     def on_btn_remove_clicked(self, *args):
@@ -145,7 +151,8 @@ class DungeonInterruptController(AbstractController):
         for x in reversed(sorted(active_rows, key=lambda x:x.get_indices())):
             del store[x.get_indices()[0]]
         self._build_list()
-        
+
+    @catch_overflow(u8)
     def on_text_floor_edited(self, widget, path, text):
         try:
             tree_store: Gtk.ListStore = self.builder.get_object('interrupt_store')
@@ -153,7 +160,7 @@ class DungeonInterruptController(AbstractController):
         except ValueError:
             return
         self._build_list()
-    
+
     @glib_async
     def on_combo_type_changed(self, w, treepath, treeiter):
         store_inter: Gtk.ListStore = self.builder.get_object('interrupt_store')
@@ -161,7 +168,8 @@ class DungeonInterruptController(AbstractController):
         store_inter[treepath][1] = store_type[treeiter][0]
         store_inter[treepath][5] = store_type[treeiter][1]
         self._build_list()
-    
+
+    @catch_overflow(u16)
     @glib_async
     def on_combo_game_var_changed(self, w, treepath, treeiter):
         store_inter: Gtk.ListStore = self.builder.get_object('interrupt_store')
@@ -169,7 +177,8 @@ class DungeonInterruptController(AbstractController):
         store_inter[treepath][2] = store_var[treeiter][0]
         store_inter[treepath][6] = store_var[treeiter][1]
         self._build_list()
-    
+
+    @catch_overflow(u8)
     def on_text_param1_edited(self, widget, path, text):
         try:
             tree_store: Gtk.ListStore = self.builder.get_object('interrupt_store')
@@ -177,7 +186,8 @@ class DungeonInterruptController(AbstractController):
         except ValueError:
             return
         self._build_list()
-        
+
+    @catch_overflow(u8)
     def on_text_param2_edited(self, widget, path, text):
         try:
             tree_store: Gtk.ListStore = self.builder.get_object('interrupt_store')

@@ -15,15 +15,18 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import typing
 from enum import Enum
 from typing import TYPE_CHECKING, Type, List, Optional
 
 from gi.repository import Gtk
+from range_typed_integers import u16, u16_checked, u8, u8_checked
 
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import catch_overflow
 from skytemple_files.common.i18n_util import _
 from skytemple_files.data.md.model import PokeType
 from skytemple_files.data.waza_p.model import WazaMoveCategory, WazaMoveRangeTarget, WazaMoveRangeRange, \
@@ -41,7 +44,7 @@ class MoveController(AbstractController):
         self.move_id = move_id
         self.move = self.module.get_move(move_id)
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self._string_provider = module.project.get_string_provider()
 
         self._is_loading = True
@@ -61,65 +64,131 @@ class MoveController(AbstractController):
 
         return self.builder.get_object('box_main')
 
+    @typing.no_type_check
     def unload(self):
         super().unload()
         self.module = None
         self.move_id = None
         self.move = None
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self._string_provider = None
         self._is_loading = True
 
+    @catch_overflow(u16)
     def on_entry_move_id_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.move.move_id = val
         self.mark_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_base_power_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.move.base_power = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_base_pp_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.move.base_pp = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_accuracy_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.move.accuracy = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_miss_accuracy_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.move.miss_accuracy = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_max_upgrade_level_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.move.max_upgrade_level = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_crit_chance_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.move.crit_chance = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_number_chained_hits_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.move.number_chained_hits = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_ai_weight_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.move.ai_weight = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_ai_condition1_chance_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.move.ai_condition1_chance = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_unk13_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.move.unk13 = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_unk15_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.move.unk15 = val
         self.mark_as_modified()
 
+    @catch_overflow(u8)
     def on_entry_message_id_changed(self, w, *args):
-        self._update_from_entry(w)
+        try:
+            val = u8_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.move.message_id = val
         self.mark_as_modified()
 
     def on_cb_type_changed(self, w, *args):
@@ -132,27 +201,27 @@ class MoveController(AbstractController):
 
     def on_cb_settings_range_range_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range.range = WazaMoveRangeRange(val)
+        self.move.settings_range.range = WazaMoveRangeRange(val)  # type: ignore
         self.mark_as_modified()
 
     def on_cb_settings_range_target_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range.target = WazaMoveRangeTarget(val)
+        self.move.settings_range.target = WazaMoveRangeTarget(val)  # type: ignore
         self.mark_as_modified()
 
     def on_cb_settings_range_ai_target_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range_ai.target = WazaMoveRangeTarget(val)
+        self.move.settings_range_ai.target = WazaMoveRangeTarget(val)  # type: ignore
         self.mark_as_modified()
 
     def on_cb_settings_range_ai_range_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range_ai.range = WazaMoveRangeRange(val)
+        self.move.settings_range_ai.range = WazaMoveRangeRange(val)  # type: ignore
         self.mark_as_modified()
 
     def on_cb_settings_range_ai_condition_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range_ai.condition = WazaMoveRangeCondition(val)
+        self.move.settings_range_ai.condition = WazaMoveRangeCondition(val)  # type: ignore
         self.mark_as_modified()
 
     def on_switch_affected_by_magic_coat_state_set(self, w, *args):
@@ -461,14 +530,6 @@ class MoveController(AbstractController):
 
     def _set_switch(self, switch_name, value):
         self.builder.get_object(switch_name).set_active(value)
-
-    def _update_from_entry(self, w: Gtk.Entry):
-        attr_name = Gtk.Buildable.get_name(w)[6:]
-        try:
-            val = int(w.get_text())
-        except ValueError:
-            return
-        setattr(self.move, attr_name, val)
 
     def _update_from_switch(self, w: Gtk.Entry):
         attr_name = Gtk.Buildable.get_name(w)[7:]

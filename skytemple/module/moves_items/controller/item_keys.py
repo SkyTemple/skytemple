@@ -81,11 +81,11 @@ Only keys from 0 to 2047 should be used."""))
     def _regenerate_list(self):
         tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
 
-        new_list = []
+        pre_new_list = []
         for l in tree_store:
-            new_list.append((l[2],l[0]))
-        new_list.sort()
-        new_list = [x[1] for x in new_list]
+            pre_new_list.append((l[2], l[0]))
+        pre_new_list.sort()
+        new_list = [x[1] for x in pre_new_list]
         self.module.set_i2n(self._current_lang, new_list)
         self._refresh_list()
         
@@ -119,12 +119,12 @@ Only keys from 0 to 2047 should be used."""))
         
     def on_btn_fix_clicked(self, *args):
         tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
-        new_list = []
+        pre_new_list = []
         for l in tree_store:
-            new_list.append((l[2],l[0]))
-        new_list.sort()
-        new_list = [x[1] for x in new_list]
-        while len(new_list)<1400:
+            pre_new_list.append((l[2], l[0]))
+        pre_new_list.sort()
+        new_list = [x[1] for x in pre_new_list]
+        while len(new_list) < 1400:
             new_list.append(0)
         self.module.set_i2n(self._current_lang, new_list)
         
@@ -147,14 +147,14 @@ This means all keys with id >= that one will be incremented by 1. """))
         if resp == Gtk.ResponseType.OK:
             key = int(self.builder.get_object('id_key_add_remove').get_text())
             tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
-            new_list = []
+            pre_new_list = []
             for l in tree_store:
-                if l[0]>=key:
-                    new_list.append((l[2],l[0]+1))
+                if l[0] >= key:
+                    pre_new_list.append((l[2], l[0]+1))
                 else:
-                    new_list.append((l[2],l[0]))
-            new_list.sort()
-            new_list = [x[1] for x in new_list]
+                    pre_new_list.append((l[2], l[0]))
+            pre_new_list.sort()
+            new_list = [x[1] for x in pre_new_list]
             self.module.set_i2n(self._current_lang, new_list)
             self._refresh_list()
     def on_btn_remove_clicked(self, *args):
@@ -179,14 +179,14 @@ A key can't be removed if it's still used by one item. """))
                     _("Error removing key.")
                 )
             else:
-                new_list = []
+                pre_new_list = []
                 for l in tree_store:
-                    if l[0]>key:
-                        new_list.append((l[2],l[0]-1))
+                    if l[0] > key:
+                        pre_new_list.append((l[2],l[0]-1))
                     else:
-                        new_list.append((l[2],l[0]))
-                new_list.sort()
-                new_list = [x[1] for x in new_list]
+                        pre_new_list.append((l[2],l[0]))
+                pre_new_list.sort()
+                new_list = [x[1] for x in pre_new_list]
                 self.module.set_i2n(self._current_lang, new_list)
                 self._refresh_list()
                 
@@ -203,6 +203,7 @@ A key can't be removed if it's still used by one item. """))
         elif val>=max_key:
             val=max_key
             widget.set_text(str(val))
+
     def _refresh_list(self):
         tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
         tree_store.clear()
@@ -210,6 +211,5 @@ A key can't be removed if it's still used by one item. """))
         for i, x in enumerate(self.module.get_i2n(self._current_lang)):
             lst.append([x, self._string_provider.get_value(StringType.ITEM_NAMES, i), i])
         lst.sort()
-        for x in lst:
-            tree_store.append(x)
-        
+        for y in lst:
+            tree_store.append(y)

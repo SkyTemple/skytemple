@@ -23,6 +23,8 @@ from collections import OrderedDict
 from functools import partial
 from typing import TYPE_CHECKING, List, Optional, Tuple
 
+from range_typed_integers import u16, u16_checked
+
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.module.map_bg.chunk_editor_data_provider.tile_graphics_provider import MapBgStaticTileProvider, \
@@ -101,33 +103,33 @@ class BgMenuController:
             if number_col_layers > 0 and bma.number_of_collision_layers <= 0:
                 # COLLISION 1 WAS ADDED
                 has_a_change = True
-                bma.number_of_collision_layers = 1
+                bma.number_of_collision_layers = u16(1)
                 bma.collision = [False for _ in range(0, bma.map_width_camera * bma.map_height_camera)]
             if number_col_layers > 1 and bma.number_of_collision_layers <= 1:
                 # COLLISION 2 WAS ADDED
                 has_a_change = True
-                bma.number_of_collision_layers = 2
+                bma.number_of_collision_layers = u16(2)
                 bma.collision2 = [False for _ in range(0, bma.map_width_camera * bma.map_height_camera)]
             if number_col_layers <= 1 and bma.number_of_collision_layers > 1:
                 # COLLISION 2 WAS REMOVED
                 has_a_change = True
-                bma.number_of_collision_layers = 1
+                bma.number_of_collision_layers = u16(1)
                 bma.collision2 = None
             if number_col_layers <= 0 and bma.number_of_collision_layers > 0:
                 # COLLISION 1 WAS REMOVED
                 has_a_change = True
-                bma.number_of_collision_layers = 0
+                bma.number_of_collision_layers = u16(0)
                 bma.collision = None
             has_data_layer_now = has_data_layer.get_active()
             if has_data_layer_now and not bma.unk6:
                 # DATA LAYER WAS ADDED
                 has_a_change = True
-                bma.unk6 = True
+                bma.unk6 = u16(1)
                 bma.unknown_data_block = [0 for _ in range(0, bma.map_width_camera * bma.map_height_camera)]
             if not has_data_layer_now and bma.unk6:
                 # DATA LAYER WAS REMOVED
                 has_a_change = True
-                bma.unk6 = False
+                bma.unk6 = u16(0)
                 bma.unknown_data_block = None
             
             if has_a_change:
@@ -404,7 +406,7 @@ class BgMenuController:
             enabled.set_active(bpa is not None)
             dialog.resize(470, 450)
 
-            this_frame_info_entries = []
+            this_frame_info_entries: List[Gtk.Entry] = []
             bpas_frame_info_entries.append(this_frame_info_entries)
 
             bpa_duration_box: Gtk.Box = self.parent.builder.get_object(f'bpa_box{gui_i}')
@@ -452,6 +454,7 @@ class BgMenuController:
                     # Refresh controller state
                     self.parent.bpas = self.parent.module.get_bpas(self.parent.item_id)
                     new_bpa = self.parent.bpas[i]
+                    assert new_bpa is not None
                     # Add to BPC
                     self.parent.bpc.process_bpa_change(i, new_bpa.number_of_tiles)
                     self.parent.module.mark_level_list_as_modified()
@@ -459,7 +462,7 @@ class BgMenuController:
                     # HAS TO BE DELETED
                     map_bg_entry = self.parent.module.get_level_entry(self.parent.item_id)
                     # Delete from BPC
-                    self.parent.bpc.process_bpa_change(i, 0)
+                    self.parent.bpc.process_bpa_change(i, u16(0))
                     # Delete from MapBG list
                     map_bg_entry.bpa_names[i] = None
                     # Refresh controller state
@@ -592,8 +595,8 @@ class BgMenuController:
                         f"{self.parent.module.bgs.level[self.parent.item_id].bma_name}_bpa{active_bpa_index+1}_\d+\.png",
                         re.IGNORECASE
                     )
-                    filenames_base = natsorted(filter(r.match, os.listdir(fn)), alg=ns.IGNORECASE)
-                    img_handles = [open(os.path.join(fn, base_name), 'rb') for base_name in filenames_base]
+                    filenames_base = natsorted(filter(r.match, os.listdir(fn)), alg=ns.IGNORECASE)  # type: ignore
+                    img_handles = [open(os.path.join(fn, base_name), 'rb') for base_name in filenames_base]  # type: ignore
                     try:
                         images = [Image.open(h) for h in img_handles]
                         active_bpa.pil_to_tiles_separate(images)
@@ -669,16 +672,19 @@ class BgMenuController:
                     except ValueError:
                         number_of_frames = 0
                         had_errors = True
-                    self.parent.bpl.animation_specs.append(FileType.BPL.get_animation_spec_model_cls()(
-                        duration_per_frame, number_of_frames
-                    ))
+                    try:
+                        self.parent.bpl.animation_specs.append(FileType.BPL.get_animation_spec_model_cls()(
+                            u16_checked(duration_per_frame), u16_checked(number_of_frames)
+                        ))
+                    except OverflowError:
+                        had_errors = True
                 # Add at least one palette if palette animation was just enabled
                 if self.parent.bpl.animation_palette is None or self.parent.bpl.animation_palette == []:
                     self.parent.bpl.animation_palette = [[0, 0, 0] * 15]
             else:
                 # Doesn't have
                 self.parent.bpl.has_palette_animation = False
-                self.parent.bpl.animation_specs = None
+                self.parent.bpl.animation_specs = []
 
             if had_errors:
                 md = SkyTempleMessageDialog(MainController.window(),
@@ -712,7 +718,7 @@ class BgMenuController:
         dict_pals = OrderedDict()
 
         for i, pal in enumerate(self.parent.bpl.animation_palette):
-            dict_pals[f'F{i + 1}'] = pal.copy()
+            dict_pals[f'F{i + 1}'] = list(pal)
 
         cntrl = PaletteEditorController(
             MainController.window(), dict_pals, False, True, False

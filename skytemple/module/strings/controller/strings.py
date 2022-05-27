@@ -18,6 +18,7 @@ import csv
 import logging
 import re
 import sys
+import typing
 from typing import TYPE_CHECKING, Optional, Dict
 
 from gi.repository import Gtk
@@ -49,12 +50,12 @@ class StringsController(AbstractController):
         self.langname = lang.name_localized
         self.filename = lang.filename
 
-        self.builder: Optional[Gtk.Builder] = None
-        self._str: Optional[Str] = None
+        self.builder: Gtk.Builder = None  # type: ignore
+        self._str: Str
         self._tree_iters_by_idx: Dict[int, Gtk.TreeIter] = {}
-        self._list_store: Optional[Gtk.ListStore] = None
-        self._string_cats: Optional[Dict[str, Pmd2StringBlock]] = None
-        self._filter: Optional[TreeModelFilter] = None
+        self._list_store: Gtk.ListStore
+        self._string_cats: Dict[str, Pmd2StringBlock]
+        self._filter: TreeModelFilter
         self._active_category: Optional[Pmd2StringBlock] = None
         self._search_text = ""
 
@@ -72,12 +73,13 @@ class StringsController(AbstractController):
         self.builder.connect_signals(self)
         return self.builder.get_object('main_box')
 
+    @typing.no_type_check
     def unload(self):
         super().unload()
         self.module = None
         self.langname = None
         self.filename = None
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder = None
         self._str = None
         self._tree_iters_by_idx = {}
         self._list_store = None
@@ -113,14 +115,14 @@ class StringsController(AbstractController):
         tree.append_column(column_editabletext)
         renderer_editabletext.connect('edited', self.on_cr_string_edited)
 
-        self._list_store: Gtk.ListStore = tree.get_model()
+        self._list_store = tree.get_model()
         self._list_store.clear()
         # Iterate strings
         for idx, entry in enumerate(self._str.strings):
             self._list_store.append([idx + 1, entry, True, None])
 
         # Apply filter
-        self._filter: TreeModelFilter = self._list_store.filter_new()
+        self._filter = self._list_store.filter_new()
         tree.set_model(self._filter)
         self._filter.set_visible_func(self._visibility_func)
 

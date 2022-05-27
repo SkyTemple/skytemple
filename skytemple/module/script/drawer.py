@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import typing
 from enum import auto, Enum
 from typing import Tuple, Union, Callable, Optional, List
 
@@ -202,7 +203,7 @@ class Drawer:
 
         return True
 
-    def selection_draw_callback(self, ctx: cairo.Context, x: int, y: int):
+    def selection_draw_callback(self, ctx: cairo.Context, x: Union[int, float], y: Union[int, float]):
         if self.interaction_mode == InteractionMode.SELECT:
             if self._selected is not None and self._selected__drag is not None:
                 # Draw dragged:
@@ -707,12 +708,13 @@ class Drawer:
         elif self._sector_highlighted is not None and self._sector_highlighted > id:
             self._sector_highlighted -= 1
 
-    def get_current_drag_entity_pos(self) -> Tuple[int, int]:
+    def get_current_drag_entity_pos(self) -> Tuple[Union[int, float], Union[int, float]]:
         return self._snap_pos(
             self.mouse_x - self._selected__drag[0],  # type: ignore
             self.mouse_y - self._selected__drag[1]  # type: ignore
         )
 
+    @typing.no_type_check
     def unload(self):
         self.draw_area = None
         self.ssa = None

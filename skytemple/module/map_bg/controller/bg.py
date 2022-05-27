@@ -16,6 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
 import itertools
+import typing
 from typing import TYPE_CHECKING, Optional, Iterable, List
 
 import cairo
@@ -118,8 +119,8 @@ class BgController(AbstractController):
         self.module = module
         self.item_id = item_id
 
-        self.builder: Optional[Gtk.Builder] = None
-        self.notebook: Optional[Gtk.Notebook] = None
+        self.builder: Gtk.Builder = None  # type: ignore
+        self.notebook: Gtk.Notebook = None  # type: ignore
 
         self.bma = module.get_bma(item_id)
         self.bpl = module.get_bpl(item_id)
@@ -141,7 +142,7 @@ class BgController(AbstractController):
 
         self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
 
-        self.scale_factor = 1
+        self.scale_factor: float = 1.0
         self.current_chunks_icon_layer = 0
 
         self.bg_draw_is_clicked = False
@@ -191,11 +192,12 @@ class BgController(AbstractController):
                 self.module.mark_level_list_as_modified()
         return self.builder.get_object('editor_map_bg')
 
+    @typing.no_type_check
     def unload(self):
         super().unload()
         self.module = None
         self.item_id = None
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder = None
         self.notebook = None
         self.bma = None
         self.bpl = None
@@ -208,10 +210,10 @@ class BgController(AbstractController):
         self.drawer = None
         if self.current_icon_view_renderer:
             self.current_icon_view_renderer.unload()
-        self.current_icon_view_renderer: DrawerCellRenderer = None
-        self.bg_draw: Optional[Gtk.DrawingArea] = None
-        self.bg_draw_event_box: Optional[Gtk.EventBox] = None
-        self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
+        self.current_icon_view_renderer = None
+        self.bg_draw = None
+        self.bg_draw_event_box = None
+        self._tileset_drawer_overlay = None
         self.scale_factor = 1
         self.current_chunks_icon_layer = 0
         self.bg_draw_is_clicked = False
@@ -501,12 +503,12 @@ class BgController(AbstractController):
 
         # For each layer...
         for layer_idx, layer_idx_bpc in enumerate(layer_idxs_bpc):
-            chunks_current_layer = []
+            chunks_current_layer: List[List[List[cairo.Surface]]] = []
             self.chunks_surfaces.append(chunks_current_layer)
             # For each chunk...
             for chunk_idx in range(0, self.bpc.layers[layer_idx_bpc].chunk_tilemap_len):
                 # For each frame of palette animation... ( applicable for this chunk )
-                pal_ani_frames = []
+                pal_ani_frames: List[List[cairo.Surface]] = []
                 chunks_current_layer.append(pal_ani_frames)
 
                 chunk_data = self.bpc.get_chunk(layer_idx_bpc, chunk_idx)
@@ -514,8 +516,8 @@ class BgController(AbstractController):
                 if not self.weird_palette:
                     for x in chunk_images:
                         for n in x.tobytes("raw", "P"):
-                            n//=16
-                            if n>=self.bpl.number_palettes or n>=BPL_NORMAL_MAX_PAL:
+                            n //= 16
+                            if n >= self.bpl.number_palettes or n>=BPL_NORMAL_MAX_PAL:
                                 # If one chunk uses weird palette values, display the warning
                                 self.weird_palette = True
                                 break
@@ -525,7 +527,7 @@ class BgController(AbstractController):
 
                 for pal_ani in range(0, len_pal_ani):
                     # For each frame of tile animation...
-                    bpa_ani_frames = []
+                    bpa_ani_frames: List[cairo.Surface] = []
                     pal_ani_frames.append(bpa_ani_frames)
                     for img in chunk_images:
                         # Switch out the palette with that from the palette animation
@@ -573,7 +575,7 @@ class BgController(AbstractController):
         self.bg_draw_event_box.connect("button-release-event", self.on_bg_draw_release)
         self.bg_draw_event_box.connect("motion-notify-event", self.on_bg_draw_mouse_move)
 
-        self.bg_draw: Gtk.DrawingArea = Gtk.DrawingArea.new()
+        self.bg_draw = Gtk.DrawingArea.new()
         self.bg_draw_event_box.add(self.bg_draw)
 
         bg_draw_sw.add(self.bg_draw_event_box)
@@ -589,6 +591,7 @@ class BgController(AbstractController):
         self.drawer.start()
 
     def _init_drawer_layer_selected(self):
+        assert self.drawer is not None
         self.drawer.set_edited_layer(self.current_chunks_icon_layer)
 
         # Set drawer state based on some buttons
@@ -598,6 +601,7 @@ class BgController(AbstractController):
         self.drawer.set_pink_bg(self.builder.get_object(f'tb_bg_color').get_active())
 
     def _init_drawer_collision_selected(self, collision_id):
+        assert self.drawer is not None
         self.drawer.set_edited_collision(collision_id)
         self.drawer.set_interaction_col_solid(self.builder.get_object('collison_switch').get_active())
 
@@ -607,6 +611,7 @@ class BgController(AbstractController):
         self.drawer.set_pink_bg(self.builder.get_object(f'tb_bg_color').get_active())
 
     def _init_drawer_data_layer_selected(self):
+        assert self.drawer is not None
         self.drawer.set_edit_data_layer()
         cb: Gtk.ComboBox = self.builder.get_object('data_combo_box')
         self.drawer.set_interaction_dat_value(cb.get_active())
@@ -771,6 +776,7 @@ class BgController(AbstractController):
 
     def _update_scales(self):
         """Update drawers+DrawingArea and iconview+Renderer scales"""
+        assert self.bg_draw is not None
         self.bg_draw.set_size_request(
             self.bma.map_width_chunks * self.bma.tiling_width * BPC_TILE_DIM * self.scale_factor,
             self.bma.map_height_chunks * self.bma.tiling_height * BPC_TILE_DIM * self.scale_factor
@@ -794,7 +800,8 @@ class BgController(AbstractController):
             self.current_icon_view_renderer.stop()
         self.bpas = self.module.get_bpas(self.item_id)
         self._init_chunk_imgs()
-        self.drawer.reset(self.bma, self.bpa_durations, self.pal_ani_durations, self.chunks_surfaces)
+        if self.drawer:
+            self.drawer.reset(self.bma, self.bpa_durations, self.pal_ani_durations, self.chunks_surfaces)
         self._init_tab(self.notebook.get_nth_page(self.notebook.get_current_page()))
         self._refresh_metadata()
 
@@ -813,7 +820,8 @@ class BgController(AbstractController):
             if mapping:
                 dma, dpc, dpci, dpl, _, fixed_room = mapping
                 self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)
-                self.drawer.add_overlay(self._tileset_drawer_overlay)
+                if self.drawer:
+                    self.drawer.add_overlay(self._tileset_drawer_overlay)
             else:
                 info_bar.destroy()
         else:
@@ -878,4 +886,5 @@ class BgController(AbstractController):
         md.destroy()
 
     def on_btn_toggle_overlay_rendering_clicked(self, *args):
+        assert self._tileset_drawer_overlay is not None
         self._tileset_drawer_overlay.enabled = not self._tileset_drawer_overlay.enabled

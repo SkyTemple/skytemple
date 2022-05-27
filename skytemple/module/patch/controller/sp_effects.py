@@ -14,27 +14,14 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-#
-#  This file is part of SkyTemple.
-#
-#  SkyTemple is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 3 of the License, or
-#  (at your option) any later version.
-#
-#  SkyTemple is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import sys
 import webbrowser
 from typing import TYPE_CHECKING, Optional, List
 
-from skytemple.core.ui_utils import REPO_MOVE_EFFECTS
+from range_typed_integers import u16_checked, u16
+
+from skytemple.core.ui_utils import REPO_MOVE_EFFECTS, catch_overflow
 from skytemple_files.common.i18n_util import _, f
 
 from gi.repository import Gtk
@@ -45,6 +32,7 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple_files.common.util import open_utf8
+from skytemple_files.data.data_cd.model import DataCD
 
 if TYPE_CHECKING:
     from skytemple.module.patch.module import PatchModule
@@ -57,7 +45,8 @@ class SPEffectsController(AbstractController):
     def __init__(self, module: 'PatchModule', *args):
         super().__init__(module, *args)
         self.module = module
-        self.sp_effects = None
+        self.builder: Gtk.Builder
+        self.sp_effects: DataCD
         self._string_provider = module.project.get_string_provider()
 
     def get_view(self) -> Gtk.Widget:
@@ -241,18 +230,19 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
         
     def on_btn_goto_effect_clicked(self, *args):
         sp_effect = self._get_current_sp_effect()
-        if sp_effect != None:
+        if sp_effect is not None:
             cb: Gtk.ComboBoxText = self.builder.get_object('cb_effect_ids')
             cb.set_active(sp_effect)
             effects_notebook = self.builder.get_object('effects_notebook')
             effects_notebook.set_current_page(1)
-        
+
+    @catch_overflow(u16)
     def on_sp_effect_id_edited(self, widget, path, text):
         try:
-            if int(text)>=self.sp_effects.nb_effects() or int(text)<0:
+            if int(text) >= self.sp_effects.nb_effects() or int(text)<0:
                 return
             tree_store: Gtk.ListStore = self.builder.get_object('sp_effects_store')
-            tree_store[path][1] = int(text)
+            tree_store[path][1] = u16_checked(int(text))
         except ValueError:
             return
         self.sp_effects.set_item_effect_id(tree_store[path][0], tree_store[path][1])
@@ -267,6 +257,6 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
             store.append([x])
 
     def on_btn_add_sp_clicked(self, *args):
-        self.sp_effects.add_item_effect_id(0)
+        self.sp_effects.add_item_effect_id(u16(0))
         self._init_sp_list()
         self.module.mark_sp_effects_as_modified()

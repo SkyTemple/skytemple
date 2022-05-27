@@ -63,7 +63,7 @@ class MonsterSpriteController(AbstractController):
         self._monster_bin: ModelContext[BinPack] = self.module.get_monster_bin_ctx()
         self._rendered_frame_info: List[Tuple[int, Tuple[cairo.Surface, int, int, int, int]]] = []
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         if self.item_id < 0:
@@ -87,6 +87,7 @@ Warning: SkyTemple does not validate the files you import."""))
     def start_sprite_drawing(self):
         """Start drawing on the DrawingArea"""
         self._drawing_is_active = True
+        assert self._draw_area is not None
         self._draw_area.queue_draw()
         GLib.timeout_add(int(1000 / FPS), self._tick)
 

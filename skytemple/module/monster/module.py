@@ -20,6 +20,7 @@ from xml.etree.ElementTree import Element
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
+from range_typed_integers import u16, u8
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.module_controller import AbstractController
@@ -71,7 +72,7 @@ class MonsterModule(AbstractModule):
         self.waza_p2_bin: WazaP = self.project.open_file_in_rom(WAZA_P2_BIN, FileType.WAZA_P)
         self.tbl_talk: TblTalk = self.project.open_file_in_rom(TBL_TALK_FILE, FileType.TBL_TALK)
 
-        self._tree_model: Optional[Gtk.TreeModel] = None
+        self._tree_model: Gtk.TreeModel
         self._tree_iter__entity_roots: Dict[int, Gtk.TreeIter] = {}
         self._tree_iter__entries: Dict[int, Gtk.TreeIter] = {}
         self.effective_base_attr = 'md_index_base'
@@ -245,7 +246,7 @@ class MonsterModule(AbstractModule):
         else:
             return None
 
-    def set_personality(self, item_id, value):
+    def set_personality(self, item_id, value: u8):
         """Set personality value of the monster"""
         self.tbl_talk.set_monster_personality(item_id, value)
         self.project.mark_as_modified(TBL_TALK_FILE)
@@ -254,41 +255,41 @@ class MonsterModule(AbstractModule):
     def get_special_personality(self, spec_id):
         """Get special personality value"""
         return self.tbl_talk.get_special_personality(spec_id)
-    
+
     def set_special_personality(self, spec_id, value):
         """Set special personality value"""
         self.tbl_talk.set_special_personality(spec_id, value)
         self.mark_tbl_talk_as_modified()
-    
+
     def get_personality(self, item_id):
         """Get personality value of the monster"""
         return self.tbl_talk.get_monster_personality(item_id)
-    
+
     def get_nb_personality_groups(self):
         return self.tbl_talk.get_nb_groups()
-    
+
     def add_personality_group(self):
         return self.tbl_talk.add_group()
-    
+
     def remove_personality_group(self, group: int):
         return self.tbl_talk.remove_group(group)
-    
+
     def get_personality_dialogues(self, group: int, dialogue_types: TalkType):
         return self.tbl_talk.get_dialogues(group, dialogue_types)
-    
-    def set_personality_dialogues(self, group: int, dialogue_types: TalkType, dialogues: List[int]):
+
+    def set_personality_dialogues(self, group: int, dialogue_types: TalkType, dialogues: List[u16]):
         return self.tbl_talk.set_dialogues(group, dialogue_types, dialogues)
 
     def mark_string_as_modified(self):
         """Mark as modified"""
         self.project.get_string_provider().mark_as_modified()
         recursive_up_item_store_mark_as_modified(self._tree_model[self._root])
-        
+
     def mark_tbl_talk_as_modified(self):
         """Mark as modified"""
         self.project.mark_as_modified(TBL_TALK_FILE)
         recursive_up_item_store_mark_as_modified(self._tree_model[self._root])
-        
+
     def mark_md_as_modified(self, item_id):
         """Mark as modified"""
         self.project.get_string_provider().mark_as_modified()
@@ -346,9 +347,9 @@ class MonsterModule(AbstractModule):
         sp = self.project.get_string_provider()
         lang = sp.get_language(lang)
         model = sp.get_model(lang)
-        sorted_list = list(enumerate(model.strings[sp.get_index(StringType.POKEMON_NAMES,0):sp.get_index(StringType.POKEMON_NAMES,0)+MdProperties.MAX_POSSIBLE]))
-        sorted_list.sort(key=lambda x:normalize_string(x[1]))
-        sorted_list = [x[0] for x in sorted_list]
+        pre_sorted_list = list(enumerate(model.strings[sp.get_index(StringType.POKEMON_NAMES,0):sp.get_index(StringType.POKEMON_NAMES,0)+MdProperties.MAX_POSSIBLE]))
+        pre_sorted_list.sort(key=lambda x: normalize_string(x[1]))
+        sorted_list = [x[0] for x in pre_sorted_list]
         inv_sorted_list = [sorted_list.index(i) for i in range(MdProperties.MAX_POSSIBLE)]
         m2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.m2n}", ValListHandler)
         m2n_model.set_list(inv_sorted_list)
@@ -356,7 +357,7 @@ class MonsterModule(AbstractModule):
         n2m_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.n2m}", ValListHandler)
         n2m_model.set_list(sorted_list)
         self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.n2m}")
-        
+
     def import_from_xml(self, selected_monsters: List[int], xml: Element):
         b_attr = 'md_index_base'
         if self.project.is_patch_applied('ExpandPokeList'):

@@ -63,9 +63,9 @@ class SpriteModule(AbstractModule):
         self.project = rom_project
         self.list_of_obj_sprites = self.project.get_files_with_ext(WAN_FILE_EXT, GROUND_DIR)
 
-        self._tree_model: Optional[Gtk.TreeModel] = None
+        self._tree_model: Gtk.TreeModel
         self._tree_level_iter: Dict[str, Gtk.TreeIter] = {}
-        self._root = None
+        self._root: Gtk.TreeIter
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         self._root = item_store.append(root_node, [

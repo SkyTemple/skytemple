@@ -220,7 +220,7 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
 
     def do_render(self, ctx, wdg, background_area, cell_area, flags):
         ctx.translate(cell_area.x, cell_area.y)
-        self.mappings = [self.chunkidx]
+        self.mappings = [self.chunkidx]  # type: ignore
         self.draw(wdg, ctx, False)
         if 'GTK_CELL_RENDERER_SELECTED' in str(flags):
             ctx.set_source_rgba(0, 0, 90, 0.3)

@@ -67,6 +67,7 @@ setup(
         'skytemple-files >= 1.3.9',
         'skytemple-dtef >= 1.1.4',
         'skytemple-icons >= 1.3.2',
+        'range-typed-integers >= 1.0.0',
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',

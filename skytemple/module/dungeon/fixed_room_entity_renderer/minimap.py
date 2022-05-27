@@ -35,6 +35,7 @@ class MinimapEntityRenderer(AbstractEntityRenderer):
 
     def draw_action(self, ctx: cairo.Context, action: FixedFloorActionRule, x: int, y: int):
         if isinstance(action, EntityRule):
+            assert self.parent.entity_rule_container is not None
             item, monster, tile, stats = self.parent.entity_rule_container.get(action.entity_rule_id)
             # Has trap?
             if tile.trap_id == MappaTrapType.WONDER_TILE.value:

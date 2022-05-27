@@ -104,7 +104,7 @@ class DungeonMusicController(AbstractController):
         for idx in range(0, 30):
             cb_store.append([idx, _("Random ") + str(idx), True])
 
-        cb_store: Gtk.ListStore = self.builder.get_object('store_track_name_single')
+        cb_store = self.builder.get_object('store_track_name_single')
         cb_store.clear()
         for idx, track in music_entries.items():
             cb_store.append([idx, track.name + f" (#{idx:03})"])
@@ -121,12 +121,12 @@ class DungeonMusicController(AbstractController):
                 if track.track_or_ref == 999:
                     name = _("Invalid? (#999)")
                 elif track.track_or_ref >= len(music_entries):
-                    name = _("INVALID!!!") + f" (#{i:03})"
+                    name = _("INVALID!!!") + f" (#{idx:03})"
                 else:
                     name = music_entries[track.track_or_ref].name + f" (#{track.track_or_ref:03})"
             cb_store.append([str(idx), name])
 
-        cb_store: Gtk.ListStore = self.builder.get_object('store_random_tracks')
+        cb_store = self.builder.get_object('store_random_tracks')
         cb_store.clear()
         for idx, (a, b, c, d) in enumerate(self._random_list):
             cb_store.append([str(idx),

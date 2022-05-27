@@ -138,7 +138,7 @@ class RomProject:
         self._icon_banner: Optional[IconBanner] = None
         
         # Lazy
-        self._patcher = None
+        self._patcher: Optional[Patcher] = None
 
     async def load(self):
         """Load the ROM into memory and initialize all modules"""
@@ -393,7 +393,7 @@ class RomProject:
             logger.debug(f"Saving {name} in ROM. Model: {model}, Handler: {handler}")
             if handler == FileType.SIR0:
                 logger.debug(f"> Saving as Sir0 wrapped data.")
-                model = handler.wrap_obj(model)
+                model = handler.wrap_obj(model)  # type: ignore
             if assert_that is not None:
                 assert assert_that is model, "The model that is being saved must match!"
             binary_data = handler.serialize(model, **self._file_handler_kwargs[name])
@@ -454,7 +454,7 @@ class RomProject:
         return self._string_provider  # type: ignore
 
     def create_patcher(self):
-        if self._patcher==None:
+        if self._patcher is None:
             self._patcher = Patcher(self._rom, self.get_rom_module().get_static_data())
         return self._patcher
 

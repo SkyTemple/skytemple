@@ -22,6 +22,7 @@ import cairo
 import typing
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import TreeViewColumn
+from range_typed_integers import i16, u16
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
@@ -85,7 +86,7 @@ def popover_position(x, y, w, h):
 class SsaController(AbstractController):
     _last_open_tab = None
     _paned_pos = None
-    _last_scale_factor = None
+    _last_scale_factor: Optional[float] = None
     # Cache for map backgrounds, for faster scene view transitions in the same map context
     # Should be set to (None, ) when loading a map BG context.
     map_bg_surface_cache = (None, )
@@ -111,12 +112,12 @@ class SsaController(AbstractController):
                     self.mapbg_id = self.level.mapid
                     break
 
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
         if self.__class__._last_scale_factor is not None:
-            self._scale_factor: int = self.__class__._last_scale_factor
+            self._scale_factor: float = self.__class__._last_scale_factor
         else:
-            self._scale_factor = 1
+            self._scale_factor = 1.0
         self._bg_draw_is_clicked__location: Optional[Tuple[int, int]] = None
         self._bg_draw_is_clicked__drag_active = False
         self._map_bg_width = SIZE_REQUEST_NONE
@@ -129,15 +130,15 @@ class SsaController(AbstractController):
         self._currently_selected_entity_layer: Optional[int] = None
         self._selected_by_map_click = False
 
-        self._w_ssa_draw: Optional[Gtk.DrawingArea] = None
-        self._w_po_actors: Optional[Gtk.Popover] = None
-        self._w_po_objects: Optional[Gtk.Popover] = None
-        self._w_po_performers: Optional[Gtk.Popover] = None
-        self._w_po_triggers: Optional[Gtk.Popover] = None
+        self._w_ssa_draw: Gtk.DrawingArea = None  # type: ignore
+        self._w_po_actors: Gtk.Popover = None  # type: ignore
+        self._w_po_objects: Gtk.Popover = None  # type: ignore
+        self._w_po_performers: Gtk.Popover = None  # type: ignore
+        self._w_po_triggers: Gtk.Popover = None  # type: ignore
 
-        self.ssa: Optional[Ssa] = None
+        self.ssa: Ssa = None  # type: ignore
 
-        self.drawer: Optional[Drawer] = None
+        self.drawer: Drawer = None  # type: ignore
 
         self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
 
@@ -168,6 +169,7 @@ class SsaController(AbstractController):
 
         return self.builder.get_object('editor_ssa')
 
+    @typing.no_type_check
     def unload(self):
         super().unload()
         self.module = None
@@ -178,7 +180,7 @@ class SsaController(AbstractController):
         self.type = None
         self.scripts = None
         self.level = None
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder = None
         self._scale_factor = 1
         self._bg_draw_is_clicked__location = None
         self._bg_draw_is_clicked__drag_active = False
@@ -186,17 +188,17 @@ class SsaController(AbstractController):
         self._suppress_events = False
         self._currently_open_popover = None
         self._currently_selected_entity = None
-        self._currently_selected_entity_layer: Optional[int] = None
+        self._currently_selected_entity_layer = None
         self._selected_by_map_click = False
-        self._w_ssa_draw: Optional[Gtk.DrawingArea] = None
-        self._w_po_actors: Optional[Gtk.Popover] = None
-        self._w_po_objects: Optional[Gtk.Popover] = None
-        self._w_po_performers: Optional[Gtk.Popover] = None
-        self._w_po_triggers: Optional[Gtk.Popover] = None
-        self.ssa: Optional[Ssa] = None
+        self._w_ssa_draw = None
+        self._w_po_actors = None
+        self._w_po_objects = None
+        self._w_po_performers = None
+        self._w_po_triggers = None
+        self.ssa = None
         if self.drawer:
             self.drawer.unload()
-        self.drawer: Optional[Drawer] = None
+        self.drawer = None
         self._tileset_drawer_overlay = None
 
     def on_ssa_utility_switch_page(self, util_notebook: Gtk.Notebook, p, pnum, *args):
@@ -242,17 +244,19 @@ class SsaController(AbstractController):
 
             if self.drawer.interaction_mode == InteractionMode.PLACE_ACTOR:
                 new_entity = SsaActor(
-                    self.static_data.script_data, 0, self._build_pos(*self.drawer.get_pos_place_actor()), -1, -1
+                    self.static_data.script_data, u16(0), self._build_pos(*self.drawer.get_pos_place_actor()),
+                    i16(-1), i16(-1)
                 )
                 self.ssa.layer_list[place_layer].actors.append(new_entity)
             elif self.drawer.interaction_mode == InteractionMode.PLACE_OBJECT:
                 new_entity = SsaObject(
-                    self.static_data.script_data, 0, 2, 2, self._build_pos(*self.drawer.get_pos_place_object()), -1, -1
+                    self.static_data.script_data, u16(0), i16(2), i16(2),
+                    self._build_pos(*self.drawer.get_pos_place_object()), i16(-1), i16(-1)
                 )
                 self.ssa.layer_list[place_layer].objects.append(new_entity)
             elif self.drawer.interaction_mode == InteractionMode.PLACE_PERFORMER:
                 new_entity = SsaPerformer(
-                    0, 1, 1, self._build_pos(*self.drawer.get_pos_place_performer()), -1, -1
+                    u16(0), i16(1), i16(1), self._build_pos(*self.drawer.get_pos_place_performer()), i16(-1), i16(-1)
                 )
                 self.ssa.layer_list[place_layer].performers.append(new_entity)
             elif self.drawer.interaction_mode == InteractionMode.PLACE_TRIGGER:
@@ -285,16 +289,16 @@ class SsaController(AbstractController):
                         tile_y = 0
                     self.drawer.end_drag()
                     self.module.mark_as_modified(self.mapname, self.type, self.filename)
-                    self._currently_selected_entity.pos.x_relative = math.floor(tile_x)
-                    self._currently_selected_entity.pos.y_relative = math.floor(tile_y)
+                    self._currently_selected_entity.pos.x_relative = u16(math.floor(tile_x))
+                    self._currently_selected_entity.pos.y_relative = u16(math.floor(tile_y))
                     if tile_x % 1 != 0:
-                        self._currently_selected_entity.pos.x_offset = 2
+                        self._currently_selected_entity.pos.x_offset = u16(2)
                     else:
-                        self._currently_selected_entity.pos.x_offset = 0
+                        self._currently_selected_entity.pos.x_offset = u16(0)
                     if tile_y % 1 != 0:
-                        self._currently_selected_entity.pos.y_offset = 2
+                        self._currently_selected_entity.pos.y_offset = u16(2)
                     else:
-                        self._currently_selected_entity.pos.y_offset = 0
+                        self._currently_selected_entity.pos.y_offset = u16(0)
                     self._bg_draw_is_clicked__drag_active = False
                     self._bg_draw_is_clicked__location = None
         self._bg_draw_is_clicked__location = None
@@ -405,6 +409,7 @@ class SsaController(AbstractController):
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
             new_event = dialog.get_event()
+            assert new_event is not None
             self.ssa.triggers.append(new_event)
             self.builder.get_object('ssa_events').get_model().append(
                 self._list_entry_generate_event(new_event)
@@ -467,6 +472,7 @@ class SsaController(AbstractController):
             response = dialog.run()
             if response == Gtk.ResponseType.OK:
                 new_event = dialog.get_event()
+                assert new_event is not None
                 edit_model.coroutine = new_event.coroutine
                 edit_model.script_id = new_event.script_id
                 edit_model.unk2 = new_event.unk2
@@ -1151,7 +1157,7 @@ class SsaController(AbstractController):
         self._currently_selected_entity_layer = None
         self.drawer.set_selected(selected)  # type: ignore
         if open_popover:
-            popover: Gtk.Popover = None
+            popover: Gtk.Popover = None  # type: ignore
             if isinstance(selected, SsaActor):
                 popover = self._w_po_actors
                 if popup_x is None or popup_y is None:
@@ -1168,7 +1174,7 @@ class SsaController(AbstractController):
                 popover.set_pointing_to(rect)
                 popover.popup()
             elif isinstance(selected, SsaObject):
-                popover: Gtk.Popover = self._w_po_objects
+                popover = self._w_po_objects
                 if popup_x is None or popup_y is None:
                     popup_x, popup_y = popover_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_object(selected)))
                 self._select_in_combobox_where_callback('po_object_kind', lambda r: selected.object.id == r[0])
@@ -1185,7 +1191,7 @@ class SsaController(AbstractController):
                 popover.set_pointing_to(rect)
                 popover.popup()
             elif isinstance(selected, SsaPerformer):
-                popover: Gtk.Popover = self._w_po_performers
+                popover = self._w_po_performers
                 if popup_x is None or popup_y is None:
                     popup_x, popup_y = popover_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_performer(selected)))
                 self._select_in_combobox_where_callback('po_performer_kind', lambda r: selected.type == r[0])
@@ -1201,7 +1207,7 @@ class SsaController(AbstractController):
                 popover.set_pointing_to(rect)
                 popover.popup()
             elif isinstance(selected, SsaEvent):
-                popover: Gtk.Popover = self._w_po_triggers
+                popover = self._w_po_triggers
                 if popup_x is None or popup_y is None:
                     popup_x, popup_y = popover_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_trigger(selected)))
                 self._select_in_combobox_where_callback('po_trigger_id', lambda r: selected.trigger_id == self.ssa.triggers.index(r[0]))
@@ -1617,14 +1623,16 @@ class SsaController(AbstractController):
         return {self._script_id(script, as_int=True): self._get_file_shortname(script) for script in self.scripts}
 
     def _build_pos(self, x: float, y: float, dir=True) -> SsaPosition:
-        direction = 1 if dir else None
+        direction = u16(1) if dir else None
         x /= BPC_TILE_DIM
         y /= BPC_TILE_DIM
         x_relative = math.floor(x)
         y_relative = math.floor(y)
         x_offset = 2 if x % 1 != 0 else 0
         y_offset = 2 if y % 1 != 0 else 0
-        return SsaPosition(self.static_data.script_data, x_relative, y_relative, x_offset, y_offset, direction)
+        return SsaPosition(
+            self.static_data.script_data, u16(x_relative), u16(y_relative), u16(x_offset), u16(y_offset), direction
+        )
 
     def _show_generic_input(self, label_text, ok_text):
         dialog: Gtk.Dialog = self.builder.get_object('generic_input_dialog')
@@ -1646,18 +1654,22 @@ class SsaController(AbstractController):
 
     def _init_rest_room_note(self):
         info_bar = self.builder.get_object('editor_rest_room_note')
-        if self.level is not None and self.level.mapty_enum == Pmd2ScriptLevelMapType.TILESET or self.level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM:
-            mappings, mappa, fixed, dungeon_bin_context, dungeon_list = self.module.get_mapping_dungeon_assets()
-            with dungeon_bin_context as dungeon_bin:
-                mapping = resolve_mapping_for_level(self.level, mappings, mappa, fixed, dungeon_bin, dungeon_list)
-            if mapping:
-                dma, dpc, dpci, dpl, _, fixed_room = mapping
-                self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)
+        if self.level is not None:
+            if self.level.mapty_enum == Pmd2ScriptLevelMapType.TILESET or self.level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM:
+                mappings, mappa, fixed, dungeon_bin_context, dungeon_list = self.module.get_mapping_dungeon_assets()
+                with dungeon_bin_context as dungeon_bin:
+                    mapping = resolve_mapping_for_level(self.level, mappings, mappa, fixed, dungeon_bin, dungeon_list)
+                if mapping:
+                    dma, dpc, dpci, dpl, _, fixed_room = mapping
+                    self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)
+                else:
+                    info_bar.destroy()
             else:
                 info_bar.destroy()
         else:
             info_bar.destroy()
 
     def on_btn_toggle_overlay_rendering_clicked(self, *args):
-        self._tileset_drawer_overlay.enabled = not self._tileset_drawer_overlay.enabled
-        self.on_tool_choose_map_bg_cb_changed(self.builder.get_object('tool_choose_map_bg_cb'))
+        if self._tileset_drawer_overlay is not None:
+            self._tileset_drawer_overlay.enabled = not self._tileset_drawer_overlay.enabled
+            self.on_tool_choose_map_bg_cb_changed(self.builder.get_object('tool_choose_map_bg_cb'))

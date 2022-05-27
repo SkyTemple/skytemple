@@ -43,7 +43,7 @@ class BgpModule(AbstractModule):
         self.project = rom_project
         self.list_of_bgps = self.project.get_files_with_ext(BGP_FILE_EXT)
 
-        self._tree_model: Optional[Gtk.TreeStore] = None
+        self._tree_model: Gtk.TreeStore
         self._tree_level_iter: List[Gtk.TreeIter] = []
 
     def load_tree_items(self, item_store: TreeStore, root_node):

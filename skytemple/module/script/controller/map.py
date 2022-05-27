@@ -33,7 +33,7 @@ if TYPE_CHECKING:
 class MapController(AbstractController):
     def __init__(self, module: 'ScriptModule', name):
         self.module = module
-        self.builder: Optional[Gtk.Builder] = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self.name = name
         self._sub_enter = None
         self._sub_acting = None

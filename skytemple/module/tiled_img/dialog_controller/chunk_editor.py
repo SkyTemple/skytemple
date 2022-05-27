@@ -17,11 +17,12 @@
 
 import itertools
 import os
-from typing import Union, List, Optional
+from typing import Union, List, Optional, Sequence
 
 import cairo
 from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType, IconView, ScrolledWindow
+from range_typed_integers import u16
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.ui_utils import APP, make_builder
@@ -40,11 +41,11 @@ TILE_DIM = 8
 
 class ChunkEditorController:
     def __init__(self,
-                 parent_window, incoming_mappings: List[TilemapEntryProtocol],
+                 parent_window, incoming_mappings: Sequence[TilemapEntryProtocol],
                  tile_graphics: AbstractTileGraphicsProvider,
                  palettes: AbstractTilePalettesProvider,
                  pal_ani_durations: int,
-                 animated_tile_graphics: List[Optional[AbstractTileGraphicsProvider]] = None,
+                 animated_tile_graphics: Sequence[Optional[AbstractTileGraphicsProvider]] = None,
                  animated_tile_durations=0):
         path = os.path.abspath(os.path.dirname(__file__))
 
@@ -255,8 +256,8 @@ class ChunkEditorController:
     def on_add_chunk_clicked(self, *args):
         m = self.builder.get_object(f'icon_view_chunk').get_model()
         m.append([len(self.edited_mappings)])
-        for i in range(len(self.edited_mappings), len(self.edited_mappings)+9):
-            self.edited_mappings.append(TilemapEntry.from_int(0))
+        for i in range(len(self.edited_mappings), len(self.edited_mappings) + 9):
+            self.edited_mappings.append(TilemapEntry.from_int(u16(0)))
 
     def _init_icon_view_chunk(self):
         """Fill the icon view containing all the chunks"""
@@ -356,8 +357,7 @@ class ChunkEditorController:
                 view.add_attribute(renderer, 'tileidx', 0)
                 view.set_text_column(1)
                 view.connect('selection-changed', self.on_icon_view_static_tiles_selection_changed)
-
-                for idx in range(self.bpa_starts[i], self.bpa_starts[i] + ani_tile_g.count()):
+                for idx in range(self.bpa_starts[i], self.bpa_starts[i] + ani_tile_g.count()):  # type: ignore
                     store.append([idx, str(idx)])
 
                 renderer.start()

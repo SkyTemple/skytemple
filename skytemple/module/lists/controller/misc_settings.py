@@ -19,9 +19,11 @@ import re
 from typing import TYPE_CHECKING
 
 from gi.repository import Gtk
+from range_typed_integers import u8, u8_checked, u16, u16_checked
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import BinaryName
+from skytemple.core.ui_utils import catch_overflow
 from skytemple_files.hardcoded.dungeon_misc import HardcodedDungeonMisc
 from skytemple_files.hardcoded.hp_items import HardcodedHpItems
 from skytemple_files.hardcoded.main_menu_music import HardcodedMainMenuMusic
@@ -51,9 +53,10 @@ class MiscSettingsController(AbstractController):
         self.builder.connect_signals(self)
         return box
 
+    @catch_overflow(u8)
     def on_entry_text_speed_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u8_checked(int(widget.get_text()))
         except ValueError:
             return
 
@@ -72,18 +75,20 @@ class MiscSettingsController(AbstractController):
             ))
             self.module.mark_misc_settings_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_normal_spawn_delay_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedSpawnRate.set_normal_spawn_rate(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_stolen_spawn_delay_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
@@ -99,81 +104,90 @@ class MiscSettingsController(AbstractController):
         self.module.project.modify_binary(BinaryName.OVERLAY_29, lambda bin: HardcodedDungeonMisc.set_belly_loss_turn(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_belly_lost_wtw_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(BinaryName.OVERLAY_29, lambda bin: HardcodedDungeonMisc.set_belly_loss_walk_through_walls(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_belly_lost_wtw_1000_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(BinaryName.OVERLAY_29, lambda bin: HardcodedDungeonMisc.set_belly_loss_1000ile_walk_through_walls(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_ginseng_3_chance_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedDungeonMisc.set_ginseng_increase_by_3_chance(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_life_seed_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedHpItems.set_life_seed_hp(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_oran_berry_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedHpItems.set_oran_berry_hp(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_sitrus_berry_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedHpItems.set_sitrus_berry_hp(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_burn_damage_delay_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedDungeonMisc.set_burn_damage_delay(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_poison_damage_delay_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedDungeonMisc.set_poison_damage_delay(val, bin, static_data))
         self.module.mark_misc_settings_as_modified()
 
+    @catch_overflow(u16)
     def on_entry_bad_poison_damage_delay_changed(self, widget, *args):
         try:
-            val = int(widget.get_text())
+            val = u16_checked(int(widget.get_text()))
         except ValueError:
             return
         static_data = self.module.project.get_rom_module().get_static_data()
