@@ -51,7 +51,7 @@ class AsmController(AbstractController):
 
         self._category_tabs: Dict[PatchCategory, Gtk.Widget] = {}  # category -> page
         self._category_tabs_reverse: Dict[Gtk.Widget, PatchCategory] = {}  # page -> category
-        self._current_tab: PatchCategory
+        self._current_tab: Optional[PatchCategory] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'asm.glade')
@@ -165,7 +165,8 @@ class AsmController(AbstractController):
                 self.refresh(category)
             page_num += 1
 
-    def refresh(self, patch_category: PatchCategory):
+    def refresh(self, patch_category: Optional[PatchCategory]):
+        assert patch_category is not None
         # ATTACH
         assert self.builder
         page = self._category_tabs[patch_category]

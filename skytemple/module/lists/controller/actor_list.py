@@ -19,12 +19,12 @@ import re
 from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
-from range_typed_integers import u16
+from range_typed_integers import u16, u16_checked
 
 from skytemple.controller.main import MainController
 from skytemple.core.list_icon_renderer import ORANGE
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import glib_async
+from skytemple.core.ui_utils import glib_async, catch_overflow
 from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
 from skytemple_files.list.actor.model import ActorListBin
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptEntity
@@ -90,19 +90,21 @@ class ActorListController(ListBaseController):
     def on_cr_name_edited(self, widget, path, text):
         self._list_store[path][1] = text
 
+    @catch_overflow(u16)
     def on_cr_type_edited(self, widget, path, text):
         try:
-            int(text)  # this is only for validating.
+            u16_checked(int(text))  # this is only for validating.
         except ValueError:
             return
         self._list_store[path][2] = text
 
+    @catch_overflow(u16)
     def on_cr_entity_edited(self, widget, path, text):
         match = PATTERN_MD_ENTRY.match(text)
         if match is None:
             return
         try:
-            entid = int(match.group(1))
+            entid = u16_checked(int(match.group(1)))
         except ValueError:
             return
         idx = int(self._list_store[path][0])
@@ -129,16 +131,18 @@ class ActorListController(ListBaseController):
         # TODO: it's a bit weird doing this over the color
         self._list_store[path][3] = self._get_icon(entid, idx, self._list_store[path][8] == ORANGE)
 
+    @catch_overflow(u16)
     def on_cr_unk3_edited(self, widget, path, text):
         try:
-            int(text)  # this is only for validating.
+            u16_checked(int(text))  # this is only for validating.
         except ValueError:
             return
         self._list_store[path][5] = text
 
+    @catch_overflow(u16)
     def on_cr_unk4_edited(self, widget, path, text):
         try:
-            int(text)  # this is only for validating.
+            u16_checked(int(text))  # this is only for validating.
         except ValueError:
             return
         self._list_store[path][6] = text

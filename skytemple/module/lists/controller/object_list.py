@@ -16,16 +16,15 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import sys
 import logging
-import re
 from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
-from range_typed_integers import u16, u8
+from range_typed_integers import u16, u8, u16_checked
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import glib_async
+from skytemple.core.ui_utils import glib_async, catch_overflow
 from skytemple.module.lists.controller.base import ListBaseController
 from skytemple_files.list.object.model import ObjectListBin
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptObject
@@ -70,7 +69,7 @@ class ObjectListController(ListBaseController):
         md.destroy()
 
     def on_btn_add_clicked(self, *args):
-        self._list_store.append([len(self._list.list),"NULL",0,0,0,False])
+        self._list_store.append([len(self._list.list), "NULL", 0, 0, 0, False])
         self._list.list.append(Pmd2ScriptObject(
             id=u16(len(self._list.list)),
             unk1=u16(0),
@@ -82,7 +81,7 @@ class ObjectListController(ListBaseController):
 
     def on_cr_name_edited(self, widget, path, text):
         try:
-            if len(text)>10:
+            if len(text) > 10:
                 raise ValueError("Object name has more than 10 characters.")
             if max([ord(c) for c in text])>=256:
                 raise ValueError("Object name has non-ASCII characters.")
@@ -94,21 +93,24 @@ class ObjectListController(ListBaseController):
                 _("Invalid object name")
             )
 
+    @catch_overflow(u16)
     def on_cr_type_edited(self, widget, path, text):
         try:
-            self._list_store[path][2] = int(text)
+            self._list_store[path][2] = u16_checked(int(text))
         except ValueError:
             return
 
+    @catch_overflow(u16)
     def on_cr_unk21_edited(self, widget, path, text):
         try:
-            self._list_store[path][3] = int(text)
+            self._list_store[path][3] = u16_checked(int(text))
         except ValueError:
             return
 
+    @catch_overflow(u16)
     def on_cr_unk22_edited(self, widget, path, text):
         try:
-            self._list_store[path][4] = int(text)
+            self._list_store[path][4] = u16_checked(int(text))
         except ValueError:
             return
 
@@ -124,7 +126,7 @@ class ObjectListController(ListBaseController):
         obj = self._list.list[o_id]
         obj.name = name
         obj.unk1 = o_type
-        obj.unk2 = unk21+(unk22<<8)
+        obj.unk2 = unk21+(unk22 << 8)
         obj.unk3 = int(flag)
         logger.debug(f"Updated object {o_id}: {obj}")
 
@@ -137,7 +139,7 @@ class ObjectListController(ListBaseController):
         # Iterate list
         for idx, entry in enumerate(self._list.list):
             self._list_store.append([
-                idx, entry.name, entry.unk1, entry.unk2&0xFF, entry.unk2>>8, bool(entry.unk3)
+                idx, entry.name, entry.unk1, entry.unk2 & 0xFF, entry.unk2 >> 8, bool(entry.unk3)
             ])
 
     def get_tree(self):

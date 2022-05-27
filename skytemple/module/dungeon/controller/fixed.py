@@ -606,7 +606,6 @@ class FixedController(AbstractController):
             )
 
     def _init_drawer(self):
-        assert self.drawer is not None
         self.drawer = FixedRoomDrawer(self._draw, self.floor, self.module.project.get_sprite_provider(),
                                       self.entity_rule_container,
                                       self.module.project.get_string_provider(), self.module)

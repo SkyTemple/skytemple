@@ -111,7 +111,7 @@ class RankListController(AbstractController):
 
     def refresh_list(self):
         tree: Gtk.TreeView = self.builder.get_object('tree')
-        self._list_storee = tree.get_model()
+        self._list_store = tree.get_model()
         self._list_store.clear()
 
         # Iterate list
