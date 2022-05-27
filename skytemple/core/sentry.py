@@ -1,5 +1,5 @@
 """Module that manages capturing debugging information and sending it to sentry.io."""
-#  Copyright 2020-2021 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
