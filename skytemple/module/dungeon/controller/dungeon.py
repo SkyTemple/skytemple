@@ -103,6 +103,7 @@ class DungeonController(AbstractController):
                 entry_banner_lang.set_sensitive(True)
 
     def _init_dungeon_restrictions(self):
+        assert self.restrictions is not None
         self.builder.get_object('cb_direction').set_active(int(self.restrictions.direction.value))
         self.builder.get_object('switch_enemies_evolve_when_team_member_koed').set_active(self.restrictions.enemies_evolve_when_team_member_koed)
         self.builder.get_object('switch_enemies_grant_exp').set_active(self.restrictions.enemies_grant_exp)
@@ -328,6 +329,7 @@ class DungeonController(AbstractController):
             self.module.mark_dungeon_as_modified(self.dungeon_info.dungeon_id, False)
 
     def _save_dungeon_restrictions(self):
+        assert self.restrictions is not None
         self.module.update_dungeon_restrictions(self.dungeon_info.dungeon_id, self.restrictions)
         self.mark_as_modified()
 

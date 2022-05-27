@@ -20,6 +20,7 @@ import re
 from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
+from range_typed_integers import u16, u8
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
@@ -38,7 +39,7 @@ logger = logging.getLogger(__name__)
 class ObjectListController(ListBaseController):
     def __init__(self, module: 'ListsModule', *args):
         super().__init__(module, *args)
-        self._list: Optional[ObjectListBin] = None
+        self._list: ObjectListBin
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'object_list.glade')
@@ -71,10 +72,10 @@ class ObjectListController(ListBaseController):
     def on_btn_add_clicked(self, *args):
         self._list_store.append([len(self._list.list),"NULL",0,0,0,False])
         self._list.list.append(Pmd2ScriptObject(
-            id=len(self._list.list),
-            unk1=0,
-            unk2=0,
-            unk3=0,
+            id=u16(len(self._list.list)),
+            unk1=u16(0),
+            unk2=u16(0),
+            unk3=u8(0),
             name="NULL"
         ))
         self.module.mark_objects_as_modified()

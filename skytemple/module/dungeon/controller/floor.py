@@ -1138,6 +1138,7 @@ class FloorController(AbstractController):
                         warnings.add(_("Warning: Some traps spawns may be invalid. Unused traps will been spawned instead."))
                     idx = last
                 actions.append(DirectRule(x, idx))
+            assert self.drawer is not None
             self.drawer.fixed_floor = FixedFloor.new(u16(SIZE_Y), u16(SIZE_X), actions)
             if self.entry.layout.fixed_floor_id > 0:
                 self.builder.get_object('tool_label_info').set_text((_("Note: Floor uses a fixed room, the preview doesn't take this into account.\n") + '\n'.join(warnings)).strip('\n'))
@@ -1165,7 +1166,7 @@ class FloorController(AbstractController):
     def _update_scales(self):
         assert self.drawer is not None
         if self.drawer.fixed_floor is not None:
-            assert self._draw is not None
+            assert self._draw is not None and self.drawer.tileset_renderer is not None
             self._draw.set_size_request(
                 (self.drawer.fixed_floor.width + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor,
                 (self.drawer.fixed_floor.height + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor

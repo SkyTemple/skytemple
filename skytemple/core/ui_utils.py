@@ -20,7 +20,7 @@ import os
 import pathlib
 import sys
 from tempfile import NamedTemporaryFile
-from typing import Union, Type
+from typing import Union, Type, overload
 from xml.etree import ElementTree
 
 import gi
@@ -184,7 +184,11 @@ def glib_async(f):
     return wrapper
 
 
-def catch_overflow(typ: Union[Type[u8], Type[u16], Type[u32], Type[i8], Type[i16], Type[i32]]):
+@overload
+def catch_overflow(typ: Union[Type[u8], Type[u16], Type[u32], Type[i8], Type[i16], Type[i32]]): ...
+@overload
+def catch_overflow(range_start: int, range_end: int): ...
+def catch_overflow(typ_or_range_start, range_end=None):
     """
     Decorator to display a friendly error message with OverflowErrors occur
     (to inform the user of valid value ranges).
@@ -198,11 +202,20 @@ def catch_overflow(typ: Union[Type[u8], Type[u16], Type[u32], Type[i8], Type[i16
                 return f(*args, **kwargs)
             except OverflowError:
                 from skytemple.core.error_handler import display_error
-                rg = get_range(typ)
-                if rg:
+                rmin = None
+                rmax = None
+                if range_end is None:
+                    rg = get_range(typ_or_range_start)
+                    if rg:
+                        rmin = rg.min
+                        rmax = rg.max
+                else:
+                    rmin = typ_or_range_start
+                    rmax = range_end
+                if rmin is not None:
                     GLib.idle_add(lambda: display_error(
                         sys.exc_info(),
-                        _("The value you entered is invalid.\n\nValid values must be in the range [{},{}].").format(rg.min, rg.max),
+                        _("The value you entered is invalid.\n\nValid values must be in the range [{},{}].").format(rmin, rmax),
                         _("SkyTemple - Value out of range"), log=False
                     ))
                 else:

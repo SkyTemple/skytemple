@@ -19,11 +19,13 @@ from typing import TYPE_CHECKING, List, Union, Optional
 
 from gi.repository import Gtk
 from gi.repository.Gtk import Widget
+from range_typed_integers import u8, u32, u16
 
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.rom_project import BinaryName
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import catch_overflow
 from skytemple.module.lists.controller.base import ListBaseController
 from skytemple_files.common.i18n_util import f, _
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonDungeon
@@ -113,6 +115,7 @@ class GuestPokemonController(ListBaseController):
         self._save_guest_pokemon_data()
 
     # <editor-fold desc="HANDLERS: Guest pokémon" defaultstate="collapsed">
+    @catch_overflow(u32)
     def on_guest_pokemon_unk1_edited(self, widget, path, text):
         self._update_guest_pokemon_int(path, text, 1, 0, 0xFFFFFFFF)
 
@@ -130,6 +133,7 @@ class GuestPokemonController(ListBaseController):
         store[path][17] = self._get_icon(entid, idx, False)
         self._save_guest_pokemon_data()
 
+    @catch_overflow(u8)
     def on_guest_pokemon_joined_at_edited(self, widget, path, text):
         self._update_guest_pokemon_int(path, text, 3, 0, 255)
 
@@ -148,30 +152,39 @@ class GuestPokemonController(ListBaseController):
     def on_guest_pokemon_move4_edited(self, widget, path, text):
         self._update_guest_pokemon_move(path, text, 7)
 
+    @catch_overflow(0, 999)
     def on_guest_pokemon_hp_edited(self, widget, path, text):
         self._update_guest_pokemon_int(path, text, 8, 0, 999)
 
+    @catch_overflow(0, 100)
     def on_guest_pokemon_level_edited(self, widget, path, text):
         self._update_guest_pokemon_int(path, text, 9, 0, 100)
 
+    @catch_overflow(0, 999)
     def on_guest_pokemon_iq_edited(self, widget, path, text):
         self._update_guest_pokemon_int(path, text, 10, 0, 999)
 
+    @catch_overflow(u8)
     def on_guest_pokemon_attack_edited(self, widget, path, text):
         self._update_guest_pokemon_int(path, text, 11, 0, 255)
 
+    @catch_overflow(u8)
     def on_guest_pokemon_special_attack_edited(self, widget, path, text):
         self._update_guest_pokemon_int(path, text, 12, 0, 255)
 
+    @catch_overflow(u8)
     def on_guest_pokemon_defense_edited(self, widget, path, text):
         self._update_guest_pokemon_int(path, text, 13, 0, 255)
 
+    @catch_overflow(u8)
     def on_guest_pokemon_special_defense_edited(self, widget, path, text):
         self._update_guest_pokemon_int(path, text, 14, 0, 255)
 
+    @catch_overflow(u16)
     def on_guest_pokemon_unk3_edited(self, widget, path, text):
         self._update_guest_pokemon_int(path, text, 15, 0, 0xFFFF)
 
+    @catch_overflow(u32)
     def on_guest_pokemon_exp_edited(self, widget, path, text):
         self._update_guest_pokemon_int(path, text, 16, 0, 0xFFFFFFFF)
     # </editor-fold>
@@ -260,14 +273,18 @@ class GuestPokemonController(ListBaseController):
         store: Gtk.ListStore = self.builder.get_object('store_tree_guest_pokemon_data')
         guest_pokemon_list = []
         for i, row in enumerate(store):
-            guest_pokemon_list.append(GuestPokemon(int(row[1]), self._get_monster_id_from_display_name(row[2]), int(row[3]),
-                                                   [self._get_move_id_from_display_name(row[4]),
-                                                    self._get_move_id_from_display_name(row[5]),
-                                                    self._get_move_id_from_display_name(row[6]),
-                                                    self._get_move_id_from_display_name(row[7])],
-                                                   int(row[8]), int(row[9]), int(row[10]), int(row[11]),
-                                                   int(row[12]), int(row[13]), int(row[14]), int(row[15]),
-                                                   int(row[16])))
+            guest_pokemon_list.append(GuestPokemon(
+                u32(int(row[1])), u16(self._get_monster_id_from_display_name(row[2])), u16(int(row[3])),
+                [
+                    u16(self._get_move_id_from_display_name(row[4])),
+                    u16(self._get_move_id_from_display_name(row[5])),
+                    u16(self._get_move_id_from_display_name(row[6])),
+                    u16(self._get_move_id_from_display_name(row[7]))
+                ],
+                u16(int(row[8])), u16(int(row[9])), u16(int(row[10])), u16(int(row[11])),
+                u16(int(row[12])), u16(int(row[13])), u16(int(row[14])), u16(int(row[15])),
+                u32(int(row[16])))
+            )
         self.module.set_guest_pokemon_data(guest_pokemon_list)
         # Update our copy of the binary
         self.arm9 = self.module.project.get_binary(BinaryName.ARM9)
@@ -279,7 +296,7 @@ class GuestPokemonController(ListBaseController):
             store.append([self._get_monster_display_name(i)])
 
         # Init moves Completion
-        store: Gtk.ListStore = self.builder.get_object('store_completion_moves')
+        store = self.builder.get_object('store_completion_moves')
         for i in range(len(self.move_entries)):
             store.append([self._get_move_display_name(i)])
 
@@ -330,10 +347,8 @@ class GuestPokemonController(ListBaseController):
         assert self.builder
         try:
             v = int(text)
-            if v < min_val:
-                text = str(min_val)
-            elif v > max_val:
-                text = str(max_val)
+            if v < min_val or v > max_val:
+                raise OverflowError()
         except ValueError:
             return
         store: Gtk.ListStore = self.builder.get_object('store_tree_guest_pokemon_data')

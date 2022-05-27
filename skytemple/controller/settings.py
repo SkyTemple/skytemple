@@ -159,8 +159,8 @@ class SettingsController:
             # Async modes
             cb = self.builder.get_object('setting_async')
             async_mode = AsyncConfiguration(cb.get_model()[cb.get_active_iter()][0])
-            before = self.settings.get_async_configuration()
-            if before != async_mode:
+            before_async = self.settings.get_async_configuration()
+            if before_async != async_mode:
                 self.settings.set_async_configuration(async_mode)
                 have_to_restart = True
 

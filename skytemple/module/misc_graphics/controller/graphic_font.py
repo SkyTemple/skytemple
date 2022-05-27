@@ -50,7 +50,8 @@ class GraphicFontController(AbstractController):
     def __init__(self, module: 'MiscGraphicsModule', item: 'FontOpenSpec'):
         self.module = module
         self.spec = item
-        self.font: Optional[GraphicFont] = self.module.get_graphic_font(self.spec)
+        self.font: GraphicFont = self.module.get_graphic_font(self.spec)  # type: ignore
+        assert self.font is not None
         
         self.builder: Gtk.Builder = None  # type: ignore
 

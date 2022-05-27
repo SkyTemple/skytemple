@@ -19,6 +19,7 @@ import re
 from typing import TYPE_CHECKING, Optional
 
 from gi.repository import Gtk
+from range_typed_integers import u16
 
 from skytemple.controller.main import MainController
 from skytemple.core.list_icon_renderer import ORANGE
@@ -39,7 +40,7 @@ logger = logging.getLogger(__name__)
 class ActorListController(ListBaseController):
     def __init__(self, module: 'ListsModule', *args):
         super().__init__(module, *args)
-        self._list: Optional[ActorListBin] = None
+        self._list: ActorListBin
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'actor_list.glade')
@@ -77,12 +78,12 @@ class ActorListController(ListBaseController):
             None
         ])
         self._list.list.append(Pmd2ScriptEntity(
-            id=idx,
-            type=0,
-            entid=1,
+            id=u16(idx),
+            type=u16(0),
+            entid=u16(1),
             name="NEW",
-            unk3=0,
-            unk4=0
+            unk3=u16(0),
+            unk4=u16(0)
         ))
         self.module.mark_actors_as_modified()
 
@@ -174,7 +175,7 @@ class ActorListController(ListBaseController):
             if entid_to_edit <= 0:
                 force_placeholder = True
                 # Otherwise we will edit the placeholder for this entry in the table.
-                entid_to_edit = 1
+                entid_to_edit = u16(1)
                 standins = self._sprite_provider.get_standin_entities()
                 if idx in standins:
                     entid_to_edit = standins[idx]

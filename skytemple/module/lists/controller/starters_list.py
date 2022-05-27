@@ -18,7 +18,7 @@ import logging
 from typing import TYPE_CHECKING, Optional, Dict
 
 from gi.repository import Gtk
-from range_typed_integers import u8_checked, u8
+from range_typed_integers import u8_checked, u8, u16, u16_checked
 
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import catch_overflow
@@ -71,8 +71,8 @@ class StartersListController(ListBaseController):
         super().__init__(module, *args)
         self._player, self._partner = self.module.get_starter_ids()
         self._default_player, self._default_partner = self.module.get_starter_default_ids()
-        self._player_iters: Dict[str, Gtk.TreeIter] = {}
-        self._partner_iters: Dict[str, Gtk.TreeIter] = {}
+        self._player_iters: Dict[int, Gtk.TreeIter] = {}
+        self._partner_iters: Dict[int, Gtk.TreeIter] = {}
         self.string_provider = self.module.project.get_string_provider()
 
     def get_view(self) -> Gtk.Widget:
@@ -100,24 +100,26 @@ class StartersListController(ListBaseController):
 
         return self.builder.get_object('box')
 
+    @catch_overflow(u16)
     def on_default_player_species_changed(self, w, *args):
         match = PATTERN_MD_ENTRY.match(w.get_text())
         if match is None:
             return
         try:
-            val = int(match.group(1))
+            val = u16_checked(int(match.group(1)))
         except ValueError:
             return
         if self._default_player != val:
             self._default_player = val
             self.module.set_starter_default_ids(self._default_player, self._default_partner)
-        
+
+    @catch_overflow(u16)
     def on_default_partner_species_changed(self, w, *args):
         match = PATTERN_MD_ENTRY.match(w.get_text())
         if match is None:
             return
         try:
-            val = int(match.group(1))
+            val = u16_checked(int(match.group(1)))
         except ValueError:
             return
         if self._default_partner != val:
@@ -204,7 +206,7 @@ class StartersListController(ListBaseController):
             self._player_iters[idx] = l_iter
 
         # PARTNER LIST
-        tree: Gtk.TreeView = self.builder.get_object('partner_tree')
+        tree = self.builder.get_object('partner_tree')
         store = tree.get_model()
         store.clear()
         for idx, entry in enumerate(self._partner):
