@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-05-27 13:25+0000\n"
-"PO-Revision-Date: 2022-05-27 17:36\n"
+"PO-Revision-Date: 2022-05-27 18:40\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1037,7 +1037,7 @@ msgstr "La carpeta {path} ya existe."
 #: skytemple-files/skytemple_files/common/util.py:704
 #, python-brace-format
 msgid "The value '{value}' does not fit into the field '{key}'. The value must fit into the range [{r.min},{r.max}]."
-msgstr ""
+msgstr "El valor '{value}' no cabe en el campo '{key}'. El valor debe caber en el rango [{r.min},{r.max}]."
 
 #: skytemple-files/skytemple_files/common/xml_util.py:43
 #, python-brace-format
@@ -5404,11 +5404,12 @@ msgstr "Archivo CSV (*.csv)"
 #: skytemple/skytemple/core/ui_utils.py:218
 msgid "The value you entered is invalid.\n\n"
 "Valid values must be in the range [{},{}]."
-msgstr ""
+msgstr "El valor que has introducido no es válido.\n\n"
+"Los valores válidos deben estar en el rango [{}, {}]."
 
 #: skytemple/skytemple/core/ui_utils.py:219
 msgid "SkyTemple - Value out of range"
-msgstr ""
+msgstr "SkyTemple: valor fuera de rango"
 
 #: skytemple/skytemple/main.py:112
 msgid "PyGObject compiled without Cairo support. Can't start!"
@@ -11857,7 +11858,7 @@ msgstr "Parches ASM"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:42
 msgid "Apply ASM (assembler) patches to the game."
-msgstr ""
+msgstr "Aplicar los parches ASM (ensamblador) al juego."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:76
 msgid "Open Patch Directory..."
@@ -11964,7 +11965,8 @@ msgstr "Efectos de objeto"
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:92
 msgid "Edits the item effects used by the game.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Edita los objetos utilizados por el juego.\n"
+"Esto no muestra los efectos añadidos por el código en C o Rust."
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:107
 msgid "<Not available>\n\n"
@@ -11978,7 +11980,8 @@ msgstr "<No disponible>\n\n"
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:182
 msgid "Edits the effects used by each move.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Edita los efectos utilizados por cada movimiento.\n"
+"Esto no muestra los efectos añadidos por el código en C o Rust."
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:231
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:240
@@ -11992,7 +11995,9 @@ msgstr "Efecto"
 msgid "This section allows you to insert custom ASM code for effects.\n"
 "Please note that C and Rust effects are not listed here.\n"
 "See the \"C/Rust\" section for more information."
-msgstr ""
+msgstr "Esta sección te permite insertar código ASM personalizado a los efectos.\n"
+"Ten en cuenta que los efectos de C y Rust no se listan aquí.\n"
+"Ve a la sección \"C/Rust\" para más información."
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:343
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:384
@@ -12117,7 +12122,8 @@ msgstr "Efectos de movimiento"
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:100
 msgid "Edits the move effects used by the game.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Edita los efectos de movimiento utilizados por el juego.\n"
+"Esto no muestra los efectos añadidos por el código en C o Rust."
 
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:115
 msgid "<Not available>\n\n"
@@ -12188,7 +12194,8 @@ msgstr "Efectos de procesos especiales"
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:88
 msgid "Edits the special process effects used by the game.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Edita el proceso especial utilizado por el juego.\n"
+"Esto no muestra los efectos añadidos por el código en C o Rust."
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:103
 msgid "<Not available>\n\n"
@@ -12201,7 +12208,8 @@ msgstr "<No disponible>\n\n"
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:169
 msgid "Edits the effects used by each special process.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Edita los efectos utilizados por cada proceso especial.\n"
+"Esto no muestra los efectos añadidos por el código en C o Rust."
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:284
 msgid "Add Special Process"
@@ -13270,7 +13278,7 @@ msgstr "<i>Si se activa, los informes de errores se enviarán a sentry.io,\n"
 
 #: skytemple/skytemple/skytemple.glade:577
 msgid "Use Client Side Decorations"
-msgstr ""
+msgstr "Utilizar decoraciones del lado del cliente"
 
 #: skytemple/skytemple/skytemple.glade:656
 #: skytemple/skytemple/skytemple.glade:1064
