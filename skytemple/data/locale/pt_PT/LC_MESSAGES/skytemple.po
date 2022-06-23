@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-05-27 13:25+0000\n"
-"PO-Revision-Date: 2022-05-27 14:25\n"
+"POT-Creation-Date: 2022-06-23 15:30+0000\n"
+"PO-Revision-Date: 2022-06-23 15:34\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -2606,7 +2606,7 @@ msgid "Can not import map background: Height of both images must match the curre
 msgstr ""
 
 #: skytemple-files/skytemple_files/graphics/bpa/_model.py:167
-#: skytemple-rust/src/st_bpa.rs:202
+#: skytemple-rust/src/st_bpa.rs:227
 msgid "The dimensions of all images must be the same."
 msgstr ""
 
@@ -3513,72 +3513,72 @@ msgstr ""
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:148
-#: skytemple-files/skytemple_files/patch/patches.py:158
+#: skytemple-files/skytemple_files/patch/patches.py:150
+#: skytemple-files/skytemple_files/patch/patches.py:160
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:164
+#: skytemple-files/skytemple_files/patch/patches.py:166
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:167
+#: skytemple-files/skytemple_files/patch/patches.py:169
 #: skytemple/skytemple/module/patch/controller/asm.py:232
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:174
+#: skytemple-files/skytemple_files/patch/patches.py:176
 msgid "No configuration was given."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:177
+#: skytemple-files/skytemple_files/patch/patches.py:179
 msgid "Missing configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:181
 #: skytemple-files/skytemple_files/patch/patches.py:183
 #: skytemple-files/skytemple_files/patch/patches.py:185
-#: skytemple-files/skytemple_files/patch/patches.py:189
-#: skytemple-files/skytemple_files/patch/patches.py:199
+#: skytemple-files/skytemple_files/patch/patches.py:187
+#: skytemple-files/skytemple_files/patch/patches.py:191
+#: skytemple-files/skytemple_files/patch/patches.py:201
 msgid "Invalid configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:183
+#: skytemple-files/skytemple_files/patch/patches.py:185
 msgid "Must be >= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:185
+#: skytemple-files/skytemple_files/patch/patches.py:187
 msgid "Must be <= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:233
+#: skytemple-files/skytemple_files/patch/patches.py:235
 msgid "config.xml missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:235
+#: skytemple-files/skytemple_files/patch/patches.py:237
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:246
+#: skytemple-files/skytemple_files/patch/patches.py:248
 msgid "patch.py missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:248
+#: skytemple-files/skytemple_files/patch/patches.py:250
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:253
+#: skytemple-files/skytemple_files/patch/patches.py:255
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:258
+#: skytemple-files/skytemple_files/patch/patches.py:260
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:264
+#: skytemple-files/skytemple_files/patch/patches.py:266
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
@@ -3651,164 +3651,164 @@ msgstr ""
 msgid "Could not compile script: All languages must have the same amount of strings."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/eoc.rs:35
-#: skytemple-rust/src/dse/st_smdl/trk.rs:103
+#: skytemple-rust/src/dse/st_smdl/eoc.rs:37
+#: skytemple-rust/src/dse/st_smdl/trk.rs:116
 msgid "SMDL file too short (EOC EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/eoc.rs:37
+#: skytemple-rust/src/dse/st_smdl/eoc.rs:40
 msgid "Invalid SMDL/EOC header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/smdl.rs:156
+#: skytemple-rust/src/dse/st_smdl/smdl.rs:202
 msgid "SMDL file too short (Header EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/smdl.rs:158
+#: skytemple-rust/src/dse/st_smdl/smdl.rs:207
 msgid "Invalid SMDL/Header header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/song.rs:68
+#: skytemple-rust/src/dse/st_smdl/song.rs:94
 msgid "SMDL file too short (Song EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/song.rs:70
+#: skytemple-rust/src/dse/st_smdl/song.rs:97
 msgid "Invalid SMDL/Song header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/trk.rs:60
+#: skytemple-rust/src/dse/st_smdl/trk.rs:68
 msgid "SMDL file too short (Track EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_smdl/trk.rs:62
+#: skytemple-rust/src/dse/st_smdl/trk.rs:71
 msgid "Invalid SMDL/Track header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/kgrp.rs:41
+#: skytemple-rust/src/dse/st_swdl/kgrp.rs:43
 msgid "SWDL file too short (Keygroup EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/kgrp.rs:76
-#: skytemple-rust/src/dse/st_swdl/kgrp.rs:82
+#: skytemple-rust/src/dse/st_swdl/kgrp.rs:80
+#: skytemple-rust/src/dse/st_swdl/kgrp.rs:89
 msgid "SWDL file too short (Kgrp EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/kgrp.rs:78
+#: skytemple-rust/src/dse/st_swdl/kgrp.rs:83
 msgid "Invalid SWDL/Kgrp header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/pcmd.rs:35
-#: skytemple-rust/src/dse/st_swdl/pcmd.rs:41
+#: skytemple-rust/src/dse/st_swdl/pcmd.rs:37
+#: skytemple-rust/src/dse/st_swdl/pcmd.rs:46
 msgid "SWDL file too short (Pcmd EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/pcmd.rs:37
+#: skytemple-rust/src/dse/st_swdl/pcmd.rs:40
 msgid "Invalid SWDL/Pcmd header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:45
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:47
 msgid "SWDL file too short (LFO EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:120
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:124
 msgid "SWDL file too short (Split EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:128
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:135
 msgid "SWDL file: Invalid lowkey duplicate (Split EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:129
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:139
 msgid "SWDL file: Invalid hikey duplicate (Split EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:132
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:145
 msgid "SWDL file: Invalid lolevel duplicate (Split EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:133
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:149
 msgid "SWDL file: Invalid hilevel duplicate (Split EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:238
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:287
 msgid "SWDL file too short (PRG EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:298
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:362
 msgid "SWDL file too short (Prgi EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:300
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:365
 msgid "Invalid PRGI/Prgi header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/prgi.rs:308
+#: skytemple-rust/src/dse/st_swdl/prgi.rs:375
 msgid "SWDL Prgi length invalid; tried to read past EOF."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/swdl.rs:47
+#: skytemple-rust/src/dse/st_swdl/swdl.rs:52
 msgid "SWDL file too short (SwdlPcmdLen EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/swdl.rs:107
+#: skytemple-rust/src/dse/st_swdl/swdl.rs:139
 msgid "SWDL file too short (Header EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/swdl.rs:109
+#: skytemple-rust/src/dse/st_swdl/swdl.rs:144
 msgid "Invalid SWDL/Header header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/swdl.rs:196
+#: skytemple-rust/src/dse/st_swdl/swdl.rs:250
 msgid "Swdl read error (inconsistent Wavi length)"
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/swdl.rs:220
+#: skytemple-rust/src/dse/st_swdl/swdl.rs:284
 msgid "Swdl read: Invalid sample data"
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/wavi.rs:103
+#: skytemple-rust/src/dse/st_swdl/wavi.rs:105
 msgid "SWDL file too short (Sample Table EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/wavi.rs:224
-#: skytemple-rust/src/dse/st_swdl/wavi.rs:237
+#: skytemple-rust/src/dse/st_swdl/wavi.rs:262
+#: skytemple-rust/src/dse/st_swdl/wavi.rs:281
 msgid "SWDL file too short (Wavi EOF)."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/wavi.rs:226
+#: skytemple-rust/src/dse/st_swdl/wavi.rs:265
 msgid "Invalid SWDL/Wavi header."
 msgstr ""
 
-#: skytemple-rust/src/dse/st_swdl/wavi.rs:234
+#: skytemple-rust/src/dse/st_swdl/wavi.rs:275
 msgid "SWDL Wavi length invalid; tried to read past EOF."
 msgstr ""
 
-#: skytemple-rust/src/image/tiled.rs:195
+#: skytemple-rust/src/image/tiled.rs:231
 msgid "An image selected to import is too complex. It has too many unique tiles ({}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr ""
 
-#: skytemple-rust/src/romfs.rs:92
+#: skytemple-rust/src/romfs.rs:101
 msgid "ROM Header checksum does not match contents."
 msgstr ""
 
-#: skytemple-rust/src/romfs.rs:98
+#: skytemple-rust/src/romfs.rs:110
 msgid "Error reading the filesystem from ROM: {}"
 msgstr ""
 
-#: skytemple-rust/src/st_bma.rs:371
+#: skytemple-rust/src/st_bma.rs:463
 msgid "Can not import map background: Width of both images must match the current map width: {}px"
 msgstr ""
 
-#: skytemple-rust/src/st_bma.rs:379
+#: skytemple-rust/src/st_bma.rs:475
 msgid "Can not import map background: Height of both images must match the current map width: {}px"
 msgstr ""
 
-#: skytemple-rust/src/st_bpc.rs:391
+#: skytemple-rust/src/st_bpc.rs:543
 msgid "new tilemapping for this chunk must contain {} tiles."
 msgstr ""
 
-#: skytemple-rust/src/st_kao.rs:90
+#: skytemple-rust/src/st_kao.rs:100
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({} bytes total).\n"
 " If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
 msgstr ""
