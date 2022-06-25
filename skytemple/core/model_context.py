@@ -15,12 +15,13 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import threading
+from contextlib import AbstractContextManager
 from typing import TypeVar, Generic
 
 T = TypeVar('T')
 
 
-class ModelContext(Generic[T]):
+class ModelContext(Generic[T], AbstractContextManager):
     """
     ContextManager that wraps a model for thread-safe data access.
     References to the model are invalid outside of the context provided.

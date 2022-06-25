@@ -22,6 +22,7 @@ from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Typ
 
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
+from pmdsky_debug_py.protocol import SectionProtocol
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.modules import Modules
@@ -30,13 +31,12 @@ from skytemple.core.model_context import ModelContext
 from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.string_provider import StringProvider, StringType
 from skytemple_files.data.md.model import MdProperties
-from skytemple_files.common.ppmdu_config.pmdsky_debug.data import Pmd2Binary
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
-    get_ppmdu_config_for_rom, get_binary_from_rom_ppmdu, set_binary_in_rom_ppmdu, get_files_from_folder_with_extension, \
+    get_ppmdu_config_for_rom, get_binary_from_rom, set_binary_in_rom, get_files_from_folder_with_extension, \
     folder_in_rom_exists, create_folder_in_rom
 from skytemple_files.container.sir0.sir0_serializable import Sir0Serializable
 from skytemple_files.patch.patches import Patcher
@@ -50,18 +50,18 @@ if TYPE_CHECKING:
     from skytemple.module.rom.module import RomModule
 
 
-from contextlib import nullcontext
+from contextlib import nullcontext, AbstractContextManager
 
 
 class BinaryName(Enum):
-    """This enum maps to binary names of the pmd2data.xml."""
-    ARM9 = auto(), 'arm9.bin'
-    OVERLAY_00 = auto(), 'overlay/overlay_0000.bin'
-    OVERLAY_09 = auto(), 'overlay/overlay_0009.bin'
-    OVERLAY_10 = auto(), 'overlay/overlay_0010.bin'
-    OVERLAY_11 = auto(), 'overlay/overlay_0011.bin'
-    OVERLAY_13 = auto(), 'overlay/overlay_0013.bin'
-    OVERLAY_29 = auto(), 'overlay/overlay_0029.bin'
+    """This enum maps to binary names of SymbolsProtocol."""
+    ARM9 = auto(), 'arm9'
+    OVERLAY_00 = auto(), 'overlay0'
+    OVERLAY_09 = auto(), 'overlay9'
+    OVERLAY_10 = auto(), 'overlay10'
+    OVERLAY_11 = auto(), 'overlay11'
+    OVERLAY_13 = auto(), 'overlay13'
+    OVERLAY_29 = auto(), 'overlay29'
 
     def __new__(cls, *args, **kwargs):
         obj = object.__new__(cls)
@@ -385,7 +385,7 @@ class RomProject:
         Write the binary model for this type to the ROM object in memory.
         If assert_that is given, it is asserted, that the model matches the one on record.
         """
-        context = self._opened_files_contexts[name] \
+        context: AbstractContextManager = self._opened_files_contexts[name] \
             if name in self._opened_files_contexts \
             else nullcontext(self._opened_files[name])
         with context as model:
@@ -458,18 +458,22 @@ class RomProject:
             self._patcher = Patcher(self._rom, self.get_rom_module().get_static_data())
         return self._patcher
 
-    def get_binary(self, binary: Union[Pmd2Binary, BinaryName, str]) -> bytes:
-        if not isinstance(binary, Pmd2Binary):
-            binary = self.get_rom_module().get_static_data().binaries[str(binary)]
-        return get_binary_from_rom_ppmdu(self._rom, binary)  # type: ignore
+    def get_binary(self, binary: Union[SectionProtocol, BinaryName, str]) -> bytes:
+        if isinstance(binary, str) or isinstance(binary, BinaryName):
+            the_binary = getattr(self.get_rom_module().get_static_data().bin_sections, str(binary))
+        else:
+            the_binary = binary
+        return get_binary_from_rom(self._rom, the_binary)
 
-    def modify_binary(self, binary: Union[Pmd2Binary, BinaryName, str], modify_cb: Callable[[bytearray], None]):
+    def modify_binary(self, binary: Union[SectionProtocol, BinaryName, str], modify_cb: Callable[[bytearray], None]):
         """Modify one of the binaries (such as arm9 or overlay) and save it to the ROM"""
-        if not isinstance(binary, Pmd2Binary):
-            binary = self.get_rom_module().get_static_data().binaries[str(binary)]
-        data = bytearray(self.get_binary(binary))
+        if isinstance(binary, str) or isinstance(binary, BinaryName):
+            the_binary = getattr(self.get_rom_module().get_static_data().bin_sections, str(binary))
+        else:
+            the_binary = binary
+        data = bytearray(self.get_binary(the_binary))
         modify_cb(data)
-        set_binary_in_rom_ppmdu(self._rom, binary, data)  # type: ignore
+        set_binary_in_rom(self._rom, the_binary, data)
         self.force_mark_as_modified()
 
     def is_patch_applied(self, patch_name):
