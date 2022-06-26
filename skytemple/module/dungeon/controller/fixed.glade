@@ -1671,7 +1671,7 @@ if dungeon is cleared:</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
-                <property name="label" translatable="yes">Prevent "Item Stealing"</property>
+                <property name="label" translatable="yes">Allow "Item Stealing"</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
@@ -1683,7 +1683,7 @@ if dungeon is cleared:</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
-                <property name="label" translatable="yes">Disable all warp effects:</property>
+                <property name="label" translatable="yes">Allow warp effects:</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
@@ -1695,7 +1695,7 @@ if dungeon is cleared:</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
-                <property name="label" translatable="yes">Disable some traps:</property>
+                <property name="label" translatable="yes">Allow certain traps:</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
@@ -1779,7 +1779,24 @@ Please check the help for each setting for more information.</property>
               </packing>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkButton" id="btn_help_unk5">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_btn_help_unk5_clicked" swapped="no"/>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">6</property>
+              </packing>
             </child>
             <child>
               <placeholder/>

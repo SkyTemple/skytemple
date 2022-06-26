@@ -445,11 +445,16 @@ class FixedController(AbstractController):
     def on_btn_help_defeat_enemies_clicked(self, *args):
         self._help(_("If enabled, the floor is exited after all the enemies have been defeated"))
 
+    def on_btn_help_unk5_clicked(self, *args):
+        self._help(_("If disabled, certain traps (Summon, Pitfall and Pokémon) will be disabled."
+                     "\nIf ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."))
+
     def on_btn_help_unk8_clicked(self, *args):
-        self._help(_("If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."))
+        self._help(_("If disabled, warping, being blown away and leaping effects will be disabled."
+                     "\nIf ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."))
 
     def on_btn_help_unk9_clicked(self, *args):
-        self._help(_("Prevents any kind of item pulling (such as with the Trawl Orb)."
+        self._help(_("If disabled, prevents any kind of item pulling (such as with the Trawl Orb)."
                      "\nIf ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."))
     
     def on_btn_help_complete_clicked(self, *args):
