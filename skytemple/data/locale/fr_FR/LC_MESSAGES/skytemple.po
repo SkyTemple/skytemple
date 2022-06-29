@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-06-26 20:55+0000\n"
-"PO-Revision-Date: 2022-06-29 10:43\n"
+"PO-Revision-Date: 2022-06-29 11:49\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -4682,7 +4682,9 @@ msgstr "Recharger les variables actuelles"
 msgid "Sometimes the values get out\n"
 "of sync with the game.\n"
 "This forces a reload."
-msgstr ""
+msgstr "Il arrive que les valeurs se\n"
+"désynchronise de celles du jeu.\n"
+"Ceci force un rechargement."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1278
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1298
@@ -5373,7 +5375,8 @@ msgstr "Fichier CSV (*.csv)"
 #: skytemple/skytemple/core/ui_utils.py:218
 msgid "The value you entered is invalid.\n\n"
 "Valid values must be in the range [{},{}]."
-msgstr ""
+msgstr "La valeur que vous avez entré est invalide.\n\n"
+"Elle doit être entre {} et {}."
 
 #: skytemple/skytemple/core/ui_utils.py:219
 msgid "SkyTemple - Value out of range"
@@ -6929,7 +6932,10 @@ msgid "0 --> 100% secret bazaar\n"
 "1 --> 100% secret room\n"
 "255 --> 50% secret bazaar, 50% secret room\n"
 "Other values: 0% secret bazaar, 0% secret room (you just go to the next floor like normal stairs)."
-msgstr ""
+msgstr "0 --> Bazar Secret à 100 %\n"
+"1 --> Salle Secrète à 100 %\n"
+"255 --> Bazar Secret à 50 %, Salle Secrète à 50 %\n"
+"Autres : pas de Bazar Secret, ni de Salle Secrète (l'escalier mème à l'étage suivant comme les normaux)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:480
 msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from \"ASM Patches.\"\n"
@@ -9126,7 +9132,8 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:193
 msgid "Incorrect values.\n"
 "Only enter numbers from 1 to 255 for chunks and tiles dimensions."
-msgstr ""
+msgstr "Valeurs incorrectes.\n"
+"N'utilisez que des nombres entre 1 et 255 pour la tailles des fragments et des tuiles."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:205
 msgid "Save GIF of map..."
@@ -10280,7 +10287,7 @@ msgstr "est manquant dans le CSV"
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:291
 msgid "All values must be numbers."
-msgstr "Toutes les values doivent être numériques."
+msgstr "Toutes les valeurs doivent être numériques."
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:294
 msgid "The CSV must contain one entry per level."
