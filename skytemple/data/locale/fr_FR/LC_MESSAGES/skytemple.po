@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-06-26 20:55+0000\n"
-"PO-Revision-Date: 2022-06-26 21:53\n"
+"PO-Revision-Date: 2022-06-29 10:43\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -3481,7 +3481,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/obj_table.py:61
 msgid "Extracts the object table to a separate file in the ROM."
-msgstr ""
+msgstr "Extraie la table des objets vers un fichier dédié dans la ROM."
 
 #: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:47
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
@@ -3800,11 +3800,11 @@ msgstr ""
 
 #: skytemple-rust/src/romfs.rs:101
 msgid "ROM Header checksum does not match contents."
-msgstr ""
+msgstr "La somme de contrôle de la ROM ne correspond pas à son contenu."
 
 #: skytemple-rust/src/romfs.rs:110
 msgid "Error reading the filesystem from ROM: {}"
-msgstr ""
+msgstr "Erreur lors de la lecture du système de fichier de la ROM : {}"
 
 #: skytemple-rust/src/st_bma.rs:463
 msgid "Can not import map background: Width of both images must match the current map width: {}px"
@@ -4870,7 +4870,7 @@ msgstr "Le moteur de script n'est pas actif."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2645
 msgid "Run the game from the start or stop the emulator."
-msgstr ""
+msgstr "Lance le jeu du début ou arrête l'émulateur."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2673
 msgid "Pause the emulator."
@@ -5453,7 +5453,9 @@ msgstr "Import du calque de la carte"
 msgid "This will import the entire background from an image.\n\n"
 "You may need to convert the input image first,\n"
 "before you can use it. See the \"Format Details\"."
-msgstr ""
+msgstr "Cela importera l'arrière-plan entier depuis une image.\n\n"
+"Vous devrez peut-être convertir l'images avant de\n"
+"pouvoir l'importer. Regardez les \"Détails du format\"."
 
 #: skytemple/skytemple/module/bgp/controller/bgp.glade:351
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:1998
@@ -6909,7 +6911,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:451
 msgid "The value stored in the ROM is actually the value divided by 5. Because of this the saved value will be rounded to the next multiple of 5."
-msgstr ""
+msgstr "La valeur enregistrée dans la ROM est cette valeur divisée par 5. Ainsi, cette valeur sera arrondie au prochain multiple de 5."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:455
 msgid "These sliders control how likely it is (in %) for certain things to generate on this floor."
