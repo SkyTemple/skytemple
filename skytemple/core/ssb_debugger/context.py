@@ -78,9 +78,9 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         return NotImplementedError()
 
     def get_project_dir(self) -> str:
-        current = RomProject.get_current()
-        assert current is not None
-        return os.path.dirname(current.filename)
+        fm = self._project_fm
+        assert fm is not None
+        return fm.dir()
 
     def load_script_files(self) -> ScriptFiles:
         return load_script_files(RomProject.get_current().get_rom_folder(SCRIPT_DIR))  # type: ignore
