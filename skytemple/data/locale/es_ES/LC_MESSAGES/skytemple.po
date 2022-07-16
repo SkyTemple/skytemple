@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-09 21:44+0000\n"
-"PO-Revision-Date: 2022-07-15 23:18\n"
+"PO-Revision-Date: 2022-07-16 00:27\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -455,7 +455,7 @@ msgstr "Solo las interrupciones no curan PS"
 #: /dev/fd/63:105 /dev/fd/63:214
 #, c-format
 msgid "% of exp. shared"
-msgstr ""
+msgstr "% de exp. compartida"
 
 #: /dev/fd/63:107
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
@@ -1479,7 +1479,7 @@ msgstr "Esta ROM no está soportada por SkyTemple."
 #: skytemple-files/skytemple_files/common/util.py:717
 #, python-brace-format
 msgid "Binary {binary.name} not found."
-msgstr ""
+msgstr "Binario {binary.name} no encontrado."
 
 #: skytemple-files/skytemple_files/common/util.py:727
 #: skytemple-files/skytemple_files/common/util.py:758
@@ -3225,7 +3225,7 @@ msgstr "La imagen debe tener dimensiones de {IMG_WIDTH}x{IMG_HEIGHT}."
 
 #: skytemple-files/skytemple_files/hardcoded/cart_removed.py:81
 msgid "This image must be compressed better to fit in the arm9 ({len(data)} > {block.end-block.address})."
-msgstr ""
+msgstr "Esta imagen debe comprimirse más para caber en ARM9 ({len(data)} > {block.end-block.address})."
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:301
 msgid "White"
@@ -3934,7 +3934,7 @@ msgstr "Evita que el juego se bloquee si se queda sin memoria al intentar mostra
 
 #: skytemple-files/skytemple_files/patch/handler/fix_nocash_saves.py:47
 msgid "Fixes an issue that causes saving to fail on the No$GBA emulator."
-msgstr ""
+msgstr "Soluciona un problema que provocaba un error al guardar en el emulador Nº$GBA ."
 
 #: skytemple-files/skytemple_files/patch/handler/move_growth.py:166
 msgid "Implements move growth (PoC/Unfinished). \n"
@@ -6445,7 +6445,7 @@ msgstr "Permitir robo de objetos"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1686
 msgid "Allow warp effects:"
-msgstr ""
+msgstr "Permitir efectos de teletransporte:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1698
 msgid "Allow certain traps:"
