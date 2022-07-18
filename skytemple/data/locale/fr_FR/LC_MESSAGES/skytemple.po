@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-09 21:44+0000\n"
-"PO-Revision-Date: 2022-07-18 11:03\n"
+"PO-Revision-Date: 2022-07-18 12:01\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -9968,7 +9968,11 @@ msgid "Usually the width and height in tiles should be linked\n"
 "please note, that the dimensions in tiles are used for\n"
 "the collision and data layers. The dimensions in chunks \n"
 "are used for the image data on Layer 1 and 2."
-msgstr ""
+msgstr "Habituellement, la largeur et la hauteur en tuile doivent être lié\n"
+"à la hauteur et la largeur en fragments. Si ce n'est pas le cas,\n"
+"noter que la dimension en tuile est utilisé pour les couches de\n"
+"collisions et de données. La dimension en fragment est utilisé\n"
+"pour les données d'images de la couche 1 et 2."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4357
 msgid "Width and Height"
@@ -9988,7 +9992,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4411
 msgid "Go to Scripts..."
-msgstr ""
+msgstr "Aller aux scripts..."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4432
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4539
@@ -10005,7 +10009,7 @@ msgstr "Calque 2"
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4549
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4581
 msgid "Export Static Tiles to Image..."
-msgstr ""
+msgstr "Exporter les tuiles statiques vers une image..."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4558
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4590
@@ -10438,7 +10442,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:204
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:530
 msgid "WTE Image Type: "
-msgstr ""
+msgstr "Type d'image WTE : "
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:232
 msgid "Discard Palette"
@@ -10447,7 +10451,8 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:251
 msgid "If ticked, the WTE file will not contain the palette data.\n"
 "This is for files that use another file's palette data. "
-msgstr ""
+msgstr "Si coché, l'image WTE ne contiendra pas de donnée de palette.\n"
+"Utile pour les fichiers utilisant une palette d'un autre fichier. "
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:405
 msgid "Warning: this WTE file doesn't contain any palette data.\n"
@@ -10469,7 +10474,7 @@ msgstr "Taille de l'image : "
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:595
 msgid "WTE"
-msgstr ""
+msgstr "WTE"
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:624
 msgid "This image does\n"
