@@ -46,12 +46,11 @@ from skytemple.module.dungeon.controller.invalid import InvalidDungeonController
 from skytemple.module.dungeon.controller.main import MainController, DUNGEONS_NAME
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
-from skytemple_files.data.md.model import Md
+from skytemple_files.data.md.protocol import MdProtocol
 from skytemple_files.dungeon_data.fixed_bin.model import FixedBin
-from skytemple_files.dungeon_data.mappa_bin.floor import MappaFloor
-from skytemple_files.dungeon_data.mappa_bin.mappa_xml import mappa_floor_xml_import
-from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
-from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
+from skytemple_files.dungeon_data.mappa_bin.protocol import MappaBinProtocol, MappaFloorProtocol, MappaTrapType
+from skytemple_files.dungeon_data.mappa_bin.mappa_xml import mappa_floor_xml_import, mappa_floor_from_xml, \
+    mappa_floor_to_xml
 from skytemple_files.dungeon_data.mappa_bin.validator.validator import DungeonValidator
 from skytemple_files.dungeon_data.mappa_g_bin.mappa_converter import convert_mappa_to_mappag
 from skytemple_files.graphics.dbg.model import Dbg
@@ -81,9 +80,10 @@ MAPPA_PATH = 'BALANCE/mappa_s.bin'
 MAPPAG_PATH = 'BALANCE/mappa_gs.bin'
 FIXED_PATH = 'BALANCE/fixed.bin'
 DUNGEON_BIN = 'DUNGEON/dungeon.bin'
-logger = logging.getLogger(__name__)
 FLOOR_RANKS = "BALANCE/f_ranks.bin"
 FLOOR_MISSION_FORBIDDEN = "BALANCE/fforbid.bin"
+logger = logging.getLogger(__name__)
+
 
 class DungeonViewInfo:
     def __init__(self, dungeon_id: int, length_can_be_edited: bool):
@@ -132,7 +132,9 @@ class DungeonModule(AbstractModule):
             self._cached_dungeon_list: Optional[List[DungeonDefinition]] = None
 
             # Preload mappa
+            logger.debug("Preloading Mappa...")
             self.get_mappa()
+            logger.debug("Mappa loaded.")
             self._validator: DungeonValidator
         except Exception:
             self._errored = sys.exc_info()
@@ -146,7 +148,7 @@ class DungeonModule(AbstractModule):
                 _("SkyTemple")
             )
             return
-        self._validator = DungeonValidator(self.get_mappa().floor_lists)
+        self._validator = DungeonValidator(self.get_mappa())
         root = item_store.append(root_node, [
             ICON_ROOT, DUNGEONS_NAME, self, MainController, 0, False, '', True
         ])
@@ -223,10 +225,10 @@ class DungeonModule(AbstractModule):
         assert self._validator
         return self._validator
 
-    def get_mappa(self) -> MappaBin:
+    def get_mappa(self) -> MappaBinProtocol:
         return self.project.open_file_in_rom(MAPPA_PATH, FileType.MAPPA_BIN)
 
-    def get_mappa_floor(self, item: FloorViewInfo) -> MappaFloor:
+    def get_mappa_floor(self, item: FloorViewInfo) -> MappaFloorProtocol:
         """Returns the correct mappa floor based on the given dungeon ID and floor number"""
         did = item.dungeon.dungeon_id
         # if ID >= 0xB4 && ID <= 0xBD {
@@ -400,8 +402,8 @@ class DungeonModule(AbstractModule):
         mappa = self.get_mappa()
         old_floor_lists = mappa.floor_lists
         reorder_list: List[List[Tuple[int, Optional[int], Optional[int]]]] = []
-        dojo_floors = old_floor_lists[DOJO_MAPPA_ENTRY]
-        new_floor_lists: List[List[MappaFloor]] = []
+        dojo_floors = list(old_floor_lists[DOJO_MAPPA_ENTRY])
+        new_floor_lists: List[List[MappaFloorProtocol]] = []
         dungeons = self.get_dungeon_list()
         # Sanity check list.
         dungeons_not_visited = set((i for i in range(0, len(dungeons))))
@@ -415,7 +417,7 @@ class DungeonModule(AbstractModule):
             reorder_list.append([])
             # Process this entry
             next_index = len(new_floor_lists)
-            new_floor_list: List[MappaFloor] = []
+            new_floor_list: List[MappaFloorProtocol] = []
             if isinstance(group_or_dungeon, DungeonGroup):
                 group = group_or_dungeon.dungeon_ids
             else:
@@ -523,7 +525,7 @@ class DungeonModule(AbstractModule):
         mappa_index = dungeon_definitions[dungeon_id].mappa_index
         floor_offset = dungeon_definitions[dungeon_id].start_after
         number_floors_old = dungeon_definitions[dungeon_id].number_floors
-        floor_list = self.get_mappa().floor_lists[mappa_index]
+        mappa = self.get_mappa()
         floors_added = number_floors_new - number_floors_old
 
         # Update Mappa
@@ -532,12 +534,20 @@ class DungeonModule(AbstractModule):
         if floors_added < 0:
             # We removed floors
             for _ in range(0, -floors_added):
-                del floor_list[floor_offset + number_floors_new]
+                mappa.remove_floor_from_floor_list(mappa_index, floor_offset + number_floors_new)
         else:
             # We added floors
-            last_floor_xml = floor_list[floor_offset + number_floors_old - 1].to_xml()
+            last_floor_xml = mappa.floor_lists[mappa_index][floor_offset + number_floors_old - 1].to_xml()
             for i in range(0, floors_added):
-                floor_list.insert(floor_offset + number_floors_old + i, MappaFloor.from_xml(last_floor_xml))
+                mappa.insert_floor_in_floor_list(
+                    mappa_index,
+                    floor_offset + number_floors_old + i,
+                    mappa_floor_from_xml(
+                        last_floor_xml,
+                        {x.name: x for x in
+                         self.project.get_rom_module().get_static_data().dungeon_data.item_categories.values()}
+                    )
+                )
 
         # Update floor ranks
         self.extend_nb_floors_ranks(dungeon_id, floor_offset+number_floors_old, floors_added,
@@ -569,7 +579,7 @@ class DungeonModule(AbstractModule):
             dungeon_definitions[dungeon_id].number_floors_in_group = number_floors_new
 
         # Re-count floors
-        for i, floor in enumerate(floor_list):
+        for i, floor in enumerate(mappa.floor_lists[mappa_index]):
             floor.layout.floor_number = i + 1
 
         # Mark as changed
@@ -582,14 +592,18 @@ class DungeonModule(AbstractModule):
             self._regenerate_dungeon_floors(dungeon_id, floor_offset)
         recursive_generate_item_store_row_label(self._tree_model[self._root_iter])
 
-    def get_monster_md(self) -> Md:
+    def get_monster_md(self) -> MdProtocol:
         return self.project.get_module('monster').monster_md
 
     def import_from_xml(self, selected_floors: List[Tuple[int, int]], xml: Element):
         for dungeon_id, floor_id in selected_floors:
             floor_info = FloorViewInfo(floor_id, DungeonViewInfo(dungeon_id, False))
             floor = self.get_mappa_floor(floor_info)
-            mappa_floor_xml_import(xml, floor)
+            mappa_floor_xml_import(
+                xml,
+                floor,
+                {x.name: x for x in self.project.get_rom_module().get_static_data().dungeon_data.item_categories.values()}
+            )
             self.mark_floor_as_modified(floor_info, modified_mappag=True)
 
     def get_dungeon_tileset(self, tileset_id) -> Tuple[Dma, Dpci, Dpc, Dpl]:
@@ -795,12 +809,17 @@ class DungeonModule(AbstractModule):
     def mappa_generate_and_insert_new_floor_list(self):
         mappa = self.get_mappa()
         index = len(mappa.floor_lists)
-        mappa.floor_lists.append([self.mappa_generate_new_floor()])
+        mappa.add_floor_list([self.mappa_generate_new_floor()])
         return index
 
-    def mappa_generate_new_floor(self) -> MappaFloor:
+    def mappa_generate_new_floor(self) -> MappaFloorProtocol:
         """Copies the first floor of test dungeon and returns it"""
-        return MappaFloor.from_xml(self.get_mappa().floor_lists[0][0].to_xml())
+        cats_ided = self.project.get_rom_module().get_static_data().dungeon_data.item_categories
+        cats_named = {x.name: x for x in cats_ided.values()}
+        return mappa_floor_from_xml(
+            mappa_floor_to_xml(self.get_mappa().floor_lists[0][0], cats_ided),
+            cats_named
+        )
 
     def get_dungeon_music_spec(self) -> Tuple[List[DungeonMusicEntry], List[Tuple[u16, u16, u16, u16]]]:
         config = self.project.get_rom_module().get_static_data()

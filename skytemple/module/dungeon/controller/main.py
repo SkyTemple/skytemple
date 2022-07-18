@@ -436,16 +436,23 @@ class MainController(AbstractController):
             if valid_floors > 0:
                 dungeons[e.dungeon_id].number_floors = u8_checked(valid_floors)
             else:
-                mappa.floor_lists[e.dungeon.mappa_index].append(self.module.mappa_generate_new_floor())
+                mappa.add_floor_to_floor_list(e.dungeon.mappa_index, self.module.mappa_generate_new_floor())
                 dungeons[e.dungeon_id].number_floors = u8(1)
         elif isinstance(e, DungeonMissingFloorError):
             # Special case for Regigigas Chamber
             if self._is_regigias_special_case(dungeons, e):
                 # Remove additional floors
-                mappa.floor_lists[e.dungeon.mappa_index] = [
-                    f for i, f in enumerate(mappa.floor_lists[e.dungeon.mappa_index])
+                # Collect floors to keep
+                floor_list = [
+                    floor for i, floor in enumerate(mappa.floor_lists[e.dungeon.mappa_index])
                     if i not in e.floors_in_mappa_not_referenced
                 ]
+                # Then first remove all
+                while len(mappa.floor_lists[e.dungeon.mappa_index]) > 0:
+                    mappa.remove_floor_from_floor_list(e.dungeon.mappa_index, 0)
+                # Re-add floors to keep
+                for floor in floor_list:
+                    mappa.add_floor_to_floor_list(e.dungeon.mappa_index, floor)
             else:
                 # Add additional floors
                 # TODO: Raise error or warning if we can't fix it? It should really always be consecutive.

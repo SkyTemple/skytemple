@@ -20,6 +20,8 @@ from typing import TYPE_CHECKING, List, Union, Optional
 from gi.repository import Gtk
 from gi.repository.Gtk import Widget
 from range_typed_integers import u8, u32, u16
+from skytemple_files.common.types.file_types import FileType
+from skytemple_files.data.md.protocol import Gender
 
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -29,7 +31,6 @@ from skytemple.core.ui_utils import catch_overflow
 from skytemple.module.lists.controller.base import ListBaseController
 from skytemple_files.common.i18n_util import f, _
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonDungeon
-from skytemple_files.data.md.model import MdProperties
 from skytemple_files.hardcoded.guest_pokemon import ExtraDungeonDataList, GuestPokemonList, GuestPokemon, \
     ExtraDungeonDataEntry
 
@@ -375,8 +376,8 @@ class GuestPokemonController(ListBaseController):
     def _get_monster_display_name(self, i: int):
         entry = self.monster_md_entries[i]
         name = self.module.project.get_string_provider().get_value(
-            StringType.POKEMON_NAMES, i % MdProperties.NUM_ENTITIES)
-        return f'{name} ({entry.gender.print_name}) (${i:04})'
+            StringType.POKEMON_NAMES, i % FileType.MD.properties().num_entities)
+        return f'{name} ({Gender(entry.gender).print_name}) (${i:04})'
 
     def _get_move_display_name(self, i: int):
         entry = self.move_entries[i]

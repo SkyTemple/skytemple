@@ -18,7 +18,8 @@
 import logging
 import sys
 from enum import Enum, auto
-from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Type, Tuple, Any, List, overload, Literal
+from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Type, Tuple, Any, List, overload, Literal, \
+    cast
 
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
@@ -30,14 +31,13 @@ from skytemple.core.open_request import OpenRequest
 from skytemple.core.model_context import ModelContext
 from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.string_provider import StringProvider, StringType
-from skytemple_files.data.md.model import MdProperties
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
-    get_ppmdu_config_for_rom, get_binary_from_rom, set_binary_in_rom, get_files_from_folder_with_extension, \
-    folder_in_rom_exists, create_folder_in_rom
+    get_ppmdu_config_for_rom, get_files_from_folder_with_extension, \
+    folder_in_rom_exists, create_folder_in_rom, get_binary_from_rom, set_binary_in_rom
 from skytemple_files.container.sir0.sir0_serializable import Sir0Serializable
 from skytemple_files.patch.patches import Patcher
 from skytemple_files.compression_container.common_at.handler import CommonAtType
@@ -385,9 +385,11 @@ class RomProject:
         Write the binary model for this type to the ROM object in memory.
         If assert_that is given, it is asserted, that the model matches the one on record.
         """
-        context: AbstractContextManager = self._opened_files_contexts[name] \
-            if name in self._opened_files_contexts \
+        context: AbstractContextManager = (
+            self._opened_files_contexts[name]  # type: ignore
+            if name in self._opened_files_contexts
             else nullcontext(self._opened_files[name])
+        )
         with context as model:
             handler = self._file_handlers[name]
             logger.debug(f"Saving {name} in ROM. Model: {model}, Handler: {handler}")
@@ -496,14 +498,14 @@ class RomProject:
             FileType.COMMON_AT.disallow(CommonAtType.ATUPX)
             
         # Change Pokemon Names and Categories strings if ExpandPokeList
+        md_properties = FileType.MD.properties()
         if self.is_patch_applied("ExpandPokeList"):
             StringType.POKEMON_NAMES.replace_xml_name('New Pokemon Names')
             StringType.POKEMON_CATEGORIES.replace_xml_name('New Pokemon Categories')
-            MdProperties.NUM_ENTITIES = 2048
-            MdProperties.MAX_POSSIBLE = 2048
+            md_properties.num_entities = 2048
+            md_properties.max_possible = 2048
         else:
             StringType.POKEMON_NAMES.replace_xml_name('Pokemon Names')
             StringType.POKEMON_CATEGORIES.replace_xml_name('Pokemon Categories')
-            MdProperties.NUM_ENTITIES = 600
-            MdProperties.MAX_POSSIBLE = 554
-
+            md_properties.num_entities = 600
+            md_properties.max_possible = 554

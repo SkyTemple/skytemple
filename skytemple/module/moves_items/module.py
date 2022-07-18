@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import logging
 from typing import Dict, Tuple, Optional, List
 
 from gi.repository import Gtk
@@ -24,7 +25,7 @@ from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label, \
+from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label
 from skytemple.module.moves_items.controller.item import ItemController
 from skytemple.module.moves_items.controller.main_moves import MainMovesController, MOVES
@@ -34,12 +35,12 @@ from skytemple.module.moves_items.controller.item_keys import ItemKeysController
 from skytemple.module.moves_items.controller.move import MoveController
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItemCategory
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.data.item_p.model import ItemP, ItemPEntry
+from skytemple_files.data.item_p.protocol import ItemPProtocol, ItemPEntryProtocol
 from skytemple_files.data.item_s_p.model import ItemSP, ItemSPEntry
 from skytemple_files.data.waza_p.model import WazaP, WazaMove
 from skytemple_files.list.items.handler import ItemListHandler
 from skytemple_files.data.val_list.handler import ValListHandler
-from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList
+from skytemple_files.dungeon_data.mappa_bin.protocol import MappaItemListProtocol
 from skytemple_files.common.i18n_util import _
 
 MOVE_FILE = 'BALANCE/waza_p.bin'
@@ -47,6 +48,7 @@ ITEM_S_FILE = 'BALANCE/item_s_p.bin'
 ITEM_FILE = 'BALANCE/item_p.bin'
 ITEM_LISTS = 'TABLEDAT/list_%02d.bin'
 FIRST_EXCLUSIVE_ITEM_ID = 444
+logger = logging.getLogger(__name__)
 
 
 class MovesItemsModule(AbstractModule):
@@ -83,17 +85,20 @@ class MovesItemsModule(AbstractModule):
             'skytemple-view-list-symbolic', _('Item Sort Keys'), self, ItemKeysController, 0, False, '', True
         ])
 
+        logger.debug("Building item tree...")
         for i, _item in enumerate(self.get_item_p().item_list):
             name = self.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
             self.item_iters[i] = (item_store.append(root_items, [
                 'skytemple-e-item-symbolic', f'#{i:04}: {name}', self, ItemController, i, False, '', True
             ]))
 
+        logger.debug("Building move tree...")
         for i, __item in enumerate(self.get_waza_p().moves):
             name = self.project.get_string_provider().get_value(StringType.MOVE_NAMES, i)
             self.move_iters[i] = (item_store.append(root_moves, [
                 'skytemple-e-move-symbolic', f'#{i:04}: {name}', self, MoveController, i, False, '', True
             ]))
+        logger.debug("Done building trees.")
 
         recursive_generate_item_store_row_label(item_store[root_items])
         recursive_generate_item_store_row_label(item_store[root_moves])
@@ -102,7 +107,7 @@ class MovesItemsModule(AbstractModule):
     def has_item_lists(self):
         return self.project.file_exists(ITEM_LISTS % 0)
 
-    def get_item_list(self, list_id) -> MappaItemList:
+    def get_item_list(self, list_id) -> MappaItemListProtocol:
         static_data = self.project.get_rom_module().get_static_data()
         return self.project.open_file_in_rom(ITEM_LISTS % list_id, ItemListHandler,
                                              items=static_data.dungeon_data.items)
@@ -114,13 +119,13 @@ class MovesItemsModule(AbstractModule):
         row = self._tree_model[self._item_lists_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
 
-    def get_item_p(self) -> ItemP:
+    def get_item_p(self) -> ItemPProtocol:
         return self.project.open_file_in_rom(ITEM_FILE, FileType.ITEM_P)
 
     def get_item_s_p(self) -> ItemSP:
         return self.project.open_file_in_rom(ITEM_S_FILE, FileType.ITEM_SP)
 
-    def get_item(self, item_id) -> Tuple[ItemPEntry, Optional[ItemSPEntry]]:
+    def get_item(self, item_id) -> Tuple[ItemPEntryProtocol, Optional[ItemSPEntry]]:
         if item_id >= FIRST_EXCLUSIVE_ITEM_ID:
             return self.get_item_p().item_list[item_id], self.get_item_s_p().item_list[item_id - FIRST_EXCLUSIVE_ITEM_ID]
         return self.get_item_p().item_list[item_id], None
@@ -139,7 +144,7 @@ class MovesItemsModule(AbstractModule):
         cats: Dict[Pmd2DungeonItemCategory, List[int]] = {x: [] for x in conf.dungeon_data.item_categories.values()}
 
         for idx, entry in enumerate(self.get_item_p().item_list):
-            cats[entry.category_pmd2obj(conf.dungeon_data.item_categories)].append(idx)
+            cats[conf.dungeon_data.item_categories[entry.category]].append(idx)
 
         for category in conf.dungeon_data.item_categories.values():
             category.items = cats[category]

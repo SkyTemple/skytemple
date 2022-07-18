@@ -28,7 +28,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import catch_overflow
 from skytemple_files.common.i18n_util import _
-from skytemple_files.data.md.model import PokeType
+from skytemple_files.data.md.protocol import PokeType
 from skytemple_files.data.waza_p.model import WazaMoveCategory, WazaMoveRangeTarget, WazaMoveRangeRange, \
     WazaMoveRangeCondition
 

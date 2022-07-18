@@ -17,7 +17,7 @@
 import logging
 import typing
 from enum import Enum
-from typing import TYPE_CHECKING, Type, List, Optional
+from typing import TYPE_CHECKING, Type, List
 
 import cairo
 from gi.repository import Gtk, GLib
@@ -30,8 +30,7 @@ from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import catch_overflow
 from skytemple_files.common.i18n_util import _
 from skytemple_files.data.item_s_p.model import ItemSPType
-from skytemple_files.data.md.model import PokeType
-from skytemple_files.dungeon_data.mappa_bin._deprecated import MappaItemCategory
+from skytemple_files.data.md.protocol import PokeType
 
 
 class UseType(Enum):
@@ -509,7 +508,7 @@ class ItemController(AbstractController):
         attr_name = Gtk.Buildable.get_name(w)[3:]
         val = w.get_model()[w.get_active_iter()][0]
         current_val = getattr(self.item_p, attr_name)
-        if isinstance(current_val, Enum) and not isinstance(current_val, UseType) and not isinstance(current_val, MappaItemCategory):
+        if isinstance(current_val, Enum) and not isinstance(current_val, UseType):
             enum_class = current_val.__class__
             val = enum_class(val)
         setattr(self.item_p, attr_name, val)

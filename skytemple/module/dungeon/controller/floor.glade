@@ -27,7 +27,7 @@
     <property name="upper">100</property>
     <property name="page-increment">10</property>
   </object>
-  <object class="GtkAdjustment" id="adjustment_unusued_change">
+  <object class="GtkAdjustment" id="adjustment_unused_change">
     <property name="upper">100</property>
     <property name="page-increment">10</property>
   </object>
@@ -1036,7 +1036,7 @@
       <column type="gint"/>
       <!-- column-name cat_name -->
       <column type="gchararray"/>
-      <!-- column-name unusued -->
+      <!-- column-name unused -->
       <column type="gboolean"/>
       <!-- column-name chance -->
       <column type="gchararray"/>
@@ -2439,15 +2439,15 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkScale" id="scale_unusued_chance">
+                              <object class="GtkScale" id="scale_unused_chance">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <property name="adjustment">adjustment_unusued_change</property>
+                                <property name="adjustment">adjustment_unused_change</property>
                                 <property name="fill-level">100</property>
                                 <property name="round-digits">0</property>
                                 <property name="digits">0</property>
                                 <property name="value-pos">right</property>
-                                <signal name="value-changed" handler="on_scale_unusued_chance_value_changed" swapped="no"/>
+                                <signal name="value-changed" handler="on_scale_unused_chance_value_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
@@ -2471,13 +2471,13 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkButton" id="btn_help_unusued_chance">
+                              <object class="GtkButton" id="btn_help_unused_chance">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
-                                <signal name="clicked" handler="on_btn_help_unusued_chance_clicked" swapped="no"/>
+                                <signal name="clicked" handler="on_btn_help_unused_chance_clicked" swapped="no"/>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>

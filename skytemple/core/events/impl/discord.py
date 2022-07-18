@@ -25,6 +25,7 @@ import os
 from typing import List, Optional, Union, Coroutine, Callable
 
 from gi.repository import GLib
+from skytemple_files.common.types.file_types import FileType
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
@@ -36,7 +37,6 @@ import time
 
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import version
-from skytemple_files.data.md.model import MdProperties
 
 CLIENT_ID = "736538698719690814"
 IDLE_TIMEOUT = 5 * 60
@@ -238,7 +238,7 @@ class DiscordPresence(AbstractListener):
         self.module_state = self.rom_name
         if isinstance(controller, MonsterController):
             self.module_state = module.project.get_string_provider().get_value(
-                StringType.POKEMON_NAMES, controller.item_id % MdProperties.NUM_ENTITIES
+                StringType.POKEMON_NAMES, controller.item_id % FileType.MD.properties().num_entities
             )
 
     def on_view_switch__StringsModule(self, module, controller: AbstractController, breadcrumbs: List[str]):

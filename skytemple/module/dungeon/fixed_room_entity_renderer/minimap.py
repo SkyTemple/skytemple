@@ -21,7 +21,7 @@ from skytemple.module.dungeon.minimap_provider import MinimapProvider, ZMAPPAT_D
 from skytemple_files.common.dungeon_floor_generator.generator import TileType, RoomType
 from skytemple_files.dungeon_data.fixed_bin.model import EntityRule, FixedFloorActionRule, TileRuleType, TileRule, \
     DirectRule
-from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
+from skytemple_files.dungeon_data.mappa_bin.protocol import MappaTrapType
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
 
 COLOR_ITEM = (0, 0.3, 1, 1)

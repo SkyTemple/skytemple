@@ -37,7 +37,7 @@ from skytemple.module.map_bg.script.add_created_with_logo import AddCreatedWithL
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
 from skytemple_files.dungeon_data.fixed_bin.model import FixedBin
-from skytemple_files.dungeon_data.mappa_bin.model import MappaBin
+from skytemple_files.dungeon_data.mappa_bin.protocol import MappaBinProtocol
 from skytemple_files.graphics.bg_list_dat.protocol import BgListProtocol, BgListEntryProtocol
 from skytemple_files.graphics.bma.protocol import BmaProtocol
 from skytemple_files.graphics.bpa.protocol import BpaProtocol
@@ -246,7 +246,7 @@ class MapBgModule(AbstractModule):
 
     def get_mapping_dungeon_assets(
             self
-    ) -> Tuple[List[GroundTilesetMapping], MappaBin, FixedBin, ModelContext[DungeonBinPack], List[DungeonDefinition]]:
+    ) -> Tuple[List[GroundTilesetMapping], MappaBinProtocol, FixedBin, ModelContext[DungeonBinPack], List[DungeonDefinition]]:
         static_data = self.project.get_rom_module().get_static_data()
         config = self.project.get_rom_module().get_static_data()
         ov11 = self.project.get_binary(BinaryName.OVERLAY_11)

@@ -21,7 +21,7 @@ from gi.repository import Gtk
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.ui_utils import glib_async
 from skytemple_files.common.i18n_util import f, _
-from skytemple_files.data.md.model import PokeType
+from skytemple_files.data.md.protocol import PokeType
 from skytemple_files.hardcoded.dungeons import TilesetMapColor, TilesetStirringEffect, TilesetBaseEnum, \
     TilesetSecretPowerEffect, TilesetNaturePowerMoveEntry, TilesetWeatherEffect, TilesetProperties
 

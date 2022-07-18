@@ -29,6 +29,7 @@ from xml.etree import ElementTree
 
 from gi.repository import Gtk, GLib, GdkPixbuf
 from range_typed_integers import u8, u8_checked, i8, i8_checked, i16, i16_checked, u16, u16_checked
+from skytemple_files.common.types.file_types import FileType
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
@@ -49,18 +50,14 @@ from skytemple.module.dungeon.fixed_room_tileset_renderer.minimap import FixedFl
 from skytemple.module.dungeon.fixed_room_tileset_renderer.tileset import FixedFloorDrawerTileset
 from skytemple.module.dungeon.minimap_provider import MinimapProvider
 from skytemple_files.common.dungeon_floor_generator.generator import DungeonFloorGenerator, SIZE_X, SIZE_Y, Tile, \
-    TileType, RandomGenProperties, RoomType
-from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem, Pmd2DungeonItemCategory
+    TileType, RandomGenProperties
 from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.common.xml_util import prettify
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, DirectRule, FixedFloorActionRule
-from skytemple_files.dungeon_data.mappa_bin.floor_layout import MappaFloorStructureType, \
-    MappaFloorDarknessLevel, MappaFloorWeather
-from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList, Probability, GUARANTEED, \
-    MAX_ITEM_ID, POKE_ID
-from skytemple_files.dungeon_data.mappa_bin.mappa_xml import mappa_floor_xml_export
-from skytemple_files.dungeon_data.mappa_bin.monster import DUMMY_MD_INDEX, MappaMonster
-from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType, MappaTrapList
+from skytemple_files.dungeon_data.mappa_bin.protocol import MappaFloorStructureType, \
+    MappaFloorDarknessLevel, MappaFloorWeather, MappaItemListProtocol, Probability, GUARANTEED, \
+    MAX_ITEM_ID, POKE_ID, DUMMY_MD_INDEX, MappaTrapType, MappaFloorProtocol
+from skytemple_files.dungeon_data.mappa_bin.mappa_xml import mappa_floor_to_xml
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.i18n_util import _, f
 from skytemple_files.user_error import UserValueError
@@ -142,7 +139,7 @@ class FloorController(AbstractController):
     def __init__(self, module: 'DungeonModule', item: 'FloorViewInfo'):
         self.module = module
         self.item = item
-        self.entry = self.module.get_mappa_floor(item)
+        self.entry: MappaFloorProtocol = self.module.get_mappa_floor(item)
 
         self.builder: Gtk.Builder = None  # type: ignore
         self._draw = None
@@ -472,11 +469,11 @@ class FloorController(AbstractController):
         self._update_from_widget(w)
         self.mark_as_modified()
 
-    def on_scale_unusued_chance_value_changed(self, w, *args):
+    def on_scale_unused_chance_value_changed(self, w, *args):
         self._update_from_widget(w)
         self.mark_as_modified()
 
-    def on_btn_help_unusued_chance_clicked(self, *args):
+    def on_btn_help_unused_chance_clicked(self, *args):
         self._help(_("Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from "
                      "\"ASM Patches.\"\nIf patched, the game will turn a random room into a maze room made of wall tiles "
                      "instead of the usual water (although water can later replace some of the walls once the water "
@@ -1080,8 +1077,8 @@ class FloorController(AbstractController):
             item_cats = self.module.project.get_rom_module().get_static_data().dungeon_data.item_categories
             actions: List[FixedFloorActionRule] = []
             warnings = set()
-            open_guaranteed_floor = set(x.id for x, y in self.entry.floor_items.items.items() if y == GUARANTEED)
-            open_guaranteed_buried = set(x.id for x, y in self.entry.buried_items.items.items() if y == GUARANTEED)
+            open_guaranteed_floor = set(x for x, y in self.entry.floor_items.items.items() if y == GUARANTEED)
+            open_guaranteed_buried = set(x for x, y in self.entry.buried_items.items.items() if y == GUARANTEED)
             for x in floor:
                 idx = None
                 if x.typ == TileType.PLAYER_SPAWN:
@@ -1114,12 +1111,12 @@ class FloorController(AbstractController):
                         item_list = self.entry.buried_items
                     for c, prop in item_list.categories.items():
                         if prop > ridx_cat and prop != 0:
-                            last_cat = c.value
+                            last_cat = c
                             invalid_cat = False
                             break
                     for itm, prop in item_list.items.items():
-                        if prop > ridx_itm and prop != GUARANTEED and prop != 0 and itm.id in item_cats[last_cat].item_ids():
-                            last_item = itm.id
+                        if prop > ridx_itm and prop != GUARANTEED and prop != 0 and itm in item_cats[last_cat].item_ids():
+                            last_item = itm
                             invalid_itm = False
                             break
                     if invalid_cat or invalid_itm:
@@ -1131,7 +1128,7 @@ class FloorController(AbstractController):
                     invalid = True
                     for trap, weight in self.entry.traps.weights.items():
                         if weight > ridx and weight != 0:
-                            last = trap.value
+                            last = trap
                             invalid = False
                             break
                     if invalid:
@@ -1237,8 +1234,9 @@ class FloorController(AbstractController):
 
         if resp == Gtk.ResponseType.APPLY:
             # Create output XML
-            xml = mappa_floor_xml_export(
+            xml = mappa_floor_to_xml(
                 self.entry,
+                self.module.project.get_rom_module().get_static_data().dungeon_data.item_categories,
                 export_layout=self.builder.get_object('export_type_layout').get_active(),
                 export_monsters=self.builder.get_object('export_type_monsters').get_active(),
                 export_traps=self.builder.get_object('export_type_traps').get_active(),
@@ -1446,7 +1444,7 @@ class FloorController(AbstractController):
             "entry_max_coin_amount",
             "scale_kecleon_shop_chance",
             "scale_monster_house_chance",
-            "scale_unusued_chance",
+            "scale_unused_chance",
             "scale_hidden_stairs_spawn_chance",
             "entry_kecleon_shop_item_positions",
             "scale_empty_monster_house_chance",
@@ -1520,7 +1518,8 @@ class FloorController(AbstractController):
         sum_of_all_weights = sum(relative_weights)
         if sum_of_all_weights <= 0:
             sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
-        for i, (trap, weight) in enumerate(self.entry.traps.weights.items()):
+        for i, (trap_id, weight) in enumerate(self.entry.traps.weights.items()):
+            trap = MappaTrapType(trap_id)
             relative_weight = relative_weights[i]
             chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
             trap_icon = trap_icon_renderer.load_icon(
@@ -1566,20 +1565,20 @@ class FloorController(AbstractController):
             sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
         for i, (category, chance) in enumerate(il.categories.items()):
             relative_weight = relative_weights[i]
-            if category.value not in self.item_categories.keys():
+            if category not in self.item_categories.keys():
                 continue  # TODO: Support editing other item categories?
-            name = self.item_categories[category.value].name_localized
+            name = self.item_categories[category].name_localized
             chance_str = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
             item_categories_store.append([
-                category.value, name, False,
+                category, name, False,
                 chance_str, str(relative_weight)
             ])
 
         # Add items
         items_by_category = self._split_items_in_list_in_cats(il.items)
-        for j, (category, store) in enumerate(item_stores.items()):
+        for j, (category_m, store) in enumerate(item_stores.items()):
             item_icon_renderer = ListIconRenderer(5)
-            cat_items = items_by_category[category]
+            cat_items = items_by_category[category_m.id]
             relative_weights = self._calculate_relative_weights([v for v in cat_items.values() if v != GUARANTEED])
             sum_of_all_weights = sum(relative_weights)
             if sum_of_all_weights <= 0:
@@ -1590,27 +1589,27 @@ class FloorController(AbstractController):
                 if stored_weight != GUARANTEED:
                     relative_weight = relative_weights[i]
                     i += 1
-                name = self._item_names[item.id]
+                name = self._item_names[item]
                 chance_str = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
-                itm = self.module.get_item(item.id)
+                itm = self.module.get_item(item)
                 item_icon = item_icon_renderer.load_icon(
                     store, self.module.project.get_sprite_provider().get_for_item, row_idx, row_idx, (itm, )
                 )
                 store.append([
-                    item.id, name, stored_weight == GUARANTEED,
+                    item, name, stored_weight == GUARANTEED,
                     chance_str, str(relative_weight), item_icon
                 ])
         self._update_cr_item_cat_name_store()
 
     def _split_items_in_list_in_cats(
-            self, items: Dict[Pmd2DungeonItem, Probability]
-    ) -> Dict[Pmd2DungeonItemCategory, Dict[Pmd2DungeonItem, Probability]]:
-        out_items: Dict[Pmd2DungeonItemCategory, Dict[Pmd2DungeonItem, Probability]] = {}
+            self, items: Dict[int, Probability]
+    ) -> Dict[int, Dict[int, Probability]]:
+        out_items: Dict[int, Dict[int, Probability]] = {}
         for cat in self.item_categories.values():
-            out_items[cat] = {}
+            out_items[cat.id] = {}
             for item, probability in items.items():
-                if cat.is_item_in_cat(item.id):
-                    out_items[cat][item] = probability
+                if cat.is_item_in_cat(item):
+                    out_items[cat.id][item] = probability
         return out_items
 
     def _init_item_completion_store(self):
@@ -1736,7 +1735,7 @@ class FloorController(AbstractController):
                 weight = last_weight + int(10000 * (int(row[5]) / sum_of_weights))
                 last_weight = weight
                 last_weight_set_idx = i
-            self.entry.monsters.append(MappaMonster(
+            self.entry.monsters.append(FileType.MAPPA_BIN.get_monster_model()(
                 md_index=row[0],
                 level=u8(int(row[3])),
                 weight=u16(weight),
@@ -1768,7 +1767,7 @@ class FloorController(AbstractController):
             # We did not sum up to exactly 10000, so the values we entered are not evenly
             # divisible. Find the last non-zero we set and set it to 10000.
             weights[last_weight_set_idx] = u16(10000)
-        self.entry.traps = MappaTrapList(weights)
+        self.entry.traps = FileType.MAPPA_BIN.get_trap_list_model()(weights)
         self.mark_as_modified()
 
     def _fill_available_categories_into_store(self, cb_store):
@@ -1815,9 +1814,9 @@ class FloorController(AbstractController):
                 # Add Poké and Link Box items for those categories
                 if not cat:
                     if row[0] == POKE_CATEGORY_ID:
-                        item_weights[Pmd2DungeonItem(self.item_categories[POKE_CATEGORY_ID].item_ids()[0], '')] = 10000
+                        item_weights[self.item_categories[POKE_CATEGORY_ID].item_ids()[0]] = 10000
                     if row[0] == LINKBOX_CATEGORY_ID:
-                        item_weights[Pmd2DungeonItem(self._get_link_box_item_id(), '')] = 10000
+                        item_weights[self._get_link_box_item_id()] = 10000
                 was_set = False
                 weight = 0
                 if row[2]:
@@ -1828,13 +1827,13 @@ class FloorController(AbstractController):
                         last_weight = weight
                         was_set = True
                 if cat is None:
-                    set_idx: typing.Union[Pmd2DungeonItemCategory, Pmd2DungeonItem] = self.item_categories[row[0]]
+                    set_idx = self.item_categories[row[0]].id
                     category_weights[set_idx] = weight
                     if was_set:
                         last_weight_set_idx = set_idx
                 else:
-                    set_idx = Pmd2DungeonItem(row[0], '')
-                    item_weights[Pmd2DungeonItem(row[0], '')] = weight
+                    set_idx = row[0]
+                    item_weights[row[0]] = weight
                     if was_set:
                         last_weight_set_idx = set_idx
             if last_weight_set_idx is not None:
@@ -1849,7 +1848,7 @@ class FloorController(AbstractController):
         item_weights = {k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0].id)}
 
         il = self.get_current_item_list()
-        il.categories = category_weights  # type: ignore
+        il.categories = category_weights
         il.items = item_weights
 
         self.mark_as_modified()
@@ -1975,7 +1974,7 @@ class FloorController(AbstractController):
         val = int(w.get_value())
         setattr(obj, attr_name, val)
 
-    def get_current_item_list(self) -> MappaItemList:
+    def get_current_item_list(self) -> MappaItemListProtocol:
         if self._item_list_edit_active == FloorEditItemList.FLOOR:
             return self.entry.floor_items
         if self._item_list_edit_active == FloorEditItemList.SHOP:

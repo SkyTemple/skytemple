@@ -46,7 +46,7 @@ from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.data_cd.handler import DataCDHandler
 from skytemple_files.data.inter_d.handler import InterDHandler
 from skytemple_files.data.anim.handler import AnimHandler
-from skytemple_files.data.md.model import Md
+from skytemple_files.data.md.protocol import MdProtocol
 from skytemple_files.data.waza_p.model import WazaP
 from skytemple_files.hardcoded.dungeon_music import HardcodedDungeonMusic, DungeonMusicEntry
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement, HardcodedDungeons
@@ -240,7 +240,7 @@ class ListsModule(AbstractModule):
         row = self._tree_model[self._iq_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
 
-    def get_monster_md(self) -> Md:
+    def get_monster_md(self) -> MdProtocol:
         return self.project.get_module('monster').monster_md
 
     def get_waza_p(self) -> WazaP:
