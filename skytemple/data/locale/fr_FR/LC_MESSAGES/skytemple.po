@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-09 21:44+0000\n"
-"PO-Revision-Date: 2022-07-09 21:53\n"
+"PO-Revision-Date: 2022-07-18 08:30\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -29,7 +29,7 @@ msgstr ""
 
 #: /dev/fd/63:3 /dev/fd/63:112
 msgid "Default Team Names"
-msgstr ""
+msgstr "Nom de l'équipe par défaut"
 
 #: /dev/fd/63:4 /dev/fd/63:113
 msgid "Job Debriefing Related Strings"
@@ -3718,7 +3718,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:95
 msgid "Walking Animation (1st frame)"
-msgstr ""
+msgstr "Animation de marche (1ère image)"
 
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:228
 #, python-brace-format
@@ -3960,7 +3960,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:47
 msgid "Reduces the amount of time the game pauses for before changing the PoV, like when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
-msgstr ""
+msgstr "Réduit le temps d'attente avant le changement de PDV, par exemple lors d'une attaque d'un allié distant, de 60 à 12 images. Automatiquement appliqué avec le correctif CTC."
 
 #: skytemple-files/skytemple_files/patch/handler/same_type_partner.py:46
 msgid "Allows the partner to be of the same type as the player in the personality test."
@@ -3973,7 +3973,8 @@ msgstr "Qui souhaiteriez vous être ?"
 #: skytemple-files/skytemple_files/patch/handler/skip_quiz.py:58
 msgid "Skips the quiz, only leaving the gender question.\n"
 "Needs ChooseStarter patch to be applied. "
-msgstr ""
+msgstr "Passe le quiz, en ne gardant que la question du genre.\n"
+"Nécessite l'application du correctif ChooseStarter. "
 
 #: skytemple-files/skytemple_files/patch/handler/stat_disp.py:63
 msgid "Replaces old move stats display with bars.\n"
@@ -7863,7 +7864,7 @@ msgstr "Couleur 13"
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:644
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1135
 msgid "Frame Durations"
-msgstr ""
+msgstr "Durée de l'image"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:572
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:665
@@ -9554,7 +9555,8 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:416
 msgid "This BPA has no frames.\n"
 "Enable the BPA and import images for a BPA to add frames."
-msgstr ""
+msgstr "Ce BPA n'a aucune image.\n"
+"Activer le BPA et importer des images pour un BPA afin de rajouter des images."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:529
 msgid "Export animated tiles (BPA)"
@@ -9699,7 +9701,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2139
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2252
 msgid "Frame Time"
-msgstr ""
+msgstr "Durée de l'image"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:583
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:696
@@ -9718,7 +9720,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2178
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2291
 msgid "# of Frames"
-msgstr ""
+msgstr "Nombre d'images"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:621
 msgid "Palette 1"
@@ -9899,7 +9901,7 @@ msgstr "Activé"
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3793
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3914
 msgid "Durations per Frame:"
-msgstr ""
+msgstr "Durée par image :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3125
 msgid "BPA 1"
@@ -12037,7 +12039,7 @@ msgstr "Correctif ASM"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:42
 msgid "Apply ASM (assembler) patches to the game."
-msgstr ""
+msgstr "Applique des correctifs ASM (assembleur) au jeu."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:76
 msgid "Open Patch Directory..."
@@ -12165,7 +12167,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:240
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:216
 msgid "Effect"
-msgstr ""
+msgstr "Effet"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:324
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:365
@@ -12185,7 +12187,7 @@ msgstr "ID de l'effet : "
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:481
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:439
 msgid "Used by: "
-msgstr ""
+msgstr "Utilisé par : "
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:535
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:576
@@ -12197,19 +12199,19 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:624
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:571
 msgid "Clipboard Import"
-msgstr ""
+msgstr "Importer du presse-papier"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:626
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:667
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:614
 msgid "Export Code"
-msgstr ""
+msgstr "Export du code"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:717
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:759
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:705
 msgid "Effect Library"
-msgstr ""
+msgstr "Librairie d'effets"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:761
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:803
@@ -12221,7 +12223,7 @@ msgstr "Éditeur ASM"
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:855
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:801
 msgid "Effects Code"
-msgstr ""
+msgstr "Code des effets"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.py:114
 msgid "Import Item Effect ASM Code..."
@@ -12391,15 +12393,15 @@ msgstr "Exporter le code ASM d'une procédure spéciale..."
 
 #: skytemple/skytemple/module/patch/module.py:73
 msgid "ASM"
-msgstr ""
+msgstr "ASM"
 
 #: skytemple/skytemple/module/patch/module.py:86
 msgid "C/Rust"
-msgstr ""
+msgstr "C/Rust"
 
 #: skytemple/skytemple/module/patch/module.py:90
 msgid "Symbols"
-msgstr ""
+msgstr "Symboles"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:231
 msgid "... from separate images"
