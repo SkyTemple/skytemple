@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-09 21:44+0000\n"
-"PO-Revision-Date: 2022-07-18 08:30\n"
+"PO-Revision-Date: 2022-07-18 09:34\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -381,7 +381,7 @@ msgstr ""
 
 #: /dev/fd/63:88 /dev/fd/63:197
 msgid "Unknown 7"
-msgstr ""
+msgstr "Inconnu 7"
 
 #: /dev/fd/63:89 /dev/fd/63:198
 #: skytemple/skytemple/module/monster/controller/monster.glade:3505
@@ -4255,7 +4255,7 @@ msgstr ""
 
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:265
 msgid "Invalid SWDL/Wavi header."
-msgstr ""
+msgstr "En-tête SWDL/Wavi invalide."
 
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:275
 msgid "SWDL Wavi length invalid; tried to read past EOF."
@@ -6693,7 +6693,7 @@ msgstr "Tuiles"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:867
 msgid "Quantity"
-msgstr ""
+msgstr "Quantité"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:962
 #: skytemple/skytemple/module/monster/controller/level_up.glade:381
@@ -8576,20 +8576,20 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:336
 msgid "File Type"
-msgstr ""
+msgstr "Type de fichier"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:352
 msgid "File ID"
-msgstr ""
+msgstr "ID du fichier"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:366
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:447
 msgid "Unk 1"
-msgstr ""
+msgstr "Unk 1"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:380
 msgid "Unk 2"
-msgstr ""
+msgstr "Unk 2"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:394
 #: skytemple/skytemple/module/lists/controller/animations.glade:768
@@ -8599,11 +8599,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:408
 msgid "Unk 3"
-msgstr ""
+msgstr "Unk 3"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:422
 msgid "Unk 4"
-msgstr ""
+msgstr "Unk 4"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:435
 #: skytemple/skytemple/module/lists/controller/animations.glade:752
@@ -8613,27 +8613,27 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:451
 msgid "Unk 5"
-msgstr ""
+msgstr "Unk 5"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:464
 msgid "Loop"
-msgstr ""
+msgstr "Boucle"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:602
 msgid "Anim 1 ID"
-msgstr ""
+msgstr "ID d'animation 1"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:616
 msgid "Anim 2 ID"
-msgstr ""
+msgstr "ID d'animation 2"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:630
 msgid "Anim 3 ID"
-msgstr ""
+msgstr "ID d'animation 3"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:644
 msgid "Anim 4 ID"
-msgstr ""
+msgstr "ID d'animation 4"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:658
 msgid "Dir"
@@ -8649,20 +8649,20 @@ msgstr "Drapeau 2"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:698
 msgid "Flag 3"
-msgstr ""
+msgstr "Drapeau 3"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:711
 msgid "Flag 4"
-msgstr ""
+msgstr "Drapeau 4"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:724
 msgid "Speed"
-msgstr ""
+msgstr "Vitesse"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:738
 #: skytemple/skytemple/module/lists/controller/animations.glade:982
 msgid "Animation"
-msgstr ""
+msgstr "Animation"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:782
 msgid "First Spec. Entry"
@@ -8682,7 +8682,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:1133
 msgid "Anim ID"
-msgstr ""
+msgstr "ID d'animation"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:1190
 msgid "Use Anim ID"
@@ -8711,7 +8711,9 @@ msgstr ""
 msgid "<Not available>\n\n"
 "To create dungeon interruption, please apply the \"DungeonInterrupt\"\n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<Indisponible>\n\n"
+"Pour créer des interruptions de donjon, vous devez appliquer le correctif\n"
+"ASM DungeonInterrupt depuis le menu \"Correctif ASM\"."
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:208
 msgid "Dungeon: "
@@ -8830,11 +8832,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:314
 msgid "Guest pokémon 1"
-msgstr ""
+msgstr "Pokémon invité 1"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:328
 msgid "Guest pokémon 2"
-msgstr ""
+msgstr "Pokémon invité 2"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:342
 msgid "HLR (uncleared)"
@@ -8896,7 +8898,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:769
 #: skytemple/skytemple/module/lists/module.py:135
 msgid "Guest Pokémon"
-msgstr ""
+msgstr "Pokémon invité"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.py:83
 msgid "Guest pokémon IDs refer to the entries in the guest pokémon tab. A value of -1 represents an empty entry (no guest pokémon).\n"
@@ -9119,7 +9121,7 @@ msgstr "Unk2_2"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:242
 msgid "Flag"
-msgstr ""
+msgstr "Drapeau"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:323
 msgid "The Name is used by the game to determine if a ground sprite should be used. \n"
@@ -9335,7 +9337,8 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/tactics.glade:129
 msgid "-1 means unlocked by default.\n"
 "999 means unused."
-msgstr ""
+msgstr "-1 signifie débloqué par défaut.\n"
+"999 signifie inutilisé."
 
 #: skytemple/skytemple/module/lists/controller/tactics.py:80
 msgid "<Not working>"
@@ -9365,7 +9368,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:343
 msgid "Edit Map Background"
-msgstr ""
+msgstr "Modifier l’arrière-plan de la carte"
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:364
 msgid "Preview"
@@ -9375,7 +9378,7 @@ msgstr "Aperçu"
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4339
 #: skytemple/skytemple/module/script/controller/ssa.glade:1221
 msgid "Map"
-msgstr ""
+msgstr "Carte"
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:429
 msgid "Position"
@@ -9416,7 +9419,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/module.py:138
 msgid "Special Episode PCs"
-msgstr ""
+msgstr "PJs des épisodes spéciaux"
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:50
 msgid "- The image consists of 8x8 tiles.\n"
@@ -9662,7 +9665,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:167
 msgid "Go to Scenes"
-msgstr ""
+msgstr "Aller aux scènes"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:235
 msgid "Collision"
@@ -9670,11 +9673,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:261
 msgid "Air"
-msgstr ""
+msgstr "Air"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:285
 msgid "Solid"
-msgstr ""
+msgstr "Solide"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:315
 msgid "Data Value"
@@ -9724,15 +9727,15 @@ msgstr "Nombre d'images"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:621
 msgid "Palette 1"
-msgstr ""
+msgstr "Palette 1"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:734
 msgid "Palette 2"
-msgstr ""
+msgstr "Palette 2"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:847
 msgid "Palette 3"
-msgstr ""
+msgstr "Palette 3"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:960
 msgid "Palette 4"
@@ -10023,11 +10026,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4788
 msgid "Collision 1"
-msgstr ""
+msgstr "Collision 1"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4812
 msgid "Collision 2"
-msgstr ""
+msgstr "Collision 2"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4836
 msgid "Data Layer"
@@ -10035,47 +10038,47 @@ msgstr "Calque de donnée"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4859
 msgid "BMA Filename:"
-msgstr ""
+msgstr "Nom du fichier BMA :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4871
 msgid "BPC Filename:"
-msgstr ""
+msgstr "Nom du fichier BPC :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4883
 msgid "BPL Filename:"
-msgstr ""
+msgstr "Nom du fichier BPL :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4895
 msgid "BPA1 Filename:"
-msgstr ""
+msgstr "Nom du fichier BPA 1 :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4907
 msgid "BPA2 Filename:"
-msgstr ""
+msgstr "Nom du fichier BPA 2 :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4919
 msgid "BPA4 Filename:"
-msgstr ""
+msgstr "Nom du fichier BPA 4 :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4931
 msgid "BPA3 Filename:"
-msgstr ""
+msgstr "Nom du fichier BPA 3 :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4943
 msgid "BPA5 Filename:"
-msgstr ""
+msgstr "Nom du fichier BPA 5 :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4955
 msgid "BPA7 Filename:"
-msgstr ""
+msgstr "Nom du fichier BPA 7 :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4967
 msgid "BPA6 Filename:"
-msgstr ""
+msgstr "Nom du fichier BPA 6 :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4979
 msgid "BPA8 Filename:"
-msgstr ""
+msgstr "Nom du fichier BPA 8 :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4991
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5003
@@ -10089,7 +10092,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5099
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5111
 msgid "<>"
-msgstr ""
+msgstr "<>"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:5164
 msgid "Metadata"
@@ -10174,11 +10177,11 @@ msgstr "Cela importera la carte complète avec une image par\n"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6122
 msgid "Layer 1 Image"
-msgstr ""
+msgstr "Image de la couche 1"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6160
 msgid "Layer 2 Image"
-msgstr ""
+msgstr "Image de la couche 2"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:6273
 msgid "This will import the tiles for the selected layer\n"
@@ -10289,7 +10292,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:361
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:275
 msgid "Font"
-msgstr ""
+msgstr "Police"
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:50
 msgid "Char ID"
@@ -10323,7 +10326,7 @@ msgstr "Pour importer, veuillez sélectionner un dossier contenant tous les fich
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:112
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:94
 msgid "Import Font"
-msgstr ""
+msgstr "Importer police"
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:117
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:99
@@ -10333,7 +10336,7 @@ msgstr "Importer la police à partir du dossier..."
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:143
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.py:137
 msgid "Error importing font."
-msgstr ""
+msgstr "Erreur d'importation de la police."
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:217
 #, python-brace-format
@@ -11151,15 +11154,15 @@ msgstr "Régénération de PV :"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3037
 msgid "Unk 1.1:"
-msgstr ""
+msgstr "Unk 1.1 :"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3049
 msgid "Unk 1.2:"
-msgstr ""
+msgstr "Unk 1.2 :"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3061
 msgid "Unk 1.3:"
-msgstr ""
+msgstr "Unk 1.3 :"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3073
 msgid "Can move:"
@@ -12113,11 +12116,11 @@ msgstr "Erreur lors de l'application du patch:\n"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:130
 msgid "Patch was successfully applied. The ROM will now be reloaded."
-msgstr ""
+msgstr "Le correctif à été correctement appliqué. La ROM va maintenant être rechargé."
 
 #: skytemple/skytemple/module/patch/controller/asm.py:133
 msgid "Not all patches were applied successfully. The ROM will now be reloaded."
-msgstr ""
+msgstr "Certains correctifs n'ont pas été correctement appliqué. La ROM va être rechargé."
 
 #: skytemple/skytemple/module/patch/controller/asm.py:186
 msgid "Error loading patch package {os.path.basename(fname)}:\n"
