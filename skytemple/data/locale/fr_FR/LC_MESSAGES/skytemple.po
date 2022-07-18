@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-09 21:44+0000\n"
-"PO-Revision-Date: 2022-07-18 09:34\n"
+"PO-Revision-Date: 2022-07-18 11:03\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -3124,12 +3124,12 @@ msgstr "Analyse de la police : {child.tag} inattendu"
 #: skytemple-files/skytemple_files/graphics/fonts/font_dat/writer.py:44
 #, python-brace-format
 msgid "Character {e.char} in table {e.table} is defined multiple times in a font file!"
-msgstr "Le caractère {e.char} dans la table {e.table} est défini plusieurs fois dans un fichier de police !"
+msgstr "Le caractère {e.char} du tableau {e.table} est défini plusieurs fois dans un fichier de police !"
 
 #: skytemple-files/skytemple_files/graphics/fonts/font_sir0/writer.py:52
 #, python-brace-format
 msgid "Character {e.char} in table {e.table} is be defined multiple times in a font file!"
-msgstr "Le caractère {e.char} dans la table {e.table} est défini plusieurs fois dans un fichier de police !"
+msgstr "Le caractère {e.char} du tableau {e.table} est défini plusieurs fois dans un fichier de police !"
 
 #: skytemple-files/skytemple_files/graphics/kao/_model.py:290
 #, python-brace-format
@@ -3948,7 +3948,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/obj_table.py:61
 msgid "Extracts the object table to a separate file in the ROM."
-msgstr "Extraie la table des objets vers un fichier dédié dans la ROM."
+msgstr "Extraie le tableau des objets vers un fichier dédié dans la ROM."
 
 #: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:47
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
@@ -9629,19 +9629,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/main.glade:98
 msgid "New Background"
-msgstr ""
+msgstr "Nouvel arrière-plan"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:47
 msgid "Create Background"
-msgstr ""
+msgstr "Ajouter un arrière-plan"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:47
 msgid "Map Background Name"
-msgstr ""
+msgstr "Nom de l'arrière-plan"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:57
 msgid "The length of the map background name must be between 1-8 characters."
-msgstr ""
+msgstr "Le nom de l'arrière-plan doit être compris entre 1 à 8 caractères."
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:72
 msgid "A map background with this name already exists."
@@ -9657,7 +9657,7 @@ msgstr "Cache les autres calques"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:93
 msgid "Hide Other"
-msgstr ""
+msgstr "Cacher l'autre"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:117
 msgid "Draw filled rectangles when holding down the left mouse button"
@@ -9669,7 +9669,7 @@ msgstr "Aller aux scènes"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:235
 msgid "Collision"
-msgstr ""
+msgstr "Collision"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:261
 msgid "Air"
@@ -9908,59 +9908,59 @@ msgstr "Durée par image :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3125
 msgid "BPA 1"
-msgstr ""
+msgstr "BPA 1"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3245
 msgid "BPA 2"
-msgstr ""
+msgstr "BPA 2"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3366
 msgid "BPA 3"
-msgstr ""
+msgstr "BPA 3"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3487
 msgid "BPA 4"
-msgstr ""
+msgstr "BPA 4"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3608
 msgid "BPA 5"
-msgstr ""
+msgstr "BPA 5"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3729
 msgid "BPA 6"
-msgstr ""
+msgstr "BPA 6"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3850
 msgid "BPA 7"
-msgstr ""
+msgstr "BPA 7"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:3971
 msgid "BPA 8"
-msgstr ""
+msgstr "BPA 8"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4001
 msgid "Map Dimensions"
-msgstr ""
+msgstr "Dimensions de la carte"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4073
 msgid "Map Width in Chunks"
-msgstr ""
+msgstr "Largeur de la carte en fragments"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4117
 msgid "Map Height in Chunks"
-msgstr ""
+msgstr "Hauteur de la carte en fragments"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4177
 msgid "Link Tile Width and Height"
-msgstr ""
+msgstr "Lier la largeur et la hauteur des tuiles"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4216
 msgid "Map Width in Tiles"
-msgstr ""
+msgstr "Largeur de la carte en tuile"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4261
 msgid "Map Height in Tiles"
-msgstr ""
+msgstr "Hauteur de la carte en tuile"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4297
 msgid "Usually the width and height in tiles should be linked\n"
@@ -9976,7 +9976,7 @@ msgstr "Largeur et Hauteur"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4372
 msgid "Export Map as GIF..."
-msgstr ""
+msgstr "Exporter un GIF de la carte..."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4387
 msgid "Export Layers to Image..."
@@ -10287,7 +10287,8 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:57
 msgid "Choose which character\n"
 "you want to add in the table: "
-msgstr ""
+msgstr "Choisissez quels personnage\n"
+"vous souhaitez ajouter à la table : "
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:361
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:275
@@ -10341,11 +10342,11 @@ msgstr "Erreur d'importation de la police."
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:217
 #, python-brace-format
 msgid "Character {char} already exists in the table!"
-msgstr ""
+msgstr "Le caractère {char} existe déjà dans le tableau !"
 
 #: skytemple/skytemple/module/misc_graphics/controller/font.py:231
 msgid "Error adding character."
-msgstr ""
+msgstr "Erreur lors de l'ajout du caractère."
 
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:57
 msgid "Choose how many characters\n"
@@ -12618,7 +12619,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/main.py:82
 #: skytemple/skytemple/module/script/controller/main.py:138
 msgid "The length of the level name must be between 1-8 characters."
-msgstr ""
+msgstr "Le nom d'un niveau doit être compris entre 1 et 8 caractères."
 
 #: skytemple/skytemple/module/script/controller/main.py:126
 msgid "Create Level"
@@ -12938,7 +12939,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/module.py:413
 msgid "The file name provided is too long (max 8 characters)."
-msgstr ""
+msgstr "Le nom du fichier est trop long (8 caractères maximum)."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:43
 msgid "<span size=\"large\">Spritesheet</span>"
@@ -13109,7 +13110,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:56
 msgid "The length of the sprite name must be between 1-10 characters."
-msgstr ""
+msgstr "Le nom du sprite doit être compris entre 1 et 10 caractères."
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:67
 msgid "A sprite with this name already exists."
