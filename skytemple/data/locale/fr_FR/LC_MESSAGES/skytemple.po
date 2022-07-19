@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-09 21:44+0000\n"
-"PO-Revision-Date: 2022-07-19 20:08\n"
+"PO-Revision-Date: 2022-07-19 21:23\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -281,7 +281,7 @@ msgstr ""
 
 #: /dev/fd/63:66 /dev/fd/63:175
 msgid "Type Names"
-msgstr ""
+msgstr "Noms des types"
 
 #: /dev/fd/63:67 /dev/fd/63:176
 msgid "Ability Names"
@@ -297,7 +297,7 @@ msgstr ""
 
 #: /dev/fd/63:70 /dev/fd/63:179
 msgid "Portrait Names"
-msgstr ""
+msgstr "Noms des portraits"
 
 #: /dev/fd/63:71 /dev/fd/63:180
 msgid "Ground Map Names"
@@ -309,15 +309,15 @@ msgstr ""
 
 #: /dev/fd/63:73 /dev/fd/63:182
 msgid "Dungeon Names (Selection)"
-msgstr ""
+msgstr "Noms des donjons (sélection)"
 
 #: /dev/fd/63:74 /dev/fd/63:183
 msgid "Dungeon Names (SetDungeonBanner)"
-msgstr ""
+msgstr "Noms des donjons (SetDungeonBanner)"
 
 #: /dev/fd/63:75 /dev/fd/63:184
 msgid "Dungeon Names (Banner)"
-msgstr ""
+msgstr "Nom des donjons (bannière)"
 
 #: /dev/fd/63:76 /dev/fd/63:185
 msgid "Spinda's Juice Bar Strings"
@@ -397,7 +397,7 @@ msgstr "Orbes"
 
 #: /dev/fd/63:91 /dev/fd/63:200
 msgid "Link Box"
-msgstr ""
+msgstr "Boîte Chaîne"
 
 #: /dev/fd/63:92 /dev/fd/63:201
 msgid "Used TM"
@@ -4136,7 +4136,7 @@ msgstr ""
 
 #: skytemple-rust/src/dse/st_smdl/eoc.rs:40
 msgid "Invalid SMDL/EOC header."
-msgstr ""
+msgstr "En-tête SMDL/EOC invalide."
 
 #: skytemple-rust/src/dse/st_smdl/smdl.rs:202
 msgid "SMDL file too short (Header EOF)."
@@ -4289,7 +4289,8 @@ msgstr ""
 #: skytemple-rust/src/st_kao.rs:100
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({} bytes total).\n"
 " If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
-msgstr ""
+msgstr "Ce portrait ne se compresse pas bien, la taille compressée est plus grande que 800 octets ({} au total).\n"
+"Si ce n’est pas encore fait, essayez d'appliquer le correctif «ProvideATUPXSupport» pour installer un algorithme de compression plus optimisé, qui pourrait donner de meilleurs résultats."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:175
 msgid "BOOST"
@@ -9157,7 +9158,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:60
 msgid "You can add Pokémon from this list to the team via Script Engine commands."
-msgstr ""
+msgstr "Vous pouvez ajouter des Pokémon de cette liste via des commandes dans un script."
 
 #: skytemple/skytemple/module/lists/controller/recruitment_list.glade:135
 msgid "Location of Recruitment"
@@ -10404,7 +10405,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:73
 msgid "Export all images as PNGs..."
-msgstr ""
+msgstr "Exporter toutes les images en PNG..."
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:94
 msgid "To import, select a directory to import from. Files with the pattern 'XX.png'\n"
@@ -11390,7 +11391,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.py:603
 msgid "Item Required for spawning?"
-msgstr ""
+msgstr "Objet requis pour l'apparition ?"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:613
 msgid "If the current $SCENARIO_BALANCE_FLAG value is lower than this number, the pokémon won't spawn in dungeons."
@@ -11443,12 +11444,14 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/monster.py:1422
 msgid "The sprite memory size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
-msgstr ""
+msgstr "La taille en mémoire du sprite du Pokémon ne correspond pas à son celui de son sprite associé.\n"
+"SkyTemple l’a automatiquement corrigé."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1442
 msgid "The sprite file size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
-msgstr ""
+msgstr "La taille du fichier du sprite du Pokémon ne correspond pas à son celui de son sprite associé.\n"
+"SkyTemple l’a automatiquement corrigé."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1476
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
@@ -11458,16 +11461,17 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1479
 msgid "Entity ID"
-msgstr ""
+msgstr "ID d'entité"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1489
 msgid "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "This list indicates this Pokémon's children. If no children exist, the game will default to that pokémon species. "
-msgstr ""
+msgstr "Pour les missions avec un œuf comme récompense, l’œuf contient un Pokémon sélectionné au hasard Paris la liste des enfants des Pokémon de la liste d’apparition de cet étage.\n"
+"Cette liste indique les enfants des Pokémon. Si aucunes enfants existe, le jeu utilise l’espèce du parent par défaut. "
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1491
 msgid "Children Info"
-msgstr ""
+msgstr "Info des enfants"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1501
 msgid "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
@@ -12231,7 +12235,7 @@ msgstr "Utilisé par : "
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:576
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:523
 msgid "Import Code"
-msgstr ""
+msgstr "Importer du code"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:583
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:624
@@ -12314,7 +12318,13 @@ msgid "Export and import effect code.\n"
 "If you import armips ASM code, an effect code library is available.\n\n"
 "You can use the ASM Editor tool to generate patch files.\n"
 "The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to import.\n"
-msgstr ""
+msgstr "Exporte et importe le code d'effet.\n"
+"L'export ne fait qu'exporter du code machine. Il n'est PAS désassemblé.\n"
+"L'import accepte à la fois du code assembleur armips ou du code machine binaire.\n"
+"Veillez noter que SkyTemple ne vérifie pas le code que vous essayer d'importer.\n"
+"Si vous importer du code assembleur armips, une librairie de codes d'effets est disponible.\n\n"
+"Vous pouvez utiliser l'éditeur d'assembleur pour générer des fichiers de correctif.\n"
+"Le correctif assembleur doit générer un fichier 'code_out.bin', que SkyTemple essayera d'importer.\n"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.py:207
 #: skytemple/skytemple/module/patch/controller/move_effects.py:217
@@ -12332,7 +12342,8 @@ msgstr "Effets d'attaque"
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:100
 msgid "Edits the move effects used by the game.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Édite les effets des capacités utilisés par le jeu\n"
+"Ne liste pas les effets ajoutés avec C ou Rust."
 
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:115
 msgid "<Not available>\n\n"
@@ -12623,7 +12634,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/main.glade:323
 msgid "Internal Name"
-msgstr ""
+msgstr "Nom interne"
 
 #: skytemple/skytemple/module/script/controller/main.glade:337
 msgid "Overworld Text String"
@@ -12945,7 +12956,9 @@ msgstr ""
 msgid "Each of the scenes has at least one script assigned to them, which is run when the scene is loaded.\n"
 "In addition to that, there is also \"COMMON/unionall.ssb\", which contains the game's coroutines (main scripts).\n\n"
 "To edit the game's scripts, open the Script Engine Debugger. You can also do this by clicking the bug icon in the top right.\n"
-msgstr ""
+msgstr "Chaque scène à au moins un script associé, qui est exécuté une fois la scène chargée.\n"
+"Il y a également « COMMON/unionall.ssb », qui contient les coroutines du jeu (scripts principaux).\n\n"
+"Pour modifier les scripts du jeu, ouvrez le débugueur de script. Vous pouvez également le faire en cliquant sur l'icône d’insecte en haut à droite.\n"
 
 #: skytemple/skytemple/module/script/controller/ssb.py:44
 msgid "Open Script Engine Debugger"
@@ -13113,34 +13126,36 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/object.glade:195
 msgid "Import image"
-msgstr ""
+msgstr "Importer une image"
 
 #: skytemple/skytemple/module/sprite/controller/object.py:57
 msgid "SkyTemple can not edit sprites. \n"
 "However you can export the sprite in the gfxcrunch format and import it back again.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "SkyTemple ne peut pas modifier les sprites.\n"
+"Cependant, ils peuvent être exportés au format gfxcrunch, puis réimportés.\n"
+"Attention : SkyTemple ne vérifie pas les fichiers importés."
 
 #: skytemple/skytemple/module/sprite/controller/object_main.glade:40
 #: skytemple/skytemple/module/sprite/controller/object_main.py:33
 msgid "Object Sprites"
-msgstr ""
+msgstr "Sprites d'objets"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.glade:56
 msgid "This section lets you import and export object sprites."
-msgstr ""
+msgstr "Cette section vous permet d'importer et d'exporter des sprites d'objets."
 
 #: skytemple/skytemple/module/sprite/controller/object_main.glade:96
 msgid "New Object Sprite"
-msgstr ""
+msgstr "Nouveau sprite d'objet"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:47
 msgid "Create Object Sprite"
-msgstr ""
+msgstr "Créer un sprite d’objet"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:47
 msgid "Sprite Name"
-msgstr ""
+msgstr "Nom du sprite"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:56
 msgid "The length of the sprite name must be between 1-10 characters."
@@ -13148,11 +13163,11 @@ msgstr "Le nom du sprite doit être compris entre 1 et 10 caractères."
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:67
 msgid "A sprite with this name already exists."
-msgstr ""
+msgstr "Un autre sprite existe déjà sous ce nom."
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:84
 msgid "Object sprite added successfully"
-msgstr ""
+msgstr "Sprite d’objet ajouté avec succès"
 
 #: skytemple/skytemple/module/sprite/module.py:127
 msgid "Import WAN sprite..."
@@ -13521,11 +13536,11 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1500
 msgid "Don't allow"
-msgstr ""
+msgstr "Refuser"
 
 #: skytemple/skytemple/skytemple.glade:1513
 msgid "Allow sending error reports"
-msgstr ""
+msgstr "Autoriser l'envoi de rapports d'erreur"
 
 #: skytemple/skytemple/skytemple.glade:1540
 msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
@@ -13533,7 +13548,11 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "You can find more information about the data we collect and how we\n"
 "use it in our <a href=\"privacy\">privacy information</a>.\n\n"
 "This is used so we can improve SkyTemple."
-msgstr ""
+msgstr "<span size=\"large\">Bienvenue dans SkyTemple !</span>\n\n"
+"Nous aimerions collecter des informations en cas d’erreurs.\n\n"
+"Vous pouvez trouvez plus d’informations les données collectés et\n"
+"sur les usages qui en sont fait dans nos <a href=\"privacy\">informations de confidentialité</a>.\n\n"
+"Cela nous permettra d’améliorer SkyTemple."
 
 #: skytemple/skytemple/skytemple.glade:1606
 msgid "Loading ROM \"NAME\"..."
