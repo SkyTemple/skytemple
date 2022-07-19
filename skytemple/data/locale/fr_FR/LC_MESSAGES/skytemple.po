@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-09 21:44+0000\n"
-"PO-Revision-Date: 2022-07-18 12:01\n"
+"PO-Revision-Date: 2022-07-19 11:17\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -9390,7 +9390,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.py:201
 msgid "<Not on map>"
-msgstr ""
+msgstr "<Absent de la carte>"
 
 #: skytemple/skytemple/module/lists/controller/world_map.py:203
 #, python-brace-format
@@ -9399,7 +9399,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.py:244
 msgid "<Don't show on map>"
-msgstr ""
+msgstr "<Ne pas montrer sur la carte>"
 
 #: skytemple/skytemple/module/lists/controller/world_map.py:303
 msgid "You need to select a map."
@@ -10423,7 +10423,7 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:148
 #, python-brace-format
 msgid "Error for '{index}'."
-msgstr ""
+msgstr "Erreur pour « {index} »."
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:38
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:191
@@ -10437,7 +10437,8 @@ msgstr "Fichier d'image : "
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:165
 msgid "The image file must be a color-indexed PNG to be imported\n"
 "as a WTE file."
-msgstr ""
+msgstr "L’image doit être un PNG à palette pour pouvoir être\n"
+"importé en tant que fichier WTE."
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:204
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:530
@@ -10446,7 +10447,7 @@ msgstr "Type d'image WTE : "
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:232
 msgid "Discard Palette"
-msgstr ""
+msgstr "Ignorer la palette"
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:251
 msgid "If ticked, the WTE file will not contain the palette data.\n"
@@ -10480,7 +10481,9 @@ msgstr "WTE"
 msgid "This image does\n"
 "not have WTU data\n"
 "assigned to it."
-msgstr ""
+msgstr "Cette image n’a pas\n"
+"de donné WTU\n"
+"assigné."
 
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.glade:660
 msgid "x"
@@ -12606,7 +12609,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/main.glade:385
 msgid "Default Weather"
-msgstr ""
+msgstr "Météo par défaut"
 
 #: skytemple/skytemple/module/script/controller/main.glade:473
 msgid "Level List"
@@ -12632,7 +12635,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/main.py:126
 msgid "Level Name"
-msgstr ""
+msgstr "Nom du niveau"
 
 #: skytemple/skytemple/module/script/controller/main.py:127
 msgid "If you also need a new background for this level, you can create one under \"Map Backrgounds\" and assign it to this level afterwards."
@@ -12854,11 +12857,11 @@ msgstr "Type {performer_type}"
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1424
 msgid "V"
-msgstr ""
+msgstr "V"
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1425
 msgid "Visible"
-msgstr ""
+msgstr "Visible"
 
 #: skytemple/skytemple/module/script/controller/ssa.py:1429
 msgid "Solo"
@@ -12936,7 +12939,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/module.py:272
 msgid "Map not found."
-msgstr ""
+msgstr "Carte introuvable."
 
 #: skytemple/skytemple/module/script/module.py:411
 msgid "The file name provided must not have a file extension."
