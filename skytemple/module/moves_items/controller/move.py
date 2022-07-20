@@ -200,27 +200,27 @@ class MoveController(AbstractController):
 
     def on_cb_settings_range_range_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range.range = WazaMoveRangeRange(val).value
+        self.move.settings_range.range = WazaMoveRangeRange(val).value  # type: ignore
         self.mark_as_modified()
 
     def on_cb_settings_range_target_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range.target = WazaMoveRangeTarget(val).value
+        self.move.settings_range.target = WazaMoveRangeTarget(val).value  # type: ignore
         self.mark_as_modified()
 
     def on_cb_settings_range_ai_target_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range_ai.target = WazaMoveRangeTarget(val).value
+        self.move.settings_range_ai.target = WazaMoveRangeTarget(val).value  # type: ignore
         self.mark_as_modified()
 
     def on_cb_settings_range_ai_range_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range_ai.range = WazaMoveRangeRange(val).value
+        self.move.settings_range_ai.range = WazaMoveRangeRange(val).value  # type: ignore
         self.mark_as_modified()
 
     def on_cb_settings_range_ai_condition_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range_ai.condition = WazaMoveRangeCondition(val).value
+        self.move.settings_range_ai.condition = WazaMoveRangeCondition(val).value  # type: ignore
         self.mark_as_modified()
 
     def on_switch_affected_by_magic_coat_state_set(self, w, *args):
