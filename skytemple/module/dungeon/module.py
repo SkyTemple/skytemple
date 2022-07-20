@@ -453,8 +453,6 @@ class DungeonModule(AbstractModule):
                     reorder_list.append([])
         
         mappa.floor_lists = new_floor_lists
-        assert self._validator
-        self._validator.floors = new_floor_lists
         self.mark_root_as_modified()
         self.save_mappa()
         self.save_dungeon_list(dungeons)

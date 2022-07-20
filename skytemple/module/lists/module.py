@@ -47,7 +47,7 @@ from skytemple_files.data.data_cd.handler import DataCDHandler
 from skytemple_files.data.inter_d.handler import InterDHandler
 from skytemple_files.data.anim.handler import AnimHandler
 from skytemple_files.data.md.protocol import MdProtocol
-from skytemple_files.data.waza_p.model import WazaP
+from skytemple_files.data.waza_p.protocol import WazaPProtocol
 from skytemple_files.hardcoded.dungeon_music import HardcodedDungeonMusic, DungeonMusicEntry
 from skytemple_files.hardcoded.dungeons import MapMarkerPlacement, HardcodedDungeons
 from skytemple_files.hardcoded.guest_pokemon import ExtraDungeonDataList, ExtraDungeonDataEntry, GuestPokemon, \
@@ -95,7 +95,7 @@ class ListsModule(AbstractModule):
         self._tactics_root_iter: Gtk.TreeIter
         self._iq_tree_iter: Gtk.TreeIter
 
-        self.waza_p_bin: WazaP = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
+        self.waza_p_bin: WazaPProtocol = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         root = item_store.append(root_node, [
@@ -243,7 +243,7 @@ class ListsModule(AbstractModule):
     def get_monster_md(self) -> MdProtocol:
         return self.project.get_module('monster').monster_md
 
-    def get_waza_p(self) -> WazaP:
+    def get_waza_p(self) -> WazaPProtocol:
         return self.waza_p_bin
 
     def get_starter_default_ids(self) -> Tuple[u16, u16]:

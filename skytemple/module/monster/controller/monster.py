@@ -367,7 +367,7 @@ class MonsterController(AbstractController):
     @catch_overflow(i16)
     def on_entry_weight_changed(self, w, *args):
         try:
-            val = u16_checked(int(w.get_text()))
+            val = i16_checked(int(w.get_text()))
         except ValueError:
             return
         self.entry.weight = val
@@ -735,10 +735,10 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         self.entry.hp_regeneration = val
         self.mark_as_modified()
 
-    @catch_overflow(u8)
+    @catch_overflow(i8)
     def on_entry_unk21_h_changed(self, w, *args):
         try:
-            val = u8_checked(int(w.get_text()))
+            val = i8_checked(int(w.get_text()))
         except ValueError:
             return
         self.entry.unk21_h = val

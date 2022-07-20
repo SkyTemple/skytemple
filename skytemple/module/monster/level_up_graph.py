@@ -22,13 +22,13 @@ from pygal.style import DarkSolarizedStyle
 
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry
 from skytemple_files.data.md.protocol import MdEntryProtocol
-from skytemple_files.data.waza_p.model import MoveLearnset
+from skytemple_files.data.waza_p.protocol import MoveLearnsetProtocol
 from skytemple_files.common.i18n_util import f, _
 
 
 class LevelUpGraphProvider:
     def __init__(self, monster: MdEntryProtocol, level_bin_entry: LevelBinEntry,
-                 move_learnset: MoveLearnset, move_strings: List[str]):
+                 move_learnset: MoveLearnsetProtocol, move_strings: List[str]):
         self.monster = monster
         self.level_bin_entry = level_bin_entry
         self.move_learnset = move_learnset

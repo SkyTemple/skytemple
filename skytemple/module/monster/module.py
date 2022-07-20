@@ -38,7 +38,7 @@ from skytemple_files.data.level_bin_entry.model import LevelBinEntry
 from skytemple_files.data.tbl_talk.model import TblTalk, TalkType
 from skytemple_files.data.md.protocol import MdProtocol, MdEntryProtocol, ShadowSize, Gender
 from skytemple_files.data.monster_xml import monster_xml_import, GenderedConvertEntry
-from skytemple_files.data.waza_p.model import WazaP
+from skytemple_files.data.waza_p.protocol import WazaPProtocol
 from skytemple_files.graphics.kao import SUBENTRIES
 from skytemple_files.graphics.kao.protocol import KaoImageProtocol, KaoProtocol
 from skytemple_files.hardcoded.monster_sprite_data_table import HardcodedMonsterSpriteDataTable, HardcodedMonsterGroundIdleAnimTable, IdleAnimType
@@ -71,9 +71,9 @@ class MonsterModule(AbstractModule):
         logger.debug("Preloading m_level.bin...")
         self.m_level_bin: BinPack = self.project.open_file_in_rom(M_LEVEL_BIN, FileType.BIN_PACK)
         logger.debug("Preloading waza_p.bin...")
-        self.waza_p_bin: WazaP = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
+        self.waza_p_bin: WazaPProtocol = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
         logger.debug("Preloading waza_p2.bin...")
-        self.waza_p2_bin: WazaP = self.project.open_file_in_rom(WAZA_P2_BIN, FileType.WAZA_P)
+        self.waza_p2_bin: WazaPProtocol = self.project.open_file_in_rom(WAZA_P2_BIN, FileType.WAZA_P)
         logger.debug("Done preloading.")
 
         self._tbl_talk: Optional[TblTalk] = None
@@ -185,10 +185,10 @@ class MonsterModule(AbstractModule):
         self.project.mark_as_modified(M_LEVEL_BIN)
         self._mark_as_modified_in_tree(idx + 1)
 
-    def get_waza_p(self) -> WazaP:
+    def get_waza_p(self) -> WazaPProtocol:
         return self.waza_p_bin
 
-    def get_waza_p2(self) -> WazaP:
+    def get_waza_p2(self) -> WazaPProtocol:
         return self.waza_p2_bin
 
     def get_portrait_view(self, item_id):
@@ -202,7 +202,7 @@ class MonsterModule(AbstractModule):
 
         def set_shadow_size(shadow_size_id):
             try:
-                self.get_entry(item_id).shadow_size = ShadowSize(shadow_size_id)
+                self.get_entry(item_id).shadow_size = ShadowSize(shadow_size_id).value
             except BaseException as ex:
                 logger.warning("Failed to set shadow size", exc_info=ex)
 

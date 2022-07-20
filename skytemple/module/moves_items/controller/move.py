@@ -29,9 +29,8 @@ from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import catch_overflow
 from skytemple_files.common.i18n_util import _
 from skytemple_files.data.md.protocol import PokeType
-from skytemple_files.data.waza_p.model import WazaMoveCategory, WazaMoveRangeTarget, WazaMoveRangeRange, \
-    WazaMoveRangeCondition
-
+from skytemple_files.data.waza_p.protocol import WazaMoveCategory, WazaMoveRangeTarget, WazaMoveRangeRange, \
+    WazaMoveRangeCondition, WazaMoveProtocol
 
 if TYPE_CHECKING:
     from skytemple.module.moves_items.module import MovesItemsModule
@@ -42,7 +41,7 @@ class MoveController(AbstractController):
     def __init__(self, module: 'MovesItemsModule', move_id: int):
         self.module = module
         self.move_id = move_id
-        self.move = self.module.get_move(move_id)
+        self.move: WazaMoveProtocol = self.module.get_move(move_id)
 
         self.builder: Gtk.Builder = None  # type: ignore
         self._string_provider = module.project.get_string_provider()
@@ -201,27 +200,27 @@ class MoveController(AbstractController):
 
     def on_cb_settings_range_range_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range.range = WazaMoveRangeRange(val)  # type: ignore
+        self.move.settings_range.range = WazaMoveRangeRange(val).value
         self.mark_as_modified()
 
     def on_cb_settings_range_target_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range.target = WazaMoveRangeTarget(val)  # type: ignore
+        self.move.settings_range.target = WazaMoveRangeTarget(val).value
         self.mark_as_modified()
 
     def on_cb_settings_range_ai_target_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range_ai.target = WazaMoveRangeTarget(val)  # type: ignore
+        self.move.settings_range_ai.target = WazaMoveRangeTarget(val).value
         self.mark_as_modified()
 
     def on_cb_settings_range_ai_range_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range_ai.range = WazaMoveRangeRange(val)  # type: ignore
+        self.move.settings_range_ai.range = WazaMoveRangeRange(val).value
         self.mark_as_modified()
 
     def on_cb_settings_range_ai_condition_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range_ai.condition = WazaMoveRangeCondition(val)  # type: ignore
+        self.move.settings_range_ai.condition = WazaMoveRangeCondition(val).value
         self.mark_as_modified()
 
     def on_switch_affected_by_magic_coat_state_set(self, w, *args):
@@ -470,13 +469,13 @@ class MoveController(AbstractController):
         self._set_entry('entry_unk15', self.move.unk15)
         self._set_entry('entry_message_id', self.move.message_id)
 
-        self._set_cb('cb_category', self.move.category.value)
-        self._set_cb('cb_type', self.move.type.value)
-        self._set_cb('cb_settings_range_target', self.move.settings_range.target.value)
-        self._set_cb('cb_settings_range_range', self.move.settings_range.range.value)
-        self._set_cb('cb_settings_range_ai_target', self.move.settings_range_ai.target.value)
-        self._set_cb('cb_settings_range_ai_range', self.move.settings_range_ai.range.value)
-        self._set_cb('cb_settings_range_ai_condition', self.move.settings_range_ai.condition.value)
+        self._set_cb('cb_category', self.move.category)
+        self._set_cb('cb_type', self.move.type)
+        self._set_cb('cb_settings_range_target', self.move.settings_range.target)
+        self._set_cb('cb_settings_range_range', self.move.settings_range.range)
+        self._set_cb('cb_settings_range_ai_target', self.move.settings_range_ai.target)
+        self._set_cb('cb_settings_range_ai_range', self.move.settings_range_ai.range)
+        self._set_cb('cb_settings_range_ai_condition', self.move.settings_range_ai.condition)
 
         self._set_switch('switch_affected_by_magic_coat', self.move.affected_by_magic_coat)
         self._set_switch('switch_is_snatchable', self.move.is_snatchable)

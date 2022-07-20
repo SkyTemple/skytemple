@@ -37,7 +37,8 @@ from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItemCate
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.item_p.protocol import ItemPProtocol, ItemPEntryProtocol
 from skytemple_files.data.item_s_p.model import ItemSP, ItemSPEntry
-from skytemple_files.data.waza_p.model import WazaP, WazaMove
+
+from skytemple_files.data.waza_p.protocol import WazaMoveProtocol, WazaPProtocol
 from skytemple_files.list.items.handler import ItemListHandler
 from skytemple_files.data.val_list.handler import ValListHandler
 from skytemple_files.dungeon_data.mappa_bin.protocol import MappaItemListProtocol
@@ -149,10 +150,10 @@ class MovesItemsModule(AbstractModule):
         for category in conf.dungeon_data.item_categories.values():
             category.items = cats[category]
 
-    def get_waza_p(self) -> WazaP:
+    def get_waza_p(self) -> WazaPProtocol:
         return self.project.open_file_in_rom(MOVE_FILE, FileType.WAZA_P)
 
-    def get_move(self, move_id) -> WazaMove:
+    def get_move(self, move_id) -> WazaMoveProtocol:
         return self.get_waza_p().moves[move_id]
 
     def get_i2n(self, in_lang: str) -> List[u16]:
