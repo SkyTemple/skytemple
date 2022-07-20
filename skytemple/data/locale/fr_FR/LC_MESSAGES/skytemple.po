@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-20 01:57+0000\n"
-"PO-Revision-Date: 2022-07-20 07:38\n"
+"PO-Revision-Date: 2022-07-20 09:49\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -7288,7 +7288,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:312
 msgid "The game randomly adds a number between 0 and 2 to obtain the final value. If the room density is negative, its absolute value is used without adding a random variation."
-msgstr ""
+msgstr "Le jeu ajoute aléatoirement un nombre compris entre 0 et 2 pour obtenir la valeur finale. Si la densité de la salle est négative, sa valeur absolue sera utilisé sans ajouter de changement aléatoire."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:324
 msgid "Controls whether dead end hallways can be generated in the floor. Dead ends can still appear in the map even if they are disabled due to a bug in the map generator and because extra hallways can also produce them."
@@ -8283,7 +8283,7 @@ msgstr "Vous pouvez importer et exporter les tuiles dans un format\n"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1481
 msgid "Simple Mode (DTEF)"
-msgstr ""
+msgstr "Mode simple (DTEF)"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1703
 msgid "Active Type"
@@ -8450,7 +8450,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:113
 msgid "Import settings:"
-msgstr ""
+msgstr "Paramètres d'import :"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.glade:207
 #: skytemple/skytemple/module/misc_graphics/controller/graphic_font.glade:154
@@ -8565,7 +8565,9 @@ msgstr ""
 msgid "<Not available>\n\n"
 "To view and edit animation tables, please apply the \"ExtractAnimData\"\n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<Indisponible>\n\n"
+"Pour voir et éditer les tables d’animations, appliquer le correctif assembleur\n"
+"« ExtractAnimData » depuis le menu « Correctif ASM »."
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:274
 msgid "Animation Tables"
@@ -8866,22 +8868,22 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:496
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:166
 msgid "Move 1"
-msgstr ""
+msgstr "Capacité 1"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:511
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:181
 msgid "Move 2"
-msgstr ""
+msgstr "Capacité 2"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:526
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:196
 msgid "Move 3"
-msgstr ""
+msgstr "Capacité 3"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:541
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:211
 msgid "Move 4"
-msgstr ""
+msgstr "Capacité 4"
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:654
 #: skytemple/skytemple/module/script/controller/ssa.py:1273
@@ -8932,7 +8934,10 @@ msgid "If 9999 IQ Points are required, the skill is unused.\n"
 "If -1 IQ Point is required, the skill is unlocked by default.\n"
 "If two skills have the same restriction group they can not be enabled at the same time.\n\n"
 "Editing IQ Group assignments requires the 'CompressIQData' patch to be applied."
-msgstr ""
+msgstr "Si 9999 points Q.I. son nécessaire, l’aptitude est inutilisée.\n"
+"Si −1 point Q.I. est nécessaire, l’aptitude est débloquée par défaut.\n"
+"Si deux capacités ont le même groupe de restriction, ils ne peuvent pas être activés en même temps.\n\n"
+"L’édition des affectations des groupes Q. I. nécessite l’application du correctif « CompressIQData »."
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:314
 msgid "IQ Skills"
