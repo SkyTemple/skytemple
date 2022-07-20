@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-07-09 21:44+0000\n"
-"PO-Revision-Date: 2022-07-19 21:23\n"
+"POT-Creation-Date: 2022-07-20 01:57+0000\n"
+"PO-Revision-Date: 2022-07-20 02:06\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -2759,6 +2759,7 @@ msgid "Attendant3 Spawn Floor"
 msgstr "Position de l'Attendant 3"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/floor.py:102
+#: skytemple-rust/src/st_mappa_bin/minimize.rs:210
 msgid "Could not save floor: It contains too much empty data.\n"
 "This probably happened because a lot of spawn lists are empty.\n"
 "Please check the floors you edited and fill them with more data. If you are using the randomizer, check your allowed item list."
@@ -3929,7 +3930,7 @@ msgstr "Corrige le bug de l'évolution qui fait planter le jeu en essayant de fa
 msgid "Prevents the game from crashing if it runs out of memory when trying to display a sprite (this can happen during cutscenes when using custom sprites or the randomizer). Instead, the game will be forced to continue, which will most likely prevent the crash but could cause glitches."
 msgstr "Empèche le jeu de planter s'il manque de mémoire lors de la tentative d'affichage d'un sprite (cela risque d'arrivé durant les cinématiques lors de l'usage de sprites personnalisé ou le randomizer). À la place, il forcera le jeu de continuer, ce qui empèchera probablement le jeu de planter, mais qui pourrait entrainer des pépin."
 
-#: skytemple-files/skytemple_files/patch/handler/fix_nocash_saves.py:47
+#: skytemple-files/skytemple_files/patch/handler/fix_nocash_saves.py:46
 msgid "Fixes an issue that causes saving to fail on the No$GBA emulator."
 msgstr ""
 
@@ -13119,12 +13120,10 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/object.glade:180
 msgid "You can also replace this object with a static sprite.\n"
 "It needs to have a resolution of less than 512x256px.\n"
-"It also needs to have less than 16 color, plus (optionally) a transparent \"color\".\n"
-"This feature hasn't been thoroughly tested, so you should check that it displays properly in-game,\n"
-"even if it is correctly displayed by the editor."
+"It also needs to have at most 15 color, plus (optionally) a fully transparent \"color\"."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/object.glade:195
+#: skytemple/skytemple/module/sprite/controller/object.glade:193
 msgid "Import image"
 msgstr "Importer une image"
 
