@@ -34,9 +34,10 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import is_dark_theme, catch_overflow
 from skytemple.module.monster.level_up_graph import LevelUpGraphProvider
+from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import open_utf8, add_extension_if_missing
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry
-from skytemple_files.data.waza_p.model import WazaP, MoveLearnset, LevelUpMove
+from skytemple_files.data.waza_p.protocol import WazaPProtocol, MoveLearnsetProtocol, LevelUpMoveProtocol
 from skytemple_files.common.i18n_util import f, _
 from skytemple_files.user_error import UserValueError
 
@@ -101,7 +102,7 @@ class LevelUpController(AbstractController):
         self._string_provider = self.module.project.get_string_provider()
         self._move_names: Dict[int, str] = {}
         self._level_bin_entry: Optional[LevelBinEntry] = None
-        self._waza_p: WazaP = self.module.get_waza_p()
+        self._waza_p: WazaPProtocol = self.module.get_waza_p()
         self._support_webview = False
         self._webview = None
         self._render_graph = True
@@ -336,10 +337,11 @@ class LevelUpController(AbstractController):
     def _rebuild_level_up(self):
         store: Gtk.ListStore = self.builder.get_object('level_up_store')
         learn_set = self._waza_p.learnsets[self.item_id]
-        learn_set.level_up_moves = []
+        level_up_moves = []
         for row in store:
-            learn_set.level_up_moves.append(LevelUpMove(u16(int(row[1])), u16(int(row[0]))))
-        learn_set.level_up_moves.sort(key=lambda l: l.level_id)
+            level_up_moves.append(FileType.WAZA_P.get_level_up_model()(u16(int(row[1])), u16(int(row[0]))))
+        level_up_moves.sort(key=lambda l: l.level_id)
+        learn_set.level_up_moves = level_up_moves
         self.queue_render_graph()
         self._mark_moves_as_modified()
 
@@ -508,7 +510,7 @@ class LevelUpController(AbstractController):
         if self.item_id < len(self._waza_p.learnsets):
             learnset = self._waza_p.learnsets[self.item_id]
         else:
-            learnset = MoveLearnset([], [], [])
+            learnset = FileType.WAZA_P.get_learnset_model()([], [], [])
         graph_provider = LevelUpGraphProvider(
             self.module.get_entry(self.item_id), self._level_bin_entry, learnset,
             self._string_provider.get_all(StringType.MOVE_NAMES)

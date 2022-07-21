@@ -36,9 +36,9 @@ from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.data.val_list.handler import ValListHandler
 from skytemple_files.data.level_bin_entry.model import LevelBinEntry
 from skytemple_files.data.tbl_talk.model import TblTalk, TalkType
-from skytemple_files.data.md.model import Md, MdEntry, MdProperties, ShadowSize
+from skytemple_files.data.md.protocol import MdProtocol, MdEntryProtocol, ShadowSize, Gender
 from skytemple_files.data.monster_xml import monster_xml_import, GenderedConvertEntry
-from skytemple_files.data.waza_p.model import WazaP
+from skytemple_files.data.waza_p.protocol import WazaPProtocol
 from skytemple_files.graphics.kao import SUBENTRIES
 from skytemple_files.graphics.kao.protocol import KaoImageProtocol, KaoProtocol
 from skytemple_files.hardcoded.monster_sprite_data_table import HardcodedMonsterSpriteDataTable, HardcodedMonsterGroundIdleAnimTable, IdleAnimType
@@ -66,16 +66,28 @@ class MonsterModule(AbstractModule):
 
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
-        self.monster_md: Md = self.project.open_file_in_rom(MONSTER_MD_FILE, FileType.MD)
+        logger.debug("Preloading MD...")
+        self.monster_md: MdProtocol = self.project.open_file_in_rom(MONSTER_MD_FILE, FileType.MD)
+        logger.debug("Preloading m_level.bin...")
         self.m_level_bin: BinPack = self.project.open_file_in_rom(M_LEVEL_BIN, FileType.BIN_PACK)
-        self.waza_p_bin: WazaP = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
-        self.waza_p2_bin: WazaP = self.project.open_file_in_rom(WAZA_P2_BIN, FileType.WAZA_P)
-        self.tbl_talk: TblTalk = self.project.open_file_in_rom(TBL_TALK_FILE, FileType.TBL_TALK)
+        logger.debug("Preloading waza_p.bin...")
+        self.waza_p_bin: WazaPProtocol = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
+        logger.debug("Preloading waza_p2.bin...")
+        self.waza_p2_bin: WazaPProtocol = self.project.open_file_in_rom(WAZA_P2_BIN, FileType.WAZA_P)
+        logger.debug("Done preloading.")
+
+        self._tbl_talk: Optional[TblTalk] = None
 
         self._tree_model: Gtk.TreeModel
         self._tree_iter__entity_roots: Dict[int, Gtk.TreeIter] = {}
         self._tree_iter__entries: Dict[int, Gtk.TreeIter] = {}
         self.effective_base_attr = 'md_index_base'
+
+    @property
+    def tbl_talk(self) -> TblTalk:
+        if self._tbl_talk is None:
+            self._tbl_talk = self.project.open_file_in_rom(TBL_TALK_FILE, FileType.TBL_TALK)
+        return self._tbl_talk
 
     def load_tree_items(self, item_store: TreeStore, root_node):
         self._root = item_store.append(root_node, [
@@ -89,7 +101,7 @@ class MonsterModule(AbstractModule):
             self.effective_base_attr = 'entid'
         b_attr = self.effective_base_attr
 
-        monster_entries_by_base_id: Dict[int, List[MdEntry]] = {}
+        monster_entries_by_base_id: Dict[int, List[MdEntryProtocol]] = {}
         for entry in self.monster_md.entries:
             if getattr(entry, b_attr) not in monster_entries_by_base_id:
                 monster_entries_by_base_id[getattr(entry, b_attr)] = []
@@ -102,7 +114,7 @@ class MonsterModule(AbstractModule):
 
             for entry in entry_list:
                 self._tree_iter__entries[entry.md_index] = item_store.append(
-                    ent_root, self.generate_entry__entry(entry.md_index, entry.gender)
+                    ent_root, self.generate_entry__entry(entry.md_index, Gender(entry.gender))
                 )
 
         recursive_generate_item_store_row_label(self._tree_model[self._root])
@@ -116,7 +128,7 @@ class MonsterModule(AbstractModule):
             getattr(entry, b_attr), name
         )
         self._tree_model[self._tree_iter__entries[item_id]][:] = self.generate_entry__entry(
-            entry.md_index, entry.gender
+            entry.md_index, Gender(entry.gender)
         )
 
     def generate_entry__entity_root(self, entid, name):
@@ -125,7 +137,7 @@ class MonsterModule(AbstractModule):
             self, EntityController, f'#{entid:03}: {name}', False, '', True
         ]
 
-    def generate_entry__entry(self, i, gender):
+    def generate_entry__entry(self, i, gender: Gender):
         suffix = ''
         if self.project.is_patch_applied('ExpandPokeList'):
             # With the patch we actually want to include the sub entry name, since it can be different.
@@ -135,12 +147,13 @@ class MonsterModule(AbstractModule):
             self, MonsterController, i, False, '', True
         ]
 
-    def get_entry_both(self, item_id) -> Tuple[MdEntry, Optional[MdEntry]]:
-        if item_id + MdProperties.NUM_ENTITIES < len(self.monster_md):
-            return self.monster_md[item_id], self.monster_md[item_id + MdProperties.NUM_ENTITIES]
+    def get_entry_both(self, item_id) -> Tuple[MdEntryProtocol, Optional[MdEntryProtocol]]:
+        num_entites = FileType.MD.properties().num_entities
+        if item_id + num_entites < len(self.monster_md):
+            return self.monster_md[item_id], self.monster_md[item_id + num_entites]
         return self.monster_md[item_id], None
 
-    def get_entry(self, item_id):
+    def get_entry(self, item_id) -> MdEntryProtocol:
         return self.monster_md[item_id]
 
     def get_pokemon_names_and_categories(self, item_id):
@@ -172,10 +185,10 @@ class MonsterModule(AbstractModule):
         self.project.mark_as_modified(M_LEVEL_BIN)
         self._mark_as_modified_in_tree(idx + 1)
 
-    def get_waza_p(self) -> WazaP:
+    def get_waza_p(self) -> WazaPProtocol:
         return self.waza_p_bin
 
-    def get_waza_p2(self) -> WazaP:
+    def get_waza_p2(self) -> WazaPProtocol:
         return self.waza_p2_bin
 
     def get_portrait_view(self, item_id):
@@ -189,7 +202,7 @@ class MonsterModule(AbstractModule):
 
         def set_shadow_size(shadow_size_id):
             try:
-                self.get_entry(item_id).shadow_size = ShadowSize(shadow_size_id)
+                self.get_entry(item_id).shadow_size = ShadowSize(shadow_size_id).value
             except BaseException as ex:
                 logger.warning("Failed to set shadow size", exc_info=ex)
 
@@ -197,13 +210,14 @@ class MonsterModule(AbstractModule):
             sprite_id,
             lambda: self.mark_md_as_modified(item_id),
             set_new_sprite_id,
-            lambda: self.get_entry(item_id).shadow_size.value,
+            lambda: self.get_entry(item_id).shadow_size,
             set_shadow_size
         )
         v.show_all()
         return v
 
     def get_portraits_for_export(self, item_id) -> Tuple[Optional[List[Optional[KaoImageProtocol]]], Optional[List[Optional[KaoImageProtocol]]]]:
+        num_entities = FileType.MD.properties().num_entities
         portraits: Optional[List[Optional[KaoImageProtocol]]] = None
         portraits2: Optional[List[Optional[KaoImageProtocol]]] = None
         portrait_module = self.project.get_module('portrait')
@@ -213,15 +227,15 @@ class MonsterModule(AbstractModule):
             for kao_i in range(0, SUBENTRIES):
                 portraits.append(kao.get(item_id, kao_i))
 
-        if item_id > -1 and MdProperties.NUM_ENTITIES + item_id < kao.n_entries():
+        if item_id > -1 and num_entities + item_id < kao.n_entries():
             portraits2 = []
             for kao_i in range(0, SUBENTRIES):
-                portraits2.append(kao.get(MdProperties.NUM_ENTITIES + item_id, kao_i))
+                portraits2.append(kao.get(num_entities + item_id, kao_i))
 
         return portraits, portraits2
 
     def get_level_up_view(self, item_id):
-        if item_id >= MdProperties.NUM_ENTITIES:
+        if item_id >= FileType.MD.properties().num_entities:
             return Gtk.Label.new(_("Stats and moves are only editable for base forms.")), None
         controller = LevelUpController(self, item_id)
         return controller.get_view(), controller
@@ -347,10 +361,10 @@ class MonsterModule(AbstractModule):
         sp = self.project.get_string_provider()
         lang = sp.get_language(lang)
         model = sp.get_model(lang)
-        pre_sorted_list = list(enumerate(model.strings[sp.get_index(StringType.POKEMON_NAMES,0):sp.get_index(StringType.POKEMON_NAMES,0)+MdProperties.MAX_POSSIBLE]))
+        pre_sorted_list = list(enumerate(model.strings[sp.get_index(StringType.POKEMON_NAMES,0):sp.get_index(StringType.POKEMON_NAMES,0)+FileType.MD.properties().num_entities]))
         pre_sorted_list.sort(key=lambda x: normalize_string(x[1]))
         sorted_list = [x[0] for x in pre_sorted_list]
-        inv_sorted_list = [sorted_list.index(i) for i in range(MdProperties.MAX_POSSIBLE)]
+        inv_sorted_list = [sorted_list.index(i) for i in range(FileType.MD.properties().max_possible)]
         m2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.m2n}", ValListHandler)
         m2n_model.set_list(inv_sorted_list)
         self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.m2n}")
@@ -366,7 +380,7 @@ class MonsterModule(AbstractModule):
         for monster_id in selected_monsters:
             entry = self.get_entry(monster_id)
             names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2, personality1, personality2, idle_anim1, idle_anim2 = self.get_export_data(entry)
-            we_are_gender1 = monster_id < MdProperties.NUM_ENTITIES
+            we_are_gender1 = monster_id < FileType.MD.properties().num_entities
 
             md_gender1_imp = md_gender1
             portraits1_imp = portraits

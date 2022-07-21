@@ -20,6 +20,7 @@ from typing import TYPE_CHECKING, Optional, Callable, Mapping, Tuple
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import Widget
 from range_typed_integers import u32_checked, u32
+from skytemple_files.common.types.file_types import FileType
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
@@ -38,7 +39,6 @@ from skytemple.module.dungeon.fixed_room_tileset_renderer.bg import FixedFloorDr
 from skytemple.module.dungeon.fixed_room_tileset_renderer.minimap import FixedFloorDrawerMinimap
 from skytemple.module.dungeon.fixed_room_tileset_renderer.tileset import FixedFloorDrawerTileset
 from skytemple.module.dungeon.minimap_provider import MinimapProvider
-from skytemple_files.data.md.model import MdProperties
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRuleType, TileRule, EntityRule
 from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
 from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
@@ -83,8 +83,9 @@ class FixedController(AbstractController):
         self.monster_names = {}
         self.long_monster_names = {}
         length = len(self.module.get_monster_md().entries)
+        num_entities = FileType.MD.properties().num_entities
         for i, entry in enumerate(self.module.get_monster_md().entries):
-            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i % MdProperties.NUM_ENTITIES)
+            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i % num_entities)
             self.monster_names[i] = f'{name}'
             self.long_monster_names[i] = f'{name} ({entry.gender.name.capitalize()}) (${i:04})'
         for i in range(length, length + SPECIAL_MONSTERS):

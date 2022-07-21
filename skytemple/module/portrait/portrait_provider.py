@@ -19,10 +19,10 @@ from typing import List, Dict, Tuple, Optional
 
 import cairo
 from gi.repository import Gdk, GdkPixbuf, Gtk
+from skytemple_files.common.types.file_types import FileType
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
-from skytemple_files.data.md.model import MdProperties
 from skytemple_files.graphics.kao import KAO_IMG_METAPIXELS_DIM, KAO_IMG_IMG_DIM
 from skytemple_files.graphics.kao.protocol import KaoProtocol
 
@@ -99,7 +99,7 @@ class PortraitProvider:
             if kao is None:
                 if allow_fallback:
                     is_fallback = True
-                    kao = self._kao.get(entry_id % MdProperties.NUM_ENTITIES, sub_id)
+                    kao = self._kao.get(entry_id % FileType.MD.properties().num_entities, sub_id)
                     if kao is None:
                         raise RuntimeError()
                 else:

@@ -30,7 +30,7 @@ from skytemple.core.ui_utils import glib_async
 from skytemple.module.dungeon.controller.floor import POKE_CATEGORY_ID, LINKBOX_CATEGORY_ID
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem, Pmd2DungeonItemCategory
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.dungeon_data.mappa_bin.item_list import MappaItemList, Probability, MAX_ITEM_ID
+from skytemple_files.dungeon_data.mappa_bin.protocol import MappaItemListProtocol, Probability, MAX_ITEM_ID
 from skytemple_files.common.i18n_util import _
 if TYPE_CHECKING:
     from skytemple.module.moves_items.module import MovesItemsModule
@@ -75,7 +75,7 @@ ITEM_LISTS = [_("E Floors Rewards"),
 class ItemListsController(AbstractController):
     def __init__(self, module: 'MovesItemsModule', *args):
         self.module = module
-        self._item_list: MappaItemList
+        self._item_list: MappaItemListProtocol
         self._item_names: Dict[int, str] = {}
         orig_cats = module.project.get_rom_module().get_static_data().dungeon_data.item_categories
 
@@ -489,20 +489,20 @@ class ItemListsController(AbstractController):
             sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
         for i, (category, chance) in enumerate(il.categories.items()):
             relative_weight = relative_weights[i]
-            if category.value not in self.item_categories.keys():
+            if category not in self.item_categories.keys():
                 continue  # TODO: Support editing other item categories?
-            name = self.item_categories[category.value].name_localized
+            name = self.item_categories[category].name_localized
             chance_str = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
             item_categories_store.append([
-                category.value, name, False,
+                category, name, False,
                 chance_str, str(relative_weight)
             ])
 
         # Add items
         items_by_category = self._split_items_in_list_in_cats(il.items)
-        for j, (category, store) in enumerate(item_stores.items()):
+        for j, (category_m, store) in enumerate(item_stores.items()):
             item_icon_renderer = ListIconRenderer(5)
-            cat_items = items_by_category[category]
+            cat_items = items_by_category[category_m.id]
             relative_weights = self._calculate_relative_weights([v for v in cat_items.values()])
             sum_of_all_weights = sum(relative_weights)
             if sum_of_all_weights <= 0:
@@ -511,27 +511,27 @@ class ItemListsController(AbstractController):
             for row_idx, (item, stored_weight) in enumerate(cat_items.items()):
                 relative_weight = relative_weights[i]
                 i += 1
-                name = self._item_names[item.id]
+                name = self._item_names[item]
                 chance_str = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
-                itm, _ = self.module.get_item(item.id)
+                itm, _ = self.module.get_item(item)
                 item_icon = item_icon_renderer.load_icon(
                     store, self.module.project.get_sprite_provider().get_for_item, row_idx, row_idx, (itm, )
                 )
                 store.append([
-                    item.id, name, False,
+                    item, name, False,
                     chance_str, str(relative_weight), item_icon
                 ])
         self._update_cr_item_cat_name_store()
 
     def _split_items_in_list_in_cats(
-            self, items: Dict[Pmd2DungeonItem, Probability]
-    ) -> Dict[Pmd2DungeonItemCategory, Dict[Pmd2DungeonItem, Probability]]:
-        out_items: Dict[Pmd2DungeonItemCategory, Dict[Pmd2DungeonItem, Probability]] = {}
+            self, items: Dict[int, Probability]
+    ) -> Dict[int, Dict[int, Probability]]:
+        out_items: Dict[int, Dict[int, Probability]] = {}
         for cat in self.item_categories.values():
-            out_items[cat] = {}
+            out_items[cat.id] = {}
             for item, probability in items.items():
-                if cat.is_item_in_cat(item.id):
-                    out_items[cat][item] = probability
+                if cat.is_item_in_cat(item):
+                    out_items[cat.id][item] = probability
         return out_items
 
     def _init_item_completion_store(self):
@@ -638,9 +638,9 @@ class ItemListsController(AbstractController):
                 # Add Poké and Link Box items for those categories
                 if not cat:
                     if row[0] == POKE_CATEGORY_ID:
-                        item_weights[Pmd2DungeonItem(self.item_categories[POKE_CATEGORY_ID].item_ids()[0], '')] = 10000
+                        item_weights[self.item_categories[POKE_CATEGORY_ID].item_ids()[0]] = 10000
                     if row[0] == LINKBOX_CATEGORY_ID:
-                        item_weights[Pmd2DungeonItem(self._get_link_box_item_id(), '')] = 10000
+                        item_weights[self._get_link_box_item_id()] = 10000
                 was_set = False
                 weight = 0
                 if row[4] != "0":
@@ -648,13 +648,13 @@ class ItemListsController(AbstractController):
                     last_weight = weight
                     was_set = True
                 if cat is None:
-                    set_idx = self.item_categories[row[0]]
+                    set_idx = self.item_categories[row[0]].id
                     category_weights[set_idx] = weight
                     if was_set:
                         last_weight_set_idx = set_idx
                 else:
-                    set_idx = Pmd2DungeonItem(row[0], '')  # type: ignore
-                    item_weights[Pmd2DungeonItem(row[0], '')] = weight
+                    set_idx = row[0]
+                    item_weights[row[0]] = weight
                     if was_set:
                         last_weight_set_idx = set_idx
             if last_weight_set_idx is not None:
@@ -669,7 +669,7 @@ class ItemListsController(AbstractController):
         item_weights = {k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0].id)}
 
         il = self._item_list
-        il.categories = category_weights  # type: ignore
+        il.categories = category_weights
         il.items = item_weights
 
         self.module.mark_item_list_as_modified(self._get_list_id())

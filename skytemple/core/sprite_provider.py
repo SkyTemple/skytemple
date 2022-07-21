@@ -24,8 +24,8 @@ from typing import TYPE_CHECKING, Tuple, Dict, List, Union, Optional
 import cairo
 
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
-from skytemple_files.data.item_p.model import ItemPEntry
-from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
+from skytemple_files.data.item_p.protocol import ItemPEntryProtocol
+from skytemple_files.dungeon_data.mappa_bin.protocol import MappaTrapType
 from skytemple_files.graphics.img_itm.model import ImgItm
 from skytemple_files.graphics.img_trp.model import ImgTrp
 
@@ -39,7 +39,7 @@ from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import MONSTER_MD, MONSTER_BIN, open_utf8, DUNGEON_BIN
 from skytemple_files.container.bin_pack.model import BinPack
-from skytemple_files.data.md.model import Md
+from skytemple_files.data.md.protocol import MdProtocol
 from skytemple_files.graphics.wan_wat.model import Wan
 
 if TYPE_CHECKING:
@@ -175,7 +175,7 @@ class SpriteProvider:
         self._requests__traps: List[int] = []
         self._requests__items: List[int] = []
 
-        self._monster_md: ModelContext[Md] = self._project.open_file_in_rom(MONSTER_MD, FileType.MD, threadsafe=True)
+        self._monster_md: ModelContext[MdProtocol] = self._project.open_file_in_rom(MONSTER_MD, FileType.MD, threadsafe=True)
         self._monster_bin: ModelContext[BinPack] = self._project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
         self._dungeon_bin: Optional[ModelContext[DungeonBinPack]] = None
 
@@ -287,7 +287,7 @@ class SpriteProvider:
                 self._load_trap(trp, after_load_cb)  # type: ignore
         return self.get_loader()
 
-    def get_for_item(self, itm: ItemPEntry, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+    def get_for_item(self, itm: ItemPEntryProtocol, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
         """
         Returns a item sprite based on the sprite ID.
         As long as the sprite is being loaded, the loader sprite is returned instead.
@@ -467,10 +467,10 @@ class SpriteProvider:
                 pass
         after_load_cb()
 
-    def _load_item(self, itm: ItemPEntry, after_load_cb):
+    def _load_item(self, itm: ItemPEntryProtocol, after_load_cb):
         AsyncTaskDelegator.run_task(self._load_item__impl(itm, after_load_cb))
 
-    async def _load_item__impl(self, item: ItemPEntry, after_load_cb):
+    async def _load_item__impl(self, item: ItemPEntryProtocol, after_load_cb):
         try:
             assert self._dungeon_bin is not None
             with self._dungeon_bin as dungeon_bin:

@@ -36,10 +36,10 @@ from skytemple.core.ui_utils import add_dialog_xml_filter, catch_overflow
 from skytemple.module.monster.controller.level_up import LevelUpController
 from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.common.util import add_extension_if_missing
+from skytemple_files.common.util import add_extension_if_missing, MONSTER_BIN
 from skytemple_files.common.xml_util import prettify
-from skytemple_files.data.md.model import Gender, PokeType, MovementType, IQGroup, Ability, EvolutionMethod, \
-    AdditionalRequirement, MdProperties, ShadowSize, MONSTER_BIN, MdEntry
+from skytemple_files.data.md.protocol import Gender, PokeType, MovementType, IQGroup, Ability, EvolutionMethod, \
+    AdditionalRequirement, ShadowSize, MdEntryProtocol
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.data.monster_xml import monster_xml_export
 from skytemple_files.hardcoded.monster_sprite_data_table import IdleAnimType
@@ -60,7 +60,7 @@ class MonsterController(AbstractController):
     def __init__(self, module: 'MonsterModule', item_id: int):
         self.module = module
         self.item_id = item_id
-        self.entry = self.module.get_entry(self.item_id)
+        self.entry: MdEntryProtocol = self.module.get_entry(self.item_id)
 
         self._monster_bin = self.module.project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
 
@@ -367,7 +367,7 @@ class MonsterController(AbstractController):
     @catch_overflow(i16)
     def on_entry_weight_changed(self, w, *args):
         try:
-            val = u16_checked(int(w.get_text()))
+            val = i16_checked(int(w.get_text()))
         except ValueError:
             return
         self.entry.weight = val
@@ -735,10 +735,10 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         self.entry.hp_regeneration = val
         self.mark_as_modified()
 
-    @catch_overflow(u8)
+    @catch_overflow(i8)
     def on_entry_unk21_h_changed(self, w, *args):
         try:
-            val = u8_checked(int(w.get_text()))
+            val = i8_checked(int(w.get_text()))
         except ValueError:
             return
         self.entry.unk21_h = val
@@ -844,7 +844,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         # Fill Pokémon tree
         store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')
         store.clear()
-        monster_entries_by_base_id: Dict[int, List[MdEntry]] = {}
+        monster_entries_by_base_id: Dict[int, List[MdEntryProtocol]] = {}
         for entry in self.module.monster_md.entries:
             if getattr(entry, self.module.effective_base_attr) not in monster_entries_by_base_id:
                 monster_entries_by_base_id[getattr(entry, self.module.effective_base_attr)] = []
@@ -859,7 +859,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             ])
 
             for entry in entry_list:
-                entry_main_tree = self.module.generate_entry__entry(entry.md_index, entry.gender)
+                entry_main_tree = self.module.generate_entry__entry(entry.md_index, Gender(entry.gender))
                 store.append(
                     ent_root, [
                         entry_main_tree[4], -1, True, entry_main_tree[0],
@@ -1128,17 +1128,17 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         self._set_entry('entry_base_movement_speed', self.entry.base_movement_speed)
         self._set_entry('entry_pre_evo_index', self.entry.pre_evo_index)
         self._set_entry('entry_base_form_index', self.entry.base_form_index)
-        self._set_cb('cb_evo_method', self.entry.evo_method.value)
+        self._set_cb('cb_evo_method', self.entry.evo_method)
         self._set_entry('entry_evo_param1', self.entry.evo_param1)
-        self._set_cb('cb_evo_param2', self.entry.evo_param2.value)
-        self._set_cb('cb_gender', self.entry.gender.value)
+        self._set_cb('cb_evo_param2', self.entry.evo_param2)
+        self._set_cb('cb_gender', self.entry.gender)
         self._set_entry('entry_body_size', self.entry.body_size)
-        self._set_cb('cb_type_primary', self.entry.type_primary.value)
-        self._set_cb('cb_type_secondary', self.entry.type_secondary.value)
-        self._set_cb('cb_movement_type', self.entry.movement_type.value)
-        self._set_cb('cb_iq_group', self.entry.iq_group.value)
-        self._set_cb('cb_ability_primary', self.entry.ability_primary.value)
-        self._set_cb('cb_ability_secondary', self.entry.ability_secondary.value)
+        self._set_cb('cb_type_primary', self.entry.type_primary)
+        self._set_cb('cb_type_secondary', self.entry.type_secondary)
+        self._set_cb('cb_movement_type', self.entry.movement_type)
+        self._set_cb('cb_iq_group', self.entry.iq_group)
+        self._set_cb('cb_ability_primary', self.entry.ability_primary)
+        self._set_cb('cb_ability_secondary', self.entry.ability_secondary)
         self._set_switch('switch_bitfield1_0', self.entry.bitfield1_0)
         self._set_switch('switch_bitfield1_1', self.entry.bitfield1_1)
         self._set_switch('switch_bitfield1_2', self.entry.bitfield1_2)
@@ -1159,7 +1159,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         self._set_entry('entry_size', self.entry.size)
         self._set_entry('entry_unk17', self.entry.unk17)
         self._set_entry('entry_unk18', self.entry.unk18)
-        self._set_cb('cb_shadow_size', self.entry.shadow_size.value)
+        self._set_cb('cb_shadow_size', self.entry.shadow_size)
         self._set_entry('entry_chance_spawn_asleep', self.entry.chance_spawn_asleep)
         self._set_entry('entry_hp_regeneration', self.entry.hp_regeneration)
         self._set_entry('entry_unk21_h', self.entry.unk21_h)
@@ -1286,7 +1286,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 name = self._string_provider.get_value(StringType.ITEM_NAMES, entry_id)
                 label.set_text(f'#{entry_id:03d}: {name}')
             elif val == 4:
-                if entry_id > MdProperties.NUM_ENTITIES:
+                if entry_id > FileType.MD.properties().num_entities:
                     raise ValueError()
                 entry = self.module.monster_md[entry_id]
                 if not self.module.project.is_patch_applied('ExpandPokeList'):
@@ -1307,7 +1307,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         entry: Gtk.Entry = self.builder.get_object('entry_base_form_index')
         try:
             entry_id = int(entry.get_text())
-            if entry_id > MdProperties.NUM_ENTITIES:
+            if entry_id > FileType.MD.properties().num_entities:
                 raise ValueError()
             entry = self.module.monster_md[entry_id]
             if not self.module.project.is_patch_applied('ExpandPokeList'):
@@ -1323,16 +1323,16 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
     def _update_pre_evo_label(self):
         label: Gtk.Label = self.builder.get_object('label_pre_evo_index')
-        entry: Gtk.Entry = self.builder.get_object('entry_pre_evo_index')
+        gtk_entry: Gtk.Entry = self.builder.get_object('entry_pre_evo_index')
         try:
-            entry_id = int(entry.get_text())
-            entry = self.module.monster_md[entry_id]
+            entry_id = int(gtk_entry.get_text())
+            entry: MdEntryProtocol = self.module.monster_md[entry_id]
             if not self.module.project.is_patch_applied('ExpandPokeList'):
                 idx = entry.md_index_base
             else:
                 idx = entry.md_index
             name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
-            label.set_text(f'${entry.md_index:04d}: {name} ({entry.gender.name[0]})')
+            label.set_text(f'${entry.md_index:04d}: {name} ({Gender(entry.gender).name[0]})')  # type: ignore
         except BaseException:
             label.set_text(_('??? Enter a valid Entry ID ($)'))
 
@@ -1462,7 +1462,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             else:
                 sidx = entry.md_index
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, sidx)
-            self._ent_names[idx] = f'{name} ({entry.gender.print_name}) (#{idx:04})'
+            self._ent_names[idx] = f'{name} ({Gender(entry.gender).print_name}) (#{idx:04})'
             monster_store.append([self._ent_names[idx]])
 
     def on_cr_entity_editing_started(self, renderer, editable, path):

@@ -15,19 +15,19 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import re
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from gi.repository import Gtk
 from gi.repository.Gtk import Widget
 from range_typed_integers import u8, u8_checked, u16_checked, u16
+from skytemple_files.common.types.file_types import FileType
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import glib_async, catch_overflow
 from skytemple.module.dungeon import MAX_ITEMS, SPECIAL_ITEMS, SPECIAL_MONSTERS
-from skytemple_files.data.md.model import MdProperties
 from skytemple_files.dungeon_data.fixed_bin.model import TileRuleType
-from skytemple_files.dungeon_data.mappa_bin.trap_list import MappaTrapType
+from skytemple_files.dungeon_data.mappa_bin.protocol import MappaTrapType
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
 from skytemple_files.common.i18n_util import f, _
 
@@ -55,7 +55,9 @@ class FixedRoomsController(AbstractController):
         self.monster_names = {}
         length = len(self.module.get_monster_md().entries)
         for i, entry in enumerate(self.module.get_monster_md().entries):
-            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i % MdProperties.NUM_ENTITIES)
+            name = self.module.project.get_string_provider().get_value(
+                StringType.POKEMON_NAMES, i % FileType.MD.properties().num_entities
+            )
             self.monster_names[i] = f'{name} ({entry.gender.print_name}) (${i:04})'
         for i in range(length, length + SPECIAL_MONSTERS):
             self.monster_names[i] = _('(Special?)') + f' (${i:04})'

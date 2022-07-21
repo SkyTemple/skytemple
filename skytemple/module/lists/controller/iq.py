@@ -18,7 +18,7 @@ import logging
 import re
 from enum import Enum, auto
 from functools import partial
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from gi.repository import Gtk
 from range_typed_integers import u16, u16_checked, u8, u8_checked, i32, i32_checked, i16, i16_checked
@@ -28,7 +28,7 @@ from skytemple.core.rom_project import BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import catch_overflow
 from skytemple_files.common.i18n_util import _
-from skytemple_files.data.md.model import IQGroup
+from skytemple_files.data.md.protocol import IQGroup
 from skytemple_files.hardcoded.iq import HardcodedIq, IqGroupsSkills
 
 if TYPE_CHECKING:
