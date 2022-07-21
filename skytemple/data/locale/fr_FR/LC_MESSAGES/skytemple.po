@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-21 00:07+0000\n"
-"PO-Revision-Date: 2022-07-21 17:39\n"
+"PO-Revision-Date: 2022-07-21 19:20\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -422,19 +422,19 @@ msgstr "Objets exclusifs"
 
 #: /dev/fd/63:97 /dev/fd/63:206
 msgid "Red component"
-msgstr ""
+msgstr "Composante Rouge"
 
 #: /dev/fd/63:98 /dev/fd/63:207
 msgid "Green component"
-msgstr ""
+msgstr "Composante Verte"
 
 #: /dev/fd/63:99 /dev/fd/63:208
 msgid "Blue component"
-msgstr ""
+msgstr "Composante Bleu"
 
 #: /dev/fd/63:100 /dev/fd/63:209
 msgid "Alpha component"
-msgstr ""
+msgstr "Composante alpha"
 
 #: /dev/fd/63:101 /dev/fd/63:210
 msgid "ID of the first icon in markfont.dat (23 entries used)"
@@ -2758,7 +2758,9 @@ msgstr "Position de l'Attendant 3"
 msgid "Could not save floor: It contains too much empty data.\n"
 "This probably happened because a lot of spawn lists are empty.\n"
 "Please check the floors you edited and fill them with more data. If you are using the randomizer, check your allowed item list."
-msgstr ""
+msgstr "Ne peut sauvegarder l’étage : Il contient trop de données vide.\n"
+"C’est probablement dû à de nombreuse liste d’apparitions vides.\n"
+"Veuillez vérifier les étages que vous avez modifiés, et leur ajouter plus de données. Si vous utilisez le Randomizer, vérifier la liste des objets autorisés."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:227
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:283
@@ -3710,7 +3712,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:94
 msgid "Special"
-msgstr ""
+msgstr "Spécial"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:95
 msgid "Walking Animation (1st frame)"
@@ -4842,7 +4844,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:118
 msgid "Halt at the next instruction, even if in another script context."
-msgstr ""
+msgstr "Interrompt à la prochaine instruction, même si dans un autre contexte de script."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:119
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:439
@@ -5102,7 +5104,7 @@ msgstr "État du moteur de terrain"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1010
 msgid "Ground State"
-msgstr ""
+msgstr "État Terrain"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1089
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2762
