@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-21 00:07+0000\n"
-"PO-Revision-Date: 2022-07-21 13:10\n"
+"PO-Revision-Date: 2022-07-21 14:57\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -241,11 +241,11 @@ msgstr ""
 
 #: /dev/fd/63:56 /dev/fd/63:165
 msgid "IQ Skills Names"
-msgstr ""
+msgstr "Noms des aptitudes Q.I."
 
 #: /dev/fd/63:57 /dev/fd/63:166
 msgid "IQ Skills Descriptions"
-msgstr ""
+msgstr "Descriptions des aptitudes Q.I."
 
 #: /dev/fd/63:58 /dev/fd/63:167
 msgid "Move Targets Strings"
@@ -2509,7 +2509,7 @@ msgstr "En Attente"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:32
 msgid "Ground Wait"
-msgstr "En Attente (Ground)"
+msgstr "En Attente (Terrain)"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:32
 msgid "Physical Move"
@@ -5019,7 +5019,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:365
 msgid "Enable Spellcheck"
-msgstr "Activer la vérification de la syntaxe"
+msgstr "Activer la vérification syntaxique"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:378
 msgid "_Debugger"
@@ -5084,7 +5084,8 @@ msgstr "Scripts"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:958
 msgid "Ground Engine\n"
 "not running."
-msgstr ""
+msgstr "Moteur de terrain\n"
+"non utilisé."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:938
 msgid "Active Files"
@@ -5097,7 +5098,7 @@ msgstr "Entités"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:990
 msgid "Ground Engine State"
-msgstr ""
+msgstr "État du moteur de terrain"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1010
 msgid "Ground State"
@@ -5454,7 +5455,7 @@ msgstr "Constantes et variables"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/exps_statements.py:32
 msgid "Statements"
-msgstr ""
+msgstr "Instructions"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/functions.py:32
 msgid "Functions"
@@ -5502,7 +5503,7 @@ msgstr ""
 
 #: skytemple/skytemple/_i18n.py:30
 msgid "_Next"
-msgstr ""
+msgstr "_Suivant"
 
 #: skytemple/skytemple/_i18n.py:31
 msgid "P_ause"
@@ -5672,7 +5673,7 @@ msgstr "Vous devez redémarrer SkyTemple pour appliquer certains changements."
 
 #: skytemple/skytemple/controller/settings.py:205
 msgid "If this is enabled a new and faster (but slightly experimental) codebase is used to load and manipulate game files. Try to disable this if you run into crashes or other issues."
-msgstr ""
+msgstr "Si cette option est activée, une base de code plus rapide et récente (mais un peu expérimental) sera utiliser pour charger et manipuler les données du jeu. Essayer de désactiver cette option en cas de plantage ou d’autres problèmes."
 
 #: skytemple/skytemple/controller/settings.py:217
 msgid "This changes the way SkyTemple behaves when asynchronous operations are done (eg. loading files and views). You usually don't want to change this, unless you know what you are doing or are running into crashes or other issues.\n\n\n"
@@ -6156,7 +6157,7 @@ msgstr "Ajoutez une entité"
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:226
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:227
 msgid "Copy Tile / Entity"
-msgstr ""
+msgstr "Copier Tuile / Entité"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:253
 msgid "Change the tileset or dungeon background (editor preview only)"
@@ -6225,7 +6226,7 @@ msgstr "Pi"
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:441
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2941
 msgid "Show full map instead of minimap"
-msgstr ""
+msgstr "Montrez la carte complète à la place de la minicarte"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:486
 msgid "Select a tile \n"
@@ -7238,19 +7239,19 @@ msgstr "Rang 1★"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:104
 msgid "★2 Rank"
-msgstr ""
+msgstr "Rang 2★"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:105
 msgid "★3 Rank"
-msgstr ""
+msgstr "Rang 3★"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:106
 msgid "★4 Rank"
-msgstr ""
+msgstr "Rang 4★"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:107
 msgid "★5 Rank"
-msgstr ""
+msgstr "Rang 5★"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:108
 msgid "★6 Rank"
@@ -7389,7 +7390,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:909
 msgid "This item does not belong in this category. Please chose another item."
-msgstr ""
+msgstr "Cet objet n’appartient pas à cette catégorie, veuillez en choisir un autre."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:910
 msgid "Invalid item id"
@@ -7413,15 +7414,15 @@ msgstr "Impossible d'ajouter un objet."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1096
 msgid "Warning: Some Pokémon spawns may be invalid. Kecleons will been spawned instead."
-msgstr ""
+msgstr "Attention : Certain placement de Pokémon pourrait être invalide. Ils seront remplacés par des Kecleon."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1123
 msgid "Warning: Some Item spawns may be invalid. Poké will been spawned instead."
-msgstr ""
+msgstr "Attention : Certain placement d’objets pourrait être invalide. Ils seront remplacés par des Poké."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1135
 msgid "Warning: Some traps spawns may be invalid. Unused traps will been spawned instead."
-msgstr ""
+msgstr "Attention : Certain placement de pièges pourrait être invalide. Ils seront remplacés par des pièges inutilisés."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1141
 msgid "Note: Floor uses a fixed room, the preview doesn't take this into account.\n"
@@ -8164,15 +8165,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:154
 msgid "Secret Power"
-msgstr ""
+msgstr "Force Cachée"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:169
 msgid "Camouflage"
-msgstr ""
+msgstr "Camouflage"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:184
 msgid "Nature Power"
-msgstr ""
+msgstr "Force-Nature"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:199
 msgid "Weather"
@@ -8282,7 +8283,7 @@ msgstr "Mode simple (DTEF)"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1703
 msgid "Active Type"
-msgstr ""
+msgstr "Type actif"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1717
 msgid "Wall"
@@ -8306,15 +8307,15 @@ msgstr "Ici, vous pouvez changer quel fragment est rendu pour chaque configurati
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:1993
 msgid "Field Variations #1"
-msgstr ""
+msgstr "Variations de terrain nº1"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2040
 msgid "Field Variations #2"
-msgstr ""
+msgstr "Variations de terrain nº2"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2087
 msgid "Field Variations #3"
-msgstr ""
+msgstr "Variations de terrain nº3"
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.glade:2126
 msgid "These are extra rules. The purpose of them is currently unknown, so be careful when you edit them."
@@ -8936,7 +8937,7 @@ msgstr "Si 9999 points Q.I. son nécessaire, l’aptitude est inutilisée.\n"
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:314
 msgid "IQ Skills"
-msgstr ""
+msgstr "Aptitudes Q.I."
 
 #: skytemple/skytemple/module/lists/controller/iq.glade:339
 msgid "Min. IQ required by enemies to learn \n"
@@ -9898,11 +9899,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2853
 msgid "BPA to export or import:"
-msgstr ""
+msgstr "BPA à exporter ou importer :"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2935
 msgid "BPA Settings"
-msgstr ""
+msgstr "Paramètres BPA"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:2998
 msgid "Animated Tile blocks are called BPA.\n"
@@ -10012,11 +10013,11 @@ msgstr "Exporter un GIF de la carte..."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4387
 msgid "Export Layers to Image..."
-msgstr ""
+msgstr "Exporter la couche vers une image..."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4396
 msgid "Import Layers from Image..."
-msgstr ""
+msgstr "Importer la couche vers une image..."
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4411
 msgid "Go to Scripts..."
@@ -11367,7 +11368,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.py:567
 msgid "Can Throw Items?"
-msgstr ""
+msgstr "L’objet peut‑il être lancé ?"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:577
 msgid "Controls the drop rates of different types of chests.\n"
