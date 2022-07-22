@@ -39,10 +39,10 @@ if TYPE_CHECKING:
 
 INFO_IMEXPORT_ENTIRE = _("""- The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
-- Each 8x8 tile in the image MUST only use colors from
+- Each 8×8 tile in the image MUST only use colors from
   one of these 16 palettes.
 - The first color in each palette is transparency.
-- Each import must result in a maximum of 1024 unique 8x8 tiles 
+- Each import must result in a maximum of 1024 unique 8×8 tiles 
   (=not existing with another palette or flipped or rotated).""")
 
 logger = logging.getLogger(__name__)

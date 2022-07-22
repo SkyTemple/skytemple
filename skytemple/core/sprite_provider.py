@@ -505,7 +505,7 @@ class SpriteProvider:
 
     def get_loader(self) -> SpriteAndOffsetAndDims:
         """
-        Returns the loader sprite. A "loading" icon with the size ~24x24px.
+        Returns the loader sprite. A "loading" icon with the size ~24×24px.
         """
         assert self._loader_surface_dims
         assert self._loader_surface
@@ -514,7 +514,7 @@ class SpriteProvider:
 
     def get_error(self) -> SpriteAndOffsetAndDims:
         """
-        Returns the error sprite. An "error" icon with the size ~24x24px.
+        Returns the error sprite. An "error" icon with the size ~24×24px.
         """
         w, h = self._error_surface_dims
         return self._error_surface, int(w/2), h, w, h

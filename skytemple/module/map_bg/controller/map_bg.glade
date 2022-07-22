@@ -2723,7 +2723,7 @@ map must match.</property>
 Each frame of animated tiles is a separate PNG.
 
 The images are expected in the following format:
-- The images consists of 8x8 tiles.
+- The images consists of 8×8 tiles.
 - The images are 16-color indexed PNGs.
 - The first color of each palette will be
   imported as transparency.
@@ -2794,10 +2794,10 @@ the last frame is copied.</property>
                         <property name="label" translatable="yes">Exports and imports using a single image.
 
 The image is expected in the following format:
-- The images consists of 8x8 tiles.
+- The image consists of 8×8 tiles.
 - The rows are the individual tiles.
 - The columns are the frames of each tile.
-- The images are 16-color indexed PNGs.
+- The image is a 16-color indexed PNG.
 - The first color of each palette will be
   imported as transparency.
 

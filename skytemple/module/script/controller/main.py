@@ -125,7 +125,7 @@ class MainController(AbstractController):
     def on_btn_add_clicked(self, *args):
         response, new_name = self._show_generic_input(_('Level Name'), _('Create Level'),
                                                       (_('If you also need a new background for this level, you can '
-                                                         'create one under "Map Backrgounds" and assign it to this '
+                                                         'create one under "Map Backgrounds" and assign it to this '
                                                          'level afterwards.')))
         if response != Gtk.ResponseType.OK:
             return

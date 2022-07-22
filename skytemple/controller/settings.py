@@ -222,7 +222,7 @@ class SettingsController:
               "Synchronous: Asynchronous operations run immediately. The SkyTemple UI freezes briefly during that.\n\n"
               "GLib: Same has 'Synchronous' but the UI gets the chance to finish displaying loaders etc. "
               "before they are run.\n\n"
-              "Using Gbulb event loop: This enables Single-Thread asynchronous loading. It is generally the preferred"
+              "Using Gbulb event loop: This enables Single-Thread asynchronous loading. It is generally the preferred "
               "option if available.")
         )
         md.run()

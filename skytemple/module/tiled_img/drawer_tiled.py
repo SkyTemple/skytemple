@@ -47,7 +47,7 @@ class DrawerTiled:
         """
 
         :param draw_area: Widget to draw on
-        :param tile_mappings: Either one tile or 3x3 tiles to draw. Can also be set later
+        :param tile_mappings: Either one tile or 3×3 tiles to draw. Can also be set later
         :param bpa_durations:
         :param tile_surfaces: List of all surfaces
         """
@@ -76,7 +76,7 @@ class DrawerTiled:
             self.width = BPC_TILE_DIM * self.tiling_width
             self.height = BPC_TILE_DIM * self.tiling_height
         else:
-            raise ValueError(_("Only 1x1 or 3x3 supported."))
+            raise ValueError(_("Only 1×1 or 3×3 supported."))
 
     def start(self):
         """Start drawing on the DrawingArea"""

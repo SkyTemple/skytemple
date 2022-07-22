@@ -147,11 +147,11 @@ class ZMappaTController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("The game uses 4x4 'mini-tiles' tiles to render the map.\n"
-              "However, as the system only uses 8x8 tiles, the game render each 8x8 tile by applying 4 mini-tiles with their respective masks.\n"
-              "To do this, all mini-tiles have been duplicated to cover the 4 possibilites for placing the mini-tile in 8x8 tiles (top left, top right, bottom left, bottom right).\n"
-              "The mask is then used to apply the mini-tile only on the correct part of the resulting 8x8 tile.\n"
-              "The minimized version reduces the tileset to only 4x4 mini-tiles and handles the duplication when importing.\n"
+            _("The game uses 4×4 'mini-tiles' tiles to render the map.\n"
+              "However, as the system only uses 8×8 tiles, the game render each 8×8 tile by applying 4 mini-tiles with their respective masks.\n"
+              "To do this, all mini-tiles have been duplicated to cover the 4 possibilites for placing the mini-tile in 8×8 tiles (top left, top right, bottom left, bottom right).\n"
+              "The mask is then used to apply the mini-tile only on the correct part of the resulting 8×8 tile.\n"
+              "The minimized version reduces the tileset to only 4×4 mini-tiles and handles the duplication when importing.\n"
               "But remember that the full tileset allows more exploits as you can render tiles differently depending on where they are placed."),
             title=_("Minimized Version Info")
         )

@@ -117,12 +117,12 @@ class PortraitProvider:
 
     def get_loader(self) -> cairo.Surface:
         """
-        Returns the loader sprite. A "loading" icon with the size ~24x24px.
+        Returns the loader sprite. A "loading" icon with the size ~24×24px.
         """
         return self._loader_surface  # type: ignore
 
     def get_error(self) -> cairo.Surface:
         """
-        Returns the error sprite. An "error" icon with the size ~24x24px.
+        Returns the error sprite. An "error" icon with the size ~24×24px.
         """
         return self._error_surface  # type: ignore
