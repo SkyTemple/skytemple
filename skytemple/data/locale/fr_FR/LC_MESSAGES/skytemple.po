@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-21 00:07+0000\n"
-"PO-Revision-Date: 2022-07-22 09:30\n"
+"PO-Revision-Date: 2022-07-22 10:38\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -10447,13 +10447,14 @@ msgstr ""
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:144
 #, python-brace-format
 msgid "Failed importing image '{index}'."
-msgstr ""
+msgstr "Échec de l'importation de l'image « {index} »."
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:147
 #, python-brace-format
 msgid "Failed importing image \"{index}\":\n"
 "{err}"
-msgstr ""
+msgstr "Échec de l'importation de l'image « {index} » :\n"
+"{err}"
 
 #: skytemple/skytemple/module/misc_graphics/controller/w16.py:148
 #, python-brace-format
@@ -11506,7 +11507,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1620
 msgid "Too much children."
-msgstr ""
+msgstr "Trop d'enfants."
 
 #: skytemple/skytemple/module/monster/level_up_graph.py:86
 msgid "Exp."
@@ -13400,7 +13401,14 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "  ROM. Things <i>will</i> break.\n"
 "- A project directory was created next to the ROM.\n"
 "- Please report any issues."
-msgstr ""
+msgstr "<span size=\"large\">Bienvenue dans SkyTemple !</span>\n\n"
+"Grâce à cet outil, vous pouvez modifier de nombreux éléments\n"
+"dans une ROM de Pokémon Donjon Mystère : Explorateurs du Ciel.\n\n"
+"Garder cela en tête :\n"
+"- Ce logiciel est encore précoce. S’il vous plait, faites des\n"
+"sauvegardes de vos ROM. Il <i>y aura</i> des erreurs.\n"
+"- Un dossier pour le projet à été crée à coté de la ROM.\n"
+"- S’il vous plait, rapporter tout problême."
 
 #: skytemple/skytemple/skytemple.glade:102
 msgid "Can we add a \"Created with SkyTemple\" message\n"
@@ -13411,7 +13419,14 @@ msgid "Can we add a \"Created with SkyTemple\" message\n"
 "If you want to do it later, or for another project,\n"
 "you can reopen this dialog, using the menu on\n"
 "the top-right of the main window."
-msgstr ""
+msgstr "Pouvons‑nous ajouter un message « Créer avec SkyTemple »\n"
+"au logos qui apparaissent au démarrage du jeu ?\n\n"
+"Cet sera placé sur la couche 2 de l’arrière‑plan S05P01A.\n"
+"Si vous n’en voulez pas, vous pouvez facilement le\n"
+"supprimer ou le remplacer.\n\n"
+"Si vous souhaitez le faire plus tard, ou pour un autre projet,\n"
+"vous pouvez ré‑ouvrir ce dialogue en utilisant le menu en\n"
+"haut à droite de la fenêtre principale."
 
 #: skytemple/skytemple/skytemple.glade:122
 msgid "Add \"Created with SkyTemple\""
@@ -13427,7 +13442,7 @@ msgstr "Avancé"
 
 #: skytemple/skytemple/skytemple.glade:319
 msgid "Use Native File Handlers"
-msgstr ""
+msgstr "Utiliser les gestionnaires de fichiers natifs"
 
 #: skytemple/skytemple/skytemple.glade:361
 msgid "Enable Discord integration"
@@ -13443,21 +13458,24 @@ msgstr "Taches asynchrones"
 
 #: skytemple/skytemple/skytemple.glade:512
 msgid "Error Reports"
-msgstr ""
+msgstr "Rapports d'erreur"
 
 #: skytemple/skytemple/skytemple.glade:527
 msgid "Send error reports"
-msgstr ""
+msgstr "Envoyer des rapports d'erreur"
 
 #: skytemple/skytemple/skytemple.glade:539
 msgid "<i>If enabled, error reports are sent to sentry.io,\n"
 "allowing us to improve SkyTemple.\n"
 "See the <a href=\"privacy\">privacy information</a> for more details.</i>"
-msgstr ""
+msgstr "<i>Si activé, des rapports d’erreur seront envoyé à\n"
+"sentry.io afin de nous aider à améliorer SkyTemple.\n"
+"Consulter les <a href=\"private\">informations de confidentialité</a>\n"
+"pour plus d’information.</i>"
 
 #: skytemple/skytemple/skytemple.glade:577
 msgid "Use Client Side Decorations"
-msgstr ""
+msgstr "Utiliser les décorations côté client"
 
 #: skytemple/skytemple/skytemple.glade:656
 #: skytemple/skytemple/skytemple.glade:1064
@@ -13502,7 +13520,7 @@ msgstr "Fichiers récents"
 
 #: skytemple/skytemple/skytemple.glade:1109
 msgid "Native File Handlers enabled."
-msgstr ""
+msgstr "Gestionnaires de fichiers natifs activés."
 
 #: skytemple/skytemple/skytemple.glade:1173
 msgid "Oops!"
@@ -13538,7 +13556,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1480
 msgid "Privacy Information"
-msgstr ""
+msgstr "Informations de confidentialité"
 
 #: skytemple/skytemple/skytemple.glade:1500
 msgid "Don't allow"
