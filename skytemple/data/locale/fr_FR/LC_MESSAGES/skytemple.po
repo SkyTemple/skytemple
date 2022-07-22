@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-21 00:07+0000\n"
-"PO-Revision-Date: 2022-07-22 10:38\n"
+"PO-Revision-Date: 2022-07-22 11:59\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -5448,7 +5448,7 @@ msgstr ""
 #, python-brace-format
 msgid "The script contains a syntax error, please fix it before editing the Position Mark.\n"
 "Parse error: {err}"
-msgstr "Le script contient une erreur de syntaxe, veuillez la corriger avant d'ajout la PositionMark.\n"
+msgstr "Le script contient une erreur de syntaxe, veuillez la corriger avant de modifier le marqueur de position.\n"
 "Erreur de décodage : {err}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/constants.py:40
@@ -12600,7 +12600,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:77
 msgid "Edit Position Marks"
-msgstr ""
+msgstr "Éditer les Marqueurs de Position"
 
 #: skytemple/skytemple/module/script/controller/folder.py:32
 #, python-brace-format
@@ -13105,31 +13105,36 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:202
 msgid "This will insert a completely new sprite into the game's sprite file and assign the new ID to the Pokémon.\n"
 "If you want to instead replace the currently assigned sprite, choose 'Import'.\n"
-msgstr ""
+msgstr "Ceci insérera un tout nouveau sprite dans les fichiers de sprites du jeu et assignera le nouvel identifiant à ce Pokémon.\n"
+"Si vous souhaitez plutôt remplacer le sprite déjà assigné, choisissez « Importer ».\n"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:222
 msgid "Import spritesheet..."
-msgstr ""
+msgstr "Importer la feuille de sprites..."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:243
 msgid "The spritesheet was successfully imported."
-msgstr ""
+msgstr "La feuille de sprites a été importé avec succès."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:266
 msgid "Error importing the spritesheet."
-msgstr ""
+msgstr "Erreur lors de l'importation de la feuille de sprites."
 
 #: skytemple/skytemple/module/sprite/controller/object.glade:59
 msgid "SkyTemple can not edit sprites. \n"
 "However you can export the sprite and edit it with PsyCommando's <a href=\"gfxcrunch\">gfxcrunch</a>.\n"
 "Warning: SkyTemple does not validate the files you import."
-msgstr ""
+msgstr "SkyTemple ne permet pas d’éditer les sprites.\n"
+"Cependant, vous pouvez les exporter et les modifier avec <a href=\"gfxcrunch\">gfxcrunch</a> de PsyCommando.\n"
+"Attention: SkyTemple ne vérifie pas ces fichiers à l’import."
 
 #: skytemple/skytemple/module/sprite/controller/object.glade:180
 msgid "You can also replace this object with a static sprite.\n"
 "It needs to have a resolution of less than 512x256px.\n"
 "It also needs to have at most 15 color, plus (optionally) a fully transparent \"color\"."
-msgstr ""
+msgstr "Vous pouvez également remplacé cet objet avec un sprite statique.\n"
+"Il doit avoir une résolution inférieure à 512×256 px.\n"
+"Il doit aussi avoir au plus 15 couleurs, en plus d’une « couleur » complètement transparente."
 
 #: skytemple/skytemple/module/sprite/controller/object.glade:193
 msgid "Import image"
@@ -13190,7 +13195,7 @@ msgstr "sprite WAN (*.wan)"
 
 #: skytemple/skytemple/module/sprite/module.py:168
 msgid "To import select the directory of the sprite export. If it is still zipped, unzip it first."
-msgstr ""
+msgstr "Pour l’import, sélectionner le dossier contenant l’export du sprite. S’il est encore compressé, décompresser le."
 
 #: skytemple/skytemple/module/sprite/module.py:174
 msgid "Import gfxcrunch sprite..."
@@ -13206,11 +13211,11 @@ msgstr "Erreur lors de l'exportation du sprite."
 
 #: skytemple/skytemple/module/sprite/module.py:219
 msgid "Import image file..."
-msgstr ""
+msgstr "Importer un fichier image..."
 
 #: skytemple/skytemple/module/sprite/module.py:237
 msgid "Error importing image to object."
-msgstr ""
+msgstr "Erreur lors de l’import de l’image pour l’objet."
 
 #: skytemple/skytemple/module/sprite/module.py:282
 msgid "Error with sprite files: They don't have the same length!"
@@ -13267,13 +13272,15 @@ msgstr "Le fichier CSV doit contenir exactement {len(self._str.strings)} chaîne
 
 #: skytemple/skytemple/module/strings/controller/strings.py:181
 msgid "Error importing the strings."
-msgstr ""
+msgstr "Erreur lors de l’import des textes."
 
 #: skytemple/skytemple/module/strings/controller/strings.py:189
 msgid "Export is done to a CSV file with the following specifications:\n"
 "- Contains all strings in order, one per row\n"
 "- Strings may be quoted with: \" and escaped with double quotes."
-msgstr ""
+msgstr "L’export est fait vers un fichier CSV avec les spécifications suivantes :\n"
+"- Contient tous les textes dans l’ordre, une par ligne.\n"
+"- Les textes peuvent être enclos dans des \" et peuvent être échappés avec des doubles guillemets."
 
 #: skytemple/skytemple/module/strings/controller/strings.py:197
 msgid "Export strings as..."
