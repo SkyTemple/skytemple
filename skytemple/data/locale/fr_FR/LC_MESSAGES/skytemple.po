@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-21 00:07+0000\n"
-"PO-Revision-Date: 2022-07-23 08:00\n"
+"PO-Revision-Date: 2022-07-23 09:16\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -3064,12 +3064,12 @@ msgstr "A {len(self.floors_in_mappa_not_referenced)} étages supplémentaires da
 #: skytemple-files/skytemple_files/graphics/bma/_model.py:513
 #, python-brace-format
 msgid "Can not import map background: Width of both images must match the current map width: {expected_width}px"
-msgstr "Impossible d'importer l'arrière-plan de la carte : la largeur des deux images doit correspondre à la largeur de la carte actuelle : {expected_width}px"
+msgstr "Impossible d'importer le fond de carte : la largeur des deux images doit correspondre à la largeur de la carte actuelle : {expected_width} px"
 
 #: skytemple-files/skytemple_files/graphics/bma/_model.py:524
 #, python-brace-format
 msgid "Can not import map background: Height of both images must match the current map height: {expected_height}px"
-msgstr "Impossible d'importer l'arrière-plan de la carte : la hauteur des deux images doit correspondre à la hauteur de la carte actuelle : {expected_height}px"
+msgstr "Impossible d'importer le fond de carte : la hauteur des deux images doit correspondre à la hauteur de la carte actuelle : {expected_height}px"
 
 #: skytemple-files/skytemple_files/graphics/bpa/_model.py:205
 #: skytemple-rust/src/st_bpa.rs:227
@@ -3088,12 +3088,12 @@ msgstr "Impossible de convertir l'image PIL en fichier CHR : la longueur et la h
 #: skytemple-files/skytemple_files/graphics/dbg/model.py:100
 #, python-brace-format
 msgid "Can not import map background: Width of image must match the expected width: {expected_width}px"
-msgstr "Impossible d'importer l'arrière-plan de la carte : la largeur de l'image doit correspondre à la largeur attendue : {expected_width}px"
+msgstr "Impossible d'importer le fond de carte : la largeur de l'image doit correspondre à la largeur attendue : {expected_width} px"
 
 #: skytemple-files/skytemple_files/graphics/dbg/model.py:109
 #, python-brace-format
 msgid "Can not import map background: Height of image must match the expected height: {expected_height}px"
-msgstr "Impossible d'importer l'arrière-plan de la carte : la hauteur de l'image doit correspondre à la hauteur attendue : {expected_height}px"
+msgstr "Impossible d'importer le fond de carte : la hauteur de l'image doit correspondre à la hauteur attendue : {expected_height}px"
 
 #: skytemple-files/skytemple_files/graphics/dpc/model.py:121
 #, python-brace-format
@@ -3102,7 +3102,7 @@ msgstr "L'image à importer ne peut utiliser que les 12 premières palettes. La 
 
 #: skytemple-files/skytemple_files/graphics/dpc/model.py:165
 msgid "A dungeon background or tilemap can not have more than 400 chunks."
-msgstr "Un arrière-plan de donjon ou un ensemble de tuiles ne peut pas comporter plus de 400 éléments."
+msgstr "Un arrière-plan de donjon ou un ensemble de tuiles ne peut pas comporter plus de 400 fragments."
 
 #: skytemple-files/skytemple_files/graphics/dpla/model.py:104
 msgid "This palette has no animation."
@@ -4275,11 +4275,11 @@ msgstr "Erreur lors de la lecture du système de fichier de la ROM : {}"
 
 #: skytemple-rust/src/st_bma.rs:463
 msgid "Can not import map background: Width of both images must match the current map width: {}px"
-msgstr "Impossible d’importer l’arrière‑plan : La largeur des deux images doit correspondre à la largeur actuelle de l’arrière‑plan : {}px"
+msgstr "Impossible d’importer le fond de carte : La largeur des deux images doit correspondre à la largeur actuelle du fond : {}px"
 
 #: skytemple-rust/src/st_bma.rs:475
 msgid "Can not import map background: Height of both images must match the current map width: {}px"
-msgstr "Impossible d’importer l’arrière‑plan : La hauteur des deux images doit correspondre à la hauteur actuelle de l’arrière‑plan : {}px"
+msgstr "Impossible d’importer le fond de carte : La hauteur des deux images doit correspondre à la hauteur actuelle de fond : {}px"
 
 #: skytemple-rust/src/st_bpc.rs:543
 msgid "new tilemapping for this chunk must contain {} tiles."
@@ -5703,7 +5703,7 @@ msgstr "Tous les fichiers"
 
 #: skytemple/skytemple/controller/tilequant.py:77
 msgid "The maximum number of palettes that can be used. For normal backgrounds, this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes (since the last 2 palettes are not rendered in game)."
-msgstr "Le nombre maximum de palettes qui peuvent être utilisées. Pour les fonds normaux, cela peut être un maximum de 16. Pour les fonds de carte, les deux calques partagent le total de 14 palettes (puisque les 2 dernières palettes ne sont pas affichées dans le jeu)."
+msgstr "Le nombre maximum de palettes qui peuvent être utilisées. Pour les arrière-plan cela peut être un maximum de 16. Pour les fonds de carte, les deux calques partagent le total de 14 palettes (puisque les 2 dernières palettes ne sont pas affichées dans le jeu)."
 
 #: skytemple/skytemple/controller/tilequant.py:82
 msgid "This exact color of the image will be imported as transparency (default: #12ab56)."
@@ -5711,7 +5711,7 @@ msgstr "Les pixels de cette couleur exacte seront considérés comme transparent
 
 #: skytemple/skytemple/controller/tilequant.py:85
 msgid "You can use this to convert multiple images at once with the same palettes. This is useful for map backgrounds with multiple layers, that need to share the same palettes."
-msgstr "Vous pouvez utiliser cet outil pour convertir plusieurs images à la fois avec les mêmes palettes. C'est utile pour les arrière-plan avec plusieurs calques, qui doivent partager les mêmes palettes."
+msgstr "Vous pouvez utiliser cet outil pour convertir plusieurs images à la fois avec les mêmes palettes. C'est utile pour les fonds de carte avec plusieurs calques, qui doivent partager les mêmes palettes."
 
 #: skytemple/skytemple/controller/tilequant.py:91
 msgid "Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they \"blend into\" each other. This will make the image look like it contains more colors but also might decrease the overall visual quality. Two different algorithms are available.\n\n"
@@ -6173,7 +6173,7 @@ msgstr "Modifie le tileset ou l'arrière-plan du donjon (aperçu de l'éditeur u
 #: skytemple/skytemple/module/script/controller/ssa.glade:591
 #: skytemple/skytemple/module/script/controller/ssa.glade:600
 msgid "Change the map background (editor preview only)"
-msgstr "Modifie l'arrière-plan de la carte (aperçu de l'éditeur uniquement)"
+msgstr "Modifie le fond de carte (aperçu de l'éditeur uniquement)"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:285
 msgid "Edit the currently selected tileset or background"
@@ -9382,7 +9382,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:343
 msgid "Edit Map Background"
-msgstr "Modifier l’arrière-plan de la carte"
+msgstr "Modifier le fond de carte"
 
 #: skytemple/skytemple/module/lists/controller/world_map.glade:364
 msgid "Preview"
@@ -9537,7 +9537,8 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/bg.py:184
 msgid "This map background shared some asset files with other map backgrounds.\n"
 "SkyTemple can't edit shared files, so those assets were copied."
-msgstr ""
+msgstr "Ce fond de carte partage certain fichier de ressources avec d’autre fonds.\n"
+"SkyTemple ne peut pas éditer les fichiers partager, donc ces ressources ont été copiée."
 
 #: skytemple/skytemple/module/map_bg/controller/bg.py:188
 msgid "SkyTemple - Notice"
@@ -9642,7 +9643,7 @@ msgstr "Cette carte n'a pas de second calque."
 #: skytemple/skytemple/module/map_bg/controller/folder.py:32
 #, python-brace-format
 msgid "Map Background category \"{self.name}\""
-msgstr ""
+msgstr "Catégorie de fond de carte « {self.name} »"
 
 #: skytemple/skytemple/module/map_bg/controller/folder.py:33
 msgid "Map Backgrounds for other maps"
@@ -9651,11 +9652,11 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/folder.py:38
 #, python-brace-format
 msgid "This section contains all the map backgrounds, that start with the letter {self.name[0]}."
-msgstr ""
+msgstr "Cette section contient tous les fonds de carte commençant par la lettre {self.name[0]}."
 
 #: skytemple/skytemple/module/map_bg/controller/folder.py:41
 msgid "This section contains all the map backgrounds, that don't fit in any of the other categories."
-msgstr ""
+msgstr "Cette section contient tous les fonds de carte qui n’entre dans aucune autres catégories."
 
 #: skytemple/skytemple/module/map_bg/controller/main.glade:40
 #: skytemple/skytemple/module/map_bg/controller/main.py:32
@@ -9666,11 +9667,13 @@ msgstr "Fonds de carte"
 msgid "This section lets you edit map backgrounds. \n"
 "These backgrounds are usually loaded by the game for scenes and serve many purposes \n"
 "(actual backgrounds for maps, title screen backgrounds, cutscenes, etc.)."
-msgstr ""
+msgstr "Cette section vous permet de modifier les fonds de carte.\n"
+"Ces fonds sont généralement chargés par le jeu dans des scènes et peuvent servir à de nombreuses choses.\n"
+"(Comme de véritable fond de carte, arrière-plan de l’écran titre, cinématiques, etc.)."
 
 #: skytemple/skytemple/module/map_bg/controller/main.glade:98
 msgid "New Background"
-msgstr "Nouvel arrière-plan"
+msgstr "Nouveau fond de carte"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:47
 msgid "Create Background"
@@ -9678,19 +9681,19 @@ msgstr "Ajouter un arrière-plan"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:47
 msgid "Map Background Name"
-msgstr "Nom de l'arrière-plan"
+msgstr "Nom du fond de carte"
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:57
 msgid "The length of the map background name must be between 1-8 characters."
-msgstr "Le nom de l'arrière-plan doit être compris entre 1 à 8 caractères."
+msgstr "Le nom du fond de carte doit être compris entre 1 à 8 caractères."
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:72
 msgid "A map background with this name already exists."
-msgstr ""
+msgstr "Un fond de carte avec ce nom existe déjà."
 
 #: skytemple/skytemple/module/map_bg/controller/main.py:95
 msgid "Map background added successfully"
-msgstr ""
+msgstr "Fond de carte correctement ajouté"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:92
 msgid "Hide Other Layers"
@@ -10182,7 +10185,7 @@ msgid "This will export the entire map as one or two images,\n"
 "See the import dialog for more information."
 msgstr "Ceci exportera la carte entière en une ou deux image,\n"
 "selon le nombre de calque.\n\n"
-"Vous pouvez modifier, puis réimporter le·s image·s d'arrière-plan.\n"
+"Vous pouvez modifier, puis réimporter le·s image·s de fond\n"
 "Noter que vous pourriez avoir besoin de la convertir pour\n"
 "pouvoir l'utiliser.\n"
 "Regarder le dialogue d'importation pour plus d'information."
@@ -12657,7 +12660,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/main.glade:369
 msgid "Map Background"
-msgstr ""
+msgstr "Fond de carte"
 
 #: skytemple/skytemple/module/script/controller/main.glade:385
 msgid "Default Weather"
@@ -13433,8 +13436,8 @@ msgid "Can we add a \"Created with SkyTemple\" message\n"
 "you can reopen this dialog, using the menu on\n"
 "the top-right of the main window."
 msgstr "Pouvons‑nous ajouter un message « Créer avec SkyTemple »\n"
-"au logos qui apparaissent au démarrage du jeu ?\n\n"
-"Cet sera placé sur la couche 2 de l’arrière‑plan S05P01A.\n"
+"aux logos qui apparaissent au démarrage du jeu ?\n\n"
+"Cet sera placé sur la couche 2 du fond de carte S05P01A.\n"
 "Si vous n’en voulez pas, vous pouvez facilement le\n"
 "supprimer ou le remplacer.\n\n"
 "Si vous souhaitez le faire plus tard, ou pour un autre projet,\n"
