@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-21 00:07+0000\n"
-"PO-Revision-Date: 2022-07-22 11:59\n"
+"PO-Revision-Date: 2022-07-23 08:00\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -329,7 +329,7 @@ msgstr ""
 
 #: /dev/fd/63:78 /dev/fd/63:187
 msgid "Staff Roll"
-msgstr ""
+msgstr "Crédits"
 
 #: /dev/fd/63:79 /dev/fd/63:188
 msgid "New Pokemon Names"
@@ -4262,7 +4262,8 @@ msgstr ""
 #: skytemple-rust/src/image/tiled.rs:231
 msgid "An image selected to import is too complex. It has too many unique tiles ({}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
-msgstr ""
+msgstr "L'image sélectionnée pour l'importation est trop complexe. Elle contient trop de tuiles uniques ({}, contre 1024 permis).\n"
+"Essayez de réduire le nombre de tuiles uniques. Les tuiles uniques sont les fragments de 8×8 pixels de l'image d'origine qui ne sont identiques à aucune autre (incluant retournement ou différentes sous-palettes)."
 
 #: skytemple-rust/src/romfs.rs:101
 msgid "ROM Header checksum does not match contents."
@@ -9117,7 +9118,9 @@ msgstr ""
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ExtractObjectTable\" \n"
 "ASM patch from the \"ASM Patches\" menu."
-msgstr ""
+msgstr "<Indisponible>\n\n"
+"Pour voir et éditer cette liste, appliquer le correctif\n"
+"« ExtractObjectTable » depuis le menu « correctif ASM »."
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:210
 msgid "Unk2_1"
@@ -9136,7 +9139,10 @@ msgid "The Name is used by the game to determine if a ground sprite should be us
 "An object with Name 'x' will use the sprite named 'x.wan' in the Object Sprites section.\n"
 "A 'NULL' or empty string means there is no sprite attached.\n"
 "To create a new object sprite, go to the Object Sprites section."
-msgstr ""
+msgstr "Le nom est utilisé par le jeu pour déterminer si un sprite de terrain doit être utilisé.\n"
+"Un objet avec le nom « x » utilisera le sprite nommé « x.wan » de la section Sprites d’Objets.\n"
+"Une valeur « NULLE » ou un texte vide signifie qu’il n’y a pas de sprite associé.\n"
+"Pour créer un nouveau sprite d’objet, aller à la section Sprites d’Objets."
 
 #: skytemple/skytemple/module/lists/controller/object_list.py:93
 msgid "Invalid object name"
@@ -9654,7 +9660,7 @@ msgstr ""
 #: skytemple/skytemple/module/map_bg/controller/main.glade:40
 #: skytemple/skytemple/module/map_bg/controller/main.py:32
 msgid "Map Backgrounds"
-msgstr ""
+msgstr "Fonds de carte"
 
 #: skytemple/skytemple/module/map_bg/controller/main.glade:56
 msgid "This section lets you edit map backgrounds. \n"
