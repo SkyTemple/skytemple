@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-07-21 00:07+0000\n"
-"PO-Revision-Date: 2022-08-05 19:36\n"
+"PO-Revision-Date: 2022-08-07 09:58\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -5096,7 +5096,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1278
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1298
 msgid "Global Variables"
-msgstr ""
+msgstr "Variaveis Globais"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1358
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1408
@@ -5123,7 +5123,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1548
 msgid "Enable Debugging Mode"
-msgstr ""
+msgstr "Habilitar modo de depuração"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1552
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1569
@@ -5267,7 +5267,11 @@ msgid "Welcome to \n"
 "Script Engine Debugger.\n\n"
 "Please load a game ROM\n"
 "via the File menu."
-msgstr ""
+msgstr "Bem-vindo a\n"
+"Depuração de Script do \n"
+"SkyTemple\n\n"
+"Por favor Carregue uma ROM\n"
+"No menu de arquivos."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2513
 msgid "The Script Engine is currently not running."
@@ -5570,7 +5574,7 @@ msgstr ""
 
 #: skytemple/skytemple/controller/main.py:255
 msgid "Open ROM..."
-msgstr ""
+msgstr "Abrir ROM..."
 
 #: skytemple/skytemple/controller/main.py:362
 msgid "Error opening the ROM"
@@ -5620,7 +5624,7 @@ msgstr ""
 
 #: skytemple/skytemple/controller/settings.py:38
 msgid "Portuguese, Brazilian"
-msgstr ""
+msgstr "Português brasileiro"
 
 #: skytemple/skytemple/controller/settings.py:86
 msgid "<i>Use System Settings to set this under Linux.</i>"
@@ -5760,7 +5764,7 @@ msgstr ""
 
 #: skytemple/skytemple/core/ui_utils.py:84
 msgid "GIF image (*.gif)"
-msgstr ""
+msgstr "Imagem GIF (*.gif)"
 
 #: skytemple/skytemple/core/ui_utils.py:100
 msgid "XML document (*.xml)"
@@ -5922,7 +5926,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:420
 #: skytemple/skytemple/module/monster/controller/monster.glade:207
 msgid "Names"
-msgstr ""
+msgstr "Nomes"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:450
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:602
@@ -6094,7 +6098,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:199
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:200
 msgid "Add Entity"
-msgstr ""
+msgstr "Adicionar entidade"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:226
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:227
@@ -6533,11 +6537,11 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:571
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3534
 msgid "Trap"
-msgstr ""
+msgstr "Armadilha"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:587
 msgid "Unbreakable?"
-msgstr ""
+msgstr "Inquebrável?"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:600
 msgid "Unk11"
@@ -8827,7 +8831,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:250
 msgid "Items:"
-msgstr ""
+msgstr "Itens:"
 
 #: skytemple/skytemple/module/lists/controller/misc_settings.glade:311
 msgid "Text Speed (debug mode uses 4):"
@@ -8987,7 +8991,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:91
 msgid "Starters List"
-msgstr ""
+msgstr "Lista De iniciais"
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:239
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:611
@@ -10694,7 +10698,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/item.glade:393
 #: skytemple/skytemple/module/moves_items/controller/move.glade:357
 msgid "Name:"
-msgstr ""
+msgstr "Nome:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1319
 msgid "Body Size:"
@@ -11311,7 +11315,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/item.py:51
 #: skytemple/skytemple/module/moves_items/controller/item.py:52
 msgid "Use"
-msgstr ""
+msgstr "Usar"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:38
 msgid "Hurl"
@@ -11319,25 +11323,25 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:39
 msgid "Throw"
-msgstr ""
+msgstr "Jogar"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:40
 #: skytemple/skytemple/module/moves_items/controller/item.py:48
 #: skytemple/skytemple/module/moves_items/controller/item.py:49
 msgid "Equip"
-msgstr ""
+msgstr "Equipar"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:41
 msgid "Eat"
-msgstr ""
+msgstr "Comer"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:42
 msgid "Ingest"
-msgstr ""
+msgstr "Ingerir"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:43
 msgid "Peel"
-msgstr ""
+msgstr "Descascar"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:320
 msgid "For stackable items: Indicates the minimum amount you can get for 1 instance of that item."
