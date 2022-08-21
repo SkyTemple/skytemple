@@ -66,7 +66,7 @@ class SsaEventDialogController:
             script_cb.set_active_iter(script_store.get_iter_first())
         # Fill Coroutine Combobox
         routine_store = Gtk.ListStore(int, str)  # ID, name
-        for routine in self.scriptdata.common_routine_info__by_id:
+        for routine in self.scriptdata.common_routine_info__by_id.values():
             routine_store.append([routine.id, routine.name])
         routine_cb: Gtk.ComboBox = self.builder.get_object('event_coroutine')
         routine_cb.clear()
