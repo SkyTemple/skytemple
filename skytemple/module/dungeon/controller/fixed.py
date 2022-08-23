@@ -21,6 +21,7 @@ from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import Widget
 from range_typed_integers import u32_checked, u32
 from skytemple_files.common.types.file_types import FileType
+from skytemple_files.data.md.protocol import Gender
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
@@ -87,7 +88,7 @@ class FixedController(AbstractController):
         for i, entry in enumerate(self.module.get_monster_md().entries):
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i % num_entities)
             self.monster_names[i] = f'{name}'
-            self.long_monster_names[i] = f'{name} ({entry.gender.name.capitalize()}) (${i:04})'
+            self.long_monster_names[i] = f'{name} ({Gender(entry.gender).name.capitalize()}) (${i:04})'
         for i in range(length, length + SPECIAL_MONSTERS):
             self.monster_names[i] = _('(Special?)')
             self.long_monster_names[i] = _('(Special?)') + f' (${i:04})'
