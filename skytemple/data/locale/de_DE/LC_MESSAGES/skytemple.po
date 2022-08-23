@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-08-21 18:13+0000\n"
-"PO-Revision-Date: 2022-08-21 18:24\n"
+"POT-Creation-Date: 2022-08-23 12:53+0000\n"
+"PO-Revision-Date: 2022-08-23 12:56\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1526,10 +1526,10 @@ msgstr "Mitte"
 #: skytemple-files/skytemple_files/data/md/protocol.py:92
 #: skytemple-files/skytemple_files/data/md/protocol.py:346
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:527
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:528
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:465
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:474
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:529
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:466
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:475
 #: skytemple/skytemple/module/map_bg/controller/bg.py:660
 #: skytemple/skytemple/module/script/controller/dialog/pos_mark_editor.py:203
 #: skytemple/skytemple/module/script/controller/main.py:246
@@ -4351,7 +4351,7 @@ msgstr "Diese Datei ist noch in den RAM geladen! Aktuell kannst du mit dem alten
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:348
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1577
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:88
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:424
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:425
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:320
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:333
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:487
@@ -6468,104 +6468,104 @@ msgstr "BITTE BEACHTEN: \n"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:92
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:93
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:63
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:70
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:94
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:64
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:71
 #: skytemple/skytemple/module/dungeon/fixed_room_drawer.py:394
 #: skytemple/skytemple/module/dungeon/module.py:793
 msgid "(Special?)"
 msgstr "(Speziell?)"
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:410
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:411
 msgid "Width and height must be numbers >= 0."
 msgstr "Breite und Höhe müssen Zahlen >= 0 sein."
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:411
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:412
 msgid "Invalid values."
 msgstr "Ungültige Werte."
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:423
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:424
 msgid "You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"
 msgstr "Du bist im Begriff, den Raum zu verkleinern. Das wird Kacheln löschen. Möchtest du fortfahren?"
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:435
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:436
 msgid "If not set, the track ID specified on the floor this fixed floor is assigned to will be used instead."
 msgstr "Falls nicht gesetzt, wird stattdessen die ID des Musikstücks der Ebene genommen, die dem statischen Raum zugeordnet ist."
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:439
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:440
 msgid "Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled)"
 msgstr "Ob Attacken verwendet werden können. Beeinflusst nicht den regulären Angriff. Falls 0 werden andere Pokémon nicht angreifen (sie werden auch nicht die reguläre Attacke verwenden, selbst dann nicht, falls Attacken-Nutzer deaktiviert ist)"
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:444
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:445
 msgid "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
 msgstr "Wenn ChangeFixedFloorProperties nicht angewendet wurde und die ID des statischen Raumes 0 oder >= 165 ist, wird diese Einstellung ignoriert. Orbs sind immer erlaubt."
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:447
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:448
 msgid "If enabled, the floor is exited after all the enemies have been defeated"
 msgstr "Falls aktiviert wird die Ebene verlassen, falls alle Gegner besiegt wurden"
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:450
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:451
 msgid "If disabled, certain traps (Summon, Pitfall and Pokémon) will be disabled.\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:454
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:455
 msgid "If disabled, warping, being blown away and leaping effects will be disabled.\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:458
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:459
 msgid "If disabled, prevents any kind of item pulling (such as with the Trawl Orb).\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:462
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:463
 msgid "If enabled, the game will treat this fixed room as an entire floor, not a single room in a floor layout.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 164. "
 msgstr "Wenn aktiviert, wird das Spiel diesen statischen Raum als Layout für die gesamte Etage verwenden (statt nur eines einzelnen Raumes).\n"
 "Falls der ChangeFixedFloorProperties nicht angwendet ist, wird diese EInstellung nur aktiviert, wenn die ID des Raumes zwischen 1 und 164 ist. "
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:466
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:467
 msgid "Enables boss fight conditions.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 80. "
 msgstr "Aktiviert Bosskampf Bedingungen.\n"
 "Falls ChangeFixedFloorProperties nicht angewendet ist, wird diese Bedingung nur aktiviert, wenn die ID des Raumes ist zwischen 1 und 80. "
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:470
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:471
 msgid "Allows free layouts. For example, fixed rooms with this setting can omit stairs.\n"
 "If ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 110. "
 msgstr "Erlaubt freie Layouts. Beispielsweise können statische Räume mit dieser Einstellung Treppen weglassen.\n"
 "Falls der ChangeFixedFloorProperties nicht angwendet ist, wird diese Einstellung nur aktiviert falls die ID des statischen Raumes zwischen 1 und 110 ist. "
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:474
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:475
 msgid "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will be used instead.\n"
 "This is used in dungeons where the content of a fixed floor varies depending on the story progress, such as in most of the dungeons with a legendary Pokémon at the end (first visit vs rematch)."
 msgstr "Wenn der Dungeon-Modus REQUEST ist (=der Dungeon wird einmal bezwungen), wird stattdessen dieser statische Raum verwendet.\n"
 "Dies wird von Dungeons verwendet, bei denen der Inhalt einer statischen Ebene je nach Fortschritt der Geschichte variiert, z. B. in den meisten Dungeons mit einem legendären Pokémon am Ende (erster Besuch vs. Rematch)."
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:492
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:493
 #, python-brace-format
 msgid "Background {i}"
 msgstr "Hintergrund {i}"
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:494
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:495
 #, python-brace-format
 msgid "Tileset {i}"
 msgstr "Tileset {i}"
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:499
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:500
 msgid "No override"
 msgstr "Keine Überschreibung"
 
-#: skytemple/skytemple/module/dungeon/controller/fixed.py:501
+#: skytemple/skytemple/module/dungeon/controller/fixed.py:502
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1909
 #, python-brace-format
 msgid "No. {i}"
 msgstr "Nr. {i}"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:202
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:37
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:38
 msgid "Fixed Rooms"
 msgstr "Statische Räume"
 
@@ -6750,7 +6750,7 @@ msgstr "Pokémon Statuswerte"
 msgid "Spawn Lists"
 msgstr "Spawn-Listen"
 
-#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:544
+#: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:545
 msgid "n/a"
 msgstr "n/a"
 
