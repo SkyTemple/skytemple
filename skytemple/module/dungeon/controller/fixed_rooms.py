@@ -21,6 +21,7 @@ from gi.repository import Gtk
 from gi.repository.Gtk import Widget
 from range_typed_integers import u8, u8_checked, u16_checked, u16
 from skytemple_files.common.types.file_types import FileType
+from skytemple_files.data.md.protocol import Gender
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
@@ -58,7 +59,7 @@ class FixedRoomsController(AbstractController):
             name = self.module.project.get_string_provider().get_value(
                 StringType.POKEMON_NAMES, i % FileType.MD.properties().num_entities
             )
-            self.monster_names[i] = f'{name} ({entry.gender.print_name}) (${i:04})'
+            self.monster_names[i] = f'{name} ({Gender(entry.gender).print_name}) (${i:04})'
         for i in range(length, length + SPECIAL_MONSTERS):
             self.monster_names[i] = _('(Special?)') + f' (${i:04})'
 
