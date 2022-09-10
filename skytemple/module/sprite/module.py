@@ -21,6 +21,7 @@ from typing import TYPE_CHECKING, Union, Optional, Dict
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 from PIL import Image
+from skytemple_files.common.ppmdu_config.data import Pmd2Sprite
 
 from skytemple.controller.main import MainController
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
@@ -36,6 +37,7 @@ from skytemple.module.sprite.controller.object_main import OBJECT_SPRTIES, Objec
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import MONSTER_BIN, add_extension_if_missing
 from skytemple_files.container.bin_pack.model import BinPack
+from skytemple_files.data.sprconf.handler import SPRCONF_FILENAME
 from skytemple_files.graphics.chara_wan.model import WanFile
 from skytemple_files.common.i18n_util import f, _
 from skytemple_rust import pmd_wan
@@ -314,6 +316,12 @@ class SpriteModule(AbstractModule):
             else:
                 bin_pack[id] = data
         self.project.mark_as_modified(ATTACK_BIN)
+
+    def update_sprconf(self, sprite: Pmd2Sprite):
+        sprconf = self.project.open_sprconf()
+        FileType.SPRCONF.update(sprconf, sprite)
+        self.project.mark_as_modified(SPRCONF_FILENAME)
+        self.project.get_rom_module().get_static_data().animation_names[sprite.id] = sprite
 
     def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
         if isinstance(open_controller, ObjectController):

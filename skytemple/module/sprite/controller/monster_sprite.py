@@ -22,6 +22,7 @@ from xml.etree import ElementTree
 from zipfile import ZipFile
 
 import cairo
+from skytemple_files.common.ppmdu_config.data import Pmd2Sprite, Pmd2Index
 
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
@@ -255,6 +256,15 @@ Warning: SkyTemple does not validate the files you import."""))
                     with ZipFile(fn, 'r') as ZipObj:
                         tree = ElementTree.fromstring(ZipObj.read('AnimData.xml'))
                 self._set_shadow_size_cb(int(tree.find('ShadowSize').text))  # type: ignore
+
+                # Update/create sprconf.json:
+                anims: List[Element] = tree.find("Anims")  # type: ignore
+                action_indices = {}
+                for action in anims:
+                    name_normal: str = action.find("Name").text  # type: ignore
+                    idx = int(action.find("Index").text)  # type: ignore
+                    action_indices[idx] = Pmd2Index(idx, [name_normal])
+                self.module.update_sprconf(Pmd2Sprite(item_id, action_indices))
 
                 cb()
                 self._mark_as_modified_cb()

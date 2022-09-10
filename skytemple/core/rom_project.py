@@ -24,6 +24,7 @@ from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Typ
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
 from pmdsky_debug_py.protocol import SectionProtocol
+from skytemple_files.data.sprconf.handler import SPRCONF_FILENAME
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.modules import Modules
@@ -295,6 +296,14 @@ class RomProject:
             self._file_handlers[file_path_in_rom] = FileType.SIR0
             self._file_handler_kwargs[file_path_in_rom] = {}
         return self._open_common(file_path_in_rom, threadsafe)
+
+    def open_sprconf(self, threadsafe=False):
+        """Opens the MONSTER/sprconf.json if it exists, if not it creates it first."""
+        if SPRCONF_FILENAME not in self._opened_files:
+            self._opened_files[SPRCONF_FILENAME] = FileType.SPRCONF.load(self._rom)
+            self._file_handlers[SPRCONF_FILENAME] = FileType.SPRCONF
+            self._file_handler_kwargs[SPRCONF_FILENAME] = {}
+        return self._open_common(SPRCONF_FILENAME, threadsafe)
 
     def _open_common(self, file_path_in_rom: str, threadsafe):
         if threadsafe:
