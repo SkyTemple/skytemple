@@ -95,7 +95,7 @@ class IqController(AbstractController):
             return
         static_data = self.module.project.get_rom_module().get_static_data()
         self.module.project.modify_binary(BinaryName.OVERLAY_10, lambda bin: HardcodedIq.set_intimidator_chance(val, bin, static_data))
-        self.module.mark_misc_settings_as_modified()
+        self.module.mark_iq_as_modified()
 
     @catch_overflow(u8)
     def on_cr_other_iq_gain_edited(self, widget, path, text):
