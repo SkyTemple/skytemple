@@ -22,6 +22,7 @@ from typing import TYPE_CHECKING, Optional, Dict, List, Union
 import cairo
 from gi.repository import Gtk, GLib
 
+from skytemple_files.data.md.protocol import Gender
 from skytemple.core.list_icon_renderer import ListIconRenderer
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
@@ -70,7 +71,7 @@ class ListBaseController(AbstractController, ABC):
             if idx == 0:
                 continue
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, entry.md_index_base)
-            self._ent_names[idx] = f'{name} ({entry.gender.print_name}) (${idx:04})'
+            self._ent_names[idx] = f'{name} ({Gender(entry.gender).print_name}) (${idx:04})'
             monster_store.append([self._ent_names[idx]])
 
     def on_draw_example_placeholder_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
