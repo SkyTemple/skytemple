@@ -1,0 +1,16 @@
+app-id: org.skytemple.SkyTemple
+runtime: org.gnome.Platform
+runtime-version: '42'
+sdk: org.gnome.Sdk
+command: skytemple
+modules:
+  - name: skytemple
+    buildsystem: simple
+    build-commands:
+      - pip3 install --prefix=/app --no-deps .
+    sources:
+      - type: dir
+        path: ../..
+        skip: ['installer', '.git', '.github']
+    modules:
+      - python3-requirements.json
