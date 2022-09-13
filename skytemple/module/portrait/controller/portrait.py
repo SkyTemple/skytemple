@@ -225,6 +225,9 @@ class PortraitController(AbstractController):
             self.module.mark_as_modified()
             self._mark_as_modified_cb()
 
+    def on_spritecollab_browser_clicked(self, *args):
+        MainController.show_spritecollab_browser()
+
     def _try_match_import(self, r, names):
         for name in names:
             yield r.match(name), name

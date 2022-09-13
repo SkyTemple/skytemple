@@ -315,6 +315,9 @@ Warning: SkyTemple does not validate the files you import."""))
     def on_explanation_text2_activate_link(self, *args):
         self.module.open_gfxcrunch_page()
 
+    def on_spritecollab_browser_clicked(self, *args):
+        MainController.show_spritecollab_browser()
+
     def _get_sprite_anim(self):
         current = self._rendered_frame_info[self._anim_counter]
         self._frame_counter += 1

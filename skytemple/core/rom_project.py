@@ -192,6 +192,7 @@ class RomProject:
         from skytemple.module.gfxcrunch.module import GfxcrunchModule
         from skytemple.module.sprite.module import SpriteModule
         from skytemple.module.moves_items.module import MovesItemsModule
+        from skytemple.module.spritecollab.module import SpritecollabModule
 
     @overload
     def get_module(self, name: Literal['rom']) -> 'RomModule': ...
@@ -225,6 +226,8 @@ class RomProject:
     def get_module(self, name: Literal['dungeon_graphics']) -> 'DungeonGraphicsModule': ...
     @overload
     def get_module(self, name: Literal['strings']) -> 'StringsModule': ...
+    @overload
+    def get_module(self, name: Literal['spritecollab']) -> 'SpritecollabModule': ...
 
     def get_module(self, name: str) -> AbstractModule:
         return self._loaded_modules[name]

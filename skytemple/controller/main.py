@@ -551,6 +551,29 @@ class MainController:
     def show_tilequant_dialog(cls, num_pals=16, num_colors=16):
         cls._instance.tilequant_controller.run(num_pals, num_colors)
 
+    @classmethod
+    def show_spritecollab_browser(cls):
+        project = RomProject.get_current()
+        if project is None:
+            md = SkyTempleMessageDialog(MainController.window(),
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                        Gtk.ButtonsType.OK, _("A project must be opened to use this."))
+            md.set_position(Gtk.WindowPosition.CENTER)
+            md.run()
+            md.destroy()
+        else:
+            try:
+                spritecollab_module = project.get_module('spritecollab')
+            except Exception:
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                            Gtk.ButtonsType.OK, _("'spritecollab' module must be installed to use this."))
+                md.set_position(Gtk.WindowPosition.CENTER)
+                md.run()
+                md.destroy()
+            else:
+                spritecollab_module.show_spritecollab_browser()
+
     def _load_position_and_size(self):
         # Load window sizes
         window_size = self.settings.get_window_size()

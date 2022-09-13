@@ -112,6 +112,7 @@ setup(
         dungeon=      skytemple.module.dungeon.module:DungeonModule
         dungeon_graphics=skytemple.module.dungeon_graphics.module:DungeonGraphicsModule
         strings      =skytemple.module.strings.module:StringsModule
+        spritecollab= skytemple.module.spritecollab.module:SpritecollabModule
         [console_scripts]
         skytemple=skytemple.main:main
     ''',

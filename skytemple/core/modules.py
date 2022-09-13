@@ -83,6 +83,7 @@ class Modules:
         from skytemple.module.gfxcrunch.module import GfxcrunchModule
         from skytemple.module.sprite.module import SpriteModule
         from skytemple.module.moves_items.module import MovesItemsModule
+        from skytemple.module.spritecollab.module import SpritecollabModule
         return {
             "rom": RomModule,
             "bgp": BgpModule,
@@ -99,7 +100,8 @@ class Modules:
             "strings": StringsModule,
             "gfxcrunch": GfxcrunchModule,
             "sprite": SpriteModule,
-            'moves_items': MovesItemsModule
+            'moves_items': MovesItemsModule,
+            'spritecollab': SpritecollabModule
         }
 
 
