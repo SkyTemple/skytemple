@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-09-13 14:57+0000\n"
-"PO-Revision-Date: 2022-09-13 15:00\n"
+"PO-Revision-Date: 2022-09-13 19:17\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -459,27 +459,27 @@ msgstr "% de exp. compartida"
 
 #: /dev/fd/63:106 /dev/fd/63:221
 msgid "String ID for the Menu Option"
-msgstr ""
+msgstr "ID de cadena para la opción de menú"
 
 #: /dev/fd/63:107 /dev/fd/63:222
 msgid "String ID to confirm the appraise all"
-msgstr ""
+msgstr "ID de cadena para confirmar la valoración de todos"
 
 #: /dev/fd/63:108 /dev/fd/63:223
 msgid "String ID before revealing the items"
-msgstr ""
+msgstr "ID de cadena antes de revelar los objetos"
 
 #: /dev/fd/63:109 /dev/fd/63:224
 msgid "String ID when revealing an item"
-msgstr ""
+msgstr "ID de cadena al revelar un objeto"
 
 #: /dev/fd/63:110 /dev/fd/63:225
 msgid "All strings mentioned above are replaced by a default text when applying"
-msgstr ""
+msgstr "Todas las cadenas mencionadas anteriormente son reemplazadas por un texto predeterminado al aplicarse"
 
 #: /dev/fd/63:111 /dev/fd/63:226
 msgid "Cost of each Treasure Box (Only for Appraise All option)"
-msgstr ""
+msgstr "Coste de cada cofre misterioso (solo para la opción Valorar todos)"
 
 #: /dev/fd/63:113
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
@@ -3804,26 +3804,28 @@ msgstr "Permite reclutar las otras formas de Deoxys y los Regis dentro de territ
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:56
 msgid "Appraise all"
-msgstr ""
+msgstr "Valorar todo"
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:58
 msgid " And to appraise all your items, \n"
 "you will pay [CS:G][gold_left:0][CR][M:S0]?"
-msgstr ""
+msgstr " Y para valorar todos tus objetos, \n"
+"¿pagarás [CS:G] [gold_left:0][CR][M:S0]?"
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:62
 msgid " And so...[K]it is revealed...[C] Within the boxes...[K]\n"
 "were..."
-msgstr ""
+msgstr " Y así...[K]se revela...[C] Dentro de los cofres...[K]\n"
+"había..."
 
 #. TRANSLATORS: Appraise All Reveal Before
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:65
 msgid " ...a [me_play:1][string0]!"
-msgstr ""
+msgstr " ... un [me_play:1][string0]!"
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:76
 msgid "Adds an extra menu in box appraisal to appraise all boxes at once. "
-msgstr ""
+msgstr "Añade un menú adicional en la valoración de cofres para evaluarlas todas a la vez. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:113
 msgid "Change the evolution system.\n"
