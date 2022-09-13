@@ -9,6 +9,8 @@ export XDG_DATA_DIRS="${BUILD_ROOT}/${MINGW}/share"
 rm build -rf || true
 rm dist -rf || true
 
+pip3 install -U certifi
+
 # Dummy python-igraph package to force not trying to install it (it has been renamed to igraph.)
 pip3 install python_igraph*.whl
 pip3 install igraph-*-mingw*.whl
@@ -18,6 +20,7 @@ pip3 install tilequant-*-mingw*.whl
 # again from the Github action because for dev builds pip is being stupid and NEEDS
 # a stable release matching skytemple-file's constraint.
 pip3 install skytemple_rust-*-mingw*.whl
+pip3 install lru_dict-*-mingw*.whl
 pip3 install -r ../requirements-mac-windows.txt
 pip3 install ..
 

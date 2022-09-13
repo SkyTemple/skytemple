@@ -30,6 +30,7 @@ additional_datas = [
     (os.path.join(site_packages, "cairosvg", "VERSION"), "cairosvg"),
     (os.path.join(site_packages, "pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
+    (os.path.join(site_packages, 'certifi', 'cacert.pem'), 'certifi'),
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, "share", "hunspell", "*"), 'share/hunspell'),
 
     # These aren't auto dectected for some reason :(
@@ -76,7 +77,8 @@ a = Analysis(['../skytemple/main.py'],
              binaries=additional_binaries,
              datas=additional_datas,
              hiddenimports=['pkg_resources.py2_warn', 'packaging.version', 'packaging.specifiers',
-                            'packaging.requirements', 'packaging.markers', '_sysconfigdata__win32_', 'win32api'],
+                            'packaging.requirements', 'packaging.markers', '_sysconfigdata__win32_', 'win32api',
+                            'certifi'],
              hookspath=[os.path.abspath(os.path.join('.', 'hooks'))],
              runtime_hooks=[],
              excludes=[],

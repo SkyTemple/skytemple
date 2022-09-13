@@ -87,6 +87,14 @@ from skytemple.core import ui_utils
 from importlib import reload
 reload(ui_utils)
 
+
+if getattr(sys, 'frozen', False):
+    # Running via PyInstaller. Fix SSL configuration
+    os.environ["SSL_CERT_FILE"] = os.path.join(
+        os.path.dirname(sys.executable), "certifi", "cacert.pem"
+    )
+
+
 import gi
 from skytemple_files.common.i18n_util import _
 

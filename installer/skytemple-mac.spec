@@ -29,6 +29,7 @@ additional_datas = [
     (os.path.join(site_packages, "cairosvg", "VERSION"), "cairosvg"),
     (os.path.join(site_packages, "pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
+    (os.path.join(site_packages, 'certifi', 'cacert.pem'), 'certifi'),
 
     # Themes
     ('Arc', 'share/themes/Arc'),
@@ -63,7 +64,8 @@ a = Analysis(['../skytemple/main.py'],
              binaries=additional_binaries,
              datas=additional_datas,
              hiddenimports=['pkg_resources.py2_warn', 'packaging.version', 'packaging.specifiers',
-                            'packaging.requirements', 'packaging.markers', '_sysconfigdata__win32_', 'win32api'],
+                            'packaging.requirements', 'packaging.markers', '_sysconfigdata__win32_', 'win32api',
+                            'certifi'],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],

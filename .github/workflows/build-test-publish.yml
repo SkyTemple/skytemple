@@ -124,6 +124,9 @@ jobs:
             mingw-w64-${{ matrix.arch }}-libraqm
             mingw-w64-${{ matrix.arch }}-python-psutil
             mingw-w64-${{ matrix.arch }}-freetype
+            mingw-w64-${{ matrix.arch }}-python-multidict
+            mingw-w64-${{ matrix.arch }}-python-yarl
+            mingw-w64-${{ matrix.arch }}-python-aiohttp
       - name: Checkout
         uses: actions/checkout@v2
       - name: Rewrite version for dev if not tag
