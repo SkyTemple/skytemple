@@ -19,6 +19,7 @@ from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
+from skytemple.module.spritecollab.controller.browser import BrowserController
 
 
 class SpritecollabModule(AbstractModule):
@@ -37,4 +38,4 @@ class SpritecollabModule(AbstractModule):
         pass  # n/a
 
     def show_spritecollab_browser(self):
-        raise NotImplementedError()
+        return BrowserController.get_instance(self).show()
