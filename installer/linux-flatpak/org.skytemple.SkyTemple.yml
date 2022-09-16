@@ -3,14 +3,72 @@ runtime: org.gnome.Platform
 runtime-version: '42'
 sdk: org.gnome.Sdk
 command: skytemple
+finish-args:
+  - "--share=network"
+  - "--socket=fallback-x11"
+  - "--socket=wayland"
+  - "--filesystem=host"
+  - "--talk-name=org.gtk.vfs.*"
+  - "--filesystem=xdg-run/gvfsd"
 modules:
-  - name: skytemple
+  - name: cpython
+    sources:
+      - type: archive
+        url: https://www.python.org/ftp/python/3.10.7/Python-3.10.7.tar.xz
+        sha256: 6eed8415b7516fb2f260906db5d48dd4c06acc0cb24a7d6cc15296a604dcdc48
+  - name: gtksourceview3
+    config-opts: ["--enable-gtk-doc=no"]
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/gtksourceview/3.24/gtksourceview-3.24.11.tar.xz
+        sha256: 691b074a37b2a307f7f48edc5b8c7afa7301709be56378ccf9cc9735909077fd
+  - name: armips
     buildsystem: simple
     build-commands:
-      - pip3 install --prefix=/app --no-deps .
+      - mkdir -p build
+      - patch Core/ExpressionFunctions.cpp < armips.patch
+      - cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
+      - cd build && make armips-bin
+      - install -Dm755 build/armips /app/bin/armips
+    sources:
+      - type: archive
+        url: https://github.com/Kingcom/armips/archive/v0.11.0.tar.gz
+        sha256: c94e29dfda3bdf853590d825562b9c73a3d8e8e995555e021c6b2a6451572681
+      - type: file
+        path: armips.patch
+  - name: skytemple-assets
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/share/icons/hicolor/16x16/apps
+      - install -Dm644 16x16/apps/skytemple.png /app/share/icons/hicolor/16x16/apps/org.skytemple.SkyTemple.png
+      - mkdir -p /app/share/icons/hicolor/32x32/apps
+      - install -Dm644 32x32/apps/skytemple.png /app/share/icons/hicolor/32x32/apps/org.skytemple.SkyTemple.png
+      - mkdir -p /app/share/icons/hicolor/64x64/apps
+      - install -Dm644 64x64/apps/skytemple.png /app/share/icons/hicolor/64x64/apps/org.skytemple.SkyTemple.png
+      - mkdir -p /app/share/icons/hicolor/128x128/apps
+      - install -Dm644 128x128/apps/skytemple.png /app/share/icons/hicolor/128x128/apps/org.skytemple.SkyTemple.png
+      - mkdir -p /app/share/icons/hicolor/256x256/apps
+      - install -Dm644 256x256/apps/skytemple.png /app/share/icons/hicolor/256x256/apps/org.skytemple.SkyTemple.png
+      - mkdir -p /app/share/icons/hicolor/512x512/apps
+      - install -Dm644 512x512/apps/skytemple.png /app/share/icons/hicolor/512x512/apps/org.skytemple.SkyTemple.png
+      - install -Dm644 org.skytemple.SkyTemple.desktop /app/share/applications/org.skytemple.SkyTemple.desktop
+      - install -Dm644 org.skytemple.SkyTemple.appdata.xml /app/share/metainfo/org.skytemple.SkyTemple.appdata.xml
+    sources:
+      - type: dir
+        path: ../../skytemple/data/icons/hicolor
+      - type: file
+        path: org.skytemple.SkyTemple.desktop
+      - type: file
+        path: org.skytemple.SkyTemple.appdata.xml
+  - name: skytemple
+    buildsystem: simple
+    build-options:
+      build-args:
+        - "--share=network"
+    build-commands:
+      - pip3 install --prefix=/app -r requirements-mac-windows.txt
+      - pip3 install --prefix=/app  .
     sources:
       - type: dir
         path: ../..
         skip: ['installer', '.git', '.github']
-    modules:
-      - python3-requirements.json
