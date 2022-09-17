@@ -94,7 +94,7 @@ jobs:
             unzip
             mingw-w64-${{ matrix.arch }}-python
             mingw-w64-${{ matrix.arch }}-python-pip
-            mingw-w64-${{ matrix.arch }}-gtksourceview3
+            mingw-w64-${{ matrix.arch }}-gtksourceview4
             mingw-w64-${{ matrix.arch }}-python-pillow
             mingw-w64-${{ matrix.arch }}-enchant
             mingw-w64-${{ matrix.arch }}-hunspell-en
@@ -176,8 +176,9 @@ jobs:
       - name: Install and package
         run: |
           brew install enchant
-          brew install git@2.35.1 pygobject3 gtk+3 python@3.9 gtksourceview3 adwaita-icon-theme sdl sdl2 cmake
-          PATH=/usr/local/opt/python@3.9/bin:/usr/local/bin:$PATH
+          # git is already installed.
+          brew install pygobject3 gtk+3 python@3.10 gtksourceview4 adwaita-icon-theme sdl sdl2 cmake
+          PATH=/usr/local/opt/python@3.10/bin:/usr/local/bin:$PATH
 
 
           # Install other dependencies and SkyTemple itself
