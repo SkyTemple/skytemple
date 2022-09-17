@@ -76,6 +76,14 @@ a = Analysis(['../skytemple/main.py'],
              hiddenimports=['pkg_resources.py2_warn', 'packaging.version', 'packaging.specifiers',
                             'packaging.requirements', 'packaging.markers', '_sysconfigdata__win32_', 'win32api'],
              hookspath=[os.path.abspath(os.path.join('.', 'hooks'))],
+             hooksconfig={
+                 "gi": {
+                     "module-versions": {
+                         "Gtk": "3.0",
+                         "GtkSource": "4",
+                     },
+                 },
+             },
              runtime_hooks=[],
              excludes=[],
              win_no_prefer_redirects=False,
