@@ -68,8 +68,8 @@ If you want to set up SkyTemple for development, see the "BUILDING_WINDOWS.md" o
 Linux
 ~~~~~
 The Linux version can be installed via Pip. For this Python 3.6+ must be installed and GTK+ 3
-(which you most likely both have). Additionally GtkSourceView 3 is required 
-(package ``gtksourceview3`` on Arch and ``libgtksourceview-3.0-dev`` on Ubuntu).
+(which you most likely both have). Additionally GtkSourceView 4 is required
+(package ``gtksourceview4`` on Arch and ``libgtksourceview-4-dev`` on Ubuntu).
 
 Then install SkyTemple via pip::
 

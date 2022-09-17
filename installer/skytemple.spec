@@ -36,7 +36,7 @@ additional_datas = [
     # These aren't auto dectected for some reason :(
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'fontconfig'), 'share/fontconfig'),
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'glib-2.0'), 'share/glib-2.0'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'gtksourceview-3.0'), 'share/gtksourceview-3.0'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'gtksourceview-4'), 'share/gtksourceview-4'),
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'icons'), 'share/icons'),
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'locale'), 'share/locale'),
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'themes'), 'share/themes'),
