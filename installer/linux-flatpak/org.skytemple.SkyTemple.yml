@@ -11,17 +11,6 @@ finish-args:
   - "--talk-name=org.gtk.vfs.*"
   - "--filesystem=xdg-run/gvfsd"
 modules:
-  - name: cpython
-    sources:
-      - type: archive
-        url: https://www.python.org/ftp/python/3.10.7/Python-3.10.7.tar.xz
-        sha256: 6eed8415b7516fb2f260906db5d48dd4c06acc0cb24a7d6cc15296a604dcdc48
-  - name: gtksourceview3
-    config-opts: ["--enable-gtk-doc=no"]
-    sources:
-      - type: archive
-        url: https://download.gnome.org/sources/gtksourceview/3.24/gtksourceview-3.24.11.tar.xz
-        sha256: 691b074a37b2a307f7f48edc5b8c7afa7301709be56378ccf9cc9735909077fd
   - name: armips
     buildsystem: simple
     build-commands:
@@ -66,9 +55,13 @@ modules:
       build-args:
         - "--share=network"
     build-commands:
-      - pip3 install --prefix=/app -r requirements-mac-windows.txt
+      # yes, this file also gernally applies to Linux Flatpak. We just don't care about specific versions of any of the
+      # Sdk's bundled packages.
+      - pip3 install --prefix=/app -r <(python fixup_requirements.py requirements-mac-windows.txt)
       - pip3 install --prefix=/app  .
     sources:
+      - type: file
+        path: fixup_requirements.py
       - type: dir
         path: ../..
         skip: ['installer', '.git', '.github']
