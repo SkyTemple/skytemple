@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-09-13 14:57+0000\n"
+"POT-Creation-Date: 2022-09-17 12:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3799,6 +3799,10 @@ msgstr ""
 msgid "Allows recruiting the other Deoxys forms and the regis inside dungeons."
 msgstr ""
 
+#: skytemple-files/skytemple_files/patch/handler/anti_softlock.py:47
+msgid "Allows the player to press A+B+X+Y during cutscenes to force the game to continue past a softlock (this can happen during cutscenes when using custom sprites or the randomizer). Does not work with crashes caused due to internal errors (such as the game running out of memory)."
+msgstr ""
+
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:56
 msgid "Appraise all"
 msgstr ""
@@ -4033,72 +4037,72 @@ msgstr ""
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:202
-#: skytemple-files/skytemple_files/patch/patches.py:212
+#: skytemple-files/skytemple_files/patch/patches.py:204
+#: skytemple-files/skytemple_files/patch/patches.py:214
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:221
+#: skytemple-files/skytemple_files/patch/patches.py:223
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:230
+#: skytemple-files/skytemple_files/patch/patches.py:232
 #: skytemple/skytemple/module/patch/controller/asm.py:232
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:241
+#: skytemple-files/skytemple_files/patch/patches.py:243
 msgid "No configuration was given."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:246
+#: skytemple-files/skytemple_files/patch/patches.py:248
 msgid "Missing configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:252
-#: skytemple-files/skytemple_files/patch/patches.py:258
-#: skytemple-files/skytemple_files/patch/patches.py:264
-#: skytemple-files/skytemple_files/patch/patches.py:272
-#: skytemple-files/skytemple_files/patch/patches.py:289
+#: skytemple-files/skytemple_files/patch/patches.py:254
+#: skytemple-files/skytemple_files/patch/patches.py:260
+#: skytemple-files/skytemple_files/patch/patches.py:266
+#: skytemple-files/skytemple_files/patch/patches.py:274
+#: skytemple-files/skytemple_files/patch/patches.py:291
 msgid "Invalid configuration value."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:260
+#: skytemple-files/skytemple_files/patch/patches.py:262
 msgid "Must be >= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:266
+#: skytemple-files/skytemple_files/patch/patches.py:268
 msgid "Must be <= {}."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:373
+#: skytemple-files/skytemple_files/patch/patches.py:375
 msgid "config.xml missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:376
+#: skytemple-files/skytemple_files/patch/patches.py:378
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:389
+#: skytemple-files/skytemple_files/patch/patches.py:391
 msgid "patch.py missing in patch package."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:392
+#: skytemple-files/skytemple_files/patch/patches.py:394
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:400
+#: skytemple-files/skytemple_files/patch/patches.py:402
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:409
+#: skytemple-files/skytemple_files/patch/patches.py:411
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/patches.py:420
+#: skytemple-files/skytemple_files/patch/patches.py:422
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr ""
@@ -4359,7 +4363,7 @@ msgid "_Cancel"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:333
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:965
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:966
 #: skytemple/skytemple/_i18n.py:50
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:90
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:247
@@ -4390,7 +4394,7 @@ msgid ""
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:348
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1577
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1578
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:88
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:425
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:320
@@ -4554,7 +4558,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:56
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/local_variable.py:60
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:221
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:222
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:113
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:184
 #: skytemple/skytemple/module/lists/controller/animations.glade:591
@@ -4586,20 +4590,20 @@ msgstr ""
 msgid "Value"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:149
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:150
 #: skytemple/skytemple/core/ui_utils.py:71
 msgid "Nintendo DS ROMs (*.nds)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:153
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:154
 msgid "Nintendo DS ROMs with binary loader (*.ds.gba)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:157
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:158
 msgid "All files"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:312
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:313
 #, python-brace-format
 msgid ""
 "DeSmuME couldn't be loaded. Debugging functionality will not be available:\n"
@@ -4607,139 +4611,139 @@ msgid ""
 "{ex}"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:315
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:316
 msgid "Error loading the emulator!"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:466
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:467
 msgid "Open..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:474
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:475
 #, python-brace-format
 msgid ""
 "Unable to load: {fn}\n"
 "{ex}"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:573
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:574
 msgid "Joypads are not supported on macOS. Sorry!"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:628
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:629
 msgid "PNG Image (*.png)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:631
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:632
 msgid "Save Screenshot..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:785
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:786
 msgid "Open Scenes..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:792
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:793
 msgid "Open Scene..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:801
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:802
 msgid "Create directory..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:803
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:804
 msgid "Create new script file..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:808
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:879
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:809
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:880
 msgid "Macros"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:811
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:812
 msgid "Delete directory..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:819
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:820
 msgid "Delete script file..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:828
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:829
 msgid "Create Directory"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:828
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:829
 msgid "Name of the directory:"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:836
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:837
 msgid "Create File"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:836
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:837
 msgid "Name of the new script file:"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:848
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:849
 #, python-brace-format
 msgid "Do you want to delete the directory {row[1]} with all of it's contents?"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:856
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:857
 #, python-brace-format
 msgid "Do you want to delete the script file {row[1]}?"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:893
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:894
 msgid "Common"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:904
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1357
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:905
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1358
 #: skytemple/skytemple/module/script/module.py:148
 #: skytemple/skytemple/module/script/module.py:361
 msgid "Enter (sse)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:915
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1360
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:916
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1361
 #: skytemple/skytemple/module/script/module.py:158
 #: skytemple/skytemple/module/script/module.py:328
 msgid "Acting (ssa)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:925
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1364
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:926
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1365
 #: skytemple/skytemple/module/script/module.py:177
 #: skytemple/skytemple/module/script/module.py:332
 msgid "Sub (sss)"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:962
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:963
 msgid "Save dumped block..."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1183
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1184
 msgid "Unable to save savestate!"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1220
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1221
 msgid "Unable to load savestate!"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1303
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1304
 msgid "The game is stopped."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1312
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1313
 msgid "The game is paused."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1416
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1417
 #, python-brace-format
 msgid "The debugger is halted at {ssb.file_name}."
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1573
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1574
 msgid ""
 "You have unsaved changes to variables.\n"
 "Variables are reset when the game is rebooted.\n"
@@ -4748,12 +4752,12 @@ msgid ""
 "Do you still want to continue?"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1636
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1637
 msgid "Delete"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1638
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1649
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1639
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1650
 #: skytemple/skytemple/controller/main.py:809
 #: skytemple/skytemple/module/map_bg/controller/main.py:105
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:43
@@ -4764,7 +4768,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1639
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1640
 msgid "You will not be able to restore it."
 msgstr ""
 
