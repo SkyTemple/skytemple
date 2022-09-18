@@ -27,7 +27,6 @@ additional_datas = [
     (os.path.join(site_packages, "cssselect2", "VERSION"), "cssselect2"),
     (os.path.join(site_packages, "tinycss2", "VERSION"), "tinycss2"),
     (os.path.join(site_packages, "cairosvg", "VERSION"), "cairosvg"),
-    (os.path.join(site_packages, "pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
     (os.path.join(site_packages, 'certifi', 'cacert.pem'), 'certifi'),
 
@@ -67,6 +66,14 @@ a = Analysis(['../skytemple/main.py'],
                             'packaging.requirements', 'packaging.markers', '_sysconfigdata__win32_', 'win32api',
                             'certifi'],
              hookspath=[],
+             hooksconfig={
+                 "gi": {
+                     "module-versions": {
+                         "Gtk": "3.0",
+                         "GtkSource": "4",
+                     },
+                 },
+             },
              runtime_hooks=[],
              excludes=[],
              cipher=block_cipher,

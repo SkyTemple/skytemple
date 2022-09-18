@@ -209,9 +209,9 @@ jobs:
           IS_MACOS=1 installer/install-skytemple-rust.sh x86_64
           pip3 install -r requirements-mac-windows.txt
           pip3 install .
-          if [ -n "$IS_DEV_BUILD" ]; then
-            installer/install-skytemple-components-from-git.sh
-          fi
+          #if [ -n "$IS_DEV_BUILD" ]; then
+          #  installer/install-skytemple-components-from-git.sh
+          #fi
 
           cd installer
 
