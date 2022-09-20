@@ -67,7 +67,27 @@ If you want to set up SkyTemple for development, see the "BUILDING_WINDOWS.md" o
 
 Linux
 ~~~~~
-The Linux version can be installed via Pip. For this Python 3.6+ must be installed and GTK+ 3
+
+Flatpak
+-------
+SkyTemple is distributed as a Flatpak on `Flathub`_ for all major Linux distributions.
+
+|flathub_badge|
+
+.. _Flathub: https://flathub.org/apps/details/org.skytemple.SkyTemple
+
+.. |flathub_badge| image:: https://flathub.org/assets/badges/flathub-badge-en.png
+    :target: https://flathub.org/apps/details/org.skytemple.SkyTemple
+    :alt: Install on Flathub
+    :width: 240px
+
+This Flatpak contains everything needed to use all SkyTemple features.
+
+Manual
+------
+The Linux version can be installed manually/"natively" via Pip.
+
+For this Python 3.8+ must be installed and GTK+ 3
 (which you most likely both have). Additionally GtkSourceView 4 is required
 (package ``gtksourceview4`` on Arch and ``libgtksourceview-4-dev`` on Ubuntu).
 
@@ -88,8 +108,6 @@ for Arch Linux a version is available through the AUR_.
 
 .. _armips: https://github.com/Kingcom/armips
 .. _AUR: https://aur.archlinux.org/packages/armips/
-
-Are you a package maintainer for a distribution like Ubuntu or Arch Linux? Get in touch with me!
 
 If you want to set up SkyTemple for development, clone the repos and install in editable
 mode instead. See the steps 4 and onward in "BUILDING_WINDOWS.md".
