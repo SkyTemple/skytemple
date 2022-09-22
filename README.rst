@@ -83,6 +83,8 @@ SkyTemple is distributed as a Flatpak on `Flathub`_ for all major Linux distribu
 
 This Flatpak contains everything needed to use all SkyTemple features.
 
+Source repository for the Flatpak: https://github.com/flathub/org.skytemple.SkyTemple
+
 Manual
 ------
 The Linux version can be installed manually/"natively" via Pip.
