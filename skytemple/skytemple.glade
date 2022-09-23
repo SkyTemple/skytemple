@@ -692,6 +692,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
         <child>
           <object class="GtkModelButton" id="save_as_button">
             <property name="visible">True</property>
+            <property name="sensitive">False</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
             <property name="text" translatable="yes">Save as...</property>
@@ -732,6 +733,36 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
           </packing>
         </child>
         <child>
+          <object class="GtkModelButton" id="settings_tilequant">
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="text" translatable="yes">Open Image Converter...</property>
+            <signal name="clicked" handler="on_settings_tilequant_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="settings_spritecollab">
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="text" translatable="yes">Open SpriteCollab Browser...</property>
+            <signal name="clicked" handler="on_settings_spritecollab_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkModelButton" id="settings_dir">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
@@ -742,7 +773,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">3</property>
+            <property name="position">5</property>
           </packing>
         </child>
         <child>
@@ -756,7 +787,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">4</property>
+            <property name="position">6</property>
           </packing>
         </child>
       </object>

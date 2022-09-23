@@ -67,7 +67,7 @@ class MonsterSpriteController(AbstractController):
         self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
-        if self.item_id < 0:
+        if not self.module.is_idx_supported(self.item_id):
             return Gtk.Label.new(_('Invalid Sprite ID.'))
         self.builder = self._get_builder(__file__, 'monster_sprite.glade')
         self._draw_area = self.builder.get_object('draw_sprite')
@@ -314,6 +314,9 @@ Warning: SkyTemple does not validate the files you import."""))
 
     def on_explanation_text2_activate_link(self, *args):
         self.module.open_gfxcrunch_page()
+
+    def on_spritecollab_browser_clicked(self, *args):
+        MainController.show_spritecollab_browser()
 
     def _get_sprite_anim(self):
         current = self._rendered_frame_info[self._anim_counter]

@@ -20,7 +20,7 @@ import sys
 import traceback
 import webbrowser
 from threading import current_thread
-from typing import Optional, List, Type, TYPE_CHECKING
+from typing import Optional, List, Type, TYPE_CHECKING, Tuple
 import packaging.version
 
 import gi
@@ -93,6 +93,15 @@ class MainController:
     def reload_view(cls):
         cls._instance.load_view(cls._instance._last_selected_view_model, cls._instance._last_selected_view_iter,
                                 cls._instance._main_item_list)
+
+    @classmethod
+    def view_info(cls) -> Tuple[Optional[AbstractModule], Optional[Type[AbstractController]], Optional[int]]:
+        """Returns the currently loaded view info in SkyTemple."""
+        return (
+            cls._instance._current_view_module,
+            cls._instance._current_view_controller_class,
+            cls._instance._current_view_item_id
+        )
 
     def __init__(self, builder: Gtk.Builder, window: Gtk.Window, settings: SkyTempleSettingsStore):
         self.builder = builder
@@ -521,6 +530,12 @@ class MainController:
     def on_settings_dir_clicked(self, *args):
         open_dir(ProjectFileManager.shared_config_dir())
 
+    def on_settings_tilequant_clicked(self, *args):
+        self.show_tilequant_dialog(14, 16)
+
+    def on_settings_spritecollab_clicked(self, *args):
+        self.show_spritecollab_browser()
+
     def on_settings_about_clicked(self, *args):
         about: Gtk.AboutDialog = self.builder.get_object("about_dialog")
         about.connect("response", lambda d, r: d.hide())
@@ -550,6 +565,29 @@ class MainController:
     @classmethod
     def show_tilequant_dialog(cls, num_pals=16, num_colors=16):
         cls._instance.tilequant_controller.run(num_pals, num_colors)
+
+    @classmethod
+    def show_spritecollab_browser(cls):
+        project = RomProject.get_current()
+        if project is None:
+            md = SkyTempleMessageDialog(MainController.window(),
+                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                        Gtk.ButtonsType.OK, _("A project must be opened to use this."))
+            md.set_position(Gtk.WindowPosition.CENTER)
+            md.run()
+            md.destroy()
+        else:
+            try:
+                spritecollab_module = project.get_module('spritecollab')
+            except Exception:
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                            Gtk.ButtonsType.OK, _("'spritecollab' module must be installed to use this."))
+                md.set_position(Gtk.WindowPosition.CENTER)
+                md.run()
+                md.destroy()
+            else:
+                spritecollab_module.show_spritecollab_browser()
 
     def _load_position_and_size(self):
         # Load window sizes
@@ -737,6 +775,9 @@ class MainController:
         """Set the titlebar and make buttons sensitive after a ROM load"""
         self._item_store.clear()
         self.builder.get_object('save_button').set_sensitive(True)
+        self.builder.get_object('save_as_button').set_sensitive(True)
+        self.builder.get_object('settings_tilequant').set_sensitive(True)
+        self.builder.get_object('settings_spritecollab').set_sensitive(True)
         self.builder.get_object('reload_button').set_sensitive(True)
         self.builder.get_object('save_as_button').set_sensitive(True)
         self.builder.get_object('main_item_list_search').set_sensitive(True)

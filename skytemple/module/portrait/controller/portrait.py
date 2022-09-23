@@ -15,29 +15,25 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-import math
 import os
 import re
 import sys
 from functools import partial
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING, List
 
 import cairo
-
-from skytemple.core.error_handler import display_error
-from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import add_dialog_png_filter
-from skytemple_files.common.util import add_extension_if_missing
-from skytemple_files.graphics.kao.sprite_bot_sheet import SpriteBotSheet
-from skytemple_files.common.i18n_util import f, _
-
 from PIL import Image
 from gi.repository import Gtk, GLib
+from skytemple_files.common.i18n_util import _, f
+from skytemple_files.common.util import add_extension_if_missing
+from skytemple_files.graphics.kao import SUBENTRIES
+from skytemple_files.graphics.kao.sprite_bot_sheet import SpriteBotSheet
 
 from skytemple.controller.main import MainController
+from skytemple.core.error_handler import display_error
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
-from skytemple_files.graphics.kao import SUBENTRIES
-from skytemple_files.common.i18n_util import _, f
+from skytemple.core.ui_utils import add_dialog_png_filter
 
 if TYPE_CHECKING:
     from skytemple.module.portrait.module import PortraitModule
@@ -66,7 +62,7 @@ class PortraitController(AbstractController):
 
         for index, subindex, kao in self.kao:
             gui_number = subindex + 1
-            portrait_name = self._get_portrait_name(subindex)
+            portrait_name = self.module.get_portrait_name(subindex)
             self.builder.get_object(f'portrait_label{gui_number}').set_text(portrait_name)
             draw = self.builder.get_object(f'portrait_draw{gui_number}')
             self._draws.append(draw)
@@ -156,7 +152,7 @@ class PortraitController(AbstractController):
                         image = Image.open(file)
                         self.kao.set_from_img(self.item_id, subindex, image)
                 except Exception as err:
-                    name = self._get_portrait_name(subindex)
+                    name = self.module.get_portrait_name(subindex)
                     logger.error(f"Failed importing image '{name}'.", exc_info=err)
                     display_error(
                         sys.exc_info(),
@@ -201,39 +197,13 @@ class PortraitController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
-            try:
-                for subindex, image in SpriteBotSheet.load(fn, self._get_portrait_name):
-                    try:
-                        self.kao.set_from_img(self.item_id, subindex, image)
-                    except Exception as err:
-                        name = self._get_portrait_name(subindex)
-                        logger.error(f"Failed importing image '{name}'.", exc_info=err)
-                        display_error(
-                            sys.exc_info(),
-                            f(_('Failed importing image "{name}":\n{err}')),
-                            f(_("Error for '{name}'."))
-                        )
-            except Exception as err:
-                logger.error(f"Failed importing portraits sheet: {err}", exc_info=err)
-                display_error(
-                    sys.exc_info(),
-                    f(_('Failed importing portraits sheet:\n{err}')),
-                    _("Could not import.")
-                )
+            self.module.import_sheet(self.item_id, fn)
             self.re_render()
-            # Mark as modified
-            self.module.mark_as_modified()
             self._mark_as_modified_cb()
+
+    def on_spritecollab_browser_clicked(self, *args):
+        MainController.show_spritecollab_browser()
 
     def _try_match_import(self, r, names):
         for name in names:
             yield r.match(name), name
-
-    def _get_portrait_name(self, subindex):
-        portrait_name = self.module.project.get_rom_module().get_static_data().script_data.face_names__by_id[
-            math.floor(subindex / 2)
-        ].name.replace('-', '_')
-        portrait_name = f'{subindex}: {portrait_name}'
-        if subindex % 2 != 0:
-            portrait_name += _(' (flip)')  # TRANSLATORS: Suffix for flipped portraits
-        return portrait_name
