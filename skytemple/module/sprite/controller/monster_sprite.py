@@ -67,7 +67,7 @@ class MonsterSpriteController(AbstractController):
         self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
-        if self.item_id < 0:
+        if not self.module.is_idx_supported(self.item_id):
             return Gtk.Label.new(_('Invalid Sprite ID.'))
         self.builder = self._get_builder(__file__, 'monster_sprite.glade')
         self._draw_area = self.builder.get_object('draw_sprite')

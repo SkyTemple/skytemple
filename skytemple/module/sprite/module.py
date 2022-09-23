@@ -327,3 +327,7 @@ class SpriteModule(AbstractModule):
         if isinstance(open_controller, ObjectController):
             pass  # todo
         return None
+
+    def is_idx_supported(self, idx: int) -> bool:
+        """Check if the sprite ID is valid."""
+        return idx >= 0

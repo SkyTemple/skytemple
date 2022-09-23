@@ -20,13 +20,14 @@ from xml.etree.ElementTree import Element
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
-from range_typed_integers import u16, u8
+from range_typed_integers import u16, u8, i16
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
+from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple.module.monster.controller.entity import EntityController
 from skytemple.module.monster.controller.level_up import LevelUpController
 from skytemple.module.monster.controller.main import MainController, MONSTER_NAME
@@ -119,6 +120,13 @@ class MonsterModule(AbstractModule):
 
         recursive_generate_item_store_row_label(self._tree_model[self._root])
 
+    def get_opened_id(self) -> Optional[int]:
+        """Returns the ID of the currently opened monster in SkyTemple. None if no view for a monster is opened."""
+        module, controller, item_id = SkyTempleMainController.view_info()
+        if isinstance(module, MonsterModule) and controller == MonsterController:
+            return item_id
+        return None
+
     def refresh(self, item_id):
         b_attr = self.effective_base_attr
 
@@ -192,9 +200,11 @@ class MonsterModule(AbstractModule):
         return self.waza_p2_bin
 
     def get_portrait_view(self, item_id):
-        if item_id == 0:
+        prt_id = item_id - 1
+        portrait_module = self.project.get_module('portrait')
+        if not portrait_module.is_idx_supported(prt_id):
             return Gtk.Label.new(_("This entry has no portraits."))
-        return self.project.get_module('portrait').get_editor(item_id - 1, lambda: self.mark_md_as_modified(item_id))
+        return portrait_module.get_editor(prt_id, lambda: self.mark_md_as_modified(item_id))
 
     def get_sprite_view(self, sprite_id, item_id):
         def set_new_sprite_id(new_sprite_id):
@@ -453,6 +463,17 @@ class MonsterModule(AbstractModule):
 
     def get_md_evo(self):
         return self.project.open_file_in_rom(MEVO_FILE, FileType.MD_EVO)
+
+    def get_sprite_idx(self, md_idx: int) -> i16:
+        return self.get_entry(md_idx).sprite_index
+
+    def set_sprite_idx(self, md_idx: int, value: i16):
+        self.get_entry(md_idx).sprite_index = value
+        self.mark_md_as_modified(md_idx)
+
+    def set_shadow_size(self, md_idx: int, value: ShadowSize):
+        self.get_entry(md_idx).shadow_size = value.value
+        self.mark_md_as_modified(md_idx)
 
     def mark_md_evo_as_modified(self, item_id):
         self.project.mark_as_modified(MEVO_FILE)
