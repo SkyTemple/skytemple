@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-09-17 12:42+0000\n"
-"PO-Revision-Date: 2022-09-17 12:56\n"
+"POT-Creation-Date: 2022-09-23 21:51+0000\n"
+"PO-Revision-Date: 2022-09-23 22:40\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -1166,7 +1166,7 @@ msgstr ""
 #. TRANSLATORS: Replace this string with your names, one name per line.
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:1252
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3264
-#: skytemple/skytemple/skytemple.glade:1446
+#: skytemple/skytemple/skytemple.glade:1477
 msgid "translator-credits"
 msgstr "n_tonio36#5530\n"
 "marius851000\n"
@@ -1726,6 +1726,7 @@ msgid "Genderless"
 msgstr "Genre neutre"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:93
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:371
 msgid "Normal"
 msgstr "Normal"
 
@@ -4356,7 +4357,7 @@ msgid "Do you want to save changes to {filename}?"
 msgstr "Voulez-vous sauvegarder les changements faits dans {filename} ?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:330
-#: skytemple/skytemple/controller/main.py:807
+#: skytemple/skytemple/controller/main.py:848
 msgid "Don't Save"
 msgstr "Ne pas sauvegarder"
 
@@ -4377,14 +4378,14 @@ msgstr "_Annuler"
 #: skytemple/skytemple/module/misc_graphics/controller/wte_wtu.py:76
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:71
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:90
-#: skytemple/skytemple/module/portrait/controller/portrait.py:110
+#: skytemple/skytemple/module/portrait/controller/portrait.py:106
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:142
 #: skytemple/skytemple/module/sprite/module.py:202
 msgid "_Save"
 msgstr "_Sauvegarder"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:334
-#: skytemple/skytemple/controller/main.py:811
+#: skytemple/skytemple/controller/main.py:852
 msgid "If you don't save, your changes will be lost."
 msgstr "Si vous n'enregistrez pas, vos modifications seront perdues."
 
@@ -4761,13 +4762,14 @@ msgstr "Supprimer"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1639
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1650
-#: skytemple/skytemple/controller/main.py:809
+#: skytemple/skytemple/controller/main.py:850
 #: skytemple/skytemple/module/map_bg/controller/main.py:105
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:43
 #: skytemple/skytemple/module/script/controller/main.py:194
 #: skytemple/skytemple/module/script/controller/map.py:160
 #: skytemple/skytemple/module/script/controller/ssa.py:1642
 #: skytemple/skytemple/module/sprite/controller/object_main.py:94
+#: skytemple/skytemple/module/spritecollab/module.py:159
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -5009,7 +5011,7 @@ msgid "Player"
 msgstr "Joueur"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:67
-#: skytemple/skytemple/skytemple.glade:2347
+#: skytemple/skytemple/skytemple.glade:2378
 msgid "Mode"
 msgstr "Mode"
 
@@ -5160,8 +5162,8 @@ msgstr "État Terrain"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1089
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2762
-#: skytemple/skytemple/controller/main.py:810
-#: skytemple/skytemple/skytemple.glade:1321
+#: skytemple/skytemple/controller/main.py:851
+#: skytemple/skytemple/skytemple.glade:1352
 msgid "Save"
 msgstr "Sauvegarder"
 
@@ -5405,7 +5407,8 @@ msgstr "Émulateur"
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:141
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:128
 #: skytemple/skytemple/module/script/controller/main.glade:463
-#: skytemple/skytemple/skytemple.glade:1122
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:210
+#: skytemple/skytemple/skytemple.glade:1153
 msgid "page0"
 msgstr "page0"
 
@@ -5448,46 +5451,46 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3336
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3060
 #: skytemple/skytemple/module/map_bg/controller/main.glade:163
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:366
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:438
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:495
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:552
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:609
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:666
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:723
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:780
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:837
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:894
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:951
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1008
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1065
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1122
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1179
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1236
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1293
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1350
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1407
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1464
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1521
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1578
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1635
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1692
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1749
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1806
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1863
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1920
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:1977
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:2034
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:2091
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:2148
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:2205
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:2262
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:2319
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:2376
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:2433
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:2490
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:2547
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:2604
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:391
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:463
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:520
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:577
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:634
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:691
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:748
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:805
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:862
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:919
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:976
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1033
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1090
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1147
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1204
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1261
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1318
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1375
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1432
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1489
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1546
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1603
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1660
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1717
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1774
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1831
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1888
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:1945
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2002
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2059
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2116
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2173
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2230
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2287
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2344
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2401
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2458
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2515
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2572
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:2629
 #: skytemple/skytemple/module/script/controller/main.glade:59
 #: skytemple/skytemple/module/script/controller/main.glade:83
 #: skytemple/skytemple/module/script/controller/map.glade:264
@@ -5659,52 +5662,57 @@ msgstr "Zoom _avant"
 msgid "Zoom _Out"
 msgstr "Zoom _arrière"
 
-#: skytemple/skytemple/controller/main.py:232
+#: skytemple/skytemple/controller/main.py:241
 msgid "Save As..."
 msgstr ""
 
-#: skytemple/skytemple/controller/main.py:255
+#: skytemple/skytemple/controller/main.py:264
 msgid "Open ROM..."
 msgstr "Ouvrir une ROM..."
 
-#: skytemple/skytemple/controller/main.py:362
+#: skytemple/skytemple/controller/main.py:371
 msgid "Error opening the ROM"
 msgstr "Erreur lors de l'ouverture de la ROM"
 
-#: skytemple/skytemple/controller/main.py:388
+#: skytemple/skytemple/controller/main.py:397
 msgid "Error saving the ROM"
 msgstr "Erreur lors de la sauvegarde de la ROM"
 
-#: skytemple/skytemple/controller/main.py:514
+#: skytemple/skytemple/controller/main.py:523
+#: skytemple/skytemple/controller/main.py:575
 msgid "A project must be opened to use this."
 msgstr "Il faut ouvrir un projet pour l'utiliser."
 
-#: skytemple/skytemple/controller/main.py:601
-#: skytemple/skytemple/controller/main.py:602
+#: skytemple/skytemple/controller/main.py:585
+msgid "'spritecollab' module must be installed to use this."
+msgstr ""
+
+#: skytemple/skytemple/controller/main.py:639
+#: skytemple/skytemple/controller/main.py:640
 msgid "Open a ROM"
 msgstr "Ouvrir une ROM"
 
-#: skytemple/skytemple/controller/main.py:627
+#: skytemple/skytemple/controller/main.py:665
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
 msgstr "Chargement de la ROM « {rom_name} »..."
 
-#: skytemple/skytemple/controller/main.py:629
+#: skytemple/skytemple/controller/main.py:667
 #, python-brace-format
 msgid "Opening {filename}."
 msgstr "Ouverture de {filename}."
 
-#: skytemple/skytemple/controller/main.py:790
+#: skytemple/skytemple/controller/main.py:831
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
 msgstr "Enregistrement de la ROM « {rom_name} »..."
 
-#: skytemple/skytemple/controller/main.py:792
+#: skytemple/skytemple/controller/main.py:833
 #, python-brace-format
 msgid "Saving {rom.filename}."
 msgstr "Sauvegarde de {rom.filename}."
 
-#: skytemple/skytemple/controller/main.py:805
+#: skytemple/skytemple/controller/main.py:846
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
 msgstr "Voulez vous enregistrer les changement vers {rom_name} ?"
@@ -6292,7 +6300,7 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:493
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1073
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3208
-#: skytemple/skytemple/skytemple.glade:1229
+#: skytemple/skytemple/skytemple.glade:1260
 msgid "page2"
 msgstr "page2"
 
@@ -6376,7 +6384,8 @@ msgstr "Ajouter une nouvelle entité"
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:1025
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:827
 #: skytemple/skytemple/module/script/controller/main.glade:275
-#: skytemple/skytemple/skytemple.glade:1146
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:236
+#: skytemple/skytemple/skytemple.glade:1177
 msgid "page1"
 msgstr "page1"
 
@@ -6517,6 +6526,7 @@ msgstr "REMARQUE :\n"
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4348
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4613
 #: skytemple/skytemple/module/monster/controller/monster.glade:3522
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:298
 msgid "Settings"
 msgstr "Paramètres"
 
@@ -6966,7 +6976,7 @@ msgstr "Salle fixe"
 #: skytemple/skytemple/module/monster/controller/monster.glade:850
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:219
 #: skytemple/skytemple/module/rom/controller/rom.glade:153
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:457
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:490
 #: skytemple/skytemple/module/sprite/controller/object.glade:107
 #: skytemple/skytemple/module/strings/controller/strings.glade:153
 msgid "Import"
@@ -6987,7 +6997,7 @@ msgstr "Importer"
 #: skytemple/skytemple/module/monster/controller/monster.glade:895
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:258
 #: skytemple/skytemple/module/rom/controller/rom.glade:107
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:502
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:535
 #: skytemple/skytemple/module/sprite/controller/object.glade:152
 #: skytemple/skytemple/module/strings/controller/strings.glade:198
 msgid "Export"
@@ -7658,8 +7668,8 @@ msgid "The dungeon floor data of this ROM is corrupt. SkyTemple will still try t
 msgstr "Les données d'étages des donjons de cette ROM sont corrompus. SkyTemple essaiera de l'ouvrir, mais l'édition des donjons ne sera pas disponible. Attendez vous à d'autres bogues. Veuillez corriger votre ROM."
 
 #: skytemple/skytemple/module/dungeon/module.py:148
-#: skytemple/skytemple/skytemple.glade:902
-#: skytemple/skytemple/skytemple.glade:1259
+#: skytemple/skytemple/skytemple.glade:933
+#: skytemple/skytemple/skytemple.glade:1290
 msgid "SkyTemple"
 msgstr "SkyTemple"
 
@@ -8112,7 +8122,7 @@ msgid "This will import the entire background.\n\n"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2279
-#: skytemple/skytemple/skytemple.glade:2501
+#: skytemple/skytemple/skytemple.glade:2532
 msgid "Input Image"
 msgstr "Image d'entrée"
 
@@ -11604,11 +11614,11 @@ msgstr "Capacités"
 msgid "at level {x[0]}"
 msgstr "au niveau {x[0]}"
 
-#: skytemple/skytemple/module/monster/module.py:196
+#: skytemple/skytemple/module/monster/module.py:206
 msgid "This entry has no portraits."
 msgstr "Cette entrée n'a pas de portrait."
 
-#: skytemple/skytemple/module/monster/module.py:239
+#: skytemple/skytemple/module/monster/module.py:249
 msgid "Stats and moves are only editable for base forms."
 msgstr "Les statistiques et attaques ne sont modifiables que pour les formes de base."
 
@@ -12158,6 +12168,7 @@ msgstr "Ouvrir le chemin d'accès du patch..."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:124
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:43
+#: skytemple/skytemple/module/spritecollab/module.py:159
 msgid "Apply"
 msgstr "Appliquer"
 
@@ -12537,7 +12548,16 @@ msgstr "... en tant qu'images séparés"
 msgid "... as one sheet (SpriteBot format)"
 msgstr "... en une feuille (format SpriteBot)"
 
-#: skytemple/skytemple/module/portrait/controller/portrait.glade:385
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:306
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:63
+msgid "Open SpriteCollab Browser"
+msgstr ""
+
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:307
+msgid "Spritecollab Browser"
+msgstr ""
+
+#: skytemple/skytemple/module/portrait/controller/portrait.glade:410
 msgid "If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.\n"
 "If that is also missing, the behaviour is undefined.\n"
 "If flipped versions are empty, the game will automatically flip the image."
@@ -12545,59 +12565,59 @@ msgstr "S'il manque un portrait, le jeu essaiera de charger le premier portrait 
 "S'il est également manquant, le comportement est indéfini.\n"
 "Si la version renversé est manquante, le jeu le renversera automatiquement l'image."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:107
+#: skytemple/skytemple/module/portrait/controller/portrait.py:103
 msgid "Export all portraits as PNGs..."
 msgstr "Exporter tout les portraits en PNG..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:131
+#: skytemple/skytemple/module/portrait/controller/portrait.py:127
 msgid "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
 "will be imported, where XX is a number between 0 and 40."
 msgstr "Pour importer, selectionner le dossier à partir duquel importer. Les fichiers sous la forme '{self.item_id + 1}_XX.png'\n"
 "seront importé, où XX est un nombre entre 0 et 40."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:133
+#: skytemple/skytemple/module/portrait/controller/portrait.py:129
 msgid "Import Portraits"
 msgstr "Importer des portraits"
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:138
+#: skytemple/skytemple/module/portrait/controller/portrait.py:134
 msgid "Import portraits from PNGs..."
 msgstr "Importer des portraits depuis des PNG..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:163
-#: skytemple/skytemple/module/portrait/controller/portrait.py:213
+#: skytemple/skytemple/module/portrait/controller/portrait.py:159
+#: skytemple/skytemple/module/portrait/module.py:89
 #, python-brace-format
 msgid "Failed importing image \"{name}\":\n"
 "{err}"
 msgstr "Échec de l'importation de l'image « {name} »:\n"
 "{err}"
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:164
-#: skytemple/skytemple/module/portrait/controller/portrait.py:214
+#: skytemple/skytemple/module/portrait/controller/portrait.py:160
+#: skytemple/skytemple/module/portrait/module.py:90
 #, python-brace-format
 msgid "Error for '{name}'."
 msgstr "Erreur pour « {name} »."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:173
+#: skytemple/skytemple/module/portrait/controller/portrait.py:169
 msgid "Export portrait as PNG sheet..."
 msgstr "Exporter les portraits sous forme d'une feuille PNG..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:191
+#: skytemple/skytemple/module/portrait/controller/portrait.py:187
 msgid "Import portraits from PNG sheet..."
 msgstr "Importer les portraits depuis une feuille PNG..."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:220
+#: skytemple/skytemple/module/portrait/module.py:96
 #, python-brace-format
 msgid "Failed importing portraits sheet:\n"
 "{err}"
 msgstr "Échec de l'importation de la feuille des portraits :\n"
 "{err}"
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:221
+#: skytemple/skytemple/module/portrait/module.py:97
 #: skytemple/skytemple/module/rom/controller/main.py:129
 msgid "Could not import."
 msgstr "Le fichier n'a pas pu être importé."
 
-#: skytemple/skytemple/module/portrait/controller/portrait.py:238
+#: skytemple/skytemple/module/portrait/module.py:108
 msgid " (flip)"
 msgstr " (renversé)"
 
@@ -13057,47 +13077,11 @@ msgstr ""
 msgid "The file name provided is too long (max 8 characters)."
 msgstr "Le nom du fichier est trop long (8 caractères maximum)."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:43
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:48
 msgid "<span size=\"large\">Spritesheet</span>"
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:92
-msgid "Export\n"
-"Ground"
-msgstr "Exporter\n"
-"Hors donjon"
-
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:138
-msgid "Import\n"
-"Ground"
-msgstr "Importer\n"
-"Hors donjon"
-
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:184
-msgid "Import\n"
-"Attack"
-msgstr "Importer\n"
-"Attaque"
-
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:230
-msgid "Export\n"
-"Attack"
-msgstr "Exporter\n"
-"Attaque"
-
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:276
-msgid "Export\n"
-"Dungeon"
-msgstr "Exporter\n"
-"Donjon"
-
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:322
-msgid "Import\n"
-"Dungeon"
-msgstr "Importer\n"
-"Donjon"
-
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:370
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:90
 msgid "Alternatively you can export the raw WAN sprite files \n"
 "and edit them with a tool like PsyCommando's <a href=\"gfxcrunch\">gfxcrunch</a>.\n"
 "Warning: SkyTemple does not validate the files you import."
@@ -13105,28 +13089,64 @@ msgstr "Vous pouvez également exporter le fichier de sprites WAN\n"
 "brut et les éditez avec un outil tel <a href=\"gfxcrunch\">gfxcrunch</a> de PsyCommando\n"
 "Attention : SkyTemple ne vérifie pas ce fichier lors de l'import."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:388
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:108
 msgid "<span size=\"large\">Manual Im-/Export</span>"
 msgstr "<span size=\"large\">Import / Export Manuel</span>"
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:403
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:158
+msgid "Export\n"
+"Ground"
+msgstr "Exporter\n"
+"Hors donjon"
+
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:204
+msgid "Import\n"
+"Ground"
+msgstr "Importer\n"
+"Hors donjon"
+
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:250
+msgid "Import\n"
+"Attack"
+msgstr "Importer\n"
+"Attaque"
+
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:296
+msgid "Export\n"
+"Attack"
+msgstr "Exporter\n"
+"Attaque"
+
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:342
+msgid "Export\n"
+"Dungeon"
+msgstr "Exporter\n"
+"Donjon"
+
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:388
+msgid "Import\n"
+"Dungeon"
+msgstr "Importer\n"
+"Donjon"
+
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:436
 msgid "You can export sprites in the SpriteBot format and import them again.\n"
 "For support, see our Discord server or the <a href=\"format\">specification</a> of the sheet format."
 msgstr ""
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:528
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:561
 msgid "Add new Sprite"
 msgstr "Ajouter un nouveau sprite"
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:542
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:575
 msgid "Use a ZIP archive instead of a folder."
 msgstr "Utiliser une archive ZIP au lieu d'un dossier."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:565
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:598
 msgid "-- or --"
 msgstr "-- ou --"
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:613
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:646
 msgid "Warning: This will edit the sprite with the ID assigned to this Pokémon. Other Pokémon that use this sprite are also affected."
 msgstr "Attention : Ceci éditera le sprite dont l'identifiant est associé à ce Pokémon. Les autres Pokémon utilisant également ce sprite seront aussi affecté."
 
@@ -13279,6 +13299,147 @@ msgstr "Erreur lors de l’import de l’image pour l’objet."
 
 #: skytemple/skytemple/module/sprite/module.py:284
 msgid "Error with sprite files: They don't have the same length!"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:55
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:260
+msgid "Loading..."
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:148
+msgid "<span size=\"x-large\">SpriteCollab Browser</span>\n\n"
+"Choose a Pokémon in the list on the left."
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:259
+msgid "SpriteCollab Browser"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:278
+msgid "Open in Webbrowser"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:318
+msgid "SpriteCollab Browser Settings"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:353
+msgid "Apply / Refresh"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:386
+msgid "Server Preset:"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:420
+msgid "Server URL:"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:431
+msgid "Frontend URL:"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.glade:463
+msgid "(optional)"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:200
+msgid "Failed loading list of Pokémon from the configured SpriteCollab server."
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:201
+msgid "Error Updating Sprites"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:223
+#, python-brace-format
+msgid "SpriteCollab (SpriteBot, {DEFAULT_SERVER})"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:224
+#, python-brace-format
+msgid "NotSpriteCollab ({NOT_SC_SERVER})"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:225
+msgid "Custom Server"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:355
+msgid "Failed loading this Pokémon."
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:356
+msgid "Error Loading Pokémon"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:388
+msgid "<b>Portraits:</b>"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:399
+msgid "Apply Portraits"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:408
+msgid "<b>Sprites:</b>"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:426
+msgid "Apply Sprites"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:443
+msgid "<b><i>Make sure to credit artists:</i></b>"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:449
+msgid "<b>Portrait Credits:</b>"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:463
+msgid "<b>Sprite Credits:</b>"
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:476
+msgid "Open Details on Website..."
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/module.py:77
+msgid "Portraits successfully imported."
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/module.py:128
+msgid "Sprites successfully imported."
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/module.py:146
+msgid "Open a Pokémon in the main window to apply the assets to."
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/module.py:149
+msgid "Could not apply the sprites, since no sprite data is available."
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/module.py:152
+msgid "This Pokémon does not support portraits and/or sprites."
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/module.py:167
+msgid "This will replace the sprite of this Pokémon with the one from the repository.\n"
+"You can also choose to create a new sprite instead, it will be assigned to the Pokémon.\n\n"
+"Additionally you can choose to copy the Sleep animation to the EventSleep/Laying/Waking\n"
+"animations (if they aren't available for this Pokémon otherwise).\n"
+"This will fix Pokémon using weird animations instead of sleeping on the overworld, \n"
+"when choosing them as a starter or partner."
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/module.py:177
+msgid "Create a new sprite instead of replacing the existing one."
+msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/module.py:180
+msgid "Copy the Sleep animation to EventSleep/Laying/Waking."
 msgstr ""
 
 #: skytemple/skytemple/module/strings/controller/main.py:23
@@ -13545,95 +13706,103 @@ msgid "Use Client Side Decorations"
 msgstr "Utiliser les décorations côté client"
 
 #: skytemple/skytemple/skytemple.glade:656
-#: skytemple/skytemple/skytemple.glade:1064
+#: skytemple/skytemple/skytemple.glade:1095
 msgid "More Files"
 msgstr "Plus de fichiers"
 
-#: skytemple/skytemple/skytemple.glade:697
+#: skytemple/skytemple/skytemple.glade:698
 msgid "Save as..."
 msgstr "Sauvegarder sous..."
 
-#: skytemple/skytemple/skytemple.glade:711
+#: skytemple/skytemple/skytemple.glade:712
 msgid "Show welcome screen..."
 msgstr "Afficher l'écran d'accueil"
 
-#: skytemple/skytemple/skytemple.glade:725
+#: skytemple/skytemple/skytemple.glade:726
 msgid "Settings..."
 msgstr "Paramètres"
 
-#: skytemple/skytemple/skytemple.glade:739
+#: skytemple/skytemple/skytemple.glade:741
+msgid "Open Image Converter..."
+msgstr ""
+
+#: skytemple/skytemple/skytemple.glade:756
+msgid "Open SpriteCollab Browser..."
+msgstr ""
+
+#: skytemple/skytemple/skytemple.glade:770
 msgid "Open config directory..."
 msgstr "Ouvrir le répertoire de configuration"
 
-#: skytemple/skytemple/skytemple.glade:753
+#: skytemple/skytemple/skytemple.glade:784
 msgid "About"
 msgstr "À propos"
 
-#: skytemple/skytemple/skytemple.glade:933
+#: skytemple/skytemple/skytemple.glade:964
 msgid "A new version of SkyTemple is available: "
 msgstr "Une nouvelle version de SkyTemple est disponible: "
 
-#: skytemple/skytemple/skytemple.glade:958
+#: skytemple/skytemple/skytemple.glade:989
 msgid "Update now!"
 msgstr "Mettez à jour!"
 
-#: skytemple/skytemple/skytemple.glade:986
+#: skytemple/skytemple/skytemple.glade:1017
 msgid "Support us!"
 msgstr "Soutenez-nous !"
 
-#: skytemple/skytemple/skytemple.glade:1022
+#: skytemple/skytemple/skytemple.glade:1053
 msgid "Recent Files:"
 msgstr "Fichiers récents"
 
-#: skytemple/skytemple/skytemple.glade:1109
+#: skytemple/skytemple/skytemple.glade:1140
 msgid "Native File Handlers enabled."
 msgstr "Gestionnaires de fichiers natifs activés."
 
-#: skytemple/skytemple/skytemple.glade:1173
+#: skytemple/skytemple/skytemple.glade:1204
 msgid "Oops!"
 msgstr "Oups !"
 
-#: skytemple/skytemple/skytemple.glade:1188
+#: skytemple/skytemple/skytemple.glade:1219
 msgid "An error happened while trying to load this view. Sorry!"
 msgstr "Une erreur est survenue lors du chargement de cette vue. Désolé !"
 
-#: skytemple/skytemple/skytemple.glade:1276
+#: skytemple/skytemple/skytemple.glade:1307
 msgid "Open"
 msgstr "Ouvrir"
 
-#: skytemple/skytemple/skytemple.glade:1326
+#: skytemple/skytemple/skytemple.glade:1357
 msgid "Save to ROM"
 msgstr "Sauvegarder la ROM"
 
-#: skytemple/skytemple/skytemple.glade:1340
+#: skytemple/skytemple/skytemple.glade:1371
 msgid "Reload current ROM"
 msgstr "Recharger la ROM"
 
-#: skytemple/skytemple/skytemple.glade:1362
+#: skytemple/skytemple/skytemple.glade:1393
 msgid "Open script editor / debugger"
 msgstr "Ouvrir l'éditeur de script / débogueur"
 
-#: skytemple/skytemple/skytemple.glade:1389
+#: skytemple/skytemple/skytemple.glade:1420
 msgid "Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US)."
 msgstr "Application pour modifier une ROM de Pokémon Donjon Mystère: Explorateurs du Ciel (EU/US)."
 
-#: skytemple/skytemple/skytemple.glade:1391
+#: skytemple/skytemple/skytemple.glade:1422
 msgid "https://github.com/SkyTemple/skytemple"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1480
+#: skytemple/skytemple/skytemple.glade:1511
 msgid "Privacy Information"
 msgstr "Informations de confidentialité"
 
-#: skytemple/skytemple/skytemple.glade:1500
+#: skytemple/skytemple/skytemple.glade:1531
 msgid "Don't allow"
 msgstr "Refuser"
 
-#: skytemple/skytemple/skytemple.glade:1513
+#: skytemple/skytemple/skytemple.glade:1544
 msgid "Allow sending error reports"
 msgstr "Autoriser l'envoi de rapports d'erreur"
 
-#: skytemple/skytemple/skytemple.glade:1540
+#: skytemple/skytemple/skytemple.glade:1571
 msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "We would like to collect some error information if things go wrong.\n\n"
 "You can find more information about the data we collect and how we\n"
@@ -13645,21 +13814,21 @@ msgstr "<span size=\"large\">Bienvenue dans SkyTemple !</span>\n\n"
 "sur les usages qui en sont fait dans nos <a href=\"privacy\">informations de confidentialité</a>.\n\n"
 "Cela nous permettra d’améliorer SkyTemple."
 
-#: skytemple/skytemple/skytemple.glade:1606
+#: skytemple/skytemple/skytemple.glade:1637
 msgid "Loading ROM \"NAME\"..."
 msgstr "Chargement de la ROM \"NAME\"..."
 
-#: skytemple/skytemple/skytemple.glade:1688
+#: skytemple/skytemple/skytemple.glade:1719
 msgid "You want to support SkyTemple and PMD2 ROM hacking?\n"
 "Thank you! You can support us..."
 msgstr "Vous voulez soutenir SkyTemple et le ROM Hacking PDM2?\n"
 "Merci beaucoup! Vous pouvez nous soutenir..."
 
-#: skytemple/skytemple/skytemple.glade:1708
+#: skytemple/skytemple/skytemple.glade:1739
 msgid "... by testing new features!"
 msgstr "... en testant de nouvelles fonctionnalités !"
 
-#: skytemple/skytemple/skytemple.glade:1724
+#: skytemple/skytemple/skytemple.glade:1755
 msgid "Join our Discord server and become a \"Beta Tester\", to get\n"
 "access to new features. Your feedback will directly help\n"
 "to improve SkyTemple and you can also suggest new features!"
@@ -13667,11 +13836,11 @@ msgstr "Rejoignez notre serveur Discord et devenez un \"bêta testeur\", pour av
 "de nouvelles fonctionnalités. Vos commentaires aideront directement\n"
 "à améliorer SkyTemple et vous pourrez également suggérer de nouvelles fonctionnalités !"
 
-#: skytemple/skytemple/skytemple.glade:1770
+#: skytemple/skytemple/skytemple.glade:1801
 msgid "... by joining development or reverse engineering the game!"
 msgstr "... en rejoignant le développement de SkyTemple, ou en inversant l'ingénierie du jeu !"
 
-#: skytemple/skytemple/skytemple.glade:1786
+#: skytemple/skytemple/skytemple.glade:1817
 msgid "We are always looking for people to help develop SkyTemple\n"
 "or who help hacking the game. If you are interested in reverse\n"
 "engineering or implementing new features for SkyTemple,\n"
@@ -13683,67 +13852,67 @@ msgstr "Nous sommes toujours à la recherche de gens pour aider à développer S
 "vous pouvez trouver le projet sur Github ! \n"
 "Vous pouvez également rejoindre le serveur Discord si vous avez des questions."
 
-#: skytemple/skytemple/skytemple.glade:1834
+#: skytemple/skytemple/skytemple.glade:1865
 msgid "... by helping to translate SkyTemple!"
 msgstr "... en assistant à la traduction de SkyTemple!"
 
-#: skytemple/skytemple/skytemple.glade:1850
+#: skytemple/skytemple/skytemple.glade:1881
 msgid "Do you want to help translating SkyTemple to your native\n"
 "language? Join our Discord for more information."
 msgstr "Voulez-vous contribuer à la traduction de Skytemple en votre langue natale ? Rejoignez notre Discord pour d'avantage d'informations."
 
-#: skytemple/skytemple/skytemple.glade:1894
+#: skytemple/skytemple/skytemple.glade:1925
 msgid "... by buying us a coffee!"
 msgstr "... en nous achetant un café !"
 
-#: skytemple/skytemple/skytemple.glade:1917
+#: skytemple/skytemple/skytemple.glade:1948
 msgid "If you like SkyTemple or other PMD2 hacking tools, you can\n"
 "support us with a small donation."
 msgstr "Si vous aimez SkyTemple ou d'autres outils de hacking sur\n"
 "PDM2, vous pouvez nous soutenir avec un petit don."
 
-#: skytemple/skytemple/skytemple.glade:1942
+#: skytemple/skytemple/skytemple.glade:1973
 msgid "Parakoopa"
 msgstr "Parakoopa"
 
-#: skytemple/skytemple/skytemple.glade:1959
+#: skytemple/skytemple/skytemple.glade:1990
 msgid "Developer of SkyTemple and \n"
 "creator of ExplorerScript.\n"
 msgstr "Développeur de SkyTemple et \n"
 "créateur de ExplorerScript.\n"
 
-#: skytemple/skytemple/skytemple.glade:2005
+#: skytemple/skytemple/skytemple.glade:2036
 msgid "psy_commando"
 msgstr "psy_commando"
 
-#: skytemple/skytemple/skytemple.glade:2022
+#: skytemple/skytemple/skytemple.glade:2053
 msgid "Figured out most things about \n"
 "how this game works!\n"
 "Developer of ppmdu."
 msgstr "A compris la plupart du fonctionnement du jeu !\n"
 "Développeur de ppmdu."
 
-#: skytemple/skytemple/skytemple.glade:2100
+#: skytemple/skytemple/skytemple.glade:2131
 msgid "Dither: Ordered"
 msgstr "Dépolissage: Ordonné"
 
-#: skytemple/skytemple/skytemple.glade:2104
+#: skytemple/skytemple/skytemple.glade:2135
 msgid "Dither: Floyd Steinberg"
 msgstr "Dépolissage: Floyd Steinberg"
 
-#: skytemple/skytemple/skytemple.glade:2108
+#: skytemple/skytemple/skytemple.glade:2139
 msgid "No Dithering"
 msgstr "Aucun dépolissage"
 
-#: skytemple/skytemple/skytemple.glade:2112
+#: skytemple/skytemple/skytemple.glade:2143
 msgid "Reorganize colors only"
 msgstr "Réorganiser les couleurs uniquement"
 
-#: skytemple/skytemple/skytemple.glade:2118
+#: skytemple/skytemple/skytemple.glade:2149
 msgid "Tilequant"
 msgstr "Tilequant"
 
-#: skytemple/skytemple/skytemple.glade:2167
+#: skytemple/skytemple/skytemple.glade:2198
 msgid "This tool converts any image into the image format required by Explorers of Sky.\n"
 "Please note that the game has pretty strict color restrictions.\n\n"
 "Each 8x8 tile will only be able to use one palette.\n\n"
@@ -13753,31 +13922,31 @@ msgstr "Cet outil convertit n'importe quelle image dans le format d'image requis
 "Chaque tuile 8x8 ne sera en mesure d'utiliser qu'une seule palette.\n\n"
 "Les images créées par cet outil peuvent être importées pour les arrière-plans."
 
-#: skytemple/skytemple/skytemple.glade:2196
+#: skytemple/skytemple/skytemple.glade:2227
 msgid "Number of Palettes"
 msgstr "Nombre de Palettes"
 
-#: skytemple/skytemple/skytemple.glade:2239
+#: skytemple/skytemple/skytemple.glade:2270
 msgid "16"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:2271
+#: skytemple/skytemple/skytemple.glade:2302
 msgid "Transparent Color"
 msgstr "Couleur transparente"
 
-#: skytemple/skytemple/skytemple.glade:2314
+#: skytemple/skytemple/skytemple.glade:2345
 msgid "Color"
 msgstr "Couleur"
 
-#: skytemple/skytemple/skytemple.glade:2426
+#: skytemple/skytemple/skytemple.glade:2457
 msgid "Dithering Level"
 msgstr "Niveau de dépolissage"
 
-#: skytemple/skytemple/skytemple.glade:2553
+#: skytemple/skytemple/skytemple.glade:2584
 msgid "Additional Input Image (optional)"
 msgstr "Image d'entrée supplémentaire (optionnel)"
 
-#: skytemple/skytemple/skytemple.glade:2647
+#: skytemple/skytemple/skytemple.glade:2678
 msgid "Convert"
 msgstr "Convertir"
 
