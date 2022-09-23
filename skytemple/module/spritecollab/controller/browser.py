@@ -5,7 +5,7 @@ from typing import Optional, Callable, List, Dict, Tuple, TYPE_CHECKING
 
 from PIL import Image
 from gi.repository import Gtk, GLib, GdkPixbuf
-from skytemple_files.common.i18n_util import _
+from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.spritecollab.client import DEFAULT_SERVER, MonsterFormInfoWithPortrait, SpriteCollabClient, \
     MonsterFormDetails
 from skytemple_files.common.spritecollab.schema import Credit
@@ -19,6 +19,8 @@ if TYPE_CHECKING:
     from skytemple.module.spritecollab.module import SpritecollabModule
 
 DEFAULT_SERVER_BROWSER = "https://sprites.pmdcollab.org/"
+NOT_SC_SERVER = "https://nss.pmdcollab.org/graphql"
+NOT_SC_SERVER_BROWSER = "https://nsc.pmdcollab.org/"
 
 
 def loader(
@@ -38,12 +40,12 @@ async def loader_impl(
         callback: Callable[[List[MonsterFormInfoWithPortrait]], None],
         error_callback: Callable[[Exception], None]
 ):
-    async with client as session:
-        try:
+    try:
+        async with client as session:
             value = await session.list_monster_forms(True)
             callback(value)
-        except Exception as error:
-            error_callback(error)
+    except Exception as error:
+        error_callback(error)
 
 
 def entry_loader(
@@ -207,7 +209,54 @@ class BrowserController(AbstractController):
             self.load_entry(model[treeiter][2], model[treeiter][4])
 
     def on_sc_settings_clicked(self, *args):
-        raise NotImplementedError()
+        diag: Gtk.Dialog = self.builder.get_object('sc_diag_settings')
+        diag_preset: Gtk.ComboBox = self.builder.get_object('sc_diag_preset')
+        diag_server_url: Gtk.Entry = self.builder.get_object('sc_diag_server_url')
+        diag_browser_url: Gtk.Entry = self.builder.get_object('sc_diag_browser_url')
+
+        # Label, Custom select, preset server url, preset browser url
+        model: Gtk.ListStore = diag_preset.get_model()
+        had_model = model is not None
+        if not had_model:
+            model = Gtk.ListStore.new([str, bool, str, str])
+        model.clear()
+        model.append([f(_("SpriteCollab (SpriteBot, {DEFAULT_SERVER})")), False, DEFAULT_SERVER, DEFAULT_SERVER_BROWSER])
+        model.append([f(_("NotSpriteCollab ({NOT_SC_SERVER})")), False, NOT_SC_SERVER, NOT_SC_SERVER_BROWSER])
+        model.append([_("Custom Server"), True, "", ""])
+        if not had_model:
+            diag_preset.set_model(model)
+            renderer_text = Gtk.CellRendererText()
+            diag_preset.pack_start(renderer_text, True)
+            diag_preset.add_attribute(renderer_text, "text", 0)
+        active_id = 2
+        if self._spriteserver_url == DEFAULT_SERVER:
+            active_id = 0
+        elif self._spriteserver_url == NOT_SC_SERVER:
+            active_id = 1
+        diag_preset.set_active(active_id)
+
+        answer = diag.run()
+        diag.hide()
+        if answer == Gtk.ResponseType.APPLY:
+            self._spriteserver_url = diag_server_url.get_text()
+            browser_text = diag_browser_url.get_text()
+            self._spritebrowser_url = browser_text if browser_text != "" else None
+            self.reinit()
+
+    def on_sc_diag_preset_changed(self, w: Gtk.ComboBox, *args):
+        diag_server_url: Gtk.Entry = self.builder.get_object('sc_diag_server_url')
+        diag_browser_url: Gtk.Entry = self.builder.get_object('sc_diag_browser_url')
+        model = w.get_model()
+        treeiter = w.get_active_iter()
+        if model is None or treeiter is None:
+            return
+        row = model[treeiter]
+        if row is None:
+            return
+        diag_server_url.set_text(row[2])
+        diag_browser_url.set_text(row[3])
+        diag_server_url.set_sensitive(row[1])
+        diag_browser_url.set_sensitive(row[1])
 
     def on_sc_external_clicked(self, *args):
         if self._spritebrowser_url is not None:
