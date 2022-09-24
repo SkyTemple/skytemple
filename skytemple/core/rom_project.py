@@ -16,6 +16,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import os
 import sys
 from enum import Enum, auto
 from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Type, Tuple, Any, List, overload, Literal, \
@@ -415,7 +416,11 @@ class RomProject:
 
     def save_as_is(self):
         """Simply save the current ROM to disk."""
-        self._rom.saveToFile(self.filename)
+        # First save to a temp file we will move later.
+        backup_fn = os.path.join(self.get_project_file_manager().dir(), '.~save.bin')
+        self._rom.saveToFile(backup_fn)
+        # Replace the original ROM with the new.
+        os.replace(backup_fn, self.filename)
 
     def get_files_with_ext(self, ext, folder_name: Optional[str] = None):
         if folder_name is None:
