@@ -142,6 +142,8 @@ def readable_name(bin_name: str):
         return "ARM 7"
     if bin_name == "ram":
         return "RAM"
+    if bin_name == "itcm":
+        return "ARM 9 ITCM"
     if bin_name.startswith("overlay"):
         try:
             ov_id = int(bin_name[7:], 10)
