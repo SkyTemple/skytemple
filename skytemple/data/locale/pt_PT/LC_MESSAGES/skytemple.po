@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-09-23 21:51+0000\n"
-"PO-Revision-Date: 2022-09-23 22:40\n"
+"POT-Creation-Date: 2022-09-25 15:36+0000\n"
+"PO-Revision-Date: 2022-09-25 15:38\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -824,6 +824,9 @@ msgstr ""
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:98
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:88
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:99
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:268
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:282
 msgid "X"
 msgstr ""
 
@@ -4555,6 +4558,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:229
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:517
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:916
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:342
 #: skytemple/skytemple/module/script/controller/ssa.py:1282
 #: skytemple/skytemple/module/script/controller/ssa.py:1294
 #: skytemple/skytemple/module/script/controller/ssa.py:1430
@@ -5465,6 +5469,7 @@ msgid "Statements"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/functions.py:32
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.py:72
 msgid "Functions"
 msgstr ""
 
@@ -7304,7 +7309,7 @@ msgid "0 --> 100% secret bazaar\n"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:477
-msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from \"ASM Patches.\"\n"
+msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from \"Patches\" > \"ASM\".\n"
 "If patched, the game will turn a random room into a maze room made of wall tiles instead of the usual water (although water can later replace some of the walls once the water generation takes place)."
 msgstr ""
 
@@ -8383,7 +8388,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/main.glade:253
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ActorAndLevelLoader\" \n"
-"ASM patch from the \"ASM Patches\" menu."
+"ASM patch from the \"Patches\" > \"ASM\" menu."
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
@@ -8429,7 +8434,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/animations.glade:226
 msgid "<Not available>\n\n"
 "To view and edit animation tables, please apply the \"ExtractAnimData\"\n"
-"ASM patch from the \"ASM Patches\" menu."
+"ASM patch from the \"Patches\" > \"ASM\" menu."
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:274
@@ -8576,7 +8581,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:120
 msgid "<Not available>\n\n"
 "To create dungeon interruption, please apply the \"DungeonInterrupt\"\n"
-"ASM patch from the \"ASM Patches\" menu."
+"ASM patch from the \"Patches\" > \"ASM\" menu."
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:208
@@ -8670,8 +8675,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:166
 msgid "<Not available>\n\n"
-"To view and edit guest pokémon data, please apply the \"EditExtraPokemon\" \n"
-"ASM patch from the \"ASM Patches\" menu.\n"
+"To view and edit guest Pokémon data, please apply the \"EditExtraPokemon\"\n"
+"ASM patch from the \"Patches\" > \"ASM\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
 msgstr ""
 
@@ -8952,7 +8957,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/object_list.glade:75
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ExtractObjectTable\" \n"
-"ASM patch from the \"ASM Patches\" menu."
+"ASM patch from the \"Patches\" > \"ASM\" menu."
 msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:210
@@ -11528,7 +11533,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:556
 msgid "<Not available>\n\n"
 "To view and edit those lists, please apply the \"ExtractHardcodedItemLists\" \n"
-"ASM patch from the \"ASM Patches\" menu."
+"ASM patch from the \"Patches\" > \"ASM\" menu."
 msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:638
@@ -11658,6 +11663,7 @@ msgid "Base PP:"
 msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:373
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:252
 msgid "Description:"
 msgstr ""
 
@@ -11830,6 +11836,7 @@ msgid "Author"
 msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:217
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:384
 msgid "Description"
 msgstr ""
 
@@ -11838,8 +11845,8 @@ msgid "Status"
 msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/asm.py:39
-#: skytemple/skytemple/module/patch/controller/main.py:23
-#: skytemple/skytemple/module/patch/controller/pmdsky_debug.py:23
+#: skytemple/skytemple/module/patch/controller/main.py:24
+#: skytemple/skytemple/module/patch/controller/main.py:32
 msgid "Patches"
 msgstr ""
 
@@ -11906,6 +11913,25 @@ msgstr ""
 msgid "Compatible"
 msgstr ""
 
+#: skytemple/skytemple/module/patch/controller/cot.glade:26
+msgid "c-of-time & Rust of Darkness"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/cot.glade:42
+msgid "<b>c-of-time</b> (cot) is a C runtime and development environment for writing custom patches for the game in C.\n\n"
+"<b>Rust of Darkness</b> (RoD) is an extension of cot to write custom patches in Rust.\n\n"
+"To get started with cot and/or RoD, watch the tutorial below and read the READMEs.\n\n"
+"<b>Important</b>: Before writing cot or RoD patches to the ROM make sure to close SkyTemple. Otherwise SkyTemple may override changes you made."
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/cot.glade:129
+msgid "c-of-time README"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/cot.glade:175
+msgid "Rust of Time README"
+msgstr ""
+
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:76
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:156
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:303
@@ -11921,7 +11947,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:107
 msgid "<Not available>\n\n"
 "To view and edit item effects, please apply the \"ExtractItemCode\"\n"
-"ASM patch from the \"ASM Patches\" menu."
+"ASM patch from the \"Patches\" > \"ASM\" menu."
 msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:173
@@ -12051,6 +12077,15 @@ msgstr ""
 msgid "Export / Import Effect Code Help"
 msgstr ""
 
+#: skytemple/skytemple/module/patch/controller/main.py:36
+msgid "In this section you can apply built-in ASM patches, your own ASM patches and custom\n"
+"item-, move- and special process effects written in Assembler.\n\n"
+"You will also find information on how to write our own\n"
+"patches and effects in the C and Rust programming languages.\n\n"
+"Additionally you can browse all symbols and functions\n"
+"in the game known to SkyTemple."
+msgstr ""
+
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:84
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:165
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:344
@@ -12066,7 +12101,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:115
 msgid "<Not available>\n\n"
 "To view and edit move effects, please apply the \"ExtractMoveCode\" \n"
-"ASM patch from the \"ASM Patches\" menu.\n"
+"ASM patch from the \"Patches\" > \"ASM\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
 msgstr ""
 
@@ -12117,6 +12152,44 @@ msgstr ""
 msgid "Invalid values for some settings provided. Please try again."
 msgstr ""
 
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:37
+msgid "pmdsky-debug Symbols"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:53
+msgid "SkyTemple is powered by <b>pmdsky-debug</b>.\n"
+"pmdsky-debug is a public repository of symbols and functions in the game. \n"
+"You can find the list of symbols shipped with this version of SkyTemple below. \n"
+"However you will probably find newer symbols in the repository, which you can open with the button below. The repository also contains instructions on how to contribute or use the symbols with debuggers like Ghidra.\n\n"
+"The symbols below are shown for the region of the currently loaded ROM.\n"
+"The \"Address\" column shows the first address. Addresses are absolute."
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:87
+msgid "pmdsky-debug version:"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:183
+msgid "Open pmdksy-debug"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:356
+msgid "Address"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:370
+msgid "Length"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.py:71
+msgid "Data"
+msgstr ""
+
+#: skytemple/skytemple/module/patch/controller/pmdsky_debug.py:115
+#, python-brace-format
+msgid "<b>Load Address:</b> 0x{bin_load_address:0x} | <b>Length:</b> {bin_length}"
+msgstr ""
+
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:152
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:302
@@ -12132,7 +12205,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:103
 msgid "<Not available>\n\n"
 "To view and edit special process effects, please apply the \"ExtractSPCode\"\n"
-"ASM patch from the \"ASM Patches\" menu."
+"ASM patch from the \"Patches\" > \"ASM\" menu."
 msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:169
@@ -12157,7 +12230,7 @@ msgid "ASM"
 msgstr ""
 
 #: skytemple/skytemple/module/patch/module.py:86
-msgid "C/Rust"
+msgid "C / Rust"
 msgstr ""
 
 #: skytemple/skytemple/module/patch/module.py:90
