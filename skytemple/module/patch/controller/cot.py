@@ -14,21 +14,53 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from gi.repository import Gtk
+import os.path
+import webbrowser
+from typing import TYPE_CHECKING
 
-from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.module_controller import SimpleController, NotImplementedController
+from gi.repository import Gtk, Gdk, GLib
+
+from skytemple.controller.main import MainController
+from skytemple.core.module_controller import SimpleController, AbstractController
 from skytemple_files.common.i18n_util import _
 
-class CotController(NotImplementedController):
-    def __init__(self, module: AbstractModule, item_id: int):
-        pass
+from skytemple.core.ui_utils import data_dir
 
-    def get_title(self) -> str:
-        return ""  # todo
+if TYPE_CHECKING:
+    from skytemple.module.patch.module import PatchModule
 
-    def get_content(self) -> Gtk.Widget:
-        pass  # todo
 
-    def get_icon(self) -> str:
-        return 'skytemple-illust-patch'
+class CotController(AbstractController):
+    def __init__(self, module: 'PatchModule', *args):
+        self.module = module
+
+        self.builder: Gtk.Builder = None  # type: ignore
+
+    def get_view(self) -> Gtk.Widget:
+        self.builder = self._get_builder(__file__, 'cot.glade')
+        assert self.builder
+
+        img_tutorial: Gtk.Image = self.builder.get_object('img_tutorial')
+        img_tutorial.set_from_file(os.path.join(data_dir(), 'thumb_cot.png'))
+
+        self.builder.connect_signals(self)
+        return self.builder.get_object('main_box')
+
+    def on_tutorial_video_enter(self, *args):
+        img_btn: Gtk.Button = self.builder.get_object('tutorial_video')
+        pointer = Gdk.Cursor.new_from_name(MainController.window().get_display(), 'pointer')
+        GLib.idle_add(lambda: img_btn.get_window().set_cursor(pointer))
+
+    def on_tutorial_video_leave(self, *args):
+        img_btn: Gtk.Button = self.builder.get_object('tutorial_video')
+        default = Gdk.Cursor.new_from_name(MainController.window().get_display(), 'default')
+        GLib.idle_add(lambda: img_btn.get_window().set_cursor(default))
+
+    def on_tutorial_video_clicked(self, *args):
+        webbrowser.open_new_tab('https://skytemple.org/cot_tutorial')
+
+    def on_readme_cot_clicked(self, *args):
+        webbrowser.open_new_tab('https://github.com/SkyTemple/c-of-time/blob/main/README.md')
+
+    def on_readme_rod_clicked(self, *args):
+        webbrowser.open_new_tab('https://github.com/SkyTemple/c-of-time/blob/main/rust/README.md')

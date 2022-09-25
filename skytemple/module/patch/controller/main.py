@@ -14,24 +14,30 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from typing import Optional
+
 from gi.repository import Gtk
 
-from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.module_controller import SimpleController, NotImplementedController
+from skytemple.core.module_controller import SimpleController
 from skytemple_files.common.i18n_util import _
 
 PATCHES = _('Patches')
 
 
-class MainController(NotImplementedController):
-    def __init__(self, module: AbstractModule, item_id: int):
+class MainController(SimpleController):
+    def __init__(self, _module, _item_id):
         pass
 
     def get_title(self) -> str:
-        return PATCHES
+        return _('Patches')
 
     def get_content(self) -> Gtk.Widget:
-        pass  # todo
+        return self.generate_content_label(
+            _("In this section you can apply built-in ASM patches, your own ASM patches and custom\nitem-, move- and "
+              "special process effects written in Assembler.\n\nYou will also find information on how to write our own\n"
+              "patches and effects in the C and Rust programming languages.\n\nAdditionally you can browse all symbols "
+              "and functions\nin the game known to SkyTemple.")
+        )
 
-    def get_icon(self) -> str:
+    def get_icon(self) -> Optional[str]:
         return 'skytemple-illust-patch'

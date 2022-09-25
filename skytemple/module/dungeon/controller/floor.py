@@ -475,7 +475,7 @@ class FloorController(AbstractController):
 
     def on_btn_help_unused_chance_clicked(self, *args):
         self._help(_("Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from "
-                     "\"ASM Patches.\"\nIf patched, the game will turn a random room into a maze room made of wall tiles "
+                     "\"Patches\" > \"ASM\".\nIf patched, the game will turn a random room into a maze room made of wall tiles "
                      "instead of the usual water (although water can later replace some of the walls once the water "
                      "generation takes place)."))
 

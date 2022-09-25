@@ -82,11 +82,11 @@ class PatchModule(AbstractModule):
             'skytemple-e-move-symbolic', _('Move Effects'), self, MoveEffectsController, 0, False, '', True
         ])
 
-        self._asm_iter = item_store.append(root, [
-            'skytemple-e-patch-symbolic', _('C/Rust'), self, CotController, 0, False, '', True
+        self._c_of_time_iter = item_store.append(root, [
+            'skytemple-e-patch-symbolic', _('C / Rust'), self, CotController, 0, False, '', True
         ])
 
-        self._asm_iter = item_store.append(root, [
+        self.pmdsky_debug_iter = item_store.append(root, [
             'skytemple-e-patch-symbolic', _('Symbols'), self, PmdSkyDebugController, 0, False, '', True
         ])
 
