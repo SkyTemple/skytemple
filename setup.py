@@ -64,7 +64,7 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files[spritecollab] >= 1.4.0a4',
+        'skytemple-files[spritecollab] >= 1.4.0',
         'pmdsky-debug-py',  #  Whatever version skytemple-files requires.
         'skytemple-dtef >= 1.1.4',
         'skytemple-icons >= 1.3.2',
@@ -72,7 +72,7 @@ setup(
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
-        'tilequant >= 0.4.0',
+        'tilequant >= 0.4.1',
         'skytemple-ssb-debugger >= 1.3.8.post2',
         'pygal >= 2.4.0',
         'CairoSVG >= 2.4.2',

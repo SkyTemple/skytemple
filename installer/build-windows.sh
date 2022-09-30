@@ -31,6 +31,12 @@ fi
 
 pyinstaller skytemple.spec
 
+# Check if we need to copy the cacert file
+if [ -f "dist/skytemple_randomizer/certifi/cacert.pem" ]; then
+  echo "Moved cacert to correct place"
+  cp -rf dist/skytemple/certifi/cacert.pem dist/skytemple/certifi.pem
+fi
+
 # Write the version number to files that are read at runtime
 version=$PACKAGE_VERSION || $(python3 -c "import pkg_resources; print(pkg_resources.get_distribution(\"skytemple\").version)")
 
