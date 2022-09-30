@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-09-25 15:36+0000\n"
-"PO-Revision-Date: 2022-09-30 10:47\n"
+"POT-Creation-Date: 2022-09-30 11:09+0000\n"
+"PO-Revision-Date: 2022-09-30 11:48\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -401,19 +401,19 @@ msgstr "Linkbox"
 
 #: /dev/fd/63:92 /dev/fd/63:207
 msgid "Used TM"
-msgstr ""
+msgstr "Genutzte TM"
 
 #: /dev/fd/63:93 /dev/fd/63:208
 msgid "Treasure Box 1"
-msgstr ""
+msgstr "Schatzbox 1"
 
 #: /dev/fd/63:94 /dev/fd/63:209
 msgid "Treasure Box 2"
-msgstr ""
+msgstr "Schatzbox 2"
 
 #: /dev/fd/63:95 /dev/fd/63:210
 msgid "Treasure Box 3"
-msgstr ""
+msgstr "Schatzbox 3"
 
 #: /dev/fd/63:96 /dev/fd/63:211
 #: skytemple/skytemple/module/monster/controller/monster.glade:2809
@@ -422,40 +422,40 @@ msgstr "Exklusive Items"
 
 #: /dev/fd/63:97 /dev/fd/63:212
 msgid "Red component"
-msgstr ""
+msgstr "Rote Komponente"
 
 #: /dev/fd/63:98 /dev/fd/63:213
 msgid "Green component"
-msgstr ""
+msgstr "Grüne Komponente"
 
 #: /dev/fd/63:99 /dev/fd/63:214
 msgid "Blue component"
-msgstr ""
+msgstr "Blaue Komponente"
 
 #: /dev/fd/63:100 /dev/fd/63:215
 msgid "Alpha component"
-msgstr ""
+msgstr "Alpha Komponente"
 
 #: /dev/fd/63:101 /dev/fd/63:216
 msgid "ID of the first icon in markfont.dat (23 entries used)"
-msgstr ""
+msgstr "ID des ersten Icons in markfont.dat (23 Einträge verwenden verwendet)"
 
 #: /dev/fd/63:102 /dev/fd/63:217
 msgid "Display accuracy and power values"
-msgstr ""
+msgstr "Anzeige der Genauigkeit- und Stärke-Werte"
 
 #: /dev/fd/63:103 /dev/fd/63:218
 msgid "ID of the first icon in markfont.dat (24 entries used)"
-msgstr ""
+msgstr "ID des ersten Icons in markfont.dat (24 Einträge verwenden verwendet)"
 
 #: /dev/fd/63:104 /dev/fd/63:219
 msgid "Only interruptions don't heal HP"
-msgstr ""
+msgstr "Nur Unterbrechungen heilen keine KP"
 
 #: /dev/fd/63:105 /dev/fd/63:220
 #, c-format
 msgid "% of exp. shared"
-msgstr ""
+msgstr "% der geteilten Erfahrungspunkte"
 
 #: /dev/fd/63:106 /dev/fd/63:221
 msgid "String ID for the Menu Option"
@@ -5892,7 +5892,7 @@ msgstr ""
 
 #: skytemple/skytemple/core/ui_utils.py:219
 msgid "SkyTemple - Value out of range"
-msgstr ""
+msgstr "SkyTemple - Wert außerhalb des gültigen Bereichs"
 
 #: skytemple/skytemple/main.py:120
 msgid "PyGObject compiled without Cairo support. Can't start!"
@@ -7069,7 +7069,7 @@ msgstr "Wetter:"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1958
 msgid "(no. of rooms)"
-msgstr ""
+msgstr "(Anzahl der Räume)"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1978
 msgid "Terrain Settings"
@@ -8629,7 +8629,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
 msgid "Text String for Name"
-msgstr ""
+msgstr "Zeichenkette für Namen"
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:255
 msgid "Unk4"
@@ -8842,7 +8842,7 @@ msgstr "Param. 2"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:371
 msgid "Continue Music"
-msgstr ""
+msgstr "Musik fortsetzen"
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.py:124
 msgid "Here you can edit dungeon interruptions. \n"
@@ -9221,7 +9221,7 @@ msgstr "Heilung der KP durch Tsitrubeeren:"
 #: skytemple/skytemple/module/lists/controller/object_list.glade:46
 #: skytemple/skytemple/module/lists/controller/object_list.glade:123
 msgid "Object List"
-msgstr ""
+msgstr "Objektliste"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:75
 msgid "<Not available>\n\n"
@@ -9231,15 +9231,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:210
 msgid "Unk2_1"
-msgstr ""
+msgstr "Unk 2_1"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:226
 msgid "Unk2_2"
-msgstr ""
+msgstr "Unk 2_2"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:242
 msgid "Flag"
-msgstr ""
+msgstr "Flag"
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:323
 msgid "The Name is used by the game to determine if a ground sprite should be used. \n"
@@ -9250,7 +9250,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/object_list.py:93
 msgid "Invalid object name"
-msgstr ""
+msgstr "Ungültiger Objektname"
 
 #: skytemple/skytemple/module/lists/controller/rank_list.glade:60
 #: skytemple/skytemple/module/lists/module.py:120
@@ -11923,19 +11923,19 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:228
 msgid "Item Name"
-msgstr ""
+msgstr "Item-Name"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:253
 msgid "Insert Key..."
-msgstr ""
+msgstr "Schlüssel einfügen..."
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:270
 msgid "Remove Key..."
-msgstr ""
+msgstr "Schlüssel entfernen..."
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:287
 msgid "Add Missing Keys"
-msgstr ""
+msgstr "Fehlende Schlüssel hinzufügen"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:68
 msgid "Sort keys are used to sort items in your inventory when using the sort feature in game.\n"
@@ -11950,7 +11950,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:142
 msgid "Insert Key Before: "
-msgstr ""
+msgstr "Schlüssel vorher einfügen: "
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:143
 msgid "Insert an item key id before the one selected.\n"
@@ -11959,7 +11959,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:162
 msgid "Remove Key: "
-msgstr ""
+msgstr "Schlüssel entfernen: "
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:163
 msgid "Remove the item key id selected.\n"
@@ -11973,7 +11973,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:179
 msgid "Error removing key."
-msgstr ""
+msgstr "Fehler beim Entfernen des Schlüssels."
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:527
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:604
@@ -12377,7 +12377,7 @@ msgstr "Kompatibel"
 
 #: skytemple/skytemple/module/patch/controller/cot.glade:26
 msgid "c-of-time & Rust of Darkness"
-msgstr ""
+msgstr "c-of-time & Rust of Darkness"
 
 #: skytemple/skytemple/module/patch/controller/cot.glade:42
 msgid "<b>c-of-time</b> (cot) is a C runtime and development environment for writing custom patches for the game in C.\n\n"
@@ -12388,10 +12388,10 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/cot.glade:129
 msgid "c-of-time README"
-msgstr ""
+msgstr "c-of-time README"
 
 #: skytemple/skytemple/module/patch/controller/cot.glade:175
-msgid "Rust of Time README"
+msgid "Rust of Darkness README"
 msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:76
@@ -12466,7 +12466,7 @@ msgstr "Code exportieren"
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:759
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:705
 msgid "Effect Library"
-msgstr ""
+msgstr "Effekt-Bibliothek"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:761
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:803
@@ -12618,7 +12618,7 @@ msgstr "Für einige Einstellungen wurden ungültige Werte angegeben. Bitte versu
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:37
 msgid "pmdsky-debug Symbols"
-msgstr ""
+msgstr "pmdsky-debug Symbole"
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:53
 msgid "SkyTemple is powered by <b>pmdsky-debug</b>.\n"
@@ -12631,23 +12631,23 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:87
 msgid "pmdsky-debug version:"
-msgstr ""
+msgstr "pmdsky-debug Version:"
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:183
 msgid "Open pmdksy-debug"
-msgstr ""
+msgstr "pmdksy-debug öffnen"
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:356
 msgid "Address"
-msgstr ""
+msgstr "Adresse"
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:370
 msgid "Length"
-msgstr ""
+msgstr "Länge"
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.py:71
 msgid "Data"
-msgstr ""
+msgstr "Daten"
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.py:115
 #, python-brace-format
@@ -12691,15 +12691,15 @@ msgstr "Exportieren von ASM-Code für spezielle Prozesse..."
 
 #: skytemple/skytemple/module/patch/module.py:73
 msgid "ASM"
-msgstr ""
+msgstr "ASM"
 
 #: skytemple/skytemple/module/patch/module.py:86
 msgid "C / Rust"
-msgstr ""
+msgstr "C / Rust"
 
 #: skytemple/skytemple/module/patch/module.py:90
 msgid "Symbols"
-msgstr ""
+msgstr "Symbole"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:231
 msgid "... from separate images"
@@ -12720,11 +12720,11 @@ msgstr "... als ein Spritesheet (SpriteBot Format)"
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:306
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:63
 msgid "Open SpriteCollab Browser"
-msgstr ""
+msgstr "SpriteCollab-Browser öffnen"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:307
 msgid "Spritecollab Browser"
-msgstr ""
+msgstr "SpriteCollab-Browser"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:410
 msgid "If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.\n"
@@ -13209,7 +13209,7 @@ msgstr "Bearbeite {script_name}"
 
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:47
 msgid "Edit Event"
-msgstr ""
+msgstr "Event bearbeiten"
 
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:49
 msgid "New Event"
@@ -13396,7 +13396,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/object.glade:193
 msgid "Import image"
-msgstr ""
+msgstr "Bild importieren"
 
 #: skytemple/skytemple/module/sprite/controller/object.py:57
 msgid "SkyTemple can not edit sprites. \n"
@@ -13417,15 +13417,15 @@ msgstr "In diesem Abschnitt kannst du Objekt-Sprites importieren und exportieren
 
 #: skytemple/skytemple/module/sprite/controller/object_main.glade:96
 msgid "New Object Sprite"
-msgstr ""
+msgstr "Neuer Objekt-Sprite"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:47
 msgid "Create Object Sprite"
-msgstr ""
+msgstr "Objekt-Sprite erstellen"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:47
 msgid "Sprite Name"
-msgstr ""
+msgstr "Sprite-Name"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:56
 msgid "The length of the sprite name must be between 1-10 characters."
@@ -13433,11 +13433,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:67
 msgid "A sprite with this name already exists."
-msgstr ""
+msgstr "Ein Sprite mit diesem Namen existiert bereits."
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:84
 msgid "Object sprite added successfully"
-msgstr ""
+msgstr "Objektsprite wurde erfolgreich hinzugefügt"
 
 #: skytemple/skytemple/module/sprite/module.py:129
 msgid "Import WAN sprite..."
@@ -13469,11 +13469,11 @@ msgstr "Fehler beim Exportieren des Sprites."
 
 #: skytemple/skytemple/module/sprite/module.py:221
 msgid "Import image file..."
-msgstr ""
+msgstr "Bild importieren..."
 
 #: skytemple/skytemple/module/sprite/module.py:239
 msgid "Error importing image to object."
-msgstr ""
+msgstr "Fehler beim Importieren des Bildes in das Objekt."
 
 #: skytemple/skytemple/module/sprite/module.py:284
 msgid "Error with sprite files: They don't have the same length!"
@@ -13482,114 +13482,115 @@ msgstr "Fehler in Sprite-Dateien: Sie haben nicht die gleiche Länge!"
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:55
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:260
 msgid "Loading..."
-msgstr ""
+msgstr "Wird geladen..."
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:148
 msgid "<span size=\"x-large\">SpriteCollab Browser</span>\n\n"
 "Choose a Pokémon in the list on the left."
-msgstr ""
+msgstr "<span size=\"x-large\">SpriteCollab-Browser</span>\n\n"
+"Wähle ein Pokémon aus der Liste auf der linken Seite."
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:259
 msgid "SpriteCollab Browser"
-msgstr ""
+msgstr "SpriteCollab-Browser"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:278
 msgid "Open in Webbrowser"
-msgstr ""
+msgstr "Im Webbrowser öffnen"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:318
 msgid "SpriteCollab Browser Settings"
-msgstr ""
+msgstr "SpriteCollab-Browser Einstellungen"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:353
 msgid "Apply / Refresh"
-msgstr ""
+msgstr "Anwenden / Aktualisieren"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:386
 msgid "Server Preset:"
-msgstr ""
+msgstr "Server-Voreinstellung:"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:420
 msgid "Server URL:"
-msgstr ""
+msgstr "Server-URL:"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:431
 msgid "Frontend URL:"
-msgstr ""
+msgstr "Frontend-URL:"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:463
 msgid "(optional)"
-msgstr ""
+msgstr "(optional)"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:200
 msgid "Failed loading list of Pokémon from the configured SpriteCollab server."
-msgstr ""
+msgstr "Fehler beim Laden der Pokémon-Liste vom konfigurierten SpriteCollab-Server."
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:201
 msgid "Error Updating Sprites"
-msgstr ""
+msgstr "Fehler beim Aktualisieren der Sprites"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:223
 #, python-brace-format
 msgid "SpriteCollab (SpriteBot, {DEFAULT_SERVER})"
-msgstr ""
+msgstr "SpriteCollab (SpriteBot, {DEFAULT_SERVER})"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:224
 #, python-brace-format
 msgid "NotSpriteCollab ({NOT_SC_SERVER})"
-msgstr ""
+msgstr "NotSpriteCollab ({NOT_SC_SERVER})"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:225
 msgid "Custom Server"
-msgstr ""
+msgstr "Benutzerdefinierter Server"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:355
 msgid "Failed loading this Pokémon."
-msgstr ""
+msgstr "Laden dieses Pokémon fehlgeschlagen."
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:356
 msgid "Error Loading Pokémon"
-msgstr ""
+msgstr "Fehler beim Laden der Pokémon"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:388
 msgid "<b>Portraits:</b>"
-msgstr ""
+msgstr "<b>Portraits:</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:399
 msgid "Apply Portraits"
-msgstr ""
+msgstr "Portraits anwenden"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:408
 msgid "<b>Sprites:</b>"
-msgstr ""
+msgstr "<b>Sprites:</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:426
 msgid "Apply Sprites"
-msgstr ""
+msgstr "Sprites anwenden"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:443
 msgid "<b><i>Make sure to credit artists:</i></b>"
-msgstr ""
+msgstr "<b><i>Stelle sicher, dass die die Künstler in den Credits erwähnst:</i></b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:449
 msgid "<b>Portrait Credits:</b>"
-msgstr ""
+msgstr "<b>Portrait-Credits:</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:463
 msgid "<b>Sprite Credits:</b>"
-msgstr ""
+msgstr "<b>Sprite-Credits:</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:476
 msgid "Open Details on Website..."
-msgstr ""
+msgstr "Details auf der Website öffnen..."
 
 #: skytemple/skytemple/module/spritecollab/module.py:77
 msgid "Portraits successfully imported."
-msgstr ""
+msgstr "Portraits wurden erfolgreich importiert."
 
 #: skytemple/skytemple/module/spritecollab/module.py:128
 msgid "Sprites successfully imported."
-msgstr ""
+msgstr "Sprites wurden erfolgreich importiert."
 
 #: skytemple/skytemple/module/spritecollab/module.py:146
 msgid "Open a Pokémon in the main window to apply the assets to."
@@ -13601,7 +13602,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/module.py:152
 msgid "This Pokémon does not support portraits and/or sprites."
-msgstr ""
+msgstr "Dieses Pokémon unterstützt keine Portraits und/oder Sprites."
 
 #: skytemple/skytemple/module/spritecollab/module.py:167
 msgid "This will replace the sprite of this Pokémon with the one from the repository.\n"
@@ -13614,11 +13615,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/module.py:177
 msgid "Create a new sprite instead of replacing the existing one."
-msgstr ""
+msgstr "Erstelle einen neuen Sprite, anstatt den bestehenden zu ersetzen."
 
 #: skytemple/skytemple/module/spritecollab/module.py:180
 msgid "Copy the Sleep animation to EventSleep/Laying/Waking."
-msgstr ""
+msgstr "\"Sleep\"-Animation nach \"EventSleep\"/\"Laying\"/\"Waking\" kopieren."
 
 #: skytemple/skytemple/module/strings/controller/main.py:23
 msgid "Text Strings"
@@ -13813,7 +13814,14 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "  ROM. Things <i>will</i> break.\n"
 "- A project directory was created next to the ROM.\n"
 "- Please report any issues."
-msgstr ""
+msgstr "<span size=\"large\">Willkommen bei SkyTemple!</span>\n\n"
+"Mit diesem Wekzeug kannst du verschiedene Dinge in ROMs \n"
+"von Pokémon Mystery Dungeon Erkundungsteam Himmel bearbeiten.\n\n"
+"Bitte beachte folgendes:\n"
+"- Diese Software ist noch ziemlich instabil, mache daher regelmäßig Backups deiner ROM. \n"
+"Dinge <i>werden</i> kaputt gehen.\n"
+"- Ein Projektverzeichnis wurde neben der ROM erstellt.\n"
+"- Bitte sag uns Bescheid, wenn du irgendwelche Probleme hast."
 
 #: skytemple/skytemple/skytemple.glade:102
 msgid "Can we add a \"Created with SkyTemple\" message\n"
@@ -13824,7 +13832,15 @@ msgid "Can we add a \"Created with SkyTemple\" message\n"
 "If you want to do it later, or for another project,\n"
 "you can reopen this dialog, using the menu on\n"
 "the top-right of the main window."
-msgstr ""
+msgstr "Dürfen wir eine „Created with SkyTemple“ -Nachricht\n"
+"(„erstellt mit SkyTemple“) zu den Logs beim Spielstart\n"
+"hinzufügen?\n\n"
+"Diese Nachricht wird auf Ebene 2 des Kartenhintergrunds\n"
+"S05P01A platziert. Wenn sie dir nicht gefällt, kannst du\n"
+"sie einfach wieder entfernen oder anpassen.\n\n"
+"Wenn du es lieber später oder für ein anderes Projekt hinzufügen\n"
+"möchtest kannst du diesen Dialog über das Menü oben rechts\n"
+"wieder öffnen."
 
 #: skytemple/skytemple/skytemple.glade:122
 msgid "Add \"Created with SkyTemple\""
@@ -13836,11 +13852,11 @@ msgstr "SkyTemple Einstellungen"
 
 #: skytemple/skytemple/skytemple.glade:276
 msgid "Advanced"
-msgstr ""
+msgstr "Erweitert"
 
 #: skytemple/skytemple/skytemple.glade:319
 msgid "Use Native File Handlers"
-msgstr ""
+msgstr "Native Datei-Handler verwenden"
 
 #: skytemple/skytemple/skytemple.glade:361
 msgid "Enable Discord integration"
@@ -13852,25 +13868,27 @@ msgstr "Thème"
 
 #: skytemple/skytemple/skytemple.glade:432
 msgid "Async Operations"
-msgstr ""
+msgstr "Asynchrone Operationen"
 
 #: skytemple/skytemple/skytemple.glade:512
 msgid "Error Reports"
-msgstr ""
+msgstr "Fehlerberichte"
 
 #: skytemple/skytemple/skytemple.glade:527
 msgid "Send error reports"
-msgstr ""
+msgstr "Fehlerberichte senden"
 
 #: skytemple/skytemple/skytemple.glade:539
 msgid "<i>If enabled, error reports are sent to sentry.io,\n"
 "allowing us to improve SkyTemple.\n"
 "See the <a href=\"privacy\">privacy information</a> for more details.</i>"
-msgstr ""
+msgstr "<i>Wenn aktiviert, werden Fehlerberichte an sentry.io gesendet,\n"
+"um SkyTemple zu verbessern.\n"
+"In unseren <a href=\"privacy\">Datenschutzinformationen</a> findest du weitere Details.</i>"
 
 #: skytemple/skytemple/skytemple.glade:577
 msgid "Use Client Side Decorations"
-msgstr ""
+msgstr "Verwende \"Client Side Decorations\""
 
 #: skytemple/skytemple/skytemple.glade:656
 #: skytemple/skytemple/skytemple.glade:1095
@@ -13891,11 +13909,11 @@ msgstr "Einstellungen..."
 
 #: skytemple/skytemple/skytemple.glade:741
 msgid "Open Image Converter..."
-msgstr ""
+msgstr "Bildkonverter öffnen..."
 
 #: skytemple/skytemple/skytemple.glade:756
 msgid "Open SpriteCollab Browser..."
-msgstr ""
+msgstr "SpriteCollab-Browser öffnen..."
 
 #: skytemple/skytemple/skytemple.glade:770
 msgid "Open config directory..."
@@ -13923,7 +13941,7 @@ msgstr "Zuletzt geöffnet:"
 
 #: skytemple/skytemple/skytemple.glade:1140
 msgid "Native File Handlers enabled."
-msgstr ""
+msgstr "Native Datei-Handler aktiviert."
 
 #: skytemple/skytemple/skytemple.glade:1204
 msgid "Oops!"
@@ -13959,15 +13977,15 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1511
 msgid "Privacy Information"
-msgstr ""
+msgstr "Datenschutzinformationen"
 
 #: skytemple/skytemple/skytemple.glade:1531
 msgid "Don't allow"
-msgstr ""
+msgstr "Nicht erlauben"
 
 #: skytemple/skytemple/skytemple.glade:1544
 msgid "Allow sending error reports"
-msgstr ""
+msgstr "Senden von Fehlerberichten zulassen"
 
 #: skytemple/skytemple/skytemple.glade:1571
 msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
@@ -13975,7 +13993,11 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "You can find more information about the data we collect and how we\n"
 "use it in our <a href=\"privacy\">privacy information</a>.\n\n"
 "This is used so we can improve SkyTemple."
-msgstr ""
+msgstr "<span size=\"large\">Willkommen bei SkyTempel!</span>\n\n"
+"Wir möchten Fehlerinformationen sammeln, falls etwas schief geht.\n\n"
+"Weitere Informationen zu den von uns erfassten Daten und wie wir sie\n"
+"verwenden, findest du in unseren <a href=\"privacy\">Datenschutz-Informationen</a>.\n\n"
+"Die Informationen verwenden wir, um SkyTemple zu verbessern."
 
 #: skytemple/skytemple/skytemple.glade:1637
 msgid "Loading ROM \"NAME\"..."
