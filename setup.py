@@ -1,4 +1,4 @@
-__version__ = '1.4.0a4'
+__version__ = '1.4.0a1'
 
 import glob
 import os
