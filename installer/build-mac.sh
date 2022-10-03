@@ -35,9 +35,9 @@ rm -rf skytemple.iconset
 
 # Build the app
 pyinstaller skytemple-mac.spec --noconfirm
-e
+
 # Check if we need to copy the cacert file
-if [ -f "dist/skytemple_randomizer/certifi/cacert.pem" ]; then
+if [ -f "dist/skytemple/certifi/cacert.pem" ]; then
   echo "Moved cacert to correct place"
   cp -rf dist/skytemple/certifi/cacert.pem dist/skytemple/certifi.pem
 fi
