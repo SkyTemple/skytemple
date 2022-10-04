@@ -124,12 +124,13 @@ class PmdSkyDebugController(AbstractController):
         for symbol_name in dict(vars(symsect)).keys():
             if not symbol_name.startswith('_'):
                 symbol: Symbol = getattr(symsect, symbol_name)
-                model.append([
-                    symbol_name,
-                    f"0x{symbol.absolute_address:0x}" if len(symbol.absolute_addresses) > 0 is not None else "???",
-                    str(symbol.length if symbol.length is not None else 1),
-                    symbol.description.strip()
-                ])
+                if symbol is not None and symbol.absolute_addresses is not None:
+                    model.append([
+                        symbol_name,
+                        f"0x{symbol.absolute_address:0x}" if len(symbol.absolute_addresses) > 0 is not None else "???",
+                        str(symbol.length if symbol.length is not None else 1),
+                        symbol.description.strip()
+                    ])
 
     def on_repo_pmdsky_debug_clicked(self, *args):
         webbrowser.open_new_tab('https://github.com/UsernameFodder/pmdsky-debug')
