@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-09-30 11:09+0000\n"
-"PO-Revision-Date: 2022-09-30 11:48\n"
+"POT-Creation-Date: 2022-10-06 19:37+0000\n"
+"PO-Revision-Date: 2022-10-06 19:38\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -2634,7 +2634,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:103
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1154
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5237
-#: skytemple/skytemple/module/dungeon/module.py:780
+#: skytemple/skytemple/module/dungeon/module.py:784
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:297
 msgid "Floor"
 msgstr ""
@@ -4921,7 +4921,7 @@ msgid "Replace with"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:540
-#: skytemple/skytemple/module/dungeon/module.py:798
+#: skytemple/skytemple/module/dungeon/module.py:802
 msgid "Nothing"
 msgstr ""
 
@@ -6451,8 +6451,8 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:94
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:64
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:71
-#: skytemple/skytemple/module/dungeon/fixed_room_drawer.py:394
-#: skytemple/skytemple/module/dungeon/module.py:793
+#: skytemple/skytemple/module/dungeon/fixed_room_drawer.py:397
+#: skytemple/skytemple/module/dungeon/module.py:797
 msgid "(Special?)"
 msgstr ""
 
@@ -7587,19 +7587,19 @@ msgstr ""
 msgid "Floor {floor_i + 1}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:780
+#: skytemple/skytemple/module/dungeon/module.py:784
 msgid "Secondary"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:785
+#: skytemple/skytemple/module/dungeon/module.py:789
 msgid "Vis."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:787
+#: skytemple/skytemple/module/dungeon/module.py:791
 msgid "Unb."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/module.py:804
+#: skytemple/skytemple/module/dungeon/module.py:808
 #, python-brace-format
 msgid "{i} - Lvl: {entry.level}, Atk: {entry.attack}, Def: {entry.defense}, Sp. Atk: {entry.special_attack}, Sp. Def: {entry.special_defense}, HP: {entry.hp}"
 msgstr ""
@@ -11481,41 +11481,41 @@ msgstr ""
 msgid "Add Missing Keys"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_keys.py:68
+#: skytemple/skytemple/module/moves_items/controller/item_keys.py:67
 msgid "Sort keys are used to sort items in your inventory when using the sort feature in game.\n"
 "The game sorts items starting from the one with the lowest key to the highest.\n"
 "Several items can have the same key; this means they will be mixed together while sorting (e.g. Lookalike items).\n"
 "Only keys from 0 to 2047 should be used."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_keys.py:134
+#: skytemple/skytemple/module/moves_items/controller/item_keys.py:133
 msgid "Keys have now been added for all the 1400 items."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_keys.py:142
+#: skytemple/skytemple/module/moves_items/controller/item_keys.py:140
 msgid "Insert Key Before: "
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_keys.py:143
+#: skytemple/skytemple/module/moves_items/controller/item_keys.py:141
 msgid "Insert an item key id before the one selected.\n"
 "This means all keys with id >= that one will be incremented by 1. "
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_keys.py:162
+#: skytemple/skytemple/module/moves_items/controller/item_keys.py:161
 msgid "Remove Key: "
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_keys.py:163
+#: skytemple/skytemple/module/moves_items/controller/item_keys.py:162
 msgid "Remove the item key id selected.\n"
 "This means all keys with id > that one will be decremented by 1.\n"
 "A key can't be removed if it's still used by one item. "
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_keys.py:178
+#: skytemple/skytemple/module/moves_items/controller/item_keys.py:177
 msgid "This key is still used by these items: {', '.join(no_key)}."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/item_keys.py:179
+#: skytemple/skytemple/module/moves_items/controller/item_keys.py:178
 msgid "Error removing key."
 msgstr ""
 
