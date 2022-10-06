@@ -311,7 +311,7 @@ class FixedRoomDrawer:
 
     def set_selected(self, selected):
         if isinstance(selected, tuple):
-            self._selected = tuple(int(x) for x in selected)
+            self._selected = tuple(int(x) for x in selected)  # type: ignore
         else:
             self._selected = selected
         self.redraw()
