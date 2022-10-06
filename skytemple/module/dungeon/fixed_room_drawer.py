@@ -310,7 +310,10 @@ class FixedRoomDrawer:
         self.entity_renderer = renderer
 
     def set_selected(self, selected):
-        self._selected = selected
+        if isinstance(selected, tuple):
+            self._selected = tuple(int(x) for x in selected)
+        else:
+            self._selected = selected
         self.redraw()
 
     def get_selected(self):
