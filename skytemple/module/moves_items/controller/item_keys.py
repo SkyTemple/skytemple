@@ -60,7 +60,6 @@ class ItemKeysController(AbstractController):
             cb_store.append([lang.locale, lang.name_localized])
         cb.set_active(0)
 
-
     def on_btn_help_clicked(self, *args):
         md = SkyTempleMessageDialog(MainController.window(),
                                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
@@ -88,14 +87,14 @@ Only keys from 0 to 2047 should be used."""))
         new_list = [x[1] for x in pre_new_list]
         self.module.set_i2n(self._current_lang, new_list)
         self._refresh_list()
-        
+
     def on_sort_key_edited(self, widget, path, text):
         try:
             tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
             tree_store[path][0] = int(text)
         except ValueError:
             return
-        
+
         self._regenerate_list()
 
     def _get_max_key(self):
@@ -104,19 +103,19 @@ Only keys from 0 to 2047 should be used."""))
         for l in tree_store:
             new_list.append(l[0])
         return max(new_list)
-        
+
     def _setup_dialog(self):
         dialog: Gtk.Dialog = self.builder.get_object('dialog_add_remove')
-        
-        self.builder.get_object('id_key_add_remove').set_increments(1,1)
+
+        self.builder.get_object('id_key_add_remove').set_increments(1, 1)
         self.builder.get_object('id_key_add_remove').set_range(0, self._get_max_key())
         self.builder.get_object('id_key_add_remove').set_text(str(0))
-        
+
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         return dialog
-        
+
     def on_btn_fix_clicked(self, *args):
         tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
         pre_new_list = []
@@ -127,7 +126,7 @@ Only keys from 0 to 2047 should be used."""))
         while len(new_list) < 1400:
             new_list.append(0)
         self.module.set_i2n(self._current_lang, new_list)
-        
+
         md = SkyTempleMessageDialog(MainController.window(),
                                     Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
                                     Gtk.ButtonsType.OK,
@@ -135,8 +134,7 @@ Only keys from 0 to 2047 should be used."""))
         md.run()
         md.destroy()
         self._refresh_list()
-        
-        
+
     def on_btn_insert_clicked(self, *args):
         dialog = self._setup_dialog()
         self.builder.get_object('lbl_add_remove_title').set_text(_("Insert Key Before: "))
@@ -150,13 +148,14 @@ This means all keys with id >= that one will be incremented by 1. """))
             pre_new_list = []
             for l in tree_store:
                 if l[0] >= key:
-                    pre_new_list.append((l[2], l[0]+1))
+                    pre_new_list.append((l[2], l[0] + 1))
                 else:
                     pre_new_list.append((l[2], l[0]))
             pre_new_list.sort()
             new_list = [x[1] for x in pre_new_list]
             self.module.set_i2n(self._current_lang, new_list)
             self._refresh_list()
+
     def on_btn_remove_clicked(self, *args):
         dialog = self._setup_dialog()
         self.builder.get_object('lbl_add_remove_title').set_text(_("Remove Key: "))
@@ -170,9 +169,9 @@ A key can't be removed if it's still used by one item. """))
             tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
             no_key = []
             for l in tree_store:
-                if key==l[0]:
-                    no_key.append(l[2])
-            if len(no_key)>0:
+                if key == l[0]:
+                    no_key.append(str(l[2]))
+            if len(no_key) > 0:
                 display_error(
                     sys.exc_info(),
                     _(f"This key is still used by these items: {', '.join(no_key)}."),
@@ -182,14 +181,14 @@ A key can't be removed if it's still used by one item. """))
                 pre_new_list = []
                 for l in tree_store:
                     if l[0] > key:
-                        pre_new_list.append((l[2],l[0]-1))
+                        pre_new_list.append((l[2], l[0] - 1))
                     else:
-                        pre_new_list.append((l[2],l[0]))
+                        pre_new_list.append((l[2], l[0]))
                 pre_new_list.sort()
                 new_list = [x[1] for x in pre_new_list]
                 self.module.set_i2n(self._current_lang, new_list)
                 self._refresh_list()
-                
+
     def on_id_key_add_remove_value_changed(self, widget, *args):
         try:
             val = int(widget.get_text())
@@ -197,11 +196,11 @@ A key can't be removed if it's still used by one item. """))
             val = -1
 
         max_key = self._get_max_key()
-        if val<0:
+        if val < 0:
             val = 0
             widget.set_text(str(val))
-        elif val>=max_key:
-            val=max_key
+        elif val >= max_key:
+            val = max_key
             widget.set_text(str(val))
 
     def _refresh_list(self):
