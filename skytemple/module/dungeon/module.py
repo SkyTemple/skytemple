@@ -534,8 +534,12 @@ class DungeonModule(AbstractModule):
             for _ in range(0, -floors_added):
                 mappa.remove_floor_from_floor_list(mappa_index, floor_offset + number_floors_new)
         else:
+            cat_ided = self.project.get_rom_module().get_static_data().dungeon_data.item_categories
             # We added floors
-            last_floor_xml = mappa.floor_lists[mappa_index][floor_offset + number_floors_old - 1].to_xml()
+            last_floor_xml = mappa_floor_to_xml(
+                mappa.floor_lists[mappa_index][floor_offset + number_floors_old - 1],
+                cat_ided
+            )
             for i in range(0, floors_added):
                 mappa.insert_floor_in_floor_list(
                     mappa_index,
@@ -543,7 +547,7 @@ class DungeonModule(AbstractModule):
                     mappa_floor_from_xml(
                         last_floor_xml,
                         {x.name: x for x in
-                         self.project.get_rom_module().get_static_data().dungeon_data.item_categories.values()}
+                         cat_ided.values()}
                     )
                 )
 
