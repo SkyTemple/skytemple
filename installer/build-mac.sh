@@ -36,6 +36,9 @@ rm -rf skytemple.iconset
 # Build the app
 pyinstaller skytemple-mac.spec --noconfirm
 
+# Bundle gtksourceview4
+cp -r /usr/local/Cellar/gtksourceview4/*/share/* dist/SkyTemple.app/Contents/MacOS/share/
+
 # Check if we need to copy the cacert file
 if [ -f "dist/skytemple/certifi/cacert.pem" ]; then
   echo "Moved cacert to correct place"
