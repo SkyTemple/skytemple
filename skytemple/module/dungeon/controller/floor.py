@@ -1845,7 +1845,7 @@ class FloorController(AbstractController):
                     else:
                         item_weights[last_weight_set_idx] = 10000  # type: ignore
 
-        item_weights = {k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0].id)}
+        item_weights = {k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0])}
 
         il = self.get_current_item_list()
         il.categories = category_weights
