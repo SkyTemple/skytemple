@@ -344,54 +344,53 @@ class FixedController(AbstractController):
             return
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
-    def on_settings_complete_active_notify(self, w, *args):
-        if w.get_active():
+    def on_settings_complete_state_set(self, w: Gtk.Switch, state: bool, *args):
+        if state:
             self.properties.null |= 0x1  # type: ignore
         else:
             self.properties.null &= ~0x1  # type: ignore
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
-    def on_settings_boss_active_notify(self, w, *args):
-        if w.get_active():
+    def on_settings_boss_state_set(self, w: Gtk.Switch, state: bool, *args):
+        if state:
             self.properties.null |= 0x2  # type: ignore
         else:
             self.properties.null &= ~0x2  # type: ignore
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
-    def on_settings_free_active_notify(self, w, *args):
-        if w.get_active():
+    def on_settings_free_state_set(self, w: Gtk.Switch, state: bool, *args):
+        if state:
             self.properties.null |= 0x4  # type: ignore
         else:
             self.properties.null &= ~0x4  # type: ignore
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
-
-    def on_settings_moves_active_notify(self, w, *args):
-        self.properties.moves_enabled = w.get_active()
+    def on_settings_moves_state_set(self, w: Gtk.Switch, state: bool, *args):
+        self.properties.moves_enabled = state
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
-    def on_settings_orbs_active_notify(self, w, *args):
-        self.properties.orbs_enabled = w.get_active()
+    def on_settings_orbs_state_set(self, w: Gtk.Switch, state: bool, *args):
+        self.properties.orbs_enabled = state
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
-    def on_settings_defeat_enemies_active_notify(self, w, *args):
-        self.properties.exit_floor_when_defeating_enemies = w.get_active()
+    def on_settings_defeat_enemies_state_set(self, w: Gtk.Switch, state: bool, *args):
+        self.properties.exit_floor_when_defeating_enemies = state
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
-    def on_settings_unk4_active_notify(self, w, *args):
-        self.properties.unk4 = w.get_active()
+    def on_settings_unk4_state_set(self, w: Gtk.Switch, state: bool, *args):
+        self.properties.unk4 = state
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
-    def on_settings_unk5_active_notify(self, w, *args):
-        self.properties.unk5 = w.get_active()
+    def on_settings_unk5_state_set(self, w: Gtk.Switch, state: bool, *args):
+        self.properties.unk5 = state
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
-    def on_settings_unk8_active_notify(self, w, *args):
-        self.properties.unk8 = w.get_active()
+    def on_settings_unk8_state_set(self, w: Gtk.Switch, state: bool, *args):
+        self.properties.unk8 = state
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
-    def on_settings_unk9_active_notify(self, w, *args):
-        self.properties.unk9 = w.get_active()
+    def on_settings_unk9_state_set(self, w: Gtk.Switch, state: bool, *args):
+        self.properties.unk9 = state
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
     def on_settings_override_changed(self, w: Gtk.ComboBox, *args):

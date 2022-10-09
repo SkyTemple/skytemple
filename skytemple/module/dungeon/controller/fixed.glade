@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkAdjustment" id="dialog_map_import_adjustment">
@@ -1235,7 +1235,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_moves">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <signal name="notify::active" handler="on_settings_moves_active_notify" swapped="no"/>
+                <signal name="state-set" handler="on_settings_moves_state_set" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1246,7 +1246,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_orbs">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <signal name="notify::active" handler="on_settings_orbs_active_notify" swapped="no"/>
+                <signal name="state-set" handler="on_settings_orbs_state_set" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1374,7 +1374,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_unk9">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <signal name="notify::active" handler="on_settings_unk9_active_notify" swapped="no"/>
+                <signal name="state-set" handler="on_settings_unk9_state_set" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1385,7 +1385,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_unk8">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <signal name="notify::active" handler="on_settings_unk8_active_notify" swapped="no"/>
+                <signal name="state-set" handler="on_settings_unk8_state_set" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1396,7 +1396,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_unk5">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <signal name="notify::active" handler="on_settings_unk5_active_notify" swapped="no"/>
+                <signal name="state-set" handler="on_settings_unk5_state_set" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1407,7 +1407,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_unk4">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <signal name="notify::active" handler="on_settings_unk4_active_notify" swapped="no"/>
+                <signal name="state-set" handler="on_settings_unk4_state_set" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1438,7 +1438,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_defeat_enemies">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <signal name="notify::active" handler="on_settings_defeat_enemies_active_notify" swapped="no"/>
+                <signal name="state-set" handler="on_settings_defeat_enemies_state_set" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1504,7 +1504,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_complete">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <signal name="notify" handler="on_settings_complete_active_notify" swapped="no"/>
+                <signal name="state-set" handler="on_settings_complete_state_set" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1515,7 +1515,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_boss">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <signal name="notify" handler="on_settings_boss_active_notify" swapped="no"/>
+                <signal name="state-set" handler="on_settings_boss_state_set" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1526,7 +1526,7 @@ Tile Properties (ID):</property>
               <object class="GtkSwitch" id="settings_free">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <signal name="notify" handler="on_settings_free_active_notify" swapped="no"/>
+                <signal name="state-set" handler="on_settings_free_state_set" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
