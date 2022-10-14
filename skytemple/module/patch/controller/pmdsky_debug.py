@@ -124,10 +124,10 @@ class PmdSkyDebugController(AbstractController):
         for symbol_name in dict(vars(symsect)).keys():
             if not symbol_name.startswith('_'):
                 symbol: Symbol = getattr(symsect, symbol_name)
-                if symbol is not None and symbol.absolute_addresses is not None:
+                if symbol is not None:
                     model.append([
                         symbol_name,
-                        f"0x{symbol.absolute_address:0x}" if len(symbol.absolute_addresses) > 0 is not None else "???",
+                        f"0x{symbol.absolute_address:0x}" if symbol.absolute_addresses is not None and len(symbol.absolute_addresses) > 0 else "???",
                         str(symbol.length if symbol.length is not None else 1),
                         symbol.description.strip()
                     ])

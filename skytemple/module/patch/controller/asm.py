@@ -17,15 +17,20 @@
 import logging
 import os
 import sys
+import textwrap
+import traceback
+import warnings
 from glob import glob
-from typing import TYPE_CHECKING, Optional, Dict, List
+from types import TracebackType
+from typing import TYPE_CHECKING, Optional, Dict, List, overload, Tuple, Type, Union, Literal
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
+from skytemple_files.common.warnings import DeprecatedToBeRemovedWarning
 
 from skytemple.core.error_handler import display_error
-from skytemple.core.message_dialog import SkyTempleMessageDialog
+from skytemple.core.message_dialog import SkyTempleMessageDialog, IMG_SAD
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.ui_utils import open_dir
+from skytemple.core.ui_utils import open_dir, data_dir
 from skytemple.module.patch.controller.param_dialog import ParamDialogController, PatchCanceledError
 from skytemple_files.patch.category import PatchCategory
 from skytemple_files.patch.errors import PatchNotConfiguredError
@@ -42,12 +47,19 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
+ErrorsTuple = Tuple[str, Union[Tuple[Type[BaseException], BaseException, TracebackType], Tuple[None, None, None]]]
+
+
 class AsmController(AbstractController):
     def __init__(self, module: 'PatchModule', *args):
         self.module = module
 
         self.builder: Gtk.Builder = None  # type: ignore
-        self._patcher: Patcher
+        self._patcher: Patcher = None  # type: ignore
+        self._were_issues_activated = False
+        self._issues: Dict[str, List[warnings.WarningMessage]] = {}
+        self._acknowledged_danger = False
+        self._accepted_danger = False
 
         self._category_tabs: Dict[PatchCategory, Gtk.Widget] = {}  # category -> page
         self._category_tabs_reverse: Dict[Gtk.Widget, PatchCategory] = {}  # page -> category
@@ -56,10 +68,24 @@ class AsmController(AbstractController):
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'asm.glade')
 
+        self._load_image_for_issue_dialog()
         self.refresh_all()
 
         self.builder.connect_signals(self)
         return self.builder.get_object('box_patches')
+
+    def on_btn_show_issues_clicked(self, *args):
+        tree: Gtk.TreeView = self.builder.get_object('patch_tree')
+        model, treeiter = tree.get_selection().get_selected()
+        if model is not None and treeiter is not None:
+            name = model[treeiter][0]
+            if name in self._issues:
+                self._error_or_issue(
+                    True, False,
+                    {name: self._issues[name]}
+                )
+            else:
+                self._msg(_("This patch has had no issues loading."), Gtk.MessageType.INFO)
 
     def on_btn_apply_clicked(self, *args):
         tree: Gtk.TreeView = self.builder.get_object('patch_tree')
@@ -80,11 +106,11 @@ class AsmController(AbstractController):
                     if response != Gtk.ResponseType.OK:
                         return
             except NotImplementedError:
-                self._error(_("The current ROM is not supported by this patch."))
+                self._msg(_("The current ROM is not supported by this patch."))
                 return
 
             if self.module.project.has_modifications():
-                self._error(_("Please save the ROM before applying the patch."))
+                self._msg(_("Please save the ROM before applying the patch."))
                 return
 
             if name == 'ExpandPokeList':
@@ -100,6 +126,8 @@ class AsmController(AbstractController):
                     if response != Gtk.ResponseType.YES:
                         return
             some_skipped = False
+            patch = '???'
+            issues: Dict[str, List[warnings.WarningMessage]] = {}
             try:
                 dependencies = self._get_dependencies(name)
                 if len(dependencies) > 0:
@@ -113,25 +141,40 @@ class AsmController(AbstractController):
                     if response != Gtk.ResponseType.YES:
                         return
                 for patch in dependencies + [name]:
-                    try:
-                        self._apply(patch)
-                    except PatchCanceledError:
-                        some_skipped = True
-                        break
+                    with warnings.catch_warnings(record=True) as w:
+                        warnings.simplefilter('always')
+                        try:
+                            self._apply(patch)
+                        except PatchCanceledError:
+                            some_skipped = True
+                            break
+                    if len(w) > 0:
+                        issues[patch] = w
             except PatchNotConfiguredError as ex:
                 err = str(ex)
                 if ex.config_parameter != "*":
                     err += _('\nConfiguration field with errors: "{}"\nError: {}').format(ex.config_parameter, ex.error)
-                self._error(f(_("Error applying the patch:\n{err}")), exc_info=sys.exc_info(), should_report=True)
-            except RuntimeError as err:
-                self._error(f(_("Error applying the patch:\n{err}")), exc_info=sys.exc_info(), should_report=True)
+                self._msg(f(_("Error applying the patch:\n{err}")), exc_info=sys.exc_info(), should_report=False)
+            except BaseException as err:
+                self._error_or_issue(
+                    False, True,
+                    [(
+                        f(_("Failed applying patch '{patch}'. The ROM may be corrupted now.")),
+                        sys.exc_info()
+                    )]
+                )
             else:
+                if len(issues) > 0:
+                    self._error_or_issue(
+                        False, False,
+                        issues
+                    )
                 if not some_skipped:
-                    self._error(_("Patch was successfully applied. The ROM will now be reloaded."),
-                                Gtk.MessageType.INFO, is_success=True)
+                    self._msg(_("Patch was successfully applied. The ROM will now be reloaded."),
+                              Gtk.MessageType.INFO, is_success=True)
                 else:
-                    self._error(_("Not all patches were applied successfully. The ROM will now be reloaded."),
-                                Gtk.MessageType.INFO)
+                    self._msg(_("Not all patches were applied successfully. The ROM will now be reloaded."),
+                              Gtk.MessageType.INFO)
             finally:
                 self.module.mark_asm_patches_as_modified()
                 self.refresh(self._current_tab)
@@ -176,28 +219,58 @@ class AsmController(AbstractController):
         tree: Gtk.TreeView = self.builder.get_object('patch_tree')
         model: Gtk.ListStore = tree.get_model()
         model.clear()
+
         self._patcher = self.module.project.create_patcher()
+        errors: List[ErrorsTuple] = []
+        self._issues = {}
+
         # Load zip patches
         for fname in glob(os.path.join(self.patch_dir(), '*.skypatch')):
-            try:
-                self._patcher.add_pkg(fname)  # type: ignore
-            except BaseException as err:
-                logger.error(f"Error loading patch package {os.path.basename(fname)}", exc_info=sys.exc_info())
-                self._error(f(_("Error loading patch package {os.path.basename(fname)}:\n{err}")), should_report=True)
+            if not self._acknowledged_danger:
+                self._show_code_warning()
+            if not self._accepted_danger:
+                break
+            with warnings.catch_warnings(record=True) as w:
+                warnings.simplefilter('always')
+                try:
+                    patch = self._patcher.add_pkg(fname)
+                    if len(w) > 0:
+                        self._issues[patch.name] = w
+                # We catch BaseExceptions, because we don't want loaded patch packages to do fun stuff like close
+                # the app by raising SystemExit (though I suppose if they wanted to, they could).
+                except BaseException as err:
+                    errors.append((f(_("Error loading patch package {os.path.basename(fname)}.")), sys.exc_info()))
         # List patches:
         for patch in sorted(self._patcher.list(), key=lambda p: p.name):  # type: ignore
-            if patch.category != patch_category:
-                continue
-            applied_str = _('Not compatible')
-            try:
-                applied_str = _('Applied') if self._patcher.is_applied(patch.name) else _('Compatible')  # type: ignore
-            except NotImplementedError:
-                pass
-            model.append([
-                patch.name, patch.author, patch.description, applied_str
-            ])
+            with warnings.catch_warnings(record=True) as w:
+                warnings.simplefilter('always')
+                try:
+                    if patch.category != patch_category:
+                        continue
+                    applied_str = _('Not compatible')
+                    try:
+                        applied_str = _('Applied') if self._patcher.is_applied(patch.name) else _('Compatible')
+                    except NotImplementedError:
+                        pass
+                    if len(w) > 0:
+                        self._issues[patch.name] = w
+                    model.append([
+                        patch.name, patch.author, patch.description, applied_str,
+                        'orange' if patch.name in self._issues else None
+                    ])
+                except BaseException as err:
+                    errors.append((f(_("Error loading patch package {os.path.basename(fname)}.")), sys.exc_info()))
 
-    def _error(self, msg, type=Gtk.MessageType.ERROR, exc_info=None, is_success=False, should_report=False):
+        if len(errors) > 0:
+            self._error_or_issue(
+                True, True,
+                errors
+            )
+
+        if len(self._issues) > 0:
+            self._activate_issues()
+
+    def _msg(self, msg, type=Gtk.MessageType.ERROR, exc_info=None, is_success=False, should_report=False):
         if type == Gtk.MessageType.ERROR:
             display_error(
                 exc_info,
@@ -243,3 +316,110 @@ class AsmController(AbstractController):
                     MainSkyTempleController.window()
                 ).run(patch, patches[patch].parameters)
         self._patcher.apply(patch, parameter_data)  # type: ignore
+
+    def _load_image_for_issue_dialog(self):
+        img: Gtk.Image = Gtk.Image.new_from_file(os.path.join(data_dir(), IMG_SAD))
+        self.builder.get_object('issue_img_container').pack_start(img, False, False, 0)
+
+    @overload
+    def _error_or_issue(self, is_load: bool, is_error: Literal[True], errors_or_issues: List[ErrorsTuple]): ...
+    @overload
+    def _error_or_issue(self, is_load: bool, is_error: Literal[False], errors_or_issues: Dict[str, List[warnings.WarningMessage]]): ...
+
+    def _error_or_issue(self, is_load: bool, is_error: bool, errors_or_issues):
+        """Show the compatibility issues / patch error dialog with the appropriate content based on the situation."""
+        # todo also make sure to set transient and parent.
+        dialog = self.builder.get_object('issue_dialog')
+        dialog.set_position(Gtk.WindowPosition.CENTER)
+        dialog.set_transient_for(MainSkyTempleController.window())
+        dialog.set_parent(MainSkyTempleController.window())
+        try:
+            screen: Gdk.Screen = dialog.get_screen()
+            monitor = screen.get_monitor_geometry(screen.get_monitor_at_window(screen.get_active_window()))
+            dialog.resize(monitor.width * 0.65, monitor.height * 0.65)
+        except BaseException:
+            dialog.resize(1015, 865)
+
+        self.builder.get_object('label_issue_load').hide()
+        self.builder.get_object('label_issue_apply').hide()
+        self.builder.get_object('label_error_load').hide()
+        self.builder.get_object('label_error_apply').hide()
+        self.builder.get_object('label_issue_note').hide()
+
+        if is_load and is_error:
+            self.builder.get_object('label_error_load').show()
+        elif is_load:
+            self.builder.get_object('label_issue_load').show()
+            self.builder.get_object('label_issue_note').show()
+        elif is_error:
+            self.builder.get_object('label_error_apply').show()
+        else:
+            self.builder.get_object('label_issue_apply').show()
+            self.builder.get_object('label_issue_note').show()
+
+        buffer: Gtk.TextBuffer = self.builder.get_object('issue_info').get_buffer()
+
+        if is_error:
+            errors: List[ErrorsTuple] = errors_or_issues
+
+            text = ""
+            for error_str, exc_info in errors:
+                text += error_str + "\n"
+                text += ''.join(traceback.format_exception(*exc_info))
+                text += "\n"
+
+            buffer.set_text(text)
+        else:
+            issues: Dict[str, List[warnings.WarningMessage]] = errors_or_issues
+
+            text = ""
+            for patch_name, patch_issues in issues.items():
+                text += f"Warnings generated while processing {patch_name}:\n"
+                for issue in patch_issues:
+                    text += textwrap.indent(warnings.formatwarning(
+                        issue.message, issue.category, issue.filename,
+                        issue.lineno, issue.line
+                    ), '>> ')
+                    if isinstance(issue.message, DeprecatedToBeRemovedWarning):
+                        text += f'>> ! This will break in SkyTemple Files {".".join(str(x) for x in issue.message.expected_removal)}\n'
+                    text += "\n"
+                text += "\n"
+
+            buffer.set_text(text)
+
+        dialog.run()
+        dialog.hide()
+
+    def _activate_issues(self):
+        """Show the 'Show Issues' button, if it isn't shown already. Also show a note about why."""
+        if not self._were_issues_activated:
+            self.builder.get_object('cnt_btns').pack_start(self.builder.get_object('btn_show_issues'), True, True, 0)
+            self._were_issues_activated = True
+            self._msg(_("Some of the loaded patches had compatibility issues. "
+                        "They were still loaded correctly but may stop working in future SkyTemple versions. "
+                        "These patches were marked orange in the list of patches. Highlight one of these patches and "
+                        "click the 'Show Issues' button for more information."), Gtk.MessageType.WARNING)
+
+    def _show_code_warning(self):
+        """Show a warning about patches being loaded, set self.*_danger variables accordingly."""
+        md = SkyTempleMessageDialog(MainAppController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.YES_NO,
+                                    _("Warning! The project directory for this ROM contains custom patches. "
+                                      "These patches may contain code which will run on your computer once you accept "
+                                      "this dialog with 'Yes'. Only continue if you trust the authors of the patches. "
+                                      "Malicious people could otherwise hijack your computer and/or steal information.\n"
+                                      "\n"
+                                      "Do you want to continue loading these patches? By selecting 'No', only the "
+                                      "built-in patches will be loaded."))
+        md.set_position(Gtk.WindowPosition.CENTER)
+        md.set_transient_for(MainSkyTempleController.window())
+        md.set_parent(MainSkyTempleController.window())
+        response = md.run()
+        md.destroy()
+        self._acknowledged_danger = True
+        self._accepted_danger = response == Gtk.ResponseType.YES
+
+    def gtk_widget_hide_on_delete(self, w: Gtk.Widget, *args):
+        w.hide_on_delete()
+        return True

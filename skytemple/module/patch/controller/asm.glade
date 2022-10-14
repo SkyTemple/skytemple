@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkBox" id="box_patches">
@@ -114,11 +114,14 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButtonBox">
+                  <object class="GtkButtonBox" id="cnt_btns">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="spacing">5</property>
                     <property name="layout-style">start</property>
+                    <child>
+                      <placeholder/>
+                    </child>
                     <child>
                       <object class="GtkButton" id="btn_apply">
                         <property name="label" translatable="yes">Apply</property>
@@ -130,7 +133,7 @@
                       <packing>
                         <property name="expand">True</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                   </object>
@@ -162,6 +165,198 @@
       <class name="patch"/>
     </style>
   </object>
+  <object class="GtkButton" id="btn_show_issues">
+    <property name="visible">True</property>
+    <property name="can-focus">True</property>
+    <property name="receives-default">True</property>
+    <signal name="clicked" handler="on_btn_show_issues_clicked" swapped="no"/>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label" translatable="yes" context="Issues as in problems">Show Issues</property>
+        <attributes>
+          <attribute name="foreground" value="#ffff78780000"/>
+        </attributes>
+      </object>
+    </child>
+  </object>
+  <object class="GtkTextBuffer" id="issue_buffer"/>
+  <object class="GtkDialog" id="issue_dialog">
+    <property name="can-focus">False</property>
+    <property name="modal">True</property>
+    <property name="type-hint">dialog</property>
+    <signal name="delete-event" handler="gtk_widget_hide_on_delete" swapped="no"/>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
+            <child>
+              <object class="GtkButton" id="button1">
+                <property name="label">gtk-close</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">5</property>
+            <child>
+              <object class="GtkBox" id="issue_img_container">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">center</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_issue_load">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">A compatibility issue was detected while loading one or more patches.</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_issue_apply">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">A compatibility issue was detected while applying this patch. 
+But it was still applied successfully.</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_error_load">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">One or more patches failed to be loaded.</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_error_apply">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">There was an error while applying the patch.</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_issue_note">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">This patch will stop working in a future version of SkyTemple, 
+unless the author updates the patch.</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="label" translatable="yes">Details:</property>
+            <property name="wrap">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="shadow-type">in</property>
+            <child>
+              <object class="GtkTextView" id="issue_info">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="editable">False</property>
+                <property name="buffer">issue_buffer</property>
+                <property name="monospace">True</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="-7">button1</action-widget>
+    </action-widgets>
+  </object>
   <object class="GtkListStore" id="patch_store">
     <columns>
       <!-- column-name id -->
@@ -171,6 +366,8 @@
       <!-- column-name description -->
       <column type="gchararray"/>
       <!-- column-name applied -->
+      <column type="gchararray"/>
+      <!-- column-name color -->
       <column type="gchararray"/>
     </columns>
   </object>
@@ -194,6 +391,7 @@
             <child>
               <object class="GtkCellRendererText"/>
               <attributes>
+                <attribute name="foreground">4</attribute>
                 <attribute name="text">0</attribute>
               </attributes>
             </child>
@@ -206,6 +404,7 @@
             <child>
               <object class="GtkCellRendererText"/>
               <attributes>
+                <attribute name="foreground">4</attribute>
                 <attribute name="text">1</attribute>
               </attributes>
             </child>
@@ -221,6 +420,7 @@
                 <property name="wrap-width">500</property>
               </object>
               <attributes>
+                <attribute name="foreground">4</attribute>
                 <attribute name="text">2</attribute>
               </attributes>
             </child>
@@ -233,6 +433,7 @@
             <child>
               <object class="GtkCellRendererText"/>
               <attributes>
+                <attribute name="foreground">4</attribute>
                 <attribute name="text">3</attribute>
               </attributes>
             </child>
