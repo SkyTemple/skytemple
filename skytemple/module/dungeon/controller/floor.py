@@ -61,6 +61,7 @@ from skytemple_files.dungeon_data.mappa_bin.mappa_xml import mappa_floor_to_xml
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.i18n_util import _, f
 from skytemple_files.user_error import UserValueError
+from skytemple_files.common.util import open_utf8
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, FloorViewInfo
@@ -1264,7 +1265,7 @@ class FloorController(AbstractController):
                 save_diag.destroy()
 
                 if response == Gtk.ResponseType.ACCEPT:
-                    with open(fn, 'w') as f:
+                    with open_utf8(fn, 'w') as f:
                         f.write(prettify(xml))
                 else:
                     md = SkyTempleMessageDialog(SkyTempleMainController.window(),
@@ -1304,9 +1305,10 @@ class FloorController(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT:
             try:
-                self.module.import_from_xml([(self.item.dungeon.dungeon_id, self.item.floor_id)],
-                                            ElementTree.parse(fn).getroot())
-                SkyTempleMainController.reload_view()
+                with open_utf8(fn, 'r') as xml_file:
+                    self.module.import_from_xml([(self.item.dungeon.dungeon_id, self.item.floor_id)],
+                                                ElementTree.parse(xml_file).getroot())
+                    SkyTempleMainController.reload_view()
             except BaseException as err:
                 display_error(
                     sys.exc_info(),
