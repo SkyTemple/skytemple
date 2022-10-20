@@ -315,7 +315,7 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_cb_dead_ends_changed(self, w, *args):
-        self._update_from_widget(w)
+        self._update_from_widget(w, True)
         self.mark_as_modified()
 
     def on_btn_help_dead_ends_clicked(self, *args):
@@ -367,7 +367,7 @@ class FloorController(AbstractController):
                      "of a room, make a couple of twists and also lead to nowhere)"))
 
     def on_cb_terrain_settings__has_secondary_terrain_changed(self, w, *args):
-        self._update_from_widget(w)
+        self._update_from_widget(w, True)
         self.mark_as_modified()
 
     @catch_overflow(u8)
@@ -380,7 +380,7 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_cb_terrain_settings__generate_imperfect_rooms_changed(self, w, *args):
-        self._update_from_widget(w)
+        self._update_from_widget(w, True)
         self.mark_as_modified()
 
     def on_cb_darkness_level_changed(self, w, *args):
@@ -537,7 +537,7 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_cb_unk_e_changed(self, w, *args):
-        self._update_from_widget(w)
+        self._update_from_widget(w, True)
         self.mark_as_modified()
 
     def on_btn_goto_tileset_clicked(self, *args):
@@ -1944,9 +1944,9 @@ class FloorController(AbstractController):
         scale: Gtk.Scale = self.builder.get_object(scale_name)
         scale.set_value(int(val))
 
-    def _update_from_widget(self, w: Gtk.Widget):
+    def _update_from_widget(self, w: Gtk.Widget, cb_should_be_bool: bool = False):
         if isinstance(w, Gtk.ComboBox):
-            self._update_from_cb(w)
+            self._update_from_cb(w, cb_should_be_bool)
         elif isinstance(w, Gtk.Entry):
             raise RuntimeError("Internal error: Do not call _update_from_widget() on an entry. Set manually instead.")
         else:
@@ -1954,7 +1954,7 @@ class FloorController(AbstractController):
         if self.builder.get_object('tool_auto_refresh').get_active():  # type: ignore
             self._generate_floor()
 
-    def _update_from_cb(self, w: Gtk.ComboBox):
+    def _update_from_cb(self, w: Gtk.ComboBox, should_be_bool: bool = False):
         w_name = Gtk.Buildable.get_name(w)
         if w_name.startswith(CB_TERRAIN_SETTINGS):
             obj = self.entry.layout.terrain_settings
@@ -1967,6 +1967,8 @@ class FloorController(AbstractController):
         if isinstance(current_val, Enum):
             enum_class = current_val.__class__
             val = enum_class(val)
+        if should_be_bool:
+            val = current_val > 0
         setattr(obj, attr_name, val)
 
     def _update_from_scale(self, w: Gtk.Scale):
