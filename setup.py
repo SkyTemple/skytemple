@@ -1,4 +1,4 @@
-__version__ = '1.4.0rc1'  # TODO: Don't forget to bump skytemple-files to 1.4.1
+__version__ = '1.4.0rc1'
 
 import glob
 import os
@@ -64,7 +64,7 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files[spritecollab] >= 1.4.0',
+        'skytemple-files[spritecollab] >= 1.4.1',
         'pmdsky-debug-py',  #  Whatever version skytemple-files requires.
         'skytemple-dtef >= 1.1.4',
         'skytemple-icons >= 1.3.2',
@@ -73,7 +73,7 @@ setup(
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
         'tilequant >= 0.4.1',
-        'skytemple-ssb-debugger >= 1.3.8.post2',
+        'skytemple-ssb-debugger >= 1.4.0rc1',
         'pygal >= 2.4.0',
         'CairoSVG >= 2.4.2',
         'gbulb >= 0.6.2',
@@ -92,6 +92,7 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
     ],
     package_data={'skytemple': ['*.css', 'py.typed'] + recursive_pkg_files('.glade') + recursive_pkg_files_in('data/') + create_mo_files()},
     entry_points='''
