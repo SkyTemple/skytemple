@@ -72,7 +72,7 @@ setup(
         'pygobject >= 3.26.0',
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
-        'tilequant >= 0.4.1',
+        'tilequant >= 0.4.1.post0',
         'skytemple-ssb-debugger >= 1.4.0rc1',
         'pygal >= 2.4.0',
         'CairoSVG >= 2.4.2',
