@@ -127,7 +127,7 @@ except ImportError:
 from gi.repository import Gtk, Gdk, GLib
 from gi.repository.Gtk import Window
 from skytemple.controller.main import MainController
-SKYTEMPLE_LOGLEVEL = logging.DEBUG
+SKYTEMPLE_LOGLEVEL = logging.INFO
 
 
 def run_main(settings: SkyTempleSettingsStore):
