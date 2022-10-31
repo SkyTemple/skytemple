@@ -18,7 +18,7 @@ fi
 
 platform="msys2"
 if [ -n "$IS_MACOS" ]; then
-  platform="macos-10.15"
+  platform="macos-11"
   arch="x64"
   py_version="3.10"
 fi
