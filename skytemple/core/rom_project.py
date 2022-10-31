@@ -17,16 +17,19 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import os
+import shutil
 import sys
 from enum import Enum, auto
 from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Type, Tuple, Any, List, overload, Literal, \
     cast
+from datetime import datetime
 
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
 from pmdsky_debug_py.protocol import SectionProtocol
 from skytemple_files.data.sprconf.handler import SPRCONF_FILENAME
 
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.modules import Modules
 from skytemple.core.open_request import OpenRequest
@@ -37,6 +40,7 @@ from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.types.file_types import FileType
+from skytemple_files.common.i18n_util import _
 from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
     get_ppmdu_config_for_rom, get_files_from_folder_with_extension, \
     folder_in_rom_exists, create_folder_in_rom, get_binary_from_rom, set_binary_in_rom
@@ -46,6 +50,7 @@ from skytemple_files.compression_container.common_at.handler import CommonAtType
 from skytemple_files.hardcoded.icon_banner import IconBanner
 
 logger = logging.getLogger(__name__)
+BACKFUP_NAME = '.~backup.bin'
 
 if TYPE_CHECKING:
     from skytemple.controller.main import MainController
@@ -94,11 +99,16 @@ class RomProject:
         return cls._current
 
     @classmethod
-    def open(cls, filename, main_controller: Optional['MainController'] = None):
+    def open(cls, filename, main_controller: 'MainController'):
         """
         Open a file (in a new thread).
         If the main controller is set, it will be informed about this.
         """
+        # First check for a backup file from last save.
+        backup_fn = os.path.join(ProjectFileManager(filename).dir(), BACKFUP_NAME)
+        if os.path.exists(backup_fn):
+            cls.handle_backup_restore(filename, backup_fn, main_controller)
+
         AsyncTaskDelegator.run_task(cls._open_impl(filename, main_controller))  # type: ignore
 
     @classmethod
@@ -113,6 +123,34 @@ class RomProject:
             cls._current = None
             if main_controller:
                 GLib.idle_add(lambda ex=ex: main_controller.on_file_opened_error(exc_info, ex))
+
+    @classmethod
+    def handle_backup_restore(cls, rom_fn: str, backup_fn: str, main_controller: 'MainController'):
+        dialog: Gtk.MessageDialog = SkyTempleMessageDialog(
+            main_controller.window(),
+            Gtk.DialogFlags.MODAL,
+            Gtk.MessageType.WARNING,
+            Gtk.ButtonsType.NONE, _("There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last.")
+        )
+        as_is: Gtk.Widget = dialog.add_button(_("No, load ROM as-is"), 0)
+        as_is.get_style_context().add_class('destructive-action')
+        dialog.add_button(_("Yes, load backup"), 1)
+
+        original_rom_text = _("Last modified: {} - Size: {}").format(datetime.fromtimestamp(os.path.getmtime(rom_fn)).isoformat(), os.path.getsize(rom_fn))
+        backup_rom_text = _("Last modified: {} - Size: {}").format(datetime.fromtimestamp(os.path.getmtime(backup_fn)).isoformat(), os.path.getsize(backup_fn))
+
+        dialog.format_secondary_text(_(
+            "Do you want to restore the backup?\n"
+            "If you select 'Yes, load backup', the backup will replace the ROM file and will then be loaded.\n"
+            "If you select 'No, load ROM as-is', the backup will be deleted and SkyTemple will attempt to load the (potentially) corrupted ROM file.\n\n"
+            "Original ROM: {}\n"
+            "Backup ROM: {}").format(original_rom_text, backup_rom_text))
+        response = dialog.run()
+        dialog.destroy()
+        if response == 1:
+            os.replace(backup_fn, rom_fn)
+        else:
+            os.unlink(backup_fn)
 
     def __init__(self, filename: str, cb_open_view: Callable[[Gtk.TreeIter], None]):
         self.filename = filename
@@ -416,11 +454,13 @@ class RomProject:
 
     def save_as_is(self):
         """Simply save the current ROM to disk."""
-        # First save to a temp file we will move later.
-        backup_fn = os.path.join(self.get_project_file_manager().dir(), '.~save.bin')
-        self._rom.saveToFile(backup_fn)
-        # Replace the original ROM with the new.
-        os.replace(backup_fn, self.filename)
+        # First copy current ROM to a to a temp file.
+        backup_fn = os.path.join(self.get_project_file_manager().dir(), BACKFUP_NAME)
+        shutil.copyfile(self.filename, backup_fn)
+        # Now save
+        self._rom.saveToFile(self.filename)
+        # Delete the backup
+        os.unlink(backup_fn)
 
     def get_files_with_ext(self, ext, folder_name: Optional[str] = None):
         if folder_name is None:
