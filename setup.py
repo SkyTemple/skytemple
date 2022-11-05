@@ -1,4 +1,4 @@
-__version__ = '1.4.0rc1'
+__version__ = '1.4.0'
 
 import glob
 import os
@@ -73,7 +73,7 @@ setup(
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
         'tilequant >= 0.4.1.post0',
-        'skytemple-ssb-debugger >= 1.4.0rc1',
+        'skytemple-ssb-debugger >= 1.4.0',
         'pygal >= 2.4.0',
         'CairoSVG >= 2.4.2',
         'gbulb >= 0.6.2',
