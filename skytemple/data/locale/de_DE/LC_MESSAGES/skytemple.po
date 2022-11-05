@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-10-31 15:18+0000\n"
-"PO-Revision-Date: 2022-11-05 14:17\n"
+"PO-Revision-Date: 2022-11-05 14:58\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -12030,7 +12030,9 @@ msgstr "Bearbeitet die Listen für Missionsbelohnungen, Schatzkisten und Shops i
 msgid "<Not available>\n\n"
 "To view and edit those lists, please apply the \"ExtractHardcodedItemLists\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um diese Listen anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ExtractHardcodedItemLists“ aus dem Menü „Patches“ > „ASM“ an."
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:638
 msgid "Lists: "
@@ -12331,7 +12333,7 @@ msgstr "Anwenden"
 #: skytemple/skytemple/module/patch/controller/asm.glade:177
 msgctxt "Issues as in problems"
 msgid "Show Issues"
-msgstr ""
+msgstr "Probleme anzeigen"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:250
 msgid "A compatibility issue was detected while loading one or more patches."
@@ -12357,7 +12359,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:324
 msgid "Details:"
-msgstr ""
+msgstr "Details:"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:403
 msgid "Author"
@@ -12727,7 +12729,7 @@ msgstr "pmdsky-debug Version:"
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:183
 msgid "Open pmdsky-debug"
-msgstr ""
+msgstr "pmdksy-debug öffnen"
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:356
 msgid "Address"
@@ -12762,7 +12764,9 @@ msgstr ""
 msgid "<Not available>\n\n"
 "To view and edit special process effects, please apply the \"ExtractSPCode\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um Effekte für spezielle Prozesse anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ExtractSPCode“ aus dem Menü „Patches“ > „ASM“ an."
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:169
 msgid "Edits the effects used by each special process.\n"
@@ -13686,11 +13690,11 @@ msgstr "Sprites wurden erfolgreich importiert."
 
 #: skytemple/skytemple/module/spritecollab/module.py:146
 msgid "Open a Pokémon in the main window to apply the assets to."
-msgstr ""
+msgstr "Öffne ein Pokémon im Hauptfenster, auf das du die Assets anwenden möchtest."
 
 #: skytemple/skytemple/module/spritecollab/module.py:149
 msgid "Could not apply the sprites, since no sprite data is available."
-msgstr ""
+msgstr "Die Sprites konnten nicht angewendet werden, da keine Spritedaten verfügbar sind."
 
 #: skytemple/skytemple/module/spritecollab/module.py:152
 msgid "This Pokémon does not support portraits and/or sprites."
