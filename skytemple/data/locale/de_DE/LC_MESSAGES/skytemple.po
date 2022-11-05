@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-10-31 15:18+0000\n"
-"PO-Revision-Date: 2022-10-31 15:25\n"
+"PO-Revision-Date: 2022-11-05 14:17\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -5860,20 +5860,20 @@ msgstr "SkyTemple - Unbehandelter Fehler!"
 
 #: skytemple/skytemple/core/rom_project.py:133
 msgid "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
-msgstr ""
+msgstr "Es wurde eine Sicherungsdatei für diese ROM gefunden. Das deutet darauf hin, dass die ROM beschädigt war, als SkyTemple das letzte Mal versucht hat, sie zu speichern."
 
 #: skytemple/skytemple/core/rom_project.py:135
 msgid "No, load ROM as-is"
-msgstr ""
+msgstr "Nein, ROM laden wie sie ist"
 
 #: skytemple/skytemple/core/rom_project.py:137
 msgid "Yes, load backup"
-msgstr ""
+msgstr "Ja, Sicherung laden"
 
 #: skytemple/skytemple/core/rom_project.py:139
 #: skytemple/skytemple/core/rom_project.py:140
 msgid "Last modified: {} - Size: {}"
-msgstr ""
+msgstr "Zuletzt geändert: {} - Größe: {}"
 
 #: skytemple/skytemple/core/rom_project.py:143
 msgid "Do you want to restore the backup?\n"
@@ -5881,7 +5881,11 @@ msgid "Do you want to restore the backup?\n"
 "If you select 'No, load ROM as-is', the backup will be deleted and SkyTemple will attempt to load the (potentially) corrupted ROM file.\n\n"
 "Original ROM: {}\n"
 "Backup ROM: {}"
-msgstr ""
+msgstr "Möchtest du die Sicherung wiederherstellen?\n"
+"Wenn du 'Ja, Sicherung laden' wählst, wird die Sicherung die original ROM ersetzen und dann geladen.\n"
+"Wenn du 'Nein, ROM so laden, wie sie ist' wählst, wird das Backup gelöscht und SkyTemple wird versuchen, die (potentiell) beschädigte ROM zu laden.\n\n"
+"Originale ROM: {}\n"
+"Backup ROM: {}"
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:157
 #: skytemple/skytemple/core/ssb_debugger/context.py:174
@@ -5913,7 +5917,8 @@ msgstr "CSV Datei (*.csv)"
 #: skytemple/skytemple/core/ui_utils.py:218
 msgid "The value you entered is invalid.\n\n"
 "Valid values must be in the range [{},{}]."
-msgstr ""
+msgstr "Der eingegebene Wert ist ungültig.\n\n"
+"Gültige Werte müssen im Bereich [{},{}] liegen."
 
 #: skytemple/skytemple/core/ui_utils.py:219
 msgid "SkyTemple - Value out of range"
@@ -7468,7 +7473,7 @@ msgstr "SkyTemple: Ungültiges Pokémon"
 #: skytemple/skytemple/module/lists/controller/recruitment_list.py:76
 #: skytemple/skytemple/module/lists/controller/starters_list.py:186
 msgid "No Pokémon with this ID found."
-msgstr ""
+msgstr "Keine Pokémon mit dieser ID gefunden."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:715
 msgid "All categories are already in the list."
@@ -8650,7 +8655,9 @@ msgstr "Die Einträge in dieser Liste können auf Karten platziert und in Skript
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ActorAndLevelLoader\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um diese Liste anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ActorAndLevelLoader“ aus dem Menü „Patches“ > „ASM“ an."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
 msgid "Text String for Name"
@@ -8696,7 +8703,9 @@ msgstr "Bearbeitet die Animationstabellen, die das Spiel benutzt."
 msgid "<Not available>\n\n"
 "To view and edit animation tables, please apply the \"ExtractAnimData\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um Animationstabellen anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ExtractAnimData“ aus dem Menü „Patches“ > „ASM“ an."
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:274
 msgid "Animation Tables"
@@ -8843,7 +8852,9 @@ msgstr "Bearbeitet alle im Spiel definierten Dungeon-Unterbrechungen."
 msgid "<Not available>\n\n"
 "To create dungeon interruption, please apply the \"DungeonInterrupt\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um Dungeon-Unterbrechungen zu bearbeiten, wende bitte den\n"
+"ASM-Patch „DungeonInterrupt“ aus dem Menü „Patches“ > „ASM“ an."
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:208
 msgid "Dungeon: "
@@ -8949,7 +8960,9 @@ msgid "<Not available>\n\n"
 "To view and edit guest Pokémon data, please apply the \"EditExtraPokemon\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um Gast-Pokémon Daten anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ExtractMoveCode“ aus dem Menü „Patches“ > „ASM“ an. "
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:215
 msgid "Dungeon Guest Pokémon"
@@ -9252,7 +9265,9 @@ msgstr "Objektliste"
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ExtractObjectTable\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um diese Liste anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ExtractObjectTable“ aus dem Menü „Patches“ > „ASM“ an."
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:210
 msgid "Unk2_1"
@@ -11940,11 +11955,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:139
 msgid "Item Keys"
-msgstr ""
+msgstr "Item-Schlüssel"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:213
 msgid "Sort Key"
-msgstr ""
+msgstr "Sortierschlüssel"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:228
 msgid "Item Name"
@@ -12445,7 +12460,8 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/asm.py:408
 msgid "Warning! The project directory for this ROM contains custom patches. These patches may contain code which will run on your computer once you accept this dialog with 'Yes'. Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n\n"
 "Do you want to continue loading these patches? By selecting 'No', only the built-in patches will be loaded."
-msgstr ""
+msgstr "Warnung! Das Projektverzeichnis für diese ROM enthält benutzerdefinierte Patches. Diese Patches können Code enthalten, der auf deinem Computer ausgeführt wird, sobald du diesen Dialog mit 'Ja' bestätigtst. Fahre nur fort, wenn du den Autoren der Patches vertraust. Böswillige Personen könnten andernfalls deinen Computer kapern und/oder Informationen stehlen.\n\n"
+"Möchtest du die Patches weiter laden? Wenn du 'Nein' auswählst, werden nur die mitgelieferten Patches geladen."
 
 #: skytemple/skytemple/module/patch/controller/cot.glade:26
 msgid "c-of-time & Rust of Darkness"
@@ -12464,7 +12480,7 @@ msgstr "c-of-time README"
 
 #: skytemple/skytemple/module/patch/controller/cot.glade:175
 msgid "Rust of Darkness README"
-msgstr ""
+msgstr "Rust of Darkness README"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:76
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:156
@@ -12482,7 +12498,9 @@ msgstr ""
 msgid "<Not available>\n\n"
 "To view and edit item effects, please apply the \"ExtractItemCode\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um Item-Effekte anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ExtractItemCode“ aus dem Menü „Patches“ > „ASM“ an."
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:173
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:182
@@ -12637,7 +12655,9 @@ msgid "<Not available>\n\n"
 "To view and edit move effects, please apply the \"ExtractMoveCode\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
-msgstr ""
+msgstr "<Nicht verfügbar>\n\n"
+"Um Attacken-Effekte anzuzeigen und zu bearbeiten, wende bitte den\n"
+"ASM-Patch „ExtractMoveCode“ aus dem Menü „Patches“ > „ASM“ an. "
 
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:321
 msgid "Fix # of Moves"
