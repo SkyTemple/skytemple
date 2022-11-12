@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-10-31 15:18+0000\n"
-"PO-Revision-Date: 2022-11-12 15:50\n"
+"PO-Revision-Date: 2022-11-12 18:22\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3729,11 +3729,11 @@ msgstr "Dieses Menü muss {num_entries} Einträge haben!"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:92
 msgid "Standing Animation (loop)"
-msgstr ""
+msgstr "Stehende Animation (Schleife)"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:93
 msgid "Standing Animation (1st frame)"
-msgstr ""
+msgstr "Stehende Animation (1. Bild)"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:94
 msgid "Special"
@@ -3741,7 +3741,7 @@ msgstr "Speziell"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:95
 msgid "Walking Animation (1st frame)"
-msgstr ""
+msgstr "Geh-Animation (1. Bild)"
 
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:233
 #, python-brace-format
@@ -3806,7 +3806,7 @@ msgstr "Ermöglicht das Rekrutieren der anderen Deoxys-Formen und der Regis in D
 
 #: skytemple-files/skytemple_files/patch/handler/anti_softlock.py:47
 msgid "Allows the player to press A+B+X+Y during cutscenes to force the game to continue past a softlock (this can happen during cutscenes when using custom sprites or the randomizer). Does not work with crashes caused due to internal errors (such as the game running out of memory)."
-msgstr ""
+msgstr "Ermöglicht dem Spieler, während der Zwischensequenzen A+B+X+Y zu drücken, um zu erzwingen, dass das Spiel über einen Softlock hinaus fortgesetzt wird (dies kann in Zwischensequenzen passieren, wenn benutzerdefinierte Sprites oder der Randomizer verwendet werden). Funktioniert nicht bei Abstürzen, die durch interne Fehler verursacht wurden (z. B. wenn das Spiel nicht genügend Speicher hat)."
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:56
 msgid "Appraise all"
@@ -3815,12 +3815,14 @@ msgstr "Alle bewerten"
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:58
 msgid " And to appraise all your items, \n"
 "you will pay [CS:G][gold_left:0][CR][M:S0]?"
-msgstr ""
+msgstr " Und um all Ihre Gegenstände zu bewerten, zahlen Sie \n"
+"[CS:G] [gold_left:0][CR][M:S0]?"
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:62
 msgid " And so...[K]it is revealed...[C] Within the boxes...[K]\n"
 "were..."
-msgstr ""
+msgstr " Und so...[K]es ist enthüllt...[C] Innerhalb der Boxen...[K]\n"
+"waren..."
 
 #. TRANSLATORS: Appraise All Reveal Before
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:65
