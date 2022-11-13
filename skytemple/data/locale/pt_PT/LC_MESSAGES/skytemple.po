@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-10-31 15:18+0000\n"
-"PO-Revision-Date: 2022-10-31 15:25\n"
+"POT-Creation-Date: 2022-11-13 00:13+0000\n"
+"PO-Revision-Date: 2022-11-13 00:27\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -3537,7 +3537,7 @@ msgid "Main Debug Menu"
 msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:101
-msgid "Unknown Menu"
+msgid "Quiz Debug Menu"
 msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:109
@@ -3710,7 +3710,7 @@ msgid "Dungeon Sub Menu"
 msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:645
-msgid "Unknown Menu Confirm"
+msgid "Start Menu Confirm"
 msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:653
@@ -3887,7 +3887,7 @@ msgid "Implements shared experience points between all members (GtI style). \n"
 "Needs the ExtractDungeonData patch to be applied to free some space used by this."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:102
+#: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:103
 msgid "Expand the pokemon entries allowed to 2048, and makes all the entries independent.\n"
 "Needs ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile patches to work.\n"
 "It is strongly recommended to fix any dungeon error before applying this patch,\n"
