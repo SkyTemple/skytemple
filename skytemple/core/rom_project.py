@@ -456,11 +456,14 @@ class RomProject:
         """Simply save the current ROM to disk."""
         # First copy current ROM to a to a temp file.
         backup_fn = os.path.join(self.get_project_file_manager().dir(), BACKFUP_NAME)
-        shutil.copyfile(self.filename, backup_fn)
+        # When doing "Save As..." the file may not exist yet.
+        if os.path.exists(self.filename):
+            shutil.copyfile(self.filename, backup_fn)
         # Now save
         self._rom.saveToFile(self.filename)
         # Delete the backup
-        os.unlink(backup_fn)
+        if os.path.exists(backup_fn):
+            os.unlink(backup_fn)
 
     def get_files_with_ext(self, ext, folder_name: Optional[str] = None):
         if folder_name is None:
