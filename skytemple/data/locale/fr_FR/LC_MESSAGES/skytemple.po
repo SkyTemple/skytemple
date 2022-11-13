@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-10-31 15:18+0000\n"
-"PO-Revision-Date: 2022-10-31 15:25\n"
+"POT-Creation-Date: 2022-11-13 00:13+0000\n"
+"PO-Revision-Date: 2022-11-13 00:27\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -3545,8 +3545,8 @@ msgid "Main Debug Menu"
 msgstr "Menu de débogage principal"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:101
-msgid "Unknown Menu"
-msgstr "Menu inconnu"
+msgid "Quiz Debug Menu"
+msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:109
 msgid "Footprint Debug Menu"
@@ -3718,8 +3718,8 @@ msgid "Dungeon Sub Menu"
 msgstr "Menu secondaire donjon"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:645
-msgid "Unknown Menu Confirm"
-msgstr "Confirmation menu inconnu"
+msgid "Start Menu Confirm"
+msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:653
 msgid "Dungeon Debug Menu"
@@ -3903,7 +3903,7 @@ msgstr "Implémente le partage des points d'expérience entre tous les membres (
 "Le partage est desactivé lors des Épisodes Spéciaux et dans les donjons avec les restrictions « niveau 1 » ou « pas de gain d'expérience ».\n"
 "Le correctif ExtractDungeonData doit être appliqué pour libérer de l'espace utilisé par celui-ci."
 
-#: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:102
+#: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:103
 msgid "Expand the pokemon entries allowed to 2048, and makes all the entries independent.\n"
 "Needs ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile patches to work.\n"
 "It is strongly recommended to fix any dungeon error before applying this patch,\n"
