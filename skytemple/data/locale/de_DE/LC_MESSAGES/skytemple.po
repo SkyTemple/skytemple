@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-11-13 12:32+0000\n"
-"PO-Revision-Date: 2022-11-14 17:39\n"
+"PO-Revision-Date: 2022-11-14 18:37\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -13537,7 +13537,9 @@ msgstr "SkyTemple kann keine Sprites bearbeiten. \n"
 msgid "You can also replace this object with a static sprite.\n"
 "It needs to have a resolution of less than 512x256px.\n"
 "It also needs to have at most 15 color, plus (optionally) a fully transparent \"color\"."
-msgstr ""
+msgstr "Du kannst dieses Objekt auch durch einen statischen Sprite ersetzen.\n"
+"Dieser muss eine Auflösung von weniger als 512x256px haben.\n"
+"Er muss außerdem höchstens 15 Farben plus (optional) eine vollständig transparente „Farbe“ haben."
 
 #: skytemple/skytemple/module/sprite/controller/object.glade:193
 msgid "Import image"
@@ -13574,7 +13576,7 @@ msgstr "Sprite-Name"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:56
 msgid "The length of the sprite name must be between 1-10 characters."
-msgstr ""
+msgstr "Die Länge des Sprites muss zwischen 1 und 10 Zeichen betragen."
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:67
 msgid "A sprite with this name already exists."
@@ -13756,7 +13758,11 @@ msgid "This will replace the sprite of this Pokémon with the one from the repos
 "animations (if they aren't available for this Pokémon otherwise).\n"
 "This will fix Pokémon using weird animations instead of sleeping on the overworld, \n"
 "when choosing them as a starter or partner."
-msgstr ""
+msgstr "Dadurch wird der Sprite dieses Pokémons durch den Sprite aus dem Repository ersetzt.\n"
+"Du kannst stattdessen auch einen neueen Sprite erstellen, es wird den Pokémon zugewiesen.\n\n"
+"Zusätzlich kannst du die \"Sleep\"-Animation nach \"EventSleep\"/\"Laying\"/\"Waking\" kopieren (falls sie sonst für dieses Pokémon nicht verfügbar sind).\n"
+"Dadurch werden Pokémon repariert, die seltsame Animationen verwenden, anstatt in der Oberwelt zu schlafen, \n"
+"wenn sie als Starter oder Partner ausgewählt werden."
 
 #: skytemple/skytemple/module/spritecollab/module.py:177
 msgid "Create a new sprite instead of replacing the existing one."
