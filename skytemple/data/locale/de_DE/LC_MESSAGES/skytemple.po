@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-11-13 12:32+0000\n"
-"PO-Revision-Date: 2022-11-13 12:40\n"
+"PO-Revision-Date: 2022-11-14 14:41\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -463,7 +463,7 @@ msgstr "String-ID für die Menüoption"
 
 #: /dev/fd/63:107 /dev/fd/63:222
 msgid "String ID to confirm the appraise all"
-msgstr "String-ID zur Bestätigung der Bewertung aller"
+msgstr "String-ID zur Bestätigung der Begutachtung aller"
 
 #: /dev/fd/63:108 /dev/fd/63:223
 msgid "String ID before revealing the items"
@@ -479,7 +479,7 @@ msgstr "Alle oben genannten Strings werden beim Anwenden durch einen Standardtex
 
 #: /dev/fd/63:111 /dev/fd/63:226
 msgid "Cost of each Treasure Box (Only for Appraise All option)"
-msgstr "Kosten für jede Schatzkiste (Nur für Option „Alle bewerten“)"
+msgstr "Kosten für jede Schatzkiste (Nur für Option „Alle begutachten“)"
 
 #: /dev/fd/63:113
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
@@ -3810,12 +3810,12 @@ msgstr "Ermöglicht dem Spieler, während der Zwischensequenzen A+B+X+Y zu drüc
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:56
 msgid "Appraise all"
-msgstr "Alle bewerten"
+msgstr "Alle begutachten"
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:58
 msgid " And to appraise all your items, \n"
 "you will pay [CS:G][gold_left:0][CR][M:S0]?"
-msgstr " Und um all deine Gegenstände zu bewerten, zahle\n"
+msgstr " Und um all deine Gegenstände zu begutachten, zahle\n"
 "[CS:G] [gold_left:0][CR][M:S0]?"
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:62
@@ -3831,7 +3831,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:76
 msgid "Adds an extra menu in box appraisal to appraise all boxes at once. "
-msgstr ""
+msgstr "Fügt ein zusätzliches Menü in der Boxbegutachtung hinzu, um alle Boxen gleichzeitig zu begutachten. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:113
 msgid "Change the evolution system.\n"
