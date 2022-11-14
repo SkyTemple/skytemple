@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2022-11-13 12:32+0000\n"
-"PO-Revision-Date: 2022-11-14 14:41\n"
+"PO-Revision-Date: 2022-11-14 17:39\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3880,7 +3880,7 @@ msgstr "Deaktiviert die Tipp-Textboxen die in Dungeons angezeigt werden am Anfan
 
 #: skytemple-files/skytemple_files/patch/handler/disarm_one_room_mh.py:43
 msgid "Disarms one-room Monster House floors, which can appear in cases like a layout generation failure. These floors will still be one giant room, but will no longer be Monster Houses."
-msgstr ""
+msgstr "Entschärft Monster-Räume auf Ebenen mit nur einem Raum, welcher ein Monster-Raum ist. Das kann in Fällen wie einem Fehler der Layout-Generierung auftreten. Diese Ebenen werden immer noch ein riesiger Raum, aber keine Monster-Räume mehr sein."
 
 #: skytemple-files/skytemple_files/patch/handler/dungeon_interrupt.py:48
 msgid "Implements dungeon interruptions. "
@@ -3888,7 +3888,7 @@ msgstr "Implementiert Dungeon-Unterbrechungen. "
 
 #: skytemple-files/skytemple_files/patch/handler/dynamic_bosses_everywhere.py:47
 msgid "Allows placing special fixed room entities #124-127 (Explorer Maze enemies) in any fixed room without causing the game to crash."
-msgstr ""
+msgstr "Ermöglicht das Platzieren spezieller statischer Raum-Entitäten #124 -127 (Feinde des Explorer-Labyrinths) in einen statischen Raum, ohne dass das Spiel abstürzt."
 
 #: skytemple-files/skytemple_files/patch/handler/edit_extra_pokemon.py:47
 msgid "Changes the way the game determines when to add additional pokémon to the team so it can be edited more easily"
@@ -3984,7 +3984,7 @@ msgstr "Verhindert, dass das Spiel abstürzt, wenn beim Versuch, ein Sprite anzu
 
 #: skytemple-files/skytemple_files/patch/handler/fix_nocash_saves.py:46
 msgid "Fixes an issue that causes saving to fail on the No$GBA emulator."
-msgstr ""
+msgstr "Behebt ein Problem, das dazu führte, dass das Speichern auf dem Emulator \"No$GBA\" fehlschlägt."
 
 #: skytemple-files/skytemple_files/patch/handler/move_growth.py:165
 msgid "Implements move growth (PoC/Unfinished). \n"
@@ -4007,7 +4007,7 @@ msgstr "Ersetzt die fixierte Attacke (L+A) mit einer Schnellauswahl wie in PidU 
 
 #: skytemple-files/skytemple_files/patch/handler/obj_table.py:61
 msgid "Extracts the object table to a separate file in the ROM."
-msgstr ""
+msgstr "Extrahiert die Objekttabelle in eine separate Datei im ROM."
 
 #: skytemple-files/skytemple_files/patch/handler/partners_trigger_hidden_traps.py:47
 msgid "Recommended for CTC. Without this patch, partners cannot trigger hidden traps - this balances the game, as making your partners dodge traps with manual movement is easy, but this patch is not recommended for mods which use pitfall traps, as they instakill partners which step on them."
@@ -4015,7 +4015,7 @@ msgstr "Empfohlen für CTC. Ohne diesen Patch können Partner keine versteckten 
 
 #: skytemple-files/skytemple_files/patch/handler/pkmn_ground_anim.py:62
 msgid "Changes implementation of idle animation to an editable table."
-msgstr ""
+msgstr "Ändert die Implementierung einer Stillstand-Animation in eine bearbeitbaren Tabelle."
 
 #: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:47
 msgid "Reduces the amount of time the game pauses for before changing the PoV, like when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
@@ -4123,7 +4123,7 @@ msgstr "Kein Patch für Handler '{handler.name}' gefunden in der Konfiguration."
 
 #: skytemple-files/skytemple_files/script/ssa_sse_sss/writer.py:57
 msgid "Can not save a scene event without a defined triggered script."
-msgstr ""
+msgstr "Ein Szenenereignis kann nicht ohne ein definiertes ausgelöstes Skript gespeichert werden."
 
 #: skytemple-files/skytemple_files/script/ssb/constants.py:82
 #, python-brace-format
@@ -4192,164 +4192,166 @@ msgstr "Das Skript konnte nicht kompiliert werden: Alle Sprachen müssen die gle
 #: skytemple-rust/src/dse/st_smdl/eoc.rs:37
 #: skytemple-rust/src/dse/st_smdl/trk.rs:116
 msgid "SMDL file too short (EOC EOF)."
-msgstr ""
+msgstr "SMDL-Datei zu kurz (EOC EOF)."
 
 #: skytemple-rust/src/dse/st_smdl/eoc.rs:40
 msgid "Invalid SMDL/EOC header."
-msgstr ""
+msgstr "Ungültiger SMDL/EOC-Header."
 
 #: skytemple-rust/src/dse/st_smdl/smdl.rs:202
 msgid "SMDL file too short (Header EOF)."
-msgstr ""
+msgstr "SMDL-Datei zu kurz (Header EOF)."
 
 #: skytemple-rust/src/dse/st_smdl/smdl.rs:207
 msgid "Invalid SMDL/Header header."
-msgstr ""
+msgstr "Ungültiger SMDL-/Header-Header."
 
 #: skytemple-rust/src/dse/st_smdl/song.rs:94
 msgid "SMDL file too short (Song EOF)."
-msgstr ""
+msgstr "SMDL-Datei zu kurz (Song EOF)."
 
 #: skytemple-rust/src/dse/st_smdl/song.rs:97
 msgid "Invalid SMDL/Song header."
-msgstr ""
+msgstr "Ungültiger SMDL-/Song-Header."
 
 #: skytemple-rust/src/dse/st_smdl/trk.rs:68
 msgid "SMDL file too short (Track EOF)."
-msgstr ""
+msgstr "SMDL-Datei zu kurz (Track EOF)."
 
 #: skytemple-rust/src/dse/st_smdl/trk.rs:71
 msgid "Invalid SMDL/Track header."
-msgstr ""
+msgstr "Ungültiger SMDL-/EOC-Header."
 
 #: skytemple-rust/src/dse/st_swdl/kgrp.rs:43
 msgid "SWDL file too short (Keygroup EOF)."
-msgstr ""
+msgstr "SMDL-Datei zu kurz (Schlüsselgruppe EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/kgrp.rs:80
 #: skytemple-rust/src/dse/st_swdl/kgrp.rs:89
 msgid "SWDL file too short (Kgrp EOF)."
-msgstr ""
+msgstr "SMDL-Datei zu kurz (Kgrp EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/kgrp.rs:83
 msgid "Invalid SWDL/Kgrp header."
-msgstr ""
+msgstr "Ungültiger SWDL-/Kgrp-Header."
 
 #: skytemple-rust/src/dse/st_swdl/pcmd.rs:37
 #: skytemple-rust/src/dse/st_swdl/pcmd.rs:46
 msgid "SWDL file too short (Pcmd EOF)."
-msgstr ""
+msgstr "SMDL-Datei zu kurz (Pcmd EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/pcmd.rs:40
 msgid "Invalid SWDL/Pcmd header."
-msgstr ""
+msgstr "Ungültiger SWDL-/Pcmd-Header."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:47
 msgid "SWDL file too short (LFO EOF)."
-msgstr ""
+msgstr "SWDL-Datei zu kurz (LFO EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:124
 msgid "SWDL file too short (Split EOF)."
-msgstr ""
+msgstr "SWDL-Datei zu kurz (Split EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:135
 msgid "SWDL file: Invalid lowkey duplicate (Split EOF)."
-msgstr ""
+msgstr "SWDL-Datei: Ungültiges Lowkey-Duplikat (Split EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:139
 msgid "SWDL file: Invalid hikey duplicate (Split EOF)."
-msgstr ""
+msgstr "SWDL-Datei: Ungültiges Highkey-Duplikat (Split EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:145
 msgid "SWDL file: Invalid lolevel duplicate (Split EOF)."
-msgstr ""
+msgstr "SWDL-Datei: Ungültiges Lowlevel-Duplikat (Split EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:149
 msgid "SWDL file: Invalid hilevel duplicate (Split EOF)."
-msgstr ""
+msgstr "SWDL-Datei: Ungültiges HiLevel-Duplikat (Split EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:287
 msgid "SWDL file too short (PRG EOF)."
-msgstr ""
+msgstr "SMDL-Datei zu kurz (PRG EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:362
 msgid "SWDL file too short (Prgi EOF)."
-msgstr ""
+msgstr "SMDL-Datei zu kurz (Prgi EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:365
 msgid "Invalid PRGI/Prgi header."
-msgstr ""
+msgstr "Ungültiger PRGI-/Prgi-Header."
 
 #: skytemple-rust/src/dse/st_swdl/prgi.rs:375
 msgid "SWDL Prgi length invalid; tried to read past EOF."
-msgstr ""
+msgstr "Die SWDL-Prgi-Länge ist ungültig. Es wurde versucht, nach dem EOF zu lesen."
 
 #: skytemple-rust/src/dse/st_swdl/swdl.rs:52
 msgid "SWDL file too short (SwdlPcmdLen EOF)."
-msgstr ""
+msgstr "SMDL-Datei zu kurz (SwdlPcmdLen EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/swdl.rs:139
 msgid "SWDL file too short (Header EOF)."
-msgstr ""
+msgstr "SMDL-Datei zu kurz (Header EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/swdl.rs:144
 msgid "Invalid SWDL/Header header."
-msgstr ""
+msgstr "Ungültiger SWDL-/Header-Header."
 
 #: skytemple-rust/src/dse/st_swdl/swdl.rs:250
 msgid "Swdl read error (inconsistent Wavi length)"
-msgstr ""
+msgstr "SWDL-Lesefehler (inkonsistente Wavi-Länge)"
 
 #: skytemple-rust/src/dse/st_swdl/swdl.rs:284
 msgid "Swdl read: Invalid sample data"
-msgstr ""
+msgstr "SWDL-Lesefehler: Ungültige Beispieldaten"
 
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:105
 msgid "SWDL file too short (Sample Table EOF)."
-msgstr ""
+msgstr "SWDL-Datei zu kurz (Beispieltabelle EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:262
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:281
 msgid "SWDL file too short (Wavi EOF)."
-msgstr ""
+msgstr "SWDL-Datei zu kurz (Wavi EOF)."
 
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:265
 msgid "Invalid SWDL/Wavi header."
-msgstr ""
+msgstr "Ungültiger SWDL-/Wavi-Header."
 
 #: skytemple-rust/src/dse/st_swdl/wavi.rs:275
 msgid "SWDL Wavi length invalid; tried to read past EOF."
-msgstr ""
+msgstr "Die SWDL Wavi-Länge ist ungültig. Es wurde versucht, nach dem EOF zu lesen."
 
 #: skytemple-rust/src/image/tiled.rs:231
 msgid "An image selected to import is too complex. It has too many unique tiles ({}, max allowed are 1024).\n"
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
-msgstr ""
+msgstr "Ein Bild, das importiert werden sollte, ist zu komplex. Es hat zu viele einzigartige Kacheln ({}, maximal sind 1024 erlaubt).\n"
+"Versuche, weniger einzigartige Kacheln zu haben. Einzigartige Kacheln sind 8x8 Bereiche im Bild, die nirgendwo sonst im Bild vorkommen (inklusive gedrehter oder gespiegelter Variationen oder mit einer anderen Unter-Palette)."
 
 #: skytemple-rust/src/romfs.rs:101
 msgid "ROM Header checksum does not match contents."
-msgstr ""
+msgstr "ROM-Header-Prüfsumme stimmt nicht mit Inhalt überein."
 
 #: skytemple-rust/src/romfs.rs:110
 msgid "Error reading the filesystem from ROM: {}"
-msgstr ""
+msgstr "Fehler beim Lesen des Dateisystems aus ROM: {}"
 
 #: skytemple-rust/src/st_bma.rs:463
 msgid "Can not import map background: Width of both images must match the current map width: {}px"
-msgstr ""
+msgstr "Kartenhintergrund kann nicht importiert werden: Breite von beiden Bildern muss mit der aktuellen Größe übereinstimmen: {}px"
 
 #: skytemple-rust/src/st_bma.rs:475
 msgid "Can not import map background: Height of both images must match the current map width: {}px"
-msgstr ""
+msgstr "Kartenhintergrund kann nicht importiert werden: Höhe von beiden Bildern muss mit der aktuellen Größe übereinstimmen: {}px"
 
 #: skytemple-rust/src/st_bpc.rs:539
 msgid "new tilemapping for this chunk must contain {} tiles."
-msgstr ""
+msgstr "neue Kachelzuordnung für diesen Block muss {} Kacheln enthalten."
 
 #: skytemple-rust/src/st_kao.rs:100
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({} bytes total).\n"
 " If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
-msgstr ""
+msgstr "Dieses Portrait lässt sich nicht gut komprimieren, die Größe nach dem Komprimieren ist größer als 800 Bytes ({} Bytes insgesamt).\n"
+" Falls du es noch nicht probiert hast, versuche den Patch 'ProvideATUPXSupport' anzuwenden, um einen optimierten Kompressionsalgorithmus zu installieren, welcher möglicherweise in der Lage ist, dieses Bild besser zu komprimieren."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/debug_overlay.py:175
 msgid "BOOST"
@@ -5747,7 +5749,7 @@ msgstr "Du musst SkyTemple neu starten, um einige deiner Änderungen anzuwenden.
 
 #: skytemple/skytemple/controller/settings.py:205
 msgid "If this is enabled a new and faster (but slightly experimental) codebase is used to load and manipulate game files. Try to disable this if you run into crashes or other issues."
-msgstr ""
+msgstr "Wenn dies aktiviert ist, wird eine neue und schnellere (aber leicht experimentelle) Codebasis verwendet, um Spieldateien zu laden und zu manipulieren. Versuche, dies zu deaktivieren, wenn du auf Abstürze oder andere Probleme stoßen."
 
 #: skytemple/skytemple/controller/settings.py:217
 msgid "This changes the way SkyTemple behaves when asynchronous operations are done (eg. loading files and views). You usually don't want to change this, unless you know what you are doing or are running into crashes or other issues.\n\n\n"
@@ -5755,7 +5757,11 @@ msgid "This changes the way SkyTemple behaves when asynchronous operations are d
 "Synchronous: Asynchronous operations run immediately. The SkyTemple UI freezes briefly during that.\n\n"
 "GLib: Same has 'Synchronous' but the UI gets the chance to finish displaying loaders etc. before they are run.\n\n"
 "Using Gbulb event loop: This enables Single-Thread asynchronous loading. It is generally the preferredoption if available."
-msgstr ""
+msgstr "Dadurch ändert sich das Verhalten von SkyTemple, wenn asynchrone Vorgänge ausgeführt werden (z. B. Laden von Dateien und Ansichten). Normalerweise möchtest du dies nicht ändern, es sei denn, du weißt, was du tust, oder es treten Abstürze oder andere Probleme auf.\n\n\n"
+"Thread-basiert: SkyTemple erzeugt einen zusätzlichen Thread, um asynchrone Operationen auszuführen. Dies könnte zu Sicherheitsproblemen bei Threads führen, ist jedoch das „reibungsloseste“ Ladeerlebnis.\n\n"
+"Synchron: Asynchrone Vorgänge werden sofort ausgeführt. Die SkyTemple UI friert währenddessen kurz ein.\n\n"
+"GLib: Gleich wie 'Synchron', aber die Benutzeroberfläche hat die Chance, die Anzeige von Ladern usw. zu beenden, bevor sie ausgeführt werden.\n\n"
+"Verwenden der Gbulb-Ereignisschleife: Dies ermöglicht das asynchrone Single-Thread-Laden. Dies ist im Allgemeinen die bevorzugte Option, falls verfügbar."
 
 #: skytemple/skytemple/controller/tilequant.py:52
 #: skytemple/skytemple/core/ui_utils.py:92
@@ -6520,15 +6526,15 @@ msgstr "Höhe:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1674
 msgid "Allow \"Item Stealing\""
-msgstr ""
+msgstr "„Diebstahl von Gegenständen“ zulassen"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1686
 msgid "Allow warp effects:"
-msgstr ""
+msgstr "Warp-Effekte zulassen:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1698
 msgid "Allow certain traps:"
-msgstr ""
+msgstr "Erlaube bestimmte Fallen:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1710
 msgid "Darkness disabled:"
@@ -6606,17 +6612,20 @@ msgstr "Falls aktiviert wird die Ebene verlassen, falls alle Gegner besiegt wurd
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:450
 msgid "If disabled, certain traps (Summon, Pitfall and Pokémon) will be disabled.\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr ""
+msgstr "Wenn diese Option deaktiviert ist, werden bestimmte Fallen (Sammelfalle, Fallgrube und Pokémon) deaktiviert.\n"
+"Wenn ChangeFixedFloorProperties nicht angewendet wird und die statische Ebenen-ID 0 oder >= 165 ist, wird diese Einstellung ignoriert. Es ist immer aktiviert."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:454
 msgid "If disabled, warping, being blown away and leaping effects will be disabled.\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr ""
+msgstr "Wenn diese Option deaktiviert ist, werden Warp-, Wegblasen- und Sprungeffekte deaktiviert.\n"
+"Wenn ChangeFixedFloorProperties nicht angewendet wird und die statische-Ebenen-ID 0 oder >= 165 ist, wird diese Einstellung ignoriert. Es ist immer aktiviert."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:458
 msgid "If disabled, prevents any kind of item pulling (such as with the Trawl Orb).\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr ""
+msgstr "Wenn deaktiviert, verhindert die Einstellung, dass Items an den Spieler herangezogen werden (beispielsweise durch den Sogorb).\n"
+"Falls der ChangeFixedFloorProperties nicht angwendet ist und die ID der statischen Ebene 0 oder >= 165 ist, wird diese Einstellung ignoriert. Sie ist dann immer aktiviert."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:462
 msgid "If enabled, the game will treat this fixed room as an entire floor, not a single room in a floor layout.\n"
@@ -6944,11 +6953,11 @@ msgstr "Item (vergraben) Spawns"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:677
 msgid "Grab Bag Item Spawns"
-msgstr ""
+msgstr "Item (Wundertüte) Spawns"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:691
 msgid "Secret Room Item Spawns"
-msgstr ""
+msgstr "Item (Geheimer Raum) Spawns"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:714
 #: skytemple/skytemple/module/monster/controller/monster.glade:359
@@ -7388,7 +7397,7 @@ msgstr "Wenn dieses Attribut auf 'Ja' gesetzt ist, werden keine Missionen für d
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:310
 msgid "The game randomly adds a number between 0 and 2 to obtain the final value. If the room density is negative, its absolute value is used without adding a random variation."
-msgstr ""
+msgstr "Das Spiel fügt zufällig eine Zahl zwischen 0 und 2 hinzu, um den endgültigen Wert zu erhalten. Wenn die Raumdichte negativ ist, wird ihr absoluter Wert verwendet, ohne dass eine zufällige Variation hinzugefügt wird."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:322
 msgid "Controls whether dead end hallways can be generated in the floor. Dead ends can still appear in the map even if they are disabled due to a bug in the map generator and because extra hallways can also produce them."
@@ -7416,11 +7425,11 @@ msgstr "Der endgültige Wert wird vom Spiel zwischen dem Wert für \"Dichte\" un
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:442
 msgid "The final value is randomized between randomized between density - 2 and density + 1."
-msgstr ""
+msgstr "Der Endwert wird randomisiert zwischen Dichte - 2 und Dichte + 1."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:445
 msgid "The final value is randomized between randomized density / 2 and density - 1 if the value is positive. If it's negative, its absolute value is used (no random variation is applied in this case)."
-msgstr ""
+msgstr "Der Endwert wird zwischen randomisierter Dichte / 2 und Dichte - 1 randomisiert, wenn der Wert positiv ist. Wenn es negativ ist, wird sein absoluter Wert verwendet (in diesem Fall wird keine zufällige Variation angewendet)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:449
 msgid "The value stored in the ROM is actually the value divided by 5. Because of this the saved value will be rounded to the next multiple of 5."
@@ -7450,7 +7459,8 @@ msgstr "0 —> 100% Geheimbasar\n"
 #: skytemple/skytemple/module/dungeon/controller/floor.py:478
 msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from \"Patches\" > \"ASM\".\n"
 "If patched, the game will turn a random room into a maze room made of wall tiles instead of the usual water (although water can later replace some of the walls once the water generation takes place)."
-msgstr ""
+msgstr "Funktioniert im Spiel nicht. Damit diese Einstellung funktioniert, wende den \"UnusedDungeonChancePatch\" Patch aus \"Patches\" > \"ASM\" an.\n"
+"Wenn das Spiel gepatched ist, wird das Spiel einen zufälligen Raum in ein Labyrinth mit Wand-Kacheln umwandeln (statt mit Wasser, aber Wasser kann später während der Wassergeneration einige der Wände ersetzen)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:501
 msgid "It was added in explorers of sky, so right now it's only used in the sky exclusive dungeons.\n"
@@ -8672,7 +8682,8 @@ msgstr "Unb4"
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:345
 msgid "If \"Text String for Name\" is not 0, the Text String with this ID will be used as the name for the actor. \n"
 "Otherwise the species name is used."
-msgstr ""
+msgstr "Wenn „Text String for Name“ nicht 0 ist, wird die Textzeichenfolge mit dieser ID als Name für den Akteur verwendet. \n"
+"Andernfalls wird der Spezienname verwendet."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:366
 msgid "Actors with outlines "
@@ -9288,7 +9299,10 @@ msgid "The Name is used by the game to determine if a ground sprite should be us
 "An object with Name 'x' will use the sprite named 'x.wan' in the Object Sprites section.\n"
 "A 'NULL' or empty string means there is no sprite attached.\n"
 "To create a new object sprite, go to the Object Sprites section."
-msgstr ""
+msgstr "Der Name wird vom Spiel verwendet, um zu bestimmen, ob ein Ground-Sprite verwendet werden soll. \n"
+"Ein Objekt mit dem Namen 'x' verwendet das Sprite mit dem Namen 'x.wan' im Abschnitt Objekt-Sprites.\n"
+"Ein 'NULL' oder ein leerer String bedeutet, dass kein Sprite angehängt ist.\n"
+"Um ein neues Objekt-Sprite zu erstellen, wechsle zum Abschnitt Objekt-Sprites."
 
 #: skytemple/skytemple/module/lists/controller/object_list.py:93
 msgid "Invalid object name"
@@ -9381,7 +9395,9 @@ msgstr "Team-Name"
 msgid "You can apply the default team using the script command\n"
 "\"ProcessSpecial(PROCESS_SPECIAL_INIT_MAIN_TEAM_AFTER_QUIZ, 0, 0)\" \n"
 "(without going through the personality test first). "
-msgstr ""
+msgstr "Du kannst das Standard-Team mit dem folgenden Skript-Befehl anwenden:\n"
+"\"ProcessSpecial(PROCESS_SPECIAL_INIT_MAIN_TEAM_AFTER_QUIZ, 0, 0)\" \n"
+"(ohne vorher den Persönlichkeitstest durchgeführt zu haben). "
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:329
 msgid "Default Starters"
@@ -10983,7 +10999,7 @@ msgstr "Warnung: Die Statuswert-Ansicht könnte jetzt falsch sein sein,\n"
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:392
 msgid "No move with this ID found."
-msgstr ""
+msgstr "Keine Attacke mit dieser ID gefunden."
 
 #: skytemple/skytemple/module/monster/controller/level_up.py:425
 #: skytemple/skytemple/module/monster/controller/level_up.py:498
@@ -11253,11 +11269,11 @@ msgstr "Rekrutierungsrate:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1391
 msgid "Talk Group:"
-msgstr ""
+msgstr "Sprech-Gruppe:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1533
 msgid "Idle Animation Type:"
-msgstr ""
+msgstr "Stillstand-Animationstyp:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1606
 msgid "Base HP:"
@@ -11502,11 +11518,12 @@ msgstr "Sprite Dateigröße"
 #: skytemple/skytemple/module/monster/controller/monster.py:467
 msgid "This value can only be edited with the ChangePokemonGroundAnim patch. \n"
 "This tells how idle animations should be handled for each pokemon. "
-msgstr ""
+msgstr "Dieser Wert kann nur mit dem ChangePokemonGroundAnim-Patch bearbeitet werden. \n"
+"Dies gibt an, wie Animationen im Stillstand für jedes Pokémon gehandhabt werden sollten. "
 
 #: skytemple/skytemple/module/monster/controller/monster.py:469
 msgid "Idle Animation Types"
-msgstr ""
+msgstr "Stillstand-Animationstypen"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:479
 msgid "Value depends on Main Requirement:\n"
@@ -11949,11 +11966,11 @@ msgstr "Aktionsname"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:67
 msgid "Item/Remove Key Placeholder Title"
-msgstr ""
+msgstr "Item/Entferne Schlüssel-Platzhalter-Kachel"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:94
 msgid "Item/Remove Key Placeholder Description"
-msgstr ""
+msgstr "Item/Entferne Beschreibung des Schlüssel-Platzhalter-Kachels"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:139
 msgid "Item Keys"
@@ -11984,11 +12001,15 @@ msgid "Sort keys are used to sort items in your inventory when using the sort fe
 "The game sorts items starting from the one with the lowest key to the highest.\n"
 "Several items can have the same key; this means they will be mixed together while sorting (e.g. Lookalike items).\n"
 "Only keys from 0 to 2047 should be used."
-msgstr ""
+msgstr "Test to check for End of File\n"
+"Sortierschlüssel werden verwendet, um Gegenstände in deinem Inventar zu sortieren, wenn du die Sortierfunktion im Spiel verwendest.\n"
+"Das Spiel sortiert Gegenstände von dem mit dem niedrigsten Schlüssel bis zum höchsten.\n"
+"Mehrere Elemente können den gleichen Schlüssel haben; das bedeutet, dass sie beim Sortieren gemischt werden (z. B. Plagiat-Items).\n"
+"Es sollten nur Schlüssel von 0 bis 2047 verwendet werden. "
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:133
 msgid "Keys have now been added for all the 1400 items."
-msgstr ""
+msgstr "Für alle 1400 Artikel wurden jetzt Schlüssel hinzugefügt."
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:140
 msgid "Insert Key Before: "
@@ -11997,7 +12018,8 @@ msgstr "Schlüssel vorher einfügen: "
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:141
 msgid "Insert an item key id before the one selected.\n"
 "This means all keys with id >= that one will be incremented by 1. "
-msgstr ""
+msgstr "Füge eine Item-Schlüssel-ID vor der ausgewählten ein.\n"
+"Das bedeutet, dass alle Schlüsseln mit ID >= der ausgewählten um 1 inkrementiert werden. "
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:161
 msgid "Remove Key: "
@@ -12007,11 +12029,13 @@ msgstr "Schlüssel entfernen: "
 msgid "Remove the item key id selected.\n"
 "This means all keys with id > that one will be decremented by 1.\n"
 "A key can't be removed if it's still used by one item. "
-msgstr ""
+msgstr "Entferne die ausgewählte Item-Schlüssel-ID.\n"
+"Das bedeutet, dass alle Schlüssel mit der ID > dieser um 1 dekrementiert werden.\n"
+"Ein Schlüssel kann nicht entfernt werden, wenn er noch von einem Item verwendet wird. "
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:177
 msgid "This key is still used by these items: {', '.join(no_key)}."
-msgstr ""
+msgstr "Dieser Schlüssel wird immer noch von diesen Items verwendet: {', '.join(no_key)}."
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:178
 msgid "Error removing key."
@@ -12312,7 +12336,7 @@ msgstr "Nachrichten-ID Offset der für die Attacke verwendet wird. Bei 0 wird di
 
 #: skytemple/skytemple/module/moves_items/module.py:86
 msgid "Item Sort Keys"
-msgstr ""
+msgstr "Item-Sortierschlüssel"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:25
 msgid "ASM Patches"
@@ -12320,7 +12344,7 @@ msgstr "ASM Patches"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:42
 msgid "Apply ASM (assembler) patches to the game."
-msgstr ""
+msgstr "Wende ASM (Assembler)-Patches auf das Spiel an."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:76
 msgid "Open Patch Directory..."
@@ -12339,25 +12363,27 @@ msgstr "Probleme anzeigen"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:250
 msgid "A compatibility issue was detected while loading one or more patches."
-msgstr ""
+msgstr "Beim Laden eines oder mehrerer Patches wurde ein Kompatibilitätsproblem festgestellt."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:263
 msgid "A compatibility issue was detected while applying this patch. \n"
 "But it was still applied successfully."
-msgstr ""
+msgstr "Beim Anwenden dieses Patches wurde ein Kompatibilitätsproblem festgestellt. \n"
+"Aber es wurde immer noch erfolgreich angewendet."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:277
 msgid "One or more patches failed to be loaded."
-msgstr ""
+msgstr "Ein oder mehrere Patches konnten nicht geladen werden."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:290
 msgid "There was an error while applying the patch."
-msgstr ""
+msgstr "Beim Anwenden des Patches ist ein Fehler aufgetreten."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:303
 msgid "This patch will stop working in a future version of SkyTemple, \n"
 "unless the author updates the patch."
-msgstr ""
+msgstr "Dieser Patch wird in einer zukünftigen Version von SkyTemple nicht mehr funktionieren, \n"
+"es sei denn, der Autor aktualisiert den Patch."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:324
 msgid "Details:"
@@ -12384,7 +12410,7 @@ msgstr "Patches"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:88
 msgid "This patch has had no issues loading."
-msgstr ""
+msgstr "Dieser Patch hatte keine Probleme beim Laden."
 
 #: skytemple/skytemple/module/patch/controller/asm.py:99
 msgid "This patch is already applied. Some patches support applying them again, but you might also run into problems with some. Proceed with care."
@@ -12430,7 +12456,7 @@ msgstr "Fehler beim Anwenden des Patchs:\n"
 #: skytemple/skytemple/module/patch/controller/asm.py:162
 #, python-brace-format
 msgid "Failed applying patch '{patch}'. The ROM may be corrupted now."
-msgstr ""
+msgstr "Patch '{patch}' konnte nicht angewendet werden. Das ROM ist jetzt möglicherweise beschädigt."
 
 #: skytemple/skytemple/module/patch/controller/asm.py:173
 msgid "Patch was successfully applied. The ROM will now be reloaded."
@@ -12443,7 +12469,7 @@ msgstr "Nicht alle Patches wurden erfolgreich angewendet. Die ROM wird jetzt neu
 #: skytemple/skytemple/module/patch/controller/asm.py:242
 #: skytemple/skytemple/module/patch/controller/asm.py:262
 msgid "Error loading patch package {os.path.basename(fname)}."
-msgstr ""
+msgstr "Fehler beim Laden des Patch-Pakets {os.path.basename(fname)}."
 
 #: skytemple/skytemple/module/patch/controller/asm.py:250
 msgid "Not compatible"
@@ -12459,7 +12485,7 @@ msgstr "Kompatibel"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:398
 msgid "Some of the loaded patches had compatibility issues. They were still loaded correctly but may stop working in future SkyTemple versions. These patches were marked orange in the list of patches. Highlight one of these patches and click the 'Show Issues' button for more information."
-msgstr ""
+msgstr "Einige der geladenen Patches hatten Kompatibilitätsprobleme. Sie wurden immer noch korrekt geladen, funktionieren aber möglicherweise in zukünftigen SkyTemple Versionen nicht mehr. Diese Patches waren in der Liste der Patches orange markiert. Markiere einen dieser Patches und klicke auf die Schaltfläche „Probleme anzeigen“, um weitere Informationen zu erhalten."
 
 #: skytemple/skytemple/module/patch/controller/asm.py:408
 msgid "Warning! The project directory for this ROM contains custom patches. These patches may contain code which will run on your computer once you accept this dialog with 'Yes'. Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n\n"
@@ -12476,7 +12502,10 @@ msgid "<b>c-of-time</b> (cot) is a C runtime and development environment for wri
 "<b>Rust of Darkness</b> (RoD) is an extension of cot to write custom patches in Rust.\n\n"
 "To get started with cot and/or RoD, watch the tutorial below and read the READMEs.\n\n"
 "<b>Important</b>: Before writing cot or RoD patches to the ROM make sure to close SkyTemple. Otherwise SkyTemple may override changes you made."
-msgstr ""
+msgstr "<b>c-of-Time</b> (cot) ist eine C-Laufzeit- und Entwicklungsumgebung zum Schreiben benutzerdefinierter Patches für das Spiel in C.\n\n"
+"<b>Rust of Darkness</b> (RoD) ist ein Erweiterung von cot, um benutzerdefinierte Patches in Rust zu schreiben.\n\n"
+"Um mit cot und/oder RoD zu beginnen, schaue das Tutorial unten an und lese die READMEs.\n\n"
+"<b>Wichtig</b>: Bevor du Cot- oder RoD-Patches auf das ROM schreibst, schließe SkyTemple. Andernfalls kann SkyTemple deine vorgenommenen Änderungen außer Kraft überschreiben."
 
 #: skytemple/skytemple/module/patch/controller/cot.glade:129
 msgid "c-of-time README"
@@ -12496,7 +12525,8 @@ msgstr "Item-Effekte"
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:92
 msgid "Edits the item effects used by the game.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Bearbeitet die vom Spiel verwendeten Item-Effekte.\n"
+"Dies listet keine Effekte auf, die durch C- oder Rust-Code hinzugefügt wurden."
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:107
 msgid "<Not available>\n\n"
@@ -12510,7 +12540,8 @@ msgstr "<Nicht verfügbar>\n\n"
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:182
 msgid "Edits the effects used by each move.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Bearbeitet die vom Spiel verwendeten Attacken-Effekte.\n"
+"Dies listet keine Effekte auf, die durch C- oder Rust-Code hinzugefügt wurden."
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:231
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:240
@@ -12524,7 +12555,9 @@ msgstr "Effekt"
 msgid "This section allows you to insert custom ASM code for effects.\n"
 "Please note that C and Rust effects are not listed here.\n"
 "See the \"C/Rust\" section for more information."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du benutzerdefinierten ASM-Code für Effekte einfügen.\n"
+"Bitte beachte, dass C- und Rust-Effekte hier nicht aufgeführt sind.\n"
+"Weitere Informationen findest du im Abschnitt „C/Rust“."
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:343
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:384
@@ -12625,7 +12658,13 @@ msgid "Export and import effect code.\n"
 "If you import armips ASM code, an effect code library is available.\n\n"
 "You can use the ASM Editor tool to generate patch files.\n"
 "The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to import.\n"
-msgstr ""
+msgstr "Exportiere und importiere Effekt-Code.\n"
+"Beim Export wird nur der rohe Maschinencode exportiert. Er wird NICHT disassembled.\n"
+"Der Import akzeptiert sowohl armips ASM-Code als auch rohen binären Maschinencode.\n"
+"Bitte beachte, dass SkyTemple nicht den rohen Maschinencode überprüft, den du importierst.\n"
+"Falls du armips ASM-Code importierst, steht eine Effektcode-Bibliothek zur Verfügung.\n\n"
+"Du kannst den ASM-Editor nutzen, um Patch-Dateien zu generieren.\n"
+"Der ASM-Patch muss eine \"code_out.bin\"-Datei generieren. SkyTemple wird versuchen diese Datei zu importieren.\n"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.py:207
 #: skytemple/skytemple/module/patch/controller/move_effects.py:217
@@ -12652,7 +12691,8 @@ msgstr "Attacken-Effekte"
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:100
 msgid "Edits the move effects used by the game.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Bearbeitet die vom Spiel verwendeten Attacken-Effekte.\n"
+"Dies listet keine Effekte auf, die durch C- oder Rust-Code hinzugefügt wurden."
 
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:115
 msgid "<Not available>\n\n"
@@ -12723,7 +12763,12 @@ msgid "SkyTemple is powered by <b>pmdsky-debug</b>.\n"
 "However you will probably find newer symbols in the repository, which you can open with the button below. The repository also contains instructions on how to contribute or use the symbols with debuggers like Ghidra.\n\n"
 "The symbols below are shown for the region of the currently loaded ROM.\n"
 "The \"Address\" column shows the first address. Addresses are absolute."
-msgstr ""
+msgstr "SkyTemple wird von <b>pmdsky-debug</b>angetrieben.\n"
+"pmdsky-debug ist ein öffentliches Repository von Symbolen und Funktionen des Spiels. \n"
+"Nachfolgend findest du die Liste der mit dieser Version von SkyTemple ausgelieferten Symbole. \n"
+"Du wirst jedoch wahrscheinlich neuere Symbole im Repository finden, welches du mit dem Knopf unten öffnen kannst. Das Repository enthält auch Anweisungen, wie man den Symbolen mit Debuggern wie Ghidra beisteuert oder wie man die Symbole nutzt.\n\n"
+"Die untenstehenden Symbole werden für die Region des aktuell geladenen ROM angezeigt.\n"
+"Die Spalte \"Adresse\" zeigt die erste Adresse an. Adressen sind absolut."
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:87
 msgid "pmdsky-debug version:"
@@ -12748,7 +12793,7 @@ msgstr "Daten"
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.py:115
 #, python-brace-format
 msgid "<b>Load Address:</b> 0x{bin_load_address:0x} | <b>Length:</b> {bin_length}"
-msgstr ""
+msgstr "<b>Ladeadresse:</b> 0x{bin_load_address:0x} | <b>Länge:</b> {bin_length}"
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:152
@@ -12760,7 +12805,8 @@ msgstr "Effekte für Spezielle Prozesse"
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:88
 msgid "Edits the special process effects used by the game.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Bearbeitet die vom Spiel verwendeten speziellen Prozesse.\n"
+"Dies listet keine Effekte auf, die durch C- oder Rust-Code hinzugefügt wurden."
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:103
 msgid "<Not available>\n\n"
@@ -12773,7 +12819,8 @@ msgstr "<Nicht verfügbar>\n\n"
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:169
 msgid "Edits the effects used by each special process.\n"
 "This does not list effects added by C or Rust code."
-msgstr ""
+msgstr "Bearbeitet die von den speziellen Prozessen verwendeten Effekte.\n"
+"Dies listet keine Effekte auf, die durch C- oder Rust-Code hinzugefügt wurden."
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:284
 msgid "Add Special Process"
