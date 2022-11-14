@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-10-31 15:18+0000\n"
-"PO-Revision-Date: 2022-10-31 15:25\n"
+"POT-Creation-Date: 2022-11-13 12:32+0000\n"
+"PO-Revision-Date: 2022-11-13 21:47\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3544,8 +3544,8 @@ msgid "Main Debug Menu"
 msgstr "Menú de depuración principal"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:101
-msgid "Unknown Menu"
-msgstr "Menú desconocido"
+msgid "Quiz Debug Menu"
+msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:109
 msgid "Footprint Debug Menu"
@@ -3717,8 +3717,8 @@ msgid "Dungeon Sub Menu"
 msgstr "Submenú de territorio"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:645
-msgid "Unknown Menu Confirm"
-msgstr "Menú de confirmación desconocido"
+msgid "Start Menu Confirm"
+msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:653
 msgid "Dungeon Debug Menu"
@@ -3904,7 +3904,7 @@ msgstr "Implementa puntos de experiencia compartidos entre todos los miembros (c
 "Se desactiva durante los Capítulos especiales y los territorios con nivel 1 o sin restricciones de exp. \n"
 "Necesita que se aplique el parche 'ExtractDungeonData' para liberar algo de espacio utilizado por este."
 
-#: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:102
+#: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:103
 msgid "Expand the pokemon entries allowed to 2048, and makes all the entries independent.\n"
 "Needs ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile patches to work.\n"
 "It is strongly recommended to fix any dungeon error before applying this patch,\n"
@@ -5874,16 +5874,16 @@ msgstr ""
 
 #: skytemple/skytemple/core/rom_project.py:135
 msgid "No, load ROM as-is"
-msgstr ""
+msgstr "No, cargar la ROM tal cual"
 
 #: skytemple/skytemple/core/rom_project.py:137
 msgid "Yes, load backup"
-msgstr ""
+msgstr "Sí, cargar copia de seguridad"
 
 #: skytemple/skytemple/core/rom_project.py:139
 #: skytemple/skytemple/core/rom_project.py:140
 msgid "Last modified: {} - Size: {}"
-msgstr ""
+msgstr "Última modificación: {} - Tamaño: {}"
 
 #: skytemple/skytemple/core/rom_project.py:143
 msgid "Do you want to restore the backup?\n"
@@ -8713,7 +8713,9 @@ msgstr "Edita las tablas de animación utilizadas por el juego."
 msgid "<Not available>\n\n"
 "To view and edit animation tables, please apply the \"ExtractAnimData\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar los las tablas de animación, aplica el parche\n"
+"\"ExtractAnimData\" desde el menú \"Parches\" > \"ASM\"."
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:274
 msgid "Animation Tables"
@@ -8860,7 +8862,9 @@ msgstr "Edita todas las interrupciones de territorio definidas en el juego."
 msgid "<Not available>\n\n"
 "To create dungeon interruption, please apply the \"DungeonInterrupt\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para crear interrupciones de territorio, aplica el parche ASM \"DungeonInterrupt\"\n"
+"desde el menú \"Parches\" > \"ASM\"."
 
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:208
 msgid "Dungeon: "
@@ -8967,7 +8971,10 @@ msgid "<Not available>\n\n"
 "To view and edit guest Pokémon data, please apply the \"EditExtraPokemon\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar los datos de Pokémon invitados, aplica el parche \"EditExtraPokemon\" \n"
+"desde el menú \"Parches\" > \"ASM\".\n"
+"Si ya lo has aplicado, aplícalo de nuevo para asegurarte de usar la última versión. "
 
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:215
 msgid "Dungeon Guest Pokémon"
@@ -9269,7 +9276,9 @@ msgstr "Lista de objetos"
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ExtractObjectTable\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar esta lista, aplica el parche \"ExtractObjectTable\" \n"
+"desde el menú \"Parches\" > \"ASM\"."
 
 #: skytemple/skytemple/module/lists/controller/object_list.glade:210
 msgid "Unk2_1"
@@ -12042,7 +12051,9 @@ msgstr "Edita las listas utilizadas para las recompensas de misión, cofres mist
 msgid "<Not available>\n\n"
 "To view and edit those lists, please apply the \"ExtractHardcodedItemLists\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar estas listas, aplica el parche \"ExtractHardcodedItemLists\" \n"
+"desde el menú \"Parches\" > \"ASM\"."
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:638
 msgid "Lists: "
@@ -12343,11 +12354,11 @@ msgstr "Aplicar"
 #: skytemple/skytemple/module/patch/controller/asm.glade:177
 msgctxt "Issues as in problems"
 msgid "Show Issues"
-msgstr ""
+msgstr "Mostrar problemas"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:250
 msgid "A compatibility issue was detected while loading one or more patches."
-msgstr ""
+msgstr "Se ha detectado un problema de compatibilidad al cargar uno o más parches."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:263
 msgid "A compatibility issue was detected while applying this patch. \n"
@@ -12356,7 +12367,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:277
 msgid "One or more patches failed to be loaded."
-msgstr ""
+msgstr "Uno o más paquetes no se han cargado."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:290
 msgid "There was an error while applying the patch."
@@ -12369,7 +12380,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:324
 msgid "Details:"
-msgstr ""
+msgstr "Detalles:"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:403
 msgid "Author"
@@ -12392,7 +12403,7 @@ msgstr "Parches"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:88
 msgid "This patch has had no issues loading."
-msgstr ""
+msgstr "Este parche no ha tenido problemas de carga."
 
 #: skytemple/skytemple/module/patch/controller/asm.py:99
 msgid "This patch is already applied. Some patches support applying them again, but you might also run into problems with some. Proceed with care."
@@ -12438,7 +12449,7 @@ msgstr "Error al aplicar el parche:\n"
 #: skytemple/skytemple/module/patch/controller/asm.py:162
 #, python-brace-format
 msgid "Failed applying patch '{patch}'. The ROM may be corrupted now."
-msgstr ""
+msgstr "Error al aplicar el parche '{patch}'. La ROM puede haberse corrompido."
 
 #: skytemple/skytemple/module/patch/controller/asm.py:173
 msgid "Patch was successfully applied. The ROM will now be reloaded."
@@ -12451,7 +12462,7 @@ msgstr "No todos los parches se han aplicado correctamente. La ROM se volverá a
 #: skytemple/skytemple/module/patch/controller/asm.py:242
 #: skytemple/skytemple/module/patch/controller/asm.py:262
 msgid "Error loading patch package {os.path.basename(fname)}."
-msgstr ""
+msgstr "Error al cargar el paquete del parche {os.path.basename(fname)}."
 
 #: skytemple/skytemple/module/patch/controller/asm.py:250
 msgid "Not compatible"
@@ -12832,11 +12843,11 @@ msgstr "... como una sola ficha (formato SpriteBot)"
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:306
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:63
 msgid "Open SpriteCollab Browser"
-msgstr ""
+msgstr "Abrir navegador Spritecollab"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:307
 msgid "Spritecollab Browser"
-msgstr ""
+msgstr "Navegador Spritecollab"
 
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:410
 msgid "If a portrait is missing, the game tries to load the portrait of the Pokémon's first form instead.\n"
@@ -13487,7 +13498,7 @@ msgstr "Importar ficha de sprites..."
 msgid "The spritesheet was successfully imported."
 msgstr "La ficha de sprites se ha importado correctamente."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:276
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:277
 msgid "Error importing the spritesheet."
 msgstr "Error al importar ficha de sprites."
 
@@ -13604,27 +13615,27 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:259
 msgid "SpriteCollab Browser"
-msgstr ""
+msgstr "Navegador Spritecollab"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:278
 msgid "Open in Webbrowser"
-msgstr ""
+msgstr "Abrir en el navegador"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:318
 msgid "SpriteCollab Browser Settings"
-msgstr ""
+msgstr "Configuración del navegador SpriteCollab"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:353
 msgid "Apply / Refresh"
-msgstr ""
+msgstr "Aplicar / Actualizar"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:386
 msgid "Server Preset:"
-msgstr ""
+msgstr "Preajustes de servidor:"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:420
 msgid "Server URL:"
-msgstr ""
+msgstr "URL del servidor:"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:431
 msgid "Frontend URL:"
@@ -13640,7 +13651,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:201
 msgid "Error Updating Sprites"
-msgstr ""
+msgstr "Error al actualizar sprites"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:223
 #, python-brace-format
@@ -13662,7 +13673,7 @@ msgstr "Error al cargar este Pokémon."
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:356
 msgid "Error Loading Pokémon"
-msgstr ""
+msgstr "Error al cargar Pokémon"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:388
 msgid "<b>Portraits:</b>"
@@ -13686,11 +13697,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:449
 msgid "<b>Portrait Credits:</b>"
-msgstr ""
+msgstr "<b>Créditos de los retratos:</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:463
 msgid "<b>Sprite Credits:</b>"
-msgstr ""
+msgstr "<b>Créditos de los sprites:</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:476
 msgid "Open Details on Website..."
@@ -13698,11 +13709,11 @@ msgstr "Abrir detalles en el sitio web..."
 
 #: skytemple/skytemple/module/spritecollab/module.py:77
 msgid "Portraits successfully imported."
-msgstr ""
+msgstr "Retratos importados correctamente."
 
 #: skytemple/skytemple/module/spritecollab/module.py:128
 msgid "Sprites successfully imported."
-msgstr ""
+msgstr "Sprites importados correctamente."
 
 #: skytemple/skytemple/module/spritecollab/module.py:146
 msgid "Open a Pokémon in the main window to apply the assets to."

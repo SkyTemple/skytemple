@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-10-31 15:18+0000\n"
-"PO-Revision-Date: 2022-11-05 14:58\n"
+"POT-Creation-Date: 2022-11-13 12:32+0000\n"
+"PO-Revision-Date: 2022-11-14 14:41\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -459,27 +459,27 @@ msgstr "% der geteilten Erfahrungspunkte"
 
 #: /dev/fd/63:106 /dev/fd/63:221
 msgid "String ID for the Menu Option"
-msgstr ""
+msgstr "String-ID für die Menüoption"
 
 #: /dev/fd/63:107 /dev/fd/63:222
 msgid "String ID to confirm the appraise all"
-msgstr ""
+msgstr "String-ID zur Bestätigung der Begutachtung aller"
 
 #: /dev/fd/63:108 /dev/fd/63:223
 msgid "String ID before revealing the items"
-msgstr ""
+msgstr "String-ID vor dem Enthüllen der Items"
 
 #: /dev/fd/63:109 /dev/fd/63:224
 msgid "String ID when revealing an item"
-msgstr ""
+msgstr "String-ID beim Enthüllen eines Items"
 
 #: /dev/fd/63:110 /dev/fd/63:225
 msgid "All strings mentioned above are replaced by a default text when applying"
-msgstr ""
+msgstr "Alle oben genannten Strings werden beim Anwenden durch einen Standardtext ersetzt"
 
 #: /dev/fd/63:111 /dev/fd/63:226
 msgid "Cost of each Treasure Box (Only for Appraise All option)"
-msgstr "Kosten für jede Schatzkiste (Nur für Option „Alle bewerten“)"
+msgstr "Kosten für jede Schatzkiste (Nur für Option „Alle begutachten“)"
 
 #: /dev/fd/63:113
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
@@ -3542,8 +3542,8 @@ msgid "Main Debug Menu"
 msgstr "Haupt-Debug-Menü"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:101
-msgid "Unknown Menu"
-msgstr "Unbekanntes Menü"
+msgid "Quiz Debug Menu"
+msgstr "Haupt-Debug-Menü"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:109
 msgid "Footprint Debug Menu"
@@ -3715,8 +3715,8 @@ msgid "Dungeon Sub Menu"
 msgstr "Dungeon-Untermenü"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:645
-msgid "Unknown Menu Confirm"
-msgstr "Unbekanntes Menü: Bestätigen"
+msgid "Start Menu Confirm"
+msgstr "Start-Menü: Bestätigen"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:653
 msgid "Dungeon Debug Menu"
@@ -3729,11 +3729,11 @@ msgstr "Dieses Menü muss {num_entries} Einträge haben!"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:92
 msgid "Standing Animation (loop)"
-msgstr ""
+msgstr "Stehende Animation (Schleife)"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:93
 msgid "Standing Animation (1st frame)"
-msgstr ""
+msgstr "Stehende Animation (1. Bild)"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:94
 msgid "Special"
@@ -3741,7 +3741,7 @@ msgstr "Speziell"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:95
 msgid "Walking Animation (1st frame)"
-msgstr ""
+msgstr "Geh-Animation (1. Bild)"
 
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:233
 #, python-brace-format
@@ -3806,21 +3806,23 @@ msgstr "Ermöglicht das Rekrutieren der anderen Deoxys-Formen und der Regis in D
 
 #: skytemple-files/skytemple_files/patch/handler/anti_softlock.py:47
 msgid "Allows the player to press A+B+X+Y during cutscenes to force the game to continue past a softlock (this can happen during cutscenes when using custom sprites or the randomizer). Does not work with crashes caused due to internal errors (such as the game running out of memory)."
-msgstr ""
+msgstr "Ermöglicht dem Spieler, während der Zwischensequenzen A+B+X+Y zu drücken, um zu erzwingen, dass das Spiel über einen Softlock hinaus fortgesetzt wird (dies kann in Zwischensequenzen passieren, wenn benutzerdefinierte Sprites oder der Randomizer verwendet werden). Funktioniert nicht bei Abstürzen, die durch interne Fehler verursacht wurden (z. B. wenn das Spiel nicht genügend Speicher hat)."
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:56
 msgid "Appraise all"
-msgstr "Alle bewerten"
+msgstr "Alle begutachten"
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:58
 msgid " And to appraise all your items, \n"
 "you will pay [CS:G][gold_left:0][CR][M:S0]?"
-msgstr ""
+msgstr " Und um all deine Gegenstände zu begutachten, zahle\n"
+"[CS:G] [gold_left:0][CR][M:S0]?"
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:62
 msgid " And so...[K]it is revealed...[C] Within the boxes...[K]\n"
 "were..."
-msgstr ""
+msgstr " Und so...[K]es ist enthüllt...[C] Innerhalb der Boxen...[K]\n"
+"waren..."
 
 #. TRANSLATORS: Appraise All Reveal Before
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:65
@@ -3829,7 +3831,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:76
 msgid "Adds an extra menu in box appraisal to appraise all boxes at once. "
-msgstr ""
+msgstr "Fügt ein zusätzliches Menü in der Boxbegutachtung hinzu, um alle Boxen gleichzeitig zu begutachten. "
 
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:113
 msgid "Change the evolution system.\n"
@@ -3900,7 +3902,7 @@ msgstr "Implementiert geteilte Erfahrungspunkte zwischen allen Teammitgliedern (
 "Während Spezialepisoden und Dungeons mit \"Keine Erf. Punkte\" oder \"Level 1\" Restriktionen ist dies deaktiviert. \n"
 "Der Patch ExtractDungeonData muss angewendet werden, um Platz freizugeben, der von diesem Patch genutzt wird."
 
-#: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:102
+#: skytemple-files/skytemple_files/patch/handler/expand_poke_list.py:103
 msgid "Expand the pokemon entries allowed to 2048, and makes all the entries independent.\n"
 "Needs ChangeEvoSystem, ExternalizeWazaFile, ExternalizeMappaFile patches to work.\n"
 "It is strongly recommended to fix any dungeon error before applying this patch,\n"
@@ -13472,7 +13474,7 @@ msgstr "Spritesheet importieren..."
 msgid "The spritesheet was successfully imported."
 msgstr "Das Spritesheet wurde erfolgreich importiert."
 
-#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:276
+#: skytemple/skytemple/module/sprite/controller/monster_sprite.py:277
 msgid "Error importing the spritesheet."
 msgstr "Fehler beim Importieren des Spritesheets."
 
