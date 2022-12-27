@@ -64,7 +64,7 @@ class AddCreatedWithLogo:
                 self.bma.place_chunk(0, x + 11, y, index)
         # BPL:
         pals: List[List[int]] = list(list(p) for p in self.bpl.palettes)
-        pals[6:14] = pals[0:8]
+        pals[6:14] = palettes[0:8]
         self.bpl.set_palettes(pals)
 
     def _error(self, error_msg):

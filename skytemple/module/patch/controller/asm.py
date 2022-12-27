@@ -142,7 +142,7 @@ class AsmController(AbstractController):
                         return
                 for patch in dependencies + [name]:
                     with warnings.catch_warnings(record=True) as w:
-                        warnings.simplefilter('always')
+                        warnings.filterwarnings("always", category=DeprecationWarning)
                         try:
                             self._apply(patch)
                         except PatchCanceledError:
@@ -231,7 +231,7 @@ class AsmController(AbstractController):
             if not self._accepted_danger:
                 break
             with warnings.catch_warnings(record=True) as w:
-                warnings.simplefilter('always')
+                warnings.filterwarnings("always", category=DeprecationWarning)
                 try:
                     patch = self._patcher.add_pkg(fname)
                     if len(w) > 0:
@@ -243,7 +243,7 @@ class AsmController(AbstractController):
         # List patches:
         for patch in sorted(self._patcher.list(), key=lambda p: p.name):  # type: ignore
             with warnings.catch_warnings(record=True) as w:
-                warnings.simplefilter('always')
+                warnings.filterwarnings("always", category=DeprecationWarning)
                 try:
                     if patch.category != patch_category:
                         continue

@@ -262,8 +262,9 @@ Warning: SkyTemple does not validate the files you import."""))
                 action_indices = {}
                 for action in anims:
                     name_normal: str = action.find("Name").text  # type: ignore
-                    idx = int(action.find("Index").text)  # type: ignore
-                    action_indices[idx] = Pmd2Index(idx, [name_normal])
+                    if action.find("Index") is not None:
+                        idx = int(action.find("Index").text)  # type: ignore
+                        action_indices[idx] = Pmd2Index(idx, [name_normal])
                 self.module.update_sprconf(Pmd2Sprite(item_id, action_indices))
 
                 cb()

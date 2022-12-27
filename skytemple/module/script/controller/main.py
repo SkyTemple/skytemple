@@ -245,7 +245,7 @@ class MainController(AbstractController):
         store: Gtk.ListStore = self.builder.get_object('td_level_store')
         self._labels_td_level[-1] = _('None')
         store.append([-1, _('None')])
-        if self._list:
+        if hasattr(self, '_list') and self._list:
             for level in self._list.list:
                 lbl = f'{level.name} (#{level.id:03})'
                 self._labels_td_level[level.id] = lbl

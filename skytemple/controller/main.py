@@ -553,7 +553,7 @@ class MainController:
         about.run()
 
     def on_update_button_clicked(self, *args):
-        webbrowser.open_new_tab("https://projectpokemon.org/home/files/file/4193-skytemple-pmd2-rom-edtior/")
+        webbrowser.open_new_tab("https://download.skytemple.org/skytemple/latest/")
 
     def on_label_privacy_activate_link(self, *args):
         webbrowser.open_new_tab("https://skytemple.org/privacy.html")
