@@ -11,7 +11,7 @@ SkyTemple
     :target: https://crowdin.com/project/skytemple
     :alt: Localization Progress
 
-.. |build| image:: https://img.shields.io/github/workflow/status/SkyTemple/skytemple/Build,%20test%20and%20publish
+.. |build| image:: https://img.shields.io/github/actions/workflow/status/SkyTemple/skytemple/build-test-publish.yml
     :target: https://pypi.org/project/skytemple/
     :alt: Build Status
 
