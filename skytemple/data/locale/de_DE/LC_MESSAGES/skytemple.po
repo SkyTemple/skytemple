@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2022-11-13 12:32+0000\n"
-"PO-Revision-Date: 2022-11-14 18:37\n"
+"POT-Creation-Date: 2023-01-02 12:19+0000\n"
+"PO-Revision-Date: 2023-01-02 12:31\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1169,7 +1169,7 @@ msgstr ""
 #. TRANSLATORS: Replace this string with your names, one name per line.
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:1252
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3264
-#: skytemple/skytemple/skytemple.glade:1477
+#: skytemple/skytemple/skytemple.glade:1460
 msgid "translator-credits"
 msgstr "Marco \"Parakoopa\" Köpcke"
 
@@ -1506,18 +1506,18 @@ msgstr "Diese ROM wird nicht unterstützt von SkyTemple."
 msgid "Binary {binary.name} not found."
 msgstr "Binärdatei {binary.name} wurde nicht gefunden."
 
-#: skytemple-files/skytemple_files/common/util.py:615
-#: skytemple-files/skytemple_files/common/util.py:646
+#: skytemple-files/skytemple_files/common/util.py:626
+#: skytemple-files/skytemple_files/common/util.py:657
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr "Ordner {dir_name} existiert nicht."
 
-#: skytemple-files/skytemple_files/common/util.py:618
+#: skytemple-files/skytemple_files/common/util.py:629
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
 msgstr "Datei {file_name} existiert in diesem Ordner bereits."
 
-#: skytemple-files/skytemple_files/common/util.py:641
+#: skytemple-files/skytemple_files/common/util.py:652
 #, python-brace-format
 msgid "Folder {path} already exists."
 msgstr "Ordner {path} existiert bereits."
@@ -1600,12 +1600,12 @@ msgid "WBA"
 msgstr "WBA"
 
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:77
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:185
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:193
 msgid "ARMIPS could not be found. Make sure, that 'armips' is inside your system's PATH."
 msgstr "ARMIPS konnte nicht gefunden werden. Stelle sicher, dass 'armips' in der PATH Variable deines Systems ist."
 
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:85
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:199
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:207
 msgid "ARMIPS reported an error while applying the patch."
 msgstr "ARMIPS hat einen Fehler zurückgegeben während es versucht hat, den Patch anzuwenden."
 
@@ -3743,7 +3743,7 @@ msgstr "Speziell"
 msgid "Walking Animation (1st frame)"
 msgstr "Geh-Animation (1. Bild)"
 
-#: skytemple-files/skytemple_files/patch/arm_patcher.py:233
+#: skytemple-files/skytemple_files/patch/arm_patcher.py:236
 #, python-brace-format
 msgid "Error while applying the patch: {ex}"
 msgstr "Fehler beim Anwenden des Patches: {ex}"
@@ -4051,72 +4051,72 @@ msgstr "Bietet Unterstützung für ATUPX Container, welche einen andere Komprimi
 msgid "Fixes the 'unused' chance for dungeons. It now determines a chance that a room randomly has walls in it, with some of it replaced by secondary terrain."
 msgstr "Korrigierte die 'unbenutzte' Chance für Dungeons. Sie wird nun benutzt um zu ermitteln, ob ein Raum in der Ebene nun ein Labyrinth aus Wänden beinhaltet, mit einigen Kacheln ersetzt mit dem sekundären Terrain."
 
-#: skytemple-files/skytemple_files/patch/patches.py:204
-#: skytemple-files/skytemple_files/patch/patches.py:214
+#: skytemple-files/skytemple_files/patch/patches.py:205
+#: skytemple-files/skytemple_files/patch/patches.py:215
 #, python-brace-format
 msgid "The patch '{name}' was not found."
 msgstr "Der Patch '{name}' wurde nicht gefunden."
 
-#: skytemple-files/skytemple_files/patch/patches.py:223
+#: skytemple-files/skytemple_files/patch/patches.py:224
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'."
 msgstr "Der Patch '{patch_name}' muss angewendet werden, bevor du '{name} ' anwenden kannst."
 
-#: skytemple-files/skytemple_files/patch/patches.py:232
+#: skytemple-files/skytemple_files/patch/patches.py:233
 #: skytemple/skytemple/module/patch/controller/asm.py:305
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr "Der Patch '{patch_name}' muss angewendet werden, bevor du '{name} ' anwenden kannst. Dieser Patch wurde nicht gefunden."
 
-#: skytemple-files/skytemple_files/patch/patches.py:243
+#: skytemple-files/skytemple_files/patch/patches.py:244
 msgid "No configuration was given."
 msgstr "Es wurde keine Konfiguration angegeben."
 
-#: skytemple-files/skytemple_files/patch/patches.py:248
+#: skytemple-files/skytemple_files/patch/patches.py:249
 msgid "Missing configuration value."
 msgstr "Fehlender Konfigurationswert."
 
-#: skytemple-files/skytemple_files/patch/patches.py:254
-#: skytemple-files/skytemple_files/patch/patches.py:260
-#: skytemple-files/skytemple_files/patch/patches.py:266
-#: skytemple-files/skytemple_files/patch/patches.py:274
-#: skytemple-files/skytemple_files/patch/patches.py:291
+#: skytemple-files/skytemple_files/patch/patches.py:255
+#: skytemple-files/skytemple_files/patch/patches.py:261
+#: skytemple-files/skytemple_files/patch/patches.py:267
+#: skytemple-files/skytemple_files/patch/patches.py:275
+#: skytemple-files/skytemple_files/patch/patches.py:292
 msgid "Invalid configuration value."
 msgstr "Ungültiger Konfigurationswert."
 
-#: skytemple-files/skytemple_files/patch/patches.py:262
+#: skytemple-files/skytemple_files/patch/patches.py:263
 msgid "Must be >= {}."
 msgstr "Muss >= {} sein."
 
-#: skytemple-files/skytemple_files/patch/patches.py:268
+#: skytemple-files/skytemple_files/patch/patches.py:269
 msgid "Must be <= {}."
 msgstr "Muss <= {} sein."
 
-#: skytemple-files/skytemple_files/patch/patches.py:375
+#: skytemple-files/skytemple_files/patch/patches.py:383
 msgid "config.xml missing in patch package."
 msgstr "config.xml fehlt im Patch-Paket."
 
-#: skytemple-files/skytemple_files/patch/patches.py:378
+#: skytemple-files/skytemple_files/patch/patches.py:386
 msgid "Syntax error in the config.xml while reading patch package."
 msgstr "Syntax-Fehler in der config.xml des Patch-Paketes."
 
-#: skytemple-files/skytemple_files/patch/patches.py:391
+#: skytemple-files/skytemple_files/patch/patches.py:399
 msgid "patch.py missing in patch package."
 msgstr "patch.py fehlt im Patch-Paket."
 
-#: skytemple-files/skytemple_files/patch/patches.py:394
+#: skytemple-files/skytemple_files/patch/patches.py:402
 msgid "The patch.py of the patch package contains a syntax error."
 msgstr "Die patch.py von diesem Patch-Paket enthält einen Syntaxfehler."
 
-#: skytemple-files/skytemple_files/patch/patches.py:402
+#: skytemple-files/skytemple_files/patch/patches.py:410
 msgid "The patch.py of the patch package does not contain a 'PatchHandler'."
 msgstr "Die patch.py des Patch-Paketes enthält keinen 'PatchHandler'."
 
-#: skytemple-files/skytemple_files/patch/patches.py:411
+#: skytemple-files/skytemple_files/patch/patches.py:419
 msgid "The patch package does not contain an entry for the handler's patch name in the config.xml."
 msgstr "Das Patch-Paket enthält keinen Eintrag für den Namen des Handlers in der config.xml."
 
-#: skytemple-files/skytemple_files/patch/patches.py:423
+#: skytemple-files/skytemple_files/patch/patches.py:431
 #, python-brace-format
 msgid "No patch for handler '{handler.name}' found in the configuration."
 msgstr "Kein Patch für Handler '{handler.name}' gefunden in der Konfiguration."
@@ -5022,7 +5022,7 @@ msgid "Player"
 msgstr "Spieler"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:67
-#: skytemple/skytemple/skytemple.glade:2378
+#: skytemple/skytemple/skytemple.glade:2361
 msgid "Mode"
 msgstr "Modus"
 
@@ -8186,7 +8186,7 @@ msgstr "Dies wird den gesamten Hintergrund importieren.\n\n"
 "Siehe die \"Format-Details\" für weitere Informationen."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2279
-#: skytemple/skytemple/skytemple.glade:2532
+#: skytemple/skytemple/skytemple.glade:2515
 msgid "Input Image"
 msgstr "Eingabe-Bild"
 
@@ -14126,19 +14126,19 @@ msgstr "Anwendung zum Bearbeiten der ROM von Pokémon Mystery Dungeon Erkundungs
 msgid "https://github.com/SkyTemple/skytemple"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1511
+#: skytemple/skytemple/skytemple.glade:1494
 msgid "Privacy Information"
 msgstr "Datenschutzinformationen"
 
-#: skytemple/skytemple/skytemple.glade:1531
+#: skytemple/skytemple/skytemple.glade:1514
 msgid "Don't allow"
 msgstr "Nicht erlauben"
 
-#: skytemple/skytemple/skytemple.glade:1544
+#: skytemple/skytemple/skytemple.glade:1527
 msgid "Allow sending error reports"
 msgstr "Senden von Fehlerberichten zulassen"
 
-#: skytemple/skytemple/skytemple.glade:1571
+#: skytemple/skytemple/skytemple.glade:1554
 msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "We would like to collect some error information if things go wrong.\n\n"
 "You can find more information about the data we collect and how we\n"
@@ -14150,21 +14150,21 @@ msgstr "<span size=\"large\">Willkommen bei SkyTempel!</span>\n\n"
 "verwenden, findest du in unseren <a href=\"privacy\">Datenschutz-Informationen</a>.\n\n"
 "Die Informationen verwenden wir, um SkyTemple zu verbessern."
 
-#: skytemple/skytemple/skytemple.glade:1637
+#: skytemple/skytemple/skytemple.glade:1620
 msgid "Loading ROM \"NAME\"..."
 msgstr "Lade ROM \"NAME\"..."
 
-#: skytemple/skytemple/skytemple.glade:1719
+#: skytemple/skytemple/skytemple.glade:1702
 msgid "You want to support SkyTemple and PMD2 ROM hacking?\n"
 "Thank you! You can support us..."
 msgstr "Du möchtest SkyTemple und PMD2 ROM-Hacking unterstützen?\n"
 "Danke! Du kannst uns unterstützen..."
 
-#: skytemple/skytemple/skytemple.glade:1739
+#: skytemple/skytemple/skytemple.glade:1722
 msgid "... by testing new features!"
 msgstr "... indem du neue Features testest!"
 
-#: skytemple/skytemple/skytemple.glade:1755
+#: skytemple/skytemple/skytemple.glade:1738
 msgid "Join our Discord server and become a \"Beta Tester\", to get\n"
 "access to new features. Your feedback will directly help\n"
 "to improve SkyTemple and you can also suggest new features!"
@@ -14173,11 +14173,11 @@ msgstr "Trete unserem Discord-Server bei und werde ein „Betatester“, um\n"
 "direkt bei der Verbesserung von SkyTemple und wenn du möchtest \n"
 "kannst du dort auch neue Funktionen vorschlagen!"
 
-#: skytemple/skytemple/skytemple.glade:1801
+#: skytemple/skytemple/skytemple.glade:1784
 msgid "... by joining development or reverse engineering the game!"
 msgstr "... indem du bei der Entwicklung oder dem Hacken des Spiels mithilfst!"
 
-#: skytemple/skytemple/skytemple.glade:1817
+#: skytemple/skytemple/skytemple.glade:1800
 msgid "We are always looking for people to help develop SkyTemple\n"
 "or who help hacking the game. If you are interested in reverse\n"
 "engineering or implementing new features for SkyTemple,\n"
@@ -14189,41 +14189,41 @@ msgstr "Wir suchen immer nach Leuten, die bei der Entwicklung von\n"
 "findest du das Projekt auf Github!\n"
 "Du kannst auch unserem Discord-Server beitreten, falls du Fragen hast."
 
-#: skytemple/skytemple/skytemple.glade:1865
+#: skytemple/skytemple/skytemple.glade:1848
 msgid "... by helping to translate SkyTemple!"
 msgstr "... indem du hilfst, SkyTemple zu übersetzen!"
 
-#: skytemple/skytemple/skytemple.glade:1881
+#: skytemple/skytemple/skytemple.glade:1864
 msgid "Do you want to help translating SkyTemple to your native\n"
 "language? Join our Discord for more information."
 msgstr "Möchtest du helfen, SkyTemple in deine Muttersprache zu übersetzen? \n"
 "Komm auf unseren Discord-Server, um weitere Informationen zu erhalten."
 
-#: skytemple/skytemple/skytemple.glade:1925
+#: skytemple/skytemple/skytemple.glade:1908
 msgid "... by buying us a coffee!"
 msgstr "... indem du uns einen Kaffee kaufst!"
 
-#: skytemple/skytemple/skytemple.glade:1948
+#: skytemple/skytemple/skytemple.glade:1931
 msgid "If you like SkyTemple or other PMD2 hacking tools, you can\n"
 "support us with a small donation."
 msgstr "Wenn du SkyTemple oder andere PMD2 Hacking Tools magst,\n"
 "kannst du uns mit einer kleinen Spende unterstützen."
 
-#: skytemple/skytemple/skytemple.glade:1973
+#: skytemple/skytemple/skytemple.glade:1956
 msgid "Parakoopa"
 msgstr "Parakoopa"
 
-#: skytemple/skytemple/skytemple.glade:1990
+#: skytemple/skytemple/skytemple.glade:1973
 msgid "Developer of SkyTemple and \n"
 "creator of ExplorerScript.\n"
 msgstr "Entwickler von SkyTemple und \n"
 "Ersteller von ExplorerScript.\n"
 
-#: skytemple/skytemple/skytemple.glade:2036
+#: skytemple/skytemple/skytemple.glade:2019
 msgid "psy_commando"
 msgstr "psy_commando"
 
-#: skytemple/skytemple/skytemple.glade:2053
+#: skytemple/skytemple/skytemple.glade:2036
 msgid "Figured out most things about \n"
 "how this game works!\n"
 "Developer of ppmdu."
@@ -14231,27 +14231,27 @@ msgstr "Hat das meiste darüber herausgefunden,\n"
 "wie dieses Spiel funktioniert!\n"
 "Entwickler von ppmdu."
 
-#: skytemple/skytemple/skytemple.glade:2131
+#: skytemple/skytemple/skytemple.glade:2114
 msgid "Dither: Ordered"
 msgstr "Dithering: Geordnet"
 
-#: skytemple/skytemple/skytemple.glade:2135
+#: skytemple/skytemple/skytemple.glade:2118
 msgid "Dither: Floyd Steinberg"
 msgstr "Dithering: Floyd Steinberg"
 
-#: skytemple/skytemple/skytemple.glade:2139
+#: skytemple/skytemple/skytemple.glade:2122
 msgid "No Dithering"
 msgstr "Kein Dithering"
 
-#: skytemple/skytemple/skytemple.glade:2143
+#: skytemple/skytemple/skytemple.glade:2126
 msgid "Reorganize colors only"
 msgstr "Farben nur neu sortieren"
 
-#: skytemple/skytemple/skytemple.glade:2149
+#: skytemple/skytemple/skytemple.glade:2132
 msgid "Tilequant"
 msgstr "Tilequant"
 
-#: skytemple/skytemple/skytemple.glade:2198
+#: skytemple/skytemple/skytemple.glade:2181
 msgid "This tool converts any image into the image format required by Explorers of Sky.\n"
 "Please note that the game has pretty strict color restrictions.\n\n"
 "Each 8x8 tile will only be able to use one palette.\n\n"
@@ -14261,31 +14261,31 @@ msgstr "Dieses Tool konvertiert jedes Bild in das von \"Erkundungsteam Himmel\" 
 "Jede 8x8 Kachel kann nur eine Palette verwenden.\n\n"
 "Die von diesem Werkzeug erstellten Bilder können als Hintergründe importiert werden."
 
-#: skytemple/skytemple/skytemple.glade:2227
+#: skytemple/skytemple/skytemple.glade:2210
 msgid "Number of Palettes"
 msgstr "Anzahl der Paletten"
 
-#: skytemple/skytemple/skytemple.glade:2270
+#: skytemple/skytemple/skytemple.glade:2253
 msgid "16"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:2302
+#: skytemple/skytemple/skytemple.glade:2285
 msgid "Transparent Color"
 msgstr "Transparente Farbe"
 
-#: skytemple/skytemple/skytemple.glade:2345
+#: skytemple/skytemple/skytemple.glade:2328
 msgid "Color"
 msgstr "Farbe"
 
-#: skytemple/skytemple/skytemple.glade:2457
+#: skytemple/skytemple/skytemple.glade:2440
 msgid "Dithering Level"
 msgstr "Dithering-Stärke"
 
-#: skytemple/skytemple/skytemple.glade:2584
+#: skytemple/skytemple/skytemple.glade:2567
 msgid "Additional Input Image (optional)"
 msgstr "Zusätzliches Eingabebild (optional)"
 
-#: skytemple/skytemple/skytemple.glade:2678
+#: skytemple/skytemple/skytemple.glade:2661
 msgid "Convert"
 msgstr "Konvertieren"
 
