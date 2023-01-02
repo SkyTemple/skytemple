@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-01-02 12:19+0000\n"
+"POT-Creation-Date: 2023-01-02 14:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -720,6 +720,11 @@ msgstr ""
 msgid "Fatal compilation error: Stack error."
 msgstr ""
 
+#: explorerscript/explorerscript/ssb_converting/compiler/label_jump_to_remover.py:55
+#, python-brace-format
+msgid "Label {label_id} does not exist, but a jump to it does (remove it)."
+msgstr ""
+
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:101
 #, python-brace-format
 msgid "Unexpected continue; in line {ctx.start.line}"
@@ -1168,7 +1173,7 @@ msgstr ""
 
 #. TRANSLATORS: Replace this string with your names, one name per line.
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:1252
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3264
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3252
 #: skytemple/skytemple/skytemple.glade:1460
 msgid "translator-credits"
 msgstr ""
@@ -5445,7 +5450,7 @@ msgstr ""
 msgid "https://github.com/SkyTemple/skytemple-ssb-debugger"
 msgstr ""
 
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3336
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3324
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3060
 #: skytemple/skytemple/module/map_bg/controller/main.glade:163
 #: skytemple/skytemple/module/portrait/controller/portrait.glade:391
