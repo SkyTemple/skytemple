@@ -120,6 +120,7 @@ jobs:
             mingw-w64-${{ matrix.arch }}-python-multidict
             mingw-w64-${{ matrix.arch }}-python-yarl
             mingw-w64-${{ matrix.arch }}-python-aiohttp
+            mingw-w64-${{ matrix.arch }}-gmp
       - name: Checkout
         uses: actions/checkout@v3
       - name: Rewrite version for dev if not tag
