@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-01-02 13:40+0000\n"
-"PO-Revision-Date: 2023-01-02 13:41\n"
+"PO-Revision-Date: 2023-01-23 09:10\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -724,7 +724,7 @@ msgstr "Error de compilación fatal: error de pila."
 #: explorerscript/explorerscript/ssb_converting/compiler/label_jump_to_remover.py:55
 #, python-brace-format
 msgid "Label {label_id} does not exist, but a jump to it does (remove it)."
-msgstr ""
+msgstr "La etiqueta {label_id} no existe, pero hay un salto a ella (elimínala)."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:101
 #, python-brace-format
@@ -2792,7 +2792,7 @@ msgid "Could not save floor: It contains too much empty data.\n"
 "Please check the floors you edited and fill them with more data. If you are using the randomizer, check your allowed item list."
 msgstr "No se ha guardado el piso: contiene demasiados datos vacíos.\n"
 "Es posible que se deba a la existencia muchas listas de generación de Pokémon vacías.\n"
-"Por favor, comprueba los pisos que has editado y llénalos con más datos. Si estás usando el randomizador, comprueba tu lista de elementos permitidos."
+"Por favor, comprueba los pisos que has editado y llénalos con más datos. Si estás usando Randomizer, comprueba tu lista de elementos permitidos."
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:227
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:283
@@ -3813,7 +3813,7 @@ msgstr "Permite reclutar las otras formas de Deoxys y los Regis dentro de territ
 
 #: skytemple-files/skytemple_files/patch/handler/anti_softlock.py:47
 msgid "Allows the player to press A+B+X+Y during cutscenes to force the game to continue past a softlock (this can happen during cutscenes when using custom sprites or the randomizer). Does not work with crashes caused due to internal errors (such as the game running out of memory)."
-msgstr ""
+msgstr "Permite al jugador pulsar A+B+X+Y durante las escenas de corte para forzar el juego a continuar más allá de un softlock (esto puede suceder durante las escenas en las que se usan objetos personalizados o Randomizer). No funciona con fallos causados por errores internos (como cuando el juego se queda sin memoria)."
 
 #: skytemple-files/skytemple_files/patch/handler/appraise_all.py:56
 msgid "Appraise all"
