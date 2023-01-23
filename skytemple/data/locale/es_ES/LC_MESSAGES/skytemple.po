@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-01-02 13:40+0000\n"
-"PO-Revision-Date: 2023-01-23 09:10\n"
+"PO-Revision-Date: 2023-01-23 10:30\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3574,12 +3574,12 @@ msgstr "Menú de evolución principal"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:149
 msgid "Assembly Menu Confirm"
-msgstr "Menú de confirmación de asamblea"
+msgstr "Menú de confirmación del ensamblador"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:157
 #: skytemple-files/skytemple_files/hardcoded/menus.py:165
 msgid "Assembly Main Menu"
-msgstr "Menú principal de asamblea"
+msgstr "Menú principal del ensamblador"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:173
 #: skytemple-files/skytemple_files/hardcoded/menus.py:181
@@ -3589,7 +3589,7 @@ msgstr "Menú principal de asamblea"
 #: skytemple-files/skytemple_files/hardcoded/menus.py:213
 #: skytemple-files/skytemple_files/hardcoded/menus.py:221
 msgid "Assembly Sub Menu"
-msgstr "Submenú de asamblea"
+msgstr "Submenú del ensamblador"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:229
 msgid "Moves Menu Confirm"
@@ -12488,7 +12488,8 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/asm.py:408
 msgid "Warning! The project directory for this ROM contains custom patches. These patches may contain code which will run on your computer once you accept this dialog with 'Yes'. Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n\n"
 "Do you want to continue loading these patches? By selecting 'No', only the built-in patches will be loaded."
-msgstr ""
+msgstr "¡Advertencia! El directorio de proyectos de esta ROM contiene parches personalizados. Estos parches pueden contener código que se ejecutará en una vez se acepte este cuadro de diálogo seleccionando «Sí». Continúa solo si confías en los autores de los parches. De lo contrario, personas malintencionadas podrían robar tu información.\n\n"
+"¿Deseas cargar estos parches? Si seleccionas «No», solo se cargarán los parches integrados en SkyTemple."
 
 #: skytemple/skytemple/module/patch/controller/cot.glade:26
 msgid "c-of-time & Rust of Darkness"
@@ -12671,7 +12672,12 @@ msgid "In this section you can apply built-in ASM patches, your own ASM patches 
 "patches and effects in the C and Rust programming languages.\n\n"
 "Additionally you can browse all symbols and functions\n"
 "in the game known to SkyTemple."
-msgstr ""
+msgstr "En esta sección puedes aplicar parches ASM incorporados en SkyTemple, tus propios parches ASM \n"
+"y efectos personalizados de objetos, movimientos y procesos especial escritos en ensamblador.\n\n"
+"También encontrarás información sobre cómo escribir tus propios\n"
+"parches y efectos en los lenguajes de C y Rust.\n\n"
+"Además, puedes navegar por todos los símbolos y funciones\n"
+"del juego conocidos por SkyTemple."
 
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:84
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:165
