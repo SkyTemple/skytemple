@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-01-02 13:40+0000\n"
-"PO-Revision-Date: 2023-01-23 10:30\n"
+"PO-Revision-Date: 2023-02-20 10:17\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3550,7 +3550,7 @@ msgstr "Menú de depuración principal"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:101
 msgid "Quiz Debug Menu"
-msgstr ""
+msgstr "Menú de depuración de prueba de personalidad"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:109
 msgid "Footprint Debug Menu"
@@ -5706,7 +5706,7 @@ msgstr "Debe abrirse un proyecto para utilizarlo."
 
 #: skytemple/skytemple/controller/main.py:585
 msgid "'spritecollab' module must be installed to use this."
-msgstr ""
+msgstr "El módulo 'spritecollab' debe estar instalado para usar esto."
 
 #: skytemple/skytemple/controller/main.py:639
 #: skytemple/skytemple/controller/main.py:640
@@ -5875,11 +5875,11 @@ msgstr "SkyTemple - ¡Error no capturado!"
 
 #: skytemple/skytemple/core/rom_project.py:133
 msgid "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
-msgstr ""
+msgstr "Se encontró una copia de seguridad para esta ROM. Esto indica que la ROM se corrompió cuando SkyTemple intentó guardarla la última vez."
 
 #: skytemple/skytemple/core/rom_project.py:135
 msgid "No, load ROM as-is"
-msgstr "No, cargar la ROM tal cual"
+msgstr "No, cargar la ROM actual"
 
 #: skytemple/skytemple/core/rom_project.py:137
 msgid "Yes, load backup"
@@ -5896,7 +5896,11 @@ msgid "Do you want to restore the backup?\n"
 "If you select 'No, load ROM as-is', the backup will be deleted and SkyTemple will attempt to load the (potentially) corrupted ROM file.\n\n"
 "Original ROM: {}\n"
 "Backup ROM: {}"
-msgstr ""
+msgstr "¿Quieres restaurar la copia de seguridad?\n"
+"Si seleccionas 'Sí, cargar copia de seguridad', la copia de seguridad reemplazará el archivo de la ROM y luego se cargará.\n"
+"Si seleccionas 'No, cargar la ROM actual', la copia de seguridad se eliminará y SkyTemple intentará cargar el (potencialmente) corrupto archivo de la ROM.\n\n"
+"ROM original: {}\n"
+"Copia de seguridad de la ROM: {}"
 
 #: skytemple/skytemple/core/ssb_debugger/context.py:157
 #: skytemple/skytemple/core/ssb_debugger/context.py:174
@@ -9400,7 +9404,7 @@ msgid "You can apply the default team using the script command\n"
 "(without going through the personality test first). "
 msgstr "Puedes elegir el equipo por defecto utilizando el comando de script\n"
 "\"ProcessSpecial(PROCESS_SPECIAL_INIT_MAIN_TEAM_AFTER_QUIZ, 0, 0)\" \n"
-"(sin hacer el test de personalidad). "
+"(sin hacer la prueba de personalidad). "
 
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:329
 msgid "Default Starters"
