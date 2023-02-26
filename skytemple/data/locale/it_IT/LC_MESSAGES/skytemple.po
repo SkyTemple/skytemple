@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-02-26 17:31+0000\n"
-"PO-Revision-Date: 2023-02-26 17:34\n"
+"POT-Creation-Date: 2023-02-26 18:58+0000\n"
+"PO-Revision-Date: 2023-02-26 19:27\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -3219,11 +3219,11 @@ msgstr ""
 msgid "8 bits per pixel (256 colors)"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/wte/model.py:217
+#: skytemple-files/skytemple_files/graphics/wte/model.py:219
 msgid "Can not convert PIL image to WTE: Must be indexed image (=using a palette)"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/wte/model.py:225
+#: skytemple-files/skytemple_files/graphics/wte/model.py:227
 msgid "This image is too big to fit into a WTE file."
 msgstr ""
 
@@ -4003,11 +4003,11 @@ msgstr ""
 msgid "Changes implementation of idle animation to an editable table."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/push_allies.py:41
+#: skytemple-files/skytemple_files/patch/handler/push_allies.py:42
 msgid "[string:0] pushed [string:1]!"
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/push_allies.py:52
+#: skytemple-files/skytemple_files/patch/handler/push_allies.py:53
 msgid "Implements pushing allies in dungeons.\n"
 "Uses the same command style as PSMD"
 msgstr ""
@@ -4055,7 +4055,7 @@ msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/patches.py:235
-#: skytemple/skytemple/module/patch/controller/asm.py:305
+#: skytemple/skytemple/module/patch/controller/asm.py:307
 #, python-brace-format
 msgid "The patch '{patch_name}' needs to be applied before you can apply '{name}'. This patch could not be found."
 msgstr ""
@@ -11958,53 +11958,53 @@ msgstr ""
 msgid "This patch requires some other patches to be applied first:\n"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/asm.py:156
+#: skytemple/skytemple/module/patch/controller/asm.py:158
 msgid "\n"
 "Configuration field with errors: \"{}\"\n"
 "Error: {}"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/asm.py:157
+#: skytemple/skytemple/module/patch/controller/asm.py:159
 #, python-brace-format
 msgid "Error applying the patch:\n"
 "{err}"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/asm.py:162
+#: skytemple/skytemple/module/patch/controller/asm.py:164
 #, python-brace-format
 msgid "Failed applying patch '{patch}'. The ROM may be corrupted now."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/asm.py:173
+#: skytemple/skytemple/module/patch/controller/asm.py:175
 msgid "Patch was successfully applied. The ROM will now be reloaded."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/asm.py:176
+#: skytemple/skytemple/module/patch/controller/asm.py:178
 msgid "Not all patches were applied successfully. The ROM will now be reloaded."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/asm.py:242
-#: skytemple/skytemple/module/patch/controller/asm.py:262
+#: skytemple/skytemple/module/patch/controller/asm.py:244
+#: skytemple/skytemple/module/patch/controller/asm.py:264
 msgid "Error loading patch package {os.path.basename(fname)}."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/asm.py:250
+#: skytemple/skytemple/module/patch/controller/asm.py:252
 msgid "Not compatible"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/asm.py:252
+#: skytemple/skytemple/module/patch/controller/asm.py:254
 msgid "Applied"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/asm.py:252
+#: skytemple/skytemple/module/patch/controller/asm.py:254
 msgid "Compatible"
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/asm.py:398
+#: skytemple/skytemple/module/patch/controller/asm.py:400
 msgid "Some of the loaded patches had compatibility issues. They were still loaded correctly but may stop working in future SkyTemple versions. These patches were marked orange in the list of patches. Highlight one of these patches and click the 'Show Issues' button for more information."
 msgstr ""
 
-#: skytemple/skytemple/module/patch/controller/asm.py:408
+#: skytemple/skytemple/module/patch/controller/asm.py:410
 msgid "Warning! The project directory for this ROM contains custom patches. These patches may contain code which will run on your computer once you accept this dialog with 'Yes'. Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n\n"
 "Do you want to continue loading these patches? By selecting 'No', only the built-in patches will be loaded."
 msgstr ""
