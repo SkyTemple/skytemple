@@ -1372,14 +1372,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             sprite_bin = sprites[entry.sprite_index]
             sprite_bytes = FileType.COMMON_AT.deserialize(sprite_bin).decompress()
             sprite = FileType.WAN.deserialize(sprite_bytes)
-        meta_frames = []
-        for g in sprite.model.meta_frame_store.meta_frame_groups:
-            meta_frames += g.meta_frames
-        max_tile_slots_needed = max(
-            (f.image_alloc_counter & 0x3FF) + math.ceil(f.resolution.x * f.resolution.y / 256)
-            for f in meta_frames
-        )
-        max_tile_slots_needed = max((6, max_tile_slots_needed))
+        max_tile_slots_needed = max((6, sprite.model.frame_store.max_fragment_alloc_count))
         max_file_size_needed = math.ceil(len(sprite_bytes) / 512)
         return max_tile_slots_needed, max_file_size_needed
 
