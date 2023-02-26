@@ -148,6 +148,8 @@ class AsmController(AbstractController):
                         except PatchCanceledError:
                             some_skipped = True
                             break
+                    # We filter out Gtk deprecations.
+                    w = [x for x in w if "Gtk." not in str(x.message)]
                     if len(w) > 0:
                         issues[patch] = w
             except PatchNotConfiguredError as ex:
