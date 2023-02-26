@@ -65,7 +65,7 @@ additional_binaries = [
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, "lib", "enchant-2", "enchant_hunspell.dll"), 'lib/enchant-2'),
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libhunspell-1.7-0.dll"), '.'),
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libcrypto*.dll"), '.'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libssl-1_1*.dll"), '.'),
+    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libssl*.dll"), '.'),
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libraqm-0.dll"), '.'),
     (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libgmp-10.dll"), '.'),
 ]
