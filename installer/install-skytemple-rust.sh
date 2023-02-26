@@ -20,7 +20,7 @@ platform="msys2"
 if [ -n "$IS_MACOS" ]; then
   platform="macos-11"
   arch="x64"
-  py_version="3.10"
+  py_version="3.11"
 fi
 
 url="https://nightly.link/SkyTemple/skytemple-rust/workflows/build-test-publish/$branch/wheels-$platform-py$py_version-$arch.zip"
