@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkTextBuffer" id="buff_lang1_desc">
@@ -1023,7 +1023,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
-                <property name="label" translatable="yes">AI Flag 1:</property>
+                <property name="label" translatable="yes">AI Flag: Throw at enemies</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
@@ -1035,7 +1035,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
-                <property name="label" translatable="yes">AI Flag 2:</property>
+                <property name="label" translatable="yes">AI Flag: Throw at allies</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
@@ -1047,7 +1047,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
-                <property name="label" translatable="yes">AI Flag 3:</property>
+                <property name="label" translatable="yes">AI Flag: Use on self</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
