@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-02-27 19:46+0000\n"
-"PO-Revision-Date: 2023-02-27 19:50\n"
+"POT-Creation-Date: 2023-03-09 20:10+0000\n"
+"PO-Revision-Date: 2023-03-09 20:15\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -6055,96 +6055,111 @@ msgstr "名"
 msgid "Direction:"
 msgstr "方向:"
 
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:527
-msgid "Enemies evolve w. KOed:"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:662
-msgid "Exp. enabled:"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:675
-msgid "Recruiting enabled:"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:688
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:518
 msgid "Level reset to 1:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:701
-msgid "Money reset to 0:"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:714
-msgid "Leader can switch:"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:727
-msgid "Force game save:"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:740
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:531
 msgid "IQ skills enabled:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:753
-msgid "Reveal traps by attack:"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:766
-msgid "Enemies drop Boxes:"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:779
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:544
 msgid "Max. rescue attempts\n"
 "(-1 = none):"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:793
-msgid "Max. items allowed:"
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:558
+msgid "Random movement chance:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:806
-msgid "Max. party members:"
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:819
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:621
 msgid "Turn limit:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:848
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:634
+msgid "Force game save:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:647
+msgid "Recruiting enabled:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:707
+msgid "Max. party members:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:720
+msgid "Enemies drop Boxes:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:733
+msgid "Can switch leader:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:746
+msgid "Exp. enabled:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:807
+msgid "Enemy evolution enabled:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:820
+msgid "Money reset to 0:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:833
+msgid "Reveal traps by attack:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:846
+msgid "Max. items allowed:"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:959
 msgid "Add / Remove Floors"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:866
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:977
 msgid "This dungeon has XXX floors."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:904
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:1015
 msgid "Change Floor Count"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:965
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:1076
 msgid "This dungeon currently has X floors."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:982
+#: skytemple/skytemple/module/dungeon/controller/dungeon.glade:1093
 msgid "New floor count:"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/dungeon.py:58
+#: skytemple/skytemple/module/dungeon/controller/dungeon.py:59
 msgid "\n"
 "Since this is a Dojo Dungeon, the floor count can not be changed."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/dungeon.py:66
+#: skytemple/skytemple/module/dungeon/controller/dungeon.py:67
 #, python-brace-format
 msgid "This dungeon has {floor_count} floors.{edit_text}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/dungeon.py:133
+#: skytemple/skytemple/module/dungeon/controller/dungeon.py:135
 #, python-brace-format
 msgid "This dungeon currently has {current_floor_count} floors."
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/dungeon.py:338
+msgid "Chance of setting the random movement flag on an enemy when spawning it.\n"
+"Enemies with this flag set will move randomly inside rooms, instead of heading towards one of the exits."
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon/controller/dungeon.py:343
+msgid "If enabled, enemies will evolve after defeating a team member.\n"
+"The evolution will not happen if the target is revived, if the evolved form of the enemy cannot spawn in the current floor or if the sprite of the evolved form is bigger than the sprite of the enemy.\n"
+"Part of this behavior can be modified by applying the BetterEnemyEvolution ASM patch."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:110
