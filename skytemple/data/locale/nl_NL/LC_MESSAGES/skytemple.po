@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-03-09 20:10+0000\n"
-"PO-Revision-Date: 2023-03-09 20:15\n"
+"POT-Creation-Date: 2023-03-09 20:31+0000\n"
+"PO-Revision-Date: 2023-03-09 21:38\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -11268,59 +11268,59 @@ msgstr ""
 msgid "??? Enter a valid Entry ID ($)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1415
+#: skytemple/skytemple/module/monster/controller/monster.py:1422
 msgid "The sprite memory size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1435
+#: skytemple/skytemple/module/monster/controller/monster.py:1442
 msgid "The sprite file size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1469
+#: skytemple/skytemple/module/monster/controller/monster.py:1476
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
 "After the patch is applied, this value defines the Base ID and therefore how Pokémon are grouped.\n"
 "Reload the project after making changes to this value, to reflect them in the tree on the left."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1472
+#: skytemple/skytemple/module/monster/controller/monster.py:1479
 msgid "Entity ID"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1482
+#: skytemple/skytemple/module/monster/controller/monster.py:1489
 msgid "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "This list indicates this Pokémon's children. If no children exist, the game will default to that pokémon species. "
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1484
+#: skytemple/skytemple/module/monster/controller/monster.py:1491
 msgid "Children Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1494
+#: skytemple/skytemple/module/monster/controller/monster.py:1501
 msgid "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
 "Negative values are allowed."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1496
+#: skytemple/skytemple/module/monster/controller/monster.py:1503
 msgid "Evolution Bonus Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1593
+#: skytemple/skytemple/module/monster/controller/monster.py:1600
 #, python-brace-format
 msgid "A pokémon can't evolve into more than {MAX_EVOS} evolutions."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1600
+#: skytemple/skytemple/module/monster/controller/monster.py:1607
 msgid "Too much evolutions."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1606
+#: skytemple/skytemple/module/monster/controller/monster.py:1613
 #, python-brace-format
 msgid "A pokémon can't have more than {MAX_EGGS} children."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1613
+#: skytemple/skytemple/module/monster/controller/monster.py:1620
 msgid "Too much children."
 msgstr ""
 
