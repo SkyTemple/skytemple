@@ -551,6 +551,12 @@ class RomProject:
     def init_patch_properties(self):
         """ Initialize patch-specific properties of the rom. """
         
+        # Allow expanded portrait limit if the ExpandPortraitStructs patch is applied
+        if self.is_patch_applied("ExpandPortraitStructs"):
+            FileType.KAO.properties().kao_image_limit = 808
+        else:
+            FileType.KAO.properties().kao_image_limit = 800
+        
         # Allow ATUPX files if the ProvideATUPXSupport patch is applied
         if self.is_patch_applied("ProvideATUPXSupport"):
             FileType.COMMON_AT.allow(CommonAtType.ATUPX)
