@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-03-09 20:31+0000\n"
-"PO-Revision-Date: 2023-03-09 21:38\n"
+"PO-Revision-Date: 2023-03-17 07:39\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -3751,7 +3751,7 @@ msgstr "Submenú de territorio"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:645
 msgid "Start Menu Confirm"
-msgstr ""
+msgstr "Menú de inicio de confirmación"
 
 #: skytemple-files/skytemple_files/hardcoded/menus.py:653
 msgid "Dungeon Debug Menu"
@@ -4020,7 +4020,7 @@ msgstr "Evita que el juego se bloquee si se queda sin memoria al intentar mostra
 
 #: skytemple-files/skytemple_files/patch/handler/fix_nocash_saves.py:47
 msgid "Fixes an issue that causes saving to fail on the No$GBA emulator. Warning: Causes saving to fail on the MelonDS emulator instead."
-msgstr ""
+msgstr "Soluciona un problema que hacía que no se pudiera guardar en el emulador No$GBA. Advertencia: Provoca que no se pueda guardar en el emulador MelonDS."
 
 #: skytemple-files/skytemple_files/patch/handler/move_growth.py:165
 msgid "Implements move growth (PoC/Unfinished). \n"
@@ -6179,7 +6179,7 @@ msgstr "Enemigos sueltan cofres:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:733
 msgid "Can switch leader:"
-msgstr ""
+msgstr "Se puede cambiar de líder:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:746
 msgid "Exp. enabled:"
@@ -12823,7 +12823,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:183
 msgid "Open pmdsky-debug"
-msgstr ""
+msgstr "Abrir depurador de pmdsky"
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:356
 msgid "Address"
@@ -12840,7 +12840,7 @@ msgstr "Datos"
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.py:115
 #, python-brace-format
 msgid "<b>Load Address:</b> 0x{bin_load_address:0x} | <b>Length:</b> {bin_length}"
-msgstr ""
+msgstr "<b>Dirección de carga:</b> 0x{bin_load_address:0x} | <b>Longitud:</b> {bin_length}"
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:72
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:152
