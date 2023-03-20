@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-03-09 20:31+0000\n"
-"PO-Revision-Date: 2023-03-17 07:39\n"
+"PO-Revision-Date: 2023-03-20 13:25\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -495,11 +495,11 @@ msgstr ""
 
 #: /dev/fd/63:115 /dev/fd/63:237
 msgid "Fully heal enemies after evolving"
-msgstr ""
+msgstr "Curar completamente a los enemigos después de evolucionar"
 
 #: /dev/fd/63:116 /dev/fd/63:238
 msgid "Update the moves of evolved enemies"
-msgstr ""
+msgstr "Actualizar los movimientos de enemigos evolucionados"
 
 #: /dev/fd/63:117 /dev/fd/63:239
 msgid "Increase Atk/SpAtk/Def/SpDef of evolved enemies by"
@@ -12539,7 +12539,7 @@ msgstr "Compatible"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:400
 msgid "Some of the loaded patches had compatibility issues. They were still loaded correctly but may stop working in future SkyTemple versions. These patches were marked orange in the list of patches. Highlight one of these patches and click the 'Show Issues' button for more information."
-msgstr ""
+msgstr "Algunos de los parches cargados tenían problemas de compatibilidad. Se han cargado correctamente, pero es posible que dejen de funcionar en futuras versiones de SkyTemple. Estos parches se han marcado en naranja en la lista de parches. Selecciona uno de estos y haz clic en el botón «Mostrar problemas» para obtener más información."
 
 #: skytemple/skytemple/module/patch/controller/asm.py:410
 msgid "Warning! The project directory for this ROM contains custom patches. These patches may contain code which will run on your computer once you accept this dialog with 'Yes'. Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n\n"
@@ -13706,7 +13706,7 @@ msgstr "URL del servidor:"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:431
 msgid "Frontend URL:"
-msgstr ""
+msgstr "URL de la interfaz:"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:463
 msgid "(optional)"
@@ -13728,7 +13728,7 @@ msgstr ""
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:224
 #, python-brace-format
 msgid "NotSpriteCollab ({NOT_SC_SERVER})"
-msgstr ""
+msgstr "NotSpriteCollab ({NOT_SC_SERVER})"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:225
 msgid "Custom Server"
@@ -13784,7 +13784,7 @@ msgstr "Sprites importados correctamente."
 
 #: skytemple/skytemple/module/spritecollab/module.py:146
 msgid "Open a Pokémon in the main window to apply the assets to."
-msgstr ""
+msgstr "Abre un Pokémon en la ventana principal para aplicarle los assets."
 
 #: skytemple/skytemple/module/spritecollab/module.py:149
 msgid "Could not apply the sprites, since no sprite data is available."
@@ -13792,7 +13792,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/module.py:152
 msgid "This Pokémon does not support portraits and/or sprites."
-msgstr ""
+msgstr "Este Pokémon no soporta retratos ni/o sprites."
 
 #: skytemple/skytemple/module/spritecollab/module.py:167
 msgid "This will replace the sprite of this Pokémon with the one from the repository.\n"
@@ -13801,15 +13801,20 @@ msgid "This will replace the sprite of this Pokémon with the one from the repos
 "animations (if they aren't available for this Pokémon otherwise).\n"
 "This will fix Pokémon using weird animations instead of sleeping on the overworld, \n"
 "when choosing them as a starter or partner."
-msgstr ""
+msgstr "Esto sustituirá el sprite de este Pokémon por el del repositorio.\n"
+"En su lugar, también puedes optar por crear un nuevo sprite, que se asignará al Pokémon.\n\n"
+"Además, puedes copiar la animación de Dormir a las animaciones de EventSleep/Laying/Waking\n"
+"(si de otro modo no están disponibles para este Pokémon).\n"
+"Esto evitarán que los Pokémon usen animaciones raras en lugar de dormir en el mundo exterior \n"
+"a la hora de elegirlos como líder o compañero."
 
 #: skytemple/skytemple/module/spritecollab/module.py:177
 msgid "Create a new sprite instead of replacing the existing one."
-msgstr ""
+msgstr "Crear un nuevo objeto en lugar de reemplazar el existente."
 
 #: skytemple/skytemple/module/spritecollab/module.py:180
 msgid "Copy the Sleep animation to EventSleep/Laying/Waking."
-msgstr ""
+msgstr "Copia la animación de Dormir a EventSleep/Laying/Waking."
 
 #: skytemple/skytemple/module/strings/controller/main.py:23
 msgid "Text Strings"
