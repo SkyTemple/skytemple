@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-03-09 20:31+0000\n"
-"PO-Revision-Date: 2023-03-20 13:25\n"
+"PO-Revision-Date: 2023-03-20 14:40\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -454,7 +454,7 @@ msgstr ""
 
 #: /dev/fd/63:105 /dev/fd/63:227
 msgid "String mentioned above is replaced by a default text when applying"
-msgstr ""
+msgstr "La cadena mencionada anteriormente es reemplazada por un texto predeterminado al aplicarse"
 
 #: /dev/fd/63:106 /dev/fd/63:228
 msgid "Only interruptions don't heal HP"
@@ -491,7 +491,7 @@ msgstr "Coste de cada cofre misterioso (solo para la opción Valorar todos)"
 
 #: /dev/fd/63:114 /dev/fd/63:236
 msgid "Update the level and stats of evolved enemies"
-msgstr ""
+msgstr "Actualizar el nivel y las estadísticas de los enemigos evolucionados"
 
 #: /dev/fd/63:115 /dev/fd/63:237
 msgid "Fully heal enemies after evolving"
@@ -503,11 +503,11 @@ msgstr "Actualizar los movimientos de enemigos evolucionados"
 
 #: /dev/fd/63:117 /dev/fd/63:239
 msgid "Increase Atk/SpAtk/Def/SpDef of evolved enemies by"
-msgstr ""
+msgstr "Aumenta el Atq./Atq. Esp./Def./Def. Esp. de los enemigos evolucionados en"
 
 #: /dev/fd/63:118 /dev/fd/63:240
 msgid "Let enemies evolve even if the defeated pokémon is revived"
-msgstr ""
+msgstr "Deja que los enemigos evolucionen incluso si el Pokémon derrotado es revivido"
 
 #: /dev/fd/63:120
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:539
@@ -4054,12 +4054,13 @@ msgstr "Cambia la implementación de la animación en reposo a una tabla editabl
 
 #: skytemple-files/skytemple_files/patch/handler/push_allies.py:42
 msgid "[string:0] pushed [string:1]!"
-msgstr ""
+msgstr "¡[string:0] empujó a [string:1]!"
 
 #: skytemple-files/skytemple_files/patch/handler/push_allies.py:53
 msgid "Implements pushing allies in dungeons.\n"
 "Uses the same command style as PSMD"
-msgstr ""
+msgstr "Implementa la capacidad de empujar aliados en territorios.\n"
+"Usa el mismo estilo de comando que PSMD"
 
 #: skytemple-files/skytemple_files/patch/handler/reduce_jumpcut_pause_time.py:47
 msgid "Reduces the amount of time the game pauses for before changing the PoV, like when far-off pals is enabled, from 60 frames to 12. This is already applied in the CTC hack."
@@ -6155,7 +6156,7 @@ msgstr "Intentos de rescate máximos\n"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:558
 msgid "Random movement chance:"
-msgstr ""
+msgstr "Probabilidad de movimiento aleatorio:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:621
 msgid "Turn limit:"
@@ -6187,7 +6188,7 @@ msgstr "Exp. activada:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:807
 msgid "Enemy evolution enabled:"
-msgstr ""
+msgstr "Permitir evolución de enemigos:"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:820
 msgid "Money reset to 0:"
@@ -7521,7 +7522,8 @@ msgstr "0 --> Bazar secreto seguro\n"
 #: skytemple/skytemple/module/dungeon/controller/floor.py:478
 msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from \"Patches\" > \"ASM\".\n"
 "If patched, the game will turn a random room into a maze room made of wall tiles instead of the usual water (although water can later replace some of the walls once the water generation takes place)."
-msgstr ""
+msgstr "No funciona en el juego. Para que funcione, aplica el parche \"UnusedDungeonChancePatch\" desde el menú Parches ASM.\n"
+"Si se aplica el parche, el juego convertirá una sala aleatoria en una sala laberíntica hecha de tiles de pared en lugar del agua habitual (aunque el agua puede sustituir posteriormente a algunas de las paredes cuando se genere)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:501
 msgid "It was added in explorers of sky, so right now it's only used in the sky exclusive dungeons.\n"
@@ -8727,7 +8729,9 @@ msgstr "Las entradas de esta lista se pueden colocar en mapas y utilizar en scri
 msgid "<Not available>\n\n"
 "To view and edit this list, please apply the \"ActorAndLevelLoader\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar esta lista, aplica el parche \"ActorAndLevelLoader\" \n"
+"desde el menú Parches ASM."
 
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:239
 msgid "Text String for Name"
@@ -11906,15 +11910,15 @@ msgstr "Está en EdT/EdO:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1026
 msgid "AI Flag: Throw at enemies"
-msgstr ""
+msgstr "Marca de IA: Lanzar a enemigos"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1038
 msgid "AI Flag: Throw at allies"
-msgstr ""
+msgstr "Marca de IA: Lanzar a aliados"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1050
 msgid "AI Flag: Use on self"
-msgstr ""
+msgstr "Marca de IA: Usar en sí mismo"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1092
 msgid "Flags"
@@ -12424,7 +12428,8 @@ msgstr "Se ha detectado un problema de compatibilidad al cargar uno o más parch
 #: skytemple/skytemple/module/patch/controller/asm.glade:263
 msgid "A compatibility issue was detected while applying this patch. \n"
 "But it was still applied successfully."
-msgstr ""
+msgstr "Se detectó un problema de compatibilidad al aplicar este parche, \n"
+"pero aun así se aplicó correctamente."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:277
 msgid "One or more patches failed to be loaded."
@@ -12432,12 +12437,13 @@ msgstr "Uno o más paquetes no se han cargado."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:290
 msgid "There was an error while applying the patch."
-msgstr ""
+msgstr "Se ha producido un error al aplicar el parche."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:303
 msgid "This patch will stop working in a future version of SkyTemple, \n"
 "unless the author updates the patch."
-msgstr ""
+msgstr "Este parche dejará de funcionar en versiones posteriores de SkyTemple \n"
+"a menos que el autor lo actualice."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:324
 msgid "Details:"
@@ -12549,22 +12555,25 @@ msgstr "¡Advertencia! El directorio de proyectos de esta ROM contiene parches p
 
 #: skytemple/skytemple/module/patch/controller/cot.glade:26
 msgid "c-of-time & Rust of Darkness"
-msgstr ""
+msgstr "c-of-time y Rust of Darkness"
 
 #: skytemple/skytemple/module/patch/controller/cot.glade:42
 msgid "<b>c-of-time</b> (cot) is a C runtime and development environment for writing custom patches for the game in C.\n\n"
 "<b>Rust of Darkness</b> (RoD) is an extension of cot to write custom patches in Rust.\n\n"
 "To get started with cot and/or RoD, watch the tutorial below and read the READMEs.\n\n"
 "<b>Important</b>: Before writing cot or RoD patches to the ROM make sure to close SkyTemple. Otherwise SkyTemple may override changes you made."
-msgstr ""
+msgstr "<b>c-of-time</b> (cot) es un entorno de ejecución y desarrollo en C para escribir parches personalizados para el juego en C.\n\n"
+"<b>Rust of Darkness</b> (RoD) es una extensión de cot para escribir parches personalizados en Rust.\n\n"
+"Para empezar con cot o RoD, mira el tutorial que aparece a continuación y lee los archivos README.\n\n"
+"<b>Importante</b>: Antes de escribir parches en la ROM, asegúrate de cerrar SkyTemple. De lo contrario, SkyTemple puede anular los cambios que hayas realizado."
 
 #: skytemple/skytemple/module/patch/controller/cot.glade:129
 msgid "c-of-time README"
-msgstr ""
+msgstr "README de c-of-time"
 
 #: skytemple/skytemple/module/patch/controller/cot.glade:175
 msgid "Rust of Darkness README"
-msgstr ""
+msgstr "README de Rust of Darkness"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:76
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:156
@@ -12583,7 +12592,9 @@ msgstr "Edita los objetos utilizados por el juego.\n"
 msgid "<Not available>\n\n"
 "To view and edit item effects, please apply the \"ExtractItemCode\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar los efectos de objetos, aplica el parche\n"
+"\"ExtractItemCode\" desde el menú Parches ASM."
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:173
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:182
@@ -12753,7 +12764,10 @@ msgid "<Not available>\n\n"
 "To view and edit move effects, please apply the \"ExtractMoveCode\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu.\n"
 "If you already have applied it, apply it again to be sure to use the last version. "
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar los efectos de movimientos, aplica el parche\n"
+"\"ExtractMoveCode\" desde el menú Parches ASM.\n"
+"Si ya lo has aplicado, aplícalo de nuevo para asegurarte de usar la última versión. "
 
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:321
 msgid "Fix # of Moves"
@@ -12806,7 +12820,7 @@ msgstr "Valores inválidos para algunos ajustes proporcionados. Por favor, inté
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:37
 msgid "pmdsky-debug Symbols"
-msgstr ""
+msgstr "Símbolos pmdsky-debug"
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:53
 msgid "SkyTemple is powered by <b>pmdsky-debug</b>.\n"
@@ -12815,11 +12829,16 @@ msgid "SkyTemple is powered by <b>pmdsky-debug</b>.\n"
 "However you will probably find newer symbols in the repository, which you can open with the button below. The repository also contains instructions on how to contribute or use the symbols with debuggers like Ghidra.\n\n"
 "The symbols below are shown for the region of the currently loaded ROM.\n"
 "The \"Address\" column shows the first address. Addresses are absolute."
-msgstr ""
+msgstr "SkyTemple funciona con <b>pmdsky-debug</b>.\n"
+"pmdsky-debug es un repositorio público de símbolos y funciones del juego. \n"
+"A continuación, encontrarás la lista de símbolos incluidos en esta versión de SkyTemple. \n"
+"Sin embargo, es probable que encuentre símbolos más nuevos en el repositorio, que puedes abrir desde el botón de abajo. El repositorio también contiene instrucciones sobre cómo contribuir o utilizar los símbolos con depuradores como Ghidra.\n\n"
+"Los símbolos siguientes se muestran para la región de la ROM actualmente cargada.\n"
+"La columna «Dirección» muestra la primera dirección. Las direcciones son absolutas."
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:87
 msgid "pmdsky-debug version:"
-msgstr ""
+msgstr "Versión de pmdsky-debug:"
 
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:183
 msgid "Open pmdsky-debug"
@@ -12859,7 +12878,9 @@ msgstr "Edita el proceso especial utilizado por el juego.\n"
 msgid "<Not available>\n\n"
 "To view and edit special process effects, please apply the \"ExtractSPCode\"\n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<No disponible>\n\n"
+"Para ver y editar los efectos de procesos especiales, aplica el parche\n"
+"\"ExtractSPCode\" desde el menú Parches ASM."
 
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:169
 msgid "Edits the effects used by each special process.\n"
@@ -13678,7 +13699,8 @@ msgstr "Cargando..."
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:148
 msgid "<span size=\"x-large\">SpriteCollab Browser</span>\n\n"
 "Choose a Pokémon in the list on the left."
-msgstr ""
+msgstr "<span size=\"x-large\">Navegador de SpriteCollab</span>\n\n"
+"Elige un Pokémon de la lista de la izquierda."
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:259
 msgid "SpriteCollab Browser"
@@ -13714,7 +13736,7 @@ msgstr "(opcional)"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:200
 msgid "Failed loading list of Pokémon from the configured SpriteCollab server."
-msgstr ""
+msgstr "No se pudo cargar la lista de Pokémon del servidor SpriteCollab configurado."
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:201
 msgid "Error Updating Sprites"
@@ -13723,7 +13745,7 @@ msgstr "Error al actualizar sprites"
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:223
 #, python-brace-format
 msgid "SpriteCollab (SpriteBot, {DEFAULT_SERVER})"
-msgstr ""
+msgstr "SpriteCollab (SpriteBot, {DEFAULT_SERVER})"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:224
 #, python-brace-format
@@ -13760,7 +13782,7 @@ msgstr "Aplicar sprites"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:443
 msgid "<b><i>Make sure to credit artists:</i></b>"
-msgstr ""
+msgstr "<b><i>Asegúrate de dar crédito a los artistas:</i></b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:449
 msgid "<b>Portrait Credits:</b>"
@@ -13788,7 +13810,7 @@ msgstr "Abre un Pokémon en la ventana principal para aplicarle los assets."
 
 #: skytemple/skytemple/module/spritecollab/module.py:149
 msgid "Could not apply the sprites, since no sprite data is available."
-msgstr ""
+msgstr "No se pudieron aplicar los sprites porque no hay datos de sprite disponibles."
 
 #: skytemple/skytemple/module/spritecollab/module.py:152
 msgid "This Pokémon does not support portraits and/or sprites."
