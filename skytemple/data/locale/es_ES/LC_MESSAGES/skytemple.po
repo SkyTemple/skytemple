@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-03-09 20:31+0000\n"
-"PO-Revision-Date: 2023-03-20 14:40\n"
+"PO-Revision-Date: 2023-03-22 19:54\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -450,7 +450,7 @@ msgstr "ID del primer icono de markfont.dat (24 entradas utilizadas)"
 
 #: /dev/fd/63:104 /dev/fd/63:226
 msgid "String ID for push dialogue"
-msgstr ""
+msgstr "ID de cadena para diálogos de empujar"
 
 #: /dev/fd/63:105 /dev/fd/63:227
 msgid "String mentioned above is replaced by a default text when applying"
@@ -6241,7 +6241,8 @@ msgstr "Este territorio tiene actualmente {current_floor_count} piso(s)."
 #: skytemple/skytemple/module/dungeon/controller/dungeon.py:338
 msgid "Chance of setting the random movement flag on an enemy when spawning it.\n"
 "Enemies with this flag set will move randomly inside rooms, instead of heading towards one of the exits."
-msgstr ""
+msgstr "Posibilidad de colocar la marca de movimiento aleatorio en un enemigo al generarlo.\n"
+"Los enemigos con este conjunto de marcas se moverán aleatoriamente dentro de las habitaciones, en lugar de dirigirse hacia los pasillos."
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.py:343
 msgid "If enabled, enemies will evolve after defeating a team member.\n"
@@ -6682,7 +6683,8 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:454
 msgid "If disabled, warping, being blown away and leaping effects will be disabled.\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr ""
+msgstr "Si están desactivados, se desactivarán los efectos de deformación, de ser arrastrado por el viento y de salto.\n"
+"Si no se aplica ChangeFixedFloorProperties y el identificador de suelo fijo es 0 o >= 165, se ignora esta configuración. Siempre está activado."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:458
 msgid "If disabled, prevents any kind of item pulling (such as with the Trawl Orb).\n"
