@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-03-09 20:31+0000\n"
-"PO-Revision-Date: 2023-03-22 20:54\n"
+"PO-Revision-Date: 2023-03-27 20:21\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -6248,7 +6248,9 @@ msgstr "Posibilidad de colocar la marca de movimiento aleatorio en un enemigo al
 msgid "If enabled, enemies will evolve after defeating a team member.\n"
 "The evolution will not happen if the target is revived, if the evolved form of the enemy cannot spawn in the current floor or if the sprite of the evolved form is bigger than the sprite of the enemy.\n"
 "Part of this behavior can be modified by applying the BetterEnemyEvolution ASM patch."
-msgstr ""
+msgstr "Si se activa, los enemigos evolucionarán tras derrotar a un miembro del equipo.\n"
+"La evolución no tendrá lugar si el objetivo es revivido, si la forma evolucionada del enemigo no puede aparecer en el piso actual o si el sprite de la forma evolucionada es más grande que el sprite del enemigo.\n"
+"Parte de este comportamiento se puede modificar aplicando el parche ASM 'BetterEnemyEvolution'."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:110
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2885
@@ -6678,12 +6680,13 @@ msgstr "Si se activa, se sale del piso después de haber derrotado a todos los e
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:450
 msgid "If disabled, certain traps (Summon, Pitfall and Pokémon) will be disabled.\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr ""
+msgstr "Si se desactiva, algunas trampas (Trampa nido, Trampa trampilla y Trampa aromática) no funcionarán.\n"
+"Si no se aplica 'ChangeFixedFloorProperties' y el ID del piso fijo es 0 o >= 165, este ajuste se ignora. Siempre está activado."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:454
 msgid "If disabled, warping, being blown away and leaping effects will be disabled.\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
-msgstr "Si están desactivados, los efectos de deformación, de ser soplado y de saltar no funcionarán.\n"
+msgstr "Si se desactiva, los efectos de deformación, de ser soplado y de saltar no funcionarán.\n"
 "Si no se aplica 'ChangeFixedFloorProperties' y el ID del piso fijo es 0 o >= 165, este ajuste se ignora. Siempre está activado. Siempre está activado."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:458
