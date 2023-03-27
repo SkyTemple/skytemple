@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-03-09 20:31+0000\n"
-"PO-Revision-Date: 2023-03-27 20:21\n"
+"PO-Revision-Date: 2023-03-27 21:48\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -6687,7 +6687,7 @@ msgstr "Si se desactiva, algunas trampas (Trampa nido, Trampa trampilla y Trampa
 msgid "If disabled, warping, being blown away and leaping effects will be disabled.\n"
 "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
 msgstr "Si se desactiva, los efectos de deformación, de ser soplado y de saltar no funcionarán.\n"
-"Si no se aplica 'ChangeFixedFloorProperties' y el ID del piso fijo es 0 o >= 165, este ajuste se ignora. Siempre está activado. Siempre está activado."
+"Si no se aplica 'ChangeFixedFloorProperties' y el ID del piso fijo es 0 o >= 165, este ajuste se ignora. Siempre está activado."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:458
 msgid "If disabled, prevents any kind of item pulling (such as with the Trawl Orb).\n"
@@ -9134,7 +9134,7 @@ msgid "Guest pokémon IDs refer to the entries in the guest pokémon tab. A valu
 msgstr "Los IDs de los Pokémon invitados hacen referencia a las entradas de la pestaña de Pokémon invitados. Un valor de -1 representa una entrada vacía (ningún Pokémon invitado).\n"
 "- HLR (sin superar): Determina si las restricciones de la Tierra Oculta (Hidden Land Restrictions) deben estar activas cuando el territorio no ha sido superado.\n"
 "Cuando se activa, impide que se puedan enviar Pokémon a casa o cambiar de líder. Además, si un miembro del equipo se desmaya, será expulsado del territorio.\n"
-"- Desactivar reclutamiento: Solo se aplica cuando el territorio no ha sido superado. Si se activa, el reclutamiento se desactivará. Esta marca anula la de \"Permitir reclutamiento\" en las restricciones del territorio.\n"
+"- Desactivar reclutamiento: Solo se aplica cuando el territorio no ha sido superado. Si se activa, el reclutamiento se desactivará. Esta marca anula \"Permitir reclutamiento\" en las restricciones del territorio.\n"
 "- Comprobación de SIDE01: Si se activa, los Pokémon invitados solo se añadirán al equipo si la variable de terreno SIDE01_BOSS2ND es 0.\n"
 "- HLR (superado): Determina si las restricciones de la Tierra Oculta deben estar activas cuando el territorio ha sido superado."
 
@@ -11915,19 +11915,19 @@ msgstr "Está en EdT/EdO:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1026
 msgid "AI Flag: Throw at enemies"
-msgstr "Marca de IA: Lanzar a enemigos"
+msgstr "Objetivo de IA: Lanzar a enemigos"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1038
 msgid "AI Flag: Throw at allies"
-msgstr "Marca de IA: Lanzar a aliados"
+msgstr "Objetivo de IA: Lanzar a aliados"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1050
 msgid "AI Flag: Use on self"
-msgstr "Marca de IA: Usar en sí mismo"
+msgstr "Objetivo de IA: Usar en sí mismo"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1092
 msgid "Flags"
-msgstr "Marcas"
+msgstr "Señales"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1117
 msgid "Exclusive Item Type:"
