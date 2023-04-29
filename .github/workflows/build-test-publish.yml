@@ -192,9 +192,9 @@ jobs:
           echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
       - name: Install and package
         run: |
-          brew install enchant
           # git is already installed.
-          brew install pygobject3 gtk+3 python@3.11 gtksourceview4 adwaita-icon-theme sdl sdl2 cmake
+          brew install enchant pygobject3 gtk+3 python@3.11 gtksourceview4 adwaita-icon-theme sdl12-compat sdl2 cmake
+          pip3 install -U certifi
           PATH=/usr/local/opt/python@3.11/bin:/usr/local/bin:$PATH
 
 
@@ -237,6 +237,7 @@ jobs:
           # See https://github.com/sindresorhus/create-dmg
           # create-dmg automatically generates an installer icon if imagemagick is installed
           brew install graphicsmagick imagemagick
+          npm -g install create-dmg
 
           # This tool returns exit code 2 if the DMG was created but code signing failed for some reason
           npx create-dmg --dmg-title=SkyTemple installer/dist/SkyTemple.app installer || true
