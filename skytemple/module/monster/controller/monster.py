@@ -15,7 +15,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-import math
 import re
 import sys
 import typing
@@ -26,6 +25,7 @@ from xml.etree import ElementTree
 import cairo
 from gi.repository import Gtk, GLib
 from range_typed_integers import u16, u16_checked, u8, u8_checked, i16, i16_checked, i8, i8_checked
+from skytemple_files.common.sprite_util import check_and_correct_monster_sprite_size
 
 from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
@@ -1365,17 +1365,6 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             label3.set_text(_('???'))
             label4.set_text(_('???'))
 
-    def _get_sprite_properties(self, entry):
-        if entry.sprite_index < 0:
-            return 0, 0
-        with self._monster_bin as sprites:
-            sprite_bin = sprites[entry.sprite_index]
-            sprite_bytes = FileType.COMMON_AT.deserialize(sprite_bin).decompress()
-            sprite = FileType.WAN.deserialize(sprite_bytes)
-        max_tile_slots_needed = max((6, sprite.model.frame_store.max_fragment_alloc_count))
-        max_file_size_needed = math.ceil(len(sprite_bytes) / 512)
-        return max_tile_slots_needed, max_file_size_needed
-
     def _check_sprite_size(self, show_warning):
         """
         Check that the data in the unknown Pokémon sprite-related metadata
@@ -1383,56 +1372,27 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         the value and save it.
         """
         md_gender1, md_gender2 = self.module.get_entry_both(getattr(self.entry, self.module.effective_base_attr))
+        sprite_size_table = self.module.get_pokemon_sprite_data_table()
         try:
-            # If ExpandPokeList is applied, unk17 and unk18 are the values used instead
-            # (Note: they aren't used in the current state)
-            if self.module.project.is_patch_applied("ExpandPokeList"):
-                check_value = self.entry.unk17
-                check_value_file = self.entry.unk18
-                max_tile_slots_needed, max_file_size_needed = self._get_sprite_properties(self.entry)
-            else:
-                sprite_size_table = self.module.get_pokemon_sprite_data_table()
-                check_value = sprite_size_table[md_gender1.md_index_base].sprite_tile_slots
-                check_value_file = sprite_size_table[md_gender1.md_index_base].unk1
-                max_tile_slots_needed, max_file_size_needed = self._get_sprite_properties(md_gender1)
-                if md_gender2 != None:
-                    max_tile_slots_needed2, max_file_size_needed2 = self._get_sprite_properties(md_gender2)
-                    max_tile_slots_needed = max(max_tile_slots_needed, max_tile_slots_needed2)
-                    max_file_size_needed = max(max_file_size_needed, max_file_size_needed2)
-            if check_value != max_tile_slots_needed:
-                if self.module.project.is_patch_applied("ExpandPokeList"):
-                    self.entry.unk17 = max_tile_slots_needed
-                    self._set_entry('entry_unk17', self.entry.unk17)
-                else:
-                    sprite_size_table[
-                        getattr(md_gender1, self.module.effective_base_attr)].sprite_tile_slots = max_tile_slots_needed
-                    self.module.set_pokemon_sprite_data_table(sprite_size_table)
+            with self._monster_bin as monster_bin:
+                changed = check_and_correct_monster_sprite_size(
+                    self.entry,
+                    md_gender1=md_gender1,
+                    md_gender2=md_gender2,
+                    monster_bin=monster_bin,
+                    sprite_size_table=sprite_size_table,
+                    is_expand_poke_list_patch_applied=self.module.project.is_patch_applied("ExpandPokeList")
+                )
+            if changed:
+                self._set_entry('entry_unk17', self.entry.unk17)
+                self._set_entry('entry_unk18', self.entry.unk18)
+                self.module.set_pokemon_sprite_data_table(sprite_size_table)
 
                 if show_warning:
                     md = SkyTempleMessageDialog(MainController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
                                                 Gtk.ButtonsType.OK,
-                                                _("The sprite memory size of this Pokémon was not consistent "
-                                                  "for this Pokémon's assigned sprite.\n"
-                                                  "SkyTemple automatically corrected it."))
-                    md.set_position(Gtk.WindowPosition.CENTER)
-                    md.run()
-                    md.destroy()
-
-                self.mark_as_modified()
-            if check_value_file != max_file_size_needed:
-                if self.module.project.is_patch_applied("ExpandPokeList"):
-                    self.entry.unk18 = max_file_size_needed
-                    self._set_entry('entry_unk18', self.entry.unk18)
-                else:
-                    sprite_size_table[getattr(md_gender1, self.module.effective_base_attr)].unk1 = max_file_size_needed
-                    self.module.set_pokemon_sprite_data_table(sprite_size_table)
-
-                if show_warning:
-                    md = SkyTempleMessageDialog(MainController.window(),
-                                                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
-                                                Gtk.ButtonsType.OK,
-                                                _("The sprite file size of this Pokémon was not consistent "
+                                                _("The sprite size of this Pokémon was not consistent "
                                                   "for this Pokémon's assigned sprite.\n"
                                                   "SkyTemple automatically corrected it."))
                     md.set_position(Gtk.WindowPosition.CENTER)
