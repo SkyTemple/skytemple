@@ -20,7 +20,6 @@ from typing import TYPE_CHECKING
 
 from gi.repository import GLib
 
-from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple.core.module_controller import AbstractController
 
 if TYPE_CHECKING:
