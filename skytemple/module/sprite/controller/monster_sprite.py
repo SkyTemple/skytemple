@@ -212,11 +212,11 @@ Warning: SkyTemple does not validate the files you import."""))
         response = md.run()
         md.destroy()
         if response == Gtk.ResponseType.OK:
-            new_item_id = self.module.get_monster_sprite_count()
-            if new_item_id > -1:
-                self.do_import(new_item_id, lambda: self._assign_new_sprite_id_cb(new_item_id))
+            new_sprite_id = self.module.get_monster_sprite_count()
+            if new_sprite_id > -1:
+                self.do_import(new_sprite_id, lambda: self._assign_new_sprite_id_cb(new_sprite_id))
 
-    def do_import(self, item_id: int, cb=lambda: None):
+    def do_import(self, sprite_id: int, cb=lambda: None):
         is_zip = self._zip_is_active()
 
         dialog = Gtk.FileChooserNative.new(
@@ -237,7 +237,8 @@ Warning: SkyTemple does not validate the files you import."""))
             try:
                 wan = FileType.WAN.CHARA.import_sheets(fn) if not is_zip \
                     else FileType.WAN.CHARA.import_sheets_from_zip(fn)
-                monster, ground, attack = FileType.WAN.CHARA.split_wan(wan)
+
+                self.module.save_monster_sprite(sprite_id, wan)
 
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
@@ -245,9 +246,6 @@ Warning: SkyTemple does not validate the files you import."""))
                                             title=_("Success!"), is_success=True)
                 md.run()
                 md.destroy()
-                self.module.save_monster_monster_sprite(item_id, monster)
-                self.module.save_monster_ground_sprite(item_id, ground)
-                self.module.save_monster_attack_sprite(item_id, attack)
 
                 # Shadow size
                 if not is_zip:
@@ -265,7 +263,7 @@ Warning: SkyTemple does not validate the files you import."""))
                     if action.find("Index") is not None:
                         idx = int(action.find("Index").text)  # type: ignore
                         action_indices[idx] = Pmd2Index(idx, [name_normal])
-                self.module.update_sprconf(Pmd2Sprite(item_id, action_indices))
+                self.module.update_sprconf(Pmd2Sprite(sprite_id, action_indices))
 
                 cb()
                 self._mark_as_modified_cb()

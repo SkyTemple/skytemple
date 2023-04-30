@@ -281,36 +281,68 @@ class SpriteModule(AbstractModule):
                 self.get_attack_bin_ctx() as attack_bin, \
                 self.get_ground_bin_ctx() as ground_bin:
             if len(monster_bin) != len(attack_bin) or len(attack_bin) != len(ground_bin):
-                display_error(None, _("Error with sprite files: They don't have the same length!"))
-                return -1
+                display_error(None, _("Error with sprite files: They don't have the same length. This will be corrected by adding empty sprites. You should re-import the last imported sprite."))
+                max_size = max(len(monster_bin), max(len(attack_bin), len(ground_bin)))
+                
+                for missing_monster_sprite_id in range(len(monster_bin), max_size):
+                    self.save_monster_monster_sprite_prepared(missing_monster_sprite_id, bytes())
+                
+                for missing_attack_sprite_id in range(len(attack_bin), max_size):
+                    self.save_monster_attack_sprite_prepared(missing_attack_sprite_id, bytes())
+
+                for missing_ground_sprite_id in range(len(ground_bin), max_size):
+                    self.save_monster_ground_sprite_prepared(missing_ground_sprite_id, bytes())
+                
+                return max_size
             return len(monster_bin)
 
-    def save_monster_monster_sprite(self, id, data: Union[bytes, WanFile], raw=False):
-        with self.get_monster_bin_ctx() as bin_pack:
-            if not raw:
-                data = FileType.WAN.CHARA.serialize(data)  # type: ignore
-            data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data))  # type: ignore
-            if id == len(bin_pack):
-                bin_pack.append(data)
-            else:
-                bin_pack[id] = data
-        self.project.mark_as_modified(MONSTER_BIN)
+    def save_monster_sprite(self, id, wan: WanFile):
+        """Import all three sprite variation of the monster"""
+        monster, ground, attack = FileType.WAN.CHARA.split_wan(wan)
+        # First prepare them all. This make sure we catch any conversion error and avoid partial import
+        ground_prepared = self.prepare_monster_sprite(ground, False)
+        monster_prepared = self.prepare_monster_sprite(monster, True)
+        attack_prepared = self.prepare_monster_sprite(attack, True)
+        
+        self.save_monster_ground_sprite_prepared(id, ground_prepared)
+        self.save_monster_monster_sprite_prepared(id, monster_prepared)
+        self.save_monster_attack_sprite_prepared(id, attack_prepared)
+    
+    def prepare_monster_sprite(self, data: Union[bytes, WanFile], compress: bool) -> bytes:
+        if isinstance(data, WanFile):
+            data = FileType.WAN.CHARA.serialize(data) # type: ignore
+        if compress:
+            data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data)) # type: ignore
+        return data
 
     def save_monster_ground_sprite(self, id, data: Union[bytes, WanFile], raw=False):
+        self.save_monster_ground_sprite_prepared(id, self.prepare_monster_sprite(data, False))
+    
+    def save_monster_ground_sprite_prepared(self, id, data: bytes):
         with self.get_ground_bin_ctx() as bin_pack:
-            if not raw:
-                data = FileType.WAN.CHARA.serialize(data)  # type: ignore
             if id == len(bin_pack):
                 bin_pack.append(data)
             else:
                 bin_pack[id] = data
         self.project.mark_as_modified(GROUND_BIN)
 
+
+    def save_monster_monster_sprite(self, id, data: Union[bytes, WanFile], raw=False):
+        self.save_monster_monster_sprite_prepared(id, self.prepare_monster_sprite(data, True))
+    
+    def save_monster_monster_sprite_prepared(self, id, data: bytes):
+        with self.get_monster_bin_ctx() as bin_pack:
+            if id == len(bin_pack):
+                bin_pack.append(data)
+            else:
+                bin_pack[id] = data
+        self.project.mark_as_modified(MONSTER_BIN)
+
     def save_monster_attack_sprite(self, id, data: Union[bytes, WanFile], raw=False):
+        self.save_monster_attack_sprite_prepared(id, self.prepare_monster_sprite(data, True))
+    
+    def save_monster_attack_sprite_prepared(self, id, data: bytes):
         with self.get_attack_bin_ctx() as bin_pack:
-            if not raw:
-                data = FileType.WAN.CHARA.serialize(data)  # type: ignore
-            data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data))  # type: ignore
             if id == len(bin_pack):
                 bin_pack.append(data)
             else:
