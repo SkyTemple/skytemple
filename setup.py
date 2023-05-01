@@ -1,4 +1,4 @@
-__version__ = '1.4.7'
+__version__ = '1.5.0'
 
 import glob
 import os
@@ -64,7 +64,7 @@ setup(
     url='https://github.com/SkyTemple/skytemple/',
     install_requires=[
         'ndspy >= 3.0.0',
-        'skytemple-files[spritecollab] >= 1.4.4',
+        'skytemple-files[spritecollab] >= 1.5.0',
         'pmdsky-debug-py',  #  Whatever version skytemple-files requires.
         'skytemple-dtef >= 1.1.4',
         'skytemple-icons >= 1.3.2',
