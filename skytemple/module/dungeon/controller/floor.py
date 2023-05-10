@@ -475,7 +475,7 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_unused_chance_clicked(self, *args):
-        self._help(_("Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from "
+        self._help(_("Does not work in the game. To make it work, apply the \"UnusedDungeonChance\" from "
                      "\"Patches\" > \"ASM\".\nIf patched, the game will turn a random room into a maze room made of wall tiles "
                      "instead of the usual water (although water can later replace some of the walls once the water "
                      "generation takes place)."))
@@ -1068,7 +1068,7 @@ class FloorController(AbstractController):
                 rng = random.Random(hash(self.builder.get_object('tool_entry_seed').get_text()))
 
             floor: List[Tile] = DungeonFloorGenerator(  # type: ignore
-                unknown_dungeon_chance_patch_applied=self.module.project.is_patch_applied('UnusedDungeonChancePatch'),
+                unknown_dungeon_chance_patch_applied=self.module.project.is_patch_applied('UnusedDungeonChance'),
                 gen_properties=RandomGenProperties.default(rng)
             ).generate(self.entry.layout, max_retries=3, flat=True)
             if floor is None:
