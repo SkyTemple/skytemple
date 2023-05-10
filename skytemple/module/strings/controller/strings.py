@@ -31,8 +31,8 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.third_party_util.cellrenderercustomtext import CellRendererTextView
 from skytemple.core.ui_utils import add_dialog_csv_filter
 from skytemple_files.common.ppmdu_config.data import Pmd2Language, Pmd2StringBlock
-from skytemple_files.common.util import add_extension_if_missing
-from skytemple_files.data.str.model import Str, open_utf8
+from skytemple_files.common.util import add_extension_if_missing, open_utf8
+from skytemple_files.data.str.model import Str
 from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:

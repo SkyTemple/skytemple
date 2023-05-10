@@ -335,7 +335,7 @@ Warning: SkyTemple does not validate the files you import."""))
             frame_id = 2
             for frame in ani_group[frame_id].frames:
                 mfg_id = frame.frame_id
-                sprite_img, (cx, cy) = sprite.render_frame_group(sprite.frame_groups[mfg_id])
+                sprite_img, (cx, cy) = sprite.render_frame(sprite.frames[mfg_id])
                 self._rendered_frame_info.append(
                     (frame.duration, (pil_to_cairo_surface(sprite_img), cx, cy, sprite_img.width, sprite_img.height)))
 

@@ -460,7 +460,7 @@ class RomProject:
         if os.path.exists(self.filename):
             shutil.copyfile(self.filename, backup_fn)
         # Now save
-        self._rom.saveToFile(self.filename)
+        self._rom.saveToFile(self.filename, updateDeviceCapacity=True)
         # Delete the backup
         if os.path.exists(backup_fn):
             os.unlink(backup_fn)
