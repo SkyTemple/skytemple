@@ -24,7 +24,7 @@ jobs:
       matrix:
         python-version: [ "3.8", "3.9", "3.10", "3.11" ]
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - uses: theCapypara/mypy-check@rust-support
       name: Run type checks
       with:
@@ -63,7 +63,7 @@ jobs:
     name: Deploy wheels to PyPI
     steps:
       - name: Download wheels
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: wheels
       - name: Set up Python 3.11
