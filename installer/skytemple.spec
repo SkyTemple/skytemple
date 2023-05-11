@@ -6,8 +6,6 @@ from pathlib import PurePosixPath, Path
 pkg_path = os.path.abspath(os.path.join('..', 'skytemple'))
 site_packages = next(p for p in sys.path if 'site-packages' in p)
 
-mingw = os.getenv("MINGW_VERSION", "mingw64")
-
 additional_files = []
 additional_datas = [
     (os.path.join(pkg_path, 'data'), 'data'),
@@ -31,15 +29,6 @@ additional_datas = [
     (os.path.join(site_packages, "gtkspellcheck", "_pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
     (os.path.join(site_packages, 'certifi', 'cacert.pem'), 'certifi'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "share", "hunspell", "*"), 'share/hunspell'),
-
-    # These aren't auto dectected for some reason :(
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'fontconfig'), 'share/fontconfig'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'glib-2.0'), 'share/glib-2.0'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'gtksourceview-4'), 'share/gtksourceview-4'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'icons'), 'share/icons'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'locale'), 'share/locale'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'themes'), 'share/themes'),
 
     # Themes
     ('Arc', 'share/themes/Arc'),
@@ -59,15 +48,6 @@ additional_binaries = [
     (os.path.join(site_packages, "desmume", "libdesmume.dll"), "."),
     (os.path.join(site_packages, "desmume", "SDL2.dll"), "."),
     (os.path.join(site_packages, "skytemple_tilequant", "aikku", "libtilequant.dll"), "skytemple_tilequant/aikku"),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libenchant-2.dll"), f'enchant/data/{mingw}/bin'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libglib-2.0-0.dll"), f'enchant/data/{mingw}/bin'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libgmodule-2.0-0.dll"), f'enchant/data/{mingw}/bin'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "lib", "enchant-2", "enchant_hunspell.dll"), 'lib/enchant-2'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libhunspell-1.7-0.dll"), '.'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libcrypto*.dll"), '.'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libssl*.dll"), '.'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libraqm-0.dll"), '.'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libgmp-10.dll"), '.'),
 ]
 
 block_cipher = None

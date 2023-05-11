@@ -82,64 +82,48 @@ jobs:
           twine upload *.whl
   package-windows:
     needs: build
-    runs-on: windows-2019
+    # Comes out of the box with:
+    # - Python 3.9, incl. pip and pipx
+    # - Chocolatey
+    # - Visual Studio Enterprise 2022
+    # - VC Redist
+    # - Msys2
+    # - git
+    # So all we need! :))
+    runs-on: windows-2022
     name: Build and package for Windows
-    strategy:
-      fail-fast: false
-      matrix:
-        include: [
-          { msystem: MINGW64, arch: x86_64, path: mingw64 },
-          { msystem: MINGW32, arch: i686, path: mingw32 }
-        ]
     steps:
-      - name: Install MSys2 and dependencies
-        uses: msys2/setup-msys2@v2
+      - name: Cache GTK-Build
+        id: cache-gtk-build
+        uses: actions/cache@v3
         with:
-          update: true
-          msystem: ${{ matrix.msystem }}
-          install: >-
-            mingw-w64-${{ matrix.arch }}-curl
-            git
-            unzip
-            mingw-w64-${{ matrix.arch }}-python
-            mingw-w64-${{ matrix.arch }}-python-pip
-            mingw-w64-${{ matrix.arch }}-gtksourceview4
-            mingw-w64-${{ matrix.arch }}-python-pillow
-            mingw-w64-${{ matrix.arch }}-enchant
-            mingw-w64-${{ matrix.arch }}-hunspell-en
-            mingw-w64-${{ matrix.arch }}-python-cairo
-            mingw-w64-${{ matrix.arch }}-gtk3
-            mingw-w64-${{ matrix.arch }}-python3-gobject
-            mingw-w64-${{ matrix.arch }}-python-cffi
-            mingw-w64-${{ matrix.arch }}-hunspell
-            mingw-w64-${{ matrix.arch }}-hunspell-en
-            mingw-w64-${{ matrix.arch }}-openssl
-            mingw-w64-${{ matrix.arch }}-libraqm
-            mingw-w64-${{ matrix.arch }}-python-psutil
-            mingw-w64-${{ matrix.arch }}-freetype
-            mingw-w64-${{ matrix.arch }}-python-multidict
-            mingw-w64-${{ matrix.arch }}-python-yarl
-            mingw-w64-${{ matrix.arch }}-python-aiohttp
-            mingw-w64-${{ matrix.arch }}-gmp
+          path: "C:\\gtk-build"
+          key: win-gtk-build
       - name: Checkout
         uses: actions/checkout@v3
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
-        shell: msys2 {0}
+        shell: msys2bash.cmd {0}
         run: |
           perl -i -pe "s/__version__\s*=\s*'(.*?)(\.rc.*|\.a.*|\.post.*)?'/__version__='\1.dev0+${GITHUB_SHA::8}'/" setup.py
           echo "IS_DEV_BUILD=1" >> $GITHUB_ENV
       - name: Note version
-        shell: msys2 {0}
+        shell: msys2bash.cmd {0}
         run: |
           echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
-      - name: Install and package
-        shell: msys2 {0}
+      - name: Install gvsbuild
+        run: |
+          python -m pip install --user pipx
+          python -m pipx ensurepath
+          pipx install gvsbuild
+      - name: Build GTK and other libs
+        run: |
+          gvsbuild build --enable-gi --py-wheel \
+              gtk3 pygobject openssl gettext gtksourceview4 \
+              hicolor-icon-theme adwaita-icon-theme
+      - name: Install SkyTemple
         run: |
           cd installer
-
-          # Download armips and other binary depedencies
-          ./download-windows-dependencies.sh ${{ matrix.arch }}
 
           # Install themes
           curl https://skytemple.org/build_deps/Arc.zip -O
@@ -157,11 +141,9 @@ jobs:
 
           # Package
           ./build-windows.sh $PACKAGE_VERSION
-          
+
           # Install latest skytemple-rust
-          ./install-skytemple-rust.sh ${{ matrix.arch }}
-        env:
-          MINGW_VERSION: ${{ matrix.path }}
+          ./install-skytemple-rust.sh
       - name: Create installer
         uses: joncloud/makensis-action@v3.7
         with:
