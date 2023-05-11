@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-03-09 20:31+0000\n"
-"PO-Revision-Date: 2023-04-08 01:21\n"
+"PO-Revision-Date: 2023-05-11 11:56\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -7525,10 +7525,9 @@ msgstr "0 --> Bazar secreto seguro\n"
 "Otros valores: 0% bazar secreto, 0% sala secreta (se avanza al siguiente piso como si fueran escaleras normales)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:478
-msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from \"Patches\" > \"ASM\".\n"
+msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChance\" from \"Patches\" > \"ASM\".\n"
 "If patched, the game will turn a random room into a maze room made of wall tiles instead of the usual water (although water can later replace some of the walls once the water generation takes place)."
-msgstr "No funciona en el juego. Para que funcione, aplica el parche \"UnusedDungeonChancePatch\" desde el menú Parches ASM.\n"
-"Si se aplica el parche, el juego convertirá una sala aleatoria en una sala laberíntica hecha de tiles de pared en lugar del agua habitual (aunque el agua puede sustituir posteriormente a algunas de las paredes cuando se genere)."
+msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:501
 msgid "It was added in explorers of sky, so right now it's only used in the sky exclusive dungeons.\n"
