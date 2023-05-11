@@ -83,7 +83,7 @@ jobs:
   package-windows:
     needs: build
     # Comes out of the box with:
-    # - Python 3.9, incl. pip and pipx
+    # - Python 3.9, incl. pip and pipx -- but we use 3.11 and install pipx ourselves.
     # - Chocolatey
     # - Visual Studio Enterprise 2022
     # - VC Redist
@@ -92,6 +92,11 @@ jobs:
     runs-on: windows-2022
     name: Build and package for Windows
     steps:
+      - name: Setup python
+        uses: actions/setup-python@v4.2.0
+        with:
+          python-version: "3.11"
+          architecture: "x64"
       - name: Cache GTK-Build
         id: cache-gtk-build
         uses: actions/cache@v3
@@ -116,6 +121,11 @@ jobs:
           echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
       - name: Install gvsbuild
         run: |
+          # gvsbuild has issues if the pipx install path has spaces in it. It may be installed
+          # in Program Files (x86) by default, so let's just make sure it isn't.
+          python -m pip uninstall -y pipx3
+          python -m pip install --user pipx
+          python -m pipx ensurepath
           pipx install gvsbuild
       - name: Build GTK and other libs
         run: |

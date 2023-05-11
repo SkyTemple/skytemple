@@ -8,7 +8,7 @@ py_version=""
 
 platform="windows-2019"
 arch="x64"
-py_version="3.9"
+py_version="3.11"
 
 branch="release"
 if [ -n "$IS_DEV_BUILD" ]; then
