@@ -121,7 +121,7 @@ jobs:
           pipx install gvsbuild
       - name: Build GTK and other libs
         run: |
-          gvsbuild build --enable-gi --py-wheel gtk3 pygobject openssl gettext gtksourceview4 hicolor-icon-theme adwaita-icon-theme
+          gvsbuild build --configuration release --enable-gi --py-wheel gtk3 pygobject openssl gettext gtksourceview4 hicolor-icon-theme adwaita-icon-theme
       - name: Install SkyTemple
         run: |
           
