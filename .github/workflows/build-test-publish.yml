@@ -93,7 +93,7 @@ jobs:
     name: Build and package for Windows
     steps:
       - name: Setup python
-        uses: actions/setup-python@v4.2.0
+        uses: actions/setup-python@v4
         with:
           python-version: "3.11"
           architecture: "x64"
@@ -109,6 +109,7 @@ jobs:
         uses: msys2/setup-msys2@v2
         with:
           msystem: UCRT64
+          path-type: inherit
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
         shell: msys2 {0}
@@ -118,15 +119,47 @@ jobs:
       - name: Note version
         shell: msys2 {0}
         run: |
-          echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
+          echo "PACKAGE_VERSION=$(python -- ./setup.py --version)" >> $GITHUB_ENV
       - name: Install gvsbuild
         run: |
           # gvsbuild has issues if the pipx install path has spaces in it. It may be installed
           # in Program Files (x86) by default, so let's just make sure it isn't.
-          python -m pip uninstall -y pipx3
+          if (Test-Path "C:\Program Files (x86)\pipx") {
+              Remove-Item -path "C:\Program Files (x86)\pipx" -recurse
+          }
+          
+          # Make sure the pipx venv dir has no spaces
+          New-Item -ItemType Directory -Force -Path C:\pipx_home
+          $env:PIPX_HOME = "C:\pipx_home"
+          echo "PIPX_HOME=C:\pipx_home" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          New-Item -ItemType Directory -Force -Path C:\pipx_bin
+          $env:PIPX_BIN_DIR = "C:\pipx_bin"
+          echo "PIPX_BIN_DIR=C:\pipx_bin" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          
+          $path = [System.Environment]::GetEnvironmentVariable(
+              'PATH',
+              'Machine'
+          )
+          $path = "C:\pipx_bin;" + $path
+          
+          # Remove some PATHs we don't want.
+          $path = ($path.Split(';') | Where-Object { $_ -ne 'C:\Program Files (x86)\pipx_bin' }) -join ';'
+          $path = ($path.Split(';') | Where-Object { $_ -ne 'C:\Program Files\Git\bin' }) -join ';'
+          
+          [System.Environment]::SetEnvironmentVariable(
+              'PATH',
+              $path,
+              'Machine'
+          )
+          
           python -m pip install --user pipx
           python -m pipx ensurepath
           pipx install gvsbuild
+          
+          echo "New Path:"
+          echo $path
+          # Write to github path for next steps
+          echo $path | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
       - name: Build GTK and other libs
         run: |
           gvsbuild build --configuration release --enable-gi --py-wheel gtk3 pygobject openssl gettext gtksourceview4 hicolor-icon-theme adwaita-icon-theme
