@@ -87,7 +87,6 @@ jobs:
     # - Chocolatey
     # - Visual Studio Enterprise 2022
     # - VC Redist
-    # - Msys2
     # - git
     # So all we need! :))
     runs-on: windows-2022
@@ -101,14 +100,18 @@ jobs:
           key: win-gtk-build
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Install MSys2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
-        shell: msys2bash.cmd {0}
+        shell: msys2 {0}
         run: |
           perl -i -pe "s/__version__\s*=\s*'(.*?)(\.rc.*|\.a.*|\.post.*)?'/__version__='\1.dev0+${GITHUB_SHA::8}'/" setup.py
           echo "IS_DEV_BUILD=1" >> $GITHUB_ENV
       - name: Note version
-        shell: msys2bash.cmd {0}
+        shell: msys2 {0}
         run: |
           echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
       - name: Install gvsbuild
