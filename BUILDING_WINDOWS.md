@@ -67,12 +67,25 @@ pip install .
 Either way you may need to restart the shell multiple times. You may also need to update your PATH environment variable.
 Follow the on-screen instructions.
 
+### 3b. Python SSL stuff
+
+You probably want to make sure Python has an up to date certificate chain, I at least had trouble with Python
+fetching HTTPS content out of the box.
+
+In the end, I downloaded the Curl cacert.pem (http://curl.haxx.se/ca/cacert.pem) and set an envrionment varibale:
+
+```PowerShell
+$env:SSL_CERT_FILE="<path>\cert.pem"
+```
+
+This seemed to resolve SSL related issues
+
 ### 4. Compile GTK and related packages
 
 Compile GTK3 with GI and with the Python PyGObject Wheels.
 
 ```PowerShell
-gvsbuild build --enable-gi --py-wheel gtk3 pygobject openssl gettext
+gvsbuild build --enable-gi --py-wheel gtk3 pygobject openssl gettext gtksourceview4 hicolor-icon-theme adwaita-icon-theme
 ```
 
 This may take a while.
