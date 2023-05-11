@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-03-09 20:31+0000\n"
-"PO-Revision-Date: 2023-05-05 12:14\n"
+"PO-Revision-Date: 2023-05-11 11:56\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -7498,7 +7498,7 @@ msgstr "0 --> Bazar Secret à 100 %\n"
 "Autres : pas de Bazar Secret, ni de Salle Secrète (l'escalier mème à l'étage suivant comme les normaux)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:478
-msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from \"Patches\" > \"ASM\".\n"
+msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChance\" from \"Patches\" > \"ASM\".\n"
 "If patched, the game will turn a random room into a maze room made of wall tiles instead of the usual water (although water can later replace some of the walls once the water generation takes place)."
 msgstr ""
 
