@@ -7457,9 +7457,9 @@ msgstr "0 —> 100% Geheimbasar\n"
 "Andere Werte: 0% Geheimbasar, 0% geheimer Raum (funktioniert dann wie normale Treppe)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:478
-msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from \"Patches\" > \"ASM\".\n"
+msgid "Does not work in the game. To make it work, apply the \"UnusedDungeonChance\" from \"Patches\" > \"ASM\".\n"
 "If patched, the game will turn a random room into a maze room made of wall tiles instead of the usual water (although water can later replace some of the walls once the water generation takes place)."
-msgstr "Funktioniert im Spiel nicht. Damit diese Einstellung funktioniert, wende den \"UnusedDungeonChancePatch\" Patch aus \"Patches\" > \"ASM\" an.\n"
+msgstr "Funktioniert im Spiel nicht. Damit diese Einstellung funktioniert, wende den \"UnusedDungeonChance\" Patch aus \"Patches\" > \"ASM\" an.\n"
 "Wenn das Spiel gepatched ist, wird das Spiel einen zufälligen Raum in ein Labyrinth mit Wand-Kacheln umwandeln (statt mit Wasser, aber Wasser kann später während der Wassergeneration einige der Wände ersetzen)."
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:501
