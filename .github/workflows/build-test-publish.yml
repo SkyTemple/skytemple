@@ -92,13 +92,6 @@ jobs:
     runs-on: windows-2022
     name: Build and package for Windows
     steps:
-      # The PATH contains way too many things to start with, causing all sorts of issues with gvsbuild.
-      - name: Minimize path
-        run: |
-          $path = "C:\pipx_bin;C:\vcpkg;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\ProgramData\Chocolatey\bin;C:\Program Files\PowerShell\7\;"
-          echo "New Path:"
-          echo $path
-          echo $path | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
       - name: Setup python
         uses: actions/setup-python@v4
         with:
@@ -127,12 +120,20 @@ jobs:
         shell: msys2 {0}
         run: |
           echo "PACKAGE_VERSION=$(python -- ./setup.py --version)" >> $GITHUB_ENV
-      - name: Note version
+      # The PATH contains way too many things to start with, causing all sorts of issues with gvsbuild.
+      # GitHub also doesn't really let us just straight up remove things from the PATH across actions, so we
+      # sadly need to do this now and in subsequent steps, see below
+      - name: Minimize path
         run: |
-          echo "Current Path:"
-          echo $env:path
+          $ourPath = "C:\Program Files\PowerShell\7;C:\Users\runneradmin\AppData\Roaming\Python\Python311\Scripts;C:\hostedtoolcache\windows\Python\3.11.3\x64\Scripts;C:\hostedtoolcache\windows\Python\3.11.3\x64;C:\pipx_bin;C:\vcpkg;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\ProgramData\Chocolatey\bin;C:\Program Files\PowerShell\7\;"
+          echo "our path:"
+          echo $ourPath
+          echo "OUR_PATH=$ourPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Install gvsbuild
         run: |
+          [System.Environment]::SetEnvironmentVariable('PATH', $env:OUR_PATH, 'Machine')
+          $env:path = $env:OUR_PATH
+          
           # gvsbuild has issues if the pipx install path has spaces in it. It may be installed
           # in Program Files (x86) by default, so let's just make sure it isn't.
           if (Test-Path "C:\Program Files (x86)\pipx") {
@@ -152,11 +153,14 @@ jobs:
           pipx install gvsbuild
       - name: Build GTK and other libs
         run: |
+          [System.Environment]::SetEnvironmentVariable('PATH', $env:OUR_PATH, 'Machine')
+          $env:path = $env:OUR_PATH
+          
           gvsbuild build --configuration release --enable-gi --py-wheel gtk3 pygobject openssl gettext gtksourceview4 hicolor-icon-theme adwaita-icon-theme
       - name: Install SkyTemple
         run: |
-          
-          $env:Path = "C:\gtk-build\gtk\x64\release\bin;" + $env:Path
+          [System.Environment]::SetEnvironmentVariable('PATH', "C:\gtk-build\gtk\x64\release\bin;" + $env:OUR_PATH, 'Machine')
+          $env:path = "C:\gtk-build\gtk\x64\release\bin;" + $env:OUR_PATH
           $env:LIB = "C:\gtk-build\gtk\x64\release\lib;" + $env:LIB
           $env:INCLUDE = "C:\gtk-build\gtk\x64\release\include;C:\gtk-build\gtk\x64\release\include\cairo;C:\gtk-build\gtk\x64\release\include\glib-2.0;C:\gtk-build\gtk\x64\release\include\gobject-introspection-1.0;C:\gtk-build\gtk\x64\release\lib\glib-2.0\include;" + $env:INCLUDE
 
