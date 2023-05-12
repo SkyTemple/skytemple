@@ -125,7 +125,7 @@ jobs:
       # sadly need to do this now and in subsequent steps, see below
       - name: Minimize path
         run: |
-          $ourPath = "C:\Program Files\PowerShell\7;C:\Users\runneradmin\AppData\Roaming\Python\Python311\Scripts;C:\hostedtoolcache\windows\Python\3.11.3\x64\Scripts;C:\hostedtoolcache\windows\Python\3.11.3\x64;C:\pipx_bin;C:\vcpkg;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\ProgramData\Chocolatey\bin;C:\Program Files\PowerShell\7\;"
+          $ourPath = "C:\pipx_bin;C:\Users\runneradmin\AppData\Roaming\Python\Python311\Scripts;C:\hostedtoolcache\windows\Python\3.11.3\x64\Scripts;C:\hostedtoolcache\windows\Python\3.11.3\x64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\Chocolatey\bin;C:\Program Files\Git\bin;C:\tools\msys64;"
           echo "our path:"
           echo $ourPath
           echo "OUR_PATH=$ourPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
