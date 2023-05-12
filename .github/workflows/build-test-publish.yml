@@ -127,6 +127,10 @@ jobs:
         shell: msys2 {0}
         run: |
           echo "PACKAGE_VERSION=$(python -- ./setup.py --version)" >> $GITHUB_ENV
+      - name: Note version
+        run: |
+          echo "Current Path:"
+          echo $env:path
       - name: Install gvsbuild
         run: |
           # gvsbuild has issues if the pipx install path has spaces in it. It may be installed
