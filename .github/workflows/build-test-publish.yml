@@ -92,6 +92,13 @@ jobs:
     runs-on: windows-2022
     name: Build and package for Windows
     steps:
+      # The PATH contains way too many things to start with, causing all sorts of issues with gvsbuild.
+      - name: Minimize path
+        run: |
+          $path = "C:\pipx_bin;C:\vcpkg;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\ProgramData\Chocolatey\bin;C:\Program Files\PowerShell\7\;"
+          echo "New Path:"
+          echo $path
+          echo $path | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
       - name: Setup python
         uses: actions/setup-python@v4
         with:
@@ -135,31 +142,10 @@ jobs:
           New-Item -ItemType Directory -Force -Path C:\pipx_bin
           $env:PIPX_BIN_DIR = "C:\pipx_bin"
           echo "PIPX_BIN_DIR=C:\pipx_bin" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          
-          $path = [System.Environment]::GetEnvironmentVariable(
-              'PATH',
-              'Machine'
-          )
-          $path = "C:\pipx_bin;" + $path
-          
-          # Remove some PATHs we don't want.
-          $path = ($path.Split(';') | Where-Object { $_ -ne 'C:\Program Files (x86)\pipx_bin' }) -join ';'
-          $path = ($path.Split(';') | Where-Object { $_ -ne 'C:\Program Files\Git\bin' }) -join ';'
-          
-          [System.Environment]::SetEnvironmentVariable(
-              'PATH',
-              $path,
-              'Machine'
-          )
-          
+      
           python -m pip install --user pipx
           python -m pipx ensurepath
           pipx install gvsbuild
-          
-          echo "New Path:"
-          echo $path
-          # Write to github path for next steps
-          echo $path | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
       - name: Build GTK and other libs
         run: |
           gvsbuild build --configuration release --enable-gi --py-wheel gtk3 pygobject openssl gettext gtksourceview4 hicolor-icon-theme adwaita-icon-theme
