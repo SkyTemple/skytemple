@@ -150,6 +150,16 @@ jobs:
           python -m pip install --user pipx
           python -m pipx ensurepath
           pipx install gvsbuild
+      - name: Increase swap
+        run: |
+          $pagefile = Get-CimInstance -ClassName Win32_ComputerSystem
+          $pagefile.AutomaticManagedPagefile = $false
+          Set-CimInstance -InputObject $pagefile
+
+          $pagefileset = Get-CimInstance -ClassName Win32_PageFileSetting | Where-Object {$_.name -eq "$ENV:SystemDrive\pagefile.sys"}
+          $pagefileset.InitialSize = 4096
+          $pagefileset.MaximumSize = 8192
+          Set-CimInstance -InputObject $pagefileset
       - name: Build GTK and other libs
         run: |
           [System.Environment]::SetEnvironmentVariable('PATH', $env:OUR_PATH, 'Machine')
