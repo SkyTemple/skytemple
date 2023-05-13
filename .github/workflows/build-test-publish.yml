@@ -81,13 +81,6 @@ jobs:
         run: |
           twine upload *.whl
   package-windows:
-    # Comes out of the box with:
-    # - Python 3.9, incl. pip and pipx -- but we use 3.11 and install pipx ourselves.
-    # - Chocolatey
-    # - Visual Studio Enterprise 2022
-    # - VC Redist
-    # - git
-    # So all we need! :))
     runs-on: windows-2022
     name: Build and package for Windows
     steps:
@@ -150,22 +143,12 @@ jobs:
           python -m pip install --user pipx
           python -m pipx ensurepath
           pipx install gvsbuild
-      - name: Increase swap
-        run: |
-          $pagefile = Get-CimInstance -ClassName Win32_ComputerSystem
-          $pagefile.AutomaticManagedPagefile = $false
-          Set-CimInstance -InputObject $pagefile
-
-          $pagefileset = Get-CimInstance -ClassName Win32_PageFileSetting | Where-Object {$_.name -eq "$ENV:SystemDrive\pagefile.sys"}
-          $pagefileset.InitialSize = 4096
-          $pagefileset.MaximumSize = 8192
-          Set-CimInstance -InputObject $pagefileset
       - name: Build GTK and other libs
         run: |
           [System.Environment]::SetEnvironmentVariable('PATH', $env:OUR_PATH, 'Machine')
           $env:path = $env:OUR_PATH
           
-          gvsbuild build --ninja-opts "-j 1" --configuration release --enable-gi --py-wheel gtk3 pygobject openssl gettext gtksourceview4 hicolor-icon-theme adwaita-icon-theme
+          gvsbuild build --ninja-opts -j2 --enable-gi --py-wheel gtk3 pygobject openssl gettext gtksourceview4 hicolor-icon-theme adwaita-icon-theme
       - name: Install SkyTemple
         run: |
           [System.Environment]::SetEnvironmentVariable('PATH', "C:\gtk-build\gtk\x64\release\bin;" + $env:OUR_PATH, 'Machine')
