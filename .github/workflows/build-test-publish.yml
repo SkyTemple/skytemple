@@ -152,38 +152,21 @@ jobs:
 
           cd installer
 
-          # Install themes
-          curl https://skytemple.org/build_deps/Arc.zip -O
-          unzip Arc.zip
-          curl https://skytemple.org/build_deps/ZorinBlue.zip -O
-          unzip ZorinBlue.zip
-
-          # Install NSIS
-          curl https://skytemple.org/build_deps/nsis.zip -O
-          unzip -o nsis.zip -d "/c/Program Files (x86)/NSIS"
-
-          # Install PyInstaller
-          pip3 install setuptools wheel pyinstaller
-
-          # Install PyGObject and pycairo
-          pip install --force-reinstall (Resolve-Path C:\gtk-build\build\x64\release\pygobject\dist\PyGObject*.whl)
-          pip install --force-reinstall (Resolve-Path C:\gtk-build\build\x64\release\pycairo\dist\pycairo*.whl)
-
           # Package
-          bash ./build-windows.sh $PACKAGE_VERSION
+          .\build-windows.ps1 $PACKAGE_VERSION
           
           # Install latest skytemple-rust
-          bash ./install-skytemple-rust.sh
+          bash .\install-skytemple-rust.sh
       - name: Create installer
         uses: joncloud/makensis-action@v3.7
         with:
-          script-file: "${{ matrix.arch == 'i686' && 'installer/skytemple32.nsi' || 'installer/skytemple.nsi' }}"
+          script-file: "installer/skytemple.nsi"
           arguments: "/DPRODUCT_VERSION=${{ env.PACKAGE_VERSION }}"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: skytemple-windows-app-${{ matrix.arch }}
+          name: skytemple-windows-app-x64
           path: |
             installer/skytemple-*-install-*.exe
 
