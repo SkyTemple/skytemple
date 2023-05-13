@@ -135,14 +135,13 @@ jobs:
           Move-Item "C:\Program Files\Git\notbin" "C:\Program Files\Git\bin"
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
-        shell: msys2 {0}
         run: |
-          perl -i -pe "s/__version__\s*=\s*'(.*?)(\.rc.*|\.a.*|\.post.*)?'/__version__='\1.dev0+${GITHUB_SHA::8}'/" setup.py
-          echo "IS_DEV_BUILD=1" >> $GITHUB_ENV
+          perl -i -pe "s/__version__\s*=\s*'(.*?)(\.rc.*|\.a.*|\.post.*)?'/__version__='\1.dev0+$($env:GITHUB_SHA.Substring(0,8))'/" setup.py
+          echo "IS_DEV_BUILD=1" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Note version
-        shell: msys2 {0}
         run: |
-          echo "PACKAGE_VERSION=$(python -- ./setup.py --version)" >> $GITHUB_ENV
+          $env:PACKAGE_VERSION = python -- ./setup.py --version
+          echo "PACKAGE_VERSION=$env:PACKAGE_VERSION" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Install SkyTemple
         run: |
           $env:path = "C:\gtk-build\gtk\x64\release\bin;" + $env:path
