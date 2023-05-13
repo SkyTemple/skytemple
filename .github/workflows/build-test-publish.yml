@@ -156,6 +156,10 @@ jobs:
 
           # Package
           .\build-windows.ps1 $PACKAGE_VERSION
+
+          if(!(Test-Path ".\dist\skytemple\skytemple.exe")){
+              return 1
+          }
           
           # Install latest skytemple-rust
           bash .\install-skytemple-rust.sh
