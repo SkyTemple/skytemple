@@ -130,7 +130,7 @@ jobs:
         run: |
           $env:path = "C:\pipx_bin;" + $env:path
           
-          gvsbuild build --ninja-opts -j2 --enable-gi --py-wheel gtk3 pygobject openssl gettext gtksourceview4 hicolor-icon-theme adwaita-icon-theme
+          gvsbuild build --fast-build --ninja-opts -j2 --enable-gi --py-wheel gtk3 pygobject openssl gettext gtksourceview4 hicolor-icon-theme adwaita-icon-theme
       # Manually save cache, so even if the next steps fail, we have it!
       - name: Cache GTK build
         uses: actions/cache/save@v3
