@@ -155,7 +155,7 @@ jobs:
           [System.Environment]::SetEnvironmentVariable('PATH', $env:OUR_PATH, 'Machine')
           $env:path = $env:OUR_PATH
           
-          gvsbuild build --configuration release --enable-gi --py-wheel gtk3 pygobject openssl gettext gtksourceview4 hicolor-icon-theme adwaita-icon-theme
+          gvsbuild build --ninja-opts "-j 1" --configuration release --enable-gi --py-wheel gtk3 pygobject openssl gettext gtksourceview4 hicolor-icon-theme adwaita-icon-theme
       - name: Install SkyTemple
         run: |
           [System.Environment]::SetEnvironmentVariable('PATH', "C:\gtk-build\gtk\x64\release\bin;" + $env:OUR_PATH, 'Machine')
