@@ -162,16 +162,16 @@ jobs:
 
           # Install PyInstaller
           pip3 install setuptools wheel pyinstaller
-          
+
           # Install PyGObject and pycairo
           pip install --force-reinstall (Resolve-Path C:\gtk-build\build\x64\release\pygobject\dist\PyGObject*.whl)
           pip install --force-reinstall (Resolve-Path C:\gtk-build\build\x64\release\pycairo\dist\pycairo*.whl)
 
           # Package
-          ./build-windows.sh $PACKAGE_VERSION
-
+          bash ./build-windows.sh $PACKAGE_VERSION
+          
           # Install latest skytemple-rust
-          ./install-skytemple-rust.sh
+          bash ./install-skytemple-rust.sh
       - name: Create installer
         uses: joncloud/makensis-action@v3.7
         with:
