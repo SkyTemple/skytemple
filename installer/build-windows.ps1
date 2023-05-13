@@ -8,6 +8,9 @@ if (test-path dist) {
   rm dist -r -force
 }
 
+# Download armips and other binary depedencies
+curl https://skytemple.org/build_deps/armips.exe -O
+
 # Install themes
 curl https://skytemple.org/build_deps/Arc.zip -O
 unzip Arc.zip
