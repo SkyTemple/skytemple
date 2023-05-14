@@ -38,7 +38,7 @@ pip install -U certifi
 pip install -r ../requirements-mac-windows.txt
 pip install ..
 
-if (-not $env:IS_DEV_BUILD) {
+if ($env:IS_DEV_BUILD) {
   bash .\install-skytemple-components-from-git.sh
 }
 
