@@ -49,7 +49,7 @@ additional_binaries = [
 block_cipher = None
 
 
-a = Analysis(['../skytemple/main.py'],
+a = Analysis([os.path.join('..', 'skytemple', 'main.py')],
              pathex=[os.path.abspath(os.path.join('..', 'skytemple'))],
              binaries=additional_binaries,
              datas=additional_datas,
