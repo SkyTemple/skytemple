@@ -20,7 +20,7 @@ additional_datas = [
     (os.path.join(site_packages, 'skytemple_files', '_resources'), 'skytemple_files/_resources'),
     (os.path.join(site_packages, 'skytemple_files', 'graphics', 'chara_wan', 'Shadow.png'), 'skytemple_files/graphics/chara_wan'),
     (os.path.join(site_packages, 'skytemple_dtef', 'template.png'), 'skytemple_dtef'),
-    (os.path.join('.', 'armips.exe'), 'skytemple_files/_resources'),
+    (os.path.abspath(os.path.join('.', 'armips.exe')), 'skytemple_files/_resources'),
     (os.path.join(site_packages, 'desmume', 'frontend', 'control_ui', '*.glade'), 'desmume/frontend/control_ui'),
     (os.path.join(site_packages, "gtkspellcheck", "_pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
@@ -37,8 +37,9 @@ paths = []
 for (path, directories, filenames) in os.walk(os.path.join(pkg_path, 'module')):
     for filename in filenames:
         if filename.endswith('.glade'):
+            rp = str(PurePosixPath(Path(path.replace(pkg_path + "\\", ""))))
             additional_datas.append((os.path.abspath(os.path.join('..', path, filename)),
-                                     f'skytemple/{str(PurePosixPath(Path(path.replace(pkg_path + "/", ""))))}'))
+                                     f'skytemple/{rp}'))
 
 additional_binaries = [
     (os.path.join(site_packages, "desmume", "libdesmume.dll"), "."),

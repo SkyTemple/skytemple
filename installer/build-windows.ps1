@@ -51,7 +51,7 @@ if(!(Test-Path ".\dist\skytemple\skytemple.exe")){
 # Check if we need to copy the cacert file
 if (Test-Path ".\dist\skytemple\certifi\cacert.pem") {
   echo "Moved cacert to correct place"
-  cp -rf dist/skytemple/certifi/cacert.pem dist/skytemple/certifi.pem
+  cp dist/skytemple/certifi/cacert.pem dist/skytemple/certifi.pem
 }
 
 echo $env:PACKAGE_VERSION | Out-File -FilePath dist/skytemple/VERSION -Encoding utf8
