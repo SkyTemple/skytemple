@@ -169,7 +169,7 @@ class StringProvider:
 
     def _get_locale_from_app_locale(self) -> Pmd2Language:
         try:
-            current_locale = locale.getlocale()[0].split('_')[0]
+            current_locale = locale.getlocale()[0].split('_')[0]  # type: ignore
             for lang in self.get_languages():
                 lang_locale = lang.locale.split('-')[0]
                 if lang_locale == current_locale:

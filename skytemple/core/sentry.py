@@ -283,7 +283,7 @@ def collect_state_context() -> Dict[str, 'Captured']:
             },
             "module": type(MainController._instance._current_view_module).__qualname__,
             "view": MainController._instance._current_view_controller_class.__qualname__,  # type: ignore
-            "view_state": view_state
+            "view_state": view_state  # type: ignore
         },
         "ssb_debugger": {
             "window": {
