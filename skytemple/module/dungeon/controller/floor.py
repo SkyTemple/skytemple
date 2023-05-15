@@ -117,7 +117,7 @@ class FloorRanks(Enum):
         return obj
 
     # ignore the first param since it's already set by __new__
-    def __init__(self, _: int, print_name: str = None):
+    def __init__(self, _: int, print_name: Optional[str] = None):
         self._print_name_ = print_name
 
     def __str__(self):

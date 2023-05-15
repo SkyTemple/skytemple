@@ -63,7 +63,7 @@ class StringType(Enum):
         return obj
 
     # ignore the first param since it's already set by __new__
-    def __init__(self, _: str, xml_name: str = None):
+    def __init__(self, _: str, xml_name: Optional[str] = None):
         self._xml_name_ = xml_name
 
     def __str__(self):
@@ -95,7 +95,7 @@ class StringProvider:
     def _static_data(self):
         return self.project.get_rom_module().get_static_data()
 
-    def get_value(self, string_type: StringType, index: int, language: LanguageLike = None) -> str:
+    def get_value(self, string_type: StringType, index: int, language: Optional[LanguageLike] = None) -> str:
         """
         Returns the value of a string in the big string file for the given language, starting from the offset
         defined by the string_type.
@@ -113,7 +113,7 @@ class StringProvider:
         # TODO: We should probably also check the end offset (overflow check).
         return self._get_string_block(string_type).begin + index
 
-    def get_all(self, string_type: StringType, language: LanguageLike = None) -> List[str]:
+    def get_all(self, string_type: StringType, language: Optional[LanguageLike] = None) -> List[str]:
         """
         Returns all strings of the given type.
         If language is not set, the default ROM language is used.
@@ -122,7 +122,7 @@ class StringProvider:
         string_block = self._get_string_block(string_type)
         return model.strings[string_block.begin:string_block.end]
 
-    def get_model(self, language: LanguageLike = None) -> Str:
+    def get_model(self, language: Optional[LanguageLike] = None) -> Str:
         """
         Returns the string table model for the given language.
         If language is not set, the default ROM language is used.
@@ -142,7 +142,7 @@ class StringProvider:
             if self.project.is_opened(fname):
                 self.project.mark_as_modified(fname)
 
-    def get_language(self, language_locale: LanguageLike = None) -> Pmd2Language:
+    def get_language(self, language_locale: Optional[LanguageLike] = None) -> Pmd2Language:
         if isinstance(language_locale, Pmd2Language):
             return language_locale
 

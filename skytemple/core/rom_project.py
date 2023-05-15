@@ -76,7 +76,7 @@ class BinaryName(Enum):
         return obj
 
     # ignore the first param since it's already set by __new__
-    def __init__(self, _: str, xml_name: str = None):
+    def __init__(self, _: str, xml_name: Optional[str] = None):
         self._xml_name_ = xml_name
 
     def __str__(self):
