@@ -39,9 +39,9 @@ class FullMapEntityRenderer(AbstractEntityRenderer):
                 self._draw_trap(ctx, tile.trap_id, sx, sy)
             # Has item?
             if item.item_id > 0:
-                try:
+                if item.item_id <= self.parent.module.item_count():
                     self._draw_item(ctx, item.item_id, sx, sy)
-                except IndexError:
+                else:
                     ctx.arc(sx + DPCI_TILE_DIM * DPC_TILING_DIM / 2, sy + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
                             DPCI_TILE_DIM * DPC_TILING_DIM / 2, 0, 2 * math.pi)
                     ctx.set_source_rgba(*COLOR_ITEM)
