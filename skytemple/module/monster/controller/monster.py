@@ -56,6 +56,7 @@ MAX_EGGS = 6
 
 class MonsterController(AbstractController):
     _last_open_tab_id = 0
+    _previous_item_id = -1
 
     def __init__(self, module: 'MonsterModule', item_id: int):
         self.module = module
@@ -133,7 +134,8 @@ class MonsterController(AbstractController):
         notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
         notebook.set_current_page(self.__class__._last_open_tab_id)
 
-        self._check_sprite_size(True)
+        self._check_sprite_size(self.__class__._previous_item_id != self.item_id)
+        self.__class__._previous_item_id = self.item_id
 
         return self.builder.get_object('box_main')
 
