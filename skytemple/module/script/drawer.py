@@ -190,8 +190,8 @@ class Drawer:
                 sx, sy = self.get_current_drag_entity_pos()
             else:
                 sx, sy = self._snap_pos(self.mouse_x, self.mouse_y)
-            sx //= BPC_TILE_DIM
-            sy //= BPC_TILE_DIM
+            sx /= BPC_TILE_DIM
+            sy /= BPC_TILE_DIM
             ctx.text_path(f"X: {sx}, Y: {sy}")
             ctx.set_source_rgb(*COLOR_BLACK)
             ctx.set_line_width(0.3)
