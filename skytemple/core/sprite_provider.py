@@ -1,5 +1,5 @@
 """Sprite renderer module. Allows rendering Sprites, and loads them asynchronously."""
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -409,7 +409,7 @@ class SpriteProvider:
                 frame_id = direction_id - 1 if direction_id > 0 else 0
                 mfg_id = ani_group[frame_id].frames[0].frame_id
 
-                sprite_img, (cx, cy) = sprite.render_frame_group(sprite.frame_groups[mfg_id])
+                sprite_img, (cx, cy) = sprite.render_frame(sprite.frames[mfg_id])
             return sprite_img, cx, cy, sprite_img.width, sprite_img.height
         except BaseException as e:
             # Error :(
@@ -426,7 +426,7 @@ class SpriteProvider:
                 frame_id = 0
                 mfg_id = ani_group[frame_id].frames[0].frame_id
 
-                sprite_img, (cx, cy) = sprite.render_frame_group(sprite.frame_groups[mfg_id])
+                sprite_img, (cx, cy) = sprite.render_frame(sprite.frames[mfg_id])
             surf = pil_to_cairo_surface(sprite_img)
             with sprite_provider_lock:
                 self._loaded__objects[name] = surf, cx, cy, sprite_img.width, sprite_img.height

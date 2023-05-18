@@ -1,5 +1,5 @@
 """UI utilities."""
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -152,9 +152,10 @@ def make_builder(gui_file) -> Gtk.Builder:
         for node in tree.iter():
             if 'translatable' in node.attrib:
                 node.text = _(node.text)
-        with NamedTemporaryFile() as temp_file:
+        with NamedTemporaryFile(delete=False) as temp_file:
             tree.write(temp_file.file, encoding='utf-8', xml_declaration=True)
-            builder = Gtk.Builder.new_from_file(temp_file.name)
+        builder = Gtk.Builder.new_from_file(temp_file.name)
+        os.unlink(temp_file.name)
     else:
         builder = Gtk.Builder()
         builder.set_translation_domain(APP)

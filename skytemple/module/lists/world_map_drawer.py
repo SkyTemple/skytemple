@@ -1,4 +1,4 @@
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -192,7 +192,7 @@ class WorldMapDrawer:
         self.draw_area.queue_draw()
 
     def set_editing(self, entity: Optional[MapMarkerPlacement],
-                    editing_pos: Tuple[int, int] = None, hide: Optional[MapMarkerPlacement] = None):
+                    editing_pos: Optional[Tuple[int, int]] = None, hide: Optional[MapMarkerPlacement] = None):
         self._editing = entity
         if editing_pos is None:
             assert entity

@@ -1,4 +1,4 @@
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -117,7 +117,7 @@ class FloorRanks(Enum):
         return obj
 
     # ignore the first param since it's already set by __new__
-    def __init__(self, _: int, print_name: str = None):
+    def __init__(self, _: int, print_name: Optional[str] = None):
         self._print_name_ = print_name
 
     def __str__(self):
@@ -315,7 +315,7 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_cb_dead_ends_changed(self, w, *args):
-        self._update_from_widget(w, True)
+        self._update_from_widget(w)
         self.mark_as_modified()
 
     def on_btn_help_dead_ends_clicked(self, *args):
@@ -367,7 +367,7 @@ class FloorController(AbstractController):
                      "of a room, make a couple of twists and also lead to nowhere)"))
 
     def on_cb_terrain_settings__has_secondary_terrain_changed(self, w, *args):
-        self._update_from_widget(w, True)
+        self._update_from_widget(w)
         self.mark_as_modified()
 
     @catch_overflow(u8)
@@ -380,7 +380,7 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_cb_terrain_settings__generate_imperfect_rooms_changed(self, w, *args):
-        self._update_from_widget(w, True)
+        self._update_from_widget(w)
         self.mark_as_modified()
 
     def on_cb_darkness_level_changed(self, w, *args):
@@ -475,7 +475,7 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_help_unused_chance_clicked(self, *args):
-        self._help(_("Does not work in the game. To make it work, apply the \"UnusedDungeonChancePatch\" from "
+        self._help(_("Does not work in the game. To make it work, apply the \"UnusedDungeonChance\" from "
                      "\"Patches\" > \"ASM\".\nIf patched, the game will turn a random room into a maze room made of wall tiles "
                      "instead of the usual water (although water can later replace some of the walls once the water "
                      "generation takes place)."))
@@ -537,7 +537,7 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_cb_unk_e_changed(self, w, *args):
-        self._update_from_widget(w, True)
+        self._update_from_widget(w)
         self.mark_as_modified()
 
     def on_btn_goto_tileset_clicked(self, *args):
@@ -1068,7 +1068,7 @@ class FloorController(AbstractController):
                 rng = random.Random(hash(self.builder.get_object('tool_entry_seed').get_text()))
 
             floor: List[Tile] = DungeonFloorGenerator(  # type: ignore
-                unknown_dungeon_chance_patch_applied=self.module.project.is_patch_applied('UnusedDungeonChancePatch'),
+                unknown_dungeon_chance_patch_applied=self.module.project.is_patch_applied('UnusedDungeonChance'),
                 gen_properties=RandomGenProperties.default(rng)
             ).generate(self.entry.layout, max_retries=3, flat=True)
             if floor is None:
@@ -1944,9 +1944,9 @@ class FloorController(AbstractController):
         scale: Gtk.Scale = self.builder.get_object(scale_name)
         scale.set_value(int(val))
 
-    def _update_from_widget(self, w: Gtk.Widget, cb_should_be_bool: bool = False):
+    def _update_from_widget(self, w: Gtk.Widget):
         if isinstance(w, Gtk.ComboBox):
-            self._update_from_cb(w, cb_should_be_bool)
+            self._update_from_cb(w)
         elif isinstance(w, Gtk.Entry):
             raise RuntimeError("Internal error: Do not call _update_from_widget() on an entry. Set manually instead.")
         else:
@@ -1954,7 +1954,7 @@ class FloorController(AbstractController):
         if self.builder.get_object('tool_auto_refresh').get_active():  # type: ignore
             self._generate_floor()
 
-    def _update_from_cb(self, w: Gtk.ComboBox, should_be_bool: bool = False):
+    def _update_from_cb(self, w: Gtk.ComboBox):
         w_name = Gtk.Buildable.get_name(w)
         if w_name.startswith(CB_TERRAIN_SETTINGS):
             obj = self.entry.layout.terrain_settings
@@ -1967,8 +1967,8 @@ class FloorController(AbstractController):
         if isinstance(current_val, Enum):
             enum_class = current_val.__class__
             val = enum_class(val)
-        if should_be_bool:
-            val = current_val > 0
+        elif isinstance(current_val, bool):
+            val = val > 0
         setattr(obj, attr_name, val)
 
     def _update_from_scale(self, w: Gtk.Scale):

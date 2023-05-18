@@ -12,41 +12,41 @@ jobs:
       - name: Install gettext
         run: sudo apt-get install gettext
       - name: Checkout skytemple
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: skytemple
       - name: Checkout skytemple-files
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: skytemple/skytemple-files
           path: skytemple-files
       - name: Checkout skytemple-dtef
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: skytemple/skytemple-dtef
           path: skytemple-dtef
       - name: Checkout skytemple-ssb-debugger
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: skytemple/skytemple-ssb-debugger
           path: skytemple-ssb-debugger
       - name: Checkout py-desmume
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: skytemple/py-desmume
           path: py_desmume
       - name: Checkout explorerscript
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: skytemple/explorerscript
           path: explorerscript
       - name: Checkout tilequant
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: skytemple/tilequant
           path: tilequant
       - name: Checkout skytemple-rust
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: skytemple/skytemple-rust
           path: skytemple-rust
@@ -73,7 +73,7 @@ jobs:
               --add-comments='TRANSLATORS:' --from-code=UTF-8 \
               -o skytemple/skytemple/data/locale/skytemple.pot
       - name: Set up Python 3.8
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: 3.8
       - name: Upgrade pip
@@ -94,7 +94,7 @@ jobs:
         run: |
           echo "NUM_CHANGED_LINES=$(diff -y --suppress-common-lines /tmp/skytemple.pot skytemple/skytemple/data/locale/skytemple.pot | wc -l)" >> $GITHUB_ENV
       - name: Commit and Push
-        uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v9
         with:
           add: skytemple/data/locale/skytemple.pot
           cwd: './skytemple'

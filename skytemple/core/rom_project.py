@@ -1,5 +1,5 @@
 """Manages the state and files of the currently open ROM"""
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -76,7 +76,7 @@ class BinaryName(Enum):
         return obj
 
     # ignore the first param since it's already set by __new__
-    def __init__(self, _: str, xml_name: str = None):
+    def __init__(self, _: str, xml_name: Optional[str] = None):
         self._xml_name_ = xml_name
 
     def __str__(self):
@@ -460,7 +460,7 @@ class RomProject:
         if os.path.exists(self.filename):
             shutil.copyfile(self.filename, backup_fn)
         # Now save
-        self._rom.saveToFile(self.filename)
+        self._rom.saveToFile(self.filename, updateDeviceCapacity=True)
         # Delete the backup
         if os.path.exists(backup_fn):
             os.unlink(backup_fn)

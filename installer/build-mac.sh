@@ -13,8 +13,7 @@ generate_version_file() {
 generate_version_file cssselect2
 generate_version_file tinycss2
 generate_version_file cairosvg
-
-pip3 install -U certifi
+generate_version_file cairocffi
 
 # Create the icon
 # https://www.codingforentrepreneurs.com/blog/create-icns-icons-for-macos-apps

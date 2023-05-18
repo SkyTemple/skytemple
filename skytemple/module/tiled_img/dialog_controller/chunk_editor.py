@@ -1,4 +1,4 @@
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -45,7 +45,7 @@ class ChunkEditorController:
                  tile_graphics: AbstractTileGraphicsProvider,
                  palettes: AbstractTilePalettesProvider,
                  pal_ani_durations: int,
-                 animated_tile_graphics: Sequence[Optional[AbstractTileGraphicsProvider]] = None,
+                 animated_tile_graphics: Optional[Sequence[Optional[AbstractTileGraphicsProvider]]] = None,
                  animated_tile_durations=0):
         path = os.path.abspath(os.path.dirname(__file__))
 

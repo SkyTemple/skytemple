@@ -6,21 +6,18 @@ set -xe
 
 py_version=""
 
-arch="MINGW64"
-if [ "$1" = "i686" ]; then
-  arch="MINGW32"
-fi
+platform="windows-2019"
+arch="x64"
+py_version="3.11"
 
 branch="release"
 if [ -n "$IS_DEV_BUILD" ]; then
   branch="master"
 fi
 
-platform="msys2"
 if [ -n "$IS_MACOS" ]; then
   platform="macos-11"
-  arch="x64"
-  py_version="3.10"
+  py_version="3.11"
 fi
 
 url="https://nightly.link/SkyTemple/skytemple-rust/workflows/build-test-publish/$branch/wheels-$platform-py$py_version-$arch.zip"

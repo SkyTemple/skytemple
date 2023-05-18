@@ -1,5 +1,5 @@
 """Module to load a module view and controller"""
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -20,7 +20,6 @@ from typing import TYPE_CHECKING
 
 from gi.repository import GLib
 
-from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple.core.module_controller import AbstractController
 
 if TYPE_CHECKING:

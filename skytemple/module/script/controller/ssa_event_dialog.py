@@ -1,4 +1,4 @@
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -29,7 +29,7 @@ class SsaEventDialogController:
             self, builder: Gtk.Builder, main_window: Gtk.Window,
             talk_script_names: Dict[int, str],
             scriptdata: Pmd2ScriptData,
-            *, edit: SsaTrigger = None):
+            *, edit: Optional[SsaTrigger] = None):
         self.builder = builder
         self.edit: Optional[SsaTrigger] = edit
         self.new_model: Optional[SsaTrigger] = None

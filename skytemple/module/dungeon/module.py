@@ -1,4 +1,4 @@
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -833,6 +833,9 @@ class DungeonModule(AbstractModule):
 
     def get_item(self, idx):
         return self.project.open_file_in_rom('BALANCE/item_p.bin', FileType.ITEM_P).item_list[idx]
+
+    def item_count(self):
+        return len(self.project.open_file_in_rom('BALANCE/item_p.bin', FileType.ITEM_P).item_list)
 
     def get_zmappa(self):
         with self._dungeon_bin_context as dungeon_bin:

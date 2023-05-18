@@ -1,4 +1,4 @@
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -48,8 +48,14 @@ elif sys.platform.startswith('win'):
     libintl_loc = os.path.join(os.path.dirname(__file__), 'libintl-8.dll')
     if os.path.exists(libintl_loc):
         libintl = ctypes.cdll.LoadLibrary(libintl_loc)
+    libintl_loc = os.path.join(os.path.dirname(__file__), 'intl.dll')
+    if os.path.exists(libintl_loc):
+        libintl = ctypes.cdll.LoadLibrary(libintl_loc)
     else:
-        libintl = ctypes.cdll.LoadLibrary(ctypes.util.find_library('libintl-8'))
+        try:
+            libintl = ctypes.cdll.LoadLibrary(ctypes.util.find_library('libintl-8'))
+        except:
+            libintl = ctypes.cdll.LoadLibrary(ctypes.util.find_library('intl'))
 elif sys.platform == 'darwin':
     import ctypes
     libintl = ctypes.cdll.LoadLibrary('libintl.dylib')

@@ -1,4 +1,4 @@
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -82,7 +82,7 @@ class FontOpenSpec:
             return self.font_filename
         
 class WteOpenSpec:
-    def __init__(self, wte_filename: str, wtu_filename: str = None, in_dungeon_bin=False):
+    def __init__(self, wte_filename: str, wtu_filename: Optional[str] = None, in_dungeon_bin=False):
         self.wte_filename = wte_filename
         self.wtu_filename = wtu_filename
         self.in_dungeon_bin = in_dungeon_bin

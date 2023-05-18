@@ -1,4 +1,4 @@
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -129,6 +129,14 @@ class MapBgModule(AbstractModule):
 
     def get_level_entry(self, item_id):
         return self.bgs.level[item_id]
+
+    def set_level_entry(self, item_id, new_entry):
+        self.bgs.set_level(item_id, new_entry)
+        self.mark_level_list_as_modified()
+
+    def set_level_entry_bpa(self, item_id, bpa_index, bpa_name):
+        self.bgs.set_level_bpa(item_id, bpa_index, bpa_name)
+        self.mark_level_list_as_modified()
 
     def get_bma(self, item_id) -> BmaProtocol:
         l = self.bgs.level[item_id]

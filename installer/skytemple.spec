@@ -6,8 +6,6 @@ from pathlib import PurePosixPath, Path
 pkg_path = os.path.abspath(os.path.join('..', 'skytemple'))
 site_packages = next(p for p in sys.path if 'site-packages' in p)
 
-mingw = os.getenv("MINGW_VERSION", "mingw64")
-
 additional_files = []
 additional_datas = [
     (os.path.join(pkg_path, 'data'), 'data'),
@@ -22,24 +20,11 @@ additional_datas = [
     (os.path.join(site_packages, 'skytemple_files', '_resources'), 'skytemple_files/_resources'),
     (os.path.join(site_packages, 'skytemple_files', 'graphics', 'chara_wan', 'Shadow.png'), 'skytemple_files/graphics/chara_wan'),
     (os.path.join(site_packages, 'skytemple_dtef', 'template.png'), 'skytemple_dtef'),
-    (os.path.join('.', 'armips.exe'), 'skytemple_files/_resources'),
+    (os.path.abspath(os.path.join('.', 'armips.exe')), 'skytemple_files/_resources'),
     (os.path.join(site_packages, 'desmume', 'frontend', 'control_ui', '*.glade'), 'desmume/frontend/control_ui'),
-    (os.path.join(site_packages, "cairocffi", "VERSION"), "cairocffi"),
-    #(os.path.join(site_packages, "cssselect2", "VERSION"), "cssselect2"),
-    #(os.path.join(site_packages, "tinycss2", "VERSION"), "tinycss2"),
-    (os.path.join(site_packages, "cairosvg", "VERSION"), "cairosvg"),
     (os.path.join(site_packages, "gtkspellcheck", "_pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
     (os.path.join(site_packages, 'certifi', 'cacert.pem'), 'certifi'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "share", "hunspell", "*"), 'share/hunspell'),
-
-    # These aren't auto dectected for some reason :(
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'fontconfig'), 'share/fontconfig'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'glib-2.0'), 'share/glib-2.0'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'gtksourceview-4'), 'share/gtksourceview-4'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'icons'), 'share/icons'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'locale'), 'share/locale'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, 'share', 'themes'), 'share/themes'),
 
     # Themes
     ('Arc', 'share/themes/Arc'),
@@ -52,27 +37,20 @@ paths = []
 for (path, directories, filenames) in os.walk(os.path.join(pkg_path, 'module')):
     for filename in filenames:
         if filename.endswith('.glade'):
+            rp = str(PurePosixPath(Path(path.replace(pkg_path + "\\", ""))))
             additional_datas.append((os.path.abspath(os.path.join('..', path, filename)),
-                                     f'skytemple/{str(PurePosixPath(Path(path.replace(pkg_path + "/", ""))))}'))
+                                     f'skytemple/{rp}'))
 
 additional_binaries = [
     (os.path.join(site_packages, "desmume", "libdesmume.dll"), "."),
     (os.path.join(site_packages, "desmume", "SDL2.dll"), "."),
     (os.path.join(site_packages, "skytemple_tilequant", "aikku", "libtilequant.dll"), "skytemple_tilequant/aikku"),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libenchant-2.dll"), f'enchant/data/{mingw}/bin'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libglib-2.0-0.dll"), f'enchant/data/{mingw}/bin'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libgmodule-2.0-0.dll"), f'enchant/data/{mingw}/bin'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "lib", "enchant-2", "enchant_hunspell.dll"), 'lib/enchant-2'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libhunspell-1.7-0.dll"), '.'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libcrypto-1_1*.dll"), '.'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libssl-1_1*.dll"), '.'),
-    (os.path.join("D:/", "a", "_temp", "msys64", mingw, "bin", "libraqm-0.dll"), '.'),
 ]
 
 block_cipher = None
 
 
-a = Analysis(['../skytemple/main.py'],
+a = Analysis([os.path.join('..', 'skytemple', 'main.py')],
              pathex=[os.path.abspath(os.path.join('..', 'skytemple'))],
              binaries=additional_binaries,
              datas=additional_datas,

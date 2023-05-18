@@ -1,4 +1,4 @@
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -148,6 +148,8 @@ class AsmController(AbstractController):
                         except PatchCanceledError:
                             some_skipped = True
                             break
+                    # We filter out Gtk deprecations.
+                    w = [x for x in w if "Gtk." not in str(x.message)]
                     if len(w) > 0:
                         issues[patch] = w
             except PatchNotConfiguredError as ex:

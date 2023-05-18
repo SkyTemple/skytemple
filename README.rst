@@ -11,7 +11,7 @@ SkyTemple
     :target: https://crowdin.com/project/skytemple
     :alt: Localization Progress
 
-.. |build| image:: https://img.shields.io/github/workflow/status/SkyTemple/skytemple/Build,%20test%20and%20publish
+.. |build| image:: https://img.shields.io/github/actions/workflow/status/SkyTemple/skytemple/build-test-publish.yml
     :target: https://pypi.org/project/skytemple/
     :alt: Build Status
 
@@ -59,8 +59,9 @@ See the `Project Pokémon forums page`_.
 
 Windows & macOS
 ~~~~~~~~~~~~~~~
-To download SkyTemple for Windows and macOS head over to the `Project Pokémon`_ page.
+To download SkyTemple for Windows and macOS head over to the `download`_ page or `Project Pokémon`_.
 
+.. _download: https://download.skytemple.org/skytemple/latest
 .. _Project Pokémon: https://projectpokemon.org/home/files/file/4193-skytemple-pmd2-rom-edtior/
 
 If you want to set up SkyTemple for development, see the "BUILDING_WINDOWS.md" or "BUILDING_MACOS.md" file.
@@ -112,4 +113,4 @@ for Arch Linux a version is available through the AUR_.
 .. _AUR: https://aur.archlinux.org/packages/armips/
 
 If you want to set up SkyTemple for development, clone the repos and install in editable
-mode instead. See the steps 4 and onward in "BUILDING_WINDOWS.md".
+mode instead. See the steps 7 and onward in "BUILDING_WINDOWS.md".

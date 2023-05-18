@@ -24,7 +24,7 @@ jobs:
       matrix:
         python-version: [ "3.8", "3.9", "3.10", "3.11" ]
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - uses: theCapypara/mypy-check@rust-support
       name: Run type checks
       with:
@@ -38,7 +38,7 @@ jobs:
     steps:
       # For tags we assume the version in setup.py is correct!
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
         run: |
@@ -52,7 +52,7 @@ jobs:
           python-versions: 'cp38-cp38 cp39-cp39 cp310-cp310 cp311-cp311'
           system-packages: 'gettext'
       - name: Upload wheels
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: wheels
           path: dist/*.whl
@@ -63,7 +63,7 @@ jobs:
     name: Deploy wheels to PyPI
     steps:
       - name: Download wheels
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: wheels
       - name: Set up Python 3.11
@@ -81,106 +81,107 @@ jobs:
         run: |
           twine upload *.whl
   package-windows:
-    needs: build
-    runs-on: windows-2019
+    # This is partly based on https://github.com/wingtk/gvsbuild/blob/main/.github/workflows/ci.yml
+    runs-on: windows-2022
     name: Build and package for Windows
-    strategy:
-      fail-fast: false
-      matrix:
-        include: [
-          { msystem: MINGW64, arch: x86_64, path: mingw64 },
-          { msystem: MINGW32, arch: i686, path: mingw32 }
-        ]
     steps:
-      - name: Install MSys2 and dependencies
-        uses: msys2/setup-msys2@v2
+      - name: Setup python
+        uses: actions/setup-python@v4
         with:
-          update: true
-          msystem: ${{ matrix.msystem }}
-          install: >-
-            mingw-w64-${{ matrix.arch }}-curl
-            git
-            unzip
-            mingw-w64-${{ matrix.arch }}-python
-            mingw-w64-${{ matrix.arch }}-python-pip
-            mingw-w64-${{ matrix.arch }}-gtksourceview4
-            mingw-w64-${{ matrix.arch }}-python-pillow
-            mingw-w64-${{ matrix.arch }}-enchant
-            mingw-w64-${{ matrix.arch }}-hunspell-en
-            mingw-w64-${{ matrix.arch }}-python-cairo
-            mingw-w64-${{ matrix.arch }}-gtk3
-            mingw-w64-${{ matrix.arch }}-python3-gobject
-            mingw-w64-${{ matrix.arch }}-python-cffi
-            mingw-w64-${{ matrix.arch }}-hunspell
-            mingw-w64-${{ matrix.arch }}-hunspell-en
-            mingw-w64-${{ matrix.arch }}-openssl
-            mingw-w64-${{ matrix.arch }}-libraqm
-            mingw-w64-${{ matrix.arch }}-python-psutil
-            mingw-w64-${{ matrix.arch }}-freetype
-            mingw-w64-${{ matrix.arch }}-python-multidict
-            mingw-w64-${{ matrix.arch }}-python-yarl
-            mingw-w64-${{ matrix.arch }}-python-aiohttp
+          python-version: "3.11"
+          architecture: "x64"
+      - name: Cache GTK-Build
+        id: cache-gtk-build
+        uses: actions/cache@v3
+        with:
+          path: "C:\\gtk-build"
+          key: win-gtk-build-1
+          restore-keys: |
+            win-gtk-build-
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+      # Temporarily move the preinstalled git, it causes errors related to cygwin.
+      - name: Move git binary
+        run: |
+          Move-Item "C:\Program Files\Git\usr\bin" "C:\Program Files\Git\usr\notbin"
+          Move-Item "C:\Program Files\Git\bin" "C:\Program Files\Git\notbin"
+      - name: Install gvsbuild
+        run: |
+          # gvsbuild has issues if the pipx install path has spaces in it. It may be installed
+          # in Program Files (x86) by default, so let's just make sure it isn't.
+          if (Test-Path "C:\Program Files (x86)\pipx") {
+              Remove-Item -path "C:\Program Files (x86)\pipx" -recurse
+          }
+          
+          # Make sure the pipx venv dir has no spaces
+          New-Item -ItemType Directory -Force -Path C:\pipx_home
+          $env:PIPX_HOME = "C:\pipx_home"
+          echo "PIPX_HOME=C:\pipx_home" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          New-Item -ItemType Directory -Force -Path C:\pipx_bin
+          $env:PIPX_BIN_DIR = "C:\pipx_bin"
+          echo "PIPX_BIN_DIR=C:\pipx_bin" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+          $env:path = "C:\pipx_bin;" + $env:path
+      
+          python -m pip install --user pipx
+          python -m pipx ensurepath
+          pipx install gvsbuild
+      - name: Build GTK and other libs
+        run: |
+          $env:path = "C:\pipx_bin;" + $env:path
+          
+          gvsbuild build --fast-build --ninja-opts -j2 --enable-gi --py-wheel gtk3 pygobject openssl gettext gtksourceview4 hicolor-icon-theme adwaita-icon-theme
+      - name: Restore git binary
+        run: |
+          Move-Item "C:\Program Files\Git\usr\notbin" "C:\Program Files\Git\usr\bin"
+          Move-Item "C:\Program Files\Git\notbin" "C:\Program Files\Git\bin"
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
-        shell: msys2 {0}
         run: |
-          perl -i -pe "s/__version__\s*=\s*'(.*?)(\.rc.*|\.a.*|\.post.*)?'/__version__='\1.dev0+${GITHUB_SHA::8}'/" setup.py
-          echo "IS_DEV_BUILD=1" >> $GITHUB_ENV
+          perl -i -pe "s/__version__\s*=\s*'(.*?)(\.rc.*|\.a.*|\.post.*)?'/__version__='\1.dev0+$($env:GITHUB_SHA.Substring(0,8))'/" setup.py
+          echo "IS_DEV_BUILD=1" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Note version
-        shell: msys2 {0}
         run: |
-          echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
-      - name: Install and package
-        shell: msys2 {0}
+          $env:PACKAGE_VERSION = python -- ./setup.py --version
+          echo "PACKAGE_VERSION=$env:PACKAGE_VERSION" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Install SkyTemple
         run: |
+          $ErrorActionPreference = "Stop"
+
+          $env:path = "C:\gtk-build\gtk\x64\release\bin;" + $env:path
+          $env:LIB = "C:\gtk-build\gtk\x64\release\lib;" + $env:LIB
+          $env:INCLUDE = "C:\gtk-build\gtk\x64\release\include;C:\gtk-build\gtk\x64\release\include\cairo;C:\gtk-build\gtk\x64\release\include\glib-2.0;C:\gtk-build\gtk\x64\release\include\gobject-introspection-1.0;C:\gtk-build\gtk\x64\release\lib\glib-2.0\include;" + $env:INCLUDE
+
           cd installer
 
-          # Download armips and other binary depedencies
-          ./download-windows-dependencies.sh ${{ matrix.arch }}
-
-          # Install themes
-          curl https://skytemple.org/build_deps/Arc.zip -O
-          unzip Arc.zip
-          curl https://skytemple.org/build_deps/ZorinBlue.zip -O
-          unzip ZorinBlue.zip
-
-          # Install NSIS
-          curl https://skytemple.org/build_deps/nsis.zip -O
-          unzip -o nsis.zip -d "/c/Program Files (x86)/NSIS"
-
-          # Install PyInstaller
-          pip3 install setuptools
-          pip3 install pyinstaller
-
           # Package
-          ./build-windows.sh $PACKAGE_VERSION
+          .\build-windows.ps1 $PACKAGE_VERSION
+
+          if(!(Test-Path ".\dist\skytemple\skytemple.exe")){
+              return 1
+          }
           
           # Install latest skytemple-rust
-          ./install-skytemple-rust.sh ${{ matrix.arch }}
-        env:
-          MINGW_VERSION: ${{ matrix.path }}
+          bash .\install-skytemple-rust.sh
       - name: Create installer
-        uses: joncloud/makensis-action@v3.4
+        uses: joncloud/makensis-action@v3.7
         with:
-          script-file: "${{ matrix.arch == 'i686' && 'installer/skytemple32.nsi' || 'installer/skytemple.nsi' }}"
+          script-file: "installer/skytemple.nsi"
           arguments: "/DPRODUCT_VERSION=${{ env.PACKAGE_VERSION }}"
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: skytemple-windows-app-${{ matrix.arch }}
+          name: skytemple-windows-app-x64
           path: |
             installer/skytemple-*-install-*.exe
 
   package-mac:
-    needs: build
     runs-on: macos-11
     name: Build and package for Mac OS
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
         run: |
@@ -191,10 +192,10 @@ jobs:
           echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
       - name: Install and package
         run: |
-          brew install enchant
           # git is already installed.
-          brew install pygobject3 gtk+3 python@3.10 gtksourceview4 adwaita-icon-theme sdl sdl2 cmake
-          PATH=/usr/local/opt/python@3.10/bin:/usr/local/bin:$PATH
+          brew install enchant pygobject3 gtk+3 python@3.11 gtksourceview4 adwaita-icon-theme sdl12-compat sdl2 cmake
+          pip3 install -U certifi
+          PATH=/usr/local/opt/python@3.11/bin:/usr/local/bin:$PATH
 
 
           # Install other dependencies and SkyTemple itself
@@ -225,7 +226,7 @@ jobs:
           zip -r skytemple-mac.zip dist/SkyTemple.app > /dev/null
 
       - name: Upload .app
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: skytemple-mac-app
           path: |
@@ -236,12 +237,13 @@ jobs:
           # See https://github.com/sindresorhus/create-dmg
           # create-dmg automatically generates an installer icon if imagemagick is installed
           brew install graphicsmagick imagemagick
+          npm -g install create-dmg
 
           # This tool returns exit code 2 if the DMG was created but code signing failed for some reason
           npx create-dmg --dmg-title=SkyTemple installer/dist/SkyTemple.app installer || true
 
       - name: Upload .dmg
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: skytemple-mac-dmg
           path: |

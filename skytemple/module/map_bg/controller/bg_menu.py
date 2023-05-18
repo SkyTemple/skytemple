@@ -1,5 +1,5 @@
 """Sub-controller for the map bg menu."""
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -450,14 +450,13 @@ class BgMenuController:
                         # Hm, okay, then we just re-use this file.
                         pass
                     # Add to MapBG list
-                    map_bg_entry.bpa_names[i] = new_bpa_filename
+                    self.parent.module.set_level_entry_bpa(self.parent.item_id, i, new_bpa_filename)
                     # Refresh controller state
                     self.parent.bpas = self.parent.module.get_bpas(self.parent.item_id)
                     new_bpa = self.parent.bpas[i]
                     assert new_bpa is not None
                     # Add to BPC
                     self.parent.bpc.process_bpa_change(i, new_bpa.number_of_tiles)
-                    self.parent.module.mark_level_list_as_modified()
                 if bpa is not None and not self.parent.builder.get_object(f'bpa_enable{gui_i}').get_active():
                     # HAS TO BE DELETED
                     map_bg_entry = self.parent.module.get_level_entry(self.parent.item_id)

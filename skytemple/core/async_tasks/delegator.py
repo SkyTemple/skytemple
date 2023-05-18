@@ -1,4 +1,4 @@
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -66,7 +66,7 @@ class AsyncConfiguration(Enum):
         return obj
 
     # ignore the first param since it's already set by __new__
-    def __init__(self, _: str, name_localized: str = None, event_loop_type: AsyncEventLoopType = None, async_task_runner_type: AsyncTaskRunnerType = None):
+    def __init__(self, _: str, name_localized: Optional[str] = None, event_loop_type: Optional[AsyncEventLoopType] = None, async_task_runner_type: Optional[AsyncTaskRunnerType] = None):
         self.name_localized = name_localized
         self.event_loop_type = event_loop_type
         self.async_task_runner_type = async_task_runner_type

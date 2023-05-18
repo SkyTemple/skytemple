@@ -1,4 +1,4 @@
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -21,6 +21,7 @@ from gi.repository.Gtk import ResponseType
 from range_typed_integers import i8, i8_checked, i16, i16_checked
 
 from skytemple.controller.main import MainController
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import catch_overflow
@@ -119,6 +120,7 @@ class DungeonController(AbstractController):
         self.builder.get_object('entry_max_items_allowed').set_text(str(self.restrictions.max_items_allowed))
         self.builder.get_object('entry_max_party_members').set_text(str(self.restrictions.max_party_members))
         self.builder.get_object('entry_turn_limit').set_text(str(self.restrictions.turn_limit))
+        self.builder.get_object('entry_random_movement_chance').set_text(str(self.restrictions.random_movement_chance))
 
     def on_edit_floor_count_clicked(self, *args):
         dialog: Gtk.Dialog = self.builder.get_object('dialog_adjust_floor_count')
@@ -322,6 +324,28 @@ class DungeonController(AbstractController):
         self.restrictions.turn_limit = value
         self._save_dungeon_restrictions()
 
+    @catch_overflow(i16)
+    def on_entry_random_movement_chance_changed(self, w: Gtk.Entry, *args):
+        assert self.restrictions is not None
+        try:
+            value = i16_checked(int(w.get_text()))
+        except ValueError:
+            return
+        self.restrictions.random_movement_chance = value
+        self._save_dungeon_restrictions()
+
+    def on_btn_help_random_movement_chance_clicked(self, *args):
+        self._help(_("Chance of setting the random movement flag on an enemy when spawning it.\n"
+                     "Enemies with this flag set will move randomly inside rooms, instead of heading towards one of "
+                     "the exits."))
+
+    def on_btn_help_enemy_evolution_clicked(self, *args):
+        self._help(_("If enabled, enemies will evolve after defeating a team member.\n"
+                     "The evolution will not happen if the target is revived, if the evolved form of the enemy cannot "
+                     "spawn in the current floor or if the sprite of the evolved form is bigger than the sprite of "
+                     "the enemy.\n"
+                     "Part of this behavior can be modified by applying the BetterEnemyEvolution ASM patch."))
+
     # </editor-fold>
 
     def mark_as_modified(self):
@@ -340,3 +364,10 @@ class DungeonController(AbstractController):
             sp.get_model(lang).strings[
                 sp.get_index(string_type, self.dungeon_info.dungeon_id)
             ] = w.get_text().replace('\\n', '\n')
+
+    def _help(self, msg):
+        md = SkyTempleMessageDialog(MainController.window(),
+                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, msg)
+        md.run()
+        md.destroy()

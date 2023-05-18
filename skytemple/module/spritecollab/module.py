@@ -1,4 +1,4 @@
-#  Copyright 2020-2022 Capypara and the SkyTemple Contributors
+#  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
 #
@@ -108,11 +108,8 @@ class SpritecollabModule(AbstractModule):
         spr_result = asyncio.run(get_sprites(client, (form.monster_id, form.form_path), copy_event_sleep))
         if spr_result is not None:
             wan_file, pmd2_sprite, shadow_size_id = spr_result
-            monster, ground, attack = FileType.WAN.CHARA.split_wan(wan_file)
             # update sprite
-            sprite_module.save_monster_monster_sprite(sprite_idx, monster)
-            sprite_module.save_monster_ground_sprite(sprite_idx, ground)
-            sprite_module.save_monster_attack_sprite(sprite_idx, attack)
+            sprite_module.save_monster_sprite(sprite_idx, wan_file)
 
             monster_module.set_sprite_idx(monster_idx, sprite_idx)
             monster_module.set_shadow_size(
