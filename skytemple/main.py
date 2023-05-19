@@ -43,8 +43,23 @@ elif sys.platform.startswith('win'):
     import ctypes.util
     if os.getenv('LANG') is None:
         lang, enc = locale.getdefaultlocale()
-        os.environ['LANG'] = lang
-        ctypes.cdll.msvcrt._putenv ("LANG=" + lang)
+        os.environ['LANG'] = f"{lang}.{enc}"
+        ctypes.cdll.msvcrt._putenv(f"LANG={lang}.{enc}")
+
+    try:
+        locale.getlocale()
+    except:
+        lang, _ = locale.getdefaultlocale()
+        print(f"WARNING: Failed processing current locale. Falling back to {lang}")
+        os.environ['LANG'] = f"{lang}"
+        ctypes.cdll.msvcrt._putenv(f"LANG={lang}")
+        try:
+            locale.getlocale()
+        except:
+            print(f"WARNING: Failed to set locale to {lang} falling back to en_US.")
+            os.environ['LANG'] = "en_US"
+            ctypes.cdll.msvcrt._putenv("LANG=en_US")
+
     libintl_loc = os.path.join(os.path.dirname(__file__), 'libintl-8.dll')
     if os.path.exists(libintl_loc):
         libintl = ctypes.cdll.LoadLibrary(libintl_loc)
