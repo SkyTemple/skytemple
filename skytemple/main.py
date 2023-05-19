@@ -41,23 +41,39 @@ if hasattr(locale, 'bindtextdomain'):
 elif sys.platform.startswith('win'):
     import ctypes
     import ctypes.util
+    failed_to_set_locale = False
     if os.getenv('LANG') is None:
         lang, enc = locale.getdefaultlocale()
         os.environ['LANG'] = f"{lang}.{enc}"
         ctypes.cdll.msvcrt._putenv(f"LANG={lang}.{enc}")
-        locale.setlocale(locale.LC_ALL, f"{lang}.{enc}")
+        try:
+            locale.setlocale(locale.LC_ALL, f"{lang}.{enc}")
+        except:
+            failed_to_set_locale = True
 
     try:
         locale.getlocale()
     except:
-        lang, _ = locale.getdefaultlocale()
-        print(f"WARNING: Failed processing current locale. Falling back to {lang}")
+        failed_to_set_locale = True
+
+    if failed_to_set_locale:
+        failed_to_set_locale = False
+
+        lang, env = locale.getdefaultlocale()
+        print(f"WARNING: Failed processing current locale {lang}.{env}. Falling back to {lang}")
         os.environ['LANG'] = lang
         ctypes.cdll.msvcrt._putenv(f"LANG={lang}")
-        locale.setlocale(locale.LC_ALL, lang)
+        try:
+            locale.setlocale(locale.LC_ALL, lang)
+        except:
+            failed_to_set_locale = True
+
         try:
             locale.getlocale()
         except:
+            failed_to_set_locale = True
+
+        if failed_to_set_locale:
             print(f"WARNING: Failed to set locale to {lang} falling back to C.")
             os.environ['LANG'] = "C"
             ctypes.cdll.msvcrt._putenv("LANG=C")
