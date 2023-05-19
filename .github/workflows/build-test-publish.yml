@@ -95,9 +95,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: "C:\\gtk-build"
-          key: win-gtk-build-1
+          key: win-gtk-build-v2-1
           restore-keys: |
-            win-gtk-build-
+            win-gtk-build-v2-
       - name: Checkout
         uses: actions/checkout@v3
       # Temporarily move the preinstalled git, it causes errors related to cygwin.
@@ -125,7 +125,7 @@ jobs:
       
           python -m pip install --user pipx
           python -m pipx ensurepath
-          pipx install gvsbuild
+          pipx install "gvsbuild @ git+https://github.com/theCapypara/gvsbuild.git@fix-gtk3-clipboard"
       - name: Build GTK and other libs
         run: |
           $env:path = "C:\pipx_bin;" + $env:path
