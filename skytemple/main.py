@@ -45,20 +45,23 @@ elif sys.platform.startswith('win'):
         lang, enc = locale.getdefaultlocale()
         os.environ['LANG'] = f"{lang}.{enc}"
         ctypes.cdll.msvcrt._putenv(f"LANG={lang}.{enc}")
+        locale.setlocale(locale.LC_ALL, f"{lang}.{enc}")
 
     try:
         locale.getlocale()
     except:
         lang, _ = locale.getdefaultlocale()
         print(f"WARNING: Failed processing current locale. Falling back to {lang}")
-        os.environ['LANG'] = f"{lang}"
+        os.environ['LANG'] = lang
         ctypes.cdll.msvcrt._putenv(f"LANG={lang}")
+        locale.setlocale(locale.LC_ALL, lang)
         try:
             locale.getlocale()
         except:
-            print(f"WARNING: Failed to set locale to {lang} falling back to en_US.")
-            os.environ['LANG'] = "en_US"
-            ctypes.cdll.msvcrt._putenv("LANG=en_US")
+            print(f"WARNING: Failed to set locale to {lang} falling back to C.")
+            os.environ['LANG'] = "C"
+            ctypes.cdll.msvcrt._putenv("LANG=C")
+            locale.setlocale(locale.LC_ALL, "C")
 
     libintl_loc = os.path.join(os.path.dirname(__file__), 'libintl-8.dll')
     if os.path.exists(libintl_loc):
