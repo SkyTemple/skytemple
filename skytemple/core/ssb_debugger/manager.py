@@ -22,10 +22,9 @@ from gi.repository import Gtk
 
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ssb_debugger.context import SkyTempleMainDebuggerControlContext
-from skytemple.core.ui_utils import APP, make_builder
+from skytemple.core.ui_utils import make_builder
 from skytemple_ssb_debugger.controller.main import MainController as DebuggerMainController
-from skytemple_ssb_debugger.emulator_thread import EmulatorThread
-from skytemple_ssb_debugger.main import get_debugger_builder, get_debugger_package_dir
+from skytemple_ssb_debugger.main import get_debugger_package_dir
 
 
 class DebuggerManager:
@@ -75,11 +74,7 @@ class DebuggerManager:
 
     def destroy(self):
         """Free resources."""
-        if self._was_opened_once:
-            emu_instance = EmulatorThread.instance()
-            if emu_instance is not None:
-                emu_instance.end()
-            EmulatorThread.destroy_lib()
+        # TODO: Do we need to do something anymore?
 
     def is_opened(self):
         """Returns whether or not the debugger is opened."""
