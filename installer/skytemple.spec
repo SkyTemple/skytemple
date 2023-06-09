@@ -17,11 +17,11 @@ additional_datas = [
     (os.path.join(site_packages, 'skytemple_ssb_debugger', '*.glade'), 'skytemple_ssb_debugger'),
     (os.path.join(site_packages, 'skytemple_ssb_debugger', '*.lang'), 'skytemple_ssb_debugger'),
     (os.path.join(site_packages, 'skytemple_ssb_debugger', 'controller', '*.glade'), 'skytemple_ssb_debugger/controller'),
+    (os.path.join(site_packages, 'skytemple_ssb_debugger', 'controller', 'desmume_control_ui', '*.glade'), 'skytemple_ssb_debugger/controller/desmume_control_ui'),
     (os.path.join(site_packages, 'skytemple_files', '_resources'), 'skytemple_files/_resources'),
     (os.path.join(site_packages, 'skytemple_files', 'graphics', 'chara_wan', 'Shadow.png'), 'skytemple_files/graphics/chara_wan'),
     (os.path.join(site_packages, 'skytemple_dtef', 'template.png'), 'skytemple_dtef'),
     (os.path.abspath(os.path.join('.', 'armips.exe')), 'skytemple_files/_resources'),
-    (os.path.join(site_packages, 'desmume', 'frontend', 'control_ui', '*.glade'), 'desmume/frontend/control_ui'),
     (os.path.join(site_packages, "gtkspellcheck", "_pylocales", "locales.db"), "."),
     (os.path.join(site_packages, "pygal", "css", "*"), 'pygal/css'),
     (os.path.join(site_packages, 'certifi', 'cacert.pem'), 'certifi'),
@@ -42,8 +42,7 @@ for (path, directories, filenames) in os.walk(os.path.join(pkg_path, 'module')):
                                      f'skytemple/{rp}'))
 
 additional_binaries = [
-    (os.path.join(site_packages, "desmume", "libdesmume.dll"), "."),
-    (os.path.join(site_packages, "desmume", "SDL2.dll"), "."),
+    ("SDL2.dll", "."),
     (os.path.join(site_packages, "skytemple_tilequant", "aikku", "libtilequant.dll"), "skytemple_tilequant/aikku"),
 ]
 
