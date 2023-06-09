@@ -65,6 +65,10 @@ export DYLD_LIBRARY_PATH="\$(dirname \$0)"
 export PYENCHANT_LIBRARY_PATH="\$(dirname \$0)/libenchant-2.dylib"
 export PATH="\$PATH:\$(dirname \$0)/skytemple_files/_resources"
 
+# Disable SDL video. It's not used and would only be required with joystick/gamepad support,
+# but alas it doesn't work because Cococa only supports I/O from the main thread.
+export SDL_VIDEODRIVER=dummy
+
 # Fix the language 🥲
 # The output of "defaults read -g AppleLanguages" looks like this, so we need to extract
 # the language code and replace "-" with "_".
@@ -82,7 +86,7 @@ EOF
 chmod +x $appdir/pre_run_skytemple
 
 # Write the version number to files that are read at runtime
-version=$PACKAGE_VERSION || $(python3 -c "import pkg_resources; print(pkg_resources.get_distribution(\"skytemple\").version)")
+version=$PACKAGE_VERSION ||$(python3 -c "import pkg_resources; print(pkg_resources.get_distribution(\"skytemple\").version)")
 
 echo $version > $appdir/VERSION
 echo $version > $appdir/data/VERSION
