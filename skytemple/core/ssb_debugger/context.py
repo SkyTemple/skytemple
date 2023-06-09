@@ -37,7 +37,6 @@ from skytemple_files.common.script_util import ScriptFiles, load_script_files, S
 from skytemple_files.common.util import Capturable
 from skytemple_files.script.ssb.constants import SsbConstant
 from skytemple_ssb_debugger.context.abstract import AbstractDebuggerControlContext, EXPS_KEYWORDS
-from skytemple_ssb_debugger.threadsafe import synchronized_now
 from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
@@ -105,26 +104,26 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         assert current is not None
         return current._project_fm
 
-    @synchronized_now(file_load_lock)
     def get_ssb(self, filename, ssb_file_manager: 'SsbFileManager') -> 'SsbLoadedFile':
-        f: 'SsbLoadedFile' = RomProject.get_current().open_file_in_rom(filename, SsbLoadedFileHandler,  # type: ignore
-                                                                       filename=filename,
-                                                                       static_data=self.get_static_data(),
-                                                                       project_fm=self._project_fm)
-        f.file_manager = ssb_file_manager
-        return f
+        with file_load_lock:
+            f: 'SsbLoadedFile' = RomProject.get_current().open_file_in_rom(filename, SsbLoadedFileHandler,  # type: ignore
+                                                                           filename=filename,
+                                                                           static_data=self.get_static_data(),
+                                                                           project_fm=self._project_fm)
+            f.file_manager = ssb_file_manager
+            return f
 
     def on_script_edit(self, filename):
         EventManager.instance().trigger(EVT_DEBUGGER_SCRIPT_OPEN, filename)
 
-    @synchronized_now(save_lock)
     def save_ssb(self, filename, ssb_model, ssb_file_manager: 'SsbFileManager'):
-        project = RomProject.get_current()
-        assert project
-        ssb_loaded_file = self.get_ssb(filename, ssb_file_manager)
-        ssb_loaded_file.ssb_model = ssb_model
-        project.prepare_save_model(filename, assert_that=ssb_loaded_file)
-        project.save_as_is()
+        with file_load_lock:
+            project = RomProject.get_current()
+            assert project
+            ssb_loaded_file = self.get_ssb(filename, ssb_file_manager)
+            ssb_loaded_file.ssb_model = ssb_model
+            project.prepare_save_model(filename, assert_that=ssb_loaded_file)
+            project.save_as_is()
 
     def open_scene_editor(self, type_of_scene, path):
         try:
