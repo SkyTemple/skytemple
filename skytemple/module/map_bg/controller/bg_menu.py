@@ -285,21 +285,33 @@ class BgMenuController:
             try:
                 img1_path = map_import_layer1_file.get_filename()
                 img2_path = map_import_layer2_file.get_filename()
+                # Make sure to raise an error if the images have less than 256 colors. Otherwise this could cause issues.
+                img1: Optional[Image.Image] = None
+                img2: Optional[Image.Image] = None
+                if img1_path is not None:
+                    with open(img1_path, 'rb') as f1:
+                        img1 = Image.open(f1)
+                        img1.load()
+                        if img1.mode == "P":
+                            if len(img1.palette.palette) < 768:
+                                raise ValueError(_("The image for the first layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."))
+                if img2_path is not None:
+                    with open(img2_path, 'rb') as f2:
+                        img2 = Image.open(f2)
+                        img2.load()
+                        if img2.mode == "P":
+                            if len(img2.palette.palette) < 768:
+                                raise ValueError(_("The image for the second layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."))
                 palettes_from_lower_layer = 16  # self.parent.builder.get_object('dialog_map_import_palette_config').get_value()
                 if self.parent.bma.number_of_layers < 2 and img1_path is not None:
-                    with open(img1_path, 'rb') as f:
-                        self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, Image.open(f), None, True)
+                    self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, img1, None, True)
                 elif img1_path is not None and img2_path is None:
-                    with open(img1_path, 'rb') as f1:
-                        self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, Image.open(f1), None, True)
+                    self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, img1, None, True)
                 elif img1_path is None and img2_path is not None:
-                    with open(img2_path, 'rb') as f2:
-                        self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, None, Image.open(f2), True)
+                    self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, None, img2, True)
                 elif img1_path is not None and img2_path is not None:
-                    with open(img1_path, 'rb') as f1:
-                        with open(img2_path, 'rb') as f2:
-                            self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, Image.open(f1), Image.open(f2),
-                                                     True, how_many_palettes_lower_layer=int(palettes_from_lower_layer))
+                    self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, img1, img2,
+                                             True, how_many_palettes_lower_layer=int(palettes_from_lower_layer))
             except Exception as err:
                 display_error(
                     sys.exc_info(),
