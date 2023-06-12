@@ -103,6 +103,7 @@ class BrowserController(AbstractController):
         self._spritebrowser_url: Optional[str] = DEFAULT_SERVER_BROWSER
         self._spriteclient: Optional[SpriteCollabClient] = None
         self._disable_switch = True
+        self._something_loading = False
 
     @classmethod
     def get_instance(cls, module):
@@ -314,8 +315,13 @@ class BrowserController(AbstractController):
             self._filter__make_subtree_visible(model, iter)
 
     def load_entry(self, idx: int, form_paths: List[str]):
+        # sanity check:
+        if self._something_loading:
+            return
+        self._something_loading = True
         stack: Gtk.Stack = self.builder.get_object('sc_stack')
         stack.set_visible_child(self.builder.get_object('sc_page_loader'))
+        self.builder.get_object("sc_tree").set_sensitive(False)
 
         Thread(target=entry_loader, args=(
             self._spriteclient, idx, form_paths, self.after_load_entry, self.error_during_load_entry
@@ -347,6 +353,8 @@ class BrowserController(AbstractController):
                 pass
         except Exception as err:
             self.error_during_load_entry(err)
+        self._something_loading = False
+        self.builder.get_object("sc_tree").set_sensitive(True)
 
     def error_during_load_entry(self, error: Exception):
         stack: Gtk.Stack = self.builder.get_object('sc_stack')
@@ -357,6 +365,8 @@ class BrowserController(AbstractController):
             window=self.builder.get_object('sc_window')
         )
         stack.set_visible_child(self.builder.get_object('sc_page_welcome'))
+        self._something_loading = False
+        self.builder.get_object("sc_tree").set_sensitive(True)
 
     def clear_entries(self):
         stack: Gtk.Stack = self.builder.get_object('sc_content_stack')
