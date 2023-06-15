@@ -459,14 +459,12 @@ class BgMenuController:
                     self.parent.bpc.process_bpa_change(i, new_bpa.number_of_tiles)
                 if bpa is not None and not self.parent.builder.get_object(f'bpa_enable{gui_i}').get_active():
                     # HAS TO BE DELETED
-                    map_bg_entry = self.parent.module.get_level_entry(self.parent.item_id)
                     # Delete from BPC
                     self.parent.bpc.process_bpa_change(i, u16(0))
                     # Delete from MapBG list
-                    map_bg_entry.bpa_names[i] = None
+                    self.parent.module.set_level_entry_bpa(self.parent.item_id, i, None)
                     # Refresh controller state
                     self.parent.bpas = self.parent.module.get_bpas(self.parent.item_id)
-                    self.parent.module.mark_level_list_as_modified()
                 if bpa is not None:
                     new_frame_info = []
                     for entry_i, entry in enumerate(bpa_entries):
