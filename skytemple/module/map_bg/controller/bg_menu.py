@@ -37,7 +37,7 @@ from skytemple_files.graphics.bg_list_dat import BPA_EXT, DIR
 from skytemple_files.graphics.bpa.protocol import BpaProtocol
 from skytemple_files.graphics.bpc.protocol import BpcProtocol
 from skytemple_files.graphics.bpl.protocol import BplProtocol
-from skytemple_files.common.i18n_util import _
+from skytemple_files.common.i18n_util import _, f
 
 from PIL import Image
 from gi.repository import Gtk
@@ -459,14 +459,12 @@ class BgMenuController:
                     self.parent.bpc.process_bpa_change(i, new_bpa.number_of_tiles)
                 if bpa is not None and not self.parent.builder.get_object(f'bpa_enable{gui_i}').get_active():
                     # HAS TO BE DELETED
-                    map_bg_entry = self.parent.module.get_level_entry(self.parent.item_id)
                     # Delete from BPC
                     self.parent.bpc.process_bpa_change(i, u16(0))
                     # Delete from MapBG list
-                    map_bg_entry.bpa_names[i] = None
+                    self.parent.module.set_level_entry_bpa(self.parent.item_id, i, None)
                     # Refresh controller state
                     self.parent.bpas = self.parent.module.get_bpas(self.parent.item_id)
-                    self.parent.module.mark_level_list_as_modified()
                 if bpa is not None:
                     new_frame_info = []
                     for entry_i, entry in enumerate(bpa_entries):
@@ -492,6 +490,14 @@ class BgMenuController:
             self.parent.mark_as_modified()
 
     def on_men_tiles_ani_export_activate(self):
+        if len([x for x in self.parent.bpas if x is not None]) < 1:
+            display_error(
+                None,
+                f(_("This map has no BPA for animated tiles activated.")),
+                _("No animated tiles"),
+                should_report=False
+            )
+            return
         dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_tiles_animated_export')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
@@ -507,9 +513,10 @@ class BgMenuController:
             if bpa is not None:
                 store.append([f'BPA{i+1}', i])
         cb.set_model(store)
-        cell = Gtk.CellRendererText()
-        cb.pack_start(cell, True)
-        cb.add_attribute(cell, 'text', 0)
+        if len(cb.get_cells()) < 1:
+            cell = Gtk.CellRendererText()
+            cb.pack_start(cell, True)
+            cb.add_attribute(cell, 'text', 0)
         cb.set_active(0)
 
         dialog.run()
