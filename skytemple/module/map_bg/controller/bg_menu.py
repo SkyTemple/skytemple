@@ -37,7 +37,7 @@ from skytemple_files.graphics.bg_list_dat import BPA_EXT, DIR
 from skytemple_files.graphics.bpa.protocol import BpaProtocol
 from skytemple_files.graphics.bpc.protocol import BpcProtocol
 from skytemple_files.graphics.bpl.protocol import BplProtocol
-from skytemple_files.common.i18n_util import _
+from skytemple_files.common.i18n_util import _, f
 
 from PIL import Image
 from gi.repository import Gtk
@@ -285,21 +285,33 @@ class BgMenuController:
             try:
                 img1_path = map_import_layer1_file.get_filename()
                 img2_path = map_import_layer2_file.get_filename()
+                # Make sure to raise an error if the images have less than 256 colors. Otherwise this could cause issues.
+                img1: Optional[Image.Image] = None
+                img2: Optional[Image.Image] = None
+                if img1_path is not None:
+                    with open(img1_path, 'rb') as f1:
+                        img1 = Image.open(f1)
+                        img1.load()
+                        if img1.mode == "P":
+                            if len(img1.palette.palette) < 768:
+                                raise ValueError(_("The image for the first layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."))
+                if img2_path is not None:
+                    with open(img2_path, 'rb') as f2:
+                        img2 = Image.open(f2)
+                        img2.load()
+                        if img2.mode == "P":
+                            if len(img2.palette.palette) < 768:
+                                raise ValueError(_("The image for the second layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."))
                 palettes_from_lower_layer = 16  # self.parent.builder.get_object('dialog_map_import_palette_config').get_value()
                 if self.parent.bma.number_of_layers < 2 and img1_path is not None:
-                    with open(img1_path, 'rb') as f:
-                        self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, Image.open(f), None, True)
+                    self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, img1, None, True)
                 elif img1_path is not None and img2_path is None:
-                    with open(img1_path, 'rb') as f1:
-                        self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, Image.open(f1), None, True)
+                    self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, img1, None, True)
                 elif img1_path is None and img2_path is not None:
-                    with open(img2_path, 'rb') as f2:
-                        self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, None, Image.open(f2), True)
+                    self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, None, img2, True)
                 elif img1_path is not None and img2_path is not None:
-                    with open(img1_path, 'rb') as f1:
-                        with open(img2_path, 'rb') as f2:
-                            self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, Image.open(f1), Image.open(f2),
-                                                     True, how_many_palettes_lower_layer=int(palettes_from_lower_layer))
+                    self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, img1, img2,
+                                             True, how_many_palettes_lower_layer=int(palettes_from_lower_layer))
             except Exception as err:
                 display_error(
                     sys.exc_info(),
@@ -459,14 +471,12 @@ class BgMenuController:
                     self.parent.bpc.process_bpa_change(i, new_bpa.number_of_tiles)
                 if bpa is not None and not self.parent.builder.get_object(f'bpa_enable{gui_i}').get_active():
                     # HAS TO BE DELETED
-                    map_bg_entry = self.parent.module.get_level_entry(self.parent.item_id)
                     # Delete from BPC
                     self.parent.bpc.process_bpa_change(i, u16(0))
                     # Delete from MapBG list
-                    map_bg_entry.bpa_names[i] = None
+                    self.parent.module.set_level_entry_bpa(self.parent.item_id, i, None)
                     # Refresh controller state
                     self.parent.bpas = self.parent.module.get_bpas(self.parent.item_id)
-                    self.parent.module.mark_level_list_as_modified()
                 if bpa is not None:
                     new_frame_info = []
                     for entry_i, entry in enumerate(bpa_entries):
@@ -492,6 +502,14 @@ class BgMenuController:
             self.parent.mark_as_modified()
 
     def on_men_tiles_ani_export_activate(self):
+        if len([x for x in self.parent.bpas if x is not None]) < 1:
+            display_error(
+                None,
+                f(_("This map has no BPA for animated tiles activated.")),
+                _("No animated tiles"),
+                should_report=False
+            )
+            return
         dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_tiles_animated_export')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
@@ -507,9 +525,10 @@ class BgMenuController:
             if bpa is not None:
                 store.append([f'BPA{i+1}', i])
         cb.set_model(store)
-        cell = Gtk.CellRendererText()
-        cb.pack_start(cell, True)
-        cb.add_attribute(cell, 'text', 0)
+        if len(cb.get_cells()) < 1:
+            cell = Gtk.CellRendererText()
+            cb.pack_start(cell, True)
+            cb.add_attribute(cell, 'text', 0)
         cb.set_active(0)
 
         dialog.run()

@@ -281,7 +281,11 @@ class SpriteModule(AbstractModule):
                 self.get_attack_bin_ctx() as attack_bin, \
                 self.get_ground_bin_ctx() as ground_bin:
             if len(monster_bin) != len(attack_bin) or len(attack_bin) != len(ground_bin):
-                display_error(None, _("Error with sprite files: They don't have the same length. This will be corrected by adding empty sprites. You should re-import the last imported sprite."))
+                display_error(
+                    None,
+                    _("Error with sprite files: They don't have the same length. This will be corrected by adding empty sprites. You should re-import the last imported sprite."),
+                    should_report=False
+                )
                 max_size = max(len(monster_bin), max(len(attack_bin), len(ground_bin)))
                 
                 for missing_monster_sprite_id in range(len(monster_bin), max_size):

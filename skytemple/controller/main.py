@@ -91,8 +91,17 @@ class MainController:
 
     @classmethod
     def reload_view(cls):
-        cls._instance.load_view(cls._instance._last_selected_view_model, cls._instance._last_selected_view_iter,
-                                cls._instance._main_item_list)
+        logger.debug('Reloading view.')
+        cls._instance._lock_trees()
+        # Show loading stack page in editor stack
+        cls._instance._editor_stack.set_visible_child(cls._instance.builder.get_object('es_loading'))
+        # Fully load the view and the controller
+        AsyncTaskDelegator.run_task(load_controller(
+            cls._instance._current_view_module,  # type: ignore
+            cls._instance._current_view_controller_class,  # type: ignore
+            cls._instance._current_view_item_id,  # type: ignore
+            cls._instance  # type: ignore
+        ))
 
     @classmethod
     def view_info(cls) -> Tuple[Optional[AbstractModule], Optional[Type[AbstractController]], Optional[int]]:
@@ -117,8 +126,6 @@ class MainController:
         self._loading_dialog: Gtk.Dialog
         self._main_item_list: Gtk.TreeView
         self._main_item_filter: Gtk.TreeModel
-        self._last_selected_view_model: Optional[Gtk.TreeModel] = None
-        self._last_selected_view_iter: Optional[Gtk.TreeIter] = None
 
         self._recent_files_store: Gtk.ListStore = self.builder.get_object('recent_files_store')
         self._item_store: Gtk.TreeStore = builder.get_object('item_store')
@@ -432,8 +439,6 @@ class MainController:
         # Scroll node into view
         if scroll_into_view:
             tree.scroll_to_cell(path, None, True, 0.5, 0.5)
-        self._last_selected_view_model = model
-        self._last_selected_view_iter = treeiter
 
     def on_view_loaded(
             self, module: AbstractModule, controller: AbstractController, item_id: int
