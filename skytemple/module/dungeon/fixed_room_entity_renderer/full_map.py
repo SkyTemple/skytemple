@@ -39,7 +39,7 @@ class FullMapEntityRenderer(AbstractEntityRenderer):
                 self._draw_trap(ctx, tile.trap_id, sx, sy)
             # Has item?
             if item.item_id > 0:
-                if item.item_id <= self.parent.module.item_count():
+                if item.item_id < self.parent.module.item_count():
                     self._draw_item(ctx, item.item_id, sx, sy)
                 else:
                     ctx.arc(sx + DPCI_TILE_DIM * DPC_TILING_DIM / 2, sy + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
