@@ -46,7 +46,7 @@ additional_binaries = [
     (os.path.join(os.sep, "usr", "local", "lib", "libaspell.15.dylib"), "."), # Gets installed with Enchant
     (os.path.join(os.sep, "usr", "local", "lib", "enchant-2", "enchant_applespell.so"), "."), # Gets installed with Enchant
     (os.path.join(os.sep, "usr", "local", "opt", "cairo", "lib", "libcairo.2.dylib"), "."),
-    (os.path.join(site_packages, "skytemple_tilequant", "libtilequant.so"), "skytemple_tilequant/aikku"),
+    (os.path.join(site_packages, "libtilequant.dylib"), "."),
 ]
 
 # Add all module *.glade files.
