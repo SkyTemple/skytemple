@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-06-15 22:15+0000\n"
+"POT-Creation-Date: 2023-07-02 13:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5891,34 +5891,34 @@ msgid ""
 "Using Gbulb event loop: This enables Single-Thread asynchronous loading. It is generally the preferredoption if available."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:52
+#: skytemple/skytemple/controller/tilequant_dialog.py:51
 #: skytemple/skytemple/core/ui_utils.py:92
 msgid "PNG image (*.png)"
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:57
+#: skytemple/skytemple/controller/tilequant_dialog.py:56
 msgid "JPEG image (*.jpg, *.jpeg)"
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:63
+#: skytemple/skytemple/controller/tilequant_dialog.py:62
 #: skytemple/skytemple/core/ui_utils.py:77
 #: skytemple/skytemple/module/monster/controller/level_up.py:561
 msgid "Any files"
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:77
+#: skytemple/skytemple/controller/tilequant_dialog.py:76
 msgid "The maximum number of palettes that can be used. For normal backgrounds, this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes (since the last 2 palettes are not rendered in game)."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:82
+#: skytemple/skytemple/controller/tilequant_dialog.py:81
 msgid "This exact color of the image will be imported as transparency (default: #12ab56)."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:85
+#: skytemple/skytemple/controller/tilequant_dialog.py:84
 msgid "You can use this to convert multiple images at once with the same palettes. This is useful for map backgrounds with multiple layers, that need to share the same palettes."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:91
+#: skytemple/skytemple/controller/tilequant_dialog.py:90
 msgid ""
 "Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they \"blend into\" each other. This will make the image look like it contains more colors but also might decrease the overall visual quality. Two different algorithms are available.\n"
 "\n"
@@ -5927,43 +5927,43 @@ msgid ""
 "Reorganize colors only: Colors will be reorganized so that they fit the game's format. SkyTemple will not attempt to reduce the amount of overall colors to make this work, so you will get an error, if it's not possible with the current amount. However if it does work, the output image will look identical to the original image."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:102
+#: skytemple/skytemple/controller/tilequant_dialog.py:101
 msgid "Only relevant if dithering is enabled: This controls the amount of dithering applied."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:128
+#: skytemple/skytemple/controller/tilequant_dialog.py:127
 msgid "Please select an input image."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:133
+#: skytemple/skytemple/controller/tilequant_dialog.py:132
 msgid "Since you selected two images to convert, you will be asked for both images where to save them to."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:139
+#: skytemple/skytemple/controller/tilequant_dialog.py:138
 msgid "Save first image as (PNG)..."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:160
+#: skytemple/skytemple/controller/tilequant_dialog.py:159
 msgid "Save second image as (PNG)..."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:192
+#: skytemple/skytemple/controller/tilequant_dialog.py:202
 msgid "You entered invalid numbers."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:195
+#: skytemple/skytemple/controller/tilequant_dialog.py:205
 msgid "The input image does not exist."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:198
+#: skytemple/skytemple/controller/tilequant_dialog.py:208
 msgid "The second input image does not exist."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:217
+#: skytemple/skytemple/controller/tilequant_dialog.py:227
 msgid "The input image is not a supported format."
 msgstr ""
 
-#: skytemple/skytemple/controller/tilequant.py:234
+#: skytemple/skytemple/controller/tilequant_dialog.py:244
 msgid "Image was converted."
 msgstr ""
 
@@ -8301,7 +8301,7 @@ msgid ""
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2279
-#: skytemple/skytemple/skytemple.glade:2517
+#: skytemple/skytemple/skytemple.glade:2660
 msgid "Input Image"
 msgstr ""
 
@@ -14181,10 +14181,22 @@ msgstr ""
 msgid "Dithering Level"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:2569
+#: skytemple/skytemple/skytemple.glade:2531
+msgid "No. of tile clustering passes"
+msgstr ""
+
+#: skytemple/skytemple/skytemple.glade:2587
+msgid "No. of color clustering passes"
+msgstr ""
+
+#: skytemple/skytemple/skytemple.glade:2633
+msgid "Advanced Options"
+msgstr ""
+
+#: skytemple/skytemple/skytemple.glade:2712
 msgid "Additional Input Image (optional)"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:2663
+#: skytemple/skytemple/skytemple.glade:2806
 msgid "Convert"
 msgstr ""
