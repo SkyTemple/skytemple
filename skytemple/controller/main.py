@@ -29,7 +29,7 @@ import logging
 from gi.repository.GdkPixbuf import Pixbuf
 
 from skytemple.controller.settings import SettingsController
-from skytemple.controller.tilequant import TilequantController
+from skytemple.controller.tilequant_dialog import TilequantController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.controller_loader import load_controller
 from skytemple.core.error_handler import display_error, capture_error

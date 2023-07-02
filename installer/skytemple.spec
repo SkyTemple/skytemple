@@ -43,7 +43,7 @@ for (path, directories, filenames) in os.walk(os.path.join(pkg_path, 'module')):
 
 additional_binaries = [
     ("SDL2.dll", "."),
-    (os.path.join(site_packages, "skytemple_tilequant", "aikku", "libtilequant.dll"), "skytemple_tilequant/aikku"),
+    (os.path.join(site_packages, "tilequant", "libtilequant.dll"), "tilequant"),
 ]
 
 block_cipher = None

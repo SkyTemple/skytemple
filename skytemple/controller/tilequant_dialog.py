@@ -24,8 +24,7 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple_files.user_error import USER_ERROR_MARK
-from skytemple_tilequant.aikku.image_converter import AikkuImageConverter, DitheringMode
-from skytemple_tilequant.image_converter import ImageConverter
+from tilequant import Tilequant, DitheringMode
 from skytemple_files.common.i18n_util import _
 
 from PIL import Image
@@ -179,6 +178,17 @@ class TilequantController:
                 return
 
         try:
+            num_tile_cluster_passes = int(self.builder.get_object('tq_num_tile_cluster_passes').get_text())
+            assert num_tile_cluster_passes > 0
+        except (ValueError, AssertionError):
+            num_tile_cluster_passes = 0
+        try:
+            num_color_cluster_passes = int(self.builder.get_object('tq_num_color_cluster_passes').get_text())
+            assert num_color_cluster_passes > 0
+        except (ValueError, AssertionError):
+            num_color_cluster_passes = 0
+            
+        try:
             num_pals = int(self.builder.get_object('tq_number_palettes').get_text())
             input_image = self.builder.get_object('tq_input_file').get_filename()
             second_input_file = self.builder.get_object('tq_second_file').get_filename()
@@ -217,7 +227,7 @@ class TilequantController:
                     self.error(_("The input image is not a supported format."), should_report=False)
                     return
                 try:
-                    img = self._convert(image, transparent_color, mode, num_pals, dither_level)
+                    img = self._convert(image, transparent_color, mode, num_pals, dither_level, num_color_cluster_passes, num_tile_cluster_passes)
                     if not has_second_image:
                         # Only one image
                         img.save(output_image)
@@ -249,16 +259,14 @@ class TilequantController:
             should_report=should_report
         )
 
-    def _convert(self, image, transparent_color, mode, num_pals, dither_level):
+    def _convert(self, image, transparent_color, mode, num_pals, dither_level, num_color_cluster_passes, num_tile_cluster_passes):
+        converter = Tilequant(image, transparent_color)
         if mode == ImageConversionMode.JUST_REORGANIZE:
-            converter = ImageConverter(image, transparent_color=transparent_color)
             try:
-                return converter.convert(num_pals, colors_per_palette=16, color_steps=-1, max_colors=256,
-                                         low_to_high=False, mosaic_limiting=False)
+                return converter.simple_convert(num_pals, 16)
             except ValueError as e:
                 setattr(e, USER_ERROR_MARK, True)
                 raise e
-        converter = AikkuImageConverter(image, transparent_color)
         dither_mode = DitheringMode.NONE
         if mode == ImageConversionMode.DITHERING_ORDERED:
             dither_mode = DitheringMode.ORDERED
@@ -267,5 +275,7 @@ class TilequantController:
         return converter.convert(
             num_pals,
             dithering_mode=dither_mode,
-            dithering_level=dither_level
+            dithering_level=dither_level,
+            num_color_cluster_passes=num_color_cluster_passes,
+            num_tile_cluster_passes=num_tile_cluster_passes
         )
