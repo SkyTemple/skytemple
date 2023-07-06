@@ -125,7 +125,7 @@ jobs:
       
           python -m pip install --user pipx
           python -m pipx ensurepath
-          pipx install "gvsbuild @ git+https://github.com/theCapypara/gvsbuild.git@fix-gtk3-clipboard"
+          pipx install "gvsbuild==2023.7.0"
       - name: Build GTK and other libs
         run: |
           $env:path = "C:\pipx_bin;" + $env:path
