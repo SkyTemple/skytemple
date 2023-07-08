@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-07-02 13:43+0000\n"
+"POT-Creation-Date: 2023-07-08 08:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1605,28 +1605,32 @@ msgid ""
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:516
+#: skytemple-files/skytemple_files/common/util.py:507
+msgid "The file you tried to open does not seem to be a valid NDS ROM file."
+msgstr ""
+
+#: skytemple-files/skytemple_files/common/util.py:521
 msgid "This ROM is not supported by SkyTemple."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:586
-#: skytemple-files/skytemple_files/common/util.py:605
+#: skytemple-files/skytemple_files/common/util.py:591
+#: skytemple-files/skytemple_files/common/util.py:610
 #, python-brace-format
 msgid "Binary {binary.name} not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:626
-#: skytemple-files/skytemple_files/common/util.py:657
+#: skytemple-files/skytemple_files/common/util.py:631
+#: skytemple-files/skytemple_files/common/util.py:662
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:629
+#: skytemple-files/skytemple_files/common/util.py:634
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:652
+#: skytemple-files/skytemple_files/common/util.py:657
 #, python-brace-format
 msgid "Folder {path} already exists."
 msgstr ""
@@ -3204,7 +3208,7 @@ msgstr ""
 msgid "Can not import map background: Height of both images must match the current map height: {expected_height}px"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/bpa/_model.py:210
+#: skytemple-files/skytemple_files/graphics/bpa/_model.py:214
 #: skytemple-rust/src/st_bpa.rs:234
 msgid "The dimensions of all images must be the same."
 msgstr ""
