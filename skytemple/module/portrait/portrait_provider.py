@@ -112,7 +112,8 @@ class PortraitProvider:
         with portrait_provider_lock:
             self._loaded[(entry_id, sub_id)] = loaded
             self._loaded__is_fallback[(entry_id, sub_id)] = is_fallback
-            self._requests.remove((entry_id, sub_id))
+            if (entry_id, sub_id) in self._requests:
+                self._requests.remove((entry_id, sub_id))
         after_load_cb()
 
     def get_loader(self) -> cairo.Surface:
