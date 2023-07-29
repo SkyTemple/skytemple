@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkTextBuffer" id="buff_lang1_desc">
@@ -1091,32 +1091,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
-                <property name="label" translatable="yes">Unk 13:</property>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">4</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry_unk13">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="width-chars">10</property>
-                <signal name="changed" handler="on_entry_unk13_changed" swapped="no"/>
-              </object>
-              <packing>
-                <property name="left-attach">1</property>
-                <property name="top-attach">4</property>
-                <property name="width">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="halign">end</property>
-                <property name="label" translatable="yes">Unk 15:</property>
+                <property name="label" translatable="yes">Text String ID for Range Text:</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
@@ -1124,16 +1099,15 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry_unk15">
+              <object class="GtkEntry" id="entry_range_check_text">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="width-chars">10</property>
-                <signal name="changed" handler="on_entry_unk15_changed" swapped="no"/>
+                <signal name="changed" handler="on_entry_range_check_text_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
                 <property name="top-attach">5</property>
-                <property name="width">2</property>
               </packing>
             </child>
             <child>
@@ -1333,11 +1307,74 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
-                <property name="label" translatable="yes">Message ID:</property>
+                <property name="label" translatable="yes">Message ID for Use:</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
                 <property name="top-attach">6</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_help_range_check_text">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_btn_help_range_check_text_clicked" swapped="no"/>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">5</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_help_ai_frozen_check">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_btn_help_ai_frozen_check_clicked" swapped="no"/>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">AI - Don't use on Frozen:</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="switch_ai_frozen_check">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <signal name="state-set" handler="on_switch_ai_frozen_check_state_set" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">4</property>
               </packing>
             </child>
           </object>

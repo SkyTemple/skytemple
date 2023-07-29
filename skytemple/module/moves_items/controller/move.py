@@ -164,21 +164,12 @@ class MoveController(AbstractController):
         self.mark_as_modified()
 
     @catch_overflow(u8)
-    def on_entry_unk13_changed(self, w, *args):
+    def on_entry_range_check_text_changed(self, w, *args):
         try:
             val = u8_checked(int(w.get_text()))
         except ValueError:
             return
-        self.move.unk13 = val
-        self.mark_as_modified()
-
-    @catch_overflow(u8)
-    def on_entry_unk15_changed(self, w, *args):
-        try:
-            val = u8_checked(int(w.get_text()))
-        except ValueError:
-            return
-        self.move.unk15 = val
+        self.move.range_check_text = val
         self.mark_as_modified()
 
     @catch_overflow(u8)
@@ -236,6 +227,10 @@ class MoveController(AbstractController):
         self.mark_as_modified()
 
     def on_switch_ignores_taunted_state_set(self, w, *args):
+        self._update_from_switch(w)
+        self.mark_as_modified()
+
+    def on_switch_ai_frozen_check_state_set(self, w, *args):
         self._update_from_switch(w)
         self.mark_as_modified()
 
@@ -407,6 +402,29 @@ class MoveController(AbstractController):
         md.run()
         md.destroy()
 
+    def on_btn_help_ai_frozen_check_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("Whether the AI with Status Checker can select this move when the target is frozen."),
+            title=_("AI - Don't use on Frozen:")[:-1]
+        )
+        md.run()
+        md.destroy()
+
+    def on_btn_help_range_check_text_clicked(self, w, *args):
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("Text string to display to describe the range of the move. 0 uses the Text String 10097 (EU). Higher values select "
+              "the strings after that (offsets)."),
+            title=_("Text String ID for Range Text:")[:-1]
+        )
+        md.run()
+        md.destroy()
+
     def _init_language_labels(self):
         langs = self._string_provider.get_languages()
         for lang_id in range(0, 5):
@@ -465,8 +483,7 @@ class MoveController(AbstractController):
         self._set_entry('entry_number_chained_hits', self.move.number_chained_hits)
         self._set_entry('entry_ai_weight', self.move.ai_weight)
         self._set_entry('entry_ai_condition1_chance', self.move.ai_condition1_chance)
-        self._set_entry('entry_unk13', self.move.unk13)
-        self._set_entry('entry_unk15', self.move.unk15)
+        self._set_entry('entry_range_check_text', self.move.range_check_text)
         self._set_entry('entry_message_id', self.move.message_id)
 
         self._set_cb('cb_category', self.move.category)
@@ -481,6 +498,7 @@ class MoveController(AbstractController):
         self._set_switch('switch_is_snatchable', self.move.is_snatchable)
         self._set_switch('switch_uses_mouth', self.move.uses_mouth)
         self._set_switch('switch_ignores_taunted', self.move.ignores_taunted)
+        self._set_switch('switch_ai_frozen_check', self.move.ai_frozen_check)
 
     def mark_as_modified(self):
         if not self._is_loading:
