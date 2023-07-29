@@ -106,6 +106,11 @@ class LevelUpController(AbstractController):
         self._support_webview = False
         self._webview = None
         self._render_graph = True
+        self._has_stats = True
+
+    @property
+    def has_stats(self) -> bool:
+        return self._has_stats
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'level_up.glade')
@@ -422,6 +427,7 @@ class LevelUpController(AbstractController):
             for child in stats_box:
                 stats_box.remove(child)
             self._render_graph = False
+            self._has_stats = False
             stats_box.pack_start(Gtk.Label.new(_('This Pokémon has no stats.')), True, True, 0)
         else:
             self._level_bin_entry = self.module.get_m_level_bin_entry(entry_id)
@@ -453,6 +459,7 @@ class LevelUpController(AbstractController):
             level_up_box.pack_start(Gtk.Label.new(_('This Pokémon has no moves.')), True, True, 0)
             hmtm_box.pack_start(Gtk.Label.new(_('This Pokémon has no moves.')), True, True, 0)
             egg_box.pack_start(Gtk.Label.new(_('This Pokémon has no moves.')), True, True, 0)
+            self._has_stats = False
         else:
             entry = self._waza_p.learnsets[self.item_id]
             # Level up

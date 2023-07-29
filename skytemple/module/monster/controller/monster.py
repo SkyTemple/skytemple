@@ -137,7 +137,7 @@ class MonsterController(AbstractController):
         self._check_sprite_size(self.__class__._previous_item_id != self.item_id)
         self.__class__._previous_item_id = self.item_id
 
-        return self.builder.get_object('box_main')
+        return self.builder.get_object('box_main_parent')
 
     @typing.no_type_check
     def unload(self):
@@ -1264,6 +1264,10 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         tab_label = Gtk.Label.new(_('Portraits'))
         notebook.append_page(self.module.get_portrait_view(self.item_id), tab_label)
         self._reload_sprite_page()
+        if self._level_up_controller is not None:
+            self._show_no_stats_warning(not self._level_up_controller.has_stats)
+        else:
+            self._show_no_stats_warning(False) # sub entries
 
     def _reload_sprite_page(self):
         notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
@@ -1274,6 +1278,10 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         self._cached_sprite_page = notebook.append_page(
             self.module.get_sprite_view(self.entry.sprite_index, self.item_id), tab_label
         )
+
+    def _show_no_stats_warning(self, reveal: bool):
+        info_warning_stats: Gtk.InfoBar = self.builder.get_object("info_warning_stats")
+        info_warning_stats.set_revealed(reveal)
 
     def _update_param_label(self):
         label: Gtk.Label = self.builder.get_object('label_param')
