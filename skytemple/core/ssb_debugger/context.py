@@ -14,7 +14,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-import os.path
 from threading import Lock
 from typing import TYPE_CHECKING, Optional, List, Iterable, Dict, Set
 
@@ -117,7 +116,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         EventManager.instance().trigger(EVT_DEBUGGER_SCRIPT_OPEN, filename)
 
     def save_ssb(self, filename, ssb_model, ssb_file_manager: 'SsbFileManager'):
-        with file_load_lock:
+        with save_lock:
             project = RomProject.get_current()
             assert project
             ssb_loaded_file = self.get_ssb(filename, ssb_file_manager)
