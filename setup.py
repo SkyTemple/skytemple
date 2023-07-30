@@ -79,7 +79,8 @@ setup(
         'gbulb >= 0.6.2',
         'psutil >= 5.9.0',
         'sentry-sdk >= 1.5',
-        'packaging'
+        'packaging',
+        'importlib_metadata>=1.3; python_version < "3.9"'
     ],
     extras_require={
         'discord':  ["pypresence >= 4.2.1"],

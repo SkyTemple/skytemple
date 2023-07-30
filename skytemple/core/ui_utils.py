@@ -15,6 +15,8 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from __future__ import annotations
+
 import functools
 import os
 import pathlib
@@ -28,11 +30,15 @@ from range_typed_integers import u8, u16, u32, i8, i16, get_range, i32
 
 gi.require_version('Gtk', '3.0')
 
-import pkg_resources
 from gi.repository import Gtk, GLib
 from gi.repository.Gio import AppInfo
 from gi.repository.Gtk import TreeModelRow
 from skytemple_files.common.i18n_util import _
+
+if sys.version_info >= (3, 9):
+    import importlib.metadata as importlib_metadata
+else:
+    import importlib_metadata
 
 APP = 'skytemple'
 REPO_MOVE_EFFECTS = "https://github.com/theCapypara/eos_move_effects"
@@ -135,9 +141,9 @@ def version(*, ignore_dev=False):
     if not ignore_dev and os.path.exists(os.path.abspath(os.path.join(data_dir(), '..', '..', '.git'))):
         return 'dev'
     try:
-        return pkg_resources.get_distribution("skytemple").version
-    except pkg_resources.DistributionNotFound:
-        # Try reading from a VERISON file instead
+        return importlib_metadata.metadata("skytemple")["version"]
+    except importlib_metadata.PackageNotFoundError:
+        # Try reading from a VERSION file instead
         version_file = os.path.join(data_dir(), 'VERSION')
         if os.path.exists(version_file):
             with open(version_file) as f:

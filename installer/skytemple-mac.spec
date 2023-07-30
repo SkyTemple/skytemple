@@ -2,7 +2,6 @@
 import os
 import sys
 import shutil
-import pkg_resources
 from pathlib import PurePosixPath, Path
 
 pkg_path = os.path.abspath(os.path.join('..', 'skytemple'))
@@ -63,7 +62,7 @@ a = Analysis(['../skytemple/main.py'],
              pathex=[os.path.abspath(os.path.join('..', 'skytemple'))],
              binaries=additional_binaries,
              datas=additional_datas,
-             hiddenimports=['pkg_resources.py2_warn', 'packaging.version', 'packaging.specifiers',
+             hiddenimports=['packaging.version', 'packaging.specifiers',
                             'packaging.requirements', 'packaging.markers', '_sysconfigdata__win32_', 'win32api',
                             'certifi'],
              hookspath=[],

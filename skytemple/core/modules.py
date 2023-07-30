@@ -15,11 +15,18 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from __future__ import annotations
+
+import sys
 import logging
 from typing import TYPE_CHECKING, Type
 
-import pkg_resources
 from typing import Dict
+
+if sys.version_info >= (3, 9):
+    import importlib.metadata as importlib_metadata
+else:
+    import importlib_metadata
 
 if TYPE_CHECKING:
     from skytemple.module.rom.module import RomModule
@@ -37,7 +44,7 @@ class Modules:
         try:
             cls._modules = {
                 entry_point.name:
-                    entry_point.load() for entry_point in pkg_resources.iter_entry_points(MODULE_ENTRYPOINT_KEY)
+                    entry_point.load() for entry_point in importlib_metadata.entry_points().select(group=MODULE_ENTRYPOINT_KEY)
             }
         except BaseException as ex:
             logger.warning("Failed loading modules.", exc_info=ex)

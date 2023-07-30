@@ -86,7 +86,7 @@ EOF
 chmod +x $appdir/pre_run_skytemple
 
 # Write the version number to files that are read at runtime
-version=$PACKAGE_VERSION ||$(python3 -c "import pkg_resources; print(pkg_resources.get_distribution(\"skytemple\").version)")
+version=$PACKAGE_VERSION ||$(python3 -c "import importlib.metadata; print(importlib.metadata.metadata(\"skytemple\")[\"version\"])")
 
 echo $version > $appdir/VERSION
 echo $version > $appdir/data/VERSION
