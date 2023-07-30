@@ -19,11 +19,11 @@ from __future__ import annotations
 
 import sys
 import logging
-from typing import TYPE_CHECKING, Type
+from typing import TYPE_CHECKING, Type, Iterable
 
 from typing import Dict
 
-if sys.version_info >= (3, 9):
+if sys.version_info >= (3, 10):
     import importlib.metadata as importlib_metadata
 else:
     import importlib_metadata
@@ -41,12 +41,13 @@ class Modules:
     @classmethod
     def load(cls):
         # Look up package entrypoints for modules
+        cls._modules = {}
         try:
             cls._modules = {
                 entry_point.name:
                     entry_point.load() for entry_point in importlib_metadata.entry_points().select(group=MODULE_ENTRYPOINT_KEY)
             }
-        except BaseException as ex:
+        except Exception as ex:
             logger.warning("Failed loading modules.", exc_info=ex)
 
         if len(cls._modules) < 1:

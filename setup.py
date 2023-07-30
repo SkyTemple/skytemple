@@ -80,7 +80,7 @@ setup(
         'psutil >= 5.9.0',
         'sentry-sdk >= 1.5',
         'packaging',
-        'importlib_metadata>=1.3; python_version < "3.9"'
+        'importlib_metadata>=4.6; python_version < "3.10"'
     ],
     extras_require={
         'discord':  ["pypresence >= 4.2.1"],
