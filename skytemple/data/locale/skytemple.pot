@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-07-29 19:23+0000\n"
+"POT-Creation-Date: 2023-07-30 13:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -384,7 +384,7 @@ msgstr ""
 
 #: /dev/fd/63:89 /dev/fd/63:211
 #: skytemple/skytemple/module/monster/controller/monster.glade:3510
-#: skytemple/skytemple/module/moves_items/controller/move.glade:1352
+#: skytemple/skytemple/module/moves_items/controller/move.glade:1389
 msgid "Other"
 msgstr ""
 
@@ -1605,32 +1605,32 @@ msgid ""
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:507
+#: skytemple-files/skytemple_files/common/util.py:535
 msgid "The file you tried to open does not seem to be a valid NDS ROM file."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:521
+#: skytemple-files/skytemple_files/common/util.py:549
 msgid "This ROM is not supported by SkyTemple."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:591
-#: skytemple-files/skytemple_files/common/util.py:610
+#: skytemple-files/skytemple_files/common/util.py:619
+#: skytemple-files/skytemple_files/common/util.py:638
 #, python-brace-format
 msgid "Binary {binary.name} not found."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:631
-#: skytemple-files/skytemple_files/common/util.py:662
+#: skytemple-files/skytemple_files/common/util.py:659
+#: skytemple-files/skytemple_files/common/util.py:690
 #, python-brace-format
 msgid "Folder {dir_name} does not exist."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:634
+#: skytemple-files/skytemple_files/common/util.py:662
 #, python-brace-format
 msgid "File {file_name} already exists in this folder."
 msgstr ""
 
-#: skytemple-files/skytemple_files/common/util.py:657
+#: skytemple-files/skytemple_files/common/util.py:685
 #, python-brace-format
 msgid "Folder {path} already exists."
 msgstr ""
@@ -12134,17 +12134,17 @@ msgid "Description:"
 msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:578
-#: skytemple/skytemple/module/moves_items/controller/move.py:290
+#: skytemple/skytemple/module/moves_items/controller/move.py:285
 msgid "Accuracy:"
 msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:590
-#: skytemple/skytemple/module/moves_items/controller/move.py:302
+#: skytemple/skytemple/module/moves_items/controller/move.py:297
 msgid "Miss Accuracy:"
 msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:648
-#: skytemple/skytemple/module/moves_items/controller/move.py:313
+#: skytemple/skytemple/module/moves_items/controller/move.py:308
 msgid "# of chained hits:"
 msgstr ""
 
@@ -12167,17 +12167,17 @@ msgid "Range:"
 msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:816
-#: skytemple/skytemple/module/moves_items/controller/move.py:324
+#: skytemple/skytemple/module/moves_items/controller/move.py:319
 msgid "Actual values:"
 msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:876
-#: skytemple/skytemple/module/moves_items/controller/move.py:338
+#: skytemple/skytemple/module/moves_items/controller/move.py:333
 msgid "Values used for AI calculation:"
 msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:936
-#: skytemple/skytemple/module/moves_items/controller/move.py:349
+#: skytemple/skytemple/module/moves_items/controller/move.py:344
 msgid "Required condition:"
 msgstr ""
 
@@ -12194,86 +12194,99 @@ msgid "Range"
 msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1082
-#: skytemple/skytemple/module/moves_items/controller/move.py:360
+#: skytemple/skytemple/module/moves_items/controller/move.py:355
 msgid "Affected by Magic Coat:"
 msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1094
-msgid "Unk 13:"
+#: skytemple/skytemple/module/moves_items/controller/move.py:423
+msgid "Text String ID for Range Text:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.glade:1119
-msgid "Unk 15:"
-msgstr ""
-
-#: skytemple/skytemple/module/moves_items/controller/move.glade:1144
-#: skytemple/skytemple/module/moves_items/controller/move.py:371
+#: skytemple/skytemple/module/moves_items/controller/move.glade:1118
+#: skytemple/skytemple/module/moves_items/controller/move.py:366
 msgid "Is Snatchable:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.glade:1156
-#: skytemple/skytemple/module/moves_items/controller/move.py:382
+#: skytemple/skytemple/module/moves_items/controller/move.glade:1130
+#: skytemple/skytemple/module/moves_items/controller/move.py:377
 msgid "Uses Mouth:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.glade:1168
-#: skytemple/skytemple/module/moves_items/controller/move.py:393
+#: skytemple/skytemple/module/moves_items/controller/move.glade:1142
+#: skytemple/skytemple/module/moves_items/controller/move.py:388
 msgid "Ignores Taunted:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.glade:1336
-#: skytemple/skytemple/module/moves_items/controller/move.py:405
-msgid "Message ID:"
+#: skytemple/skytemple/module/moves_items/controller/move.glade:1310
+msgid "Message ID for Use:"
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.py:288
+#: skytemple/skytemple/module/moves_items/controller/move.glade:1362
+#: skytemple/skytemple/module/moves_items/controller/move.py:411
+msgid "AI - Don't use on Frozen:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/move.py:283
 msgid "The percentage indicating the chances the move will succeed. 100 is perfect accuracy. Anything higher than 100 is a never-miss move."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.py:300
+#: skytemple/skytemple/module/moves_items/controller/move.py:295
 msgid "Seems to be a second sort of accuracy check. A different message will be shown if this accuracy test fails."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.py:312
+#: skytemple/skytemple/module/moves_items/controller/move.py:307
 msgid "Possibly the number of times a move hits in a row."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.py:323
+#: skytemple/skytemple/module/moves_items/controller/move.py:318
 msgid "These are the range settings that the game uses for processing the actual move."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.py:334
+#: skytemple/skytemple/module/moves_items/controller/move.py:329
 msgid "When deciding what move to use, the AI will treat the move like it actually has the range settings configured here."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.py:335
+#: skytemple/skytemple/module/moves_items/controller/move.py:330
 msgid ""
 "\n"
 "Due to a bug, if the values are \"straight line\", \"In front; cuts corners\" or \"Two tiles away; cuts corners\" are chosen here, the AI range is used as the ACTUAL range of the move."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.py:348
+#: skytemple/skytemple/module/moves_items/controller/move.py:343
 msgid "The Pokémon must be in this condition in order for this move to be used."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.py:359
+#: skytemple/skytemple/module/moves_items/controller/move.py:354
 msgid "Whether the move is affected by magic coat."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.py:370
+#: skytemple/skytemple/module/moves_items/controller/move.py:365
 msgid "Whether the move is affected by snatch."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.py:381
+#: skytemple/skytemple/module/moves_items/controller/move.py:376
 msgid "Whether the move is disabled by the \"muzzled\" status."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.py:392
+#: skytemple/skytemple/module/moves_items/controller/move.py:387
 msgid "Whether the move can be used while taunted."
 msgstr ""
 
-#: skytemple/skytemple/module/moves_items/controller/move.py:403
+#: skytemple/skytemple/module/moves_items/controller/move.py:398
 msgid "Message ID offset that is displayed for the move. 0 uses the Text String 3860. Higher values select the strings after that (offsets)."
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/move.py:400
+msgid "Message ID:"
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/move.py:410
+msgid "Whether the AI with Status Checker can select this move when the target is frozen."
+msgstr ""
+
+#: skytemple/skytemple/module/moves_items/controller/move.py:421
+msgid "Text string to display to describe the range of the move. 0 uses the Text String 10095/10097 (US/EU). Higher values select the strings after that (offsets)."
 msgstr ""
 
 #: skytemple/skytemple/module/moves_items/module.py:86
