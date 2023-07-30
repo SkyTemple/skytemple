@@ -418,7 +418,7 @@ class MoveController(AbstractController):
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("Text string to display to describe the range of the move. 0 uses the Text String 10097 (EU). Higher values select "
+            _("Text string to display to describe the range of the move. 0 uses the Text String 10095/10097 (US/EU). Higher values select "
               "the strings after that (offsets)."),
             title=_("Text String ID for Range Text:")[:-1]
         )
