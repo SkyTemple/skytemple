@@ -305,6 +305,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.room_density = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     def on_btn_help_room_density_clicked(self, *args):
         self._help(_("The game randomly adds a number between 0 and 2 to obtain the final value. "
@@ -331,6 +333,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.floor_connectivity = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     @catch_overflow(u8)
     def on_entry_water_density_changed(self, w, *args):
@@ -340,6 +344,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.water_density = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     def on_btn_help_water_density_clicked(self, *args):
         self._help(_("This is the amount of lakes that will be generated during the water generation phase."))
@@ -352,6 +358,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.extra_hallway_density = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     def on_btn_help_floor_connectivity_clicked(self, *args):
         self._help(_("Floor connectivity (Min 1, if it's 0 a valid map can't be generated and you will get the default "
@@ -378,6 +386,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.secondary_terrain = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     def on_cb_terrain_settings__generate_imperfect_rooms_changed(self, w, *args):
         self._update_from_widget(w)
@@ -399,6 +409,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.item_density = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     @catch_overflow(u8)
     def on_entry_trap_density_changed(self, w, *args):
@@ -408,6 +420,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.trap_density = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     @catch_overflow(i8)
     def on_entry_initial_enemy_density_changed(self, w, *args):
@@ -417,6 +431,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.initial_enemy_density = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     @catch_overflow(u8)
     def on_entry_buried_item_density_changed(self, w, *args):
@@ -426,6 +442,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.buried_item_density = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     def on_entry_max_coin_amount_changed(self, w, *args):
         try:
@@ -434,6 +452,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.max_coin_amount = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     def on_btn_help_trap_density_clicked(self, *args):
         self._help(_("The final value is randomized between density and density/2."))
@@ -492,6 +512,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.kecleon_shop_item_positions = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     def on_scale_empty_monster_house_chance_value_changed(self, w, *args):
         self._update_from_widget(w)
@@ -514,6 +536,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.unk_hidden_stairs = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     @catch_overflow(i16)
     def on_entry_iq_booster_boost_changed(self, w, *args):
@@ -523,6 +547,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.iq_booster_boost = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     def on_btn_help_iq_booster_boost_clicked(self, *args):
         self._help(_("If more than 0, the IQ booster increases IQ on this floor by this amount."))
@@ -535,6 +561,8 @@ class FloorController(AbstractController):
             return
         self.entry.layout.enemy_iq = val
         self.mark_as_modified()
+        if self.builder.get_object('tool_auto_refresh').get_active():
+            self._generate_floor()
 
     def on_cb_unk_e_changed(self, w, *args):
         self._update_from_widget(w)
