@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-07-30 13:05+0000\n"
+"POT-Creation-Date: 2023-07-31 18:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5727,7 +5727,7 @@ msgid "_OK"
 msgstr ""
 
 #: skytemple/skytemple/_i18n.py:36
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1871
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1899
 msgid "No"
 msgstr ""
 
@@ -5736,7 +5736,7 @@ msgid "_No"
 msgstr ""
 
 #: skytemple/skytemple/_i18n.py:38
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1872
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1900
 msgid "Yes"
 msgstr ""
 
@@ -6806,7 +6806,7 @@ msgid "No override"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:501
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1911
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1939
 #, python-brace-format
 msgid "No. {i}"
 msgstr ""
@@ -7530,19 +7530,19 @@ msgid ""
 "Needs the 'ExtractDungeonData' patch to be applied to edit this attribute."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:310
+#: skytemple/skytemple/module/dungeon/controller/floor.py:312
 msgid "The game randomly adds a number between 0 and 2 to obtain the final value. If the room density is negative, its absolute value is used without adding a random variation."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:322
+#: skytemple/skytemple/module/dungeon/controller/floor.py:324
 msgid "Controls whether dead end hallways can be generated in the floor. Dead ends can still appear in the map even if they are disabled due to a bug in the map generator and because extra hallways can also produce them."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:345
+#: skytemple/skytemple/module/dungeon/controller/floor.py:351
 msgid "This is the amount of lakes that will be generated during the water generation phase."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:357
+#: skytemple/skytemple/module/dungeon/controller/floor.py:365
 msgid ""
 "Floor connectivity (Min 1, if it's 0 a valid map can't be generated and you will get the default single room that it's also a monster house).\n"
 "\n"
@@ -7550,37 +7550,37 @@ msgid ""
 "A cell is a point in the initial grid used to generate the map. It will end up being a room or a crossroad once the full map is generated."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:365
+#: skytemple/skytemple/module/dungeon/controller/floor.py:373
 msgid "Used to generate additional hallways in the map (those \"donuts\" that lead to nowhere, multiple entrances to the same room, room exits connected to the same room, those dead ends that come out of a room, make a couple of twists and also lead to nowhere)"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:439
+#: skytemple/skytemple/module/dungeon/controller/floor.py:459
 msgid "The final value is randomized between density and density/2."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:442
+#: skytemple/skytemple/module/dungeon/controller/floor.py:462
 msgid "The final value is randomized between randomized between density - 2 and density + 1."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:445
+#: skytemple/skytemple/module/dungeon/controller/floor.py:465
 msgid "The final value is randomized between randomized density / 2 and density - 1 if the value is positive. If it's negative, its absolute value is used (no random variation is applied in this case)."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:449
+#: skytemple/skytemple/module/dungeon/controller/floor.py:469
 msgid "The value stored in the ROM is actually the value divided by 5. Because of this the saved value will be rounded to the next multiple of 5."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:453
+#: skytemple/skytemple/module/dungeon/controller/floor.py:473
 msgid "These sliders control how likely it is (in %) for certain things to generate on this floor."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:456
+#: skytemple/skytemple/module/dungeon/controller/floor.py:476
 msgid ""
 "Every Kecleon shop has a minimum amount of guaranteed items.\n"
 "This value controls where in the shop they will be placed."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:460
+#: skytemple/skytemple/module/dungeon/controller/floor.py:480
 #, python-format
 msgid ""
 "0 --> 100% secret bazaar\n"
@@ -7589,98 +7589,98 @@ msgid ""
 "Other values: 0% secret bazaar, 0% secret room (you just go to the next floor like normal stairs)."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:478
+#: skytemple/skytemple/module/dungeon/controller/floor.py:498
 msgid ""
 "Does not work in the game. To make it work, apply the \"UnusedDungeonChance\" from \"Patches\" > \"ASM\".\n"
 "If patched, the game will turn a random room into a maze room made of wall tiles instead of the usual water (although water can later replace some of the walls once the water generation takes place)."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:501
+#: skytemple/skytemple/module/dungeon/controller/floor.py:523
 msgid ""
 "It was added in explorers of sky, so right now it's only used in the sky exclusive dungeons.\n"
 "If a monster house spawns in the floor, this is the chance of it being empty (no items will be generated inside)."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:528
+#: skytemple/skytemple/module/dungeon/controller/floor.py:554
 msgid "If more than 0, the IQ booster increases IQ on this floor by this amount."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:579
+#: skytemple/skytemple/module/dungeon/controller/floor.py:607
 msgid "You can not spawn Kecleons or the Decoy Pokémon."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:580
+#: skytemple/skytemple/module/dungeon/controller/floor.py:608
 msgid "SkyTemple: Invalid Pokémon"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:588
+#: skytemple/skytemple/module/dungeon/controller/floor.py:616
 #: skytemple/skytemple/module/lists/controller/actor_list.py:125
 #: skytemple/skytemple/module/lists/controller/recruitment_list.py:76
 #: skytemple/skytemple/module/lists/controller/starters_list.py:186
 msgid "No Pokémon with this ID found."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:715
+#: skytemple/skytemple/module/dungeon/controller/floor.py:743
 msgid "All categories are already in the list."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:716
+#: skytemple/skytemple/module/dungeon/controller/floor.py:744
 msgid "Can not add category"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:738
+#: skytemple/skytemple/module/dungeon/controller/floor.py:766
 msgid "The last category can not be removed."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:739
+#: skytemple/skytemple/module/dungeon/controller/floor.py:767
 msgid "Can't remove category."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:910
+#: skytemple/skytemple/module/dungeon/controller/floor.py:938
 msgid "This item does not belong in this category. Please chose another item."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:911
+#: skytemple/skytemple/module/dungeon/controller/floor.py:939
 msgid "Invalid item id"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:919
+#: skytemple/skytemple/module/dungeon/controller/floor.py:947
 msgid "This item is already in the list."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:920
+#: skytemple/skytemple/module/dungeon/controller/floor.py:948
 msgid "Can not use this item"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:993
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1021
 msgid "All items are already in the list"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:994
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1022
 msgid "Can not add item."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1097
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1125
 msgid "Warning: Some Pokémon spawns may be invalid. Kecleons will been spawned instead."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1124
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1152
 msgid "Warning: Some Item spawns may be invalid. Poké will been spawned instead."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1136
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1164
 msgid "Warning: Some traps spawns may be invalid. Unused traps will been spawned instead."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1142
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1170
 msgid "Note: Floor uses a fixed room, the preview doesn't take this into account.\n"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1185
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1213
 msgid "This seed is used as the base to randomly generate the actual seeds used by the dungeon generation engine. Note that generated previews might not be 100% accurate."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1191
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1219
 msgid ""
 "Change the chances of Pokémon, traps or items spawning.\n"
 "The spawn chance depends on the weight of an entry. The higher an entry's weight is, the more likely it is to spawn.\n"
@@ -7689,38 +7689,38 @@ msgid ""
 "All spawn entries are always saved to the game sorted by their (Pokémon, item, trap) ID."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1255
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1283
 msgid "Export floor as..."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1273
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1301
 msgid "Export was canceled."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1295
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1323
 msgid "Import floor from..."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1316
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1344
 msgid "Error importing the floor."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1892
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1920
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:105
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:119
 msgid "Random "
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1895
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1923
 msgid "Invalid?"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1897
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1925
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:124
 msgid "INVALID!!!"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1909
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1937
 msgid "No fixed room"
 msgstr ""
 
