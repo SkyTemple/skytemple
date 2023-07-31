@@ -14,6 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+import dataclasses
 import logging
 import random
 import re
@@ -50,7 +51,7 @@ from skytemple.module.dungeon.fixed_room_tileset_renderer.minimap import FixedFl
 from skytemple.module.dungeon.fixed_room_tileset_renderer.tileset import FixedFloorDrawerTileset
 from skytemple.module.dungeon.minimap_provider import MinimapProvider
 from skytemple_files.common.dungeon_floor_generator.generator import DungeonFloorGenerator, SIZE_X, SIZE_Y, Tile, \
-    TileType, RandomGenProperties
+    TileType, RandomGenProperties, RoomType
 from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.common.xml_util import prettify
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, DirectRule, FixedFloorActionRule
@@ -129,6 +130,14 @@ class FloorRanks(Enum):
     @property
     def print_name(self):
         return self._print_name_
+    
+    
+@dataclasses.dataclass
+class SpawnEntry:
+    entid: int
+    level: u8
+    relative_weight_main: int
+    relative_weight_mh: int
 
 
 class FloorController(AbstractController):
@@ -193,7 +202,7 @@ class FloorController(AbstractController):
         self._init_layout_stores()
 
         self._init_monster_spawns()
-        self._recalculate_spawn_chances('monster_spawns_store', 5, 4)
+        self._recalculate_spawn_chances('monster_spawns_store', 5, 4, 7, 6)
 
         self._init_trap_spawns()
         self._recalculate_spawn_chances('trap_spawns_store', 3, 2)
@@ -631,8 +640,26 @@ class FloorController(AbstractController):
             return
         store: Gtk.Store = self.builder.get_object('monster_spawns_store')
         store[path][5] = text
+        if self.builder.get_object('monster_spawns_keep_synced_toggle').get_active():
+            store[path][7] = text
 
-        self._recalculate_spawn_chances('monster_spawns_store', 5, 4)
+        self._recalculate_spawn_chances('monster_spawns_store', 5, 4, 7, 6)
+        self._save_monster_spawn_rates()
+
+    @catch_overflow(u16)
+    def on_cr_monster_spawns_weight_mh_edited(self, widget, path, text):
+        try:
+            u16_checked(int(text))
+        except ValueError:
+            return
+        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+        before = store[path][7]
+        store[path][7] = text
+
+        if store[path][5] != store[path][7]:
+            self.builder.get_object('monster_spawns_keep_synced_toggle').set_active(False)
+
+        self._recalculate_spawn_chances('monster_spawns_store', 5, 4, 7, 6)
         self._save_monster_spawn_rates()
 
     @catch_overflow(u8)
@@ -649,7 +676,7 @@ class FloorController(AbstractController):
         store: Gtk.ListStore = self.builder.get_object('monster_spawns_store')
         store.append([
             1, self._get_icon(1, len(store)), self._ent_names[1],
-            "1", "0%", "0"
+            "1", "0%", "0", "0%", "0"
         ])
         self._save_monster_spawn_rates()
 
@@ -658,7 +685,7 @@ class FloorController(AbstractController):
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
             model.remove(treeiter)
-        self._recalculate_spawn_chances('monster_spawns_store', 5, 4)
+        self._recalculate_spawn_chances('monster_spawns_store', 5, 4, 7, 6)
         self._save_monster_spawn_rates()
 
     @catch_overflow(u8)
@@ -1117,7 +1144,8 @@ class FloorController(AbstractController):
                     last = u16(KECLEON_MD_INDEX[0])  # fallback
                     invalid = True
                     for m in self.entry.monsters:
-                        if m.weight > ridx and m.weight != 0:
+                        spawn_weight = m.monster_house_spawn_weight if x.room_type == RoomType.MONSTER_HOUSE else m.main_spawn_weight
+                        if spawn_weight > ridx and spawn_weight != 0:
                             last = m.md_index
                             invalid = False
                             break
@@ -1223,7 +1251,11 @@ class FloorController(AbstractController):
                      "decides what to spawn.\n"
                      "Please note for items, that the game first decides what category to spawn for an item and then "
                      "chooses an entry for that category.\n"
-                     "All spawn entries are always saved to the game sorted by their (Pokémon, item, trap) ID."))
+                     "All spawn entries are always saved to the game sorted by their (Pokémon, item, trap) ID.") +
+                    "\n\n" +
+                    _("If 'Use same spawn weights for Monster Houses' is checked, the same spawn weights are used for "
+                      "regular spawns and spawns in Monster Houses.\n"
+                      "If it is not checked, you can edit these weights separately."))
 
     def on_btn_export_clicked(self, *args):
         # TODO: Add export for Ranks and Forbidden Missions attributes
@@ -1507,14 +1539,21 @@ class FloorController(AbstractController):
     def _init_monster_spawns(self):
         self._init_monster_completion_store()
         store: Gtk.Store = self.builder.get_object('monster_spawns_store')
-        # Add existing Pokémon
-        relative_weights = self._calculate_relative_weights([x.weight for x in self.entry.monsters])
-        sum_of_all_weights = sum(relative_weights)
-        if sum_of_all_weights <= 0:
-            sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
+        are_all_weight_types_same_values = True
+        # Add existing monsters
+        relative_weights_main = self._calculate_relative_weights([x.main_spawn_weight for x in self.entry.monsters])
+        relative_weights_mh = self._calculate_relative_weights([x.monster_house_spawn_weight for x in self.entry.monsters])
+        sum_of_all_weights_main = sum(relative_weights_main)
+        sum_of_all_weights_mh = sum(relative_weights_mh)
+        if sum_of_all_weights_main <= 0:
+            sum_of_all_weights_main = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
+        if sum_of_all_weights_mh <= 0:
+            sum_of_all_weights_mh = 1
         for i, monster in enumerate(self.entry.monsters):
-            relative_weight = relative_weights[i]
-            chance = f'{int(relative_weight) / sum_of_all_weights * 100:.3f}%'
+            relative_weight_main = relative_weights_main[i]
+            relative_weight_mh = relative_weights_mh[i]
+            chance_main = f'{int(relative_weight_main) / sum_of_all_weights_main * 100:.3f}%'
+            chance_mh = f'{int(relative_weight_mh) / sum_of_all_weights_mh * 100:.3f}%'
             if monster.md_index in KECLEON_MD_INDEX:
                 self.builder.get_object('kecleon_level_entry').set_text(str(monster.level))
                 switch = self.builder.get_object('switch_kecleon_gender')
@@ -1525,10 +1564,14 @@ class FloorController(AbstractController):
                 continue
             if monster.md_index == DUMMY_MD_INDEX:
                 continue
+            if relative_weight_main != relative_weight_mh:
+                are_all_weight_types_same_values = False
             store.append([
                 monster.md_index, self._get_icon(monster.md_index, i), self._ent_names[monster.md_index],
-                str(monster.level), chance, str(relative_weight)
+                str(monster.level), chance_main, str(relative_weight_main), chance_mh, str(relative_weight_mh)
             ])
+
+        self.builder.get_object('monster_spawns_keep_synced_toggle').set_active(are_all_weight_types_same_values)
 
     def _init_monster_completion_store(self):
         monster_md = self.module.get_monster_md()
@@ -1690,16 +1733,24 @@ class FloorController(AbstractController):
             weights_gcd = reduce(gcd, weights_nonzero)
         return [int(w / weights_gcd) for w in weights]
 
-    def _recalculate_spawn_chances(self, store_name, weight_idx, chance_idx):
+    def _recalculate_spawn_chances(self, store_name, weight_main_idx, chance_main_idx, weight_mh_idx=None, chance_mh_idx=None):
         store: Gtk.ListStore = self.builder.get_object(store_name)
-        sum_of_all_weights = sum(int(row[weight_idx]) for row in store)
-        if sum_of_all_weights <= 0:
-            sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
-        for row in store:
-            if sum_of_all_weights == 0:
-                row[chance_idx] = '0.00%'
-            else:
-                row[chance_idx] = f'{int(row[weight_idx]) / sum_of_all_weights * 100:.2f}%'
+        weight_data_sets = [
+            (weight_main_idx, chance_main_idx),
+        ]
+        if weight_mh_idx is not None:
+            weight_data_sets.append(
+                (weight_mh_idx, chance_mh_idx),
+            )
+        for (weight_idx, chance_idx) in weight_data_sets:
+            sum_of_all_weights = sum(int(row[weight_idx]) for row in store)
+            if sum_of_all_weights <= 0:
+                sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
+            for row in store:
+                if sum_of_all_weights == 0:
+                    row[chance_idx] = '0.00%'
+                else:
+                    row[chance_idx] = f'{int(row[weight_idx]) / sum_of_all_weights * 100:.2f}%'
 
     # TODO: Generalize this with the base classs for lists
     def _get_icon(self, entid, idx):
@@ -1740,7 +1791,7 @@ class FloorController(AbstractController):
 
     def _save_monster_spawn_rates(self):
         store: Gtk.ListStore = self.builder.get_object('monster_spawns_store')
-        original_kecleon_level = 0
+        original_kecleon_level = u8(0)
         original_kecleon_index = KECLEON_MD_INDEX[0]
         for monster in self.entry.monsters:
             if monster.md_index in KECLEON_MD_INDEX:
@@ -1748,34 +1799,48 @@ class FloorController(AbstractController):
                 original_kecleon_level = monster.level
                 break
         self.entry.monsters = []
-        rows = []
+        rows: List[SpawnEntry] = []
         for row in store:
-            rows.append(row[:])
-        rows.append([original_kecleon_index, None, None, str(original_kecleon_level), None, "0"])
-        rows.append([DUMMY_MD_INDEX, None, None, "1", None, "0"])
-        rows.sort(key=lambda e: e[0])
-
-        sum_of_weights = sum((int(row[5]) for row in rows))
-
-        last_weight = 0
-        last_weight_set_idx = 0
-        for i, row in enumerate(rows):
-            weight = 0
-            if int(row[5]) != 0:
-                weight = last_weight + int(10000 * (int(row[5]) / sum_of_weights))
-                last_weight = weight
-                last_weight_set_idx = i
-            self.entry.monsters.append(FileType.MAPPA_BIN.get_monster_model()(
-                md_index=row[0],
+            rows.append(SpawnEntry(
+                entid=row[0],
                 level=u8(int(row[3])),
-                weight=u16(weight),
-                weight2=u16(weight)
+                relative_weight_main=int(row[5]),
+                relative_weight_mh=int(row[7]),
             ))
-        if last_weight != 0 and last_weight != 10000:
+        rows.append(SpawnEntry(original_kecleon_index, original_kecleon_level, 0, 0))
+        rows.append(SpawnEntry(DUMMY_MD_INDEX, u8(1), 0, 0))
+        rows.sort(key=lambda e: e.entid)
+
+        sum_of_weights_main = sum((row.relative_weight_main for row in rows))
+        sum_of_weights_mh = sum((row.relative_weight_mh for row in rows))
+
+        last_weight_main = 0
+        last_weight_mh = 0
+        last_weight_main_set_idx = 0
+        last_weight_mh_set_idx = 0
+        for i, row in enumerate(rows):
+            weight_main = 0
+            weight_mh = 0
+            if row.relative_weight_main != 0:
+                weight_main = last_weight_main + int(10000 * (row.relative_weight_main / sum_of_weights_main))
+                last_weight_main = weight_main
+                last_weight_main_set_idx = i
+            if row.relative_weight_mh != 0:
+                weight_mh = last_weight_mh + int(10000 * (row.relative_weight_mh / sum_of_weights_mh))
+                last_weight_mh = weight_mh
+                last_weight_mh_set_idx = i
+            self.entry.monsters.append(FileType.MAPPA_BIN.get_monster_model()(
+                md_index=row.entid,
+                level=row.level,
+                main_spawn_weight=u16(weight_main),
+                monster_house_spawn_weight=u16(weight_mh)
+            ))
+        if last_weight_main != 0 and last_weight_main != 10000:
             # We did not sum up to exactly 10000, so the values we entered are not evenly
             # divisible. Find the last non-zero we set and set it to 10000.
-            self.entry.monsters[last_weight_set_idx].weight = u16(10000)
-            self.entry.monsters[last_weight_set_idx].weight2 = u16(10000)
+            self.entry.monsters[last_weight_main_set_idx].main_spawn_weight = u16(10000)
+        if last_weight_mh != 0 and last_weight_mh != 10000:
+            self.entry.monsters[last_weight_mh_set_idx].monster_house_spawn_weight = u16(10000)
         self.mark_as_modified()
 
     def _save_trap_spawn_rates(self):
