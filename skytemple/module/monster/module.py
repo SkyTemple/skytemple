@@ -68,7 +68,7 @@ class MonsterModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
         logger.debug("Preloading MD...")
-        self.monster_md: MdProtocol = self.project.open_file_in_rom(MONSTER_MD_FILE, FileType.MD)
+        self.monster_md: MdProtocol[MdEntryProtocol] = self.project.open_file_in_rom(MONSTER_MD_FILE, FileType.MD)
         logger.debug("Preloading m_level.bin...")
         self.m_level_bin: BinPack = self.project.open_file_in_rom(M_LEVEL_BIN, FileType.BIN_PACK)
         logger.debug("Preloading waza_p.bin...")

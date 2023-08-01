@@ -14,14 +14,21 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-
-import re
+import os
+import typing
 from typing import TYPE_CHECKING, Tuple, List
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 from gi.repository.Gtk import Widget
+from skytemple_files.common.types.file_types import FileType
+from skytemple_files.common.util import open_utf8
+from skytemple_files.common.xml_util import prettify
+from skytemple_files.data.monster_xml import monster_xml_export
 
-from skytemple.core.string_provider import StringProvider, StringType
+from skytemple.controller.main import MainController as SkyTempleMainController
+from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
+from skytemple.core.message_dialog import SkyTempleMessageDialog
+from skytemple.core.string_provider import StringType
 from skytemple.core.module_controller import AbstractController
 from skytemple_files.data.tbl_talk import TBL_TALK_SPEC_LEN
 from skytemple_files.data.tbl_talk.model import TalkType
@@ -193,7 +200,7 @@ class MainController(AbstractController):
             self.builder.get_object('spin_group_nb').set_text(str(max(group-1, 0)))
             self.module.mark_tbl_talk_as_modified()
             self._refresh_list()
-    
+
     def _refresh_list(self):
         group, talk_type = self._get_current_settings()
         dialogues: List[int] = self.module.get_personality_dialogues(group, talk_type)
@@ -201,3 +208,108 @@ class MainController(AbstractController):
         tree_store.clear()
         for d in dialogues:
             tree_store.append([d, self._string_provider.get_value(MAP_TALK_TYPE[talk_type.value], d, self._current_lang)])
+
+    def on_btn_export_clicked(self, *args):
+        dialog: Gtk.Dialog = self.builder.get_object('export_dialog')
+        dialog.resize(640, 320)
+        dialog.set_attached_to(SkyTempleMainController.window())
+        dialog.set_transient_for(SkyTempleMainController.window())
+        export_progress: Gtk.ProgressBar = self.builder.get_object('export_progress')
+
+        resp = dialog.run()
+        dialog.hide()
+
+        if resp == Gtk.ResponseType.APPLY:
+            # Create output XML
+            export_names = self.builder.get_object('export_type_names').get_active()
+            export_stats = self.builder.get_object('export_type_stats').get_active()
+            export_moveset = self.builder.get_object('export_type_moveset1').get_active()
+            export_moveset2 = self.builder.get_object('export_type_moveset2').get_active()
+            export_portraits = self.builder.get_object('export_type_portraits').get_active()
+            expand_poke_list_applied = self.module.project.is_patch_applied('ExpandPokeList')
+            num_entities = FileType.MD.properties().num_entities
+
+            save_diag = Gtk.FileChooserNative.new(
+                _("Export Pokémon at..."),
+                SkyTempleMainController.window(),
+                Gtk.FileChooserAction.SELECT_FOLDER,
+                None, None
+            )
+
+            response = save_diag.run()
+            directory = save_diag.get_filename()
+            save_diag.destroy()
+
+            if response == Gtk.ResponseType.ACCEPT:
+                async def export():
+                    max_progress = num_entities
+                    if expand_poke_list_applied:
+                        max_progress = len(self.module.monster_md.entries)
+                    for i, entry in enumerate(self.module.monster_md.entries):
+                        if entry.md_index >= num_entities and not expand_poke_list_applied:
+                            break
+
+                        names, md_gender1, md_gender2, moveset, moveset2, stats, portraits, portraits2, personality1, personality2, idle_anim1, idle_anim2 = self.module.get_export_data(
+                            entry
+                        )
+
+                        main_name = names.get("English")[0]
+                        if main_name is None:
+                            name_vals = list(names.values())
+                            if len(name_vals) > 0:
+                                main_name = name_vals[0][0]
+                            else:
+                                main_name = ""
+                        if expand_poke_list_applied:
+                            # We do not support multi gender export for now with this patch, too many edge cases.
+                            md_gender2 = None
+                            portraits2 = None
+                            personality2 = None
+                            idle_anim2 = None
+                        if not export_names:
+                            names = None
+                        if not export_stats:
+                            stats = None
+                        if not export_moveset:
+                            moveset = None
+                        if not export_moveset2:
+                            moveset2 = None
+                        if not export_portraits:
+                            portraits = None
+                            portraits2 = None
+
+                        xml = monster_xml_export(
+                            self.module.project.get_rom_module().get_static_data().game_version,
+                            md_gender1, md_gender2, names, moveset, moveset2, stats, portraits, portraits2,
+                            personality1, personality2, idle_anim1, idle_anim2
+                        )
+
+                        fn = os.path.join(directory, f"{entry.md_index:04}_{main_name}.xml")
+
+                        with open_utf8(fn, 'w') as file:
+                            file.write(prettify(xml))
+
+                        GLib.idle_add(lambda: export_progress.set_fraction(i / max_progress))
+                    GLib.idle_add(progress_dialog.hide)
+
+
+                progress_dialog: Gtk.Dialog = self.builder.get_object('progress_dialog')
+                progress_dialog.set_attached_to(SkyTempleMainController.window())
+                progress_dialog.set_transient_for(SkyTempleMainController.window())
+                AsyncTaskDelegator.run_task(export())
+                progress_dialog.run()
+
+            else:
+                md = SkyTempleMessageDialog(SkyTempleMainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                                            Gtk.ButtonsType.OK, "Export was canceled.")
+                md.set_position(Gtk.WindowPosition.CENTER)
+                md.run()
+                md.destroy()
+                return
+
+    @typing.no_type_check
+    def unload(self):
+        self.builder.get_object('export_dialog').destroy()
+        self.builder.get_object('progress_dialog').destroy()
+        super().unload()
