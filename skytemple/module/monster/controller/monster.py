@@ -862,7 +862,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             ])
 
             for entry in entry_list:
-                entry_main_tree = self.module.generate_entry__entry(entry.md_index, Gender(entry.gender))
+                entry_main_tree = self.module.generate_entry__entry(entry.md_index, Gender(entry.gender))  # type: ignore
                 store.append(
                     ent_root, [
                         entry_main_tree[4], -1, True, entry_main_tree[0],
@@ -1426,7 +1426,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             else:
                 sidx = entry.md_index
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, sidx)
-            self._ent_names[idx] = f'{name} ({Gender(entry.gender).print_name}) (#{idx:04})'
+            self._ent_names[idx] = f'{name} ({Gender(entry.gender).print_name}) (#{idx:04})'  # type: ignore
             monster_store.append([self._ent_names[idx]])
 
     def on_cr_entity_editing_started(self, renderer, editable, path):

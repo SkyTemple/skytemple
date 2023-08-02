@@ -115,7 +115,7 @@ class MonsterModule(AbstractModule):
 
             for entry in entry_list:
                 self._tree_iter__entries[entry.md_index] = item_store.append(
-                    ent_root, self.generate_entry__entry(entry.md_index, Gender(entry.gender))
+                    ent_root, self.generate_entry__entry(entry.md_index, Gender(entry.gender))  # type: ignore
                 )
 
         recursive_generate_item_store_row_label(self._tree_model[self._root])
