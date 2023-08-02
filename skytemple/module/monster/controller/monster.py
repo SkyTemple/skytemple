@@ -23,6 +23,7 @@ from typing import TYPE_CHECKING, Type, List, Optional, Dict
 from xml.etree import ElementTree
 
 import cairo
+from explorerscript.util import open_utf8
 from gi.repository import Gtk, GLib
 from range_typed_integers import u16, u16_checked, u8, u8_checked, i16, i16_checked, i8, i8_checked
 from skytemple_files.common.sprite_util import check_and_correct_monster_sprite_size
@@ -861,7 +862,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             ])
 
             for entry in entry_list:
-                entry_main_tree = self.module.generate_entry__entry(entry.md_index, Gender(entry.gender))
+                entry_main_tree = self.module.generate_entry__entry(entry.md_index, Gender(entry.gender))  # type: ignore
                 store.append(
                     ent_root, [
                         entry_main_tree[4], -1, True, entry_main_tree[0],
@@ -968,7 +969,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
                 if response == Gtk.ResponseType.ACCEPT:
                     fn = add_extension_if_missing(fn, 'xml')
-                    with open(fn, 'w') as f:
+                    with open_utf8(fn, 'w') as f:
                         f.write(prettify(xml))
                 else:
                     md = SkyTempleMessageDialog(SkyTempleMainController.window(),
@@ -1425,7 +1426,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             else:
                 sidx = entry.md_index
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, sidx)
-            self._ent_names[idx] = f'{name} ({Gender(entry.gender).print_name}) (#{idx:04})'
+            self._ent_names[idx] = f'{name} ({Gender(entry.gender).print_name}) (#{idx:04})'  # type: ignore
             monster_store.append([self._ent_names[idx]])
 
     def on_cr_entity_editing_started(self, renderer, editable, path):
