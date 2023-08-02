@@ -1053,6 +1053,27 @@
       <attribute name="weight" value="thin"/>
     </attributes>
   </object>
+  <object class="GtkLabel" id="monster_spawns_chance_label1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="label" translatable="yes">Chance</property>
+    <attributes>
+      <attribute name="style" value="italic"/>
+      <attribute name="weight" value="thin"/>
+    </attributes>
+  </object>
+  <object class="GtkLabel" id="monster_spawns_main_weight_label">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="margin-start">5</property>
+    <property name="label" translatable="yes">Main Weight</property>
+  </object>
+  <object class="GtkLabel" id="monster_spawns_mh_weight_label">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="margin-start">5</property>
+    <property name="label" translatable="yes">Monster House Weight</property>
+  </object>
   <object class="GtkListStore" id="monster_spawns_store">
     <columns>
       <!-- column-name entid -->
@@ -1066,6 +1087,10 @@
       <!-- column-name chance -->
       <column type="gchararray"/>
       <!-- column-name weight -->
+      <column type="gchararray"/>
+      <!-- column-name chance_mh -->
+      <column type="gchararray"/>
+      <!-- column-name weight_mh -->
       <column type="gchararray"/>
     </columns>
   </object>
@@ -3301,9 +3326,13 @@ Monster House instead.</property>
                         </child>
                         <child>
                           <object class="GtkTreeViewColumn">
-                            <property name="title" translatable="yes">Weight</property>
+                            <property name="title" translatable="yes">Main Weight</property>
+                            <property name="widget">monster_spawns_main_weight_label</property>
                             <child>
                               <object class="GtkCellRendererText" id="cr_monster_spawns_weight">
+                                <property name="cell-background-rgba">rgba(0,75,255,0.151007)</property>
+                                <property name="xalign">1</property>
+                                <property name="alignment">right</property>
                                 <property name="editable">True</property>
                                 <signal name="edited" handler="on_cr_monster_spawns_weight_edited" swapped="no"/>
                               </object>
@@ -3318,12 +3347,49 @@ Monster House instead.</property>
                             <property name="title" translatable="yes">Chance</property>
                             <property name="widget">monster_spawns_chance_label</property>
                             <child>
-                              <object class="GtkCellRendererText" id="cr_monster_spawns_chance"/>
+                              <object class="GtkCellRendererText" id="cr_monster_spawns_chance">
+                                <property name="cell-background-rgba">rgba(0,75,255,0.151007)</property>
+                              </object>
                               <attributes>
                                 <attribute name="text">4</attribute>
                               </attributes>
                             </child>
                           </object>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="title" translatable="yes">Monster House Weight</property>
+                            <property name="widget">monster_spawns_mh_weight_label</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cr_monster_spawns_weight_mh">
+                                <property name="cell-background-rgba">rgba(255,133,0,0.110738)</property>
+                                <property name="xalign">1</property>
+                                <property name="alignment">right</property>
+                                <property name="editable">True</property>
+                                <signal name="edited" handler="on_cr_monster_spawns_weight_mh_edited" swapped="no"/>
+                              </object>
+                              <attributes>
+                                <attribute name="text">7</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn">
+                            <property name="title" translatable="yes">MH Chance</property>
+                            <property name="widget">monster_spawns_chance_label1</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cr_monster_spawns_chance_mh">
+                                <property name="cell-background-rgba">rgba(255,133,0,0.110738)</property>
+                              </object>
+                              <attributes>
+                                <attribute name="text">6</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkTreeViewColumn"/>
                         </child>
                       </object>
                     </child>
@@ -3338,46 +3404,35 @@ Monster House instead.</property>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="orientation">vertical</property>
                     <property name="spacing">10</property>
                     <child>
-                      <object class="GtkButton" id="btn_help_monster_spawn_table">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <property name="halign">start</property>
-                        <property name="valign">center</property>
-                        <property name="margin-end">10</property>
-                        <signal name="clicked" handler="on_btn_help__spawn_tables__clicked" swapped="no"/>
+                        <property name="can-focus">False</property>
+                        <property name="spacing">10</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="GtkSwitch" id="monster_spawns_keep_synced_toggle">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="spacing">5</property>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="icon-name">skytemple-help-about-symbolic</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="label" translatable="yes">Help</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
+                            <property name="label" translatable="yes">Use same spawn weights for Monster Houses</property>
                           </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
                         </child>
                       </object>
                       <packing>
@@ -3387,94 +3442,153 @@ Monster House instead.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Kecleon Level </property>
+                        <property name="spacing">10</property>
+                        <child>
+                          <object class="GtkButton" id="btn_help_monster_spawn_table">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="halign">start</property>
+                            <property name="valign">center</property>
+                            <property name="margin-end">10</property>
+                            <signal name="clicked" handler="on_btn_help__spawn_tables__clicked" swapped="no"/>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">5</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">skytemple-help-about-symbolic</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="label" translatable="yes">Help</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Kecleon Level </property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="kecleon_level_entry">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="width-chars">4</property>
+                            <signal name="changed" handler="on_kecleon_level_entry_changed" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="monster_spawns_add">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <signal name="clicked" handler="on_monster_spawns_add_clicked" swapped="no"/>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">skytemple-list-add-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="pack-type">end</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label_kecleon_gender">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Female</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="monster_spawns_remove">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <signal name="clicked" handler="on_monster_spawns_remove_clicked" swapped="no"/>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">skytemple-list-remove-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="pack-type">end</property>
+                            <property name="position">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="switch_kecleon_gender">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <signal name="state-set" handler="on_switch_kecleon_gender_state_set" swapped="no"/>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">4</property>
+                          </packing>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
                         <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkEntry" id="kecleon_level_entry">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="width-chars">4</property>
-                        <signal name="changed" handler="on_kecleon_level_entry_changed" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="monster_spawns_add">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <signal name="clicked" handler="on_monster_spawns_add_clicked" swapped="no"/>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="icon-name">skytemple-list-add-symbolic</property>
-                          </object>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="pack-type">end</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="label_kecleon_gender">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Female</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">4</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="monster_spawns_remove">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <signal name="clicked" handler="on_monster_spawns_remove_clicked" swapped="no"/>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="icon-name">skytemple-list-remove-symbolic</property>
-                          </object>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="pack-type">end</property>
-                        <property name="position">4</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkSwitch" id="switch_kecleon_gender">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <signal name="state-set" handler="on_switch_kecleon_gender_state_set" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">4</property>
                       </packing>
                     </child>
                   </object>
