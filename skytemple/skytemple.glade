@@ -1354,6 +1354,27 @@ Consider &lt;a href="translate"&gt;helping us&lt;/a&gt; translate SkyTemple!&lt;
           </packing>
         </child>
         <child>
+          <object class="GtkButton" id="help_button">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Reload current ROM</property>
+            <signal name="clicked" handler="on_help_button_clicked" swapped="no"/>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">help-browser-symbolic</property>
+                <property name="icon_size">3</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack-type">end</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkButton" id="reload_button">
             <property name="visible">True</property>
             <property name="sensitive">False</property>
@@ -1372,7 +1393,7 @@ Consider &lt;a href="translate"&gt;helping us&lt;/a&gt; translate SkyTemple!&lt;
           </object>
           <packing>
             <property name="pack-type">end</property>
-            <property name="position">3</property>
+            <property name="position">4</property>
           </packing>
         </child>
         <child>
@@ -1394,7 +1415,7 @@ Consider &lt;a href="translate"&gt;helping us&lt;/a&gt; translate SkyTemple!&lt;
           </object>
           <packing>
             <property name="pack-type">end</property>
-            <property name="position">4</property>
+            <property name="position">5</property>
           </packing>
         </child>
       </object>
