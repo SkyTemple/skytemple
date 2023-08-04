@@ -19,10 +19,16 @@ import logging
 from datetime import datetime
 from functools import partial
 from typing import Optional, TYPE_CHECKING, Dict, Union, TypeVar, Callable
+import atexit
+import contextlib
 
 import sentry_sdk
+from sentry_sdk import Hub
 from sentry_sdk.integrations.logging import LoggingIntegration
+from sentry_sdk.sessions import auto_session_tracking
+from sentry_sdk.utils import logger as sentry_sdk_logger
 
+from skytemple.core.logger import SKYTEMPLE_LOGLEVEL
 from skytemple.core.ui_utils import version
 
 if TYPE_CHECKING:
@@ -74,8 +80,10 @@ def init():
                     'debug': False,
                     'environment': 'production'
                 }
+            sentry_sdk_logger.setLevel(SKYTEMPLE_LOGLEVEL)
+            logger.setLevel(SKYTEMPLE_LOGLEVEL)
             sentry_logging = LoggingIntegration(
-                level=logging.INFO,  # Capture info and above as breadcrumbs
+                level=logging.getLevelNamesMapping()[SKYTEMPLE_LOGLEVEL],  # Capture as breadcrumbs
                 event_level=None  # Send no errors as events
             )
             sentry_sdk.init(
@@ -85,6 +93,11 @@ def init():
                 integrations=[sentry_logging],
                 **settings  # type: ignore
             )
+            # Make sure we actually track this release being used.
+            session_ctx = contextlib.ExitStack()
+            hub = Hub(Hub.current)
+            atexit.register(session_ctx.close)
+            session_ctx.enter_context(auto_session_tracking(hub))  # type: ignore
         except Exception as ex:
             logger.error("Failed setting up Sentry", exc_info=ex)
         already_init = True

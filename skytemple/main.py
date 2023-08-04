@@ -140,7 +140,8 @@ from skytemple_files.common.i18n_util import _
 
 gi.require_version('Gtk', '3.0')
 
-from skytemple.core.logger import setup_logging
+from skytemple.core.logger import setup_logging, SKYTEMPLE_LOGLEVEL
+
 setup_logging()
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -167,8 +168,6 @@ except ImportError:
 from gi.repository import Gtk, Gdk, GLib
 from gi.repository.Gtk import Window
 from skytemple.controller.main import MainController
-
-SKYTEMPLE_LOGLEVEL = os.environ.get("SKYTEMPLE_LOGLEVEL", logging.getLevelName(logging.INFO))
 
 
 def run_main(settings: SkyTempleSettingsStore):
@@ -251,8 +250,6 @@ def _load_theme(settings: SkyTempleSettingsStore):
 
 def main():
     # TODO: At the moment doesn't support any cli arguments.
-    logging.basicConfig()
-    logging.getLogger().setLevel(SKYTEMPLE_LOGLEVEL)
     from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
     AsyncTaskDelegator.run_main(run_main, settings)
 
