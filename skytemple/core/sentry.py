@@ -28,7 +28,7 @@ from sentry_sdk.integrations.logging import LoggingIntegration
 from sentry_sdk.sessions import auto_session_tracking
 from sentry_sdk.utils import logger as sentry_sdk_logger
 
-from skytemple.core.logger import SKYTEMPLE_LOGLEVEL
+from skytemple.core.logger import SKYTEMPLE_LOGLEVEL, current_log_level
 from skytemple.core.ui_utils import version
 
 if TYPE_CHECKING:
@@ -83,7 +83,7 @@ def init():
             sentry_sdk_logger.setLevel(SKYTEMPLE_LOGLEVEL)
             logger.setLevel(SKYTEMPLE_LOGLEVEL)
             sentry_logging = LoggingIntegration(
-                level=logging.getLevelNamesMapping()[SKYTEMPLE_LOGLEVEL],  # Capture as breadcrumbs
+                level=current_log_level(),  # Capture as breadcrumbs
                 event_level=None  # Send no errors as events
             )
             sentry_sdk.init(

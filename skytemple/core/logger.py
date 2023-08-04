@@ -43,6 +43,23 @@ logger = logging.getLogger('system')
 SKYTEMPLE_LOGLEVEL = os.environ.get("SKYTEMPLE_LOGLEVEL", logging.getLevelName(default_loglevel()))
 
 
+def current_log_level():
+    """Same as SKYTEMPLE_LOGLEVEL, but the numeric value."""
+    if sys.version_info >= (3, 11):
+        return logging.getLevelNamesMapping()[SKYTEMPLE_LOGLEVEL]
+    _nameToLevel = {
+        'CRITICAL': logging.CRITICAL,
+        'FATAL': logging.FATAL,
+        'ERROR': logging.ERROR,
+        'WARN': logging.WARNING,
+        'WARNING': logging.WARNING,
+        'INFO': logging.INFO,
+        'DEBUG': logging.DEBUG,
+        'NOTSET': logging.NOTSET,
+    }
+    return _nameToLevel[SKYTEMPLE_LOGLEVEL]
+
+
 def async_handle_exeception(loop: AbstractEventLoop, context):
     """Exception handler for asyncio-like event loops"""
     if "exception" in context:
