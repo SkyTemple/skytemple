@@ -29,7 +29,35 @@ from skytemple.core.error_handler import display_error
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple_files.common.i18n_util import _, f
 
+from skytemple.core.ui_utils import version
+
+
+def default_loglevel():
+    if version() == 'dev':
+        return logging.DEBUG
+    else:
+        return logging.INFO
+
+
 logger = logging.getLogger('system')
+SKYTEMPLE_LOGLEVEL = os.environ.get("SKYTEMPLE_LOGLEVEL", logging.getLevelName(default_loglevel()))
+
+
+def current_log_level():
+    """Same as SKYTEMPLE_LOGLEVEL, but the numeric value."""
+    if sys.version_info >= (3, 11):
+        return logging.getLevelNamesMapping()[SKYTEMPLE_LOGLEVEL]
+    _nameToLevel = {
+        'CRITICAL': logging.CRITICAL,
+        'FATAL': logging.FATAL,
+        'ERROR': logging.ERROR,
+        'WARN': logging.WARNING,
+        'WARNING': logging.WARNING,
+        'INFO': logging.INFO,
+        'DEBUG': logging.DEBUG,
+        'NOTSET': logging.NOTSET,
+    }
+    return _nameToLevel[SKYTEMPLE_LOGLEVEL]
 
 
 def async_handle_exeception(loop: AbstractEventLoop, context):
@@ -75,3 +103,4 @@ def setup_logging():
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         handlers=[logging.StreamHandler(), handler]
     )
+    logging.getLogger().setLevel(SKYTEMPLE_LOGLEVEL)
