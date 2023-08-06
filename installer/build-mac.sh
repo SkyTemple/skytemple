@@ -80,6 +80,7 @@ language="\$(defaults read -g AppleLanguages | grep -o "\w\w-\w\w" | head -1 | s
 export LC_ALL="\$language.UTF-8"
 
 # Run the SkyTemple binary
+cd "\$(dirname \$0)"
 "\$(dirname \$0)/run_skytemple"
 EOF
 
