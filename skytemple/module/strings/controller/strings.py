@@ -207,8 +207,8 @@ class StringsController(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT:
             fn = add_extension_if_missing(fn, 'csv')
-            with open_utf8(fn, 'w') as result_file:
-                wr = csv.writer(result_file)
+            with open_utf8(fn, 'w', newline='') as result_file:
+                wr = csv.writer(result_file, lineterminator='\n')
                 wr.writerows([[x] for x in self._str.strings])
 
     def _visibility_func(self, model, iter, *args):
