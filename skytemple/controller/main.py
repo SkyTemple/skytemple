@@ -300,7 +300,7 @@ class MainController:
     def on_main_window_configure_event__handle(self):
         self.settings.set_window_position(self._window.get_position())
         self.settings.set_window_maximized(self._window.is_maximized())
-        if not self._window.is_maximised():
+        if not self._window.is_maximized():
             self.settings.set_window_size(self._window.get_size()) 
         self._resize_timeout_id = None
 
