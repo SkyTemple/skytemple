@@ -262,6 +262,9 @@ class MainController:
                 f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple--{module_slug}--{view_slug}"
             )
 
+    def on_settings_help_button_clicked(self, wdg):
+        webbrowser.open(f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple-settings")
+
     def on_debugger_button_clicked(self, wdg):
         self._debugger_manager.open(self._window)
 
