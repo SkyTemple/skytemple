@@ -12,7 +12,7 @@ py_version="3.11"
 
 branch="release"
 if [ -n "$IS_DEV_BUILD" ]; then
-  branch="version%2F1.5.x"
+  branch="master"
 fi
 
 if [ -n "$IS_MACOS" ]; then
