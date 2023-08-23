@@ -40,7 +40,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkLabel" id="intro_dialog_label_first">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="halign">start</property>
@@ -49,12 +49,13 @@
 With this tool you can edit various things in ROMs
 of Pokémon Mystery Dungeon Explorers of Sky.
 
-Please note the following:
-- This is still very early software, please make backups of your
-  ROM. Things &lt;i&gt;will&lt;/i&gt; break.
-- A project directory was created next to the ROM.
-- Please report any issues.</property>
+You can find more information on how to use this
+application in &lt;a href="wiki"&gt;the SkyTemple wiki&lt;/a&gt;.
+You can also access help from the wiki for
+the section you are currently in with the "?"
+icon at the top of the app.</property>
             <property name="use-markup">True</property>
+            <signal name="activate-link" handler="on_intro_dialog_label_first_activate_link" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>

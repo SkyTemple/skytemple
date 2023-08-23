@@ -660,6 +660,9 @@ class MainController:
     def on_update_button_clicked(self, *args):
         webbrowser.open_new_tab("https://download.skytemple.org/skytemple/latest/")
 
+    def on_intro_dialog_label_first_activate_link(self, *args):
+        webbrowser.open(f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple")
+
     def on_label_privacy_activate_link(self, *args):
         webbrowser.open_new_tab("https://skytemple.org/privacy.html")
 
