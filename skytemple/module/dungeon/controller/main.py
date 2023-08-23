@@ -215,81 +215,83 @@ class MainController(AbstractController):
 
         if drop_info:
             path, position = drop_info
-            iter = model.get_iter(path)
-            did_drag = True
+            if model.get_path(dungeon_iter) != path:  # do not continue when dragging on itself.
+                iter = model.get_iter(path)
 
-            # Did we drag onto a group or a dungeon in a group?
-            new_group_iter = self._get_group_iter(model, iter, position)
-            old_group_iter = self._get_group_iter(model, dungeon_iter, Gtk.TreeViewDropPosition.INTO_OR_BEFORE)
+                did_drag = True
 
-            if not new_group_iter:
-                # After/Before top level:
-                # Don't do anything
-                if position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE or position == Gtk.TreeViewDropPosition.INTO_OR_AFTER:
-                    # Inside top level, dungeon:
-                    # Build new group
-                    dungeon_id_insert = model[iter][1]
-                    before_iter = model.iter_previous(iter)
-                    assert iter is not None
-                    model.remove(iter)
-                    if before_iter is None:
-                        new_iter = model.insert(None, 0, self._generate_group_row(
-                            dungeon_id_insert
-                        ))
+                # Did we drag onto a group or a dungeon in a group?
+                new_group_iter = self._get_group_iter(model, iter, position)
+                old_group_iter = self._get_group_iter(model, dungeon_iter, Gtk.TreeViewDropPosition.INTO_OR_BEFORE)
+
+                if not new_group_iter:
+                    # After/Before top level:
+                    # Don't do anything
+                    if position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE or position == Gtk.TreeViewDropPosition.INTO_OR_AFTER:
+                        # Inside top level, dungeon:
+                        # Build new group
+                        dungeon_id_insert = model[iter][1]
+                        before_iter = model.iter_previous(iter)
+                        assert iter is not None
+                        model.remove(iter)
+                        if before_iter is None:
+                            new_iter = model.insert(None, 0, self._generate_group_row(
+                                dungeon_id_insert
+                            ))
+                        else:
+                            new_iter = model.insert_after(model.iter_parent(before_iter), before_iter, self._generate_group_row(
+                                dungeon_id_insert
+                            ))
+                        model.append(new_iter, self._generate_dungeon_row(dungeon_id_insert))
+                        model.append(new_iter, self._generate_dungeon_row(dungeon_id))
+                        w.expand_row(model.get_path(new_iter), False)
+                    elif old_group_iter is not None:
+                        self._reinsert(model, dungeon_id, self._generate_dungeon_row(dungeon_id))
                     else:
-                        new_iter = model.insert_after(model.iter_parent(before_iter), before_iter, self._generate_group_row(
-                            dungeon_id_insert
-                        ))
-                    model.append(new_iter, self._generate_dungeon_row(dungeon_id_insert))
-                    model.append(new_iter, self._generate_dungeon_row(dungeon_id))
-                    w.expand_row(model.get_path(new_iter), False)
-                elif old_group_iter is not None:
-                    self._reinsert(model, dungeon_id, self._generate_dungeon_row(dungeon_id))
+                        did_drag = False
                 else:
-                    did_drag = False
-            else:
-                if new_group_iter == iter:
-                    # Inside top level, group:
-                    # Add to end of group
-                    assert new_group_iter is not None
-                    model.append(new_group_iter, self._generate_dungeon_row(dungeon_id))
-                else:
-                    # After/Before in group / Inside in group:
-                    # Add it to group after/before this element
-                    if position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE or position == Gtk.TreeViewDropPosition.BEFORE:
+                    if new_group_iter == iter:
+                        # Inside top level, group:
+                        # Add to end of group
                         assert new_group_iter is not None
-                        model.insert_before(new_group_iter, iter, self._generate_dungeon_row(dungeon_id))
+                        model.append(new_group_iter, self._generate_dungeon_row(dungeon_id))
                     else:
-                        assert new_group_iter is not None
-                        model.insert_after(new_group_iter, iter, self._generate_dungeon_row(dungeon_id))
+                        # After/Before in group / Inside in group:
+                        # Add it to group after/before this element
+                        if position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE or position == Gtk.TreeViewDropPosition.BEFORE:
+                            assert new_group_iter is not None
+                            model.insert_before(new_group_iter, iter, self._generate_dungeon_row(dungeon_id))
+                        else:
+                            assert new_group_iter is not None
+                            model.insert_after(new_group_iter, iter, self._generate_dungeon_row(dungeon_id))
 
-            if did_drag:
-                assert dungeon_iter is not None
-                # Remove the original iter.
-                model.remove(dungeon_iter)
+                if did_drag:
+                    assert dungeon_iter is not None
+                    # Remove the original iter.
+                    model.remove(dungeon_iter)
 
-                # Check if group headers (main id) needs to be rewritten:
-                if old_group_iter:
-                    self._rewrite_group_header_id_and_pos(model, old_group_iter)
-                if new_group_iter and new_group_iter != old_group_iter:
-                    self._rewrite_group_header_id_and_pos(model, new_group_iter)
+                    # Check if group headers (main id) needs to be rewritten:
+                    if old_group_iter:
+                        self._rewrite_group_header_id_and_pos(model, old_group_iter)
+                    if new_group_iter and new_group_iter != old_group_iter:
+                        self._rewrite_group_header_id_and_pos(model, new_group_iter)
 
-                if old_group_iter and old_group_iter != new_group_iter:
-                    # If was in group:
-                    # Remove from group
-                    # (If removing dungeons from a group, recalculate group id, name,
-                    # position and if it even still needs to exist)
-                    if model.iter_n_children(old_group_iter) < 2:
-                        # Remove group
-                        dungeon_id_that_was_in_group = model[model.iter_nth_child(old_group_iter, 0)][1]
-                        assert old_group_iter is not None
-                        model.remove(old_group_iter)
-                        self._reinsert(model, dungeon_id_that_was_in_group, self._generate_dungeon_row(dungeon_id_that_was_in_group))
+                    if old_group_iter and old_group_iter != new_group_iter:
+                        # If was in group:
+                        # Remove from group
+                        # (If removing dungeons from a group, recalculate group id, name,
+                        # position and if it even still needs to exist)
+                        if model.iter_n_children(old_group_iter) < 2:
+                            # Remove group
+                            dungeon_id_that_was_in_group = model[model.iter_nth_child(old_group_iter, 0)][1]
+                            assert old_group_iter is not None
+                            model.remove(old_group_iter)
+                            self._reinsert(model, dungeon_id_that_was_in_group, self._generate_dungeon_row(dungeon_id_that_was_in_group))
 
-                # Select the newly inserted.
-                dungeon_iter = self._find_dungeon_iter(model, dungeon_id)
-                w.get_selection().select_iter(dungeon_iter)
-                w.scroll_to_cell(model.get_path(dungeon_iter), None, True, 0.5, 0.5)
+                    # Select the newly inserted.
+                    dungeon_iter = self._find_dungeon_iter(model, dungeon_id)
+                    w.get_selection().select_iter(dungeon_iter)
+                    w.scroll_to_cell(model.get_path(dungeon_iter), None, True, 0.5, 0.5)
 
         if context.get_actions() == Gdk.DragAction.MOVE:
             # We remove the source data manual.
