@@ -46,32 +46,43 @@ ExceptionInfo = Union[BaseException, Tuple[Type[BaseException], BaseException, T
 
 
 def show_error_web(exc_info):
+    tmp_file1 = None
+    tmp_file2 = None
+    tmp_file3 = None
     try:
         html = cgitb.html(exc_info)
-        with NamedTemporaryFile(delete=False, mode='w', suffix='.html') as tmp_file:
-            tmp_file.write(html)
-            webbrowser.open_new_tab(Path(tmp_file.name).as_uri())
+        with NamedTemporaryFile(delete=False, mode='w', suffix='.html') as tmp_file1:
+            tmp_file1.write(html)
+            webbrowser.open_new_tab(Path(tmp_file1.name).as_uri())
     except BaseException:
         # Oof. This happens sometimes with some exceptions ("AttributeError: characters_written").
         try:
             html = cgitb.text(exc_info)
-            with NamedTemporaryFile(delete=False, mode='w', suffix='.txt') as tmp_file:
-                tmp_file.write(html)
-                webbrowser.open_new_tab(Path(tmp_file.name).as_uri())
+            with NamedTemporaryFile(delete=False, mode='w', suffix='.txt') as tmp_file2:
+                tmp_file2.write(html)
+                webbrowser.open_new_tab(Path(tmp_file2.name).as_uri())
         except BaseException:
             # Hm... now it's getting ridiculous.
             try:
                 html = ''.join(traceback.format_exception(*exc_info))
-                with NamedTemporaryFile(delete=False, mode='w', suffix='.txt') as tmp_file:
-                    tmp_file.write(html)
-                    webbrowser.open_new_tab(Path(tmp_file.name).as_uri())
+                with NamedTemporaryFile(delete=False, mode='w', suffix='.txt') as tmp_file3:
+                    tmp_file3.write(html)
+                    webbrowser.open_new_tab(Path(tmp_file3.name).as_uri())
             except BaseException:
                 # Yikes!
                 md = SkyTempleMessageDialog(None,
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
                                             Gtk.ButtonsType.OK,
-                                            _("Trying to display the error failed. Wow!"),
-                                            title=":(")
+                                            (
+                                                _("Trying to display the error failed. Wow!")
+                                                + "\n"
+                                                + _("You can try opening one of the following file manually in a web browser or text editor: ")
+                                                + "\n - " + (tmp_file1.name if tmp_file1 is not None else "")
+                                                + "\n - " + (tmp_file2.name if tmp_file2 is not None else "")
+                                                + "\n - " + (tmp_file3.name if tmp_file3 is not None else "")
+                                            ),
+
+                                            title=":(", text_selectable=True)
                 md.run()
                 md.destroy()
 
