@@ -21,7 +21,7 @@ import re
 import sys
 from collections import OrderedDict
 from functools import partial
-from typing import TYPE_CHECKING, List, Optional, Tuple
+from typing import TYPE_CHECKING, List, Optional, Tuple, Sequence, MutableSequence
 
 from range_typed_integers import u16, u16_checked
 
@@ -36,7 +36,7 @@ from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.graphics.bg_list_dat import BPA_EXT, DIR
 from skytemple_files.graphics.bpa.protocol import BpaProtocol
 from skytemple_files.graphics.bpc.protocol import BpcProtocol
-from skytemple_files.graphics.bpl.protocol import BplProtocol
+from skytemple_files.graphics.bpl.protocol import BplProtocol, BplAnimationSpecProtocol
 from skytemple_files.common.i18n_util import _, f
 
 from PIL import Image
@@ -675,10 +675,11 @@ class BgMenuController:
 
         if response == Gtk.ResponseType.OK:
             had_errors = False
+            has_palette_animation = False
+            new_sepcs: MutableSequence[BplAnimationSpecProtocol] = []
             if self.parent.builder.get_object('palette_animation_enabled').get_active():
                 # Has palette animations!
-                self.parent.bpl.has_palette_animation = True
-                self.parent.bpl.animation_specs = []
+                has_palette_animation = True
                 for i in range(1, 17):
                     try:
                         duration_per_frame = int(self.parent.builder.get_object(f'pallete_anim_setting_unk3_p{i}').get_text())
@@ -691,20 +692,37 @@ class BgMenuController:
                         number_of_frames = 0
                         had_errors = True
                     try:
-                        self.parent.bpl.animation_specs.append(FileType.BPL.get_animation_spec_model_cls()(
+                        new_sepcs.append(FileType.BPL.get_animation_spec_model_cls()(
                             u16_checked(duration_per_frame), u16_checked(number_of_frames)
                         ))
                     except OverflowError:
                         had_errors = True
-                # Add at least one palette if palette animation was just enabled
-                if self.parent.bpl.animation_palette is None or self.parent.bpl.animation_palette == []:
-                    self.parent.bpl.animation_palette = [[0, 0, 0] * 15]
-            else:
-                # Doesn't have
-                self.parent.bpl.has_palette_animation = False
-                self.parent.bpl.animation_specs = []
 
-            if had_errors:
+            if has_palette_animation and all(spec.number_of_frames == 0 for spec in new_sepcs):
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                            Gtk.ButtonsType.OK, _('All "number of frames" values were invalid or 0. No values were saved.'))
+                md.set_position(Gtk.WindowPosition.CENTER)
+                md.run()
+                md.destroy()
+
+                self.parent.reload_all()
+                self.parent.mark_as_modified()
+                return
+            elif has_palette_animation and all(spec.duration_per_frame == 0 for spec in new_sepcs):
+                md = SkyTempleMessageDialog(MainController.window(),
+                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
+                                            Gtk.ButtonsType.OK, _('All "frame time" values were invalid or 0. No values were saved.'))
+                md.set_position(Gtk.WindowPosition.CENTER)
+                md.run()
+                md.destroy()
+
+                self.parent.reload_all()
+                self.parent.mark_as_modified()
+                return
+            elif had_errors:
+                self.parent.bpl.has_palette_animation = has_palette_animation
+                self.parent.bpl.animation_specs = new_sepcs
                 md = SkyTempleMessageDialog(MainController.window(),
                                             Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
                                             Gtk.ButtonsType.OK, _("Some values were invalid (not a number). "
@@ -713,6 +731,14 @@ class BgMenuController:
                 md.set_position(Gtk.WindowPosition.CENTER)
                 md.run()
                 md.destroy()
+
+            self.parent.bpl.has_palette_animation = has_palette_animation
+            self.parent.bpl.animation_specs = new_sepcs
+
+            if has_palette_animation:
+                # Add at least one palette if palette animation was just enabled
+                if self.parent.bpl.animation_palette is None or self.parent.bpl.animation_palette == []:
+                    self.parent.bpl.animation_palette = [[0, 0, 0] * 15]
 
             self.parent.reload_all()
             self.parent.mark_as_modified()
