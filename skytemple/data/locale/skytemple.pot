@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-08-23 17:46+0000\n"
+"POT-Creation-Date: 2023-08-24 19:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4083,9 +4083,14 @@ msgid ""
 "This supposedly removes most of the particular cases the game handles for evolutions. "
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/change_evo.py:233
+#: skytemple-files/skytemple_files/patch/handler/change_evo.py:235
 #, python-brace-format
 msgid "Infinite recursion detected in pre evolutions for md entry {i}. "
+msgstr ""
+
+#: skytemple-files/skytemple_files/patch/handler/change_evo.py:244
+#, python-brace-format
+msgid "One of the monsters in the pre-evolution chain of monster ${i:04} has an invalid pre evolution configured: ${pre_evo:04}. Can not apply patch."
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/change_ff_prop.py:52
@@ -4662,8 +4667,8 @@ msgstr ""
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:320
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:333
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:496
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:712
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:730
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:756
 #: skytemple/skytemple/module/script/controller/ssa.py:533
 msgid "Warning!"
 msgstr ""
@@ -6114,11 +6119,15 @@ msgstr ""
 msgid "Using Gbulb event loop"
 msgstr ""
 
-#: skytemple/skytemple/core/error_handler.py:73
+#: skytemple/skytemple/core/error_handler.py:77
 msgid "Trying to display the error failed. Wow!"
 msgstr ""
 
-#: skytemple/skytemple/core/error_handler.py:87 skytemple/skytemple/main.py:162
+#: skytemple/skytemple/core/error_handler.py:79
+msgid "You can try opening one of the following file manually in a web browser or text editor: "
+msgstr ""
+
+#: skytemple/skytemple/core/error_handler.py:98 skytemple/skytemple/main.py:162
 msgid "SkyTemple - Error!"
 msgstr ""
 
@@ -8056,7 +8065,7 @@ msgid "Export PNG of map..."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:135
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:760
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:786
 msgid "Export PNG of chunks..."
 msgstr ""
 
@@ -8068,8 +8077,8 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:180
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:250
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:798
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:859
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:824
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:885
 msgid "An image must be selected."
 msgstr ""
 
@@ -8080,13 +8089,13 @@ msgid "Error importing the tileset."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:208
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:824
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:850
 msgid "Export PNG of tiles..."
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:318
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:494
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:710
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:728
 msgid "Some values were invalid (not a number). They were replaced with 0."
 msgstr ""
 
@@ -9970,11 +9979,19 @@ msgstr ""
 msgid "Error during BPA import"
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:729
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:704
+msgid "All \"number of frames\" values were invalid or 0. No values were saved."
+msgstr ""
+
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:715
+msgid "All \"frame time\" values were invalid or 0. No values were saved."
+msgstr ""
+
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:755
 msgid "Palette Animation is not enabled."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:877
+#: skytemple/skytemple/module/map_bg/controller/bg_menu.py:903
 msgid "This map has no second layer."
 msgstr ""
 
