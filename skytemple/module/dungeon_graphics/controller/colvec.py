@@ -37,11 +37,11 @@ from skytemple.core.ui_utils import add_dialog_png_filter
 from skytemple.core.string_provider import StringType
 from skytemple.core.module_controller import AbstractController
 from skytemple_files.common.i18n_util import f, _
-from skytemple_files.graphics.dma.model import Dma
-from skytemple_files.graphics.dpc.model import Dpc
-from skytemple_files.graphics.dpci.model import Dpci
-from skytemple_files.graphics.dpl.model import Dpl
-from skytemple_files.graphics.dpla.model import Dpla
+from skytemple_files.graphics.dma.protocol import DmaProtocol
+from skytemple_files.graphics.dpc.protocol import DpcProtocol
+from skytemple_files.graphics.dpci.protocol import DpciProtocol
+from skytemple_files.graphics.dpl.protocol import DplProtocol
+from skytemple_files.graphics.dpla.protocol import DplaProtocol
 
 logger = logging.getLogger(__name__)
 
@@ -56,11 +56,11 @@ class ColvecController(AbstractController):
         self.filename = item
         self.colvec: Colvec = self.module.get_colvec()
         
-        self.dma: Dma
-        self.dpl: Dpl
-        self.dpla: Dpla
-        self.dpc: Dpc
-        self.dpci: Dpci
+        self.dma: DmaProtocol
+        self.dpl: DplProtocol
+        self.dpla: DplaProtocol
+        self.dpc: DpcProtocol
+        self.dpci: DpciProtocol
 
         self.builder: Gtk.Builder = None  # type: ignore
 
