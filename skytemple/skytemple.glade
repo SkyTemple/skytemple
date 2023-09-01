@@ -1376,7 +1376,7 @@ Consider &lt;a href="translate"&gt;helping us&lt;/a&gt; translate SkyTemple!&lt;
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Reload current ROM</property>
+            <property name="tooltip-text" translatable="yes">Help</property>
             <signal name="clicked" handler="on_help_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage">

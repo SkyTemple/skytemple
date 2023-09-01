@@ -315,7 +315,7 @@ Choose a Pokémon in the list on the left.</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Settings</property>
+            <property name="tooltip-text" translatable="yes">Help</property>
             <signal name="clicked" handler="on_sc_help_clicked" swapped="no"/>
             <child>
               <object class="GtkImage">
