@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-08-24 19:56+0000\n"
+"POT-Creation-Date: 2023-09-01 11:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3353,26 +3353,28 @@ msgstr ""
 msgid "Cannot convert PIL image to CHR: width and height must be a multiple of {CHR_TILE_WIDTH}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/dbg/model.py:106
+#: skytemple-files/skytemple_files/graphics/dbg/_model.py:117
 #, python-brace-format
 msgid "Can not import map background: Width of image must match the expected width: {expected_width}px"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/dbg/model.py:115
+#: skytemple-files/skytemple_files/graphics/dbg/_model.py:126
 #, python-brace-format
 msgid "Can not import map background: Height of image must match the expected height: {expected_height}px"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/dpc/model.py:128
+#: skytemple-files/skytemple_files/graphics/dpc/_model.py:136
 #, python-brace-format
 msgid "The image to import can only use the first 12 palettes. Tried to use palette {tm.pal_idx}"
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/dpc/model.py:172
+#: skytemple-files/skytemple_files/graphics/dpc/_model.py:177
+#: skytemple-rust/src/st_dpc.rs:222
 msgid "A dungeon background or tilemap can not have more than 400 chunks."
 msgstr ""
 
-#: skytemple-files/skytemple_files/graphics/dpla/model.py:114
+#: skytemple-files/skytemple_files/graphics/dpla/_model.py:103
+#: skytemple-rust/src/st_dpla.rs:121
 msgid "This palette has no animation."
 msgstr ""
 
@@ -4222,8 +4224,8 @@ msgstr ""
 msgid "Fixes the evolution glitch that freezes the game when attempting to evolve a pokémon whose name has 10 characters."
 msgstr ""
 
-#: skytemple-files/skytemple_files/patch/handler/fix_memory_softlock.py:48
-msgid "Prevents the game from crashing if it runs out of memory when trying to display a sprite (this can happen during cutscenes when using custom sprites or the randomizer). Instead, the game will be forced to continue, which will most likely prevent the crash but could cause glitches."
+#: skytemple-files/skytemple_files/patch/handler/fix_memory_softlock.py:46
+msgid "If the game runs out of memory trying to load a sprite, a default one will be used instead, preventing the crash."
 msgstr ""
 
 #: skytemple-files/skytemple_files/patch/handler/fix_nocash_saves.py:47
@@ -4580,19 +4582,19 @@ msgid ""
 "Try to have less unique tiles. Unique tiles are 8x8 sections of the images that can't be found anywhere else in the image (including flipped or with a different sub-palette)."
 msgstr ""
 
-#: skytemple-rust/src/romfs.rs:101
+#: skytemple-rust/src/romfs.rs:100
 msgid "ROM Header checksum does not match contents."
 msgstr ""
 
-#: skytemple-rust/src/romfs.rs:110
+#: skytemple-rust/src/romfs.rs:109
 msgid "Error reading the filesystem from ROM: {}"
 msgstr ""
 
-#: skytemple-rust/src/st_bma.rs:463
+#: skytemple-rust/src/st_bma.rs:468
 msgid "Can not import map background: Width of both images must match the current map width: {}px"
 msgstr ""
 
-#: skytemple-rust/src/st_bma.rs:475
+#: skytemple-rust/src/st_bma.rs:480
 msgid "Can not import map background: Height of both images must match the current map width: {}px"
 msgstr ""
 
@@ -4600,7 +4602,32 @@ msgstr ""
 msgid "new tilemapping for this chunk must contain {} tiles."
 msgstr ""
 
-#: skytemple-rust/src/st_kao.rs:100
+#: skytemple-rust/src/st_dbg.rs:129
+msgid "Can not import map background: Width of image must match the expected width: {}px"
+msgstr ""
+
+#: skytemple-rust/src/st_dbg.rs:135
+msgid "Can not import map background: Height of image must match the expected height: {}px"
+msgstr ""
+
+#: skytemple-rust/src/st_dpc.rs:150
+msgid "The image to import can only use the first 12 palettes. Tried to use palette {}"
+msgstr ""
+
+#: skytemple-rust/src/st_dpla.rs:100
+msgid "Palette is invalid."
+msgstr ""
+
+#: skytemple-rust/src/st_dpla.rs:106 skytemple-rust/src/st_dpla.rs:166
+#: skytemple-rust/src/st_dpla.rs:203 skytemple-rust/src/st_dpla.rs:211
+msgid "Palette index out of range."
+msgstr ""
+
+#: skytemple-rust/src/st_dpla.rs:258
+msgid "Frame durations out of range while trying to build color."
+msgstr ""
+
+#: skytemple-rust/src/st_kao.rs:96
 msgid ""
 "This portrait does not compress well, the result size is greater than 800 bytes ({} bytes total).\n"
 " If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
@@ -4664,8 +4691,8 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1650
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/calltips/position_mark.py:89
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:424
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:320
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:333
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:322
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:335
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:496
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:730
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:756
@@ -6310,7 +6337,7 @@ msgid "Error importing the image."
 msgstr ""
 
 #: skytemple/skytemple/module/bgp/controller/main.py:23
-#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:81
+#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:84
 msgid "Backgrounds"
 msgstr ""
 
@@ -8071,7 +8098,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:155
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:228
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:232
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:233
 msgid "Error exporting the tileset."
 msgstr ""
 
@@ -8084,7 +8111,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:194
 #: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:261
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:192
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:193
 msgid "Error importing the tileset."
 msgstr ""
 
@@ -8093,13 +8120,13 @@ msgstr ""
 msgid "Export PNG of tiles..."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:318
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:320
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:494
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:728
 msgid "Some values were invalid (not a number). They were replaced with 0."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:332
+#: skytemple/skytemple/module/dungeon_graphics/controller/bg_menu.py:334
 msgid "Palette Animation is not enabled for this palette."
 msgstr ""
 
@@ -8494,7 +8521,7 @@ msgstr ""
 msgid "Tiles Image"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:43
+#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:46
 msgid ""
 "- The image consists of 8x8 tiles.\n"
 "- The image is a 256-color indexed PNG.\n"
@@ -8509,7 +8536,7 @@ msgid ""
 "  (=not existing with another palette or flipped or rotated).\n"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:56
+#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:59
 msgid ""
 "- The image is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
@@ -8525,7 +8552,7 @@ msgid ""
 "Palettes > Edit Palettes."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:69
+#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:72
 msgid ""
 "- The images is a 256-color indexed PNG.\n"
 "- The 256 colors are divided into 16 16 color palettes.\n"
@@ -8541,7 +8568,7 @@ msgid ""
 "Palettes > Edit Palettes."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:93
+#: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.py:96
 msgid "This section lets you edit the background images that are used for some special dungeon floors."
 msgstr ""
 
@@ -8756,52 +8783,52 @@ msgid ""
 "  imported as transparency."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:65
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:66
 msgid "Tilesets"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:77
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:78
 msgid "This section lets you edit the tilesets that are used for dungeons."
-msgstr ""
-
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:126
-#, python-brace-format
-msgid "Dungeon Tileset {self.item_id} Rules"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:127
 #, python-brace-format
+msgid "Dungeon Tileset {self.item_id} Rules"
+msgstr ""
+
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:128
+#, python-brace-format
 msgid "Dungeon Tileset {self.item_id}"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:145
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:146
 msgid "To import select the XML file in the DTEF tileset package. If it is still zipped, unzip it first."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:152
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:153
 msgid "Import dungeon tileset..."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:159
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:160
 msgid "DTEF XML document (*.dtef.xml)"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:182
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:183
 msgid "The tileset was successfully imported."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:183
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:225
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:184
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:226
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:177
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:246
 msgid "Success!"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:197
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:198
 msgid "Export dungeon tileset..."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:224
+#: skytemple/skytemple/module/dungeon_graphics/controller/tileset.py:225
 msgid "The tileset was successfully exported."
 msgstr ""
 
