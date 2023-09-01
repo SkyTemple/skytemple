@@ -73,7 +73,7 @@ setup(
         'pycairo >= 1.16.0',
         'natsort >= 7.0.0',
         'tilequant >= 1.0.0',
-        'skytemple-ssb-debugger >= 1.6.0a2, < 1.7.0',
+        'skytemple-ssb-debugger >= 1.6.0a3, < 1.7.0',
         'pygal >= 2.4.0',
         'CairoSVG >= 2.4.2',
         'gbulb >= 0.6.2',
