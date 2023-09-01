@@ -17,6 +17,7 @@
 import logging
 import os
 import sys
+import webbrowser
 from enum import Enum
 from functools import partial
 from typing import Optional, cast
@@ -138,6 +139,7 @@ class TilequantController:
         builder_get_assert(builder, Gtk.Button, "tq_convert").connect(
             "clicked", self.convert
         )
+        builder.get_object("tq_help").connect("clicked", self.show_wiki_help)
         self.builder = builder
         self._previous_output_image: Optional[str] = None
         self._previous_second_output_image: Optional[str] = None
@@ -375,6 +377,13 @@ class TilequantController:
         )
         md.run()
         md.destroy()
+
+    def show_wiki_help(self, *args):
+        from skytemple.controller.main import SKYTEMPLE_WIKI_LINK
+
+        webbrowser.open(
+            f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple-tilequant"
+        )
 
     def error(self, msg, should_report=True):
         display_error(sys.exc_info(), msg, should_report=should_report)

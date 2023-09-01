@@ -303,6 +303,13 @@ class BrowserController(AbstractController):
             self._spritebrowser_url = browser_text if browser_text != "" else None
             self.reinit()
 
+    def on_sc_help_clicked(self, *args):
+        from skytemple.controller.main import SKYTEMPLE_WIKI_LINK
+
+        webbrowser.open(
+            f"{SKYTEMPLE_WIKI_LINK}/index.php/SkyTemple:UI-Link/skytemple-spritecollab-browser"
+        )
+
     def on_sc_diag_preset_changed(self, w: Gtk.ComboBox, *args):
         diag_server_url = builder_get_assert(
             self.builder, Gtk.Entry, "sc_diag_server_url"
