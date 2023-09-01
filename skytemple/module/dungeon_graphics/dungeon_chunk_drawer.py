@@ -26,8 +26,9 @@ from skytemple.core.events.manager import EventManager
 from skytemple.module.tiled_img.animation_context import AnimationContext
 import cairo
 
-from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
-from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
+from skytemple_files.graphics.dpc import DPC_TILING_DIM
+from skytemple_files.graphics.dpci import DPCI_TILE_DIM
+
 FPS = 60
 
 

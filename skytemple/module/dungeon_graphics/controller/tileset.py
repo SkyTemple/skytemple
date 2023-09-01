@@ -40,6 +40,7 @@ from skytemple_dtef import get_template_file
 from skytemple_dtef.explorers_dtef import ExplorersDtef, VAR0_FN, VAR2_FN, VAR1_FN
 from skytemple_dtef.explorers_dtef_importer import ExplorersDtefImporter
 from skytemple_files.common.xml_util import prettify
+from skytemple_files.graphics.dma.util import get_tile_neighbors
 from skytemple_files.hardcoded.dungeons import SecondaryTerrainTableEntry, HardcodedDungeons
 
 from PIL import Image
@@ -50,11 +51,11 @@ from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController, SimpleController
 from skytemple.module.dungeon_graphics.dungeon_chunk_drawer import DungeonChunkCellDrawer
 from skytemple_files.common.util import lcm, chunks
-from skytemple_files.graphics.dma.model import Dma, DmaExtraType, DmaType
-from skytemple_files.graphics.dpc.model import Dpc
-from skytemple_files.graphics.dpci.model import Dpci
-from skytemple_files.graphics.dpl.model import Dpl
-from skytemple_files.graphics.dpla.model import Dpla
+from skytemple_files.graphics.dma.protocol import DmaProtocol, DmaExtraType, DmaType
+from skytemple_files.graphics.dpc.protocol import DpcProtocol
+from skytemple_files.graphics.dpci.protocol import DpciProtocol
+from skytemple_files.graphics.dpl.protocol import DplProtocol
+from skytemple_files.graphics.dpla.protocol import DplaProtocol
 from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
@@ -89,11 +90,11 @@ class TilesetController(AbstractController):
 
         self.builder: Gtk.Builder = None  # type: ignore
 
-        self.dma: Dma = module.get_dma(item_id)
-        self.dpl: Dpl = module.get_dpl(item_id)
-        self.dpla: Dpla = module.get_dpla(item_id)
-        self.dpc: Dpc = module.get_dpc(item_id)
-        self.dpci: Dpci = module.get_dpci(item_id)
+        self.dma: DmaProtocol = module.get_dma(item_id)
+        self.dpl: DplProtocol = module.get_dpl(item_id)
+        self.dpla: DplaProtocol = module.get_dpla(item_id)
+        self.dpc: DpcProtocol = module.get_dpc(item_id)
+        self.dpci: DpciProtocol = module.get_dpci(item_id)
 
         self.rules = [
             [0, 0, 0],
@@ -410,7 +411,7 @@ class TilesetController(AbstractController):
         def init_extra_rules_store(store):
             for extra_type in (DmaExtraType.FLOOR1, DmaExtraType.WALL_OR_VOID, DmaExtraType.FLOOR2):
                 for idx, val in enumerate(self.dma.get_extra(extra_type)):
-                    store.append([idx + 16 * extra_type.value, val])
+                    store.append([idx + 16 * extra_type, val])
 
         for i, v_icon_view_name in enumerate(("rules_main_1", "rules_main_2", "rules_main_3")):
             self._init_an_icon_view(v_icon_view_name, init_main_rules_store, False)
@@ -470,7 +471,7 @@ class TilesetController(AbstractController):
         for y, row in enumerate(self.rules):
             for x, solid in enumerate(row):
                 chunk_type = solid_type if solid else DmaType.FLOOR
-                solid_neighbors = Dma.get_tile_neighbors(self.rules, x, y, bool(solid))
+                solid_neighbors = get_tile_neighbors(self.rules, x, y, bool(solid))
                 all_chunk_mapping_vars.append(self.dma.get(chunk_type, solid_neighbors))
 
         for i, v_icon_view_name in enumerate(("rules_main_1", "rules_main_2", "rules_main_3")):
@@ -484,7 +485,7 @@ class TilesetController(AbstractController):
         store.clear()
         for extra_type in (DmaExtraType.FLOOR1, DmaExtraType.WALL_OR_VOID, DmaExtraType.FLOOR2):
             for idx, val in enumerate(self.dma.get_extra(extra_type)):
-                store.append([idx + 16 * extra_type.value, val])
+                store.append([idx + 16 * extra_type, val])
 
     def _get_current_solid_type(self):
         combo_box: Gtk.ComboBoxText = self.builder.get_object("rules_active_type")
@@ -501,7 +502,7 @@ class TilesetController(AbstractController):
             solid = bool(self.rules[x][y])
             self.dma.set(
                 self._get_current_solid_type() if solid else DmaType.FLOOR,
-                Dma.get_tile_neighbors(self.rules, x, y, solid),
+                get_tile_neighbors(self.rules, x, y, solid),
                 variation, edited_value
             )
             self.update_chunks_from_current_rules()

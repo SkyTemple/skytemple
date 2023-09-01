@@ -28,15 +28,16 @@ from skytemple.core.mapbg_util.drawer_plugin.selection import SelectionDrawerPlu
 from skytemple.module.tiled_img.animation_context import AnimationContext
 import cairo
 
-from skytemple_files.graphics.dbg.model import Dbg, DBG_TILING_DIM, DBG_WIDTH_AND_HEIGHT
-from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
+from skytemple_files.graphics.dbg.protocol import DbgProtocol
+from skytemple_files.graphics.dbg import DBG_TILING_DIM, DBG_WIDTH_AND_HEIGHT
+from skytemple_files.graphics.dpci import DPCI_TILE_DIM
 
 FPS = 60
 
 
 class Drawer:
     def __init__(
-            self, draw_area: Widget, dbg: Union[Dbg, None], pal_ani_durations: int,
+            self, draw_area: Widget, dbg: Union[DbgProtocol, None], pal_ani_durations: int,
             # chunks_surfaces[chunk_idx][palette_animation_frame][frame]
             chunks_surfaces: Iterable[Iterable[List[cairo.Surface]]]
     ):
@@ -79,7 +80,7 @@ class Drawer:
 
     # noinspection PyAttributeOutsideInit
     def reset(self, dbg, pal_ani_durations, chunks_surfaces):
-        if isinstance(dbg, Dbg):
+        if isinstance(dbg, DbgProtocol):
             self.mappings = dbg.mappings
         else:
             self.mappings = []

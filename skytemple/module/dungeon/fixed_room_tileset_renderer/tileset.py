@@ -21,16 +21,18 @@ import cairo
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.module.dungeon.fixed_room_tileset_renderer.abstract import AbstractTilesetRenderer
 from skytemple_files.graphics.dma.dma_drawer import DmaDrawer
-from skytemple_files.graphics.dma.model import DmaType, Dma
-from skytemple_files.graphics.dpc.model import Dpc, DPC_TILING_DIM
-from skytemple_files.graphics.dpci.model import Dpci, DPCI_TILE_DIM
-from skytemple_files.graphics.dpl.model import Dpl
+from skytemple_files.graphics.dma.protocol import DmaType, DmaProtocol
+from skytemple_files.graphics.dpc.protocol import DpcProtocol
+from skytemple_files.graphics.dpc import DPC_TILING_DIM
+from skytemple_files.graphics.dpci.protocol import DpciProtocol
+from skytemple_files.graphics.dpci import DPCI_TILE_DIM
+from skytemple_files.graphics.dpl.protocol import DplProtocol
 
 
 class FixedFloorDrawerTileset(AbstractTilesetRenderer):
 
-    def __init__(self, dma: Dma, dpci: Dpci, dpc: Dpc, dpl: Dpl):
-        self._cached_rules: Optional[List[List[DmaType]]] = None
+    def __init__(self, dma: DmaProtocol, dpci: DpciProtocol, dpc: DpcProtocol, dpl: DplProtocol):
+        self._cached_rules: Optional[List[List[int]]] = None
         self._cached_dungeon_surface: Optional[cairo.ImageSurface] = None
         self.dma = dma
         self.dpci = dpci
@@ -47,7 +49,7 @@ class FixedFloorDrawerTileset(AbstractTilesetRenderer):
     def get_background(self) -> Optional[cairo.Surface]:
         return None
 
-    def get_dungeon(self, rules: List[List[DmaType]]) -> cairo.Surface:
+    def get_dungeon(self, rules: List[List[int]]) -> cairo.Surface:
         # TODO: If rules change only update the parts that need to be updated
         if rules != self._cached_rules:
             mappings = self.dma_drawer.get_mappings_for_rules(rules, treat_outside_as_wall=True, variation_index=0)
@@ -57,7 +59,7 @@ class FixedFloorDrawerTileset(AbstractTilesetRenderer):
             self._cached_rules = rules
         return self._cached_dungeon_surface  # type: ignore
 
-    def get_single_tile(self, tile: DmaType) -> cairo.Surface:
+    def get_single_tile(self, tile: int) -> cairo.Surface:
         return self.single_tiles[tile]
 
     def _single_tile(self, chunks, type):

@@ -41,8 +41,8 @@ from skytemple.module.dungeon.fixed_room_tileset_renderer.minimap import FixedFl
 from skytemple.module.dungeon.fixed_room_tileset_renderer.tileset import FixedFloorDrawerTileset
 from skytemple.module.dungeon.minimap_provider import MinimapProvider
 from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRuleType, TileRule, EntityRule
-from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
-from skytemple_files.graphics.dpci.model import DPCI_TILE_DIM
+from skytemple_files.graphics.dpc import DPC_TILING_DIM
+from skytemple_files.graphics.dpci import DPCI_TILE_DIM
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
 from skytemple_files.common.i18n_util import _, f
 

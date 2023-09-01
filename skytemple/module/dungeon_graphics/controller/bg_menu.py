@@ -28,7 +28,7 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_graphics_provider import DungeonTilesProvider
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_palettes_provider import DungeonPalettesProvider
 from skytemple_files.common.util import chunks, add_extension_if_missing
-from skytemple_files.graphics.dpc.model import DPC_TILING_DIM
+from skytemple_files.graphics.dpc import DPC_TILING_DIM
 from skytemple_files.common.i18n_util import f, _
 
 from PIL import Image
@@ -266,7 +266,7 @@ class BgMenuController:
     def on_men_palettes_edit_activate(self):
         dict_pals = OrderedDict()
         for i, pal in enumerate(self.parent.dpl.palettes):
-            dict_pals[f'{i}'] = pal.copy()
+            dict_pals[f'{i}'] = list(pal)
 
         cntrl = PaletteEditorController(
             MainController.window(), dict_pals
@@ -297,6 +297,7 @@ class BgMenuController:
 
         if response == Gtk.ResponseType.OK:
             had_errors = False
+            durations_per_frame_for_colors = list(self.parent.dpla.durations_per_frame_for_colors)
             for palid, aidx, offset in ((0, 11, 0), (1, 12, 16)):
                 if self.parent.builder.get_object(f'palette_animation{aidx}_enabled').get_active():
                     # Has palette animations!
@@ -310,7 +311,8 @@ class BgMenuController:
                     except:
                         time = u16(0)
                         had_errors = True
-                    self.parent.dpla.durations_per_frame_for_colors[offset + cidx] = time
+                    durations_per_frame_for_colors[offset + cidx] = time
+            self.parent.dpla.durations_per_frame_for_colors = durations_per_frame_for_colors
 
             if had_errors:
                 md = SkyTempleMessageDialog(MainController.window(),
@@ -358,7 +360,9 @@ class BgMenuController:
                 for color_idx, c in enumerate(chunks(palette, 3)):
                     edited_colors[color_idx] += c
 
-            self.parent.dpla.colors[ani_pal_id*16:(ani_pal_id+1)*16] = edited_colors
+            colors = list(self.parent.dpla.colors)
+            colors[ani_pal_id*16:(ani_pal_id+1)*16] = edited_colors
+            self.parent.dpla.colors = colors
             self.parent.reload_all()
             self.parent.mark_as_modified()
         del cntrl

@@ -29,11 +29,14 @@ from skytemple.core.module_controller import AbstractController, SimpleControlle
 from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
 from skytemple.module.dungeon_graphics.dungeon_bg_drawer import Drawer, DrawerCellRenderer
 from skytemple_files.common.util import lcm
-from skytemple_files.graphics.dbg.model import Dbg, DBG_TILING_DIM, DBG_WIDTH_AND_HEIGHT
-from skytemple_files.graphics.dpc.model import Dpc
-from skytemple_files.graphics.dpci.model import Dpci, DPCI_TILE_DIM
-from skytemple_files.graphics.dpl.model import Dpl, DPL_MAX_PAL, DPL_PAL_LEN
-from skytemple_files.graphics.dpla.model import Dpla
+from skytemple_files.graphics.dbg.protocol import DbgProtocol
+from skytemple_files.graphics.dbg import DBG_TILING_DIM, DBG_WIDTH_AND_HEIGHT
+from skytemple_files.graphics.dpc.protocol import DpcProtocol
+from skytemple_files.graphics.dpci.protocol import DpciProtocol
+from skytemple_files.graphics.dpci import DPCI_TILE_DIM
+from skytemple_files.graphics.dpl.protocol import DplProtocol
+from skytemple_files.graphics.dpl import DPL_PAL_LEN, DPL_MAX_PAL
+from skytemple_files.graphics.dpla.protocol import DplaProtocol
 from skytemple_files.common.i18n_util import f, _
 
 if TYPE_CHECKING:
@@ -104,11 +107,11 @@ class DungeonBgController(AbstractController):
 
         self.builder: Gtk.Builder = None
 
-        self.dbg: Dbg = module.get_bg_dbg(item_id)
-        self.dpl: Dpl = module.get_bg_dpl(item_id)
-        self.dpla: Dpla = module.get_bg_dpla(item_id)
-        self.dpc: Dpc = module.get_bg_dpc(item_id)
-        self.dpci: Dpci = module.get_bg_dpci(item_id)
+        self.dbg: DbgProtocol = module.get_bg_dbg(item_id)
+        self.dpl: DplProtocol = module.get_bg_dpl(item_id)
+        self.dpla: DplaProtocol = module.get_bg_dpla(item_id)
+        self.dpc: DpcProtocol = module.get_bg_dpc(item_id)
+        self.dpci: DpciProtocol = module.get_bg_dpci(item_id)
 
         # Cairo surfaces for each tile in each layer for each frame
         # chunks_surfaces[chunk_idx][palette_animation_frame]
@@ -163,10 +166,9 @@ class DungeonBgController(AbstractController):
             chunk_x = int(mouse_x / (DBG_TILING_DIM * DPCI_TILE_DIM))
             chunk_y = int(mouse_y / (DBG_TILING_DIM * DPCI_TILE_DIM))
             if 0 <= chunk_x < DBG_WIDTH_AND_HEIGHT and 0 <= chunk_y < DBG_WIDTH_AND_HEIGHT:
-                chunk_mapping_idx = int(chunk_y * DBG_WIDTH_AND_HEIGHT + chunk_x)
                 # Set chunk at current position
                 self.mark_as_modified()
-                self.dbg.mappings[chunk_mapping_idx] = self.drawer.get_selected_chunk_id()
+                self.dbg.place_chunk(chunk_x, chunk_y, self.drawer.get_selected_chunk_id())
 
     def on_current_icon_view_selection_changed(self, icon_view: Gtk.IconView):
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
