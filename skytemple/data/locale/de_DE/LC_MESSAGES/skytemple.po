@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-03 09:34+0000\n"
-"PO-Revision-Date: 2023-09-03 10:40\n"
+"PO-Revision-Date: 2023-09-03 11:51\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -165,7 +165,7 @@ msgstr "Treppen für Geheimbasar gefunden"
 
 #: /dev/fd/63:37 /dev/fd/63:159
 msgid "Kirlia Secret Bazaar Greeting"
-msgstr ""
+msgstr "Kirlia Geheimbasar Begrüßung"
 
 #: /dev/fd/63:38 /dev/fd/63:160
 msgid "Grab Bags Shop Strings"
@@ -752,7 +752,7 @@ msgstr "Schwerwiegender Fehler bei der Kompilierung: Stack-Fehler."
 #: explorerscript/explorerscript/ssb_converting/compiler/label_jump_to_remover.py:55
 #, python-brace-format
 msgid "Label {label_id} does not exist, but a jump to it does (remove it)."
-msgstr "Label {label_id} existiert nicht, aber es gibt ein Sprung zu diesem Label (entferne es)."
+msgstr "Label {label_id} existiert nicht, aber es gibt ein Sprung zu diesem Label (entferne den Sprung)."
 
 #: explorerscript/explorerscript/ssb_converting/compiler/utils.py:101
 #, python-brace-format
@@ -4615,7 +4615,7 @@ msgstr "Palettenindex außerhalb des gültigen Bereichs."
 
 #: skytemple-rust/src/st_dpla.rs:258
 msgid "Frame durations out of range while trying to build color."
-msgstr ""
+msgstr "Beim Versuch, eine Farbtabelle zu generieren, lag die Frame-Dauer außerhalb des zulässigen Bereichs."
 
 #: skytemple-rust/src/st_kao.rs:96
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({} bytes total).\n"
@@ -6565,7 +6565,9 @@ msgstr ""
 msgid "If enabled, enemies will evolve after defeating a team member.\n"
 "The evolution will not happen if the target is revived, if the evolved form of the enemy cannot spawn in the current floor or if the sprite of the evolved form is bigger than the sprite of the enemy.\n"
 "Part of this behavior can be modified by applying the BetterEnemyEvolution ASM patch."
-msgstr ""
+msgstr "Wenn diese Option aktiviert ist, entwickeln sich Gegner, nachdem sie ein Teammitglied besiegt haben.\n"
+"Die Entwicklung findet nicht statt, wenn das Ziel wiederbelebt wird, wenn die weiterentwickelte Form des Feindes nicht in der aktuellen Ebene erscheinen kann oder wenn der Sprite der weiterentwickelten Form größer ist als der Sprite des Feindes.\n"
+"Dieses Verhalten kann geändert werden, indem der BetterEnemyEvolution ASM-Patch installiert wird."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:110
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:2910
@@ -11633,7 +11635,7 @@ msgstr "Unbekannter Akteur 35"
 
 #: skytemple/skytemple/module/monster/controller/main.py:233
 msgid "Export Pokémon at..."
-msgstr ""
+msgstr "Pokémon exportieren als..."
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:179
 msgid "Current Gender Form Settings*"
@@ -12155,7 +12157,8 @@ msgstr "??? Bitte eine gültige Eintrags-ID ($) eingeben"
 #: skytemple/skytemple/module/monster/controller/monster.py:1406
 msgid "The sprite size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
-msgstr ""
+msgstr "Der Wert für die Größe des Sprites vom Pokémon war inkonsistent.\n"
+"SkyTemple hat den Wert automatisch korrigiert."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1440
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
@@ -12301,15 +12304,15 @@ msgstr "Ist in Z/D:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1026
 msgid "AI Flag: Throw at enemies"
-msgstr ""
+msgstr "KI Einstellung: Auf Feinde werfen"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1038
 msgid "AI Flag: Throw at allies"
-msgstr ""
+msgstr "KI Einstellung: Auf Verbündete werfen"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1050
 msgid "AI Flag: Use on self"
-msgstr ""
+msgstr "KI Einstellung: An sich selbst anwenden"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1092
 msgid "Flags"
@@ -12735,7 +12738,7 @@ msgstr "Nachrichten-ID wenn verwendet:"
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1362
 #: skytemple/skytemple/module/moves_items/controller/move.py:411
 msgid "AI - Don't use on Frozen:"
-msgstr ""
+msgstr "KI: Nicht an gefrorenen Zielen verwenden:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:283
 msgid "The percentage indicating the chances the move will succeed. 100 is perfect accuracy. Anything higher than 100 is a never-miss move."
@@ -13144,7 +13147,13 @@ msgid "In this section you can apply built-in ASM patches, your own ASM patches 
 "patches and effects in the C and Rust programming languages.\n\n"
 "Additionally you can browse all symbols and functions\n"
 "in the game known to SkyTemple."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du mitgelieferte ASM-Patches, eigene ASM-Patches \n"
+"und benutzerdefinierte Item, Attacken- und Spezielle-Prozes-Effekte anwenden,\n"
+"die in Assembler geschrieben sind.\n\n"
+"Hier findest du auch Informationen darüber, wie du eigene Patches und Effekte \n"
+"in den Programmiersprachen C und Rust schreiben kannst.\n\n"
+"Zusätzlich kannst du alle Symbole und Funktionen durchsuchen, die SkyTemple\n"
+"für das Spiel bekannt sind."
 
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:84
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:165
@@ -13547,7 +13556,7 @@ msgstr "Levelname"
 
 #: skytemple/skytemple/module/script/controller/main.py:127
 msgid "If you also need a new background for this level, you can create one under \"Map Backgrounds\" and assign it to this level afterwards."
-msgstr ""
+msgstr "Wenn du einen neuen Hintergrund für dieses Level benötigst, kannst du unter „Kartenhintergründe“ einen erstellen und ihn anschließend diesem Level zuweisen."
 
 #: skytemple/skytemple/module/script/controller/main.py:156
 msgid "New level created."
@@ -14509,7 +14518,8 @@ msgstr "Verwende \"Client Side Decorations\""
 #: skytemple/skytemple/skytemple.glade:601
 msgid "<i>Translations are written by volunteers and may not be accurate.\n"
 "Consider <a href=\"translate\">helping us</a> translate SkyTemple!</i>"
-msgstr ""
+msgstr "<i>Die Übersetzungen wurden von Freiwilligen geschrieben und sind möglicherweise nicht korrekt.\n"
+"Du kannst <a href=\"translate\">uns helfen</a> SkyTemple zu übersetzen!</i>"
 
 #: skytemple/skytemple/skytemple.glade:671
 #: skytemple/skytemple/skytemple.glade:1110
@@ -14753,11 +14763,11 @@ msgstr "Dithering-Stärke"
 
 #: skytemple/skytemple/skytemple.glade:2546
 msgid "No. of tile clustering passes"
-msgstr ""
+msgstr "Anzahl der Tile-Clustering-Durchläufe"
 
 #: skytemple/skytemple/skytemple.glade:2602
 msgid "No. of color clustering passes"
-msgstr ""
+msgstr "Anzahl der Farb-Clustering-Durchläufe"
 
 #: skytemple/skytemple/skytemple.glade:2648
 msgid "Advanced Options"
