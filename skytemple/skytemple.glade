@@ -241,7 +241,7 @@ the top-right of the main window.</property>
           </packing>
         </child>
         <child>
-          <!-- n-columns=3 n-rows=11 -->
+          <!-- n-columns=3 n-rows=12 -->
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
@@ -280,7 +280,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">4</property>
+                <property name="top-attach">5</property>
                 <property name="width">3</property>
               </packing>
             </child>
@@ -320,7 +320,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">5</property>
+                <property name="top-attach">6</property>
               </packing>
             </child>
             <child>
@@ -332,7 +332,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">5</property>
+                <property name="top-attach">6</property>
               </packing>
             </child>
             <child>
@@ -351,7 +351,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">2</property>
-                <property name="top-attach">5</property>
+                <property name="top-attach">6</property>
               </packing>
             </child>
             <child>
@@ -362,7 +362,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">2</property>
+                <property name="top-attach">3</property>
               </packing>
             </child>
             <child>
@@ -374,7 +374,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">2</property>
+                <property name="top-attach">3</property>
               </packing>
             </child>
             <child>
@@ -385,7 +385,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">3</property>
+                <property name="top-attach">4</property>
               </packing>
             </child>
             <child>
@@ -422,7 +422,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">3</property>
+                <property name="top-attach">4</property>
               </packing>
             </child>
             <child>
@@ -433,7 +433,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">6</property>
+                <property name="top-attach">7</property>
               </packing>
             </child>
             <child>
@@ -451,7 +451,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">6</property>
+                <property name="top-attach">7</property>
               </packing>
             </child>
             <child>
@@ -470,7 +470,17 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">2</property>
-                <property name="top-attach">6</property>
+                <property name="top-attach">7</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">4</property>
               </packing>
             </child>
             <child>
@@ -481,16 +491,6 @@ the top-right of the main window.</property>
               <packing>
                 <property name="left-attach">2</property>
                 <property name="top-attach">3</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-              </object>
-              <packing>
-                <property name="left-attach">2</property>
-                <property name="top-attach">2</property>
               </packing>
             </child>
             <child>
@@ -516,7 +516,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">8</property>
+                <property name="top-attach">9</property>
                 <property name="width">3</property>
               </packing>
             </child>
@@ -528,7 +528,7 @@ the top-right of the main window.</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">9</property>
+                <property name="top-attach">10</property>
               </packing>
             </child>
             <child>
@@ -544,7 +544,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">10</property>
+                <property name="top-attach">11</property>
                 <property name="width">3</property>
               </packing>
             </child>
@@ -557,7 +557,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">9</property>
+                <property name="top-attach">10</property>
               </packing>
             </child>
             <child>
@@ -567,7 +567,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
               </object>
               <packing>
                 <property name="left-attach">2</property>
-                <property name="top-attach">9</property>
+                <property name="top-attach">10</property>
               </packing>
             </child>
             <child>
@@ -578,7 +578,7 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
               </object>
               <packing>
                 <property name="left-attach">0</property>
-                <property name="top-attach">7</property>
+                <property name="top-attach">8</property>
               </packing>
             </child>
             <child>
@@ -590,7 +590,22 @@ See the &lt;a href="privacy"&gt;privacy information&lt;/a&gt; for more details.&
               </object>
               <packing>
                 <property name="left-attach">1</property>
-                <property name="top-attach">7</property>
+                <property name="top-attach">8</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="setting_help_language">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">&lt;i&gt;Translations are written by volunteers and may not be accurate.
+Consider &lt;a href="translate"&gt;helping us&lt;/a&gt; translate SkyTemple!&lt;/i&gt;</property>
+                <property name="use-markup">True</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">2</property>
+                <property name="width">3</property>
               </packing>
             </child>
             <child>
@@ -2502,7 +2517,6 @@ The images created by this tool can be imported for backgrounds.</property>
               <object class="GtkExpander">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="expanded">False</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>

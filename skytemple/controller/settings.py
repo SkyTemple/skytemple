@@ -37,6 +37,7 @@ LANGS = [
     ('de_DE.utf8', _('German')),
     ('pt_BR.utf8', _('Portuguese, Brazilian')),
     ('es_ES.utf8', _('Spanish')),
+    ('jp_JP.utf8', _('Japanese')),
 ]
 
 
@@ -54,6 +55,7 @@ class SettingsController:
         self.builder.get_object('setting_help_native_enable').connect('clicked', self.on_setting_help_native_enable_clicked)
         self.builder.get_object('setting_help_async').connect('clicked', self.on_setting_help_async_clicked)
         self.builder.get_object('setting_help_privacy').connect('activate-link', self.on_help_privacy_activate_link)
+        self.builder.get_object('setting_help_language').connect('activate-link', self.on_help_language_activate_link)
 
     def run(self):
         """
@@ -230,6 +232,9 @@ class SettingsController:
 
     def on_help_privacy_activate_link(self, *args):
         webbrowser.open_new_tab("https://skytemple.org/privacy.html")
+
+    def on_help_language_activate_link(self, *args):
+        webbrowser.open_new_tab("hhttps://translate.skytemple.org/")
 
     def _list_gtk_themes(self):
         dirs = [
