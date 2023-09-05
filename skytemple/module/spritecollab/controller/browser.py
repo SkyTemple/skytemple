@@ -1,4 +1,5 @@
 import asyncio
+import platform
 import webbrowser
 from threading import Thread
 from typing import Optional, Callable, List, Dict, Tuple, TYPE_CHECKING
