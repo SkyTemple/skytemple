@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-03 09:34+0000\n"
-"PO-Revision-Date: 2023-09-05 12:22\n"
+"PO-Revision-Date: 2023-09-05 14:05\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -611,7 +611,7 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ctxs/ctx_block.py:87
 msgid "A with(){} block can not contain labels."
-msgstr ""
+msgstr "with(){} ブロックにラベルを含めることはできません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/bit.py:44
 msgid "No variable in if condition."
@@ -13323,12 +13323,12 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:158
 msgid "Export\n"
 "Ground"
-msgstr ""
+msgstr "グラウンドをエクスポート"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:204
 msgid "Import\n"
 "Ground"
-msgstr ""
+msgstr "グラウンドをインポート"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:250
 msgid "Import\n"
@@ -13343,12 +13343,12 @@ msgstr ""
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:342
 msgid "Export\n"
 "Dungeon"
-msgstr ""
+msgstr "ダンジョンをエクスポート"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:388
 msgid "Import\n"
 "Dungeon"
-msgstr ""
+msgstr "ダンジョンをインポート"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:436
 msgid "You can export sprites in the SpriteBot format and import them again.\n"
@@ -13357,7 +13357,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:561
 msgid "Add new Sprite"
-msgstr ""
+msgstr "新しいスプライトを追加"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:575
 msgid "Use a ZIP archive instead of a folder."
@@ -13373,7 +13373,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:71
 msgid "Invalid Sprite ID."
-msgstr ""
+msgstr "スプライトIDが無効です。"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:75
 msgid "Alternatively you can export the sprite files \n"
@@ -13383,25 +13383,25 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:139
 msgid "Export spritesheet..."
-msgstr ""
+msgstr "スプライトシートをエクスポート..."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:176
 msgid "The spritesheet was successfully exported."
-msgstr ""
+msgstr "スプライトシートは正常にエクスポートされました。"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:184
 msgid "Error exporting the spritesheet."
-msgstr ""
+msgstr "スプライトシートのエクスポート中にエラーが発生しました。"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:190
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:207
 msgid "To import select the archive that contains the spritesheets."
-msgstr ""
+msgstr "インポートするには、スプライトシートを含むアーカイブを選択してください。"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:192
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:209
 msgid "To import select the directory of the spritesheets. If it is still zipped, unzip it first."
-msgstr ""
+msgstr "インポートするには、スプライトシートのディレクトリを選択します。圧縮されている場合は、展開する必要があります。"
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:203
 msgid "This will insert a completely new sprite into the game's sprite file and assign the new ID to the Pokémon.\n"
@@ -13434,7 +13434,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/object.glade:193
 msgid "Import image"
-msgstr ""
+msgstr "画像をインポート"
 
 #: skytemple/skytemple/module/sprite/controller/object.py:57
 msgid "SkyTemple can not edit sprites. \n"
@@ -13461,7 +13461,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:47
 msgid "Sprite Name"
-msgstr ""
+msgstr "スプライト名"
 
 #: skytemple/skytemple/module/sprite/controller/object_main.py:56
 msgid "The length of the sprite name must be between 1-10 characters."
@@ -13477,15 +13477,15 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/module.py:129
 msgid "Import WAN sprite..."
-msgstr ""
+msgstr "WAN スプライトをインポート..."
 
 #: skytemple/skytemple/module/sprite/module.py:147
 msgid "Export WAN sprite..."
-msgstr ""
+msgstr "WAN スプライトをエクスポート..."
 
 #: skytemple/skytemple/module/sprite/module.py:153
 msgid "WAN sprite (*.wan)"
-msgstr ""
+msgstr "WAN スプライト (*.wan)"
 
 #: skytemple/skytemple/module/sprite/module.py:170
 msgid "To import select the directory of the sprite export. If it is still zipped, unzip it first."
@@ -13497,7 +13497,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/sprite/module.py:193
 msgid "Error importing the sprite."
-msgstr ""
+msgstr "スプライトのインポート中にエラーが発生しました。"
 
 #: skytemple/skytemple/module/sprite/module.py:216
 msgid "Error exporting the sprite."
@@ -13518,7 +13518,7 @@ msgstr ""
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:55
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:260
 msgid "Loading..."
-msgstr ""
+msgstr "読み込み中…"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:148
 msgid "<span size=\"x-large\">SpriteCollab Browser</span>\n\n"
@@ -13597,11 +13597,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:418
 msgid "<b>Sprites:</b>"
-msgstr ""
+msgstr "<b>スプライト:</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:436
 msgid "Apply Sprites"
-msgstr ""
+msgstr "スプライトを適用"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:453
 msgid "<b><i>Make sure to credit artists:</i></b>"
@@ -13609,23 +13609,23 @@ msgstr ""
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:459
 msgid "<b>Portrait Credits:</b>"
-msgstr ""
+msgstr "<b>ポートレート作成者:</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:473
 msgid "<b>Sprite Credits:</b>"
-msgstr ""
+msgstr "<b>スプライト作成者:</b>"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:486
 msgid "Open Details on Website..."
-msgstr ""
+msgstr "Web サイトで詳細を開く..."
 
 #: skytemple/skytemple/module/spritecollab/module.py:77
 msgid "Portraits successfully imported."
-msgstr ""
+msgstr "ポートレートは正常にインポートされました。"
 
 #: skytemple/skytemple/module/spritecollab/module.py:125
 msgid "Sprites successfully imported."
-msgstr ""
+msgstr "スプライトは正常にインポートされました。"
 
 #: skytemple/skytemple/module/spritecollab/module.py:143
 msgid "Open a Pokémon in the main window to apply the assets to."
@@ -13658,7 +13658,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/strings/controller/main.py:23
 msgid "Text Strings"
-msgstr ""
+msgstr "テキスト文字列"
 
 #: skytemple/skytemple/module/strings/controller/main.py:35
 msgid "This section lets you edit the text strings in the game. Please note that some of these strings can also be edited in other places in the UI (eg. the Pokémon names under Pokémon).\n"
@@ -13667,7 +13667,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/strings/controller/strings.glade:45
 msgid "<LANG> Text Strings"
-msgstr ""
+msgstr "<LANG> テキスト文字列"
 
 #: skytemple/skytemple/module/strings/controller/strings.glade:73
 msgid "Categories:"
@@ -13680,11 +13680,11 @@ msgstr ""
 #: skytemple/skytemple/module/strings/controller/strings.py:65
 #, python-brace-format
 msgid "{self.langname} Text Strings"
-msgstr ""
+msgstr "{self.langname} テキスト文字列"
 
 #: skytemple/skytemple/module/strings/controller/strings.py:102
 msgid "(All)"
-msgstr ""
+msgstr "(すべて)"
 
 #: skytemple/skytemple/module/strings/controller/strings.py:113
 msgid "String"
@@ -13728,15 +13728,15 @@ msgstr "チャンクを追加"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:207
 msgid "Selected Chunk"
-msgstr ""
+msgstr "選択したチャンク"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:261
 msgid "Flip X"
-msgstr ""
+msgstr "左右反転"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:299
 msgid "Flip Y"
-msgstr ""
+msgstr "上下反転"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:338
 msgid "Palette"
@@ -13748,7 +13748,7 @@ msgstr "タイル番号"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:425
 msgid "Selected Tile"
-msgstr ""
+msgstr "タイルを選択"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:457
 msgid "Palette for Tile Preview"
@@ -13760,19 +13760,19 @@ msgstr "固定タイル"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:576
 msgid "Animated Tiles Slot 1"
-msgstr ""
+msgstr "アニメーションタイルスロット1"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:617
 msgid "Animated Tiles Slot 2"
-msgstr ""
+msgstr "アニメーションタイルスロット2"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:658
 msgid "Animated Tiles Slot 3"
-msgstr ""
+msgstr "アニメーションタイルスロット3"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:699
 msgid "Animated Tiles Slot 4"
-msgstr ""
+msgstr "アニメーションタイルスロット4"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.py:344
 msgid "BPA slot is empty.\n\n"
@@ -13783,7 +13783,7 @@ msgstr ""
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:17
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:116
 msgid "Palette Editor"
-msgstr ""
+msgstr "パレットエディター"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:103
 msgid "Make all colors unique"
@@ -13791,7 +13791,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:170
 msgid "Add Frame (after current)"
-msgstr ""
+msgstr "フレームを追加 (現在のフレームの後)"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:174
 msgid "CTRL + Click to add before current"
@@ -13799,7 +13799,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.glade:187
 msgid "Remove current Frame"
-msgstr ""
+msgstr "現在のフレームを削除"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:97
 msgid "Some images editors have problems when editing indexed images that contain\n"
@@ -13825,11 +13825,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:196
 msgid "Color "
-msgstr "色彩 "
+msgstr "カラー "
 
 #: skytemple/skytemple/module/tiled_img/drawer_tiled.py:79
 msgid "Only 1x1 or 3x3 supported."
-msgstr ""
+msgstr "1x1 または 3x3 のみがサポートされています。"
 
 #: skytemple/skytemple/skytemple.glade:47
 msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
@@ -13859,19 +13859,19 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:190
 msgid "SkyTemple Settings"
-msgstr "「SkyTemple」設定"
+msgstr "SkyTemple の設定"
 
 #: skytemple/skytemple/skytemple.glade:276
 msgid "Advanced"
-msgstr ""
+msgstr "高度な設定"
 
 #: skytemple/skytemple/skytemple.glade:319
 msgid "Use Native File Handlers"
-msgstr ""
+msgstr "ネイティブファイルハンドラーを使用"
 
 #: skytemple/skytemple/skytemple.glade:361
 msgid "Enable Discord integration"
-msgstr ""
+msgstr "Discord連携を有効化"
 
 #: skytemple/skytemple/skytemple.glade:384
 msgid "Theme"
@@ -13879,15 +13879,15 @@ msgstr "テーマ"
 
 #: skytemple/skytemple/skytemple.glade:432
 msgid "Async Operations"
-msgstr ""
+msgstr "非同期操作"
 
 #: skytemple/skytemple/skytemple.glade:512
 msgid "Error Reports"
-msgstr ""
+msgstr "エラーレポート"
 
 #: skytemple/skytemple/skytemple.glade:527
 msgid "Send error reports"
-msgstr ""
+msgstr "エラーレポートを送信"
 
 #: skytemple/skytemple/skytemple.glade:539
 msgid "<i>If enabled, error reports are sent to sentry.io,\n"
@@ -13897,17 +13897,18 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:577
 msgid "Use Client Side Decorations"
-msgstr ""
+msgstr "クライアント側の装飾を使用"
 
 #: skytemple/skytemple/skytemple.glade:601
 msgid "<i>Translations are written by volunteers and may not be accurate.\n"
 "Consider <a href=\"translate\">helping us</a> translate SkyTemple!</i>"
-msgstr ""
+msgstr "<i>翻訳はボランティアによって書かれているため、正確ではない場合があります。\n"
+" <a href=\"translate\">SkyTempleの翻訳にご協力ください！</a></i>"
 
 #: skytemple/skytemple/skytemple.glade:671
 #: skytemple/skytemple/skytemple.glade:1110
 msgid "More Files"
-msgstr ""
+msgstr "その他のファイル"
 
 #: skytemple/skytemple/skytemple.glade:713
 msgid "Save as..."
@@ -13915,7 +13916,7 @@ msgstr "名前を付けて保存..."
 
 #: skytemple/skytemple/skytemple.glade:727
 msgid "Show welcome screen..."
-msgstr ""
+msgstr "ウェルカム画面を表示"
 
 #: skytemple/skytemple/skytemple.glade:741
 msgid "Settings..."
@@ -13923,7 +13924,7 @@ msgstr "設定…"
 
 #: skytemple/skytemple/skytemple.glade:756
 msgid "Open Image Converter..."
-msgstr ""
+msgstr "イメージコンバーターを開く..."
 
 #: skytemple/skytemple/skytemple.glade:771
 msgid "Open SpriteCollab Browser..."
@@ -13935,35 +13936,35 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:799
 msgid "About"
-msgstr ""
+msgstr "SkyTemple について"
 
 #: skytemple/skytemple/skytemple.glade:979
 msgid "A new version of SkyTemple is available: "
-msgstr ""
+msgstr "SkyTempleの新しいバージョンが利用可能です。 "
 
 #: skytemple/skytemple/skytemple.glade:1004
 msgid "Update now!"
-msgstr ""
+msgstr "Update now!"
 
 #: skytemple/skytemple/skytemple.glade:1032
 msgid "Support us!"
-msgstr ""
+msgstr "Support us!"
 
 #: skytemple/skytemple/skytemple.glade:1068
 msgid "Recent Files:"
-msgstr ""
+msgstr "最近開いたファイル"
 
 #: skytemple/skytemple/skytemple.glade:1155
 msgid "Native File Handlers enabled."
-msgstr ""
+msgstr "ネイティブファイルハンドラーを有効にしました。"
 
 #: skytemple/skytemple/skytemple.glade:1219
 msgid "Oops!"
-msgstr ""
+msgstr "Oops!"
 
 #: skytemple/skytemple/skytemple.glade:1234
 msgid "An error happened while trying to load this view. Sorry!"
-msgstr ""
+msgstr "ビューの読み込み時にエラーが発生しました。申し訳ありません！"
 
 #: skytemple/skytemple/skytemple.glade:1322
 msgid "Open"
@@ -13971,19 +13972,19 @@ msgstr "開く"
 
 #: skytemple/skytemple/skytemple.glade:1372
 msgid "Save to ROM"
-msgstr ""
+msgstr "ROMを保存"
 
 #: skytemple/skytemple/skytemple.glade:1386
 msgid "Reload current ROM"
-msgstr ""
+msgstr "現在のROMを再読み込み"
 
 #: skytemple/skytemple/skytemple.glade:1408
 msgid "Open script editor / debugger"
-msgstr ""
+msgstr "スクリプトエディター / デバッガーを開く"
 
 #: skytemple/skytemple/skytemple.glade:1435
 msgid "Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US)."
-msgstr ""
+msgstr "「ポケモン不思議のダンジョン 空の探検隊 (EU/US)」のROMを編集するためのアプリケーション。"
 
 #: skytemple/skytemple/skytemple.glade:1437
 msgid "https://github.com/SkyTemple/skytemple"
@@ -13991,15 +13992,15 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1512
 msgid "Privacy Information"
-msgstr ""
+msgstr "プライバシー情報"
 
 #: skytemple/skytemple/skytemple.glade:1532
 msgid "Don't allow"
-msgstr ""
+msgstr "許可しない"
 
 #: skytemple/skytemple/skytemple.glade:1545
 msgid "Allow sending error reports"
-msgstr ""
+msgstr "エラーレポートの送信を許可"
 
 #: skytemple/skytemple/skytemple.glade:1572
 msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
@@ -14007,7 +14008,10 @@ msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "You can find more information about the data we collect and how we\n"
 "use it in our <a href=\"privacy\">privacy information</a>.\n\n"
 "This is used so we can improve SkyTemple."
-msgstr ""
+msgstr "<span size=\"large\">SkyTempleへようこそ！</span>\n\n"
+"問題が発生した場合、エラー情報を収集したいと思っています。\n\n"
+"当社が収集するデータとその使用方法に関する詳細情報は、 当社の<a href=\"privacy\">プライバシー情報</a>をご覧ください。\n\n"
+"この情報はSkyTempleを改善するために利用されます。"
 
 #: skytemple/skytemple/skytemple.glade:1638
 msgid "Loading ROM \"NAME\"..."
@@ -14020,17 +14024,18 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:1740
 msgid "... by testing new features!"
-msgstr ""
+msgstr "... 新機能のテスト！"
 
 #: skytemple/skytemple/skytemple.glade:1756
 msgid "Join our Discord server and become a \"Beta Tester\", to get\n"
 "access to new features. Your feedback will directly help\n"
 "to improve SkyTemple and you can also suggest new features!"
-msgstr ""
+msgstr "Discordサーバーに参加して「ベータテスター」になり、新機能にアクセスしてください。\n"
+"フィードバックはSkyTempleの改善に役立ちますし、新機能を提案することもできます！"
 
 #: skytemple/skytemple/skytemple.glade:1802
 msgid "... by joining development or reverse engineering the game!"
-msgstr ""
+msgstr "... 開発、またはリバースエンジニアリング！"
 
 #: skytemple/skytemple/skytemple.glade:1818
 msgid "We are always looking for people to help develop SkyTemple\n"
@@ -14038,38 +14043,42 @@ msgid "We are always looking for people to help develop SkyTemple\n"
 "engineering or implementing new features for SkyTemple,\n"
 "you can find the project on Github! \n"
 "You can also join the Discord server if you have any questions."
-msgstr ""
+msgstr "SkyTempleの開発を手伝ってくれる人、またはゲームのハッキングを手伝ってくれる人を常に探しています。\n"
+"SkyTempleのリバースエンジニアリングや新機能の実装に興味がある場合は、Githubでプロジェクトを検索できます！\n"
+"質問があればDiscordサーバーに参加することもできます。"
 
 #: skytemple/skytemple/skytemple.glade:1866
 msgid "... by helping to translate SkyTemple!"
-msgstr ""
+msgstr "... SkyTempleの翻訳！"
 
 #: skytemple/skytemple/skytemple.glade:1882
 msgid "Do you want to help translating SkyTemple to your native\n"
 "language? Join our Discord for more information."
-msgstr ""
+msgstr "SkyTempleをあなたの母国語に翻訳するお手伝いをしませんか？詳細については、Discordにご参加ください。"
 
 #: skytemple/skytemple/skytemple.glade:1926
 msgid "... by buying us a coffee!"
-msgstr ""
+msgstr "... コーヒーを買って！"
 
 #: skytemple/skytemple/skytemple.glade:1949
 msgid "If you like SkyTemple or other PMD2 hacking tools, you can\n"
 "support us with a small donation."
-msgstr ""
+msgstr "SkyTempleやその他のPMD2ハッキングツールが気に入ったら、\n"
+"少額の寄付で私たちをサポートできます。"
 
 #: skytemple/skytemple/skytemple.glade:1974
 msgid "Parakoopa"
-msgstr ""
+msgstr "Parakoopa"
 
 #: skytemple/skytemple/skytemple.glade:1991
 msgid "Developer of SkyTemple and \n"
 "creator of ExplorerScript.\n"
-msgstr ""
+msgstr "SkyTempleの開発者であり、\n"
+"ExplorerScriptの作成者。"
 
 #: skytemple/skytemple/skytemple.glade:2037
 msgid "psy_commando"
-msgstr ""
+msgstr "psy_commando"
 
 #: skytemple/skytemple/skytemple.glade:2054
 msgid "Figured out most things about \n"
@@ -14102,11 +14111,14 @@ msgid "This tool converts any image into the image format required by Explorers 
 "Please note that the game has pretty strict color restrictions.\n\n"
 "Each 8x8 tile will only be able to use one palette.\n\n"
 "The images created by this tool can be imported for backgrounds."
-msgstr ""
+msgstr "このツールは、画像を「空の探検隊」用の画像形式に変換します。\n"
+"ゲームにはかなり厳しい色の制限があることに注意してください。\n\n"
+"8x8 タイルはそれぞれ1つのパレットしか使用できません。\n\n"
+"このツールで作成した画像は背景用にインポートできます。"
 
 #: skytemple/skytemple/skytemple.glade:2228
 msgid "Number of Palettes"
-msgstr ""
+msgstr "パレット数"
 
 #: skytemple/skytemple/skytemple.glade:2271
 msgid "16"
@@ -14114,11 +14126,11 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:2303
 msgid "Transparent Color"
-msgstr ""
+msgstr "透明色"
 
 #: skytemple/skytemple/skytemple.glade:2346
 msgid "Color"
-msgstr "色彩"
+msgstr "カラー"
 
 #: skytemple/skytemple/skytemple.glade:2458
 msgid "Dithering Level"
@@ -14134,7 +14146,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:2648
 msgid "Advanced Options"
-msgstr ""
+msgstr "高度な設定"
 
 #: skytemple/skytemple/skytemple.glade:2727
 msgid "Additional Input Image (optional)"
