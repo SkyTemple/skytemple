@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-05 16:22+0000\n"
-"PO-Revision-Date: 2023-09-06 05:07\n"
+"PO-Revision-Date: 2023-09-06 06:12\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -747,7 +747,7 @@ msgstr ""
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compiler_visitor/statement_visitor.py:286
 msgid "Fatal compilation error: Stack error."
-msgstr ""
+msgstr "致命的なコンパイルエラー: スタックエラー"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/label_jump_to_remover.py:55
 #, python-brace-format
@@ -799,40 +799,40 @@ msgstr "行 {self.line}:{self.column}: {self.msg}"
 #: py_desmume/desmume/controls.py:88
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:22
 msgid "A"
-msgstr "Aボタノ"
+msgstr "A"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:89
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:23
 msgid "B"
-msgstr "Bボタノ"
+msgstr "B"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:90
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:24
 msgid "Select"
-msgstr "Selectボタノ"
+msgstr "Select"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:91
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:25
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2336
 msgid "Start"
-msgstr "Startボタノ"
+msgstr "Start"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:92
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:323
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:26
 msgid "Right"
-msgstr "Rightボタノ"
+msgstr "右"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:93
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:331
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:27
 msgid "Left"
-msgstr "Leftボタノ"
+msgstr "左"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:94
@@ -841,7 +841,7 @@ msgstr "Leftボタノ"
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:19
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:19
 msgid "Up"
-msgstr "Upボタノ"
+msgstr "上"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:95
@@ -850,19 +850,19 @@ msgstr "Upボタノ"
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:15
 #: skytemple/skytemple/module/dungeon/controller/invalid.glade:15
 msgid "Down"
-msgstr "Downボタノ"
+msgstr "下"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:96
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:30
 msgid "R"
-msgstr "Ｒボタノ"
+msgstr "R"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:97
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:31
 msgid "L"
-msgstr "Lボタノ"
+msgstr "L"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:98
@@ -872,14 +872,14 @@ msgstr "Lボタノ"
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:268
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:282
 msgid "X"
-msgstr "Xボタノ"
+msgstr "X"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:99
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/__init__.py:33
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:88
 msgid "Y"
-msgstr "Yボタノ"
+msgstr "Y"
 
 #. TRANSLATORS: DS Key name
 #: py_desmume/desmume/controls.py:100
@@ -919,28 +919,28 @@ msgstr "_ファイル"
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:119
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:593
 msgid "Save State"
-msgstr "状態の保存"
+msgstr "ステートセーブ"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:128
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:250
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:603
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:647
 msgid "State 1"
-msgstr "保存状態1"
+msgstr "ステート1"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:138
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:260
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:613
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:657
 msgid "State 2"
-msgstr "保存状態2"
+msgstr "ステート2"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:148
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:270
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:623
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:667
 msgid "State 3"
-msgstr "保存状態3"
+msgstr "ステート3"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:158
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:280
@@ -984,7 +984,7 @@ msgstr ""
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:241
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:637
 msgid "Load State"
-msgstr "実行状態の読み込み"
+msgstr "ステートロード"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:350
 msgid "From File..."
@@ -1308,28 +1308,28 @@ msgstr "ジョイスティックの設定"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:112
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:800
 msgid "Y : "
-msgstr "Yボタノ: "
+msgstr "Y: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:130
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:818
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:130
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:818
 msgid "X : "
-msgstr "Xボタノ: "
+msgstr "X: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:148
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:836
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:148
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:836
 msgid "A : "
-msgstr "Aボタノ: "
+msgstr "A: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:166
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:908
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:166
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:908
 msgid "Select : "
-msgstr "Selectボタノ: "
+msgstr "Select: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:184
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:890
@@ -1343,35 +1343,35 @@ msgstr "ふた: "
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:202
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:926
 msgid "L : "
-msgstr "Lボタノ: "
+msgstr "L: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:217
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:976
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:217
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:976
 msgid "R : "
-msgstr "Rボタノ: "
+msgstr "R: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:233
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:1060
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:233
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1060
 msgid "Debug : "
-msgstr "デバッグ : "
+msgstr "デバッグ: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:249
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:1111
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:249
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1111
 msgid "Start : "
-msgstr "Startボタノ: "
+msgstr "Start: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:265
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:1162
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:265
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:1162
 msgid "Boost : "
-msgstr "ブースト : "
+msgstr "ブースト: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:281
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:299
@@ -1389,7 +1389,7 @@ msgstr "軸:"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:351
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:872
 msgid "B : "
-msgstr "Bボタノ: "
+msgstr "B: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:427
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:427
@@ -1399,7 +1399,7 @@ msgstr "ボタンを押してください…"
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:443
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:443
 msgid "Key definition"
-msgstr "きーな定義"
+msgstr "キーの定義"
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:506
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:506
@@ -1409,46 +1409,46 @@ msgstr "キーを押してください…"
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:748
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:748
 msgid "Left : "
-msgstr "Leftボタノ : "
+msgstr "左: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:764
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:764
 msgid "Up : "
-msgstr "Upボタノ: "
+msgstr "上: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:782
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:782
 msgid "Right : "
-msgstr "Rightボタノ: "
+msgstr "右: "
 
 #: py_desmume/desmume/frontend/control_ui/PyDeSmuMe_controls.glade:854
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/PyDeSmuMe_controls.glade:854
 msgid "Down : "
-msgstr "Downボタノ : "
+msgstr "下: "
 
 #: py_desmume/desmume/frontend/control_ui/joystick_controls.py:58
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/joystick_controls.py:59
 msgid "You don't have any joypads!"
-msgstr ""
+msgstr "ジョイパッドが接続されていません。"
 
 #: py_desmume/desmume/frontend/control_ui/joystick_controls.py:60
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/desmume_control_ui/joystick_controls.py:61
 msgid "Can't configure joystick while the game is running!"
-msgstr ""
+msgstr "ゲームの実行中はジョイスティックを設定できません。"
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:89
 #, python-brace-format
 msgid "Invalid tileset. Tileset has chunk dimensions of {dim}px, but only {CHUNK_DIM}px are supported."
-msgstr ""
+msgstr "無効なタイルセットです。タイルセットは {dim}px のチャンクサイズですが、 {CHUNK_DIM}px のみサポートされています。"
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:113
 msgid "Invalid animation: Animation is only supported for palettes 10 and 11."
-msgstr ""
+msgstr "無効なアニメーション: アニメーションに使用できるパレットはパレット10と11のみです。"
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:127
 #, python-brace-format
 msgid "A required DTEF file is missing: {fn}. Please verify the DTEF package."
-msgstr ""
+msgstr "必要なDTEFファイルがありません: {fn} DTEFパッケージを確認してください。"
 
 #: skytemple-dtef/skytemple_dtef/explorers_dtef_importer.py:135
 #, python-brace-format
@@ -1504,71 +1504,71 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:139
 msgid "One Layer (#00)"
-msgstr ""
+msgstr "レイヤー1 (#00)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:140
 msgid "One Layer (#01)"
-msgstr ""
+msgstr "レイヤー1 (#01)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:141
 msgid "One Layer (#02)"
-msgstr ""
+msgstr "レイヤー1 (#02)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:142
 msgid "One Layer (#03)"
-msgstr ""
+msgstr "レイヤー1 (#03)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:143
 msgid "One Layer (#04)"
-msgstr ""
+msgstr "レイヤー1 (#04)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:144
 msgid "Two Layers (#05)"
-msgstr ""
+msgstr "レイヤー2 (#05)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:145
 msgid "Two Layers (#06)"
-msgstr ""
+msgstr "レイヤー2 (#06)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:146
 msgid "Two Layers (#07)"
-msgstr ""
+msgstr "レイヤー2 (#07)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:147
 msgid "Two Layers (#08)"
-msgstr ""
+msgstr "レイヤー2 (#08)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:148
 msgid "Two Layers (#09)"
-msgstr ""
+msgstr "レイヤー2 (#09)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:149
 msgid "Dungeon Tileset (#10)"
-msgstr ""
+msgstr "ダンジョンタイルセット (#10)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:150
 msgid "Use Fixed Room (#11)"
-msgstr ""
+msgstr "固定部屋で使用 (#11)"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:277
 msgid "This function has no description."
-msgstr ""
+msgstr "この関数には説明がありません。"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:321
 msgid "Down Right"
-msgstr ""
+msgstr "右下"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:325
 msgid "Up Right"
-msgstr ""
+msgstr "右上"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:329
 msgid "Up Left"
-msgstr ""
+msgstr "左上"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:333
 msgid "Down Left"
-msgstr ""
+msgstr "左下"
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:51
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
@@ -1688,27 +1688,27 @@ msgstr "無効"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:64
 msgid "WAN File 0"
-msgstr ""
+msgstr "WANファイル 0"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:65
 msgid "WAN File 1"
-msgstr ""
+msgstr "WANファイル 1"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:66
 msgid "WAN"
-msgstr ""
+msgstr "WAN"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:67
 msgid "WAT"
-msgstr ""
+msgstr "WAT"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:68
 msgid "Screen"
-msgstr ""
+msgstr "スクリーン"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:69
 msgid "WBA"
-msgstr ""
+msgstr "WBA"
 
 #: skytemple-files/skytemple_files/data/data_cd/armips_importer.py:77
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:193
@@ -1735,11 +1735,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:38
 msgid "Flag Not Set"
-msgstr ""
+msgstr "フラグ未設定"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:39
 msgid "Flag Set"
-msgstr ""
+msgstr "フラグ設定済み"
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:40
 msgid "Scenario Equals"
@@ -1786,7 +1786,7 @@ msgstr "タイプ"
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:71
 msgid "The Pokemon may hatch holding the item."
-msgstr ""
+msgstr "このポケモンは専用道具を所持して孵化することがあります。"
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:79
 msgid "? (Only all the Eeveelutions, and the Tyrogue line have items with this type!)"
@@ -1810,7 +1810,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/starters_list.py:62
 #: skytemple/skytemple/module/lists/controller/starters_list.py:64
 msgid "Male"
-msgstr "男性"
+msgstr "オス"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:68
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3546
@@ -1831,54 +1831,54 @@ msgstr "男性"
 #: skytemple/skytemple/module/lists/controller/starters_list.py:63
 #: skytemple/skytemple/module/lists/controller/starters_list.py:65
 msgid "Female"
-msgstr "女性"
+msgstr "メス"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:69
 msgid "Genderless"
-msgstr "性別なし"
+msgstr "性別不明"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:93
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:382
 msgid "Normal"
-msgstr "ノームル"
+msgstr "ノーマル"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:94
 msgid "Fire"
-msgstr "炎"
+msgstr "ほのお"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:95
 #: skytemple-files/skytemple_files/data/md/protocol.py:520
 msgid "Water"
-msgstr "水"
+msgstr "みず"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:96
 msgid "Grass"
-msgstr "草"
+msgstr "くさ"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:97
 msgid "Electric"
-msgstr "電"
+msgstr "でんき"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:98
 msgid "Ice"
-msgstr "氷"
+msgstr "こおり"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:99
 msgid "Fighting"
-msgstr "闘"
+msgstr "かくとう"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:100
 msgid "Poison"
-msgstr "毒"
+msgstr "どく"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:101
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1879
 msgid "Ground"
-msgstr "地"
+msgstr "じめん"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:102
 msgid "Flying"
-msgstr "飛"
+msgstr "ひこう"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:103
 msgid "Psychic"
@@ -1886,11 +1886,11 @@ msgstr "エスパー"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:104
 msgid "Bug"
-msgstr "虫"
+msgstr "むし"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:105
 msgid "Rock"
-msgstr "岩"
+msgstr "いわ"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:106
 msgid "Ghost"
@@ -1902,15 +1902,15 @@ msgstr "ドラゴン"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:108
 msgid "Dark"
-msgstr "悪"
+msgstr "あく"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:109
 msgid "Steel"
-msgstr "鋼"
+msgstr "はがね"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:110
 msgid "Neutral"
-msgstr "中立"
+msgstr "むぞくせい"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:133
 msgid "Stench"
