@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-05 16:22+0000\n"
-"PO-Revision-Date: 2023-09-05 16:51\n"
+"PO-Revision-Date: 2023-09-06 20:12\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -10182,11 +10182,11 @@ msgstr "PNGs der Karte exportieren..."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:297
 msgid "The image for the first layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."
-msgstr ""
+msgstr "Die Grafik für die erste Ebene hat weniger als 256 Farben. Bitte stelle sicher, dass das Bild 256 Farben enthält, auch wenn weniger verwendet werden."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:304
 msgid "The image for the second layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."
-msgstr ""
+msgstr "Die Grafik für die zweite Ebene hat weniger als 256 Farben. Bitte stelle sicher, dass das Bild 256 Farben enthält, auch wenn weniger verwendet werden."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:428
 msgid "This BPA has no frames.\n"
@@ -10233,11 +10233,11 @@ msgstr "Fehler beim BPA-Import"
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:704
 msgid "All \"number of frames\" values were invalid or 0. No values were saved."
-msgstr ""
+msgstr "Alle \"Anzahl der Frames\"-Werte waren ungültig oder 0. Es wurden keine Änderungen gespeichert."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:715
 msgid "All \"frame time\" values were invalid or 0. No values were saved."
-msgstr ""
+msgstr "Alle \"Frane-Dauer\"-Werte waren ungültig oder 0. Es wurden keine Änderungen gespeichert."
 
 #: skytemple/skytemple/module/map_bg/controller/bg_menu.py:755
 msgid "Palette Animation is not enabled."
@@ -11954,7 +11954,8 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/monster.glade:3575
 msgid "This Pokémon has no stats and/or level up moves. It can only be used in cutscenes. \n"
 "Trying to use it in dungeons will not work."
-msgstr ""
+msgstr "Dieses Pokémon hat keine Statuswerte und/oder Attacken durch Levelaufstieg. Es kann nur in Zwischensequenzen verwendet werden. \n"
+"Das Pokémon in Dungeons zu verwenden wird nicht funktionieren."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:112
 msgid "Spinda Egg"
@@ -14098,7 +14099,7 @@ msgstr "Fehler beim Importieren des Bildes in das Objekt."
 
 #: skytemple/skytemple/module/sprite/module.py:286
 msgid "Error with sprite files: They don't have the same length. This will be corrected by adding empty sprites. You should re-import the last imported sprite."
-msgstr ""
+msgstr "Es gibt einen Fehler mit den Sprite-Dateien: Die Dateien haben nicht die gleiche Länge. Dies wird durch das Hinzufügen leerer Sprites korrigiert. Du solltest danach den zuletzt importierten Sprite erneut importieren."
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:55
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:260
