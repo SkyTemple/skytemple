@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-05 16:22+0000\n"
-"PO-Revision-Date: 2023-09-06 06:12\n"
+"PO-Revision-Date: 2023-09-06 07:09\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -2543,7 +2543,7 @@ msgstr "リーフガード"
 #: skytemple-files/skytemple_files/data/md/protocol.py:425
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:160
 msgid "Unused"
-msgstr "???"
+msgstr "未使用"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:387
 msgid "NONE"
@@ -2555,7 +2555,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:449
 msgid "Not an Evolved Form."
-msgstr ""
+msgstr "進化形ではありません。"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:450
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1090
@@ -2577,7 +2577,7 @@ msgstr "レベル"
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:239
 #: skytemple/skytemple/module/lists/module.py:144
 msgid "IQ"
-msgstr "IQ"
+msgstr "かしこさ"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:452
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:890
@@ -2587,7 +2587,7 @@ msgstr "IQ"
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2107
 #: skytemple/skytemple/module/moves_items/controller/main_items.py:23
 msgid "Items"
-msgstr "アイテム"
+msgstr "道具"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:453
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:151
@@ -2596,23 +2596,23 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:454
 msgid "No Main Requirement"
-msgstr ""
+msgstr "条件なし"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:478
 msgid "Link Cable"
-msgstr "通信ケーブル"
+msgstr "つうしんケーブル"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:479
 msgid "Attack > Defense"
-msgstr "攻撃力 > 防衛力"
+msgstr "攻撃 > 防御"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:480
 msgid "Attack < Defense"
-msgstr "攻撃力 < 防衛力"
+msgstr "攻撃 < 防御"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:481
 msgid "Attack = Defense"
-msgstr "攻撃力 = 防衛力"
+msgstr "攻撃 = 防御"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:482
 msgid "Sun Ribbon"
@@ -2628,19 +2628,19 @@ msgstr "うつくしスカーフ"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:485
 msgid "Internal Value 0x1 = 1"
-msgstr ""
+msgstr "内部値 0x1 = 1"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:486
 msgid "Internal Value 0x1 = 0"
-msgstr ""
+msgstr "内部値 0x1 = 0"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:487
 msgid "Male (1st form)"
-msgstr ""
+msgstr "オス (1つ目の姿)"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:488
 msgid "Female (2nd form)"
-msgstr ""
+msgstr "メス (2つ目の姿)"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:489
 msgid "Knows AncientPower"
@@ -2660,7 +2660,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:515
 msgid "Standard"
-msgstr ""
+msgstr "通常"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:516
 msgid "Unknown"
@@ -2668,21 +2668,21 @@ msgstr "不明"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:517
 msgid "Hovering"
-msgstr "ホバリング"
+msgstr "空中"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:518
 msgid "Phase Through Walls"
-msgstr ""
+msgstr "壁を通過"
 
 #. TRANSLATORS: Movement Type
 #: skytemple-files/skytemple_files/data/md/protocol.py:519
 msgid "Lava"
-msgstr "溶岩"
+msgstr "マグマ"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:543
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:59
 msgid "Small"
-msgstr "小さい"
+msgstr "小"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:544
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:75
@@ -2691,7 +2691,7 @@ msgstr "標準"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:545
 msgid "Large"
-msgstr "大型"
+msgstr "大"
 
 #: skytemple-files/skytemple_files/data/monster_xml.py:221
 #, python-brace-format
@@ -2758,15 +2758,15 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:30
 msgid "Healthy"
-msgstr "元気"
+msgstr "HP80%"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:31
 msgid "Half Life"
-msgstr ""
+msgstr "HP50%"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:32
 msgid "Pinch"
-msgstr ""
+msgstr "HP25%"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:33
 msgid "Level Up"
@@ -2778,19 +2778,19 @@ msgstr "待機"
 
 #: skytemple-files/skytemple_files/data/tbl_talk/model.py:35
 msgid "Ground Wait"
-msgstr ""
+msgstr "待機 (グラウンド)"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:34
 msgid "Physical Move"
-msgstr ""
+msgstr "物理技"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:35
 msgid "Special Move"
-msgstr "スペシャル技"
+msgstr "特殊技"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:36
 msgid "Status Move"
-msgstr ""
+msgstr "変化技"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:59
 msgid "Enemies"
@@ -2807,19 +2807,19 @@ msgstr "全員"
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:62
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:106
 msgid "User"
-msgstr "利用者"
+msgstr "自分自身"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:63
 msgid "Two-turn move"
-msgstr ""
+msgstr "2ターン技"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:64
 msgid "Everyone except user"
-msgstr ""
+msgstr "自分以外全員"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:65
 msgid "All allies except user"
-msgstr ""
+msgstr "自分以外の味方"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:66
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:67
@@ -2849,32 +2849,32 @@ msgstr "無効 "
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:74
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:114
 msgid "Special / Invalid"
-msgstr ""
+msgstr "特殊/無効"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:97
 msgid "In front"
-msgstr ""
+msgstr "正面"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:98
 msgid "In front + adjacent (like Wide Slash)"
-msgstr ""
+msgstr "正面3マス (すいへいぎり等)"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:99
 msgid "8 tiles around user"
-msgstr ""
+msgstr "周囲8マス"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:100
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:691
 msgid "Room"
-msgstr "場所"
+msgstr "部屋全体"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:102
 msgid "Two tiles away"
-msgstr ""
+msgstr "2マス先"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:104
 msgid "Straight line"
-msgstr "直の行"
+msgstr "直線上"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:105
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1154
@@ -2882,15 +2882,15 @@ msgstr "直の行"
 #: skytemple/skytemple/module/dungeon/module.py:784
 #: skytemple/skytemple/module/lists/controller/dungeon_interrupt.glade:297
 msgid "Floor"
-msgstr "床"
+msgstr "フロア全体"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:107
 msgid "In front; cuts corners"
-msgstr ""
+msgstr "正面 (角抜け)"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:108
 msgid "Two tiles away; cuts corners"
-msgstr ""
+msgstr "2マス先 (角抜け)"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:139
 msgid "No condition"
@@ -2898,53 +2898,53 @@ msgstr "条件なし"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:140
 msgid "Based on AI Condition 1 Chance"
-msgstr ""
+msgstr "AI条件1選択率"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:141
 msgid "Current HP <= 25%"
-msgstr "現在のHP <= 25%"
+msgstr "現在HPが25%以下"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:142
 msgid "Has at least one negative status condition"
-msgstr ""
+msgstr "悪い状態にかかっている"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:143
 msgid "Is asleep, in a nightmare or napping"
-msgstr ""
+msgstr "すいみん・あくむ・ねむる状態のいずれか"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:144
 msgid "Is a ghost-type Pokémon and does not have the exposed status"
-msgstr ""
+msgstr "ゴーストタイプのポケモンかつ、みやぶる状態でない"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:146
 #, python-format
 msgid "Current HP <= 25% or has at least one negative status condition"
-msgstr ""
+msgstr "現在HPが25%以下、または悪い状態にかかっている"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:56
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:240
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:258
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:267
 msgid "Floor, Room"
-msgstr "床、場所"
+msgstr "フロア・部屋"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:65
 msgid "Wall, Hallway; Absolute Mover"
-msgstr ""
+msgstr "壁・通路 (あくういどう可能)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:74
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:195
 msgid "Wall, Hallway; Impassable"
-msgstr ""
+msgstr "壁・通路 (通行不可)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:83
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:204
 msgid "Wall, Hallway"
-msgstr ""
+msgstr "壁・通路"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:92
 msgid "Leader Spawn Floor"
-msgstr ""
+msgstr "リーダースポーン地点"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:101
 msgid "Secondary, Room"
@@ -2952,7 +2952,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:110
 msgid "Chasm, Hallway"
-msgstr ""
+msgstr "谷 (壁)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:116
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:157
@@ -2961,7 +2961,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:121
 msgid "Chasm, Hallway; All Chasm"
-msgstr ""
+msgstr "谷 (壁) - 壁を谷にする"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:127
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!). All tiles outside of defined room are made the tileset's defined secondary terrain."
@@ -2970,40 +2970,40 @@ msgstr ""
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:133
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:249
 msgid "Warp Zone, Room"
-msgstr ""
+msgstr "ワープゾーン (部屋)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:138
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:254
 msgid "Creates a Warp Zone."
-msgstr ""
+msgstr "ワープゾーンを作成します。"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:142
 msgid "Floor, Hallway"
-msgstr ""
+msgstr "床・通路"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:151
 msgid "Chasm, Hallway; Impassable"
-msgstr ""
+msgstr "壁・通路 - 通行不可"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:162
 msgid "Floor, Hallway; Flag 0xA"
-msgstr ""
+msgstr "床・通路 - フラグ 0xA"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:167
 msgid "Tile flag 0xA is set to 1 (Unknown what this does)."
-msgstr ""
+msgstr "タイルフラグ 0xA は 1 に設定されています (これがどのように影響するかは不明)。"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:171
 msgid "F/W, Room; Key Door (0xC)"
-msgstr ""
+msgstr "床/壁 (部屋) - 鍵ドア (0xC)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:177
 msgid "Tile flag 0xC is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr ""
+msgstr "タイルフラグ 0xC は 1 に設定され、鍵のドアを生成します。 &lt; 固定ルームIDが0xA5の場合、これは壁になります。それ以外の場合は床になります。"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:183
 msgid "F/W, Room; Key Door (0xD)"
-msgstr ""
+msgstr "床/壁 (部屋) - 鍵ドア (0xD)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:189
 msgid "Tile flag 0xD is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
@@ -6723,7 +6723,10 @@ msgid "<span foreground=\"#ff0000\">0</span>: Room 0\n"
 "<span foreground=\"#ff0000\">1</span>: Room 1\n"
 "<span foreground=\"#ffff00\">I</span>: Impassable\n"
 "<span foreground=\"#00ff00\">A</span>: Absolute Mover possible"
-msgstr ""
+msgstr "<span foreground=\"#ff0000\">0</span>: 部屋0\n"
+"<span foreground=\"#ff0000\">1</span>: 部屋1\n"
+"<span foreground=\"#ffff00\">I</span>: 通行不可\n"
+"<span foreground=\"#00ff00\">A</span>: あくういどう可能"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:922
 msgid "Tile Layer Legend"
