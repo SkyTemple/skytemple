@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-05 16:22+0000\n"
-"PO-Revision-Date: 2023-09-06 07:09\n"
+"PO-Revision-Date: 2023-09-06 08:21\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -2926,21 +2926,21 @@ msgstr "現在HPが25%以下、または悪い状態にかかっている"
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:258
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:267
 msgid "Floor, Room"
-msgstr "フロア・部屋"
+msgstr "床 (部屋)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:65
 msgid "Wall, Hallway; Absolute Mover"
-msgstr "壁・通路 (あくういどう可能)"
+msgstr "壁 (通路) - あくういどう可能"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:74
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:195
 msgid "Wall, Hallway; Impassable"
-msgstr "壁・通路 (通行不可)"
+msgstr "壁 (通路) - 通行不可"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:83
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:204
 msgid "Wall, Hallway"
-msgstr "壁・通路"
+msgstr "壁 (通路)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:92
 msgid "Leader Spawn Floor"
@@ -2948,7 +2948,7 @@ msgstr "リーダースポーン地点"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:101
 msgid "Secondary, Room"
-msgstr ""
+msgstr "二次地形 (部屋)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:110
 msgid "Chasm, Hallway"
@@ -2957,7 +2957,7 @@ msgstr "谷 (壁)"
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:116
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:157
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!)."
-msgstr ""
+msgstr "タイルタイプは強制的に「谷」に設定されます (タイルセットの二次地形としてレンダリングされたままです)。"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:121
 msgid "Chasm, Hallway; All Chasm"
@@ -2965,7 +2965,7 @@ msgstr "谷 (壁) - 壁を谷にする"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:127
 msgid "Tile type is forced to be \"Void / Chasm\" (Still rendered as tileset's secondary terrain!). All tiles outside of defined room are made the tileset's defined secondary terrain."
-msgstr ""
+msgstr "タイルタイプは強制的に「谷」に設定されます (タイルセットの二次地形としてレンダリングされたままです)。部屋の外にあるすべてのタイルは二次地形に置き換えられます。"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:133
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:249
@@ -2979,15 +2979,15 @@ msgstr "ワープゾーンを作成します。"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:142
 msgid "Floor, Hallway"
-msgstr "床・通路"
+msgstr "床 (通路)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:151
 msgid "Chasm, Hallway; Impassable"
-msgstr "壁・通路 - 通行不可"
+msgstr "壁 (通路) - 通行不可"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:162
 msgid "Floor, Hallway; Flag 0xA"
-msgstr "床・通路 - フラグ 0xA"
+msgstr "床 (通路) - フラグ 0xA"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:167
 msgid "Tile flag 0xA is set to 1 (Unknown what this does)."
@@ -2999,7 +2999,7 @@ msgstr "床/壁 (部屋) - 鍵ドア (0xC)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:177
 msgid "Tile flag 0xC is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr "タイルフラグ 0xC は 1 に設定され、鍵のドアを生成します。 &lt; 固定ルームIDが0xA5の場合、これは壁になります。それ以外の場合は床になります。"
+msgstr "タイルフラグ 0xC は 1 に設定され、鍵のドアが生成されます。固定ルームIDが&lt; 0xA5 の場合、これは壁になります。それ以外の場合は床になります。"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:183
 msgid "F/W, Room; Key Door (0xD)"
@@ -3007,74 +3007,76 @@ msgstr "床/壁 (部屋) - 鍵ドア (0xD)"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:189
 msgid "Tile flag 0xD is set to 1 and spawns a key Door. If the fixed room id is &lt; 0xA5, this will be a Wall. Otherwise it will be Floor."
-msgstr ""
+msgstr "タイルフラグ 0xD は 1 に設定され、鍵のドアが生成されます。固定ルームIDが &lt; 0xA5 の場合、これは壁になります。それ以外の場合は床になります。"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:213
 msgid "Attendant1 Spawn Floor"
-msgstr ""
+msgstr "仲間1人目スポーン地点"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:222
 msgid "Attendant2 Spawn Floor"
-msgstr ""
+msgstr "仲間2人目スポーン地点"
 
 #: skytemple-files/skytemple_files/dungeon_data/fixed_bin/model.py:231
 msgid "Attendant3 Spawn Floor"
-msgstr ""
+msgstr "仲間3人目スポーン地点"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/_python_impl/floor.py:95
 #: skytemple-rust/src/st_mappa_bin/minimize.rs:211
 msgid "Could not save floor: It contains too much empty data.\n"
 "This probably happened because a lot of spawn lists are empty.\n"
 "Please check the floors you edited and fill them with more data. If you are using the randomizer, check your allowed item list."
-msgstr ""
+msgstr "フロアを保存できませんでした。空のデータが多すぎます。\n"
+"このエラーは、多くのスポーンリストが空になっていることが原因と考えられます。\n"
+"編集したフロアを確認し、データを正しく入力してください。ランダマイザーを使用している場合、許可されているアイテムリストを確認してください。"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:297
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:353
 #, python-brace-format
 msgid "Floor parsing: Unexpected {child.tag}"
-msgstr ""
+msgstr "床の解析: 予期しない {child.tag}"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:301
 #, python-brace-format
 msgid "Missing {k} for Floor data."
-msgstr ""
+msgstr "床データ {k} が存在していません。"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:462
 #, python-brace-format
 msgid "Unexpected sub-node for {XML_FLOOR_LAYOUT}: {child.tag}"
-msgstr ""
+msgstr "予期しないサブノード: {XML_FLOOR_LAYOUT} {child.tag}"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:467
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__GENSET} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "{XML_FLOOR_LAYOUT__GENSET} が {XML_FLOOR_LAYOUT} に存在していません。"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:472
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__CHANCES} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "{XML_FLOOR_LAYOUT__CHANCES} が {XML_FLOOR_LAYOUT} に存在していません。"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:477
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__TERRAINSET} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "{XML_FLOOR_LAYOUT__TERRAINSET} が {XML_FLOOR_LAYOUT} に存在していません。"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:482
 #, python-brace-format
 msgid "{XML_FLOOR_LAYOUT__MISCSET} missing for {XML_FLOOR_LAYOUT}."
-msgstr ""
+msgstr "{XML_FLOOR_LAYOUT__MISCSET} が {XML_FLOOR_LAYOUT} に存在していません。"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:554
 msgid "Invalid structure type {ele.get(XML_FLOOR_LAYOUT__STRUCTURE)}"
-msgstr ""
+msgstr "構造体タイプの値が無効です {ele.get (XML_FLOOR_LAYOUT__STRUCTURE)}"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:562
 msgid "Invalid weather type {ele.get(XML_FLOOR_LAYOUT__WEATHER)}"
-msgstr ""
+msgstr "天気タイプの値が無効です {ele.get (XML_FLOOR_LAYOUT__WEATHER)}"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:570
 msgid "Invalid darkness level type {ele.get(XML_FLOOR_LAYOUT__DARKNESS_LEVEL)}"
-msgstr ""
+msgstr "暗さレベルの値が無効です {ele.get (XML_FLOOR_LAYOUT__DARKNESS_LEVEL)}"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:721
 #, python-brace-format
@@ -3083,27 +3085,27 @@ msgstr "不明なトラップ 「{name}」。"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/mappa_xml.py:729
 msgid "Trap lists need an entry for all of the 25 traps"
-msgstr ""
+msgstr "罠リストには 25 個すべての罠に対応するエントリが必要です"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:58
 msgid "Medium Large"
-msgstr "標準の大型"
+msgstr "標準 (大型)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:60
 msgid "Single Monster House"
-msgstr ""
+msgstr "大部屋モンスターハウス"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:61
 msgid "Ring"
-msgstr ""
+msgstr "円状"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:63
 msgid "Crossroads"
-msgstr "十字路"
+msgstr "十字型"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:66
 msgid "Two Rooms, One Monster House"
-msgstr ""
+msgstr "2つの部屋 (片方モンスターハウス)"
 
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:68
 msgid "Line"
