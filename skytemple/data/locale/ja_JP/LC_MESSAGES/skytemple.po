@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-05 16:22+0000\n"
-"PO-Revision-Date: 2023-09-05 16:51\n"
+"PO-Revision-Date: 2023-09-06 05:07\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -253,7 +253,7 @@ msgstr ""
 
 #: /dev/fd/63:59 /dev/fd/63:181
 msgid "Accuracy/Power Stars Ratings"
-msgstr "命中/威力の星の数"
+msgstr "命中率/威力の星の数"
 
 #: /dev/fd/63:60 /dev/fd/63:182
 msgid "Move Descriptions"
@@ -543,19 +543,19 @@ msgstr "adventure_log に値が設定されていません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_clear.py:42
 msgid "No variable for clear."
-msgstr ""
+msgstr "clear という変数はありません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:43
 msgid "No variable for dungeon_mode set."
-msgstr ""
+msgstr "dungeon_mode に変数が設定されていません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:45
 msgid "No value for dungeon_mode set."
-msgstr ""
+msgstr "dungeon_mode に値が設定されていません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_initial.py:42
 msgid "No variable for init."
-msgstr ""
+msgstr "init に変数が定義されていません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_regular.py:48
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/blocks/ifs/header/scn.py:46
@@ -1218,7 +1218,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3288
 #: skytemple/skytemple/skytemple.glade:1478
 msgid "translator-credits"
-msgstr "Neutral#7818 <theneutralone@protonmail.com>"
+msgstr "Laioxy"
 
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:1285
 #: py_desmume/desmume/frontend/PyDeSmuMe.glade:1297
