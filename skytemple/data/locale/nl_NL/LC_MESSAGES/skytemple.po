@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-09-05 16:22+0000\n"
-"PO-Revision-Date: 2023-09-05 16:51\n"
+"POT-Creation-Date: 2023-09-07 15:19+0000\n"
+"PO-Revision-Date: 2023-09-07 16:00\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -1662,7 +1662,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/anim/model.py:50
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:36
 #: skytemple-files/skytemple_files/data/md/protocol.py:92
-#: skytemple-files/skytemple_files/data/md/protocol.py:477
+#: skytemple-files/skytemple_files/data/md/protocol.py:479
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:527
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:528
@@ -1681,7 +1681,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/anim/model.py:63
 #: skytemple-files/skytemple_files/data/md/protocol.py:66
-#: skytemple-files/skytemple_files/data/md/protocol.py:426
+#: skytemple-files/skytemple_files/data/md/protocol.py:428
 #: skytemple/skytemple/module/dungeon/controller/floor.py:98
 msgid "Invalid"
 msgstr ""
@@ -1847,7 +1847,7 @@ msgid "Fire"
 msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:95
-#: skytemple-files/skytemple_files/data/md/protocol.py:520
+#: skytemple-files/skytemple_files/data/md/protocol.py:522
 msgid "Water"
 msgstr ""
 
@@ -2373,40 +2373,39 @@ msgstr ""
 msgid "Magic Guard"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:248
-msgid "$$$"
+#: skytemple-files/skytemple_files/data/md/protocol.py:250
+msgid "Multitype"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:249
+#. TRANSLATORS: Name of the ability.
+#: skytemple-files/skytemple_files/data/md/protocol.py:251
 msgid "Honey Gather"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:250
+#: skytemple-files/skytemple_files/data/md/protocol.py:252
 msgid "Aftermath"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:251
+#: skytemple-files/skytemple_files/data/md/protocol.py:253
 msgid "Snow Cloak"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:252
+#: skytemple-files/skytemple_files/data/md/protocol.py:254
 msgid "Snow Warning"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:253
+#: skytemple-files/skytemple_files/data/md/protocol.py:255
 msgid "Forewarn"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:254
+#: skytemple-files/skytemple_files/data/md/protocol.py:256
 msgid "Storm Drain"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:255
+#: skytemple-files/skytemple_files/data/md/protocol.py:257
 msgid "Leaf Guard"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:256
-#: skytemple-files/skytemple_files/data/md/protocol.py:257
 #: skytemple-files/skytemple_files/data/md/protocol.py:258
 #: skytemple-files/skytemple_files/data/md/protocol.py:259
 #: skytemple-files/skytemple_files/data/md/protocol.py:260
@@ -2536,28 +2535,30 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/md/protocol.py:384
 #: skytemple-files/skytemple_files/data/md/protocol.py:385
 #: skytemple-files/skytemple_files/data/md/protocol.py:386
-#: skytemple-files/skytemple_files/data/md/protocol.py:419
-#: skytemple-files/skytemple_files/data/md/protocol.py:420
-#: skytemple-files/skytemple_files/data/md/protocol.py:423
-#: skytemple-files/skytemple_files/data/md/protocol.py:424
+#: skytemple-files/skytemple_files/data/md/protocol.py:387
+#: skytemple-files/skytemple_files/data/md/protocol.py:388
+#: skytemple-files/skytemple_files/data/md/protocol.py:421
+#: skytemple-files/skytemple_files/data/md/protocol.py:422
 #: skytemple-files/skytemple_files/data/md/protocol.py:425
+#: skytemple-files/skytemple_files/data/md/protocol.py:426
+#: skytemple-files/skytemple_files/data/md/protocol.py:427
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:160
 msgid "Unused"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:387
+#: skytemple-files/skytemple_files/data/md/protocol.py:389
 msgid "NONE"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:388
+#: skytemple-files/skytemple_files/data/md/protocol.py:390
 msgid "NULL"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:449
+#: skytemple-files/skytemple_files/data/md/protocol.py:451
 msgid "Not an Evolved Form."
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:450
+#: skytemple-files/skytemple_files/data/md/protocol.py:452
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1090
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3315
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:570
@@ -2571,7 +2572,7 @@ msgstr ""
 msgid "Level"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:451
+#: skytemple-files/skytemple_files/data/md/protocol.py:453
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:584
 #: skytemple/skytemple/module/lists/controller/iq.glade:48
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:239
@@ -2579,7 +2580,7 @@ msgstr ""
 msgid "IQ"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:452
+#: skytemple-files/skytemple_files/data/md/protocol.py:454
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:890
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5516
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:64
@@ -2589,107 +2590,107 @@ msgstr ""
 msgid "Items"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:453
+#: skytemple-files/skytemple_files/data/md/protocol.py:455
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:151
 msgid "Recruited"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:454
+#: skytemple-files/skytemple_files/data/md/protocol.py:456
 msgid "No Main Requirement"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:478
+#: skytemple-files/skytemple_files/data/md/protocol.py:480
 msgid "Link Cable"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:479
+#: skytemple-files/skytemple_files/data/md/protocol.py:481
 msgid "Attack > Defense"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:480
+#: skytemple-files/skytemple_files/data/md/protocol.py:482
 msgid "Attack < Defense"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:481
+#: skytemple-files/skytemple_files/data/md/protocol.py:483
 msgid "Attack = Defense"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:482
+#: skytemple-files/skytemple_files/data/md/protocol.py:484
 msgid "Sun Ribbon"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:483
+#: skytemple-files/skytemple_files/data/md/protocol.py:485
 msgid "Lunar Ribbon"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:484
+#: skytemple-files/skytemple_files/data/md/protocol.py:486
 msgid "Beauty Scarf"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:485
+#: skytemple-files/skytemple_files/data/md/protocol.py:487
 msgid "Internal Value 0x1 = 1"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:486
+#: skytemple-files/skytemple_files/data/md/protocol.py:488
 msgid "Internal Value 0x1 = 0"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:487
+#: skytemple-files/skytemple_files/data/md/protocol.py:489
 msgid "Male (1st form)"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:488
+#: skytemple-files/skytemple_files/data/md/protocol.py:490
 msgid "Female (2nd form)"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:489
+#: skytemple-files/skytemple_files/data/md/protocol.py:491
 msgid "Knows AncientPower"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:490
+#: skytemple-files/skytemple_files/data/md/protocol.py:492
 msgid "Knows Rollout"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:491
+#: skytemple-files/skytemple_files/data/md/protocol.py:493
 msgid "Knows Double Hit"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:492
+#: skytemple-files/skytemple_files/data/md/protocol.py:494
 msgid "Knows Mimic"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:515
+#: skytemple-files/skytemple_files/data/md/protocol.py:517
 msgid "Standard"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:516
+#: skytemple-files/skytemple_files/data/md/protocol.py:518
 msgid "Unknown"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:517
+#: skytemple-files/skytemple_files/data/md/protocol.py:519
 msgid "Hovering"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:518
+#: skytemple-files/skytemple_files/data/md/protocol.py:520
 msgid "Phase Through Walls"
 msgstr ""
 
 #. TRANSLATORS: Movement Type
-#: skytemple-files/skytemple_files/data/md/protocol.py:519
+#: skytemple-files/skytemple_files/data/md/protocol.py:521
 msgid "Lava"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:543
+#: skytemple-files/skytemple_files/data/md/protocol.py:545
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:59
 msgid "Small"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:544
+#: skytemple-files/skytemple_files/data/md/protocol.py:546
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:75
 msgid "Medium"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:545
+#: skytemple-files/skytemple_files/data/md/protocol.py:547
 msgid "Large"
 msgstr ""
 
