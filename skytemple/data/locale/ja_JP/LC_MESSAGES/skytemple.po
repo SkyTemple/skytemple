@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-09-05 16:22+0000\n"
-"PO-Revision-Date: 2023-09-07 14:24\n"
+"POT-Creation-Date: 2023-09-07 15:19+0000\n"
+"PO-Revision-Date: 2023-09-07 16:00\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -1662,7 +1662,7 @@ msgstr ""
 #: skytemple-files/skytemple_files/data/anim/model.py:50
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:36
 #: skytemple-files/skytemple_files/data/md/protocol.py:92
-#: skytemple-files/skytemple_files/data/md/protocol.py:477
+#: skytemple-files/skytemple_files/data/md/protocol.py:479
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:527
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:528
@@ -1681,7 +1681,7 @@ msgstr "なし"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:63
 #: skytemple-files/skytemple_files/data/md/protocol.py:66
-#: skytemple-files/skytemple_files/data/md/protocol.py:426
+#: skytemple-files/skytemple_files/data/md/protocol.py:428
 #: skytemple/skytemple/module/dungeon/controller/floor.py:98
 msgid "Invalid"
 msgstr "無効"
@@ -1847,7 +1847,7 @@ msgid "Fire"
 msgstr "ほのお"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:95
-#: skytemple-files/skytemple_files/data/md/protocol.py:520
+#: skytemple-files/skytemple_files/data/md/protocol.py:522
 msgid "Water"
 msgstr "みず"
 
@@ -2373,40 +2373,39 @@ msgstr "ポイズンヒール"
 msgid "Magic Guard"
 msgstr "マジックガード"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:248
-msgid "$$$"
+#: skytemple-files/skytemple_files/data/md/protocol.py:250
+msgid "Multitype"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:249
+#. TRANSLATORS: Name of the ability.
+#: skytemple-files/skytemple_files/data/md/protocol.py:251
 msgid "Honey Gather"
 msgstr "みつあつめ"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:250
+#: skytemple-files/skytemple_files/data/md/protocol.py:252
 msgid "Aftermath"
 msgstr "ゆうばく"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:251
+#: skytemple-files/skytemple_files/data/md/protocol.py:253
 msgid "Snow Cloak"
 msgstr "ゆきがくれ"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:252
+#: skytemple-files/skytemple_files/data/md/protocol.py:254
 msgid "Snow Warning"
 msgstr "ゆきふらし"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:253
+#: skytemple-files/skytemple_files/data/md/protocol.py:255
 msgid "Forewarn"
 msgstr "よちむ"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:254
+#: skytemple-files/skytemple_files/data/md/protocol.py:256
 msgid "Storm Drain"
 msgstr "よびみず"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:255
+#: skytemple-files/skytemple_files/data/md/protocol.py:257
 msgid "Leaf Guard"
 msgstr "リーフガード"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:256
-#: skytemple-files/skytemple_files/data/md/protocol.py:257
 #: skytemple-files/skytemple_files/data/md/protocol.py:258
 #: skytemple-files/skytemple_files/data/md/protocol.py:259
 #: skytemple-files/skytemple_files/data/md/protocol.py:260
@@ -2536,28 +2535,30 @@ msgstr "リーフガード"
 #: skytemple-files/skytemple_files/data/md/protocol.py:384
 #: skytemple-files/skytemple_files/data/md/protocol.py:385
 #: skytemple-files/skytemple_files/data/md/protocol.py:386
-#: skytemple-files/skytemple_files/data/md/protocol.py:419
-#: skytemple-files/skytemple_files/data/md/protocol.py:420
-#: skytemple-files/skytemple_files/data/md/protocol.py:423
-#: skytemple-files/skytemple_files/data/md/protocol.py:424
+#: skytemple-files/skytemple_files/data/md/protocol.py:387
+#: skytemple-files/skytemple_files/data/md/protocol.py:388
+#: skytemple-files/skytemple_files/data/md/protocol.py:421
+#: skytemple-files/skytemple_files/data/md/protocol.py:422
 #: skytemple-files/skytemple_files/data/md/protocol.py:425
+#: skytemple-files/skytemple_files/data/md/protocol.py:426
+#: skytemple-files/skytemple_files/data/md/protocol.py:427
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:160
 msgid "Unused"
 msgstr "未使用"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:387
+#: skytemple-files/skytemple_files/data/md/protocol.py:389
 msgid "NONE"
 msgstr "なし"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:388
+#: skytemple-files/skytemple_files/data/md/protocol.py:390
 msgid "NULL"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:449
+#: skytemple-files/skytemple_files/data/md/protocol.py:451
 msgid "Not an Evolved Form."
 msgstr "進化形ではありません。"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:450
+#: skytemple-files/skytemple_files/data/md/protocol.py:452
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1090
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3315
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:570
@@ -2571,7 +2572,7 @@ msgstr "進化形ではありません。"
 msgid "Level"
 msgstr "レベル"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:451
+#: skytemple-files/skytemple_files/data/md/protocol.py:453
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:584
 #: skytemple/skytemple/module/lists/controller/iq.glade:48
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:239
@@ -2579,7 +2580,7 @@ msgstr "レベル"
 msgid "IQ"
 msgstr "かしこさ"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:452
+#: skytemple-files/skytemple_files/data/md/protocol.py:454
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:890
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5516
 #: skytemple/skytemple/module/dungeon_graphics/controller/trp_itm_img.py:64
@@ -2589,107 +2590,107 @@ msgstr "かしこさ"
 msgid "Items"
 msgstr "道具"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:453
+#: skytemple-files/skytemple_files/data/md/protocol.py:455
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:151
 msgid "Recruited"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:454
+#: skytemple-files/skytemple_files/data/md/protocol.py:456
 msgid "No Main Requirement"
 msgstr "条件なし"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:478
+#: skytemple-files/skytemple_files/data/md/protocol.py:480
 msgid "Link Cable"
 msgstr "つうしんケーブル"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:479
+#: skytemple-files/skytemple_files/data/md/protocol.py:481
 msgid "Attack > Defense"
 msgstr "攻撃 > 防御"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:480
+#: skytemple-files/skytemple_files/data/md/protocol.py:482
 msgid "Attack < Defense"
 msgstr "攻撃 < 防御"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:481
+#: skytemple-files/skytemple_files/data/md/protocol.py:483
 msgid "Attack = Defense"
 msgstr "攻撃 = 防御"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:482
+#: skytemple-files/skytemple_files/data/md/protocol.py:484
 msgid "Sun Ribbon"
 msgstr "たいようのリボン"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:483
+#: skytemple-files/skytemple_files/data/md/protocol.py:485
 msgid "Lunar Ribbon"
 msgstr "げっこうのリボン"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:484
+#: skytemple-files/skytemple_files/data/md/protocol.py:486
 msgid "Beauty Scarf"
 msgstr "うつくしスカーフ"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:485
+#: skytemple-files/skytemple_files/data/md/protocol.py:487
 msgid "Internal Value 0x1 = 1"
 msgstr "内部値 0x1 = 1"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:486
+#: skytemple-files/skytemple_files/data/md/protocol.py:488
 msgid "Internal Value 0x1 = 0"
 msgstr "内部値 0x1 = 0"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:487
+#: skytemple-files/skytemple_files/data/md/protocol.py:489
 msgid "Male (1st form)"
 msgstr "オス (1つ目の姿)"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:488
+#: skytemple-files/skytemple_files/data/md/protocol.py:490
 msgid "Female (2nd form)"
 msgstr "メス (2つ目の姿)"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:489
+#: skytemple-files/skytemple_files/data/md/protocol.py:491
 msgid "Knows AncientPower"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:490
+#: skytemple-files/skytemple_files/data/md/protocol.py:492
 msgid "Knows Rollout"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:491
+#: skytemple-files/skytemple_files/data/md/protocol.py:493
 msgid "Knows Double Hit"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:492
+#: skytemple-files/skytemple_files/data/md/protocol.py:494
 msgid "Knows Mimic"
 msgstr ""
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:515
+#: skytemple-files/skytemple_files/data/md/protocol.py:517
 msgid "Standard"
 msgstr "通常"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:516
+#: skytemple-files/skytemple_files/data/md/protocol.py:518
 msgid "Unknown"
 msgstr "不明"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:517
+#: skytemple-files/skytemple_files/data/md/protocol.py:519
 msgid "Hovering"
 msgstr "空中"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:518
+#: skytemple-files/skytemple_files/data/md/protocol.py:520
 msgid "Phase Through Walls"
 msgstr "壁を通過"
 
 #. TRANSLATORS: Movement Type
-#: skytemple-files/skytemple_files/data/md/protocol.py:519
+#: skytemple-files/skytemple_files/data/md/protocol.py:521
 msgid "Lava"
 msgstr "マグマ"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:543
+#: skytemple-files/skytemple_files/data/md/protocol.py:545
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:59
 msgid "Small"
 msgstr "小"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:544
+#: skytemple-files/skytemple_files/data/md/protocol.py:546
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:75
 msgid "Medium"
 msgstr "標準"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:545
+#: skytemple-files/skytemple_files/data/md/protocol.py:547
 msgid "Large"
 msgstr "大"
 
@@ -3952,7 +3953,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:99
 msgid "Standing Animation (loop)"
-msgstr ""
+msgstr "立っているアニメーション (ループ)"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:100
 msgid "Standing Animation (1st frame)"
