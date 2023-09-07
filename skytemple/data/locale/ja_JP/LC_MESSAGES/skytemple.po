@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-05 16:22+0000\n"
-"PO-Revision-Date: 2023-09-06 16:25\n"
+"PO-Revision-Date: 2023-09-07 08:07\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -77,11 +77,11 @@ msgstr "性格診断結果の文字列"
 
 #: /dev/fd/63:15 /dev/fd/63:137
 msgid "Personality string natures"
-msgstr ""
+msgstr "性格診断時のパラメータ文字列 (デバッグ用)"
 
 #: /dev/fd/63:16 /dev/fd/63:138
 msgid "Weather Change Feedback"
-msgstr ""
+msgstr "天気変化時のメッセージ"
 
 #: /dev/fd/63:17 /dev/fd/63:139
 msgid "Weather Names"
@@ -89,7 +89,7 @@ msgstr "天気名"
 
 #: /dev/fd/63:18 /dev/fd/63:140
 msgid "Floor-Wide Status Names+Desc"
-msgstr ""
+msgstr "フロア特殊効果の名称・説明"
 
 #: /dev/fd/63:19 /dev/fd/63:141
 msgid "IQ Skills Menu"
@@ -105,27 +105,27 @@ msgstr "依頼の内容"
 
 #: /dev/fd/63:22 /dev/fd/63:144
 msgid "Mission Failure/Faint Strings"
-msgstr "依頼失敗・敗北の文字列"
+msgstr "依頼失敗・敗北時の文字列"
 
 #: /dev/fd/63:23 /dev/fd/63:145
 msgid "Speed Change Feedback"
-msgstr ""
+msgstr "速度変化時のメッセージ"
 
 #: /dev/fd/63:24 /dev/fd/63:146
 msgid "Potential Recruit Strings"
-msgstr ""
+msgstr "なかまのけんさく関連文字列"
 
 #: /dev/fd/63:25 /dev/fd/63:147
 msgid "Gummi Feedback"
-msgstr ""
+msgstr "グミを食べた時のメッセージ"
 
 #: /dev/fd/63:26 /dev/fd/63:148
 msgid "Traps Feedback"
-msgstr ""
+msgstr "ワナを踏んだ時のメッセージ"
 
 #: /dev/fd/63:27 /dev/fd/63:149
 msgid "More Dungeon Feedback"
-msgstr ""
+msgstr "ダンジョン関連のメッセージ"
 
 #: /dev/fd/63:28 /dev/fd/63:150
 msgid "Something's Stirring String"
@@ -133,7 +133,7 @@ msgstr "制限ターン関連の文字列"
 
 #: /dev/fd/63:29 /dev/fd/63:151
 msgid "Some Fake items Dialogue"
-msgstr "そっくりどうぐのダイアログ"
+msgstr "そっくりどうぐのメッセージ"
 
 #: /dev/fd/63:30 /dev/fd/63:152
 msgid "Shaymin Form Change Strings"
@@ -145,11 +145,11 @@ msgstr "ポケモンを仲間にした時の文字列"
 
 #: /dev/fd/63:32 /dev/fd/63:154
 msgid "Battle Feedback Messages"
-msgstr ""
+msgstr "バトル時のメッセージ"
 
 #: /dev/fd/63:33 /dev/fd/63:155
 msgid "Misson Feedback"
-msgstr ""
+msgstr "依頼関連のメッセージ"
 
 #: /dev/fd/63:34 /dev/fd/63:156
 msgid "Kecleon Dungeon Shop Strings"
@@ -193,27 +193,27 @@ msgstr "道具がネバついた"
 
 #: /dev/fd/63:44 /dev/fd/63:166
 msgid "Pokemon LEVEL_UP Dialogue"
-msgstr "レベルアップした時の台詞ダイアログ"
+msgstr "レベルアップした時の台詞"
 
 #: /dev/fd/63:45 /dev/fd/63:167
 msgid "Pokemon WAIT Dialogue"
-msgstr "通常時の台詞ダイアログ"
+msgstr "待機時の台詞"
 
 #: /dev/fd/63:46 /dev/fd/63:168
 msgid "Pokemon HEALTHY Dialogue"
-msgstr "残りHP80%の時の台詞ダイアログ"
+msgstr "残りHP80%の時の台詞"
 
 #: /dev/fd/63:47 /dev/fd/63:169
 msgid "Pokemon HALF_LIFE Dialogue"
-msgstr "残りHP50%の時の台詞ダイアログ"
+msgstr "残りHP50%の時の台詞"
 
 #: /dev/fd/63:48 /dev/fd/63:170
 msgid "Pokemon PINCH Dialogue"
-msgstr "残りHP25%の時のダイアログ"
+msgstr "残りHP25%の時の台詞"
 
 #: /dev/fd/63:49 /dev/fd/63:171
 msgid "Pokemon GROUND_WAIT Dialogue"
-msgstr "ポケモンが外で待機しているときのダイアログ"
+msgstr "待機時の台詞 (グラウンド)"
 
 #: /dev/fd/63:50 /dev/fd/63:172
 msgid "Item Names"
@@ -249,11 +249,11 @@ msgstr "かしこさの説明"
 
 #: /dev/fd/63:58 /dev/fd/63:180
 msgid "Move Targets Strings"
-msgstr ""
+msgstr "技の対象の文字列"
 
 #: /dev/fd/63:59 /dev/fd/63:181
 msgid "Accuracy/Power Stars Ratings"
-msgstr "命中率/威力の星の数"
+msgstr "命中率/威力の星のレート"
 
 #: /dev/fd/63:60 /dev/fd/63:182
 msgid "Move Descriptions"
@@ -297,7 +297,7 @@ msgstr "デバッグメニュー文字列"
 
 #: /dev/fd/63:70 /dev/fd/63:192
 msgid "Portrait Names"
-msgstr ""
+msgstr "ポートレート名"
 
 #: /dev/fd/63:71 /dev/fd/63:193
 msgid "Ground Map Names"
@@ -467,11 +467,11 @@ msgstr ""
 
 #: /dev/fd/63:108 /dev/fd/63:230
 msgid "String ID for the Menu Option"
-msgstr ""
+msgstr "メニューオプションの文字列ID"
 
 #: /dev/fd/63:109 /dev/fd/63:231
 msgid "String ID to confirm the appraise all"
-msgstr ""
+msgstr "すべての評価を確認する文字列ID"
 
 #: /dev/fd/63:110 /dev/fd/63:232
 msgid "String ID before revealing the items"
@@ -3638,27 +3638,27 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:370
 msgid "Foggy 1"
-msgstr ""
+msgstr "もや 1"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:371
 msgid "Foggy 2"
-msgstr ""
+msgstr "もや 2"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:372
 msgid "Foggy 3"
-msgstr ""
+msgstr "もや 3"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:373
 msgid "Foggy 4"
-msgstr ""
+msgstr "もや 4"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:374
 msgid "Foggy 5"
-msgstr ""
+msgstr "もや 5"
 
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:375
 msgid "Foggy 6"
-msgstr ""
+msgstr "もや 6"
 
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:136
 #: skytemple-files/skytemple_files/hardcoded/fixed_floor.py:159
