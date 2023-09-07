@@ -172,7 +172,7 @@ class BrowserController(AbstractController):
         info_bar.set_revealed(True)
         stack.set_visible_child(self.builder.get_object('sc_page_welcome'))
 
-        self._spriteclient = SpriteCollabClient(server_url=self._spriteserver_url, use_certifi_ssl=platform.system() == "Windows")
+        self._spriteclient = SpriteCollabClient(server_url=self._spriteserver_url, use_ssl=platform.system() != "Windows")
 
         Thread(target=loader, args=(self._spriteclient, self.after_init, self.error_during_init), daemon=True).start()
 
