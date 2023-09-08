@@ -57,6 +57,7 @@ class FixedFloorDrawerMinimap(AbstractTilesetRenderer):
 
             self._cached_dungeon_surface = surf
             self._cached_rules = rules
+        assert self._cached_dungeon_surface is not None
         return self._cached_dungeon_surface
 
     def get_single_tile(self, tile: int) -> cairo.Surface:

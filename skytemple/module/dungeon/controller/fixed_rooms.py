@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import re
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 from gi.repository import Gtk
 from gi.repository.Gtk import Widget
@@ -25,7 +25,7 @@ from skytemple_files.data.md.protocol import Gender
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import glib_async, catch_overflow
+from skytemple.core.ui_utils import glib_async, catch_overflow, builder_get_assert
 from skytemple.module.dungeon import MAX_ITEMS, SPECIAL_ITEMS, SPECIAL_MONSTERS
 from skytemple_files.dungeon_data.fixed_bin.model import TileRuleType
 from skytemple_files.dungeon_data.mappa_bin.protocol import MappaTrapType
@@ -45,7 +45,7 @@ class FixedRoomsController(AbstractController):
 
     def __init__(self, module: 'DungeonModule', item_id: int):
         self.module = module
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self.lst_entity, self.lst_item, self.lst_monster, self.lst_tile, self.lst_stats = \
             module.get_fixed_floor_entity_lists()
 
@@ -76,7 +76,7 @@ class FixedRoomsController(AbstractController):
 
         self._fill_entities()
         if self.__class__.focus_entity_on_open:
-            t: Gtk.TreeView = self.builder.get_object('tree_entities')
+            t = builder_get_assert(self.builder, Gtk.TreeView, 'tree_entities')
             s: Gtk.TreeSelection = t.get_selection()
             p = t.get_model()[self.__class__.focus_entity_on_open].path
             s.select_path(p)
@@ -89,7 +89,7 @@ class FixedRoomsController(AbstractController):
 
         self.builder.connect_signals(self)
 
-        return self.builder.get_object('box_list')
+        return builder_get_assert(self.builder, Gtk.Box, 'box_list')
 
     def on_nb_sl_switch_page(self, n: Gtk.Notebook, p, pnum, *args):
         if pnum == 0:
@@ -105,8 +105,8 @@ class FixedRoomsController(AbstractController):
 
     @glib_async
     def on_cr_entities_tile_id_changed(self, widget, path, new_iter, *args):
-        store: Gtk.Store = self.builder.get_object('model_entities')
-        cb_store: Gtk.Store = self.builder.get_object('model_entities__tiles')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_entities')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'model_entities__tiles')
         store[path][1] = f'{_("Tile")} {cb_store[new_iter][0]}'
         self.lst_entity[int(store[path][0])].tile_id = cb_store[new_iter][0]
         store[path][4] = self.module.desc_fixed_floor_tile(self.lst_tile[cb_store[new_iter][0]])
@@ -114,8 +114,8 @@ class FixedRoomsController(AbstractController):
 
     @glib_async
     def on_cr_entities_item_id_changed(self, widget, path, new_iter, *args):
-        store: Gtk.Store = self.builder.get_object('model_entities')
-        cb_store: Gtk.Store = self.builder.get_object('model_entities__items')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_entities')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'model_entities__items')
         store[path][2] = f'{_("Item")} {cb_store[new_iter][0]}'
         self.lst_entity[int(store[path][0])].item_id = cb_store[new_iter][0]
         store[path][5] = self.module.desc_fixed_floor_item(self.lst_item[cb_store[new_iter][0]].item_id)
@@ -123,8 +123,8 @@ class FixedRoomsController(AbstractController):
 
     @glib_async
     def on_cr_entities_monster_id_changed(self, widget, path, new_iter, *args):
-        store: Gtk.Store = self.builder.get_object('model_entities')
-        cb_store: Gtk.Store = self.builder.get_object('model_entities__monsters')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_entities')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'model_entities__monsters')
         store[path][3] = f'Pokémon {cb_store[new_iter][0]}'
         self.lst_entity[int(store[path][0])].monster_id = cb_store[new_iter][0]
         monster = self.lst_monster[cb_store[new_iter][0]]
@@ -134,65 +134,73 @@ class FixedRoomsController(AbstractController):
         self._save()
 
     def on_btn_entities_goto_monster_clicked(self, *args):
-        tree: Gtk.TreeView = self.builder.get_object('tree_entities')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree_entities')
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
-            notebook: Gtk.Notebook = self.builder.get_object('nb_sl')
+            notebook = builder_get_assert(self.builder, Gtk.Notebook, 'nb_sl')
             notebook.set_current_page(3)
-            t: Gtk.TreeView = self.builder.get_object('tree_monsters')
+            t = builder_get_assert(self.builder, Gtk.TreeView, 'tree_monsters')
             s: Gtk.TreeSelection = t.get_selection()
-            p = t.get_model()[self.lst_entity[int(model[treeiter][0])].monster_id].path
+            t_model = t.get_model()
+            assert t_model is not None
+            p = cast(Gtk.TreePath, t_model[self.lst_entity[int(model[treeiter][0])].monster_id].path)
             s.select_path(p)
-            t.scroll_to_cell(p, use_align=True, row_align=0.5)
+            t.scroll_to_cell(p, column=None, use_align=True, row_align=0.5, col_align=0.5)
 
     def on_btn_entities_goto_item_clicked(self, *args):
-        tree: Gtk.TreeView = self.builder.get_object('tree_entities')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree_entities')
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
-            notebook: Gtk.Notebook = self.builder.get_object('nb_sl')
+            notebook = builder_get_assert(self.builder, Gtk.Notebook, 'nb_sl')
             notebook.set_current_page(2)
-            t: Gtk.TreeView = self.builder.get_object('tree_items')
+            t = builder_get_assert(self.builder, Gtk.TreeView, 'tree_items')
             s: Gtk.TreeSelection = t.get_selection()
-            p = t.get_model()[self.lst_entity[int(model[treeiter][0])].item_id].path
+            t_model = t.get_model()
+            assert t_model is not None
+            p = cast(Gtk.TreePath, t_model[self.lst_entity[int(model[treeiter][0])].item_id].path)
             s.select_path(p)
-            t.scroll_to_cell(p, use_align=True, row_align=0.5)
+            t.scroll_to_cell(p, column=None, use_align=True, row_align=0.5, col_align=0.5)
 
     def on_btn_entities_goto_tile_clicked(self, *args):
-        tree: Gtk.TreeView = self.builder.get_object('tree_entities')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree_entities')
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
-            notebook: Gtk.Notebook = self.builder.get_object('nb_sl')
+            notebook = builder_get_assert(self.builder, Gtk.Notebook, 'nb_sl')
             notebook.set_current_page(1)
-            t: Gtk.TreeView = self.builder.get_object('tree_tiles')
+            t = builder_get_assert(self.builder, Gtk.TreeView, 'tree_tiles')
             s: Gtk.TreeSelection = t.get_selection()
-            p = t.get_model()[self.lst_entity[int(model[treeiter][0])].tile_id].path
+            t_model = t.get_model()
+            assert t_model is not None
+            p = cast(Gtk.TreePath, t_model[self.lst_entity[int(model[treeiter][0])].tile_id].path)
             s.select_path(p)
-            t.scroll_to_cell(p, use_align=True, row_align=0.5)
+            t.scroll_to_cell(p, column=None, use_align=True, row_align=0.5, col_align=0.5)
 
     def on_btn_monsters_goto_stats_clicked(self, *args):
-        tree: Gtk.TreeView = self.builder.get_object('tree_monsters')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree_monsters')
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
             if not model[treeiter][7]:
                 return
-            notebook: Gtk.Notebook = self.builder.get_object('nb_sl')
+            notebook = builder_get_assert(self.builder, Gtk.Notebook, 'nb_sl')
             notebook.set_current_page(4)
-            t: Gtk.TreeView = self.builder.get_object('tree_stats')
+            t = builder_get_assert(self.builder, Gtk.TreeView, 'tree_stats')
             s: Gtk.TreeSelection = t.get_selection()
-            p = t.get_model()[self.lst_monster[int(model[treeiter][0])].stats_entry].path
+            t_model = t.get_model()
+            assert t_model is not None
+            p = cast(Gtk.TreePath, t_model[self.lst_monster[int(model[treeiter][0])].stats_entry].path)
             s.select_path(p)
-            t.scroll_to_cell(p, use_align=True, row_align=0.5)
+            t.scroll_to_cell(p, column=None, use_align=True, row_align=0.5, col_align=0.5)
 
     @glib_async
     def on_cr_tiles_trap_id_changed(self, widget, path, new_iter, *args):
-        store: Gtk.Store = self.builder.get_object('model_tiles')
-        cb_store: Gtk.Store = self.builder.get_object('model_tiles__traps')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_tiles')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'model_tiles__traps')
         store[path][1] = cb_store[new_iter][1]
         self.lst_tile[int(store[path][0])].trap_id = cb_store[new_iter][0]
         self._save()
 
     def _set_tiles_trap_data_bitflag(self, idx, value, path):
-        store: Gtk.Store = self.builder.get_object('model_tiles')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_tiles')
         store[path][idx + 2] = value
         if value:  # TRUE
             self.lst_tile[int(store[path][0])].trap_data |= 1 << idx
@@ -226,7 +234,7 @@ class FixedRoomsController(AbstractController):
 
     @catch_overflow(u8)
     def on_cr_tiles_room_id_edited(self, widget, path, text):
-        store: Gtk.Store = self.builder.get_object('model_tiles')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_tiles')
         try:
             v = u8_checked(int(text))
         except ValueError:
@@ -236,7 +244,7 @@ class FixedRoomsController(AbstractController):
         self._save()
 
     def _set_tiles_flags_data_bitflag(self, idx, value, path):
-        store: Gtk.Store = self.builder.get_object('model_tiles')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_tiles')
         store[path][idx + 11] = value
         if value:  # TRUE
             self.lst_tile[int(store[path][0])].flags |= 1 << idx
@@ -269,11 +277,11 @@ class FixedRoomsController(AbstractController):
         self._set_tiles_flags_data_bitflag(7, not widget.get_active(), path)
 
     def on_cr_items_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_items'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.ListStore, 'completion_items'))
 
     @catch_overflow(u16)
     def on_cr_items_item_name_edited(self, widget, path, text):
-        store: Gtk.Store = self.builder.get_object('model_items')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_items')
         match = PATTERN.match(text)
         if match is None:
             return
@@ -288,7 +296,7 @@ class FixedRoomsController(AbstractController):
 
     @catch_overflow(u16)
     def on_cr_items_item_quantity_edited(self, widget, path, text):
-        store: Gtk.Store = self.builder.get_object('model_items')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_items')
         try:
             quantity = u16_checked(int(text))
         except ValueError:
@@ -298,11 +306,11 @@ class FixedRoomsController(AbstractController):
         self._save()
 
     def on_cr_monsters_monster_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_monsters'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.ListStore, 'completion_monsters'))
 
     @catch_overflow(u16)
     def on_cr_monsters_monster_edited(self, widget, path, text):
-        store: Gtk.Store = self.builder.get_object('model_monsters')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_monsters')
         match = PATTERN.match(text)
         if match is None:
             return
@@ -317,17 +325,17 @@ class FixedRoomsController(AbstractController):
 
     @glib_async
     def on_cr_monsters_type_changed(self, widget, path, new_iter, *args):
-        store: Gtk.Store = self.builder.get_object('model_monsters')
-        cb_store: Gtk.Store = self.builder.get_object('model_monsters__type')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_monsters')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'model_monsters__type')
         store[path][3] = cb_store[new_iter][0]
         store[path][4] = cb_store[new_iter][1]
-        self.lst_monster[int(store[path][0])].enemy_settings = MonsterSpawnType(cb_store[new_iter][0])
+        self.lst_monster[int(store[path][0])].enemy_settings = MonsterSpawnType(cb_store[new_iter][0])  # type: ignore
         self._save()
 
     @glib_async
     def on_cr_monsters_stats_changed(self, widget, path, new_iter, *args):
-        store: Gtk.Store = self.builder.get_object('model_monsters')
-        cb_store: Gtk.Store = self.builder.get_object('model_monsters__stats')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_monsters')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'model_monsters__stats')
         store[path][5] = cb_store[new_iter][0]
         store[path][6] = cb_store[new_iter][1]
         self.lst_monster[int(store[path][0])].stats_entry = cb_store[new_iter][0]
@@ -335,7 +343,7 @@ class FixedRoomsController(AbstractController):
 
     @catch_overflow(u16)
     def on_cr_stats_level_edited(self, widget, path, text):
-        store: Gtk.Store = self.builder.get_object('model_stats')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_stats')
         try:
             v = u16_checked(int(text))
         except ValueError:
@@ -346,7 +354,7 @@ class FixedRoomsController(AbstractController):
 
     @catch_overflow(u16)
     def on_cr_stats_hp_edited(self, widget, path, text):
-        store: Gtk.Store = self.builder.get_object('model_stats')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_stats')
         try:
             v = u16_checked(int(text))
         except ValueError:
@@ -357,7 +365,7 @@ class FixedRoomsController(AbstractController):
 
     @catch_overflow(u16)
     def on_cr_stats_exp_yield_edited(self, widget, path, text):
-        store: Gtk.Store = self.builder.get_object('model_stats')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_stats')
         try:
             v = u16_checked(int(text))
         except ValueError:
@@ -368,7 +376,7 @@ class FixedRoomsController(AbstractController):
 
     @catch_overflow(u8)
     def on_cr_stats_atk_edited(self, widget, path, text):
-        store: Gtk.Store = self.builder.get_object('model_stats')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_stats')
         try:
             v = u8_checked(int(text))
         except ValueError:
@@ -379,7 +387,7 @@ class FixedRoomsController(AbstractController):
 
     @catch_overflow(u8)
     def on_cr_stats_sp_atk_edited(self, widget, path, text):
-        store: Gtk.Store = self.builder.get_object('model_stats')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_stats')
         try:
             v = u8_checked(int(text))
         except ValueError:
@@ -390,7 +398,7 @@ class FixedRoomsController(AbstractController):
 
     @catch_overflow(u8)
     def on_cr_stats_def_edited(self, widget, path, text):
-        store: Gtk.Store = self.builder.get_object('model_stats')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_stats')
         try:
             v = u8_checked(int(text))
         except ValueError:
@@ -401,7 +409,7 @@ class FixedRoomsController(AbstractController):
 
     @catch_overflow(u8)
     def on_cr_stats_sp_def_edited(self, widget, path, text):
-        store: Gtk.Store = self.builder.get_object('model_stats')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_stats')
         try:
             v = u8_checked(int(text))
         except ValueError:
@@ -412,7 +420,7 @@ class FixedRoomsController(AbstractController):
 
     @catch_overflow(u16)
     def on_cr_stats_unka_edited(self, widget, path, text):
-        store: Gtk.Store = self.builder.get_object('model_stats')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_stats')
         try:
             v = u16_checked(int(text))
         except ValueError:
@@ -423,12 +431,12 @@ class FixedRoomsController(AbstractController):
 
     def _fill_entities(self):
         # Init Tiles Store
-        store: Gtk.ListStore = self.builder.get_object('model_entities__tiles')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_entities__tiles')
         store.clear()
         for i in range(0, len(self.lst_tile)):
             store.append([i, f"{_('Tile')} {i} ({self.module.desc_fixed_floor_tile(self.lst_tile[i])})"])
         # Init Monsters Store
-        store = self.builder.get_object('model_entities__monsters')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_entities__monsters')
         store.clear()
         for i in range(0, len(self.lst_monster)):
             monster = self.lst_monster[i]
@@ -437,13 +445,13 @@ class FixedRoomsController(AbstractController):
             )
             store.append([i, f"Pokémon {i} ({monster_desc})"])
         # Init Items Store
-        store = self.builder.get_object('model_entities__items')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_entities__items')
         store.clear()
         for i in range(0, len(self.lst_item)):
             store.append([i, f"{_('Item')} {i} ({self.module.desc_fixed_floor_item(self.lst_item[i].item_id)})"])
 
         # Init Entities Store
-        store = self.builder.get_object('model_entities')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_entities')
         store.clear()
         reserved_ids = [x.value for x in TileRuleType]
         for idx, entity in enumerate(self.lst_entity):
@@ -462,14 +470,14 @@ class FixedRoomsController(AbstractController):
 
     def _init_tiles(self):
         # Init Traps Store
-        store: Gtk.ListStore = self.builder.get_object('model_tiles__traps')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_tiles__traps')
         store.append([25, _('None')])
         for trap in MappaTrapType:
             store.append([trap.value, trap.print_name])
 
     def _fill_tiles(self):
         # Init Tiles Store
-        store: Gtk.ListStore = self.builder.get_object('model_tiles')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_tiles')
         store.clear()
         for idx, tile in enumerate(self.lst_tile):
             name = _('None')
@@ -484,14 +492,14 @@ class FixedRoomsController(AbstractController):
 
     def _init_items(self):
         # Init Items Completion
-        store: Gtk.ListStore = self.builder.get_object('store_completion_items')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_completion_items')
 
         for item in self.item_names.values():
             store.append([item])
 
     def _fill_items(self):
         # Init Items Store
-        store: Gtk.ListStore = self.builder.get_object('model_items')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_items')
         store.clear()
         for idx, item in enumerate(self.lst_item):
             store.append([
@@ -500,25 +508,25 @@ class FixedRoomsController(AbstractController):
 
     def _init_monsters(self):
         # Init Monsters Completion
-        store: Gtk.ListStore = self.builder.get_object('store_completion_monsters')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_completion_monsters')
 
         for item in self.monster_names.values():
             store.append([item])
 
         # Init Monsters Types
-        store = self.builder.get_object('model_monsters__type')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_monsters__type')
         for i, entry in enumerate(self.enemy_settings_name):
             store.append([i, entry])
 
     def _fill_monsters(self):
         # Init Monsters Stats
-        store: Gtk.ListStore = self.builder.get_object('model_monsters__stats')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_monsters__stats')
         store.clear()
         for i, entry in enumerate(self.lst_stats):
             store.append([i, self._generate_stats_label(i, entry)])
 
         # Init Monsters Store
-        store = self.builder.get_object('model_monsters')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_monsters')
         store.clear()
         for idx, monster in enumerate(self.lst_monster):
             store.append([
@@ -528,7 +536,7 @@ class FixedRoomsController(AbstractController):
 
     def _fill_stats(self):
         # Init Stats Store
-        store: Gtk.ListStore = self.builder.get_object('model_stats')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'model_stats')
         store.clear()
         for idx, item in enumerate(self.lst_stats):
             store.append([

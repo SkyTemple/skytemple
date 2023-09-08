@@ -17,7 +17,7 @@
 import sys
 import textwrap
 from itertools import chain
-from typing import TYPE_CHECKING, Optional, List, Union, Sequence
+from typing import TYPE_CHECKING, Optional, List, Union, Sequence, cast
 
 from gi.repository import Gtk, Gdk
 from range_typed_integers import u8, u8_checked
@@ -34,12 +34,14 @@ from skytemple_files.hardcoded.dungeons import DungeonDefinition
 from skytemple.controller.main import MainController as MainSkyTempleController
 from skytemple_files.common.i18n_util import f, _
 
+from skytemple.core.ui_utils import builder_get_assert, iter_tree_model
+
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, DungeonGroup
 
 DUNGEONS_NAME = _('Dungeons')
 DND_TARGETS = [
-    ('MY_TREE_MODEL_ROW', Gtk.TargetFlags.SAME_WIDGET, 0)
+    Gtk.TargetEntry.new('MY_TREE_MODEL_ROW', Gtk.TargetFlags.SAME_WIDGET, 0)
 ]
 
 
@@ -47,7 +49,7 @@ class MainController(AbstractController):
     def __init__(self, module: 'DungeonModule', *args):
         self.module = module
 
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
         self.string_provider = self.module.project.get_string_provider()
 
@@ -56,15 +58,15 @@ class MainController(AbstractController):
         assert self.builder
 
         # Enable drag and drop
-        dungeons_tree: Gtk.TreeView = self.builder.get_object('tree_grouped')
+        dungeons_tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree_grouped')
         dungeons_tree.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK, DND_TARGETS, Gdk.DragAction.MOVE)
         dungeons_tree.enable_model_drag_dest(DND_TARGETS, Gdk.DragAction.MOVE)
 
         self.builder.connect_signals(self)
-        return self.builder.get_object('main_box')
+        return builder_get_assert(self.builder, Gtk.Widget, 'main_box')
 
     def on_fix_dungeons_clicked(self, *args):
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_fix_dungeon_errors')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_fix_dungeon_errors')
         dialog.set_attached_to(SkyTempleMainController.window())
         dialog.set_transient_for(SkyTempleMainController.window())
         dialog.resize(900, 520)
@@ -72,7 +74,7 @@ class MainController(AbstractController):
         dungeon_list = self.module.get_dungeon_list()
         validator = self.module.get_validator()
         validator.validate(dungeon_list)
-        store: Gtk.Store = self.builder.get_object('store_dungeon_errors')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_dungeon_errors')
         store.clear()
         validator.errors.sort(key=lambda e: e.dungeon_id)
         for e in validator.errors:
@@ -95,7 +97,7 @@ class MainController(AbstractController):
         dialog.hide()
         if resp == Gtk.ResponseType.APPLY:
             # Step 1, fix all selected errors
-            for row in store:
+            for row in iter_tree_model(store):
                 if row[0]:  # selected
                     self._fix_error(dungeon_list, row[6])
             # Step 2, fix all open DungeonTotalFloorCountInvalidError
@@ -129,7 +131,7 @@ class MainController(AbstractController):
             self.module.rebuild_dungeon_tree()
 
     def on_cr_errors_fix_toggled(self, widget, path):
-        store: Gtk.Store = self.builder.get_object('store_dungeon_errors')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_dungeon_errors')
         store[path][0] = not widget.get_active()
 
     def on_edit_groups_clicked(self, *args):
@@ -139,7 +141,7 @@ class MainController(AbstractController):
                 _("The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first.")
             )
             return
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_groups')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_groups')
         dialog.set_attached_to(SkyTempleMainController.window())
         dialog.set_transient_for(SkyTempleMainController.window())
 
@@ -177,8 +179,9 @@ class MainController(AbstractController):
     def _load_dungeons(self):
         from skytemple.module.dungeon.module import DungeonGroup
 
-        dungeons_tree: Gtk.TreeView = self.builder.get_object('tree_grouped')
-        dungeons: Gtk.TreeStore = dungeons_tree.get_model()
+        dungeons_tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree_grouped')
+        dungeons = cast(Optional[Gtk.TreeStore], dungeons_tree.get_model())
+        assert dungeons is not None
         dungeons.clear()
 
         dungeon_ids = set()
@@ -197,13 +200,15 @@ class MainController(AbstractController):
 
     def on_tree_grouped_drag_data_get(self, w: Gtk.TreeView, context, selection: Gtk.SelectionData, target_id, etime):
         model, treeiter = w.get_selection().get_selected()
-        dungeon_id = model[treeiter][1]
-        was_group = model[treeiter][0]
-        if not was_group:
-            selection.set(selection.get_target(), 8, bytes(dungeon_id, 'utf-8'))
+        if treeiter is not None:
+            dungeon_id = model[treeiter][1]
+            was_group = model[treeiter][0]
+            if not was_group:
+                selection.set(selection.get_target(), 8, bytes(dungeon_id, 'utf-8'))
 
     def on_tree_grouped_drag_data_received(self, w: Gtk.TreeView, context, x, y, selection: Gtk.SelectionData, info, etime):
-        model: Gtk.TreeStore = w.get_model()
+        model = cast(Optional[Gtk.TreeStore], w.get_model())
+        assert model is not None
         dungeon_id_str = str(selection.get_data(), 'utf-8')
         if dungeon_id_str == '':
             return
@@ -283,7 +288,9 @@ class MainController(AbstractController):
                         # position and if it even still needs to exist)
                         if model.iter_n_children(old_group_iter) < 2:
                             # Remove group
-                            dungeon_id_that_was_in_group = model[model.iter_nth_child(old_group_iter, 0)][1]
+                            rem_iter = model.iter_nth_child(old_group_iter, 0)
+                            assert rem_iter is not None
+                            dungeon_id_that_was_in_group = model[rem_iter][1]
                             assert old_group_iter is not None
                             model.remove(old_group_iter)
                             self._reinsert(model, dungeon_id_that_was_in_group, self._generate_dungeon_row(dungeon_id_that_was_in_group))
@@ -297,11 +304,12 @@ class MainController(AbstractController):
             # We remove the source data manual.
             context.finish(True, False, etime)
 
-    def _get_group_iter(self, model: Gtk.TreeStore, liter: Gtk.TreeIter,
+    def _get_group_iter(self, model: Gtk.TreeStore, liter: Optional[Gtk.TreeIter],
                         position: Gtk.TreeViewDropPosition) -> Optional[Gtk.TreeIter]:
         # If we drag before or after and not into, we work with the parent instead!
         if position == Gtk.TreeViewDropPosition.BEFORE or position == Gtk.TreeViewDropPosition.AFTER:
-            liter = model.iter_parent(liter)
+            if liter is not None:
+                liter = model.iter_parent(liter)
 
         if liter:
             if model[liter][0]:
@@ -381,8 +389,8 @@ class MainController(AbstractController):
     def _collect_new_groups_from_dialog(self, start=None, allow_groups=True) -> Sequence[Union['DungeonGroup', int]]:
         from skytemple.module.dungeon.module import DungeonGroup
         assert self.builder
-        model: Gtk.TreeStore = self.builder.get_object('store_grouped_dungeons')
-        treeiter: Gtk.TreeIter
+        model = builder_get_assert(self.builder, Gtk.TreeStore, 'store_grouped_dungeons')
+        treeiter: Optional[Gtk.TreeIter]
         if start is None:
             treeiter = model.get_iter_first()
         else:
@@ -397,11 +405,13 @@ class MainController(AbstractController):
                 sub_group_dungeons = self._collect_new_groups_from_dialog(model.iter_nth_child(treeiter, 0), False)
                 assert len(sub_group_dungeons) > 0 and all(isinstance(x, int) for x in sub_group_dungeons)
                 dungeons.append(DungeonGroup(
-                    sub_group_dungeons[0], sub_group_dungeons, []
+                    sub_group_dungeons[0],  # type: ignore
+                    sub_group_dungeons,  # type: ignore
+                    []
                 ))
             else:
                 assert not model[treeiter][0], "Empty groups are not allowed."
-                dungeons.append(int(model[treeiter][1]))
+                dungeons.append(int(model[treeiter][1]))  # type: ignore
 
             treeiter = model.iter_next(treeiter)
         return dungeons
