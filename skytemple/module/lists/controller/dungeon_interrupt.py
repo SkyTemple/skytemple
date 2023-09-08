@@ -108,7 +108,7 @@ class DungeonInterruptController(AbstractController):
         for v in store_inter:
             e = InterDEntry()
             e.floor = u8_checked(v[0])
-            e.ent_type = InterDEntryType(v[1])  # type: ignore
+            e.ent_type = InterDEntryType(v[1])
             e.game_var_id = u16_checked(v[2])
             e.param1 = u8_checked(v[3])
             e.param2 = u8_checked(v[4])
@@ -140,7 +140,7 @@ class DungeonInterruptController(AbstractController):
         store: Gtk.ListStore = self.builder.get_object('interrupt_store')
         store.append([
             0, 0, 0, 0, 0,
-            InterDEntryType(0).explanation,  # type: ignore
+            InterDEntryType(0).explanation,
             self.var_names[0], 0
         ])
         self._build_list()

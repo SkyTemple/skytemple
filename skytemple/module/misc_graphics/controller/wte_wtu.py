@@ -56,7 +56,7 @@ class WteWtuController(AbstractController):
             if item.wtu_filename is not None:
                 self.wtu = self.module.get_wtu(item.wtu_filename)
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'wte_wtu.glade')
@@ -86,7 +86,7 @@ class WteWtuController(AbstractController):
             fn = add_extension_if_missing(fn, 'png')
             if self.wte.has_image():
                 self.wte.to_pil_canvas(int(self.builder.get_object('wte_palette_variant').get_text())).save(
-                    fn)  # type: ignore
+                    fn)
             else:
                 self.wte.to_pil_palette().save(fn)
 
@@ -125,7 +125,7 @@ class WteWtuController(AbstractController):
                 try:
                     self.wte.from_pil(
                         img_pil,
-                        WteImageType(depth),  # type: ignore
+                        WteImageType(depth),
                         discard
                     )
                 except ValueError as err:
@@ -286,8 +286,8 @@ class WteWtuController(AbstractController):
             # Draw rectangles on the WTE image representing the selected WTU entries
             # Allows multiple selections
             active_rows: List[Gtk.TreePath] = self.builder.get_object('wtu_tree').get_selection().get_selected_rows()[
-                1]  # type: ignore
-            store: Gtk.ListStore = self.builder.get_object('wtu_store')  # type: ignore
+                1]
+            store: Gtk.ListStore = self.builder.get_object('wtu_store')
             for x in active_rows:
                 row = store[x.get_indices()[0]]
                 ctx.set_line_width(4)

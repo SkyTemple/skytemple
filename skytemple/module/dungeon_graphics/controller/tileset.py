@@ -88,7 +88,7 @@ class TilesetController(AbstractController):
         self.module = module
         self.item_id = item_id
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
         self.dma: DmaProtocol = module.get_dma(item_id)
         self.dpl: DplProtocol = module.get_dpl(item_id)
@@ -110,7 +110,7 @@ class TilesetController(AbstractController):
         self._init_chunk_imgs()
         self.dtef = None
 
-        self.menu_controller = BgMenuController(self)  # type: ignore
+        self.menu_controller = BgMenuController(self)
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'tileset.glade')
@@ -461,7 +461,7 @@ class TilesetController(AbstractController):
     def _init_rules(self):
         def ia(i):
             return self.builder.get_object(f'rules_a{i}').get_active()
-        self.rules = list(chunks(  # type: ignore
+        self.rules = list(chunks(
             [ia(i) for i in range(0, 9)], 3)
         )
 

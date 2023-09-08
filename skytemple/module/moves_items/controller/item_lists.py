@@ -664,7 +664,7 @@ class ItemListsController(AbstractController):
                     if cat is None:
                         category_weights[last_weight_set_idx] = 10000
                     else:
-                        item_weights[last_weight_set_idx] = 10000  # type: ignore
+                        item_weights[last_weight_set_idx] = 10000
 
         item_weights = {k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0])}
 

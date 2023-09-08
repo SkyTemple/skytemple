@@ -89,14 +89,14 @@ class BrowserController(AbstractController):
     _instance = None
 
     def __init__(self, module: AbstractModule, _item_id):
-        self.module: SpritecollabModule = module  # type: ignore
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.module: SpritecollabModule = module
+        self.builder: Gtk.Builder = None
         self.was_realized = False
 
-        self._store: Gtk.ListStore = None  # type: ignore
-        self._filter: Gtk.TreeModelFilter = None  # type: ignore
-        self._treev: Gtk.TreeView = None  # type: ignore
-        self._icon_renderer: ListIconRenderer = None  # type: ignore
+        self._store: Gtk.ListStore = None
+        self._filter: Gtk.TreeModelFilter = None
+        self._treev: Gtk.TreeView = None
+        self._icon_renderer: ListIconRenderer = None
         self._window: Optional[Gtk.Window] = None
         self._search_text: str = ""
 
@@ -301,13 +301,13 @@ class BrowserController(AbstractController):
         This is super annoying. Because of the two different "views" on the model,
         we can't do this in show_matches, because we have to use the filter model here!
         """
-        search_query = self._search_text.lower()  # type: ignore
+        search_query = self._search_text.lower()
         text = model[iter][1].lower()
         if search_query in text:
             self.builder.get_object('sc_tree').expand_to_path(path)
 
     def _filter__show_matches(self, model: Gtk.TreeStore, path, iter):
-        search_query = self._search_text.lower()  # type: ignore
+        search_query = self._search_text.lower()
         text = model[iter][1].lower()
         if search_query in text:
             # Propagate visibility change up

@@ -35,7 +35,7 @@ MAPBG_NAME = _('Map Backgrounds')
 class MainController(AbstractController):
     def __init__(self, module: 'MapBgModule', item_id: int):
         self.module = module
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'main.glade')

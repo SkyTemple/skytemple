@@ -119,8 +119,8 @@ class BgController(AbstractController):
         self.module = module
         self.item_id = item_id
 
-        self.builder: Gtk.Builder = None  # type: ignore
-        self.notebook: Gtk.Notebook = None  # type: ignore
+        self.builder: Gtk.Builder = None
+        self.notebook: Gtk.Notebook = None
 
         self.bma = module.get_bma(item_id)
         self.bpl = module.get_bpl(item_id)
@@ -149,7 +149,7 @@ class BgController(AbstractController):
 
         self._init_chunk_imgs()
 
-        self.menu_controller = BgMenuController(self)  # type: ignore
+        self.menu_controller = BgMenuController(self)
 
         # SkyTemple can not correctly edit MapBG files which are shared between multiple MapBGs.
         # We have to copy them!
@@ -626,7 +626,7 @@ class BgController(AbstractController):
 
         self.current_chunks_icon_layer = layer_number
 
-        icon_view: Gtk.IconView = self.builder.get_object(f'bg_chunks_view')  # type: ignore
+        icon_view: Gtk.IconView = self.builder.get_object(f'bg_chunks_view')
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         self.current_icon_view_renderer = DrawerCellRenderer(icon_view, layer_number,
                                                              self.bpa_durations, self.pal_ani_durations,
@@ -637,13 +637,13 @@ class BgController(AbstractController):
         icon_view.add_attribute(self.current_icon_view_renderer, 'chunkidx', 0)
         icon_view.connect('selection-changed', self.on_current_icon_view_selection_changed)
 
-        for idx in range(0, len(self.chunks_surfaces[layer_number])):  # type: ignore
+        for idx in range(0, len(self.chunks_surfaces[layer_number])):
             store.append([idx])
 
         icon_view.select_path(store.get_path(store.get_iter_first()))
         self.current_icon_view_renderer.start()
 
-        self.current_icon_view_renderer.set_pink_bg(self.builder.get_object(f'tb_bg_color').get_active())  # type: ignore
+        self.current_icon_view_renderer.set_pink_bg(self.builder.get_object(f'tb_bg_color').get_active())
 
     def _deinit_chunks_icon_view(self):
         """Remove the icon view for the specified layer"""

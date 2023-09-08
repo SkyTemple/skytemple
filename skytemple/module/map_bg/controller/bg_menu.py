@@ -613,8 +613,8 @@ class BgMenuController:
                         f"{self.parent.module.bgs.level[self.parent.item_id].bma_name}_bpa{active_bpa_index+1}_\d+\.png",
                         re.IGNORECASE
                     )
-                    filenames_base = natsorted(filter(r.match, os.listdir(fn)), alg=ns.IGNORECASE)  # type: ignore
-                    img_handles = [open(os.path.join(fn, base_name), 'rb') for base_name in filenames_base]  # type: ignore
+                    filenames_base = natsorted(filter(r.match, os.listdir(fn)), alg=ns.IGNORECASE)
+                    img_handles = [open(os.path.join(fn, base_name), 'rb') for base_name in filenames_base]
                     try:
                         images = [Image.open(h) for h in img_handles]
                         active_bpa.pil_to_tiles_separate(images)

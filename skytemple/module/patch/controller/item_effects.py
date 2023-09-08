@@ -96,7 +96,7 @@ class ItemEffectsController(AbstractController):
             non_sorted.append([i,
                                self._string_provider.get_value(StringType.ITEM_NAMES, i),
                                self.item_effects.get_item_effect_id(i)])
-        for x in sorted(non_sorted, key=lambda x: x[1]):  # type: ignore
+        for x in sorted(non_sorted, key=lambda x: x[1]):
             item_store.append(x)
         
     def _init_combos(self, active=0):
@@ -156,7 +156,7 @@ class ItemEffectsController(AbstractController):
         text = buff.get_text(buff.get_start_iter(), buff.get_end_iter(), False)
         buff.delete(buff.get_start_iter(), buff.get_end_iter())
         try:
-            self.item_effects.import_armips_effect_code(self._get_current_effect(), text)  # type: ignore
+            self.item_effects.import_armips_effect_code(self._get_current_effect(), text)
             self.module.mark_item_effects_as_modified()
             md = SkyTempleMessageDialog(
                 MainController.window(),

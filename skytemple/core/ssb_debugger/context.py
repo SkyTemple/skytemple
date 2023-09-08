@@ -81,13 +81,17 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         return fm.dir()
 
     def load_script_files(self) -> ScriptFiles:
-        return load_script_files(RomProject.get_current().get_rom_folder(SCRIPT_DIR))  # type: ignore
+        current_project = RomProject.get_current()
+        assert current_project is not None
+        return load_script_files(current_project.get_rom_folder(SCRIPT_DIR))
 
     def is_project_loaded(self) -> bool:
         return RomProject.get_current() is not None
 
     def get_rom_filename(self) -> str:
-        return RomProject.get_current().filename  # type: ignore
+        current_project = RomProject.get_current()
+        assert current_project is not None
+        return current_project.filename
 
     def save_rom(self):
         # We only save the current ROM contents!
@@ -96,7 +100,9 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
             current.save_as_is()
 
     def get_static_data(self) -> Pmd2Data:
-        return RomProject.get_current().get_rom_module().get_static_data()  # type: ignore
+        current_project = RomProject.get_current()
+        assert current_project is not None
+        return current_project.get_rom_module().get_static_data()
 
     def get_project_filemanager(self) -> ProjectFileManager:
         current = RomProject.get_current()
@@ -105,10 +111,12 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
 
     def get_ssb(self, filename, ssb_file_manager: 'SsbFileManager') -> 'SsbLoadedFile':
         with file_load_lock:
-            f: 'SsbLoadedFile' = RomProject.get_current().open_file_in_rom(filename, SsbLoadedFileHandler,  # type: ignore
-                                                                           filename=filename,
-                                                                           static_data=self.get_static_data(),
-                                                                           project_fm=self._project_fm)
+            current_project = RomProject.get_current()
+            assert current_project is not None
+            f: 'SsbLoadedFile' = current_project.open_file_in_rom(filename, SsbLoadedFileHandler,
+                                                                  filename=filename,
+                                                                  static_data=self.get_static_data(),
+                                                                  project_fm=self._project_fm)
             f.file_manager = ssb_file_manager
             return f
 

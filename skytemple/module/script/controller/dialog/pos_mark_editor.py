@@ -180,7 +180,7 @@ class PosMarkEditorController:
             self.mapbg_id = item_id
             bma = self.map_bg_module.get_bma(item_id)
             if self._tileset_drawer_overlay and self._tileset_drawer_overlay.enabled:
-                self._map_bg_surface = self._tileset_drawer_overlay.create(bma.layer0, bma.map_width_chunks, bma.map_height_chunks)  # type: ignore
+                self._map_bg_surface = self._tileset_drawer_overlay.create(bma.layer0, bma.map_width_chunks, bma.map_height_chunks)
                 bma_width = bma.map_width_camera * BPC_TILE_DIM
                 bma_height = bma.map_height_camera * BPC_TILE_DIM
             else:
@@ -224,7 +224,7 @@ class PosMarkEditorController:
         self._w_ssa_draw.set_size_request(
             self._map_bg_width * self._scale_factor, self._map_bg_height * self._scale_factor
         )
-        self.drawer.map_bg = surface  # type: ignore
+        self.drawer.map_bg = surface
         self._w_ssa_draw.queue_draw()
 
     def _update_scales(self):

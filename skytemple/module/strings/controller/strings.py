@@ -50,7 +50,7 @@ class StringsController(AbstractController):
         self.langname = lang.name_localized
         self.filename = lang.filename
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self._str: Str
         self._tree_iters_by_idx: Dict[int, Gtk.TreeIter] = {}
         self._list_store: Gtk.ListStore
@@ -131,11 +131,11 @@ class StringsController(AbstractController):
         model, treeiter = selection.get_selected()
         if treeiter is not None and model is not None:
             self._active_category = model[treeiter][1]
-            self._filter.refilter()  # type: ignore
+            self._filter.refilter()
 
     def on_search_search_changed(self, search: Gtk.SearchEntry):
         self._search_text = search.get_text()
-        self._filter.refilter()  # type: ignore
+        self._filter.refilter()
 
     def on_btn_import_clicked(self, *args):
         md = SkyTempleMessageDialog(

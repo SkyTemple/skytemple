@@ -54,14 +54,14 @@ class BgpController(AbstractController):
         self.item_id = item_id
         self.bgp = self.module.get_bgp(self.item_id)
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'bgp.glade')
-        self.builder.connect_signals(self)  # type: ignore
+        self.builder.connect_signals(self)
         self._reinit_image()
-        self.builder.get_object('draw').connect('draw', self.draw)  # type: ignore
-        return self.builder.get_object('editor_bgp')  # type: ignore
+        self.builder.get_object('draw').connect('draw', self.draw)
+        return self.builder.get_object('editor_bgp')
 
     def on_men_bg_export_activate(self, *args):
         dialog: Gtk.Dialog = self.builder.get_object('dialog_bg_export')

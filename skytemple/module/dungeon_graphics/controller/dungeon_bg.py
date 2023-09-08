@@ -129,7 +129,7 @@ class DungeonBgController(AbstractController):
 
         self._init_chunk_imgs()
 
-        self.menu_controller = BgMenuController(self)  # type: ignore
+        self.menu_controller = BgMenuController(self)
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'dungeon_bg.glade')

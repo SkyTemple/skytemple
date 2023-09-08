@@ -34,7 +34,7 @@ class Now(AsyncTaskRunnerProtocol):
         return cls._instance
 
     def __init__(self):
-        self._loop: AbstractEventLoop = None  # type: ignore
+        self._loop: AbstractEventLoop = None
 
     def run_task(self, coro: Coroutine):
         if self._loop is None:
@@ -47,7 +47,7 @@ class Now(AsyncTaskRunnerProtocol):
                     self._cancel_all_tasks()
                     self._loop.run_until_complete(self._loop.shutdown_asyncgens())
                     if hasattr(self._loop, 'shutdown_default_executor'):
-                        self._loop.run_until_complete(self._loop.shutdown_default_executor())  # type: ignore
+                        self._loop.run_until_complete(self._loop.shutdown_default_executor())
                 finally:
                     asyncio.set_event_loop(None)
                     self._loop.close()
@@ -65,7 +65,7 @@ class Now(AsyncTaskRunnerProtocol):
         for task in to_cancel:
             task.cancel()
 
-        self._loop.run_until_complete(asyncio.gather(*to_cancel, loop=self._loop, return_exceptions=True))  # type: ignore
+        self._loop.run_until_complete(asyncio.gather(*to_cancel, loop=self._loop, return_exceptions=True))
 
         for task in to_cancel:
             if task.cancelled():

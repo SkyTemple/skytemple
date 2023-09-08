@@ -44,7 +44,7 @@ class DungeonController(AbstractController):
         if self.dungeon_info.length_can_be_edited:
             self.restrictions = self.module.get_dungeon_restrictions()[dungeon_info.dungeon_id]
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self._is_loading = True
 
     # noinspection PyUnusedLocal

@@ -47,7 +47,7 @@ class MainController(AbstractController):
     def __init__(self, module: 'DungeonModule', *args):
         self.module = module
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
         self.string_provider = self.module.project.get_string_provider()
 
@@ -397,11 +397,11 @@ class MainController(AbstractController):
                 sub_group_dungeons = self._collect_new_groups_from_dialog(model.iter_nth_child(treeiter, 0), False)
                 assert len(sub_group_dungeons) > 0 and all(isinstance(x, int) for x in sub_group_dungeons)
                 dungeons.append(DungeonGroup(
-                    sub_group_dungeons[0], sub_group_dungeons, []  # type: ignore
+                    sub_group_dungeons[0], sub_group_dungeons, []
                 ))
             else:
                 assert not model[treeiter][0], "Empty groups are not allowed."
-                dungeons.append(int(model[treeiter][1]))  # type: ignore
+                dungeons.append(int(model[treeiter][1]))
 
             treeiter = model.iter_next(treeiter)
         return dungeons

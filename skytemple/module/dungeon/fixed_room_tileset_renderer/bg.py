@@ -64,7 +64,7 @@ class FixedFloorDrawerBackground(AbstractTilesetRenderer):
                 self._draw_dungeon(mappings)
             )
             self._cached_rules = rules
-        return self._cached_dungeon_surface  # type: ignore
+        return self._cached_dungeon_surface
 
     def get_single_tile(self, tile: int) -> cairo.Surface:
         return self.single_tiles[tile]

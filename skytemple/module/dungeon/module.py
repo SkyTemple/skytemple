@@ -553,14 +553,14 @@ class DungeonModule(AbstractModule):
 
         # Update floor ranks
         self.extend_nb_floors_ranks(dungeon_id, floor_offset+number_floors_old, floors_added,
-                                    self.get_floor_rank(  # type: ignore
+                                    self.get_floor_rank(
                                         dungeon_id, floor_offset+number_floors_old-1
                                     ))
         if self.has_floor_ranks():
             self.project.mark_as_modified(FLOOR_RANKS)
         # Update mission forbidden
         self.extend_nb_floors_mf(dungeon_id, floor_offset+number_floors_old, floors_added,
-                                 self.get_floor_mf(  # type: ignore
+                                 self.get_floor_mf(
                                      dungeon_id, floor_offset+number_floors_old-1
                                 ))
         if self.has_mission_forbidden():
@@ -609,7 +609,7 @@ class DungeonModule(AbstractModule):
             self.mark_floor_as_modified(floor_info, modified_mappag=True)
 
     def get_dungeon_tileset(self, tileset_id) -> Tuple[DmaProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
-        with self._dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self._dungeon_bin_context as dungeon_bin:
             return (
                 dungeon_bin.get(f'dungeon{tileset_id}.dma'),
                 dungeon_bin.get(f'dungeon{tileset_id}.dpci'),
@@ -618,7 +618,7 @@ class DungeonModule(AbstractModule):
             )
 
     def get_dungeon_background(self, background_id) -> Tuple[DbgProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
-        with self._dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self._dungeon_bin_context as dungeon_bin:
             return (
                 dungeon_bin.get(f'dungeon_bg{background_id}.dbg'),
                 dungeon_bin.get(f'dungeon_bg{background_id}.dpci'),

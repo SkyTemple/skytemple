@@ -64,7 +64,7 @@ class MonsterSpriteController(AbstractController):
         self._monster_bin: ModelContext[BinPack] = self.module.get_monster_bin_ctx()
         self._rendered_frame_info: List[Tuple[int, Tuple[cairo.Surface, int, int, int, int]]] = []
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
     def get_view(self) -> Gtk.Widget:
         if not self.module.is_idx_supported(self.item_id):
@@ -151,9 +151,9 @@ Warning: SkyTemple does not validate the files you import."""))
 
         if response == Gtk.ResponseType.ACCEPT:
             try:
-                monster: WanFile = self.module.get_monster_monster_sprite_chara(self.item_id)  # type: ignore
-                ground: WanFile = self.module.get_monster_ground_sprite_chara(self.item_id)  # type: ignore
-                attack: WanFile = self.module.get_monster_attack_sprite_chara(self.item_id)  # type: ignore
+                monster: WanFile = self.module.get_monster_monster_sprite_chara(self.item_id)
+                ground: WanFile = self.module.get_monster_ground_sprite_chara(self.item_id)
+                attack: WanFile = self.module.get_monster_attack_sprite_chara(self.item_id)
                 merged = FileType.WAN.CHARA.merge_wan(monster, ground, attack)
                 merged.sdwSize = self._get_shadow_size_cb()
                 try:
@@ -253,15 +253,15 @@ Warning: SkyTemple does not validate the files you import."""))
                 else:
                     with ZipFile(fn, 'r') as ZipObj:
                         tree = ElementTree.fromstring(ZipObj.read('AnimData.xml'))
-                self._set_shadow_size_cb(int(tree.find('ShadowSize').text))  # type: ignore
+                self._set_shadow_size_cb(int(tree.find('ShadowSize').text))
 
                 # Update/create sprconf.json:
-                anims: List[Element] = tree.find("Anims")  # type: ignore
+                anims: List[Element] = tree.find("Anims")
                 action_indices = {}
                 for action in anims:
-                    name_normal: str = action.find("Name").text  # type: ignore
+                    name_normal: str = action.find("Name").text
                     if action.find("Index") is not None:
-                        idx = int(action.find("Index").text)  # type: ignore
+                        idx = int(action.find("Index").text)
                         action_indices[idx] = Pmd2Index(idx, [name_normal])
                 self.module.update_sprconf(Pmd2Sprite(sprite_id, action_indices))
 
@@ -276,7 +276,7 @@ Warning: SkyTemple does not validate the files you import."""))
                 )
 
     def on_export_ground_clicked(self, w: Gtk.MenuToolButton):
-        self.module.export_a_sprite(self.module.get_monster_ground_sprite_chara(self.item_id, raw=True))  # type: ignore
+        self.module.export_a_sprite(self.module.get_monster_ground_sprite_chara(self.item_id, raw=True))
 
     def on_import_ground_clicked(self, w: Gtk.MenuToolButton):
         sprite = self.module.import_a_sprite()
@@ -287,7 +287,7 @@ Warning: SkyTemple does not validate the files you import."""))
         MainController.reload_view()
 
     def on_export_dungeon_clicked(self, w: Gtk.MenuToolButton):
-        self.module.export_a_sprite(self.module.get_monster_monster_sprite_chara(self.item_id, raw=True))  # type: ignore
+        self.module.export_a_sprite(self.module.get_monster_monster_sprite_chara(self.item_id, raw=True))
 
     def on_import_dungeon_clicked(self, w: Gtk.MenuToolButton):
         sprite = self.module.import_a_sprite()
@@ -298,7 +298,7 @@ Warning: SkyTemple does not validate the files you import."""))
         MainController.reload_view()
 
     def on_export_attack_clicked(self, w: Gtk.MenuToolButton):
-        self.module.export_a_sprite(self.module.get_monster_attack_sprite_chara(self.item_id, raw=True))  # type: ignore
+        self.module.export_a_sprite(self.module.get_monster_attack_sprite_chara(self.item_id, raw=True))
 
     def on_import_attack_clicked(self, w: Gtk.MenuToolButton):
         sprite = self.module.import_a_sprite()

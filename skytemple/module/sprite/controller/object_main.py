@@ -35,7 +35,7 @@ OBJECT_SPRTIES = _('Object Sprites')
 class ObjectMainController(AbstractController):
     def __init__(self, module: 'SpriteModule', item_id: int):
         self.module = module
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'object_main.glade')

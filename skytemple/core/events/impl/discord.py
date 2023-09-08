@@ -282,7 +282,8 @@ class DiscordPresence(AbstractListener):
             self.module_state = self.rom_name
 
     def on_debugger_script_open(self, script_name: str):
-        self.debugger_script_name = script_name.replace(self.project.get_project_file_manager().dir(), '')  # type: ignore
+        assert self.project is not None
+        self.debugger_script_name = script_name.replace(self.project.get_project_file_manager().dir(), '')
         self._update_current_presence()
 
     def _update_current_presence(self):
@@ -335,6 +336,6 @@ class DiscordPresence(AbstractListener):
         run it now or send it to the event loop to run soon.
         """
         if inspect.iscoroutinefunction(f):
-            asyncio.create_task(f(*args, **kwargs))  # type: ignore
+            asyncio.create_task(f(*args, **kwargs))
         else:
             f(*args, **kwargs)

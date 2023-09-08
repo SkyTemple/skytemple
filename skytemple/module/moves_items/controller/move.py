@@ -43,7 +43,7 @@ class MoveController(AbstractController):
         self.move_id = move_id
         self.move: WazaMoveProtocol = self.module.get_move(move_id)
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self._string_provider = module.project.get_string_provider()
 
         self._is_loading = True
@@ -69,7 +69,7 @@ class MoveController(AbstractController):
         self.module = None
         self.move_id = None
         self.move = None
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self._string_provider = None
         self._is_loading = True
 
@@ -191,27 +191,27 @@ class MoveController(AbstractController):
 
     def on_cb_settings_range_range_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range.range = WazaMoveRangeRange(val).value  # type: ignore
+        self.move.settings_range.range = WazaMoveRangeRange(val).value
         self.mark_as_modified()
 
     def on_cb_settings_range_target_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range.target = WazaMoveRangeTarget(val).value  # type: ignore
+        self.move.settings_range.target = WazaMoveRangeTarget(val).value
         self.mark_as_modified()
 
     def on_cb_settings_range_ai_target_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range_ai.target = WazaMoveRangeTarget(val).value  # type: ignore
+        self.move.settings_range_ai.target = WazaMoveRangeTarget(val).value
         self.mark_as_modified()
 
     def on_cb_settings_range_ai_range_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range_ai.range = WazaMoveRangeRange(val).value  # type: ignore
+        self.move.settings_range_ai.range = WazaMoveRangeRange(val).value
         self.mark_as_modified()
 
     def on_cb_settings_range_ai_condition_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.move.settings_range_ai.condition = WazaMoveRangeCondition(val).value  # type: ignore
+        self.move.settings_range_ai.condition = WazaMoveRangeCondition(val).value
         self.mark_as_modified()
 
     def on_switch_affected_by_magic_coat_state_set(self, w, *args):
@@ -507,18 +507,18 @@ class MoveController(AbstractController):
     def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum], sort_by_name=False):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
-            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))  # type: ignore
+            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     def _comboxbox_for_enum_with_strings(self, names: List[str], enum: Type[Enum], string_type: StringType):
         store = Gtk.ListStore(int, str)  # id, name
         for entry in enum:
             store.append([entry.value, self._string_provider.get_value(string_type, entry.value)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):

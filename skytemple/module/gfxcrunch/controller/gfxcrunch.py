@@ -106,23 +106,23 @@ class GfxcrunchController:
         )
 
         while proc.poll() is None:
-            line = proc.stdout.readline()  # type: ignore
+            line = proc.stdout.readline()
             if line != "" and line:
                 GLib.idle_add(lambda line=line: self._stdout(line))
 
-            line = proc.stderr.readline()  # type: ignore
+            line = proc.stderr.readline()
             if line != "" and line:
                 GLib.idle_add(lambda line=line: self._stderr(line))
 
-        line = proc.stdout.readline()  # type: ignore
+        line = proc.stdout.readline()
         while line != "" and line:
             GLib.idle_add(lambda line=line: self._stdout(line))
-            line = proc.stdout.readline()  # type: ignore
+            line = proc.stdout.readline()
 
-        line = proc.stderr.readline()  # type: ignore
+        line = proc.stderr.readline()
         while line != "" and line:
             GLib.idle_add(lambda line=line: self._stderr(line))
-            line = proc.stderr.readline()  # type: ignore
+            line = proc.stderr.readline()
 
         GLib.idle_add(lambda: self._done(proc.returncode))
 

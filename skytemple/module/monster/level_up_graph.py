@@ -58,18 +58,18 @@ class LevelUpGraphProvider:
         sp_def_accu = self.monster.base_sp_def
         for i, level in enumerate(self.level_bin_entry.levels):
             exps.append((i + 1, level.experience_required))
-            hp_accu += level.hp_growth  # type: ignore
+            hp_accu += level.hp_growth
             hps.append((i + 1, hp_accu))
-            atk_accu += level.attack_growth  # type: ignore
+            atk_accu += level.attack_growth
             atks.append((i + 1, atk_accu))
-            sp_atk_accu += level.special_attack_growth  # type: ignore
+            sp_atk_accu += level.special_attack_growth
             sp_atks.append((i + 1, sp_atk_accu))
-            def_accu += level.defense_growth  # type: ignore
+            def_accu += level.defense_growth
             defs.append((i + 1, def_accu))
-            sp_def_accu += level.special_defense_growth  # type: ignore
+            sp_def_accu += level.special_defense_growth
             sp_defs.append((i + 1, sp_def_accu))
 
-        max_val: int = max(hp_accu, atk_accu, sp_atk_accu, def_accu, sp_def_accu)  # type: ignore
+        max_val: int = max(hp_accu, atk_accu, sp_atk_accu, def_accu, sp_def_accu)
         moves = []
         processed_levels: Dict[int, int] = {}
         for lum in self.move_learnset.level_up_moves:

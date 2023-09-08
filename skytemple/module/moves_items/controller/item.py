@@ -84,7 +84,7 @@ class ItemController(AbstractController):
         self.item_id = item_id
         self.item_p, self.item_sp = self.module.get_item(item_id)
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
 
@@ -116,7 +116,7 @@ class ItemController(AbstractController):
         self.item_id = None
         self.item_p = None
         self.item_sp = None
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self._string_provider = None
         self._sprite_provider = None
         self._is_loading = True
@@ -300,7 +300,7 @@ class ItemController(AbstractController):
 
     def on_cb_excl_type_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.item_sp.type = ItemSPType(val)  # type: ignore
+        self.item_sp.type = ItemSPType(val)
         self.mark_as_modified()
 
     @catch_overflow(u16)
@@ -466,11 +466,11 @@ class ItemController(AbstractController):
     def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum], sort_by_name=False):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
-            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))  # type: ignore
+            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):

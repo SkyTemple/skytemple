@@ -49,7 +49,7 @@ class PortraitController(AbstractController):
         self._mark_as_modified_cb = mark_as_modified_cb
         self.kao = self.module.kao
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
     def re_render(self):
         self._portrait_provider.reset()

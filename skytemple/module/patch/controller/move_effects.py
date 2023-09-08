@@ -57,7 +57,7 @@ class MoveEffectsController(AbstractController):
             return stack
         self.move_effects = self.module.get_move_effects()
         self.metronome = self.module.get_metronome_pool()
-        self._metronome_pool = self.metronome.get_list(4)  # type: ignore
+        self._metronome_pool = self.metronome.get_list(4)
 
         self._init_move_list()
         self._init_combos()
@@ -97,7 +97,7 @@ class MoveEffectsController(AbstractController):
             non_sorted.append([i,
                                self._string_provider.get_value(StringType.MOVE_NAMES, i),
                                self.move_effects.get_item_effect_id(i)])
-        for x in sorted(non_sorted, key=lambda x: x[1]):  # type: ignore
+        for x in sorted(non_sorted, key=lambda x: x[1]):
             move_store.append(x)
         
         # Init available metronome moves
@@ -166,7 +166,7 @@ class MoveEffectsController(AbstractController):
         text = buff.get_text(buff.get_start_iter(), buff.get_end_iter(), False)
         buff.delete(buff.get_start_iter(), buff.get_end_iter())
         try:
-            self.move_effects.import_armips_effect_code(self._get_current_effect(), text)  # type: ignore
+            self.move_effects.import_armips_effect_code(self._get_current_effect(), text)
             self.module.mark_move_effects_as_modified()
             md = SkyTempleMessageDialog(
                 MainController.window(),

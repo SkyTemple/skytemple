@@ -37,9 +37,9 @@ class RankListController(AbstractController):
     def __init__(self, module: 'ListsModule', *args):
         super().__init__(module, *args)
         self.module = module
-        self._rank_up_table: List[Rank] = None  # type: ignore
+        self._rank_up_table: List[Rank] = None
         self._item_names: Dict[int, str] = {}
-        self._list_store: Gtk.ListStore = None  # type: ignore
+        self._list_store: Gtk.ListStore = None
         self._loading = True
 
     def get_view(self) -> Gtk.Widget:

@@ -44,7 +44,7 @@ from skytemple_files.common.impl_cfg import ImplementationType, get_implementati
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir, \
-    version, open_dir, builder_get_assert, create_tree_view_column
+    version, open_dir, builder_get_assert, create_tree_view_column, assert_not_none
 from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.common.version_util import check_newest_release, ReleaseType, get_event_banner
@@ -97,10 +97,10 @@ class MainController:
         cls._instance._editor_stack.set_visible_child(builder_get_assert(cls._instance.builder, Gtk.Box, 'es_loading'))
         # Fully load the view and the controller
         AsyncTaskDelegator.run_task(load_controller(
-            cls._instance._current_view_module,  # type: ignore
-            cls._instance._current_view_controller_class,  # type: ignore
-            cls._instance._current_view_item_id,  # type: ignore
-            cls._instance  # type: ignore
+            assert_not_none(cls._instance._current_view_module),
+            cls._instance._current_view_controller_class,
+            assert_not_none(cls._instance._current_view_item_id),
+            assert_not_none(cls._instance)
         ))
 
     @classmethod
@@ -439,8 +439,10 @@ class MainController:
         self._current_view_item_id = selected_node[4]
         # Fully load the view and the controller
         AsyncTaskDelegator.run_task(load_controller(
-            self._current_view_module, self._current_view_controller_class, self._current_view_item_id,  # type: ignore
-            self  # type: ignore
+            assert_not_none(self._current_view_module),
+            self._current_view_controller_class,
+            assert_not_none(self._current_view_item_id),
+            self
         ))
         # Expand the node
         tree.expand_to_path(path)
@@ -684,7 +686,7 @@ class MainController:
                 f(_('Loading ROM "{rom_name}"...'))
             )
             logger.debug(f(_('Opening {filename}.')))
-            RomProject.open(filename, self)  # type: ignore
+            RomProject.open(filename, self)
             # Add to the list of recent files and save
             self._update_recent_files(filename)
             # Show loading spinner
@@ -773,7 +775,9 @@ class MainController:
         This is super annoying. Because of the two different "views" on the model,
         we can't do this in show_matches, because we have to use the filter model here!
         """
-        search_query = self._search_text.lower()  # type: ignore
+        if self._search_text is None:
+            return True
+        search_query = self._search_text.lower()
         text = model[iter][1].lower()
         if search_query in text:
             assert self._main_item_list is not None
@@ -781,7 +785,9 @@ class MainController:
         return False
 
     def _filter__show_matches(self, model: Gtk.TreeStore, path, iter):
-        search_query = self._search_text.lower()  # type: ignore
+        if self._search_text is None:
+            return True
+        search_query = self._search_text.lower()
         text = model[iter][1].lower()
         if search_query in text:
             # Propagate visibility change up
@@ -825,8 +831,9 @@ class MainController:
                 hb.set_subtitle(bc)
 
             # Check if files are modified
-            if RomProject.get_current().has_modifications():  # type: ignore
-                self._set_title(os.path.basename(RomProject.get_current().filename), True)  # type: ignore
+            current_project = RomProject.get_current()
+            if current_project and current_project.has_modifications():
+                self._set_title(os.path.basename(current_project.filename), True)
         except BaseException as ex:
             logger.warning("Failed updating window titles.", exc_info=ex)
 
@@ -862,7 +869,7 @@ class MainController:
             logger.debug(f(_('Saving {rom.filename}.')))
 
             # This will trigger a signal.
-            rom.save(self)  # type: ignore
+            rom.save(self)
             self._loading_dialog.run()
 
     def _show_are_you_sure(self, rom):

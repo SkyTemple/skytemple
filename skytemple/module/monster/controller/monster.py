@@ -66,7 +66,7 @@ class MonsterController(AbstractController):
 
         self._monster_bin = self.module.project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self._is_loading = False
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
@@ -237,7 +237,7 @@ class MonsterController(AbstractController):
             val = w.get_model()[w.get_active_iter()][0]
             self.module.set_idle_anim_type(
                 self.item_id,
-                IdleAnimType(val)  # type: ignore
+                IdleAnimType(val)
             )
         except ValueError:
             pass
@@ -862,7 +862,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             ])
 
             for entry in entry_list:
-                entry_main_tree = self.module.generate_entry__entry(entry.md_index, Gender(entry.gender))  # type: ignore
+                entry_main_tree = self.module.generate_entry__entry(entry.md_index, Gender(entry.gender))
                 store.append(
                     ent_root, [
                         entry_main_tree[4], -1, True, entry_main_tree[0],
@@ -1011,7 +1011,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             SkyTempleMainController.reload_view()
 
     def on_cr_export_selected_toggled(self, w: Gtk.CellRendererToggle, path, *args):
-        store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')  # type: ignore
+        store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')
         is_active = not w.get_active()
         store[path][5] = is_active
         store[path][6] = False
@@ -1182,18 +1182,18 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
     def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum], sort_by_name=False):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
-            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))  # type: ignore
+            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     def _comboxbox_for_enum_with_strings(self, names: List[str], enum: Type[Enum], string_type: StringType):
         store = Gtk.ListStore(int, str)  # id, name
         for entry in enum:
             store.append([entry.value, self._string_provider.get_value(string_type, entry.value)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):
@@ -1343,7 +1343,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             else:
                 idx = entry.md_index
             name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
-            label.set_text(f'${entry.md_index:04d}: {name} ({Gender(entry.gender).name[0]})')  # type: ignore
+            label.set_text(f'${entry.md_index:04d}: {name} ({Gender(entry.gender).name[0]})')
         except BaseException:
             label.set_text(_('??? Enter a valid Entry ID ($)'))
 
@@ -1426,7 +1426,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             else:
                 sidx = entry.md_index
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, sidx)
-            self._ent_names[idx] = f'{name} ({Gender(entry.gender).print_name}) (#{idx:04})'  # type: ignore
+            self._ent_names[idx] = f'{name} ({Gender(entry.gender).print_name}) (#{idx:04})'
             monster_store.append([self._ent_names[idx]])
 
     def on_cr_entity_editing_started(self, renderer, editable, path):

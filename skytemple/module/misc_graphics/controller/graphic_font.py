@@ -50,10 +50,10 @@ class GraphicFontController(AbstractController):
     def __init__(self, module: 'MiscGraphicsModule', item: 'FontOpenSpec'):
         self.module = module
         self.spec = item
-        self.font: GraphicFont = self.module.get_graphic_font(self.spec)  # type: ignore
+        self.font: GraphicFont = self.module.get_graphic_font(self.spec)
         assert self.font is not None
         
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'graphic_font.glade')
@@ -112,7 +112,7 @@ class GraphicFontController(AbstractController):
 
             self.builder.get_object('nb_entries_import').set_increments(1,1)
             self.builder.get_object('nb_entries_import').set_range(1, MAX_ENTRIES-1)
-            self.builder.get_object('nb_entries_import').set_text(str(self.font.get_nb_entries()))  # type: ignore
+            self.builder.get_object('nb_entries_import').set_text(str(self.font.get_nb_entries()))
             
             dialog.set_attached_to(MainController.window())
             dialog.set_transient_for(MainController.window())
@@ -128,7 +128,7 @@ class GraphicFontController(AbstractController):
                             lst_entries.append(Image.open(path, 'r'))
                         else:
                             lst_entries.append(None)
-                    self.font.set_entries(lst_entries)  # type: ignore
+                    self.font.set_entries(lst_entries)
                     self.module.mark_font_as_modified(self.spec)
                 except Exception as err:
                     display_error(

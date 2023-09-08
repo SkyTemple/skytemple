@@ -34,7 +34,7 @@ class CotController(AbstractController):
     def __init__(self, module: 'PatchModule', *args):
         self.module = module
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'cot.glade')

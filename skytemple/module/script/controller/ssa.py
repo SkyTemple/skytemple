@@ -112,7 +112,7 @@ class SsaController(AbstractController):
                     self.mapbg_id = self.level.mapid
                     break
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
         if self.__class__._last_scale_factor is not None:
             self._scale_factor: float = self.__class__._last_scale_factor
@@ -130,15 +130,15 @@ class SsaController(AbstractController):
         self._currently_selected_entity_layer: Optional[int] = None
         self._selected_by_map_click = False
 
-        self._w_ssa_draw: Gtk.DrawingArea = None  # type: ignore
-        self._w_po_actors: Gtk.Popover = None  # type: ignore
-        self._w_po_objects: Gtk.Popover = None  # type: ignore
-        self._w_po_performers: Gtk.Popover = None  # type: ignore
-        self._w_po_triggers: Gtk.Popover = None  # type: ignore
+        self._w_ssa_draw: Gtk.DrawingArea = None
+        self._w_po_actors: Gtk.Popover = None
+        self._w_po_objects: Gtk.Popover = None
+        self._w_po_performers: Gtk.Popover = None
+        self._w_po_triggers: Gtk.Popover = None
 
-        self.ssa: Ssa = None  # type: ignore
+        self.ssa: Ssa = None
 
-        self.drawer: Drawer = None  # type: ignore
+        self.drawer: Drawer = None
 
         self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
 
@@ -261,12 +261,12 @@ class SsaController(AbstractController):
                 self.ssa.layer_list[place_layer].performers.append(new_entity)
             elif self.drawer.interaction_mode == InteractionMode.PLACE_TRIGGER:
                 new_entity = SsaEvent(
-                    2, 2, 0, 0, self._build_pos(*self.drawer.get_pos_place_trigger(), dir=False), 65535  # type: ignore
+                    2, 2, 0, 0, self._build_pos(*self.drawer.get_pos_place_trigger(), dir=False), 65535
                 )
                 self.ssa.layer_list[place_layer].events.append(new_entity)
             if new_entity is not None:
                 # Switch back to move/select mode
-                self.builder.get_object('tool_scene_move').set_active(True)  # type: ignore
+                self.builder.get_object('tool_scene_move').set_active(True)
                 self._select(new_entity, place_layer)
                 self._add_entity_to_list(new_entity, place_layer)
                 self.module.mark_as_modified(self.mapname, self.type, self.filename)
@@ -303,7 +303,7 @@ class SsaController(AbstractController):
                     self._bg_draw_is_clicked__location = None
         self._bg_draw_is_clicked__location = None
         self._bg_draw_is_clicked__drag_active = False
-        self._w_ssa_draw.queue_draw()  # type: ignore
+        self._w_ssa_draw.queue_draw()
 
     def on_ssa_draw_event_motion_notify_event(self, box, motion: Gdk.EventMotion):
         correct_mouse_x = int((motion.x - 4) / self._scale_factor)
@@ -326,7 +326,7 @@ class SsaController(AbstractController):
                             int((start_y - 4) / self._scale_factor) - self._currently_selected_entity.pos.y_absolute
                         )
 
-            self._w_ssa_draw.queue_draw()  # type: ignore
+            self._w_ssa_draw.queue_draw()
 
     # SCENE TOOLBAR #
     def on_tool_scene_zoom_in_clicked(self, *args):
@@ -379,7 +379,7 @@ class SsaController(AbstractController):
                 bma_width = bma.map_width_camera * BPC_TILE_DIM
                 bma_height = bma.map_height_camera * BPC_TILE_DIM
             elif self.__class__.map_bg_surface_cache[0] == item_id:
-                self._map_bg_surface, bma_width, bma_height = self.__class__.map_bg_surface_cache[1:]  # type: ignore
+                self._map_bg_surface, bma_width, bma_height = self.__class__.map_bg_surface_cache[1:]
             else:
                 bma = self.map_bg_module.get_bma(item_id)
                 bpl = self.map_bg_module.get_bpl(item_id)
@@ -390,9 +390,9 @@ class SsaController(AbstractController):
                 )
                 bma_width = bma.map_width_camera * BPC_TILE_DIM
                 bma_height = bma.map_height_camera * BPC_TILE_DIM
-                self.__class__.map_bg_surface_cache = (item_id, self._map_bg_surface, bma_width, bma_height)  # type: ignore
+                self.__class__.map_bg_surface_cache = (item_id, self._map_bg_surface, bma_width, bma_height)
             if self.drawer:
-                self._set_drawer_bg(self._map_bg_surface, bma_width, bma_height)  # type: ignore
+                self._set_drawer_bg(self._map_bg_surface, bma_width, bma_height)
 
     def on_tool_scene_goto_bg_clicked(self, *args):
         self.module.project.request_open(OpenRequest(
@@ -748,13 +748,13 @@ class SsaController(AbstractController):
         model, cbiter = widget.get_model(), widget.get_active_iter()
         if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
             kind_id = model[cbiter][0]
-            self._currently_selected_entity.actor = self.static_data.script_data.level_entities__by_id[kind_id]  # type: ignore
+            self._currently_selected_entity.actor = self.static_data.script_data.level_entities__by_id[kind_id]
             self._refresh_for_selected()
 
     def on_po_actor_script_changed(self, widget: Gtk.ComboBox, *args):
         model, cbiter = widget.get_model(), widget.get_active_iter()
         if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
-            self._currently_selected_entity.script_id = model[cbiter][0]  # type: ignore
+            self._currently_selected_entity.script_id = model[cbiter][0]
             self._refresh_for_selected()
 
     def on_po_actor_dir_changed(self, widget: Gtk.ComboBox, *args):
@@ -767,7 +767,7 @@ class SsaController(AbstractController):
         tree, l_iter = self._get_list_tree_and_iter_for(self._currently_selected_entity)
         current_layer = self._currently_selected_entity_layer
         # Remove from model
-        self.ssa.layer_list[self._currently_selected_entity_layer].actors.remove(self._currently_selected_entity)  # type: ignore
+        self.ssa.layer_list[self._currently_selected_entity_layer].actors.remove(self._currently_selected_entity)
         # Remove from list
         tree.get_model().remove(l_iter)
         # Remove now invalid references:
@@ -776,7 +776,7 @@ class SsaController(AbstractController):
         self._bg_draw_is_clicked__location = None
         if self._currently_open_popover is not None:
             self._currently_open_popover.popdown()
-        self._w_ssa_draw.queue_draw()  # type: ignore
+        self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
         self._refresh_layer(current_layer)
         # Mark as modified
@@ -790,13 +790,13 @@ class SsaController(AbstractController):
         model, cbiter = widget.get_model(), widget.get_active_iter()
         if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
             kind_id = model[cbiter][0]
-            self._currently_selected_entity.object = self.static_data.script_data.objects__by_id[kind_id]  # type: ignore
+            self._currently_selected_entity.object = self.static_data.script_data.objects__by_id[kind_id]
             self._refresh_for_selected()
 
     def on_po_object_script_changed(self, widget: Gtk.ComboBox, *args):
         model, cbiter = widget.get_model(), widget.get_active_iter()
         if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
-            self._currently_selected_entity.script_id = model[cbiter][0]  # type: ignore
+            self._currently_selected_entity.script_id = model[cbiter][0]
             self._refresh_for_selected()
 
     def on_po_object_width_changed(self, widget: Gtk.Entry, *args):
@@ -806,7 +806,7 @@ class SsaController(AbstractController):
             pass  # Ignore errors
         else:
             if self._currently_selected_entity is not None:
-                self._currently_selected_entity.hitbox_w = size  # type: ignore
+                self._currently_selected_entity.hitbox_w = size
                 self._refresh_for_selected()
 
     def on_po_object_height_changed(self, widget: Gtk.Entry, *args):
@@ -816,7 +816,7 @@ class SsaController(AbstractController):
             pass  # Ignore errors
         else:
             if self._currently_selected_entity is not None:
-                self._currently_selected_entity.hitbox_h = size  # type: ignore
+                self._currently_selected_entity.hitbox_h = size
                 self._refresh_for_selected()
 
     def on_po_object_dir_changed(self, widget: Gtk.ComboBox, *args):
@@ -829,7 +829,7 @@ class SsaController(AbstractController):
         tree, l_iter = self._get_list_tree_and_iter_for(self._currently_selected_entity)
         current_layer = self._currently_selected_entity_layer
         # Remove from model
-        self.ssa.layer_list[self._currently_selected_entity_layer].objects.remove(self._currently_selected_entity)  # type: ignore
+        self.ssa.layer_list[self._currently_selected_entity_layer].objects.remove(self._currently_selected_entity)
         # Remove from list
         tree.get_model().remove(l_iter)
         # Remove now invalid references:
@@ -838,7 +838,7 @@ class SsaController(AbstractController):
         self._bg_draw_is_clicked__location = None
         if self._currently_open_popover is not None:
             self._currently_open_popover.popdown()
-        self._w_ssa_draw.queue_draw()  # type: ignore
+        self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
         self._refresh_layer(current_layer)
         # Mark as modified
@@ -851,7 +851,7 @@ class SsaController(AbstractController):
     def on_po_performer_kind_changed(self, widget: Gtk.ComboBox, *args):
         model, cbiter = widget.get_model(), widget.get_active_iter()
         if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
-            self._currently_selected_entity.type = model[cbiter][0]  # type: ignore
+            self._currently_selected_entity.type = model[cbiter][0]
             self._refresh_for_selected()
 
     def on_po_performer_width_changed(self, widget: Gtk.Entry, *args):
@@ -861,7 +861,7 @@ class SsaController(AbstractController):
             pass  # Ignore errors
         else:
             if self._currently_selected_entity is not None:
-                self._currently_selected_entity.hitbox_w = size  # type: ignore
+                self._currently_selected_entity.hitbox_w = size
                 self._refresh_for_selected()
 
     def on_po_performer_height_changed(self, widget: Gtk.Entry, *args):
@@ -871,7 +871,7 @@ class SsaController(AbstractController):
             pass  # Ignore errors
         else:
             if self._currently_selected_entity is not None:
-                self._currently_selected_entity.hitbox_h = size  # type: ignore
+                self._currently_selected_entity.hitbox_h = size
                 self._refresh_for_selected()
 
     def on_po_performer_dir_changed(self, widget: Gtk.ComboBox, *args):
@@ -884,7 +884,7 @@ class SsaController(AbstractController):
         tree, l_iter = self._get_list_tree_and_iter_for(self._currently_selected_entity)
         current_layer = self._currently_selected_entity_layer
         # Remove from model
-        self.ssa.layer_list[self._currently_selected_entity_layer].performers.remove(self._currently_selected_entity)  # type: ignore
+        self.ssa.layer_list[self._currently_selected_entity_layer].performers.remove(self._currently_selected_entity)
         # Remove from list
         tree.get_model().remove(l_iter)
         # Remove now invalid references:
@@ -893,7 +893,7 @@ class SsaController(AbstractController):
         self._bg_draw_is_clicked__location = None
         if self._currently_open_popover is not None:
             self._currently_open_popover.popdown()
-        self._w_ssa_draw.queue_draw()  # type: ignore
+        self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
         self._refresh_layer(current_layer)
         # Mark as modified
@@ -906,7 +906,7 @@ class SsaController(AbstractController):
     def on_po_trigger_id_changed(self, widget: Gtk.ComboBox, *args):
         model, cbiter = widget.get_model(), widget.get_active_iter()
         if model is not None and cbiter is not None and cbiter != [] and self._currently_selected_entity is not None:
-            self._currently_selected_entity.trigger_id = self.ssa.triggers.index(model[cbiter][0])  # type: ignore
+            self._currently_selected_entity.trigger_id = self.ssa.triggers.index(model[cbiter][0])
             self._refresh_for_selected()
 
     def on_po_trigger_width_changed(self, widget: Gtk.Entry, *args):
@@ -916,7 +916,7 @@ class SsaController(AbstractController):
             pass  # Ignore errors
         else:
             if self._currently_selected_entity is not None:
-                self._currently_selected_entity.trigger_width = size  # type: ignore
+                self._currently_selected_entity.trigger_width = size
                 self._refresh_for_selected()
 
     def on_po_trigger_height_changed(self, widget: Gtk.Entry, *args):
@@ -926,14 +926,14 @@ class SsaController(AbstractController):
             pass  # Ignore errors
         else:
             if self._currently_selected_entity is not None:
-                self._currently_selected_entity.trigger_height = size  # type: ignore
+                self._currently_selected_entity.trigger_height = size
                 self._refresh_for_selected()
 
     def on_po_trigger_delete_clicked(self, widget: Gtk.ComboBox, *args):
         tree, l_iter = self._get_list_tree_and_iter_for(self._currently_selected_entity)
         current_layer = self._currently_selected_entity_layer
         # Remove from model
-        self.ssa.layer_list[self._currently_selected_entity_layer].events.remove(self._currently_selected_entity)  # type: ignore
+        self.ssa.layer_list[self._currently_selected_entity_layer].events.remove(self._currently_selected_entity)
         # Remove from list
         tree.get_model().remove(l_iter)
         # Remove now invalid references:
@@ -942,7 +942,7 @@ class SsaController(AbstractController):
         self._bg_draw_is_clicked__location = None
         if self._currently_open_popover is not None:
             self._currently_open_popover.popdown()
-        self._w_ssa_draw.queue_draw()  # type: ignore
+        self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
         self._refresh_layer(current_layer)
         # Mark as modified
@@ -978,7 +978,7 @@ class SsaController(AbstractController):
                 new_layer_iter = self._refresh_layer(new_layer_id)
 
                 # Select the layer:
-                ssa_layers = self.builder.get_object('ssa_layers')  # type: ignore
+                ssa_layers = self.builder.get_object('ssa_layers')
                 self._currently_selected_entity_layer = new_layer_id
                 ssa_layers.get_selection().select_iter(new_layer_iter)
                 
@@ -1149,15 +1149,15 @@ class SsaController(AbstractController):
             self._currently_open_popover.popdown()
         # Also select the layer back.
         if selected_layer is not None:
-            ssa_layers: Gtk.TreeView = self.builder.get_object('ssa_layers')  # type: ignore
+            ssa_layers: Gtk.TreeView = self.builder.get_object('ssa_layers')
             ssa_layers.get_selection().select_iter(self._find_list_iter(ssa_layers, lambda row: row[0] == selected_layer))
 
         # this will prevent the updating events from firing, when selecting below.
         self._currently_selected_entity = None
         self._currently_selected_entity_layer = None
-        self.drawer.set_selected(selected)  # type: ignore
+        self.drawer.set_selected(selected)
         if open_popover:
-            popover: Gtk.Popover = None  # type: ignore
+            popover: Gtk.Popover = None
             if isinstance(selected, SsaActor):
                 popover = self._w_po_actors
                 if popup_x is None or popup_y is None:
@@ -1238,7 +1238,7 @@ class SsaController(AbstractController):
             tree.get_model().append(self._list_entry_generate_trigger(layer, entity))
 
     def _select_in_combobox_where_callback(self, cb_name: str, callback: Callable[[Mapping], bool]):
-        cb: Gtk.ComboBox = self.builder.get_object(cb_name)  # type: ignore
+        cb: Gtk.ComboBox = self.builder.get_object(cb_name)
         l_iter = cb.get_model().get_iter_first()
         while l_iter is not None:
             if callback(cb.get_model()[l_iter]):
@@ -1466,11 +1466,11 @@ class SsaController(AbstractController):
     def _set_drawer_bg(self, surface: cairo.Surface, w: int, h: int):
         self._map_bg_width = w
         self._map_bg_height = h
-        self._w_ssa_draw.set_size_request(  # type: ignore
+        self._w_ssa_draw.set_size_request(
             self._map_bg_width * self._scale_factor, self._map_bg_height * self._scale_factor
         )
-        self.drawer.map_bg = surface  # type: ignore
-        self._w_ssa_draw.queue_draw()  # type: ignore
+        self.drawer.map_bg = surface
+        self._w_ssa_draw.queue_draw()
 
     def _update_scales(self):
         self._w_ssa_draw.set_size_request(
@@ -1525,7 +1525,7 @@ class SsaController(AbstractController):
     def _list_entry_generate_trigger(self, layer_id, trigger: SsaEvent):
         return [
             layer_id, trigger,
-            self._get_event_script_name(self.ssa.triggers, trigger.trigger_id)  # type: ignore
+            self._get_event_script_name(self.ssa.triggers, trigger.trigger_id)
         ]
 
     def _list_entry_generate_layer(self, i, layer):
@@ -1592,7 +1592,7 @@ class SsaController(AbstractController):
             return f'??? {event_id}'
         name = self._get_talk_script_name(events[event_id].script_id)
         if short:
-            return self._script_id(name)  # type: ignore
+            return self._script_id(name)
         return name
 
     def _script_id(self, name, as_int=False) -> Union[str, int]:

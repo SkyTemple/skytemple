@@ -150,7 +150,7 @@ class SPEffectsController(AbstractController):
         text = buff.get_text(buff.get_start_iter(), buff.get_end_iter(), False)
         buff.delete(buff.get_start_iter(), buff.get_end_iter())
         try:
-            self.sp_effects.import_armips_effect_code(self._get_current_effect(), text)  # type: ignore
+            self.sp_effects.import_armips_effect_code(self._get_current_effect(), text)
             self.module.mark_sp_effects_as_modified()
             md = SkyTempleMessageDialog(
                 MainController.window(),

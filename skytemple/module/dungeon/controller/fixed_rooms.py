@@ -45,7 +45,7 @@ class FixedRoomsController(AbstractController):
 
     def __init__(self, module: 'DungeonModule', item_id: int):
         self.module = module
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self.lst_entity, self.lst_item, self.lst_monster, self.lst_tile, self.lst_stats = \
             module.get_fixed_floor_entity_lists()
 
@@ -321,7 +321,7 @@ class FixedRoomsController(AbstractController):
         cb_store: Gtk.Store = self.builder.get_object('model_monsters__type')
         store[path][3] = cb_store[new_iter][0]
         store[path][4] = cb_store[new_iter][1]
-        self.lst_monster[int(store[path][0])].enemy_settings = MonsterSpawnType(cb_store[new_iter][0])  # type: ignore
+        self.lst_monster[int(store[path][0])].enemy_settings = MonsterSpawnType(cb_store[new_iter][0])
         self._save()
 
     @glib_async

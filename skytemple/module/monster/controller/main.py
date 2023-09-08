@@ -128,7 +128,7 @@ class MainController(AbstractController):
         cb_store: Gtk.ListStore = self.builder.get_object('cb_store_types')
         cb: Gtk.ComboBoxText = self.builder.get_object('cb_types')
 
-        talk_type: TalkType = TalkType(cb_store[cb.get_active_iter()][0])  # type: ignore
+        talk_type: TalkType = TalkType(cb_store[cb.get_active_iter()][0])
         group: int = int(self.builder.get_object('spin_group_nb').get_text())
         return group, talk_type
         

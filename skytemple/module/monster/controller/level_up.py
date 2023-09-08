@@ -97,7 +97,7 @@ class LevelUpController(AbstractController):
 
     def __init__(self, module: 'MonsterModule', item_id: int):
         self.module = module
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self.item_id = item_id
         self._string_provider = self.module.project.get_string_provider()
         self._move_names: Dict[int, str] = {}
@@ -486,8 +486,8 @@ class LevelUpController(AbstractController):
             from gi.repository import WebKit2
             graph_webkit_box: Gtk.Box = self.builder.get_object('graph_webkit_box')
 
-            self._webview: WebKit2.WebView = WebKit2.WebView()  # type: ignore
-            self._webview.load_uri(pathlib.Path(self.get_tmp_html_path()).as_uri())  # type: ignore
+            self._webview: WebKit2.WebView = WebKit2.WebView()
+            self._webview.load_uri(pathlib.Path(self.get_tmp_html_path()).as_uri())
             scrolled_window: Gtk.ScrolledWindow = Gtk.ScrolledWindow.new()
             scrolled_window.add(self._webview)
             graph_webkit_box.pack_start(scrolled_window, True, True, 0)
@@ -551,7 +551,7 @@ class LevelUpController(AbstractController):
             graph_fallbck_box.pack_start(img, True, True, 0)
         else:
             stack.set_visible_child(self.builder.get_object('graph_webkit_box'))
-            self._webview.reload()  # type: ignore
+            self._webview.reload()
 
     @staticmethod
     def get_tmp_html_path():

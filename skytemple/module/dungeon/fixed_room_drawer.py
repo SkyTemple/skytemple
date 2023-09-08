@@ -269,7 +269,7 @@ class FixedRoomDrawer:
             if self._selected is not None and self._selected__drag is not None:
                 assert self.fixed_floor is not None
                 # Draw dragged:
-                selected_x, selected_y = self._selected  # type: ignore
+                selected_x, selected_y = self._selected
                 selected = self.fixed_floor.actions[self.fixed_floor.width * selected_y + selected_x]
                 self._draw_single_tile(ctx, selected, x, y)
                 self._draw_action(ctx, selected, x, y)
@@ -311,7 +311,7 @@ class FixedRoomDrawer:
 
     def set_selected(self, selected):
         if isinstance(selected, tuple):
-            self._selected = tuple(int(x) for x in selected)  # type: ignore
+            self._selected = tuple(int(x) for x in selected)
         else:
             self._selected = selected
         self.redraw()

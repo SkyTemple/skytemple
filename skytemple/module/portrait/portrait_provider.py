@@ -108,7 +108,7 @@ class PortraitProvider:
             surf = pil_to_cairo_surface(portrait_pil.convert('RGBA'))
             loaded = surf
         except (RuntimeError, ValueError, OverflowError):
-            loaded = self.get_error()  # type: ignore
+            loaded = self.get_error()
         with portrait_provider_lock:
             self._loaded[(entry_id, sub_id)] = loaded
             self._loaded__is_fallback[(entry_id, sub_id)] = is_fallback
@@ -120,10 +120,10 @@ class PortraitProvider:
         """
         Returns the loader sprite. A "loading" icon with the size ~24x24px.
         """
-        return self._loader_surface  # type: ignore
+        return self._loader_surface
 
     def get_error(self) -> cairo.Surface:
         """
         Returns the error sprite. An "error" icon with the size ~24x24px.
         """
-        return self._error_surface  # type: ignore
+        return self._error_surface

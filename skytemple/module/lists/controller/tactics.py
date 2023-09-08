@@ -39,7 +39,7 @@ class TacticsController(AbstractController):
         super().__init__(module, item_id)
         self.module = module
         self._list: List[i16]
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'tactics.glade')

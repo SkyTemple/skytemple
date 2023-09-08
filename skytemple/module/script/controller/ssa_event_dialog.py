@@ -61,7 +61,7 @@ class SsaEventDialogController:
         self._fast_set_comboxbox_store(script_cb, script_store, 1)
         # Set Script IDs Combobox
         if self.edit:
-            self._select_in_combobox_where_callback(script_cb, lambda r: self.edit.script_id == r[0])  # type: ignore
+            self._select_in_combobox_where_callback(script_cb, lambda r: self.edit.script_id == r[0])
         else:
             script_cb.set_active_iter(script_store.get_iter_first())
         # Fill Coroutine Combobox
@@ -73,7 +73,7 @@ class SsaEventDialogController:
         self._fast_set_comboxbox_store(routine_cb, routine_store, 1)
         # Set Coroutine Combobox
         if self.edit:
-            self._select_in_combobox_where_callback(routine_cb, lambda r: self.edit.coroutine.id == r[0])  # type: ignore
+            self._select_in_combobox_where_callback(routine_cb, lambda r: self.edit.coroutine.id == r[0])
         else:
             routine_cb.set_active_iter(routine_store.get_iter_first())
         # Clear / Set Unk2

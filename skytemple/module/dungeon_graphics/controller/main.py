@@ -35,7 +35,7 @@ class MainController(AbstractController):
     def __init__(self, module: 'DungeonGraphicsModule', *args):
         self.module = module
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self.lst = self.module.get_tileset_properties()
 
     def get_view(self) -> Gtk.Widget:
@@ -125,7 +125,7 @@ class MainController(AbstractController):
         store = Gtk.ListStore(int, str)  # id, name
         cr.props.model = store
         for e in en:
-            store.append([e.value, e.print_name])  # type: ignore
+            store.append([e.value, e.print_name])
 
     def _init_values(self):
         from skytemple.module.dungeon_graphics.module import NUMBER_OF_TILESETS
@@ -144,12 +144,12 @@ class MainController(AbstractController):
         self.lst = []
         for row in self.builder.get_object('list_tree_store'):
             self.lst.append(TilesetProperties(
-                TilesetMapColor(row[2]),  # type: ignore
-                TilesetStirringEffect(row[3]),  # type: ignore
-                TilesetSecretPowerEffect(row[4]),  # type: ignore
-                PokeType(row[5]),  # type: ignore
-                TilesetNaturePowerMoveEntry(row[6]),  # type: ignore
-                TilesetWeatherEffect(row[7]),  # type: ignore
+                TilesetMapColor(row[2]),
+                TilesetStirringEffect(row[3]),
+                TilesetSecretPowerEffect(row[4]),
+                PokeType(row[5]),
+                TilesetNaturePowerMoveEntry(row[6]),
+                TilesetWeatherEffect(row[7]),
                 bool(row[8]),
             ))
 

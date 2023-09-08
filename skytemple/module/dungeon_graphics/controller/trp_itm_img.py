@@ -53,7 +53,7 @@ class TrpItmImgController(AbstractController):
         self.img_type = img_type
         self.img: Union[ImgItm, ImgTrp] = self.module.get_icons(img_type)
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self.image_idx = 0
         self.palette_idx = 0
 
@@ -126,7 +126,7 @@ class TrpItmImgController(AbstractController):
                 img = Image.open(fn)
                 if import_new:
                     idx = len(self.img.sprites)
-                    self.img.sprites.append(None)  # type: ignore
+                    self.img.sprites.append(None)
                 else:
                     idx = self.image_idx
                 try:

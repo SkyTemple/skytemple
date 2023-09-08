@@ -47,7 +47,7 @@ class WorldMapController(AbstractController):
     def __init__(self, module: 'ListsModule', *args):
         self.module = module
         self.map_bg_module: 'MapBgModule' = module.project.get_module('map_bg')
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self.drawer: Optional[WorldMapDrawer] = None
         self.dialog_drawer: Optional[WorldMapDrawer] = None
         self._location_names: Dict[int, str] = {}
@@ -190,11 +190,11 @@ class WorldMapController(AbstractController):
     def _get_map_name(self, entry: MapMarkerPlacement):
         if entry.level_id < 0:
             return ''
-        return self._config.script_data.level_list__by_id[entry.level_id].name  # type: ignore
+        return self._config.script_data.level_list__by_id[entry.level_id].name
     def _get_map_id(self, level_id: int):
         if level_id < 0:
             return -1
-        return int(self._config.script_data.level_list__by_id[level_id].mapid)  # type: ignore
+        return int(self._config.script_data.level_list__by_id[level_id].mapid)
 
     def _get_position(self, entry: MapMarkerPlacement):
         if entry.level_id < 0:
@@ -360,7 +360,7 @@ class WorldMapController(AbstractController):
             model, cbiter = cb_reference.get_model(), cb_reference.get_active_iter()
             if model is not None and cbiter is not None and cbiter != []:
                 if self.dialog_drawer:
-                    self.dialog_drawer.set_editing(self._markers[model[cbiter][0]], hide=self._edited_marker)  # type: ignore
+                    self.dialog_drawer.set_editing(self._markers[model[cbiter][0]], hide=self._edited_marker)
         else:
             self.builder.get_object('cb_reference').set_sensitive(False)
             if self.dialog_drawer and self._edited_marker and self._edited_pos:

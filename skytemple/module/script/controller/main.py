@@ -42,7 +42,7 @@ SCRIPT_SCENES = _('Script Scenes')
 class MainController(AbstractController):
     def __init__(self, module: 'ScriptModule', item_id: int):
         self.module = module
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self._list: LevelListBin
         self._dungeon_tilesets: List[GroundTilesetMapping]
         self._labels_mapid: Dict[int, str] = {}

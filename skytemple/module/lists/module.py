@@ -262,7 +262,7 @@ class ListsModule(AbstractModule):
             HardcodedDefaultStarters.set_partner_md_id(partner, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._starters_tree_iter]  # type: ignore
+        row = self._tree_model[self._starters_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
 
     def get_special_pcs(self) -> List[SpecialEpisodePc]:
@@ -276,7 +276,7 @@ class ListsModule(AbstractModule):
             HardcodedDefaultStarters.set_special_episode_pcs(lst, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._special_episodes_root_iter]  # type: ignore
+        row = self._tree_model[self._special_episodes_root_iter]
         recursive_up_item_store_mark_as_modified(row)
 
     def get_tactics(self) -> List[i16]:
@@ -290,7 +290,7 @@ class ListsModule(AbstractModule):
             HardcodedTactics.set_unlock_levels(lst, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._tactics_root_iter]  # type: ignore
+        row = self._tree_model[self._tactics_root_iter]
         recursive_up_item_store_mark_as_modified(row)
     
     def get_starter_ids(self) -> Tuple[List[u16], List[u16]]:
@@ -322,7 +322,7 @@ class ListsModule(AbstractModule):
             HardcodedDefaultStarters.set_player_level(level, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._starters_tree_iter]  # type: ignore
+        row = self._tree_model[self._starters_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
     
     def get_starter_level_partner(self) -> u8:
@@ -336,7 +336,7 @@ class ListsModule(AbstractModule):
             HardcodedDefaultStarters.set_partner_level(level, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._starters_tree_iter]  # type: ignore
+        row = self._tree_model[self._starters_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
 
     def get_recruitment_list(self) -> Tuple[List[u16], List[u16], List[u8]]:
@@ -357,7 +357,7 @@ class ListsModule(AbstractModule):
             HardcodedRecruitmentTables.set_monster_locations_list(location, ov11, static_data)
         self.project.modify_binary(BinaryName.OVERLAY_11, update)
 
-        row = self._tree_model[self._recruitment_tree_iter]  # type: ignore
+        row = self._tree_model[self._recruitment_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
 
     def get_world_map_markers(self) -> List[MapMarkerPlacement]:
@@ -374,7 +374,7 @@ class ListsModule(AbstractModule):
             HardcodedDungeons.set_marker_placements(markers, arm9bin, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._world_map_tree_iter]  # type: ignore
+        row = self._tree_model[self._world_map_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
 
     def get_rank_list(self) -> List[Rank]:
@@ -390,27 +390,27 @@ class ListsModule(AbstractModule):
             HardcodedRankUpTable.set_rank_up_table(values, arm9bin, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._rank_list_tree_iter]  # type: ignore
+        row = self._tree_model[self._rank_list_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
     
     def get_menu(self, menu_id) -> List[MenuEntry]:
         """Returns the rank up table."""
-        binary = self.project.get_binary(MenuType(menu_id).binary)  # type: ignore
+        binary = self.project.get_binary(MenuType(menu_id).binary)
         static_data = self.project.get_rom_module().get_static_data()
-        return HardcodedMenus.get_menu(MenuType(menu_id), binary, static_data)  # type: ignore
+        return HardcodedMenus.get_menu(MenuType(menu_id), binary, static_data)
 
     def set_menu(self, menu_id, values: List[MenuEntry]):
         """Sets the rank up table."""
         def update(binary):
             static_data = self.project.get_rom_module().get_static_data()
             HardcodedMenus.set_menu(
-                MenuType(menu_id),  # type: ignore
+                MenuType(menu_id),
                 values, binary, static_data
             )
         
-        self.project.modify_binary(MenuType(menu_id).binary, update)  # type: ignore
+        self.project.modify_binary(MenuType(menu_id).binary, update)
 
-        row = self._tree_model[self._menu_list_tree_iter]  # type: ignore
+        row = self._tree_model[self._menu_list_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
     
     def mark_string_as_modified(self):
@@ -440,7 +440,7 @@ class ListsModule(AbstractModule):
             ExtraDungeonDataList.write(lst, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._guest_pokemon_root_iter]  # type: ignore
+        row = self._tree_model[self._guest_pokemon_root_iter]
         recursive_up_item_store_mark_as_modified(row)
 
     def set_guest_pokemon_data(self, lst: List[GuestPokemon]):
@@ -450,7 +450,7 @@ class ListsModule(AbstractModule):
             GuestPokemonList.write(lst, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._guest_pokemon_root_iter]  # type: ignore
+        row = self._tree_model[self._guest_pokemon_root_iter]
         recursive_up_item_store_mark_as_modified(row)
 
     def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:

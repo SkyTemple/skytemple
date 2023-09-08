@@ -54,8 +54,8 @@ class AsmController(AbstractController):
     def __init__(self, module: 'PatchModule', *args):
         self.module = module
 
-        self.builder: Gtk.Builder = None  # type: ignore
-        self._patcher: Patcher = None  # type: ignore
+        self.builder: Gtk.Builder = None
+        self._patcher: Patcher = None
         self._were_issues_activated = False
         self._issues: Dict[str, List[warnings.WarningMessage]] = {}
         self._acknowledged_danger = False
@@ -190,7 +190,7 @@ class AsmController(AbstractController):
 
     def on_patch_categories_switch_page(self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num):
         cat = self._category_tabs_reverse[page]
-        sw: Gtk.ScrolledWindow = self.builder.get_object('patch_window')  # type: ignore
+        sw: Gtk.ScrolledWindow = self.builder.get_object('patch_window')
         sw.get_parent().remove(sw)
         self.refresh(cat)
 
@@ -243,7 +243,7 @@ class AsmController(AbstractController):
                 except BaseException as err:
                     errors.append((f(_("Error loading patch package {os.path.basename(fname)}.")), sys.exc_info()))
         # List patches:
-        for patch in sorted(self._patcher.list(), key=lambda p: p.name):  # type: ignore
+        for patch in sorted(self._patcher.list(), key=lambda p: p.name):
             with warnings.catch_warnings(record=True) as w:
                 warnings.filterwarnings("always", category=DeprecationWarning)
                 try:
@@ -317,7 +317,7 @@ class AsmController(AbstractController):
                 parameter_data = ParamDialogController(
                     MainSkyTempleController.window()
                 ).run(patch, patches[patch].parameters)
-        self._patcher.apply(patch, parameter_data)  # type: ignore
+        self._patcher.apply(patch, parameter_data)
 
     def _load_image_for_issue_dialog(self):
         img: Gtk.Image = Gtk.Image.new_from_file(os.path.join(data_dir(), IMG_SAD))

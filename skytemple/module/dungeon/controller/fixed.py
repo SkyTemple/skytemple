@@ -59,7 +59,7 @@ class FixedController(AbstractController):
         self.module = module
         self.tileset_id = 0
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
         if self.__class__._last_scale_factor is not None:
             self._scale_factor: float = self.__class__._last_scale_factor
@@ -168,7 +168,7 @@ class FixedController(AbstractController):
                 ):
                     self._currently_selected = self.drawer.get_cursor_pos_in_grid(True)
 
-        self._draw.queue_draw()  # type: ignore
+        self._draw.queue_draw()
 
     def on_fixed_draw_event_button_release_event(self, box, button: Gdk.EventButton):
         if button.button == 1 and self.drawer is not None:
@@ -198,8 +198,8 @@ class FixedController(AbstractController):
         self._currently_selected = None
         self._bg_draw_is_clicked__location = None
         self._bg_draw_is_clicked__drag_active = False
-        self.drawer.end_drag()  # type: ignore
-        self._draw.queue_draw()  # type: ignore
+        self.drawer.end_drag()
+        self._draw.queue_draw()
 
     def on_fixed_draw_event_motion_notify_event(self, box, motion: Gdk.EventMotion):
         correct_mouse_x = int((motion.x - 4) / self._scale_factor)
@@ -229,7 +229,7 @@ class FixedController(AbstractController):
                                 int((start_y - 4) / self._scale_factor) - self._currently_selected[1]
                             )
 
-            self._draw.queue_draw()  # type: ignore
+            self._draw.queue_draw()
 
     def on_utility_entity_direction_changed(self, *args):
         self._reapply_selected_entity()
@@ -257,7 +257,7 @@ class FixedController(AbstractController):
     def on_tool_choose_tileset_cb_changed(self, w: Gtk.ComboBox):
         idx = w.get_active()
         self.tileset_id = idx
-        self.on_tool_fullmap_toggled(self.builder.get_object('tool_fullmap'), ignore_scaling=True)  # type: ignore
+        self.on_tool_fullmap_toggled(self.builder.get_object('tool_fullmap'), ignore_scaling=True)
 
     def on_tool_scene_copy_toggled(self, *args):
         self._enable_copy_or_move_mode()
@@ -322,17 +322,17 @@ class FixedController(AbstractController):
             if not ignore_scaling:
                 self._scale_factor //= 10
                 self.__class__._last_scale_factor = self._scale_factor
-            self.drawer.set_entity_renderer(FullMapEntityRenderer(self.drawer))  # type: ignore
+            self.drawer.set_entity_renderer(FullMapEntityRenderer(self.drawer))
             self._init_tileset()
         else:
             if not ignore_scaling:
                 self._scale_factor *= 10
                 self.__class__._last_scale_factor = self._scale_factor
             minimap_provider = MinimapProvider(self.module.get_zmappa())
-            self.drawer.set_entity_renderer(MinimapEntityRenderer(self.drawer, minimap_provider))  # type: ignore
-            self.drawer.set_tileset_renderer(FixedFloorDrawerMinimap(minimap_provider))  # type: ignore
+            self.drawer.set_entity_renderer(MinimapEntityRenderer(self.drawer, minimap_provider))
+            self.drawer.set_tileset_renderer(FixedFloorDrawerMinimap(minimap_provider))
         self._update_scales()
-        self._draw.queue_draw()  # type: ignore
+        self._draw.queue_draw()
 
     # EDIT SETTINGS
 
@@ -346,23 +346,23 @@ class FixedController(AbstractController):
 
     def on_settings_complete_state_set(self, w: Gtk.Switch, state: bool, *args):
         if state:
-            self.properties.null |= 0x1  # type: ignore
+            self.properties.null |= 0x1
         else:
-            self.properties.null &= ~0x1  # type: ignore
+            self.properties.null &= ~0x1
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
     def on_settings_boss_state_set(self, w: Gtk.Switch, state: bool, *args):
         if state:
-            self.properties.null |= 0x2  # type: ignore
+            self.properties.null |= 0x2
         else:
-            self.properties.null &= ~0x2  # type: ignore
+            self.properties.null &= ~0x2
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
     def on_settings_free_state_set(self, w: Gtk.Switch, state: bool, *args):
         if state:
-            self.properties.null |= 0x4  # type: ignore
+            self.properties.null |= 0x4
         else:
-            self.properties.null &= ~0x4  # type: ignore
+            self.properties.null &= ~0x4
         self.module.save_fixed_floor_properties(self.floor_id, self.properties)
 
     def on_settings_moves_state_set(self, w: Gtk.Switch, state: bool, *args):
@@ -677,7 +677,7 @@ class FixedController(AbstractController):
         if dir_id > 0:
             dir = self.script_data.directions__by_ssa_id[dir_id]
         w = self.builder.get_object('utility_tile_type')
-        tile_rule = TileRuleType(w.get_model()[w.get_active_iter()][0])  # type: ignore
+        tile_rule = TileRuleType(w.get_model()[w.get_active_iter()][0])
         assert self.drawer is not None
         self.drawer.set_selected(TileRule(
             tile_rule,
@@ -694,7 +694,7 @@ class FixedController(AbstractController):
         )
 
     def _select_combobox(self, cb_name: str, callback: Callable[[Mapping], bool]):
-        cb: Gtk.ComboBox = self.builder.get_object(cb_name)  # type: ignore
+        cb: Gtk.ComboBox = self.builder.get_object(cb_name)
         l_iter = cb.get_model().get_iter_first()
         while l_iter is not None:
             if callback(cb.get_model()[l_iter]):

@@ -168,7 +168,7 @@ class MovesItemsModule(AbstractModule):
         i2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.i2n}", ValListHandler)
         i2n_model.set_list(values)
         self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.i2n}")
-        row = self._tree_model[self._item_keys_tree_iter]  # type: ignore
+        row = self._tree_model[self._item_keys_tree_iter]
         recursive_up_item_store_mark_as_modified(row)
 
     def mark_move_as_modified(self, move_id):

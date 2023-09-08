@@ -291,9 +291,9 @@ class Drawer:
         if y is None:
             y = actor.pos.y_absolute
         if actor.actor.entid <= 0:
-            _, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(actor.actor.id, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))  # type: ignore
+            _, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(actor.actor.id, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))
         else:
-            _, cx, cy, w, h = self.sprite_provider.get_monster(actor.actor.entid, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))  # type: ignore
+            _, cx, cy, w, h = self.sprite_provider.get_monster(actor.actor.entid, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))
         return x - cx, y - cy, w, h
 
     def _draw_hitbox_actor(self, ctx: cairo.Context, actor: SsaActor):
@@ -331,7 +331,7 @@ class Drawer:
             self._draw_object_sprite(ctx, object, sprite_coords[0], sprite_coords[1])
             self._draw_name(ctx, COLOR_OBJECTS, object.object.name, sprite_coords[0], sprite_coords[1])
             return
-        self._draw_generic_placeholder(ctx, COLOR_OBJECTS, object.object.unique_name, *sprite_coords, object.pos.direction)  # type: ignore
+        self._draw_generic_placeholder(ctx, COLOR_OBJECTS, object.object.unique_name, *sprite_coords, object.pos.direction)
 
     def get_bb_performer(self, performer: SsaPerformer, x=None, y=None) -> Tuple[int, int, int, int]:
         if x is None:
@@ -354,7 +354,7 @@ class Drawer:
         ctx.move_to(x - 4, y - 8)
         ctx.show_text(f'{performer.type}')
         # Direction arrow
-        self._triangle(ctx, x, y, BPC_TILE_DIM, COLOR_PERFORMER, performer.pos.direction.id)  # type: ignore
+        self._triangle(ctx, x, y, BPC_TILE_DIM, COLOR_PERFORMER, performer.pos.direction.id)
 
     def get_bb_trigger(self, trigger: SsaEvent, x=None, y=None) -> Tuple[int, int, int, int]:
         if x is None:
@@ -548,11 +548,11 @@ class Drawer:
         """Draws the sprite for an actor"""
         if actor.actor.entid == 0:
             sprite = self.sprite_provider.get_actor_placeholder(
-                actor.actor.id, actor.pos.direction.id, self._redraw  # type: ignore
+                actor.actor.id, actor.pos.direction.id, self._redraw
             )[0]
         else:
             sprite = self.sprite_provider.get_monster(
-                actor.actor.entid, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw)  # type: ignore
+                actor.actor.entid, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw)
             )[0]
         ctx.translate(x, y)
         ctx.set_source_surface(sprite)
@@ -710,8 +710,8 @@ class Drawer:
 
     def get_current_drag_entity_pos(self) -> Tuple[Union[int, float], Union[int, float]]:
         return self._snap_pos(
-            self.mouse_x - self._selected__drag[0],  # type: ignore
-            self.mouse_y - self._selected__drag[1]  # type: ignore
+            self.mouse_x - self._selected__drag[0],
+            self.mouse_y - self._selected__drag[1]
         )
 
     @typing.no_type_check

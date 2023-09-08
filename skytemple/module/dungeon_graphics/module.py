@@ -132,47 +132,47 @@ class DungeonGraphicsModule(AbstractModule):
         return None
 
     def get_colvec(self) -> Colvec:
-        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self.dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get(f'colormap.colvec')
     
     def get_dma(self, item_id) -> DmaProtocol:
-        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self.dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get(f'dungeon{item_id}.dma')
 
     def get_dpl(self, item_id) -> DplProtocol:
-        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self.dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get(f'dungeon{item_id}.dpl')
 
     def get_dpla(self, item_id) -> DplaProtocol:
-        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self.dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get(f'dungeon{item_id}.dpla')
 
     def get_dpc(self, item_id) -> DpcProtocol:
-        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self.dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get(f'dungeon{item_id}.dpc')
 
     def get_dpci(self, item_id) -> DpciProtocol:
-        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self.dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get(f'dungeon{item_id}.dpci')
 
     def get_bg_dbg(self, item_id) -> DbgProtocol:
-        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self.dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get(f'dungeon_bg{item_id}.dbg')
 
     def get_bg_dpl(self, item_id) -> DplProtocol:
-        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self.dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get(f'dungeon_bg{item_id}.dpl')
 
     def get_bg_dpla(self, item_id) -> DplaProtocol:
-        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self.dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get(f'dungeon_bg{item_id}.dpla')
 
     def get_bg_dpc(self, item_id) -> DpcProtocol:
-        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self.dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get(f'dungeon_bg{item_id}.dpc')
 
     def get_bg_dpci(self, item_id) -> DpciProtocol:
-        with self.dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self.dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get(f'dungeon_bg{item_id}.dpci')
 
     def mark_as_modified(self, item_id, is_background):

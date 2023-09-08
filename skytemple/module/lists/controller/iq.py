@@ -54,7 +54,7 @@ class IqController(AbstractController):
         super().__init__(module, *args)
         self.module = module
         self._string_provider = module.project.get_string_provider()
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'iq.glade')
@@ -318,7 +318,7 @@ class IqController(AbstractController):
         restrictions.pop()
 
         # noinspection PyTypeChecker
-        store: Gtk.ListStore = Gtk.ListStore(*([str, str, str, str] + [bool] * (len(IQGroup) - 1)))  # type: ignore
+        store: Gtk.ListStore = Gtk.ListStore(*([str, str, str, str] + [bool] * (len(IQGroup) - 1)))
         tree: Gtk.TreeView = self.builder.get_object('tree_iq_skills')
         tree.set_model(store)
 
@@ -343,4 +343,4 @@ class IqController(AbstractController):
                 str(i), self._string_provider.get_value(
                     StringType.IQ_SKILL_NAMES, i - 1
                 ), str(skill.iq_required), str(skill.restriction_group)
-            ] + iq_group_assignments)  # type: ignore
+            ] + iq_group_assignments)

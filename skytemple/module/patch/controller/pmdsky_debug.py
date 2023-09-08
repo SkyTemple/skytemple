@@ -33,7 +33,7 @@ class PmdSkyDebugController(AbstractController):
     def __init__(self, module: 'PatchModule', *args):
         self.module = module
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self._selected_binary: Optional[str] = None
         self._selected_symbol_type: Optional[str] = None
         self._all_selected_binaries: List[str] = []

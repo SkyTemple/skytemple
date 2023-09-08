@@ -65,7 +65,7 @@ class StringsModule(AbstractModule):
         """Mark as modified"""
         self.project.mark_as_modified(f"MESSAGE/{filename}")
         # Mark as modified in tree
-        row = self._tree_model[self._tree_iters[filename]]  # type: ignore
+        row = self._tree_model[self._tree_iters[filename]]
         recursive_up_item_store_mark_as_modified(row)
 
     def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:

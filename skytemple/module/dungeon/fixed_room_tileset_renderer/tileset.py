@@ -57,7 +57,7 @@ class FixedFloorDrawerTileset(AbstractTilesetRenderer):
                 self.dma_drawer.draw(mappings, self.dpci, self.dpc, self.dpl, None)[0].convert('RGBA')
             )
             self._cached_rules = rules
-        return self._cached_dungeon_surface  # type: ignore
+        return self._cached_dungeon_surface
 
     def get_single_tile(self, tile: int) -> cairo.Surface:
         return self.single_tiles[tile]

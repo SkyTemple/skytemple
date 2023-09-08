@@ -55,7 +55,7 @@ class FontController(AbstractController):
         self.spec = item
         self.font: Optional[AbstractFont] = self.module.get_font(self.spec)
         
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'font.glade')

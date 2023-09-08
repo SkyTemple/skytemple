@@ -207,7 +207,7 @@ class ChunkEditorController:
             self.current_tile_id = model[treeiter][0]
 
             mapping = self.edited_mappings[self.current_tile_id]
-            self.current_tile_drawer.set_tile_mappings([mapping])  # type: ignore
+            self.current_tile_drawer.set_tile_mappings([mapping])
 
             self.builder.get_object('flip_x').set_active(mapping.flip_x)
             self.builder.get_object('flip_y').set_active(mapping.flip_y)
@@ -233,8 +233,8 @@ class ChunkEditorController:
                 icon_view_static_tiles.unselect_all()
                 for i, bpa_view in enumerate(bpa_views):
                     obj = self.builder.get_object(bpa_view)
-                    if self.animated_tile_graphics[i]:  # type: ignore
-                        if obj and mapping.idx >= self.bpa_starts[i]:  # type: ignore
+                    if self.animated_tile_graphics[i]:
+                        if obj and mapping.idx >= self.bpa_starts[i]:
                             store = obj.get_model()
                             for e in store:
                                 if e[0] == mapping.idx:
@@ -357,7 +357,7 @@ class ChunkEditorController:
                 view.add_attribute(renderer, 'tileidx', 0)
                 view.set_text_column(1)
                 view.connect('selection-changed', self.on_icon_view_static_tiles_selection_changed)
-                for idx in range(self.bpa_starts[i], self.bpa_starts[i] + ani_tile_g.count()):  # type: ignore
+                for idx in range(self.bpa_starts[i], self.bpa_starts[i] + ani_tile_g.count()):
                     store.append([idx, str(idx)])
 
                 renderer.start()

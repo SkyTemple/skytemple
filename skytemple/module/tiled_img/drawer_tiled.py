@@ -116,7 +116,7 @@ class DrawerTiled:
         matrix_x_flip = cairo.Matrix(-1, 0, 0, 1, BPC_TILE_DIM, 0)
         matrix_y_flip = cairo.Matrix(1, 0, 0, -1, 0, BPC_TILE_DIM)
         tiles_for_pals = self.animation_context.current()
-        for i, mapping in enumerate(self.tile_mappings):  # type: ignore
+        for i, mapping in enumerate(self.tile_mappings):
             tiles_for_frame = tiles_for_pals[mapping.pal_idx]
             tile_at_pos = mapping.idx
             if 0 < tile_at_pos < len(tiles_for_frame):
@@ -150,7 +150,7 @@ class DrawerTiledCellRenderer(DrawerTiled, Gtk.CellRenderer):
                  tile_surfaces: List[List[List[List[cairo.Surface]]]], scale):
 
         super().__init__(icon_view, None, bpa_durations, pal_ani_durations, tile_surfaces)
-        super(Gtk.CellRenderer, self).__init__()  # type: ignore
+        super(Gtk.CellRenderer, self).__init__()
 
         self.scale = scale
 

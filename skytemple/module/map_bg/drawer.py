@@ -94,7 +94,7 @@ class Drawer:
         if isinstance(bma, BmaProtocol):
             self.tiling_width = bma.tiling_width
             self.tiling_height = bma.tiling_height
-            self.mappings: List[Sequence[int]] = [bma.layer0, bma.layer1]  # type: ignore
+            self.mappings: List[Sequence[int]] = [bma.layer0, bma.layer1]
             self.width_in_chunks = bma.map_width_chunks
             self.height_in_chunks = bma.map_height_chunks
             self.width_in_tiles: Optional[u8] = bma.map_width_camera
@@ -211,10 +211,10 @@ class Drawer:
             if should_draw:
                 if col_index == 0:
                     ctx.set_source_rgba(1, 0, 0, 0.4)
-                    col: Sequence[bool] = self.collision1  # type: ignore
+                    col: Sequence[bool] = self.collision1
                 else:
                     ctx.set_source_rgba(0, 1, 0, 0.4)
-                    col = self.collision2  # type: ignore
+                    col = self.collision2
 
                 for i, c in enumerate(col):
                     if c:
@@ -224,17 +224,17 @@ class Drawer:
                             BPC_TILE_DIM
                         )
                         ctx.fill()
-                    if (i + 1) % self.width_in_tiles == 0:  # type: ignore
+                    if (i + 1) % self.width_in_tiles == 0:
                         # Move to beginning of next line
                         if do_translates:
-                            ctx.translate(-BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM)  # type: ignore
+                            ctx.translate(-BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM)
                     else:
                         # Move to next tile in line
                         if do_translates:
                             ctx.translate(BPC_TILE_DIM, 0)
                 # Move back to beginning
                 if do_translates:
-                    ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)  # type: ignore
+                    ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)
 
         # Data
         if self.draw_data_layer:
@@ -246,17 +246,17 @@ class Drawer:
                 if dat > 0:
                     ctx.move_to(0, BPC_TILE_DIM - 2)
                     ctx.show_text(f"{dat:02x}")
-                if (i + 1) % self.width_in_tiles == 0:  # type: ignore
+                if (i + 1) % self.width_in_tiles == 0:
                     # Move to beginning of next line
                     if do_translates:
-                        ctx.translate(-BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM)  # type: ignore
+                        ctx.translate(-BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM)
                 else:
                     # Move to next tile in line
                     if do_translates:
                         ctx.translate(BPC_TILE_DIM, 0)
             # Move back to beginning
             if do_translates:
-                ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)  # type: ignore
+                ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)
 
         size_w, size_h = self.draw_area.get_size_request()
         size_w /= self.scale
@@ -420,7 +420,7 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
                  chunks_surfaces: Iterable[Iterable[Iterable[Iterable[cairo.Surface]]]]):
 
         super().__init__(icon_view, None, bpa_durations, pal_ani_durations, chunks_surfaces)
-        super(Gtk.CellRenderer, self).__init__()  # type: ignore
+        super(Gtk.CellRenderer, self).__init__()
         self.layer = layer
 
         self.chunkidx = 0

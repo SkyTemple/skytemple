@@ -151,7 +151,7 @@ class FloorController(AbstractController):
         self.item = item
         self.entry: MappaFloorProtocol = self.module.get_mappa_floor(item)
 
-        self.builder: Gtk.Builder = None  # type: ignore
+        self.builder: Gtk.Builder = None
         self._draw = None
         self.drawer: Optional[FixedRoomDrawer]
         self._refresh_timer = None
@@ -945,7 +945,7 @@ class FloorController(AbstractController):
         self._on_cat_item_remove_clicked('item_cat_others_tree')
 
     def _on_cat_item_name_changed(self, store_name: str, path, text: str):
-        store: Gtk.Store = self.builder.get_object(store_name)  # type: ignore
+        store: Gtk.Store = self.builder.get_object(store_name)
         match = PATTERN_MD_ENTRY.match(text)
         if match is None:
             return
@@ -1007,7 +1007,7 @@ class FloorController(AbstractController):
         self._save_item_spawn_rates()
 
     def _on_cat_item_guaranteed_toggled(self, store_name: str, path, old_state: bool):
-        store: Gtk.Store = self.builder.get_object(store_name)  # type: ignore
+        store: Gtk.Store = self.builder.get_object(store_name)
         store[path][2] = not old_state
         if not old_state:
             store[path][4] = "0"
@@ -1020,7 +1020,7 @@ class FloorController(AbstractController):
             assert v >= 0
         except:
             return
-        store: Gtk.Store = self.builder.get_object(store_name)  # type: ignore
+        store: Gtk.Store = self.builder.get_object(store_name)
         if store[path][2]:
             return
         store[path][4] = text
@@ -1029,7 +1029,7 @@ class FloorController(AbstractController):
         self._save_item_spawn_rates()
 
     def _on_cat_item_add_clicked(self, store_name: str):
-        store: Gtk.ListStore = self.builder.get_object(store_name)  # type: ignore
+        store: Gtk.ListStore = self.builder.get_object(store_name)
 
         item_ids_already_in = []
         for row in store:
@@ -1063,7 +1063,7 @@ class FloorController(AbstractController):
         self._save_item_spawn_rates()
 
     def _on_cat_item_remove_clicked(self, tree_name: str):
-        tree: Gtk.TreeView = self.builder.get_object(tree_name)  # type: ignore
+        tree: Gtk.TreeView = self.builder.get_object(tree_name)
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
             model.remove(treeiter)
@@ -1105,7 +1105,7 @@ class FloorController(AbstractController):
             self.drawer.set_entity_renderer(MinimapEntityRenderer(self.drawer, minimap_provider))
             self.drawer.set_tileset_renderer(FixedFloorDrawerMinimap(minimap_provider))
         self._update_scales()
-        self._draw.queue_draw()  # type: ignore
+        self._draw.queue_draw()
 
     def _init_drawer(self):
         self.drawer = FixedRoomDrawer(self._draw, None, self.module.project.get_sprite_provider(),
@@ -1122,7 +1122,7 @@ class FloorController(AbstractController):
             except ValueError:
                 rng = random.Random(hash(self.builder.get_object('tool_entry_seed').get_text()))
 
-            floor: List[Tile] = DungeonFloorGenerator(  # type: ignore
+            floor: List[Tile] = DungeonFloorGenerator(
                 unknown_dungeon_chance_patch_applied=self.module.project.is_patch_applied('UnusedDungeonChance'),
                 gen_properties=RandomGenProperties.default(rng)
             ).generate(self.entry.layout, max_retries=3, flat=True)
@@ -1938,7 +1938,7 @@ class FloorController(AbstractController):
                     if cat is None:
                         category_weights[last_weight_set_idx] = 10000
                     else:
-                        item_weights[last_weight_set_idx] = 10000  # type: ignore
+                        item_weights[last_weight_set_idx] = 10000
 
         item_weights = {k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0])}
 
@@ -1957,14 +1957,14 @@ class FloorController(AbstractController):
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     def _comboxbox_for_boolean(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
         store.append([0, _("No")])
         store.append([1, _("Yes")])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     def _comboxbox_for_tileset_id(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
@@ -1974,7 +1974,7 @@ class FloorController(AbstractController):
             else:
                 store.append([i, f"{'Tileset'} {i}"])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     def _comboxbox_for_music_id(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
@@ -1995,7 +1995,7 @@ class FloorController(AbstractController):
                         name = music_entries[track.track_or_ref].name
             store.append([i, name + f" (#{i:03})"])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     def _comboxbox_for_fixed_floor_id(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
@@ -2003,7 +2003,7 @@ class FloorController(AbstractController):
         for i in range(1, COUNT_VALID_FIXED_FLOORS):
             store.append([i, f(_("No. {i}"))])  # TRANSLATORS: Number {i}
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):
@@ -2044,7 +2044,7 @@ class FloorController(AbstractController):
             raise RuntimeError("Internal error: Do not call _update_from_widget() on an entry. Set manually instead.")
         else:
             self._update_from_scale(w)
-        if self.builder.get_object('tool_auto_refresh').get_active():  # type: ignore
+        if self.builder.get_object('tool_auto_refresh').get_active():
             self._generate_floor()
 
     def _update_from_cb(self, w: Gtk.ComboBox):
@@ -2053,7 +2053,7 @@ class FloorController(AbstractController):
             obj = self.entry.layout.terrain_settings
             attr_name = w_name[len(CB_TERRAIN_SETTINGS):]
         else:
-            obj = self.entry.layout  # type: ignore
+            obj = self.entry.layout
             attr_name = w_name[len(CB):]
         val = w.get_model()[w.get_active_iter()][0]
         current_val = getattr(obj, attr_name)

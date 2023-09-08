@@ -115,7 +115,7 @@ class MonsterModule(AbstractModule):
 
             for entry in entry_list:
                 self._tree_iter__entries[entry.md_index] = item_store.append(
-                    ent_root, self.generate_entry__entry(entry.md_index, Gender(entry.gender))  # type: ignore
+                    ent_root, self.generate_entry__entry(entry.md_index, Gender(entry.gender))
                 )
 
         recursive_generate_item_store_row_label(self._tree_model[self._root])
@@ -256,7 +256,7 @@ class MonsterModule(AbstractModule):
             def update(ov11):
                 static_data = self.project.get_rom_module().get_static_data()
                 values = HardcodedMonsterGroundIdleAnimTable.get(ov11, static_data)
-                values[item_id] = value if isinstance(value, IdleAnimType) else IdleAnimType(value)  # type: ignore
+                values[item_id] = value if isinstance(value, IdleAnimType) else IdleAnimType(value)
                 HardcodedMonsterGroundIdleAnimTable.set(values, ov11, static_data)
             self.project.modify_binary(BinaryName.OVERLAY_11, update)
             self._mark_as_modified_in_tree(item_id)

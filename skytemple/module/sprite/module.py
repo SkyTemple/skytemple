@@ -87,7 +87,7 @@ class SpriteModule(AbstractModule):
                                   modified_callback, assign_new_sprite_id_cb,
                                   get_shadow_size_cb, set_shadow_size_cb) -> Gtk.Widget:
         """Returns the view for one portrait slots"""
-        controller = MonsterSpriteController(self, sprite_id,  # type: ignore
+        controller = MonsterSpriteController(self, sprite_id,
                                              modified_callback, assign_new_sprite_id_cb,
                                              get_shadow_size_cb, set_shadow_size_cb)
         return controller.get_view()
@@ -99,7 +99,7 @@ class SpriteModule(AbstractModule):
     def save_object_sprite(self, filename, data: bytes):
         assert filename in self.list_of_obj_sprites
         self.project.save_file_manually(GROUND_DIR + '/' + filename, data)
-        row = self._tree_model[self._tree_level_iter[filename]]  # type: ignore
+        row = self._tree_model[self._tree_level_iter[filename]]
         recursive_up_item_store_mark_as_modified(row)
 
     def get_sprite_provider(self):
@@ -314,9 +314,9 @@ class SpriteModule(AbstractModule):
     
     def prepare_monster_sprite(self, data: Union[bytes, WanFile], compress: bool) -> bytes:
         if isinstance(data, WanFile):
-            data = FileType.WAN.CHARA.serialize(data) # type: ignore
+            data = FileType.WAN.CHARA.serialize(data) 
         if compress:
-            data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data)) # type: ignore
+            data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data)) 
         return data
 
     def save_monster_ground_sprite(self, id, data: Union[bytes, WanFile], raw=False):

@@ -242,7 +242,7 @@ class AnimationsController(AbstractController):
         store_type: Gtk.ListStore = self.builder.get_object('point_store')
         store_spec[treepath][3] = store_type[treeiter][0]
         store_spec[treepath][6] = store_type[treeiter][1]
-        self.animations.special_move_table[store_spec[treepath][0]].point = AnimPointType(store_type[treeiter][0])  # type: ignore
+        self.animations.special_move_table[store_spec[treepath][0]].point = AnimPointType(store_type[treeiter][0])
         self.module.mark_animations_as_modified()
 
     def on_btn_remove_spec_clicked(self, *args):
@@ -335,7 +335,7 @@ class AnimationsController(AbstractController):
         store_type: Gtk.ListStore = self.builder.get_object('point_store')
         store_move[treepath][13] = store_type[treeiter][0]
         store_move[treepath][17] = store_type[treeiter][1]
-        self.animations.move_table[store_move[treepath][0]].point = AnimPointType(store_type[treeiter][0])  # type: ignore
+        self.animations.move_table[store_move[treepath][0]].point = AnimPointType(store_type[treeiter][0])
         self.module.mark_animations_as_modified()
         
     def on_move_sfx_edited(self, widget, path, text):
@@ -378,7 +378,7 @@ class AnimationsController(AbstractController):
         store_type: Gtk.ListStore = self.builder.get_object('type_store')
         store_gen[treepath][1] = store_type[treeiter][0]
         store_gen[treepath][11] = store_type[treeiter][1]
-        self.animations.general_table[store_gen[treepath][0]].anim_type = AnimType(store_type[treeiter][0])  # type: ignore
+        self.animations.general_table[store_gen[treepath][0]].anim_type = AnimType(store_type[treeiter][0])
         self.module.mark_animations_as_modified()
     
     def on_gen_file_id_edited(self, widget, path, text):
@@ -405,7 +405,7 @@ class AnimationsController(AbstractController):
         store_type: Gtk.ListStore = self.builder.get_object('point_store')
         store_gen[treepath][8] = store_type[treeiter][0]
         store_gen[treepath][12] = store_type[treeiter][1]
-        self.animations.general_table[store_gen[treepath][0]].point = AnimPointType(store_type[treeiter][0])  # type: ignore
+        self.animations.general_table[store_gen[treepath][0]].point = AnimPointType(store_type[treeiter][0])
         self.module.mark_animations_as_modified()
         
     def on_gen_unk5_toggled(self, widget, path):
