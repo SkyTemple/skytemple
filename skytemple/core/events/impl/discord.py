@@ -22,7 +22,7 @@ import asyncio
 import inspect
 import logging
 import os
-from typing import List, Optional, Union, Coroutine, Callable
+from typing import List, Optional, Callable
 
 from gi.repository import GLib
 from skytemple_files.common.types.file_types import FileType

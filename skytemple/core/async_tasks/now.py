@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import asyncio
 from asyncio import AbstractEventLoop
-from typing import Coroutine, Optional
+from typing import Coroutine
 
 from skytemple.core.async_tasks import AsyncTaskRunnerProtocol
 

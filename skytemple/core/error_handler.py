@@ -23,7 +23,7 @@ import webbrowser
 from os.path import expanduser
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import Union, Type, Tuple, Any, Optional, Dict
+from typing import Union, Type, Tuple, Any, Optional, Dict, cast
 
 from skytemple_files.common.util import Capturable
 from skytemple_files.user_error import USER_ERROR_MARK
@@ -122,7 +122,7 @@ def display_error(
         button_box.pack_start(button, False, True, 0)
         button_box.set_halign(Gtk.Align.START)
         button_box.show_all()
-        md.get_message_area().pack_start(button_box, False, True, 10)
+        cast(Gtk.Box, md.get_message_area()).pack_start(button_box, False, True, 10)
         md.set_position(Gtk.WindowPosition.CENTER)
         md.get_content_area().set_spacing(0)
     md.run()

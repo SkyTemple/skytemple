@@ -50,7 +50,7 @@ from skytemple_files.compression_container.common_at.handler import CommonAtType
 from skytemple_files.hardcoded.icon_banner import IconBanner
 
 logger = logging.getLogger(__name__)
-BACKFUP_NAME = '.~backup.bin'
+BACKUP_NAME = '.~backup.bin'
 
 if TYPE_CHECKING:
     from skytemple.controller.main import MainController
@@ -105,7 +105,7 @@ class RomProject:
         If the main controller is set, it will be informed about this.
         """
         # First check for a backup file from last save.
-        backup_fn = os.path.join(ProjectFileManager(filename).dir(), BACKFUP_NAME)
+        backup_fn = os.path.join(ProjectFileManager(filename).dir(), BACKUP_NAME)
         if os.path.exists(backup_fn):
             cls.handle_backup_restore(filename, backup_fn, main_controller)
 
@@ -455,7 +455,7 @@ class RomProject:
     def save_as_is(self):
         """Simply save the current ROM to disk."""
         # First copy current ROM to a to a temp file.
-        backup_fn = os.path.join(self.get_project_file_manager().dir(), BACKFUP_NAME)
+        backup_fn = os.path.join(self.get_project_file_manager().dir(), BACKUP_NAME)
         # When doing "Save As..." the file may not exist yet.
         if os.path.exists(self.filename):
             shutil.copyfile(self.filename, backup_fn)

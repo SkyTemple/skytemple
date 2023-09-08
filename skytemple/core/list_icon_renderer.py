@@ -70,7 +70,9 @@ class ListIconRenderer:
         for b, g, r, a in grouper(data, 4):
             new_data += bytes([r, g, b, a])
         self._icon_pixbufs[target_name] = GdkPixbuf.Pixbuf.new_from_data(
-            new_data, GdkPixbuf.Colorspace.RGB, True, 8, w, h, sprite.get_stride()
+            GLib.Bytes.new(new_data),
+            GdkPixbuf.Colorspace.RGB, True, 8, w, h, sprite.get_stride(),
+            destroy_fn=None # todo: memory leak? Probably not?
         )
         return self._icon_pixbufs[target_name]
 
@@ -83,7 +85,7 @@ class ListIconRenderer:
             return
         if self._refresh_timer is not None:
             GLib.source_remove(self._refresh_timer)
-        self._refresh_timer = GLib.timeout_add_seconds(0.5, self._reload_icons_in_tree)
+        self._refresh_timer = GLib.timeout_add(500, self._reload_icons_in_tree)
 
     def _reload_icons_in_tree(self):
         try:

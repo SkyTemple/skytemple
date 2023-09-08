@@ -29,7 +29,7 @@ from sentry_sdk.sessions import auto_session_tracking
 from sentry_sdk.utils import logger as sentry_sdk_logger
 
 from skytemple.core.logger import SKYTEMPLE_LOGLEVEL, current_log_level
-from skytemple.core.ui_utils import version
+from skytemple.core.ui_utils import version, assert_not_none
 
 if TYPE_CHECKING:
     from skytemple.core.error_handler import ExceptionInfo
@@ -121,21 +121,22 @@ def collect_device_context() -> Dict[str, 'Captured']:
     try:
         from gi.repository.Gdk import Display
         display = Display.get_default()
-        mon_geoms = [
-            display.get_monitor(i).get_geometry()
-            for i in range(display.get_n_monitors())
-        ]
+        if display is not None:
+            mon_geoms = [
+                assert_not_none(display.get_monitor(i)).get_geometry()
+                for i in range(display.get_n_monitors())
+            ]
 
-        x0 = min(r.x for r in mon_geoms)
-        y0 = min(r.y for r in mon_geoms)
-        x1 = max(r.x + r.width for r in mon_geoms)
-        y1 = max(r.y + r.height for r in mon_geoms)
-        width, height = x1 - x0, y1 - y0
-        screen_info = {
-            "screen_resolution": f"{width}x{height}",
-            "screen_height_pixels": height,
-            "screen_width_pixels": width,
-        }
+            x0 = min(r.x for r in mon_geoms)
+            y0 = min(r.y for r in mon_geoms)
+            x1 = max(r.x + r.width for r in mon_geoms)
+            y1 = max(r.y + r.height for r in mon_geoms)
+            width, height = x1 - x0, y1 - y0
+            screen_info = {
+                "screen_resolution": f"{width}x{height}",
+                "screen_height_pixels": height,
+                "screen_width_pixels": width,
+            }
     except Exception:
         pass
 

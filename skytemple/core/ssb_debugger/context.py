@@ -177,8 +177,12 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     def edit_position_mark(self, mapname: str, scene_name: str, scene_type: str, pos_marks: List[SourceMapPositionMark],
                            pos_mark_to_edit: int) -> bool:
         try:
-            cntrl: PosMarkEditorController = RomProject.get_current().get_module('script').get_pos_mark_editor_controller(  # type: ignore
-                self._manager.get_window(), mapname, scene_name.split('/')[-1], scene_type, pos_marks, pos_mark_to_edit
+            window = self._manager.get_window()
+            assert window is not None
+            current_project = RomProject.get_current()
+            assert current_project is not None
+            cntrl: PosMarkEditorController = current_project.get_module('script').get_pos_mark_editor_controller(
+                window, mapname, scene_name.split('/')[-1], scene_type, pos_marks, pos_mark_to_edit
             )
             return cntrl.run() == Gtk.ResponseType.OK
         except IndexError:

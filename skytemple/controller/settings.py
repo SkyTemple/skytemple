@@ -20,6 +20,7 @@ import sys
 import webbrowser
 from functools import partial
 from glob import glob
+from typing import Optional
 
 from gi.repository import Gtk, GLib
 
@@ -28,6 +29,8 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple_files.common.i18n_util import _
 from skytemple_files.common.impl_cfg import ImplementationType
+
+from skytemple.core.ui_utils import builder_get_assert
 
 logger = logging.getLogger(__name__)
 LANGS = [
@@ -44,7 +47,7 @@ LANGS = [
 class SettingsController:
     """A dialog controller for UI settings."""
     def __init__(self, parent_window: Gtk.Window, builder: Gtk.Builder, settings: SkyTempleSettingsStore):
-        self.window: Gtk.Window = builder.get_object('dialog_settings')
+        self.window = builder_get_assert(builder, Gtk.Dialog, 'dialog_settings')
         self.window.set_transient_for(parent_window)
         self.window.set_attached_to(parent_window)
         self.parent_window = parent_window
@@ -52,10 +55,10 @@ class SettingsController:
         self.builder = builder
         self.settings = settings
 
-        self.builder.get_object('setting_help_native_enable').connect('clicked', self.on_setting_help_native_enable_clicked)
-        self.builder.get_object('setting_help_async').connect('clicked', self.on_setting_help_async_clicked)
-        self.builder.get_object('setting_help_privacy').connect('activate-link', self.on_help_privacy_activate_link)
-        self.builder.get_object('setting_help_language').connect('activate-link', self.on_help_language_activate_link)
+        builder_get_assert(self.builder, Gtk.Button, 'setting_help_native_enable').connect('clicked', self.on_setting_help_native_enable_clicked)
+        builder_get_assert(self.builder, Gtk.Button, 'setting_help_async').connect('clicked', self.on_setting_help_async_clicked)
+        builder_get_assert(self.builder, Gtk.Label, 'setting_help_privacy').connect('activate-link', self.on_help_privacy_activate_link)
+        builder_get_assert(self.builder, Gtk.Label, 'setting_help_language').connect('activate-link', self.on_help_language_activate_link)
 
     def run(self):
         """
@@ -65,13 +68,13 @@ class SettingsController:
 
         # Discord enabled state
         discord_enabled_previous = self.settings.get_integration_discord_enabled()
-        settings_discord_enable = self.builder.get_object('setting_discord_enable')
+        settings_discord_enable = builder_get_assert(self.builder, Gtk.Switch, 'setting_discord_enable')
         settings_discord_enable.set_active(discord_enabled_previous)
 
         # Gtk Theme
         if not sys.platform.startswith('linux'):
             store: Gtk.ListStore = Gtk.ListStore.new([str])
-            cb: Gtk.ComboBox = self.builder.get_object('setting_gtk_theme')
+            cb = builder_get_assert(self.builder, Gtk.ComboBox, 'setting_gtk_theme')
             active = None
             for id, theme in enumerate(self._list_gtk_themes()):
                 store.append([theme])
@@ -81,8 +84,8 @@ class SettingsController:
             if active is not None:
                 cb.set_active(active)
         else:
-            gbox: Gtk.Box = self.builder.get_object('setting_gtk_theme_box')
-            for child in gbox:
+            gbox = builder_get_assert(self.builder, Gtk.Box, 'setting_gtk_theme_box')
+            for child in gbox.get_children():
                 gbox.remove(child)
             label = Gtk.Label()
             label.set_markup(_("<i>Use System Settings to set this under Linux.</i>"))
@@ -90,25 +93,25 @@ class SettingsController:
             label.show()
 
         # Languages
-        cb: Gtk.ComboBox = self.builder.get_object('setting_language')
-        store: Gtk.ListStore = self.builder.get_object('lang_store')
+        cb  = builder_get_assert(self.builder, Gtk.ComboBox, 'setting_language')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'lang_store')
         store.clear()
-        active = None
-        for id, (code, name) in enumerate(LANGS):
+        active_i: Optional[int] = None
+        for idx, (code, name) in enumerate(LANGS):
             store.append([code, name])
             if code == self.settings.get_locale():
-                active = id
-        if active is not None:
-            cb.set_active(active)
+                active_i = idx
+        if active_i is not None:
+            cb.set_active(active_i)
 
         # Native file handler
         native_impl_enabled_previous = self.settings.get_implementation_type() == ImplementationType.NATIVE
-        settings_native_enable = self.builder.get_object('setting_native_enable')
+        settings_native_enable = builder_get_assert(self.builder, Gtk.Switch, 'setting_native_enable')
         settings_native_enable.set_active(native_impl_enabled_previous)
 
         # Async modes
-        cb = self.builder.get_object('setting_async')
-        store = self.builder.get_object('async_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'setting_async')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'async_store')
         store.clear()
         active = None
         for mode in AsyncConfiguration:
@@ -117,16 +120,16 @@ class SettingsController:
                 if mode == self.settings.get_async_configuration():
                     active = mode.value
         if active is not None:
-            cb.set_active_id(active)
+            cb.set_active_id(str(active))
 
         # Sentry
         allow_sentry_previous = self.settings.get_allow_sentry()
-        settings_allow_sentry_enable = self.builder.get_object('setting_allow_sentry')
+        settings_allow_sentry_enable = builder_get_assert(self.builder, Gtk.Switch, 'setting_allow_sentry')
         settings_allow_sentry_enable.set_active(allow_sentry_previous)
 
         # CSD
         csd_before = self.settings.csd_enabled()
-        settings_csd_enable = self.builder.get_object('setting_csd_enable')
+        settings_csd_enable = builder_get_assert(self.builder, Gtk.Switch, 'setting_csd_enable')
         settings_csd_enable.set_active(csd_before)
 
         response = self.window.run()
@@ -142,7 +145,7 @@ class SettingsController:
 
             # Gtk Theme
             if not sys.platform.startswith('linux'):
-                cb = self.builder.get_object('setting_gtk_theme')
+                cb = builder_get_assert(self.builder, Gtk.ComboBox, 'setting_gtk_theme')
                 iter = cb.get_active_iter()
                 if iter is not None:
                     theme_name = cb.get_model()[iter][0]
@@ -150,8 +153,10 @@ class SettingsController:
                     self.settings.set_gtk_theme(theme_name)
 
             # Languages
-            cb = self.builder.get_object('setting_language')
-            lang_name = cb.get_model()[cb.get_active_iter()][0]
+            cb = builder_get_assert(self.builder, Gtk.ComboBox, 'setting_language')
+            cb_iter = cb.get_active_iter()
+            assert cb_iter is not None
+            lang_name = cb.get_model()[cb_iter][0]
             before = self.settings.get_locale()
             if before != lang_name:
                 self.settings.set_locale(lang_name)
@@ -164,8 +169,10 @@ class SettingsController:
                 have_to_restart = True
 
             # Async modes
-            cb = self.builder.get_object('setting_async')
-            async_mode = AsyncConfiguration(cb.get_model()[cb.get_active_iter()][0])
+            cb = builder_get_assert(self.builder, Gtk.ComboBox, 'setting_async')
+            cb_iter = cb.get_active_iter()
+            assert cb_iter is not None
+            async_mode = AsyncConfiguration(cb.get_model()[cb_iter][0])
             before_async = self.settings.get_async_configuration()
             if before_async != async_mode:
                 self.settings.set_async_configuration(async_mode)

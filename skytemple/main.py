@@ -19,7 +19,7 @@ import os
 import sys
 import locale
 import gettext
-from skytemple.core.ui_utils import data_dir, APP, gdk_backend, GDK_BACKEND_BROADWAY
+from skytemple.core.ui_utils import data_dir, APP, builder_get_assert
 from skytemple.core.settings import SkyTempleSettingsStore
 from skytemple_files.common.impl_cfg import ENV_SKYTEMPLE_USE_NATIVE, change_implementation_type
 
@@ -193,11 +193,6 @@ def run_main(settings: SkyTempleSettingsStore):
         if getattr(sys, 'frozen', False):
             path = os.path.dirname(sys.executable)
 
-    if sys.platform.startswith('linux') and gdk_backend() == GDK_BACKEND_BROADWAY:
-        gtk_settings = Gtk.Settings.get_default()
-        gtk_settings.set_property("gtk-theme-name", 'Arc-Dark')
-        gtk_settings.set_property("gtk-application-prefer-dark-theme", True)
-
     itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
     itheme.append_search_path(os.path.abspath(icons()))
     itheme.append_search_path(os.path.abspath(os.path.join(data_dir(), "icons")))
@@ -206,7 +201,7 @@ def run_main(settings: SkyTempleSettingsStore):
 
     # Load Builder and Window
     builder = make_builder(os.path.join(path, "skytemple.glade"))
-    main_window: Window = builder.get_object("main_window")
+    main_window = builder_get_assert(builder, Window, "main_window")
     main_window.set_role("SkyTemple")
     GLib.set_application_name("SkyTemple")
     GLib.set_prgname("skytemple")
@@ -218,10 +213,12 @@ def run_main(settings: SkyTempleSettingsStore):
     with open(os.path.join(path, "skytemple.css"), 'rb') as f:
         css = f.read()
     style_provider.load_from_data(css)
-    Gtk.StyleContext.add_provider_for_screen(
-        Gdk.Screen.get_default(), style_provider,
-        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-    )
+    default_screen = Gdk.Screen.get_default()
+    if default_screen is not None:
+        Gtk.StyleContext.add_provider_for_screen(
+            default_screen, style_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
 
     # Init. core events
     event_manager = EventManager.instance()
@@ -245,7 +242,8 @@ def run_main(settings: SkyTempleSettingsStore):
 
 def _load_theme(settings: SkyTempleSettingsStore):
     gtk_settings = Gtk.Settings.get_default()
-    gtk_settings.set_property("gtk-theme-name", settings.get_gtk_theme(default='Arc-Dark'))
+    if gtk_settings is not None:
+        gtk_settings.set_property("gtk-theme-name", settings.get_gtk_theme(default='Arc-Dark'))
 
 
 def main():
