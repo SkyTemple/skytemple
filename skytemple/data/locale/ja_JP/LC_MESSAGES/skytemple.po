@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-07 15:19+0000\n"
-"PO-Revision-Date: 2023-09-10 06:29\n"
+"PO-Revision-Date: 2023-09-10 08:13\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -4960,28 +4960,28 @@ msgstr "スクリプト {row[1]} を削除しますか？"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:915
 msgid "Common"
-msgstr ""
+msgstr "共通"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:926
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1421
 #: skytemple/skytemple/module/script/module.py:148
 #: skytemple/skytemple/module/script/module.py:361
 msgid "Enter (sse)"
-msgstr ""
+msgstr "エンター (sse)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:937
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1424
 #: skytemple/skytemple/module/script/module.py:158
 #: skytemple/skytemple/module/script/module.py:328
 msgid "Acting (ssa)"
-msgstr ""
+msgstr "アクション (ssa)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:947
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1428
 #: skytemple/skytemple/module/script/module.py:177
 #: skytemple/skytemple/module/script/module.py:332
 msgid "Sub (sss)"
-msgstr ""
+msgstr "サブ (sss)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:984
 msgid "Save dumped block..."
@@ -5006,7 +5006,7 @@ msgstr "ゲームを一時停止しました。"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1483
 #, python-brace-format
 msgid "The debugger is halted at {ssb.file_name}."
-msgstr ""
+msgstr "デバッガーは {ssb.file_name} で停止します。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1646
 msgid "You have unsaved changes to variables.\n"
@@ -5046,7 +5046,7 @@ msgstr "スクリプト {self.filename} をコンパイル中..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:285
 msgid "Parse error: "
-msgstr ""
+msgstr "Parse error: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:288
 #, python-brace-format
@@ -5075,55 +5075,57 @@ msgstr "このファイルを SSBScript で使用することはできません�
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:471
 msgid "An old version of this script is still loaded in RAM, but breakpoints are not available.\n"
 "Debugging is disabled for this file, until it is reloaded."
-msgstr "このスクリプトの古いバージョンはまだRAMに読み込まれていますが、ブレークポイントは使用できません。\n"
-"このファイルのデバッグは、再読み込みされるまで無効になります。"
+msgstr "このスクリプトの古いバージョンはメモリに残りますが、ブレークポイントは使用できません。\n"
+"デバッグを行う場合、再読み込みする必要があります。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:479
 msgid "An old version of this script is still loaded in RAM, old breakpoints are still used, until the file is reloaded."
-msgstr "ファイルが再読み込みされるまで、このスクリプトの古いバージョンは RAM に読み込まれたままになり、古いブレークポイントは引き続き使用されます。"
+msgstr "ファイルが再読み込みされるまで、このスクリプトの古いバージョンはメモリに残り、古いブレークポイントは引き続き使用されます。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:762
 #, python-brace-format
 msgid "Search and Replace in {self.filename}"
-msgstr ""
+msgstr "{self.filename} の検索・置換"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:926
 msgid "This is a read-only representation of the compiled ExplorerScript."
-msgstr ""
+msgstr "これはコンパイル済み ExplorerScript の読み取り専用表記です。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:937
 msgid "ExplorerScript is not available for this file."
-msgstr ""
+msgstr "このファイルを ExplorerScript で使用することはできません。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:958
 msgid "The ExplorerScript source code does not match the compiled script that is present in the ROM.\n"
 "Do you want to keep your ExplorerScript source code, or reload (decompile) it from ROM?\n"
 "Warning: If you choose to reload, you will lose your file, including all comments in it."
-msgstr ""
+msgstr "ExplorerScript のソースコードが ROM に存在するコンパイル済みスクリプトと一致しません。\n"
+"ソースコードをそのまま使用するか、それとも ROM から逆コンパイルしますか？\n"
+"警告: 再読み込みを行うと、その中のすべてのコメントを含むファイルが失われます。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:961
 msgid "ExplorerScript Inconsistency"
-msgstr ""
+msgstr "ExplorerScript の不一致"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:963
 msgid "Reload from ROM"
-msgstr ""
+msgstr "ROM を再読み込み"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:964
 msgid "Keep ExplorerScript source code"
-msgstr ""
+msgstr "ExplorerScript のソースコードを保持"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:18
 msgid "Disable breakpoints (all files)."
-msgstr ""
+msgstr "ブレークポイントを無効にする (すべてのファイル)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:19
 msgid "Disable Breaks"
-msgstr ""
+msgstr "ブレークを無効にする"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:44
 msgid "Resume."
-msgstr ""
+msgstr "再開"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:45
 msgid "Resume"
@@ -5131,53 +5133,53 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:60
 msgid "Step over the current instruction."
-msgstr ""
+msgstr "現在の命令をステップオーバーします。関数をデバッグせず、次の行へ進みます。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:61
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:403
 msgid "Step Over"
-msgstr ""
+msgstr "ステップオーバー"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:76
 msgid "Step into the current instruction, if it's a call, otherwise step over."
-msgstr ""
+msgstr "現在の命令にステップインします。関数の場合はその関数をデバッグし、それ以外の場合は次の行へ進みます。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:77
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:413
 msgid "Step Into"
-msgstr ""
+msgstr "ステップイン"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:92
 msgid "Step out of the current function call."
-msgstr ""
+msgstr "現在の関数からステップアウトします。現在の関数内のデバッグを終了し、次の行へ進みます。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:93
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:423
 msgid "Step Out"
-msgstr ""
+msgstr "ステップアウト"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:118
 msgid "Halt at the next instruction, even if in another script context."
-msgstr ""
+msgstr "別のスクリプトコンテキストであっても、次の命令で停止します。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:119
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:439
 msgid "Step Next"
-msgstr ""
+msgstr "次のステップ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:143
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:165
 msgid "Edit the scene with the same name as the map background"
-msgstr ""
+msgstr "地図の背景と同じ名前のシーンを編集"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:145
 msgid "Go to Scene"
-msgstr "シーンへに移動"
+msgstr "シーンに移動"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:170
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:729
 msgid "Textbox Preview Tool"
-msgstr ""
+msgstr "テキストボックス プレビューツール"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:259
 msgid "ExplorerScript"
@@ -5193,27 +5195,27 @@ msgstr "…"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:428
 msgid "Search and Replace"
-msgstr ""
+msgstr "検索と置換"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:448
 msgid "Replace All"
-msgstr ""
+msgstr "すべて置換"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:462
 msgid "Replace"
-msgstr ""
+msgstr "置換"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:476
 msgid "Search"
-msgstr ""
+msgstr "検索"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:507
 msgid "Search for"
-msgstr ""
+msgstr "検索文字"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:519
 msgid "Replace with"
-msgstr ""
+msgstr "置換文字"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:540
 #: skytemple/skytemple/module/dungeon/module.py:802
@@ -5222,15 +5224,15 @@ msgstr "なし"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:554
 msgid "Case sensitive"
-msgstr ""
+msgstr "大文字と小文字を区別"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:568
 msgid "Search backwards"
-msgstr ""
+msgstr "逆方向に検索"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:581
 msgid "Match words"
-msgstr ""
+msgstr "単語単位で検索"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:595
 msgid "Wrap Around"
@@ -5238,7 +5240,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:609
 msgid "Regular Expression"
-msgstr ""
+msgstr "正規表現を使用"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:46
 msgid "Scenario"
@@ -5258,7 +5260,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:58
 msgid "World Map"
-msgstr ""
+msgstr "ワールドマップ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:59
 msgid "Specific"
@@ -5298,7 +5300,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:271
 #: skytemple/skytemple/module/tiled_img/dialog_controller/palette_editor.py:142
 msgid "Error!"
-msgstr "エラー!"
+msgstr "エラー"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:303
 msgid "Unable to load variables!"
@@ -5350,15 +5352,15 @@ msgstr "エミュレータ(_E)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:463
 msgid "Run / Pause"
-msgstr ""
+msgstr "実行 / 一時停止"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:489
 msgid "Keyboard controls..."
-msgstr ""
+msgstr "キーボード制御..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:498
 msgid "Joystick controls..."
-msgstr ""
+msgstr "ジョイスティック制御..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:507
 #: skytemple/skytemple/skytemple.glade:291
@@ -5388,7 +5390,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:849
 msgid "Script Browser"
-msgstr ""
+msgstr "スクリプトブラウザー"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:866
 #: skytemple/skytemple/module/script/controller/ssa.glade:1131
@@ -5400,11 +5402,12 @@ msgstr "スクリプト"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:958
 msgid "Ground Engine\n"
 "not running."
-msgstr ""
+msgstr "グラウンドエンジン\n"
+"が動作していません。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:938
 msgid "Active Files"
-msgstr ""
+msgstr "有効なファイル"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:974
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:538
@@ -5424,7 +5427,7 @@ msgstr ""
 #: skytemple/skytemple/controller/main.py:857
 #: skytemple/skytemple/skytemple.glade:1367
 msgid "Save"
-msgstr "保存"
+msgstr "セーブ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1172
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2881
@@ -5463,81 +5466,81 @@ msgstr "マクロ変数"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1518
 msgid "General Debug"
-msgstr ""
+msgstr "デバッグ全般"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1533
 msgid "Draw Entity Debug Overlay"
-msgstr ""
+msgstr "図形デバッグオーバーレイの描画"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1548
 msgid "Enable Debugging Mode"
-msgstr ""
+msgstr "デバッグモードを有効化する"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1552
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1569
 msgid "branch_Debug (if debug) commands will activate."
-msgstr ""
+msgstr "branch_Debug (デバッグの場合) コマンドは有効になります。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1565
 msgid "Dungeons: Auto Next Floor"
-msgstr ""
+msgstr "ダンジョン: 自動的に次の階へ移動"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1593
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2134
 msgid "Debug Flags"
-msgstr ""
+msgstr "デバッグフラグ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1608
 msgid "Message Speed Up"
-msgstr ""
+msgstr "メッセージ高速化"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1624
 msgid "Disable Screen Fade"
-msgstr ""
+msgstr "スクリーンフェードカット"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1640
 msgid "Disable Sound"
-msgstr ""
+msgstr "サウンド無効化"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1656
 msgid "Disable Background Music"
-msgstr ""
+msgstr "BGM消音"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1672
 msgid "Disable Sound Effects"
-msgstr ""
+msgstr "SE消音"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1698
 msgid "Stage NPC Dummy (?)"
-msgstr ""
+msgstr "ぶたいNPCダミー (不明？)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1713
 msgid "Text Overflow Check (does nothing)"
-msgstr ""
+msgstr "メッセージリミットチェック (機能しない)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1739
 msgid "No cheat-check (?)"
-msgstr ""
+msgstr "チートチェックカット (不明？)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1764
 msgid "No plunge-check (?)"
-msgstr ""
+msgstr "とつにゅうチェックカット (不明？)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1789
 msgid "Dungeon Infinite Comeback (?)"
-msgstr ""
+msgstr "ダンジョンむげんふっき (不明？)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1804
 msgid "Enable Debug Menus (does nothing)"
-msgstr ""
+msgstr "デバッグメニュー有効化 (機能しない)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1820
 msgid "Override Dungeon Result"
-msgstr ""
+msgstr "ダンジョンの結果を操作"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1848
 msgid "Debug Log Flags"
-msgstr ""
+msgstr "デバッグログ有効化"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1863
 #: skytemple/skytemple/module/dungeon/controller/main.glade:248
@@ -5557,61 +5560,61 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1943
 msgid "Script command"
-msgstr ""
+msgstr "スクリプトコマンド"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1959
 msgid "Sound"
-msgstr ""
+msgstr "サウンド"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1975
 msgid "BGM"
-msgstr ""
+msgstr "BGM"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1991
 msgid "SE"
-msgstr ""
+msgstr "SE"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2007
 #: skytemple/skytemple/module/lists/controller/object_list.glade:242
 msgid "Flag"
-msgstr ""
+msgstr "フラグ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2023
 msgid "File"
-msgstr ""
+msgstr "ファイル"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2039
 msgid "Memory"
-msgstr ""
+msgstr "メモリ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2071
 msgid "Thread"
-msgstr ""
+msgstr "スレッド"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2087
 msgid "Kernel"
-msgstr ""
+msgstr "カーネル"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2103
 msgid "Performance"
-msgstr ""
+msgstr "パフォーマンス"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2155
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:302
 msgid "Table: "
-msgstr ""
+msgstr "テーブル: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2189
 msgid "Parent Table: "
-msgstr ""
+msgstr "親テーブル: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2201
 msgid "Entries: "
-msgstr ""
+msgstr "エントリ: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2235
 msgid "Header: "
-msgstr "ヘッダー： "
+msgstr "ヘッダー: "
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2247
 msgid "Data: "
@@ -5701,11 +5704,11 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2709
 msgid "Pause the emulator."
-msgstr "エミュレータを一時停止します。"
+msgstr "エミュレーターを一時停止します。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2726
 msgid "Reset the emulator."
-msgstr "エミュレータをリセットします。"
+msgstr "エミュレーターをリセットします。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2962
 msgid "Savestate"
@@ -5713,7 +5716,7 @@ msgstr "保存状態"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3014
 msgid "Emulator"
-msgstr "エミュレータ"
+msgstr "エミュレーター"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3028
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:653
