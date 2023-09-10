@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-07 15:19+0000\n"
-"PO-Revision-Date: 2023-09-10 09:16\n"
+"PO-Revision-Date: 2023-09-10 11:32\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -6030,12 +6030,12 @@ msgstr "{filename} を開いています。"
 #: skytemple/skytemple/controller/main.py:837
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
-msgstr "「{rom_name}」の「ROM」を保存しています…"
+msgstr "「{rom_name}」にROMを保存中…"
 
 #: skytemple/skytemple/controller/main.py:839
 #, python-brace-format
 msgid "Saving {rom.filename}."
-msgstr "{rom.filename}を保存しています。"
+msgstr "{rom.filename} を保存中"
 
 #: skytemple/skytemple/controller/main.py:852
 #, python-brace-format
