@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-07 15:19+0000\n"
-"PO-Revision-Date: 2023-09-10 05:32\n"
+"PO-Revision-Date: 2023-09-10 06:29\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -4926,37 +4926,37 @@ msgstr "マクロ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:832
 msgid "Delete directory..."
-msgstr ""
+msgstr "ディレクトリを削除..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:840
 msgid "Delete script file..."
-msgstr ""
+msgstr "スクリプトファイルを削除..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:849
 msgid "Create Directory"
-msgstr ""
+msgstr "ディレクトリを作成"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:849
 msgid "Name of the directory:"
-msgstr ""
+msgstr "ディレクトリ名:"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:857
 msgid "Create File"
-msgstr ""
+msgstr "ファイルを作成"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:857
 msgid "Name of the new script file:"
-msgstr ""
+msgstr "新しいスクリプトファイル名:"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:869
 #, python-brace-format
 msgid "Do you want to delete the directory {row[1]} with all of it's contents?"
-msgstr ""
+msgstr "ディレクトリ {row[1]} とその内容をすべて削除しますか？"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:877
 #, python-brace-format
 msgid "Do you want to delete the script file {row[1]}?"
-msgstr ""
+msgstr "スクリプト {row[1]} を削除しますか？"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:915
 msgid "Common"
@@ -4985,23 +4985,23 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:984
 msgid "Save dumped block..."
-msgstr ""
+msgstr "ダンプしたブロックを保存..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1220
 msgid "Unable to save savestate!"
-msgstr ""
+msgstr "ステートをセーブできません！"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1256
 msgid "Unable to load savestate!"
-msgstr ""
+msgstr "ステートをロードできません！"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1369
 msgid "The game is stopped."
-msgstr ""
+msgstr "ゲームを停止しました。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1378
 msgid "The game is paused."
-msgstr ""
+msgstr "ゲームを一時停止しました。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1483
 #, python-brace-format
@@ -5013,11 +5013,14 @@ msgid "You have unsaved changes to variables.\n"
 "Variables are reset when the game is rebooted.\n"
 "You need to save the variables and load them after boot.\n\n"
 "Do you still want to continue?"
-msgstr ""
+msgstr "変数への変更が保存されていません。\n"
+"変数はゲームを再起動するとリセットされます。\n"
+"再度同じ変数を使用する場合、変数を保存して起動後に読み込む必要があります。\n\n"
+"続行しますか？"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1709
 msgid "Delete"
-msgstr ""
+msgstr "削除"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1711
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1722
@@ -5034,12 +5037,12 @@ msgstr "キャンセル"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1712
 msgid "You will not be able to restore it."
-msgstr ""
+msgstr "復元できません。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:268
 #, python-brace-format
 msgid "Compiling script \"{self.filename}\"..."
-msgstr ""
+msgstr "スクリプト {self.filename} をコンパイル中..."
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:285
 msgid "Parse error: "
@@ -5049,31 +5052,35 @@ msgstr ""
 #, python-brace-format
 msgid "The script file {self.filename} could not be saved.\n"
 "{prefix}{err}"
-msgstr ""
+msgstr "スクリプト {self.filename} を保存できませんでした。\n"
+"{prefix}{err}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:290
 msgid "Error saving the script."
-msgstr ""
+msgstr "スクリプトの保存中にエラーが発生しました。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:370
 #, python-brace-format
 msgid "There was an error while loading the ExplorerScript source code. The source will not be available.\n"
 "Please close and reopen the tab.\n\n"
 "{exception}"
-msgstr ""
+msgstr "ExplorerScript のソースコードの読み込み中にエラーが発生しました。ソースは使用できません。\n"
+"タブを閉じて再度開いてください。\n\n"
+"{exception}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:381
 msgid "SSBScript is not available for this file."
-msgstr ""
+msgstr "このファイルを SSBScript で使用することはできません。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:471
 msgid "An old version of this script is still loaded in RAM, but breakpoints are not available.\n"
 "Debugging is disabled for this file, until it is reloaded."
-msgstr ""
+msgstr "このスクリプトの古いバージョンはまだRAMに読み込まれていますが、ブレークポイントは使用できません。\n"
+"このファイルのデバッグは、再読み込みされるまで無効になります。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:479
 msgid "An old version of this script is still loaded in RAM, old breakpoints are still used, until the file is reloaded."
-msgstr ""
+msgstr "ファイルが再読み込みされるまで、このスクリプトの古いバージョンは RAM に読み込まれたままになり、古いブレークポイントは引き続き使用されます。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/script_editor.py:762
 #, python-brace-format
@@ -6010,7 +6017,7 @@ msgstr "ROMを開く"
 #: skytemple/skytemple/controller/main.py:671
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
-msgstr "「{rom_name}」の「rom」をローデイングです…"
+msgstr "「{rom_name}」のROMをロード中…"
 
 #: skytemple/skytemple/controller/main.py:673
 #, python-brace-format
