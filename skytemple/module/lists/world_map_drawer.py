@@ -86,8 +86,9 @@ class WorldMapDrawer:
             ctx.paint()
 
         size_w, size_h = self.draw_area.get_size_request()
-        size_w /= self.scale
-        size_h /= self.scale
+        assert size_w is not None and size_h is not None
+        size_w //= self.scale
+        size_h //= self.scale
 
         # Tile Grid
         if self.draw_tile_grid:

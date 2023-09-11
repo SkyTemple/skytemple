@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING, Optional, List, cast
 
 from gi.repository import Gtk
 from range_typed_integers import i32_checked, i32, u16_checked, u16
@@ -25,7 +25,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import catch_overflow
+from skytemple.core.ui_utils import catch_overflow, builder_get_assert, iter_tree_model, assert_not_none
 from skytemple_files.hardcoded.menus import MenuEntry, MenuType
 from skytemple_files.common.i18n_util import _
 
@@ -41,10 +41,11 @@ class MenuListController(AbstractController):
         super().__init__(module, *args)
         self.module = module
         self._string_provider = module.project.get_string_provider()
+        self._list_store: Gtk.ListStore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'menu_list.glade')
-        lst: Gtk.Box = self.builder.get_object('box_list')
+        lst = builder_get_assert(self.builder, Gtk.Box, 'box_list')
         self._rank_up_table = self.module.get_rank_list()
 
         self._init_combos()
@@ -54,8 +55,8 @@ class MenuListController(AbstractController):
 
     def _init_combos(self):
         # Init available menus
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_store_menu')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_menu')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_store_menu')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_menu')
         # Init combobox
         cb_store.clear()
         for v in sorted(MenuType, key=lambda x:x.menu_name):
@@ -63,8 +64,8 @@ class MenuListController(AbstractController):
         cb.set_active(0)
         
         # Init available languages
-        cb_store = self.builder.get_object('cb_store_lang')
-        cb = self.builder.get_object('cb_lang')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_store_lang')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_lang')
         # Init combobox
         cb_store.clear()
         for lang in self._string_provider.get_languages():
@@ -72,10 +73,12 @@ class MenuListController(AbstractController):
         cb.set_active(0)
     
     def _get_current_settings(self) -> int:
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_store_menu')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_menu')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_store_menu')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_menu')
 
-        return cb_store[cb.get_active_iter()][0]
+        active_iter = cb.get_active_iter()
+        assert active_iter is not None
+        return cb_store[active_iter][0]
 
     def on_btn_help_clicked(self, *args):
         md = SkyTempleMessageDialog(MainController.window(),
@@ -94,9 +97,11 @@ class MenuListController(AbstractController):
         md.destroy()
 
     def on_lang_changed(self, *args):
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_store_lang')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_lang')
-        self._current_lang = cb_store[cb.get_active_iter()][0]
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_store_lang')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_lang')
+        active_iter = cb.get_active_iter()
+        assert active_iter is not None
+        self._current_lang = cb_store[active_iter][0]
         self._refresh_list()
     
     def on_menu_changed(self, *args):
@@ -105,9 +110,9 @@ class MenuListController(AbstractController):
     def _regenerate_list(self):
         menu_id = self._get_current_settings()
         
-        tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
         new_list = []
-        for row in tree_store:
+        for row in iter_tree_model(tree_store):
             new_list.append(MenuEntry(row[0], row[2], row[4]))
         self.module.set_menu(menu_id, new_list)
         self._refresh_list()
@@ -115,7 +120,7 @@ class MenuListController(AbstractController):
     @catch_overflow(u16)
     def on_id_name_edited(self, widget, path, text):
         try:
-            tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+            tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
             tree_store[path][0] = u16_checked(int(text))
         except ValueError:
             return
@@ -125,7 +130,7 @@ class MenuListController(AbstractController):
     @catch_overflow(u16)
     def on_id_description_edited(self, widget, path, text):
         try:
-            tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+            tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
             tree_store[path][2] = u16_checked(int(text))
         except ValueError:
             return
@@ -135,7 +140,7 @@ class MenuListController(AbstractController):
     @catch_overflow(i32)
     def on_action_edited(self, widget, path, text):
         try:
-            tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+            tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
             tree_store[path][4] = i32_checked(int(text))
         except ValueError:
             return
@@ -143,7 +148,7 @@ class MenuListController(AbstractController):
         self._regenerate_list()
     
     def on_string_name_edited(self, widget, path, text):
-        tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
         current_id = int(tree_store[path][0])
         if current_id>0:
             self._string_provider.get_model(self._current_lang).strings[
@@ -153,7 +158,7 @@ class MenuListController(AbstractController):
             self.module.mark_string_as_modified()
             
     def on_string_description_edited(self, widget, path, text):
-        tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
         current_id = int(tree_store[path][2])
         if current_id>0:
             self._string_provider.get_model(self._current_lang).strings[
@@ -163,14 +168,14 @@ class MenuListController(AbstractController):
             self.module.mark_string_as_modified()
     
     def _refresh_list(self):
-        tree: Gtk.TreeView = self.builder.get_object('tree')
-        self._list_store: Gtk.ListStore = tree.get_model()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree')
+        self._list_store = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         self._list_store.clear()
 
         # Iterate list
         menu_id = self._get_current_settings()
         menu_list = self.module.get_menu(menu_id)
-        tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
         tree_store.clear()
         str_list = self._string_provider.get_model(self._current_lang).strings
         for m in menu_list:

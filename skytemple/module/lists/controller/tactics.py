@@ -16,14 +16,14 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING, Optional, List, cast
 
 from gi.repository import Gtk
 from range_typed_integers import i16, i16_checked
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import glib_async, catch_overflow
+from skytemple.core.ui_utils import glib_async, catch_overflow, builder_get_assert
 from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
@@ -39,11 +39,11 @@ class TacticsController(AbstractController):
         super().__init__(module, item_id)
         self.module = module
         self._list: List[i16]
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'tactics.glade')
-        lst: Gtk.Box = self.builder.get_object('box_list')
+        lst = builder_get_assert(self.builder, Gtk.Box, 'box_list')
         self._list = self.module.get_tactics()
         self.refresh_list()
 
@@ -56,7 +56,7 @@ class TacticsController(AbstractController):
             i16_checked(int(text))  # this is only for validating.
         except ValueError:
             return
-        self.builder.get_object('list_store')[path][1] = text
+        builder_get_assert(self.builder, Gtk.ListStore, 'list_store')[path][1] = text
 
     @glib_async
     def on_list_store_row_changed(self, store, path, l_iter):
@@ -68,14 +68,15 @@ class TacticsController(AbstractController):
         self.module.set_tactics(self._list)
 
     def refresh_list(self):
-        tree: Gtk.TreeView = self.builder.get_object('tree')
-        store: Gtk.ListStore = tree.get_model()
-        store.clear()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree')
+        store = cast(Gtk.ListStore, tree.get_model())
+        if store:
+            store.clear()
 
-        # Iterate list
-        for idx, entry in enumerate(self._list):
-            store.append([
-                str(idx), str(entry), self.module.project.get_string_provider().get_value(
-                    StringType.TACTICS_NAMES, idx
-                ) if idx != 11 else _('<Not working>')
-            ])
+            # Iterate list
+            for idx, entry in enumerate(self._list):
+                store.append([
+                    str(idx), str(entry), self.module.project.get_string_provider().get_value(
+                        StringType.TACTICS_NAMES, idx
+                    ) if idx != 11 else _('<Not working>')
+                ])

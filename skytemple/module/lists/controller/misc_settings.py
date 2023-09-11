@@ -23,7 +23,7 @@ from range_typed_integers import u8, u8_checked, u16, u16_checked
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import BinaryName
-from skytemple.core.ui_utils import catch_overflow
+from skytemple.core.ui_utils import catch_overflow, builder_get_assert
 from skytemple_files.hardcoded.dungeon_misc import HardcodedDungeonMisc
 from skytemple_files.hardcoded.hp_items import HardcodedHpItems
 from skytemple_files.hardcoded.main_menu_music import HardcodedMainMenuMusic
@@ -45,7 +45,7 @@ class MiscSettingsController(AbstractController):
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'misc_settings.glade')
-        box: Gtk.Box = self.builder.get_object('box')
+        box = builder_get_assert(self.builder, Gtk.Box, 'box')
 
         self._init_combos()
         self._init_values()
@@ -68,9 +68,10 @@ class MiscSettingsController(AbstractController):
         model, cbiter = widget.get_model(), widget.get_active_iter()
         if model is not None and cbiter is not None and cbiter != []:
             static_data = self.module.project.get_rom_module().get_static_data()
+            mus = model[cbiter][0]
             self.module.project.modify_binary(BinaryName.OVERLAY_00, lambda bin: (
                 self.module.project.modify_binary(BinaryName.OVERLAY_09, lambda bin2: (
-                    HardcodedMainMenuMusic.set_main_menu_music(model[cbiter][0], bin, static_data, bin2)
+                    HardcodedMainMenuMusic.set_main_menu_music(mus, bin, static_data, bin2)
                 ))
             ))
             self.module.mark_misc_settings_as_modified()
@@ -196,7 +197,7 @@ class MiscSettingsController(AbstractController):
 
     def _init_combos(self):
         # Init music tracks
-        cb_store: Gtk.ListStore = self.builder.get_object('store_main_menu_music')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_main_menu_music')
         # Init combobox
         cb_store.clear()
         for idx, track in self.module.project.get_rom_module().get_static_data().script_data.bgms__by_id.items():
@@ -209,17 +210,17 @@ class MiscSettingsController(AbstractController):
         ov29 = self.module.project.get_binary(BinaryName.OVERLAY_29)
         static_data = self.module.project.get_rom_module().get_static_data()
 
-        self.builder.get_object('entry_text_speed').set_text(str(HardcodedTextSpeed.get_text_speed(arm9, static_data)))
-        self.builder.get_object('cb_main_menu_music').set_active(HardcodedMainMenuMusic.get_main_menu_music(ov00, static_data))
-        self.builder.get_object('entry_normal_spawn_delay').set_text(str(HardcodedSpawnRate.get_normal_spawn_rate(ov10, static_data)))
-        self.builder.get_object('entry_stolen_spawn_delay').set_text(str(HardcodedSpawnRate.get_stolen_spawn_rate(ov10, static_data)))
-        self.builder.get_object('entry_belly_lost').set_text(str(HardcodedDungeonMisc.get_belly_loss_turn(ov29, static_data)))
-        self.builder.get_object('entry_belly_lost_wtw').set_text(str(HardcodedDungeonMisc.get_belly_loss_walk_through_walls(ov29, static_data)))
-        self.builder.get_object('entry_belly_lost_wtw_1000').set_text(str(HardcodedDungeonMisc.get_belly_loss_1000ile_walk_through_walls(ov29, static_data)))
-        self.builder.get_object('entry_ginseng_3_chance').set_text(str(HardcodedDungeonMisc.get_ginseng_increase_by_3_chance(ov10, static_data)))
-        self.builder.get_object('entry_life_seed').set_text(str(HardcodedHpItems.get_life_seed_hp(ov10, static_data)))
-        self.builder.get_object('entry_oran_berry').set_text(str(HardcodedHpItems.get_oran_berry_hp(ov10, static_data)))
-        self.builder.get_object('entry_sitrus_berry').set_text(str(HardcodedHpItems.get_sitrus_berry_hp(ov10, static_data)))
-        self.builder.get_object('entry_burn_damage_delay').set_text(str(HardcodedDungeonMisc.get_burn_damage_delay(ov10, static_data)))
-        self.builder.get_object('entry_poison_damage_delay').set_text(str(HardcodedDungeonMisc.get_poison_damage_delay(ov10, static_data)))
-        self.builder.get_object('entry_bad_poison_damage_delay').set_text(str(HardcodedDungeonMisc.get_bad_poison_damage_delay(ov10, static_data)))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_text_speed').set_text(str(HardcodedTextSpeed.get_text_speed(arm9, static_data)))
+        builder_get_assert(self.builder, Gtk.ComboBox, 'cb_main_menu_music').set_active(HardcodedMainMenuMusic.get_main_menu_music(ov00, static_data))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_normal_spawn_delay').set_text(str(HardcodedSpawnRate.get_normal_spawn_rate(ov10, static_data)))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_stolen_spawn_delay').set_text(str(HardcodedSpawnRate.get_stolen_spawn_rate(ov10, static_data)))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_belly_lost').set_text(str(HardcodedDungeonMisc.get_belly_loss_turn(ov29, static_data)))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_belly_lost_wtw').set_text(str(HardcodedDungeonMisc.get_belly_loss_walk_through_walls(ov29, static_data)))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_belly_lost_wtw_1000').set_text(str(HardcodedDungeonMisc.get_belly_loss_1000ile_walk_through_walls(ov29, static_data)))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_ginseng_3_chance').set_text(str(HardcodedDungeonMisc.get_ginseng_increase_by_3_chance(ov10, static_data)))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_life_seed').set_text(str(HardcodedHpItems.get_life_seed_hp(ov10, static_data)))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_oran_berry').set_text(str(HardcodedHpItems.get_oran_berry_hp(ov10, static_data)))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_sitrus_berry').set_text(str(HardcodedHpItems.get_sitrus_berry_hp(ov10, static_data)))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_burn_damage_delay').set_text(str(HardcodedDungeonMisc.get_burn_damage_delay(ov10, static_data)))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_poison_damage_delay').set_text(str(HardcodedDungeonMisc.get_poison_damage_delay(ov10, static_data)))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_bad_poison_damage_delay').set_text(str(HardcodedDungeonMisc.get_bad_poison_damage_delay(ov10, static_data)))

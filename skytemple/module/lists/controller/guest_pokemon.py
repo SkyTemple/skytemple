@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import re
-from typing import TYPE_CHECKING, List, Union, Optional
+from typing import TYPE_CHECKING, List, Union, Optional, cast
 
 from gi.repository import Gtk
 from gi.repository.Gtk import Widget
@@ -27,7 +27,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.rom_project import BinaryName
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import catch_overflow
+from skytemple.core.ui_utils import catch_overflow, builder_get_assert, iter_tree_model
 from skytemple.module.lists.controller.base import ListBaseController
 from skytemple_files.common.i18n_util import f, _
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonDungeon
@@ -46,20 +46,21 @@ class GuestPokemonController(ListBaseController):
     def __init__(self, module: 'ListsModule', item_id: int):
         super().__init__(module)
         self.module = module
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self.arm9 = module.project.get_binary(BinaryName.ARM9)
         self.static_data = module.project.get_rom_module().get_static_data()
         self.monster_md_entries = self.module.get_monster_md().entries
         self.move_entries = self.module.get_waza_p().moves
+        self._list_store: Gtk.ListStore
 
     def get_view(self) -> Widget:
         self.builder = self._get_builder(__file__, 'guest_pokemon.glade')
         assert self.builder
-        self._list_store = self.builder.get_object('store_tree_guest_pokemon_data')
-        stack: Gtk.Stack = self.builder.get_object('list_stack')
+        self._list_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_guest_pokemon_data')
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'list_stack')
 
         if not self.module.has_edit_extra_pokemon():
-            stack.set_visible_child(self.builder.get_object('box_na'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_na'))
             return stack
 
         self._loading = True
@@ -69,7 +70,7 @@ class GuestPokemonController(ListBaseController):
         self._update_free_entries_left()
         self._loading = False
 
-        stack.set_visible_child(self.builder.get_object('box_list'))
+        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_list'))
         self.builder.connect_signals(self)
 
         return stack
@@ -95,9 +96,9 @@ class GuestPokemonController(ListBaseController):
                      "cleared."))
 
     def on_guest_pokemon_add_clicked(self, *args):
-        store: Gtk.ListStore = self.builder.get_object('store_tree_guest_pokemon_data')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_guest_pokemon_data')
         store.append([
-            str(len(store)), "0", self._get_monster_display_name(0), "0", self._get_move_display_name(0),
+            str(store.iter_n_children()), "0", self._get_monster_display_name(0), "0", self._get_move_display_name(0),
             self._get_move_display_name(0), self._get_move_display_name(0), self._get_move_display_name(0),
             "1", "1", "1", "0", "0", "0", "0", "0", "0", None
         ])
@@ -105,12 +106,12 @@ class GuestPokemonController(ListBaseController):
         self._save_guest_pokemon_data()
 
     def on_guest_pokemon_remove_clicked(self, *args):
-        tree: Gtk.TreeView = self.builder.get_object('tree_guest_pokemon_data')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree_guest_pokemon_data')
         model, treeiter = tree.get_selection().get_selected()
         # There has to be a better way of getting this value
-        selected_row_index = tree.get_selection().get_selected_rows()[1][0][0]
+        selected_row_index = tree.get_selection().get_selected_rows()[1][0][0]  # type: ignore
         if model is not None and treeiter is not None:
-            model.remove(treeiter)
+            cast(Gtk.ListStore, model).remove(treeiter)
         self._update_free_entries_left()
         self._guest_pokemon_entry_deleted(selected_row_index)
         self._save_guest_pokemon_data()
@@ -121,14 +122,14 @@ class GuestPokemonController(ListBaseController):
         self._update_guest_pokemon_int(path, text, 1, 0, 0xFFFFFFFF)
 
     def on_guest_pokemon_poke_id_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_monsters'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_monsters'))
 
     def on_guest_pokemon_poke_id_edited(self, widget, path, text):
         try:
             entid = self._get_monster_id_from_display_name(text)
         except ValueError:
             return
-        store: Gtk.ListStore = self.builder.get_object('store_tree_guest_pokemon_data')
+        store: Gtk.ListStore = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_guest_pokemon_data')
         store[path][2] = text
         idx = int(store[path][0])
         store[path][17] = self._get_icon(entid, idx, False)
@@ -139,7 +140,7 @@ class GuestPokemonController(ListBaseController):
         self._update_guest_pokemon_int(path, text, 3, 0, 255)
 
     def on_guest_pokemon_move_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_moves'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.ListStore, 'completion_moves'))
 
     def on_guest_pokemon_move1_edited(self, widget, path, text):
         self._update_guest_pokemon_move(path, text, 4)
@@ -194,22 +195,22 @@ class GuestPokemonController(ListBaseController):
     def on_extra_dungeon_data_guest_pokemon_1_edited(self, widget, path, text):
         try:
             v = int(text)
-            if v < -1 or v >= len(self.builder.get_object('store_tree_guest_pokemon_data')):
+            if v < -1 or v >= builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_guest_pokemon_data').iter_n_children():
                 return
         except ValueError:
             return
-        store: Gtk.ListStore = self.builder.get_object('store_tree_extra_dungeon_data')
+        store: Gtk.ListStore = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_extra_dungeon_data')
         store[path][1] = text
         self._save_extra_dungeon_data()
 
     def on_extra_dungeon_data_guest_pokemon_2_edited(self, widget, path, text):
         try:
             v = int(text)
-            if v < -1 or v >= len(self.builder.get_object('store_tree_guest_pokemon_data')):
+            if v < -1 or v >= builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_guest_pokemon_data').iter_n_children():
                 return
         except ValueError:
             return
-        store: Gtk.ListStore = self.builder.get_object('store_tree_extra_dungeon_data')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_extra_dungeon_data')
         store[path][2] = text
         self._save_extra_dungeon_data()
 
@@ -237,7 +238,7 @@ class GuestPokemonController(ListBaseController):
 
     def _fill_extra_dungeon_data(self):
         # Init extra dungeon data store
-        store: Gtk.ListStore = self.builder.get_object('store_tree_extra_dungeon_data')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_extra_dungeon_data')
         store.clear()
         dungeons : List[Pmd2DungeonDungeon] = self.static_data.dungeon_data.dungeons
         for idx, item in enumerate(ExtraDungeonDataList.read(self.arm9, self.static_data)):
@@ -249,7 +250,7 @@ class GuestPokemonController(ListBaseController):
 
     def _fill_guest_pokemon_data(self):
         # Init guest pokémon data store
-        store: Gtk.ListStore = self.builder.get_object('store_tree_guest_pokemon_data')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_guest_pokemon_data')
         store.clear()
         for i, item in enumerate(GuestPokemonList.read(self.arm9, self.static_data)):
             store.append([
@@ -261,9 +262,9 @@ class GuestPokemonController(ListBaseController):
             ])
 
     def _save_extra_dungeon_data(self):
-        store: Gtk.ListStore = self.builder.get_object('store_tree_extra_dungeon_data')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_extra_dungeon_data')
         extra_dungeon_data_list = []
-        for i, row in enumerate(store):
+        for i, row in enumerate(iter_tree_model(store)):
             extra_dungeon_data_list.append(ExtraDungeonDataEntry(int(row[1]), int(row[2]),
                                                                  row[3], row[4], row[5], row[6]))
         self.module.set_extra_dungeon_data(extra_dungeon_data_list)
@@ -271,9 +272,9 @@ class GuestPokemonController(ListBaseController):
         self.arm9 = self.module.project.get_binary(BinaryName.ARM9)
 
     def _save_guest_pokemon_data(self):
-        store: Gtk.ListStore = self.builder.get_object('store_tree_guest_pokemon_data')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_guest_pokemon_data')
         guest_pokemon_list = []
-        for i, row in enumerate(store):
+        for i, row in enumerate(iter_tree_model(store)):
             guest_pokemon_list.append(GuestPokemon(
                 u32(int(row[1])), u16(self._get_monster_id_from_display_name(row[2])), u16(int(row[3])),
                 [
@@ -292,23 +293,23 @@ class GuestPokemonController(ListBaseController):
 
     def _init_completion(self):
         # Init monsters Completion
-        store: Gtk.ListStore = self.builder.get_object('store_completion_monsters')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_completion_monsters')
         for i in range(len(self.monster_md_entries)):
             store.append([self._get_monster_display_name(i)])
 
         # Init moves Completion
-        store = self.builder.get_object('store_completion_moves')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_completion_moves')
         for i in range(len(self.move_entries)):
             store.append([self._get_move_display_name(i)])
 
     def _update_free_entries_left(self):
-        store: Gtk.ListStore = self.builder.get_object('store_tree_guest_pokemon_data')
-        entries_left = GuestPokemonList.get_max_entries(self.static_data) - len(store)
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_guest_pokemon_data')
+        entries_left = GuestPokemonList.get_max_entries(self.static_data) - store.iter_n_children()
 
-        entries_left_text: Gtk.Label = self.builder.get_object('label_free_entries_left')
+        entries_left_text = builder_get_assert(self.builder, Gtk.Label, 'label_free_entries_left')
         entries_left_text.set_text(f"Free entries left: {entries_left}")
 
-        add_button: Gtk.Button = self.builder.get_object('btn_guest_pokemon_add')
+        add_button = builder_get_assert(self.builder, Gtk.Button, 'btn_guest_pokemon_add')
         if entries_left <= 0:
             add_button.set_sensitive(False)
         else:
@@ -320,13 +321,13 @@ class GuestPokemonController(ListBaseController):
         Must be called after removing a guest pokémon entry from the list.
         """
         assert self.builder
-        store: Gtk.ListStore = self.builder.get_object('store_tree_guest_pokemon_data')
-        for i, row in enumerate(store):
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_guest_pokemon_data')
+        for i, row in enumerate(iter_tree_model(store)):
             row[0] = str(i)
 
         # Update references
-        store = self.builder.get_object('store_tree_extra_dungeon_data')
-        for row in enumerate(store):
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_extra_dungeon_data')
+        for row in enumerate(iter_tree_model(store)):
             if int(row[1][1]) == pos:
                 row[1][1] = "-1"
             elif int(row[1][1]) > pos:
@@ -340,7 +341,7 @@ class GuestPokemonController(ListBaseController):
 
     def _update_extra_dungeon_data_boolean(self, widget, path, value_pos: int):
         assert self.builder
-        store: Gtk.ListStore = self.builder.get_object('store_tree_extra_dungeon_data')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_extra_dungeon_data')
         store[path][value_pos] = not widget.get_active()
         self._save_extra_dungeon_data()
 
@@ -352,7 +353,7 @@ class GuestPokemonController(ListBaseController):
                 raise OverflowError()
         except ValueError:
             return
-        store: Gtk.ListStore = self.builder.get_object('store_tree_guest_pokemon_data')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_guest_pokemon_data')
         store[path][value_pos] = text
         self._save_guest_pokemon_data()
 
@@ -362,7 +363,7 @@ class GuestPokemonController(ListBaseController):
             self._get_move_id_from_display_name(text)
         except ValueError:
             return
-        store: Gtk.ListStore = self.builder.get_object('store_tree_guest_pokemon_data')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tree_guest_pokemon_data')
         store[path][value_pos] = text
         self._save_guest_pokemon_data()
 

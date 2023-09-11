@@ -16,14 +16,14 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Optional, List, Dict
+from typing import TYPE_CHECKING, Optional, List, Dict, cast
 
 from gi.repository import Gtk
 from range_typed_integers import u32_checked, u32
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import glib_async, catch_overflow
+from skytemple.core.ui_utils import glib_async, catch_overflow, builder_get_assert, assert_not_none
 from skytemple_files.hardcoded.rank_up_table import Rank
 
 if TYPE_CHECKING:
@@ -37,14 +37,14 @@ class RankListController(AbstractController):
     def __init__(self, module: 'ListsModule', *args):
         super().__init__(module, *args)
         self.module = module
-        self._rank_up_table: List[Rank] = None
+        self._rank_up_table: List[Rank] = None  # type: ignore
         self._item_names: Dict[int, str] = {}
-        self._list_store: Gtk.ListStore = None
+        self._list_store: Gtk.ListStore = None  # type: ignore
         self._loading = True
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'rank_list.glade')
-        lst: Gtk.Box = self.builder.get_object('box_list')
+        lst = builder_get_assert(self.builder, Gtk.Box, 'box_list')
         self._rank_up_table = self.module.get_rank_list()
 
         self._init_item_store()
@@ -88,7 +88,7 @@ class RankListController(AbstractController):
         self._list_store[path][5] = self._item_names[item_id]
 
     def on_cr_item_awarded_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_items'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_items'))
 
     @glib_async
     def on_list_store_row_changed(self, store, path, l_iter):
@@ -110,8 +110,8 @@ class RankListController(AbstractController):
         self.module.set_rank_list(self._rank_up_table)
 
     def refresh_list(self):
-        tree: Gtk.TreeView = self.builder.get_object('tree')
-        self._list_store = tree.get_model()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree')
+        self._list_store = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         self._list_store.clear()
 
         # Iterate list
@@ -125,7 +125,7 @@ class RankListController(AbstractController):
             ])
 
     def _init_item_store(self):
-        item_store: Gtk.ListStore = self.builder.get_object('item_store')
+        item_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_store')
         sp = self.module.project.get_string_provider()
         for i, name in enumerate(sp.get_all(StringType.ITEM_NAMES)):
             self._item_names[i] = f'{name} (#{i:03})'

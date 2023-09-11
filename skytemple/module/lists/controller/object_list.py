@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import sys
 import logging
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, cast
 
 from gi.repository import Gtk
 from range_typed_integers import u16, u8, u16_checked
@@ -24,7 +24,7 @@ from range_typed_integers import u16, u8, u16_checked
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import glib_async, catch_overflow
+from skytemple.core.ui_utils import glib_async, catch_overflow, builder_get_assert, assert_not_none
 from skytemple.module.lists.controller.base import ListBaseController
 from skytemple_files.list.object.model import ObjectListBin
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptObject
@@ -39,13 +39,14 @@ class ObjectListController(ListBaseController):
     def __init__(self, module: 'ListsModule', *args):
         super().__init__(module, *args)
         self._list: ObjectListBin
+        self._list_store: Gtk.ListStore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'object_list.glade')
-        stack: Gtk.Stack = self.builder.get_object('list_stack')
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'list_stack')
 
         if not self.module.has_object_list():
-            stack.set_visible_child(self.builder.get_object('box_na'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_na'))
             return stack
         self._list = self.module.get_object_list()
 
@@ -53,7 +54,7 @@ class ObjectListController(ListBaseController):
         # This will also reflect changes to the list in other parts of the UI.
         self.module.project.get_rom_module().get_static_data().script_data.objects = self._list.list
 
-        stack.set_visible_child(self.builder.get_object('box_list'))
+        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_list'))
         self.load()
         return stack
 
@@ -133,8 +134,8 @@ class ObjectListController(ListBaseController):
         self.module.mark_objects_as_modified()
 
     def refresh_list(self):
-        tree: Gtk.TreeView = self.builder.get_object('object_tree')
-        self._list_store: Gtk.ListStore = tree.get_model()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'object_tree')
+        self._list_store = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         self._list_store.clear()
         # Iterate list
         for idx, entry in enumerate(self._list.list):
@@ -143,7 +144,7 @@ class ObjectListController(ListBaseController):
             ])
 
     def get_tree(self):
-        return self.builder.get_object('objet_tree')
+        return builder_get_assert(self.builder, Gtk.TreeView, 'objet_tree')
 
     def can_be_placeholder(self):
         return True

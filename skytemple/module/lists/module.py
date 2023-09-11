@@ -395,20 +395,20 @@ class ListsModule(AbstractModule):
     
     def get_menu(self, menu_id) -> List[MenuEntry]:
         """Returns the rank up table."""
-        binary = self.project.get_binary(MenuType(menu_id).binary)
+        binary = self.project.get_binary(MenuType(menu_id).binary)  # type: ignore
         static_data = self.project.get_rom_module().get_static_data()
-        return HardcodedMenus.get_menu(MenuType(menu_id), binary, static_data)
+        return HardcodedMenus.get_menu(MenuType(menu_id), binary, static_data)  # type: ignore
 
     def set_menu(self, menu_id, values: List[MenuEntry]):
         """Sets the rank up table."""
         def update(binary):
             static_data = self.project.get_rom_module().get_static_data()
             HardcodedMenus.set_menu(
-                MenuType(menu_id),
+                MenuType(menu_id),  # type: ignore
                 values, binary, static_data
             )
         
-        self.project.modify_binary(MenuType(menu_id).binary, update)
+        self.project.modify_binary(MenuType(menu_id).binary, update)  # type: ignore
 
         row = self._tree_model[self._menu_list_tree_iter]
         recursive_up_item_store_mark_as_modified(row)

@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import TYPE_CHECKING, Optional, Dict, List, Tuple
+from typing import TYPE_CHECKING, Optional, Dict, List, Tuple, cast
 
 from gi.repository import Gtk, Gdk
 from range_typed_integers import i16, i16_checked
@@ -26,6 +26,7 @@ from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import builder_get_assert
 from skytemple.module.lists.controller import WORLD_MAP_DEFAULT_ID
 from skytemple.module.lists.world_map_drawer import WorldMapDrawer
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
@@ -47,7 +48,7 @@ class WorldMapController(AbstractController):
     def __init__(self, module: 'ListsModule', *args):
         self.module = module
         self.map_bg_module: 'MapBgModule' = module.project.get_module('map_bg')
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self.drawer: Optional[WorldMapDrawer] = None
         self.dialog_drawer: Optional[WorldMapDrawer] = None
         self._location_names: Dict[int, str] = {}
@@ -61,7 +62,7 @@ class WorldMapController(AbstractController):
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'world_map.glade')
         assert self.builder
-        lst: Gtk.Box = self.builder.get_object('box_list')
+        lst = builder_get_assert(self.builder, Gtk.Box, 'box_list')
         self._markers = self.module.get_world_map_markers()
         self._config = self.module.project.get_rom_module().get_static_data()
 
@@ -78,13 +79,14 @@ class WorldMapController(AbstractController):
         self._init_list()
         self._init_drawer()
         self._level_id = WORLD_MAP_DEFAULT_ID if WORLD_MAP_DEFAULT_ID in self._config.script_data.level_list__by_id else 0
-        self._change_map_bg(self._level_id, self.builder.get_object('draw'), self.drawer)
+        self._change_map_bg(self._level_id, builder_get_assert(self.builder, Gtk.DrawingArea, 'draw'), self.drawer)
         self.builder.connect_signals(self)
         return lst
 
     def _init_list(self):
-        tree: Gtk.TreeView = self.builder.get_object('tree')
-        self._list_store: Gtk.ListStore = tree.get_model()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree')
+        self._list_store = cast(Optional[Gtk.ListStore], tree.get_model())
+        assert self._list_store is not None
         self._list_store.clear()
 
         # Iterate list
@@ -122,7 +124,7 @@ class WorldMapController(AbstractController):
                 ll_by_name = self._config.script_data.level_list__by_name
                 if self._level_id != ll_by_name[map_name].id:
                     self._level_id = ll_by_name[map_name].id
-                    self._change_map_bg(ll_by_name[map_name].id, self.builder.get_object('draw'), self.drawer)
+                    self._change_map_bg(ll_by_name[map_name].id, builder_get_assert(self.builder, Gtk.DrawingArea, 'draw'), self.drawer)
 
     def on_draw_event_button_press_event(self, box, button: Gdk.EventButton):
         if not self.drawer:
@@ -138,9 +140,11 @@ class WorldMapController(AbstractController):
             selected = self.drawer.get_under_mouse()
             if selected is not None:
                 tree: Gtk.TreeView
-                tree, l_iter = self.builder.get_object('tree'), self._tree_iters_by_idx[self._markers.index(selected)]
+                tree, l_iter = builder_get_assert(self.builder, Gtk.TreeView, 'tree'), self._tree_iters_by_idx[self._markers.index(selected)]
                 tree.get_selection().select_iter(l_iter)
-                tree.scroll_to_cell(tree.get_model().get_path(l_iter))
+                tree_model = cast(Optional[Gtk.TreeStore], tree.get_model())
+                if tree_model is not None:
+                    tree.scroll_to_cell(tree_model.get_path(l_iter), column=None, row_align=0.5, col_align=0.5, use_align=False)
 
     def on_edit_map_bg_clicked(self, *args):
         self.module.project.request_open(OpenRequest(
@@ -148,11 +152,11 @@ class WorldMapController(AbstractController):
         ))
 
     def _init_drawer(self):
-        draw = self.builder.get_object('draw')
+        draw = builder_get_assert(self.builder, Gtk.DrawingArea, 'draw')
         self.drawer = WorldMapDrawer(draw, self._markers, self._get_dungeon_name, SCALE)
         self.drawer.start()
 
-        draw = self.builder.get_object('diag_draw')
+        draw = builder_get_assert(self.builder, Gtk.DrawingArea, 'diag_draw')
         self.dialog_drawer = WorldMapDrawer(draw, self._markers, self._get_dungeon_name, SCALE)
         self.dialog_drawer.start()
 
@@ -211,11 +215,11 @@ class WorldMapController(AbstractController):
     # -- Dialog -- #
 
     def _edit(self):
-        tree = self.builder.get_object('tree')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree')
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
             idx = int(model[treeiter][0])
-            dialog: Gtk.Dialog = self.builder.get_object('diag_edit')
+            dialog = builder_get_assert(self.builder, Gtk.Dialog, 'diag_edit')
             dlabel = self._get_dungeon_name(idx)
             if dlabel != '':
                 dialog.set_title(f'{_("Edit Marker")} {idx} ({dlabel})')
@@ -225,14 +229,16 @@ class WorldMapController(AbstractController):
             dialog.set_attached_to(MainController.window())
             try:
                 screen: Gdk.Screen = dialog.get_screen()
-                monitor = screen.get_monitor_geometry(screen.get_monitor_at_window(screen.get_active_window()))
-                dialog.resize(monitor.width * 0.75, monitor.height * 0.75)
+                window = screen.get_active_window()
+                assert window is not None
+                monitor = screen.get_monitor_geometry(screen.get_monitor_at_window(window))
+                dialog.resize(round(monitor.width * 0.75), round(monitor.height * 0.75))
             except BaseException:
                 dialog.resize(1015, 865)
 
             # Map combobox
-            cb_map: Gtk.ComboBox = self.builder.get_object('cb_map')
-            map_store = cb_map.get_model()
+            cb_map: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_map')
+            map_store = cast(Optional[Gtk.ListStore], cb_map.get_model())
             if map_store is None:
                 map_store = Gtk.ListStore(int, str)
                 cb_map.set_model(map_store)
@@ -249,8 +255,8 @@ class WorldMapController(AbstractController):
             cb_map.set_active_iter(selected_map_iter)
 
             # Reference combobox
-            cb_reference: Gtk.ComboBox = self.builder.get_object('cb_reference')
-            ref_store = cb_reference.get_model()
+            cb_reference: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_reference')
+            ref_store = cast(Optional[Gtk.ListStore], cb_reference.get_model())
             if ref_store is None:
                 ref_store = Gtk.ListStore(int, str)
                 cb_reference.set_model(ref_store)
@@ -276,24 +282,24 @@ class WorldMapController(AbstractController):
                 cb_reference.set_active_iter(selected_ref_iter)
 
             if self._markers[idx].reference_id > -1:
-                self.builder.get_object('radio_reference').set_active(True)
+                builder_get_assert(self.builder, Gtk.RadioButton, 'radio_reference').set_active(True)
             else:
-                self.builder.get_object('radio_pos').set_active(True)
+                builder_get_assert(self.builder, Gtk.RadioButton, 'radio_pos').set_active(True)
 
             # Drawer
-            self._change_map_bg(self._markers[idx].level_id, self.builder.get_object('diag_draw'), self.dialog_drawer)
+            self._change_map_bg(self._markers[idx].level_id, builder_get_assert(self.builder, Gtk.DrawingArea, 'diag_draw'), self.dialog_drawer)
 
             self._edited_marker = self._markers[idx]
             self._edited_pos = (self._edited_marker.x, self._edited_marker.y)
 
-            self.on_radio_reference_toggled(self.builder.get_object('radio_reference'))
+            self.on_radio_reference_toggled(builder_get_assert(self.builder, Gtk.RadioButton, 'radio_reference'))
 
             response = dialog.run()
             dialog.hide()
 
             if response == Gtk.ResponseType.APPLY:
                 marker = self._edited_marker
-                cb_map = self.builder.get_object('cb_map')
+                cb_map = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_map')
                 model, cbiter = cb_map.get_model(), cb_map.get_active_iter()
                 if model is not None and cbiter is not None and cbiter != []:
                     map_id_selected = model[cbiter][0]
@@ -303,10 +309,10 @@ class WorldMapController(AbstractController):
                         _('You need to select a map.')
                     )
                     return
-                use_reference = self.builder.get_object('radio_reference').get_active()
+                use_reference = builder_get_assert(self.builder, Gtk.RadioButton, 'radio_reference').get_active()
                 reference_id_selected = -1
                 if use_reference:
-                    cb_reference = self.builder.get_object('cb_reference')
+                    cb_reference = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_reference')
                     model, cbiter = cb_reference.get_model(), cb_reference.get_active_iter()
                     if model is not None and cbiter is not None and cbiter != []:
                         reference_id_selected = model[cbiter][0]
@@ -333,14 +339,16 @@ class WorldMapController(AbstractController):
                     marker.x = i16_checked(int(self._edited_pos[0]))
                     marker.y = i16_checked(int(self._edited_pos[1]))
 
-                tree = self.builder.get_object('tree')
-                tree.get_model()[self._tree_iters_by_idx[idx]][:] = [
+                tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree')
+                tree_model = cast(Optional[Gtk.TreeStore], tree.get_model())
+                assert tree_model is not None
+                tree_model[self._tree_iters_by_idx[idx]][:] = [  # type: ignore
                     str(idx), self._get_map_name(marker),
                     self._get_position(marker), self._get_dungeon_name(idx)
                 ]
                 if marker.level_id != self._level_id:
                     self._level_id = marker.level_id
-                    self._change_map_bg(marker.level_id, self.builder.get_object('draw'), self.drawer)
+                    self._change_map_bg(marker.level_id, builder_get_assert(self.builder, Gtk.DrawingArea, 'draw'), self.drawer)
                 elif self.drawer is not None:
                     self.drawer.draw_area.queue_draw()
 
@@ -350,19 +358,19 @@ class WorldMapController(AbstractController):
         assert self.builder
         model, cbiter = cb.get_model(), cb.get_active_iter()
         if model is not None and cbiter is not None and cbiter != []:
-            self._change_map_bg(model[cbiter][0], self.builder.get_object('diag_draw'), self.dialog_drawer)
+            self._change_map_bg(model[cbiter][0], builder_get_assert(self.builder, Gtk.DrawingArea, 'diag_draw'), self.dialog_drawer)
 
     def on_radio_reference_toggled(self, w: Gtk.RadioButton):
         assert self.builder
         if w.get_active():
-            cb_reference = self.builder.get_object('cb_reference')
+            cb_reference = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_reference')
             cb_reference.set_sensitive(True)
             model, cbiter = cb_reference.get_model(), cb_reference.get_active_iter()
             if model is not None and cbiter is not None and cbiter != []:
                 if self.dialog_drawer:
                     self.dialog_drawer.set_editing(self._markers[model[cbiter][0]], hide=self._edited_marker)
         else:
-            self.builder.get_object('cb_reference').set_sensitive(False)
+            builder_get_assert(self.builder, Gtk.ComboBox, 'cb_reference').set_sensitive(False)
             if self.dialog_drawer and self._edited_marker and self._edited_pos:
                 self.dialog_drawer.set_editing(self._edited_marker, editing_pos=self._edited_pos)
 

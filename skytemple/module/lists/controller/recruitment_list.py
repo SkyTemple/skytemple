@@ -16,13 +16,13 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Dict, List
+from typing import TYPE_CHECKING, Dict, List, Optional, cast
 
 from gi.repository import Gtk
 from range_typed_integers import u8, u16, u16_checked, u8_checked
 
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import glib_async, catch_overflow
+from skytemple.core.ui_utils import glib_async, catch_overflow, builder_get_assert, assert_not_none
 from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
 from skytemple_files.common.i18n_util import _
 from skytemple_files.user_error import UserValueError
@@ -41,10 +41,11 @@ class RecruitmentListController(ListBaseController):
         self._levels: List[u16]
         self._locations: List[u8]
         self._location_names: Dict[int, str] = {}
+        self._list_store: Gtk.ListStore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'recruitment_list.glade')
-        lst: Gtk.Box = self.builder.get_object('box_list')
+        lst = builder_get_assert(self.builder, Gtk.Box, 'box_list')
         self._species, self._levels, self._locations = self.module.get_recruitment_list()
 
         self._init_locations_store()
@@ -98,7 +99,7 @@ class RecruitmentListController(ListBaseController):
         pass
 
     def on_cr_location_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_locations'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_locations'))
 
     @glib_async
     def on_list_store_row_changed(self, store, path, l_iter):
@@ -116,7 +117,7 @@ class RecruitmentListController(ListBaseController):
 
     def refresh_list(self):
         tree: Gtk.TreeView = self.get_tree()
-        self._list_store: Gtk.ListStore = tree.get_model()
+        self._list_store = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         self._list_store.clear()
 
         # Iterate list
@@ -127,14 +128,14 @@ class RecruitmentListController(ListBaseController):
             ])
 
     def _init_locations_store(self):
-        locations_store: Gtk.ListStore = self.builder.get_object('location_store')
+        locations_store = builder_get_assert(self.builder, Gtk.ListStore, 'location_store')
         for idx in range(0, 256):
             name = self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_SELECTION, idx)
             self._location_names[idx] = f'{name} ({idx:04})'
             locations_store.append([self._location_names[idx]])
 
     def get_tree(self):
-        return self.builder.get_object('tree')
+        return builder_get_assert(self.builder, Gtk.TreeView, 'tree')
 
     def can_be_placeholder(self):
         return False

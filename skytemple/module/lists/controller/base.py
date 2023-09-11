@@ -26,6 +26,7 @@ from skytemple_files.data.md.protocol import Gender
 from skytemple.core.list_icon_renderer import ListIconRenderer
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import builder_get_assert
 
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
@@ -36,7 +37,7 @@ class ListBaseController(AbstractController, ABC):
     def __init__(self, module: 'ListsModule', *args):
         self.module = module
 
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self._sprite_provider = self.module.project.get_sprite_provider()
         self._ent_names: Dict[int, str] = {}
         self._list_store: Optional[Gtk.ListStore] = None
@@ -66,7 +67,7 @@ class ListBaseController(AbstractController, ABC):
 
     def _init_monster_store(self):
         monster_md = self.module.get_monster_md()
-        monster_store: Gtk.ListStore = self.builder.get_object('monster_store')
+        monster_store = builder_get_assert(self.builder, Gtk.ListStore, 'monster_store')
         for idx, entry in enumerate(monster_md.entries):
             if idx == 0:
                 continue
@@ -76,7 +77,7 @@ class ListBaseController(AbstractController, ABC):
 
     def on_draw_example_placeholder_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
         sprite, x, y, w, h = self._sprite_provider.get_actor_placeholder(
-            9999, 0, lambda: GLib.idle_add(lambda: self.builder.get_object('draw_example_placeholder').queue_draw())
+            9999, 0, lambda: GLib.idle_add(lambda: builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_example_placeholder').queue_draw())
         )
         ctx.set_source_surface(sprite)
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
@@ -88,7 +89,7 @@ class ListBaseController(AbstractController, ABC):
         pass
 
     def on_cr_entity_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_entities'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_entities'))
 
     @abstractmethod
     def refresh_list(self):
