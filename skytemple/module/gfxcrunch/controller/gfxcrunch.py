@@ -24,7 +24,7 @@ from typing import TYPE_CHECKING, List
 from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
-from skytemple.core.ui_utils import data_dir, APP, make_builder
+from skytemple.core.ui_utils import data_dir, APP, make_builder, builder_get_assert
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.i18n_util import f, _
 from skytemple_files.user_error import make_user_err
@@ -56,7 +56,7 @@ class GfxcrunchController:
 
         self.builder = self._get_builder(__file__, 'gfxcrunch.glade')
         self.builder.connect_signals(self)
-        self.buffer: Gtk.TextBuffer = self.builder.get_object('console').get_buffer()
+        self.buffer = builder_get_assert(self.builder, Gtk.TextView, 'console').get_buffer()
         self.status = GfxcrunchStatus.RUNNING
 
     def import_sprite(self, dir_fn: str) -> bytes:
@@ -81,14 +81,14 @@ class GfxcrunchController:
                 raise make_user_err(RuntimeError, _("The gfxcrunch process failed."))
 
     def _run_window(self):
-        dialog: Gtk.Dialog = self.builder.get_object('dialog')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog')
         dialog.resize(750, 350)
         dialog.set_transient_for(MainController.window())
         dialog.set_attached_to(MainController.window())
         self.buffer.delete(self.buffer.get_start_iter(), self.buffer.get_end_iter())
         self._update_status(GfxcrunchStatus.RUNNING)
-        self.builder.get_object('spinner').start()
-        self.builder.get_object('close').set_sensitive(False)
+        builder_get_assert(self.builder, Gtk.Spinner, 'spinner').start()
+        builder_get_assert(self.builder, Gtk.Button, 'close').set_sensitive(False)
         dialog.run()
         dialog.hide()
 
@@ -105,6 +105,7 @@ class GfxcrunchController:
             #creationflags=
         )
 
+        assert proc.stdout is not None and proc.stderr is not None
         while proc.poll() is None:
             line = proc.stdout.readline()
             if line != "" and line:
@@ -141,10 +142,10 @@ class GfxcrunchController:
         self._update_status(GfxcrunchStatus.SUCCESS if return_code == 0 else GfxcrunchStatus.ERROR)
         if return_code != 0:
             self._stderr(f(_('!! Process exited with error. Exit code: {return_code} !!')))
-        self.builder.get_object('spinner').stop()
-        self.builder.get_object('close').set_sensitive(True)
+        builder_get_assert(self.builder, Gtk.Spinner, 'spinner').stop()
+        builder_get_assert(self.builder, Gtk.Button, 'close').set_sensitive(True)
 
     def _update_status(self, status):
         self.status = status
-        img: Gtk.Image = self.builder.get_object('duskako')
+        img = builder_get_assert(self.builder, Gtk.Image, 'duskako')
         img.set_from_file(os.path.join(data_dir(), IMGS[status]))
