@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import sys
-from typing import Union, List, Optional, Tuple
+from typing import Union, List, Optional, Tuple, Dict
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
@@ -67,9 +67,9 @@ class MapBgModule(AbstractModule):
         self.project = rom_project
         self.bgs: BgListProtocol = rom_project.open_file_in_rom(MAP_BG_LIST, FileType.BG_LIST_DAT)
 
-        self._tree_model: Gtk.TreeModel
+        self._tree_model: Gtk.TreeStore
         self._tree_level_iter: List[Gtk.TreeIter] = []
-        self._sub_nodes: Gtk.TreeIter
+        self._sub_nodes: Dict[str, Gtk.TreeIter]
         self._other_node: Gtk.TreeIter
 
     def load_tree_items(self, item_store: TreeStore, root_node):

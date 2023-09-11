@@ -70,7 +70,7 @@ class ListIconRenderer:
         for b, g, r, a in grouper(data, 4):
             new_data += bytes([r, g, b, a])
         self._icon_pixbufs[target_name] = GdkPixbuf.Pixbuf.new_from_data(
-            GLib.Bytes.new(new_data),
+            new_data,  # type: ignore
             GdkPixbuf.Colorspace.RGB, True, 8, w, h, sprite.get_stride(),
             destroy_fn=None # todo: memory leak? Probably not?
         )

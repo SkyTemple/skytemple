@@ -15,13 +15,13 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, cast
 
 from gi.repository import Gtk
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.ui_utils import data_dir
+from skytemple.core.ui_utils import data_dir, builder_get_assert, assert_not_none
 from skytemple_files.common.i18n_util import _
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.types.file_types import FileType
@@ -35,12 +35,12 @@ MAPBG_NAME = _('Map Backgrounds')
 class MainController(AbstractController):
     def __init__(self, module: 'MapBgModule', item_id: int):
         self.module = module
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'main.glade')
         self.builder.connect_signals(self)
-        return self.builder.get_object('box_list')
+        return builder_get_assert(self.builder, Gtk.Widget, 'box_list')
 
     def on_btn_add_clicked(self, *args):
         from skytemple.module.map_bg.module import MAP_BG_PATH
@@ -98,9 +98,9 @@ class MainController(AbstractController):
         md.destroy()
 
     def _show_generic_input(self, label_text, ok_text):
-        dialog: Gtk.Dialog = self.builder.get_object('generic_input_dialog')
-        entry: Gtk.Entry = self.builder.get_object('generic_input_dialog_entry')
-        label: Gtk.Label = self.builder.get_object('generic_input_dialog_label')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'generic_input_dialog')
+        entry = builder_get_assert(self.builder, Gtk.Entry, 'generic_input_dialog_entry')
+        label = builder_get_assert(self.builder, Gtk.Label, 'generic_input_dialog_label')
         label.set_text(label_text)
         btn_cancel = dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
         btn = dialog.add_button(ok_text, Gtk.ResponseType.OK)
@@ -111,6 +111,6 @@ class MainController(AbstractController):
         dialog.set_transient_for(SkyTempleMainController.window())
         response = dialog.run()
         dialog.hide()
-        btn.get_parent().remove(btn)
-        btn_cancel.get_parent().remove(btn_cancel)
+        cast(Gtk.Container, assert_not_none(btn.get_parent())).remove(btn)
+        cast(Gtk.Container, assert_not_none(btn_cancel.get_parent())).remove(btn_cancel)
         return response, entry.get_text()

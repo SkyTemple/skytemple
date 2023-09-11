@@ -36,7 +36,7 @@ from gi.repository import Gtk
 from gi.repository.Gtk import ResponseType
 
 from skytemple.controller.main import MainController
-from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple.core.ui_utils import add_dialog_png_filter, builder_get_assert
 from skytemple.module.tiled_img.dialog_controller.chunk_editor import ChunkEditorController
 from skytemple.module.tiled_img.dialog_controller.palette_editor import PaletteEditorController
 
@@ -52,26 +52,27 @@ class BgMenuController:
         self.parent = bg
 
     def on_men_map_export_activate(self):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_map_export')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_map_export')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         resp = dialog.run()
         dialog.hide()
         if resp == ResponseType.OK:
-            dialog = Gtk.FileChooserNative.new(
+            fdialog = Gtk.FileChooserNative.new(
                 _("Export PNG of map..."),
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
                 None, None
             )
 
-            response = dialog.run()
-            fn = dialog.get_filename()
-            fn = add_extension_if_missing(fn, 'png')
-            dialog.destroy()
+            response = fdialog.run()
+            fn = fdialog.get_filename()
+            if fn is not None:
+                fn = add_extension_if_missing(fn, 'png')
+            fdialog.destroy()
 
-            if response == Gtk.ResponseType.ACCEPT:
+            if response == Gtk.ResponseType.ACCEPT and fn is not None:
                 if TYPE_CHECKING:
                     from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController
                     assert isinstance(self.parent, DungeonBgController)
@@ -79,14 +80,12 @@ class BgMenuController:
                 img.save(fn)
 
     def on_men_map_import_activate(self):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_map_import')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_map_import')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         # Set dialog settings to map settings
-        bg_import_file: Gtk.FileChooserButton = self.parent.builder.get_object(
-            'map_import_layer1_file'
-        )
+        bg_import_file = builder_get_assert(self.parent.builder, Gtk.FileChooserButton, 'map_import_layer1_file')
         bg_import_file.unselect_all()
 
         resp = dialog.run()
@@ -95,10 +94,11 @@ class BgMenuController:
         if resp == ResponseType.OK:
             try:
                 img_path = bg_import_file.get_filename()
-                if TYPE_CHECKING:
-                    from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController
-                    assert isinstance(self.parent, DungeonBgController)
-                self.parent.dbg.from_pil(self.parent.dpc, self.parent.dpci, self.parent.dpl, Image.open(img_path), True)
+                if img_path is not None:
+                    if TYPE_CHECKING:
+                        from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController
+                        assert isinstance(self.parent, DungeonBgController)
+                    self.parent.dbg.from_pil(self.parent.dpc, self.parent.dpci, self.parent.dpl, Image.open(img_path), True)
             except Exception as err:
                 display_error(
                     sys.exc_info(),
@@ -124,27 +124,27 @@ class BgMenuController:
         del cntrl
 
     def on_men_chunks_layer1_export_activate(self):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_chunks_export')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_chunks_export')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         resp = dialog.run()
         dialog.hide()
         if resp == Gtk.ResponseType.OK:
-            dialog = Gtk.FileChooserNative.new(
+            fdialog = Gtk.FileChooserNative.new(
                 _("Export PNG of chunks..."),
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
                 None, None
             )
 
-            add_dialog_png_filter(dialog)
+            add_dialog_png_filter(fdialog)
 
-            response = dialog.run()
-            fn = dialog.get_filename()
-            dialog.destroy()
+            response = fdialog.run()
+            fn = fdialog.get_filename()
+            fdialog.destroy()
 
-            if response == Gtk.ResponseType.ACCEPT:
+            if response == Gtk.ResponseType.ACCEPT and fn is not None:
                 fn = add_extension_if_missing(fn, 'png')
                 try:
                     self.parent.dpc.chunks_to_pil(self.parent.dpci, self.parent.dpl.palettes, 16).save(fn)
@@ -156,17 +156,13 @@ class BgMenuController:
                     )
 
     def on_men_chunks_layer1_import_activate(self):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_chunks_import')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_chunks_import')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         # Set dialog settings to map settings
-        chunks_import_file: Gtk.FileChooserButton = self.parent.builder.get_object(
-            'chunks_import_file'
-        )
-        chunks_import_palettes: Gtk.Switch = self.parent.builder.get_object(
-            'chunks_import_palettes'
-        )
+        chunks_import_file = builder_get_assert(self.parent.builder, Gtk.FileChooserButton, 'chunks_import_file')
+        chunks_import_palettes = builder_get_assert(self.parent.builder, Gtk.Switch, 'chunks_import_palettes')
         chunks_import_file.unselect_all()
 
         resp = dialog.run()
@@ -174,7 +170,8 @@ class BgMenuController:
 
         if resp == Gtk.ResponseType.OK:
             try:
-                if chunks_import_file.get_filename() is None:
+                fn = chunks_import_file.get_filename()
+                if fn is None:
                     md = SkyTempleMessageDialog(MainController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
                                                 Gtk.ButtonsType.OK, _("An image must be selected."))
@@ -182,7 +179,7 @@ class BgMenuController:
                     md.run()
                     md.destroy()
                 else:
-                    with open(chunks_import_file.get_filename(), 'rb') as f:
+                    with open(fn, 'rb') as f:
                         tiles, palettes = self.parent.dpc.pil_to_chunks(Image.open(f))
                         self.parent.dpci.tiles = tiles
                         if chunks_import_palettes.get_active():
@@ -197,28 +194,29 @@ class BgMenuController:
             self.parent.mark_as_modified()
 
     def on_men_tiles_layer1_export_activate(self):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_tiles_export')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_tiles_export')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         resp = dialog.run()
         dialog.hide()
         if resp == Gtk.ResponseType.OK:
-            dialog = Gtk.FileChooserNative.new(
+            fdialog = Gtk.FileChooserNative.new(
                 _("Export PNG of tiles..."),
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
                 None, None
             )
 
-            add_dialog_png_filter(dialog)
+            add_dialog_png_filter(fdialog)
 
-            response = dialog.run()
-            fn = dialog.get_filename()
-            fn = add_extension_if_missing(fn, 'png')
-            dialog.destroy()
+            response = fdialog.run()
+            fn = fdialog.get_filename()
+            if fn is not None:
+                fn = add_extension_if_missing(fn, 'png')
+            fdialog.destroy()
 
-            if response == Gtk.ResponseType.ACCEPT:
+            if response == Gtk.ResponseType.ACCEPT and fn is not None:
                 try:
                     self.parent.dpci.tiles_to_pil(self.parent.dpl.palettes, 16).save(fn)
                 except BaseException as err:
@@ -229,14 +227,12 @@ class BgMenuController:
                     )
 
     def on_men_tiles_layer1_import_activate(self):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_tiles_import')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_tiles_import')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         # Set dialog settings to map settings
-        tiles_import_file: Gtk.FileChooserButton = self.parent.builder.get_object(
-            'tiles_import_file'
-        )
+        tiles_import_file = builder_get_assert(self.parent.builder, Gtk.FileChooserButton, 'tiles_import_file')
         tiles_import_file.unselect_all()
 
         resp = dialog.run()
@@ -244,7 +240,8 @@ class BgMenuController:
 
         if resp == Gtk.ResponseType.OK:
             try:
-                if tiles_import_file.get_filename() is None:
+                fn = tiles_import_file.get_filename()
+                if fn is None:
                     md = SkyTempleMessageDialog(MainController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
                                                 Gtk.ButtonsType.OK, _("An image must be selected."))
@@ -252,7 +249,7 @@ class BgMenuController:
                     md.run()
                     md.destroy()
                 else:
-                    with open(tiles_import_file.get_filename(), 'rb') as f:
+                    with open(fn, 'rb') as f:
                         self.parent.dpci.pil_to_tiles(Image.open(f))
             except Exception as err:
                 display_error(
@@ -279,16 +276,16 @@ class BgMenuController:
         del cntrl
 
     def on_men_palettes_ani_settings_activate(self):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_palettes_animated_settings')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_palettes_animated_settings')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
-        self.parent.builder.get_object('palette_animation11_enabled').set_active(self.parent.dpla.has_for_palette(0))
-        self.parent.builder.get_object('palette_animation12_enabled').set_active(self.parent.dpla.has_for_palette(1))
+        builder_get_assert(self.parent.builder, Gtk.Switch, 'palette_animation11_enabled').set_active(self.parent.dpla.has_for_palette(0))
+        builder_get_assert(self.parent.builder, Gtk.Switch, 'palette_animation12_enabled').set_active(self.parent.dpla.has_for_palette(1))
 
         for aidx, offset in (11, 0), (12, 16):
             for cidx in range(0, 16):
-                self.parent.builder.get_object(f'palette_animation{aidx}_frame_time{cidx}').set_text(
+                builder_get_assert(self.parent.builder, Gtk.Entry, f'palette_animation{aidx}_frame_time{cidx}').set_text(
                     str(self.parent.dpla.durations_per_frame_for_colors[offset + cidx])
                 )
 
@@ -299,7 +296,7 @@ class BgMenuController:
             had_errors = False
             durations_per_frame_for_colors = list(self.parent.dpla.durations_per_frame_for_colors)
             for palid, aidx, offset in ((0, 11, 0), (1, 12, 16)):
-                if self.parent.builder.get_object(f'palette_animation{aidx}_enabled').get_active():
+                if builder_get_assert(self.parent.builder, Gtk.Switch, f'palette_animation{aidx}_enabled').get_active():
                     # Has palette animations!
                     self.parent.dpla.enable_for_palette(palid)
                 else:
@@ -307,7 +304,7 @@ class BgMenuController:
                     self.parent.dpla.disable_for_palette(palid)
                 for cidx in range(0, 16):
                     try:
-                        time = u16_checked(int(self.parent.builder.get_object(f'palette_animation{aidx}_frame_time{cidx}').get_text()))
+                        time = u16_checked(int(builder_get_assert(self.parent.builder, Gtk.Entry, f'palette_animation{aidx}_frame_time{cidx}').get_text()))
                     except:
                         time = u16(0)
                         had_errors = True

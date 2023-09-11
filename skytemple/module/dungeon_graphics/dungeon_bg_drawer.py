@@ -150,8 +150,9 @@ class Drawer:
             break
 
         size_w, size_h = self.draw_area.get_size_request()
-        size_w /= self.scale
-        size_h /= self.scale
+        assert size_w is not None and size_h is not None
+        size_w //= self.scale
+        size_h //= self.scale
         # Selection
         self.selection_plugin.set_size(self.tiling_width * DPCI_TILE_DIM, self.tiling_height * DPCI_TILE_DIM)
         self.selection_plugin.draw(ctx, size_w, size_h, self.mouse_x, self.mouse_y)

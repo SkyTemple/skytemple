@@ -33,7 +33,7 @@ from gi.repository import Gtk
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
-from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple.core.ui_utils import add_dialog_png_filter, builder_get_assert
 from skytemple.core.string_provider import StringType
 from skytemple.core.module_controller import AbstractController
 from skytemple_files.common.i18n_util import f, _
@@ -62,21 +62,23 @@ class ColvecController(AbstractController):
         self.dpc: DpcProtocol
         self.dpci: DpciProtocol
 
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'colvec.glade')
         self._init_colvec()
         self._reinit_image()
         self.builder.connect_signals(self)
-        self.builder.get_object('draw_tileset').connect('draw', self.draw_tileset)
-        self.builder.get_object('draw_colormap').connect('draw', self.draw_colormap)
-        return self.builder.get_object('editor')
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_tileset').connect('draw', self.draw_tileset)
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_colormap').connect('draw', self.draw_colormap)
+        return builder_get_assert(self.builder, Gtk.Paned, 'editor')
     
     def on_export_clicked(self, *args):
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_weather_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_weather')
-        v: int = cb_store[cb.get_active_iter()][0]
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_weather_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBoxText, 'cb_weather')
+        it = cb.get_active_iter()
+        assert it is not None
+        v: int = cb_store[it][0]
         
         dialog = Gtk.FileChooserNative.new(
             _("Export current colormap as PNG..."),
@@ -91,14 +93,16 @@ class ColvecController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, 'png')
             self.colvec.to_pil(v).save(fn)
         
     def on_import_clicked(self, *args):
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_weather_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_weather')
-        v: int = cb_store[cb.get_active_iter()][0]
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_weather_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBoxText, 'cb_weather')
+        it = cb.get_active_iter()
+        assert it is not None
+        v: int = cb_store[it][0]
         
         dialog = Gtk.FileChooserNative.new(
             _("Import current colormap from PNG..."),
@@ -111,7 +115,7 @@ class ColvecController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 img = Image.open(fn, 'r')
                 self.colvec.from_pil(v, img)
@@ -144,9 +148,11 @@ class ColvecController(AbstractController):
         md.destroy()
 
     def on_tileset_changed(self, widget):
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_tileset_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_tileset')
-        v : int = cb_store[cb.get_active_iter()][0]
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_tileset_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBoxText, 'cb_tileset')
+        it = cb.get_active_iter()
+        assert it is not None
+        v: int = cb_store[it][0]
         self._load_tileset(v)
         self._reinit_image()
 
@@ -155,22 +161,24 @@ class ColvecController(AbstractController):
             
     def _init_colvec(self):
         # Init available weathers
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_weather_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_weather')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_weather_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBoxText, 'cb_weather')
         self._fill_available_weathers_into_store(cb_store)
         cb.set_active(0)
         
         # Init available tilesets
-        cb_store = self.builder.get_object('cb_tileset_store')
-        cb = self.builder.get_object('cb_tileset')
-        self._fill_available_tilesets_into_store(cb_store)
+        cb2_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_tileset_store')
+        cb2 = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_tileset')
+        self._fill_available_tilesets_into_store(cb2_store)
         self._load_tileset(0)
-        cb.set_active(0)
+        cb2.set_active(0)
         
     def _reinit_image(self):
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_weather_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_weather')
-        v : int = cb_store[cb.get_active_iter()][0]
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_weather_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBoxText, 'cb_weather')
+        it = cb.get_active_iter()
+        assert it is not None
+        v: int = cb_store[it][0]
         surface = self.colvec.to_pil(v)
         surface = surface.resize((surface.width*16, surface.height*16), resample=Image.NEAREST)
         self.colormap = pil_to_cairo_surface(surface.convert('RGBA'))
@@ -184,8 +192,8 @@ class ColvecController(AbstractController):
             surface.putpalette(self.colvec.apply_colormap(v, list(surface.palette.palette)))
             self.surface = pil_to_cairo_surface(surface.convert('RGBA'))
         
-        self.builder.get_object('draw_tileset').queue_draw()
-        self.builder.get_object('draw_colormap').queue_draw()
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_tileset').queue_draw()
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_colormap').queue_draw()
     
     def _fill_available_tilesets_into_store(self, cb_store):
         # Init combobox

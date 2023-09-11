@@ -77,7 +77,7 @@ class DungeonController(AbstractController):
         sp = self.module.project.get_string_provider()
         langs = sp.get_languages()
         for lang_id in range(0, 5):
-            label_lang = builder_get_assert(self.builder, Gtk.Entry, f'label_lang{lang_id}')
+            label_lang = builder_get_assert(self.builder, Gtk.Label, f'label_lang{lang_id}')
             entry_main_lang = builder_get_assert(self.builder, Gtk.Entry, f'entry_main_lang{lang_id}')
             entry_selection_lang = builder_get_assert(self.builder, Gtk.Entry, f'entry_selection_lang{lang_id}')
             entry_script_engine_lang = builder_get_assert(self.builder, Gtk.Entry, f'entry_script_engine_lang{lang_id}')

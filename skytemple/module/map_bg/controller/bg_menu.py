@@ -45,7 +45,7 @@ from gi.repository.Gtk import ResponseType
 from natsort import ns, natsorted
 
 from skytemple.controller.main import MainController
-from skytemple.core.ui_utils import add_dialog_gif_filter, add_dialog_png_filter
+from skytemple.core.ui_utils import add_dialog_gif_filter, add_dialog_png_filter, builder_get_assert
 from skytemple.module.tiled_img.dialog_controller.chunk_editor import ChunkEditorController
 from skytemple.module.map_bg.controller.bg_menu_dialogs.map_width_height import on_map_width_chunks_changed, \
     on_map_height_chunks_changed, on_map_wh_link_state_set
@@ -64,20 +64,14 @@ class BgMenuController:
     def on_men_map_settings_activate(self):
         bma = self.parent.bma
         bpc = self.parent.bpc
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_settings')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_settings')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         # Set dialog settings to map settings
-        number_layers_adjustment: Gtk.Adjustment = self.parent.builder.get_object(
-            'dialog_settings_number_layers_adjustment'
-        )
-        number_collision_adjustment: Gtk.Adjustment = self.parent.builder.get_object(
-            'dialog_settings_number_collision_adjustment'
-        )
-        has_data_layer: Gtk.Switch = self.parent.builder.get_object(
-            'settings_has_data_layer'
-        )
+        number_layers_adjustment = builder_get_assert(self.parent.builder, Gtk.Adjustment, 'dialog_settings_number_layers_adjustment')
+        number_collision_adjustment = builder_get_assert(self.parent.builder, Gtk.Adjustment, 'dialog_settings_number_collision_adjustment')
+        has_data_layer = builder_get_assert(self.parent.builder, Gtk.Switch, 'settings_has_data_layer')
         number_layers_adjustment.set_value(bma.number_of_layers)
         number_collision_adjustment.set_value(bma.number_of_collision_layers)
         has_data_layer.set_active(bma.unk6 > 0)
@@ -91,14 +85,14 @@ class BgMenuController:
                 has_a_change = True
                 bma.add_upper_layer()
                 bpc.add_upper_layer()
-                self.parent.builder.get_object('map_import_layer2_file').set_sensitive(True)
+                builder_get_assert(self.parent.builder, Gtk.Widget, 'map_import_layer2_file').set_sensitive(True)
             elif number_layers <= 1 and bma.number_of_layers > 1:
                 # A LAYER WAS REMOVE
                 has_a_change = True
                 bma.remove_upper_layer()
                 bpc.remove_upper_layer()
                 self.parent.module.remove_bpa_upper_layer(self.parent.item_id)
-                self.parent.builder.get_object('map_import_layer2_file').set_sensitive(False)
+                builder_get_assert(self.parent.builder, Gtk.Widget, 'map_import_layer2_file').set_sensitive(False)
             number_col_layers = number_collision_adjustment.get_value()
             if number_col_layers > 0 and bma.number_of_collision_layers <= 0:
                 # COLLISION 1 WAS ADDED
@@ -138,29 +132,17 @@ class BgMenuController:
         dialog.hide()
 
     def on_men_map_width_height_activate(self):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_width_height')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_width_height')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         # Set dialog settings to map settings
-        map_width_chunks: Gtk.Entry = self.parent.builder.get_object(
-            'map_width_chunks'
-        )
-        map_height_chunks: Gtk.Entry = self.parent.builder.get_object(
-            'map_height_chunks'
-        )
-        map_width_tiles: Gtk.Entry = self.parent.builder.get_object(
-            'map_width_tiles'
-        )
-        map_height_tiles: Gtk.Entry = self.parent.builder.get_object(
-            'map_height_tiles'
-        )
-        map_wh_link: Gtk.Switch = self.parent.builder.get_object(
-            'map_wh_link'
-        )
-        map_wh_link_target: Gtk.Switch = self.parent.builder.get_object(
-            'map_wh_link_target'
-        )
+        map_width_chunks  = builder_get_assert(self.parent.builder, Gtk.Entry, 'map_width_chunks')
+        map_height_chunks = builder_get_assert(self.parent.builder, Gtk.Entry, 'map_height_chunks')
+        map_width_tiles = builder_get_assert(self.parent.builder, Gtk.Entry, 'map_width_tiles')
+        map_height_tiles = builder_get_assert(self.parent.builder, Gtk.Entry, 'map_height_tiles')
+        map_wh_link  = builder_get_assert(self.parent.builder, Gtk.Switch, 'map_wh_link')
+        map_wh_link_target = builder_get_assert(self.parent.builder, Gtk.ListBox, 'map_wh_link_target')
         map_width_chunks.set_text(str(self.parent.bma.map_width_chunks))
         map_height_chunks.set_text(str(self.parent.bma.map_height_chunks))
         map_width_tiles.set_text(str(self.parent.bma.map_width_camera))
@@ -220,7 +202,7 @@ class BgMenuController:
             # Assuming the game runs 60 FPS.
             duration = round(1000 / 60 * non_none_bpas[0].frame_info[0].duration_per_frame)
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, 'gif')
             frames = self.parent.bma.to_pil(self.parent.bpc, self.parent.bpl, self.parent.bpas, False, False)
             frames[0].save(
@@ -233,25 +215,25 @@ class BgMenuController:
             )
 
     def on_men_map_export_activate(self):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_map_export')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_map_export')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         resp = dialog.run()
         dialog.hide()
         if resp == ResponseType.OK:
-            dialog = Gtk.FileChooserNative.new(
+            fdialog = Gtk.FileChooserNative.new(
                 _("Export PNGs of map..."),
                 MainController.window(),
                 Gtk.FileChooserAction.SELECT_FOLDER,
                 _("_Save"), None
             )
 
-            response = dialog.run()
-            fn = dialog.get_filename()
-            dialog.destroy()
+            response = fdialog.run()
+            fn = fdialog.get_filename()
+            fdialog.destroy()
 
-            if response == Gtk.ResponseType.ACCEPT:
+            if response == Gtk.ResponseType.ACCEPT and fn is not None:
                 base_filename = os.path.join(fn, f'{self.parent.module.bgs.level[self.parent.item_id].bma_name}_layer')
 
                 layer1 = self.parent.bma.to_pil_single_layer(self.parent.bpc, self.parent.bpl.palettes, self.parent.bpas, 0)
@@ -262,17 +244,13 @@ class BgMenuController:
                     layer2.save(base_filename + '2.png')
 
     def on_men_map_import_activate(self):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_map_import')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_map_import')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         # Set dialog settings to map settings
-        map_import_layer1_file: Gtk.FileChooserButton = self.parent.builder.get_object(
-            'map_import_layer1_file'
-        )
-        map_import_layer2_file: Gtk.FileChooserButton = self.parent.builder.get_object(
-            'map_import_layer2_file'
-        )
+        map_import_layer1_file = builder_get_assert(self.parent.builder, Gtk.FileChooserButton, 'map_import_layer1_file')
+        map_import_layer2_file = builder_get_assert(self.parent.builder, Gtk.FileChooserButton, 'map_import_layer2_file')
         map_import_layer1_file.unselect_all()
         map_import_layer2_file.unselect_all()
         if self.parent.bma.number_of_layers < 2:
@@ -302,7 +280,7 @@ class BgMenuController:
                         if img2.mode == "P":
                             if len(img2.palette.palette) < 768:
                                 raise ValueError(_("The image for the second layer has less than 256 colors. Please make sure the image contains 256 colors, even if less are used."))
-                palettes_from_lower_layer = 16  # self.parent.builder.get_object('dialog_map_import_palette_config').get_value()
+                palettes_from_lower_layer = 16  # builder_get_assert(self.parent.builder, XXXXXXXXX, 'dialog_map_import_palette_config').get_value()
                 if self.parent.bma.number_of_layers < 2 and img1_path is not None:
                     self.parent.bma.from_pil(self.parent.bpc, self.parent.bpl, img1, None, True)
                 elif img1_path is not None and img2_path is None:
@@ -403,14 +381,14 @@ class BgMenuController:
             self._import_tiles(0)
 
     def on_men_tiles_ani_settings_activate(self):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_tiles_animated_settings')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_tiles_animated_settings')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         bpas_frame_info_entries = []
         for i, bpa in enumerate(self.parent.bpas):
             gui_i = i + 1
-            enabled = self.parent.builder.get_object(f'bpa_enable{gui_i}')
+            enabled = builder_get_assert(self.parent.builder, Gtk.Switch, f'bpa_enable{gui_i}')
             # If there's no second layer: Disable activating the BPA
             # TODO: Currently when removing layers, BPAs are not removed. Is that a problem?
             if self.parent.bma.number_of_layers <= 1 and i > 3:
@@ -421,8 +399,8 @@ class BgMenuController:
             this_frame_info_entries: List[Gtk.Entry] = []
             bpas_frame_info_entries.append(this_frame_info_entries)
 
-            bpa_duration_box: Gtk.Box = self.parent.builder.get_object(f'bpa_box{gui_i}')
-            for child in bpa_duration_box:
+            bpa_duration_box = builder_get_assert(self.parent.builder, Gtk.Box, f'bpa_box{gui_i}')
+            for child in bpa_duration_box.get_children():
                 bpa_duration_box.remove(child)
             if bpa is None or len(bpa.frame_info) < 1:
                 l = Gtk.Label.new(_("This BPA has no frames.\n"
@@ -449,7 +427,7 @@ class BgMenuController:
             had_errors = False
             for i, (bpa, bpa_entries) in enumerate(zip(self.parent.bpas, bpas_frame_info_entries)):
                 gui_i = i + 1
-                if bpa is None and self.parent.builder.get_object(f'bpa_enable{gui_i}').get_active():
+                if bpa is None and builder_get_assert(self.parent.builder, Gtk.Switch, f'bpa_enable{gui_i}').get_active():
                     # HAS TO BE ADDED
                     map_bg_entry = self.parent.module.get_level_entry(self.parent.item_id)
                     # Add file
@@ -469,7 +447,7 @@ class BgMenuController:
                     assert new_bpa is not None
                     # Add to BPC
                     self.parent.bpc.process_bpa_change(i, new_bpa.number_of_tiles)
-                if bpa is not None and not self.parent.builder.get_object(f'bpa_enable{gui_i}').get_active():
+                if bpa is not None and not builder_get_assert(self.parent.builder, Gtk.Switch, f'bpa_enable{gui_i}').get_active():
                     # HAS TO BE DELETED
                     # Delete from BPC
                     self.parent.bpc.process_bpa_change(i, u16(0))
@@ -510,13 +488,13 @@ class BgMenuController:
                 should_report=False
             )
             return
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_tiles_animated_export')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_tiles_animated_export')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
-        cb: Gtk.ComboBox = self.parent.builder.get_object('dialog_tiles_animated_export_select_bpa')
+        cb = builder_get_assert(self.parent.builder, Gtk.ComboBox, 'dialog_tiles_animated_export_select_bpa')
         store = Gtk.ListStore(str, int)
 
-        label_sep: Gtk.Label = self.parent.builder.get_object('dialog_tiles_animated_export_label_sep')
+        label_sep = builder_get_assert(self.parent.builder, Gtk.Label, 'dialog_tiles_animated_export_label_sep')
         label_sep.set_text(label_sep.get_text().replace('@@@name_pattern@@@', self._get_bpa_export_name_pattern(
             'X', 'Y'
         )))
@@ -538,10 +516,12 @@ class BgMenuController:
         dialog.hide()
 
     def on_dialog_tiles_animated_export_export_btn_clicked(self):
-        bpa_select = self.parent.builder.get_object('dialog_tiles_animated_export_select_bpa')
-        active_bpa_index = bpa_select.get_model()[bpa_select.get_active_iter()][1]
+        bpa_select = builder_get_assert(self.parent.builder, Gtk.ComboBox, 'dialog_tiles_animated_export_select_bpa')
+        active_iter = bpa_select.get_active_iter()
+        assert active_iter is not None
+        active_bpa_index = bpa_select.get_model()[active_iter][1]
         active_bpa = self.parent.bpas[active_bpa_index]
-        is_single_mode = self.parent.builder.get_object('dialog_tiles_animated_export_radio_single').get_active()
+        is_single_mode = builder_get_assert(self.parent.builder, Gtk.RadioButton, 'dialog_tiles_animated_export_radio_single').get_active()
         file_chooser_mode = Gtk.FileChooserAction.SAVE if is_single_mode else Gtk.FileChooserAction.SELECT_FOLDER
         dialog = Gtk.FileChooserNative.new(
             _("Export animated tiles (BPA)"),
@@ -557,7 +537,7 @@ class BgMenuController:
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             # TODO: Support specifying palette
             pal = self.parent.bpl.palettes[0]
             try:
@@ -582,10 +562,12 @@ class BgMenuController:
                 )
 
     def on_dialog_tiles_animated_export_import_btn_clicked(self):
-        bpa_select = self.parent.builder.get_object('dialog_tiles_animated_export_select_bpa')
-        active_bpa_index = bpa_select.get_model()[bpa_select.get_active_iter()][1]
+        bpa_select = builder_get_assert(self.parent.builder, Gtk.ComboBox, 'dialog_tiles_animated_export_select_bpa')
+        active_iter = bpa_select.get_active_iter()
+        assert active_iter is not None
+        active_bpa_index = bpa_select.get_model()[active_iter][1]
         active_bpa = self.parent.bpas[active_bpa_index]
-        is_single_mode = self.parent.builder.get_object('dialog_tiles_animated_export_radio_single').get_active()
+        is_single_mode = builder_get_assert(self.parent.builder, Gtk.RadioButton, 'dialog_tiles_animated_export_radio_single').get_active()
         file_chooser_mode = Gtk.FileChooserAction.OPEN if is_single_mode else Gtk.FileChooserAction.SELECT_FOLDER
         dialog = Gtk.FileChooserNative.new(
             _("Import animated tiles (BPA)"),
@@ -601,7 +583,7 @@ class BgMenuController:
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 if is_single_mode:
                     filenames_base = [os.path.basename(fn)]
@@ -659,16 +641,16 @@ class BgMenuController:
         del cntrl
 
     def on_men_palettes_ani_settings_activate(self):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_palettes_animated_settings')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_palettes_animated_settings')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
-        self.parent.builder.get_object('palette_animation_enabled').set_active(self.parent.bpl.has_palette_animation)
+        builder_get_assert(self.parent.builder, Gtk.Switch, 'palette_animation_enabled').set_active(self.parent.bpl.has_palette_animation)
         self.on_palette_animation_enabled_state_set(self.parent.bpl.has_palette_animation)
         if self.parent.bpl.has_palette_animation:
             for i, spec in enumerate(self.parent.bpl.animation_specs):
-                self.parent.builder.get_object(f'pallete_anim_setting_unk3_p{i+1}').set_text(str(spec.duration_per_frame))
-                self.parent.builder.get_object(f'pallete_anim_setting_unk4_p{i+1}').set_text(str(spec.number_of_frames))
+                builder_get_assert(self.parent.builder, Gtk.Entry, f'pallete_anim_setting_unk3_p{i+1}').set_text(str(spec.duration_per_frame))
+                builder_get_assert(self.parent.builder, Gtk.Entry, f'pallete_anim_setting_unk4_p{i+1}').set_text(str(spec.number_of_frames))
 
         response = dialog.run()
         dialog.hide()
@@ -677,17 +659,17 @@ class BgMenuController:
             had_errors = False
             has_palette_animation = False
             new_sepcs: MutableSequence[BplAnimationSpecProtocol] = []
-            if self.parent.builder.get_object('palette_animation_enabled').get_active():
+            if builder_get_assert(self.parent.builder, Gtk.Switch, 'palette_animation_enabled').get_active():
                 # Has palette animations!
                 has_palette_animation = True
                 for i in range(1, 17):
                     try:
-                        duration_per_frame = int(self.parent.builder.get_object(f'pallete_anim_setting_unk3_p{i}').get_text())
+                        duration_per_frame = int(builder_get_assert(self.parent.builder, Gtk.Entry, f'pallete_anim_setting_unk3_p{i}').get_text())
                     except ValueError:
                         duration_per_frame = 0
                         had_errors = True
                     try:
-                        number_of_frames = int(self.parent.builder.get_object(f'pallete_anim_setting_unk4_p{i}').get_text())
+                        number_of_frames = int(builder_get_assert(self.parent.builder, Gtk.Entry, f'pallete_anim_setting_unk4_p{i}').get_text())
                     except ValueError:
                         number_of_frames = 0
                         had_errors = True
@@ -745,8 +727,8 @@ class BgMenuController:
 
     def on_palette_animation_enabled_state_set(self, state):
         for i in range(1, 17):
-            self.parent.builder.get_object(f'pallete_anim_setting_unk3_p{i}').set_sensitive(state)
-            self.parent.builder.get_object(f'pallete_anim_setting_unk4_p{i}').set_sensitive(state)
+            builder_get_assert(self.parent.builder, Gtk.Entry, f'pallete_anim_setting_unk3_p{i}').set_sensitive(state)
+            builder_get_assert(self.parent.builder, Gtk.Entry, f'pallete_anim_setting_unk4_p{i}').set_sensitive(state)
 
     def on_men_palettes_ani_edit_activate(self):
         if not self.parent.bpl.has_palette_animation:
@@ -775,42 +757,39 @@ class BgMenuController:
         del cntrl
 
     def _export_chunks(self, layer):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_chunks_export')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_chunks_export')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         resp = dialog.run()
         dialog.hide()
         if resp == ResponseType.OK:
-            dialog = Gtk.FileChooserNative.new(
+            fdialog = Gtk.FileChooserNative.new(
                 _("Export PNG of chunks..."),
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
                 None, None
             )
 
-            add_dialog_png_filter(dialog)
+            add_dialog_png_filter(fdialog)
 
-            response = dialog.run()
-            fn = dialog.get_filename()
-            fn = add_extension_if_missing(fn, 'png')
-            dialog.destroy()
+            response = fdialog.run()
+            fn = fdialog.get_filename()
+            if fn is not None:
+                fn = add_extension_if_missing(fn, 'png')
+            fdialog.destroy()
 
-            if response == Gtk.ResponseType.ACCEPT:
+            if response == Gtk.ResponseType.ACCEPT and fn is not None:
                 self.parent.bpc.chunks_to_pil(layer, self.parent.bpl.palettes, 20).save(fn)
 
     def _import_chunks(self, layer):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_chunks_import')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_chunks_import')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         # Set dialog settings to map settings
-        chunks_import_file: Gtk.FileChooserButton = self.parent.builder.get_object(
-            'chunks_import_file'
-        )
-        chunks_import_palettes: Gtk.Switch = self.parent.builder.get_object(
-            'chunks_import_palettes'
-        )
+        chunks_import_file = builder_get_assert(self.parent.builder, Gtk.FileChooserButton, 'chunks_import_file')
+        chunks_import_palettes = builder_get_assert(self.parent.builder, Gtk.Switch, 'chunks_import_palettes')
         chunks_import_file.unselect_all()
 
         resp = dialog.run()
@@ -818,7 +797,8 @@ class BgMenuController:
 
         if resp == ResponseType.OK:
             try:
-                if chunks_import_file.get_filename() is None:
+                fn = chunks_import_file.get_filename()
+                if fn is None:
                     md = SkyTempleMessageDialog(MainController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
                                                 Gtk.ButtonsType.OK, _("An image must be selected."))
@@ -826,7 +806,7 @@ class BgMenuController:
                     md.run()
                     md.destroy()
                 else:
-                    with open(chunks_import_file.get_filename(), 'rb') as f:
+                    with open(fn, 'rb') as f:
                         palettes = self.parent.bpc.pil_to_chunks(layer, Image.open(f))
                         if chunks_import_palettes.get_active():
                             self.parent.bpl.palettes = palettes
@@ -839,39 +819,37 @@ class BgMenuController:
             self.parent.mark_as_modified()
 
     def _export_tiles(self, layer):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_tiles_export')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_tiles_export')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         resp = dialog.run()
         dialog.hide()
         if resp == ResponseType.OK:
-            dialog = Gtk.FileChooserNative.new(
+            fdialog = Gtk.FileChooserNative.new(
                 _("Export PNG of tiles..."),
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
                 None, None
             )
 
-            add_dialog_png_filter(dialog)
+            add_dialog_png_filter(fdialog)
 
             response = dialog.run()
-            fn = dialog.get_filename()
-            dialog.destroy()
+            fn = fdialog.get_filename()
+            fdialog.destroy()
 
-            if response == Gtk.ResponseType.ACCEPT:
+            if response == Gtk.ResponseType.ACCEPT and fn is not None:
                 fn = add_extension_if_missing(fn, 'png')
                 self.parent.bpc.tiles_to_pil(layer, self.parent.bpl.palettes, 20).save(fn)
 
     def _import_tiles(self, layer):
-        dialog: Gtk.Dialog = self.parent.builder.get_object('dialog_tiles_import')
+        dialog = builder_get_assert(self.parent.builder, Gtk.Dialog, 'dialog_tiles_import')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         # Set dialog settings to map settings
-        tiles_import_file: Gtk.FileChooserButton = self.parent.builder.get_object(
-            'tiles_import_file'
-        )
+        tiles_import_file = builder_get_assert(self.parent.builder, Gtk.FileChooserButton, 'tiles_import_file')
         tiles_import_file.unselect_all()
 
         resp = dialog.run()
@@ -879,7 +857,8 @@ class BgMenuController:
 
         if resp == ResponseType.OK:
             try:
-                if tiles_import_file.get_filename() is None:
+                fn = tiles_import_file.get_filename()
+                if fn is None:
                     md = SkyTempleMessageDialog(MainController.window(),
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
                                                 Gtk.ButtonsType.OK, _("An image must be selected."))
@@ -887,7 +866,7 @@ class BgMenuController:
                     md.run()
                     md.destroy()
                 else:
-                    with open(tiles_import_file.get_filename(), 'rb') as f:
+                    with open(fn, 'rb') as f:
                         self.parent.bpc.pil_to_tiles(layer, Image.open(f))
             except Exception as err:
                 display_error(

@@ -17,13 +17,10 @@
 
 import itertools
 import typing
-from typing import TYPE_CHECKING, Optional, Iterable, List
+from typing import TYPE_CHECKING, Optional, Iterable, List, Sequence
 
 import cairo
-import gi
 from gi.repository import Gtk, Gdk
-from gi.repository.GObject import TYPE_PYOBJECT
-from gi.repository.GdkPixbuf import Pixbuf, Colorspace
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
@@ -31,6 +28,7 @@ from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE
+from skytemple.core.ui_utils import builder_get_assert
 from skytemple.module.map_bg.controller.bg_menu import BgMenuController
 from skytemple.module.map_bg.drawer import Drawer, DrawerCellRenderer, DrawerInteraction
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevelMapType
@@ -119,8 +117,8 @@ class BgController(AbstractController):
         self.module = module
         self.item_id = item_id
 
-        self.builder: Gtk.Builder = None
-        self.notebook: Gtk.Notebook = None
+        self.builder: Gtk.Builder = None  # type: ignore
+        self.notebook: Optional[Gtk.Notebook] = None
 
         self.bma = module.get_bma(item_id)
         self.bpl = module.get_bpl(item_id)
@@ -131,7 +129,7 @@ class BgController(AbstractController):
 
         # Cairo surfaces for each tile in each layer for each frame
         # chunks_surfaces[layer_number][chunk_idx][palette_animation_frame][frame]
-        self.chunks_surfaces: List[Iterable[Iterable[List[cairo.Surface]]]] = []
+        self.chunks_surfaces: List[Sequence[Iterable[List[cairo.Surface]]]] = []
         self.bpa_durations = 0
 
         self.drawer: Optional[Drawer] = None
@@ -165,9 +163,11 @@ class BgController(AbstractController):
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'map_bg.glade')
         self.set_warning_palette()
-        self.notebook = self.builder.get_object('bg_notebook')
+        self.notebook = builder_get_assert(self.builder, Gtk.Notebook, 'bg_notebook')
         self._init_drawer()
-        self._init_tab(self.notebook.get_nth_page(self.notebook.get_current_page()))
+        current_page = self.notebook.get_nth_page(self.notebook.get_current_page())
+        if current_page:
+            self._init_tab(typing.cast(Gtk.Box, current_page))
         self._refresh_metadata()
         self._init_rest_room_note()
         self.builder.connect_signals(self)
@@ -190,7 +190,7 @@ class BgController(AbstractController):
                 md.destroy()
                 self.module.mark_as_modified(self.item_id)
                 self.module.mark_level_list_as_modified()
-        return self.builder.get_object('editor_map_bg')
+        return builder_get_assert(self.builder, Gtk.Widget, 'editor_map_bg')
 
     @typing.no_type_check
     def unload(self):
@@ -266,7 +266,8 @@ class BgController(AbstractController):
             self.drawer.set_mouse_position(snap_x, snap_y)
             if self.bg_draw_is_clicked:
                 assert self.builder
-                if self.builder.get_object("tb_rectangle").get_active():
+                tb_rectangle = builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tb_rectangle')
+                if tb_rectangle.get_active():
                     # TODO: Clearly not optimized
                     assert self.last_bma
                     last_bma_copy = self.last_bma.deepcopy()
@@ -330,7 +331,7 @@ class BgController(AbstractController):
     def on_current_icon_view_selection_changed(self, icon_view: Gtk.IconView):
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
         if model is not None and treeiter is not None and treeiter != []:
-            chunk_id = model[treeiter][0]
+            chunk_id = model[treeiter[0]][0]
             if self.drawer:
                 self.drawer.set_selected_chunk(chunk_id)
 
@@ -486,7 +487,8 @@ class BgController(AbstractController):
 
     def set_warning_palette(self):
         if self.builder:
-            self.builder.get_object('editor_warning_palette').set_revealed(self.weird_palette)
+            editor_warning_palette = builder_get_assert(self.builder, Gtk.InfoBar, 'editor_warning_palette')
+            editor_warning_palette.set_revealed(self.weird_palette)
         
     def _init_chunk_imgs(self):
         """(Re)-draw the chunk images"""
@@ -558,7 +560,7 @@ class BgController(AbstractController):
 
     def _init_drawer(self):
         """(Re)-initialize the main drawing area"""
-        bg_draw_sw: Gtk.ScrolledWindow = self.builder.get_object('bg_draw_sw')
+        bg_draw_sw = builder_get_assert(self.builder, Gtk.ScrolledWindow, 'bg_draw_sw')
         for child in bg_draw_sw.get_children():
             bg_draw_sw.remove(child)
         if self.bg_draw_event_box:
@@ -595,30 +597,30 @@ class BgController(AbstractController):
         self.drawer.set_edited_layer(self.current_chunks_icon_layer)
 
         # Set drawer state based on some buttons
-        self.drawer.set_show_only_edited_layer(self.builder.get_object(f'tb_hide_other').get_active())
-        self.drawer.set_draw_chunk_grid(self.builder.get_object(f'tb_chunk_grid').get_active())
-        self.drawer.set_draw_tile_grid(self.builder.get_object(f'tb_tile_grid').get_active())
-        self.drawer.set_pink_bg(self.builder.get_object(f'tb_bg_color').get_active())
+        self.drawer.set_show_only_edited_layer(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_hide_other').get_active())
+        self.drawer.set_draw_chunk_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_chunk_grid').get_active())
+        self.drawer.set_draw_tile_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_tile_grid').get_active())
+        self.drawer.set_pink_bg(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_bg_color').get_active())
 
     def _init_drawer_collision_selected(self, collision_id):
         assert self.drawer is not None
         self.drawer.set_edited_collision(collision_id)
-        self.drawer.set_interaction_col_solid(self.builder.get_object('collison_switch').get_active())
+        self.drawer.set_interaction_col_solid(builder_get_assert(self.builder, Gtk.Switch, 'collison_switch').get_active())
 
         # Set drawer state based on some buttons
-        self.drawer.set_draw_chunk_grid(self.builder.get_object(f'tb_chunk_grid').get_active())
-        self.drawer.set_draw_tile_grid(self.builder.get_object(f'tb_tile_grid').get_active())
-        self.drawer.set_pink_bg(self.builder.get_object(f'tb_bg_color').get_active())
+        self.drawer.set_draw_chunk_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_chunk_grid').get_active())
+        self.drawer.set_draw_tile_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_tile_grid').get_active())
+        self.drawer.set_pink_bg(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_bg_color').get_active())
 
     def _init_drawer_data_layer_selected(self):
         assert self.drawer is not None
         self.drawer.set_edit_data_layer()
-        cb: Gtk.ComboBox = self.builder.get_object('data_combo_box')
+        cb: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'data_combo_box')
         self.drawer.set_interaction_dat_value(cb.get_active())
 
         # Set drawer state based on some buttons
-        self.drawer.set_draw_chunk_grid(self.builder.get_object(f'tb_chunk_grid').get_active())
-        self.drawer.set_draw_tile_grid(self.builder.get_object(f'tb_tile_grid').get_active())
+        self.drawer.set_draw_chunk_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_chunk_grid').get_active())
+        self.drawer.set_draw_tile_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_tile_grid').get_active())
 
     def _init_chunks_icon_view(self, layer_number: int):
         """Fill the icon view for the specified layer"""
@@ -626,7 +628,7 @@ class BgController(AbstractController):
 
         self.current_chunks_icon_layer = layer_number
 
-        icon_view: Gtk.IconView = self.builder.get_object(f'bg_chunks_view')
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, f'bg_chunks_view')
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         self.current_icon_view_renderer = DrawerCellRenderer(icon_view, layer_number,
                                                              self.bpa_durations, self.pal_ani_durations,
@@ -640,19 +642,21 @@ class BgController(AbstractController):
         for idx in range(0, len(self.chunks_surfaces[layer_number])):
             store.append([idx])
 
-        icon_view.select_path(store.get_path(store.get_iter_first()))
+        siter = store.get_iter_first()
+        if siter:
+            icon_view.select_path(store.get_path(siter))
         self.current_icon_view_renderer.start()
 
-        self.current_icon_view_renderer.set_pink_bg(self.builder.get_object(f'tb_bg_color').get_active())
+        self.current_icon_view_renderer.set_pink_bg(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_bg_color').get_active())
 
     def _deinit_chunks_icon_view(self):
         """Remove the icon view for the specified layer"""
-        icon_view: Gtk.IconView = self.builder.get_object(f'bg_chunks_view')
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, f'bg_chunks_view')
         icon_view.clear()
         icon_view.set_model(None)
 
     def _init_data_layer_combobox(self):
-        cb: Gtk.ComboBox = self.builder.get_object(f'data_combo_box')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, f'data_combo_box')
         if cb.get_model() is None:
             store = Gtk.ListStore(str, int)
             for i in range(0, 256):
@@ -671,12 +675,12 @@ class BgController(AbstractController):
 
     def _init_tab(self, notebook_page: Gtk.Box):
         assert self.builder
-        layers_box = self.builder.get_object('bg_layers')
+        layers_box = builder_get_assert(self.builder, Gtk.Box, 'bg_layers')
 
-        toolbox_box = self.builder.get_object('bg_layers_toolbox')
-        toolbox_box_child_layers = self.builder.get_object('bg_layers_toolbox_layers')
-        toolbox_box_child_collision = self.builder.get_object('bg_layers_toolbox_collision')
-        toolbox_box_child_data = self.builder.get_object('bg_layers_toolbox_data')
+        toolbox_box = builder_get_assert(self.builder, Gtk.Box, 'bg_layers_toolbox')
+        toolbox_box_child_layers = builder_get_assert(self.builder, Gtk.Box, 'bg_layers_toolbox_layers')
+        toolbox_box_child_collision = builder_get_assert(self.builder, Gtk.Box, 'bg_layers_toolbox_collision')
+        toolbox_box_child_data = builder_get_assert(self.builder, Gtk.Box, 'bg_layers_toolbox_data')
 
         if Gtk.Buildable.get_name(notebook_page) != 'metadata':
             for child in notebook_page.get_children():
@@ -696,12 +700,14 @@ class BgController(AbstractController):
             notebook_page.add(label)
         elif page_name in ['bg_layer1', 'bg_layer2']:
             # Layer 1 / 2
-            if layers_box.get_parent():
-                layers_box.get_parent().remove(layers_box)
+            layers_box_parent = layers_box.get_parent()
+            if layers_box_parent:
+                typing.cast(Gtk.Container, layers_box_parent).remove(layers_box)
             notebook_page.pack_start(layers_box, True, True, 0)
 
-            if toolbox_box_child_layers.get_parent():
-                toolbox_box_child_layers.get_parent().remove(toolbox_box_child_layers)
+            toolbox_box_child_layers_parent = toolbox_box_child_layers.get_parent()
+            if toolbox_box_child_layers_parent:
+                typing.cast(Gtk.Container, toolbox_box_child_layers_parent).remove(toolbox_box_child_layers)
             toolbox_box.pack_start(toolbox_box_child_layers, True, True, 0)
 
             self._init_chunks_icon_view(0 if page_name == 'bg_layer1' else 1)
@@ -726,12 +732,14 @@ class BgController(AbstractController):
             notebook_page.add(label)
         elif page_name in ['bg_col1', 'bg_col2']:
             # Collision 1 / 2
-            if layers_box.get_parent():
-                layers_box.get_parent().remove(layers_box)
+            layers_box_parent = layers_box.get_parent()
+            if layers_box_parent:
+                typing.cast(Gtk.Container, layers_box_parent).remove(layers_box)
             notebook_page.pack_start(layers_box, True, True, 0)
 
-            if toolbox_box_child_collision.get_parent():
-                toolbox_box_child_collision.get_parent().remove(toolbox_box_child_collision)
+            toolbox_box_child_layers_parent = toolbox_box_child_layers.get_parent()
+            if toolbox_box_child_layers_parent:
+                typing.cast(Gtk.Container, toolbox_box_child_layers_parent).remove(toolbox_box_child_collision)
             toolbox_box.pack_start(toolbox_box_child_collision, True, True, 0)
 
             self._init_drawer_collision_selected(0 if page_name == 'bg_col1' else 1)
@@ -746,12 +754,14 @@ class BgController(AbstractController):
             notebook_page.add(label)
         elif page_name == 'bg_data':
             # Data Layer
-            if layers_box.get_parent():
-                layers_box.get_parent().remove(layers_box)
+            layers_box_parent = layers_box.get_parent()
+            if layers_box_parent:
+                typing.cast(Gtk.Container, layers_box_parent).remove(layers_box)
             notebook_page.pack_start(layers_box, True, True, 0)
 
-            if toolbox_box_child_data.get_parent():
-                toolbox_box_child_data.get_parent().remove(toolbox_box_child_data)
+            toolbox_box_child_data_parent = toolbox_box_child_data.get_parent()
+            if toolbox_box_child_data_parent:
+                typing.cast(Gtk.Container, toolbox_box_child_data_parent).remove(toolbox_box_child_data)
             toolbox_box.pack_start(toolbox_box_child_data, True, True, 0)
 
             self._init_data_layer_combobox()
@@ -765,21 +775,21 @@ class BgController(AbstractController):
 
     def _refresh_metadata(self):
         level_entry = self.module.get_level_entry(self.item_id)
-        self.builder.get_object('filename_bma').set_text(level_entry.bma_name + BMA_EXT)
-        self.builder.get_object('filename_bpc').set_text(level_entry.bpc_name + BPC_EXT)
-        self.builder.get_object('filename_bpl').set_text(level_entry.bpl_name + BPL_EXT)
+        builder_get_assert(self.builder, Gtk.Label, 'filename_bma').set_text(level_entry.bma_name + BMA_EXT)
+        builder_get_assert(self.builder, Gtk.Label, 'filename_bpc').set_text(level_entry.bpc_name + BPC_EXT)
+        builder_get_assert(self.builder, Gtk.Label, 'filename_bpl').set_text(level_entry.bpl_name + BPL_EXT)
         for i in range(0, 8):
             if level_entry.bpa_names[i] is not None:
-                self.builder.get_object(f'filename_bpa{i + 1}').set_text(level_entry.bpa_names[i] + BPA_EXT)
+                builder_get_assert(self.builder, Gtk.Label, f'filename_bpa{i + 1}').set_text(level_entry.bpa_names[i] + BPA_EXT)
             else:
-                self.builder.get_object(f'filename_bpa{i + 1}').set_text("n/a")
+                builder_get_assert(self.builder, Gtk.Label, f'filename_bpa{i + 1}').set_text("n/a")
 
     def _update_scales(self):
         """Update drawers+DrawingArea and iconview+Renderer scales"""
         assert self.bg_draw is not None
         self.bg_draw.set_size_request(
-            self.bma.map_width_chunks * self.bma.tiling_width * BPC_TILE_DIM * self.scale_factor,
-            self.bma.map_height_chunks * self.bma.tiling_height * BPC_TILE_DIM * self.scale_factor
+            round(self.bma.map_width_chunks * self.bma.tiling_width * BPC_TILE_DIM * self.scale_factor),
+            round(self.bma.map_height_chunks * self.bma.tiling_height * BPC_TILE_DIM * self.scale_factor)
         )
         if self.drawer:
             self.drawer.set_scale(self.scale_factor)
@@ -791,7 +801,7 @@ class BgController(AbstractController):
                 int(BPC_TILE_DIM * 3 * self.scale_factor), int(BPC_TILE_DIM * 3 * self.scale_factor)
             )
 
-            icon_view: Gtk.IconView = self.builder.get_object(f'bg_chunks_view')
+            icon_view = builder_get_assert(self.builder, Gtk.IconView, f'bg_chunks_view')
             icon_view.queue_resize()
 
     def reload_all(self):
@@ -802,7 +812,10 @@ class BgController(AbstractController):
         self._init_chunk_imgs()
         if self.drawer:
             self.drawer.reset(self.bma, self.bpa_durations, self.pal_ani_durations, self.chunks_surfaces)
-        self._init_tab(self.notebook.get_nth_page(self.notebook.get_current_page()))
+        if self.notebook is not None:
+            tab = self.notebook.get_nth_page(self.notebook.get_current_page())
+            if tab is not None:
+                self._init_tab(typing.cast(Gtk.Box, tab))
         self._refresh_metadata()
 
     def _init_rest_room_note(self):
@@ -812,7 +825,7 @@ class BgController(AbstractController):
                 mode_10_or_11_level = level
                 break
 
-        info_bar = self.builder.get_object('editor_rest_room_note')
+        info_bar = builder_get_assert(self.builder, Gtk.InfoBar, 'editor_rest_room_note')
         if mode_10_or_11_level:
             mappings, mappa, fixed, dungeon_bin_context, dungeon_list = self.module.get_mapping_dungeon_assets()
             with dungeon_bin_context as dungeon_bin:

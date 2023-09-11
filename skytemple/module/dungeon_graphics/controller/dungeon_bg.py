@@ -26,6 +26,7 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController, SimpleController
+from skytemple.core.ui_utils import builder_get_assert
 from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
 from skytemple.module.dungeon_graphics.dungeon_bg_drawer import Drawer, DrawerCellRenderer
 from skytemple_files.common.util import lcm
@@ -105,7 +106,7 @@ class DungeonBgController(AbstractController):
         self.module = module
         self.item_id = item_id
 
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
         self.dbg: DbgProtocol = module.get_bg_dbg(item_id)
         self.dpl: DplProtocol = module.get_bg_dpl(item_id)
@@ -120,8 +121,8 @@ class DungeonBgController(AbstractController):
         self.drawer: Optional[Drawer] = None
         self.current_icon_view_renderer: Optional[DrawerCellRenderer] = None
 
-        self.bg_draw: Gtk.DrawingArea = None
-        self.bg_draw_event_box: Gtk.EventBox = None
+        self.bg_draw: Optional[Gtk.DrawingArea] = None
+        self.bg_draw_event_box: Optional[Gtk.EventBox] = None
 
         self.scale_factor: float = 1.0
 
@@ -136,7 +137,7 @@ class DungeonBgController(AbstractController):
         self._init_drawer()
         self._init_main_area()
         self.builder.connect_signals(self)
-        return self.builder.get_object('editor_map_bg')
+        return builder_get_assert(self.builder, Gtk.Widget, 'editor_map_bg')
 
     def on_bg_draw_click(self, box, button: Gdk.EventButton):
         correct_mouse_x = int(button.x / self.scale_factor)
@@ -173,7 +174,7 @@ class DungeonBgController(AbstractController):
     def on_current_icon_view_selection_changed(self, icon_view: Gtk.IconView):
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
         if model is not None and treeiter is not None and treeiter != []:
-            chunk_id = model[treeiter][0]
+            chunk_id = model[treeiter[0]][0]
             if self.drawer:
                 self.drawer.set_selected_chunk(chunk_id)
 
@@ -307,7 +308,7 @@ class DungeonBgController(AbstractController):
 
     def _init_drawer(self):
         """(Re)-initialize the main drawing area"""
-        bg_draw_sw: Gtk.ScrolledWindow = self.builder.get_object('bg_draw_sw')
+        bg_draw_sw = builder_get_assert(self.builder, Gtk.ScrolledWindow, 'bg_draw_sw')
         for child in bg_draw_sw.get_children():
             bg_draw_sw.remove(child)
         if self.bg_draw_event_box:
@@ -340,7 +341,7 @@ class DungeonBgController(AbstractController):
     def _init_chunks_icon_view(self):
         """Fill the icon view"""
         self._deinit_chunks_icon_view()
-        icon_view: Gtk.IconView = self.builder.get_object(f'bg_chunks_view')
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, f'bg_chunks_view')
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         self.current_icon_view_renderer = DrawerCellRenderer(icon_view, self.pal_ani_durations, self.chunks_surfaces)
         store = Gtk.ListStore(int)
@@ -352,14 +353,16 @@ class DungeonBgController(AbstractController):
         for idx in range(0, len(self.chunks_surfaces)):
             store.append([idx])
 
-        icon_view.select_path(store.get_path(store.get_iter_first()))
+        first_iter = store.get_iter_first()
+        if first_iter:
+            icon_view.select_path(store.get_path(first_iter))
         self.current_icon_view_renderer.start()
 
-        self.current_icon_view_renderer.set_pink_bg(self.builder.get_object(f'tb_bg_color').get_active())
+        self.current_icon_view_renderer.set_pink_bg(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_bg_color').get_active())
 
     def _deinit_chunks_icon_view(self):
         """Remove the icon view for the specified layer"""
-        icon_view: Gtk.IconView = self.builder.get_object(f'bg_chunks_view')
+        icon_view: Gtk.IconView = builder_get_assert(self.builder, Gtk.IconView, f'bg_chunks_view')
         icon_view.clear()
         icon_view.set_model(None)
 
@@ -372,10 +375,11 @@ class DungeonBgController(AbstractController):
 
     def _update_scales(self):
         """Update drawers+DrawingArea and iconview+Renderer scales"""
-        self.bg_draw.set_size_request(
-            DBG_WIDTH_AND_HEIGHT * DBG_TILING_DIM * DPCI_TILE_DIM * self.scale_factor,
-            DBG_WIDTH_AND_HEIGHT * DBG_TILING_DIM * DPCI_TILE_DIM * self.scale_factor
-        )
+        if self.bg_draw:
+            self.bg_draw.set_size_request(
+                round(DBG_WIDTH_AND_HEIGHT * DBG_TILING_DIM * DPCI_TILE_DIM * self.scale_factor),
+                round(DBG_WIDTH_AND_HEIGHT * DBG_TILING_DIM * DPCI_TILE_DIM * self.scale_factor)
+            )
         if self.drawer:
             self.drawer.set_scale(self.scale_factor)
 
@@ -386,7 +390,7 @@ class DungeonBgController(AbstractController):
                 int(DPCI_TILE_DIM * 3 * self.scale_factor), int(DPCI_TILE_DIM * 3 * self.scale_factor)
             )
 
-            icon_view: Gtk.IconView = self.builder.get_object(f'bg_chunks_view')
+            icon_view: Gtk.IconView = builder_get_assert(self.builder, Gtk.IconView, f'bg_chunks_view')
             icon_view.queue_resize()
 
     def reload_all(self):

@@ -94,7 +94,7 @@ class Drawer:
         if isinstance(bma, BmaProtocol):
             self.tiling_width = bma.tiling_width
             self.tiling_height = bma.tiling_height
-            self.mappings: List[Sequence[int]] = [bma.layer0, bma.layer1]
+            self.mappings: List[Sequence[int]] = [bma.layer0, bma.layer1]  # type: ignore
             self.width_in_chunks = bma.map_width_chunks
             self.height_in_chunks = bma.map_height_chunks
             self.width_in_tiles: Optional[u8] = bma.map_width_camera
@@ -211,10 +211,10 @@ class Drawer:
             if should_draw:
                 if col_index == 0:
                     ctx.set_source_rgba(1, 0, 0, 0.4)
-                    col: Sequence[bool] = self.collision1
+                    col: Sequence[bool] = self.collision1  # type: ignore
                 else:
                     ctx.set_source_rgba(0, 1, 0, 0.4)
-                    col = self.collision2
+                    col = self.collision2  # type: ignore
 
                 for i, c in enumerate(col):
                     if c:
@@ -224,17 +224,17 @@ class Drawer:
                             BPC_TILE_DIM
                         )
                         ctx.fill()
-                    if (i + 1) % self.width_in_tiles == 0:
+                    if (i + 1) % self.width_in_tiles == 0:  # type: ignore
                         # Move to beginning of next line
                         if do_translates:
-                            ctx.translate(-BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM)
+                            ctx.translate(-BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM)  # type: ignore
                     else:
                         # Move to next tile in line
                         if do_translates:
                             ctx.translate(BPC_TILE_DIM, 0)
                 # Move back to beginning
                 if do_translates:
-                    ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)
+                    ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)  # type: ignore
 
         # Data
         if self.draw_data_layer:
@@ -246,21 +246,23 @@ class Drawer:
                 if dat > 0:
                     ctx.move_to(0, BPC_TILE_DIM - 2)
                     ctx.show_text(f"{dat:02x}")
-                if (i + 1) % self.width_in_tiles == 0:
+                if (i + 1) % self.width_in_tiles == 0:  # type: ignore
                     # Move to beginning of next line
                     if do_translates:
-                        ctx.translate(-BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM)
+                        ctx.translate(-BPC_TILE_DIM * (self.width_in_tiles - 1), BPC_TILE_DIM)  # type: ignore
                 else:
                     # Move to next tile in line
                     if do_translates:
                         ctx.translate(BPC_TILE_DIM, 0)
             # Move back to beginning
             if do_translates:
-                ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)
+                ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)  # type: ignore
 
         size_w, size_h = self.draw_area.get_size_request()
-        size_w /= self.scale
-        size_h /= self.scale
+        assert size_w is not None and size_h is not None
+
+        size_w //= self.scale
+        size_h //= self.scale
         # Selection
         if self.interaction_mode == DrawerInteraction.CHUNKS:
             self.selection_plugin.set_size(self.tiling_width * BPC_TILE_DIM, self.tiling_height * BPC_TILE_DIM)

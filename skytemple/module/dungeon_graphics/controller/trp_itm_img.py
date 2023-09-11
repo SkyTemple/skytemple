@@ -28,7 +28,7 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple.core.ui_utils import add_dialog_png_filter, builder_get_assert
 from skytemple_files.common.i18n_util import _
 from skytemple_files.common.util import make_palette_colors_unique, add_extension_if_missing
 from skytemple_files.graphics.img_itm.model import ImgItm
@@ -53,7 +53,7 @@ class TrpItmImgController(AbstractController):
         self.img_type = img_type
         self.img: Union[ImgItm, ImgTrp] = self.module.get_icons(img_type)
 
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self.image_idx = 0
         self.palette_idx = 0
 
@@ -61,15 +61,15 @@ class TrpItmImgController(AbstractController):
         self.builder = self._get_builder(__file__, 'trp_itm_img.glade')
         assert self.builder
         if self.img_type == ImgType.ITM:
-            self.builder.get_object('lbl_name').set_text(_('Items'))
+            builder_get_assert(self.builder, Gtk.Label, 'lbl_name').set_text(_('Items'))
         else:
-            self.builder.get_object('lbl_name').set_text(_('Traps'))
+            builder_get_assert(self.builder, Gtk.Label, 'lbl_name').set_text(_('Traps'))
 
         self._init_sprites()
 
         self.builder.connect_signals(self)
-        self.builder.get_object('draw').connect('draw', self.draw)
-        return self.builder.get_object('editor')
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').connect('draw', self.draw)
+        return builder_get_assert(self.builder, Gtk.Widget, 'editor')
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
         self.img.palettes = make_palette_colors_unique(self.img.palettes)
@@ -94,39 +94,39 @@ class TrpItmImgController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, 'png')
             self.img.to_pil(self.image_idx, self.palette_idx).save(fn)
 
     def on_import_clicked(self, w: Gtk.MenuToolButton):
-        dialog = Gtk.FileChooserNative.new(
+        fdialog = Gtk.FileChooserNative.new(
             _("Import image..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
             None, None
         )
-        add_dialog_png_filter(dialog)
+        add_dialog_png_filter(fdialog)
 
-        response = dialog.run()
-        fn = dialog.get_filename()
-        dialog.destroy()
+        response = fdialog.run()
+        fn = fdialog.get_filename()
+        fdialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT:
             assert self.builder
-            dialog = self.builder.get_object('dialog_import')
+            dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_import')
 
             dialog.set_attached_to(MainController.window())
             dialog.set_transient_for(MainController.window())
 
             resp = dialog.run()
             dialog.hide()
-            if resp == Gtk.ResponseType.OK:
-                import_palette = self.builder.get_object('switch_import_palette').get_active()
-                import_new = self.builder.get_object('switch_import_new').get_active()
+            if resp == Gtk.ResponseType.OK and fn is not None:
+                import_palette = builder_get_assert(self.builder, Gtk.Switch, 'switch_import_palette').get_active()
+                import_new = builder_get_assert(self.builder, Gtk.Switch, 'switch_import_new').get_active()
                 img = Image.open(fn)
                 if import_new:
                     idx = len(self.img.sprites)
-                    self.img.sprites.append(None)
+                    self.img.sprites.append(None)  # type: ignore
                 else:
                     idx = self.image_idx
                 try:
@@ -142,12 +142,12 @@ class TrpItmImgController(AbstractController):
                 self._init_sprites(idx, self.palette_idx)
 
     def _init_sprites(self, sprite_idx=0, palette_idx=0):
-        self.builder.get_object('entry_id').set_text(str(sprite_idx))
-        self.builder.get_object('entry_id').set_increments(1, 1)
-        self.builder.get_object('entry_id').set_range(0, len(self.img.sprites) - 1)
-        self.builder.get_object('entry_palette').set_text(str(palette_idx))
-        self.builder.get_object('entry_palette').set_increments(1, 1)
-        self.builder.get_object('entry_palette').set_range(0, len(self.img.palettes) - 1)
+        builder_get_assert(self.builder, Gtk.SpinButton, 'entry_id').set_text(str(sprite_idx))
+        builder_get_assert(self.builder, Gtk.SpinButton, 'entry_id').set_increments(1, 1)
+        builder_get_assert(self.builder, Gtk.SpinButton, 'entry_id').set_range(0, len(self.img.sprites) - 1)
+        builder_get_assert(self.builder, Gtk.SpinButton, 'entry_palette').set_text(str(palette_idx))
+        builder_get_assert(self.builder, Gtk.SpinButton, 'entry_palette').set_increments(1, 1)
+        builder_get_assert(self.builder, Gtk.SpinButton, 'entry_palette').set_range(0, len(self.img.palettes) - 1)
         self._switch_entry()
 
     def on_entry_id_changed(self, widget):
@@ -179,17 +179,17 @@ class TrpItmImgController(AbstractController):
         self._switch_entry()
 
     def _switch_entry(self):
-        self.image_idx = int(self.builder.get_object('entry_id').get_text())
-        self.palette_idx = int(self.builder.get_object('entry_palette').get_text())
+        self.image_idx = int(builder_get_assert(self.builder, Gtk.SpinButton, 'entry_id').get_text())
+        self.palette_idx = int(builder_get_assert(self.builder, Gtk.SpinButton, 'entry_palette').get_text())
         surface = self.img.to_pil(self.image_idx, self.palette_idx)
-        stack: Gtk.Stack = self.builder.get_object('entry_stack')
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'entry_stack')
         if surface:
-            stack.set_visible_child(self.builder.get_object('entry_viewer'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Box, 'entry_viewer'))
             surface = surface.resize((surface.width * IMAGE_ZOOM, surface.height * IMAGE_ZOOM))
             self.surface = pil_to_cairo_surface(surface.convert('RGBA'))
-            self.builder.get_object('draw').queue_draw()
+            builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').queue_draw()
         else:
-            stack.set_visible_child(self.builder.get_object('no_entry_label'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Label, 'no_entry_label'))
             self.surface = pil_to_cairo_surface(Image.new('RGBA', size=(1, 1)))
 
     def draw(self, wdg, ctx: cairo.Context, *args):
