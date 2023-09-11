@@ -24,7 +24,7 @@ jobs:
       matrix:
         python-version: [ "3.8", "3.9", "3.10", "3.11" ]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: theCapypara/mypy-check@rust-support
       name: Run type checks
       with:
@@ -38,7 +38,7 @@ jobs:
     steps:
       # For tags we assume the version in setup.py is correct!
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
         run: |
@@ -99,7 +99,7 @@ jobs:
           restore-keys: |
             win-gtk-build-v2-
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       # Temporarily move the preinstalled git, it causes errors related to cygwin.
       - name: Move git binary
         run: |
@@ -181,7 +181,7 @@ jobs:
     name: Build and package for Mac OS
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
         run: |
