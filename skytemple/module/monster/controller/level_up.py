@@ -22,7 +22,7 @@ import re
 import sys
 import tempfile
 import webbrowser
-from typing import TYPE_CHECKING, Dict, Optional, List, Any, Callable
+from typing import TYPE_CHECKING, Dict, Optional, List, Any, Callable, cast
 
 import cairosvg
 from gi.repository import Gtk, GLib, Gio, GdkPixbuf
@@ -32,7 +32,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import is_dark_theme, catch_overflow
+from skytemple.core.ui_utils import is_dark_theme, catch_overflow, builder_get_assert, iter_tree_model
 from skytemple.module.monster.level_up_graph import LevelUpGraphProvider
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import open_utf8, add_extension_if_missing
@@ -97,7 +97,7 @@ class LevelUpController(AbstractController):
 
     def __init__(self, module: 'MonsterModule', item_id: int):
         self.module = module
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self.item_id = item_id
         self._string_provider = self.module.project.get_string_provider()
         self._move_names: Dict[int, str] = {}
@@ -121,7 +121,7 @@ class LevelUpController(AbstractController):
         self._init_webview()
         self._init_graph()
 
-        notebook: Gtk.Notebook = self.builder.get_object('level_up_notebook')
+        notebook = builder_get_assert(self.builder, Gtk.Notebook, 'level_up_notebook')
         notebook.set_current_page(self.__class__._last_open_tab_id)
 
         self.builder.connect_signals(self)
@@ -210,13 +210,13 @@ class LevelUpController(AbstractController):
         self._rebuild_egg()
 
     def on_level_up_move_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_moves'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_moves'))
 
     def on_hmtm_move_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_moves'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_moves'))
 
     def on_egg_move_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_moves'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_moves'))
 
     def on_stats_export_clicked(self, *args):
         assert self._level_bin_entry is not None
@@ -233,7 +233,7 @@ class LevelUpController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, 'csv')
             try:
                 rows : List[List[Any]] = [[CSV_LEVEL, CSV_EXP_POINTS, CSV_HP, CSV_ATK, CSV_SP_ATK, CSV_DEF, CSV_SP_DEF]]
@@ -265,7 +265,7 @@ class LevelUpController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 with open_utf8(fn, mode='r') as csv_file:
                     is_missing = _('is missing in the CSV')
@@ -307,7 +307,7 @@ class LevelUpController(AbstractController):
                 )
                 return
             try:
-                store: Gtk.ListStore = self.builder.get_object('stats_store')
+                store = builder_get_assert(self.builder, Gtk.ListStore, 'stats_store')
                 store.clear()
                 for row in content:
                     store.append([row[CSV_LEVEL], row[CSV_EXP_POINTS], row[CSV_HP],
@@ -326,8 +326,8 @@ class LevelUpController(AbstractController):
 
     def _rebuild_stats(self):
         assert self._level_bin_entry is not None
-        store: Gtk.ListStore = self.builder.get_object('stats_store')
-        for row in store:
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'stats_store')
+        for row in iter_tree_model(store):
             level, exp, hp, atk, sp_atk, defense, sp_def = (int(x) for x in row)
             level_entry = self._level_bin_entry.levels[level - 1]
             level_entry.experience_required = i32(exp)
@@ -340,10 +340,10 @@ class LevelUpController(AbstractController):
         self._mark_stats_as_modified()
 
     def _rebuild_level_up(self):
-        store: Gtk.ListStore = self.builder.get_object('level_up_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'level_up_store')
         learn_set = self._waza_p.learnsets[self.item_id]
         level_up_moves = []
-        for row in store:
+        for row in iter_tree_model(store):
             level_up_moves.append(FileType.WAZA_P.get_level_up_model()(u16(int(row[1])), u16(int(row[0]))))
         level_up_moves.sort(key=lambda l: l.level_id)
         learn_set.level_up_moves = level_up_moves
@@ -351,18 +351,18 @@ class LevelUpController(AbstractController):
         self._mark_moves_as_modified()
 
     def _rebuild_hmtm(self):
-        store: Gtk.ListStore = self.builder.get_object('hmtm_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'hmtm_store')
         learn_set = self._waza_p.learnsets[self.item_id]
         learn_set.tm_hm_moves = []
-        for row in store:
+        for row in iter_tree_model(store):
             learn_set.tm_hm_moves.append(u32(int(row[0])))
         self._mark_moves_as_modified()
 
     def _rebuild_egg(self):
-        store: Gtk.ListStore = self.builder.get_object('egg_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'egg_store')
         learn_set = self._waza_p.learnsets[self.item_id]
         learn_set.egg_moves = []
-        for row in store:
+        for row in iter_tree_model(store):
             learn_set.egg_moves.append(u32(int(row[0])))
         self._mark_moves_as_modified()
 
@@ -374,7 +374,7 @@ class LevelUpController(AbstractController):
         self.module.mark_waza_as_modified(self.item_id)
 
     def _edit(self, store_name, path, index, val, check_fn: Callable[[Any], Any]):
-        store: Gtk.ListStore = self.builder.get_object(store_name)
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
         try:
             check_fn(int(val))
         except ValueError:
@@ -382,7 +382,7 @@ class LevelUpController(AbstractController):
         store[path][index] = val
 
     def _edit_move(self, store_name, path, index_id, index_name, val):
-        store: Gtk.ListStore = self.builder.get_object(store_name)
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
         match = MOVE_NAME_PATTERN.match(val)
         if match is None:
             return
@@ -399,32 +399,32 @@ class LevelUpController(AbstractController):
         store[path][index_id] = move_id
 
     def _add(self, store_name, with_level=False):
-        store: Gtk.ListStore = self.builder.get_object(store_name)
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
         if with_level:
             store.append(["1", 0, self._move_names[0]])
         else:
             store.append([0, self._move_names[0]])
 
     def _remove(self, tree_name):
-        tree: Gtk.TreeView = self.builder.get_object(tree_name)
+        tree = builder_get_assert(self.builder, Gtk.TreeView, tree_name)
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
-            model.remove(treeiter)
+            cast(Gtk.ListStore, model).remove(treeiter)
 
     def _init_move_names(self):
-        move_names_store: Gtk.ListStore = self.builder.get_object('move_names_store')
+        move_names_store = builder_get_assert(self.builder, Gtk.ListStore, 'move_names_store')
         for idx, name in enumerate(self._string_provider.get_all(StringType.MOVE_NAMES)):
             self._move_names[idx] = f'{name} ({idx:03})'
             move_names_store.append([idx, self._move_names[idx]])
 
     def _init_stats_notebook(self):
-        stats_store: Gtk.ListStore = self.builder.get_object('stats_store')
+        stats_store = builder_get_assert(self.builder, Gtk.ListStore, 'stats_store')
 
         entry_id = self.item_id - 1
         if entry_id < 0 or entry_id >= self.module.count_m_level_entries():
             # No valid entry
-            stats_box: Gtk.Box = self.builder.get_object('stats_box')
-            for child in stats_box:
+            stats_box = builder_get_assert(self.builder, Gtk.Box, 'stats_box')
+            for child in stats_box.get_children():
                 stats_box.remove(child)
             self._render_graph = False
             self._has_stats = False
@@ -441,20 +441,20 @@ class LevelUpController(AbstractController):
                 ])
 
     def _init_move_notebooks(self):
-        level_up_store: Gtk.ListStore = self.builder.get_object('level_up_store')
-        hmtm_store: Gtk.ListStore = self.builder.get_object('hmtm_store')
-        egg_store: Gtk.ListStore = self.builder.get_object('egg_store')
+        level_up_store = builder_get_assert(self.builder, Gtk.ListStore, 'level_up_store')
+        hmtm_store = builder_get_assert(self.builder, Gtk.ListStore, 'hmtm_store')
+        egg_store = builder_get_assert(self.builder, Gtk.ListStore, 'egg_store')
 
         if self.item_id < 0 or self.item_id >= len(self._waza_p.learnsets):
             # No valid entry
-            level_up_box: Gtk.Box = self.builder.get_object('level_up_box')
-            hmtm_box: Gtk.Box = self.builder.get_object('hmtm_box')
-            egg_box: Gtk.Box = self.builder.get_object('egg_box')
-            for child in level_up_box:
+            level_up_box = builder_get_assert(self.builder, Gtk.Box, 'level_up_box')
+            hmtm_box = builder_get_assert(self.builder, Gtk.Box, 'hmtm_box')
+            egg_box = builder_get_assert(self.builder, Gtk.Box, 'egg_box')
+            for child in level_up_box.get_children():
                 level_up_box.remove(child)
-            for child in hmtm_box:
+            for child in hmtm_box.get_children():
                 hmtm_box.remove(child)
-            for child in egg_box:
+            for child in egg_box.get_children():
                 egg_box.remove(child)
             level_up_box.pack_start(Gtk.Label.new(_('This Pokémon has no moves.')), True, True, 0)
             hmtm_box.pack_start(Gtk.Label.new(_('This Pokémon has no moves.')), True, True, 0)
@@ -483,10 +483,10 @@ class LevelUpController(AbstractController):
         try:
             import gi
             gi.require_version('WebKit2', '4.0')
-            from gi.repository import WebKit2
-            graph_webkit_box: Gtk.Box = self.builder.get_object('graph_webkit_box')
+            from gi.repository import WebKit2  # type: ignore
+            graph_webkit_box = builder_get_assert(self.builder, Gtk.Box, 'graph_webkit_box')
 
-            self._webview: WebKit2.WebView = WebKit2.WebView()
+            self._webview: WebKit2.WebView = WebKit2.WebView()  # type: ignore
             self._webview.load_uri(pathlib.Path(self.get_tmp_html_path()).as_uri())
             scrolled_window: Gtk.ScrolledWindow = Gtk.ScrolledWindow.new()
             scrolled_window.add(self._webview)
@@ -499,8 +499,8 @@ class LevelUpController(AbstractController):
     def _init_graph(self):
         if self._level_bin_entry is None:
             # No valid entry
-            graph_box: Gtk.Box = self.builder.get_object('graph_box')
-            for child in graph_box:
+            graph_box = builder_get_assert(self.builder, Gtk.Box, 'graph_box')
+            for child in graph_box.get_children():
                 graph_box.remove(child)
             graph_box.pack_start(Gtk.Label.new(_('This Pokémon has no stats.')), True, True, 0)
         else:
@@ -513,7 +513,7 @@ class LevelUpController(AbstractController):
         self._render_graph = False
         if self._level_bin_entry is None:
             return
-        stack: Gtk.Stack = self.builder.get_object('graph_stack')
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'graph_stack')
         if self.item_id < len(self._waza_p.learnsets):
             learnset = self._waza_p.learnsets[self.item_id]
         else:
@@ -534,9 +534,9 @@ class LevelUpController(AbstractController):
             ))
 
         if not self._support_webview:
-            graph_fallbck_box: Gtk.Box = self.builder.get_object('graph_fallbck_box')
+            graph_fallbck_box = builder_get_assert(self.builder, Gtk.Box, 'graph_fallbck_box')
             first = True
-            for child in graph_fallbck_box:
+            for child in graph_fallbck_box.get_children():
                 if first:
                     first = False
                     continue
@@ -550,7 +550,7 @@ class LevelUpController(AbstractController):
             img.show()
             graph_fallbck_box.pack_start(img, True, True, 0)
         else:
-            stack.set_visible_child(self.builder.get_object('graph_webkit_box'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Box, 'graph_webkit_box'))
             self._webview.reload()
 
     @staticmethod
