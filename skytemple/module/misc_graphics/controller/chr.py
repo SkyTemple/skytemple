@@ -22,7 +22,7 @@ from typing import TYPE_CHECKING, Optional, Dict
 import cairo
 
 from skytemple.core.error_handler import display_error
-from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple.core.ui_utils import add_dialog_png_filter, builder_get_assert
 from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.graphics.chr.model import Chr
 
@@ -47,7 +47,7 @@ class ChrController(AbstractController):
         self.filename = filename
         self.chr: Chr = self.module.get_chr(self.filename)
         
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'chr.glade')
@@ -55,8 +55,8 @@ class ChrController(AbstractController):
         self._init_chr()
         
         self.builder.connect_signals(self)
-        self.builder.get_object('draw').connect('draw', self.draw)
-        return self.builder.get_object('editor')
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').connect('draw', self.draw)
+        return builder_get_assert(self.builder, Gtk.Widget, 'editor')
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(
@@ -72,7 +72,7 @@ class ChrController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, 'png')
             self.chr.to_pil().save(fn)
 
@@ -90,7 +90,7 @@ class ChrController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 img = Image.open(fn, 'r')
                 self.chr.from_pil(img)
@@ -104,19 +104,19 @@ class ChrController(AbstractController):
             self._reinit_image()
         
     def _init_chr(self):
-        self.builder.get_object('chr_palette_variant').set_text(str(0))
-        self.builder.get_object('chr_palette_variant').set_increments(1,1)
-        self.builder.get_object('chr_palette_variant').set_range(0, self.chr.get_nb_palettes()-1)
+        builder_get_assert(self.builder, Gtk.SpinButton, 'chr_palette_variant').set_text(str(0))
+        builder_get_assert(self.builder, Gtk.SpinButton, 'chr_palette_variant').set_increments(1,1)
+        builder_get_assert(self.builder, Gtk.SpinButton, 'chr_palette_variant').set_range(0, self.chr.get_nb_palettes()-1)
         self._reinit_image()
 
     def on_chr_palette_variant_changed(self, widget):
         self._reinit_image()
     
     def _reinit_image(self):
-        variant = int(self.builder.get_object('chr_palette_variant').get_text())
+        variant = int(builder_get_assert(self.builder, Gtk.SpinButton, 'chr_palette_variant').get_text())
         surface = self.chr.to_pil(variant)
         self.surface = pil_to_cairo_surface(surface.convert('RGBA'))
-        self.builder.get_object('draw').queue_draw()
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').queue_draw()
     
     def draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:

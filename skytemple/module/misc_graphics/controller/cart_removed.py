@@ -23,7 +23,7 @@ import cairo
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple.core.ui_utils import add_dialog_png_filter, builder_get_assert
 from skytemple_files.common.util import add_extension_if_missing
 
 from PIL import Image
@@ -44,7 +44,7 @@ class CartRemovedController(AbstractController):
     def __init__(self, module: 'MiscGraphicsModule', _: str):
         self.module = module
         
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'cart_removed.glade')
@@ -52,8 +52,8 @@ class CartRemovedController(AbstractController):
         self._reinit_image()
         
         self.builder.connect_signals(self)
-        self.builder.get_object('draw').connect('draw', self.draw)
-        return self.builder.get_object('editor')
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').connect('draw', self.draw)
+        return builder_get_assert(self.builder, Gtk.Widget, 'editor')
 
     def on_cart_removed_info_clicked(self, *args):
         md = SkyTempleMessageDialog(
@@ -82,7 +82,7 @@ class CartRemovedController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, 'png')
             self.module.get_cart_removed_data().save(fn)
     def on_import_clicked(self, w: Gtk.MenuToolButton):
@@ -99,7 +99,7 @@ class CartRemovedController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 img = Image.open(fn, 'r')
                 self.module.set_cart_removed_data(img)
@@ -114,7 +114,7 @@ class CartRemovedController(AbstractController):
     def _reinit_image(self):
         surface = self.module.get_cart_removed_data()
         self.surface = pil_to_cairo_surface(surface.convert('RGBA'))
-        self.builder.get_object('draw').queue_draw()
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').queue_draw()
     
     def draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:

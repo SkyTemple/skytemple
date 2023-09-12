@@ -22,6 +22,7 @@ from typing import TYPE_CHECKING, Optional, Dict, List
 from xml.etree.ElementTree import Element, ElementTree
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
+from skytemple.core.ui_utils import assert_not_none, builder_get_assert
 from skytemple_files.common.xml_util import prettify
 
 import cairo
@@ -50,10 +51,10 @@ class GraphicFontController(AbstractController):
     def __init__(self, module: 'MiscGraphicsModule', item: 'FontOpenSpec'):
         self.module = module
         self.spec = item
-        self.font: GraphicFont = self.module.get_graphic_font(self.spec)
+        self.font: GraphicFont = assert_not_none(self.module.get_graphic_font(self.spec))
         assert self.font is not None
         
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'graphic_font.glade')
@@ -61,8 +62,8 @@ class GraphicFontController(AbstractController):
         self._init_font()
         
         self.builder.connect_signals(self)
-        self.builder.get_object('draw').connect('draw', self.draw)
-        return self.builder.get_object('editor')
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').connect('draw', self.draw)
+        return builder_get_assert(self.builder, Gtk.Widget, 'editor')
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(
@@ -76,7 +77,7 @@ class GraphicFontController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             assert self.font
             for i in range(self.font.get_nb_entries()):
                 e = self.font.get_entry(i)
@@ -108,21 +109,21 @@ class GraphicFontController(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT:
             assert self.builder
-            dialog: Gtk.Dialog = self.builder.get_object('dialog_import')
+            dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_import')
 
-            self.builder.get_object('nb_entries_import').set_increments(1,1)
-            self.builder.get_object('nb_entries_import').set_range(1, MAX_ENTRIES-1)
-            self.builder.get_object('nb_entries_import').set_text(str(self.font.get_nb_entries()))
+            builder_get_assert(self.builder, Gtk.SpinButton, 'nb_entries_import').set_increments(1,1)
+            builder_get_assert(self.builder, Gtk.SpinButton, 'nb_entries_import').set_range(1, MAX_ENTRIES-1)
+            builder_get_assert(self.builder, Gtk.SpinButton, 'nb_entries_import').set_text(str(self.font.get_nb_entries()))
             
             dialog.set_attached_to(MainController.window())
             dialog.set_transient_for(MainController.window())
 
             resp = dialog.run()
             dialog.hide()
-            if resp == Gtk.ResponseType.OK:
+            if resp == Gtk.ResponseType.OK and fn is not None:
                 try:
                     lst_entries: List[Optional[Image.Image]] = []
-                    for i in range(int(self.builder.get_object('nb_entries_import').get_text())):
+                    for i in range(int(builder_get_assert(self.builder, Gtk.SpinButton, 'nb_entries_import').get_text())):
                         path = os.path.join(fn, f'{i:0>4}.png')
                         if os.path.exists(path):
                             lst_entries.append(Image.open(path, 'r'))
@@ -139,9 +140,9 @@ class GraphicFontController(AbstractController):
                 self._init_font()
 
     def _init_font(self):
-        self.builder.get_object('entry_id').set_text(str(0))
-        self.builder.get_object('entry_id').set_increments(1,1)
-        self.builder.get_object('entry_id').set_range(0, self.font.get_nb_entries()-1)
+        builder_get_assert(self.builder, Gtk.SpinButton, 'entry_id').set_text(str(0))
+        builder_get_assert(self.builder, Gtk.SpinButton, 'entry_id').set_increments(1,1)
+        builder_get_assert(self.builder, Gtk.SpinButton, 'entry_id').set_range(0, self.font.get_nb_entries()-1)
         self._switch_entry()
 
     def on_entry_id_changed(self, widget):
@@ -172,15 +173,15 @@ class GraphicFontController(AbstractController):
             widget.set_text(str(val))
         
     def _switch_entry(self):
-        surface = self.font.get_entry(int(self.builder.get_object('entry_id').get_text()))
-        stack: Gtk.Stack = self.builder.get_object('entry_stack')
+        surface = self.font.get_entry(int(builder_get_assert(self.builder, Gtk.SpinButton, 'entry_id').get_text()))
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'entry_stack')
         if surface:
-            stack.set_visible_child(self.builder.get_object('entry_viewer'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Box, 'entry_viewer'))
             surface = surface.resize((surface.width*IMAGE_ZOOM, surface.height*IMAGE_ZOOM))
             self.surface = pil_to_cairo_surface(surface.convert('RGBA'))
-            self.builder.get_object('draw').queue_draw()
+            builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').queue_draw()
         else:
-            stack.set_visible_child(self.builder.get_object('no_entry_label'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Label, 'no_entry_label'))
             self.surface = pil_to_cairo_surface(Image.new('RGBA', size=(1,1)))
     
     def draw(self, wdg, ctx: cairo.Context, *args):

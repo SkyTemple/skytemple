@@ -113,7 +113,7 @@ class MiscGraphicsModule(AbstractModule):
         self.dungeon_bin_context: ModelContext[DungeonBinPack]
         self.list_of_wtes_dungeon_bin: List[Wte]
         self.list_of_wtus_dungeon_bin: List[Wtu]
-        self.list_of_zmappats_dungeon_bin: Optional[List[ZMappaT]] = None
+        self.list_of_zmappats_dungeon_bin: List[ZMappaT]
 
         self._tree_model: Gtk.TreeModel
         self._tree_level_iter: Dict[str, Gtk.TreeIter] = {}
@@ -299,7 +299,7 @@ class MiscGraphicsModule(AbstractModule):
                 pal_name = assoc[1]
                 if pal_name not in self.list_of_bins:
                     pal_name = None
-                if pal_name!=None:
+                if pal_name is not None:
                     spec = FontOpenSpec(name, pal_name, FontType.BANNER_FONT)
                     row = self._tree_model[self._tree_level_iter[spec.get_row_name()]]
                     recursive_up_item_store_mark_as_modified(row)
