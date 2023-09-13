@@ -114,7 +114,7 @@ class SpritecollabModule(AbstractModule):
             monster_module.set_sprite_idx(monster_idx, sprite_idx)
             monster_module.set_shadow_size(
                 monster_idx,
-                ShadowSize(shadow_size_id)
+                ShadowSize(shadow_size_id)  # type: ignore
             )
             sprite_module.update_sprconf(pmd2_sprite)
         else:

@@ -19,6 +19,7 @@ from typing import List, Dict, Tuple, Optional
 
 import cairo
 from gi.repository import Gdk, GdkPixbuf, Gtk
+from skytemple.core.ui_utils import assert_not_none
 from skytemple_files.common.types.file_types import FileType
 
 from skytemple.core.img_utils import pil_to_cairo_surface
@@ -49,18 +50,19 @@ class PortraitProvider:
 
     def init_loader(self, screen: Gdk.Screen):
         icon_theme: Gtk.IconTheme = Gtk.IconTheme.get_for_screen(screen)
+        assert icon_theme is not None
         # Loader icon
-        loader_icon: GdkPixbuf.Pixbuf = icon_theme.load_icon(
+        loader_icon: GdkPixbuf.Pixbuf = assert_not_none(assert_not_none(icon_theme.load_icon(
             'skytemple-image-loading-symbolic', IMG_DIM, Gtk.IconLookupFlags.FORCE_SIZE
-        ).copy()
+        )).copy())
         self._loader_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, IMG_DIM, IMG_DIM)
         ctx = cairo.Context(self._loader_surface)
         Gdk.cairo_set_source_pixbuf(ctx, loader_icon, 0, 0)
         ctx.paint()
         # Error icon
-        error_icon: GdkPixbuf.Pixbuf = icon_theme.load_icon(
+        error_icon: GdkPixbuf.Pixbuf = assert_not_none(assert_not_none(icon_theme.load_icon(
             'skytemple-img-load-error-symbolic', IMG_DIM, Gtk.IconLookupFlags.FORCE_SIZE
-        ).copy()
+        )).copy())
         self._error_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, IMG_DIM, IMG_DIM)
         ctx = cairo.Context(self._error_surface)
         Gdk.cairo_set_source_pixbuf(ctx, error_icon, 0, 0)
@@ -116,14 +118,14 @@ class PortraitProvider:
                 self._requests.remove((entry_id, sub_id))
         after_load_cb()
 
-    def get_loader(self) -> cairo.Surface:
+    def get_loader(self) -> cairo.ImageSurface:
         """
         Returns the loader sprite. A "loading" icon with the size ~24x24px.
         """
-        return self._loader_surface
+        return assert_not_none(self._loader_surface)
 
-    def get_error(self) -> cairo.Surface:
+    def get_error(self) -> cairo.ImageSurface:
         """
         Returns the error sprite. An "error" icon with the size ~24x24px.
         """
-        return self._error_surface
+        return assert_not_none(self._error_surface)

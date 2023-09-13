@@ -17,11 +17,13 @@
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, List, Tuple, Optional
+from typing import TYPE_CHECKING, List, Tuple, Optional, Iterable
 from xml.etree import ElementTree
+from xml.etree.ElementTree import Element
 from zipfile import ZipFile
 
 import cairo
+from skytemple.core.ui_utils import builder_get_assert, assert_not_none
 from skytemple_files.common.ppmdu_config.data import Pmd2Sprite, Pmd2Index
 
 from skytemple.controller.main import MainController
@@ -60,19 +62,19 @@ class MonsterSpriteController(AbstractController):
         self._frame_counter = 0
         self._anim_counter = 0
         self._drawing_is_active = 0
-        self._draw_area = None
+        self._draw_area: Optional[Gtk.DrawingArea] = None
         self._monster_bin: ModelContext[BinPack] = self.module.get_monster_bin_ctx()
         self._rendered_frame_info: List[Tuple[int, Tuple[cairo.Surface, int, int, int, int]]] = []
 
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         if not self.module.is_idx_supported(self.item_id):
             return Gtk.Label.new(_('Invalid Sprite ID.'))
         self.builder = self._get_builder(__file__, 'monster_sprite.glade')
-        self._draw_area = self.builder.get_object('draw_sprite')
+        self._draw_area = builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_sprite')
         if self.module.get_gfxcrunch().is_available():
-            self.builder.get_object('explanation_text2').set_markup(_("""Alternatively you can export the sprite files 
+            builder_get_assert(self.builder, Gtk.Label, 'explanation_text2').set_markup(_("""Alternatively you can export the sprite files 
 in the gfxcrunch format and edit them manually.
 Warning: SkyTemple does not validate the files you import."""))
         self.builder.connect_signals(self)
@@ -83,7 +85,7 @@ Warning: SkyTemple does not validate the files you import."""))
         except BaseException as ex:
             logger.error("Failed rendering sprite preview", exc_info=ex)
 
-        return self.builder.get_object('main_box')
+        return builder_get_assert(self.builder, Gtk.Widget, 'main_box')
 
     def start_sprite_drawing(self):
         """Start drawing on the DrawingArea"""
@@ -123,7 +125,7 @@ Warning: SkyTemple does not validate the files you import."""))
         return True
 
     def _zip_is_active(self):
-        return self.builder.get_object("import_export_zip").get_active()
+        return builder_get_assert(self.builder, Gtk.CheckButton, "import_export_zip").get_active()
 
     def _add_zip_filter_to_dialog(self, dialog: Gtk.FileChooserNative):
         filter_zip = Gtk.FileFilter()
@@ -149,7 +151,7 @@ Warning: SkyTemple does not validate the files you import."""))
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 monster: WanFile = self.module.get_monster_monster_sprite_chara(self.item_id)
                 ground: WanFile = self.module.get_monster_ground_sprite_chara(self.item_id)
@@ -233,7 +235,7 @@ Warning: SkyTemple does not validate the files you import."""))
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 wan = FileType.WAN.CHARA.import_sheets(fn) if not is_zip \
                     else FileType.WAN.CHARA.import_sheets_from_zip(fn)
@@ -253,15 +255,16 @@ Warning: SkyTemple does not validate the files you import."""))
                 else:
                     with ZipFile(fn, 'r') as ZipObj:
                         tree = ElementTree.fromstring(ZipObj.read('AnimData.xml'))
-                self._set_shadow_size_cb(int(tree.find('ShadowSize').text))
+                self._set_shadow_size_cb(int(assert_not_none(assert_not_none(tree.find('ShadowSize')).text)))
 
                 # Update/create sprconf.json:
-                anims: List[Element] = tree.find("Anims")
+                anims: Element = assert_not_none(tree.find("Anims"))
                 action_indices = {}
                 for action in anims:
-                    name_normal: str = action.find("Name").text
-                    if action.find("Index") is not None:
-                        idx = int(action.find("Index").text)
+                    name_normal: str = assert_not_none(assert_not_none(action.find("Name")).text)
+                    action_index = action.find("Index")
+                    if action_index is not None:
+                        idx = int(assert_not_none(action_index.text))
                         action_indices[idx] = Pmd2Index(idx, [name_normal])
                 self.module.update_sprconf(Pmd2Sprite(sprite_id, action_indices))
 

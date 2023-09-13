@@ -19,7 +19,7 @@ import os
 import re
 import sys
 from functools import partial
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING, List, cast
 
 import cairo
 from PIL import Image
@@ -33,7 +33,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple.core.ui_utils import add_dialog_png_filter, builder_get_assert
 
 if TYPE_CHECKING:
     from skytemple.module.portrait.module import PortraitModule
@@ -49,7 +49,7 @@ class PortraitController(AbstractController):
         self._mark_as_modified_cb = mark_as_modified_cb
         self.kao = self.module.kao
 
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
 
     def re_render(self):
         self._portrait_provider.reset()
@@ -63,19 +63,21 @@ class PortraitController(AbstractController):
         for index, subindex, kao in self.kao:
             gui_number = subindex + 1
             portrait_name = self.module.get_portrait_name(subindex)
-            self.builder.get_object(f'portrait_label{gui_number}').set_text(portrait_name)
-            draw = self.builder.get_object(f'portrait_draw{gui_number}')
+            builder_get_assert(self.builder, Gtk.Label, f'portrait_label{gui_number}').set_text(portrait_name)
+            draw = builder_get_assert(self.builder, Gtk.DrawingArea, f'portrait_draw{gui_number}')
             self._draws.append(draw)
             draw.connect('draw', partial(self.on_draw, subindex))
 
-        return self.builder.get_object('box_main')
+        return builder_get_assert(self.builder, Gtk.Widget, 'box_main')
 
     def on_draw(self, subindex: int, widget: Gtk.DrawingArea, ctx: cairo.Context):
         scale = 2
         portrait = self._portrait_provider.get(self.item_id, subindex,
                                                lambda: GLib.idle_add(widget.queue_draw), False)
         ctx.set_source_rgb(1, 1, 1)
-        ctx.rectangle(0, 0, *widget.get_size_request())
+        w, h = widget.get_size_request()
+        assert w is not None and h is not None
+        ctx.rectangle(0, 0, w, h)
         ctx.fill()
         ctx.scale(scale, scale)
         ctx.set_source_surface(portrait)
@@ -85,10 +87,10 @@ class PortraitController(AbstractController):
         return True
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
-        w.get_menu().popup(None, None, None, None, 0, Gtk.get_current_event_time())
+        cast(Gtk.Menu, w.get_menu()).popup(None, None, None, None, 0, Gtk.get_current_event_time())
 
     def on_import_clicked(self, w: Gtk.MenuToolButton):
-        w.get_menu().popup(None, None, None, None, 0, Gtk.get_current_event_time())
+        cast(Gtk.Menu, w.get_menu()).popup(None, None, None, None, 0, Gtk.get_current_event_time())
 
     def on_delete_clicked(self, label: Gtk.Label):
         index = int(label.get_label().split(":")[0])
@@ -110,7 +112,7 @@ class PortraitController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             base_filename = os.path.join(fn, f'{self.item_id + 1}')
             for subindex in range(0, SUBENTRIES):
                 kao = self.kao.get(self.item_id, subindex)
@@ -141,7 +143,7 @@ class PortraitController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             r = re.compile(rf"{self.item_id + 1}_(\d+)\.png", re.IGNORECASE)
             imgs = {int(match[1]): name
                     for match, name in self._try_match_import(r, os.listdir(fn))
@@ -177,8 +179,8 @@ class PortraitController(AbstractController):
         response = dialog.run()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
-            fn = dialog.get_filename()
+        fn = dialog.get_filename()
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, 'png')
             SpriteBotSheet.create(self.kao, self.item_id).save(fn)
 
@@ -196,7 +198,7 @@ class PortraitController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             self.module.import_sheet(self.item_id, fn)
             self.re_render()
             self._mark_as_modified_cb()
