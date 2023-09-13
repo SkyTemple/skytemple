@@ -15,11 +15,12 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import webbrowser
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING, Optional, List, cast
 
 from gi.repository import Gtk, GLib
 from pmdsky_debug_py import RELEASE
 from pmdsky_debug_py.protocol import SectionProtocol, Symbol
+from skytemple.core.ui_utils import builder_get_assert, assert_not_none
 from skytemple_files.common.i18n_util import _, f
 
 from skytemple.core.module_controller import AbstractController
@@ -33,7 +34,7 @@ class PmdSkyDebugController(AbstractController):
     def __init__(self, module: 'PatchModule', *args):
         self.module = module
 
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self._selected_binary: Optional[str] = None
         self._selected_symbol_type: Optional[str] = None
         self._all_selected_binaries: List[str] = []
@@ -46,7 +47,7 @@ class PmdSkyDebugController(AbstractController):
         self.load()
 
         self.builder.connect_signals(self)
-        return self.builder.get_object('main_box')
+        return builder_get_assert(self.builder, Gtk.Widget, 'main_box')
 
     def on_symbol_notebook_switch_page(self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num):
         self._selected_binary = self._all_selected_binaries[page_num]
@@ -59,14 +60,14 @@ class PmdSkyDebugController(AbstractController):
         self.refresh()
 
     def reset_all(self):
-        symbol_box: Gtk.Box = self.builder.get_object('symbol_box')
-        symbol_box.get_parent().remove(symbol_box)
-        symbol_window: Gtk.ScrolledWindow = self.builder.get_object('symbol_window')
-        symbol_window.get_parent().remove(symbol_window)
+        symbol_box = builder_get_assert(self.builder, Gtk.Box, 'symbol_box')
+        assert_not_none(cast(Optional[Gtk.Container], symbol_box.get_parent())).remove(symbol_box)
+        symbol_window= builder_get_assert(self.builder, Gtk.ScrolledWindow, 'symbol_window')
+        assert_not_none(cast(Optional[Gtk.Container], symbol_window.get_parent())).remove(symbol_window)
 
     def load(self):
-        symbol_notebook: Gtk.Notebook = self.builder.get_object('symbol_notebook')
-        symbol_notebook_bin: Gtk.Notebook = self.builder.get_object('symbol_notebook_bin')
+        symbol_notebook = builder_get_assert(self.builder, Gtk.Notebook, 'symbol_notebook')
+        symbol_notebook_bin = builder_get_assert(self.builder, Gtk.Notebook, 'symbol_notebook_bin')
         # Fill symbol_notebook_bin
         symbol_notebook_bin.append_page(Gtk.Box.new(Gtk.Orientation.VERTICAL, 0), Gtk.Label.new(_('Data')))
         symbol_notebook_bin.append_page(Gtk.Box.new(Gtk.Orientation.VERTICAL, 0), Gtk.Label.new(_('Functions')))
@@ -84,26 +85,28 @@ class PmdSkyDebugController(AbstractController):
         self._selected_binary = self._all_selected_binaries[0]
         self._selected_symbol_type = self._all_symbol_types[0]
 
-        self.builder.get_object('pmdsky_debug_version').set_text(RELEASE)
+        builder_get_assert(self.builder, Gtk.Label, 'pmdsky_debug_version').set_text(RELEASE)
 
         self.refresh()
 
     def refresh(self):
-        symbol_notebook: Gtk.Notebook = self.builder.get_object('symbol_notebook')
-        symbol_notebook_bin: Gtk.Notebook = self.builder.get_object('symbol_notebook_bin')
-        symbol_box: Gtk.Box = self.builder.get_object('symbol_box')
-        symbol_window: Gtk.ScrolledWindow = self.builder.get_object('symbol_window')
-        tree: Gtk.TreeView = self.builder.get_object('symbol_tree')
-        symbol_description: Gtk.Label = self.builder.get_object('symbol_description')
-        symbol_meta: Gtk.Label = self.builder.get_object('symbol_meta')
+        symbol_notebook = builder_get_assert(self.builder, Gtk.Notebook, 'symbol_notebook')
+        symbol_notebook_bin = builder_get_assert(self.builder, Gtk.Notebook, 'symbol_notebook_bin')
+        symbol_box = builder_get_assert(self.builder, Gtk.Box, 'symbol_box')
+        symbol_window = builder_get_assert(self.builder, Gtk.ScrolledWindow, 'symbol_window')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'symbol_tree')
+        symbol_description = builder_get_assert(self.builder, Gtk.Label, 'symbol_description')
+        symbol_meta = builder_get_assert(self.builder, Gtk.Label, 'symbol_meta')
         # ATTACH
         assert self._selected_binary is not None
         assert self._selected_symbol_type is not None
         assert self.builder
         bin_page = symbol_notebook_bin.get_nth_page(self._all_symbol_types.index(self._selected_symbol_type))
-        bin_page.pack_start(symbol_window, True, True, 0)
+        assert bin_page is not None
+        cast(Gtk.Box, bin_page).pack_start(symbol_window, True, True, 0)
         sym_page = symbol_notebook.get_nth_page(self._all_selected_binaries.index(self._selected_binary))
-        sym_page.pack_start(symbol_box, True, True, 0)
+        assert sym_page is not None
+        cast(Gtk.Box, sym_page).pack_start(symbol_box, True, True, 0)
 
         project = RomProject.get_current()
         assert project is not None
@@ -114,7 +117,7 @@ class PmdSkyDebugController(AbstractController):
         symbol_description.set_text(section.description.strip())
         symbol_meta.set_markup(f(_("<b>Load Address:</b> 0x{bin_load_address:0x} | <b>Length:</b> {bin_length}")))
 
-        model: Gtk.ListStore = tree.get_model()
+        model = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         model.clear()
 
         if self._selected_symbol_type == "data":

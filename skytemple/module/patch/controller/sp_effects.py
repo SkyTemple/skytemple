@@ -21,7 +21,7 @@ from typing import TYPE_CHECKING, Optional, List
 
 from range_typed_integers import u16_checked, u16
 
-from skytemple.core.ui_utils import REPO_MOVE_EFFECTS, catch_overflow
+from skytemple.core.ui_utils import REPO_MOVE_EFFECTS, catch_overflow, builder_get_assert, assert_not_none
 from skytemple_files.common.i18n_util import _, f
 
 from gi.repository import Gtk
@@ -51,10 +51,10 @@ class SPEffectsController(AbstractController):
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'sp_effects.glade')
-        stack: Gtk.Stack = self.builder.get_object('list_stack')
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'list_stack')
 
         if not self.module.has_sp_effects():
-            stack.set_visible_child(self.builder.get_object('box_na'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_na'))
             return stack
         self.sp_effects = self.module.get_sp_effects()
 
@@ -62,14 +62,14 @@ class SPEffectsController(AbstractController):
         self._init_combos()
         self.on_cb_effect_ids_changed()
         
-        stack.set_visible_child(self.builder.get_object('box_list'))
+        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_list'))
         self.builder.connect_signals(self)
         
         return stack
 
     def _get_current_sp_effect(self) -> Optional[int]:
-        tree_store: Gtk.ListStore = self.builder.get_object('sp_effects_store')
-        active_rows : List[Gtk.TreePath] = self.builder.get_object('sps_tree').get_selection().get_selected_rows()[1]
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'sp_effects_store')
+        active_rows : List[Gtk.TreePath] = builder_get_assert(self.builder, Gtk.TreeView, 'sps_tree').get_selection().get_selected_rows()[1]
 
         sp_effect = None
         for x in active_rows:
@@ -77,17 +77,17 @@ class SPEffectsController(AbstractController):
         return sp_effect
     
     def _get_current_effect(self) -> int:
-        cb_store: Gtk.ListStore = self.builder.get_object('effect_ids_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_effect_ids')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'effect_ids_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_effect_ids')
 
-        if cb.get_active_iter()!=None:
-            return cb_store[cb.get_active_iter()][0]
+        if cb.get_active_iter() is not None:
+            return cb_store[assert_not_none(cb.get_active_iter())][0]
         else:
             return 0
 
     def _init_sp_list(self):
         # Init available menus
-        sp_store: Gtk.ListStore = self.builder.get_object('sp_effects_store')
+        sp_store = builder_get_assert(self.builder, Gtk.ListStore, 'sp_effects_store')
         # Init list
         sp_store.clear()
         for i in range(self.sp_effects.nb_items()):
@@ -95,8 +95,8 @@ class SPEffectsController(AbstractController):
         
     def _init_combos(self, active=0):
         # Init available menus
-        cb_store: Gtk.ListStore = self.builder.get_object('effect_ids_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_effect_ids')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'effect_ids_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_effect_ids')
         # Init combobox
         cb_store.clear()
         for i in range(self.sp_effects.nb_effects()):
@@ -130,7 +130,7 @@ class SPEffectsController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 if fn.split('.')[-1].lower() == 'asm':
                     with open_utf8(fn, 'r') as file:
@@ -180,7 +180,7 @@ class SPEffectsController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             with open(fn, 'wb') as file:
                 file.write(self.sp_effects.get_effect_code(self._get_current_effect()))
 
@@ -231,9 +231,9 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
     def on_btn_goto_effect_clicked(self, *args):
         sp_effect = self._get_current_sp_effect()
         if sp_effect is not None:
-            cb: Gtk.ComboBoxText = self.builder.get_object('cb_effect_ids')
+            cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_effect_ids')
             cb.set_active(sp_effect)
-            effects_notebook = self.builder.get_object('effects_notebook')
+            effects_notebook = builder_get_assert(self.builder, Gtk.Notebook, 'effects_notebook')
             effects_notebook.set_current_page(1)
 
     @catch_overflow(u16)
@@ -241,7 +241,7 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
         try:
             if int(text) >= self.sp_effects.nb_effects() or int(text)<0:
                 return
-            tree_store: Gtk.ListStore = self.builder.get_object('sp_effects_store')
+            tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'sp_effects_store')
             tree_store[path][1] = u16_checked(int(text))
         except ValueError:
             return
@@ -251,7 +251,7 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
         
     def on_cb_effect_ids_changed(self, *args):
         effect_id = self._get_current_effect()
-        store = self.builder.get_object('effect_sps_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'effect_sps_store')
         store.clear()
         for x in self.sp_effects.get_all_of(effect_id):
             store.append([x])

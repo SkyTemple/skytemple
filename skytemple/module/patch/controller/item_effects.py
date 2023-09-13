@@ -21,7 +21,7 @@ from typing import TYPE_CHECKING, Optional, List
 
 from range_typed_integers import u16_checked, u16
 
-from skytemple.core.ui_utils import REPO_MOVE_EFFECTS, catch_overflow
+from skytemple.core.ui_utils import REPO_MOVE_EFFECTS, catch_overflow, builder_get_assert, assert_not_none
 from skytemple_files.common.i18n_util import _, f
 
 from gi.repository import Gtk
@@ -51,10 +51,10 @@ class ItemEffectsController(AbstractController):
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'item_effects.glade')
-        stack: Gtk.Stack = self.builder.get_object('list_stack')
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'list_stack')
 
         if not self.module.has_item_effects():
-            stack.set_visible_child(self.builder.get_object('box_na'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_na'))
             return stack
         self.item_effects = self.module.get_item_effects()
 
@@ -62,14 +62,14 @@ class ItemEffectsController(AbstractController):
         self._init_combos()
         self.on_cb_effect_ids_changed()
         
-        stack.set_visible_child(self.builder.get_object('box_list'))
+        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_list'))
         self.builder.connect_signals(self)
         
         return stack
 
     def _get_current_item_effect(self) -> Optional[int]:
-        tree_store: Gtk.ListStore = self.builder.get_object('item_effects_store')
-        active_rows: List[Gtk.TreePath] = self.builder.get_object('items_tree').get_selection().get_selected_rows()[1]
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_effects_store')
+        active_rows: List[Gtk.TreePath] = builder_get_assert(self.builder, Gtk.TreeView, 'items_tree').get_selection().get_selected_rows()[1]
 
         item_effect = None
         for x in active_rows:
@@ -77,17 +77,17 @@ class ItemEffectsController(AbstractController):
         return item_effect
     
     def _get_current_effect(self) -> int:
-        cb_store: Gtk.ListStore = self.builder.get_object('effect_ids_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_effect_ids')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'effect_ids_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_effect_ids')
 
-        if cb.get_active_iter()!=None:
-            return cb_store[cb.get_active_iter()][0]
+        if cb.get_active_iter() is not None:
+            return cb_store[assert_not_none(cb.get_active_iter())][0]
         else:
             return 0
 
     def _init_item_list(self):
         # Init available menus
-        item_store: Gtk.ListStore = self.builder.get_object('item_effects_store')
+        item_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_effects_store')
         # Init list
         item_store.clear()
 
@@ -96,13 +96,13 @@ class ItemEffectsController(AbstractController):
             non_sorted.append([i,
                                self._string_provider.get_value(StringType.ITEM_NAMES, i),
                                self.item_effects.get_item_effect_id(i)])
-        for x in sorted(non_sorted, key=lambda x: x[1]):
+        for x in sorted(non_sorted, key=lambda x: x[1]):  # type: ignore
             item_store.append(x)
         
     def _init_combos(self, active=0):
         # Init available menus
-        cb_store: Gtk.ListStore = self.builder.get_object('effect_ids_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_effect_ids')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'effect_ids_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_effect_ids')
         # Init combobox
         cb_store.clear()
         for i in range(self.item_effects.nb_effects()):
@@ -136,7 +136,7 @@ class ItemEffectsController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 if fn.split('.')[-1].lower() == 'asm':
                     with open_utf8(fn, 'r') as file:
@@ -186,7 +186,7 @@ class ItemEffectsController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             with open(fn, 'wb') as file:
                 file.write(self.item_effects.get_effect_code(self._get_current_effect()))
 
@@ -236,10 +236,10 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
         
     def on_btn_goto_effect_clicked(self, *args):
         item_effect = self._get_current_item_effect()
-        if item_effect != None:
-            cb: Gtk.ComboBoxText = self.builder.get_object('cb_effect_ids')
+        if item_effect is not None:
+            cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_effect_ids')
             cb.set_active(item_effect)
-            effects_notebook = self.builder.get_object('effects_notebook')
+            effects_notebook = builder_get_assert(self.builder, Gtk.Notebook, 'effects_notebook')
             effects_notebook.set_current_page(1)
 
     @catch_overflow(u16)
@@ -247,7 +247,7 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
         try:
             if int(text) >= self.item_effects.nb_effects() or int(text)<0:
                 return
-            tree_store: Gtk.ListStore = self.builder.get_object('item_effects_store')
+            tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_effects_store')
             tree_store[path][2] = u16_checked(int(text))
         except ValueError:
             return
@@ -257,7 +257,7 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
         
     def on_cb_effect_ids_changed(self, *args):
         effect_id = self._get_current_effect()
-        store = self.builder.get_object('effect_items_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'effect_items_store')
         store.clear()
         for x in self.item_effects.get_all_of(effect_id):
             store.append([x, self._string_provider.get_value(StringType.ITEM_NAMES, x)])
