@@ -58,16 +58,16 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="label" translatable="yes">This will export all chunks. 
-Chunks are the 24x24px images that make up the
+Chunks are the 24×24px images that make up the
 graphics of one dungeon tile. 
-The consist of 3x3 8x8px tiles.
+The consist of 3×3 8×8px tiles.
 
 You can edit and import the chunks again.
 
 Please note the following about the format of the files:
 - The images are 256-color indexed PNGs.
 - The 256 colors are divided into 12 16 color palettes.
-- Each 8x8 tile in the image MUST only use colors from
+- Each 8×8 tile in the image MUST only use colors from
   one of these 12 palettes.
 - The first color in each palette is transparency.
 
@@ -1223,8 +1223,8 @@ be able to re-import the chunks!</property>
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">This will export all tiles. Tiles are 8x8px images.
-3x3 tiles can be grouped together to form a chunk,
+            <property name="label" translatable="yes">This will export all tiles. Tiles are 8×8px images.
+3×3 tiles can be grouped together to form a chunk,
 see the "Chunk Editor" for more information.
 
 You can edit and import the tiles again.
@@ -1232,7 +1232,7 @@ You can edit and import the tiles again.
 Please note the following about the format of the files:
 - The images are 256-color indexed PNGs.
 - The 256 colors are divided into 12 16 color palettes.
-- Each 8x8 tile in the image MUST only use colors from
+- Each 8×8 tile in the image MUST only use colors from
   one of these 12 palettes.
 - The first color in each palette is transparency.
 - All tiles are exported with using the colors of palette 0.
@@ -2450,11 +2450,11 @@ Use the menus above to edit chunks and tile graphics.
 The existing mappings are replaced.
 
 The file is expected to have the following format:
-- The images consists of 3x3 clusters (chunks) of 8x8 tiles.
+- The images consists of 3×3 clusters (chunks) of 8×8 tiles.
 - The images are indexed PNGs.
 - The colors are divided into 12 16 color palettes
   (additional colors are ignored).
-- Each 8x8 tile in the image MUST only use colors from
+- Each 8×8 tile in the image MUST only use colors from
   one of these 12 palettes.
 - The first color of each palette will be
   imported as transparency.
@@ -2624,11 +2624,11 @@ Palette animation settings are not changed.</property>
                 <property name="label" translatable="yes">This will import the tiles.
 
 The file is expected to have the following format:
-- The images consists of 8x8 tiles.
+- The images consists of 8×8 tiles.
 - The images are indexed PNGs.
 - The colors are divided into 12 16 color palettes
   (additional colors are ignored).
-- Each 8x8 tile in the image MUST only use colors from
+- Each 8×8 tile in the image MUST only use colors from
   one of these 12 palettes.
 - The first color of each palette will be
   imported as transparency.</property>

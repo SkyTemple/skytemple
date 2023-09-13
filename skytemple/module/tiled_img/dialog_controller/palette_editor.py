@@ -96,7 +96,7 @@ class PaletteEditorController:
                                     Gtk.ButtonsType.OK,
                                     _("Some images editors have problems when editing indexed images that contain\n"
                                       "the same color multiple times (they mis-match the actual color index).\n"
-                                      "Since the import expects all 8x8 tiles to only use one 16-color palette, this\n"
+                                      "Since the import expects all 8×8 tiles to only use one 16-color palette, this\n"
                                       "can lead to issues.\n\n"
                                       "To solve this, you can make all colors in the palettes unique. This is done by\n"
                                       "slightly shifting the color values of duplicate colors (not visible for the\n"

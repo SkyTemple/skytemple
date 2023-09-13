@@ -188,7 +188,7 @@ class ChunkEditorController:
         self.edited_mappings[self.current_tile_id].pal_idx = wdg.get_active()
 
     def on_icon_view_chunk_selection_changed(self, icon_view: IconView):
-        """Fill the icon view containing the 3x3 tiles for the current chunk"""
+        """Fill the icon view containing the 3×3 tiles for the current chunk"""
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
         if model is not None and treeiter is not None and treeiter != []:
             first_tile_id = model[treeiter][0]
@@ -280,7 +280,7 @@ class ChunkEditorController:
         renderer.start()
 
     def _init_icon_view_tiles_in_chunk(self):
-        """Init the icon view containing the 3x3 tiles for the current chunk"""
+        """Init the icon view containing the 3×3 tiles for the current chunk"""
         icon_view: IconView = self.builder.get_object(f'icon_view_tiles_in_chunk')
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         renderer = DrawerTiledCellRenderer(

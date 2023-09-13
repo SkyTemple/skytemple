@@ -43,25 +43,25 @@ if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
 
 
-INFO_IMEXPORT_TILES = _("""- The image consists of 8x8 tiles.
+INFO_IMEXPORT_TILES = _("""- The image consists of 8×8 tiles.
 - The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
-- Each 8x8 tile in the image MUST only use colors from
+- Each 8×8 tile in the image MUST only use colors from
   one of these 16 palettes.
 - The first color in each palette is transparency.
 - The exported palettes are only for your convenience.
   They are based on the first time the tile is used in a 
   chunk mapping (Chunks > Edit Chunks).
-- Each import must result in a maximum of 1024 unique 8x8 tiles 
+- Each import must result in a maximum of 1024 unique 8×8 tiles 
   (=not existing with another palette or flipped or rotated).
 """)
 
 INFO_IMEXPORT_CHUNK = _("""- The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
-- Each 8x8 tile in the image MUST only use colors from
+- Each 8×8 tile in the image MUST only use colors from
   one of these 16 palettes.
 - The first color in each palette is transparency.
-- Each import must result in a maximum of 1024 unique 8x8 tiles 
+- Each import must result in a maximum of 1024 unique 8×8 tiles 
   (=not existing with another palette or flipped or rotated).
 
 Some image editors have problems when working with indexed
@@ -71,10 +71,10 @@ Palettes > Edit Palettes.""")
 
 INFO_IMEXPORT_ENTIRE = _("""- The images is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
-- Each 8x8 tile in the image MUST only use colors from
+- Each 8×8 tile in the image MUST only use colors from
   one of these 16 palettes.
 - The first color in each palette is transparency.
-- Each import must result in a maximum of 1024 unique 8x8 tiles 
+- Each import must result in a maximum of 1024 unique 8×8 tiles 
   (=not existing with another palette or flipped or rotated).
 
 Some image editors have problems when working with indexed
