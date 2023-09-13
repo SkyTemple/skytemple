@@ -69,7 +69,7 @@ class LevelUpGraphProvider:
             sp_def_accu += level.special_defense_growth  # type: ignore
             sp_defs.append((i + 1, sp_def_accu))
 
-        max_val: int = max(hp_accu, atk_accu, sp_atk_accu, def_accu, sp_def_accu)
+        max_val: int = max(hp_accu, atk_accu, sp_atk_accu, def_accu, sp_def_accu)  # type: ignore
         moves = []
         processed_levels: Dict[int, int] = {}
         for lum in self.move_learnset.level_up_moves:
