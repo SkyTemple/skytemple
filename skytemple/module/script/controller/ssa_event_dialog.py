@@ -14,10 +14,12 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Dict, Optional, Callable, Mapping, List
+from typing import Dict, Optional, Callable, Mapping, List, cast
 
 from gi.repository import Gtk
+from gi.repository.Gtk import TreeModelRow
 from range_typed_integers import u16_checked, u16
+from skytemple.core.ui_utils import builder_get_assert, assert_not_none
 
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptRoutine, Pmd2ScriptData
 from skytemple_files.script.ssa_sse_sss.trigger import SsaTrigger
@@ -35,7 +37,7 @@ class SsaEventDialogController:
         self.new_model: Optional[SsaTrigger] = None
         self.talk_script_names = talk_script_names
         self.scriptdata = scriptdata
-        self.window: Gtk.Dialog = self.builder.get_object('dialog_event')
+        self.window = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_event')
         self.window.set_transient_for(main_window)
         self.window.set_attached_to(main_window)
         if self.edit is not None:
@@ -56,49 +58,49 @@ class SsaEventDialogController:
         script_store.append([-1, _('None')])
         for sid, sname in self.talk_script_names.items():
             script_store.append([sid, sname])
-        script_cb: Gtk.ComboBox = self.builder.get_object('event_script')
+        script_cb = builder_get_assert(self.builder, Gtk.ComboBox, 'event_script')
         script_cb.clear()
         self._fast_set_comboxbox_store(script_cb, script_store, 1)
         # Set Script IDs Combobox
         if self.edit:
-            self._select_in_combobox_where_callback(script_cb, lambda r: self.edit.script_id == r[0])
+            self._select_in_combobox_where_callback(script_cb, lambda r: assert_not_none(self.edit).script_id == r[0])
         else:
             script_cb.set_active_iter(script_store.get_iter_first())
         # Fill Coroutine Combobox
         routine_store = Gtk.ListStore(int, str)  # ID, name
         for routine in self.scriptdata.common_routine_info__by_id.values():
             routine_store.append([routine.id, routine.name])
-        routine_cb: Gtk.ComboBox = self.builder.get_object('event_coroutine')
+        routine_cb = builder_get_assert(self.builder, Gtk.ComboBox, 'event_coroutine')
         routine_cb.clear()
         self._fast_set_comboxbox_store(routine_cb, routine_store, 1)
         # Set Coroutine Combobox
         if self.edit:
-            self._select_in_combobox_where_callback(routine_cb, lambda r: self.edit.coroutine.id == r[0])
+            self._select_in_combobox_where_callback(routine_cb, lambda r: assert_not_none(self.edit).coroutine.id == r[0])
         else:
             routine_cb.set_active_iter(routine_store.get_iter_first())
         # Clear / Set Unk2
         if self.edit:
-            self.builder.get_object('event_unk2').set_text(str(self.edit.unk2))
+            builder_get_assert(self.builder, Gtk.Entry, 'event_unk2').set_text(str(self.edit.unk2))
         else:
-            self.builder.get_object('event_unk2').set_text("")
+            builder_get_assert(self.builder, Gtk.Entry, 'event_unk2').set_text("")
         # Clear / Set Unk3
         if self.edit:
-            self.builder.get_object('event_unk3').set_text(str(self.edit.unk3))
+            builder_get_assert(self.builder, Gtk.Entry, 'event_unk3').set_text(str(self.edit.unk3))
         else:
-            self.builder.get_object('event_unk3').set_text("")
+            builder_get_assert(self.builder, Gtk.Entry, 'event_unk3').set_text("")
 
         response = self.window.run()
 
         self.window.hide()
         if response == Gtk.ResponseType.OK:
-            script_id = script_store[script_cb.get_active_iter()][0]
-            coroutine_id = routine_store[routine_cb.get_active_iter()][0]
+            script_id = script_store[assert_not_none(script_cb.get_active_iter())][0]
+            coroutine_id = routine_store[assert_not_none(routine_cb.get_active_iter())][0]
             try:
-                unk2 = u16_checked(int(self.builder.get_object('event_unk2').get_text()))
+                unk2 = u16_checked(int(builder_get_assert(self.builder, Gtk.Entry, 'event_unk2').get_text()))
             except (ValueError, OverflowError):
                 unk2 = u16(0)
             try:
-                unk3 = u16_checked(int(self.builder.get_object('event_unk3').get_text()))
+                unk3 = u16_checked(int(builder_get_assert(self.builder, Gtk.Entry, 'event_unk3').get_text()))
             except (ValueError, OverflowError):
                 unk3 = u16(0)
             self.new_model = SsaTrigger(
@@ -117,10 +119,11 @@ class SsaEventDialogController:
         cb.pack_start(renderer_text, True)
         cb.add_attribute(renderer_text, "text", col)
 
-    def _select_in_combobox_where_callback(self, cb: Gtk.ComboBox, callback: Callable[[Mapping], bool]):
+    def _select_in_combobox_where_callback(self, cb: Gtk.ComboBox, callback: Callable[[TreeModelRow], bool]):
         l_iter = cb.get_model().get_iter_first()
         while l_iter is not None:
-            if callback(cb.get_model()[l_iter]):
+            m = cast(Gtk.ListStore, assert_not_none(cb.get_model()))
+            if callback(m[l_iter]):
                 cb.set_active_iter(l_iter)
                 return
             l_iter = cb.get_model().iter_next(l_iter)

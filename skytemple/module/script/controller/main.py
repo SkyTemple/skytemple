@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import TYPE_CHECKING, Optional, List, Dict
+from typing import TYPE_CHECKING, Optional, List, Dict, cast
 
 from gi.repository import Gtk
 from range_typed_integers import i16, i16_checked, u8, u32, u8_checked
@@ -24,7 +24,8 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import BinaryName
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import data_dir, glib_async, catch_overflow
+from skytemple.core.ui_utils import data_dir, glib_async, catch_overflow, builder_get_assert, assert_not_none, \
+    iter_tree_model
 from skytemple_files.common.i18n_util import _, f
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevelMapType, Pmd2ScriptLevel
@@ -42,7 +43,7 @@ SCRIPT_SCENES = _('Script Scenes')
 class MainController(AbstractController):
     def __init__(self, module: 'ScriptModule', item_id: int):
         self.module = module
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self._list: LevelListBin
         self._dungeon_tilesets: List[GroundTilesetMapping]
         self._labels_mapid: Dict[int, str] = {}
@@ -54,26 +55,26 @@ class MainController(AbstractController):
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'main.glade')
         assert self.builder
-        stack: Gtk.Stack = self.builder.get_object('list_stack')
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'list_stack')
 
         if not self.module.has_level_list():
-            stack.set_visible_child(self.builder.get_object('box_na'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Box, 'box_na'))
         else:
             self._list = self.module.get_level_list()
 
             self._init_label_stores()
             self._init_list_store()
-            stack.set_visible_child(self.builder.get_object('box_edit'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Box, 'box_edit'))
 
         self._dungeon_tilesets = self.module.get_dungeon_tilesets()
         self._init_td_label_stores()
         self._init_td_list_store()
 
         self.builder.connect_signals(self)
-        return self.builder.get_object('box_list')
+        return builder_get_assert(self.builder, Gtk.Widget, 'box_list')
 
     def on_cr_name_edited(self, widget, path, text):
-        store: Gtk.ListStore = self.builder.get_object('level_list_tree_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'level_list_tree_store')
         if len(text) < 1 or len(text) > 8:
             md = SkyTempleMessageDialog(
                 SkyTempleMainController.window(),
@@ -90,31 +91,31 @@ class MainController(AbstractController):
 
     @glib_async
     def on_cr_nameid_changed(self, widget, path, new_iter, *args):
-        store: Gtk.ListStore = self.builder.get_object('level_list_tree_store')
-        cb_store: Gtk.Store = self.builder.get_object('nameid_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'level_list_tree_store')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'nameid_store')
         store[path][2] = cb_store[new_iter][0]
         store[path][6] = cb_store[new_iter][1]
         self._save()
 
     @glib_async
     def on_cr_maptype_changed(self, widget, path, new_iter, *args):
-        store: Gtk.ListStore = self.builder.get_object('level_list_tree_store')
-        cb_store: Gtk.Store = self.builder.get_object('maptype_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'level_list_tree_store')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'maptype_store')
         store[path][3] = cb_store[new_iter][0]
         store[path][7] = cb_store[new_iter][1]
         self._save()
 
     @glib_async
     def on_cr_mapid_changed(self, widget, path, new_iter, *args):
-        store: Gtk.ListStore = self.builder.get_object('level_list_tree_store')
-        cb_store: Gtk.Store = self.builder.get_object('mapbg_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'level_list_tree_store')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'mapbg_store')
         store[path][4] = cb_store[new_iter][0]
         store[path][8] = cb_store[new_iter][1]
         self._save()
 
     @catch_overflow(i16)
     def on_cr_weather_edited(self, widget, path, text):
-        store: Gtk.ListStore = self.builder.get_object('level_list_tree_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'level_list_tree_store')
         try:
             i16_checked(int(text))
         except ValueError:
@@ -141,7 +142,7 @@ class MainController(AbstractController):
             md.destroy()
             return
         new_id = max(l.id for l in self._list.list) + 1
-        store: Gtk.ListStore = self.builder.get_object('level_list_tree_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'level_list_tree_store')
         store.append([
             str(new_id), new_name, 0, 0, 0, str(-1),
             self._labels_overworld_strings[0],
@@ -160,23 +161,23 @@ class MainController(AbstractController):
 
     @glib_async
     def on_cr_td_level_changed(self, widget, path, new_iter, *args):
-        store: Gtk.ListStore = self.builder.get_object('dungeon_tileset_store')
-        cb_store: Gtk.Store = self.builder.get_object('td_level_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'dungeon_tileset_store')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'td_level_store')
         store[path][1] = cb_store[new_iter][0]
         store[path][3] = cb_store[new_iter][1]
         self._save_td()
 
     @glib_async
     def on_cr_td_dungeon_changed(self, widget, path, new_iter, *args):
-        store: Gtk.ListStore = self.builder.get_object('dungeon_tileset_store')
-        cb_store: Gtk.Store = self.builder.get_object('td_dungeon_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'dungeon_tileset_store')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'td_dungeon_store')
         store[path][2] = cb_store[new_iter][0]
         store[path][4] = cb_store[new_iter][1]
         self._save_td()
 
     @catch_overflow(u8)
     def on_cr_td_floor_number_edited(self, widget, path, text):
-        store: Gtk.ListStore = self.builder.get_object('dungeon_tileset_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'dungeon_tileset_store')
         try:
             u8_checked(int(text))
         except ValueError:
@@ -185,10 +186,10 @@ class MainController(AbstractController):
         self._save_td()
 
     def _show_generic_input(self, label_text, ok_text, sublabel_text=''):
-        dialog: Gtk.Dialog = self.builder.get_object('generic_input_dialog')
-        entry: Gtk.Entry = self.builder.get_object('generic_input_dialog_entry')
-        label: Gtk.Label = self.builder.get_object('generic_input_dialog_label')
-        sublabel: Gtk.Label = self.builder.get_object('generic_input_dialog_sublabel')
+        dialog: Gtk.Dialog = builder_get_assert(self.builder, Gtk.Dialog, 'generic_input_dialog')
+        entry: Gtk.Entry = builder_get_assert(self.builder, Gtk.Entry, 'generic_input_dialog_entry')
+        label: Gtk.Label = builder_get_assert(self.builder, Gtk.Label, 'generic_input_dialog_label')
+        sublabel: Gtk.Label = builder_get_assert(self.builder, Gtk.Label, 'generic_input_dialog_sublabel')
         label.set_text(label_text)
         sublabel.set_text(sublabel_text)
         btn_cancel = dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
@@ -200,8 +201,8 @@ class MainController(AbstractController):
         dialog.set_transient_for(SkyTempleMainController.window())
         response = dialog.run()
         dialog.hide()
-        btn.get_parent().remove(btn)
-        btn_cancel.get_parent().remove(btn_cancel)
+        assert_not_none(cast(Optional[Gtk.Container], btn.get_parent())).remove(btn)
+        assert_not_none(cast(Optional[Gtk.Container], btn_cancel.get_parent())).remove(btn_cancel)
         return response, entry.get_text()
 
     def _init_label_stores(self):
@@ -210,7 +211,7 @@ class MainController(AbstractController):
         self._labels_overworld_strings = {}
 
         lvls = []
-        store: Gtk.ListStore = self.builder.get_object('mapbg_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'mapbg_store')
         for i, level in enumerate(self.module.get_bg_level_list().level):
             lvls.append((i, level.bma_name))
         for i, level in sorted(lvls, key=lambda l: l[1]):
@@ -218,19 +219,19 @@ class MainController(AbstractController):
             self._labels_mapid[i] = lbl
             store.append([i, lbl])
 
-        store = self.builder.get_object('maptype_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'maptype_store')
         for val in Pmd2ScriptLevelMapType:
             self._labels_maptype[val.value] = val.name_localized
             store.append([val.value, val.name_localized])
 
-        store = self.builder.get_object('nameid_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'nameid_store')
         for i in range(0, 312):
             lbl, lbl_id = self.module.get_map_display_name(i)
             self._labels_overworld_strings[i] = lbl + f' (#{(lbl_id + 1):04})'
             store.append([i, lbl + f' (#{(lbl_id + 1):04})'])
 
     def _init_list_store(self):
-        store: Gtk.ListStore = self.builder.get_object('level_list_tree_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'level_list_tree_store')
         for i, level in enumerate(self._list.list):
             store.append([
                 str(level.id), level.name, level.nameid, level.mapty, level.mapid, str(level.weather),
@@ -242,7 +243,7 @@ class MainController(AbstractController):
         self._labels_td_level = {}
         self._labels_td_dungeon = {}
 
-        store: Gtk.ListStore = self.builder.get_object('td_level_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'td_level_store')
         self._labels_td_level[-1] = _('None')
         store.append([-1, _('None')])
         if hasattr(self, '_list') and self._list:
@@ -260,14 +261,14 @@ class MainController(AbstractController):
         dungeons = HardcodedDungeons.get_dungeon_list(
             self.module.project.get_binary(BinaryName.ARM9), static
         )
-        store = self.builder.get_object('td_dungeon_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'td_dungeon_store')
         for i, dungeon in enumerate(dungeons):
             lbl = f'{self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_SELECTION, i)} (#{i:03})'
             self._labels_td_dungeon[i] = lbl
             store.append([i, lbl])
 
     def _init_td_list_store(self):
-        store: Gtk.ListStore = self.builder.get_object('dungeon_tileset_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'dungeon_tileset_store')
         for i, dt in enumerate(self._dungeon_tilesets):
             store.append([
                 str(i), dt.ground_level, dt.dungeon_id,
@@ -277,7 +278,7 @@ class MainController(AbstractController):
 
     def _save(self):
         self._list.list.clear()
-        for row in self.builder.get_object('level_list_tree_store'):
+        for row in iter_tree_model(builder_get_assert(self.builder, Gtk.ListStore, 'level_list_tree_store')):
             self._list.list.append(
                 Pmd2ScriptLevel(
                     id=int(row[0]),
@@ -294,7 +295,7 @@ class MainController(AbstractController):
 
     def _save_td(self):
         self._dungeon_tilesets.clear()
-        for row in self.builder.get_object('dungeon_tileset_store'):
+        for row in iter_tree_model(builder_get_assert(self.builder, Gtk.ListStore, 'dungeon_tileset_store')):
             self._dungeon_tilesets.append(
                 GroundTilesetMapping(
                     row[1],

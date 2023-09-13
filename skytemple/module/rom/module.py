@@ -22,7 +22,7 @@ from ndspy.rom import NintendoDSRom
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
-from skytemple.core.ui_utils import generate_item_store_row_label
+from skytemple.core.ui_utils import generate_item_store_row_label, assert_not_none
 from skytemple.module.rom.controller.main import MainController
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified
@@ -74,7 +74,7 @@ class RomModule(AbstractModule):
             self._static_data = self.project.load_rom_data()
 
     def get_static_data(self) -> Pmd2Data:
-        return self._static_data
+        return assert_not_none(self._static_data)
 
     def mark_as_modified(self):
         assert self._item_store is not None
