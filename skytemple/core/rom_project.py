@@ -27,6 +27,7 @@ from datetime import datetime
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
 from pmdsky_debug_py.protocol import SectionProtocol
+from skytemple.core.ui_utils import assert_not_none
 from skytemple_files.data.sprconf.handler import SPRCONF_FILENAME
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -395,7 +396,7 @@ class RomProject:
 
     def open_file_manually(self, filename: str):
         """Returns the raw bytes of a file. GENERALLY NOT RECOMMENDED."""
-        return self._rom.getFileByName(filename)
+        return assert_not_none(self._rom).getFileByName(filename)
 
     def save_file_manually(self, filename: str, data: bytes):
         """
@@ -434,12 +435,12 @@ class RomProject:
             self.save_as_is()
             await AsyncTaskDelegator.buffer()
             if main_controller:
-                GLib.idle_add(lambda: main_controller.on_file_saved())
+                GLib.idle_add(lambda: assert_not_none(main_controller).on_file_saved())
 
         except Exception as err:
             if main_controller:
                 exc_info = sys.exc_info()
-                GLib.idle_add(lambda err=err: main_controller.on_file_saved_error(exc_info, err))
+                GLib.idle_add(lambda err=err: assert_not_none(main_controller).on_file_saved_error(exc_info, err))
 
     def prepare_save_model(self, name, assert_that=None):
         """

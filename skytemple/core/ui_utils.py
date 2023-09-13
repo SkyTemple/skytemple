@@ -269,7 +269,6 @@ def get_list_store_iter_by_idx(store: Gtk.ListStore, idx, get_iter=False):
 def create_tree_view_column(
     title: str,
     renderer: Gtk.CellRenderer,
-    # Note: Only the first kwargs is used. The rest is discarded.
     **kwargs: int
 ) -> Gtk.TreeViewColumn:
     """
@@ -279,7 +278,6 @@ def create_tree_view_column(
     """
     column = Gtk.TreeViewColumn(title=title)
     column.pack_start(renderer, True)
-    if len(kwargs) > 0:
-        attr, column_id = next(iter(kwargs.items()))
+    for attr, column_id in kwargs.items():
         column.add_attribute(renderer, attr, column_id)
     return column

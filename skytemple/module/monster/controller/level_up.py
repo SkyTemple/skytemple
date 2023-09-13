@@ -487,9 +487,9 @@ class LevelUpController(AbstractController):
             graph_webkit_box = builder_get_assert(self.builder, Gtk.Box, 'graph_webkit_box')
 
             self._webview: WebKit2.WebView = WebKit2.WebView()  # type: ignore
-            self._webview.load_uri(pathlib.Path(self.get_tmp_html_path()).as_uri())
+            self._webview.load_uri(pathlib.Path(self.get_tmp_html_path()).as_uri())  # type: ignore
             scrolled_window: Gtk.ScrolledWindow = Gtk.ScrolledWindow.new()
-            scrolled_window.add(self._webview)
+            scrolled_window.add(self._webview)  # type: ignore
             graph_webkit_box.pack_start(scrolled_window, True, True, 0)
 
             self._support_webview = True
@@ -551,7 +551,7 @@ class LevelUpController(AbstractController):
             graph_fallbck_box.pack_start(img, True, True, 0)
         else:
             stack.set_visible_child(builder_get_assert(self.builder, Gtk.Box, 'graph_webkit_box'))
-            self._webview.reload()
+            self._webview.reload()  # type: ignore
 
     @staticmethod
     def get_tmp_html_path():

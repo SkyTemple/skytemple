@@ -34,7 +34,7 @@ class Now(AsyncTaskRunnerProtocol):
         return cls._instance
 
     def __init__(self):
-        self._loop: AbstractEventLoop = None
+        self._loop: AbstractEventLoop = None  # type: ignore
 
     def run_task(self, coro: Coroutine):
         if self._loop is None:
@@ -65,7 +65,9 @@ class Now(AsyncTaskRunnerProtocol):
         for task in to_cancel:
             task.cancel()
 
-        self._loop.run_until_complete(asyncio.gather(*to_cancel, loop=self._loop, return_exceptions=True))
+        self._loop.run_until_complete(
+            asyncio.gather(*to_cancel, loop=self._loop, return_exceptions=True)  # type: ignore
+        )
 
         for task in to_cancel:
             if task.cancelled():
