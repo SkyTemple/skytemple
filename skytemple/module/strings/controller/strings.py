@@ -29,7 +29,7 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.third_party_util.cellrenderercustomtext import CellRendererTextView
-from skytemple.core.ui_utils import add_dialog_csv_filter
+from skytemple.core.ui_utils import add_dialog_csv_filter, builder_get_assert, assert_not_none, create_tree_view_column
 from skytemple_files.common.ppmdu_config.data import Pmd2Language, Pmd2StringBlock
 from skytemple_files.common.util import add_extension_if_missing, open_utf8
 from skytemple_files.data.str.model import Str
@@ -50,7 +50,7 @@ class StringsController(AbstractController):
         self.langname = lang.name_localized
         self.filename = lang.filename
 
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self._str: Str
         self._tree_iters_by_idx: Dict[int, Gtk.TreeIter] = {}
         self._list_store: Gtk.ListStore
@@ -62,7 +62,7 @@ class StringsController(AbstractController):
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'strings.glade')
         assert self.builder
-        self.builder.get_object('lang_name').set_text(f(_('{self.langname} Text Strings')))
+        builder_get_assert(self.builder, Gtk.Label, 'lang_name').set_text(f(_('{self.langname} Text Strings')))
 
         self._str = self.module.get_string_file(self.filename)
         self._string_cats = self.module.project.get_rom_module().get_static_data().string_index_data.string_blocks
@@ -71,7 +71,7 @@ class StringsController(AbstractController):
         self.refresh_list()
 
         self.builder.connect_signals(self)
-        return self.builder.get_object('main_box')
+        return builder_get_assert(self.builder, Gtk.Widget, 'main_box')
 
     @typing.no_type_check
     def unload(self):
@@ -96,26 +96,28 @@ class StringsController(AbstractController):
         self.module.mark_as_modified(self.filename)
 
     def refresh_cats(self):
-        tree: Gtk.TreeView = self.builder.get_object('category_tree')
-        cat_store: Gtk.ListStore = tree.get_model()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'category_tree')
+        cat_store = typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))
         cat_store.clear()
         cat_store.append([_("(All)"), None])
         for cat in self._collect_categories():
             cat_store.append([cat.name_localized, cat])
-        tree.get_selection().select_iter(cat_store.get_iter_first())
+        first = cat_store.get_iter_first()
+        if first:
+            tree.get_selection().select_iter(first)
 
     def refresh_list(self):
-        tree: Gtk.TreeView = self.builder.get_object('string_tree')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'string_tree')
 
         renderer_editabletext = CellRendererTextView()
         renderer_editabletext.set_property('editable', True)
-        column_editabletext = Gtk.TreeViewColumn(
+        column_editabletext = create_tree_view_column(
             _("String"), renderer_editabletext, text=1, editable=2
         )
         tree.append_column(column_editabletext)
         renderer_editabletext.connect('edited', self.on_cr_string_edited)
 
-        self._list_store = tree.get_model()
+        self._list_store = typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))
         self._list_store.clear()
         # Iterate strings
         for idx, entry in enumerate(self._str.strings):
@@ -160,7 +162,7 @@ class StringsController(AbstractController):
         fn = save_diag.get_filename()
         save_diag.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 with open_utf8(fn) as csv_file:
                     csv_reader = csv.reader(csv_file)
@@ -205,7 +207,7 @@ class StringsController(AbstractController):
         fn = save_diag.get_filename()
         save_diag.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, 'csv')
             with open_utf8(fn, 'w', newline='') as result_file:
                 wr = csv.writer(result_file, lineterminator='\n')

@@ -53,7 +53,7 @@ class DrawerTiled:
         """
         self.draw_area = draw_area
 
-        self.tile_mappings = tile_mappings
+        self.tile_mappings: List[TilemapEntry] = tile_mappings  # type: ignore
 
         self.tiling_width = 3
         self.tiling_height = 3
