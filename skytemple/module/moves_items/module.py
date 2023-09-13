@@ -67,7 +67,7 @@ class MovesItemsModule(AbstractModule):
         self.project = rom_project
 
         self._tree_model: Gtk.TreeModel
-        self._item_lists_tree_iter: Dict[str, Gtk.TreeIter] = {}
+        self._item_lists_tree_iter: Gtk.TreeIter
         self._item_keys_tree_iter: Gtk.TreeIter
         self.item_iters: Dict[int, TreeIter] = {}
         self.move_iters: Dict[int, TreeIter] = {}

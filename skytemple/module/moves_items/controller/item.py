@@ -17,7 +17,7 @@
 import logging
 import typing
 from enum import Enum
-from typing import TYPE_CHECKING, Type, List
+from typing import TYPE_CHECKING, Type, List, Optional
 
 import cairo
 from gi.repository import Gtk, GLib
@@ -27,7 +27,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import catch_overflow
+from skytemple.core.ui_utils import catch_overflow, builder_get_assert, assert_not_none
 from skytemple_files.common.i18n_util import _
 from skytemple_files.data.item_s_p.model import ItemSPType
 from skytemple_files.data.md.protocol import PokeType
@@ -84,7 +84,7 @@ class ItemController(AbstractController):
         self.item_id = item_id
         self.item_p, self.item_sp = self.module.get_item(item_id)
 
-        self.builder: Gtk.Builder = None
+        self.builder: Gtk.Builder = None  # type: ignore
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
 
@@ -102,12 +102,12 @@ class ItemController(AbstractController):
         self._is_loading = False
 
         if not self.item_sp:
-            notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
+            notebook = builder_get_assert(self.builder, Gtk.Notebook, 'main_notebook')
             notebook.remove_page(3)
 
         self.builder.connect_signals(self)
 
-        return self.builder.get_object('box_main')
+        return builder_get_assert(self.builder, Gtk.Widget, 'box_main')
 
     @typing.no_type_check
     def unload(self):
@@ -116,7 +116,7 @@ class ItemController(AbstractController):
         self.item_id = None
         self.item_p = None
         self.item_sp = None
-        self.builder: Gtk.Builder = None
+        self.builder = None  # type: ignore
         self._string_provider = None
         self._sprite_provider = None
         self._is_loading = True
@@ -151,7 +151,7 @@ class ItemController(AbstractController):
         self.item_p.sprite = val
         self.mark_as_modified()
         self._sprite_provider.reset()
-        self.builder.get_object('draw_sprite').queue_draw()
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_sprite').queue_draw()
 
     @catch_overflow(u16)
     def on_entry_buy_price_changed(self, w, *args):
@@ -180,7 +180,7 @@ class ItemController(AbstractController):
         self.item_p.palette = val
         self.mark_as_modified()
         self._sprite_provider.reset()
-        self.builder.get_object('draw_sprite').queue_draw()
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_sprite').queue_draw()
 
     @catch_overflow(u16)
     def on_entry_move_id_changed(self, w, *args):
@@ -300,7 +300,7 @@ class ItemController(AbstractController):
 
     def on_cb_excl_type_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.item_sp.type = ItemSPType(val)
+        self.item_sp.type = ItemSPType(val)  # type: ignore
         self.mark_as_modified()
 
     @catch_overflow(u16)
@@ -388,12 +388,12 @@ class ItemController(AbstractController):
         langs = self._string_provider.get_languages()
         for lang_id in range(0, 5):
             gui_id = lang_id + 1
-            gui_label: Gtk.Label = self.builder.get_object(f'label_lang{gui_id}')
-            gui_label_desc: Gtk.Label = self.builder.get_object(f'label_lang{gui_id}_desc')
-            gui_label_short_desc: Gtk.Label = self.builder.get_object(f'label_lang{gui_id}_short_desc')
-            gui_entry: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}')
-            gui_entry_desc: Gtk.Entry = self.builder.get_object(f'view_lang{gui_id}_desc')
-            gui_entry_short_desc: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}_short_desc')
+            gui_label = builder_get_assert(self.builder, Gtk.Label, f'label_lang{gui_id}')
+            gui_label_desc = builder_get_assert(self.builder, Gtk.Label, f'label_lang{gui_id}_desc')
+            gui_label_short_desc = builder_get_assert(self.builder, Gtk.Label, f'label_lang{gui_id}_short_desc')
+            gui_entry = builder_get_assert(self.builder, Gtk.Entry, f'entry_lang{gui_id}')
+            gui_entry_desc = builder_get_assert(self.builder, Gtk.TextView, f'view_lang{gui_id}_desc')
+            gui_entry_short_desc = builder_get_assert(self.builder, Gtk.Entry, f'entry_lang{gui_id}_short_desc')
             if lang_id < len(langs):
                 # We have this language
                 gui_label.set_text(_(langs[lang_id].name_localized) + ':')
@@ -410,13 +410,13 @@ class ItemController(AbstractController):
 
     def _init_entid(self):
         name = self._string_provider.get_value(StringType.ITEM_NAMES, self.item_id)
-        self.builder.get_object('label_id_name').set_text(f'#{self.item_id:04d}: {name}')
+        builder_get_assert(self.builder, Gtk.Label, 'label_id_name').set_text(f'#{self.item_id:04d}: {name}')
 
     def _init_stores(self):
         store = Gtk.ListStore(int, str)  # id, name
         for category in self.module.project.get_rom_module().get_static_data().dungeon_data.item_categories.values():
             store.append([category.id, category.name_localized])
-        self._fast_set_comboxbox_store(self.builder.get_object('cb_category'), store, 1)
+        self._fast_set_comboxbox_store(builder_get_assert(self.builder, Gtk.ComboBox, 'cb_category'), store, 1)
         self._comboxbox_for_enum(['cb_action_name'], UseType)
         self._comboxbox_for_enum(['cb_excl_type'], ItemSPType)
 
@@ -425,9 +425,9 @@ class ItemController(AbstractController):
         langs = self._string_provider.get_languages()
         for lang_id in range(0, 5):
             gui_id = lang_id + 1
-            gui_entry: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}')
-            gui_entry_short_desc: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}_short_desc')
-            gui_entry_desc: Gtk.TextBuffer = self.builder.get_object(f'buff_lang{gui_id}_desc')
+            gui_entry = builder_get_assert(self.builder, Gtk.Entry, f'entry_lang{gui_id}')
+            gui_entry_short_desc = builder_get_assert(self.builder, Gtk.Entry, f'entry_lang{gui_id}_short_desc')
+            gui_entry_desc = builder_get_assert(self.builder, Gtk.TextBuffer, f'buff_lang{gui_id}_desc')
             if lang_id < len(langs):
                 # We have this language
                 gui_entry.set_text(self._string_provider.get_value(StringType.ITEM_NAMES,
@@ -466,11 +466,11 @@ class ItemController(AbstractController):
     def _comboxbox_for_enum(self, names: List[str], enum: Type[Enum], sort_by_name=False):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
-            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))
+            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))  # type: ignore
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)
+            self._fast_set_comboxbox_store(builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1)
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):
@@ -485,30 +485,32 @@ class ItemController(AbstractController):
         return entry.name.capitalize().replace('_', ' ')
 
     def _set_entry(self, entry_name, text):
-        self.builder.get_object(entry_name).set_text(str(text))
+        builder_get_assert(self.builder, Gtk.Entry, entry_name).set_text(str(text))
 
     def _set_cb(self, cb_name, value):
-        cb: Gtk.ComboBox = self.builder.get_object(cb_name)
-        l_iter: Gtk.TreeIter = cb.get_model().get_iter_first()
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, cb_name)
+        model = typing.cast(Optional[Gtk.ListStore], cb.get_model())
+        assert model is not None
+        l_iter = model.get_iter_first()
         while l_iter:
-            row = cb.get_model()[l_iter]
+            row = typing.cast(Gtk.ListStore, cb.get_model())[l_iter]
             if row[0] == value:
                 cb.set_active_iter(l_iter)
                 return
-            l_iter = cb.get_model().iter_next(l_iter)
+            l_iter = typing.cast(Gtk.ListStore, cb.get_model()).iter_next(l_iter)
 
     def _set_switch(self, switch_name, value):
-        self.builder.get_object(switch_name).set_active(value)
+        builder_get_assert(self.builder, Gtk.Switch, switch_name).set_active(value)
 
-    def _update_from_switch(self, w: Gtk.Entry):
+    def _update_from_switch(self, w: Gtk.Switch):
         attr_name = Gtk.Buildable.get_name(w)[7:]
         setattr(self.item_p, attr_name, w.get_active())
 
     def _update_from_cb(self, w: Gtk.ComboBox):
         attr_name = Gtk.Buildable.get_name(w)[3:]
-        val = w.get_model()[w.get_active_iter()][0]
+        val = w.get_model()[assert_not_none(w.get_active_iter())][0]
         current_val = getattr(self.item_p, attr_name)
-        if isinstance(current_val, Enum) and not isinstance(current_val, UseType):
+        if isinstance(current_val, Enum):
             enum_class = current_val.__class__
             val = enum_class(val)
         setattr(self.item_p, attr_name, val)
