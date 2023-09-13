@@ -16,6 +16,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import typing
 from datetime import datetime
 from functools import partial
 from typing import Optional, TYPE_CHECKING, Dict, Union, TypeVar, Callable
@@ -111,6 +112,7 @@ def try_ignore_err(source: Callable[[], T], sink: Callable[[T], None]):
         logger.error(f"Ignored exception (fn: {source.__name__}) while setting up Sentry.", exc_info=ex)
 
 
+@typing.no_type_check
 def collect_device_context() -> Dict[str, 'Captured']:
     import platform
     import socket
