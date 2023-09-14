@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-07 15:19+0000\n"
-"PO-Revision-Date: 2023-09-14 13:48\n"
+"PO-Revision-Date: 2023-09-14 15:20\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -4854,7 +4854,7 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:160
 msgid "All files"
-msgstr ""
+msgstr "すべてのファイル"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:311
 #, python-brace-format
@@ -5284,7 +5284,7 @@ msgstr "バックアップ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:76
 msgid "Misc"
-msgstr ""
+msgstr "その他"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:244
 msgid "The variable must have a number as value."
@@ -5374,7 +5374,7 @@ msgstr "日本語"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:687
 msgid "Enable Audio"
-msgstr ""
+msgstr "音声を有効化"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:697
 msgid "Screenshot..."
@@ -5386,7 +5386,7 @@ msgstr "ヘルプ(_H)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:720
 msgid "ExplorerScript documentation"
-msgstr ""
+msgstr "ExplorerScript ドキュメント"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:849
 msgid "Script Browser"
@@ -5692,11 +5692,15 @@ msgid "Welcome to \n"
 "Script Engine Debugger.\n\n"
 "Please load a game ROM\n"
 "via the File menu."
-msgstr ""
+msgstr "SkyTemple\n"
+"Script Engine Debugger\n"
+"へようこそ。\n\n"
+" ファイルからゲームのROMファイルを\n"
+"ロードしてください。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2549
 msgid "The Script Engine is currently not running."
-msgstr ""
+msgstr "Script Engineは現在実行されていません。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2681
 msgid "Run the game from the start or stop the emulator."
