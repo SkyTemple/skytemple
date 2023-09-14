@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, Union
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore, TreeIter
@@ -25,6 +25,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_MUSIC
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label
+from skytemple.core.widget.view import StView
 from skytemple.module.lists.controller.dungeon_music import DungeonMusicController
 from skytemple.module.lists.controller.guest_pokemon import GuestPokemonController
 from skytemple.module.lists.controller.iq import IqController
@@ -453,33 +454,33 @@ class ListsModule(AbstractModule):
         row = self._tree_model[self._guest_pokemon_root_iter]
         recursive_up_item_store_mark_as_modified(row)
 
-    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
-        if isinstance(open_controller, ActorListController):
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+        if isinstance(open_view, ActorListController):
             pass  # todo
-        if isinstance(open_controller, StartersListController):
+        if isinstance(open_view, StartersListController):
             pass  # todo
-        if isinstance(open_controller, RecruitmentListController):
+        if isinstance(open_view, RecruitmentListController):
             pass  # todo
-        if isinstance(open_controller, WorldMapController):
+        if isinstance(open_view, WorldMapController):
             pass  # todo
-        if isinstance(open_controller, RankListController):
+        if isinstance(open_view, RankListController):
             pass  # todo
-        if isinstance(open_controller, MenuListController):
+        if isinstance(open_view, MenuListController):
             pass  # todo
-        if isinstance(open_controller, DungeonInterruptController):
+        if isinstance(open_view, DungeonInterruptController):
             pass  # todo
-        if isinstance(open_controller, AnimationsController):
+        if isinstance(open_view, AnimationsController):
             pass  # todo
-        if isinstance(open_controller, DungeonMusicController):
+        if isinstance(open_view, DungeonMusicController):
             pass  # todo
-        if isinstance(open_controller, GuestPokemonController):
+        if isinstance(open_view, GuestPokemonController):
             pass  # todo
-        if isinstance(open_controller, SpecialPcsController):
+        if isinstance(open_view, SpecialPcsController):
             pass  # todo
-        if isinstance(open_controller, TacticsController):
+        if isinstance(open_view, TacticsController):
             pass  # todo
-        if isinstance(open_controller, IqController):
+        if isinstance(open_view, IqController):
             pass  # todo
-        if isinstance(open_controller, MiscSettingsController):
+        if isinstance(open_view, MiscSettingsController):
             pass  # todo
         return None

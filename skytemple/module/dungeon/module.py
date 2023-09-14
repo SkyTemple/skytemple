@@ -35,6 +35,7 @@ from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label, data_dir
+from skytemple.core.widget.view import StView
 from skytemple.module.dungeon import MAX_ITEMS
 from skytemple.module.dungeon.controller.dojos import DOJOS_NAME, DojosController
 from skytemple.module.dungeon.controller.dungeon import DungeonController
@@ -842,13 +843,13 @@ class DungeonModule(AbstractModule):
         with self._dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get('minimap.zmappat')
 
-    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
-        if isinstance(open_controller, DungeonController):
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+        if isinstance(open_view, DungeonController):
             pass  # todo
-        if isinstance(open_controller, FloorController):
+        if isinstance(open_view, FloorController):
             pass  # todo
-        if isinstance(open_controller, FixedRoomsController):
+        if isinstance(open_view, FixedRoomsController):
             pass  # todo
-        if isinstance(open_controller, FixedController):
+        if isinstance(open_view, FixedController):
             pass  # todo
         return None

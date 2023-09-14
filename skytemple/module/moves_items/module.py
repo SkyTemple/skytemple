@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import Dict, Tuple, Optional, List
+from typing import Dict, Tuple, Optional, List, Union
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore, TreeIter
@@ -27,6 +27,7 @@ from skytemple.core.rom_project import RomProject
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label
+from skytemple.core.widget.view import StView
 from skytemple.module.moves_items.controller.item import ItemController
 from skytemple.module.moves_items.controller.main_moves import MainMovesController, MOVES
 from skytemple.module.moves_items.controller.main_items import MainItemsController, ITEMS
@@ -178,13 +179,13 @@ class MovesItemsModule(AbstractModule):
         row = self._tree_model[self.move_iters[move_id]]
         recursive_up_item_store_mark_as_modified(row)
 
-    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
-        if isinstance(open_controller, MoveController):
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+        if isinstance(open_view, MoveController):
             pass  # todo
-        if isinstance(open_controller, ItemController):
+        if isinstance(open_view, ItemController):
             pass  # todo
-        if isinstance(open_controller, ItemKeysController):
+        if isinstance(open_view, ItemKeysController):
             pass  # todo
-        if isinstance(open_controller, ItemListsController):
+        if isinstance(open_view, ItemListsController):
             pass  # todo
         return None

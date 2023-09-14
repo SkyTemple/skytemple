@@ -30,6 +30,7 @@ from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label
+from skytemple.core.widget.view import StView
 from skytemple.module.map_bg.controller.bg import BgController
 from skytemple.module.map_bg.controller.folder import FolderController
 from skytemple.module.map_bg.controller.main import MainController, MAPBG_NAME
@@ -276,7 +277,7 @@ class MapBgModule(AbstractModule):
 
         return mappings, mappa, fixed, dungeon_bin_context, dungeon_list
 
-    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
-        if isinstance(open_controller, BgController):
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+        if isinstance(open_view, BgController):
             pass  # todo
         return None

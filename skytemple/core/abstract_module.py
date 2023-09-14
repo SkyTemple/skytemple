@@ -14,15 +14,18 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Optional, List, TypedDict, Dict, TYPE_CHECKING, Any
+from typing import Optional, List, TypedDict, Dict, TYPE_CHECKING, Any, Union
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore, TreeIter
 
 from skytemple.core.open_request import OpenRequest
 from skytemple_files.common.util import Captured
+
+from skytemple.core.widget.view import StView
 
 if TYPE_CHECKING:
     from skytemple.core.module_controller import AbstractController
@@ -60,13 +63,27 @@ class AbstractModule(ABC):
 
     @abstractmethod
     def load_tree_items(self, item_store: TreeStore, root_node: Optional[TreeIter]):
-        """Add the module nodes to the item tree"""
+        """
+        Add the module nodes to the item tree.
+
+        The item store expects the following structure for items:
+
+        - 0: str: icon name
+        - 1: str: Label shown in UI. Should be translatable.
+        - 2: AbstractModule: This module instance.
+        - 3: Type[StView] or Type[AbstractController]: The widget or controller to display. Use StView for new code!
+        - 4: Any: item_data for the controller or widget. This is basically a parameter to pass to it.
+        - 5: 0
+        - 6: False
+        - 7: ''
+        - 8: True
+        """
         pass
 
-    def collect_debugging_info(self, open_controller: 'AbstractController') -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
         """
-        Return debugging information for the currently opened controller (passed in). If this module can't provide
-        this information for that controller, returns None.
+        Return debugging information for the currently opened controller or view widget (passed in).
+        If this module can't provide this information for that controller, returns None.
         If not implemented, always returns None.
         """
         return None

@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import Optional, Dict, List, Tuple
+from typing import Optional, Dict, List, Tuple, Union
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore, TreeIter
@@ -32,6 +32,7 @@ from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHan
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified, \
     data_dir
+from skytemple.core.widget.view import StView
 from skytemple.module.script.controller.folder import FolderController
 from skytemple.module.script.controller.map import MapController
 from skytemple.module.script.controller.dialog.pos_mark_editor import PosMarkEditorController
@@ -457,7 +458,7 @@ class ScriptModule(AbstractModule):
 
         return mappings, mappa, fixed, dungeon_bin_context, dungeon_list
 
-    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
-        if isinstance(open_controller, SsaController):
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+        if isinstance(open_view, SsaController):
             pass  # todo
         return None

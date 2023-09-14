@@ -14,7 +14,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional, Dict, List
+from typing import Optional, Dict, List, Union
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
@@ -24,6 +24,7 @@ from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
+from skytemple.core.widget.view import StView
 from skytemple.module.misc_graphics.controller.w16 import W16Controller
 from skytemple.module.misc_graphics.controller.wte_wtu import WteWtuController
 from skytemple.module.misc_graphics.controller.zmappat import ZMappaTController
@@ -348,19 +349,19 @@ class MiscGraphicsModule(AbstractModule):
             row = self._tree_model[self._tree_level_iter[item.wte_filename]]
             recursive_up_item_store_mark_as_modified(row)
 
-    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
-        if isinstance(open_controller, CartRemovedController):
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+        if isinstance(open_view, CartRemovedController):
             pass  # todo
-        if isinstance(open_controller, ChrController):
+        if isinstance(open_view, ChrController):
             pass  # todo
-        if isinstance(open_controller, FontController):
+        if isinstance(open_view, FontController):
             pass  # todo
-        if isinstance(open_controller, GraphicFontController):
+        if isinstance(open_view, GraphicFontController):
             pass  # todo
-        if isinstance(open_controller, W16Controller):
+        if isinstance(open_view, W16Controller):
             pass  # todo
-        if isinstance(open_controller, WteWtuController):
+        if isinstance(open_view, WteWtuController):
             pass  # todo
-        if isinstance(open_controller, ZMappaTController):
+        if isinstance(open_view, ZMappaTController):
             pass  # todo
         return None

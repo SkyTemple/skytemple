@@ -14,15 +14,13 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional
-
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.patch.controller.cot import CotController
 from skytemple.module.patch.controller.item_effects import ItemEffectsController
-from skytemple.module.patch.controller.main import PATCHES, MainController
 from skytemple.module.patch.controller.move_effects import MoveEffectsController
 from skytemple.module.patch.controller.pmdsky_debug import PmdSkyDebugController
 from skytemple.module.patch.controller.sp_effects import SPEffectsController
@@ -39,6 +37,16 @@ SP_EFFECTS = 'BALANCE/process.bin'
 MOVE_EFFECTS = 'BALANCE/waza_cd.bin'
 ITEM_EFFECTS = 'BALANCE/item_cd.bin'
 METRONOME_POOL = 'BALANCE/metrono.bin'
+
+
+MAIN_VIEW_DATA = StStatusPageData(
+    icon_name='skytemple-illust-patch',
+    title=_('Patches'),
+    description=_("In this section you can apply built-in ASM patches, your own ASM patches and custom\nitem-, move- and "
+                  "special process effects written in Assembler.\n\nYou will also find information on how to write our own\n"
+                  "patches and effects in the C and Rust programming languages.\n\nAdditionally you can browse all symbols "
+                  "and functions\nin the game known to SkyTemple.")
+)
 
 
 class PatchModule(AbstractModule):
@@ -66,7 +74,7 @@ class PatchModule(AbstractModule):
     def load_tree_items(self, item_store: TreeStore, root_node):
 
         root = item_store.append(root_node, [
-            'skytemple-e-patch-symbolic', PATCHES, self, MainController, 0, False, '', True
+            'skytemple-e-patch-symbolic', MAIN_VIEW_DATA.title, self, StStatusPage, MAIN_VIEW_DATA, False, '', True
         ])
 
         self._asm_iter = item_store.append(root, [

@@ -276,7 +276,7 @@ def collect_state_context() -> Dict[str, 'Captured']:
     rom_project = RomProject.get_current()
     try:
         view_state = MainController._instance._current_view_module.collect_debugging_info(  # type: ignore
-            MainController._instance._current_view_controller  # type: ignore
+            MainController._instance._current_view  # type: ignore
         )
         if "models" in view_state:  # type: ignore
             view_state["models"] = {k: capture_any(v) for k, v in view_state["models"].items()}  # type: ignore

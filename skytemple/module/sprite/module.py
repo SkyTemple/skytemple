@@ -31,6 +31,7 @@ from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
+from skytemple.core.widget.view import StView
 from skytemple.module.sprite.controller.monster_sprite import MonsterSpriteController
 from skytemple.module.sprite.controller.object import ObjectController
 from skytemple.module.sprite.controller.object_main import OBJECT_SPRTIES, ObjectMainController
@@ -371,8 +372,8 @@ class SpriteModule(AbstractModule):
         self.project.mark_as_modified(SPRCONF_FILENAME)
         self.project.get_rom_module().get_static_data().animation_names[sprite.id] = sprite
 
-    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
-        if isinstance(open_controller, ObjectController):
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+        if isinstance(open_view, ObjectController):
             pass  # todo
         return None
 

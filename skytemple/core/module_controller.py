@@ -1,3 +1,7 @@
+"""
+:deprecated: The controller-based approach of presenting and controlling views has been
+             replaced. See docs for `AbstractController`.
+"""
 #  Copyright 2020-2023 Capypara and the SkyTemple Contributors
 #
 #  This file is part of SkyTemple.
@@ -28,6 +32,11 @@ logger = logging.getLogger(__name__)
 
 
 class AbstractController(ABC):
+    """
+    A view controller. Provides and controls widgets for the main UI.
+
+    :deprecated: Use `skytemple.core.widget.StView` instead.  See it's documentation for more info.
+    """
     @abstractmethod
     def __init__(self, module: AbstractModule, item_id):
         """NO Gtk operations allowed here, not threadsafe!"""
@@ -70,6 +79,9 @@ class AbstractController(ABC):
 
 
 class NotImplementedController(AbstractController):
+    """
+    :deprecated: Use `skytemple.core.widget.StStatusPage` instead.  See it's documentation for more info.
+    """
     def __init__(self, module: AbstractModule, item_id: int):
         pass
 
@@ -78,6 +90,9 @@ class NotImplementedController(AbstractController):
 
 
 class SimpleController(AbstractController, ABC):
+    """
+    :deprecated: Use `skytemple.core.widget.StStatusPage` instead.  See it's documentation for more info.
+    """
     def get_view(self) -> Widget:
         main_box: Gtk.Box = Gtk.Box.new(Gtk.Orientation.VERTICAL, 0)
         align: Gtk.Alignment = Gtk.Alignment.new(0.5, 0.5, 0.8, 0.8)

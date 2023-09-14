@@ -16,12 +16,13 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
+from skytemple.core.widget.view import StView
 from skytemple.module.bgp.controller.bgp import BgpController
 from skytemple.module.bgp.controller.main import MainController, BACKGROUNDS_NAME
 from skytemple_files.common.types.file_types import FileType
@@ -73,11 +74,11 @@ class BgpModule(AbstractModule):
         bgp_filename = self.list_of_bgps[item_id]
         return self.project.open_file_in_rom(bgp_filename, FileType.BGP)
 
-    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
-        if isinstance(open_controller, BgpController):
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+        if isinstance(open_view, BgpController):
             return {
                 "models": {
-                    self.list_of_bgps[open_controller.item_id]: open_controller.bgp
+                    self.list_of_bgps[open_view.item_id]: open_view.bgp
                 }
             }
         return None

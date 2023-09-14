@@ -15,7 +15,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import Optional, List
+from typing import Optional, List, Union
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
@@ -27,6 +27,7 @@ from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESE
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
     recursive_generate_item_store_row_label
+from skytemple.core.widget.view import StView
 from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController, \
     BACKGROUNDS_NAMES, DungeonBgMainController
 from skytemple.module.dungeon_graphics.controller.colvec import ColvecController
@@ -228,13 +229,13 @@ class DungeonGraphicsModule(AbstractModule):
         row = self._tree_model[self._root_node]
         recursive_up_item_store_mark_as_modified(row)
 
-    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
-        if isinstance(open_controller, DungeonBgController):
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+        if isinstance(open_view, DungeonBgController):
             pass  # todo
-        if isinstance(open_controller, ColvecController):
+        if isinstance(open_view, ColvecController):
             pass  # todo
-        if isinstance(open_controller, TilesetController):
+        if isinstance(open_view, TilesetController):
             pass  # todo
-        if isinstance(open_controller, TrpItmImgController):
+        if isinstance(open_view, TrpItmImgController):
             pass  # todo
         return None
