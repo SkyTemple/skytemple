@@ -249,5 +249,12 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         yield from pro.get_string_provider().get_all(StringType.POKEMON_NAMES)
 
     @staticmethod
-    def message_dialog_cls():
-        return SkyTempleMessageDialog
+    def message_dialog(
+        parent: Optional[Gtk.Window],
+        dialog_flags: Gtk.DialogFlags,
+        message_type: Gtk.MessageType,
+        buttons_type: Gtk.ButtonsType,
+        text: str,
+        **kwargs
+    ) -> Gtk.MessageDialog:
+        return SkyTempleMessageDialog(parent, dialog_flags, message_type, buttons_type, text, **kwargs)
