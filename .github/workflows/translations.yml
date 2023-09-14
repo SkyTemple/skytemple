@@ -64,7 +64,8 @@ jobs:
               \( \
                   -name "*.py" -or \
                   -name "*.rs" -or \
-                  -name "*.glade" \
+                  -name "*.glade" -or \
+                  -name "*.ui" \
               \) \
               ! -path "py_desmume/desmume/frontend/PyDeSmuMe.glade" \
           | xargs xgettext \
