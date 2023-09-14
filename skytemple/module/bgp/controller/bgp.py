@@ -22,7 +22,7 @@ import cairo
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple.core.ui_utils import add_dialog_png_filter, builder_get_assert
 from skytemple_files.common.util import add_extension_if_missing
 
 from PIL import Image
@@ -58,42 +58,42 @@ class BgpController(AbstractController):
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'bgp.glade')
-        self.builder.connect_signals(self)  # type: ignore
+        self.builder.connect_signals(self)
         self._reinit_image()
-        self.builder.get_object('draw').connect('draw', self.draw)  # type: ignore
-        return self.builder.get_object('editor_bgp')  # type: ignore
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').connect('draw', self.draw)
+        return builder_get_assert(self.builder, Gtk.Box, 'editor_bgp')
 
     def on_men_bg_export_activate(self, *args):
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_bg_export')
+        dialog: Gtk.Dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_bg_export')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         resp = dialog.run()
         dialog.hide()
         if resp == ResponseType.OK:
-            dialog = Gtk.FileChooserNative.new(
+            file_chooser = Gtk.FileChooserNative.new(
                 "Export as PNG...",
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
                 None, None
             )
 
-            add_dialog_png_filter(dialog)
+            add_dialog_png_filter(file_chooser)
 
-            response = dialog.run()
-            fn = dialog.get_filename()
-            dialog.destroy()
+            response = file_chooser.run()
+            fn = file_chooser.get_filename()
+            file_chooser.destroy()
 
-            if response == Gtk.ResponseType.ACCEPT:
+            if response == Gtk.ResponseType.ACCEPT and fn is not None:
                 fn = add_extension_if_missing(fn, 'png')
                 self.bgp.to_pil().save(fn)
 
     def on_men_bg_import_activate(self, *args):
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_bg_import')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_bg_import')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
-        file_chooser: Gtk.FileChooserButton = self.builder.get_object('bg_import_file')
+        file_chooser = builder_get_assert(self.builder, Gtk.FileChooserButton, 'bg_import_file')
 
         resp = dialog.run()
         dialog.hide()
@@ -101,8 +101,9 @@ class BgpController(AbstractController):
         if resp == ResponseType.OK:
             try:
                 path = file_chooser.get_filename()
-                with open(path, 'rb') as f:
-                    self.bgp.from_pil(Image.open(f), True)
+                if path is not None:
+                    with open(path, 'rb') as f:
+                        self.bgp.from_pil(Image.open(f), True)
             except Exception as err:
                 display_error(
                     sys.exc_info(),
@@ -128,7 +129,7 @@ class BgpController(AbstractController):
 
     def _reinit_image(self):
         self.surface = pil_to_cairo_surface(self.bgp.to_pil().convert('RGBA'))
-        self.builder.get_object('draw').queue_draw()
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').queue_draw()
 
     def draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:

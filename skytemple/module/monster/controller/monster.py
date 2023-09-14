@@ -19,7 +19,7 @@ import re
 import sys
 import typing
 from enum import Enum
-from typing import TYPE_CHECKING, Type, List, Optional, Dict
+from typing import TYPE_CHECKING, Type, List, Optional, Dict, cast
 from xml.etree import ElementTree
 
 import cairo
@@ -33,7 +33,8 @@ from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import add_dialog_xml_filter, catch_overflow
+from skytemple.core.ui_utils import add_dialog_xml_filter, catch_overflow, builder_get_assert, assert_not_none, \
+    iter_tree_model
 from skytemple.module.monster.controller.level_up import LevelUpController
 from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.common.types.file_types import FileType
@@ -72,7 +73,7 @@ class MonsterController(AbstractController):
         self._sprite_provider = module.project.get_sprite_provider()
         self._portrait_provider = module.project.get_module('portrait').get_portrait_provider()
         self._level_up_controller: Optional[LevelUpController] = None
-        self._cached_sprite_page = None
+        self._cached_sprite_page: Optional[int] = None
 
         self._render_graph_on_tab_change = True
 
@@ -94,7 +95,7 @@ class MonsterController(AbstractController):
         self._init_sub_pages()
 
         # Init Items Completion
-        store: Gtk.ListStore = self.builder.get_object('store_completion_items')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_completion_items')
 
         for item in self.item_names.values():
             store.append([item])
@@ -109,42 +110,42 @@ class MonsterController(AbstractController):
         self._update_chance_label()
 
         if self.module.project.is_patch_applied("ExpandPokeList"):
-            self.builder.get_object('lbl_unk_1_0').set_text(_("Spinda Egg"))
-            self.builder.get_object('lbl_unk_1_1').set_text(_("Spinda Recruit"))
-            self.builder.get_object('lbl_unk_1_2').set_text(_("Don't appear in Missions"))
-            self.builder.get_object('lbl_unk_1_3').set_text(_("Don't appear in Missions during story"))
-            self.builder.get_object('lbl_unk_17').set_text(_("Sprite Size"))
-            self.builder.get_object('lbl_unk_18').set_text(_("Sprite File Size"))
+            builder_get_assert(self.builder, Gtk.Label, 'lbl_unk_1_0').set_text(_("Spinda Egg"))
+            builder_get_assert(self.builder, Gtk.Label, 'lbl_unk_1_1').set_text(_("Spinda Recruit"))
+            builder_get_assert(self.builder, Gtk.Label, 'lbl_unk_1_2').set_text(_("Don't appear in Missions"))
+            builder_get_assert(self.builder, Gtk.Label, 'lbl_unk_1_3').set_text(_("Don't appear in Missions during story"))
+            builder_get_assert(self.builder, Gtk.Label, 'lbl_unk_17').set_text(_("Sprite Size"))
+            builder_get_assert(self.builder, Gtk.Label, 'lbl_unk_18').set_text(_("Sprite File Size"))
 
         self._ent_names: Dict[int, str] = {}
 
         self._init_monster_store()
 
-        stack: Gtk.Stack = self.builder.get_object('evo_stack')
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'evo_stack')
         if self.module.has_md_evo():
             self._md_evo = self.module.get_md_evo()
             self._init_evo_lists()
-            stack.set_visible_child(self.builder.get_object('box_evo'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_evo'))
         else:
             self._md_evo = None
-            stack.set_visible_child(self.builder.get_object('box_no_evo'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_no_evo'))
 
         self.builder.connect_signals(self)
-        self.builder.get_object('draw_sprite').queue_draw()
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_sprite').queue_draw()
 
-        notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
+        notebook = builder_get_assert(self.builder, Gtk.Notebook, 'main_notebook')
         notebook.set_current_page(self.__class__._last_open_tab_id)
 
         self._check_sprite_size(self.__class__._previous_item_id != self.item_id)
         self.__class__._previous_item_id = self.item_id
 
-        return self.builder.get_object('box_main_parent')
+        return builder_get_assert(self.builder, Gtk.Widget, 'box_main_parent')
 
     @typing.no_type_check
     def unload(self):
         # We need to destroy this first.
         # GTK is an enigma sometimes.
-        self.builder.get_object('export_dialog').destroy()
+        builder_get_assert(self.builder, Gtk.Widget, 'export_dialog').destroy()
         super().unload()
         self.module = None
         self.item_id = None
@@ -252,7 +253,7 @@ class MonsterController(AbstractController):
         self.mark_as_modified()
         self._sprite_provider.reset()
         self._check_sprite_size(False)
-        self.builder.get_object('draw_sprite').queue_draw()
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_sprite').queue_draw()
         self._reload_sprite_page()
 
     def on_cb_gender_changed(self, w, *args):
@@ -262,7 +263,7 @@ class MonsterController(AbstractController):
         self.mark_as_modified()
 
     def on_entry_lang1_changed(self, w, *args):
-        self.builder.get_object('label_id_name').set_text(f'${self.entry.md_index:04d}: {w.get_text()}')
+        builder_get_assert(self.builder, Gtk.Label, 'label_id_name').set_text(f'${self.entry.md_index:04d}: {w.get_text()}')
         self._update_lang_from_entry(w, 0)
         self.module.refresh(self.item_id)
         self.mark_as_modified()
@@ -839,13 +840,13 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         self.mark_as_modified()
 
     def on_btn_export_clicked(self, *args):
-        dialog: Gtk.Dialog = self.builder.get_object('export_dialog')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'export_dialog')
         dialog.resize(640, 560)
         dialog.set_attached_to(SkyTempleMainController.window())
         dialog.set_transient_for(SkyTempleMainController.window())
 
         # Fill Pokémon tree
-        store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')
+        store = builder_get_assert(self.builder, Gtk.TreeStore, 'export_dialog_store')
         store.clear()
         monster_entries_by_base_id: Dict[int, List[MdEntryProtocol]] = {}
         for entry in self.module.monster_md.entries:
@@ -883,32 +884,32 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
         sw: Gtk.Switch
         if md_gender2 is None:
-            sw = self.builder.get_object('export_type_other_gender')
+            sw = builder_get_assert(self.builder, Gtk.Switch, 'export_type_other_gender')
             sw.set_active(False)
             sw.set_sensitive(False)
 
         if portraits is None:
-            sw = self.builder.get_object('export_type_portraits_current_gender')
+            sw = builder_get_assert(self.builder, Gtk.Switch, 'export_type_portraits_current_gender')
             sw.set_active(False)
             sw.set_sensitive(False)
 
         if portraits2 is None:
-            sw = self.builder.get_object('export_type_portraits_other_gender')
+            sw = builder_get_assert(self.builder, Gtk.Switch, 'export_type_portraits_other_gender')
             sw.set_active(False)
             sw.set_sensitive(False)
 
         if stats is None:
-            sw = self.builder.get_object('export_type_stats')
+            sw = builder_get_assert(self.builder, Gtk.Switch, 'export_type_stats')
             sw.set_active(False)
             sw.set_sensitive(False)
 
         if moveset is None:
-            sw = self.builder.get_object('export_type_moveset1')
+            sw = builder_get_assert(self.builder, Gtk.Switch, 'export_type_moveset1')
             sw.set_active(False)
             sw.set_sensitive(False)
 
         if moveset2 is None:
-            sw = self.builder.get_object('export_type_moveset2')
+            sw = builder_get_assert(self.builder, Gtk.Switch, 'export_type_moveset2')
             sw.set_active(False)
             sw.set_sensitive(False)
 
@@ -918,30 +919,30 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         if resp == Gtk.ResponseType.APPLY:
             # Create output XML
 
-            if not self.builder.get_object('export_type_current_gender').get_active():
+            if not builder_get_assert(self.builder, Gtk.Switch, 'export_type_current_gender').get_active():
                 if we_are_gender1:
                     md_gender1 = None
                 else:
                     md_gender2 = None
-            if not self.builder.get_object('export_type_other_gender').get_active():
+            if not builder_get_assert(self.builder, Gtk.Switch, 'export_type_other_gender').get_active():
                 if not we_are_gender1:
                     md_gender1 = None
                 else:
                     md_gender2 = None
-            if not self.builder.get_object('export_type_names').get_active():
+            if not builder_get_assert(self.builder, Gtk.Switch, 'export_type_names').get_active():
                 names = None
-            if not self.builder.get_object('export_type_stats').get_active():
+            if not builder_get_assert(self.builder, Gtk.Switch, 'export_type_stats').get_active():
                 stats = None
-            if not self.builder.get_object('export_type_moveset1').get_active():
+            if not builder_get_assert(self.builder, Gtk.Switch, 'export_type_moveset1').get_active():
                 moveset = None
-            if not self.builder.get_object('export_type_moveset2').get_active():
+            if not builder_get_assert(self.builder, Gtk.Switch, 'export_type_moveset2').get_active():
                 moveset2 = None
-            if not self.builder.get_object('export_type_portraits_current_gender').get_active():
+            if not builder_get_assert(self.builder, Gtk.Switch, 'export_type_portraits_current_gender').get_active():
                 if we_are_gender1:
                     portraits = None
                 else:
                     portraits2 = None
-            if not self.builder.get_object('export_type_portraits_other_gender').get_active():
+            if not builder_get_assert(self.builder, Gtk.Switch, 'export_type_portraits_other_gender').get_active():
                 if not we_are_gender1:
                     portraits = None
                 else:
@@ -954,7 +955,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             )
 
             # 1. Export to file
-            if self.builder.get_object('export_file_switch').get_active():
+            if builder_get_assert(self.builder, Gtk.Switch, 'export_file_switch').get_active():
                 save_diag = Gtk.FileChooserNative.new(
                     _("Export Pokémon as..."),
                     SkyTempleMainController.window(),
@@ -967,7 +968,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 fn = save_diag.get_filename()
                 save_diag.destroy()
 
-                if response == Gtk.ResponseType.ACCEPT:
+                if response == Gtk.ResponseType.ACCEPT and fn is not None:
                     fn = add_extension_if_missing(fn, 'xml')
                     with open_utf8(fn, 'w') as f:
                         f.write(prettify(xml))
@@ -986,9 +987,10 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             def collect_monsters_recurse(titer: Optional[Gtk.TreeIter]):
                 for i in range(store.iter_n_children(titer)):
                     child = store.iter_nth_child(titer, i)
-                    if store[child][2] and store[child][5]:  # is floor and is selected
-                        selected_monsters.append(store[child][0])
-                    collect_monsters_recurse(child)
+                    if child is not None:
+                        if store[child][2] and store[child][5]:  # is floor and is selected
+                            selected_monsters.append(store[child][0])
+                        collect_monsters_recurse(child)
 
             collect_monsters_recurse(None)
             self.module.import_from_xml(selected_monsters, xml)
@@ -1006,12 +1008,12 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         fn = save_diag.get_filename()
         save_diag.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             self.module.import_from_xml([self.entry.md_index], ElementTree.parse(fn).getroot())
             SkyTempleMainController.reload_view()
 
     def on_cr_export_selected_toggled(self, w: Gtk.CellRendererToggle, path, *args):
-        store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')  # type: ignore
+        store = builder_get_assert(self.builder, Gtk.TreeStore, 'export_dialog_store')
         is_active = not w.get_active()
         store[path][5] = is_active
         store[path][6] = False
@@ -1026,6 +1028,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                     children = []
                     for i in range(store.iter_n_children(parent)):
                         child = store.iter_nth_child(parent, i)
+                        assert child is not None
                         children.append(child)
                     states = [store[child][5] for child in children]
                     should_be_inconsistent = any([store[child][6] for child in children]) or not states.count(
@@ -1043,6 +1046,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         def mark_active_recurse(titer: Gtk.TreeIter):
             for i in range(store.iter_n_children(titer)):
                 child = store.iter_nth_child(titer, i)
+                assert child is not None
                 store[child][5] = is_active
                 store[child][6] = False
                 mark_active_recurse(child)
@@ -1053,10 +1057,10 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         langs = self._string_provider.get_languages()
         for lang_id in range(0, 5):
             gui_id = lang_id + 1
-            gui_label: Gtk.Label = self.builder.get_object(f'label_lang{gui_id}')
-            gui_label_cat: Gtk.Label = self.builder.get_object(f'label_lang{gui_id}_cat')
-            gui_entry: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}')
-            gui_entry_cat: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}_cat')
+            gui_label = builder_get_assert(self.builder, Gtk.Label, f'label_lang{gui_id}')
+            gui_label_cat = builder_get_assert(self.builder, Gtk.Label, f'label_lang{gui_id}_cat')
+            gui_entry = builder_get_assert(self.builder, Gtk.Entry, f'entry_lang{gui_id}')
+            gui_entry_cat = builder_get_assert(self.builder, Gtk.Entry, f'entry_lang{gui_id}_cat')
             if lang_id < len(langs):
                 # We have this language
                 gui_label.set_text(_(langs[lang_id].name_localized) + ':')
@@ -1070,11 +1074,11 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
     def _init_entid(self):
         if not self.module.project.is_patch_applied("ExpandPokeList"):
-            self.builder.get_object(f'label_base_id').set_text(f'#{self.entry.md_index_base:03}')
+            builder_get_assert(self.builder, Gtk.Label, f'label_base_id').set_text(f'#{self.entry.md_index_base:03}')
         else:
-            self.builder.get_object(f'label_base_id').set_text(f'See Entity ID')
+            builder_get_assert(self.builder, Gtk.Label, f'label_base_id').set_text(f'See Entity ID')
         name = self._string_provider.get_value(StringType.POKEMON_NAMES, self.entry.md_index_base)
-        self.builder.get_object('label_id_name').set_text(f'${self.entry.md_index:04d}: {name}')
+        builder_get_assert(self.builder, Gtk.Label, 'label_id_name').set_text(f'${self.entry.md_index:04d}: {name}')
 
     def _init_stores(self):
         # Genders
@@ -1102,8 +1106,8 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         langs = self._string_provider.get_languages()
         for lang_id in range(0, 5):
             gui_id = lang_id + 1
-            gui_entry: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}')
-            gui_entry_cat: Gtk.Entry = self.builder.get_object(f'entry_lang{gui_id}_cat')
+            gui_entry = builder_get_assert(self.builder, Gtk.Entry, f'entry_lang{gui_id}')
+            gui_entry_cat = builder_get_assert(self.builder, Gtk.Entry, f'entry_lang{gui_id}_cat')
             if lang_id < len(langs):
                 # We have this language
                 if not self.module.project.is_patch_applied('ExpandPokeList'):
@@ -1120,7 +1124,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         # Stats
         a = self.module.get_idle_anim_type(self.item_id)
         if a is None:
-            self.builder.get_object('cb_idle_anim').set_sensitive(False)
+            builder_get_assert(self.builder, Gtk.Widget, 'cb_idle_anim').set_sensitive(False)
         else:
             self._set_cb('cb_idle_anim', a.value)
         self._set_entry('entry_personality', self.module.get_personality(self.item_id))
@@ -1186,14 +1190,14 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1)
 
     def _comboxbox_for_enum_with_strings(self, names: List[str], enum: Type[Enum], string_type: StringType):
         store = Gtk.ListStore(int, str)  # id, name
         for entry in enum:
             store.append([entry.value, self._string_provider.get_value(string_type, entry.value)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1)
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):
@@ -1208,28 +1212,28 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         return entry.name.capitalize().replace('_', ' ')
 
     def _set_entry(self, entry_name, text):
-        self.builder.get_object(entry_name).set_text(str(text))
+        builder_get_assert(self.builder, Gtk.Entry, entry_name).set_text(str(text))
 
     def _set_cb(self, cb_name, value):
-        cb: Gtk.ComboBox = self.builder.get_object(cb_name)
-        l_iter: Gtk.TreeIter = cb.get_model().get_iter_first()
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, cb_name)
+        l_iter: Gtk.TreeIter = assert_not_none(assert_not_none(cb.get_model()).get_iter_first())
         while l_iter:
             row = cb.get_model()[l_iter]
             if row[0] == value:
                 cb.set_active_iter(l_iter)
                 return
-            l_iter = cb.get_model().iter_next(l_iter)
+            l_iter = assert_not_none(assert_not_none(cb.get_model()).iter_next(l_iter))
 
     def _set_switch(self, switch_name, value):
-        self.builder.get_object(switch_name).set_active(value)
+        builder_get_assert(self.builder, Gtk.Switch, switch_name).set_active(value)
 
-    def _update_from_switch(self, w: Gtk.Entry):
+    def _update_from_switch(self, w: Gtk.Switch):
         attr_name = Gtk.Buildable.get_name(w)[7:]
         setattr(self.entry, attr_name, w.get_active())
 
     def _update_from_cb(self, w: Gtk.ComboBox):
         attr_name = Gtk.Buildable.get_name(w)[3:]
-        val = w.get_model()[w.get_active_iter()][0]
+        val = w.get_model()[assert_not_none(w.get_active_iter())][0]
         current_val = getattr(self.entry, attr_name)
         if isinstance(current_val, Enum):
             enum_class = current_val.__class__
@@ -1258,7 +1262,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         ] = w.get_text()
 
     def _init_sub_pages(self):
-        notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
+        notebook = builder_get_assert(self.builder, Gtk.Notebook, 'main_notebook')
         tab_label: Gtk.Label = Gtk.Label.new(_('Stats and Moves'))
         level_up_view, self._level_up_controller = self.module.get_level_up_view(self.item_id)
         notebook.append_page(level_up_view, tab_label)
@@ -1271,7 +1275,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             self._show_no_stats_warning(False) # sub entries
 
     def _reload_sprite_page(self):
-        notebook: Gtk.Notebook = self.builder.get_object('main_notebook')
+        notebook = builder_get_assert(self.builder, Gtk.Notebook, 'main_notebook')
         if self._cached_sprite_page:
             notebook.remove_page(self._cached_sprite_page)
         tab_label: Gtk.Label = Gtk.Label.new(_('Sprites'))
@@ -1281,14 +1285,14 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         )
 
     def _show_no_stats_warning(self, reveal: bool):
-        info_warning_stats: Gtk.InfoBar = self.builder.get_object("info_warning_stats")
+        info_warning_stats = builder_get_assert(self.builder, Gtk.InfoBar, "info_warning_stats")
         info_warning_stats.set_revealed(reveal)
 
     def _update_param_label(self):
-        label: Gtk.Label = self.builder.get_object('label_param')
-        entry: Gtk.Entry = self.builder.get_object('entry_evo_param1')
-        cb: Gtk.ComboBox = self.builder.get_object('cb_evo_method')
-        val = cb.get_model()[cb.get_active_iter()][0]
+        label = builder_get_assert(self.builder, Gtk.Label, 'label_param')
+        entry = builder_get_assert(self.builder, Gtk.Entry, 'entry_evo_param1')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_evo_method')
+        val = cb.get_model()[assert_not_none(cb.get_active_iter())][0]
         try:
             entry_id = int(entry.get_text())
             if val == 3:
@@ -1299,12 +1303,12 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             elif val == 4:
                 if entry_id > FileType.MD.properties().num_entities:
                     raise ValueError()
-                entry = self.module.monster_md[entry_id]
+                mentry = self.module.monster_md[entry_id]
                 if not self.module.project.is_patch_applied('ExpandPokeList'):
-                    idx = entry.md_index_base
+                    idx = mentry.md_index_base
                     p = '#'
                 else:
-                    idx = entry.md_index
+                    idx = mentry.md_index
                     p = '$'
                 name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
                 label.set_text(f'{p}{idx:04d}: {name}')
@@ -1314,18 +1318,18 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             label.set_text(_('??? Enter a valid parameter (#)'))
 
     def _update_base_form_label(self):
-        label: Gtk.Label = self.builder.get_object('label_base_form_index')
-        entry: Gtk.Entry = self.builder.get_object('entry_base_form_index')
+        label = builder_get_assert(self.builder, Gtk.Label, 'label_base_form_index')
+        entry = builder_get_assert(self.builder, Gtk.Entry, 'entry_base_form_index')
         try:
             entry_id = int(entry.get_text())
             if entry_id > FileType.MD.properties().num_entities:
                 raise ValueError()
-            entry = self.module.monster_md[entry_id]
+            mentry = self.module.monster_md[entry_id]
             if not self.module.project.is_patch_applied('ExpandPokeList'):
-                idx = entry.md_index_base
+                idx = mentry.md_index_base
                 p = '#'
             else:
-                idx = entry.md_index
+                idx = mentry.md_index
                 p = '$'
             name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
             label.set_text(f'{p}{idx:04d}: {name}')
@@ -1333,8 +1337,8 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             label.set_text(_('??? Enter a valid Base ID (#)'))
 
     def _update_pre_evo_label(self):
-        label: Gtk.Label = self.builder.get_object('label_pre_evo_index')
-        gtk_entry: Gtk.Entry = self.builder.get_object('entry_pre_evo_index')
+        label = builder_get_assert(self.builder, Gtk.Label, 'label_pre_evo_index')
+        gtk_entry = builder_get_assert(self.builder, Gtk.Entry, 'entry_pre_evo_index')
         try:
             entry_id = int(gtk_entry.get_text())
             entry: MdEntryProtocol = self.module.monster_md[entry_id]
@@ -1348,14 +1352,14 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             label.set_text(_('??? Enter a valid Entry ID ($)'))
 
     def _update_chance_label(self):
-        label1: Gtk.Label = self.builder.get_object('label_chance_no_drop')
-        entry1: Gtk.Entry = self.builder.get_object('entry_unk27')
-        label2: Gtk.Label = self.builder.get_object('label_chance_normal_items')
-        entry2: Gtk.Entry = self.builder.get_object('entry_unk28')
-        label3: Gtk.Label = self.builder.get_object('label_chance_exclusive1')
-        entry3: Gtk.Entry = self.builder.get_object('entry_unk29')
-        label4: Gtk.Label = self.builder.get_object('label_chance_exclusive2')
-        entry4: Gtk.Entry = self.builder.get_object('entry_unk30')
+        label1 = builder_get_assert(self.builder, Gtk.Label, 'label_chance_no_drop')
+        entry1 = builder_get_assert(self.builder, Gtk.Entry, 'entry_unk27')
+        label2 = builder_get_assert(self.builder, Gtk.Label, 'label_chance_normal_items')
+        entry2 = builder_get_assert(self.builder, Gtk.Entry, 'entry_unk28')
+        label3 = builder_get_assert(self.builder, Gtk.Label, 'label_chance_exclusive1')
+        entry3 = builder_get_assert(self.builder, Gtk.Entry, 'entry_unk29')
+        label4 = builder_get_assert(self.builder, Gtk.Label, 'label_chance_exclusive2')
+        entry4 = builder_get_assert(self.builder, Gtk.Entry, 'entry_unk30')
         try:
             entry1_value = int(entry1.get_text())
             if entry1_value == 0:
@@ -1417,7 +1421,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
     # Relative to the new evolution system
     def _init_monster_store(self):
         monster_md = self.module.monster_md
-        monster_store: Gtk.ListStore = self.builder.get_object('monster_store')
+        monster_store = builder_get_assert(self.builder, Gtk.ListStore, 'monster_store')
         for idx, entry in enumerate(monster_md.entries):
             if idx == 0:
                 continue
@@ -1430,7 +1434,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             monster_store.append([self._ent_names[idx]])
 
     def on_cr_entity_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_entities'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_entities'))
 
     def on_btn_help_entid_clicked(self, w, *args):
         md = SkyTempleMessageDialog(
@@ -1476,7 +1480,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         self._edit_species_store('egg_store', path, text)
 
     def _edit_species_store(self, store_name, path, text):
-        store = self.builder.get_object(store_name)
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
         match = PATTERN.match(text)
         if match is None:
             return
@@ -1493,15 +1497,17 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
     def _init_evo_lists(self):
         current_evo = self._md_evo.evo_entries[self.item_id]
         current_stats = self._md_evo.evo_stats[self.item_id]
-        tree: Gtk.TreeView = self.builder.get_object('evo_tree')
-        store = tree.get_model()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'evo_tree')
+        store = cast(Optional[Gtk.ListStore], tree.get_model())
+        assert store is not None
         store.clear()
         for entry in current_evo.evos:
             store.append([
                 entry, self._ent_names[entry]
             ])
-        tree = self.builder.get_object('egg_tree')
-        store = tree.get_model()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'egg_tree')
+        store = cast(Optional[Gtk.ListStore], tree.get_model())
+        assert store is not None
         store.clear()
         for entry in current_evo.eggs:
             store.append([
@@ -1585,8 +1591,9 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             )
 
     def _add_monster_to_store(self, tree_name):
-        tree: Gtk.TreeView = self.builder.get_object(tree_name)
-        store = tree.get_model()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, tree_name)
+        store = cast(Optional[Gtk.ListStore], tree.get_model())
+        assert store is not None
         store.append([
             1, self._ent_names[1]
         ])
@@ -1599,8 +1606,9 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         self._remove_monster_to_store('egg_tree')
 
     def _remove_monster_to_store(self, tree_name):
-        tree: Gtk.TreeView = self.builder.get_object(tree_name)
-        store: Gtk.ListStore = tree.get_model()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, tree_name)
+        store = cast(Optional[Gtk.ListStore], tree.get_model())
+        assert store is not None
         # Deletes all selected dialogue entries
         # Allows multiple deletion
         active_rows: List[Gtk.TreePath] = tree.get_selection().get_selected_rows()[1]
@@ -1610,16 +1618,18 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         self._init_evo_lists()
 
     def _rebuild_evo_lists(self):
-        tree: Gtk.TreeView = self.builder.get_object('evo_tree')
-        store: Gtk.ListStore = tree.get_model()
+        tree: Gtk.TreeView = builder_get_assert(self.builder, Gtk.TreeView, 'evo_tree')
+        store = cast(Optional[Gtk.ListStore], tree.get_model())
+        assert store is not None
         evo_entries = []
-        for entry in store:
+        for entry in iter_tree_model(store):
             evo_entries.append(entry[0])
         self._md_evo.evo_entries[self.item_id].evos = evo_entries
-        tree = self.builder.get_object('egg_tree')
-        store = tree.get_model()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'egg_tree')
+        store = cast(Optional[Gtk.ListStore], tree.get_model())
+        assert store is not None
         eggs_entries = []
-        for entry in store:
+        for entry in iter_tree_model(store):
             eggs_entries.append(entry[0])
         self._md_evo.evo_entries[self.item_id].eggs = eggs_entries
         self.module.mark_md_evo_as_modified(self.item_id)

@@ -24,7 +24,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.module_controller import SimpleController, AbstractController
 from skytemple_files.common.i18n_util import _
 
-from skytemple.core.ui_utils import data_dir
+from skytemple.core.ui_utils import data_dir, builder_get_assert, assert_not_none
 
 if TYPE_CHECKING:
     from skytemple.module.patch.module import PatchModule
@@ -40,21 +40,21 @@ class CotController(AbstractController):
         self.builder = self._get_builder(__file__, 'cot.glade')
         assert self.builder
 
-        img_tutorial: Gtk.Image = self.builder.get_object('img_tutorial')
+        img_tutorial = builder_get_assert(self.builder, Gtk.Image, 'img_tutorial')
         img_tutorial.set_from_file(os.path.join(data_dir(), 'thumb_cot.png'))
 
         self.builder.connect_signals(self)
-        return self.builder.get_object('main_box')
+        return builder_get_assert(self.builder, Gtk.Widget, 'main_box')
 
     def on_tutorial_video_enter(self, *args):
-        img_btn: Gtk.Button = self.builder.get_object('tutorial_video')
+        img_btn = builder_get_assert(self.builder, Gtk.Button, 'tutorial_video')
         pointer = Gdk.Cursor.new_from_name(MainController.window().get_display(), 'pointer')
-        GLib.idle_add(lambda: img_btn.get_window().set_cursor(pointer))
+        GLib.idle_add(lambda: assert_not_none(img_btn.get_window()).set_cursor(pointer))
 
     def on_tutorial_video_leave(self, *args):
-        img_btn: Gtk.Button = self.builder.get_object('tutorial_video')
+        img_btn = builder_get_assert(self.builder, Gtk.Button, 'tutorial_video')
         default = Gdk.Cursor.new_from_name(MainController.window().get_display(), 'default')
-        GLib.idle_add(lambda: img_btn.get_window().set_cursor(default))
+        GLib.idle_add(lambda: assert_not_none(img_btn.get_window()).set_cursor(default))
 
     def on_tutorial_video_clicked(self, *args):
         webbrowser.open_new_tab('https://skytemple.org/cot_tutorial')

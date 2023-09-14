@@ -15,13 +15,13 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, cast
 
 from gi.repository import Gtk
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.ui_utils import data_dir
+from skytemple.core.ui_utils import data_dir, builder_get_assert, assert_not_none
 from skytemple_files.common.i18n_util import _, f
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.types.file_types import FileType
@@ -42,8 +42,8 @@ class MapController(AbstractController):
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'map.glade')
         self.builder.connect_signals(self)
-        self.builder.get_object('title').set_text(f(_('Script Scenes for "{}"').format(self.name)))
-        self.builder.get_object('desc').set_text(
+        builder_get_assert(self.builder, Gtk.Label, 'title').set_text(f(_('Script Scenes for "{}"').format(self.name)))
+        builder_get_assert(self.builder, Gtk.Label, 'desc').set_text(
             f(_('This section contains all scenes for the map {self.name}.\n\n'
                 '"Enter (sse)" contains the scene that is loaded when the map is entered\n'
                 'by the player by "walking into it" (if applicable).\n\n'
@@ -54,8 +54,8 @@ class MapController(AbstractController):
         )
         self._sub_enter, self._sub_acting, self._sub_sub = self.module.get_subnodes(self.name)
         if self._sub_enter:
-            self.builder.get_object('btn_add_enter').set_sensitive(False)
-        return self.builder.get_object('box_list')
+            builder_get_assert(self.builder, Gtk.Button, 'btn_add_enter').set_sensitive(False)
+        return builder_get_assert(self.builder, Gtk.Widget, 'box_list')
 
     def on_btn_add_enter_clicked(self, *args):
         try:
@@ -78,7 +78,7 @@ class MapController(AbstractController):
         )
         md.run()
         md.destroy()
-        self.builder.get_object('btn_add_enter').set_sensitive(False)
+        builder_get_assert(self.builder, Gtk.Button, 'btn_add_enter').set_sensitive(False)
 
     def on_btn_add_acting_clicked(self, *args):
         response, name = self._show_generic_input(_('Scene Name (without file extension)'), _('Create Scene'))
@@ -153,9 +153,9 @@ class MapController(AbstractController):
         md.destroy()
 
     def _show_generic_input(self, label_text, ok_text):
-        dialog: Gtk.Dialog = self.builder.get_object('generic_input_dialog')
-        entry: Gtk.Entry = self.builder.get_object('generic_input_dialog_entry')
-        label: Gtk.Label = self.builder.get_object('generic_input_dialog_label')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'generic_input_dialog')
+        entry = builder_get_assert(self.builder, Gtk.Entry, 'generic_input_dialog_entry')
+        label = builder_get_assert(self.builder, Gtk.Label, 'generic_input_dialog_label')
         label.set_text(label_text)
         btn_cancel = dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
         btn = dialog.add_button(ok_text, Gtk.ResponseType.OK)
@@ -166,6 +166,6 @@ class MapController(AbstractController):
         dialog.set_transient_for(SkyTempleMainController.window())
         response = dialog.run()
         dialog.hide()
-        btn.get_parent().remove(btn)
-        btn_cancel.get_parent().remove(btn_cancel)
+        assert_not_none(cast(Optional[Gtk.Container], btn.get_parent())).remove(btn)
+        assert_not_none(cast(Optional[Gtk.Container], btn_cancel.get_parent())).remove(btn_cancel)
         return response, entry.get_text()

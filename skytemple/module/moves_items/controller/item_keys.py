@@ -26,6 +26,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.string_provider import StringType
+from skytemple.core.ui_utils import builder_get_assert, iter_tree_model, assert_not_none
 from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
@@ -43,7 +44,7 @@ class ItemKeysController(AbstractController):
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'item_keys.glade')
-        lst: Gtk.Box = self.builder.get_object('box_list')
+        lst = builder_get_assert(self.builder, Gtk.Box, 'box_list')
 
         self._init_combos()
         self.on_lang_changed()
@@ -52,8 +53,8 @@ class ItemKeysController(AbstractController):
 
     def _init_combos(self):
         # Init available languages
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_store_lang')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_lang')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_store_lang')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_lang')
         # Init combobox
         cb_store.clear()
         for lang in self._string_provider.get_languages():
@@ -72,16 +73,16 @@ Only keys from 0 to 2047 should be used."""))
         md.destroy()
 
     def on_lang_changed(self, *args):
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_store_lang')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_lang')
-        self._current_lang = cb_store[cb.get_active_iter()][0]
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_store_lang')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_lang')
+        self._current_lang = cb_store[assert_not_none(cb.get_active_iter())][0]
         self._refresh_list()
 
     def _regenerate_list(self):
-        tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
 
         pre_new_list = []
-        for l in tree_store:
+        for l in iter_tree_model(tree_store):
             pre_new_list.append((l[2], l[0]))
         pre_new_list.sort()
         new_list = [x[1] for x in pre_new_list]
@@ -90,7 +91,7 @@ Only keys from 0 to 2047 should be used."""))
 
     def on_sort_key_edited(self, widget, path, text):
         try:
-            tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+            tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
             tree_store[path][0] = int(text)
         except ValueError:
             return
@@ -98,18 +99,18 @@ Only keys from 0 to 2047 should be used."""))
         self._regenerate_list()
 
     def _get_max_key(self):
-        tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
         new_list = []
-        for l in tree_store:
+        for l in iter_tree_model(tree_store):
             new_list.append(l[0])
         return max(new_list)
 
     def _setup_dialog(self):
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_add_remove')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_add_remove')
 
-        self.builder.get_object('id_key_add_remove').set_increments(1, 1)
-        self.builder.get_object('id_key_add_remove').set_range(0, self._get_max_key())
-        self.builder.get_object('id_key_add_remove').set_text(str(0))
+        builder_get_assert(self.builder, Gtk.SpinButton, 'id_key_add_remove').set_increments(1, 1)
+        builder_get_assert(self.builder, Gtk.SpinButton, 'id_key_add_remove').set_range(0, self._get_max_key())
+        builder_get_assert(self.builder, Gtk.SpinButton, 'id_key_add_remove').set_text(str(0))
 
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
@@ -117,9 +118,9 @@ Only keys from 0 to 2047 should be used."""))
         return dialog
 
     def on_btn_fix_clicked(self, *args):
-        tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
         pre_new_list = []
-        for l in tree_store:
+        for l in iter_tree_model(tree_store):
             pre_new_list.append((l[2], l[0]))
         pre_new_list.sort()
         new_list = [x[1] for x in pre_new_list]
@@ -137,16 +138,16 @@ Only keys from 0 to 2047 should be used."""))
 
     def on_btn_insert_clicked(self, *args):
         dialog = self._setup_dialog()
-        self.builder.get_object('lbl_add_remove_title').set_text(_("Insert Key Before: "))
-        self.builder.get_object('lbl_add_remove_desc').set_text(_("""Insert an item key id before the one selected.
+        builder_get_assert(self.builder, Gtk.Label, 'lbl_add_remove_title').set_text(_("Insert Key Before: "))
+        builder_get_assert(self.builder, Gtk.Label, 'lbl_add_remove_desc').set_text(_("""Insert an item key id before the one selected.
 This means all keys with id >= that one will be incremented by 1. """))
         resp = dialog.run()
         dialog.hide()
         if resp == Gtk.ResponseType.OK:
-            key = int(self.builder.get_object('id_key_add_remove').get_text())
-            tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+            key = int(builder_get_assert(self.builder, Gtk.SpinButton, 'id_key_add_remove').get_text())
+            tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
             pre_new_list = []
-            for l in tree_store:
+            for l in iter_tree_model(tree_store):
                 if l[0] >= key:
                     pre_new_list.append((l[2], l[0] + 1))
                 else:
@@ -158,17 +159,17 @@ This means all keys with id >= that one will be incremented by 1. """))
 
     def on_btn_remove_clicked(self, *args):
         dialog = self._setup_dialog()
-        self.builder.get_object('lbl_add_remove_title').set_text(_("Remove Key: "))
-        self.builder.get_object('lbl_add_remove_desc').set_text(_("""Remove the item key id selected.
+        builder_get_assert(self.builder, Gtk.Label, 'lbl_add_remove_title').set_text(_("Remove Key: "))
+        builder_get_assert(self.builder, Gtk.Label, 'lbl_add_remove_desc').set_text(_("""Remove the item key id selected.
 This means all keys with id > that one will be decremented by 1.
 A key can't be removed if it's still used by one item. """))
         resp = dialog.run()
         dialog.hide()
         if resp == Gtk.ResponseType.OK:
-            key = int(self.builder.get_object('id_key_add_remove').get_text())
-            tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+            key = int(builder_get_assert(self.builder, Gtk.SpinButton, 'id_key_add_remove').get_text())
+            tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
             no_key = []
-            for l in tree_store:
+            for l in iter_tree_model(tree_store):
                 if key == l[0]:
                     no_key.append(str(l[2]))
             if len(no_key) > 0:
@@ -179,7 +180,7 @@ A key can't be removed if it's still used by one item. """))
                 )
             else:
                 pre_new_list = []
-                for l in tree_store:
+                for l in iter_tree_model(tree_store):
                     if l[0] > key:
                         pre_new_list.append((l[2], l[0] - 1))
                     else:
@@ -204,7 +205,7 @@ A key can't be removed if it's still used by one item. """))
             widget.set_text(str(val))
 
     def _refresh_list(self):
-        tree_store: Gtk.ListStore = self.builder.get_object('tree_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'tree_store')
         tree_store.clear()
         lst = []
         for i, x in enumerate(self.module.get_i2n(self._current_lang)):

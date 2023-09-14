@@ -121,8 +121,8 @@ class DungeonModule(AbstractModule):
         try:
             self.project = rom_project
 
-            self._tree_model: Gtk.TreeModel
-            self._root_iter = None
+            self._tree_model: Gtk.TreeStore
+            self._root_iter: Optional[Gtk.TreeIter] = None
             self._dungeon_iters: Dict[DungeonDefinition, Gtk.TreeIter] = {}
             self._dungeon_floor_iters: Dict[int, Dict[int, Gtk.TreeIter]] = {}
             self._fixed_floor_iters: List[Gtk.TreeIter] = []
@@ -209,7 +209,8 @@ class DungeonModule(AbstractModule):
                     if floor in self._dungeon_floor_iters[dungeon_mf]:
                         self._tree_model[self._dungeon_floor_iters[dungeon_mf][floor]][5] = modified
         # Re-generate label
-        recursive_generate_item_store_row_label(self._tree_model[self._root_iter])
+        if self._root_iter:
+            recursive_generate_item_store_row_label(self._tree_model[self._root_iter])
 
     def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
         if request.type == REQUEST_TYPE_DUNGEONS:
@@ -281,8 +282,9 @@ class DungeonModule(AbstractModule):
 
     def mark_root_as_modified(self):
         # Mark as modified in tree
-        row = self._tree_model[self._root_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        if self._root_iter:
+            row = self._tree_model[self._root_iter]
+            recursive_up_item_store_mark_as_modified(row)
 
     def save_dungeon_list(self, dungeons: List[DungeonDefinition]):
         self.project.modify_binary(BinaryName.ARM9, lambda binary: HardcodedDungeons.set_dungeon_list(
@@ -552,17 +554,15 @@ class DungeonModule(AbstractModule):
                 )
 
         # Update floor ranks
-        self.extend_nb_floors_ranks(dungeon_id, floor_offset+number_floors_old, floors_added,
-                                    self.get_floor_rank(  # type: ignore
-                                        dungeon_id, floor_offset+number_floors_old-1
-                                    ))
+        ranks = self.get_floor_rank(dungeon_id, floor_offset+number_floors_old - 1)
+        if ranks:
+            self.extend_nb_floors_ranks(dungeon_id, floor_offset+number_floors_old, floors_added, ranks)
         if self.has_floor_ranks():
             self.project.mark_as_modified(FLOOR_RANKS)
         # Update mission forbidden
-        self.extend_nb_floors_mf(dungeon_id, floor_offset+number_floors_old, floors_added,
-                                 self.get_floor_mf(  # type: ignore
-                                     dungeon_id, floor_offset+number_floors_old-1
-                                ))
+        mf = self.get_floor_mf(dungeon_id, floor_offset+number_floors_old-1)
+        if mf:
+            self.extend_nb_floors_mf(dungeon_id, floor_offset+number_floors_old, floors_added, mf)
         if self.has_mission_forbidden():
             self.project.mark_as_modified(FLOOR_MISSION_FORBIDDEN)
 
@@ -592,7 +592,8 @@ class DungeonModule(AbstractModule):
                 self._regenerate_dungeon_floors(dungeon_in_group, dungeon_definitions[dungeon_in_group].start_after)
         else:
             self._regenerate_dungeon_floors(dungeon_id, floor_offset)
-        recursive_generate_item_store_row_label(self._tree_model[self._root_iter])
+        if self._root_iter:
+            recursive_generate_item_store_row_label(self._tree_model[self._root_iter])
 
     def get_monster_md(self) -> MdProtocol:
         return self.project.get_module('monster').monster_md
@@ -609,7 +610,7 @@ class DungeonModule(AbstractModule):
             self.mark_floor_as_modified(floor_info, modified_mappag=True)
 
     def get_dungeon_tileset(self, tileset_id) -> Tuple[DmaProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
-        with self._dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self._dungeon_bin_context as dungeon_bin:
             return (
                 dungeon_bin.get(f'dungeon{tileset_id}.dma'),
                 dungeon_bin.get(f'dungeon{tileset_id}.dpci'),
@@ -618,7 +619,7 @@ class DungeonModule(AbstractModule):
             )
 
     def get_dungeon_background(self, background_id) -> Tuple[DbgProtocol, DpciProtocol, DpcProtocol, DplProtocol]:
-        with self._dungeon_bin_context as dungeon_bin:  # type: ignore
+        with self._dungeon_bin_context as dungeon_bin:
             return (
                 dungeon_bin.get(f'dungeon_bg{background_id}.dbg'),
                 dungeon_bin.get(f'dungeon_bg{background_id}.dpci'),

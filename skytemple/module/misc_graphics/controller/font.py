@@ -17,13 +17,14 @@
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, Optional, Dict, List, Tuple
+from typing import TYPE_CHECKING, Optional, List, Tuple, cast
 
-from xml.etree.ElementTree import Element, ElementTree
+from xml.etree.ElementTree import ElementTree
 
 from range_typed_integers import u8
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
+from skytemple.core.ui_utils import builder_get_assert, create_tree_view_column, assert_not_none
 from skytemple_files.common.xml_util import prettify
 
 import cairo
@@ -54,7 +55,7 @@ class FontController(AbstractController):
         self.module = module
         self.spec = item
         self.font: Optional[AbstractFont] = self.module.get_font(self.spec)
-        
+
         self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
@@ -66,20 +67,20 @@ class FontController(AbstractController):
         # Generate Automatically the columns since we don't know what properties we will be using
         self.entry_properties = self.font.get_entry_properties()
         tree_store = Gtk.ListStore(*([str]*len(self.entry_properties)))
-        entry_tree: Gtk.TreeView = self.builder.get_object('entry_tree')
+        entry_tree = builder_get_assert(self.builder, Gtk.TreeView, 'entry_tree')
         entry_tree.set_model(tree_store)
         self._column_mapping: List[Tuple[Gtk.CellRendererText, str]] = []
         for i, p in enumerate(self.entry_properties):
             renderer = Gtk.CellRendererText(editable=(p!="char"))
             renderer.connect("edited", self.on_row_value_changed)
-            column = Gtk.TreeViewColumn(COLUMN_TITLE[p], renderer, text=i)
+            column = create_tree_view_column(COLUMN_TITLE[p], renderer, text=i)
             self._column_mapping.append((renderer, p))
             entry_tree.append_column(column)
         
         self._switch_table()
         self.builder.connect_signals(self)
-        self.builder.get_object('draw').connect('draw', self.draw)
-        return self.builder.get_object('editor')
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').connect('draw', self.draw)
+        return builder_get_assert(self.builder, Gtk.Widget, 'editor')
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(
@@ -93,7 +94,7 @@ class FontController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             assert self.font
             xml, tables = self.font.export_to_xml()
             with open(os.path.join(fn, f'char_tables.xml'), 'w') as f:
@@ -124,7 +125,7 @@ class FontController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
         
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 xml = ElementTree().parse(os.path.join(fn, f'char_tables.xml'))
                 tables = dict()
@@ -149,8 +150,8 @@ class FontController(AbstractController):
         # Init available tables
         self.tables = self.font.to_pil()
         
-        cb_store: Gtk.ListStore = self.builder.get_object('table_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_table_select')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'table_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_table_select')
         self._fill_available_font_tables_into_store(cb_store)
         
         cb.set_active(0)
@@ -164,22 +165,23 @@ class FontController(AbstractController):
         store.append(row)
         
     def _switch_table(self):
-        cb_store: Gtk.ListStore = self.builder.get_object('table_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_table_select')
-        if cb.get_active_iter() is not None:
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'table_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_table_select')
+        titer = cb.get_active_iter()
+        if titer is not None:
             assert self.font is not None
-            v: int = cb_store[cb.get_active_iter()][0]
+            v: int = cb_store[titer][0]
             self.entries = self.font.get_entries_from_table(u8(v))
             
-            entry_tree: Gtk.TreeView = self.builder.get_object('entry_tree')
-            store: Gtk.ListStore = entry_tree.get_model()
+            entry_tree = builder_get_assert(self.builder, Gtk.TreeView, 'entry_tree')
+            store = assert_not_none(cast(Optional[Gtk.ListStore], entry_tree.get_model()))
             store.clear()
             
             for e in self.entries:
                 self._add_property_row(store, e)
             surface = self.tables[v].resize((self.tables[v].width*IMAGE_ZOOM, self.tables[v].height*IMAGE_ZOOM))
             self.surface = pil_to_cairo_surface(surface.convert('RGBA'))
-            self.builder.get_object('draw').queue_draw()
+            builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').queue_draw()
 
     def on_entry_char_id_changed(self, widget):
         try:
@@ -195,11 +197,11 @@ class FontController(AbstractController):
             widget.set_text(str(val))
         
     def on_btn_add_clicked(self, widget):
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_choose_char')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_choose_char')
 
-        self.builder.get_object('entry_char_id').set_text(str(0))
-        self.builder.get_object('entry_char_id').set_increments(1,1)
-        self.builder.get_object('entry_char_id').set_range(0, 255)
+        builder_get_assert(self.builder, Gtk.SpinButton, 'entry_char_id').set_text(str(0))
+        builder_get_assert(self.builder, Gtk.SpinButton, 'entry_char_id').set_increments(1,1)
+        builder_get_assert(self.builder, Gtk.SpinButton, 'entry_char_id').set_range(0, 255)
         
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
@@ -207,10 +209,12 @@ class FontController(AbstractController):
         resp = dialog.run()
         dialog.hide()
         if resp == ResponseType.OK:
-            cb_store: Gtk.ListStore = self.builder.get_object('table_store')
-            cb: Gtk.ComboBoxText = self.builder.get_object('cb_table_select')
-            v: int = cb_store[cb.get_active_iter()][0]
-            char = int(self.builder.get_object('entry_char_id').get_text())
+            cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'table_store')
+            cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_table_select')
+            titer = cb.get_active_iter()
+            assert titer is not None
+            v: int = cb_store[titer][0]
+            char = int(builder_get_assert(self.builder, Gtk.SpinButton, 'entry_char_id').get_text())
             try:
                 for e in self.entries:
                     if e.get_properties()["char"] == char:
@@ -220,8 +224,8 @@ class FontController(AbstractController):
                 entry.set_properties({"char": char})
                 self.entries.append(entry)
                 
-                entry_tree: Gtk.TreeView = self.builder.get_object('entry_tree')
-                store: Gtk.ListStore = entry_tree.get_model()
+                entry_tree = builder_get_assert(self.builder, Gtk.TreeView, 'entry_tree')
+                store = assert_not_none(cast(Optional[Gtk.ListStore], entry_tree.get_model()))
                 self._add_property_row(store, entry)
                 self.module.mark_font_as_modified(self.spec)
             except Exception as err:
@@ -234,9 +238,9 @@ class FontController(AbstractController):
     def on_btn_remove_clicked(self, widget):
         # Deletes all selected font entries
         # Allows multiple deletions
-        entry_tree: Gtk.TreeView = self.builder.get_object('entry_tree')
+        entry_tree = builder_get_assert(self.builder, Gtk.TreeView, 'entry_tree')
         active_rows : List[Gtk.TreePath] = entry_tree.get_selection().get_selected_rows()[1]
-        store: Gtk.ListStore = entry_tree.get_model()
+        store = assert_not_none(cast(Optional[Gtk.ListStore], entry_tree.get_model()))
         assert self.font is not None
         for x in sorted(active_rows, key=lambda x: -x.get_indices()[0]):
             elt = self.entries[x.get_indices()[0]]
@@ -252,17 +256,17 @@ class FontController(AbstractController):
             int(text)
         except ValueError:
             return
-        entry_tree: Gtk.TreeView = self.builder.get_object('entry_tree')
-        store: Gtk.ListStore = entry_tree.get_model()
+        entry_tree = builder_get_assert(self.builder, Gtk.TreeView, 'entry_tree')
+        store = assert_not_none(cast(Optional[Gtk.ListStore], entry_tree.get_model()))
         for i, c in enumerate(self._column_mapping):
             if widget==c[0]:
                 store[path][i] = text
                 self.entries[int(path)].set_properties({c[1]: int(text)})
         self.module.mark_font_as_modified(self.spec)
-        self.builder.get_object('draw').queue_draw()
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').queue_draw()
         
     def on_entry_tree_selection_changed(self, *args):
-        self.builder.get_object('draw').queue_draw()
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').queue_draw()
         
     def on_font_table_changed(self, widget):
         self._switch_table()
@@ -283,7 +287,7 @@ class FontController(AbstractController):
             ctx.set_source_surface(self.surface, 0, 0)
             ctx.get_source().set_filter(cairo.Filter.NEAREST)
             ctx.paint()
-            entry_tree: Gtk.TreeView = self.builder.get_object('entry_tree')
+            entry_tree = builder_get_assert(self.builder, Gtk.TreeView, 'entry_tree')
             active_rows : List[Gtk.TreePath] = entry_tree.get_selection().get_selected_rows()[1]
             for x in active_rows:
                 prop = self.entries[x.get_indices()[0]].get_properties()

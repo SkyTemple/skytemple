@@ -21,7 +21,7 @@ from typing import TYPE_CHECKING
 from gi.repository import Gtk
 
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.ui_utils import glib_async
+from skytemple.core.ui_utils import glib_async, builder_get_assert
 from skytemple_files.common.i18n_util import _
 from skytemple_files.hardcoded.dungeon_music import DungeonMusicEntry
 
@@ -41,7 +41,7 @@ class DungeonMusicController(AbstractController):
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'dungeon_music.glade')
-        box: Gtk.Box = self.builder.get_object('box_list')
+        box = builder_get_assert(self.builder, Gtk.Box, 'box_list')
 
         self._init_cr_stores()
         self._init_values()
@@ -51,16 +51,16 @@ class DungeonMusicController(AbstractController):
 
     @glib_async
     def on_cr_tracks_track_changed(self, widget, path, new_iter, *args):
-        track_store: Gtk.Store = self.builder.get_object('store_tracks')
-        cb_store: Gtk.Store = self.builder.get_object('store_track_name')
+        track_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tracks')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_track_name')
         track_store[path][1] = cb_store[new_iter][1]
         self._music_list[int(track_store[path][0])] = DungeonMusicEntry(None, cb_store[new_iter][0], cb_store[new_iter][2])
         self.module.set_dungeon_music(self._music_list, self._random_list)
 
     @glib_async
     def on_cr_random_track1_changed(self, store, path, new_iter):
-        track_store: Gtk.Store = self.builder.get_object('store_random_tracks')
-        cb_store: Gtk.Store = self.builder.get_object('store_track_name_single')
+        track_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_random_tracks')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_track_name_single')
         track_store[path][1] = cb_store[new_iter][1]
         t = self._random_list[int(track_store[path][0])]
         self._random_list[int(track_store[path][0])] = (cb_store[new_iter][0], t[1], t[2], t[3])
@@ -68,8 +68,8 @@ class DungeonMusicController(AbstractController):
 
     @glib_async
     def on_cr_random_track2_changed(self, widget, path, new_iter, *args):
-        track_store: Gtk.Store = self.builder.get_object('store_random_tracks')
-        cb_store: Gtk.Store = self.builder.get_object('store_track_name_single')
+        track_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_random_tracks')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_track_name_single')
         track_store[path][2] = cb_store[new_iter][1]
         t = self._random_list[int(track_store[path][0])]
         self._random_list[int(track_store[path][0])] = (t[0], cb_store[new_iter][0], t[2], t[3])
@@ -77,8 +77,8 @@ class DungeonMusicController(AbstractController):
 
     @glib_async
     def on_cr_random_track3_changed(self, widget, path, new_iter, *args):
-        track_store: Gtk.Store = self.builder.get_object('store_random_tracks')
-        cb_store: Gtk.Store = self.builder.get_object('store_track_name_single')
+        track_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_random_tracks')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_track_name_single')
         track_store[path][3] = cb_store[new_iter][1]
         t = self._random_list[int(track_store[path][0])]
         self._random_list[int(track_store[path][0])] = (t[0], t[1], cb_store[new_iter][0], t[3])
@@ -86,8 +86,8 @@ class DungeonMusicController(AbstractController):
 
     @glib_async
     def on_cr_random_track4_changed(self, widget, path, new_iter, *args):
-        track_store: Gtk.Store = self.builder.get_object('store_random_tracks')
-        cb_store: Gtk.Store = self.builder.get_object('store_track_name_single')
+        track_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_random_tracks')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_track_name_single')
         track_store[path][4] = cb_store[new_iter][1]
         t = self._random_list[int(track_store[path][0])]
         self._random_list[int(track_store[path][0])] = (t[0], t[1], t[2], cb_store[new_iter][0])
@@ -96,7 +96,7 @@ class DungeonMusicController(AbstractController):
     def _init_cr_stores(self):
         music_entries = self.module.project.get_rom_module().get_static_data().script_data.bgms__by_id
 
-        cb_store: Gtk.ListStore = self.builder.get_object('store_track_name')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_track_name')
         cb_store.clear()
         cb_store.append([999, _("Invalid? (#999)"), False])
         for idx, track in music_entries.items():
@@ -104,7 +104,7 @@ class DungeonMusicController(AbstractController):
         for idx in range(0, 30):
             cb_store.append([idx, _("Random ") + str(idx), True])
 
-        cb_store = self.builder.get_object('store_track_name_single')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_track_name_single')
         cb_store.clear()
         for idx, track in music_entries.items():
             cb_store.append([idx, track.name + f" (#{idx:03})"])
@@ -112,7 +112,7 @@ class DungeonMusicController(AbstractController):
     def _init_values(self):
         music_entries = self.module.project.get_rom_module().get_static_data().script_data.bgms__by_id
 
-        cb_store: Gtk.ListStore = self.builder.get_object('store_tracks')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_tracks')
         cb_store.clear()
         for idx, track in enumerate(self._music_list):
             if track.is_random_ref:
@@ -126,7 +126,7 @@ class DungeonMusicController(AbstractController):
                     name = music_entries[track.track_or_ref].name + f" (#{track.track_or_ref:03})"
             cb_store.append([str(idx), name])
 
-        cb_store = self.builder.get_object('store_random_tracks')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'store_random_tracks')
         cb_store.clear()
         for idx, (a, b, c, d) in enumerate(self._random_list):
             cb_store.append([str(idx),

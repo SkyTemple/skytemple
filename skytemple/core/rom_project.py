@@ -27,6 +27,7 @@ from datetime import datetime
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
 from pmdsky_debug_py.protocol import SectionProtocol
+from skytemple.core.ui_utils import assert_not_none
 from skytemple_files.data.sprconf.handler import SPRCONF_FILENAME
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -50,7 +51,7 @@ from skytemple_files.compression_container.common_at.handler import CommonAtType
 from skytemple_files.hardcoded.icon_banner import IconBanner
 
 logger = logging.getLogger(__name__)
-BACKFUP_NAME = '.~backup.bin'
+BACKUP_NAME = '.~backup.bin'
 
 if TYPE_CHECKING:
     from skytemple.controller.main import MainController
@@ -105,11 +106,11 @@ class RomProject:
         If the main controller is set, it will be informed about this.
         """
         # First check for a backup file from last save.
-        backup_fn = os.path.join(ProjectFileManager(filename).dir(), BACKFUP_NAME)
+        backup_fn = os.path.join(ProjectFileManager(filename).dir(), BACKUP_NAME)
         if os.path.exists(backup_fn):
             cls.handle_backup_restore(filename, backup_fn, main_controller)
 
-        AsyncTaskDelegator.run_task(cls._open_impl(filename, main_controller))  # type: ignore
+        AsyncTaskDelegator.run_task(cls._open_impl(filename, main_controller))
 
     @classmethod
     async def _open_impl(cls, filename, main_controller: 'MainController'):
@@ -154,7 +155,7 @@ class RomProject:
 
     def __init__(self, filename: str, cb_open_view: Callable[[Gtk.TreeIter], None]):
         self.filename = filename
-        self._rom: NintendoDSRom = None  # type: ignore
+        self._rom: Optional[NintendoDSRom] = None
         self._rom_module: Optional['RomModule'] = None
         self._loaded_modules: Dict[str, AbstractModule] = {}
         self._sprite_renderer: Optional[SpriteProvider] = None
@@ -203,7 +204,8 @@ class RomProject:
         self._icon_banner = IconBanner(self._rom)
 
     def get_rom_module(self) -> 'RomModule':
-        return self._rom_module  # type: ignore
+        assert self._rom_module is not None
+        return self._rom_module
 
     def get_project_file_manager(self):
         return self._project_fm
@@ -211,7 +213,8 @@ class RomProject:
     def get_modules(self, include_rom_module=True) -> Iterator[AbstractModule]:
         """Iterate over loaded modules"""
         if include_rom_module:
-            return iter(list(self._loaded_modules.values()) + [self._rom_module])  # type: ignore
+            assert self._rom_module is not None
+            return iter(list(self._loaded_modules.values()) + [self._rom_module])
         return iter(self._loaded_modules.values())
 
     if TYPE_CHECKING:
@@ -276,15 +279,19 @@ class RomProject:
         return self._icon_banner
 
     def get_rom_name(self) -> str:
+        assert self._rom is not None
         return self._rom.name.decode('ascii')
 
     def set_rom_name(self, name: str):
+        assert self._rom is not None
         self._rom.name = name.encode('ascii')
 
     def get_id_code(self) -> str:
+        assert self._rom is not None
         return self._rom.idCode.decode('ascii')
 
     def set_id_code(self, id_code: str):
+        assert self._rom is not None
         self._rom.idCode = id_code.encode('ascii')
 
     @overload
@@ -313,6 +320,7 @@ class RomProject:
         The keyword arguments will also be used for serializing again.
         """
         if file_path_in_rom not in self._opened_files:
+            assert self._rom is not None
             bin = self._rom.getFileByName(file_path_in_rom)
             self._opened_files[file_path_in_rom] = file_handler_class.deserialize(bin, **kwargs)
             self._file_handlers[file_path_in_rom] = file_handler_class
@@ -332,6 +340,7 @@ class RomProject:
         If ``threadsafe`` is True, instead of returning the model, a ModelContext[T] is returned.
         """
         if file_path_in_rom not in self._opened_files:
+            assert self._rom is not None
             bin = self._rom.getFileByName(file_path_in_rom)
             sir0 = FileType.SIR0.deserialize(bin)
             self._opened_files[file_path_in_rom] = FileType.SIR0.unwrap_obj(sir0, sir0_serializable_type)
@@ -342,6 +351,7 @@ class RomProject:
     def open_sprconf(self, threadsafe=False):
         """Opens the MONSTER/sprconf.json if it exists, if not it creates it first."""
         if SPRCONF_FILENAME not in self._opened_files:
+            assert self._rom is not None
             self._opened_files[SPRCONF_FILENAME] = FileType.SPRCONF.load(self._rom)
             self._file_handlers[SPRCONF_FILENAME] = FileType.SPRCONF
             self._file_handler_kwargs[SPRCONF_FILENAME] = {}
@@ -371,9 +381,8 @@ class RomProject:
                 self._modified_files.append(file)
         else:
             filename = list(self._opened_files.keys())[list(self._opened_files.values()).index(file)]
-            self._modified_files.append(filename)
-            if file not in self._modified_files:
-                self._modified_files.append(file)  # type: ignore
+            if filename not in self._modified_files:
+                self._modified_files.append(filename)
 
     def force_mark_as_modified(self):
         self._forced_modified = True
@@ -387,7 +396,7 @@ class RomProject:
 
     def open_file_manually(self, filename: str):
         """Returns the raw bytes of a file. GENERALLY NOT RECOMMENDED."""
-        return self._rom.getFileByName(filename)
+        return assert_not_none(self._rom).getFileByName(filename)
 
     def save_file_manually(self, filename: str, data: bytes):
         """
@@ -396,6 +405,7 @@ class RomProject:
         for re-generated files which are otherwise not read by SkyTemple (only saved), such as the mappa_gs.bin file.
         THIS INVALIDATES THE CURRENTLY LOADED FILE (via open_file_in_rom; it will return a new model now).
         """
+        assert self._rom is not None
         if filename in self._opened_files:
             del self._opened_files[filename]
         if filename in self._opened_files_contexts:
@@ -407,6 +417,7 @@ class RomProject:
         """
         Manually create a file in the ROM. 
         """
+        assert self._rom is not None
         create_file_in_rom(self._rom, filename, data)
         self.force_mark_as_modified()
 
@@ -424,20 +435,21 @@ class RomProject:
             self.save_as_is()
             await AsyncTaskDelegator.buffer()
             if main_controller:
-                GLib.idle_add(lambda: main_controller.on_file_saved())
+                GLib.idle_add(lambda: assert_not_none(main_controller).on_file_saved())
 
         except Exception as err:
             if main_controller:
                 exc_info = sys.exc_info()
-                GLib.idle_add(lambda err=err: main_controller.on_file_saved_error(exc_info, err))
+                GLib.idle_add(lambda err=err: assert_not_none(main_controller).on_file_saved_error(exc_info, err))
 
     def prepare_save_model(self, name, assert_that=None):
         """
         Write the binary model for this type to the ROM object in memory.
         If assert_that is given, it is asserted, that the model matches the one on record.
         """
+        assert self._rom is not None
         context: AbstractContextManager = (
-            self._opened_files_contexts[name]  # type: ignore
+            self._opened_files_contexts[name]
             if name in self._opened_files_contexts
             else nullcontext(self._opened_files[name])
         )
@@ -446,7 +458,7 @@ class RomProject:
             logger.debug(f"Saving {name} in ROM. Model: {model}, Handler: {handler}")
             if handler == FileType.SIR0:
                 logger.debug(f"> Saving as Sir0 wrapped data.")
-                model = handler.wrap_obj(model)  # type: ignore
+                model = FileType.SIR0.wrap_obj(model)
             if assert_that is not None:
                 assert assert_that is model, "The model that is being saved must match!"
             binary_data = handler.serialize(model, **self._file_handler_kwargs[name])
@@ -454,8 +466,9 @@ class RomProject:
 
     def save_as_is(self):
         """Simply save the current ROM to disk."""
-        # First copy current ROM to a to a temp file.
-        backup_fn = os.path.join(self.get_project_file_manager().dir(), BACKFUP_NAME)
+        assert self._rom is not None
+        # First copy current ROM to a temp file.
+        backup_fn = os.path.join(self.get_project_file_manager().dir(), BACKUP_NAME)
         # When doing "Save As..." the file may not exist yet.
         if os.path.exists(self.filename):
             shutil.copyfile(self.filename, backup_fn)
@@ -466,21 +479,28 @@ class RomProject:
             os.unlink(backup_fn)
 
     def get_files_with_ext(self, ext, folder_name: Optional[str] = None):
+        assert self._rom is not None
         if folder_name is None:
             return get_files_from_rom_with_extension(self._rom, ext)
         else:
-            return get_files_from_folder_with_extension(self._rom.filenames.subfolder(folder_name), ext)  # type: ignore
+            folder = self._rom.filenames.subfolder(folder_name)
+            if folder is None:
+                return []
+            return get_files_from_folder_with_extension(folder, ext)
 
     def get_rom_folder(self, path):
+        assert self._rom is not None
         return get_rom_folder(self._rom, path)
 
     def file_exists(self, path):
         """Check if a file exists"""
+        assert self._rom is not None
         return path in self._rom.filenames
 
     def create_new_file(self, new_filename, model, file_handler_class: Type[DataHandler[T]], **kwargs):
         """Creates a new file in the ROM and fills it with the model content provided and
         writes the serialized model data there"""
+        assert self._rom is not None
         copy_bin = file_handler_class.serialize(model, **kwargs)
         create_file_in_rom(self._rom, new_filename, copy_bin)
         self._opened_files[new_filename] = file_handler_class.deserialize(copy_bin, **kwargs)
@@ -490,10 +510,12 @@ class RomProject:
 
     def ensure_dir(self, dir_name):
         """Makes sure the specified directory exists in the ROM-FS. If not, it is created."""
+        assert self._rom is not None
         if not folder_in_rom_exists(self._rom, dir_name):
             create_folder_in_rom(self._rom, dir_name)
 
     def load_rom_data(self):
+        assert self._rom is not None
         return get_ppmdu_config_for_rom(self._rom)
 
     def request_open(self, request: OpenRequest, raise_exception=False):
@@ -510,17 +532,21 @@ class RomProject:
             raise ValueError("No handler for request.")
 
     def get_sprite_provider(self) -> SpriteProvider:
-        return self._sprite_renderer  # type: ignore
+        assert self._sprite_renderer is not None
+        return self._sprite_renderer
 
     def get_string_provider(self) -> StringProvider:
-        return self._string_provider  # type: ignore
+        assert self._string_provider is not None
+        return self._string_provider
 
     def create_patcher(self):
         if self._patcher is None:
+            assert self._rom is not None
             self._patcher = Patcher(self._rom, self.get_rom_module().get_static_data())
         return self._patcher
 
     def get_binary(self, binary: Union[SectionProtocol, BinaryName, str]) -> bytes:
+        assert self._rom is not None
         if isinstance(binary, str) or isinstance(binary, BinaryName):
             the_binary = getattr(self.get_rom_module().get_static_data().bin_sections, str(binary))
         else:
@@ -529,6 +555,7 @@ class RomProject:
 
     def modify_binary(self, binary: Union[SectionProtocol, BinaryName, str], modify_cb: Callable[[bytearray], None]):
         """Modify one of the binaries (such as arm9 or overlay) and save it to the ROM"""
+        assert self._rom is not None
         if isinstance(binary, str) or isinstance(binary, BinaryName):
             the_binary = getattr(self.get_rom_module().get_static_data().bin_sections, str(binary))
         else:

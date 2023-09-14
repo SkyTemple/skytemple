@@ -34,7 +34,7 @@ from gi.repository import Gdk, Gtk, GdkPixbuf
 
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.model_context import ModelContext
-from skytemple.core.ui_utils import data_dir
+from skytemple.core.ui_utils import data_dir, assert_not_none
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import MONSTER_MD, MONSTER_BIN, open_utf8, DUNGEON_BIN
@@ -187,18 +187,18 @@ class SpriteProvider:
     def init_loader(self, screen: Gdk.Screen):
         icon_theme: Gtk.IconTheme = Gtk.IconTheme.get_for_screen(screen)
         # Loader icon
-        loader_icon: GdkPixbuf.Pixbuf = icon_theme.load_icon(
+        loader_icon = assert_not_none(assert_not_none(icon_theme.load_icon(
             'skytemple-image-loading-symbolic', 24, Gtk.IconLookupFlags.FORCE_SIZE
-        ).copy()
+        )).copy())
         self._loader_surface_dims = loader_icon.get_width(), loader_icon.get_height()
         self._loader_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, *self._loader_surface_dims)
         ctx = cairo.Context(self._loader_surface)
         Gdk.cairo_set_source_pixbuf(ctx, loader_icon, 0, 0)
         ctx.paint()
         # Error icon
-        error_icon: GdkPixbuf.Pixbuf = icon_theme.load_icon(
+        error_icon = assert_not_none(assert_not_none(icon_theme.load_icon(
             'skytemple-img-load-error-symbolic', 24, Gtk.IconLookupFlags.FORCE_SIZE
-        ).copy()
+        )).copy())
         self._error_surface_dims = error_icon.get_width(), error_icon.get_height()
         self._error_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, *self._error_surface_dims)
         ctx = cairo.Context(self._error_surface)
@@ -277,14 +277,16 @@ class SpriteProvider:
         As long as the sprite is being loaded, the loader sprite is returned instead.
         """
         if isinstance(trp, MappaTrapType):
-            trp = trp.value
+            trpv = trp.value
+        else:
+            trpv = trp
         self._load_dungeon_bin()
         with sprite_provider_lock:
-            if trp in self._loaded__traps:
-                return self._loaded__traps[trp]  # type: ignore
-            if trp not in self._requests__traps:
-                self._requests__traps.append(trp)  # type: ignore
-                self._load_trap(trp, after_load_cb)  # type: ignore
+            if trpv in self._loaded__traps:
+                return self._loaded__traps[trpv]
+            if trpv not in self._requests__traps:
+                self._requests__traps.append(trpv)
+                self._load_trap(trpv, after_load_cb)
         return self.get_loader()
 
     def get_for_item(self, itm: ItemPEntryProtocol, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
@@ -526,7 +528,7 @@ class SpriteProvider:
             if os.path.exists(p):
                 with open_utf8(p, 'r') as f:
                     try:
-                        self._loaded_standins = {int(k): v for k, v in json.load(f).items()}  # type: ignore
+                        self._loaded_standins = {int(k): v for k, v in json.load(f).items()}
                     except BaseException as err:
                         logger.error(f"Failed to load standin sprites from {p}, falling back to default: {err}.")
         return self._loaded_standins

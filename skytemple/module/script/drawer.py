@@ -25,6 +25,7 @@ from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.mapbg_util.drawer_plugin.grid import GridDrawerPlugin
 from skytemple.core.mapbg_util.drawer_plugin.selection import SelectionDrawerPlugin
 from skytemple.core.sprite_provider import SpriteProvider
+from skytemple.core.ui_utils import assert_not_none
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptDirection
 from skytemple_files.graphics.bpc import BPC_TILE_DIM
 from skytemple_files.script.ssa_sse_sss.actor import SsaActor
@@ -64,7 +65,7 @@ class Drawer:
         self.draw_area = draw_area
 
         self.ssa = ssa
-        self.map_bg = None
+        self.map_bg: Optional[cairo.Surface] = None
         self.position_marks: List[SourceMapPositionMark] = []
 
         self.draw_tile_grid = False
@@ -114,8 +115,9 @@ class Drawer:
             ctx.paint()
 
         size_w, size_h = self.draw_area.get_size_request()
-        size_w /= self.scale
-        size_h /= self.scale
+        assert size_w is not None and size_h is not None
+        size_w //= self.scale
+        size_h //= self.scale
 
         # Black out bg a bit
         if not self._edit_pos_marks:
@@ -144,7 +146,7 @@ class Drawer:
                     bb = self.get_bb_object(obj)
                     if obj != self._selected:
                         self._handle_layer_highlight(ctx, layer_i, *bb)
-                    self._draw_object(ctx, obj, *bb)
+                    self._draw_object(ctx, obj, bb)
                     self._draw_hitbox_object(ctx, obj)
             for trigger in layer.events:
                 if not self._is_dragged(trigger):
@@ -183,7 +185,9 @@ class Drawer:
         ctx.set_source_rgb(*COLOR_WHITE)
         ctx.set_font_size(18)
         try:
-            sw: Gtk.ScrolledWindow = self.draw_area.get_parent().get_parent().get_parent()
+            p1 = assert_not_none(self.draw_area.get_parent())
+            p2 = assert_not_none(p1.get_parent())
+            sw: Gtk.ScrolledWindow = typing.cast(Gtk.ScrolledWindow, assert_not_none(p2.get_parent()))
             s = sw.get_allocated_size()
             ctx.move_to(sw.get_hadjustment().get_value() + 30, s[0].height + sw.get_vadjustment().get_value() - 30)
             if self._selected__drag is not None:
@@ -213,7 +217,7 @@ class Drawer:
                     self._draw_actor(ctx, self._selected, x, y, w, h)
                 elif isinstance(self._selected, SsaObject):
                     x, y, w, h = self.get_bb_object(self._selected, x=x, y=y)
-                    self._draw_object(ctx, self._selected, x, y, w, h)
+                    self._draw_object(ctx, self._selected, (x, y, w, h))
                 elif isinstance(self._selected, SsaPerformer):
                     x, y, w, h = self.get_bb_performer(self._selected, x=x, y=y)
                     self._draw_performer(ctx, self._selected, x, y, w, h)
@@ -291,9 +295,9 @@ class Drawer:
         if y is None:
             y = actor.pos.y_absolute
         if actor.actor.entid <= 0:
-            _, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(actor.actor.id, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))  # type: ignore
+            _, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(actor.actor.id, assert_not_none(actor.pos.direction).id, lambda: GLib.idle_add(self._redraw))
         else:
-            _, cx, cy, w, h = self.sprite_provider.get_monster(actor.actor.entid, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw))  # type: ignore
+            _, cx, cy, w, h = self.sprite_provider.get_monster(actor.actor.entid, assert_not_none(actor.pos.direction).id, lambda: GLib.idle_add(self._redraw))
         return x - cx, y - cy, w, h
 
     def _draw_hitbox_actor(self, ctx: cairo.Context, actor: SsaActor):
@@ -325,13 +329,17 @@ class Drawer:
         )
         self._draw_hitbox(ctx, COLOR_OBJECTS, *coords_hitbox)
 
-    def _draw_object(self, ctx: cairo.Context, object: SsaObject, *sprite_coords):
+    def _draw_object(self, ctx: cairo.Context, object: SsaObject, sprite_coords: Tuple[int, int, int, int]):
         # Draw sprite representation
         if object.object.name != 'NULL':
             self._draw_object_sprite(ctx, object, sprite_coords[0], sprite_coords[1])
             self._draw_name(ctx, COLOR_OBJECTS, object.object.name, sprite_coords[0], sprite_coords[1])
             return
-        self._draw_generic_placeholder(ctx, COLOR_OBJECTS, object.object.unique_name, *sprite_coords, object.pos.direction)  # type: ignore
+        self._draw_generic_placeholder(
+            ctx, COLOR_OBJECTS, object.object.unique_name,
+            *sprite_coords,
+            direction=assert_not_none(object.pos.direction)
+        )
 
     def get_bb_performer(self, performer: SsaPerformer, x=None, y=None) -> Tuple[int, int, int, int]:
         if x is None:
@@ -354,7 +362,7 @@ class Drawer:
         ctx.move_to(x - 4, y - 8)
         ctx.show_text(f'{performer.type}')
         # Direction arrow
-        self._triangle(ctx, x, y, BPC_TILE_DIM, COLOR_PERFORMER, performer.pos.direction.id)  # type: ignore
+        self._triangle(ctx, x, y, BPC_TILE_DIM, COLOR_PERFORMER, assert_not_none(performer.pos.direction).id)
 
     def get_bb_trigger(self, trigger: SsaEvent, x=None, y=None) -> Tuple[int, int, int, int]:
         if x is None:
@@ -548,11 +556,11 @@ class Drawer:
         """Draws the sprite for an actor"""
         if actor.actor.entid == 0:
             sprite = self.sprite_provider.get_actor_placeholder(
-                actor.actor.id, actor.pos.direction.id, self._redraw  # type: ignore
+                actor.actor.id, assert_not_none(actor.pos.direction).id, self._redraw
             )[0]
         else:
             sprite = self.sprite_provider.get_monster(
-                actor.actor.entid, actor.pos.direction.id, lambda: GLib.idle_add(self._redraw)  # type: ignore
+                actor.actor.entid, assert_not_none(actor.pos.direction).id, lambda: GLib.idle_add(self._redraw)
             )[0]
         ctx.translate(x, y)
         ctx.set_source_surface(sprite)
@@ -709,9 +717,10 @@ class Drawer:
             self._sector_highlighted -= 1
 
     def get_current_drag_entity_pos(self) -> Tuple[Union[int, float], Union[int, float]]:
+        assert self._selected__drag is not None
         return self._snap_pos(
-            self.mouse_x - self._selected__drag[0],  # type: ignore
-            self.mouse_y - self._selected__drag[1]  # type: ignore
+            self.mouse_x - self._selected__drag[0],
+            self.mouse_y - self._selected__drag[1]
         )
 
     @typing.no_type_check

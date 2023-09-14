@@ -23,7 +23,7 @@ import sys
 import webbrowser
 from collections import OrderedDict
 from functools import partial
-from typing import TYPE_CHECKING, List, Iterable, Callable, Optional
+from typing import TYPE_CHECKING, List, Iterable, Callable, Optional, cast, Sequence, MutableSequence
 
 import cairo
 
@@ -31,7 +31,7 @@ from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.rom_project import BinaryName
-from skytemple.core.ui_utils import add_dialog_xml_filter
+from skytemple.core.ui_utils import add_dialog_xml_filter, builder_get_assert, iter_tree_model
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_graphics_provider import DungeonTilesProvider
 from skytemple.module.dungeon_graphics.chunk_editor_data_provider.tile_palettes_provider import DungeonPalettesProvider
 from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
@@ -96,7 +96,7 @@ class TilesetController(AbstractController):
         self.dpc: DpcProtocol = module.get_dpc(item_id)
         self.dpci: DpciProtocol = module.get_dpci(item_id)
 
-        self.rules = [
+        self.rules: MutableSequence[MutableSequence[int]] = [
             [0, 0, 0],
             [0, 0, 0],
             [0, 0, 0]
@@ -110,7 +110,7 @@ class TilesetController(AbstractController):
         self._init_chunk_imgs()
         self.dtef = None
 
-        self.menu_controller = BgMenuController(self)  # type: ignore
+        self.menu_controller = BgMenuController(self)
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'tileset.glade')
@@ -120,12 +120,12 @@ class TilesetController(AbstractController):
         self._init_chunk_picker_icon_view()
         self._init_secondary_terrain()
         self.builder.connect_signals(self)
-        editor = self.builder.get_object('editor')
-        root = self.builder.get_object('editor_root')
+        editor = builder_get_assert(self.builder, Gtk.Box, 'editor')
+        root = builder_get_assert(self.builder, Gtk.Notebook, 'editor_root')
         root.set_current_page(self.__class__._last_open_tab_id)
         self.on_editor_root_switch_page(None, None, self.__class__._last_open_tab_id)
-        self.builder.get_object('label_tileset_name').set_text(f(_('Dungeon Tileset {self.item_id} Rules')))
-        self.builder.get_object('label_tileset_name2').set_text(f(_('Dungeon Tileset {self.item_id}')))
+        builder_get_assert(self.builder, Gtk.Label, 'label_tileset_name').set_text(f(_('Dungeon Tileset {self.item_id} Rules')))
+        builder_get_assert(self.builder, Gtk.Label, 'label_tileset_name2').set_text(f(_('Dungeon Tileset {self.item_id}')))
         return editor
 
     def on_editor_root_switch_page(self, w, p, pnum, *args):
@@ -166,7 +166,7 @@ class TilesetController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 dirname = os.path.dirname(fn)
                 fn_xml = fn
@@ -334,10 +334,10 @@ class TilesetController(AbstractController):
         model, treeiter = icon_view_extra.get_model(), icon_view_extra.get_selected_items()
         if model is not None and treeiter is not None and treeiter != []:
             i = model[treeiter][0]
-            icon_view_picker = self.builder.get_object('rules_chunk_picker')
+            icon_view_picker = builder_get_assert(self.builder, Gtk.IconView, 'rules_chunk_picker')
             model, treeiter = icon_view_picker.get_model(), icon_view_picker.get_selected_items()
             if model is not None and treeiter is not None and treeiter != []:
-                edited_value = model[treeiter][1]
+                edited_value = model[treeiter[0]][1]
                 extra_type = DmaExtraType.FLOOR1
                 if i > 15:
                     extra_type = DmaExtraType.WALL_OR_VOID
@@ -430,8 +430,9 @@ class TilesetController(AbstractController):
 
     def _init_an_icon_view(self, name: str, init_store: Callable[[Gtk.ListStore], None], selection_draw_solid, select_first=False):
         assert self.builder
-        icon_view: Gtk.IconView = self.builder.get_object(name)
-        if icon_view.get_model() == None:
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, name)
+        icon_view_model = cast(Gtk.ListStore, icon_view.get_model())
+        if icon_view_model is None:
             #                     id, val
             store = Gtk.ListStore(int, int)
             icon_view.set_model(store)
@@ -440,7 +441,7 @@ class TilesetController(AbstractController):
             icon_view.pack_start(renderer, True)
             icon_view.add_attribute(renderer, 'chunkidx', 1)
         else:
-            store = icon_view.get_model()
+            store = icon_view_model
             store.clear()
             self.renderer = None
             for child in icon_view.get_cells():
@@ -450,7 +451,9 @@ class TilesetController(AbstractController):
 
         init_store(store)
         if select_first:
-            icon_view.select_path(store.get_path(store.get_iter_first()))
+            first_iter = store.get_iter_first()
+            if first_iter:
+                icon_view.select_path(store.get_path(first_iter))
 
     def _rules_pos_toggle(self, i, state):
         y = i % 3
@@ -460,7 +463,7 @@ class TilesetController(AbstractController):
 
     def _init_rules(self):
         def ia(i):
-            return self.builder.get_object(f'rules_a{i}').get_active()
+            return builder_get_assert(self.builder, Gtk.CheckButton, f'rules_a{i}').get_active()
         self.rules = list(chunks(  # type: ignore
             [ia(i) for i in range(0, 9)], 3)
         )
@@ -471,38 +474,40 @@ class TilesetController(AbstractController):
         for y, row in enumerate(self.rules):
             for x, solid in enumerate(row):
                 chunk_type = solid_type if solid else DmaType.FLOOR
-                solid_neighbors = get_tile_neighbors(self.rules, x, y, bool(solid))
+                solid_neighbors = get_tile_neighbors(self.rules, x, y, bool(solid))  # type: ignore
                 all_chunk_mapping_vars.append(self.dma.get(chunk_type, solid_neighbors))
 
         for i, v_icon_view_name in enumerate(("rules_main_1", "rules_main_2", "rules_main_3")):
-            icon_view_model: Gtk.ListStore = self.builder.get_object(v_icon_view_name).get_model()
-            icon_view_model.clear()
-            for j, idxs in enumerate(all_chunk_mapping_vars):
-                icon_view_model.append([j, idxs[i]])
+            icon_view_model = cast(Optional[Gtk.ListStore], builder_get_assert(self.builder, Gtk.IconView, v_icon_view_name).get_model())
+            if icon_view_model:
+                icon_view_model.clear()
+                for j, idxs in enumerate(all_chunk_mapping_vars):
+                    icon_view_model.append([j, idxs[i]])
 
     def update_chunks_extra(self):
-        store = self.builder.get_object('rules_extra').get_model()
-        store.clear()
-        for extra_type in (DmaExtraType.FLOOR1, DmaExtraType.WALL_OR_VOID, DmaExtraType.FLOOR2):
-            for idx, val in enumerate(self.dma.get_extra(extra_type)):
-                store.append([idx + 16 * extra_type, val])
+        store = cast(Optional[Gtk.ListStore], builder_get_assert(self.builder, Gtk.IconView, 'rules_extra').get_model())
+        if store:
+            store.clear()
+            for extra_type in (DmaExtraType.FLOOR1, DmaExtraType.WALL_OR_VOID, DmaExtraType.FLOOR2):
+                for idx, val in enumerate(self.dma.get_extra(extra_type)):
+                    store.append([idx + 16 * extra_type, val])
 
     def _get_current_solid_type(self):
-        combo_box: Gtk.ComboBoxText = self.builder.get_object("rules_active_type")
+        combo_box = builder_get_assert(self.builder, Gtk.ComboBoxText, "rules_active_type")
         return DmaType.WALL if combo_box.get_active_text() == 'Wall' else DmaType.WATER
 
     def _rule_updated(self, i, variation):
-        icon_view = self.builder.get_object('rules_chunk_picker')
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, 'rules_chunk_picker')
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
         if model is not None and treeiter is not None and treeiter != []:
 
             x = i % 3
             y = math.floor(i / 3)
-            edited_value = model[treeiter][1]
+            edited_value = model[treeiter[0]][1]
             solid = bool(self.rules[x][y])
             self.dma.set(
                 self._get_current_solid_type() if solid else DmaType.FLOOR,
-                get_tile_neighbors(self.rules, x, y, solid),
+                get_tile_neighbors(self.rules, x, y, solid),  # type: ignore
                 variation, edited_value
             )
             self.update_chunks_from_current_rules()
@@ -511,21 +516,22 @@ class TilesetController(AbstractController):
     def _load_dtef_rendering(self):
         self.dtef = ExplorersDtef(self.dma, self.dpc, self.dpci, self.dpl, self.dpla)
         assert self.dtef is not None  # mypy is silly sometimes.
-        box: Gtk.Box = self.builder.get_object('dungeon_image_placeholder')
-        for child in box:
+        box = builder_get_assert(self.builder, Gtk.Box, 'dungeon_image_placeholder')
+        for child in iter_tree_model(box):
             box.remove(child)
         image: Gtk.Image = Gtk.Image.new_from_surface(pil_to_cairo_surface(self.dtef.get_tiles()[0].convert('RGBA')))
         box.pack_start(image, True, True, 0)
         box.show_all()
 
     def _init_secondary_terrain(self):
-        w: Gtk.ComboBox = self.builder.get_object('secondary_terrain_type')
-        s: Gtk.ListStore = w.get_model()
-        for v in SecondaryTerrainTableEntry:
-            s.append([v.value, v.name.capitalize()])
+        w = builder_get_assert(self.builder, Gtk.ComboBox, 'secondary_terrain_type')
+        s = cast(Optional[Gtk.ListStore], w.get_model())
+        if s:
+            for v in SecondaryTerrainTableEntry:
+                s.append([v.value, v.name.capitalize()])
 
-        secondary_terrain = HardcodedDungeons.get_secondary_terrains(
-            self.module.project.get_binary(BinaryName.ARM9), self.module.project.get_rom_module().get_static_data()
-        )[self.item_id]
-        w.set_active(secondary_terrain.value)
+            secondary_terrain = HardcodedDungeons.get_secondary_terrains(
+                self.module.project.get_binary(BinaryName.ARM9), self.module.project.get_rom_module().get_static_data()
+            )[self.item_id]
+            w.set_active(secondary_terrain.value)
 

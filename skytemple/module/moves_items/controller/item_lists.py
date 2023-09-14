@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Dict, List, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional, cast
 
 from gi.repository import Gtk
 
@@ -26,7 +26,7 @@ from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.list_icon_renderer import ListIconRenderer
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import glib_async
+from skytemple.core.ui_utils import glib_async, builder_get_assert, assert_not_none, iter_tree_model
 from skytemple.module.dungeon.controller.floor import POKE_CATEGORY_ID, LINKBOX_CATEGORY_ID
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItem, Pmd2DungeonItemCategory
 from skytemple.core.module_controller import AbstractController
@@ -105,10 +105,10 @@ class ItemListsController(AbstractController):
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'item_lists.glade')
-        stack: Gtk.Stack = self.builder.get_object('list_stack')
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'list_stack')
 
         if not self.module.has_item_lists():
-            stack.set_visible_child(self.builder.get_object('box_na'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_na'))
             return stack
 
         self._init_combos()
@@ -124,14 +124,14 @@ class ItemListsController(AbstractController):
         self._recalculate_spawn_chances('item_cat_orbs_store', 4, 3)
         self._recalculate_spawn_chances('item_cat_others_store', 4, 3)
         
-        stack.set_visible_child(self.builder.get_object('box_list'))
+        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_list'))
         self.builder.connect_signals(self)
         return stack
 
     def _init_combos(self):
         # Init available types
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_list_ids_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_list_ids')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_list_ids_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_list_ids')
         # Init combobox
         cb_store.clear()
         for i, v in enumerate(ITEM_LISTS):
@@ -142,14 +142,14 @@ class ItemListsController(AbstractController):
         self._init_item_spawns()
         
     def _get_list_id(self):
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_list_ids_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_list_ids')
-        return cb_store[cb.get_active_iter()][0]
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_list_ids_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_list_ids')
+        return cb_store[assert_not_none(cb.get_active_iter())][0]
 
     @glib_async
     def on_cr_items_cat_name_changed(self, widget, path, new_iter, *args):
-        store: Gtk.Store = self.builder.get_object('item_categories_store')
-        cb_store: Gtk.Store = self.builder.get_object('cr_item_cat_name_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'item_categories_store')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cr_item_cat_name_store')
         store[path][0] = cb_store[new_iter][0]
         store[path][1] = cb_store[new_iter][1]
         self._save_item_spawn_rates()
@@ -161,21 +161,21 @@ class ItemListsController(AbstractController):
             assert v >= 0
         except:
             return
-        store: Gtk.Store = self.builder.get_object('item_categories_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'item_categories_store')
         store[path][4] = text
 
         self._recalculate_spawn_chances('item_categories_store', 4, 3)
         self._save_item_spawn_rates()
 
     def on_item_categories_add_clicked(self, *args):
-        store: Gtk.Store = self.builder.get_object('item_categories_store')
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_category_add')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'item_categories_store')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_category_add')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         # Init available categories
-        cb_store: Gtk.ListStore = self.builder.get_object('category_add_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('category_add_cb')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'category_add_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'category_add_cb')
         available_categories = self._fill_available_categories_into_store(cb_store)
         # Show error if no categories available
         if len(available_categories) < 1:
@@ -190,7 +190,7 @@ class ItemListsController(AbstractController):
         resp = dialog.run()
         dialog.hide()
         if resp == Gtk.ResponseType.APPLY:
-            row = cb_store[cb.get_active_iter()]
+            row = cb_store[assert_not_none(cb.get_active_iter())]
             store.append([
                 row[0], row[1],
                 False, "0%", "0"
@@ -199,9 +199,9 @@ class ItemListsController(AbstractController):
             self._update_cr_item_cat_name_store()
 
     def on_item_categories_remove_clicked(self, *args):
-        tree: Gtk.TreeView = self.builder.get_object('item_categories_tree')
+        tree: Gtk.TreeView = builder_get_assert(self.builder, Gtk.TreeView, 'item_categories_tree')
         model, treeiter = tree.get_selection().get_selected()
-        if len(model) < 2:
+        if model.iter_n_children() < 2:  # type: ignore
             display_error(
                 None,
                 "The last category can not be removed.",
@@ -210,7 +210,7 @@ class ItemListsController(AbstractController):
             )
             return
         if model is not None and treeiter is not None:
-            model.remove(treeiter)
+            cast(Gtk.ListStore, model).remove(treeiter)
         self._recalculate_spawn_chances('item_categories_store', 4, 3)
         self._save_item_spawn_rates()
 
@@ -218,7 +218,7 @@ class ItemListsController(AbstractController):
         self._on_cat_item_name_changed('item_cat_thrown_pierce_store', path, text)
 
     def on_cr_items_cat_thrown_pierce_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_thrown_pierce'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_thrown_pierce'))
 
     def on_cr_items_cat_thrown_pierce_weight_edited(self, widget, path, text):
         self._on_cat_item_weight_changed('item_cat_thrown_pierce_store', path, text)
@@ -233,7 +233,7 @@ class ItemListsController(AbstractController):
         self._on_cat_item_name_changed('item_cat_thrown_rock_store', path, text)
 
     def on_cr_items_cat_thrown_rock_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_thrown_rock'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_thrown_rock'))
 
     def on_cr_items_cat_thrown_rock_weight_edited(self, widget, path, text):
         self._on_cat_item_weight_changed('item_cat_thrown_rock_store', path, text)
@@ -248,7 +248,7 @@ class ItemListsController(AbstractController):
         self._on_cat_item_name_changed('item_cat_berries_store', path, text)
 
     def on_cr_items_cat_berries_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_berries'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_berries'))
 
     def on_cr_items_cat_berries_weight_edited(self, widget, path, text):
         self._on_cat_item_weight_changed('item_cat_berries_store', path, text)
@@ -263,7 +263,7 @@ class ItemListsController(AbstractController):
         self._on_cat_item_name_changed('item_cat_foods_store', path, text)
 
     def on_cr_items_cat_foods_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_foods'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_foods'))
 
     def on_cr_items_cat_foods_weight_edited(self, widget, path, text):
         self._on_cat_item_weight_changed('item_cat_foods_store', path, text)
@@ -278,7 +278,7 @@ class ItemListsController(AbstractController):
         self._on_cat_item_name_changed('item_cat_hold_store', path, text)
 
     def on_cr_items_cat_hold_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_hold'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_hold'))
 
     def on_cr_items_cat_hold_weight_edited(self, widget, path, text):
         self._on_cat_item_weight_changed('item_cat_hold_store', path, text)
@@ -293,7 +293,7 @@ class ItemListsController(AbstractController):
         self._on_cat_item_name_changed('item_cat_tms_store', path, text)
 
     def on_cr_items_cat_tms_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_tms'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_tms'))
 
     def on_cr_items_cat_tms_weight_edited(self, widget, path, text):
         self._on_cat_item_weight_changed('item_cat_tms_store', path, text)
@@ -308,7 +308,7 @@ class ItemListsController(AbstractController):
         self._on_cat_item_name_changed('item_cat_orbs_store', path, text)
 
     def on_cr_items_cat_orbs_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_orbs'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_orbs'))
 
     def on_cr_items_cat_orbs_weight_edited(self, widget, path, text):
         self._on_cat_item_weight_changed('item_cat_orbs_store', path, text)
@@ -323,7 +323,7 @@ class ItemListsController(AbstractController):
         self._on_cat_item_name_changed('item_cat_others_store', path, text)
 
     def on_cr_items_cat_others_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_others'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_others'))
 
     def on_cr_items_cat_others_weight_edited(self, widget, path, text):
         self._on_cat_item_weight_changed('item_cat_others_store', path, text)
@@ -335,13 +335,13 @@ class ItemListsController(AbstractController):
         self._on_cat_item_remove_clicked('item_cat_others_tree')
 
     def _on_cat_item_name_changed(self, store_name: str, path, text: str):
-        store: Gtk.Store = self.builder.get_object(store_name)
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
         match = PATTERN_MD_ENTRY.match(text)
         if match is None:
             return
 
         item_ids_already_in = []
-        for row in store:
+        for row in iter_tree_model(store):
             item_ids_already_in.append(int(row[0]))
 
         try:
@@ -402,7 +402,7 @@ class ItemListsController(AbstractController):
             assert v >= 0
         except:
             return
-        store: Gtk.Store = self.builder.get_object(store_name)
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
         if store[path][2]:
             return
         store[path][4] = text
@@ -411,10 +411,10 @@ class ItemListsController(AbstractController):
         self._save_item_spawn_rates()
 
     def _on_cat_item_add_clicked(self, store_name: str):
-        store: Gtk.ListStore = self.builder.get_object(store_name)
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
 
         item_ids_already_in = []
-        for row in store:
+        for row in iter_tree_model(store):
             item_ids_already_in.append(int(row[0]))
 
         i = 0
@@ -434,7 +434,7 @@ class ItemListsController(AbstractController):
                 return
         item_icon_renderer = ListIconRenderer(5)
         itm, _ = self.module.get_item(first_item_id)
-        row_idx = len(store)
+        row_idx = store.iter_n_children()
         item_icon = item_icon_renderer.load_icon(
             store, self.module.project.get_sprite_provider().get_for_item, row_idx, row_idx, (itm,)
         )
@@ -445,26 +445,26 @@ class ItemListsController(AbstractController):
         self._save_item_spawn_rates()
 
     def _on_cat_item_remove_clicked(self, tree_name: str):
-        tree: Gtk.TreeView = self.builder.get_object(tree_name)
+        tree = builder_get_assert(self.builder, Gtk.TreeView, tree_name)
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
-            model.remove(treeiter)
-        self._recalculate_spawn_chances(Gtk.Buildable.get_name(tree.get_model()), 4, 3)
+            cast(Gtk.ListStore, model).remove(treeiter)
+        self._recalculate_spawn_chances(Gtk.Buildable.get_name(tree.get_model()), 4, 3)  # type: ignore
         self._save_item_spawn_rates()
 
     def _init_item_spawns(self):
         self._item_list = self.module.get_item_list(self._get_list_id())
         self._init_item_completion_store()
 
-        item_categories_store: Gtk.ListStore = self.builder.get_object('item_categories_store')
-        item_cat_thrown_pierce_store: Gtk.ListStore = self.builder.get_object('item_cat_thrown_pierce_store')
-        item_cat_thrown_rock_store: Gtk.ListStore = self.builder.get_object('item_cat_thrown_rock_store')
-        item_cat_berries_store: Gtk.ListStore = self.builder.get_object('item_cat_berries_store')
-        item_cat_foods_store: Gtk.ListStore = self.builder.get_object('item_cat_foods_store')
-        item_cat_hold_store: Gtk.ListStore = self.builder.get_object('item_cat_hold_store')
-        item_cat_tms_store: Gtk.ListStore = self.builder.get_object('item_cat_tms_store')
-        item_cat_orbs_store: Gtk.ListStore = self.builder.get_object('item_cat_orbs_store')
-        item_cat_others_store: Gtk.ListStore = self.builder.get_object('item_cat_others_store')
+        item_categories_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_categories_store')
+        item_cat_thrown_pierce_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_thrown_pierce_store')
+        item_cat_thrown_rock_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_thrown_rock_store')
+        item_cat_berries_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_berries_store')
+        item_cat_foods_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_foods_store')
+        item_cat_hold_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_hold_store')
+        item_cat_tms_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_tms_store')
+        item_cat_orbs_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_orbs_store')
+        item_cat_others_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_others_store')
         item_stores = {
             self.item_categories[0]: item_cat_thrown_pierce_store,
             self.item_categories[1]: item_cat_thrown_rock_store,
@@ -535,14 +535,14 @@ class ItemListsController(AbstractController):
         return out_items
 
     def _init_item_completion_store(self):
-        completion_item_thrown_pierce_store: Gtk.ListStore = self.builder.get_object('completion_item_thrown_pierce_store')
-        completion_item_thrown_rock_store: Gtk.ListStore = self.builder.get_object('completion_item_thrown_rock_store')
-        completion_item_berries_store: Gtk.ListStore = self.builder.get_object('completion_item_berries_store')
-        completion_item_foods_store: Gtk.ListStore = self.builder.get_object('completion_item_foods_store')
-        completion_item_hold_store: Gtk.ListStore = self.builder.get_object('completion_item_hold_store')
-        completion_item_tms_store: Gtk.ListStore = self.builder.get_object('completion_item_tms_store')
-        completion_item_orbs_store: Gtk.ListStore = self.builder.get_object('completion_item_orbs_store')
-        completion_item_others_store: Gtk.ListStore = self.builder.get_object('completion_item_others_store')
+        completion_item_thrown_pierce_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_thrown_pierce_store')
+        completion_item_thrown_rock_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_thrown_rock_store')
+        completion_item_berries_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_berries_store')
+        completion_item_foods_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_foods_store')
+        completion_item_hold_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_hold_store')
+        completion_item_tms_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_tms_store')
+        completion_item_orbs_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_orbs_store')
+        completion_item_others_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_others_store')
         completion_stores = {
             self.item_categories[0]: completion_item_thrown_pierce_store,
             self.item_categories[1]: completion_item_thrown_rock_store,
@@ -582,11 +582,11 @@ class ItemListsController(AbstractController):
         return [int(w / weights_gcd) for w in weights]
 
     def _recalculate_spawn_chances(self, store_name, weight_idx, chance_idx):
-        store: Gtk.ListStore = self.builder.get_object(store_name)
-        sum_of_all_weights = sum(int(row[weight_idx]) for row in store)
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
+        sum_of_all_weights = sum(int(row[weight_idx]) for row in iter_tree_model(store))
         if sum_of_all_weights <= 0:
             sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
-        for row in store:
+        for row in iter_tree_model(store):
             if sum_of_all_weights == 0:
                 row[chance_idx] = '0.00%'
             else:
@@ -605,20 +605,20 @@ class ItemListsController(AbstractController):
         return available_categories
     
     def _update_cr_item_cat_name_store(self):
-        store = self.builder.get_object('cr_item_cat_name_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'cr_item_cat_name_store')
         self._fill_available_categories_into_store(store)
 
     def _save_item_spawn_rates(self):
         item_stores = {
-            None: self.builder.get_object('item_categories_store'),
-            self.item_categories[0]: self.builder.get_object('item_cat_thrown_pierce_store'),
-            self.item_categories[1]: self.builder.get_object('item_cat_thrown_rock_store'),
-            self.item_categories[2]: self.builder.get_object('item_cat_berries_store'),
-            self.item_categories[3]: self.builder.get_object('item_cat_foods_store'),
-            self.item_categories[4]: self.builder.get_object('item_cat_hold_store'),
-            self.item_categories[5]: self.builder.get_object('item_cat_tms_store'),
-            self.item_categories[9]: self.builder.get_object('item_cat_orbs_store'),
-            self.item_categories[8]: self.builder.get_object('item_cat_others_store')
+            None: builder_get_assert(self.builder, Gtk.ListStore, 'item_categories_store'),
+            self.item_categories[0]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_thrown_pierce_store'),
+            self.item_categories[1]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_thrown_rock_store'),
+            self.item_categories[2]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_berries_store'),
+            self.item_categories[3]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_foods_store'),
+            self.item_categories[4]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_hold_store'),
+            self.item_categories[5]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_tms_store'),
+            self.item_categories[9]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_orbs_store'),
+            self.item_categories[8]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_others_store')
         }
 
         category_weights = {}
@@ -626,11 +626,11 @@ class ItemListsController(AbstractController):
         for (cat, store) in item_stores.items():
 
             rows = []
-            for row in store:
+            for row in iter_tree_model(store):
                 rows.append(row[:])
             rows.sort(key=lambda e: e[0])
 
-            sum_of_weights = sum((int(row[4]) for row in store if row[2] is False))
+            sum_of_weights = sum((int(row[4]) for row in iter_tree_model(store) if row[2] is False))
 
             last_weight = 0
             last_weight_set_idx = None
@@ -664,7 +664,7 @@ class ItemListsController(AbstractController):
                     if cat is None:
                         category_weights[last_weight_set_idx] = 10000
                     else:
-                        item_weights[last_weight_set_idx] = 10000  # type: ignore
+                        item_weights[last_weight_set_idx] = 10000
 
         item_weights = {k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0])}
 

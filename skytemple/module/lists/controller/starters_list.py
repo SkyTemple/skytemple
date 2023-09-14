@@ -15,13 +15,13 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-from typing import TYPE_CHECKING, Optional, Dict
+from typing import TYPE_CHECKING, Optional, Dict, cast
 
 from gi.repository import Gtk
 from range_typed_integers import u8_checked, u8, u16, u16_checked
 
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import catch_overflow
+from skytemple.core.ui_utils import catch_overflow, builder_get_assert, iter_tree_model
 from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
 from skytemple_files.common.i18n_util import _
 from skytemple_files.user_error import UserValueError
@@ -79,26 +79,26 @@ class StartersListController(ListBaseController):
         self.builder = self._get_builder(__file__, 'starters_list.glade')
         assert self.builder
 
-        default_player_name: Gtk.Entry = self.builder.get_object('default_player_name')
-        default_partner_name: Gtk.Entry = self.builder.get_object('default_partner_name')
-        default_team_name: Gtk.Entry = self.builder.get_object('default_team_name')
+        default_player_name = builder_get_assert(self.builder, Gtk.Entry, 'default_player_name')
+        default_partner_name = builder_get_assert(self.builder, Gtk.Entry, 'default_partner_name')
+        default_team_name = builder_get_assert(self.builder, Gtk.Entry, 'default_team_name')
         default_player_name.set_text(self.string_provider.get_value(StringType.DEFAULT_TEAM_NAMES, 0))
         default_partner_name.set_text(self.string_provider.get_value(StringType.DEFAULT_TEAM_NAMES, 1))
         default_team_name.set_text(self.string_provider.get_value(StringType.DEFAULT_TEAM_NAMES, 2))
 
-        player_start_level: Gtk.Entry = self.builder.get_object('player_start_level')
+        player_start_level = builder_get_assert(self.builder, Gtk.Entry, 'player_start_level')
         player_start_level.set_text(str(self.module.get_starter_level_player()))
-        partner_start_level: Gtk.Entry = self.builder.get_object('partner_start_level')
+        partner_start_level = builder_get_assert(self.builder, Gtk.Entry, 'partner_start_level')
         partner_start_level.set_text(str(self.module.get_starter_level_partner()))
 
         self.load()
 
-        default_player_species: Gtk.Entry = self.builder.get_object('default_player_species')
+        default_player_species = builder_get_assert(self.builder, Gtk.Entry, 'default_player_species')
         default_player_species.set_text(self._ent_names[self._default_player])
-        default_partner_species: Gtk.Entry = self.builder.get_object('default_partner_species')
+        default_partner_species = builder_get_assert(self.builder, Gtk.Entry, 'default_partner_species')
         default_partner_species.set_text(self._ent_names[self._default_partner])
 
-        return self.builder.get_object('box')
+        return builder_get_assert(self.builder, Gtk.Widget, 'box')
 
     @catch_overflow(u16)
     def on_default_player_species_changed(self, w, *args):
@@ -170,7 +170,7 @@ class StartersListController(ListBaseController):
         self._on_species_edited('partner_list_store', self._partner_iters, path, text)
 
     def _on_species_edited(self, store_name, iters, path, text):
-        store = self.builder.get_object(store_name)
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
         match = PATTERN_MD_ENTRY.match(text)
         if match is None:
             return
@@ -194,8 +194,9 @@ class StartersListController(ListBaseController):
     def refresh_list(self):
         self._icon_pixbufs = {}
         # PLAYER LIST
-        tree: Gtk.TreeView = self.builder.get_object('player_tree')
-        store = tree.get_model()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'player_tree')
+        store = cast(Optional[Gtk.ListStore], tree.get_model())
+        assert store is not None
         store.clear()
         for idx, entry in enumerate(self._player):
             # todo
@@ -206,8 +207,9 @@ class StartersListController(ListBaseController):
             self._player_iters[idx] = l_iter
 
         # PARTNER LIST
-        tree = self.builder.get_object('partner_tree')
-        store = tree.get_model()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'partner_tree')
+        store = cast(Optional[Gtk.ListStore], tree.get_model())
+        assert store is not None
         store.clear()
         for idx, entry in enumerate(self._partner):
             l_iter = store.append([
@@ -219,9 +221,9 @@ class StartersListController(ListBaseController):
     def _apply(self):
         player_prep = {}
         partner_prep = {}
-        for row in self.builder.get_object('player_list_store'):
+        for row in iter_tree_model(builder_get_assert(self.builder, Gtk.ListStore, 'player_list_store')):
             player_prep[int(row[0])] = row[2]
-        for row in self.builder.get_object('partner_list_store'):
+        for row in iter_tree_model(builder_get_assert(self.builder, Gtk.ListStore, 'partner_list_store')):
             partner_prep[int(row[0])] = row[2]
         player = [x[1] for x in sorted(player_prep.items(), key=lambda x: x[0])]
         partner = [x[1] for x in sorted(partner_prep.items(), key=lambda x: x[0])]
@@ -229,8 +231,8 @@ class StartersListController(ListBaseController):
 
     def get_tree(self):
         return [
-            self.builder.get_object('player_tree'),
-            self.builder.get_object('partner_tree'),
+            builder_get_assert(self.builder, Gtk.TreeView, 'player_tree'),
+            builder_get_assert(self.builder, Gtk.TreeView, 'partner_tree'),
         ]
 
     def _get_store_icon_id(self):

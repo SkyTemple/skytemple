@@ -105,6 +105,7 @@ class ParamDialogController:
             elif param.type == Pmd2PatchParameterType.SELECT:
                 assert isinstance(control, Gtk.ComboBoxText)
                 selected_id = control.get_active_id()
+                assert selected_id is not None
                 assert param.options
                 for option in param.options:
                     # We do it like this, because option.value has the correct type,

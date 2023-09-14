@@ -20,7 +20,7 @@ import sys
 import traceback
 import webbrowser
 from threading import current_thread
-from typing import Optional, List, Type, TYPE_CHECKING, Tuple
+from typing import Optional, List, Type, TYPE_CHECKING, Tuple, cast
 import packaging.version
 
 import gi
@@ -44,7 +44,7 @@ from skytemple_files.common.impl_cfg import ImplementationType, get_implementati
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir, \
-    version, open_dir
+    version, open_dir, builder_get_assert, create_tree_view_column, assert_not_none
 from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.common.version_util import check_newest_release, ReleaseType, get_event_banner
@@ -94,13 +94,13 @@ class MainController:
         logger.debug('Reloading view.')
         cls._instance._lock_trees()
         # Show loading stack page in editor stack
-        cls._instance._editor_stack.set_visible_child(cls._instance.builder.get_object('es_loading'))
+        cls._instance._editor_stack.set_visible_child(builder_get_assert(cls._instance.builder, Gtk.Box, 'es_loading'))
         # Fully load the view and the controller
         AsyncTaskDelegator.run_task(load_controller(
-            cls._instance._current_view_module,  # type: ignore
-            cls._instance._current_view_controller_class,  # type: ignore
-            cls._instance._current_view_item_id,  # type: ignore
-            cls._instance  # type: ignore
+            assert_not_none(cls._instance._current_view_module),
+            cls._instance._current_view_controller_class,
+            assert_not_none(cls._instance._current_view_item_id),
+            assert_not_none(cls._instance)
         ))
 
     @classmethod
@@ -123,13 +123,13 @@ class MainController:
         self._load_support_images()
 
         # Created on demand
-        self._loading_dialog: Gtk.Dialog
-        self._main_item_list: Gtk.TreeView
-        self._main_item_filter: Gtk.TreeModel
+        self._loading_dialog: Optional[Gtk.Dialog] = None
+        self._main_item_list: Optional[Gtk.TreeView] = None
+        self._main_item_filter: Optional[Gtk.TreeModel] = None
 
-        self._recent_files_store: Gtk.ListStore = self.builder.get_object('recent_files_store')
-        self._item_store: Gtk.TreeStore = builder.get_object('item_store')
-        self._editor_stack: Gtk.Stack = builder.get_object('editor_stack')
+        self._recent_files_store  = builder_get_assert(self.builder, Gtk.ListStore, 'recent_files_store')
+        self._item_store = builder_get_assert(self.builder, Gtk.TreeStore, 'item_store')
+        self._editor_stack = builder_get_assert(self.builder, Gtk.Stack, 'editor_stack')
 
         builder.connect_signals(self)
         window.connect("destroy", self.on_destroy)
@@ -194,17 +194,21 @@ class MainController:
         assistant.hide()
 
     def on__enter_notify_event__pointer(self, w: Gtk.Widget, evt: Gdk.EventCrossing):
-        w.get_window().set_cursor(Gdk.Cursor.new_from_name(w.get_display(), 'pointer'))
+        window = w.get_window()
+        if window:
+            window.set_cursor(Gdk.Cursor.new_from_name(w.get_display(), 'pointer'))
 
     def on__leave_notify_event__pointer(self, w: Gtk.Widget, evt: Gdk.EventCrossing):
-        w.get_window().set_cursor(Gdk.Cursor.new_from_name(w.get_display(), 'default'))
+        window = w.get_window()
+        if window:
+            window.set_cursor(Gdk.Cursor.new_from_name(w.get_display(), 'default'))
 
     def on_discord_icon_container_button_release_event(self, w: Gtk.Widget, evt: Gdk.Event):
         if evt.button == 1:
             webbrowser.open(DISCORD_INVITE_LINK)
 
     def on_button_support_us_clicked(self, *args):
-        diag = self.builder.get_object('suppot_us_dialog')
+        diag = builder_get_assert(self.builder, Gtk.Dialog, 'support_us_dialog')
         diag.run()
         diag.hide()
 
@@ -258,7 +262,7 @@ class MainController:
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, 'nds')
             project.filename = fn
             self._save(True)
@@ -280,7 +284,7 @@ class MainController:
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             self._open_file(fn)
 
     def on_open_tree_selection_changed(self, selection: Gtk.TreeSelection):
@@ -288,7 +292,7 @@ class MainController:
         model, treeiter = selection.get_selected()
         if treeiter is not None and model is not None:
             self._open_file(model[treeiter][0])
-            self.builder.get_object('open_menu').hide()
+            builder_get_assert(self.builder, Gtk.PopoverMenu, 'open_menu').hide()
 
     def on_main_window_configure_event(self, *args):
         """Save the window size and position to the settings store"""
@@ -351,6 +355,7 @@ class MainController:
             EventManager.instance().trigger(EVT_PROJECT_OPEN, project=project)
 
             # Select & load main ROM item by default
+            assert self._main_item_list is not None
             selection: Gtk.TreeSelection = self._main_item_list.get_selection()
             selection.select_path(self._item_store.get_path(root_node))
             self.load_view(self._item_store, root_node, self._main_item_list)
@@ -387,7 +392,10 @@ class MainController:
         rom = RomProject.get_current()
         if rom is not None:
             self._set_title(os.path.basename(rom.filename), False)
-            recursive_down_item_store_mark_as_modified(self._item_store[self._item_store.get_iter_first()], False)
+            assert self._item_store is not None
+            first_iter = self._item_store.get_iter_first()
+            if first_iter:
+                recursive_down_item_store_mark_as_modified(self._item_store[first_iter], False)
             if self._after_save_action is not None:
                 self._after_save_action()
                 self._after_save_action = None
@@ -414,6 +422,7 @@ class MainController:
                 self.load_view(model, treeiter, tree, False)
 
     def load_view_main_list(self, treeiter: Gtk.TreeIter):
+        assert self._main_item_list is not None
         return self.load_view(self._item_store, treeiter, self._main_item_list)
 
     def load_view(self, model: Gtk.TreeModel, treeiter: Gtk.TreeIter, tree: Gtk.TreeView, scroll_into_view=True):
@@ -423,15 +432,17 @@ class MainController:
         selected_node = model[treeiter]
         self._init_window_before_view_load(model[treeiter])
         # Show loading stack page in editor stack
-        self._editor_stack.set_visible_child(self.builder.get_object('es_loading'))
+        self._editor_stack.set_visible_child(builder_get_assert(self.builder, Gtk.Box, 'es_loading'))
         # Set current view values for later check (if race conditions between fast switching)
         self._current_view_module = selected_node[2]
         self._current_view_controller_class = selected_node[3]
         self._current_view_item_id = selected_node[4]
         # Fully load the view and the controller
         AsyncTaskDelegator.run_task(load_controller(
-            self._current_view_module, self._current_view_controller_class, self._current_view_item_id,  # type: ignore
-            self  # type: ignore
+            assert_not_none(self._current_view_module),
+            self._current_view_controller_class,
+            assert_not_none(self._current_view_item_id),
+            self
         ))
         # Expand the node
         tree.expand_to_path(path)
@@ -487,18 +498,19 @@ class MainController:
         """An error during module view load happened :("""
         assert current_thread() == main_thread
         logger.debug('View load error. Unlocking.')
-        tb: Gtk.TextBuffer = self.builder.get_object('es_error_text_buffer')
+        tb: Gtk.TextBuffer = builder_get_assert(self.builder, Gtk.TextBuffer, 'es_error_text_buffer')
         tb.set_text(''.join(traceback.format_exception(type(ex), value=ex, tb=ex.__traceback__)))
         controller = "<<unknown>>"
         if self._current_view_controller_class is not None:
             controller = self._current_view_controller_class.__qualname__
         capture_error(ex, event="View load error.", controller=controller)
-        self._editor_stack.set_visible_child(self.builder.get_object('es_error'))
+        self._editor_stack.set_visible_child(builder_get_assert(self.builder, Gtk.Box, 'es_error'))
         self._unlock_trees()
 
     def on_item_store_row_changed(self, model, path, iter):
         """Update the window title for the current selected tree model row if it changed"""
         if model is not None and iter is not None:
+            assert self._main_item_list is not None
             selection = self._main_item_list.get_selection()
             if selection is not None:
                 selection_model, selection_iter = selection.get_selected()
@@ -512,7 +524,7 @@ class MainController:
         self._filter__refresh_results()
 
     def on_settings_show_assistant_clicked(self, *args):
-        assistant: Gtk.Assistant = self.builder.get_object('intro_dialog')
+        assistant: Gtk.Assistant = builder_get_assert(self.builder, Gtk.Assistant, 'intro_dialog')
         assistant.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
         assistant.commit()
         assistant.set_transient_for(self._window)
@@ -543,7 +555,7 @@ class MainController:
         self.show_spritecollab_browser()
 
     def on_settings_about_clicked(self, *args):
-        about: Gtk.AboutDialog = self.builder.get_object("about_dialog")
+        about: Gtk.AboutDialog = builder_get_assert(self.builder, Gtk.AboutDialog, "about_dialog")
         about.connect("response", lambda d, r: d.hide())
 
         def activate_link(l, uri, *args):
@@ -608,18 +620,21 @@ class MainController:
             self._window.maximize()
 
     def _configure_csd(self):
-        tb: Gtk.HeaderBar = self._window.get_titlebar()
+        tb = cast(Optional[Gtk.HeaderBar], self._window.get_titlebar())
+        if tb is None:
+            return
         if self.csd_enabled:
             # On macOS, the buttons need to be on the left.
             if sys.platform.startswith('darwin'):
                 tb.set_decoration_layout("close,minimize,maximize,menu:")
         else:
-            self._window.set_titlebar(None)
-            main_box: Gtk.Box = self._window.get_child()
-            main_box.add(tb)
-            main_box.reorder_child(tb, 0)
-            tb.set_show_close_button(False)
-            tb.set_title("")
+            main_box = cast(Optional[Gtk.Box], self._window.get_child())
+            if main_box is not None:
+                self._window.set_titlebar(None)
+                main_box.add(tb)
+                main_box.reorder_child(tb, 0)
+                tb.set_show_close_button(False)
+                tb.set_title("")
 
     def _load_icon(self):
         if not self._window.get_icon():
@@ -631,29 +646,29 @@ class MainController:
     def _load_recent_files(self):
         recent_file_list = self.recent_files
 
-        sw_header: Gtk.ScrolledWindow = self.builder.get_object('open_tree_sw')
+        sw_header = builder_get_assert(self.builder, Gtk.ScrolledWindow, 'open_tree_sw')
         sw_header.set_min_content_width(285)
         sw_header.set_min_content_height(130)
-        sw_main: Gtk.ScrolledWindow = self.builder.get_object('open_tree_main_sw')
+        sw_main = builder_get_assert(self.builder, Gtk.ScrolledWindow, 'open_tree_main_sw')
         sw_main.set_min_content_width(285)
         sw_main.set_min_content_height(130)
 
         if len(recent_file_list) < 1:
-            self.builder.get_object('recent_files_main_label').set_visible(False)
-            self.builder.get_object('open_tree_main_sw').set_visible(False)
-            self.builder.get_object('open_tree_sw').set_visible(False)
-            self.builder.get_object('open_more').set_label(_("Open a ROM"))
-            self.builder.get_object('open_more_main').set_label(_("Open a ROM"))
+            builder_get_assert(self.builder, Gtk.Label, 'recent_files_main_label').set_visible(False)
+            builder_get_assert(self.builder, Gtk.ScrolledWindow, 'open_tree_main_sw').set_visible(False)
+            builder_get_assert(self.builder, Gtk.ScrolledWindow, 'open_tree_sw').set_visible(False)
+            builder_get_assert(self.builder, Gtk.Button, 'open_more').set_label(_("Open a ROM"))
+            builder_get_assert(self.builder, Gtk.Button, 'open_more_main').set_label(_("Open a ROM"))
         else:
             for f in recent_file_list:
                 dir_name = os.path.dirname(f)
                 file_name = os.path.basename(f)
                 self._recent_files_store.append([f, f"{file_name} ({dir_name})"])
-            open_tree: Gtk.TreeView = self.builder.get_object('open_tree')
-            open_tree_main: Gtk.TreeView = self.builder.get_object('open_tree_main')
+            open_tree = builder_get_assert(self.builder, Gtk.TreeView, 'open_tree')
+            open_tree_main = builder_get_assert(self.builder, Gtk.TreeView, 'open_tree_main')
 
-            column = Gtk.TreeViewColumn("Filename", Gtk.CellRendererText(), text=1)
-            column_main = Gtk.TreeViewColumn("Filename", Gtk.CellRendererText(), text=1)
+            column = create_tree_view_column("Filename", Gtk.CellRendererText(), text=1)
+            column_main = create_tree_view_column("Filename", Gtk.CellRendererText(), text=1)
 
             open_tree.append_column(column)
             open_tree_main.append_column(column_main)
@@ -664,14 +679,14 @@ class MainController:
     def _open_file(self, filename: str):
         """Open a file"""
         if self._check_open_file(filename):
-            self._loading_dialog = self.builder.get_object('file_opening_dialog')
+            self._loading_dialog = builder_get_assert(self.builder, Gtk.Dialog, 'file_opening_dialog')
             # noinspection PyUnusedLocal
             rom_name = os.path.basename(filename)
-            self.builder.get_object('file_opening_dialog_label').set_label(
+            builder_get_assert(self.builder, Gtk.Label, 'file_opening_dialog_label').set_label(
                 f(_('Loading ROM "{rom_name}"...'))
             )
             logger.debug(f(_('Opening {filename}.')))
-            RomProject.open(filename, self)  # type: ignore
+            RomProject.open(filename, self)
             # Add to the list of recent files and save
             self._update_recent_files(filename)
             # Show loading spinner
@@ -699,11 +714,11 @@ class MainController:
 
     def _connect_item_views(self):
         """Connect the all items, recent items and favorite items views"""
-        main_item_list: Gtk.TreeView = self.builder.get_object('main_item_list')
+        main_item_list = builder_get_assert(self.builder, Gtk.TreeView, 'main_item_list')
 
         icon = Gtk.CellRendererPixbuf()
         title = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn("Title")
+        column = Gtk.TreeViewColumn(title="Title")
 
         column.pack_start(icon, True)
         column.pack_start(title, True)
@@ -727,6 +742,8 @@ class MainController:
         if self._search_text == "":
             self._item_store.foreach(self._filter__reset_row, True)
         else:
+            assert self._main_item_list is not None
+            assert self._main_item_filter is not None
             self._main_item_list.collapse_all()
             self._item_store.foreach(self._filter__reset_row, False)
             self._item_store.foreach(self._filter__show_matches)
@@ -735,6 +752,7 @@ class MainController:
     def _filter__reset_row(self, model, path, iter, make_visible):
         """Change the visibility of the given row"""
         self._item_store[iter][COL_VISIBLE] = make_visible
+        return False
 
     def _filter__make_path_visible(self, model, iter):
         """Make a row and its ancestors visible"""
@@ -757,37 +775,43 @@ class MainController:
         This is super annoying. Because of the two different "views" on the model,
         we can't do this in show_matches, because we have to use the filter model here!
         """
-        search_query = self._search_text.lower()  # type: ignore
+        if self._search_text is None:
+            return True
+        search_query = self._search_text.lower()
         text = model[iter][1].lower()
         if search_query in text:
+            assert self._main_item_list is not None
             self._main_item_list.expand_to_path(path)
+        return False
 
     def _filter__show_matches(self, model: Gtk.TreeStore, path, iter):
-        search_query = self._search_text.lower()  # type: ignore
+        if self._search_text is None:
+            return True
+        search_query = self._search_text.lower()
         text = model[iter][1].lower()
         if search_query in text:
             # Propagate visibility change up
             self._filter__make_path_visible(model, iter)
             # Propagate visibility change down
             self._filter__make_subtree_visible(model, iter)
+        return False
     # END CODE DUPLICATION
 
     def _configure_error_view(self):
-        sw: Gtk.ScrolledWindow = self.builder.get_object('es_error_text_sw')
+        sw: Gtk.ScrolledWindow = builder_get_assert(self.builder, Gtk.ScrolledWindow, 'es_error_text_sw')
         sw.set_min_content_width(200)
         sw.set_min_content_height(300)
 
     def _init_window_after_rom_load(self, rom_name):
         """Set the titlebar and make buttons sensitive after a ROM load"""
         self._item_store.clear()
-        self.builder.get_object('save_button').set_sensitive(True)
-        self.builder.get_object('save_as_button').set_sensitive(True)
-        self.builder.get_object('settings_tilequant').set_sensitive(True)
-        self.builder.get_object('settings_spritecollab').set_sensitive(True)
-        self.builder.get_object('reload_button').set_sensitive(True)
-        self.builder.get_object('save_as_button').set_sensitive(True)
-        self.builder.get_object('main_item_list_search').set_sensitive(True)
-        self.builder.get_object('debugger_button').set_sensitive(True)
+        builder_get_assert(self.builder, Gtk.Button, 'save_button').set_sensitive(True)
+        builder_get_assert(self.builder, Gtk.Button, 'save_as_button').set_sensitive(True)
+        builder_get_assert(self.builder, Gtk.ModelButton, 'settings_tilequant').set_sensitive(True)
+        builder_get_assert(self.builder, Gtk.ModelButton, 'settings_spritecollab').set_sensitive(True)
+        builder_get_assert(self.builder, Gtk.Button, 'reload_button').set_sensitive(True)
+        builder_get_assert(self.builder, Gtk.SearchEntry, 'main_item_list_search').set_sensitive(True)
+        builder_get_assert(self.builder, Gtk.Button, 'debugger_button').set_sensitive(True)
         self._set_title(rom_name, False)
 
     def _init_window_before_view_load(self, node: Gtk.TreeModelRow):
@@ -799,30 +823,36 @@ class MainController:
             while parent:
                 bc = f" > {parent[6]}" + bc
                 bc_array.append(parent[6])
-                parent = parent.parent
+                parent = cast(Gtk.TreeModelRow, parent.parent)
             bc = bc[3:]
             self._current_breadcrumbs = bc_array
-            self._window.get_titlebar().set_subtitle(bc)
+            hb = cast(Optional[Gtk.HeaderBar], self._window.get_titlebar())
+            if hb is not None:
+                hb.set_subtitle(bc)
 
             # Check if files are modified
-            if RomProject.get_current().has_modifications():  # type: ignore
-                self._set_title(os.path.basename(RomProject.get_current().filename), True)  # type: ignore
+            current_project = RomProject.get_current()
+            if current_project and current_project.has_modifications():
+                self._set_title(os.path.basename(current_project.filename), True)
         except BaseException as ex:
             logger.warning("Failed updating window titles.", exc_info=ex)
 
     def _set_title(self, rom_name, is_modified):
         if self.csd_enabled:
-            tb: Gtk.HeaderBar = self._window.get_titlebar()
-            tb.set_title(f"{'*' if is_modified else ''}{rom_name} (SkyTemple)")
+            tb = cast(Optional[Gtk.HeaderBar], self._window.get_titlebar())
+            if tb is not None:
+                tb.set_title(f"{'*' if is_modified else ''}{rom_name} (SkyTemple)")
         else:
             self._window.set_title(f"{'*' if is_modified else ''}{rom_name} (SkyTemple)")
 
     def _lock_trees(self):
         # TODO: Lock the other two!
+        assert self._main_item_list is not None
         self._main_item_list.set_sensitive(False)
 
     def _unlock_trees(self):
         # TODO: Unlock the other two!
+        assert self._main_item_list is not None
         self._main_item_list.set_sensitive(True)
 
     def _save(self, force=False, after_save_action=None):
@@ -830,16 +860,16 @@ class MainController:
 
         if rom is not None and (rom.has_modifications() or force):
             self._after_save_action = after_save_action
-            self._loading_dialog = self.builder.get_object('file_opening_dialog')
+            self._loading_dialog = builder_get_assert(self.builder, Gtk.Dialog, 'file_opening_dialog')
             # noinspection PyUnusedLocal
             rom_name = os.path.basename(rom.filename)
-            self.builder.get_object('file_opening_dialog_label').set_label(
+            builder_get_assert(self.builder, Gtk.Label, 'file_opening_dialog_label').set_label(
                 f(_('Saving ROM "{rom_name}"...'))
             )
             logger.debug(f(_('Saving {rom.filename}.')))
 
             # This will trigger a signal.
-            rom.save(self)  # type: ignore
+            rom.save(self)
             self._loading_dialog.run()
 
     def _show_are_you_sure(self, rom):
@@ -867,22 +897,22 @@ class MainController:
             image = Gtk.Image()
             image.show()
             image.set_from_file(os.path.join(data_dir(), "discord.png"))
-            self.builder.get_object('suppot_us_discord_container').add(image)
+            builder_get_assert(self.builder, Gtk.EventBox, 'suppot_us_discord_container').add(image)
             # Github
             image = Gtk.Image()
             image.show()
             image.set_from_file(os.path.join(data_dir(), "github.png"))
-            self.builder.get_object('suppot_us_github_container').add(image)
+            builder_get_assert(self.builder, Gtk.EventBox, 'suppot_us_github_container').add(image)
             # Kofi
             image = Gtk.Image()
             image.show()
             image.set_from_file(os.path.join(data_dir(), "kofi.png"))
-            self.builder.get_object('suppot_us_kofi_parakoopa_container').add(image)
+            builder_get_assert(self.builder, Gtk.EventBox, 'suppot_us_kofi_parakoopa_container').add(image)
             # Kofi 2
             image = Gtk.Image()
             image.show()
             image.set_from_file(os.path.join(data_dir(), "kofi.png"))
-            self.builder.get_object('suppot_us_kofi_psy_container').add(image)
+            builder_get_assert(self.builder, Gtk.EventBox, 'suppot_us_kofi_psy_container').add(image)
         except BaseException:
             # We are not crashing over some images...
             pass
@@ -901,12 +931,12 @@ class MainController:
         try:
             new_version = check_newest_release(ReleaseType.SKYTEMPLE)
             if packaging.version.parse(version()) < packaging.version.parse(new_version):
-                self.builder.get_object('update_new_version').set_text(new_version)
+                builder_get_assert(self.builder, Gtk.Label, 'update_new_version').set_text(new_version)
                 return
         except Exception:
             pass
         # else/except:
-        self.builder.get_object('update_info').hide()
+        builder_get_assert(self.builder, Gtk.Box, 'update_info').hide()
 
     def _check_for_banner(self):
         try:
@@ -929,8 +959,10 @@ class MainController:
                     elif evt.get_event_type() == Gdk.EventType.LEAVE_NOTIFY:
                         cursor = Gdk.Cursor.new_from_name(w.get_display(), "default")
                     if cursor:
-                        w.get_window().set_cursor(cursor)
-                b_info = self.builder.get_object('banner_info')
+                        window = w.get_window()
+                        if window:
+                            window.set_cursor(cursor)
+                b_info = builder_get_assert(self.builder, Gtk.EventBox, 'banner_info')
                 b_info.connect('button-release-event', open_web)
                 b_info.connect('enter-notify-event', cursor_change)
                 b_info.connect('leave-notify-event', cursor_change)
@@ -940,16 +972,16 @@ class MainController:
         except Exception:
             pass
         # else/except:
-        self.builder.get_object('banner_info').hide()
+        builder_get_assert(self.builder, Gtk.EventBox, 'banner_info').hide()
 
     def _check_for_native(self):
         if get_implementation_type() != ImplementationType.NATIVE:
-            self.builder.get_object('native_info').hide()
+            builder_get_assert(self.builder, Gtk.Label, 'native_info').hide()
 
     def _ask_for_sentry(self):
         if not self.settings.is_allow_sentry_set():
-            response = self.builder.get_object('dialog_ask_for_sentry').run()
-            self.builder.get_object('dialog_ask_for_sentry').hide()
+            response = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_ask_for_sentry').run()
+            builder_get_assert(self.builder, Gtk.Dialog, 'dialog_ask_for_sentry').hide()
             if response == Gtk.ResponseType.YES:
                 self.settings.set_allow_sentry(True)
                 from skytemple.core import sentry

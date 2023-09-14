@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import asyncio
 from asyncio import AbstractEventLoop
-from typing import Coroutine, Optional
+from typing import Coroutine
 
 from skytemple.core.async_tasks import AsyncTaskRunnerProtocol
 
@@ -47,7 +47,7 @@ class Now(AsyncTaskRunnerProtocol):
                     self._cancel_all_tasks()
                     self._loop.run_until_complete(self._loop.shutdown_asyncgens())
                     if hasattr(self._loop, 'shutdown_default_executor'):
-                        self._loop.run_until_complete(self._loop.shutdown_default_executor())  # type: ignore
+                        self._loop.run_until_complete(self._loop.shutdown_default_executor())
                 finally:
                     asyncio.set_event_loop(None)
                     self._loop.close()
@@ -65,7 +65,9 @@ class Now(AsyncTaskRunnerProtocol):
         for task in to_cancel:
             task.cancel()
 
-        self._loop.run_until_complete(asyncio.gather(*to_cancel, loop=self._loop, return_exceptions=True))  # type: ignore
+        self._loop.run_until_complete(
+            asyncio.gather(*to_cancel, loop=self._loop, return_exceptions=True)  # type: ignore
+        )
 
         for task in to_cancel:
             if task.cancelled():

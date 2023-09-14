@@ -2,10 +2,11 @@ import asyncio
 import platform
 import webbrowser
 from threading import Thread
-from typing import Optional, Callable, List, Dict, Tuple, TYPE_CHECKING
+from typing import Optional, Callable, List, Dict, Tuple, TYPE_CHECKING, Any, cast
 
 from PIL import Image
 from gi.repository import Gtk, GLib, GdkPixbuf
+from skytemple.core.ui_utils import builder_get_assert, assert_not_none, iter_tree_model, create_tree_view_column
 from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.spritecollab.client import DEFAULT_SERVER, MonsterFormInfoWithPortrait, SpriteCollabClient, \
     MonsterFormDetails
@@ -26,8 +27,8 @@ NOT_SC_SERVER_BROWSER = "https://nsc.pmdcollab.org/"
 
 def loader(
         client: SpriteCollabClient,
-        callback: Callable[[List[MonsterFormInfoWithPortrait]], None],
-        error_callback: Callable[[Exception], None]
+        callback: Callable[[List[MonsterFormInfoWithPortrait]], Any],
+        error_callback: Callable[[Exception], Any]
 ):
     asyncio.run(loader_impl(
         client,
@@ -38,8 +39,8 @@ def loader(
 
 async def loader_impl(
         client: SpriteCollabClient,
-        callback: Callable[[List[MonsterFormInfoWithPortrait]], None],
-        error_callback: Callable[[Exception], None]
+        callback: Callable[[List[MonsterFormInfoWithPortrait]], Any],
+        error_callback: Callable[[Exception], Any]
 ):
     try:
         async with client as session:
@@ -53,8 +54,8 @@ def entry_loader(
         client: SpriteCollabClient,
         idx: int,
         form_paths: List[str],
-        callback: Callable[[List[Tuple[MonsterFormDetails, Image.Image]]], None],
-        error_callback: Callable[[Exception], None]
+        callback: Callable[[List[Tuple[MonsterFormDetails, Image.Image]]], Any],
+        error_callback: Callable[[Exception], Any]
 ):
     asyncio.run(entry_loader_impl(
         client,
@@ -69,8 +70,8 @@ async def entry_loader_impl(
         client: SpriteCollabClient,
         idx: int,
         form_paths: List[str],
-        callback: Callable[[List[Tuple[MonsterFormDetails, Image.Image]]], None],
-        error_callback: Callable[[Exception], None]
+        callback: Callable[[List[Tuple[MonsterFormDetails, Image.Image]]], Any],
+        error_callback: Callable[[Exception], Any]
 ):
     async with client as session:
         try:
@@ -123,25 +124,25 @@ class BrowserController(AbstractController):
         self._window.show()
         self.builder.connect_signals(self)
         # cool bug?
-        self.builder.get_object('sc_left').set_hexpand(True)
-        GLib.idle_add(lambda: self.builder.get_object('sc_left').set_hexpand(False))
+        builder_get_assert(self.builder, Gtk.Box, 'sc_left').set_hexpand(True)
+        GLib.idle_add(lambda: builder_get_assert(self.builder, Gtk.Box, 'sc_left').set_hexpand(False))
 
     def get_view(self) -> Gtk.Window:
         self.builder = self._get_builder(__file__, 'browser.glade')
-        window: Gtk.Window = self.builder.get_object('sc_window')
+        window = builder_get_assert(self.builder, Gtk.Window, 'sc_window')
         window.set_parent(MainController.window())
         if not self.was_realized:
             window.resize(1100, 720)
 
             # Filtered, Name, ID, Display Label, Form Paths (List[str])
-            self._store = Gtk.ListStore.new([bool, str, int, str, object])
+            self._store = Gtk.ListStore(bool, str, int, str, object)
             self._filter = self._store.filter_new()
-            self._treev = self.builder.get_object('sc_tree')
+            self._treev = builder_get_assert(self.builder, Gtk.TreeView, 'sc_tree')
 
             self._treev.set_model(self._filter)
             self._filter.set_visible_column(0)
 
-            self.builder.get_object('sc_paned').set_position(200)
+            builder_get_assert(self.builder, Gtk.Paned, 'sc_paned').set_position(200)
 
             if self._icon_renderer is None:
                 self._icon_renderer = ListIconRenderer(3, False)
@@ -153,31 +154,31 @@ class BrowserController(AbstractController):
 
     def reinit(self):
         self._disable_switch = True
-        window: Gtk.Window = self.builder.get_object('sc_window')
-        external_button: Gtk.Button = self.builder.get_object('sc_external')
-        info_bar: Gtk.InfoBar = self.builder.get_object('sc_infobar')
-        stack: Gtk.Stack = self.builder.get_object('sc_stack')
-        search: Gtk.SearchEntry = self.builder.get_object('sc_search')
+        window = builder_get_assert(self.builder, Gtk.Window, 'sc_window')
+        external_button = builder_get_assert(self.builder, Gtk.Button, 'sc_external')
+        info_bar = builder_get_assert(self.builder, Gtk.InfoBar, 'sc_infobar')
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'sc_stack')
+        search = builder_get_assert(self.builder, Gtk.SearchEntry, 'sc_search')
 
         if self._spritebrowser_url is not None:
-            window.get_titlebar().set_subtitle(self._spritebrowser_url)
+            cast(Gtk.HeaderBar, window.get_titlebar()).set_subtitle(self._spritebrowser_url)
             external_button.set_sensitive(True)
         else:
-            window.get_titlebar().set_subtitle(self._spriteserver_url)
+            cast(Gtk.HeaderBar, window.get_titlebar()).set_subtitle(self._spriteserver_url)
             external_button.set_sensitive(False)
 
         self._store.clear()
         self._filter.refilter()
         search.set_text("")
         info_bar.set_revealed(True)
-        stack.set_visible_child(self.builder.get_object('sc_page_welcome'))
+        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'sc_page_welcome'))
 
         self._spriteclient = SpriteCollabClient(server_url=self._spriteserver_url, use_ssl=platform.system() != "Windows")
 
         Thread(target=loader, args=(self._spriteclient, self.after_init, self.error_during_init), daemon=True).start()
 
     def after_init(self, monsters: List[MonsterFormInfoWithPortrait]):
-        info_bar: Gtk.InfoBar = self.builder.get_object('sc_infobar')
+        info_bar = builder_get_assert(self.builder, Gtk.InfoBar, 'sc_infobar')
         monsters.sort(key=lambda m: m.monster_id)
         lists_form_paths: Dict[int, List[str]] = {}
         for monster in monsters:
@@ -196,12 +197,12 @@ class BrowserController(AbstractController):
         self._disable_switch = False
 
     def error_during_init(self, error: Exception):
-        info_bar: Gtk.InfoBar = self.builder.get_object('sc_infobar')
+        info_bar = builder_get_assert(self.builder, Gtk.InfoBar, 'sc_infobar')
         display_error(
             error,
             _("Failed loading list of Pokémon from the configured SpriteCollab server."),
             _("Error Updating Sprites"),
-            window=self.builder.get_object('sc_window')
+            window=builder_get_assert(self.builder, Gtk.Window, 'sc_window')
         )
         info_bar.set_revealed(False)
 
@@ -211,16 +212,16 @@ class BrowserController(AbstractController):
             self.load_entry(model[treeiter][2], model[treeiter][4])
 
     def on_sc_settings_clicked(self, *args):
-        diag: Gtk.Dialog = self.builder.get_object('sc_diag_settings')
-        diag_preset: Gtk.ComboBox = self.builder.get_object('sc_diag_preset')
-        diag_server_url: Gtk.Entry = self.builder.get_object('sc_diag_server_url')
-        diag_browser_url: Gtk.Entry = self.builder.get_object('sc_diag_browser_url')
+        diag = builder_get_assert(self.builder, Gtk.Dialog, 'sc_diag_settings')
+        diag_preset = builder_get_assert(self.builder, Gtk.ComboBox, 'sc_diag_preset')
+        diag_server_url = builder_get_assert(self.builder, Gtk.Entry, 'sc_diag_server_url')
+        diag_browser_url = builder_get_assert(self.builder, Gtk.Entry, 'sc_diag_browser_url')
 
         # Label, Custom select, preset server url, preset browser url
-        model: Gtk.ListStore = diag_preset.get_model()
+        model = assert_not_none(cast(Optional[Gtk.ListStore], diag_preset.get_model()))
         had_model = model is not None
         if not had_model:
-            model = Gtk.ListStore.new([str, bool, str, str])
+            model = Gtk.ListStore([str, bool, str, str])
         model.clear()
         model.append([f(_("SpriteCollab (SpriteBot, {DEFAULT_SERVER})")), False, DEFAULT_SERVER, DEFAULT_SERVER_BROWSER])
         model.append([f(_("NotSpriteCollab ({NOT_SC_SERVER})")), False, NOT_SC_SERVER, NOT_SC_SERVER_BROWSER])
@@ -246,8 +247,8 @@ class BrowserController(AbstractController):
             self.reinit()
 
     def on_sc_diag_preset_changed(self, w: Gtk.ComboBox, *args):
-        diag_server_url: Gtk.Entry = self.builder.get_object('sc_diag_server_url')
-        diag_browser_url: Gtk.Entry = self.builder.get_object('sc_diag_browser_url')
+        diag_server_url = builder_get_assert(self.builder, Gtk.Entry, 'sc_diag_server_url')
+        diag_browser_url = builder_get_assert(self.builder, Gtk.Entry, 'sc_diag_browser_url')
         model = w.get_model()
         treeiter = w.get_active_iter()
         if model is None or treeiter is None:
@@ -271,7 +272,7 @@ class BrowserController(AbstractController):
         if self._search_text == "":
             self._store.foreach(self._filter__reset_row, True)
         else:
-            self.builder.get_object('sc_tree').collapse_all()
+            builder_get_assert(self.builder, Gtk.TreeView, 'sc_tree').collapse_all()
             self._store.foreach(self._filter__reset_row, False)
             self._store.foreach(self._filter__show_matches)
             self._filter.foreach(self._filter__expand_all_visible)
@@ -301,13 +302,13 @@ class BrowserController(AbstractController):
         This is super annoying. Because of the two different "views" on the model,
         we can't do this in show_matches, because we have to use the filter model here!
         """
-        search_query = self._search_text.lower()  # type: ignore
+        search_query = self._search_text.lower()
         text = model[iter][1].lower()
         if search_query in text:
-            self.builder.get_object('sc_tree').expand_to_path(path)
+            builder_get_assert(self.builder, Gtk.TreeView, 'sc_tree').expand_to_path(path)
 
     def _filter__show_matches(self, model: Gtk.TreeStore, path, iter):
-        search_query = self._search_text.lower()  # type: ignore
+        search_query = self._search_text.lower()
         text = model[iter][1].lower()
         if search_query in text:
             # Propagate visibility change up
@@ -320,9 +321,9 @@ class BrowserController(AbstractController):
         if self._something_loading:
             return
         self._something_loading = True
-        stack: Gtk.Stack = self.builder.get_object('sc_stack')
-        stack.set_visible_child(self.builder.get_object('sc_page_loader'))
-        self.builder.get_object("sc_tree").set_sensitive(False)
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'sc_stack')
+        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'sc_page_loader'))
+        builder_get_assert(self.builder, Gtk.TreeView, "sc_tree").set_sensitive(False)
 
         Thread(target=entry_loader, args=(
             self._spriteclient, idx, form_paths, self.after_load_entry, self.error_during_load_entry
@@ -332,22 +333,22 @@ class BrowserController(AbstractController):
         try:
             if len(details) < 1:
                 raise ValueError("Invalid result returned: No form.")
-            stack: Gtk.Stack = self.builder.get_object('sc_stack')
-            switcher: Gtk.StackSwitcher = self.builder.get_object('sc_content_switcher')
-            content_stack: Gtk.Stack = self.builder.get_object('sc_content_stack')
+            stack = builder_get_assert(self.builder, Gtk.Stack, 'sc_stack')
+            switcher = builder_get_assert(self.builder, Gtk.StackSidebar, 'sc_content_switcher')
+            content_stack = builder_get_assert(self.builder, Gtk.Stack, 'sc_content_stack')
             content_stack.set_vhomogeneous(False)
             content_stack.set_hhomogeneous(False)
             self.clear_entries()
             for d in details:
                 self.populate_form(*d)
-            stack.set_visible_child(self.builder.get_object('sc_page_content'))
-            content_stack.set_visible_child(next(iter(content_stack)))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'sc_page_content'))
+            content_stack.set_visible_child(content_stack.get_children()[0])
             # cool bug. first entry in sidebar does not autofocus.
             try:
-                scrolled_window: Gtk.ScrolledWindow = next(iter(switcher))
-                viewport: Gtk.Viewport = next(iter(scrolled_window))
-                list_box: Gtk.ListBox = next(iter(viewport))
-                first_row: Gtk.ListBoxRow = next(iter(list_box))
+                scrolled_window = cast(Gtk.ScrolledWindow, switcher.get_children()[0])
+                viewport = cast(Gtk.Viewport, scrolled_window.get_children()[0])
+                list_box = cast(Gtk.ListBox, viewport.get_children()[0])
+                first_row = cast(Gtk.ListBoxRow, list_box.get_children()[0])
                 list_box.select_row(first_row)
             except Exception:
                 # this is not worth breaking over.
@@ -355,28 +356,28 @@ class BrowserController(AbstractController):
         except Exception as err:
             self.error_during_load_entry(err)
         self._something_loading = False
-        self.builder.get_object("sc_tree").set_sensitive(True)
+        builder_get_assert(self.builder, Gtk.TreeView, "sc_tree").set_sensitive(True)
 
     def error_during_load_entry(self, error: Exception):
-        stack: Gtk.Stack = self.builder.get_object('sc_stack')
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'sc_stack')
         display_error(
             error,
             _("Failed loading this Pokémon."),
             _("Error Loading Pokémon"),
-            window=self.builder.get_object('sc_window')
+            window=builder_get_assert(self.builder, Gtk.Window, 'sc_window')
         )
-        stack.set_visible_child(self.builder.get_object('sc_page_welcome'))
+        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'sc_page_welcome'))
         self._something_loading = False
-        self.builder.get_object("sc_tree").set_sensitive(True)
+        builder_get_assert(self.builder, Gtk.TreeView, "sc_tree").set_sensitive(True)
 
     def clear_entries(self):
-        stack: Gtk.Stack = self.builder.get_object('sc_content_stack')
-        for child in stack:
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'sc_content_stack')
+        for child in stack.get_children():
             stack.remove(child)
 
     def populate_form(self, form: MonsterFormDetails, portrait: Image.Image):
         assert self._spriteclient is not None
-        stack: Gtk.Stack = self.builder.get_object('sc_content_stack')
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'sc_content_stack')
         form_name = form.full_form_name.replace(form.monster_name, "", 1).lstrip()
         if form_name == "":
             form_name = _("Normal")
@@ -409,7 +410,7 @@ class BrowserController(AbstractController):
         new_child.attach(image, 0, 2, 1, 1)
         portraits_button: Gtk.Button = Gtk.Button.new_with_label(_("Apply Portraits"))
         portraits_button.connect('clicked', lambda *args: self.module.apply_portraits(
-            self.builder.get_object('sc_window'),
+            builder_get_assert(self.builder, Gtk.Window, 'sc_window'),
             portrait
         ))
         new_child.attach(portraits_button, 0, 3, 1, 1)
@@ -422,10 +423,10 @@ class BrowserController(AbstractController):
         sprite_forms_sw: Gtk.ScrolledWindow = Gtk.ScrolledWindow.new()
         sprite_forms_sw.set_max_content_height(400)
         sprite_forms_container: Gtk.TreeView = Gtk.TreeView.new()
-        sprite_forms_store = Gtk.ListStore.new([str])
+        sprite_forms_store = Gtk.ListStore(str)
         sprite_forms_container.set_model(sprite_forms_store)
         renderer = Gtk.CellRendererText.new()
-        sprite_forms_column: Gtk.TreeViewColumn = Gtk.TreeViewColumn(cell_renderer=renderer, text=0)
+        sprite_forms_column: Gtk.TreeViewColumn = create_tree_view_column("", renderer, text=0)
         sprite_forms_container.append_column(sprite_forms_column)
         sprite_forms_container.set_headers_visible(False)
         for sprite in sorted(list(form.sprites.keys())):
@@ -436,8 +437,8 @@ class BrowserController(AbstractController):
         new_child.attach(sprite_forms_sw, 1, 2, 1, 1)
         sprite_button: Gtk.Button = Gtk.Button.new_with_label(_("Apply Sprites"))
         sprite_button.connect('clicked', lambda *args: self.module.apply_sprites(
-            self.builder.get_object('sc_window'),
-            self._spriteclient,
+            builder_get_assert(self.builder, Gtk.Window, 'sc_window'),
+            assert_not_none(self._spriteclient),
             form
         ))
         new_child.attach(sprite_button, 1, 3, 1, 1)
@@ -487,7 +488,7 @@ class BrowserController(AbstractController):
         details_button: Gtk.Button = Gtk.Button.new_with_label(_("Open Details on Website..."))
         if self._spritebrowser_url is not None:
             details_button.connect("clicked", lambda *args: webbrowser.open_new_tab(
-                f"{self._spritebrowser_url.rstrip('/')}/#/{form.monster_id:04}"
+                f"{assert_not_none(self._spritebrowser_url).rstrip('/')}/#/{form.monster_id:04}"
             ))
         else:
             details_button.set_sensitive(False)

@@ -79,7 +79,7 @@ class MonsterModule(AbstractModule):
 
         self._tbl_talk: Optional[TblTalk] = None
 
-        self._tree_model: Gtk.TreeModel
+        self._tree_model: Gtk.TreeStore
         self._tree_iter__entity_roots: Dict[int, Gtk.TreeIter] = {}
         self._tree_iter__entries: Dict[int, Gtk.TreeIter] = {}
         self.effective_base_attr = 'md_index_base'
@@ -115,7 +115,8 @@ class MonsterModule(AbstractModule):
 
             for entry in entry_list:
                 self._tree_iter__entries[entry.md_index] = item_store.append(
-                    ent_root, self.generate_entry__entry(entry.md_index, Gender(entry.gender))  # type: ignore
+                    ent_root,
+                    self.generate_entry__entry(entry.md_index, Gender(entry.gender))  # type: ignore
                 )
 
         recursive_generate_item_store_row_label(self._tree_model[self._root])
@@ -132,10 +133,10 @@ class MonsterModule(AbstractModule):
 
         entry = self.monster_md.entries[item_id]
         name = self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, getattr(entry, b_attr))
-        self._tree_model[self._tree_iter__entity_roots[getattr(entry, b_attr)]][:] = self.generate_entry__entity_root(
+        self._tree_model[self._tree_iter__entity_roots[getattr(entry, b_attr)]][:] = self.generate_entry__entity_root(  # type: ignore
             getattr(entry, b_attr), name
         )
-        self._tree_model[self._tree_iter__entries[item_id]][:] = self.generate_entry__entry(
+        self._tree_model[self._tree_iter__entries[item_id]][:] = self.generate_entry__entry(  # type: ignore
             entry.md_index, Gender(entry.gender)
         )
 

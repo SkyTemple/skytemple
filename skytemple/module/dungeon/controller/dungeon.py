@@ -24,7 +24,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import catch_overflow
+from skytemple.core.ui_utils import catch_overflow, builder_get_assert
 from skytemple_files.hardcoded.dungeons import DungeonRestrictionDirection
 from skytemple_files.common.i18n_util import _, f
 
@@ -52,18 +52,18 @@ class DungeonController(AbstractController):
         self.builder = self._get_builder(__file__, 'dungeon.glade')
         assert self.builder
 
-        self.builder.get_object('label_dungeon_name').set_text(self.dungeon_name)
+        builder_get_assert(self.builder, Gtk.Label, 'label_dungeon_name').set_text(self.dungeon_name)
         edit_text = ''
 
         if not self.dungeon_info.length_can_be_edited:
             edit_text = _('\nSince this is a Dojo Dungeon, the floor count can not be changed.')
-            self.builder.get_object('edit_floor_count').set_sensitive(False)
-            self.builder.get_object('dungeon_restrictions_grid').set_sensitive(False)
+            builder_get_assert(self.builder, Gtk.Button, 'edit_floor_count').set_sensitive(False)
+            builder_get_assert(self.builder, Gtk.Grid, 'dungeon_restrictions_grid').set_sensitive(False)
         else:
             self._init_dungeon_restrictions()
 
         floor_count = self.module.get_number_floors(self.dungeon_info.dungeon_id)
-        self.builder.get_object('label_floor_count').set_text(
+        builder_get_assert(self.builder, Gtk.Label, 'label_floor_count').set_text(
             f(_('This dungeon has {floor_count} floors.{edit_text}'))
         )
 
@@ -71,17 +71,17 @@ class DungeonController(AbstractController):
         self._is_loading = False
         self.builder.connect_signals(self)
 
-        return self.builder.get_object('main_box')
+        return builder_get_assert(self.builder, Gtk.Box, 'main_box')
 
     def _init_names(self):
         sp = self.module.project.get_string_provider()
         langs = sp.get_languages()
         for lang_id in range(0, 5):
-            label_lang: Gtk.Entry = self.builder.get_object(f'label_lang{lang_id}')
-            entry_main_lang: Gtk.Entry = self.builder.get_object(f'entry_main_lang{lang_id}')
-            entry_selection_lang: Gtk.Entry = self.builder.get_object(f'entry_selection_lang{lang_id}')
-            entry_script_engine_lang: Gtk.Entry = self.builder.get_object(f'entry_script_engine_lang{lang_id}')
-            entry_banner_lang: Gtk.Entry = self.builder.get_object(f'entry_banner_lang{lang_id}')
+            label_lang = builder_get_assert(self.builder, Gtk.Label, f'label_lang{lang_id}')
+            entry_main_lang = builder_get_assert(self.builder, Gtk.Entry, f'entry_main_lang{lang_id}')
+            entry_selection_lang = builder_get_assert(self.builder, Gtk.Entry, f'entry_selection_lang{lang_id}')
+            entry_script_engine_lang = builder_get_assert(self.builder, Gtk.Entry, f'entry_script_engine_lang{lang_id}')
+            entry_banner_lang = builder_get_assert(self.builder, Gtk.Entry, f'entry_banner_lang{lang_id}')
             if lang_id < len(langs):
                 # We have this language
                 lang = langs[lang_id]
@@ -105,32 +105,32 @@ class DungeonController(AbstractController):
 
     def _init_dungeon_restrictions(self):
         assert self.restrictions is not None
-        self.builder.get_object('cb_direction').set_active(int(self.restrictions.direction.value))
-        self.builder.get_object('switch_enemies_evolve_when_team_member_koed').set_active(self.restrictions.enemies_evolve_when_team_member_koed)
-        self.builder.get_object('switch_enemies_grant_exp').set_active(self.restrictions.enemies_grant_exp)
-        self.builder.get_object('switch_recruiting_allowed').set_active(self.restrictions.recruiting_allowed)
-        self.builder.get_object('switch_level_reset').set_active(self.restrictions.level_reset)
-        self.builder.get_object('switch_money_allowed').set_active(not self.restrictions.money_allowed)
-        self.builder.get_object('switch_leader_can_be_changed').set_active(self.restrictions.leader_can_be_changed)
-        self.builder.get_object('switch_dont_save_before_entering').set_active(not self.restrictions.dont_save_before_entering)
-        self.builder.get_object('switch_iq_skills_disabled').set_active(not self.restrictions.iq_skills_disabled)
-        self.builder.get_object('switch_traps_remain_invisible_on_attack').set_active(not self.restrictions.traps_remain_invisible_on_attack)
-        self.builder.get_object('switch_enemies_can_drop_chests').set_active(self.restrictions.enemies_can_drop_chests)
-        self.builder.get_object('entry_max_rescue_attempts').set_text(str(self.restrictions.max_rescue_attempts))
-        self.builder.get_object('entry_max_items_allowed').set_text(str(self.restrictions.max_items_allowed))
-        self.builder.get_object('entry_max_party_members').set_text(str(self.restrictions.max_party_members))
-        self.builder.get_object('entry_turn_limit').set_text(str(self.restrictions.turn_limit))
-        self.builder.get_object('entry_random_movement_chance').set_text(str(self.restrictions.random_movement_chance))
+        builder_get_assert(self.builder, Gtk.ComboBox, 'cb_direction').set_active(int(self.restrictions.direction.value))
+        builder_get_assert(self.builder, Gtk.Switch, 'switch_enemies_evolve_when_team_member_koed').set_active(self.restrictions.enemies_evolve_when_team_member_koed)
+        builder_get_assert(self.builder, Gtk.Switch, 'switch_enemies_grant_exp').set_active(self.restrictions.enemies_grant_exp)
+        builder_get_assert(self.builder, Gtk.Switch, 'switch_recruiting_allowed').set_active(self.restrictions.recruiting_allowed)
+        builder_get_assert(self.builder, Gtk.Switch, 'switch_level_reset').set_active(self.restrictions.level_reset)
+        builder_get_assert(self.builder, Gtk.Switch, 'switch_money_allowed').set_active(not self.restrictions.money_allowed)
+        builder_get_assert(self.builder, Gtk.Switch, 'switch_leader_can_be_changed').set_active(self.restrictions.leader_can_be_changed)
+        builder_get_assert(self.builder, Gtk.Switch, 'switch_dont_save_before_entering').set_active(not self.restrictions.dont_save_before_entering)
+        builder_get_assert(self.builder, Gtk.Switch, 'switch_iq_skills_disabled').set_active(not self.restrictions.iq_skills_disabled)
+        builder_get_assert(self.builder, Gtk.Switch, 'switch_traps_remain_invisible_on_attack').set_active(not self.restrictions.traps_remain_invisible_on_attack)
+        builder_get_assert(self.builder, Gtk.Switch, 'switch_enemies_can_drop_chests').set_active(self.restrictions.enemies_can_drop_chests)
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_max_rescue_attempts').set_text(str(self.restrictions.max_rescue_attempts))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_max_items_allowed').set_text(str(self.restrictions.max_items_allowed))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_max_party_members').set_text(str(self.restrictions.max_party_members))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_turn_limit').set_text(str(self.restrictions.turn_limit))
+        builder_get_assert(self.builder, Gtk.Entry, 'entry_random_movement_chance').set_text(str(self.restrictions.random_movement_chance))
 
     def on_edit_floor_count_clicked(self, *args):
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_adjust_floor_count')
+        dialog: Gtk.Dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_adjust_floor_count')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         current_floor_count = self.module.get_number_floors(self.dungeon_info.dungeon_id)
 
-        label_floor_count_in_dialog: Gtk.Label = self.builder.get_object('label_floor_count_in_dialog')
-        spin_floor_count: Gtk.SpinButton = self.builder.get_object('spin_floor_count')
+        label_floor_count_in_dialog = builder_get_assert(self.builder, Gtk.Label, 'label_floor_count_in_dialog')
+        spin_floor_count = builder_get_assert(self.builder, Gtk.SpinButton, 'spin_floor_count')
 
         label_floor_count_in_dialog.set_text(f(_('This dungeon currently has {current_floor_count} floors.')))
         spin_floor_count.set_value(current_floor_count)
@@ -231,8 +231,10 @@ class DungeonController(AbstractController):
 
     def on_cb_direction_changed(self, w: Gtk.ComboBox, *args):
         assert self.restrictions is not None
-        self.restrictions.direction = DungeonRestrictionDirection(int(w.get_active_id()))
-        self._save_dungeon_restrictions()
+        active_id = w.get_active_id()
+        if active_id is not None:
+            self.restrictions.direction = DungeonRestrictionDirection(int(active_id))
+            self._save_dungeon_restrictions()
 
     def on_switch_enemies_evolve_when_team_member_koed_state_set(self, w: Gtk.Switch, state: bool, *args):
         assert self.restrictions is not None

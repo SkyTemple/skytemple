@@ -81,13 +81,17 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         return fm.dir()
 
     def load_script_files(self) -> ScriptFiles:
-        return load_script_files(RomProject.get_current().get_rom_folder(SCRIPT_DIR))  # type: ignore
+        current_project = RomProject.get_current()
+        assert current_project is not None
+        return load_script_files(current_project.get_rom_folder(SCRIPT_DIR))
 
     def is_project_loaded(self) -> bool:
         return RomProject.get_current() is not None
 
     def get_rom_filename(self) -> str:
-        return RomProject.get_current().filename  # type: ignore
+        current_project = RomProject.get_current()
+        assert current_project is not None
+        return current_project.filename
 
     def save_rom(self):
         # We only save the current ROM contents!
@@ -96,7 +100,9 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
             current.save_as_is()
 
     def get_static_data(self) -> Pmd2Data:
-        return RomProject.get_current().get_rom_module().get_static_data()  # type: ignore
+        current_project = RomProject.get_current()
+        assert current_project is not None
+        return current_project.get_rom_module().get_static_data()
 
     def get_project_filemanager(self) -> ProjectFileManager:
         current = RomProject.get_current()
@@ -105,10 +111,12 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
 
     def get_ssb(self, filename, ssb_file_manager: 'SsbFileManager') -> 'SsbLoadedFile':
         with file_load_lock:
-            f: 'SsbLoadedFile' = RomProject.get_current().open_file_in_rom(filename, SsbLoadedFileHandler,  # type: ignore
-                                                                           filename=filename,
-                                                                           static_data=self.get_static_data(),
-                                                                           project_fm=self._project_fm)
+            current_project = RomProject.get_current()
+            assert current_project is not None
+            f: 'SsbLoadedFile' = current_project.open_file_in_rom(filename, SsbLoadedFileHandler,
+                                                                  filename=filename,
+                                                                  static_data=self.get_static_data(),
+                                                                  project_fm=self._project_fm)
             f.file_manager = ssb_file_manager
             return f
 
@@ -177,8 +185,12 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     def edit_position_mark(self, mapname: str, scene_name: str, scene_type: str, pos_marks: List[SourceMapPositionMark],
                            pos_mark_to_edit: int) -> bool:
         try:
-            cntrl: PosMarkEditorController = RomProject.get_current().get_module('script').get_pos_mark_editor_controller(  # type: ignore
-                self._manager.get_window(), mapname, scene_name.split('/')[-1], scene_type, pos_marks, pos_mark_to_edit
+            window = self._manager.get_window()
+            assert window is not None
+            current_project = RomProject.get_current()
+            assert current_project is not None
+            cntrl: PosMarkEditorController = current_project.get_module('script').get_pos_mark_editor_controller(
+                window, mapname, scene_name.split('/')[-1], scene_type, pos_marks, pos_mark_to_edit
             )
             return cntrl.run() == Gtk.ResponseType.OK
         except IndexError:
@@ -237,5 +249,12 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         yield from pro.get_string_provider().get_all(StringType.POKEMON_NAMES)
 
     @staticmethod
-    def message_dialog_cls():
-        return SkyTempleMessageDialog
+    def message_dialog(
+        parent: Optional[Gtk.Window],
+        dialog_flags: Gtk.DialogFlags,
+        message_type: Gtk.MessageType,
+        buttons_type: Gtk.ButtonsType,
+        text: str,
+        **kwargs
+    ) -> Gtk.MessageDialog:
+        return SkyTempleMessageDialog(parent, dialog_flags, message_type, buttons_type, text, **kwargs)

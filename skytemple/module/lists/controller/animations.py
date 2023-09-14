@@ -14,27 +14,12 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-#
-#  This file is part of SkyTemple.
-#
-#  SkyTemple is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 3 of the License, or
-#  (at your option) any later version.
-#
-#  SkyTemple is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 from typing import TYPE_CHECKING, List, Dict
 
 from gi.repository import Gtk
 
-from skytemple.core.ui_utils import glib_async
+from skytemple.core.ui_utils import glib_async, builder_get_assert, assert_not_none
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
 from skytemple.module.lists.controller.base import PATTERN_MD_ENTRY
@@ -63,10 +48,10 @@ class AnimationsController(AbstractController):
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'animations.glade')
-        stack: Gtk.Stack = self.builder.get_object('list_stack')
+        stack = builder_get_assert(self.builder, Gtk.Stack, 'list_stack')
 
         if not self.module.has_animations():
-            stack.set_visible_child(self.builder.get_object('box_na'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_na'))
             return stack
         self.animations = self.module.get_animations()
 
@@ -75,15 +60,15 @@ class AnimationsController(AbstractController):
         self._init_combos()
         self._init_trees()
         
-        stack.set_visible_child(self.builder.get_object('box_list'))
+        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_list'))
         self.builder.connect_signals(self)
         
         return stack
 
     def _init_combos(self):
         # Init available menus
-        cb_store: Gtk.ListStore = self.builder.get_object('move_filter')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_filter_move')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'move_filter')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_filter_move')
         # Init combobox
         cb_store.clear()
         cb_store.append([-1, _("Show All")])
@@ -92,17 +77,17 @@ class AnimationsController(AbstractController):
         cb.set_active(0)
     
     def _init_trees(self):
-        store: Gtk.ListStore = self.builder.get_object('type_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'type_store')
         store.clear()
         for v in AnimType:
             store.append([v.value, v.description])
 
-        store = self.builder.get_object('point_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'point_store')
         store.clear()
         for v2 in AnimPointType:
             store.append([v2.value, v2.description])
         
-        tree_store: Gtk.ListStore = self.builder.get_object('traps_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'traps_store')
         tree_store.clear()
         tmp_view = []
         for i, e in enumerate(self.animations.trap_table):
@@ -110,7 +95,7 @@ class AnimationsController(AbstractController):
         for x in sorted(tmp_view,key=lambda x: x[1]):
             tree_store.append(x)
         
-        tree_store = self.builder.get_object('items_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'items_store')
         tree_store.clear()
         tmp_view = []
         for i, e in enumerate(self.animations.item_table):
@@ -125,12 +110,12 @@ class AnimationsController(AbstractController):
         self.on_cb_filter_move_changed()
 
     def _get_move_filter_id(self):
-        cb_store: Gtk.ListStore = self.builder.get_object('move_filter')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_filter_move')
-        return cb_store[cb.get_active_iter()][0]
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'move_filter')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_filter_move')
+        return cb_store[assert_not_none(cb.get_active_iter())][0]
     
     def _update_moves(self, *args):
-        tree_store: Gtk.ListStore = self.builder.get_object('moves_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'moves_store')
         tree_store.clear()
         for i, e in enumerate(self.animations.move_table):
             tree_store.append([
@@ -140,7 +125,7 @@ class AnimationsController(AbstractController):
             ])
         
     def _update_general(self, *args):
-        tree_store: Gtk.ListStore = self.builder.get_object('general_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'general_store')
         tree_store.clear()
         for i, e in enumerate(self.animations.general_table):
             tree_store.append([i, e.anim_type.value,e.anim_file,e.unk1,e.unk2,e.sfx,e.unk3,e.unk4, \
@@ -153,10 +138,10 @@ class AnimationsController(AbstractController):
         return pkmn_name
     
     def on_cb_filter_move_changed(self, *args):
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_filter_move')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_filter_move')
         if cb.get_active_iter() is None:
             return
-        tree_store: Gtk.ListStore = self.builder.get_object('spec_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'spec_store')
         tree_store.clear()
         move_id = self._get_move_filter_id()
         if move_id<0:
@@ -173,11 +158,11 @@ class AnimationsController(AbstractController):
             ])
 
     def on_spec_entity_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_entities'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_entities'))
 
     def _init_monster_store(self):
         monster_md = self.module.get_monster_md()
-        monster_store: Gtk.ListStore = self.builder.get_object('monster_store')
+        monster_store = builder_get_assert(self.builder, Gtk.ListStore, 'monster_store')
         for idx, entry in enumerate(monster_md.entries):
             midx = entry.md_index_base
             if self.module.project.is_patch_applied("ExpandPokeList"):
@@ -190,7 +175,7 @@ class AnimationsController(AbstractController):
     def set_tree_attr(self, path, text, store_name, attr_name, attr_pos):
         try:
             v = int(text)
-            tree_store: Gtk.ListStore = self.builder.get_object(store_name)
+            tree_store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
             tree_store[path][attr_pos] = v
             i = tree_store[path][0]
             setattr(getattr(self.animations, mapping[store_name])[i], attr_name, v)
@@ -200,7 +185,7 @@ class AnimationsController(AbstractController):
     
     def set_tree_bool(self, path, v, store_name, attr_name, attr_pos):
         try:
-            tree_store: Gtk.ListStore = self.builder.get_object(store_name)
+            tree_store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
             tree_store[path][attr_pos] = v
             i = tree_store[path][0]
             setattr(getattr(self.animations, mapping[store_name])[i], attr_name, v)
@@ -225,7 +210,7 @@ class AnimationsController(AbstractController):
         self.set_tree_attr(path, entid, 'spec_store', 'pkmn_id', 1)
         try:
             v = int(entid)
-            tree_store: Gtk.ListStore = self.builder.get_object('spec_store')
+            tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'spec_store')
             tree_store[path][5] = self._get_pkmn_name(v)
         except ValueError:
             return
@@ -238,8 +223,8 @@ class AnimationsController(AbstractController):
     
     @glib_async
     def on_spec_point_changed(self, w, treepath, treeiter):
-        store_spec: Gtk.ListStore = self.builder.get_object('spec_store')
-        store_type: Gtk.ListStore = self.builder.get_object('point_store')
+        store_spec = builder_get_assert(self.builder, Gtk.ListStore, 'spec_store')
+        store_type = builder_get_assert(self.builder, Gtk.ListStore, 'point_store')
         store_spec[treepath][3] = store_type[treeiter][0]
         store_spec[treepath][6] = store_type[treeiter][1]
         self.animations.special_move_table[store_spec[treepath][0]].point = AnimPointType(store_type[treeiter][0])  # type: ignore
@@ -249,8 +234,8 @@ class AnimationsController(AbstractController):
         # Deletes all selected entries
         # Allows multiple deletion
         move_id = self._get_move_filter_id()
-        active_rows: List[Gtk.TreePath] = self.builder.get_object('spec_tree').get_selection().get_selected_rows()[1]
-        store: Gtk.ListStore = self.builder.get_object('spec_store')
+        active_rows: List[Gtk.TreePath] = builder_get_assert(self.builder, Gtk.TreeView, 'spec_tree').get_selection().get_selected_rows()[1]
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'spec_store')
         for v in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             delta = store[v.get_indices()[0]][0]
             for i, x in enumerate(self.animations.move_table):
@@ -289,7 +274,7 @@ class AnimationsController(AbstractController):
                     x.spec_entries = new_spec_end-new_spec_start
         e = SpecMoveAnim(bytes(SPECIAL_MOVE_DATA_SIZE))
         self.animations.special_move_table.insert(delta, e)
-        tree_store: Gtk.ListStore = self.builder.get_object('spec_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'spec_store')
         tree_store.append([
             delta, e.pkmn_id, e.animation, e.point.value, e.sfx, self._get_pkmn_name(e.pkmn_id), e.point.description
         ])
@@ -331,8 +316,8 @@ class AnimationsController(AbstractController):
     
     @glib_async
     def on_move_point_changed(self, w, treepath, treeiter):
-        store_move: Gtk.ListStore = self.builder.get_object('moves_store')
-        store_type: Gtk.ListStore = self.builder.get_object('point_store')
+        store_move = builder_get_assert(self.builder, Gtk.ListStore, 'moves_store')
+        store_type = builder_get_assert(self.builder, Gtk.ListStore, 'point_store')
         store_move[treepath][13] = store_type[treeiter][0]
         store_move[treepath][17] = store_type[treeiter][1]
         self.animations.move_table[store_move[treepath][0]].point = AnimPointType(store_type[treeiter][0])  # type: ignore
@@ -350,8 +335,8 @@ class AnimationsController(AbstractController):
     def on_btn_remove_move_clicked(self, *args):
         # Deletes all selected entries
         # Allows multiple deletion
-        active_rows: List[Gtk.TreePath] = self.builder.get_object('moves_tree').get_selection().get_selected_rows()[1]
-        store: Gtk.ListStore = self.builder.get_object('moves_store')
+        active_rows: List[Gtk.TreePath] = builder_get_assert(self.builder, Gtk.TreeView, 'moves_tree').get_selection().get_selected_rows()[1]
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'moves_store')
         for v in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             move_id = store[v.get_indices()[0]][0]
             del self.animations.move_table[move_id]
@@ -363,7 +348,7 @@ class AnimationsController(AbstractController):
     def on_btn_add_move_clicked(self, *args):
         e = MoveAnim(bytes(MOVE_DATA_SIZE))
         self.animations.move_table.append(e)
-        tree_store: Gtk.ListStore = self.builder.get_object('moves_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'moves_store')
         i = len(self.animations.move_table)-1
         tree_store.append([
             i, self._string_provider.get_value(StringType.MOVE_NAMES, i),
@@ -374,8 +359,8 @@ class AnimationsController(AbstractController):
     
     @glib_async
     def on_gen_file_type_changed(self, w, treepath, treeiter):
-        store_gen: Gtk.ListStore = self.builder.get_object('general_store')
-        store_type: Gtk.ListStore = self.builder.get_object('type_store')
+        store_gen = builder_get_assert(self.builder, Gtk.ListStore, 'general_store')
+        store_type = builder_get_assert(self.builder, Gtk.ListStore, 'type_store')
         store_gen[treepath][1] = store_type[treeiter][0]
         store_gen[treepath][11] = store_type[treeiter][1]
         self.animations.general_table[store_gen[treepath][0]].anim_type = AnimType(store_type[treeiter][0])  # type: ignore
@@ -401,8 +386,8 @@ class AnimationsController(AbstractController):
     
     @glib_async
     def on_gen_point_changed(self, w, treepath, treeiter):
-        store_gen: Gtk.ListStore = self.builder.get_object('general_store')
-        store_type: Gtk.ListStore = self.builder.get_object('point_store')
+        store_gen = builder_get_assert(self.builder, Gtk.ListStore, 'general_store')
+        store_type = builder_get_assert(self.builder, Gtk.ListStore, 'point_store')
         store_gen[treepath][8] = store_type[treeiter][0]
         store_gen[treepath][12] = store_type[treeiter][1]
         self.animations.general_table[store_gen[treepath][0]].point = AnimPointType(store_type[treeiter][0])  # type: ignore
@@ -417,8 +402,8 @@ class AnimationsController(AbstractController):
     def on_btn_remove_general_clicked(self, *args):
         # Deletes all selected entries
         # Allows multiple deletion
-        active_rows : List[Gtk.TreePath] = self.builder.get_object('general_tree').get_selection().get_selected_rows()[1]
-        store: Gtk.ListStore = self.builder.get_object('general_store')
+        active_rows : List[Gtk.TreePath] = builder_get_assert(self.builder, Gtk.TreeView, 'general_tree').get_selection().get_selected_rows()[1]
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'general_store')
         for v in reversed(sorted(active_rows, key=lambda x:x.get_indices())):
             gen_id = store[v.get_indices()[0]][0]
             del self.animations.general_table[gen_id]
@@ -429,7 +414,7 @@ class AnimationsController(AbstractController):
     def on_btn_add_general_clicked(self, *args):
         e = GeneralAnim(bytes(GENERAL_DATA_SIZE))
         self.animations.general_table.append(e)
-        tree_store: Gtk.ListStore = self.builder.get_object('general_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'general_store')
         i = len(self.animations.general_table)-1
         tree_store.append([
             i, e.anim_type.value, e.anim_file, e.unk1, e.unk2, e.sfx, e.unk3, e.unk4,

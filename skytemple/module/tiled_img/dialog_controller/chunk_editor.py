@@ -17,15 +17,15 @@
 
 import itertools
 import os
-from typing import Union, List, Optional, Sequence
+from typing import Union, List, Optional, Sequence, cast
 
 import cairo
 from gi.repository import Gtk
-from gi.repository.Gtk import ResponseType, IconView, ScrolledWindow
+from gi.repository.Gtk import ResponseType
 from range_typed_integers import u16
 
 from skytemple.core.img_utils import pil_to_cairo_surface
-from skytemple.core.ui_utils import APP, make_builder
+from skytemple.core.ui_utils import APP, make_builder, builder_get_assert, assert_not_none, iter_tree_model
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_graphics_provider import AbstractTileGraphicsProvider
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import AbstractTilePalettesProvider
 from skytemple.module.tiled_img.drawer_tiled import DrawerTiledCellRenderer, DrawerTiled
@@ -51,7 +51,7 @@ class ChunkEditorController:
 
         self.builder = make_builder(os.path.join(path, 'chunk_editor.glade'))
 
-        self.dialog: Gtk.Dialog = self.builder.get_object('map_bg_chunk_editor')
+        self.dialog = builder_get_assert(self.builder, Gtk.Dialog, 'map_bg_chunk_editor')
         self.dialog.set_attached_to(parent_window)
         self.dialog.set_transient_for(parent_window)
 
@@ -153,10 +153,10 @@ class ChunkEditorController:
     def show(self):
 
         # Init palette store
-        store = self.builder.get_object('palette_ids')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'palette_ids')
         for idx in range(0, self.palettes.number_of_palettes()):
             store.append([idx])
-        self.builder.get_object('combo_box_palettes_preview').set_active(0)
+        builder_get_assert(self.builder, Gtk.ComboBox, 'combo_box_palettes_preview').set_active(0)
 
         self._init_icon_view_static_tiles()
         self._init_bpas()
@@ -187,44 +187,47 @@ class ChunkEditorController:
     def on_combo_box_palettes_changed(self, wdg: Gtk.ComboBox):
         self.edited_mappings[self.current_tile_id].pal_idx = wdg.get_active()
 
-    def on_icon_view_chunk_selection_changed(self, icon_view: IconView):
+    def on_icon_view_chunk_selection_changed(self, icon_view: Gtk.IconView):
         """Fill the icon view containing the 3x3 tiles for the current chunk"""
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
         if model is not None and treeiter is not None and treeiter != []:
-            first_tile_id = model[treeiter][0]
-            icon_view_tiles_in_chunk: IconView = self.builder.get_object(f'icon_view_tiles_in_chunk')
-            store: Gtk.ListStore = icon_view_tiles_in_chunk.get_model()
+            first_tile_id = model[treeiter[0]][0]
+            icon_view_tiles_in_chunk = builder_get_assert(self.builder, Gtk.IconView, f'icon_view_tiles_in_chunk')
+            store: Gtk.ListStore = cast(Gtk.ListStore, assert_not_none(icon_view_tiles_in_chunk.get_model()))
             store.clear()
             for idx in range(first_tile_id, first_tile_id + 9):
                 store.append([idx])
 
-            icon_view_tiles_in_chunk.select_path(store.get_path(store.get_iter_first()))
+            first_iter = store.get_iter_first()
+            if first_iter is not None:
+                icon_view_tiles_in_chunk.select_path(store.get_path(first_iter))
 
-    def on_icon_view_tiles_in_chunk_selection_changed(self, icon_view: IconView):
+    def on_icon_view_tiles_in_chunk_selection_changed(self, icon_view: Gtk.IconView):
         """Change the current edited tile view"""
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
         if model is not None and treeiter is not None and treeiter != []:
-            self.current_tile_id = model[treeiter][0]
+            self.current_tile_id = model[treeiter[0]][0]
 
             mapping = self.edited_mappings[self.current_tile_id]
-            self.current_tile_drawer.set_tile_mappings([mapping])  # type: ignore
+            if self.current_tile_drawer:
+                self.current_tile_drawer.set_tile_mappings([mapping])
 
-            self.builder.get_object('flip_x').set_active(mapping.flip_x)
-            self.builder.get_object('flip_y').set_active(mapping.flip_y)
-            cb: Gtk.ComboBox = self.builder.get_object('combo_box_palettes')
+            builder_get_assert(self.builder, Gtk.Switch, 'flip_x').set_active(mapping.flip_x)
+            builder_get_assert(self.builder, Gtk.Switch, 'flip_y').set_active(mapping.flip_y)
+            cb = builder_get_assert(self.builder, Gtk.ComboBox, 'combo_box_palettes')
             cb.set_active(mapping.pal_idx)
 
             # Also update the selected tile
             self.switching_tile = True
-            icon_view_static_tiles: IconView = self.builder.get_object(f'icon_view_static_tiles')
+            icon_view_static_tiles = builder_get_assert(self.builder, Gtk.IconView, f'icon_view_static_tiles')
             if mapping.idx < self.tile_graphics.count():
-                store: Gtk.ListStore = icon_view_static_tiles.get_model()
-                for e in store:
+                store = cast(Gtk.ListStore, assert_not_none(icon_view_static_tiles.get_model()))
+                for e in iter_tree_model(store):
                     if e[0] == mapping.idx:
                         icon_view_static_tiles.select_path(e.path)
                         icon_view_static_tiles.scroll_to_path(e.path, True, 0.5, 0.5)
                         for bpa_view in bpa_views:
-                            obj = self.builder.get_object(bpa_view)
+                            obj = builder_get_assert(self.builder, Gtk.IconView, bpa_view)
                             if obj:
                                 obj.unselect_all()
                         break
@@ -232,36 +235,39 @@ class ChunkEditorController:
                 # BPA case
                 icon_view_static_tiles.unselect_all()
                 for i, bpa_view in enumerate(bpa_views):
-                    obj = self.builder.get_object(bpa_view)
-                    if self.animated_tile_graphics[i]:  # type: ignore
-                        if obj and mapping.idx >= self.bpa_starts[i]:  # type: ignore
-                            store = obj.get_model()
-                            for e in store:
+                    obj = builder_get_assert(self.builder, Gtk.IconView, bpa_view)
+                    assert self.animated_tile_graphics is not None
+                    if self.animated_tile_graphics[i]:
+                        if obj and mapping.idx >= assert_not_none(self.bpa_starts[i]):
+                            store = cast(Gtk.ListStore, assert_not_none(obj.get_model()))
+                            for e in iter_tree_model(store):
                                 if e[0] == mapping.idx:
                                     obj.select_path(e.path)
                                     obj.scroll_to_path(e.path, True, 0.5, 0.5)
                             break
             self.switching_tile = False
 
-    def on_icon_view_static_tiles_selection_changed(self, icon_view: IconView):
+    def on_icon_view_static_tiles_selection_changed(self, icon_view: Gtk.IconView):
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
         if model is not None and treeiter is not None and treeiter != []:
-            selected_bpc_tile = model[treeiter][0]
+            selected_bpc_tile = model[treeiter[0]][0]
             if not self.switching_tile:
                 self.edited_mappings[self.current_tile_id].idx = selected_bpc_tile
-                self.builder.get_object(f'combo_box_palettes').set_active(self.current_tile_picker_palette)
+                builder_get_assert(self.builder, Gtk.ComboBox, f'combo_box_palettes').set_active(self.current_tile_picker_palette)
                 # == self.edited_mappings[self.current_tile_id].pal_idx = self.current_tile_picker_palette
-            self.builder.get_object(f'tile_number_label').set_text(str(selected_bpc_tile))
+            builder_get_assert(self.builder, Gtk.Label, f'tile_number_label').set_text(str(selected_bpc_tile))
 
     def on_add_chunk_clicked(self, *args):
-        m = self.builder.get_object(f'icon_view_chunk').get_model()
+        m = cast(Gtk.ListStore, assert_not_none(
+            builder_get_assert(self.builder, Gtk.IconView, f'icon_view_chunk').get_model()
+        ))
         m.append([len(self.edited_mappings)])
         for i in range(len(self.edited_mappings), len(self.edited_mappings) + 9):
             self.edited_mappings.append(TilemapEntry.from_int(u16(0)))
 
     def _init_icon_view_chunk(self):
         """Fill the icon view containing all the chunks"""
-        icon_view: IconView = self.builder.get_object(f'icon_view_chunk')
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, f'icon_view_chunk')
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         renderer = DrawerTiledCellRenderer(
             icon_view, self.animated_tile_durations, self.pal_ani_durations, True, self.edited_mappings, self.tile_surfaces, 1
@@ -276,12 +282,14 @@ class ChunkEditorController:
         for idx in range(0, len(self.edited_mappings), 9):
             store.append([idx])
 
-        icon_view.select_path(store.get_path(store.get_iter_first()))
+        iter_first = store.get_iter_first()
+        if iter_first is not None:
+            icon_view.select_path(store.get_path(iter_first))
         renderer.start()
 
     def _init_icon_view_tiles_in_chunk(self):
         """Init the icon view containing the 3x3 tiles for the current chunk"""
-        icon_view: IconView = self.builder.get_object(f'icon_view_tiles_in_chunk')
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, f'icon_view_tiles_in_chunk')
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
         renderer = DrawerTiledCellRenderer(
             icon_view, self.animated_tile_durations, self.pal_ani_durations, False, self.edited_mappings, self.tile_surfaces, 3
@@ -296,7 +304,7 @@ class ChunkEditorController:
         renderer.start()
 
     def _init_current_tile(self):
-        current_tile: Gtk.DrawingArea = self.builder.get_object('current_tile')
+        current_tile = builder_get_assert(self.builder, Gtk.DrawingArea, 'current_tile')
 
         current_tile.set_size_request(
             10 * TILE_DIM,
@@ -311,7 +319,7 @@ class ChunkEditorController:
 
     def _init_icon_view_static_tiles(self):
         """Fill the icon view containing all static tiles"""
-        icon_view: IconView = self.builder.get_object(f'icon_view_static_tiles')
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, f'icon_view_static_tiles')
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
 
         renderer = DrawerTiledCellRenderer(
@@ -332,14 +340,14 @@ class ChunkEditorController:
 
     def _init_bpas(self):
         if self.animated_tile_graphics is None:
-            bpas_box = self.builder.get_object('bpas')
-            parent = bpas_box.get_parent()
+            bpas_box = builder_get_assert(self.builder, Gtk.Box, 'bpas')
+            parent = cast(Gtk.Container, assert_not_none(bpas_box.get_parent()))
             parent.remove(bpas_box)
             return
         for i, ani_tile_g in enumerate(self.animated_tile_graphics):
-            view: IconView = self.builder.get_object(bpa_views[i])
+            view = builder_get_assert(self.builder, Gtk.IconView, bpa_views[i])
             if ani_tile_g is None:
-                sw: ScrolledWindow = view.get_parent()
+                sw: Gtk.ScrolledWindow = cast(Gtk.ScrolledWindow, assert_not_none(view.get_parent()))
                 sw.remove(view)
                 label = Gtk.Label.new(_('BPA slot is empty.\n\nGo to Tiles > Animated Tiles to\nmanage animated tiles.'))
                 label.set_vexpand(True)

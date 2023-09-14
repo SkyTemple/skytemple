@@ -20,6 +20,7 @@ from typing import TYPE_CHECKING, Tuple, List
 
 from gi.repository import Gtk, GLib
 from gi.repository.Gtk import Widget
+from skytemple.core.ui_utils import builder_get_assert, iter_tree_model
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import open_utf8
 from skytemple_files.common.xml_util import prettify
@@ -82,17 +83,17 @@ class MainController(AbstractController):
         
         self.on_lang_changed()
         self.builder.connect_signals(self)
-        return self.builder.get_object('box_list')
+        return builder_get_assert(self.builder, Gtk.Widget, 'box_list')
 
     def _init_groups(self):
-        self.builder.get_object('spin_group_nb').set_text(str(0))
-        self.builder.get_object('spin_group_nb').set_increments(1,1)
-        self.builder.get_object('spin_group_nb').set_range(0, self.module.get_nb_personality_groups()-1)
+        builder_get_assert(self.builder, Gtk.SpinButton, 'spin_group_nb').set_text(str(0))
+        builder_get_assert(self.builder, Gtk.SpinButton, 'spin_group_nb').set_increments(1,1)
+        builder_get_assert(self.builder, Gtk.SpinButton, 'spin_group_nb').set_range(0, self.module.get_nb_personality_groups()-1)
         
     def _init_combos(self):
         # Init available types
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_store_types')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_types')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_store_types')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_types')
         # Init combobox
         cb_store.clear()
         for v in TalkType:
@@ -100,8 +101,8 @@ class MainController(AbstractController):
         cb.set_active(0)
         
         # Init available languages
-        cb_store = self.builder.get_object('cb_store_lang')
-        cb = self.builder.get_object('cb_lang')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_store_lang')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_lang')
         # Init combobox
         cb_store.clear()
         for lang in self._string_provider.get_languages():
@@ -109,14 +110,16 @@ class MainController(AbstractController):
         cb.set_active(0)
 
     def on_lang_changed(self, *args):
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_store_lang')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_lang')
-        self._current_lang = cb_store[cb.get_active_iter()][0]
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_store_lang')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_lang')
+        active_iter = cb.get_active_iter()
+        assert active_iter is not None
+        self._current_lang = cb_store[active_iter][0]
         self._refresh_list()
 
 
     def _init_spec_personalities(self):
-        tree_store: Gtk.ListStore = self.builder.get_object('special_personalities_tree_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'special_personalities_tree_store')
         tree_store.clear()
         for i in range(TBL_TALK_SPEC_LEN):
             tree_store.append([UNIQUE_ACTORS[i], self.module.get_special_personality(i)])
@@ -125,19 +128,21 @@ class MainController(AbstractController):
         self._refresh_list()
 
     def _get_current_settings(self) -> Tuple[int, TalkType]:
-        cb_store: Gtk.ListStore = self.builder.get_object('cb_store_types')
-        cb: Gtk.ComboBoxText = self.builder.get_object('cb_types')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_store_types')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_types')
 
-        talk_type: TalkType = TalkType(cb_store[cb.get_active_iter()][0])  # type: ignore
-        group: int = int(self.builder.get_object('spin_group_nb').get_text())
+        active_iter = cb.get_active_iter()
+        assert active_iter is not None
+        talk_type: TalkType = TalkType(cb_store[active_iter][0])  # type: ignore
+        group: int = int(builder_get_assert(self.builder, Gtk.SpinButton, 'spin_group_nb').get_text())
         return group, talk_type
         
     def _regenerate_list(self):
         group, talk_type = self._get_current_settings()
         
-        tree_store: Gtk.ListStore = self.builder.get_object('group_text_tree_store')
+        tree_store: Gtk.ListStore = builder_get_assert(self.builder, Gtk.ListStore, 'group_text_tree_store')
         new_list = []
-        for row in tree_store:
+        for row in iter_tree_model(tree_store):
             new_list.append(row[0])
         self.module.set_personality_dialogues(group, talk_type, new_list)
         self.module.mark_tbl_talk_as_modified()
@@ -145,7 +150,7 @@ class MainController(AbstractController):
         
     def on_spec_personality_edited(self, widget, path, text):
         try:
-            tree_store: Gtk.ListStore = self.builder.get_object('special_personalities_tree_store')
+            tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'special_personalities_tree_store')
             tree_store[path][1] = int(text)
             self.module.set_special_personality(int(path), int(text))
         except ValueError:
@@ -153,7 +158,7 @@ class MainController(AbstractController):
         
     def on_id_text_edited(self, widget, path, text):
         try:
-            tree_store: Gtk.ListStore = self.builder.get_object('group_text_tree_store')
+            tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'group_text_tree_store')
             tree_store[path][0] = int(text)
         except ValueError:
             return
@@ -163,7 +168,7 @@ class MainController(AbstractController):
     def on_string_text_edited(self, widget, path, text):
         _, talk_type = self._get_current_settings()
         
-        tree_store: Gtk.ListStore = self.builder.get_object('group_text_tree_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'group_text_tree_store')
         self._string_provider.get_model(self._current_lang).strings[
             self._string_provider.get_index(MAP_TALK_TYPE[talk_type.value], int(tree_store[path][0]))
         ] = text
@@ -171,23 +176,23 @@ class MainController(AbstractController):
         self.module.mark_string_as_modified()
 
     def on_btn_add_dialogue_clicked(self, *args):
-        store: Gtk.ListStore = self.builder.get_object('group_text_tree_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'group_text_tree_store')
         store.append([0, ""])
         self._regenerate_list()
 
     def on_btn_remove_dialogue_clicked(self, *args):
         # Deletes all selected dialogue entries
         # Allows multiple deletions
-        active_rows : List[Gtk.TreePath] = self.builder.get_object('group_text_tree').get_selection().get_selected_rows()[1]
-        store: Gtk.ListStore = self.builder.get_object('group_text_tree_store')
-        for x in reversed(sorted(active_rows, key=lambda x:x.get_indices())):
+        active_rows = builder_get_assert(self.builder, Gtk.TreeView, 'group_text_tree').get_selection().get_selected_rows()[1]
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'group_text_tree_store')
+        for x in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             del store[x.get_indices()[0]]
         self._regenerate_list()
         
     def on_btn_add_group_clicked(self, *args):
         self.module.add_personality_group()
         self._init_groups()
-        self.builder.get_object('spin_group_nb').set_text(str(self.module.get_nb_personality_groups()-1))
+        builder_get_assert(self.builder, Gtk.SpinButton, 'spin_group_nb').set_text(str(self.module.get_nb_personality_groups()-1))
         self.module.mark_tbl_talk_as_modified()
         self._refresh_list()
 
@@ -197,35 +202,35 @@ class MainController(AbstractController):
             group, _ = self._get_current_settings()
             self.module.remove_personality_group(group)
             self._init_groups()
-            self.builder.get_object('spin_group_nb').set_text(str(max(group-1, 0)))
+            builder_get_assert(self.builder, Gtk.SpinButton, 'spin_group_nb').set_text(str(max(group-1, 0)))
             self.module.mark_tbl_talk_as_modified()
             self._refresh_list()
 
     def _refresh_list(self):
         group, talk_type = self._get_current_settings()
         dialogues: List[int] = self.module.get_personality_dialogues(group, talk_type)
-        tree_store: Gtk.ListStore = self.builder.get_object('group_text_tree_store')
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'group_text_tree_store')
         tree_store.clear()
         for d in dialogues:
             tree_store.append([d, self._string_provider.get_value(MAP_TALK_TYPE[talk_type.value], d, self._current_lang)])
 
     def on_btn_export_clicked(self, *args):
-        dialog: Gtk.Dialog = self.builder.get_object('export_dialog')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'export_dialog')
         dialog.resize(640, 320)
         dialog.set_attached_to(SkyTempleMainController.window())
         dialog.set_transient_for(SkyTempleMainController.window())
-        export_progress: Gtk.ProgressBar = self.builder.get_object('export_progress')
+        export_progress = builder_get_assert(self.builder, Gtk.ProgressBar, 'export_progress')
 
         resp = dialog.run()
         dialog.hide()
 
         if resp == Gtk.ResponseType.APPLY:
             # Create output XML
-            export_names = self.builder.get_object('export_type_names').get_active()
-            export_stats = self.builder.get_object('export_type_stats').get_active()
-            export_moveset = self.builder.get_object('export_type_moveset1').get_active()
-            export_moveset2 = self.builder.get_object('export_type_moveset2').get_active()
-            export_portraits = self.builder.get_object('export_type_portraits').get_active()
+            export_names = builder_get_assert(self.builder, Gtk.Switch, 'export_type_names').get_active()
+            export_stats = builder_get_assert(self.builder, Gtk.Switch, 'export_type_stats').get_active()
+            export_moveset = builder_get_assert(self.builder, Gtk.Switch, 'export_type_moveset1').get_active()
+            export_moveset2 = builder_get_assert(self.builder, Gtk.Switch, 'export_type_moveset2').get_active()
+            export_portraits = builder_get_assert(self.builder, Gtk.Switch, 'export_type_portraits').get_active()
             expand_poke_list_applied = self.module.project.is_patch_applied('ExpandPokeList')
             num_entities = FileType.MD.properties().num_entities
 
@@ -240,8 +245,9 @@ class MainController(AbstractController):
             directory = save_diag.get_filename()
             save_diag.destroy()
 
-            if response == Gtk.ResponseType.ACCEPT:
+            if response == Gtk.ResponseType.ACCEPT and directory is not None:
                 async def export():
+                    assert directory is not None
                     max_progress = num_entities
                     if expand_poke_list_applied:
                         max_progress = len(self.module.monster_md.entries)
@@ -293,7 +299,7 @@ class MainController(AbstractController):
                     GLib.idle_add(progress_dialog.hide)
 
 
-                progress_dialog: Gtk.Dialog = self.builder.get_object('progress_dialog')
+                progress_dialog = builder_get_assert(self.builder, Gtk.Dialog, 'progress_dialog')
                 progress_dialog.set_attached_to(SkyTempleMainController.window())
                 progress_dialog.set_transient_for(SkyTempleMainController.window())
                 AsyncTaskDelegator.run_task(export())
@@ -310,6 +316,6 @@ class MainController(AbstractController):
 
     @typing.no_type_check
     def unload(self):
-        self.builder.get_object('export_dialog').destroy()
-        self.builder.get_object('progress_dialog').destroy()
+        builder_get_assert(self.builder, Gtk.Dialog, 'export_dialog').destroy()
+        builder_get_assert(self.builder, Gtk.Dialog, 'progress_dialog').destroy()
         super().unload()

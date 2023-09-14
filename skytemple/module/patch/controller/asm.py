@@ -22,7 +22,7 @@ import traceback
 import warnings
 from glob import glob
 from types import TracebackType
-from typing import TYPE_CHECKING, Optional, Dict, List, overload, Tuple, Type, Union, Literal
+from typing import TYPE_CHECKING, Optional, Dict, List, overload, Tuple, Type, Union, Literal, cast
 
 from gi.repository import Gtk, Gdk
 from skytemple_files.common.warnings import DeprecatedToBeRemovedWarning
@@ -30,7 +30,7 @@ from skytemple_files.common.warnings import DeprecatedToBeRemovedWarning
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog, IMG_SAD
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.ui_utils import open_dir, data_dir
+from skytemple.core.ui_utils import open_dir, data_dir, builder_get_assert, assert_not_none
 from skytemple.module.patch.controller.param_dialog import ParamDialogController, PatchCanceledError
 from skytemple_files.patch.category import PatchCategory
 from skytemple_files.patch.errors import PatchNotConfiguredError
@@ -61,7 +61,7 @@ class AsmController(AbstractController):
         self._acknowledged_danger = False
         self._accepted_danger = False
 
-        self._category_tabs: Dict[PatchCategory, Gtk.Widget] = {}  # category -> page
+        self._category_tabs: Dict[PatchCategory, Gtk.Box] = {}  # category -> page
         self._category_tabs_reverse: Dict[Gtk.Widget, PatchCategory] = {}  # page -> category
         self._current_tab: Optional[PatchCategory] = None
 
@@ -72,10 +72,10 @@ class AsmController(AbstractController):
         self.refresh_all()
 
         self.builder.connect_signals(self)
-        return self.builder.get_object('box_patches')
+        return builder_get_assert(self.builder, Gtk.Widget, 'box_patches')
 
     def on_btn_show_issues_clicked(self, *args):
-        tree: Gtk.TreeView = self.builder.get_object('patch_tree')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'patch_tree')
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
             name = model[treeiter][0]
@@ -88,7 +88,7 @@ class AsmController(AbstractController):
                 self._msg(_("This patch has had no issues loading."), Gtk.MessageType.INFO)
 
     def on_btn_apply_clicked(self, *args):
-        tree: Gtk.TreeView = self.builder.get_object('patch_tree')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'patch_tree')
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
             name = model[treeiter][0]
@@ -190,14 +190,14 @@ class AsmController(AbstractController):
 
     def on_patch_categories_switch_page(self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num):
         cat = self._category_tabs_reverse[page]
-        sw: Gtk.ScrolledWindow = self.builder.get_object('patch_window')  # type: ignore
-        sw.get_parent().remove(sw)
+        sw = builder_get_assert(self.builder, Gtk.ScrolledWindow, 'patch_window')
+        assert_not_none(cast(Optional[Gtk.Container], sw.get_parent())).remove(sw)
         self.refresh(cat)
 
     def refresh_all(self):
         self._category_tabs = {}
         self._category_tabs_reverse = {}
-        notebook: Gtk.Notebook = self.builder.get_object('patch_categories')
+        notebook = builder_get_assert(self.builder, Gtk.Notebook, 'patch_categories')
         page_num = 0
         for category in PatchCategory:
             box = Gtk.Box.new(Gtk.Orientation.HORIZONTAL, 0)
@@ -215,11 +215,11 @@ class AsmController(AbstractController):
         # ATTACH
         assert self.builder
         page = self._category_tabs[patch_category]
-        page.pack_start(self.builder.get_object('patch_window'), True, True, 0)
+        page.pack_start(builder_get_assert(self.builder, Gtk.ScrolledWindow, 'patch_window'), True, True, 0)
         self._current_tab = patch_category
 
-        tree: Gtk.TreeView = self.builder.get_object('patch_tree')
-        model: Gtk.ListStore = tree.get_model()
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'patch_tree')
+        model = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         model.clear()
 
         self._patcher = self.module.project.create_patcher()
@@ -243,7 +243,7 @@ class AsmController(AbstractController):
                 except BaseException as err:
                     errors.append((f(_("Error loading patch package {os.path.basename(fname)}.")), sys.exc_info()))
         # List patches:
-        for patch in sorted(self._patcher.list(), key=lambda p: p.name):  # type: ignore
+        for patch in sorted(self._patcher.list(), key=lambda p: p.name):
             with warnings.catch_warnings(record=True) as w:
                 warnings.filterwarnings("always", category=DeprecationWarning)
                 try:
@@ -317,11 +317,11 @@ class AsmController(AbstractController):
                 parameter_data = ParamDialogController(
                     MainSkyTempleController.window()
                 ).run(patch, patches[patch].parameters)
-        self._patcher.apply(patch, parameter_data)  # type: ignore
+        self._patcher.apply(patch, parameter_data)
 
     def _load_image_for_issue_dialog(self):
         img: Gtk.Image = Gtk.Image.new_from_file(os.path.join(data_dir(), IMG_SAD))
-        self.builder.get_object('issue_img_container').pack_start(img, False, False, 0)
+        builder_get_assert(self.builder, Gtk.Box, 'issue_img_container').pack_start(img, False, False, 0)
 
     @overload
     def _error_or_issue(self, is_load: bool, is_error: Literal[True], errors_or_issues: List[ErrorsTuple]): ...
@@ -331,35 +331,35 @@ class AsmController(AbstractController):
     def _error_or_issue(self, is_load: bool, is_error: bool, errors_or_issues):
         """Show the compatibility issues / patch error dialog with the appropriate content based on the situation."""
         # todo also make sure to set transient and parent.
-        dialog = self.builder.get_object('issue_dialog')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'issue_dialog')
         dialog.set_position(Gtk.WindowPosition.CENTER)
         dialog.set_transient_for(MainSkyTempleController.window())
         dialog.set_parent(MainSkyTempleController.window())
         try:
             screen: Gdk.Screen = dialog.get_screen()
-            monitor = screen.get_monitor_geometry(screen.get_monitor_at_window(screen.get_active_window()))
-            dialog.resize(monitor.width * 0.65, monitor.height * 0.65)
+            monitor = screen.get_monitor_geometry(screen.get_monitor_at_window(assert_not_none(screen.get_active_window())))
+            dialog.resize(round(monitor.width * 0.65), round(monitor.height * 0.65))
         except BaseException:
             dialog.resize(1015, 865)
 
-        self.builder.get_object('label_issue_load').hide()
-        self.builder.get_object('label_issue_apply').hide()
-        self.builder.get_object('label_error_load').hide()
-        self.builder.get_object('label_error_apply').hide()
-        self.builder.get_object('label_issue_note').hide()
+        builder_get_assert(self.builder, Gtk.Label, 'label_issue_load').hide()
+        builder_get_assert(self.builder, Gtk.Label, 'label_issue_apply').hide()
+        builder_get_assert(self.builder, Gtk.Label, 'label_error_load').hide()
+        builder_get_assert(self.builder, Gtk.Label, 'label_error_apply').hide()
+        builder_get_assert(self.builder, Gtk.Label, 'label_issue_note').hide()
 
         if is_load and is_error:
-            self.builder.get_object('label_error_load').show()
+            builder_get_assert(self.builder, Gtk.Label, 'label_error_load').show()
         elif is_load:
-            self.builder.get_object('label_issue_load').show()
-            self.builder.get_object('label_issue_note').show()
+            builder_get_assert(self.builder, Gtk.Label, 'label_issue_load').show()
+            builder_get_assert(self.builder, Gtk.Label, 'label_issue_note').show()
         elif is_error:
-            self.builder.get_object('label_error_apply').show()
+            builder_get_assert(self.builder, Gtk.Label, 'label_error_apply').show()
         else:
-            self.builder.get_object('label_issue_apply').show()
-            self.builder.get_object('label_issue_note').show()
+            builder_get_assert(self.builder, Gtk.Label, 'label_issue_apply').show()
+            builder_get_assert(self.builder, Gtk.Label, 'label_issue_note').show()
 
-        buffer: Gtk.TextBuffer = self.builder.get_object('issue_info').get_buffer()
+        buffer = builder_get_assert(self.builder, Gtk.TextView, 'issue_info').get_buffer()
 
         if is_error:
             errors: List[ErrorsTuple] = errors_or_issues
@@ -395,7 +395,7 @@ class AsmController(AbstractController):
     def _activate_issues(self):
         """Show the 'Show Issues' button, if it isn't shown already. Also show a note about why."""
         if not self._were_issues_activated:
-            self.builder.get_object('cnt_btns').pack_start(self.builder.get_object('btn_show_issues'), True, True, 0)
+            builder_get_assert(self.builder, Gtk.ButtonBox, 'cnt_btns').pack_start(builder_get_assert(self.builder, Gtk.Button, 'btn_show_issues'), True, True, 0)
             self._were_issues_activated = True
             self._msg(_("Some of the loaded patches had compatibility issues. "
                         "They were still loaded correctly but may stop working in future SkyTemple versions. "

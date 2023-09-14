@@ -259,8 +259,10 @@ class Drawer:
                 ctx.translate(0, -BPC_TILE_DIM * self.height_in_tiles)  # type: ignore
 
         size_w, size_h = self.draw_area.get_size_request()
-        size_w /= self.scale
-        size_h /= self.scale
+        assert size_w is not None and size_h is not None
+
+        size_w //= self.scale
+        size_h //= self.scale
         # Selection
         if self.interaction_mode == DrawerInteraction.CHUNKS:
             self.selection_plugin.set_size(self.tiling_width * BPC_TILE_DIM, self.tiling_height * BPC_TILE_DIM)
@@ -420,7 +422,7 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
                  chunks_surfaces: Iterable[Iterable[Iterable[Iterable[cairo.Surface]]]]):
 
         super().__init__(icon_view, None, bpa_durations, pal_ani_durations, chunks_surfaces)
-        super(Gtk.CellRenderer, self).__init__()  # type: ignore
+        super(Gtk.CellRenderer, self).__init__()
         self.layer = layer
 
         self.chunkidx = 0

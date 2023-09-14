@@ -16,13 +16,13 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
 import re
-from typing import TYPE_CHECKING, Dict, Optional, List
+from typing import TYPE_CHECKING, Dict, Optional, List, cast
 
 from gi.repository import Gtk
 from range_typed_integers import u16, u16_checked
 
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import glib_async, catch_overflow
+from skytemple.core.ui_utils import glib_async, catch_overflow, builder_get_assert, assert_not_none
 from skytemple.module.lists.controller.base import ListBaseController, PATTERN_MD_ENTRY
 from skytemple_files.hardcoded.default_starters import SpecialEpisodePc
 
@@ -38,12 +38,13 @@ class SpecialPcsController(ListBaseController):
     def __init__(self, module: 'ListsModule', *args):
         super().__init__(module, *args)
         self._list: List[SpecialEpisodePc]
+        self._list_store: Gtk.ListStore
         self._location_names: Dict[int, str] = {}
         self.move_entries = self.module.get_waza_p().moves
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'special_pcs.glade')
-        lst: Gtk.Box = self.builder.get_object('box_list')
+        lst = builder_get_assert(self.builder, Gtk.Box, 'box_list')
         self._list = self.module.get_special_pcs()
 
         self._init_completions()
@@ -127,10 +128,10 @@ class SpecialPcsController(ListBaseController):
         self._update_move(path, text, 10)
 
     def on_cr_move_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_moves'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.ListStore, 'completion_moves'))
 
     def on_cr_location_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_locations'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_locations'))
 
     @glib_async
     def on_list_store_row_changed(self, store, path, l_iter):
@@ -151,7 +152,7 @@ class SpecialPcsController(ListBaseController):
 
     def refresh_list(self):
         tree: Gtk.TreeView = self.get_tree()
-        self._list_store: Gtk.ListStore = tree.get_model()
+        self._list_store = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         self._list_store.clear()
 
         # Iterate list
@@ -172,13 +173,13 @@ class SpecialPcsController(ListBaseController):
         self._list_store[path][value_pos] = text
 
     def _init_completions(self):
-        locations_store: Gtk.ListStore = self.builder.get_object('location_store')
+        locations_store = builder_get_assert(self.builder, Gtk.ListStore, 'location_store')
         for idx in range(0, 256):
             name = self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_SELECTION, idx)
             self._location_names[idx] = f'{name} ({idx:04})'
             locations_store.append([self._location_names[idx]])
 
-        store: Gtk.ListStore = self.builder.get_object('store_completion_moves')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_completion_moves')
         for i in range(len(self.move_entries)):
             store.append([self._get_move_display_name(i)])
 
@@ -193,7 +194,7 @@ class SpecialPcsController(ListBaseController):
         return int(match.group(1))
 
     def get_tree(self):
-        return self.builder.get_object('tree')
+        return builder_get_assert(self.builder, Gtk.TreeView, 'tree')
 
     def can_be_placeholder(self):
         return False

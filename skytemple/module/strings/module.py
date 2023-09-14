@@ -43,7 +43,7 @@ class StringsModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self._tree_model: Optional[Gtk.TreeModel] = None
+        self._tree_model: Optional[Gtk.TreeStore] = None
         self._tree_iters: Dict[str, Gtk.TreeIter] = {}
 
     def load_tree_items(self, item_store: TreeStore, root_node):
@@ -65,8 +65,9 @@ class StringsModule(AbstractModule):
         """Mark as modified"""
         self.project.mark_as_modified(f"MESSAGE/{filename}")
         # Mark as modified in tree
-        row = self._tree_model[self._tree_iters[filename]]  # type: ignore
-        recursive_up_item_store_mark_as_modified(row)
+        if self._tree_model is not None:
+            row = self._tree_model[self._tree_iters[filename]]
+            recursive_up_item_store_mark_as_modified(row)
 
     def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
         if isinstance(open_controller, StringsController):

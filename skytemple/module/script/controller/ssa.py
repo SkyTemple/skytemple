@@ -32,6 +32,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import REQUEST_TYPE_MAP_BG, OpenRequest, REQUEST_TYPE_SCENE_SSE, \
     REQUEST_TYPE_SCENE_SSA, REQUEST_TYPE_SCENE_SSS
 from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHandler
+from skytemple.core.ui_utils import builder_get_assert, assert_not_none, create_tree_view_column
 from skytemple.module.script.controller.ssa_event_dialog import SsaEventDialogController
 from skytemple.module.script.drawer import Drawer, InteractionMode
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
@@ -145,18 +146,18 @@ class SsaController(AbstractController):
     def get_view(self) -> Gtk.Widget:
         self.module.get_sprite_provider().reset()
         self.builder = self._get_builder(__file__, 'ssa.glade')
-        self._w_ssa_draw = self.builder.get_object('ssa_draw')
-        self._w_po_actors = self.builder.get_object('po_actor')
-        self._w_po_objects = self.builder.get_object('po_object')
-        self._w_po_performers = self.builder.get_object('po_performer')
-        self._w_po_triggers = self.builder.get_object('po_trigger')
+        self._w_ssa_draw = builder_get_assert(self.builder, Gtk.DrawingArea, 'ssa_draw')
+        self._w_po_actors = builder_get_assert(self.builder, Gtk.Popover, 'po_actor')
+        self._w_po_objects = builder_get_assert(self.builder, Gtk.Popover, 'po_object')
+        self._w_po_performers = builder_get_assert(self.builder, Gtk.Popover, 'po_performer')
+        self._w_po_triggers = builder_get_assert(self.builder, Gtk.Popover, 'po_trigger')
 
-        paned: Gtk.Paned = self.builder.get_object('ssa_paned')
+        paned: Gtk.Paned = builder_get_assert(self.builder, Gtk.Paned, 'ssa_paned')
         if self.__class__._paned_pos is not None:
             paned.set_position(self._paned_pos)
         else:
             paned.set_position(800)
-        util_notebook: Gtk.Notebook = self.builder.get_object('ssa_utility')
+        util_notebook = builder_get_assert(self.builder, Gtk.Notebook, 'ssa_utility')
         if self.__class__._last_open_tab is not None:
             util_notebook.set_current_page(self._last_open_tab)
         self.builder.connect_signals(self)
@@ -167,7 +168,7 @@ class SsaController(AbstractController):
         self._init_all_the_stores()
         self._update_scales()
 
-        return self.builder.get_object('editor_ssa')
+        return builder_get_assert(self.builder, Gtk.Widget, 'editor_ssa')
 
     @typing.no_type_check
     def unload(self):
@@ -261,12 +262,14 @@ class SsaController(AbstractController):
                 self.ssa.layer_list[place_layer].performers.append(new_entity)
             elif self.drawer.interaction_mode == InteractionMode.PLACE_TRIGGER:
                 new_entity = SsaEvent(
-                    2, 2, 0, 0, self._build_pos(*self.drawer.get_pos_place_trigger(), dir=False), 65535  # type: ignore
+                    u16(2), u16(2), 0, u16(0),
+                    self._build_pos(*self.drawer.get_pos_place_trigger(), dir=False),
+                    u16(65535)
                 )
                 self.ssa.layer_list[place_layer].events.append(new_entity)
             if new_entity is not None:
                 # Switch back to move/select mode
-                self.builder.get_object('tool_scene_move').set_active(True)  # type: ignore
+                builder_get_assert(self.builder, Gtk.RadioToolButton, 'tool_scene_move').set_active(True)
                 self._select(new_entity, place_layer)
                 self._add_entity_to_list(new_entity, place_layer)
                 self.module.mark_as_modified(self.mapname, self.type, self.filename)
@@ -303,7 +306,7 @@ class SsaController(AbstractController):
                     self._bg_draw_is_clicked__location = None
         self._bg_draw_is_clicked__location = None
         self._bg_draw_is_clicked__drag_active = False
-        self._w_ssa_draw.queue_draw()  # type: ignore
+        self._w_ssa_draw.queue_draw()
 
     def on_ssa_draw_event_motion_notify_event(self, box, motion: Gdk.EventMotion):
         correct_mouse_x = int((motion.x - 4) / self._scale_factor)
@@ -312,13 +315,12 @@ class SsaController(AbstractController):
             self.drawer.set_mouse_position(correct_mouse_x, correct_mouse_y)
 
             if self._currently_selected_entity is not None:
-                this_x, this_y = motion.get_coords()
                 if self._bg_draw_is_clicked__location is not None:
                     start_x, start_y = self._bg_draw_is_clicked__location
                     # Start drag & drop if mouse moved at least one tile.
                     if not self._bg_draw_is_clicked__drag_active and (
-                            abs(start_x - this_x) > BPC_TILE_DIM / 2 * self._scale_factor
-                            or abs(start_y - this_y) > BPC_TILE_DIM / 2 * self._scale_factor
+                            abs(start_x - motion.x) > BPC_TILE_DIM / 2 * self._scale_factor
+                            or abs(start_y - motion.y) > BPC_TILE_DIM / 2 * self._scale_factor
                     ):
                         self._bg_draw_is_clicked__drag_active = True
                         self.drawer.set_drag_position(
@@ -326,7 +328,7 @@ class SsaController(AbstractController):
                             int((start_y - 4) / self._scale_factor) - self._currently_selected_entity.pos.y_absolute
                         )
 
-            self._w_ssa_draw.queue_draw()  # type: ignore
+            self._w_ssa_draw.queue_draw()
 
     # SCENE TOOLBAR #
     def on_tool_scene_zoom_in_clicked(self, *args):
@@ -392,7 +394,7 @@ class SsaController(AbstractController):
                 bma_height = bma.map_height_camera * BPC_TILE_DIM
                 self.__class__.map_bg_surface_cache = (item_id, self._map_bg_surface, bma_width, bma_height)  # type: ignore
             if self.drawer:
-                self._set_drawer_bg(self._map_bg_surface, bma_width, bma_height)  # type: ignore
+                self._set_drawer_bg(assert_not_none(self._map_bg_surface), bma_width, bma_height)
 
     def on_tool_scene_goto_bg_clicked(self, *args):
         self.module.project.request_open(OpenRequest(
@@ -411,14 +413,16 @@ class SsaController(AbstractController):
             new_event = dialog.get_event()
             assert new_event is not None
             self.ssa.triggers.append(new_event)
-            self.builder.get_object('ssa_events').get_model().append(
+            m = typing.cast(Gtk.ListStore, assert_not_none(builder_get_assert(self.builder, Gtk.TreeView, 'ssa_events').get_model()))
+            m.append(
                 self._list_entry_generate_event(new_event)
             )
             # Update popovers for events
-            po_trigger_id: Gtk.ComboBox = self.builder.get_object('po_trigger_id')
-            po_trigger_id.get_model().append([new_event,
-                                              f"{self._get_talk_script_name(new_event.script_id)} "
-                                              f"/ {self._get_coroutine_name(new_event.coroutine)}"])
+            po_trigger_id = builder_get_assert(self.builder, Gtk.ComboBox, 'po_trigger_id')
+            m = typing.cast(Gtk.ListStore, assert_not_none(po_trigger_id.get_model()))
+            m.append([new_event,
+                      f"{self._get_talk_script_name(new_event.script_id)} "
+                      f"/ {self._get_coroutine_name(new_event.coroutine)}"])
             # Update lists for triggers
             for layer_id, layer in enumerate(self.ssa.layer_list):
                 for trigger in layer.events:
@@ -427,19 +431,18 @@ class SsaController(AbstractController):
             self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
     def on_tool_events_remove_clicked(self, *args):
-        widget: Gtk.TreeView = self.builder.get_object('ssa_events')
-        model: Gtk.ListStore
-        model, treeiter = widget.get_selection().get_selected()
+        widget = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_events')
+        model, treeiter = typing.cast(Tuple[Gtk.ListStore, Optional[Gtk.TreeIter]], widget.get_selection().get_selected())
         if treeiter is not None and model is not None:
-            row = model[treeiter][:]
+            row = model[treeiter][:]  # type: ignore
             # Remove from list
             model.remove(treeiter)
             # Remove from model
             trigger_id = self.ssa.triggers.index(row[0])
             self.ssa.triggers.remove(row[0])
             # Update popovers combobox for events
-            po_trigger_id: Gtk.ComboBox = self.builder.get_object('po_trigger_id')
-            po_store: Gtk.ListStore = po_trigger_id.get_model()
+            po_trigger_id = builder_get_assert(self.builder, Gtk.ComboBox, 'po_trigger_id')
+            po_store = typing.cast(Gtk.ListStore, assert_not_none(po_trigger_id.get_model()))
             po_iter = po_store.get_iter_first()
             while po_iter:
                 if po_store[po_iter][0] == row[0]:
@@ -458,9 +461,8 @@ class SsaController(AbstractController):
             self.module.mark_as_modified(self.mapname, self.type, self.filename)
 
     def on_tool_events_edit_clicked(self, *args):
-        widget: Gtk.TreeView = self.builder.get_object('ssa_events')
-        model: Gtk.ListStore
-        model, treeiter = widget.get_selection().get_selected()
+        widget = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_events')
+        model, treeiter = typing.cast(Tuple[Gtk.ListStore, Optional[Gtk.TreeIter]], widget.get_selection().get_selected())
         if treeiter is not None and model is not None:
             edit_model: SsaTrigger = model[treeiter][0]
             dialog = SsaEventDialogController(
@@ -478,12 +480,12 @@ class SsaController(AbstractController):
                 edit_model.unk2 = new_event.unk2
                 edit_model.unk3 = new_event.unk3
                 # Update popovers for events
-                po_trigger_id: Gtk.ComboBox = self.builder.get_object('po_trigger_id')
-                po_store: Gtk.ListStore = po_trigger_id.get_model()
+                po_trigger_id = builder_get_assert(self.builder, Gtk.ComboBox, 'po_trigger_id')
+                po_store = typing.cast(Gtk.ListStore, assert_not_none(po_trigger_id.get_model()))
                 po_iter = po_store.get_iter_first()
                 while po_iter:
                     if po_store[po_iter][0] == edit_model:
-                        po_store[po_iter][:] = [
+                        po_store[po_iter][:] = [  # type: ignore
                             edit_model,
                             f"{self._get_talk_script_name(edit_model.script_id)} "
                             f"/ {self._get_coroutine_name(edit_model.coroutine)}"
@@ -498,7 +500,7 @@ class SsaController(AbstractController):
                 l_iter = model.get_iter_first()
                 while l_iter:
                     if model[l_iter][0] == edit_model:
-                        model[l_iter][:] = self._list_entry_generate_event(edit_model)
+                        model[l_iter][:] = self._list_entry_generate_event(edit_model)  # type: ignore
                         break
                     l_iter = model.iter_next(l_iter)
 
@@ -510,12 +512,14 @@ class SsaController(AbstractController):
         new_index = len(self.ssa.layer_list)
         new_layer = SsaLayer()
         # Add to ssa_layers
-        ssa_layers = self.builder.get_object('ssa_layers')
-        ssa_layers.get_model().append(self._list_entry_generate_layer(new_index, new_layer))
+        ssa_layers = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_layers')
+        m = typing.cast(Gtk.ListStore, assert_not_none(ssa_layers.get_model()))
+        m.append(self._list_entry_generate_layer(new_index, new_layer))
         self.ssa.layer_list.append(new_layer)
         # Add to popover comboboxes
-        po_actor_sector: Gtk.ComboBox = self.builder.get_object('po_actor_sector')
-        po_actor_sector.get_model().append([new_index, f(_('Sector {new_index}'))])
+        po_actor_sector = builder_get_assert(self.builder, Gtk.ComboBox, 'po_actor_sector')
+        m = typing.cast(Gtk.ListStore, assert_not_none(po_actor_sector.get_model()))
+        m.append([new_index, f(_('Sector {new_index}'))])
         # Tell drawer
         self.drawer.sector_added()
         # Mark as modified
@@ -538,16 +542,15 @@ class SsaController(AbstractController):
 
         if response == Gtk.ResponseType.YES:
             # Okay, delete the layer/sector
-            widget: Gtk.TreeView = self.builder.get_object('ssa_layers')
-            model: Gtk.ListStore
-            model, treeiter = widget.get_selection().get_selected()
+            widget = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_layers')
+            model, treeiter = typing.cast(Tuple[Gtk.ListStore, Optional[Gtk.TreeIter]], widget.get_selection().get_selected())
             if treeiter is not None and model is not None:
                 layer_id = model[treeiter][0]
                 # UPDATE ALL LAYERS LIST ENTRIES AFTER THIS ONE!
                 after_iter = model.iter_next(treeiter)
                 after_inc = 0
                 while after_iter:
-                    model[after_iter][0:2] = self._list_entry_generate_layer(
+                    model[after_iter][0:2] = self._list_entry_generate_layer(  # type: ignore
                         layer_id + after_inc, self.ssa.layer_list[layer_id + after_inc + 1]
                     )[0:2]
                     after_iter = model.iter_next(after_iter)
@@ -556,16 +559,20 @@ class SsaController(AbstractController):
                 layer = self.ssa.layer_list[layer_id]
                 for actor in layer.actors:
                     tree, l_iter = self._get_list_tree_and_iter_for(actor)
-                    tree.get_model().remove(l_iter)
+                    if l_iter is not None:
+                        typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).remove(l_iter)
                 for object in layer.objects:
                     tree, l_iter = self._get_list_tree_and_iter_for(object)
-                    tree.get_model().remove(l_iter)
+                    if l_iter is not None:
+                        typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).remove(l_iter)
                 for performer in layer.performers:
                     tree, l_iter = self._get_list_tree_and_iter_for(performer)
-                    tree.get_model().remove(l_iter)
+                    if l_iter is not None:
+                        typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).remove(l_iter)
                 for trigger in layer.events:
                     tree, l_iter = self._get_list_tree_and_iter_for(trigger)
-                    tree.get_model().remove(l_iter)
+                    if l_iter is not None:
+                        typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).remove(l_iter)
                 # UPDATE ALL ENTITY LIST LAYER INDICES AFTER THIS ONE!
                 for after_inc, layer in enumerate(self.ssa.layer_list[layer_id + 1:]):
                     for actor in layer.actors:
@@ -583,7 +590,9 @@ class SsaController(AbstractController):
                 # Tell drawer
                 self.drawer.sector_removed(layer_id)
                 # Get iter in popover combo box
-                po_store: Gtk.ListStore = self.builder.get_object('po_actor_sector').get_model()
+                po_store = typing.cast(Gtk.ListStore, assert_not_none(
+                    builder_get_assert(self.builder, Gtk.ComboBox, 'po_actor_sector').get_model()
+                ))
                 po_iter = po_store.get_iter_first()
                 found_in_po = False
                 while po_iter:
@@ -591,12 +600,12 @@ class SsaController(AbstractController):
                         found_in_po = True
                         break
                     po_iter = po_store.iter_next(po_iter)
-                if found_in_po:
+                if found_in_po and po_iter is not None:
                     # Update all popover entries after this one
                     after_iter = po_store.iter_next(po_iter)
                     after_inc = 0
                     while after_iter:
-                        po_store[after_iter] = [layer_id + after_inc, f'Sector {layer_id + after_inc}']
+                        po_store[after_iter] = [layer_id + after_inc, f'Sector {layer_id + after_inc}']  # type: ignore
                         after_iter = po_store.iter_next(after_iter)
                         after_inc += 1
                     # Remove from popover combo box
@@ -622,7 +631,7 @@ class SsaController(AbstractController):
 
     # SCRIPT TOOLBAR #
     def on_tool_script_edit_clicked(self, *args):
-        tree: Gtk.TreeView = self.builder.get_object('ssa_scripts')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_scripts')
         model, treeiter = tree.get_selection().get_selected()
         if treeiter is not None and model is not None:
             manager = MainController.debugger_manager()
@@ -689,7 +698,9 @@ class SsaController(AbstractController):
         )
         # Update script list
         short_name = self._get_file_shortname(ssb_path)
-        ssa_scripts_store: Gtk.ListStore = self.builder.get_object('ssa_scripts').get_model()
+        ssa_scripts_store = typing.cast(Gtk.ListStore, assert_not_none(
+            builder_get_assert(self.builder, Gtk.TreeView, 'ssa_scripts').get_model()
+        ))
         # The reason this is the same is because I screwed up when building self.scripts...
         ssa_scripts_store.append([short_name, short_name])
         # Update debugger
@@ -697,8 +708,9 @@ class SsaController(AbstractController):
             ssb_path, self.mapname, self.type, self.filename.split('/')[-1]
         )
         # Update popovers actors / objects
-        po_actor_script: Gtk.ComboBox = self.builder.get_object('po_actor_script')
-        po_actor_script.get_model().append([number, short_name])
+        po_actor_script = builder_get_assert(self.builder, Gtk.ComboBox, 'po_actor_script')
+        m = typing.cast(Gtk.ListStore, assert_not_none(po_actor_script.get_model()))
+        m.append([number, short_name])
         # Add to object script list
         self.scripts.append(short_name)
         # Mark as modified
@@ -769,14 +781,15 @@ class SsaController(AbstractController):
         # Remove from model
         self.ssa.layer_list[self._currently_selected_entity_layer].actors.remove(self._currently_selected_entity)  # type: ignore
         # Remove from list
-        tree.get_model().remove(l_iter)
+        if l_iter is not None:
+            typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).remove(l_iter)
         # Remove now invalid references:
         self._currently_selected_entity = None
         self._bg_draw_is_clicked__drag_active = False
         self._bg_draw_is_clicked__location = None
         if self._currently_open_popover is not None:
             self._currently_open_popover.popdown()
-        self._w_ssa_draw.queue_draw()  # type: ignore
+        self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
         self._refresh_layer(current_layer)
         # Mark as modified
@@ -831,14 +844,15 @@ class SsaController(AbstractController):
         # Remove from model
         self.ssa.layer_list[self._currently_selected_entity_layer].objects.remove(self._currently_selected_entity)  # type: ignore
         # Remove from list
-        tree.get_model().remove(l_iter)
+        if l_iter is not None:
+            typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).remove(l_iter)
         # Remove now invalid references:
         self._currently_selected_entity = None
         self._bg_draw_is_clicked__drag_active = False
         self._bg_draw_is_clicked__location = None
         if self._currently_open_popover is not None:
             self._currently_open_popover.popdown()
-        self._w_ssa_draw.queue_draw()  # type: ignore
+        self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
         self._refresh_layer(current_layer)
         # Mark as modified
@@ -886,14 +900,15 @@ class SsaController(AbstractController):
         # Remove from model
         self.ssa.layer_list[self._currently_selected_entity_layer].performers.remove(self._currently_selected_entity)  # type: ignore
         # Remove from list
-        tree.get_model().remove(l_iter)
+        if l_iter is not None:
+            typing.cast(Gtk.ListStore, tree.get_model()).remove(l_iter)
         # Remove now invalid references:
         self._currently_selected_entity = None
         self._bg_draw_is_clicked__drag_active = False
         self._bg_draw_is_clicked__location = None
         if self._currently_open_popover is not None:
             self._currently_open_popover.popdown()
-        self._w_ssa_draw.queue_draw()  # type: ignore
+        self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
         self._refresh_layer(current_layer)
         # Mark as modified
@@ -935,14 +950,15 @@ class SsaController(AbstractController):
         # Remove from model
         self.ssa.layer_list[self._currently_selected_entity_layer].events.remove(self._currently_selected_entity)  # type: ignore
         # Remove from list
-        tree.get_model().remove(l_iter)
+        if l_iter is not None:
+            typing.cast(Gtk.ListStore, tree.get_model()).remove(l_iter)
         # Remove now invalid references:
         self._currently_selected_entity = None
         self._bg_draw_is_clicked__drag_active = False
         self._bg_draw_is_clicked__location = None
         if self._currently_open_popover is not None:
             self._currently_open_popover.popdown()
-        self._w_ssa_draw.queue_draw()  # type: ignore
+        self._w_ssa_draw.queue_draw()
         # Refresh layer list entry for current layer
         self._refresh_layer(current_layer)
         # Mark as modified
@@ -978,17 +994,17 @@ class SsaController(AbstractController):
                 new_layer_iter = self._refresh_layer(new_layer_id)
 
                 # Select the layer:
-                ssa_layers = self.builder.get_object('ssa_layers')  # type: ignore
+                ssa_layers = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_layers')
                 self._currently_selected_entity_layer = new_layer_id
                 ssa_layers.get_selection().select_iter(new_layer_iter)
                 
                 self._refresh_for_selected()
 
     def _refresh_layer(self, layer_id):
-        ssa_layers = self.builder.get_object('ssa_layers')
+        ssa_layers = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_layers')
         l_iter = self._find_list_iter(ssa_layers, lambda row: layer_id == row[0])
         for i, f in enumerate(self._list_entry_generate_layer(layer_id, self.ssa.layer_list[layer_id])[0:2]):
-            ssa_layers.get_model()[l_iter][i] = f
+            typing.cast(Gtk.ListStore, assert_not_none(ssa_layers.get_model()))[l_iter][i] = f
         return l_iter
 
     def _refresh_for_selected(self):
@@ -1001,30 +1017,32 @@ class SsaController(AbstractController):
 
     def _refresh_list_entry_for(self, entity, layer):
         tree, l_iter = self._get_list_tree_and_iter_for(entity)
-        if isinstance(entity, SsaActor):
-            for i, f in enumerate(self._list_entry_generate_actor(layer, entity)):
-                tree.get_model()[l_iter][i] = f
-        elif isinstance(entity, SsaObject):
-            for i, f in enumerate(self._list_entry_generate_object(layer, entity)):
-                tree.get_model()[l_iter][i] = f
-        elif isinstance(entity, SsaPerformer):
-            for i, f in enumerate(self._list_entry_generate_performer(layer, entity)):
-                tree.get_model()[l_iter][i] = f
-        elif isinstance(entity, SsaEvent):
-            for i, f in enumerate(self._list_entry_generate_trigger(layer, entity)):
-                tree.get_model()[l_iter][i] = f
+        if l_iter is not None:
+            if isinstance(entity, SsaActor):
+                for i, f in enumerate(self._list_entry_generate_actor(layer, entity)):
+                    typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))[l_iter][i] = f
+            elif isinstance(entity, SsaObject):
+                for i, f in enumerate(self._list_entry_generate_object(layer, entity)):
+                    typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))[l_iter][i] = f
+            elif isinstance(entity, SsaPerformer):
+                for i, f in enumerate(self._list_entry_generate_performer(layer, entity)):
+                    typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))[l_iter][i] = f
+            elif isinstance(entity, SsaEvent):
+                for i, f in enumerate(self._list_entry_generate_trigger(layer, entity)):
+                    typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))[l_iter][i] = f
 
     def _get_list_for(self, entity) -> Gtk.TreeView:
-        tree: Gtk.TreeView = None
         assert self.builder
         if isinstance(entity, SsaActor):
-            tree = self.builder.get_object("ssa_actors")
+            tree = builder_get_assert(self.builder, Gtk.TreeView, "ssa_actors")
         elif isinstance(entity, SsaObject):
-            tree = self.builder.get_object("ssa_objects")
+            tree = builder_get_assert(self.builder, Gtk.TreeView, "ssa_objects")
         elif isinstance(entity, SsaPerformer):
-            tree = self.builder.get_object("ssa_performers")
+            tree = builder_get_assert(self.builder, Gtk.TreeView, "ssa_performers")
         elif isinstance(entity, SsaEvent):
-            tree = self.builder.get_object("ssa_triggers")
+            tree = builder_get_assert(self.builder, Gtk.TreeView, "ssa_triggers")
+        else:
+            raise AssertionError()
         return tree
 
     def _get_list_tree_and_iter_for(self, selected) -> Tuple[Gtk.TreeView, Optional[Gtk.TreeIter]]:
@@ -1140,7 +1158,7 @@ class SsaController(AbstractController):
         self._currently_open_popover = None
 
     def _deselect(self, list_name):
-        self.builder.get_object(list_name).get_selection().unselect_all()
+        builder_get_assert(self.builder, Gtk.TreeView, list_name).get_selection().unselect_all()
 
     @typing.no_type_check
     def _select(self, selected: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]], selected_layer: Optional[int],
@@ -1149,15 +1167,15 @@ class SsaController(AbstractController):
             self._currently_open_popover.popdown()
         # Also select the layer back.
         if selected_layer is not None:
-            ssa_layers: Gtk.TreeView = self.builder.get_object('ssa_layers')  # type: ignore
+            ssa_layers = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_layers')
             ssa_layers.get_selection().select_iter(self._find_list_iter(ssa_layers, lambda row: row[0] == selected_layer))
 
         # this will prevent the updating events from firing, when selecting below.
         self._currently_selected_entity = None
         self._currently_selected_entity_layer = None
-        self.drawer.set_selected(selected)  # type: ignore
+        self.drawer.set_selected(selected)
         if open_popover:
-            popover: Gtk.Popover = None  # type: ignore
+            popover: Optional[Gtk.Popover] = None
             if isinstance(selected, SsaActor):
                 popover = self._w_po_actors
                 if popup_x is None or popup_y is None:
@@ -1181,8 +1199,8 @@ class SsaController(AbstractController):
                 self._select_in_combobox_where_callback('po_object_sector', lambda r: selected_layer == r[0])
                 self._select_in_combobox_where_callback('po_object_script', lambda r: selected.script_id == r[0])
                 self._select_in_combobox_where_callback('po_object_dir', lambda r: selected.pos.direction.id == r[0])
-                self.builder.get_object('po_object_width').set_text(str(selected.hitbox_w))
-                self.builder.get_object('po_object_height').set_text(str(selected.hitbox_h))
+                builder_get_assert(self.builder, Gtk.Entry, 'po_object_width').set_text(str(selected.hitbox_w))
+                builder_get_assert(self.builder, Gtk.Entry, 'po_object_height').set_text(str(selected.hitbox_h))
 
                 popover.set_relative_to(self._w_ssa_draw)
                 rect = Gdk.Rectangle()
@@ -1197,8 +1215,8 @@ class SsaController(AbstractController):
                 self._select_in_combobox_where_callback('po_performer_kind', lambda r: selected.type == r[0])
                 self._select_in_combobox_where_callback('po_performer_sector', lambda r: selected_layer == r[0])
                 self._select_in_combobox_where_callback('po_performer_dir', lambda r: selected.pos.direction.id == r[0])
-                self.builder.get_object('po_performer_width').set_text(str(selected.hitbox_w))
-                self.builder.get_object('po_performer_height').set_text(str(selected.hitbox_h))
+                builder_get_assert(self.builder, Gtk.Entry, 'po_performer_width').set_text(str(selected.hitbox_w))
+                builder_get_assert(self.builder, Gtk.Entry, 'po_performer_height').set_text(str(selected.hitbox_h))
 
                 popover.set_relative_to(self._w_ssa_draw)
                 rect = Gdk.Rectangle()
@@ -1212,8 +1230,8 @@ class SsaController(AbstractController):
                     popup_x, popup_y = popover_position(*tuple(x * self._scale_factor for x in self.drawer.get_bb_trigger(selected)))
                 self._select_in_combobox_where_callback('po_trigger_id', lambda r: selected.trigger_id == self.ssa.triggers.index(r[0]))
                 self._select_in_combobox_where_callback('po_trigger_sector', lambda r: selected_layer == r[0])
-                self.builder.get_object('po_trigger_width').set_text(str(selected.trigger_width))
-                self.builder.get_object('po_trigger_height').set_text(str(selected.trigger_height))
+                builder_get_assert(self.builder, Gtk.Entry, 'po_trigger_width').set_text(str(selected.trigger_width))
+                builder_get_assert(self.builder, Gtk.Entry, 'po_trigger_height').set_text(str(selected.trigger_height))
 
                 popover.set_relative_to(self._w_ssa_draw)
                 rect = Gdk.Rectangle()
@@ -1229,19 +1247,20 @@ class SsaController(AbstractController):
     def _add_entity_to_list(self, entity: Union[SsaActor, SsaObject, SsaPerformer, SsaEvent], layer: int):
         tree = self._get_list_for(entity)
         if isinstance(entity, SsaActor):
-            tree.get_model().append(self._list_entry_generate_actor(layer, entity))
+            typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).append(self._list_entry_generate_actor(layer, entity))
         elif isinstance(entity, SsaObject):
-            tree.get_model().append(self._list_entry_generate_object(layer, entity))
+            typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).append(self._list_entry_generate_object(layer, entity))
         elif isinstance(entity, SsaPerformer):
-            tree.get_model().append(self._list_entry_generate_performer(layer, entity))
+            typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).append(self._list_entry_generate_performer(layer, entity))
         elif isinstance(entity, SsaEvent):
-            tree.get_model().append(self._list_entry_generate_trigger(layer, entity))
+            typing.cast(Gtk.ListStore, assert_not_none(tree.get_model())).append(self._list_entry_generate_trigger(layer, entity))
 
-    def _select_in_combobox_where_callback(self, cb_name: str, callback: Callable[[Mapping], bool]):
-        cb: Gtk.ComboBox = self.builder.get_object(cb_name)  # type: ignore
+    def _select_in_combobox_where_callback(self, cb_name: str, callback: Callable[[Gtk.TreeModelRow], bool]):
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, cb_name)
         l_iter = cb.get_model().get_iter_first()
         while l_iter is not None:
-            if callback(cb.get_model()[l_iter]):
+            m = typing.cast(Gtk.ListStore, assert_not_none(cb.get_model()))
+            if callback(m[l_iter]):
                 cb.set_active_iter(l_iter)
                 return
             l_iter = cb.get_model().iter_next(l_iter)
@@ -1253,7 +1272,7 @@ class SsaController(AbstractController):
         self._suppress_events = True
         # MAP BGS
         map_bg_list = self.map_bg_module.bgs
-        tool_choose_map_bg_cb: Gtk.ComboBox = self.builder.get_object('tool_choose_map_bg_cb')
+        tool_choose_map_bg_cb = builder_get_assert(self.builder, Gtk.ComboBox, 'tool_choose_map_bg_cb')
         map_bg_store = Gtk.ListStore(int, str)  # ID, BMA name
         default_bg = map_bg_store.append([-1, _("None")])
         for i, entry in enumerate(map_bg_list.level):
@@ -1264,22 +1283,22 @@ class SsaController(AbstractController):
         tool_choose_map_bg_cb.set_active_iter(default_bg)
 
         # EVENTS - TODO: Unify naming of SSA events/triggers with the UI!
-        ssa_events: Gtk.TreeView = self.builder.get_object('ssa_events')
+        ssa_events = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_events')
         # (obj, coroutine name, script name, unk2, unk3)
         events_list_store = Gtk.ListStore(object, str, str, int, int)
-        ssa_events.append_column(resizable(TreeViewColumn(_("Triggered Script"), Gtk.CellRendererText(), text=2)))
-        ssa_events.append_column(resizable(TreeViewColumn(_("Coroutine"), Gtk.CellRendererText(), text=1)))
-        ssa_events.append_column(resizable(TreeViewColumn(_("Unk2"), Gtk.CellRendererText(), text=3)))
-        ssa_events.append_column(resizable(TreeViewColumn(_("Unk3"), Gtk.CellRendererText(), text=4)))
+        ssa_events.append_column(resizable(create_tree_view_column(_("Triggered Script"), Gtk.CellRendererText(), text=2)))
+        ssa_events.append_column(resizable(create_tree_view_column(_("Coroutine"), Gtk.CellRendererText(), text=1)))
+        ssa_events.append_column(resizable(create_tree_view_column(_("Unk2"), Gtk.CellRendererText(), text=3)))
+        ssa_events.append_column(resizable(create_tree_view_column(_("Unk3"), Gtk.CellRendererText(), text=4)))
         ssa_events.set_model(events_list_store)
         for event in self.ssa.triggers:
             events_list_store.append(self._list_entry_generate_event(event))
 
         # SCRIPTS
-        ssa_scripts: Gtk.TreeView = self.builder.get_object('ssa_scripts')
+        ssa_scripts = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_scripts')
         # (short path (relative to scene), display name)
         scripts_list_store = Gtk.ListStore(str, str)
-        ssa_scripts.append_column(resizable(TreeViewColumn(_("Name"), Gtk.CellRendererText(), text=1)))
+        ssa_scripts.append_column(resizable(create_tree_view_column(_("Name"), Gtk.CellRendererText(), text=1)))
         ssa_scripts.set_model(scripts_list_store)
         for script in self.scripts:
             scripts_list_store.append([
@@ -1288,10 +1307,10 @@ class SsaController(AbstractController):
             ])
 
         # SCENES FOR MAP
-        ssa_scenes: Gtk.TreeView = self.builder.get_object('ssa_scenes')
+        ssa_scenes = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_scenes')
         # (filename)
         scenes_list_store = Gtk.ListStore(str)
-        ssa_scenes.append_column(resizable(TreeViewColumn(_("Name"), Gtk.CellRendererText(), text=0)))
+        ssa_scenes.append_column(resizable(create_tree_view_column(_("Name"), Gtk.CellRendererText(), text=0)))
         ssa_scenes.set_model(scenes_list_store)
         select_iter_current_scene = None
         for scene in self.module.get_scenes_for_map(self.mapname):
@@ -1304,53 +1323,53 @@ class SsaController(AbstractController):
         # ENTITY LISTS (STORE SETUP)
         # Are filled later (under layers; with the layer data)
         # ssa_actors
-        ssa_actors: Gtk.TreeView = self.builder.get_object('ssa_actors')
+        ssa_actors = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_actors')
         # (layer, entity, kind, script name)
         actors_list_store = Gtk.ListStore(int, object, str, str)
-        ssa_actors.append_column(resizable(TreeViewColumn(_("Sector"), Gtk.CellRendererText(), text=0)))
-        ssa_actors.append_column(resizable(TreeViewColumn(_("Kind"), Gtk.CellRendererText(), text=2)))
-        ssa_actors.append_column(resizable(TreeViewColumn(_("Talk Script"), Gtk.CellRendererText(), text=3)))
+        ssa_actors.append_column(resizable(create_tree_view_column(_("Sector"), Gtk.CellRendererText(), text=0)))
+        ssa_actors.append_column(resizable(create_tree_view_column(_("Kind"), Gtk.CellRendererText(), text=2)))
+        ssa_actors.append_column(resizable(create_tree_view_column(_("Talk Script"), Gtk.CellRendererText(), text=3)))
         ssa_actors.set_model(actors_list_store)
 
         # ssa_objects
-        ssa_objects: Gtk.TreeView = self.builder.get_object('ssa_objects')
+        ssa_objects = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_objects')
         # (layer, entity, kind, script name)
         objects_list_store = Gtk.ListStore(int, object, str, str)
-        ssa_objects.append_column(resizable(TreeViewColumn(_("Sector"), Gtk.CellRendererText(), text=0)))
-        ssa_objects.append_column(resizable(TreeViewColumn(_("Kind"), Gtk.CellRendererText(), text=2)))
-        ssa_objects.append_column(resizable(TreeViewColumn(_("Talk Script"), Gtk.CellRendererText(), text=3)))
+        ssa_objects.append_column(resizable(create_tree_view_column(_("Sector"), Gtk.CellRendererText(), text=0)))
+        ssa_objects.append_column(resizable(create_tree_view_column(_("Kind"), Gtk.CellRendererText(), text=2)))
+        ssa_objects.append_column(resizable(create_tree_view_column(_("Talk Script"), Gtk.CellRendererText(), text=3)))
         ssa_objects.set_model(objects_list_store)
 
         # ssa_performers
-        ssa_performers: Gtk.TreeView = self.builder.get_object('ssa_performers')
+        ssa_performers = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_performers')
         # (layer, entity, kind)
         performers_list_store = Gtk.ListStore(int, object, str)
-        ssa_performers.append_column(resizable(TreeViewColumn(_("Sector"), Gtk.CellRendererText(), text=0)))
-        ssa_performers.append_column(resizable(TreeViewColumn(_("Type"), Gtk.CellRendererText(), text=2)))
+        ssa_performers.append_column(resizable(create_tree_view_column(_("Sector"), Gtk.CellRendererText(), text=0)))
+        ssa_performers.append_column(resizable(create_tree_view_column(_("Type"), Gtk.CellRendererText(), text=2)))
         ssa_performers.set_model(performers_list_store)
 
         # ssa_triggers
-        ssa_triggers: Gtk.TreeView = self.builder.get_object('ssa_triggers')
+        ssa_triggers = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_triggers')
         # (layer, entity, event coroutine name)
         triggers_list_store = Gtk.ListStore(int, object, str)
-        ssa_triggers.append_column(resizable(TreeViewColumn(_("Sector"), Gtk.CellRendererText(), text=0)))
-        ssa_triggers.append_column(resizable(TreeViewColumn(_("Event Script"), Gtk.CellRendererText(), text=2)))
+        ssa_triggers.append_column(resizable(create_tree_view_column(_("Sector"), Gtk.CellRendererText(), text=0)))
+        ssa_triggers.append_column(resizable(create_tree_view_column(_("Event Script"), Gtk.CellRendererText(), text=2)))
         ssa_triggers.set_model(triggers_list_store)
         
         # POPOVERS
         # > PO - Sectors [STORE SETUP]
         po_sector_store = Gtk.ListStore(int, str)  # ID, name
         
-        po_actor_sector: Gtk.ComboBox = self.builder.get_object('po_actor_sector')
+        po_actor_sector = builder_get_assert(self.builder, Gtk.ComboBox, 'po_actor_sector')
         self._fast_set_comboxbox_store(po_actor_sector, po_sector_store, 1)
         
-        po_object_sector: Gtk.ComboBox = self.builder.get_object('po_object_sector')
+        po_object_sector: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'po_object_sector')
         self._fast_set_comboxbox_store(po_object_sector, po_sector_store, 1)
         
-        po_performer_sector: Gtk.ComboBox = self.builder.get_object('po_performer_sector')
+        po_performer_sector: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'po_performer_sector')
         self._fast_set_comboxbox_store(po_performer_sector, po_sector_store, 1)
         
-        po_trigger_sector: Gtk.ComboBox = self.builder.get_object('po_trigger_sector')
+        po_trigger_sector: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'po_trigger_sector')
         self._fast_set_comboxbox_store(po_trigger_sector, po_sector_store, 1)
 
         # > PO - Directions
@@ -1358,13 +1377,13 @@ class SsaController(AbstractController):
         for direction in self.static_data.script_data.directions.values():
             po_direction_store.append([direction.id, direction.print_name])
         
-        po_actor_direction: Gtk.ComboBox = self.builder.get_object('po_actor_dir')
+        po_actor_direction: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'po_actor_dir')
         self._fast_set_comboxbox_store(po_actor_direction, po_direction_store, 1)
         
-        po_object_direction: Gtk.ComboBox = self.builder.get_object('po_object_dir')
+        po_object_direction: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'po_object_dir')
         self._fast_set_comboxbox_store(po_object_direction, po_direction_store, 1)
         
-        po_performer_direction: Gtk.ComboBox = self.builder.get_object('po_performer_dir')
+        po_performer_direction: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'po_performer_dir')
         self._fast_set_comboxbox_store(po_performer_direction, po_direction_store, 1)
 
         # > PO - Talk Script
@@ -1373,10 +1392,10 @@ class SsaController(AbstractController):
         for s_i, script in [(self._script_id(script, as_int=True), self._get_file_shortname(script)) for script in self.scripts]:
             po_script_store.append([s_i, script])
         
-        po_actor_script: Gtk.ComboBox = self.builder.get_object('po_actor_script')
+        po_actor_script: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'po_actor_script')
         self._fast_set_comboxbox_store(po_actor_script, po_script_store, 1)
         
-        po_object_script: Gtk.ComboBox = self.builder.get_object('po_object_script')
+        po_object_script: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'po_object_script')
         self._fast_set_comboxbox_store(po_object_script, po_script_store, 1)
 
         # > PO - Kinds
@@ -1385,7 +1404,7 @@ class SsaController(AbstractController):
         for actor_kind in self.static_data.script_data.level_entities:
             po_actor_kind_store.append([actor_kind.id, actor_kind.name])
         
-        po_actor_kind: Gtk.ComboBox = self.builder.get_object('po_actor_kind')
+        po_actor_kind: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'po_actor_kind')
         self._fast_set_comboxbox_store(po_actor_kind, po_actor_kind_store, 1)
         
         # Objects
@@ -1393,7 +1412,7 @@ class SsaController(AbstractController):
         for object_kind in self.static_data.script_data.objects:
             po_object_kind_store.append([object_kind.id, object_kind.unique_name])
         
-        po_object_kind: Gtk.ComboBox = self.builder.get_object('po_object_kind')
+        po_object_kind: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'po_object_kind')
         self._fast_set_comboxbox_store(po_object_kind, po_object_kind_store, 1)
         
         # Performer
@@ -1403,7 +1422,7 @@ class SsaController(AbstractController):
         for performer_type in [0, 1, 2, 3, 4, 5]:
             po_performer_kind_store.append([performer_type, f(_('Type {performer_type}'))])
 
-        po_performer_kind: Gtk.ComboBox = self.builder.get_object('po_performer_kind')
+        po_performer_kind: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'po_performer_kind')
         self._fast_set_comboxbox_store(po_performer_kind, po_performer_kind_store, 1)
         
         # Trigger
@@ -1412,11 +1431,11 @@ class SsaController(AbstractController):
             po_trigger_id_store.append([event, f"{self._get_talk_script_name(event.script_id)} "
                                              f"/ {self._get_coroutine_name(event.coroutine)}"])
 
-        po_trigger_id: Gtk.ComboBox = self.builder.get_object('po_trigger_id')
+        po_trigger_id: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'po_trigger_id')
         self._fast_set_comboxbox_store(po_trigger_id, po_trigger_id_store, 1)
 
         # LAYERS
-        ssa_layers: Gtk.TreeView = self.builder.get_object('ssa_layers')
+        ssa_layers = builder_get_assert(self.builder, Gtk.TreeView, 'ssa_layers')
         # (index, display_name, visible, solo)
         layer_list_store = Gtk.ListStore(int, str, bool, bool)
         renderer_visible = Gtk.CellRendererToggle()
@@ -1427,7 +1446,7 @@ class SsaController(AbstractController):
         renderer_solo.connect("toggled", partial(self.on_ssa_layers_solo_toggled, layer_list_store))
         ssa_layers.append_column(column_with_tooltip(_("S"),  # TRANSLATOR: First letter of 'Solo'
                                                      _("Solo"), renderer_solo, "active", 3))
-        ssa_layers.append_column(resizable(TreeViewColumn(_("Name"), Gtk.CellRendererText(), text=1)))
+        ssa_layers.append_column(resizable(create_tree_view_column(_("Name"), Gtk.CellRendererText(), text=1)))
         ssa_layers.set_model(layer_list_store)
         for i, layer in enumerate(self.ssa.layer_list):
             layer_list_store.append(self._list_entry_generate_layer(i, layer))
@@ -1461,20 +1480,20 @@ class SsaController(AbstractController):
                              self.module.get_sprite_provider())
         self.drawer.start()
 
-        self.drawer.set_draw_tile_grid(self.builder.get_object(f'tool_scene_grid').get_active())
+        self.drawer.set_draw_tile_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tool_scene_grid').get_active())
 
     def _set_drawer_bg(self, surface: cairo.Surface, w: int, h: int):
         self._map_bg_width = w
         self._map_bg_height = h
-        self._w_ssa_draw.set_size_request(  # type: ignore
-            self._map_bg_width * self._scale_factor, self._map_bg_height * self._scale_factor
+        self._w_ssa_draw.set_size_request(
+            round(self._map_bg_width * self._scale_factor), round(self._map_bg_height * self._scale_factor)
         )
-        self.drawer.map_bg = surface  # type: ignore
-        self._w_ssa_draw.queue_draw()  # type: ignore
+        self.drawer.map_bg = surface
+        self._w_ssa_draw.queue_draw()
 
     def _update_scales(self):
         self._w_ssa_draw.set_size_request(
-            self._map_bg_width * self._scale_factor, self._map_bg_height * self._scale_factor
+            round(self._map_bg_width * self._scale_factor), round(self._map_bg_height * self._scale_factor)
         )
         if self.drawer:
             self.drawer.set_scale(self._scale_factor)
@@ -1525,7 +1544,7 @@ class SsaController(AbstractController):
     def _list_entry_generate_trigger(self, layer_id, trigger: SsaEvent):
         return [
             layer_id, trigger,
-            self._get_event_script_name(self.ssa.triggers, trigger.trigger_id)  # type: ignore
+            self._get_event_script_name(self.ssa.triggers, trigger.trigger_id)
         ]
 
     def _list_entry_generate_layer(self, i, layer):
@@ -1592,10 +1611,14 @@ class SsaController(AbstractController):
             return f'??? {event_id}'
         name = self._get_talk_script_name(events[event_id].script_id)
         if short:
-            return self._script_id(name)  # type: ignore
+            return self._script_id(name)
         return name
 
-    def _script_id(self, name, as_int=False) -> Union[str, int]:
+    @typing.overload
+    def _script_id(self, name: str, as_int: typing.Literal[False] = False) -> str: ...
+    @typing.overload
+    def _script_id(self, name: str, as_int: typing.Literal[True]) -> int: ...
+    def _script_id(self, name: str, as_int: bool = False) -> Union[str, int]:
         # First try to parse as an int, if this fails, the event has no script assigned.
         try:
             int(name[-6:-4])
@@ -1635,9 +1658,9 @@ class SsaController(AbstractController):
         )
 
     def _show_generic_input(self, label_text, ok_text):
-        dialog: Gtk.Dialog = self.builder.get_object('generic_input_dialog')
-        entry: Gtk.Entry = self.builder.get_object('generic_input_dialog_entry')
-        label: Gtk.Label = self.builder.get_object('generic_input_dialog_label')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'generic_input_dialog')
+        entry = builder_get_assert(self.builder, Gtk.Entry, 'generic_input_dialog_entry')
+        label = builder_get_assert(self.builder, Gtk.Label, 'generic_input_dialog_label')
         label.set_text(label_text)
         btn_cancel = dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
         btn = dialog.add_button(ok_text, Gtk.ResponseType.OK)
@@ -1648,12 +1671,12 @@ class SsaController(AbstractController):
         dialog.set_transient_for(MainController.window())
         response = dialog.run()
         dialog.hide()
-        btn.get_parent().remove(btn)
-        btn_cancel.get_parent().remove(btn_cancel)
+        assert_not_none(typing.cast(Optional[Gtk.Container], btn.get_parent())).remove(btn)
+        assert_not_none(typing.cast(Optional[Gtk.Container], btn_cancel.get_parent())).remove(btn_cancel)
         return response, entry.get_text()
 
     def _init_rest_room_note(self):
-        info_bar = self.builder.get_object('editor_rest_room_note')
+        info_bar = builder_get_assert(self.builder, Gtk.InfoBar, 'editor_rest_room_note')
         if self.level is not None:
             if self.level.mapty_enum == Pmd2ScriptLevelMapType.TILESET or self.level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM:
                 mappings, mappa, fixed, dungeon_bin_context, dungeon_list = self.module.get_mapping_dungeon_assets()
@@ -1672,4 +1695,4 @@ class SsaController(AbstractController):
     def on_btn_toggle_overlay_rendering_clicked(self, *args):
         if self._tileset_drawer_overlay is not None:
             self._tileset_drawer_overlay.enabled = not self._tileset_drawer_overlay.enabled
-            self.on_tool_choose_map_bg_cb_changed(self.builder.get_object('tool_choose_map_bg_cb'))
+            self.on_tool_choose_map_bg_cb_changed(builder_get_assert(self.builder, Gtk.ComboBox, 'tool_choose_map_bg_cb'))

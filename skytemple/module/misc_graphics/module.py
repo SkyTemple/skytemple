@@ -113,7 +113,7 @@ class MiscGraphicsModule(AbstractModule):
         self.dungeon_bin_context: ModelContext[DungeonBinPack]
         self.list_of_wtes_dungeon_bin: List[Wte]
         self.list_of_wtus_dungeon_bin: List[Wtu]
-        self.list_of_zmappats_dungeon_bin: Optional[List[ZMappaT]] = None
+        self.list_of_zmappats_dungeon_bin: List[ZMappaT]
 
         self._tree_model: Gtk.TreeModel
         self._tree_level_iter: Dict[str, Gtk.TreeIter] = {}
@@ -204,9 +204,9 @@ class MiscGraphicsModule(AbstractModule):
             ])
             
         # dungeon bin entries at the end:
-        for i, name in enumerate(self.list_of_wtes_dungeon_bin):  # type: ignore
+        for i, name in enumerate(self.list_of_wtes_dungeon_bin):
             wtu_name = name[:-3] + WTU_FILE_EXT
-            if name[:-3] + WTU_FILE_EXT not in self.list_of_wtus_dungeon_bin:  # type: ignore
+            if name[:-3] + WTU_FILE_EXT not in self.list_of_wtus_dungeon_bin:
                 wtu_name = None
             self._tree_level_dungeon_iter[name] = item_store.append(root, [
                 'skytemple-e-graphics-symbolic', 'dungeon.bin:' + name, self,  WteWtuController, WteOpenSpec(
@@ -214,7 +214,7 @@ class MiscGraphicsModule(AbstractModule):
                 ), False, '', True
             ])
         # zmappat at the end:
-        for i, name in enumerate(self.list_of_zmappats_dungeon_bin):  # type: ignore
+        for i, name in enumerate(self.list_of_zmappats_dungeon_bin):
             self._tree_level_dungeon_iter[name] = item_store.append(root, [
                 'skytemple-e-graphics-symbolic', 'dungeon.bin:' + name, self,  ZMappaTController, name, False, '', True
             ])
@@ -224,7 +224,7 @@ class MiscGraphicsModule(AbstractModule):
             'skytemple-e-graphics-symbolic', CART_REMOVED_NAME, self,  CartRemovedController, CART_REMOVED_NAME, False, '', True
         ])
 
-        recursive_generate_item_store_row_label(self._tree_model[root])  # type: ignore
+        recursive_generate_item_store_row_label(self._tree_model[root])
 
     def mark_w16_as_modified(self, item_id):
         """Mark a specific w16 as modified"""
@@ -285,7 +285,7 @@ class MiscGraphicsModule(AbstractModule):
             HardcodedCartRemoved.set_cart_removed_data(img, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._tree_level_iter[CART_REMOVED_NAME]]  # type: ignore
+        row = self._tree_model[self._tree_level_iter[CART_REMOVED_NAME]]
         recursive_up_item_store_mark_as_modified(row)
         
     def get_dungeon_bin_file(self, fn):
@@ -299,9 +299,9 @@ class MiscGraphicsModule(AbstractModule):
                 pal_name = assoc[1]
                 if pal_name not in self.list_of_bins:
                     pal_name = None
-                if pal_name!=None:
+                if pal_name is not None:
                     spec = FontOpenSpec(name, pal_name, FontType.BANNER_FONT)
-                    row = self._tree_model[self._tree_level_iter[spec.get_row_name()]]  # type: ignore
+                    row = self._tree_model[self._tree_level_iter[spec.get_row_name()]]
                     recursive_up_item_store_mark_as_modified(row)
         
     def mark_font_as_modified(self, item: FontOpenSpec):
@@ -310,7 +310,7 @@ class MiscGraphicsModule(AbstractModule):
         if item.pal_filename:
             self.project.mark_as_modified(item.pal_filename)
         # Mark as modified in tree
-        row = self._tree_model[self._tree_level_iter[item.get_row_name()]]  # type: ignore
+        row = self._tree_model[self._tree_level_iter[item.get_row_name()]]
         recursive_up_item_store_mark_as_modified(row)
         self._mark_font_assoc_as_modified(item.font_filename)
         
@@ -332,20 +332,20 @@ class MiscGraphicsModule(AbstractModule):
         
     def mark_wte_as_modified(self, item: WteOpenSpec, wte, wtu):
         if item.in_dungeon_bin:
-            with self.dungeon_bin_context as dungeon_bin:  # type: ignore
+            with self.dungeon_bin_context as dungeon_bin:
                 dungeon_bin.set(item.wte_filename, wte)
                 if item.wtu_filename:
                     dungeon_bin.set(item.wtu_filename, wtu)
             self.project.mark_as_modified(DUNGEON_BIN_PATH)
             # Mark as modified in tree
-            row = self._tree_model[self._tree_level_dungeon_iter[item.wte_filename]]  # type: ignore
+            row = self._tree_model[self._tree_level_dungeon_iter[item.wte_filename]]
             recursive_up_item_store_mark_as_modified(row)
         else:
             self.project.mark_as_modified(item.wte_filename)
             if item.wtu_filename:
                 self.project.mark_as_modified(item.wtu_filename)
             # Mark as modified in tree
-            row = self._tree_model[self._tree_level_iter[item.wte_filename]]  # type: ignore
+            row = self._tree_model[self._tree_level_iter[item.wte_filename]]
             recursive_up_item_store_mark_as_modified(row)
 
     def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:

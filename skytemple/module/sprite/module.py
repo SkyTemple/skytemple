@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import sys
 import webbrowser
-from typing import TYPE_CHECKING, Union, Optional, Dict
+from typing import TYPE_CHECKING, Union, Optional, Dict, overload, Literal
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeStore
@@ -65,7 +65,7 @@ class SpriteModule(AbstractModule):
         self.project = rom_project
         self.list_of_obj_sprites = self.project.get_files_with_ext(WAN_FILE_EXT, GROUND_DIR)
 
-        self._tree_model: Gtk.TreeModel
+        self._tree_model: Gtk.TreeStore
         self._tree_level_iter: Dict[str, Gtk.TreeIter] = {}
         self._root: Gtk.TreeIter
 
@@ -87,7 +87,7 @@ class SpriteModule(AbstractModule):
                                   modified_callback, assign_new_sprite_id_cb,
                                   get_shadow_size_cb, set_shadow_size_cb) -> Gtk.Widget:
         """Returns the view for one portrait slots"""
-        controller = MonsterSpriteController(self, sprite_id,  # type: ignore
+        controller = MonsterSpriteController(self, sprite_id,
                                              modified_callback, assign_new_sprite_id_cb,
                                              get_shadow_size_cb, set_shadow_size_cb)
         return controller.get_view()
@@ -99,7 +99,7 @@ class SpriteModule(AbstractModule):
     def save_object_sprite(self, filename, data: bytes):
         assert filename in self.list_of_obj_sprites
         self.project.save_file_manually(GROUND_DIR + '/' + filename, data)
-        row = self._tree_model[self._tree_level_iter[filename]]  # type: ignore
+        row = self._tree_model[self._tree_level_iter[filename]]
         recursive_up_item_store_mark_as_modified(row)
 
     def get_sprite_provider(self):
@@ -136,7 +136,7 @@ class SpriteModule(AbstractModule):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, 'wan')
             with open(fn, 'rb') as f:
                 return f.read()
@@ -159,7 +159,7 @@ class SpriteModule(AbstractModule):
 
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, 'wan')
             with open(fn, 'wb') as f:
                 f.write(sprite)
@@ -183,7 +183,7 @@ class SpriteModule(AbstractModule):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 return self.get_gfxcrunch().import_sprite(fn)
             except BaseException as e:
@@ -206,7 +206,7 @@ class SpriteModule(AbstractModule):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 self.get_gfxcrunch().export_sprite(sprite, fn)
             except BaseException as e:
@@ -228,7 +228,7 @@ class SpriteModule(AbstractModule):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 img = Image.open(fn, 'r')
                 return pmd_wan.encode_image_to_static_wan_file(img)
@@ -256,20 +256,32 @@ class SpriteModule(AbstractModule):
     def get_attack_bin_ctx(self) -> ModelContext[BinPack]:
         return self.project.open_file_in_rom(ATTACK_BIN, FileType.BIN_PACK, threadsafe=True)
 
-    def get_monster_monster_sprite_chara(self, id, raw=False) -> Union[bytes, WanFile]:
+    @overload
+    def get_monster_monster_sprite_chara(self, id, raw: Literal[False] = False) -> WanFile: ...
+    @overload
+    def get_monster_monster_sprite_chara(self, id, raw: Literal[True]) -> bytes: ...
+    def get_monster_monster_sprite_chara(self, id, raw: bool = False) -> Union[bytes, WanFile]:
         with self.get_monster_bin_ctx() as bin_pack:
             decompressed = FileType.PKDPX.deserialize(bin_pack[id]).decompress()
             if raw:
                 return decompressed
             return FileType.WAN.CHARA.deserialize(decompressed)
 
-    def get_monster_ground_sprite_chara(self, id, raw=False) -> Union[bytes, WanFile]:
+    @overload
+    def get_monster_ground_sprite_chara(self, id, raw: Literal[False] = False) -> WanFile: ...
+    @overload
+    def get_monster_ground_sprite_chara(self, id, raw: Literal[True]) -> bytes: ...
+    def get_monster_ground_sprite_chara(self, id, raw: bool = False) -> Union[bytes, WanFile]:
         with self.get_ground_bin_ctx() as bin_pack:
             if raw:
                 return bin_pack[id]
             return FileType.WAN.CHARA.deserialize(bin_pack[id])
 
-    def get_monster_attack_sprite_chara(self, id, raw=False) -> Union[bytes, WanFile]:
+    @overload
+    def get_monster_attack_sprite_chara(self, id, raw: Literal[False] = False) -> WanFile: ...
+    @overload
+    def get_monster_attack_sprite_chara(self, id, raw: Literal[True]) -> bytes: ...
+    def get_monster_attack_sprite_chara(self, id, raw: bool = False) -> Union[bytes, WanFile]:
         with self.get_attack_bin_ctx() as bin_pack:
             decompressed = FileType.PKDPX.deserialize(bin_pack[id]).decompress()
             if raw:
@@ -314,9 +326,9 @@ class SpriteModule(AbstractModule):
     
     def prepare_monster_sprite(self, data: Union[bytes, WanFile], compress: bool) -> bytes:
         if isinstance(data, WanFile):
-            data = FileType.WAN.CHARA.serialize(data) # type: ignore
+            data = FileType.WAN.CHARA.serialize(data) 
         if compress:
-            data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data)) # type: ignore
+            data = FileType.PKDPX.serialize(FileType.PKDPX.compress(data)) 
         return data
 
     def save_monster_ground_sprite(self, id, data: Union[bytes, WanFile], raw=False):

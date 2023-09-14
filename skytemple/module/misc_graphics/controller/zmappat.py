@@ -17,12 +17,13 @@
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING, List, cast
 
 import cairo
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
+from skytemple.core.ui_utils import builder_get_assert
 from skytemple_files.graphics.zmappat.model import ZMappaT, ZMappaTVariation
 from skytemple_files.graphics.zmappat import *
 
@@ -53,15 +54,15 @@ class ZMappaTController(AbstractController):
         self._init_zmappat()
         self._reinit_image()
         self.builder.connect_signals(self)
-        self.builder.get_object('draw_tiles').connect('draw', self.draw_tiles)
-        self.builder.get_object('draw_masks').connect('draw', self.draw_masks)
-        return self.builder.get_object('editor')
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_tiles').connect('draw', self.draw_tiles)
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_masks').connect('draw', self.draw_masks)
+        return builder_get_assert(self.builder, Gtk.Widget, 'editor')
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
-        w.get_menu().popup(None, None, None, None, 0, Gtk.get_current_event_time())
+        cast(Gtk.Menu, w.get_menu()).popup(None, None, None, None, 0, Gtk.get_current_event_time())
             
     def on_import_clicked(self, w: Gtk.MenuToolButton):
-        w.get_menu().popup(None, None, None, None, 0, Gtk.get_current_event_time())
+        cast(Gtk.Menu, w.get_menu()).popup(None, None, None, None, 0, Gtk.get_current_event_time())
     
     def on_export_minimized_activate(self, *args):
         dialog = Gtk.FileChooserNative.new(
@@ -75,7 +76,7 @@ class ZMappaTController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             for v in ZMappaTVariation:
                 fn_tiles = os.path.join(fn, f'zmappat-{v.filename}-tiles.min.png')
                 fn_masks = os.path.join(fn, f'zmappat-{v.filename}-masks.min.png')
@@ -94,7 +95,7 @@ class ZMappaTController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             for v in ZMappaTVariation:
                 fn_tiles = os.path.join(fn, f'zmappat-{v.filename}-tiles.png')
                 fn_masks = os.path.join(fn, f'zmappat-{v.filename}-masks.png')
@@ -123,7 +124,7 @@ class ZMappaTController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 imgs: List[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
                 masks: List[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
@@ -179,7 +180,7 @@ class ZMappaTController(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 imgs: List[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
                 masks: List[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
@@ -200,17 +201,19 @@ class ZMappaTController(AbstractController):
             
     def _init_zmappat(self):
         # Init available variations
-        cb_store: Gtk.ListStore = self.builder.get_object('variation_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('zmappat_variation')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'variation_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'zmappat_variation')
         self._fill_available_zmappat_variations_into_store(cb_store)
         
         cb.set_active(0)
         
     def _reinit_image(self):
-        cb_store: Gtk.ListStore = self.builder.get_object('variation_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('zmappat_variation')
-        v : int = cb_store[cb.get_active_iter()][0]
-        if self.builder.get_object('switch_minimized').get_active():
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'variation_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'zmappat_variation')
+        active_iter = cb.get_active_iter()
+        assert active_iter is not None
+        v : int = cb_store[active_iter][0]
+        if builder_get_assert(self.builder, Gtk.Switch, 'switch_minimized').get_active():
             surface = self.zmappat.to_pil_tiles_minimized(ZMappaTVariation(v))  # type: ignore
             mask = self.zmappat.to_pil_masks_minimized(ZMappaTVariation(v))  # type: ignore
         else:
@@ -220,8 +223,8 @@ class ZMappaTController(AbstractController):
         self.surface = pil_to_cairo_surface(surface.convert('RGBA'))
         mask = mask.resize((mask.width*4, mask.height*4))
         self.mask = pil_to_cairo_surface(mask.convert('RGBA'))
-        self.builder.get_object('draw_tiles').queue_draw()
-        self.builder.get_object('draw_masks').queue_draw()
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_tiles').queue_draw()
+        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_masks').queue_draw()
 
     def on_switch_minimized_state_set(self, *args):
         self._reinit_image()

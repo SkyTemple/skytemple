@@ -26,6 +26,7 @@ import cairo
 from skytemple.core.error_handler import display_error
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.message_dialog import SkyTempleMessageDialog
+from skytemple.core.ui_utils import builder_get_assert
 from skytemple_files.graphics.w16.model import W16, W16AtImage, W16TocEntry
 
 from PIL import Image
@@ -57,12 +58,14 @@ class W16Controller(AbstractController):
 
         self._reset()
 
-        return self.builder.get_object('box_main')
+        return builder_get_assert(self.builder, Gtk.Widget, 'box_main')
 
     def on_draw(self, index: int, widget: Gtk.DrawingArea, ctx: cairo.Context):
         w16 = self._surfaces[index]
         ctx.set_source_rgb(0, 0, 0)
-        ctx.rectangle(0, 0, *widget.get_size_request())
+        w, h = widget.get_size_request()
+        assert w is not None and h is not None
+        ctx.rectangle(0, 0, w, h)
         ctx.fill()
         ctx.set_source_surface(w16)
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
@@ -80,7 +83,7 @@ class W16Controller(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             for index, image in enumerate(self.w16):
                 filename = os.path.join(fn, f'{index}.png')
                 img = image.get()
@@ -108,7 +111,7 @@ class W16Controller(AbstractController):
         fn = dialog.get_filename()
         dialog.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             r = re.compile(rf"(\d+)\.png", re.IGNORECASE)
             imgs_dict = {int(match[1]): name
                          for match, name in self._try_match_import(r, os.listdir(fn))
@@ -159,9 +162,9 @@ class W16Controller(AbstractController):
             yield r.match(name), name
 
     def _reset(self):
-        grid: Gtk.Grid = self.builder.get_object('grid')
+        grid = builder_get_assert(self.builder, Gtk.Grid, 'grid')
         self._surfaces = []
-        for child in grid:
+        for child in grid.get_children():
             grid.remove(child)
         for index, image_c in enumerate(self.w16):
             image = image_c.get()

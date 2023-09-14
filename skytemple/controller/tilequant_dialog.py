@@ -19,10 +19,11 @@ import os
 import sys
 from enum import Enum
 from functools import partial
+from typing import Optional, cast
 
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import add_dialog_png_filter
+from skytemple.core.ui_utils import add_dialog_png_filter, builder_get_assert
 from skytemple_files.user_error import USER_ERROR_MARK
 from tilequant import Tilequant, DitheringMode
 from skytemple_files.common.i18n_util import _
@@ -42,7 +43,7 @@ class ImageConversionMode(Enum):
 class TilequantController:
     """A dialog controller as an UI for tilequant."""
     def __init__(self, parent_window: Gtk.Window, builder: Gtk.Builder):
-        self.window: Gtk.Window = builder.get_object('dialog_tilequant')
+        self.window = builder_get_assert(builder, Gtk.Dialog, 'dialog_tilequant')
         self.window.set_transient_for(parent_window)
         self.window.set_attached_to(parent_window)
         
@@ -62,30 +63,30 @@ class TilequantController:
         any_filter.set_name(_("Any files"))
         any_filter.add_pattern("*")
 
-        tq_input_file: Gtk.FileChooserButton = builder.get_object('tq_input_file')
+        tq_input_file = builder_get_assert(builder, Gtk.FileChooserButton, 'tq_input_file')
         tq_input_file.add_filter(png_filter)
         tq_input_file.add_filter(jpg_filter)
         tq_input_file.add_filter(any_filter)
 
-        tq_second_file: Gtk.FileChooserButton = builder.get_object('tq_second_file')
+        tq_second_file = builder_get_assert(builder, Gtk.FileChooserButton, 'tq_second_file')
         tq_second_file.add_filter(png_filter)
         tq_second_file.add_filter(jpg_filter)
         tq_second_file.add_filter(any_filter)
 
-        builder.get_object('tq_number_palettes_help').connect('clicked', partial(
+        builder_get_assert(builder, Gtk.Button, 'tq_number_palettes_help').connect('clicked', partial(
             self.show_help, _('The maximum number of palettes that can be used. For normal backgrounds, '
                               'this can be a max. of 16. For map backgrounds, both layers share in total 14 palettes '
                               '(since the last 2 palettes are not rendered in game).')
         ))
-        builder.get_object('tq_transparent_color_help').connect('clicked', partial(
+        builder_get_assert(builder, Gtk.Button, 'tq_transparent_color_help').connect('clicked', partial(
             self.show_help, _('This exact color of the image will be imported as transparency (default: #12ab56).')
         ))
-        builder.get_object('tq_second_file_help').connect('clicked', partial(
+        builder_get_assert(builder, Gtk.Button, 'tq_second_file_help').connect('clicked', partial(
             self.show_help, _('You can use this to convert multiple images at once with the same palettes. '
                               'This is useful for map backgrounds with multiple layers, that need to share the same '
                               'palettes.')
         ))
-        builder.get_object('tq_mode_help').connect('clicked', partial(
+        builder_get_assert(builder, Gtk.Button, 'tq_mode_help').connect('clicked', partial(
             self.show_help,
             _('Dither: Colors will be reorganized and reduced if necessary. Colors will be changed so that they '
               '"blend into" each other. This will make the image look like it contains more colors but also might '
@@ -96,32 +97,35 @@ class TilequantController:
               'it\'s not possible with the current amount. However if it does work, the output image will look '
               'identical to the original image.')
         ))
-        builder.get_object('tq_dither_level_help').connect('clicked', partial(
+        builder_get_assert(builder, Gtk.Button, 'tq_dither_level_help').connect('clicked', partial(
             self.show_help,
             _('Only relevant if dithering is enabled: This controls the amount of dithering applied.')
         ))
-        builder.get_object('tq_convert').connect('clicked', self.convert)
+        builder_get_assert(builder, Gtk.Button, 'tq_convert').connect('clicked', self.convert)
         self.builder = builder
-        self._previous_output_image = None
-        self._previous_second_output_image = None
+        self._previous_output_image: Optional[str] = None
+        self._previous_second_output_image: Optional[str] = None
 
     def run(self, num_pals=16, num_colors=16):
         """
         Shows the tilequant dialog. Doesn't return anything.
         """
-        self.builder.get_object('tq_number_palettes').set_text(str(num_pals))
-        self.builder.get_object('tq_input_file').unselect_all()
-        self.builder.get_object('tq_second_file').unselect_all()
+        builder_get_assert(self.builder, Gtk.Entry, 'tq_number_palettes').set_text(str(num_pals))
+        builder_get_assert(self.builder, Gtk.FileChooserButton, 'tq_input_file').unselect_all()
+        builder_get_assert(self.builder, Gtk.FileChooserButton, 'tq_second_file').unselect_all()
         self.window.run()
         self.window.hide()
 
     def convert(self, *args):
 
-        mode_cb: Gtk.ComboBox = self.builder.get_object('tq_mode')
-        mode = ImageConversionMode(mode_cb.get_model()[mode_cb.get_active_iter()][0])
-        dither_level = self.builder.get_object('tq_dither_level').get_value()
-        has_first_image = self.builder.get_object('tq_input_file').get_filename() is not None
-        has_second_image = self.builder.get_object('tq_second_file').get_filename() is not None
+        mode_cb = builder_get_assert(self.builder, Gtk.ComboBox, 'tq_mode')
+        active_iter = mode_cb.get_active_iter()
+        if active_iter is None:
+            return
+        mode = ImageConversionMode(mode_cb.get_model()[active_iter][0])
+        dither_level = builder_get_assert(self.builder, Gtk.Adjustment, 'tq_dither_level').get_value()
+        has_first_image = builder_get_assert(self.builder, Gtk.FileChooserButton, 'tq_input_file').get_filename() is not None
+        has_second_image = builder_get_assert(self.builder, Gtk.FileChooserButton, 'tq_second_file').get_filename() is not None
 
         if not has_first_image:
             self.error(_("Please select an input image."), should_report=False)
@@ -147,7 +151,9 @@ class TilequantController:
 
         response = dialog.run()
         output_image = dialog.get_filename()
-        if output_image and '.' not in output_image:
+        if output_image is None:
+            return
+        if '.' not in output_image:
             output_image += '.png'
         self._previous_output_image = output_image
         dialog.destroy()
@@ -170,46 +176,49 @@ class TilequantController:
 
             response = dialog.run()
             second_output_image = dialog.get_filename()
-            if '.' not in second_output_image:
-                second_output_image += '.png'
+            if second_output_image is not None:
+                if '.' not in second_output_image:
+                    second_output_image += '.png'
             self._previous_second_output_image = second_output_image
             dialog.destroy()
             if response != Gtk.ResponseType.ACCEPT:
                 return
 
         try:
-            num_tile_cluster_passes = int(self.builder.get_object('tq_num_tile_cluster_passes').get_text())
+            num_tile_cluster_passes = int(builder_get_assert(self.builder, Gtk.Entry, 'tq_num_tile_cluster_passes').get_text())
             assert num_tile_cluster_passes > 0
         except (ValueError, AssertionError):
             num_tile_cluster_passes = 0
         try:
-            num_color_cluster_passes = int(self.builder.get_object('tq_num_color_cluster_passes').get_text())
+            num_color_cluster_passes = int(builder_get_assert(self.builder, Gtk.Entry, 'tq_num_color_cluster_passes').get_text())
             assert num_color_cluster_passes > 0
         except (ValueError, AssertionError):
             num_color_cluster_passes = 0
             
         try:
-            num_pals = int(self.builder.get_object('tq_number_palettes').get_text())
-            input_image = self.builder.get_object('tq_input_file').get_filename()
-            second_input_file = self.builder.get_object('tq_second_file').get_filename()
-            transparent_color = self.builder.get_object('tq_transparent_color').get_color()
+            num_pals = int(builder_get_assert(self.builder, Gtk.Entry, 'tq_number_palettes').get_text())
+            input_image = builder_get_assert(self.builder, Gtk.FileChooserButton, 'tq_input_file').get_filename()
+            second_input_file = builder_get_assert(self.builder, Gtk.FileChooserButton, 'tq_second_file').get_filename()
+            transparent_color_v = builder_get_assert(self.builder, Gtk.ColorButton, 'tq_transparent_color').get_color()
+            assert input_image is not None
+            assert transparent_color_v is not None
             transparent_color = (
-                int(transparent_color.red_float * 255),
-                int(transparent_color.green_float * 255),
-                int(transparent_color.blue_float * 255)
+                int(cast(float, transparent_color_v.red_float) * 255),
+                int(cast(float, transparent_color_v.green_float) * 255),
+                int(cast(float, transparent_color_v.blue_float) * 255)
             )
-        except ValueError:
+        except (ValueError, AssertionError):
             self.error(_("You entered invalid numbers."), should_report=False)
         else:
             if not os.path.exists(input_image):
                 self.error(_("The input image does not exist."), should_report=False)
                 return
-            if has_second_image and not os.path.exists(second_input_file):
+            if has_second_image and second_input_file is not None and not os.path.exists(second_input_file):
                 self.error(_("The second input image does not exist."), should_report=False)
                 return
             with open(input_image, 'rb') as input_file:
                 try:
-                    if not has_second_image:
+                    if not has_second_image or second_input_file is None:
                         # Only one image
                         image = Image.open(input_file)
                     else:

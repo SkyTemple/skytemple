@@ -23,7 +23,7 @@ from gi.repository import Gtk, Pango
 from gi.repository.Gtk import Widget
 
 from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.ui_utils import APP, make_builder
+from skytemple.core.ui_utils import make_builder
 logger = logging.getLogger(__name__)
 
 
@@ -129,7 +129,7 @@ class SimpleController(AbstractController, ABC):
         return None
 
     def generate_content_label(self, text: str) -> Gtk.Label:
-        label = Gtk.Label(text)
+        label = Gtk.Label(label=text)
         label.set_justify(Gtk.Justification.CENTER)
         label.set_line_wrap_mode(Pango.WrapMode.WORD)
         label.set_line_wrap(True)

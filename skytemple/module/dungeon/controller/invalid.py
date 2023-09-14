@@ -25,6 +25,8 @@ from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEONS
 from skytemple.core.string_provider import StringType
 from skytemple_files.hardcoded.dungeons import DungeonRestrictionDirection
 
+from skytemple.core.ui_utils import builder_get_assert
+
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, DungeonViewInfo
 
@@ -43,10 +45,10 @@ class InvalidDungeonController(AbstractController):
         self.builder = self._get_builder(__file__, 'invalid.glade')
         assert self.builder
 
-        self.builder.get_object('label_dungeon_name').set_text(self.dungeon_name)
+        builder_get_assert(self.builder, Gtk.Label, 'label_dungeon_name').set_text(self.dungeon_name)
         self.builder.connect_signals(self)
 
-        return self.builder.get_object('main_box')
+        return builder_get_assert(self.builder, Gtk.Widget, 'main_box')
 
     def on_btn_goto_clicked(self, *args):
         self.module.project.request_open(OpenRequest(

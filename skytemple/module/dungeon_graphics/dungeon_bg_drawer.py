@@ -150,8 +150,9 @@ class Drawer:
             break
 
         size_w, size_h = self.draw_area.get_size_request()
-        size_w /= self.scale
-        size_h /= self.scale
+        assert size_w is not None and size_h is not None
+        size_w //= self.scale
+        size_h //= self.scale
         # Selection
         self.selection_plugin.set_size(self.tiling_width * DPCI_TILE_DIM, self.tiling_height * DPCI_TILE_DIM)
         self.selection_plugin.draw(ctx, size_w, size_h, self.mouse_x, self.mouse_y)
@@ -206,7 +207,7 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
                  chunks_surfaces: List[List[List[cairo.Surface]]]):
 
         super().__init__(icon_view, None, pal_ani_durations, chunks_surfaces)
-        super(Gtk.CellRenderer, self).__init__()  # type: ignore
+        super(Gtk.CellRenderer, self).__init__()
 
         self.chunkidx = 0
 
@@ -221,7 +222,7 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
 
     def do_render(self, ctx, wdg, background_area, cell_area, flags):
         ctx.translate(cell_area.x, cell_area.y)
-        self.mappings = [self.chunkidx]  # type: ignore
+        self.mappings = [self.chunkidx]
         self.draw(wdg, ctx, False)
         if 'GTK_CELL_RENDERER_SELECTED' in str(flags):
             ctx.set_source_rgba(0, 0, 90, 0.3)

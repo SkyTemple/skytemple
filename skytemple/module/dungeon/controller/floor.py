@@ -40,7 +40,8 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET, REQUEST_TYPE_DUNGEON_FIXED_FLOOR, \
     REQUEST_TYPE_DUNGEON_MUSIC
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import add_dialog_xml_filter, glib_async, catch_overflow
+from skytemple.core.ui_utils import add_dialog_xml_filter, glib_async, catch_overflow, builder_get_assert, \
+    iter_tree_model
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG
 from skytemple.module.dungeon.controller.dojos import DOJOS_NAME
 from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer
@@ -152,9 +153,9 @@ class FloorController(AbstractController):
         self.entry: MappaFloorProtocol = self.module.get_mappa_floor(item)
 
         self.builder: Gtk.Builder = None  # type: ignore
-        self._draw = None
-        self.drawer: Optional[FixedRoomDrawer]
-        self._refresh_timer = None
+        self._draw: Optional[Gtk.DrawingArea] = None
+        self.drawer: Optional[FixedRoomDrawer] = None
+        self._refresh_timer: Optional[int] = None
         self._loading = False
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
@@ -219,34 +220,34 @@ class FloorController(AbstractController):
         self._recalculate_spawn_chances('item_cat_others_store', 4, 3)
 
         if not self.module.project.is_patch_applied("ExpandPokeList"):
-            self.builder.get_object('switch_kecleon_gender').destroy()
-            self.builder.get_object('label_kecleon_gender').destroy()
+            builder_get_assert(self.builder, Gtk.Widget, 'switch_kecleon_gender').destroy()
+            builder_get_assert(self.builder, Gtk.Widget, 'label_kecleon_gender').destroy()
         self._init_layout_values()
         self._loading = False
 
         # Preview
-        self._draw = self.builder.get_object('fixed_draw')
+        self._draw = builder_get_assert(self.builder, Gtk.DrawingArea, 'fixed_draw')
         self._init_drawer()
-        tool_fullmap = self.builder.get_object('tool_fullmap')
+        tool_fullmap = builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_fullmap')
         tool_fullmap.set_active(self._last_show_full_map)
         self.on_tool_fullmap_toggled(tool_fullmap, ignore_scaling=True)
         self._generate_floor()
 
         self.builder.connect_signals(self)
 
-        notebook: Gtk.Notebook = self.builder.get_object('floor_notebook')
+        notebook = builder_get_assert(self.builder, Gtk.Notebook, 'floor_notebook')
         notebook.set_current_page(self.__class__._last_open_tab_id)
 
-        item_list_notebook: Gtk.Notebook = self.builder.get_object('item_list_notebook')
+        item_list_notebook = builder_get_assert(self.builder, Gtk.Notebook, 'item_list_notebook')
         item_list_notebook.set_current_page(self._item_list_edit_active.value)
 
-        return self.builder.get_object('box_editor')
+        return builder_get_assert(self.builder, Gtk.Widget, 'box_editor')
 
     @typing.no_type_check
     def unload(self):
         # We need to destroy this first.
         # GTK is an enigma sometimes.
-        self.builder.get_object('export_dialog').destroy()
+        builder_get_assert(self.builder, Gtk.Dialog, 'export_dialog').destroy()
         super().unload()
         if self.drawer:
             self.drawer.unload()
@@ -273,7 +274,7 @@ class FloorController(AbstractController):
 
     def on_cb_floor_ranks_changed(self, w, *args):
         if self.module.has_floor_ranks():
-            cb = self.builder.get_object('cb_floor_ranks')
+            cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_floor_ranks')
             self.module.set_floor_rank(self.item.dungeon.dungeon_id, self.item.floor_id, cb.get_active())
             self.mark_as_modified()
 
@@ -284,7 +285,7 @@ class FloorController(AbstractController):
         
     def on_cb_mission_forbidden_changed(self, w, *args):
         if self.module.has_floor_ranks():
-            cb = self.builder.get_object('cb_mission_forbidden')
+            cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_mission_forbidden')
             self.module.set_floor_mf(self.item.dungeon.dungeon_id, self.item.floor_id, cb.get_active())
             self.mark_as_modified()
             
@@ -295,7 +296,9 @@ class FloorController(AbstractController):
     def on_cb_tileset_id_changed(self, w, *args):
         self._update_from_widget(w)
         self.mark_as_modified(modified_mappag=True)
-        if self.builder.get_object('tool_auto_refresh').get_active() and self.builder.get_object('tool_fullmap').get_active():
+        auto_refresh = builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active()
+        tool_fullmap = builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_fullmap').get_active()
+        if auto_refresh and tool_fullmap:
             self._init_tileset()
 
     def on_cb_music_id_changed(self, w, *args):
@@ -314,7 +317,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.room_density = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     def on_btn_help_room_density_clicked(self, *args):
@@ -342,7 +345,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.floor_connectivity = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     @catch_overflow(u8)
@@ -353,7 +356,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.water_density = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     def on_btn_help_water_density_clicked(self, *args):
@@ -367,7 +370,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.extra_hallway_density = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     def on_btn_help_floor_connectivity_clicked(self, *args):
@@ -395,7 +398,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.secondary_terrain = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     def on_cb_terrain_settings__generate_imperfect_rooms_changed(self, w, *args):
@@ -418,7 +421,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.item_density = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     @catch_overflow(u8)
@@ -429,7 +432,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.trap_density = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     @catch_overflow(i8)
@@ -440,7 +443,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.initial_enemy_density = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     @catch_overflow(u8)
@@ -451,7 +454,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.buried_item_density = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     def on_entry_max_coin_amount_changed(self, w, *args):
@@ -461,7 +464,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.max_coin_amount = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     def on_btn_help_trap_density_clicked(self, *args):
@@ -521,7 +524,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.kecleon_shop_item_positions = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     def on_scale_empty_monster_house_chance_value_changed(self, w, *args):
@@ -545,7 +548,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.unk_hidden_stairs = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     @catch_overflow(i16)
@@ -556,7 +559,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.iq_booster_boost = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     def on_btn_help_iq_booster_boost_clicked(self, *args):
@@ -570,7 +573,7 @@ class FloorController(AbstractController):
             return
         self.entry.layout.enemy_iq = val
         self.mark_as_modified()
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     def on_cb_unk_e_changed(self, w, *args):
@@ -578,13 +581,13 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def on_btn_goto_tileset_clicked(self, *args):
-        idx = self.builder.get_object('cb_tileset_id').get_active()
+        idx = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_tileset_id').get_active()
         self.module.project.request_open(OpenRequest(
             REQUEST_TYPE_DUNGEON_TILESET, idx
         ))
 
     def on_btn_goto_fixed_floor_clicked(self, *args):
-        idx = self.builder.get_object('cb_fixed_floor_id').get_active()
+        idx = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_fixed_floor_id').get_active()
         if idx > 0:
             self.module.project.request_open(OpenRequest(
                 REQUEST_TYPE_DUNGEON_FIXED_FLOOR, idx
@@ -601,7 +604,7 @@ class FloorController(AbstractController):
 
     @catch_overflow(u16)
     def on_cr_monster_spawns_entity_edited(self, widget, path, text):
-        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'monster_spawns_store')
         match = PATTERN_MD_ENTRY.match(text)
         if match is None:
             return
@@ -630,7 +633,7 @@ class FloorController(AbstractController):
         self._save_monster_spawn_rates()
 
     def on_cr_monster_spawns_entity_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_monsters'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_monsters'))
 
     @catch_overflow(u16)
     def on_cr_monster_spawns_weight_edited(self, widget, path, text):
@@ -638,9 +641,9 @@ class FloorController(AbstractController):
             u16_checked(int(text))
         except ValueError:
             return
-        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'monster_spawns_store')
         store[path][5] = text
-        if self.builder.get_object('monster_spawns_keep_synced_toggle').get_active():
+        if builder_get_assert(self.builder, Gtk.Switch, 'monster_spawns_keep_synced_toggle').get_active():
             store[path][7] = text
 
         self._recalculate_spawn_chances('monster_spawns_store', 5, 4, 7, 6)
@@ -652,12 +655,12 @@ class FloorController(AbstractController):
             u16_checked(int(text))
         except ValueError:
             return
-        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'monster_spawns_store')
         before = store[path][7]
         store[path][7] = text
 
         if store[path][5] != store[path][7]:
-            self.builder.get_object('monster_spawns_keep_synced_toggle').set_active(False)
+            builder_get_assert(self.builder, Gtk.Switch, 'monster_spawns_keep_synced_toggle').set_active(False)
 
         self._recalculate_spawn_chances('monster_spawns_store', 5, 4, 7, 6)
         self._save_monster_spawn_rates()
@@ -668,23 +671,23 @@ class FloorController(AbstractController):
             u8_checked(int(text))
         except ValueError:
             return
-        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'monster_spawns_store')
         store[path][3] = text
         self._save_monster_spawn_rates()
 
     def on_monster_spawns_add_clicked(self, *args):
-        store: Gtk.ListStore = self.builder.get_object('monster_spawns_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'monster_spawns_store')
         store.append([
-            1, self._get_icon(1, len(store)), self._ent_names[1],
+            1, self._get_icon(1, store.iter_n_children(None)), self._ent_names[1],
             "1", "0%", "0", "0%", "0"
         ])
         self._save_monster_spawn_rates()
 
     def on_monster_spawns_remove_clicked(self, *args):
-        tree: Gtk.TreeView = self.builder.get_object('monster_spawns_tree')
+        tree: Gtk.TreeView = builder_get_assert(self.builder, Gtk.TreeView, 'monster_spawns_tree')
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
-            model.remove(treeiter)
+            typing.cast(Gtk.ListStore, model).remove(treeiter)
         self._recalculate_spawn_chances('monster_spawns_store', 5, 4, 7, 6)
         self._save_monster_spawn_rates()
 
@@ -722,7 +725,7 @@ class FloorController(AbstractController):
             u16_checked(int(text))
         except ValueError:
             return
-        store: Gtk.Store = self.builder.get_object('trap_spawns_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'trap_spawns_store')
         store[path][3] = text
 
         self._recalculate_spawn_chances('trap_spawns_store', 3, 2)
@@ -734,8 +737,8 @@ class FloorController(AbstractController):
 
     @glib_async
     def on_cr_items_cat_name_changed(self, widget, path, new_iter, *args):
-        store: Gtk.Store = self.builder.get_object('item_categories_store')
-        cb_store: Gtk.Store = self.builder.get_object('cr_item_cat_name_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'item_categories_store')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cr_item_cat_name_store')
         store[path][0] = cb_store[new_iter][0]
         store[path][1] = cb_store[new_iter][1]
         self._save_item_spawn_rates()
@@ -747,21 +750,21 @@ class FloorController(AbstractController):
             u16_checked(int(text))
         except ValueError:
             return
-        store: Gtk.Store = self.builder.get_object('item_categories_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'item_categories_store')
         store[path][4] = text
 
         self._recalculate_spawn_chances('item_categories_store', 4, 3)
         self._save_item_spawn_rates()
 
     def on_item_categories_add_clicked(self, *args):
-        store: Gtk.Store = self.builder.get_object('item_categories_store')
-        dialog: Gtk.Dialog = self.builder.get_object('dialog_category_add')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'item_categories_store')
+        dialog: Gtk.Dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_category_add')
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
         # Init available categories
-        cb_store: Gtk.ListStore = self.builder.get_object('category_add_store')
-        cb: Gtk.ComboBoxText = self.builder.get_object('category_add_cb')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'category_add_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBoxText, 'category_add_cb')
         available_categories = self._fill_available_categories_into_store(cb_store)
         # Show error if no categories available
         if len(available_categories) < 1:
@@ -776,7 +779,9 @@ class FloorController(AbstractController):
         resp = dialog.run()
         dialog.hide()
         if resp == Gtk.ResponseType.APPLY:
-            row = cb_store[cb.get_active_iter()]
+            active_iter = cb.get_active_iter()
+            assert active_iter is not None
+            row = cb_store[active_iter]
             store.append([
                 row[0], row[1],
                 False, "0%", "0"
@@ -785,9 +790,9 @@ class FloorController(AbstractController):
             self._update_cr_item_cat_name_store()
 
     def on_item_categories_remove_clicked(self, *args):
-        tree: Gtk.TreeView = self.builder.get_object('item_categories_tree')
+        tree: Gtk.TreeView = builder_get_assert(self.builder, Gtk.TreeView, 'item_categories_tree')
         model, treeiter = tree.get_selection().get_selected()
-        if len(model) < 2:
+        if model.iter_n_children(None) < 2:
             display_error(
                 None,
                 _("The last category can not be removed."),
@@ -796,7 +801,7 @@ class FloorController(AbstractController):
             )
             return
         if model is not None and treeiter is not None:
-            model.remove(treeiter)
+            typing.cast(Gtk.ListStore, model).remove(treeiter)
         self._recalculate_spawn_chances('item_categories_store', 4, 3)
         self._save_item_spawn_rates()
 
@@ -804,7 +809,7 @@ class FloorController(AbstractController):
         self._on_cat_item_name_changed('item_cat_thrown_pierce_store', path, text)
 
     def on_cr_items_cat_thrown_pierce_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_thrown_pierce'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_thrown_pierce'))
 
     def on_cr_items_cat_thrown_pierce_guaranteed_toggled(self, widget, path):
         self._on_cat_item_guaranteed_toggled('item_cat_thrown_pierce_store', path, widget.get_active())
@@ -822,7 +827,7 @@ class FloorController(AbstractController):
         self._on_cat_item_name_changed('item_cat_thrown_rock_store', path, text)
 
     def on_cr_items_cat_thrown_rock_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_thrown_rock'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_thrown_rock'))
 
     def on_cr_items_cat_thrown_rock_guaranteed_toggled(self, widget, path):
         self._on_cat_item_guaranteed_toggled('item_cat_thrown_rock_store', path, widget.get_active())
@@ -840,7 +845,7 @@ class FloorController(AbstractController):
         self._on_cat_item_name_changed('item_cat_berries_store', path, text)
 
     def on_cr_items_cat_berries_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_berries'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_berries'))
 
     def on_cr_items_cat_berries_guaranteed_toggled(self, widget, path):
         self._on_cat_item_guaranteed_toggled('item_cat_berries_store', path, widget.get_active())
@@ -858,7 +863,7 @@ class FloorController(AbstractController):
         self._on_cat_item_name_changed('item_cat_foods_store', path, text)
 
     def on_cr_items_cat_foods_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_foods'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_foods'))
 
     def on_cr_items_cat_foods_guaranteed_toggled(self, widget, path):
         self._on_cat_item_guaranteed_toggled('item_cat_foods_store', path, widget.get_active())
@@ -876,7 +881,7 @@ class FloorController(AbstractController):
         self._on_cat_item_name_changed('item_cat_hold_store', path, text)
 
     def on_cr_items_cat_hold_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_hold'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_hold'))
 
     def on_cr_items_cat_hold_guaranteed_toggled(self, widget, path):
         self._on_cat_item_guaranteed_toggled('item_cat_hold_store', path, widget.get_active())
@@ -894,7 +899,7 @@ class FloorController(AbstractController):
         self._on_cat_item_name_changed('item_cat_tms_store', path, text)
 
     def on_cr_items_cat_tms_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_tms'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_tms'))
 
     def on_cr_items_cat_tms_guaranteed_toggled(self, widget, path):
         self._on_cat_item_guaranteed_toggled('item_cat_tms_store', path, widget.get_active())
@@ -912,7 +917,7 @@ class FloorController(AbstractController):
         self._on_cat_item_name_changed('item_cat_orbs_store', path, text)
 
     def on_cr_items_cat_orbs_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_orbs'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_orbs'))
 
     def on_cr_items_cat_orbs_guaranteed_toggled(self, widget, path):
         self._on_cat_item_guaranteed_toggled('item_cat_orbs_store', path, widget.get_active())
@@ -930,7 +935,7 @@ class FloorController(AbstractController):
         self._on_cat_item_name_changed('item_cat_others_store', path, text)
 
     def on_cr_items_cat_others_item_name_editing_started(self, renderer, editable, path):
-        editable.set_completion(self.builder.get_object('completion_item_others'))
+        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_item_others'))
 
     def on_cr_items_cat_others_guaranteed_toggled(self, widget, path):
         self._on_cat_item_guaranteed_toggled('item_cat_others_store', path, widget.get_active())
@@ -945,13 +950,13 @@ class FloorController(AbstractController):
         self._on_cat_item_remove_clicked('item_cat_others_tree')
 
     def _on_cat_item_name_changed(self, store_name: str, path, text: str):
-        store: Gtk.Store = self.builder.get_object(store_name)  # type: ignore
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
         match = PATTERN_MD_ENTRY.match(text)
         if match is None:
             return
 
         item_ids_already_in = []
-        for row in store:
+        for row in iter_tree_model(store):
             item_ids_already_in.append(int(row[0]))
 
         try:
@@ -1007,7 +1012,7 @@ class FloorController(AbstractController):
         self._save_item_spawn_rates()
 
     def _on_cat_item_guaranteed_toggled(self, store_name: str, path, old_state: bool):
-        store: Gtk.Store = self.builder.get_object(store_name)  # type: ignore
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
         store[path][2] = not old_state
         if not old_state:
             store[path][4] = "0"
@@ -1020,7 +1025,7 @@ class FloorController(AbstractController):
             assert v >= 0
         except:
             return
-        store: Gtk.Store = self.builder.get_object(store_name)  # type: ignore
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
         if store[path][2]:
             return
         store[path][4] = text
@@ -1029,10 +1034,10 @@ class FloorController(AbstractController):
         self._save_item_spawn_rates()
 
     def _on_cat_item_add_clicked(self, store_name: str):
-        store: Gtk.ListStore = self.builder.get_object(store_name)  # type: ignore
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
 
         item_ids_already_in = []
-        for row in store:
+        for row in iter_tree_model(store):
             item_ids_already_in.append(int(row[0]))
 
         i = 0
@@ -1052,7 +1057,7 @@ class FloorController(AbstractController):
                 return
         item_icon_renderer = ListIconRenderer(5)
         itm = self.module.get_item(first_item_id)
-        row_idx = len(store)
+        row_idx = store.iter_n_children(None)
         item_icon = item_icon_renderer.load_icon(
             store, self.module.project.get_sprite_provider().get_for_item, row_idx, row_idx, (itm,)
         )
@@ -1063,11 +1068,15 @@ class FloorController(AbstractController):
         self._save_item_spawn_rates()
 
     def _on_cat_item_remove_clicked(self, tree_name: str):
-        tree: Gtk.TreeView = self.builder.get_object(tree_name)  # type: ignore
+        tree = builder_get_assert(self.builder, Gtk.TreeView, tree_name)
         model, treeiter = tree.get_selection().get_selected()
         if model is not None and treeiter is not None:
-            model.remove(treeiter)
-        self._recalculate_spawn_chances(Gtk.Buildable.get_name(tree.get_model()), 4, 3)
+            typing.cast(Gtk.ListStore, model).remove(treeiter)
+        tmodel = tree.get_model()
+        if tmodel is not None:
+            self._recalculate_spawn_chances(Gtk.Buildable.get_name(
+                typing.cast(Gtk.Buildable, tmodel)
+            ), 4, 3)
         self._save_item_spawn_rates()
 
     # </editor-fold>
@@ -1105,31 +1114,34 @@ class FloorController(AbstractController):
             self.drawer.set_entity_renderer(MinimapEntityRenderer(self.drawer, minimap_provider))
             self.drawer.set_tileset_renderer(FixedFloorDrawerMinimap(minimap_provider))
         self._update_scales()
-        self._draw.queue_draw()  # type: ignore
+        if self._draw is not None:
+            self._draw.queue_draw()
 
     def _init_drawer(self):
-        self.drawer = FixedRoomDrawer(self._draw, None, self.module.project.get_sprite_provider(),
-                                      None, self.module.project.get_string_provider(), self.module)
-        self.drawer.start()
+        if self._draw is not None:
+            self.drawer = FixedRoomDrawer(self._draw, None, self.module.project.get_sprite_provider(),
+                                          None, self.module.project.get_string_provider(), self.module)
+            self.drawer.start()
 
-        self.drawer.set_draw_tile_grid(self.builder.get_object(f'tool_scene_grid').get_active())
+            self.drawer.set_draw_tile_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tool_scene_grid').get_active())
 
     def _generate_floor(self):
-        stack: Gtk.Stack = self.builder.get_object('preview_stack')
+        stack: Gtk.Stack = builder_get_assert(self.builder, Gtk.Stack, 'preview_stack')
         try:
             try:
-                rng = random.Random(int(self.builder.get_object('tool_entry_seed').get_text()))
+                rng = random.Random(int(builder_get_assert(self.builder, Gtk.Entry, 'tool_entry_seed').get_text()))
             except ValueError:
-                rng = random.Random(hash(self.builder.get_object('tool_entry_seed').get_text()))
+                rng = random.Random(hash(builder_get_assert(self.builder, Gtk.Entry, 'tool_entry_seed').get_text()))
 
-            floor: List[Tile] = DungeonFloorGenerator(  # type: ignore
+            floor = typing.cast(List[Tile], DungeonFloorGenerator(
                 unknown_dungeon_chance_patch_applied=self.module.project.is_patch_applied('UnusedDungeonChance'),
                 gen_properties=RandomGenProperties.default(rng)
-            ).generate(self.entry.layout, max_retries=3, flat=True)
+            ).generate(self.entry.layout, max_retries=3, flat=True))
             if floor is None:
-                stack.set_visible_child(self.builder.get_object('preview_error_infinite'))
+                stack.set_visible_child(builder_get_assert(self.builder, Gtk.Box, 'preview_error_infinite'))
                 return
-            stack.set_visible_child(self._draw)
+            if self._draw is not None:
+                stack.set_visible_child(self._draw)
             item_cats = self.module.project.get_rom_module().get_static_data().dungeon_data.item_categories
             actions: List[FixedFloorActionRule] = []
             warnings = set()
@@ -1195,15 +1207,15 @@ class FloorController(AbstractController):
             assert self.drawer is not None
             self.drawer.fixed_floor = FixedFloor.new(u16(SIZE_Y), u16(SIZE_X), actions)
             if self.entry.layout.fixed_floor_id > 0:
-                self.builder.get_object('tool_label_info').set_text((_("Note: Floor uses a fixed room, the preview doesn't take this into account.\n") + '\n'.join(warnings)).strip('\n'))
+                builder_get_assert(self.builder, Gtk.Label, 'tool_label_info').set_text((_("Note: Floor uses a fixed room, the preview doesn't take this into account.\n") + '\n'.join(warnings)).strip('\n'))
             else:
-                self.builder.get_object('tool_label_info').set_text('\n'.join(warnings))
+                builder_get_assert(self.builder, Gtk.Label, 'tool_label_info').set_text('\n'.join(warnings))
             self._update_scales()
         except Exception as ex:
             logger.error('Preview loading error', exc_info=ex)
-            tb: Gtk.TextBuffer = self.builder.get_object('preview_error_buffer')
+            tb: Gtk.TextBuffer = builder_get_assert(self.builder, Gtk.TextBuffer, 'preview_error_buffer')
             tb.set_text(''.join(traceback.format_exception(type(ex), value=ex, tb=ex.__traceback__)))
-            stack.set_visible_child(self.builder.get_object('preview_error'))
+            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'preview_error'))
 
     def _init_tileset(self):
         assert self.drawer is not None
@@ -1234,7 +1246,7 @@ class FloorController(AbstractController):
         self._generate_floor()
 
     def on_tool_entry_seed_changed(self, *args):
-        if self.builder.get_object('tool_auto_refresh').get_active():
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     def on_btn_help_tool_seed_clicked(self, *args):
@@ -1261,13 +1273,13 @@ class FloorController(AbstractController):
         # TODO: Add export for Ranks and Forbidden Missions attributes
         from skytemple.module.dungeon.module import DungeonGroup, ICON_GROUP, \
             ICON_DUNGEONS, DOJO_DUNGEONS_FIRST, DOJO_DUNGEONS_LAST
-        dialog: Gtk.Dialog = self.builder.get_object('export_dialog')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'export_dialog')
         dialog.resize(460, 560)
         dialog.set_attached_to(SkyTempleMainController.window())
         dialog.set_transient_for(SkyTempleMainController.window())
 
         # Fill dungeon tree
-        store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')
+        store = builder_get_assert(self.builder, Gtk.TreeStore, 'export_dialog_store')
         store.clear()
         for dungeon_or_group in self.module.load_dungeons():
             if isinstance(dungeon_or_group, DungeonGroup):
@@ -1298,19 +1310,19 @@ class FloorController(AbstractController):
             xml = mappa_floor_to_xml(
                 self.entry,
                 self.module.project.get_rom_module().get_static_data().dungeon_data.item_categories,
-                export_layout=self.builder.get_object('export_type_layout').get_active(),
-                export_monsters=self.builder.get_object('export_type_monsters').get_active(),
-                export_traps=self.builder.get_object('export_type_traps').get_active(),
-                export_floor_items=self.builder.get_object('export_type_floor_items').get_active(),
-                export_shop_items=self.builder.get_object('export_type_shop_items').get_active(),
-                export_monster_house_items=self.builder.get_object('export_type_monster_house_items').get_active(),
-                export_buried_items=self.builder.get_object('export_type_buried_items').get_active(),
-                export_unk1_items=self.builder.get_object('export_type_unk_items1').get_active(),
-                export_unk2_items=self.builder.get_object('export_type_unk_items2').get_active()
+                export_layout=builder_get_assert(self.builder, Gtk.Switch, 'export_type_layout').get_active(),
+                export_monsters=builder_get_assert(self.builder, Gtk.Switch, 'export_type_monsters').get_active(),
+                export_traps=builder_get_assert(self.builder, Gtk.Switch, 'export_type_traps').get_active(),
+                export_floor_items=builder_get_assert(self.builder, Gtk.Switch, 'export_type_floor_items').get_active(),
+                export_shop_items=builder_get_assert(self.builder, Gtk.Switch, 'export_type_shop_items').get_active(),
+                export_monster_house_items=builder_get_assert(self.builder, Gtk.Switch, 'export_type_monster_house_items').get_active(),
+                export_buried_items=builder_get_assert(self.builder, Gtk.Switch, 'export_type_buried_items').get_active(),
+                export_unk1_items=builder_get_assert(self.builder, Gtk.Switch, 'export_type_unk_items1').get_active(),
+                export_unk2_items=builder_get_assert(self.builder, Gtk.Switch, 'export_type_unk_items2').get_active()
             )
 
             # 1. Export to file
-            if self.builder.get_object('export_file_switch').get_active():
+            if builder_get_assert(self.builder, Gtk.Switch, 'export_file_switch').get_active():
                 save_diag = Gtk.FileChooserNative.new(
                     _("Export floor as..."),
                     SkyTempleMainController.window(),
@@ -1321,10 +1333,11 @@ class FloorController(AbstractController):
                 add_dialog_xml_filter(save_diag)
                 response = save_diag.run()
                 fn = save_diag.get_filename()
-                fn = add_extension_if_missing(fn, 'xml')
+                if fn is not None:
+                    fn = add_extension_if_missing(fn, 'xml')
                 save_diag.destroy()
 
-                if response == Gtk.ResponseType.ACCEPT:
+                if response == Gtk.ResponseType.ACCEPT and fn is not None:
                     with open_utf8(fn, 'w') as f:
                         f.write(prettify(xml))
                 else:
@@ -1341,6 +1354,7 @@ class FloorController(AbstractController):
             def collect_floors_recurse(titer: Optional[Gtk.TreeIter]):
                 for i in range(store.iter_n_children(titer)):
                     child = store.iter_nth_child(titer, i)
+                    assert child is not None
                     if store[child][2] and store[child][5]:  # is floor and is selected
                         selected_floors.append((store[child][0], store[child][1]))
                     collect_floors_recurse(child)
@@ -1363,7 +1377,7 @@ class FloorController(AbstractController):
         fn = save_diag.get_filename()
         save_diag.destroy()
 
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 with open_utf8(fn, 'r') as xml_file:
                     self.module.import_from_xml([(self.item.dungeon.dungeon_id, self.item.floor_id)],
@@ -1378,7 +1392,7 @@ class FloorController(AbstractController):
 
     def on_cr_export_selected_toggled(self, w: Gtk.CellRendererToggle, path, *args):
         assert self.builder
-        store: Gtk.TreeStore = self.builder.get_object('export_dialog_store')
+        store = builder_get_assert(self.builder, Gtk.TreeStore, 'export_dialog_store')
         is_active = not w.get_active()
         store[path][5] = is_active
         store[path][6] = False
@@ -1392,6 +1406,7 @@ class FloorController(AbstractController):
                     children = []
                     for i in range(store.iter_n_children(parent)):
                         child = store.iter_nth_child(parent, i)
+                        assert child is not None
                         children.append(child)
                     states = [store[child][5] for child in children]
                     should_be_inconsistent = any([store[child][6] for child in children]) or not states.count(states[0]) == len(states)
@@ -1407,6 +1422,7 @@ class FloorController(AbstractController):
         def mark_active_recurse(titer: Gtk.TreeIter):
             for i in range(store.iter_n_children(titer)):
                 child = store.iter_nth_child(titer, i)
+                assert child is not None
                 store[child][5] = is_active
                 store[child][6] = False
                 mark_active_recurse(child)
@@ -1416,8 +1432,10 @@ class FloorController(AbstractController):
         assert self.builder
         self._item_list_edit_active = FloorEditItemList(page_num)
         self.__class__._last_open_tab_item_lists = FloorEditItemList(page_num)
-        sw: Gtk.ScrolledWindow = self.builder.get_object('sw_item_editor')
-        sw.get_parent().remove(sw)
+        sw: Gtk.ScrolledWindow = builder_get_assert(self.builder, Gtk.ScrolledWindow, 'sw_item_editor')
+        sw_parent = sw.get_parent()
+        if sw_parent is not None:
+            typing.cast(Gtk.Box, sw_parent).remove(sw)
         page.pack_start(sw, True, True, 0)
         self._init_item_spawns()
 
@@ -1436,10 +1454,10 @@ class FloorController(AbstractController):
 
     def _init_labels(self):
         dungeon_name = self._string_provider.get_value(StringType.DUNGEON_NAMES_MAIN, self.item.dungeon.dungeon_id)
-        self.builder.get_object(f'label_dungeon_name').set_text(
+        builder_get_assert(self.builder, Gtk.Label, f'label_dungeon_name').set_text(
             f'{"Dungeon"} {self.item.dungeon.dungeon_id}\n{dungeon_name}'
         )
-        self.builder.get_object('label_floor_number').set_text(f'{"Floor"} {self.item.floor_id + 1}')
+        builder_get_assert(self.builder, Gtk.Label, 'label_floor_number').set_text(f'{"Floor"} {self.item.floor_id + 1}')
 
     def _init_layout_stores(self):
         # cb_structure
@@ -1466,22 +1484,26 @@ class FloorController(AbstractController):
             # cb_floor_ranks
             self._comboxbox_for_enum(['cb_floor_ranks'], FloorRanks)
         else:
-            self.builder.get_object('cb_floor_ranks').set_sensitive(False)
+            builder_get_assert(self.builder, Gtk.ComboBox, 'cb_floor_ranks').set_sensitive(False)
         if self.module.has_mission_forbidden():
             # cb_mission_forbidden
             self._comboxbox_for_boolean(['cb_mission_forbidden'])
         else:
-            self.builder.get_object('cb_mission_forbidden').set_sensitive(False)
+            builder_get_assert(self.builder, Gtk.ComboBox, 'cb_mission_forbidden').set_sensitive(False)
 
     def _init_layout_values(self):
-        cb = self.builder.get_object('cb_floor_ranks')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_floor_ranks')
         if self.item.dungeon.length_can_be_edited and self.module.has_floor_ranks():
-            cb.set_active(self.module.get_floor_rank(self.item.dungeon.dungeon_id, self.item.floor_id))
+            rank = self.module.get_floor_rank(self.item.dungeon.dungeon_id, self.item.floor_id)
+            if rank:
+                cb.set_active(rank)
         else:
             cb.set_sensitive(False)
-        cb = self.builder.get_object('cb_mission_forbidden')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_mission_forbidden')
         if self.item.dungeon.length_can_be_edited and self.module.has_mission_forbidden():
-            cb.set_active(self.module.get_floor_mf(self.item.dungeon.dungeon_id, self.item.floor_id))
+            mf = self.module.get_floor_mf(self.item.dungeon.dungeon_id, self.item.floor_id)
+            if mf:
+                cb.set_active(mf)
         else:
             cb.set_sensitive(False)
         all_entries_and_cbs = [
@@ -1538,7 +1560,7 @@ class FloorController(AbstractController):
 
     def _init_monster_spawns(self):
         self._init_monster_completion_store()
-        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'monster_spawns_store')
         are_all_weight_types_same_values = True
         # Add existing monsters
         relative_weights_main = self._calculate_relative_weights([x.main_spawn_weight for x in self.entry.monsters])
@@ -1555,8 +1577,8 @@ class FloorController(AbstractController):
             chance_main = f'{int(relative_weight_main) / sum_of_all_weights_main * 100:.3f}%'
             chance_mh = f'{int(relative_weight_mh) / sum_of_all_weights_mh * 100:.3f}%'
             if monster.md_index in KECLEON_MD_INDEX:
-                self.builder.get_object('kecleon_level_entry').set_text(str(monster.level))
-                switch = self.builder.get_object('switch_kecleon_gender')
+                builder_get_assert(self.builder, Gtk.Entry, 'kecleon_level_entry').set_text(str(monster.level))
+                switch = builder_get_assert(self.builder, Gtk.Switch, 'switch_kecleon_gender')
                 if monster.md_index == KECLEON_MD_INDEX[0]:
                     switch.set_active(False)
                 else:
@@ -1571,11 +1593,11 @@ class FloorController(AbstractController):
                 str(monster.level), chance_main, str(relative_weight_main), chance_mh, str(relative_weight_mh)
             ])
 
-        self.builder.get_object('monster_spawns_keep_synced_toggle').set_active(are_all_weight_types_same_values)
+        builder_get_assert(self.builder, Gtk.Switch, 'monster_spawns_keep_synced_toggle').set_active(are_all_weight_types_same_values)
 
     def _init_monster_completion_store(self):
         monster_md = self.module.get_monster_md()
-        monster_store: Gtk.ListStore = self.builder.get_object('completion_monsters_store')
+        monster_store: Gtk.ListStore = builder_get_assert(self.builder, Gtk.ListStore, 'completion_monsters_store')
         for idx, entry in enumerate(monster_md.entries):
             if idx == 0:
                 continue
@@ -1584,7 +1606,7 @@ class FloorController(AbstractController):
             monster_store.append([self._ent_names[idx]])
 
     def _init_trap_spawns(self):
-        store: Gtk.Store = self.builder.get_object('trap_spawns_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'trap_spawns_store')
         trap_icon_renderer = ListIconRenderer(4)
         # Add all traps
         relative_weights = self._calculate_relative_weights([x for x in self.entry.traps.weights.values()])
@@ -1605,15 +1627,15 @@ class FloorController(AbstractController):
     def _init_item_spawns(self):
         self._init_item_completion_store()
 
-        item_categories_store: Gtk.ListStore = self.builder.get_object('item_categories_store')
-        item_cat_thrown_pierce_store: Gtk.ListStore = self.builder.get_object('item_cat_thrown_pierce_store')
-        item_cat_thrown_rock_store: Gtk.ListStore = self.builder.get_object('item_cat_thrown_rock_store')
-        item_cat_berries_store: Gtk.ListStore = self.builder.get_object('item_cat_berries_store')
-        item_cat_foods_store: Gtk.ListStore = self.builder.get_object('item_cat_foods_store')
-        item_cat_hold_store: Gtk.ListStore = self.builder.get_object('item_cat_hold_store')
-        item_cat_tms_store: Gtk.ListStore = self.builder.get_object('item_cat_tms_store')
-        item_cat_orbs_store: Gtk.ListStore = self.builder.get_object('item_cat_orbs_store')
-        item_cat_others_store: Gtk.ListStore = self.builder.get_object('item_cat_others_store')
+        item_categories_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_categories_store')
+        item_cat_thrown_pierce_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_thrown_pierce_store')
+        item_cat_thrown_rock_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_thrown_rock_store')
+        item_cat_berries_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_berries_store')
+        item_cat_foods_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_foods_store')
+        item_cat_hold_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_hold_store')
+        item_cat_tms_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_tms_store')
+        item_cat_orbs_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_orbs_store')
+        item_cat_others_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_others_store')
         item_stores = {
             self.item_categories[0]: item_cat_thrown_pierce_store,
             self.item_categories[1]: item_cat_thrown_rock_store,
@@ -1686,14 +1708,14 @@ class FloorController(AbstractController):
         return out_items
 
     def _init_item_completion_store(self):
-        completion_item_thrown_pierce_store: Gtk.ListStore = self.builder.get_object('completion_item_thrown_pierce_store')
-        completion_item_thrown_rock_store: Gtk.ListStore = self.builder.get_object('completion_item_thrown_rock_store')
-        completion_item_berries_store: Gtk.ListStore = self.builder.get_object('completion_item_berries_store')
-        completion_item_foods_store: Gtk.ListStore = self.builder.get_object('completion_item_foods_store')
-        completion_item_hold_store: Gtk.ListStore = self.builder.get_object('completion_item_hold_store')
-        completion_item_tms_store: Gtk.ListStore = self.builder.get_object('completion_item_tms_store')
-        completion_item_orbs_store: Gtk.ListStore = self.builder.get_object('completion_item_orbs_store')
-        completion_item_others_store: Gtk.ListStore = self.builder.get_object('completion_item_others_store')
+        completion_item_thrown_pierce_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_thrown_pierce_store')
+        completion_item_thrown_rock_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_thrown_rock_store')
+        completion_item_berries_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_berries_store')
+        completion_item_foods_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_foods_store')
+        completion_item_hold_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_hold_store')
+        completion_item_tms_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_tms_store')
+        completion_item_orbs_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_orbs_store')
+        completion_item_others_store = builder_get_assert(self.builder, Gtk.ListStore, 'completion_item_others_store')
         completion_stores = {
             self.item_categories[0]: completion_item_thrown_pierce_store,
             self.item_categories[1]: completion_item_thrown_rock_store,
@@ -1734,7 +1756,7 @@ class FloorController(AbstractController):
         return [int(w / weights_gcd) for w in weights]
 
     def _recalculate_spawn_chances(self, store_name, weight_main_idx, chance_main_idx, weight_mh_idx=None, chance_mh_idx=None):
-        store: Gtk.ListStore = self.builder.get_object(store_name)
+        store = builder_get_assert(self.builder, Gtk.ListStore, store_name)
         weight_data_sets = [
             (weight_main_idx, chance_main_idx),
         ]
@@ -1743,10 +1765,10 @@ class FloorController(AbstractController):
                 (weight_mh_idx, chance_mh_idx),
             )
         for (weight_idx, chance_idx) in weight_data_sets:
-            sum_of_all_weights = sum(int(row[weight_idx]) for row in store)
+            sum_of_all_weights = sum(int(row[weight_idx]) for row in iter_tree_model(store))
             if sum_of_all_weights <= 0:
                 sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
-            for row in store:
+            for row in iter_tree_model(store):
                 if sum_of_all_weights == 0:
                     row[chance_idx] = '0.00%'
                 else:
@@ -1765,24 +1787,26 @@ class FloorController(AbstractController):
         for b, g, r, a in grouper(data, 4):
             new_data += bytes([r, g, b, a])
         return GdkPixbuf.Pixbuf.new_from_data(
-            new_data, GdkPixbuf.Colorspace.RGB, True, 8, w, h, sprite.get_stride()
+            new_data,  # type: ignore
+            GdkPixbuf.Colorspace.RGB, True, 8, w, h, sprite.get_stride(),
+            destroy_fn=None  # todo: memory leak?
         )
 
     def _reload_icon(self, entid, idx, was_loading):
-        store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'monster_spawns_store')
         if not self._loading and not was_loading:
             row = store[idx]
             row[1] = self._get_icon(entid, idx)
             return
         if self._refresh_timer is not None:
             GLib.source_remove(self._refresh_timer)
-        self._refresh_timer = GLib.timeout_add_seconds(0.5, self._reload_icons_in_tree)
+        self._refresh_timer = GLib.timeout_add(500, self._reload_icons_in_tree)
 
     def _reload_icons_in_tree(self):
         try:
-            store: Gtk.Store = self.builder.get_object('monster_spawns_store')
+            store = builder_get_assert(self.builder, Gtk.ListStore, 'monster_spawns_store')
             self._loading = True
-            for i, entry in enumerate(store):
+            for i, entry in enumerate(iter_tree_model(store)):
                 entry[1] = self._get_icon(entry[0], i)
             self._loading = False
             self._refresh_timer = None
@@ -1790,7 +1814,7 @@ class FloorController(AbstractController):
             pass  # This happens when the view was unloaded in the meantime.
 
     def _save_monster_spawn_rates(self):
-        store: Gtk.ListStore = self.builder.get_object('monster_spawns_store')
+        store: Gtk.ListStore = builder_get_assert(self.builder, Gtk.ListStore, 'monster_spawns_store')
         original_kecleon_level = u8(0)
         original_kecleon_index = KECLEON_MD_INDEX[0]
         for monster in self.entry.monsters:
@@ -1800,7 +1824,7 @@ class FloorController(AbstractController):
                 break
         self.entry.monsters = []
         rows: List[SpawnEntry] = []
-        for row in store:
+        for row in iter_tree_model(store):
             rows.append(SpawnEntry(
                 entid=row[0],
                 level=u8(int(row[3])),
@@ -1844,14 +1868,14 @@ class FloorController(AbstractController):
         self.mark_as_modified()
 
     def _save_trap_spawn_rates(self):
-        store: Gtk.ListStore = self.builder.get_object('trap_spawns_store')
+        store: Gtk.ListStore = builder_get_assert(self.builder, Gtk.ListStore, 'trap_spawns_store')
 
-        sum_of_weights = sum((int(row[3]) for row in store))
+        sum_of_weights = sum((int(row[3]) for row in iter_tree_model(store)))
 
         last_weight = 0
         last_weight_set_idx = 0
         weights = []
-        for i, row in enumerate(store):
+        for i, row in enumerate(iter_tree_model(store)):
             weight = 0
             if int(row[3]) != 0:
                 weight = last_weight + int(10000 * (int(row[3]) / sum_of_weights))
@@ -1877,31 +1901,31 @@ class FloorController(AbstractController):
         return available_categories
 
     def _update_cr_item_cat_name_store(self):
-        store = self.builder.get_object('cr_item_cat_name_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, 'cr_item_cat_name_store')
         self._fill_available_categories_into_store(store)
 
     def _save_item_spawn_rates(self):
         item_stores = {
-            None: self.builder.get_object('item_categories_store'),
-            self.item_categories[0]: self.builder.get_object('item_cat_thrown_pierce_store'),
-            self.item_categories[1]: self.builder.get_object('item_cat_thrown_rock_store'),
-            self.item_categories[2]: self.builder.get_object('item_cat_berries_store'),
-            self.item_categories[3]: self.builder.get_object('item_cat_foods_store'),
-            self.item_categories[4]: self.builder.get_object('item_cat_hold_store'),
-            self.item_categories[5]: self.builder.get_object('item_cat_tms_store'),
-            self.item_categories[9]: self.builder.get_object('item_cat_orbs_store'),
-            self.item_categories[8]: self.builder.get_object('item_cat_others_store')
+            None: builder_get_assert(self.builder, Gtk.ListStore, 'item_categories_store'),
+            self.item_categories[0]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_thrown_pierce_store'),
+            self.item_categories[1]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_thrown_rock_store'),
+            self.item_categories[2]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_berries_store'),
+            self.item_categories[3]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_foods_store'),
+            self.item_categories[4]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_hold_store'),
+            self.item_categories[5]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_tms_store'),
+            self.item_categories[9]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_orbs_store'),
+            self.item_categories[8]: builder_get_assert(self.builder, Gtk.ListStore, 'item_cat_others_store')
         }
 
         category_weights = {}
         item_weights = {}
         for (cat, store) in item_stores.items():
             rows = []
-            for row in store:
+            for row in iter_tree_model(store):
                 rows.append(row[:])
             rows.sort(key=lambda e: e[0])
 
-            sum_of_weights = sum((int(row[4]) for row in store if row[2] is False))
+            sum_of_weights = sum((int(row[4]) for row in iter_tree_model(store) if row[2] is False))
 
             last_weight = 0
             last_weight_set_idx = None
@@ -1938,7 +1962,7 @@ class FloorController(AbstractController):
                     if cat is None:
                         category_weights[last_weight_set_idx] = 10000
                     else:
-                        item_weights[last_weight_set_idx] = 10000  # type: ignore
+                        item_weights[last_weight_set_idx] = 10000
 
         item_weights = {k: v for k, v in sorted(item_weights.items(), key=lambda x: x[0])}
 
@@ -1957,14 +1981,14 @@ class FloorController(AbstractController):
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1)
 
     def _comboxbox_for_boolean(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
         store.append([0, _("No")])
         store.append([1, _("Yes")])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1)
 
     def _comboxbox_for_tileset_id(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
@@ -1974,7 +1998,7 @@ class FloorController(AbstractController):
             else:
                 store.append([i, f"{'Tileset'} {i}"])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1)
 
     def _comboxbox_for_music_id(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
@@ -1995,7 +2019,7 @@ class FloorController(AbstractController):
                         name = music_entries[track.track_or_ref].name
             store.append([i, name + f" (#{i:03})"])
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1)
 
     def _comboxbox_for_fixed_floor_id(self, names: List[str]):
         store = Gtk.ListStore(int, str)  # id, name
@@ -2003,7 +2027,7 @@ class FloorController(AbstractController):
         for i in range(1, COUNT_VALID_FIXED_FLOORS):
             store.append([i, f(_("No. {i}"))])  # TRANSLATORS: Number {i}
         for name in names:
-            self._fast_set_comboxbox_store(self.builder.get_object(name), store, 1)  # type: ignore
+            self._fast_set_comboxbox_store(builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1)
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):
@@ -2018,23 +2042,25 @@ class FloorController(AbstractController):
         return entry.name.capitalize().replace('_', ' ')
 
     def _set_entry(self, entry_name, text):
-        self.builder.get_object(entry_name).set_text(str(text))
+        builder_get_assert(self.builder, Gtk.Entry, entry_name).set_text(str(text))
 
     def _set_cb(self, cb_name, value):
         if isinstance(value, Enum):
             value = value.value
-        cb: Gtk.ComboBox = self.builder.get_object(cb_name)
-        l_iter: Gtk.TreeIter = cb.get_model().get_iter_first()
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, cb_name)
+        cb_model = cb.get_model()
+        assert cb_model is not None
+        l_iter = cb_model.get_iter_first()
         while l_iter:
             row = cb.get_model()[l_iter]
             if row[0] == value:
                 cb.set_active_iter(l_iter)
                 return
-            l_iter = cb.get_model().iter_next(l_iter)
+            l_iter = cb_model.iter_next(l_iter)
         raise ValueError("Value not found for CB.")
 
     def _set_scale(self, scale_name, val):
-        scale: Gtk.Scale = self.builder.get_object(scale_name)
+        scale = builder_get_assert(self.builder, Gtk.Scale, scale_name)
         scale.set_value(int(val))
 
     def _update_from_widget(self, w: Gtk.Widget):
@@ -2043,8 +2069,8 @@ class FloorController(AbstractController):
         elif isinstance(w, Gtk.Entry):
             raise RuntimeError("Internal error: Do not call _update_from_widget() on an entry. Set manually instead.")
         else:
-            self._update_from_scale(w)
-        if self.builder.get_object('tool_auto_refresh').get_active():  # type: ignore
+            self._update_from_scale(typing.cast(Gtk.Scale, w))
+        if builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_auto_refresh').get_active():
             self._generate_floor()
 
     def _update_from_cb(self, w: Gtk.ComboBox):
@@ -2053,9 +2079,11 @@ class FloorController(AbstractController):
             obj = self.entry.layout.terrain_settings
             attr_name = w_name[len(CB_TERRAIN_SETTINGS):]
         else:
-            obj = self.entry.layout  # type: ignore
+            obj = self.entry.layout
             attr_name = w_name[len(CB):]
-        val = w.get_model()[w.get_active_iter()][0]
+        w_iter = w.get_active_iter()
+        assert w_iter is not None
+        val = w.get_model()[w_iter][0]
         current_val = getattr(obj, attr_name)
         if isinstance(current_val, Enum):
             enum_class = current_val.__class__

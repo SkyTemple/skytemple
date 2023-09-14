@@ -15,18 +15,13 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
-import os
-import re
-import sys
-from functools import partial
-from typing import TYPE_CHECKING, Optional, List
+from typing import TYPE_CHECKING, List
 
 import cairo
 
-from skytemple.core.error_handler import display_error
+from skytemple.core.ui_utils import builder_get_assert
 from skytemple_files.common.i18n_util import f, _
 
-from PIL import Image
 from gi.repository import Gtk, GLib
 
 from skytemple.controller.main import MainController
@@ -52,13 +47,13 @@ class ObjectController(AbstractController):
         self.builder = self._get_builder(__file__, 'object.glade')
         self.builder.connect_signals(self)
         self._sprite_provider.reset()
-        self.builder.get_object('file_name').set_text(self.item_id)
+        builder_get_assert(self.builder, Gtk.Label, 'file_name').set_text(self.item_id)
         if self.module.get_gfxcrunch().is_available():
-            self.builder.get_object('explanation_text').set_markup(_("""SkyTemple can not edit sprites. 
+            builder_get_assert(self.builder, Gtk.Label, 'explanation_text').set_markup(_("""SkyTemple can not edit sprites. 
 However you can export the sprite in the gfxcrunch format and import it back again.
 Warning: SkyTemple does not validate the files you import."""))
 
-        return self.builder.get_object('main_box')
+        return builder_get_assert(self.builder, Gtk.Widget, 'main_box')
 
     def on_explanation_text_activate_link(self, *args):
         self.module.open_gfxcrunch_page()

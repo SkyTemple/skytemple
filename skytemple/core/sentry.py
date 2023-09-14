@@ -16,6 +16,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import typing
 from datetime import datetime
 from functools import partial
 from typing import Optional, TYPE_CHECKING, Dict, Union, TypeVar, Callable
@@ -29,7 +30,7 @@ from sentry_sdk.sessions import auto_session_tracking
 from sentry_sdk.utils import logger as sentry_sdk_logger
 
 from skytemple.core.logger import SKYTEMPLE_LOGLEVEL, current_log_level
-from skytemple.core.ui_utils import version
+from skytemple.core.ui_utils import version, assert_not_none
 
 if TYPE_CHECKING:
     from skytemple.core.error_handler import ExceptionInfo
@@ -111,6 +112,7 @@ def try_ignore_err(source: Callable[[], T], sink: Callable[[T], None]):
         logger.error(f"Ignored exception (fn: {source.__name__}) while setting up Sentry.", exc_info=ex)
 
 
+@typing.no_type_check
 def collect_device_context() -> Dict[str, 'Captured']:
     import platform
     import socket
@@ -121,21 +123,22 @@ def collect_device_context() -> Dict[str, 'Captured']:
     try:
         from gi.repository.Gdk import Display
         display = Display.get_default()
-        mon_geoms = [
-            display.get_monitor(i).get_geometry()
-            for i in range(display.get_n_monitors())
-        ]
+        if display is not None:
+            mon_geoms = [
+                assert_not_none(display.get_monitor(i)).get_geometry()
+                for i in range(display.get_n_monitors())
+            ]
 
-        x0 = min(r.x for r in mon_geoms)
-        y0 = min(r.y for r in mon_geoms)
-        x1 = max(r.x + r.width for r in mon_geoms)
-        y1 = max(r.y + r.height for r in mon_geoms)
-        width, height = x1 - x0, y1 - y0
-        screen_info = {
-            "screen_resolution": f"{width}x{height}",
-            "screen_height_pixels": height,
-            "screen_width_pixels": width,
-        }
+            x0 = min(r.x for r in mon_geoms)
+            y0 = min(r.y for r in mon_geoms)
+            x1 = max(r.x + r.width for r in mon_geoms)
+            y1 = max(r.y + r.height for r in mon_geoms)
+            width, height = x1 - x0, y1 - y0
+            screen_info = {
+                "screen_resolution": f"{width}x{height}",
+                "screen_height_pixels": height,
+                "screen_width_pixels": width,
+            }
     except Exception:
         pass
 

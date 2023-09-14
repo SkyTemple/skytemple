@@ -22,7 +22,7 @@ from ndspy.rom import NintendoDSRom
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.rom_project import RomProject
-from skytemple.core.ui_utils import generate_item_store_row_label
+from skytemple.core.ui_utils import generate_item_store_row_label, assert_not_none
 from skytemple.module.rom.controller.main import MainController
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified
@@ -40,8 +40,8 @@ class RomModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         """Main ROM metadata management module."""
         self.project = rom_project
-        self._item_store: TreeModel
-        self._root_node: TreeIter
+        self._item_store: Optional[TreeModel] = None
+        self._root_node: Optional[TreeIter] = None
         self._static_data: Optional[Pmd2Data] = None
         self._rom = Optional[NintendoDSRom]
 
@@ -55,7 +55,7 @@ class RomModule(AbstractModule):
     def get_root_node(self):
         return self._root_node
 
-    def load_tree_items(self, item_store: TreeStore, root_node: TreeIter):
+    def load_tree_items(self, item_store: TreeStore, root_node: Optional[TreeIter]):
         self._item_store = item_store
         self._root_node = item_store.append(root_node, [
             'skytemple-e-rom-symbolic', os.path.basename(self.project.filename), self,
@@ -64,6 +64,8 @@ class RomModule(AbstractModule):
         generate_item_store_row_label(item_store[self._root_node])
 
     def update_filename(self):
+        assert self._item_store is not None
+        assert self._root_node is not None
         self._item_store[self._root_node][1] = os.path.basename(self.project.filename)
         generate_item_store_row_label(self._item_store[self._root_node])
 
@@ -72,9 +74,11 @@ class RomModule(AbstractModule):
             self._static_data = self.project.load_rom_data()
 
     def get_static_data(self) -> Pmd2Data:
-        return self._static_data  # type: ignore
+        return assert_not_none(self._static_data)
 
     def mark_as_modified(self):
+        assert self._item_store is not None
+        assert self._root_node is not None
         self.project.force_mark_as_modified()
         row = self._item_store[self._root_node]
         recursive_up_item_store_mark_as_modified(row)

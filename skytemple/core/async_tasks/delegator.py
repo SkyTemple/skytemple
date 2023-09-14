@@ -104,7 +104,7 @@ class AsyncTaskDelegator:
             else:
                 raise RuntimeError("Invalid async configuration")
         except OSError as ex:
-            if hasattr(ex, 'winerror') and ex.winerror == 6:  # type: ignore
+            if hasattr(ex, 'winerror') and ex.winerror == 6:
                 # [WinError 6] The handle is invalid
                 # Originates in gi/_ossighelper.py - Some issues with socket cleanup. We will ignore that.
                 pass
