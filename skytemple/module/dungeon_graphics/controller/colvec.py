@@ -75,7 +75,7 @@ class ColvecController(AbstractController):
     
     def on_export_clicked(self, *args):
         cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_weather_store')
-        cb = builder_get_assert(self.builder, Gtk.ComboBoxText, 'cb_weather')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_weather')
         it = cb.get_active_iter()
         assert it is not None
         v: int = cb_store[it][0]
@@ -99,7 +99,7 @@ class ColvecController(AbstractController):
         
     def on_import_clicked(self, *args):
         cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_weather_store')
-        cb = builder_get_assert(self.builder, Gtk.ComboBoxText, 'cb_weather')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_weather')
         it = cb.get_active_iter()
         assert it is not None
         v: int = cb_store[it][0]
@@ -149,7 +149,7 @@ class ColvecController(AbstractController):
 
     def on_tileset_changed(self, widget):
         cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_tileset_store')
-        cb = builder_get_assert(self.builder, Gtk.ComboBoxText, 'cb_tileset')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_tileset')
         it = cb.get_active_iter()
         assert it is not None
         v: int = cb_store[it][0]
@@ -162,7 +162,7 @@ class ColvecController(AbstractController):
     def _init_colvec(self):
         # Init available weathers
         cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_weather_store')
-        cb = builder_get_assert(self.builder, Gtk.ComboBoxText, 'cb_weather')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_weather')
         self._fill_available_weathers_into_store(cb_store)
         cb.set_active(0)
         
@@ -175,7 +175,7 @@ class ColvecController(AbstractController):
         
     def _reinit_image(self):
         cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'cb_weather_store')
-        cb = builder_get_assert(self.builder, Gtk.ComboBoxText, 'cb_weather')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_weather')
         it = cb.get_active_iter()
         assert it is not None
         v: int = cb_store[it][0]
