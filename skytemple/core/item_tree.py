@@ -24,7 +24,6 @@ from gi.repository import Gtk
 if TYPE_CHECKING:
     from skytemple.core.abstract_module import AbstractModule
     from skytemple.core.module_controller import AbstractController
-    from skytemple.core.widget.view import StView
 
 
 class RecursionType(Enum):
@@ -95,7 +94,7 @@ class ItemTreeEntry:
     _icon: str
     _name: str
     _module: AbstractModule
-    _view_class: Union[Type[StView], Type[AbstractController]]
+    _view_class: Union[Type[Gtk.Widget], Type[AbstractController]]
     _item_data: Any
     _modified: bool
 
@@ -104,7 +103,7 @@ class ItemTreeEntry:
         icon: str,
         name: str,
         module: AbstractModule,
-        view_class: Union[Type[StView], Type[AbstractController]],
+        view_class: Union[Type[Gtk.Widget], Type[AbstractController]],
         item_data: Any,
         *,
         modified: bool = False
@@ -113,6 +112,15 @@ class ItemTreeEntry:
         Create an entry model. This can be added to an item tree or used to update an `ItemTreeEntryRef`.
         Modules should not try to set the kwargs-only arguments,
         as they are ignored by add/update operations.
+
+        The `view_class` should be a `Gtk.Widget`. The controller based approach is deprecated.
+        If a widget is used it must take exactly two parameters for __init__:
+
+        - module: The `AbstractModule` that the view was loaded from.
+                  This is the `module` value passed into this method.
+        - item_data: The `item_data` object that can provide additional context to
+                     the view, such as a file name or ID that is currently being edited.
+                     This is the `item_data` value passed into this method.
         """
         self._icon = icon
         self._name = name
@@ -134,7 +142,7 @@ class ItemTreeEntry:
         return self._module
 
     @property
-    def view_class(self) -> Union[Type[StView], Type[AbstractController]]:
+    def view_class(self) -> Union[Type[Gtk.Widget], Type[AbstractController]]:
         return self._view_class
 
     @property

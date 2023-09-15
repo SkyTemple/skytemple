@@ -26,8 +26,8 @@ from skytemple_files.common.util import Captured
 
 if TYPE_CHECKING:
     from skytemple.core.module_controller import AbstractController
-    from skytemple.core.widget.view import StView
     from skytemple.core.rom_project import RomProject
+    from gi.repository import Gtk
 
 
 class DebuggingInfo(TypedDict, total=False):
@@ -71,7 +71,7 @@ class AbstractModule(ABC):
         """
         pass
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         """
         Return debugging information for the currently opened controller or view widget (passed in).
         If this module can't provide this information for that controller, returns None.

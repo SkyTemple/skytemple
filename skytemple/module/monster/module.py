@@ -27,7 +27,6 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.controller.main import MainController as SkyTempleMainController
-from skytemple.core.widget.view import StView
 from skytemple.module.monster.controller.entity import EntityController
 from skytemple.module.monster.controller.level_up import LevelUpController
 from skytemple.module.monster.controller.main import MainController, MONSTER_NAME
@@ -490,7 +489,7 @@ class MonsterModule(AbstractModule):
         self.project.mark_as_modified(MEVO_FILE)
         self._mark_as_modified_in_tree(item_id)
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, MonsterController):
             pass  # todo
         return None

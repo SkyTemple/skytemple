@@ -16,11 +16,11 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from typing import Dict, Optional, Union
 
+from gi.repository import Gtk
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.item_tree import ItemTree, ItemTreeEntry, ItemTreeEntryRef, RecursionType
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
-from skytemple.core.widget.view import StView
 from skytemple.module.strings.controller.main import MainController, TEXT_STRINGS
 from skytemple.module.strings.controller.strings import StringsController
 
@@ -73,7 +73,7 @@ class StringsModule(AbstractModule):
         if self._item_tree is not None:
             self._item_tree.mark_as_modified(self._tree_iters[filename], RecursionType.UP)
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, StringsController):
             pass  # todo
         return None

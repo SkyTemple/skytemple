@@ -28,7 +28,6 @@ from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
 from skytemple.core.rom_project import RomProject, BinaryName
-from skytemple.core.widget.view import StView
 from skytemple.module.map_bg.controller.bg import BgController
 from skytemple.module.map_bg.controller.folder import FolderController
 from skytemple.module.map_bg.controller.main import MainController, MAPBG_NAME
@@ -319,7 +318,7 @@ class MapBgModule(AbstractModule):
 
         return mappings, mappa, fixed, dungeon_bin_context, dungeon_list
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, BgController):
             pass  # todo
         return None

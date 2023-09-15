@@ -17,12 +17,12 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union, Any, Type
+from typing import TYPE_CHECKING, Union, Any, Type, assert_type, cast
 
+from gi.repository import Gtk
 from gi.repository import GLib
 
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.widget.view import StView
 
 if TYPE_CHECKING:
     from skytemple.core.abstract_module import AbstractModule
@@ -31,13 +31,15 @@ if TYPE_CHECKING:
 
 async def load_view(
         module: 'AbstractModule',
-        view: Union[Type[StView], Type[AbstractController]],
+        view: Union[Type[Gtk.Widget], Type[AbstractController]],
         item_data: Any,
         main_controller: MainController
 ):
-    if issubclass(view, StView):
+    if issubclass(view, Gtk.Widget):
         try:
-            view_instance = view(module=module, item_data=item_data)
+            # We use type: ignore here because there is an implicit contract that widgets used
+            # for views must take these two arguments.
+            view_instance = view(module=module, item_data=item_data)  # type: ignore
             GLib.idle_add(lambda: main_controller.on_view_loaded(module, view_instance, item_data))
         except Exception as ex:
             GLib.idle_add(lambda ex=ex: main_controller.on_view_loaded_error(ex))

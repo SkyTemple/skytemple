@@ -35,7 +35,7 @@ class AbstractController(ABC):
     """
     A view controller. Provides and controls widgets for the main UI.
 
-    :deprecated: Use `skytemple.core.widget.StView` instead.  See it's documentation for more info.
+    :deprecated: Use a `Gtk.Widget` instead.  See the `ItemTreeEntry.__init__` documentation for more info.
     """
     @abstractmethod
     def __init__(self, module: AbstractModule, item_id):
@@ -80,7 +80,7 @@ class AbstractController(ABC):
 
 class NotImplementedController(AbstractController):
     """
-    :deprecated: Use `skytemple.core.widget.StStatusPage` instead.  See it's documentation for more info.
+    :deprecated: Use `skytemple.core.widget.StStatusPage` instead.  See its documentation for more info.
     """
     def __init__(self, module: AbstractModule, item_id: int):
         pass
@@ -91,7 +91,7 @@ class NotImplementedController(AbstractController):
 
 class SimpleController(AbstractController, ABC):
     """
-    :deprecated: Use `skytemple.core.widget.StStatusPage` instead.  See it's documentation for more info.
+    :deprecated: Use `skytemple.core.widget.StStatusPage` instead.  See its documentation for more info.
     """
     def get_view(self) -> Widget:
         main_box: Gtk.Box = Gtk.Box.new(Gtk.Orientation.VERTICAL, 0)

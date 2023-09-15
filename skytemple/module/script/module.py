@@ -31,7 +31,6 @@ from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHandler
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import data_dir
-from skytemple.core.widget.view import StView
 from skytemple.module.script.controller.folder import FolderController
 from skytemple.module.script.controller.map import MapController
 from skytemple.module.script.controller.dialog.pos_mark_editor import PosMarkEditorController
@@ -530,7 +529,7 @@ class ScriptModule(AbstractModule):
 
         return mappings, mappa, fixed, dungeon_bin_context, dungeon_list
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, SsaController):
             pass  # todo
         return None

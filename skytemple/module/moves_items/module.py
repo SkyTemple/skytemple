@@ -19,12 +19,12 @@ from typing import Dict, Tuple, Optional, List, Union
 
 from range_typed_integers import u16
 
+from gi.repository import Gtk
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef, ItemTreeEntry, RecursionType
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.string_provider import StringType
-from skytemple.core.widget.view import StView
 from skytemple.module.moves_items.controller.item import ItemController
 from skytemple.module.moves_items.controller.main_moves import MainMovesController, MOVES
 from skytemple.module.moves_items.controller.main_items import MainItemsController, ITEMS
@@ -194,7 +194,7 @@ class MovesItemsModule(AbstractModule):
         # Mark as modified in tree
         self._item_tree.mark_as_modified(self.move_iters[move_id], RecursionType.UP)
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, MoveController):
             pass  # todo
         if isinstance(open_view, ItemController):

@@ -14,16 +14,13 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-import dataclasses
 import os
-from abc import ABC, abstractmethod
-from typing import cast, Any, Tuple
+from typing import cast, Any
 
 from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.ui_utils import data_dir
-from skytemple.core.widget.view import StView
 
 
 class StStatusPageData:
@@ -39,14 +36,14 @@ class StStatusPageData:
 
 
 @Gtk.Template(filename=os.path.join(data_dir(), 'widget', 'status_page.ui'))
-class StStatusPage(StView):
+class StStatusPage(Gtk.Box):
     """
     An base view widget that presents a single large icon and a description text.
 
     This will eventually be implemented using `Adw.StatusPage`, however until
     the GTK 4 migration is done, this is a custom widget.
 
-    The `item_data` is an instance of `StViewData`.
+    The `item_data` is an instance of `StStatusPageData`.
     """
     __gtype_name__ = "StStatusPage"
 
@@ -57,8 +54,9 @@ class StStatusPage(StView):
     title_w = cast(Gtk.Label, Gtk.Template.Child())
     description_w = cast(Gtk.Label, Gtk.Template.Child())
 
+    # noinspection PyUnusedLocal
     def __init__(self, module: AbstractModule, item_data: Any):
-        super().__init__(module, item_data)
+        super().__init__()
 
         assert isinstance(item_data, StStatusPageData)
 

@@ -16,11 +16,11 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from typing import List, Optional, Union
 
+from gi.repository import Gtk
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.item_tree import ItemTree, ItemTreeEntry, ItemTreeEntryRef, RecursionType
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
-from skytemple.core.widget.view import StView
 from skytemple.module.bgp.controller.bgp import BgpController
 from skytemple.module.bgp.controller.main import MainController, BACKGROUNDS_NAME
 from skytemple_files.common.types.file_types import FileType
@@ -77,7 +77,7 @@ class BgpModule(AbstractModule):
         bgp_filename = self.list_of_bgps[item_id]
         return self.project.open_file_in_rom(bgp_filename, FileType.BGP)
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, BgpController):
             return {
                 "models": {

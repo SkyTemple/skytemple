@@ -50,8 +50,6 @@ from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.common.version_util import check_newest_release, ReleaseType, get_event_banner
 
-from skytemple.core.widget.view import StView
-
 if TYPE_CHECKING:
     from skytemple.module.map_bg.module import MapBgModule
 
@@ -98,7 +96,7 @@ class MainController:
         cls._instance._lock_trees()
         # Show loading stack page in editor stack
         cls._instance._editor_stack.set_visible_child(builder_get_assert(cls._instance.builder, Gtk.Box, 'es_loading'))
-        view_cls: Union[AbstractController, StView] = assert_not_none(cls._instance._current_view)  # type: ignore
+        view_cls: Union[AbstractController, StViewWidget] = assert_not_none(cls._instance._current_view)  # type: ignore
         # Fully load the view and the controller
         AsyncTaskDelegator.run_task(load_view(
             assert_not_none(cls._instance._current_view_module),
@@ -108,7 +106,7 @@ class MainController:
         ))
 
     @classmethod
-    def view_info(cls) -> Tuple[Optional[AbstractModule], Union[Type[AbstractController], Type[StView], Type[None]], Optional[int]]:
+    def view_info(cls) -> Tuple[Optional[AbstractModule], Union[Type[AbstractController], Type[Gtk.Widget], Type[None]], Optional[int]]:
         """Returns the currently loaded view info in SkyTemple."""
         return (
             cls._instance._current_view_module,
@@ -141,7 +139,7 @@ class MainController:
 
         self._search_text: Optional[str] = None
         self._current_view_module: Optional[AbstractModule] = None
-        self._current_view: Union[AbstractController, StView, None] = None
+        self._current_view: Union[AbstractController, StViewWidget, None] = None
         self._current_view_item_id: Optional[int] = None
         self._resize_timeout_id: Optional[int] = None
         self._loaded_map_bg_module: Optional['MapBgModule'] = None
@@ -457,7 +455,7 @@ class MainController:
             tree.scroll_to_cell(path, None, True, 0.5, 0.5)
 
     def on_view_loaded(
-            self, module: AbstractModule, in_view: Union[AbstractController, StView], item_id: int
+            self, module: AbstractModule, in_view: Union[AbstractController, Gtk.Widget], item_id: int
     ):
         """A new module view was loaded! Present it!"""
         assert current_thread() == main_thread
@@ -467,7 +465,7 @@ class MainController:
         old_view = self._editor_stack.get_child_by_name('es__loaded_view')
         view: Gtk.Widget
         try:
-            if isinstance(in_view, StView):
+            if isinstance(in_view, Gtk.Widget):
                 view = in_view
             else:
                 view = in_view.get_view()

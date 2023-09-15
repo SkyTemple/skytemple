@@ -17,13 +17,13 @@
 import logging
 from typing import Optional, List, Union
 
+from gi.repository import Gtk
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.item_tree import ItemTree, ItemTreeEntry, ItemTreeEntryRef, RecursionType
 from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET
 from skytemple.core.rom_project import RomProject, BinaryName
-from skytemple.core.widget.view import StView
 from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController, \
     BACKGROUNDS_NAMES, DungeonBgMainController
 from skytemple.module.dungeon_graphics.controller.colvec import ColvecController
@@ -249,7 +249,7 @@ class DungeonGraphicsModule(AbstractModule):
         ))
         self._item_tree.mark_as_modified(self._root_node, RecursionType.UP)
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, DungeonBgController):
             pass  # todo
         if isinstance(open_view, ColvecController):

@@ -30,7 +30,6 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
-from skytemple.core.widget.view import StView
 from skytemple.module.sprite.controller.monster_sprite import MonsterSpriteController
 from skytemple.module.sprite.controller.object import ObjectController
 from skytemple.module.sprite.controller.object_main import OBJECT_SPRTIES, ObjectMainController
@@ -379,7 +378,7 @@ class SpriteModule(AbstractModule):
         self.project.mark_as_modified(SPRCONF_FILENAME)
         self.project.get_rom_module().get_static_data().animation_names[sprite.id] = sprite
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, ObjectController):
             pass  # todo
         return None
