@@ -16,14 +16,12 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from typing import Optional, Dict, List, Union
 
-from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
+from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef, ItemTreeEntry, RecursionType
 from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject, BinaryName
-from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.core.widget.view import StView
 from skytemple.module.misc_graphics.controller.w16 import W16Controller
 from skytemple.module.misc_graphics.controller.wte_wtu import WteWtuController
@@ -116,11 +114,11 @@ class MiscGraphicsModule(AbstractModule):
         self.list_of_wtus_dungeon_bin: List[Wtu]
         self.list_of_zmappats_dungeon_bin: List[ZMappaT]
 
-        self._tree_model: Gtk.TreeModel
-        self._tree_level_iter: Dict[str, Gtk.TreeIter] = {}
-        self._tree_level_dungeon_iter: Dict[str, Gtk.TreeIter] = {}
+        self._item_tree: ItemTree
+        self._tree_level_iter: Dict[str, ItemTreeEntryRef] = {}
+        self._tree_level_dungeon_iter: Dict[str, ItemTreeEntryRef] = {}
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
+    def load_tree_items(self, item_tree: ItemTree):
         self.dungeon_bin_context = self.project.open_file_in_rom(
             DUNGEON_BIN_PATH, FileType.DUNGEON_BIN,
             static_data=self.project.get_rom_module().get_static_data(),
@@ -131,18 +129,26 @@ class MiscGraphicsModule(AbstractModule):
             self.list_of_wtus_dungeon_bin = dungeon_bin.get_files_with_ext(WTU_FILE_EXT)
             self.list_of_zmappats_dungeon_bin = dungeon_bin.get_files_with_ext(ZMAPPAT_FILE_EXT)
 
-        root = item_store.append(root_node, [
-            'skytemple-e-graphics-symbolic', MISC_GRAPHICS, self, MainController, 0, False, '', True
-        ])
-        self._tree_model = item_store
+        root = item_tree.add_entry(None, ItemTreeEntry(
+            icon='skytemple-e-graphics-symbolic',
+            name=MISC_GRAPHICS,
+            module=self,
+            view_class=MainController,
+            item_data=0
+        ))
+        self._item_tree = item_tree
         self._tree_level_iter = {}
         self._tree_level_dungeon_iter = {}
 
         # chr at the beginning:
         for i, name in enumerate(self.list_of_chrs):
-            self._tree_level_iter[name] = item_store.append(root, [
-                'skytemple-e-graphics-symbolic', name, self,  ChrController, name, False, '', True
-            ])
+            self._tree_level_iter[name] = item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-e-graphics-symbolic',
+                name=name,
+                module=self,
+                view_class=ChrController,
+                item_data=name
+            ))
         
         sorted_entries = {}
         for name in self.list_of_w16s:
@@ -153,32 +159,47 @@ class MiscGraphicsModule(AbstractModule):
 
         for i, (name, is_wte) in enumerate(sorted_entries.items()):
             if not is_wte:
-                self._tree_level_iter[name] = item_store.append(root, [
-                    'skytemple-e-graphics-symbolic', name, self,  W16Controller,
-                    self.list_of_w16s.index(name), False, '', True
-                ])
+                self._tree_level_iter[name] = item_tree.add_entry(root, ItemTreeEntry(
+                    icon='skytemple-e-graphics-symbolic',
+                    name=name,
+                    module=self,
+                    view_class=W16Controller,
+                    item_data=self.list_of_w16s.index(name)
+                ))
             else:
                 wtu_name = name[:-3] + WTU_FILE_EXT
                 if wtu_name not in self.list_of_wtus:
                     wtu_name = None
-                self._tree_level_iter[name] = item_store.append(root, [
-                    'skytemple-e-graphics-symbolic', name, self,  WteWtuController, WteOpenSpec(
+                self._tree_level_iter[name] = item_tree.add_entry(root, ItemTreeEntry(
+                    icon='skytemple-e-graphics-symbolic',
+                    name=name,
+                    module=self,
+                    view_class=WteWtuController,
+                    item_data=WteOpenSpec(
                         name, wtu_name, False
-                    ), False, '', True
-                ])
+                    )
+                ))
 
         # fonts at the end:
         for i, name in enumerate(self.list_of_font_dats):
             spec = FontOpenSpec(name, None, FontType.FONT_DAT)
-            self._tree_level_iter[spec.get_row_name()] = item_store.append(root, [
-                'skytemple-e-graphics-symbolic', spec.get_row_name(), self,  FontController, spec, False, '', True
-            ])
+            self._tree_level_iter[spec.get_row_name()] = item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-e-graphics-symbolic',
+                name=spec.get_row_name(),
+                module=self,
+                view_class=FontController,
+                item_data=spec
+            ))
         
         for i, name in enumerate(self.list_of_font_sir0s):
             spec = FontOpenSpec(name, None, FontType.FONT_SIR0)
-            self._tree_level_iter[spec.get_row_name()] = item_store.append(root, [
-                'skytemple-e-graphics-symbolic', spec.get_row_name(), self,  FontController, spec, False, '', True
-            ])
+            self._tree_level_iter[spec.get_row_name()] = item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-e-graphics-symbolic',
+                name=spec.get_row_name(),
+                module=self,
+                view_class=FontController,
+                item_data=spec
+            ))
         
         for i, name in enumerate(self.list_of_banner_fonts):
             for assoc in FONT_PAL_ASSOC:
@@ -191,49 +212,66 @@ class MiscGraphicsModule(AbstractModule):
                         if pal_name==None:
                             none_assoc = True
                         spec = FontOpenSpec(name, pal_name, FontType.BANNER_FONT)
-                        self._tree_level_iter[spec.get_row_name()] = item_store.append(root, [
-                            'skytemple-e-graphics-symbolic', spec.get_row_name(), self,  FontController, spec, False, '', True
-                        ])
+                        self._tree_level_iter[spec.get_row_name()] = item_tree.add_entry(root, ItemTreeEntry(
+                            icon='skytemple-e-graphics-symbolic',
+                            name=spec.get_row_name(),
+                            module=self,
+                            view_class=FontController,
+                            item_data=spec
+                        ))
             
         for i, name in enumerate(self.list_of_graphic_fonts):
             pal_name = name[:-3] + PAL_FILE_EXT
             if pal_name not in self.list_of_pals:
                 pal_name = None
             spec = FontOpenSpec(name, pal_name, FontType.GRAPHIC_FONT)
-            self._tree_level_iter[spec.get_row_name()] = item_store.append(root, [
-                'skytemple-e-graphics-symbolic', spec.get_row_name(), self,  GraphicFontController, spec, False, '', True
-            ])
+            self._tree_level_iter[spec.get_row_name()] = item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-e-graphics-symbolic',
+                name=spec.get_row_name(),
+                module=self,
+                view_class=GraphicFontController,
+                item_data=spec
+            ))
             
         # dungeon bin entries at the end:
         for i, name in enumerate(self.list_of_wtes_dungeon_bin):
             wtu_name = name[:-3] + WTU_FILE_EXT
             if name[:-3] + WTU_FILE_EXT not in self.list_of_wtus_dungeon_bin:
                 wtu_name = None
-            self._tree_level_dungeon_iter[name] = item_store.append(root, [
-                'skytemple-e-graphics-symbolic', 'dungeon.bin:' + name, self,  WteWtuController, WteOpenSpec(
+            self._tree_level_dungeon_iter[name] = item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-e-graphics-symbolic',
+                name='dungeon.bin:' + name,
+                module=self,
+                view_class=WteWtuController,
+                item_data=WteOpenSpec(
                     name, wtu_name, True
-                ), False, '', True
-            ])
+                )
+            ))
         # zmappat at the end:
         for i, name in enumerate(self.list_of_zmappats_dungeon_bin):
-            self._tree_level_dungeon_iter[name] = item_store.append(root, [
-                'skytemple-e-graphics-symbolic', 'dungeon.bin:' + name, self,  ZMappaTController, name, False, '', True
-            ])
+            self._tree_level_dungeon_iter[name] = item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-e-graphics-symbolic',
+                name='dungeon.bin:' + name,
+                module=self,
+                view_class=ZMappaTController,
+                item_data=name
+            ))
         
         # cart removed at the end:
-        self._tree_level_iter[CART_REMOVED_NAME] = item_store.append(root, [
-            'skytemple-e-graphics-symbolic', CART_REMOVED_NAME, self,  CartRemovedController, CART_REMOVED_NAME, False, '', True
-        ])
-
-        recursive_generate_item_store_row_label(self._tree_model[root])
+        self._tree_level_iter[CART_REMOVED_NAME] = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-e-graphics-symbolic',
+            name=CART_REMOVED_NAME,
+            module=self,
+            view_class=CartRemovedController,
+            item_data=CART_REMOVED_NAME
+        ))
 
     def mark_w16_as_modified(self, item_id):
         """Mark a specific w16 as modified"""
         w16_filename = self.list_of_w16s[item_id]
         self.project.mark_as_modified(w16_filename)
         # Mark as modified in tree
-        row = self._tree_model[self._tree_level_iter[w16_filename]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._tree_level_iter[w16_filename], RecursionType.UP)
 
     def get_w16(self, item_id):
         w16_filename = self.list_of_w16s[item_id]
@@ -286,8 +324,7 @@ class MiscGraphicsModule(AbstractModule):
             HardcodedCartRemoved.set_cart_removed_data(img, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._tree_level_iter[CART_REMOVED_NAME]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._tree_level_iter[CART_REMOVED_NAME], RecursionType.UP)
         
     def get_dungeon_bin_file(self, fn):
         with self.dungeon_bin_context as dungeon_bin:
@@ -302,8 +339,7 @@ class MiscGraphicsModule(AbstractModule):
                     pal_name = None
                 if pal_name is not None:
                     spec = FontOpenSpec(name, pal_name, FontType.BANNER_FONT)
-                    row = self._tree_model[self._tree_level_iter[spec.get_row_name()]]
-                    recursive_up_item_store_mark_as_modified(row)
+                    self._item_tree.mark_as_modified(self._tree_level_iter[spec.get_row_name()], RecursionType.UP)
         
     def mark_font_as_modified(self, item: FontOpenSpec):
         """Mark a specific font as modified"""
@@ -311,8 +347,7 @@ class MiscGraphicsModule(AbstractModule):
         if item.pal_filename:
             self.project.mark_as_modified(item.pal_filename)
         # Mark as modified in tree
-        row = self._tree_model[self._tree_level_iter[item.get_row_name()]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._tree_level_iter[item.get_row_name()], RecursionType.UP)
         self._mark_font_assoc_as_modified(item.font_filename)
         
     def mark_zmappat_as_modified(self, zmappat, fn):
@@ -320,16 +355,14 @@ class MiscGraphicsModule(AbstractModule):
             dungeon_bin.set(fn, zmappat)
         self.project.mark_as_modified(DUNGEON_BIN_PATH)
         # Mark as modified in tree
-        row = self._tree_model[self._tree_level_dungeon_iter[fn]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._tree_level_dungeon_iter[fn], RecursionType.UP)
         
     def mark_chr_as_modified(self, fn):
         """Mark a specific chr as modified"""
         self.project.mark_as_modified(fn)
         if fn[:-4]+".pal" in self.list_of_pals:
              self.project.mark_as_modified(fn[:-4]+".pal")
-        row = self._tree_model[self._tree_level_iter[fn]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._tree_level_iter[fn], RecursionType.UP)
         
     def mark_wte_as_modified(self, item: WteOpenSpec, wte, wtu):
         if item.in_dungeon_bin:
@@ -339,15 +372,13 @@ class MiscGraphicsModule(AbstractModule):
                     dungeon_bin.set(item.wtu_filename, wtu)
             self.project.mark_as_modified(DUNGEON_BIN_PATH)
             # Mark as modified in tree
-            row = self._tree_model[self._tree_level_dungeon_iter[item.wte_filename]]
-            recursive_up_item_store_mark_as_modified(row)
+            self._item_tree.mark_as_modified(self._tree_level_dungeon_iter[item.wte_filename], RecursionType.UP)
         else:
             self.project.mark_as_modified(item.wte_filename)
             if item.wtu_filename:
                 self.project.mark_as_modified(item.wtu_filename)
             # Mark as modified in tree
-            row = self._tree_model[self._tree_level_iter[item.wte_filename]]
-            recursive_up_item_store_mark_as_modified(row)
+            self._item_tree.mark_as_modified(self._tree_level_iter[item.wte_filename], RecursionType.UP)
 
     def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, CartRemovedController):

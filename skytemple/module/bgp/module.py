@@ -14,14 +14,12 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore
 from typing import List, Optional, Union
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
+from skytemple.core.item_tree import ItemTree, ItemTreeEntry, ItemTreeEntryRef, RecursionType
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
-from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.core.widget.view import StView
 from skytemple.module.bgp.controller.bgp import BgpController
 from skytemple.module.bgp.controller.main import MainController, BACKGROUNDS_NAME
@@ -44,31 +42,36 @@ class BgpModule(AbstractModule):
         self.project = rom_project
         self.list_of_bgps = self.project.get_files_with_ext(BGP_FILE_EXT)
 
-        self._tree_model: Gtk.TreeStore
-        self._tree_level_iter: List[Gtk.TreeIter] = []
+        self._item_tree: ItemTree
+        self._tree_level_iter: List[ItemTreeEntryRef] = []
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
-        root = item_store.append(root_node, [
-            'skytemple-e-bgp-symbolic', BACKGROUNDS_NAME, self, MainController, 0, False, '', True
-        ])
-        self._tree_model = item_store
+    def load_tree_items(self, item_tree: ItemTree):
+        root = item_tree.add_entry(None, ItemTreeEntry(
+            icon='skytemple-e-bgp-symbolic',
+            name=BACKGROUNDS_NAME,
+            module=self,
+            view_class=MainController,
+            item_data=0
+        ))
+        self._item_tree = item_tree
         self._tree_level_iter = []
         for i, bgp_name in enumerate(self.list_of_bgps):
             self._tree_level_iter.append(
-                item_store.append(root, [
-                    'skytemple-e-bgp-symbolic', bgp_name, self,  BgpController, i, False, '', True
-                ])
+                item_tree.add_entry(root, ItemTreeEntry(
+                    icon='skytemple-e-bgp-symbolic',
+                    name=bgp_name,
+                    module=self,
+                    view_class=BgpController,
+                    item_data=i
+                ))
             )
-
-        recursive_generate_item_store_row_label(self._tree_model[root])
 
     def mark_as_modified(self, item_id):
         """Mark a specific bg as modified"""
         bgp_filename = self.list_of_bgps[item_id]
         self.project.mark_as_modified(bgp_filename)
         # Mark as modified in tree
-        row = self._tree_model[self._tree_level_iter[item_id]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._tree_level_iter[item_id], RecursionType.UP)
 
     def get_bgp(self, item_id):
         bgp_filename = self.list_of_bgps[item_id]

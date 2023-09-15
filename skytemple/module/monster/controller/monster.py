@@ -858,16 +858,16 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, baseid)
             entry_main_tree = self.module.generate_entry__entity_root(baseid, name)
             ent_root = store.append(None, [
-                -1, -1, False, entry_main_tree[0],
-                entry_main_tree[1], False, False
+                -1, -1, False, entry_main_tree.icon,
+                entry_main_tree.name, False, False
             ])
 
             for entry in entry_list:
                 entry_main_tree = self.module.generate_entry__entry(entry.md_index, Gender(entry.gender))  # type: ignore
                 store.append(
                     ent_root, [
-                        entry_main_tree[4], -1, True, entry_main_tree[0],
-                        entry_main_tree[1], False, False
+                        entry_main_tree.item_data, -1, True, entry_main_tree.icon,
+                        entry_main_tree.name, False, False
                     ]
                 )
 

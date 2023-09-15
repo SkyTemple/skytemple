@@ -19,14 +19,13 @@ from typing import List, Dict, Optional, Tuple, Union
 from xml.etree.ElementTree import Element
 
 from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore
 from range_typed_integers import u16, u8, i16
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
+from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef, ItemTreeEntry, RecursionType
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple.core.widget.view import StView
 from skytemple.module.monster.controller.entity import EntityController
@@ -80,9 +79,9 @@ class MonsterModule(AbstractModule):
 
         self._tbl_talk: Optional[TblTalk] = None
 
-        self._tree_model: Gtk.TreeStore
-        self._tree_iter__entity_roots: Dict[int, Gtk.TreeIter] = {}
-        self._tree_iter__entries: Dict[int, Gtk.TreeIter] = {}
+        self._item_tree: ItemTree
+        self._tree_iter__entity_roots: Dict[int, ItemTreeEntryRef] = {}
+        self._tree_iter__entries: Dict[int, ItemTreeEntryRef] = {}
         self.effective_base_attr = 'md_index_base'
 
     @property
@@ -91,11 +90,15 @@ class MonsterModule(AbstractModule):
             self._tbl_talk = self.project.open_file_in_rom(TBL_TALK_FILE, FileType.TBL_TALK)
         return self._tbl_talk
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
-        self._root = item_store.append(root_node, [
-            'skytemple-e-monster-symbolic', MONSTER_NAME, self, MainController, 0, False, '', True
-        ])
-        self._tree_model = item_store
+    def load_tree_items(self, item_tree: ItemTree):
+        self._root = item_tree.add_entry(None, ItemTreeEntry(
+            icon='skytemple-e-monster-symbolic',
+            name=MONSTER_NAME,
+            module=self,
+            view_class=MainController,
+            item_data=0
+        ))
+        self._item_tree = item_tree
         self._tree_iter__entity_roots = {}
         self._tree_iter__entries = {}
 
@@ -111,16 +114,17 @@ class MonsterModule(AbstractModule):
 
         for baseid, entry_list in monster_entries_by_base_id.items():
             name = self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, baseid)
-            ent_root = item_store.append(self._root, self.generate_entry__entity_root(baseid, name))
+            ent_root = item_tree.add_entry(self._root, self.generate_entry__entity_root(baseid, name))
             self._tree_iter__entity_roots[baseid] = ent_root
 
             for entry in entry_list:
-                self._tree_iter__entries[entry.md_index] = item_store.append(
+                self._tree_iter__entries[entry.md_index] = item_tree.add_entry(
                     ent_root,
-                    self.generate_entry__entry(entry.md_index, Gender(entry.gender))  # type: ignore
+                    self.generate_entry__entry(
+                        entry.md_index,
+                        Gender(entry.gender)  # type: ignore
+                    )
                 )
-
-        recursive_generate_item_store_row_label(self._tree_model[self._root])
 
     def get_opened_id(self) -> Optional[int]:
         """Returns the ID of the currently opened monster in SkyTemple. None if no view for a monster is opened."""
@@ -141,21 +145,27 @@ class MonsterModule(AbstractModule):
             entry.md_index, Gender(entry.gender)
         )
 
-    def generate_entry__entity_root(self, entid, name):
-        return [
-            'skytemple-e-monster-base-symbolic', f'#{entid:03}: {name}',
-            self, EntityController, f'#{entid:03}: {name}', False, '', True
-        ]
+    def generate_entry__entity_root(self, entid, name) -> ItemTreeEntry:
+        return ItemTreeEntry(
+            icon='skytemple-e-monster-base-symbolic',
+            name=f'#{entid:03}: {name}',
+            module=self,
+            view_class=EntityController,
+            item_data=f'#{entid:03}: {name}'
+        )
 
-    def generate_entry__entry(self, i, gender: Gender):
+    def generate_entry__entry(self, i, gender: Gender) -> ItemTreeEntry:
         suffix = ''
         if self.project.is_patch_applied('ExpandPokeList'):
             # With the patch we actually want to include the sub entry name, since it can be different.
             suffix = f' ({self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i)})'
-        return [
-            'skytemple-e-monster-symbolic', f'${i:04}: {gender.print_name}{suffix}',
-            self, MonsterController, i, False, '', True
-        ]
+        return ItemTreeEntry(
+            icon='skytemple-e-monster-symbolic',
+            name=f'${i:04}: {gender.print_name}{suffix}',
+            module=self,
+            view_class=MonsterController,
+            item_data=i
+        )
 
     def get_entry_both(self, item_id) -> Tuple[MdEntryProtocol, Optional[MdEntryProtocol]]:
         num_entites = FileType.MD.properties().num_entities
@@ -309,12 +319,12 @@ class MonsterModule(AbstractModule):
     def mark_string_as_modified(self):
         """Mark as modified"""
         self.project.get_string_provider().mark_as_modified()
-        recursive_up_item_store_mark_as_modified(self._tree_model[self._root])
+        self._item_tree.mark_as_modified(self._root, RecursionType.UP)
 
     def mark_tbl_talk_as_modified(self):
         """Mark as modified"""
         self.project.mark_as_modified(TBL_TALK_FILE)
-        recursive_up_item_store_mark_as_modified(self._tree_model[self._root])
+        self._item_tree.mark_as_modified(self._root, RecursionType.UP)
 
     def mark_md_as_modified(self, item_id):
         """Mark as modified"""
@@ -328,8 +338,7 @@ class MonsterModule(AbstractModule):
         self._mark_as_modified_in_tree(item_id)
 
     def _mark_as_modified_in_tree(self, item_id):
-        row = self._tree_model[self._tree_iter__entries[item_id]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._tree_iter__entries[item_id], RecursionType.UP)
 
     def get_pokemon_sprite_data_table(self):
         """Returns the recruitment lists: species, levels, locations"""

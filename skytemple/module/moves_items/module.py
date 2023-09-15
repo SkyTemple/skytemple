@@ -17,16 +17,13 @@
 import logging
 from typing import Dict, Tuple, Optional, List, Union
 
-from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore, TreeIter
 from range_typed_integers import u16
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
+from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef, ItemTreeEntry, RecursionType
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
-    recursive_generate_item_store_row_label
 from skytemple.core.widget.view import StView
 from skytemple.module.moves_items.controller.item import ItemController
 from skytemple.module.moves_items.controller.main_moves import MainMovesController, MOVES
@@ -67,44 +64,66 @@ class MovesItemsModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self._tree_model: Gtk.TreeModel
-        self._item_lists_tree_iter: Gtk.TreeIter
-        self._item_keys_tree_iter: Gtk.TreeIter
-        self.item_iters: Dict[int, TreeIter] = {}
-        self.move_iters: Dict[int, TreeIter] = {}
+        self._item_tree: ItemTree
+        self._item_lists_tree_iter: ItemTreeEntryRef
+        self._item_keys_tree_iter: ItemTreeEntryRef
+        self.item_iters: Dict[int, ItemTreeEntryRef] = {}
+        self.move_iters: Dict[int, ItemTreeEntryRef] = {}
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
-        root_items = item_store.append(root_node, [
-            'skytemple-e-item-symbolic', ITEMS, self, MainItemsController, 0, False, '', True
-        ])
-        root_moves = item_store.append(root_node, [
-            'skytemple-e-move-symbolic', MOVES, self, MainMovesController, 0, False, '', True
-        ])
-        self._item_lists_tree_iter = item_store.append(root_items, [
-            'skytemple-view-list-symbolic', _('Item Lists'), self, ItemListsController, 0, False, '', True
-        ])
-        self._item_keys_tree_iter = item_store.append(root_items, [
-            'skytemple-view-list-symbolic', _('Item Sort Keys'), self, ItemKeysController, 0, False, '', True
-        ])
+    def load_tree_items(self, item_tree: ItemTree):
+        root_items = item_tree.add_entry(None, ItemTreeEntry(
+            icon='skytemple-e-item-symbolic',
+            name=ITEMS,
+            module=self,
+            view_class=MainItemsController,
+            item_data=0
+        ))
+        root_moves = item_tree.add_entry(None, ItemTreeEntry(
+            icon='skytemple-e-move-symbolic',
+            name=MOVES,
+            module=self,
+            view_class=MainMovesController,
+            item_data=0
+        ))
+        self._item_lists_tree_iter = item_tree.add_entry(root_items, ItemTreeEntry(
+            icon='skytemple-view-list-symbolic',
+            name=_('Item Lists'),
+            module=self,
+            view_class=ItemListsController,
+            item_data=0
+        ))
+        self._item_keys_tree_iter = item_tree.add_entry(root_items, ItemTreeEntry(
+            icon='skytemple-view-list-symbolic',
+            name=_('Item Sort Keys'),
+            module=self,
+            view_class=ItemKeysController,
+            item_data=0
+        ))
 
         logger.debug("Building item tree...")
         for i, _item in enumerate(self.get_item_p().item_list):
             name = self.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
-            self.item_iters[i] = (item_store.append(root_items, [
-                'skytemple-e-item-symbolic', f'#{i:04}: {name}', self, ItemController, i, False, '', True
-            ]))
+            self.item_iters[i] = (item_tree.add_entry(root_items, ItemTreeEntry(
+                icon='skytemple-e-item-symbolic',
+                name=f'#{i:04}: {name}',
+                module=self,
+                view_class=ItemController,
+                item_data=i
+            )))
 
         logger.debug("Building move tree...")
         for i, __item in enumerate(self.get_waza_p().moves):
             name = self.project.get_string_provider().get_value(StringType.MOVE_NAMES, i)
-            self.move_iters[i] = (item_store.append(root_moves, [
-                'skytemple-e-move-symbolic', f'#{i:04}: {name}', self, MoveController, i, False, '', True
-            ]))
+            self.move_iters[i] = (item_tree.add_entry(root_moves, ItemTreeEntry(
+                icon='skytemple-e-move-symbolic',
+                name=f'#{i:04}: {name}',
+                module=self,
+                view_class=MoveController,
+                item_data=i
+            )))
         logger.debug("Done building trees.")
 
-        recursive_generate_item_store_row_label(item_store[root_items])
-        recursive_generate_item_store_row_label(item_store[root_moves])
-        self._tree_model = item_store
+        self._item_tree = item_tree
 
     def has_item_lists(self):
         return self.project.file_exists(ITEM_LISTS % 0)
@@ -118,8 +137,7 @@ class MovesItemsModule(AbstractModule):
         """Mark as modified"""
         self.project.mark_as_modified(ITEM_LISTS % list_id)
         # Mark as modified in tree
-        row = self._tree_model[self._item_lists_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._item_lists_tree_iter, RecursionType.UP)
 
     def get_item_p(self) -> ItemPProtocol:
         return self.project.open_file_in_rom(ITEM_FILE, FileType.ITEM_P)
@@ -138,8 +156,7 @@ class MovesItemsModule(AbstractModule):
         if item_id >= FIRST_EXCLUSIVE_ITEM_ID:
             self.project.mark_as_modified(ITEM_S_FILE)
         # Mark as modified in tree
-        row = self._tree_model[self.item_iters[item_id]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self.item_iters[item_id], RecursionType.UP)
 
         # Reload item categories:
         conf = self.project.get_rom_module().get_static_data()
@@ -169,15 +186,13 @@ class MovesItemsModule(AbstractModule):
         i2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.i2n}", ValListHandler)
         i2n_model.set_list(values)
         self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.i2n}")
-        row = self._tree_model[self._item_keys_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._item_keys_tree_iter, RecursionType.UP)
 
     def mark_move_as_modified(self, move_id):
         self.project.mark_as_modified(MOVE_FILE)
         self.project.get_string_provider().mark_as_modified()
         # Mark as modified in tree
-        row = self._tree_model[self.move_iters[move_id]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self.move_iters[move_id], RecursionType.UP)
 
     def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, MoveController):

@@ -16,16 +16,14 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
 from typing import Optional
-
-from gi.repository.Gtk import TreeStore, TreeIter, TreeModel
 from ndspy.rom import NintendoDSRom
 
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef, ItemTreeEntry, RecursionType
 from skytemple.core.rom_project import RomProject
-from skytemple.core.ui_utils import generate_item_store_row_label, assert_not_none
+from skytemple.core.ui_utils import assert_not_none
 from skytemple.module.rom.controller.main import MainController
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
-from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified
 
 
 class RomModule(AbstractModule):
@@ -40,8 +38,8 @@ class RomModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         """Main ROM metadata management module."""
         self.project = rom_project
-        self._item_store: Optional[TreeModel] = None
-        self._root_node: Optional[TreeIter] = None
+        self._item_tree: Optional[ItemTree] = None
+        self._root_node: Optional[ItemTreeEntryRef] = None
         self._static_data: Optional[Pmd2Data] = None
         self._rom = Optional[NintendoDSRom]
 
@@ -52,22 +50,31 @@ class RomModule(AbstractModule):
         """MAY ONLY BE USED BY THE CONTROLLER"""
         return self._rom
 
-    def get_root_node(self):
+    def get_root_node(self) -> ItemTreeEntryRef:
+        assert self._root_node is not None
         return self._root_node
 
-    def load_tree_items(self, item_store: TreeStore, root_node: Optional[TreeIter]):
-        self._item_store = item_store
-        self._root_node = item_store.append(root_node, [
-            'skytemple-e-rom-symbolic', os.path.basename(self.project.filename), self,
-            MainController, 0, False, '', True
-        ])
-        generate_item_store_row_label(item_store[self._root_node])
+    def load_tree_items(self, item_tree: ItemTree):
+        self._item_tree = item_tree
+        self._root_node = item_tree.set_root(ItemTreeEntry(
+            icon='skytemple-e-rom-symbolic',
+            name=os.path.basename(self.project.filename),
+            module=self,
+            view_class=MainController,
+            item_data=0
+        ))
 
     def update_filename(self):
-        assert self._item_store is not None
+        assert self._item_tree is not None
         assert self._root_node is not None
-        self._item_store[self._root_node][1] = os.path.basename(self.project.filename)
-        generate_item_store_row_label(self._item_store[self._root_node])
+        old_entry = self._root_node.entry()
+        self._root_node.update(ItemTreeEntry(
+            icon=old_entry.icon,
+            name=os.path.basename(self.project.filename),
+            module=old_entry.module,
+            view_class=old_entry.view_class,
+            item_data=old_entry.item_data
+        ))
 
     def load_rom_data(self):
         if self._static_data is None:
@@ -77,8 +84,7 @@ class RomModule(AbstractModule):
         return assert_not_none(self._static_data)
 
     def mark_as_modified(self):
-        assert self._item_store is not None
+        assert self._item_tree is not None
         assert self._root_node is not None
         self.project.force_mark_as_modified()
-        row = self._item_store[self._root_node]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._root_node, RecursionType.UP)

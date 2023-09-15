@@ -19,6 +19,7 @@ from typing import TYPE_CHECKING, Optional, cast
 
 from gi.repository import Gtk
 
+from skytemple.core.item_tree import ItemTreeEntryRef
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.ui_utils import data_dir, builder_get_assert, assert_not_none
@@ -35,9 +36,9 @@ class MapController(AbstractController):
         self.module = module
         self.builder: Gtk.Builder = None  # type: ignore
         self.name = name
-        self._sub_enter = None
-        self._sub_acting = None
-        self._sub_sub = None
+        self._sub_enter: Optional[ItemTreeEntryRef] = None
+        self._sub_acting: Optional[ItemTreeEntryRef] = None
+        self._sub_sub: Optional[ItemTreeEntryRef] = None
 
     def get_view(self) -> Gtk.Widget:
         self.builder = self._get_builder(__file__, 'map.glade')

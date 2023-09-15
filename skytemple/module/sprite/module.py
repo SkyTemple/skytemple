@@ -19,18 +19,17 @@ import webbrowser
 from typing import TYPE_CHECKING, Union, Optional, Dict, overload, Literal
 
 from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore
 from PIL import Image
 from skytemple_files.common.ppmdu_config.data import Pmd2Sprite
 
 from skytemple.controller.main import MainController
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.error_handler import display_error
+from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef, ItemTreeEntry, RecursionType
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
-from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified
 from skytemple.core.widget.view import StView
 from skytemple.module.sprite.controller.monster_sprite import MonsterSpriteController
 from skytemple.module.sprite.controller.object import ObjectController
@@ -66,23 +65,29 @@ class SpriteModule(AbstractModule):
         self.project = rom_project
         self.list_of_obj_sprites = self.project.get_files_with_ext(WAN_FILE_EXT, GROUND_DIR)
 
-        self._tree_model: Gtk.TreeStore
-        self._tree_level_iter: Dict[str, Gtk.TreeIter] = {}
-        self._root: Gtk.TreeIter
+        self._item_tree: ItemTree
+        self._tree_level_iter: Dict[str, ItemTreeEntryRef] = {}
+        self._root: ItemTreeEntryRef
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
-        self._root = item_store.append(root_node, [
-            'skytemple-e-object-symbolic', OBJECT_SPRTIES, self, ObjectMainController, 0, False, '', True
-        ])
-        self._tree_model = item_store
+    def load_tree_items(self, item_tree: ItemTree):
+        self._root = item_tree.add_entry(None, ItemTreeEntry(
+            icon='skytemple-e-object-symbolic',
+            name=OBJECT_SPRTIES,
+            module=self,
+            view_class=ObjectMainController,
+            item_data=0
+        ))
+        self._item_tree = item_tree
         self._tree_level_iter = {}
 
         for name in self.list_of_obj_sprites:
-            self._tree_level_iter[name] = item_store.append(self._root, [
-                'skytemple-e-object-symbolic', name, self,  ObjectController, name, False, '', True
-            ])
-
-        recursive_generate_item_store_row_label(self._tree_model[self._root])
+            self._tree_level_iter[name] = item_tree.add_entry(self._root, ItemTreeEntry(
+                icon='skytemple-e-object-symbolic',
+                name=name,
+                module=self,
+                view_class=ObjectController,
+                item_data=name
+            ))
 
     def get_monster_sprite_editor(self, sprite_id: int,
                                   modified_callback, assign_new_sprite_id_cb,
@@ -100,8 +105,7 @@ class SpriteModule(AbstractModule):
     def save_object_sprite(self, filename, data: bytes):
         assert filename in self.list_of_obj_sprites
         self.project.save_file_manually(GROUND_DIR + '/' + filename, data)
-        row = self._tree_model[self._tree_level_iter[filename]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._tree_level_iter[filename], RecursionType.UP)
 
     def get_sprite_provider(self):
         return self.project.get_sprite_provider()
@@ -110,10 +114,13 @@ class SpriteModule(AbstractModule):
         return self.project.get_module('gfxcrunch')
 
     def add_wan(self, obj_name):
-        self._tree_level_iter[obj_name] = self._tree_model.append(self._root, [
-            'skytemple-e-object-symbolic', obj_name, self, ObjectController, obj_name, False, '', True
-        ])
-        recursive_generate_item_store_row_label(self._tree_model[self._root])
+        self._tree_level_iter[obj_name] = self._item_tree.add_entry(self._root, ItemTreeEntry(
+            icon='skytemple-e-object-symbolic',
+            name=obj_name,
+            module=self,
+            view_class=ObjectController,
+            item_data=obj_name
+        ))
 
     def import_a_sprite(self) -> Optional[bytes]:
         if self.get_gfxcrunch().is_available():

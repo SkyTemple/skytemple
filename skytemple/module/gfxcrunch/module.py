@@ -20,9 +20,8 @@ import webbrowser
 from shutil import which
 from typing import Tuple, List
 
-from gi.repository.Gtk import TreeStore
-
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.item_tree import ItemTree
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import data_dir
 from skytemple.module.gfxcrunch.controller.gfxcrunch import GfxcrunchController
@@ -44,7 +43,7 @@ class GfxcrunchModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         pass
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
+    def load_tree_items(self, item_tree: ItemTree):
         pass   # n/a
 
     def is_available(self):

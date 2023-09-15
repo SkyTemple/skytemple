@@ -17,16 +17,12 @@
 import logging
 from typing import Optional, List, Union
 
-from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore
-
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
+from skytemple.core.item_tree import ItemTree, ItemTreeEntry, ItemTreeEntryRef, RecursionType
 from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET
 from skytemple.core.rom_project import RomProject, BinaryName
-from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
-    recursive_generate_item_store_row_label
 from skytemple.core.widget.view import StView
 from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController, \
     BACKGROUNDS_NAMES, DungeonBgMainController
@@ -69,65 +65,92 @@ class DungeonGraphicsModule(AbstractModule):
         self.project = rom_project
 
         self.dungeon_bin_context: ModelContext[DungeonBinPack]
-        self._tree_model: Gtk.TreeModel
-        self._tree_level_iter: List[Gtk.TreeIter] = []
+        self._item_tree: ItemTree
+        self._tree_level_iter: List[ItemTreeEntryRef] = []
         self._colvec_pos: int
-        self._root_node: Gtk.TreeIter
+        self._root_node: ItemTreeEntryRef
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
+    def load_tree_items(self, item_tree: ItemTree):
         self.dungeon_bin_context = self.project.open_file_in_rom(
             DUNGEON_BIN, FileType.DUNGEON_BIN, static_data=self.project.get_rom_module().get_static_data(),
             threadsafe=True
         )
 
-        root = self._root_node = item_store.append(root_node, [
-            'skytemple-e-dungeon-tileset-symbolic', DUNGEON_GRAPHICS_NAME, self, MainController, 0, False, '', True
-        ])
-        tileset_root = item_store.append(root, [
-            'skytemple-e-dungeon-tileset-symbolic', TILESETS_NAME, self, TilesetMainController, 0, False, '', True
-        ])
-        bg_root = item_store.append(root, [
-            'skytemple-e-mapbg-symbolic', BACKGROUNDS_NAMES, self, DungeonBgMainController, 0, False, '', True
-        ])
-        self._tree_model = item_store
+        root = self._root_node = item_tree.add_entry(None, ItemTreeEntry(
+            icon='skytemple-e-dungeon-tileset-symbolic',
+            name=DUNGEON_GRAPHICS_NAME,
+            module=self,
+            view_class=MainController,
+            item_data=0
+        ))
+        tileset_root = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-e-dungeon-tileset-symbolic',
+            name=TILESETS_NAME,
+            module=self,
+            view_class=TilesetMainController,
+            item_data=0
+        ))
+        bg_root = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-e-mapbg-symbolic',
+            name=BACKGROUNDS_NAMES,
+            module=self,
+            view_class=DungeonBgMainController,
+            item_data=0
+        ))
+        self._item_tree = item_tree
         self._tree_level_iter = []
         for i in range(0, NUMBER_OF_TILESETS):
             self._tree_level_iter.append(
-                item_store.append(tileset_root, [
-                    'skytemple-e-dungeon-tileset-symbolic', f"{_('Tileset')} {i}", self,  TilesetController, i, False, '', True
-                ])
+                item_tree.add_entry(tileset_root, ItemTreeEntry(
+                    icon='skytemple-e-dungeon-tileset-symbolic',
+                    name=f"{_('Tileset')} {i}",
+                    module=self,
+                    view_class=TilesetController,
+                    item_data=i
+                ))
             )
         for i in range(0, NUMBER_OF_BACKGROUNDS):
             self._tree_level_iter.append(
-                item_store.append(bg_root, [
-                    'skytemple-e-mapbg-symbolic', f"{_('Background')} {i + NUMBER_OF_TILESETS}",
-                    self,  DungeonBgController, i, False, '', True
-                ])
+                item_tree.add_entry(bg_root, ItemTreeEntry(
+                    icon='skytemple-e-mapbg-symbolic',
+                    name=f"{_('Background')} {i + NUMBER_OF_TILESETS}",
+                    module=self,
+                    view_class=DungeonBgController,
+                    item_data=i
+                ))
             )
         self._tree_level_iter.append(
-            item_store.append(root, [
-                'skytemple-e-graphics-symbolic', f"Traps",
-                self, TrpItmImgController, ImgType.TRP, False, '', True
-            ])
+            item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-e-graphics-symbolic',
+                name=f"Traps",
+                module=self,
+                view_class=TrpItmImgController,
+                item_data=ImgType.TRP
+            ))
         )
-        self._traps_pos = len(self._tree_level_iter)-1
+        self._traps_pos = len(self._tree_level_iter) - 1
         self._tree_level_iter.append(
-            item_store.append(root, [
-                'skytemple-e-graphics-symbolic', f"Items",
-                self, TrpItmImgController, ImgType.ITM, False, '', True
-            ])
+            item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-e-graphics-symbolic',
+                name=f"Items",
+                module=self,
+                view_class=TrpItmImgController,
+                item_data=ImgType.ITM
+            ))
         )
-        self._items_pos = len(self._tree_level_iter)-1
+        self._items_pos = len(self._tree_level_iter) - 1
         self._tree_level_iter.append(
-            item_store.append(root, [
-                'skytemple-e-dungeon-tileset-symbolic', _("Color Map"),
-                self, ColvecController, i, False, '', True
-            ])
+            item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-e-dungeon-tileset-symbolic',
+                name=_("Color Map"),
+                module=self,
+                view_class=ColvecController,
+                item_data=i
+            ))
         )
-        self._colvec_pos = len(self._tree_level_iter)-1
-        recursive_generate_item_store_row_label(self._tree_model[root])
+        self._colvec_pos = len(self._tree_level_iter) - 1
 
-    def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
+    def handle_request(self, request: OpenRequest) -> Optional[ItemTreeEntryRef]:
         if request.type == REQUEST_TYPE_DUNGEON_TILESET:
             return self._tree_level_iter[request.identifier]
         return None
@@ -182,14 +205,12 @@ class DungeonGraphicsModule(AbstractModule):
         # Mark as modified in tree
         if is_background:
             item_id += NUMBER_OF_TILESETS
-        row = self._tree_model[self._tree_level_iter[item_id]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._tree_level_iter[item_id], RecursionType.UP)
     
     def mark_colvec_as_modified(self):
         self.project.mark_as_modified(DUNGEON_BIN)
         # Mark as modified in tree
-        row = self._tree_model[self._tree_level_iter[self._colvec_pos]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._tree_level_iter[self._colvec_pos], RecursionType.UP)
 
     def nb_tilesets(self):
         return NUMBER_OF_TILESETS
@@ -226,8 +247,7 @@ class DungeonGraphicsModule(AbstractModule):
             BinaryName.OVERLAY_10, lambda binary: HardcodedDungeons.set_tileset_properties(
                 lst, binary, self.project.get_rom_module().get_static_data()
         ))
-        row = self._tree_model[self._root_node]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._root_node, RecursionType.UP)
 
     def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, DungeonBgController):

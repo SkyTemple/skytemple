@@ -31,6 +31,7 @@ from gi.repository.GdkPixbuf import Pixbuf
 from skytemple.controller.settings import SettingsController
 from skytemple.controller.tilequant_dialog import TilequantController
 from skytemple.core.abstract_module import AbstractModule
+from skytemple.core.item_tree import ItemTree
 from skytemple.core.view_loader import load_view
 from skytemple.core.error_handler import display_error, capture_error
 from skytemple.core.events.events import EVT_VIEW_SWITCH, EVT_PROJECT_OPEN
@@ -43,7 +44,7 @@ from skytemple.core.ssb_debugger.manager import DebuggerManager
 from skytemple_files.common.impl_cfg import ImplementationType, get_implementation_type
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
-from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir, \
+from skytemple.core.ui_utils import add_dialog_file_filters, data_dir, \
     version, open_dir, builder_get_assert, create_tree_view_column, assert_not_none
 from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.util import add_extension_if_missing
@@ -132,6 +133,7 @@ class MainController:
 
         self._recent_files_store  = builder_get_assert(self.builder, Gtk.ListStore, 'recent_files_store')
         self._item_store = builder_get_assert(self.builder, Gtk.TreeStore, 'item_store')
+        self._tree_repr = ItemTree(self._item_store)
         self._editor_stack = builder_get_assert(self.builder, Gtk.Stack, 'editor_stack')
 
         builder.connect_signals(self)
@@ -337,7 +339,7 @@ class MainController:
             
             logger.info(f'Loaded ROM {project.filename} ({rom_module.get_static_data().game_edition})')
             logger.debug(f"Loading ROM module tree items...")
-            rom_module.load_tree_items(self._item_store, None)
+            rom_module.load_tree_items(self._tree_repr)
             root_node = rom_module.get_root_node()
 
             
@@ -347,11 +349,14 @@ class MainController:
             # Load item tree items
             for module in sorted(project.get_modules(False), key=lambda m: m.sort_order()):
                 logger.debug(f"Loading {module.__class__.__name__} module tree items...")
-                module.load_tree_items(self._item_store, root_node)
+                module.load_tree_items(self._tree_repr)
                 if module.__class__.__name__ == 'MapBgModule':
                     self._loaded_map_bg_module = module  # type: ignore
             # TODO: Load settings from ROM for history, bookmarks, etc? - separate module?
             logger.debug(f"Loaded all modules.")
+
+            # Generate all labels.
+            self._tree_repr.finalize()
 
             # Trigger event
             EventManager.instance().trigger(EVT_PROJECT_OPEN, project=project)
@@ -359,8 +364,8 @@ class MainController:
             # Select & load main ROM item by default
             assert self._main_item_list is not None
             selection: Gtk.TreeSelection = self._main_item_list.get_selection()
-            selection.select_path(self._item_store.get_path(root_node))
-            self.load_view(self._item_store, root_node, self._main_item_list)
+            selection.select_path(self._item_store.get_path(root_node._self))
+            self.load_view(self._item_store, root_node._self, self._main_item_list)
         except BaseException as ex:
             self.on_file_opened_error(sys.exc_info(), ex)
             return
@@ -394,10 +399,7 @@ class MainController:
         rom = RomProject.get_current()
         if rom is not None:
             self._set_title(os.path.basename(rom.filename), False)
-            assert self._item_store is not None
-            first_iter = self._item_store.get_iter_first()
-            if first_iter:
-                recursive_down_item_store_mark_as_modified(self._item_store[first_iter], False)
+            self._tree_repr.mark_all_as_unmodified()
             if self._after_save_action is not None:
                 self._after_save_action()
                 self._after_save_action = None

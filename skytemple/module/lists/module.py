@@ -16,15 +16,13 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from typing import List, Tuple, Optional, Union
 
-from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore, TreeIter
 from range_typed_integers import i16, u16, u8
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
+from skytemple.core.item_tree import ItemTree, ItemTreeEntry, ItemTreeEntryRef, RecursionType
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_MUSIC
 from skytemple.core.rom_project import RomProject, BinaryName
-from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label
 from skytemple.core.widget.view import StView
 from skytemple.module.lists.controller.dungeon_music import DungeonMusicController
 from skytemple.module.lists.controller.guest_pokemon import GuestPokemonController
@@ -44,7 +42,6 @@ from skytemple.module.lists.controller.dungeon_interrupt import DungeonInterrupt
 from skytemple.module.lists.controller.animations import AnimationsController
 from skytemple.module.monster.module import WAZA_P_BIN
 from skytemple_files.common.types.file_types import FileType
-from skytemple_files.data.data_cd.handler import DataCDHandler
 from skytemple_files.data.inter_d.handler import InterDHandler
 from skytemple_files.data.anim.handler import AnimHandler
 from skytemple_files.data.md.protocol import MdProtocol
@@ -82,90 +79,138 @@ class ListsModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self._tree_model: Gtk.TreeModel
-        self._actor_tree_iter: Gtk.TreeIter
-        self._starters_tree_iter: Gtk.TreeIter
-        self._recruitment_tree_iter: Gtk.TreeIter
-        self._world_map_tree_iter: Gtk.TreeIter
-        self._rank_list_tree_iter: Gtk.TreeIter
-        self._menu_list_tree_iter: Gtk.TreeIter
-        self._dungeon_music_tree_iter: Gtk.TreeIter
-        self._misc_settings_tree_iter: Gtk.TreeIter
-        self._guest_pokemon_root_iter: Gtk.TreeIter
-        self._special_episodes_root_iter: Gtk.TreeIter
-        self._tactics_root_iter: Gtk.TreeIter
-        self._iq_tree_iter: Gtk.TreeIter
+        self._item_tree: ItemTree
+        self._actor_tree_iter: ItemTreeEntryRef
+        self._starters_tree_iter: ItemTreeEntryRef
+        self._recruitment_tree_iter: ItemTreeEntryRef
+        self._world_map_tree_iter: ItemTreeEntryRef
+        self._rank_list_tree_iter: ItemTreeEntryRef
+        self._menu_list_tree_iter: ItemTreeEntryRef
+        self._dungeon_music_tree_iter: ItemTreeEntryRef
+        self._misc_settings_tree_iter: ItemTreeEntryRef
+        self._guest_pokemon_root_iter: ItemTreeEntryRef
+        self._special_episodes_root_iter: ItemTreeEntryRef
+        self._tactics_root_iter: ItemTreeEntryRef
+        self._iq_tree_iter: ItemTreeEntryRef
 
         self.waza_p_bin: WazaPProtocol = self.project.open_file_in_rom(WAZA_P_BIN, FileType.WAZA_P)
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
-        root = item_store.append(root_node, [
-            'skytemple-view-list-symbolic', GROUND_LISTS, self, MainController, 0, False, '', True
-        ])
-        self._actor_tree_iter = item_store.append(root, [
-            'skytemple-e-actor-symbolic', _('Actors'), self, ActorListController, 0, False, '', True
-        ])
-        self._starters_tree_iter = item_store.append(root, [
-            'skytemple-e-monster-symbolic', _('Starters'), self, StartersListController, 0, False, '', True
-        ])
-        self._object_tree_iter = item_store.append(root, [
-            'skytemple-e-object-symbolic', _('Objects'), self, ObjectListController, 0, False, '', True
-        ])
-        self._recruitment_tree_iter = item_store.append(root, [
-            'skytemple-e-monster-symbolic', _('Recruitment List'), self, RecruitmentListController, 0, False, '', True
-        ])
-        self._world_map_tree_iter = item_store.append(root, [
-            'skytemple-e-worldmap-symbolic', _('World Map Markers'), self, WorldMapController, 0, False, '', True
-        ])
-        self._rank_list_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', _('Rank List'), self, RankListController, 0, False, '', True
-        ])
-        self._menu_list_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', _('Menu List'), self, MenuListController, 0, False, '', True
-        ])
-        self._dun_inter_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', _('Dungeon Interruptions'), self, DungeonInterruptController, 0, False, '', True
-        ])
-        self._animations_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', _('Animations'), self, AnimationsController, 0, False, '', True
-        ])
-        self._dungeon_music_tree_iter = item_store.append(root, [
-            'skytemple-e-music-symbolic', _('Dungeon Music'), self, DungeonMusicController, 0, False, '', True
-        ])
-        self._guest_pokemon_root_iter = item_store.append(root, [
-            'skytemple-e-monster-symbolic', _('Guest Pokémon'), self, GuestPokemonController, 0, False, '', True
-        ])
-        self._special_episodes_root_iter = item_store.append(root, [
-            'skytemple-e-monster-symbolic', _('Special Episode PCs'), self, SpecialPcsController, 0, False, '', True
-        ])
-        self._tactics_root_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', _('Tactics'), self, TacticsController, 0, False, '', True
-        ])
-        self._iq_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', _('IQ'), self, IqController, 0, False, '', True
-        ])
-        self._misc_settings_tree_iter = item_store.append(root, [
-            'skytemple-view-list-symbolic', _('Misc. Settings'), self, MiscSettingsController, 0, False, '', True
-        ])
-        generate_item_store_row_label(item_store[root])
-        generate_item_store_row_label(item_store[self._actor_tree_iter])
-        generate_item_store_row_label(item_store[self._starters_tree_iter])
-        generate_item_store_row_label(item_store[self._object_tree_iter])
-        generate_item_store_row_label(item_store[self._recruitment_tree_iter])
-        generate_item_store_row_label(item_store[self._world_map_tree_iter])
-        generate_item_store_row_label(item_store[self._rank_list_tree_iter])
-        generate_item_store_row_label(item_store[self._menu_list_tree_iter])
-        generate_item_store_row_label(item_store[self._dun_inter_tree_iter])
-        generate_item_store_row_label(item_store[self._animations_tree_iter])
-        generate_item_store_row_label(item_store[self._dungeon_music_tree_iter])
-        generate_item_store_row_label(item_store[self._misc_settings_tree_iter])
-        generate_item_store_row_label(item_store[self._guest_pokemon_root_iter])
-        generate_item_store_row_label(item_store[self._special_episodes_root_iter])
-        generate_item_store_row_label(item_store[self._tactics_root_iter])
-        generate_item_store_row_label(item_store[self._iq_tree_iter])
-        self._tree_model = item_store
+    def load_tree_items(self, item_tree: ItemTree):
+        root = item_tree.add_entry(None, ItemTreeEntry(
+            icon='skytemple-view-list-symbolic',
+            name=GROUND_LISTS,
+            module=self,
+            view_class=MainController,
+            item_data=0
+        ))
+        self._actor_tree_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-e-actor-symbolic',
+            name=_('Actors'),
+            module=self,
+            view_class=ActorListController,
+            item_data=0
+        ))
+        self._starters_tree_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-e-monster-symbolic',
+            name=_('Starters'),
+            module=self,
+            view_class=StartersListController,
+            item_data=0
+        ))
+        self._object_tree_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-e-object-symbolic',
+            name=_('Objects'),
+            module=self,
+            view_class=ObjectListController,
+            item_data=0
+        ))
+        self._recruitment_tree_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-e-monster-symbolic',
+            name=_('Recruitment List'),
+            module=self,
+            view_class=RecruitmentListController,
+            item_data=0
+        ))
+        self._world_map_tree_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-e-worldmap-symbolic',
+            name=_('World Map Markers'),
+            module=self,
+            view_class=WorldMapController,
+            item_data=0
+        ))
+        self._rank_list_tree_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-view-list-symbolic',
+            name=_('Rank List'),
+            module=self,
+            view_class=RankListController,
+            item_data=0
+        ))
+        self._menu_list_tree_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-view-list-symbolic',
+            name=_('Menu List'),
+            module=self,
+            view_class=MenuListController,
+            item_data=0
+        ))
+        self._dun_inter_tree_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-view-list-symbolic',
+            name=_('Dungeon Interruptions'),
+            module=self,
+            view_class=DungeonInterruptController,
+            item_data=0
+        ))
+        self._animations_tree_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-view-list-symbolic',
+            name=_('Animations'),
+            module=self,
+            view_class=AnimationsController,
+            item_data=0
+        ))
+        self._dungeon_music_tree_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-e-music-symbolic',
+            name=_('Dungeon Music'),
+            module=self,
+            view_class=DungeonMusicController,
+            item_data=0
+        ))
+        self._guest_pokemon_root_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-e-monster-symbolic',
+            name=_('Guest Pokémon'),
+            module=self,
+            view_class=GuestPokemonController,
+            item_data=0
+        ))
+        self._special_episodes_root_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-e-monster-symbolic',
+            name=_('Special Episode PCs'),
+            module=self,
+            view_class=SpecialPcsController,
+            item_data=0
+        ))
+        self._tactics_root_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-view-list-symbolic',
+            name=_('Tactics'),
+            module=self,
+            view_class=TacticsController,
+            item_data=0
+        ))
+        self._iq_tree_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-view-list-symbolic',
+            name=_('IQ'),
+            module=self,
+            view_class=IqController,
+            item_data=0
+        ))
+        self._misc_settings_tree_iter = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-view-list-symbolic',
+            name=_('Misc. Settings'),
+            module=self,
+            view_class=MiscSettingsController,
+            item_data=0
+        ))
+        self._item_tree = item_tree
 
-    def handle_request(self, request: OpenRequest) -> Optional[TreeIter]:
+    def handle_request(self, request: OpenRequest) -> Optional[ItemTreeEntryRef]:
         if request.type == REQUEST_TYPE_DUNGEON_MUSIC:
             return self._dungeon_music_tree_iter
         return None
@@ -180,8 +225,7 @@ class ListsModule(AbstractModule):
         """Mark as modified"""
         self.project.mark_as_modified(DUNGEON_INTERRUPT)
         # Mark as modified in tree
-        row = self._tree_model[self._dun_inter_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._dun_inter_tree_iter, RecursionType.UP)
     
     def has_animations(self):
         return self.project.file_exists(ANIMATIONS)
@@ -193,8 +237,7 @@ class ListsModule(AbstractModule):
         """Mark as modified"""
         self.project.mark_as_modified(ANIMATIONS)
         # Mark as modified in tree
-        row = self._tree_model[self._animations_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._animations_tree_iter, RecursionType.UP)
 
     def has_object_list(self):
         return self.project.file_exists(OBJECT_LIST)
@@ -206,8 +249,7 @@ class ListsModule(AbstractModule):
         """Mark as modified"""
         self.project.mark_as_modified(OBJECT_LIST)
         # Mark as modified in tree
-        row = self._tree_model[self._object_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._object_tree_iter, RecursionType.UP)
     
     def has_actor_list(self):
         return self.project.file_exists(ACTOR_LIST)
@@ -219,8 +261,7 @@ class ListsModule(AbstractModule):
         """Mark as modified"""
         self.project.mark_as_modified(ACTOR_LIST)
         # Mark as modified in tree
-        row = self._tree_model[self._actor_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._actor_tree_iter, RecursionType.UP)
 
     def has_edit_extra_pokemon(self):
         return self.project.is_patch_applied("EditExtraPokemon")
@@ -228,18 +269,15 @@ class ListsModule(AbstractModule):
     def mark_str_as_modified(self):
         self.project.get_string_provider().mark_as_modified()
         # Mark as modified in tree
-        row = self._tree_model[self._starters_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._starters_tree_iter, RecursionType.UP)
 
     def mark_misc_settings_as_modified(self):
         # Mark as modified in tree
-        row = self._tree_model[self._misc_settings_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._misc_settings_tree_iter, RecursionType.UP)
 
     def mark_iq_as_modified(self):
         # Mark as modified in tree
-        row = self._tree_model[self._iq_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._iq_tree_iter, RecursionType.UP)
 
     def get_monster_md(self) -> MdProtocol:
         return self.project.get_module('monster').monster_md
@@ -263,8 +301,7 @@ class ListsModule(AbstractModule):
             HardcodedDefaultStarters.set_partner_md_id(partner, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._starters_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._starters_tree_iter, RecursionType.UP)
 
     def get_special_pcs(self) -> List[SpecialEpisodePc]:
         arm9 = self.project.get_binary(BinaryName.ARM9)
@@ -277,8 +314,7 @@ class ListsModule(AbstractModule):
             HardcodedDefaultStarters.set_special_episode_pcs(lst, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._special_episodes_root_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._special_episodes_root_iter, RecursionType.UP)
 
     def get_tactics(self) -> List[i16]:
         arm9 = self.project.get_binary(BinaryName.ARM9)
@@ -291,8 +327,7 @@ class ListsModule(AbstractModule):
             HardcodedTactics.set_unlock_levels(lst, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._tactics_root_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._tactics_root_iter, RecursionType.UP)
     
     def get_starter_ids(self) -> Tuple[List[u16], List[u16]]:
         """Returns players & partner starters"""
@@ -309,8 +344,7 @@ class ListsModule(AbstractModule):
             HardcodedPersonalityTestStarters.set_partner_md_ids(partner, ov13, static_data)
         self.project.modify_binary(BinaryName.OVERLAY_13, update)
 
-        row = self._tree_model[self._starters_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._starters_tree_iter, RecursionType.UP)
     
     def get_starter_level_player(self) -> int:
         arm9 = self.project.get_binary(BinaryName.ARM9)
@@ -323,8 +357,7 @@ class ListsModule(AbstractModule):
             HardcodedDefaultStarters.set_player_level(level, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._starters_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._starters_tree_iter, RecursionType.UP)
     
     def get_starter_level_partner(self) -> u8:
         arm9 = self.project.get_binary(BinaryName.ARM9)
@@ -337,8 +370,7 @@ class ListsModule(AbstractModule):
             HardcodedDefaultStarters.set_partner_level(level, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._starters_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._starters_tree_iter, RecursionType.UP)
 
     def get_recruitment_list(self) -> Tuple[List[u16], List[u16], List[u8]]:
         """Returns the recruitment lists: species, levels, locations"""
@@ -358,8 +390,7 @@ class ListsModule(AbstractModule):
             HardcodedRecruitmentTables.set_monster_locations_list(location, ov11, static_data)
         self.project.modify_binary(BinaryName.OVERLAY_11, update)
 
-        row = self._tree_model[self._recruitment_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._recruitment_tree_iter, RecursionType.UP)
 
     def get_world_map_markers(self) -> List[MapMarkerPlacement]:
         """Returns the world map markers"""
@@ -375,8 +406,7 @@ class ListsModule(AbstractModule):
             HardcodedDungeons.set_marker_placements(markers, arm9bin, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._world_map_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._world_map_tree_iter, RecursionType.UP)
 
     def get_rank_list(self) -> List[Rank]:
         """Returns the rank up table."""
@@ -391,8 +421,7 @@ class ListsModule(AbstractModule):
             HardcodedRankUpTable.set_rank_up_table(values, arm9bin, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._rank_list_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._rank_list_tree_iter, RecursionType.UP)
     
     def get_menu(self, menu_id) -> List[MenuEntry]:
         """Returns the rank up table."""
@@ -411,8 +440,7 @@ class ListsModule(AbstractModule):
         
         self.project.modify_binary(MenuType(menu_id).binary, update)  # type: ignore
 
-        row = self._tree_model[self._menu_list_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._menu_list_tree_iter, RecursionType.UP)
     
     def mark_string_as_modified(self):
         """Mark as modified"""
@@ -431,8 +459,7 @@ class ListsModule(AbstractModule):
         self.project.modify_binary(BinaryName.OVERLAY_10, lambda ov10: HardcodedDungeonMusic.set_music_list(lst, ov10, config))
         self.project.modify_binary(BinaryName.OVERLAY_10, lambda ov10: HardcodedDungeonMusic.set_random_music_list(random, ov10, config))
 
-        row = self._tree_model[self._dungeon_music_tree_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._dungeon_music_tree_iter, RecursionType.UP)
 
     def set_extra_dungeon_data(self, lst: List[ExtraDungeonDataEntry]):
         """Updates the extra dungeon data list"""
@@ -441,8 +468,7 @@ class ListsModule(AbstractModule):
             ExtraDungeonDataList.write(lst, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._guest_pokemon_root_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._guest_pokemon_root_iter, RecursionType.UP)
 
     def set_guest_pokemon_data(self, lst: List[GuestPokemon]):
         """Updates the guest pokémon data list"""
@@ -451,8 +477,7 @@ class ListsModule(AbstractModule):
             GuestPokemonList.write(lst, arm9, static_data)
         self.project.modify_binary(BinaryName.ARM9, update)
 
-        row = self._tree_model[self._guest_pokemon_root_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._guest_pokemon_root_iter, RecursionType.UP)
 
     def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
         if isinstance(open_view, ActorListController):

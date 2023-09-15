@@ -18,10 +18,10 @@ import os
 from typing import Optional, Dict, List, Tuple, Union
 
 from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore, TreeIter
 
 from explorerscript.source_map import SourceMapPositionMark
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
+from skytemple.core.item_tree import ItemTree, ItemTreeEntry, ItemTreeEntryRef, RecursionType
 from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE, REQUEST_TYPE_SCENE_SSE, REQUEST_TYPE_SCENE_SSA, \
@@ -30,8 +30,7 @@ from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHandler
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import recursive_generate_item_store_row_label, recursive_up_item_store_mark_as_modified, \
-    data_dir
+from skytemple.core.ui_utils import data_dir
 from skytemple.core.widget.view import StView
 from skytemple.module.script.controller.folder import FolderController
 from skytemple.module.script.controller.map import MapController
@@ -75,59 +74,99 @@ class ScriptModule(AbstractModule):
         self.script_engine_file_tree = load_script_files(self.project.get_rom_folder(SCRIPT_DIR), self.get_level_list() if self.has_level_list() else None)
 
         # Tree iters for handle_request:
-        self._map_scene_root: Dict[str, Gtk.TreeIter] = {}
-        self._acting_roots: Dict[str, Gtk.TreeIter] = {}
-        self._sub_roots: Dict[str, Gtk.TreeIter] = {}
-        self._map_ssas: Dict[str, Dict[str, Gtk.TreeIter]] = {}
-        self._map_sse: Dict[str, Gtk.TreeIter] = {}
-        self._map_ssss: Dict[str, Dict[str, Gtk.TreeIter]] = {}
+        self._map_scene_root: Dict[str, ItemTreeEntryRef] = {}
+        self._acting_roots: Dict[str, ItemTreeEntryRef] = {}
+        self._sub_roots: Dict[str, ItemTreeEntryRef] = {}
+        self._map_ssas: Dict[str, Dict[str, ItemTreeEntryRef]] = {}
+        self._map_sse: Dict[str, ItemTreeEntryRef] = {}
+        self._map_ssss: Dict[str, Dict[str, ItemTreeEntryRef]] = {}
 
-        self._tree_model: TreeStore
-        self._root: TreeIter
-        self._other_node: TreeIter
-        self._sub_nodes: Dict[str, Gtk.TreeIter] = {}
+        self._item_tree: ItemTree
+        self._root: ItemTreeEntryRef
+        self._other_node: ItemTreeEntryRef
+        self._sub_nodes: Dict[str, ItemTreeEntryRef] = {}
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
+    def load_tree_items(self, item_tree: ItemTree):
         # -> Script [main]
-        root = item_store.append(root_node, [
-            'skytemple-e-ground-symbolic', SCRIPT_SCENES, self, MainController, 0, False, '', True
-        ])
+        root = item_tree.add_entry(None, ItemTreeEntry(
+            icon='skytemple-e-ground-symbolic',
+            name=SCRIPT_SCENES,
+            module=self,
+            view_class=MainController,
+            item_data=0
+        ))
         self._root = root
 
-        self._tree_model = item_store
+        self._item_tree = item_tree
 
         #    -> Common [common]
-        item_store.append(root, [
-            'skytemple-e-script-symbolic', SCRIPT_SCRIPTS, self,  SsbController, 0, False, '', True
-        ])
+        item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-e-script-symbolic',
+            name=SCRIPT_SCRIPTS,
+            module=self,
+            view_class=SsbController,
+            item_data=0
+        ))
 
         sub_nodes = {
-            'S': item_store.append(root, [
-                'skytemple-folder-symbolic', _('S - System'), self, FolderController, _('S - System'), False, '', True
-            ]),
-            'T': item_store.append(root, [
-                'skytemple-folder-symbolic', _('T - Town'), self, FolderController, _('T - Town'), False, '', True
-            ]),
-            'D': item_store.append(root, [
-                'skytemple-folder-symbolic', _('D - Dungeon'), self, FolderController, _('D - Dungeon'), False, '', True
-            ]),
-            'G': item_store.append(root, [
-                'skytemple-folder-symbolic', _('G - Guild'), self, FolderController, _('G - Guild'), False, '', True
-            ]),
-            'H': item_store.append(root, [
-                'skytemple-folder-symbolic', _('H - Habitat'), self, FolderController, _('H - Habitat'), False, '', True
-            ]),
-            'P': item_store.append(root, [
-                'skytemple-folder-symbolic', _('P - Places'), self, FolderController, _('P - Places'), False, '', True
-            ]),
-            'V': item_store.append(root, [
-                'skytemple-folder-symbolic', _('V - Visual'), self, FolderController, _('V - Visual'), False, '', True
-            ])
+            'S': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('S - System'),
+                module=self,
+                view_class=FolderController,
+                item_data=_('S - System')
+            )),
+            'T': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('T - Town'),
+                module=self,
+                view_class=FolderController,
+                item_data=_('T - Town')
+            )),
+            'D': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('D - Dungeon'),
+                module=self,
+                view_class=FolderController,
+                item_data=_('D - Dungeon')
+            )),
+            'G': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('G - Guild'),
+                module=self,
+                view_class=FolderController,
+                item_data=_('G - Guild')
+            )),
+            'H': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('H - Habitat'),
+                module=self,
+                view_class=FolderController,
+                item_data=_('H - Habitat')
+            )),
+            'P': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('P - Places'),
+                module=self,
+                view_class=FolderController,
+                item_data=_('P - Places')
+            )),
+            'V': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('V - Visual'),
+                module=self,
+                view_class=FolderController,
+                item_data=_('V - Visual')
+            ))
         }
         # Other
-        other = item_store.append(root, [
-            'skytemple-folder-symbolic', _('Others'), self, FolderController, None, False, '', True
-        ])
+        other = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-folder-symbolic',
+            name=_('Others'),
+            module=self,
+            view_class=FolderController,
+            item_data=None
+        ))
         self._other_node = other
         self._sub_nodes = sub_nodes
 
@@ -138,63 +177,83 @@ class ScriptModule(AbstractModule):
             self._map_ssas[map_obj['name']] = {}
             self._map_ssss[map_obj['name']] = {}
             #    -> (Map Name) [map]
-            map_root = item_store.append(parent, [
-                'skytemple-folder-symbolic', map_obj['name'], self,  MapController, map_obj['name'], False, '', True
-            ])
+            map_root = item_tree.add_entry(parent, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=map_obj['name'],
+                module=self,
+                view_class=MapController,
+                item_data=map_obj['name']
+            ))
             self._map_scene_root[map_obj['name']] = map_root
 
             if map_obj['enter_sse'] is not None:
                 #          -> Enter [sse]
-                self._map_sse[map_obj['name']] = item_store.append(map_root, [
-                    'skytemple-e-ground-symbolic', _('Enter (sse)'), self,  SsaController, {
+                self._map_sse[map_obj['name']] = item_tree.add_entry(map_root, ItemTreeEntry(
+                    icon='skytemple-e-ground-symbolic',
+                    name=_('Enter (sse)'),
+                    module=self,
+                    view_class=SsaController,
+                    item_data={
                         'map': map_obj['name'],
                         'file': f"{SCRIPT_DIR}/{map_obj['name']}/{map_obj['enter_sse']}",
                         'type': 'sse',
                         'scripts': map_obj['enter_ssbs'].copy()
-                    }, False, '', True
-                ])
+                    }
+                ))
 
             #       -> Acting Scripts [lsd]
-            acting_root = item_store.append(map_root, [
-                'skytemple-folder-open-symbolic', _('Acting (ssa)'), self,  LsdController, map_obj['name'], False, '', True
-            ])
+            acting_root = item_tree.add_entry(map_root, ItemTreeEntry(
+            icon='skytemple-folder-open-symbolic',
+            name=_('Acting (ssa)'),
+            module=self,
+            view_class=LsdController,
+            item_data=map_obj['name']
+        ))
             self._acting_roots[map_obj['name']] = acting_root
             for ssa, ssb in map_obj['ssas']:
                 stem = ssa[:-len(SSA_EXT)]
                 #             -> Scene [ssa]
                 filename = f"{SCRIPT_DIR}/{map_obj['name']}/{ssa}"
-                self._map_ssas[map_obj['name']][filename] = item_store.append(acting_root, [
-                    'skytemple-e-ground-symbolic', stem,
-                    self, SsaController, {
+                self._map_ssas[map_obj['name']][filename] = item_tree.add_entry(acting_root, ItemTreeEntry(
+                    icon='skytemple-e-ground-symbolic',
+                    name=stem,
+                    module=self,
+                    view_class=SsaController,
+                    item_data={
                         'map': map_obj['name'],
                         'file': filename,
                         'type': 'ssa',
                         'scripts': [ssb]
-                    }, False, '', True
-                ])
+                    }
+                ))
 
             #       -> Sub Scripts [sub]
-            sub_root = item_store.append(map_root, [
-                'skytemple-folder-open-symbolic', _('Sub (sss)'), self,  SubController, map_obj['name'], False, '', True
-            ])
+            sub_root = item_tree.add_entry(map_root, ItemTreeEntry(
+            icon='skytemple-folder-open-symbolic',
+            name=_('Sub (sss)'),
+            module=self,
+            view_class=SubController,
+            item_data=map_obj['name']
+        ))
             self._sub_roots[map_obj['name']] = sub_root
             for sss, ssbs in map_obj['subscripts'].items():
                 stem = sss[:-len(SSS_EXT)]
                 #             -> Scene [sss]
                 filename = f"{SCRIPT_DIR}/{map_obj['name']}/{sss}"
-                self._map_ssss[map_obj['name']][filename] = item_store.append(sub_root, [
-                    'skytemple-e-ground-symbolic', stem,
-                    self, SsaController, {
+                self._map_ssss[map_obj['name']][filename] = item_tree.add_entry(sub_root, ItemTreeEntry(
+                    icon='skytemple-e-ground-symbolic',
+                    name=stem,
+                    module=self,
+                    view_class=SsaController,
+                    item_data={
                         'map': map_obj['name'],
                         'file': filename,
                         'type': 'sss',
                         'scripts': ssbs.copy()
-                    }, False, '', True
-                ])
+                    }
+                ))
 
-        recursive_generate_item_store_row_label(self._tree_model[root])
-
-    def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
+    def handle_request(self, request: OpenRequest) -> Optional[ItemTreeEntryRef]:
         if request.type == REQUEST_TYPE_SCENE:
             # if we have an enter scene, open it directly.
             if request.identifier in self._map_sse:
@@ -209,14 +268,14 @@ class ScriptModule(AbstractModule):
             if request.identifier[0] in self._map_ssas:
                 for it in self._map_ssas[request.identifier[0]].values():
                     # Check if the filename of the tree iter entry (see load_tree_items) matches the request filename.
-                    file_name = self._tree_model[it][4]['file'].split('/')[-1]
+                    file_name = it.entry().item_data['file'].split('/')[-1]
                     if file_name == request.identifier[1]:
                         return it
         if request.type == REQUEST_TYPE_SCENE_SSS:
             if request.identifier[0] in self._map_ssss:
                 for it in self._map_ssss[request.identifier[0]].values():
                     # Check if the filename of the tree iter entry (see load_tree_items) matches the request filename.
-                    file_name = self._tree_model[it][4]['file'].split('/')[-1]
+                    file_name = it.entry().item_data['file'].split('/')[-1]
                     if file_name == request.identifier[1]:
                         return it
         return None
@@ -258,9 +317,7 @@ class ScriptModule(AbstractModule):
 
         # Mark as modified in tree
         if treeiter is not None:
-            row = self._tree_model[treeiter]
-            if row is not None:
-                recursive_up_item_store_mark_as_modified(row)
+            self._item_tree.mark_as_modified(treeiter, RecursionType.UP)
 
     def get_sprite_provider(self) -> SpriteProvider:
         return self.project.get_sprite_provider()
@@ -288,7 +345,7 @@ class ScriptModule(AbstractModule):
 
     def mark_level_list_as_modified(self):
         self.project.mark_as_modified(LEVEL_LIST)
-        recursive_up_item_store_mark_as_modified(self._tree_model[self._root])
+        self._item_tree.mark_as_modified(self._root, RecursionType.UP)
 
     def get_bg_level_list(self) -> BgListProtocol:
         return self.project.open_file_in_rom('MAP_BG/bg_list.dat', FileType.BG_LIST_DAT)
@@ -313,7 +370,7 @@ class ScriptModule(AbstractModule):
                 value, binary, config
             )
         )
-        recursive_up_item_store_mark_as_modified(self._tree_model[self._root])
+        self._item_tree.mark_as_modified(self._root, RecursionType.UP)
 
     def create_new_level(self, new_name):
         parent = self._other_node
@@ -321,28 +378,39 @@ class ScriptModule(AbstractModule):
             parent = self._sub_nodes[new_name[0]]
         self._map_ssas[new_name] = {}
         self._map_ssss[new_name] = {}
-        map_root = self._tree_model.append(parent, [
-            'skytemple-folder-symbolic', new_name, self,  MapController, new_name, False, '', True
-        ])
+        map_root = self._item_tree.add_entry(parent, ItemTreeEntry(
+            icon='skytemple-folder-symbolic',
+            name=new_name,
+            module=self,
+            view_class=MapController,
+            item_data=new_name
+        ))
         self._map_scene_root[new_name] = map_root
-        ar = self._tree_model.append(map_root, [
-            'skytemple-folder-open-symbolic', _('Acting (ssa)'), self,  LsdController, new_name, False, '', True
-        ])
+        ar = self._item_tree.add_entry(map_root, ItemTreeEntry(
+            icon='skytemple-folder-open-symbolic',
+            name=_('Acting (ssa)'),
+            module=self,
+            view_class=LsdController,
+            item_data=new_name
+        ))
         self._acting_roots[new_name] = ar
-        sr = self._tree_model.append(map_root, [
-            'skytemple-folder-open-symbolic', _('Sub (sss)'), self,  SubController, new_name, False, '', True
-        ])
+        sr = self._item_tree.add_entry(map_root, ItemTreeEntry(
+            icon='skytemple-folder-open-symbolic',
+            name=_('Sub (sss)'),
+            module=self,
+            view_class=SubController,
+            item_data=new_name
+        ))
         self._sub_roots[new_name] = sr
-        recursive_generate_item_store_row_label(self._tree_model[parent])
 
-    def get_subnodes(self, name):
+    def get_subnodes(self, name: str) -> Tuple[Optional[ItemTreeEntryRef], Optional[ItemTreeEntryRef], Optional[ItemTreeEntryRef]]:
         enter = None
         acting = None
         sub = None
-        child = self._tree_model.iter_children(self._map_scene_root[name])
-        while child is not None:
-            controller = self._tree_model[child][3]
-            data = self._tree_model[child][4]
+        for child in self._map_scene_root[name].children():
+            entry = child.entry()
+            controller = entry.view_class
+            data = entry.item_data
             if controller == SsaController and isinstance(data, dict) and 'type' in data and data['type'] == 'sse':
                 enter = child
             elif controller == LsdController:
@@ -350,23 +418,23 @@ class ScriptModule(AbstractModule):
             elif controller == SubController:
                 sub = child
 
-            nxt = self._tree_model.iter_next(child)
-            child = nxt
-
         return enter, acting, sub
 
     def add_scene_enter(self, level_name):
         scene_name = 'enter'
         file_name, ssb_file_name = self._create_scene_file(level_name, scene_name, 'sse', matching_ssb='00')
-        self._map_sse[level_name] = self._tree_model.append(self._map_scene_root[level_name], [
-            'skytemple-e-ground-symbolic', _('Enter (sse)'), self, SsaController, {
+        self._map_sse[level_name] = self._item_tree.add_entry(self._map_scene_root[level_name], ItemTreeEntry(
+            icon='skytemple-e-ground-symbolic',
+            name=_('Enter (sse)'),
+            module=self,
+            view_class=SsaController,
+            item_data={
                 'map': level_name,
                 'file': file_name,
                 'type': 'sse',
                 'scripts': [ssb_file_name.split('/')[-1]]
-            }, False, '', True
-        ])
-        recursive_generate_item_store_row_label(self._tree_model[self._map_sse[level_name]])
+            }
+        ))
         self.mark_as_modified(level_name, 'sse', file_name)
 
     def add_scene_acting(self, level_name, scene_name):
@@ -376,30 +444,34 @@ class ScriptModule(AbstractModule):
             self.project.create_new_file(lsd_path, FileType.LSD.new(), FileType.LSD)
         lsd: Lsd = self.project.open_file_in_rom(lsd_path, FileType.LSD)
         lsd.entries.append(scene_name)
-        self._map_ssas[level_name][file_name] = self._tree_model.append(self._acting_roots[level_name], [
-            'skytemple-e-ground-symbolic', scene_name,
-            self, SsaController, {
+        self._map_ssas[level_name][file_name] = self._item_tree.add_entry(self._acting_roots[level_name], ItemTreeEntry(
+            icon='skytemple-e-ground-symbolic',
+            name=scene_name,
+            module=self,
+            view_class=SsaController,
+            item_data={
                 'map': level_name,
                 'file': file_name,
                 'type': 'ssa',
                 'scripts': [ssb_file_name.split('/')[-1]]
-            }, False, '', True
-        ])
-        recursive_generate_item_store_row_label(self._tree_model[self._map_ssas[level_name][file_name]])
+            }
+        ))
         self.mark_as_modified(level_name, 'ssa', file_name)
 
     def add_scene_sub(self, level_name, scene_name):
         file_name, ssb_file_name = self._create_scene_file(level_name, scene_name, 'sss', matching_ssb='00')
-        self._map_ssss[level_name][file_name] = self._tree_model.append(self._sub_roots[level_name], [
-            'skytemple-e-ground-symbolic', scene_name,
-            self, SsaController, {
+        self._map_ssss[level_name][file_name] = self._item_tree.add_entry(self._sub_roots[level_name], ItemTreeEntry(
+            icon='skytemple-e-ground-symbolic',
+            name=scene_name,
+            module=self,
+            view_class=SsaController,
+            item_data={
                 'map': level_name,
                 'file': file_name,
                 'type': 'sss',
                 'scripts': [ssb_file_name.split('/')[-1]]
-            }, False, '', True
-        ])
-        recursive_generate_item_store_row_label(self._tree_model[self._map_ssss[level_name][file_name]])
+            }
+        ))
         self.mark_as_modified(level_name, 'sss', file_name)
 
     def _get_empty_scene(self) -> Ssa:

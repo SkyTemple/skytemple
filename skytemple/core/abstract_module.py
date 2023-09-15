@@ -19,16 +19,13 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Optional, List, TypedDict, Dict, TYPE_CHECKING, Any, Union
 
-from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore, TreeIter
-
+from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef
 from skytemple.core.open_request import OpenRequest
 from skytemple_files.common.util import Captured
 
-from skytemple.core.widget.view import StView
-
 if TYPE_CHECKING:
     from skytemple.core.module_controller import AbstractController
+    from skytemple.core.widget.view import StView
 
 
 class DebuggingInfo(TypedDict, total=False):
@@ -62,21 +59,9 @@ class AbstractModule(ABC):
         """
 
     @abstractmethod
-    def load_tree_items(self, item_store: TreeStore, root_node: Optional[TreeIter]):
+    def load_tree_items(self, item_tree: ItemTree):
         """
         Add the module nodes to the item tree.
-
-        The item store expects the following structure for items:
-
-        - 0: str: icon name
-        - 1: str: Label shown in UI. Should be translatable.
-        - 2: AbstractModule: This module instance.
-        - 3: Type[StView] or Type[AbstractController]: The widget or controller to display. Use StView for new code!
-        - 4: Any: item_data for the controller or widget. This is basically a parameter to pass to it.
-        - 5: 0
-        - 6: False
-        - 7: ''
-        - 8: True
         """
         pass
 
@@ -88,9 +73,9 @@ class AbstractModule(ABC):
         """
         return None
 
-    def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
+    def handle_request(self, request: OpenRequest) -> Optional[ItemTreeEntryRef]:
         """
-        Handle an OpenRequest. Must return the iterator for the view in the main view list, as generated
+        Handle an OpenRequest. Must return an entry for the view in the main item tree, as generated
         in load_tree_items.
         If not implemented, always returns None.
         """
