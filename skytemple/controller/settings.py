@@ -40,7 +40,7 @@ LANGS = [
     ('de_DE.utf8', _('German')),
     ('pt_BR.utf8', _('Portuguese, Brazilian')),
     ('es_ES.utf8', _('Spanish')),
-    ('jp_JP.utf8', _('Japanese')),
+    ('ja_JP.utf8', _('Japanese')),
 ]
 
 
