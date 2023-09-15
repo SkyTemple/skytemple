@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-15 15:41+0000\n"
-"PO-Revision-Date: 2023-09-15 16:31\n"
+"PO-Revision-Date: 2023-09-15 17:40\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -11142,7 +11142,8 @@ msgstr "In diesem Abschnitt kannst du Daten für Pokémon im Spiel bearbeiten.\n
 #: skytemple/skytemple/module/monster/controller/main.glade:456
 msgid "Choose a Pokémon form on the left to edit it's data.\n"
 "You can use the button below to export data of multiple Pokémon forms at once."
-msgstr ""
+msgstr "Wähle links eine Pokémon-Form aus, um sie zu bearbeiten.\n"
+"Über die Schaltfläche unter diesem Text kannst du mehrere Pokémon-Formen auf einmal exportieren."
 
 #: skytemple/skytemple/module/monster/controller/main.glade:498
 msgid "Bulk Export"
@@ -12958,7 +12959,13 @@ msgid "In this section you can apply built-in ASM patches, your own ASM patches 
 "patches and effects in the C and Rust programming languages.\n\n"
 "Additionally you can browse all symbols and functions\n"
 "in the game known to SkyTemple."
-msgstr ""
+msgstr "In diesem Abschnitt kannst du mitgelieferte ASM-Patches, eigene ASM-Patches \n"
+"und benutzerdefinierte Item, Attacken- und Spezielle-Prozes-Effekte anwenden,\n"
+"die in Assembler geschrieben sind.\n\n"
+"Hier findest du auch Informationen darüber, wie du eigene Patches und Effekte \n"
+"in den Programmiersprachen C und Rust schreiben kannst.\n\n"
+"Zusätzlich kannst du alle Symbole und Funktionen durchsuchen, die SkyTemple\n"
+"für das Spiel bekannt sind."
 
 #: skytemple/skytemple/module/patch/module.py:80
 msgid "ASM"
