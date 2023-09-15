@@ -22,9 +22,8 @@ import sys
 import traceback
 import typing
 from enum import Enum
-from functools import partial, reduce
+from functools import partial
 from itertools import zip_longest
-from math import gcd
 from typing import TYPE_CHECKING, List, Type, Dict, Tuple, Optional
 from xml.etree import ElementTree
 
@@ -1563,8 +1562,8 @@ class FloorController(AbstractController):
         store = builder_get_assert(self.builder, Gtk.ListStore, 'monster_spawns_store')
         are_all_weight_types_same_values = True
         # Add existing monsters
-        relative_weights_main = self._calculate_relative_weights([x.main_spawn_weight for x in self.entry.monsters])
-        relative_weights_mh = self._calculate_relative_weights([x.monster_house_spawn_weight for x in self.entry.monsters])
+        relative_weights_main = self.module.calculate_relative_weights([x.main_spawn_weight for x in self.entry.monsters])
+        relative_weights_mh = self.module.calculate_relative_weights([x.monster_house_spawn_weight for x in self.entry.monsters])
         sum_of_all_weights_main = sum(relative_weights_main)
         sum_of_all_weights_mh = sum(relative_weights_mh)
         if sum_of_all_weights_main <= 0:
@@ -1609,7 +1608,7 @@ class FloorController(AbstractController):
         store = builder_get_assert(self.builder, Gtk.ListStore, 'trap_spawns_store')
         trap_icon_renderer = ListIconRenderer(4)
         # Add all traps
-        relative_weights = self._calculate_relative_weights([x for x in self.entry.traps.weights.values()])
+        relative_weights = self.module.calculate_relative_weights([x for x in self.entry.traps.weights.values()])
         sum_of_all_weights = sum(relative_weights)
         if sum_of_all_weights <= 0:
             sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
@@ -1654,7 +1653,7 @@ class FloorController(AbstractController):
         il = self.get_current_item_list()
 
         # Add item categories
-        relative_weights = self._calculate_relative_weights(list(il.categories.values()))
+        relative_weights = self.module.calculate_relative_weights(list(il.categories.values()))
         sum_of_all_weights = sum(relative_weights)
         if sum_of_all_weights <= 0:
             sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
@@ -1674,7 +1673,7 @@ class FloorController(AbstractController):
         for j, (category_m, store) in enumerate(item_stores.items()):
             item_icon_renderer = ListIconRenderer(5)
             cat_items = items_by_category[category_m.id]
-            relative_weights = self._calculate_relative_weights([v for v in cat_items.values() if v != GUARANTEED])
+            relative_weights = self.module.calculate_relative_weights([v for v in cat_items.values() if v != GUARANTEED])
             sum_of_all_weights = sum(relative_weights)
             if sum_of_all_weights <= 0:
                 sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
@@ -1735,25 +1734,6 @@ class FloorController(AbstractController):
             for item in category.item_ids():
                 if item < MAX_ITEM_ID:
                     store.append([self._item_names[item]])
-
-    def _calculate_relative_weights(self, list_of_weights: List[int]) -> List[int]:
-        weights = []
-        if len(list_of_weights) < 1:
-            return []
-        for i in range(0, len(list_of_weights)):
-            weight = list_of_weights[i]
-            if weight != 0:
-                last_nonzero = i - 1
-                while last_nonzero >= 0 and list_of_weights[last_nonzero] == 0:
-                    last_nonzero -= 1
-                if last_nonzero != -1:
-                    weight -= list_of_weights[last_nonzero]
-            weights.append(weight)
-        weights_nonzero = [w for w in weights if w != 0]
-        weights_gcd = 1
-        if len(weights_nonzero) > 0:
-            weights_gcd = reduce(gcd, weights_nonzero)
-        return [int(w / weights_gcd) for w in weights]
 
     def _recalculate_spawn_chances(self, store_name, weight_main_idx, chance_main_idx, weight_mh_idx=None, chance_mh_idx=None):
         store = builder_get_assert(self.builder, Gtk.ListStore, store_name)

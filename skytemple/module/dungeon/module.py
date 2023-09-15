@@ -17,6 +17,8 @@
 import logging
 import os
 import sys
+from functools import reduce
+from math import gcd
 from typing import Optional, List, Union, Iterable, Tuple, Dict, Literal, Sequence
 from xml.etree.ElementTree import Element
 
@@ -30,7 +32,7 @@ from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef, ItemTreeEntry, 
 from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR, \
-    REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, REQUEST_TYPE_DUNGEONS
+    REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, REQUEST_TYPE_DUNGEONS, REQUEST_TYPE_DUNGEON_FLOOR
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import data_dir
@@ -223,6 +225,12 @@ class DungeonModule(AbstractModule):
             return self._root_iter
         if request.type == REQUEST_TYPE_DUNGEON_FIXED_FLOOR:
             return self._fixed_floor_iters[request.identifier]
+        if request.type == REQUEST_TYPE_DUNGEON_FLOOR:
+            try:
+                dungeon_id, f_id = request.identifier
+                return self._dungeon_floor_iters[dungeon_id][f_id]
+            except Exception as ex:
+                logger.warning(f"Could not fulfill floor open request: {ex.__class__.__name__}:{ex}")
         if request.type == REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY:
             FixedRoomsController.focus_entity_on_open = request.identifier
             return self._fixed_floor_root_iter
@@ -857,3 +865,24 @@ class DungeonModule(AbstractModule):
         if isinstance(open_view, FixedController):
             pass  # todo
         return None
+
+    @staticmethod
+    def calculate_relative_weights(list_of_weights: List[int]) -> List[int]:
+        """Given a list of absolute spawn weights, return the relative values."""
+        weights = []
+        if len(list_of_weights) < 1:
+            return []
+        for i in range(0, len(list_of_weights)):
+            weight = list_of_weights[i]
+            if weight != 0:
+                last_nonzero = i - 1
+                while last_nonzero >= 0 and list_of_weights[last_nonzero] == 0:
+                    last_nonzero -= 1
+                if last_nonzero != -1:
+                    weight -= list_of_weights[last_nonzero]
+            weights.append(weight)
+        weights_nonzero = [w for w in weights if w != 0]
+        weights_gcd = 1
+        if len(weights_nonzero) > 0:
+            weights_gcd = reduce(gcd, weights_nonzero)
+        return [int(w / weights_gcd) for w in weights]
