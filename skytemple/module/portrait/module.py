@@ -19,7 +19,6 @@ import math
 import sys
 
 from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore
 from skytemple_files.common.i18n_util import _, f
 from skytemple_files.graphics.kao import SUBENTRIES
 from skytemple_files.graphics.kao.sprite_bot_sheet import SpriteBotSheet
@@ -27,6 +26,7 @@ from skytemple_files.graphics.kao.sprite_bot_sheet import SpriteBotSheet
 from skytemple.controller.main import MainController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.error_handler import display_error
+from skytemple.core.item_tree import ItemTree
 from skytemple.core.rom_project import RomProject
 from skytemple.module.portrait.portrait_provider import PortraitProvider
 from skytemple.module.portrait.controller.portrait import PortraitController
@@ -54,7 +54,7 @@ class PortraitModule(AbstractModule):
         self._portrait_provider = PortraitProvider(self.kao)
         self._portrait_provider__was_init = False
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
+    def load_tree_items(self, item_tree: ItemTree):
         """This module does not have main views."""
         pass
 

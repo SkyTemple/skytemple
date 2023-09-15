@@ -27,6 +27,8 @@ from datetime import datetime
 from gi.repository import GLib, Gtk
 from ndspy.rom import NintendoDSRom
 from pmdsky_debug_py.protocol import SectionProtocol
+
+from skytemple.core.item_tree import ItemTreeEntryRef
 from skytemple.core.ui_utils import assert_not_none
 from skytemple_files.data.sprconf.handler import SPRCONF_FILENAME
 
@@ -153,7 +155,7 @@ class RomProject:
         else:
             os.unlink(backup_fn)
 
-    def __init__(self, filename: str, cb_open_view: Callable[[Gtk.TreeIter], None]):
+    def __init__(self, filename: str, cb_open_view: Callable[[ItemTreeEntryRef], None]):
         self.filename = filename
         self._rom: Optional[NintendoDSRom] = None
         self._rom_module: Optional['RomModule'] = None
@@ -173,7 +175,7 @@ class RomProject:
         self._modified_files: List[str] = []
         self._forced_modified = False
         # Callback for opening views using iterators from the main view list.
-        self._cb_open_view: Callable[[Gtk.TreeIter], None] = cb_open_view
+        self._cb_open_view: Callable[[ItemTreeEntryRef], None] = cb_open_view
         self._project_fm = ProjectFileManager(filename)
 
         self._icon_banner: Optional[IconBanner] = None

@@ -21,20 +21,19 @@ from typing import Optional, List, Union, Iterable, Tuple, Dict, Literal, Sequen
 from xml.etree.ElementTree import Element
 
 from PIL import Image
-from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore
 from range_typed_integers import u8_checked, u8, u16
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.error_handler import display_error
+from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef, ItemTreeEntry, RecursionType
 from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR, \
     REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, REQUEST_TYPE_DUNGEONS
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
-    recursive_generate_item_store_row_label, data_dir
+from skytemple.core.ui_utils import data_dir
+from skytemple.core.widget.view import StView
 from skytemple.module.dungeon import MAX_ITEMS
 from skytemple.module.dungeon.controller.dojos import DOJOS_NAME, DojosController
 from skytemple.module.dungeon.controller.dungeon import DungeonController
@@ -62,11 +61,11 @@ from skytemple_files.hardcoded.dungeon_music import HardcodedDungeonMusic, Dunge
 from skytemple_files.hardcoded.dungeons import HardcodedDungeons, DungeonDefinition, DungeonRestriction
 from skytemple_files.dungeon_data.floor_attribute.handler import FloorAttributeHandler
 
-# TODO: Add this to dungeondata.xml?
 from skytemple_files.hardcoded.fixed_floor import EntitySpawnEntry, ItemSpawn, MonsterSpawn, TileSpawn, \
     MonsterSpawnStats, HardcodedFixedFloorTables, FixedFloorProperties
 from skytemple_files.common.i18n_util import _, f
 
+# TODO: Add this to dungeondata.xml?
 DOJO_DUNGEONS_FIRST = 0xB4
 DOJO_DUNGEONS_LAST = 0xBF
 DOJO_MAPPA_ENTRY = 0x35
@@ -121,12 +120,12 @@ class DungeonModule(AbstractModule):
         try:
             self.project = rom_project
 
-            self._tree_model: Gtk.TreeStore
-            self._root_iter: Optional[Gtk.TreeIter] = None
-            self._dungeon_iters: Dict[DungeonDefinition, Gtk.TreeIter] = {}
-            self._dungeon_floor_iters: Dict[int, Dict[int, Gtk.TreeIter]] = {}
-            self._fixed_floor_iters: List[Gtk.TreeIter] = []
-            self._fixed_floor_root_iter: Gtk.TreeIter
+            self._item_tree: ItemTree
+            self._root_iter: Optional[ItemTreeEntryRef] = None
+            self._dungeon_iters: Dict[DungeonDefinition, ItemTreeEntryRef] = {}
+            self._dungeon_floor_iters: Dict[int, Dict[int, ItemTreeEntryRef]] = {}
+            self._fixed_floor_iters: List[ItemTreeEntryRef] = []
+            self._fixed_floor_root_iter: ItemTreeEntryRef
             self._fixed_floor_data: FixedBin
             self._dungeon_bin_context: ModelContext[DungeonBinPack]
             self._cached_dungeon_list: Optional[List[DungeonDefinition]] = None
@@ -139,7 +138,7 @@ class DungeonModule(AbstractModule):
         except Exception:
             self._errored = sys.exc_info()
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
+    def load_tree_items(self, item_tree: ItemTree):
         if self._errored:
             display_error(
                 self._errored,
@@ -149,10 +148,14 @@ class DungeonModule(AbstractModule):
             )
             return
         self._validator = DungeonValidator(self.get_mappa())
-        root = item_store.append(root_node, [
-            ICON_ROOT, DUNGEONS_NAME, self, MainController, 0, False, '', True
-        ])
-        self._tree_model = item_store
+        root = item_tree.add_entry(None, ItemTreeEntry(
+            icon=ICON_ROOT,
+            name=DUNGEONS_NAME,
+            module=self,
+            view_class=MainController,
+            item_data=0
+        ))
+        self._item_tree = item_tree
         self._root_iter = root
 
         static_data = self.project.get_rom_module().get_static_data()
@@ -171,30 +174,31 @@ class DungeonModule(AbstractModule):
         self._fill_dungeon_tree()
 
         # Fixed rooms
-        self._fixed_floor_root_iter = item_store.append(root_node, [
-            ICON_FIXED_ROOMS, FIXED_ROOMS_NAME, self, FixedRoomsController, 0, False, '', True
-        ])
+        self._fixed_floor_root_iter = item_tree.add_entry(None, ItemTreeEntry(
+            icon=ICON_FIXED_ROOMS,
+            name=FIXED_ROOMS_NAME,
+            module=self,
+            view_class=FixedRoomsController,
+            item_data=0
+        ))
         for i in range(0, len(self._fixed_floor_data.fixed_floors)):
-            self._fixed_floor_iters.append(item_store.append(self._fixed_floor_root_iter, [
-                ICON_FIXED_ROOMS, f(_('Fixed Room {i}')), self, FixedController,
-                i, False, '', True
-            ]))
-
-        recursive_generate_item_store_row_label(self._tree_model[root])
-        recursive_generate_item_store_row_label(self._tree_model[self._fixed_floor_root_iter])
+            self._fixed_floor_iters.append(item_tree.add_entry(self._fixed_floor_root_iter, ItemTreeEntry(
+                icon=ICON_FIXED_ROOMS,
+                name=f(_('Fixed Room {i}')),
+                module=self,
+                view_class=FixedController,
+                item_data=i
+            )))
 
     def rebuild_dungeon_tree(self):
+        assert self._root_iter is not None
         # Collect modified of _dungeon_iters and _dungeon_floor_iters
-        modified_dungeons = {x: self._tree_model[y][5] for x, y in self._dungeon_iters.items()}
+        modified_dungeons = {x: y.entry().modified for x, y in self._dungeon_iters.items()}
         modified_floors = {}
-        for dungeon, floors in self._dungeon_floor_iters.items():
-            modified_floors[dungeon] = {x: self._tree_model[y][5] for x, y in floors.items()}
+        for dungeon_entr, floors_entr in self._dungeon_floor_iters.items():
+            modified_floors[dungeon_entr] = {x: y.entry().modified for x, y in floors_entr.items()}
         # Delete everything under _root_iter
-        child = self._tree_model.iter_children(self._root_iter)
-        while child is not None:
-            nxt = self._tree_model.iter_next(child)
-            self._tree_model.remove(child)
-            child = nxt
+        self._root_iter.delete_all_children()
         self._dungeon_iters = {}
         self._dungeon_floor_iters = {}
         # _fill_dungeon_tree
@@ -202,17 +206,19 @@ class DungeonModule(AbstractModule):
         # Apply modified of _dungeon_iters and _dungeon_floor_iters
         for dungeon_m, modified in modified_dungeons.items():
             if dungeon_m in self._dungeon_iters:
-                self._tree_model[self._dungeon_iters[dungeon_m]][5] = modified
+                if modified:
+                    self._item_tree.mark_as_modified(self._dungeon_iters[dungeon_m], RecursionType.UP)
         for dungeon_mf, floors in modified_floors.items():
             if dungeon_mf in self._dungeon_floor_iters:
                 for floor, modified in floors.items():
                     if floor in self._dungeon_floor_iters[dungeon_mf]:
-                        self._tree_model[self._dungeon_floor_iters[dungeon_mf][floor]][5] = modified
-        # Re-generate label
-        if self._root_iter:
-            recursive_generate_item_store_row_label(self._tree_model[self._root_iter])
+                        if modified:
+                            self._item_tree.mark_as_modified(
+                                self._dungeon_floor_iters[dungeon_mf][floor],
+                                RecursionType.UP
+                            )
 
-    def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
+    def handle_request(self, request: OpenRequest) -> Optional[ItemTreeEntryRef]:
         if request.type == REQUEST_TYPE_DUNGEONS:
             return self._root_iter
         if request.type == REQUEST_TYPE_DUNGEON_FIXED_FLOOR:
@@ -254,9 +260,7 @@ class DungeonModule(AbstractModule):
         else:
             self.project.mark_as_modified(MAPPA_PATH)
         # Mark as modified in tree
-        assert self._tree_model
-        row = self._tree_model[self._dungeon_floor_iters[item.dungeon.dungeon_id][item.floor_id]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._dungeon_floor_iters[item.dungeon.dungeon_id][item.floor_id], RecursionType.UP)
 
     def get_dungeon_list(self) -> List[DungeonDefinition]:
         if self._cached_dungeon_list is None:
@@ -277,14 +281,12 @@ class DungeonModule(AbstractModule):
             self.save_mappa()
 
         # Mark as modified in tree
-        row = self._tree_model[self._dungeon_iters[dungeon_id]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._dungeon_iters[dungeon_id], RecursionType.UP)
 
     def mark_root_as_modified(self):
         # Mark as modified in tree
         if self._root_iter:
-            row = self._tree_model[self._root_iter]
-            recursive_up_item_store_mark_as_modified(row)
+            self._item_tree.mark_as_modified(self._root_iter, RecursionType.UP)
 
     def save_dungeon_list(self, dungeons: List[DungeonDefinition]):
         self.project.modify_binary(BinaryName.ARM9, lambda binary: HardcodedDungeons.set_dungeon_list(
@@ -309,55 +311,62 @@ class DungeonModule(AbstractModule):
         ))
 
     def _fill_dungeon_tree(self):
-        item_store = self._tree_model
         root = self._root_iter
 
         # Regular dungeons
         for group_id, dungeon_or_group in enumerate(self.load_dungeons()):
             if isinstance(dungeon_or_group, DungeonGroup):
                 # Group
-                group = item_store.append(root, [
-                    ICON_GROUP, self.generate_group_label(dungeon_or_group.base_dungeon_id), self, GroupController,
-                    dungeon_or_group.base_dungeon_id, False, '', True
-                ])
+                group = self._item_tree.add_entry(root, ItemTreeEntry(
+                    icon=ICON_GROUP,
+                    name=self.generate_group_label(dungeon_or_group.base_dungeon_id),
+                    module=self,
+                    view_class=GroupController,
+                    item_data=dungeon_or_group.base_dungeon_id
+                ))
                 for dungeon, start_id in zip(dungeon_or_group.dungeon_ids, dungeon_or_group.start_ids):
-                    self._add_dungeon_to_tree(group, item_store, dungeon, start_id)
+                    self._add_dungeon_to_tree(group, dungeon, start_id)
             else:
                 # Dungeon
-                self._add_dungeon_to_tree(root, item_store, dungeon_or_group, 0)
+                self._add_dungeon_to_tree(root, dungeon_or_group, 0)
 
         # Dojo dungeons
-        dojo_root = item_store.append(root, [
-            ICON_DUNGEONS, DOJOS_NAME, self, DojosController, 0, False, '', True
-        ])
+        dojo_root = self._item_tree.add_entry(root, ItemTreeEntry(
+            icon=ICON_DUNGEONS,
+            name=DOJOS_NAME,
+            module=self,
+            view_class=DojosController,
+            item_data=0
+        ))
         for i in range(DOJO_DUNGEONS_FIRST, DOJO_DUNGEONS_LAST + 1):
-            self._add_dungeon_to_tree(dojo_root, item_store, i, 0)
+            self._add_dungeon_to_tree(dojo_root, i, 0)
 
-    def _add_dungeon_to_tree(self, root_node, item_store, idx, previous_floor_id):
+    def _add_dungeon_to_tree(self, root_node, idx, previous_floor_id):
         clazz = DungeonController if idx not in self._validator.invalid_dungeons else InvalidDungeonController
         dungeon_info = DungeonViewInfo(idx, idx < DOJO_DUNGEONS_FIRST)
-        self._dungeon_iters[idx] = item_store.append(root_node, [
-            ICON_DUNGEON, self.generate_dungeon_label(idx), self, clazz,
-            dungeon_info, False, '', True
-        ])
+        self._dungeon_iters[idx] = self._item_tree.add_entry(root_node, ItemTreeEntry(
+            icon=ICON_DUNGEON,
+            name=self.generate_dungeon_label(idx),
+            module=self,
+            view_class=clazz,
+            item_data=dungeon_info
+        ))
         if clazz == DungeonController:
             self._regenerate_dungeon_floors(idx, previous_floor_id)
 
     def _regenerate_dungeon_floors(self, idx, previous_floor_id):
         dungeon = self._dungeon_iters[idx]
-        item_store: Gtk.TreeStore = self._tree_model
-        dungeon_info = self._tree_model[dungeon][4]
+        dungeon_info = dungeon.entry().item_data
         self._dungeon_floor_iters[idx] = {}
-        iter = item_store.iter_children(dungeon)
-        while iter is not None:
-            nxt = item_store.iter_next(iter)
-            item_store.remove(iter)
-            iter = nxt
+        dungeon.delete_all_children()
         for floor_i in range(0, self.get_number_floors(idx)):
-            self._dungeon_floor_iters[idx][previous_floor_id + floor_i] = item_store.append(dungeon, [
-                ICON_FLOOR, self.generate_floor_label(floor_i + previous_floor_id), self, FloorController,
-                FloorViewInfo(previous_floor_id + floor_i, dungeon_info), False, '', True
-            ])
+            self._dungeon_floor_iters[idx][previous_floor_id + floor_i] = self._item_tree.add_entry(dungeon, ItemTreeEntry(
+                icon=ICON_FLOOR,
+                name=self.generate_floor_label(floor_i + previous_floor_id),
+                module=self,
+                view_class=FloorController,
+                item_data=FloorViewInfo(previous_floor_id + floor_i, dungeon_info)
+            ))
 
     def load_dungeons(self) -> Iterable[Union[DungeonGroup, int]]:
         """
@@ -592,8 +601,6 @@ class DungeonModule(AbstractModule):
                 self._regenerate_dungeon_floors(dungeon_in_group, dungeon_definitions[dungeon_in_group].start_after)
         else:
             self._regenerate_dungeon_floors(dungeon_id, floor_offset)
-        if self._root_iter:
-            recursive_generate_item_store_row_label(self._tree_model[self._root_iter])
 
     def get_monster_md(self) -> MdProtocol:
         return self.project.get_module('monster').monster_md
@@ -728,8 +735,7 @@ class DungeonModule(AbstractModule):
                 binary, stats, config
             )
         )
-        row = self._tree_model[self._fixed_floor_root_iter]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._fixed_floor_root_iter, RecursionType.UP)
 
     def get_dummy_tileset(self) -> Tuple[DmaProtocol, Image.Image]:
         with open(os.path.join(data_dir(), 'fixed_floor', 'dummy.dma'), 'rb') as f:
@@ -776,8 +782,7 @@ class DungeonModule(AbstractModule):
 
     def mark_fixed_floor_as_modified(self, floor_id):
         self.project.mark_as_modified(FIXED_PATH)
-        row = self._tree_model[self._fixed_floor_iters[floor_id]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._fixed_floor_iters[floor_id], RecursionType.UP)
 
     @staticmethod
     def desc_fixed_floor_tile(tile):
@@ -842,13 +847,13 @@ class DungeonModule(AbstractModule):
         with self._dungeon_bin_context as dungeon_bin:
             return dungeon_bin.get('minimap.zmappat')
 
-    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
-        if isinstance(open_controller, DungeonController):
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+        if isinstance(open_view, DungeonController):
             pass  # todo
-        if isinstance(open_controller, FloorController):
+        if isinstance(open_view, FloorController):
             pass  # todo
-        if isinstance(open_controller, FixedRoomsController):
+        if isinstance(open_view, FixedRoomsController):
             pass  # todo
-        if isinstance(open_controller, FixedController):
+        if isinstance(open_view, FixedController):
             pass  # todo
         return None

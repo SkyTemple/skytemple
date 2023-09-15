@@ -19,17 +19,16 @@ import sys
 from typing import Union, List, Optional, Tuple, Dict
 
 from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.error_handler import display_error
+from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef, ItemTreeEntry, RecursionType
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
 from skytemple.core.rom_project import RomProject, BinaryName
-from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, \
-    recursive_generate_item_store_row_label
+from skytemple.core.widget.view import StView
 from skytemple.module.map_bg.controller.bg import BgController
 from skytemple.module.map_bg.controller.folder import FolderController
 from skytemple.module.map_bg.controller.main import MainController, MAPBG_NAME
@@ -38,7 +37,6 @@ from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
 from skytemple_files.dungeon_data.fixed_bin.model import FixedBin
 from skytemple_files.dungeon_data.mappa_bin.protocol import MappaBinProtocol
-from skytemple_files.graphics.bg_list_dat.protocol import BgListProtocol, BgListEntryProtocol
 from skytemple_files.graphics.bma.protocol import BmaProtocol
 from skytemple_files.graphics.bpa.protocol import BpaProtocol
 from skytemple_files.graphics.bpc.protocol import BpcProtocol
@@ -67,60 +65,102 @@ class MapBgModule(AbstractModule):
         self.project = rom_project
         self.bgs: BgListProtocol = rom_project.open_file_in_rom(MAP_BG_LIST, FileType.BG_LIST_DAT)
 
-        self._tree_model: Gtk.TreeStore
-        self._tree_level_iter: List[Gtk.TreeIter] = []
-        self._sub_nodes: Dict[str, Gtk.TreeIter]
-        self._other_node: Gtk.TreeIter
+        self._item_tree: ItemTree
+        self._tree_level_iter: List[ItemTreeEntryRef] = []
+        self._sub_nodes: Dict[str, ItemTreeEntryRef]
+        self._other_node: ItemTreeEntryRef
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
-        root = item_store.append(root_node, [
-            'skytemple-e-mapbg-symbolic', MAPBG_NAME, self, MainController, 0, False, '', True
-        ])
+    def load_tree_items(self, item_tree: ItemTree):
+        root = item_tree.add_entry(None, ItemTreeEntry(
+            icon='skytemple-e-mapbg-symbolic',
+            name=MAPBG_NAME,
+            module=self,
+            view_class=MainController,
+            item_data=0
+        ))
         self._sub_nodes = {
-            'S': item_store.append(root, [
-                'skytemple-folder-symbolic', _('S - System'), self, FolderController, 'S - System', False, '', True
-            ]),
-            'T': item_store.append(root, [
-                'skytemple-folder-symbolic', _('T - Town'), self, FolderController, 'T - Town', False, '', True
-            ]),
-            'D': item_store.append(root, [
-                'skytemple-folder-symbolic', _('D - Dungeon'), self, FolderController, 'D - Dungeon', False, '', True
-            ]),
-            'G': item_store.append(root, [
-                'skytemple-folder-symbolic', _('G - Guild'), self, FolderController, 'G - Guild', False, '', True
-            ]),
-            'H': item_store.append(root, [
-                'skytemple-folder-symbolic', _('H - Habitat'), self, FolderController, 'H - Habitat', False, '', True
-            ]),
-            'P': item_store.append(root, [
-                'skytemple-folder-symbolic', _('P - Places'), self, FolderController, 'P - Places', False, '', True
-            ]),
-            'V': item_store.append(root, [
-                'skytemple-folder-symbolic', _('V - Visual'), self, FolderController, 'V - Visual', False, '', True
-            ]),
-            'W': item_store.append(root, [
-                'skytemple-folder-symbolic', _('W - Weather'), self, FolderController, 'W - Weather', False, '', True
-            ])
+            'S': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('S - System'),
+                module=self,
+                view_class=FolderController,
+                item_data='S - System'
+            )),
+            'T': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('T - Town'),
+                module=self,
+                view_class=FolderController,
+                item_data='T - Town'
+            )),
+            'D': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('D - Dungeon'),
+                module=self,
+                view_class=FolderController,
+                item_data='D - Dungeon'
+            )),
+            'G': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('G - Guild'),
+                module=self,
+                view_class=FolderController,
+                item_data='G - Guild'
+            )),
+            'H': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('H - Habitat'),
+                module=self,
+                view_class=FolderController,
+                item_data='H - Habitat'
+            )),
+            'P': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('P - Places'),
+                module=self,
+                view_class=FolderController,
+                item_data='P - Places'
+            )),
+            'V': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('V - Visual'),
+                module=self,
+                view_class=FolderController,
+                item_data='V - Visual'
+            )),
+            'W': item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-folder-symbolic',
+                name=_('W - Weather'),
+                module=self,
+                view_class=FolderController,
+                item_data='W - Weather'
+            ))
         }
         # Other
-        self._other_node = item_store.append(root, [
-            'skytemple-folder-symbolic', _('Others'), self, FolderController, None, False, '', True
-        ])
-        self._tree_model = item_store
+        self._other_node = item_tree.add_entry(root, ItemTreeEntry(
+            icon='skytemple-folder-symbolic',
+            name=_('Others'),
+            module=self,
+            view_class=FolderController,
+            item_data=None
+        ))
+        self._item_tree = item_tree
         self._tree_level_iter = []
         for i, level in enumerate(self.bgs.level):
             parent = self._other_node
             if level.bma_name[0] in self._sub_nodes.keys():
                 parent = self._sub_nodes[level.bma_name[0]]
             self._tree_level_iter.append(
-                item_store.append(parent, [
-                    'skytemple-e-mapbg-symbolic', level.bma_name, self,  BgController, i, False, '', True
-                ])
+                item_tree.add_entry(parent, ItemTreeEntry(
+                    icon='skytemple-e-mapbg-symbolic',
+                    name=level.bma_name,
+                    module=self,
+                    view_class=BgController,
+                    item_data=i
+                ))
             )
 
-        recursive_generate_item_store_row_label(self._tree_model[root])
-
-    def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
+    def handle_request(self, request: OpenRequest) -> Optional[ItemTreeEntryRef]:
         if request.type == REQUEST_TYPE_MAP_BG:
             if request.identifier > len(self._tree_level_iter) - 1:
                 return None
@@ -169,11 +209,14 @@ class MapBgModule(AbstractModule):
         if map_name[0] in self._sub_nodes.keys():
             parent = self._sub_nodes[map_name[0]]
         self._tree_level_iter.append(
-            self._tree_model.append(parent, [
-                'skytemple-e-mapbg-symbolic', map_name, self, BgController, item_id, False, '', True
-            ])
+            self._item_tree.add_entry(parent, ItemTreeEntry(
+                icon='skytemple-e-mapbg-symbolic',
+                name=map_name,
+                module=self,
+                view_class=BgController,
+                item_data=item_id
+            ))
         )
-        recursive_generate_item_store_row_label(self._tree_model[parent])
         self.mark_as_modified(item_id)
         self.mark_level_list_as_modified()
 
@@ -188,8 +231,7 @@ class MapBgModule(AbstractModule):
                 self.project.mark_as_modified(f'{MAP_BG_PATH}{bpa.lower()}.bpa')
 
         # Mark as modified in tree
-        row = self._tree_model[self._tree_level_iter[item_id]]
-        recursive_up_item_store_mark_as_modified(row)
+        self._item_tree.mark_as_modified(self._tree_level_iter[item_id], RecursionType.UP)
 
     def mark_level_list_as_modified(self):
         self.project.mark_as_modified(MAP_BG_LIST)
@@ -212,8 +254,7 @@ class MapBgModule(AbstractModule):
                     item_id = i
                     break
             if item_id != -1:
-                row = self._tree_model[self._tree_level_iter[item_id]]
-                recursive_up_item_store_mark_as_modified(row)
+                self._item_tree.mark_as_modified(self._tree_level_iter[item_id], RecursionType.UP)
         except BaseException as err:
             display_error(
                 sys.exc_info(),
@@ -221,9 +262,11 @@ class MapBgModule(AbstractModule):
                 _("Error adding the logo.")
             )
         else:
-            md = SkyTempleMessageDialog(None,
-                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                        Gtk.ButtonsType.OK, _("Logo added successfully. Thank you!"), is_success=True)
+            md = SkyTempleMessageDialog(
+                None,
+                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                Gtk.ButtonsType.OK, _("Logo added successfully. Thank you!"), is_success=True
+            )
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()
@@ -276,7 +319,7 @@ class MapBgModule(AbstractModule):
 
         return mappings, mappa, fixed, dungeon_bin_context, dungeon_list
 
-    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
-        if isinstance(open_controller, BgController):
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+        if isinstance(open_view, BgController):
             pass  # todo
         return None

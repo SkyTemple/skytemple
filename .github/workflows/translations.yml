@@ -30,11 +30,11 @@ jobs:
         with:
           repository: skytemple/skytemple-ssb-debugger
           path: skytemple-ssb-debugger
-      - name: Checkout py-desmume
+      - name: Checkout skytemple-ssb-emulator
         uses: actions/checkout@v4
         with:
-          repository: skytemple/py-desmume
-          path: py_desmume
+          repository: skytemple/skytemple-ssb-emulator
+          path: skytemple-ssb-emulator
       - name: Checkout explorerscript
         uses: actions/checkout@v4
         with:
@@ -64,9 +64,9 @@ jobs:
               \( \
                   -name "*.py" -or \
                   -name "*.rs" -or \
-                  -name "*.glade" \
+                  -name "*.glade" -or \
+                  -name "*.ui" \
               \) \
-              ! -path "py_desmume/desmume/frontend/PyDeSmuMe.glade" \
           | xargs xgettext \
               -F --keyword='_' --no-wrap --foreign-user \
               --package-name=skytemple --msgid-bugs-address=https://translate.skytemple.org \

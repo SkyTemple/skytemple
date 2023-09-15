@@ -20,7 +20,7 @@ import sys
 import traceback
 import webbrowser
 from threading import current_thread
-from typing import Optional, List, Type, TYPE_CHECKING, Tuple, cast
+from typing import Optional, List, Type, TYPE_CHECKING, Tuple, cast, Union
 import packaging.version
 
 import gi
@@ -31,7 +31,8 @@ from gi.repository.GdkPixbuf import Pixbuf
 from skytemple.controller.settings import SettingsController
 from skytemple.controller.tilequant_dialog import TilequantController
 from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.controller_loader import load_controller
+from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef
+from skytemple.core.view_loader import load_view
 from skytemple.core.error_handler import display_error, capture_error
 from skytemple.core.events.events import EVT_VIEW_SWITCH, EVT_PROJECT_OPEN
 from skytemple.core.events.manager import EventManager
@@ -43,11 +44,13 @@ from skytemple.core.ssb_debugger.manager import DebuggerManager
 from skytemple_files.common.impl_cfg import ImplementationType, get_implementation_type
 from skytemple_files.common.project_file_manager import ProjectFileManager
 from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
-from skytemple.core.ui_utils import add_dialog_file_filters, recursive_down_item_store_mark_as_modified, data_dir, \
+from skytemple.core.ui_utils import add_dialog_file_filters, data_dir, \
     version, open_dir, builder_get_assert, create_tree_view_column, assert_not_none
 from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.common.version_util import check_newest_release, ReleaseType, get_event_banner
+
+from skytemple.core.widget.view import StView
 
 if TYPE_CHECKING:
     from skytemple.module.map_bg.module import MapBgModule
@@ -95,20 +98,21 @@ class MainController:
         cls._instance._lock_trees()
         # Show loading stack page in editor stack
         cls._instance._editor_stack.set_visible_child(builder_get_assert(cls._instance.builder, Gtk.Box, 'es_loading'))
+        view_cls: Union[AbstractController, StView] = assert_not_none(cls._instance._current_view)  # type: ignore
         # Fully load the view and the controller
-        AsyncTaskDelegator.run_task(load_controller(
+        AsyncTaskDelegator.run_task(load_view(
             assert_not_none(cls._instance._current_view_module),
-            cls._instance._current_view_controller_class,
+            view_cls.__class__,
             assert_not_none(cls._instance._current_view_item_id),
             assert_not_none(cls._instance)
         ))
 
     @classmethod
-    def view_info(cls) -> Tuple[Optional[AbstractModule], Optional[Type[AbstractController]], Optional[int]]:
+    def view_info(cls) -> Tuple[Optional[AbstractModule], Union[Type[AbstractController], Type[StView], Type[None]], Optional[int]]:
         """Returns the currently loaded view info in SkyTemple."""
         return (
             cls._instance._current_view_module,
-            cls._instance._current_view_controller_class,
+            cls._instance._current_view.__class__,
             cls._instance._current_view_item_id
         )
 
@@ -129,6 +133,7 @@ class MainController:
 
         self._recent_files_store  = builder_get_assert(self.builder, Gtk.ListStore, 'recent_files_store')
         self._item_store = builder_get_assert(self.builder, Gtk.TreeStore, 'item_store')
+        self._tree_repr = ItemTree(self._item_store)
         self._editor_stack = builder_get_assert(self.builder, Gtk.Stack, 'editor_stack')
 
         builder.connect_signals(self)
@@ -136,8 +141,7 @@ class MainController:
 
         self._search_text: Optional[str] = None
         self._current_view_module: Optional[AbstractModule] = None
-        self._current_view_controller: Optional[AbstractController] = None
-        self._current_view_controller_class: Optional[Type[AbstractController]] = None
+        self._current_view: Union[AbstractController, StView, None] = None
         self._current_view_item_id: Optional[int] = None
         self._resize_timeout_id: Optional[int] = None
         self._loaded_map_bg_module: Optional['MapBgModule'] = None
@@ -335,7 +339,7 @@ class MainController:
             
             logger.info(f'Loaded ROM {project.filename} ({rom_module.get_static_data().game_edition})')
             logger.debug(f"Loading ROM module tree items...")
-            rom_module.load_tree_items(self._item_store, None)
+            rom_module.load_tree_items(self._tree_repr)
             root_node = rom_module.get_root_node()
 
             
@@ -345,11 +349,14 @@ class MainController:
             # Load item tree items
             for module in sorted(project.get_modules(False), key=lambda m: m.sort_order()):
                 logger.debug(f"Loading {module.__class__.__name__} module tree items...")
-                module.load_tree_items(self._item_store, root_node)
+                module.load_tree_items(self._tree_repr)
                 if module.__class__.__name__ == 'MapBgModule':
                     self._loaded_map_bg_module = module  # type: ignore
             # TODO: Load settings from ROM for history, bookmarks, etc? - separate module?
             logger.debug(f"Loaded all modules.")
+
+            # Generate all labels.
+            self._tree_repr.finalize()
 
             # Trigger event
             EventManager.instance().trigger(EVT_PROJECT_OPEN, project=project)
@@ -357,8 +364,8 @@ class MainController:
             # Select & load main ROM item by default
             assert self._main_item_list is not None
             selection: Gtk.TreeSelection = self._main_item_list.get_selection()
-            selection.select_path(self._item_store.get_path(root_node))
-            self.load_view(self._item_store, root_node, self._main_item_list)
+            selection.select_path(self._item_store.get_path(root_node._self))
+            self.load_view(self._item_store, root_node._self, self._main_item_list)
         except BaseException as ex:
             self.on_file_opened_error(sys.exc_info(), ex)
             return
@@ -392,10 +399,7 @@ class MainController:
         rom = RomProject.get_current()
         if rom is not None:
             self._set_title(os.path.basename(rom.filename), False)
-            assert self._item_store is not None
-            first_iter = self._item_store.get_iter_first()
-            if first_iter:
-                recursive_down_item_store_mark_as_modified(self._item_store[first_iter], False)
+            self._tree_repr.mark_all_as_unmodified()
             if self._after_save_action is not None:
                 self._after_save_action()
                 self._after_save_action = None
@@ -421,9 +425,9 @@ class MainController:
             if model is not None and treeiter is not None and RomProject.get_current() is not None:
                 self.load_view(model, treeiter, tree, False)
 
-    def load_view_main_list(self, treeiter: Gtk.TreeIter):
+    def load_view_main_list(self, treeiter: ItemTreeEntryRef):
         assert self._main_item_list is not None
-        return self.load_view(self._item_store, treeiter, self._main_item_list)
+        return self.load_view(self._item_store, treeiter._self, self._main_item_list)
 
     def load_view(self, model: Gtk.TreeModel, treeiter: Gtk.TreeIter, tree: Gtk.TreeView, scroll_into_view=True):
         logger.debug('View selected. Locking and showing Loader.')
@@ -438,10 +442,10 @@ class MainController:
         self._current_view_controller_class = selected_node[3]
         self._current_view_item_id = selected_node[4]
         # Fully load the view and the controller
-        AsyncTaskDelegator.run_task(load_controller(
+        AsyncTaskDelegator.run_task(load_view(
             assert_not_none(self._current_view_module),
             self._current_view_controller_class,
-            assert_not_none(self._current_view_item_id),
+            self._current_view_item_id,
             self
         ))
         # Expand the node
@@ -453,7 +457,7 @@ class MainController:
             tree.scroll_to_cell(path, None, True, 0.5, 0.5)
 
     def on_view_loaded(
-            self, module: AbstractModule, controller: AbstractController, item_id: int
+            self, module: AbstractModule, in_view: Union[AbstractController, StView], item_id: int
     ):
         """A new module view was loaded! Present it!"""
         assert current_thread() == main_thread
@@ -461,8 +465,12 @@ class MainController:
         logger.debug('View loaded.')
         # Insert the view at page 3 [0,1,2,3] of the stack. If there is already a page, remove it.
         old_view = self._editor_stack.get_child_by_name('es__loaded_view')
+        view: Gtk.Widget
         try:
-            view = controller.get_view()
+            if isinstance(in_view, StView):
+                view = in_view
+            else:
+                view = in_view.get_view()
         except Exception as err:
             logger.debug("Error retreiving the loaded view")
             self.on_view_loaded_error(err)
@@ -470,11 +478,12 @@ class MainController:
                 logger.debug('Destroying old view...')
                 self._editor_stack.remove(old_view)
                 old_view.destroy()
-            if self._current_view_controller is not None:
-                self._current_view_controller.unload()
-            controller.unload()
+            if self._current_view is not None and isinstance(self._current_view, AbstractController):
+                self._current_view.unload()
+            if isinstance(in_view, AbstractController):
+                in_view.unload()
             return
-        if self._current_view_module != module or self._current_view_controller_class != controller.__class__ or self._current_view_item_id != item_id:
+        if self._current_view_module != module or self._current_view_controller_class != in_view.__class__ or self._current_view_item_id != item_id:
             logger.warning('Loaded view not matching selection.')
             view.destroy()
             return
@@ -482,16 +491,16 @@ class MainController:
             logger.debug('Destroying old view...')
             self._editor_stack.remove(old_view)
             old_view.destroy()
-        if self._current_view_controller is not None:
-            self._current_view_controller.unload()
-        self._current_view_controller = controller
+        if self._current_view is not None and isinstance(self._current_view, AbstractController):
+            self._current_view.unload()
+        self._current_view = in_view
         logger.debug('Adding and showing new view...')
         self._editor_stack.add_named(view, 'es__loaded_view')
         view.show_all()
         self._editor_stack.set_visible_child(view)
         logger.debug('Unlocking view trees.')
         self._unlock_trees()
-        EventManager.instance().trigger(EVT_VIEW_SWITCH, module=module, controller=controller,
+        EventManager.instance().trigger(EVT_VIEW_SWITCH, module=module, controller=in_view,
                                         breadcrumbs=self._current_breadcrumbs)
 
     def on_view_loaded_error(self, ex: BaseException):

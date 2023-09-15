@@ -14,15 +14,13 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore
-from typing import Dict, Optional
+from typing import Dict, Optional, Union
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
+from skytemple.core.item_tree import ItemTree, ItemTreeEntry, ItemTreeEntryRef, RecursionType
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
-from skytemple.core.ui_utils import recursive_up_item_store_mark_as_modified, generate_item_store_row_label, \
-    recursive_generate_item_store_row_label
+from skytemple.core.widget.view import StView
 from skytemple.module.strings.controller.main import MainController, TEXT_STRINGS
 from skytemple.module.strings.controller.strings import StringsController
 
@@ -43,20 +41,27 @@ class StringsModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         self.project = rom_project
 
-        self._tree_model: Optional[Gtk.TreeStore] = None
-        self._tree_iters: Dict[str, Gtk.TreeIter] = {}
+        self._item_tree: Optional[ItemTree] = None
+        self._tree_iters: Dict[str, ItemTreeEntryRef] = {}
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
-        root = item_store.append(root_node, [
-            'skytemple-e-string-symbolic', TEXT_STRINGS, self, MainController, 0, False, '', True
-        ])
+    def load_tree_items(self, item_tree: ItemTree):
+        root = item_tree.add_entry(None, ItemTreeEntry(
+            icon='skytemple-e-string-symbolic',
+            name=TEXT_STRINGS,
+            module=self,
+            view_class=MainController,
+            item_data=0
+        ))
         config = self.project.get_rom_module().get_static_data()
         for language in config.string_index_data.languages:
-            self._tree_iters[language.filename] = item_store.append(root, [
-                'skytemple-e-string-symbolic', language.name_localized, self, StringsController, language, False, '', True
-            ])
-        self._tree_model = item_store
-        recursive_generate_item_store_row_label(self._tree_model[root])
+            self._tree_iters[language.filename] = item_tree.add_entry(root, ItemTreeEntry(
+                icon='skytemple-e-string-symbolic',
+                name=language.name_localized,
+                module=self,
+                view_class=StringsController,
+                item_data=language
+            ))
+        self._item_tree = item_tree
 
     def get_string_file(self, filename: str) -> Str:
         return self.project.open_file_in_rom(f"MESSAGE/{filename}", FileType.STR)
@@ -65,11 +70,10 @@ class StringsModule(AbstractModule):
         """Mark as modified"""
         self.project.mark_as_modified(f"MESSAGE/{filename}")
         # Mark as modified in tree
-        if self._tree_model is not None:
-            row = self._tree_model[self._tree_iters[filename]]
-            recursive_up_item_store_mark_as_modified(row)
+        if self._item_tree is not None:
+            self._item_tree.mark_as_modified(self._tree_iters[filename], RecursionType.UP)
 
-    def collect_debugging_info(self, open_controller: AbstractController) -> Optional[DebuggingInfo]:
-        if isinstance(open_controller, StringsController):
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
+        if isinstance(open_view, StringsController):
             pass  # todo
         return None

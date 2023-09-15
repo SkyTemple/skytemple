@@ -14,23 +14,4 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.item_tree import ItemTree
-from skytemple.core.rom_project import RomProject
 
-
-class TiledImgModule(AbstractModule):
-    """Utility module that provides common dialogs for MapBGs and dungeon graphics."""
-    @classmethod
-    def depends_on(cls):
-        return []
-
-    @classmethod
-    def sort_order(cls):
-        return 0  # n/a
-
-    def __init__(self, rom_project: RomProject):
-        pass
-
-    def load_tree_items(self, item_tree: ItemTree):
-        pass

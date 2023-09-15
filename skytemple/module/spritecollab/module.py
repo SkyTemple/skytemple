@@ -21,18 +21,17 @@ from typing import Optional, Tuple
 
 from PIL import Image
 from gi.repository import Gtk, GLib, Pango
-from gi.repository.Gtk import TreeStore
 from range_typed_integers import i16
 from skytemple_files.common.i18n_util import _
 from skytemple_files.common.ppmdu_config.data import Pmd2Sprite
 from skytemple_files.common.spritecollab.client import MonsterFormDetails, SpriteCollabClient
-from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.md.protocol import ShadowSize
 from skytemple_files.graphics.chara_wan.model import WanFile
 
 from skytemple.controller.main import MainController
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.error_handler import display_error
+from skytemple.core.item_tree import ItemTree
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.rom_project import RomProject
 from skytemple.module.spritecollab.controller.browser import BrowserController
@@ -50,7 +49,7 @@ class SpritecollabModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         pass
 
-    def load_tree_items(self, item_store: TreeStore, root_node):
+    def load_tree_items(self, item_tree: ItemTree):
         pass  # n/a
 
     def show_spritecollab_browser(self):
@@ -209,8 +208,8 @@ async def get_sprites(
 ) -> Optional[Tuple[WanFile, Pmd2Sprite, int]]:
     async with client as session:
         sprites = await session.fetch_sprites(
-                [form],
-                [None],
-                copy_to_event_sleep_if_missing=copy_to_event_sleep_if_missing
+            [form],
+            [None],
+            copy_to_event_sleep_if_missing=copy_to_event_sleep_if_missing
         )
         return sprites[0]

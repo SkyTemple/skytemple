@@ -14,18 +14,20 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Optional, List, TypedDict, Dict, TYPE_CHECKING, Any
+from typing import Optional, List, TypedDict, Dict, TYPE_CHECKING, Any, Union
 
-from gi.repository import Gtk
-from gi.repository.Gtk import TreeStore, TreeIter
-
+from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef
 from skytemple.core.open_request import OpenRequest
 from skytemple_files.common.util import Captured
 
+
 if TYPE_CHECKING:
     from skytemple.core.module_controller import AbstractController
+    from skytemple.core.widget.view import StView
+    from skytemple.core.rom_project import RomProject
 
 
 class DebuggingInfo(TypedDict, total=False):
@@ -35,8 +37,12 @@ class DebuggingInfo(TypedDict, total=False):
 
 class AbstractModule(ABC):
     """
-    A SkyTemple module. First parameter of __init__ is RomProject.
+    A SkyTemple module.
     """
+    @abstractmethod
+    def __init__(self, rom_project: RomProject):
+        pass
+
     @classmethod
     def load(cls):
         """
@@ -59,21 +65,23 @@ class AbstractModule(ABC):
         """
 
     @abstractmethod
-    def load_tree_items(self, item_store: TreeStore, root_node: Optional[TreeIter]):
-        """Add the module nodes to the item tree"""
+    def load_tree_items(self, item_tree: ItemTree):
+        """
+        Add the module nodes to the item tree.
+        """
         pass
 
-    def collect_debugging_info(self, open_controller: 'AbstractController') -> Optional[DebuggingInfo]:
+    def collect_debugging_info(self, open_view: Union[AbstractController, StView]) -> Optional[DebuggingInfo]:
         """
-        Return debugging information for the currently opened controller (passed in). If this module can't provide
-        this information for that controller, returns None.
+        Return debugging information for the currently opened controller or view widget (passed in).
+        If this module can't provide this information for that controller, returns None.
         If not implemented, always returns None.
         """
         return None
 
-    def handle_request(self, request: OpenRequest) -> Optional[Gtk.TreeIter]:
+    def handle_request(self, request: OpenRequest) -> Optional[ItemTreeEntryRef]:
         """
-        Handle an OpenRequest. Must return the iterator for the view in the main view list, as generated
+        Handle an OpenRequest. Must return an entry for the view in the main item tree, as generated
         in load_tree_items.
         If not implemented, always returns None.
         """
