@@ -23,9 +23,11 @@ from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef
 from skytemple.core.open_request import OpenRequest
 from skytemple_files.common.util import Captured
 
+
 if TYPE_CHECKING:
     from skytemple.core.module_controller import AbstractController
     from skytemple.core.widget.view import StView
+    from skytemple.core.rom_project import RomProject
 
 
 class DebuggingInfo(TypedDict, total=False):
@@ -35,8 +37,12 @@ class DebuggingInfo(TypedDict, total=False):
 
 class AbstractModule(ABC):
     """
-    A SkyTemple module. First parameter of __init__ is RomProject.
+    A SkyTemple module.
     """
+    @abstractmethod
+    def __init__(self, rom_project: RomProject):
+        pass
+
     @classmethod
     def load(cls):
         """
