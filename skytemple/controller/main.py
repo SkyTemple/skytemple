@@ -31,7 +31,7 @@ from gi.repository.GdkPixbuf import Pixbuf
 from skytemple.controller.settings import SettingsController
 from skytemple.controller.tilequant_dialog import TilequantController
 from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.item_tree import ItemTree
+from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef
 from skytemple.core.view_loader import load_view
 from skytemple.core.error_handler import display_error, capture_error
 from skytemple.core.events.events import EVT_VIEW_SWITCH, EVT_PROJECT_OPEN
@@ -425,9 +425,9 @@ class MainController:
             if model is not None and treeiter is not None and RomProject.get_current() is not None:
                 self.load_view(model, treeiter, tree, False)
 
-    def load_view_main_list(self, treeiter: Gtk.TreeIter):
+    def load_view_main_list(self, treeiter: ItemTreeEntryRef):
         assert self._main_item_list is not None
-        return self.load_view(self._item_store, treeiter, self._main_item_list)
+        return self.load_view(self._item_store, treeiter._self, self._main_item_list)
 
     def load_view(self, model: Gtk.TreeModel, treeiter: Gtk.TreeIter, tree: Gtk.TreeView, scroll_into_view=True):
         logger.debug('View selected. Locking and showing Loader.')
