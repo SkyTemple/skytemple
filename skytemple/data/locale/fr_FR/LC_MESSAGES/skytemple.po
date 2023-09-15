@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-09-15 15:41+0000\n"
-"PO-Revision-Date: 2023-09-15 16:31\n"
+"POT-Creation-Date: 2023-09-15 21:49+0000\n"
+"PO-Revision-Date: 2023-09-15 22:05\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -3385,9 +3385,9 @@ msgstr "Utilitaires"
 #. TRANSLATORS: Name for the category of ASM patch
 #: skytemple-files/skytemple_files/patch/category.py:33
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5307
-#: skytemple/skytemple/module/map_bg/module.py:142
+#: skytemple/skytemple/module/map_bg/module.py:141
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:2091
-#: skytemple/skytemple/module/script/module.py:165
+#: skytemple/skytemple/module/script/module.py:164
 msgid "Others"
 msgstr "Autres"
 
@@ -4209,7 +4209,7 @@ msgid "Do you want to save changes to {filename}?"
 msgstr "Voulez-vous sauvegarder les changements faits dans {filename} ?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:328
-#: skytemple/skytemple/controller/main.py:893
+#: skytemple/skytemple/controller/main.py:891
 msgid "Don't Save"
 msgstr "Ne pas sauvegarder"
 
@@ -4232,12 +4232,12 @@ msgstr "_Annuler"
 #: skytemple/skytemple/module/misc_graphics/controller/zmappat.py:91
 #: skytemple/skytemple/module/portrait/controller/portrait.py:108
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.py:144
-#: skytemple/skytemple/module/sprite/module.py:210
+#: skytemple/skytemple/module/sprite/module.py:209
 msgid "_Save"
 msgstr "_Sauvegarder"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:332
-#: skytemple/skytemple/controller/main.py:897
+#: skytemple/skytemple/controller/main.py:895
 msgid "If you don't save, your changes will be lost."
 msgstr "Si vous n'enregistrez pas, vos modifications seront perdues."
 
@@ -4570,22 +4570,22 @@ msgstr "Commun"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:928
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1423
-#: skytemple/skytemple/module/script/module.py:193
-#: skytemple/skytemple/module/script/module.py:428
+#: skytemple/skytemple/module/script/module.py:192
+#: skytemple/skytemple/module/script/module.py:427
 msgid "Enter (sse)"
 msgstr "Entrée (sse)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:939
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1426
-#: skytemple/skytemple/module/script/module.py:207
-#: skytemple/skytemple/module/script/module.py:391
+#: skytemple/skytemple/module/script/module.py:206
+#: skytemple/skytemple/module/script/module.py:390
 msgid "Acting (ssa)"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:949
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1430
-#: skytemple/skytemple/module/script/module.py:233
-#: skytemple/skytemple/module/script/module.py:399
+#: skytemple/skytemple/module/script/module.py:232
+#: skytemple/skytemple/module/script/module.py:398
 msgid "Sub (sss)"
 msgstr ""
 
@@ -4630,7 +4630,7 @@ msgstr "Supprimer"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1712
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1723
-#: skytemple/skytemple/controller/main.py:895
+#: skytemple/skytemple/controller/main.py:893
 #: skytemple/skytemple/module/map_bg/controller/main.py:105
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:43
 #: skytemple/skytemple/module/script/controller/main.py:195
@@ -5063,7 +5063,7 @@ msgstr "État Terrain"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1089
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2798
-#: skytemple/skytemple/controller/main.py:896
+#: skytemple/skytemple/controller/main.py:894
 #: skytemple/skytemple/skytemple.glade:1367
 msgid "Save"
 msgstr "Sauvegarder"
@@ -5665,57 +5665,57 @@ msgstr "Zoom _avant"
 msgid "Zoom _Out"
 msgstr "Zoom _arrière"
 
-#: skytemple/skytemple/controller/main.py:256
+#: skytemple/skytemple/controller/main.py:254
 msgid "Save As..."
 msgstr "Enregistrer sous..."
 
-#: skytemple/skytemple/controller/main.py:279
+#: skytemple/skytemple/controller/main.py:277
 msgid "Open ROM..."
 msgstr "Ouvrir une ROM..."
 
-#: skytemple/skytemple/controller/main.py:391
+#: skytemple/skytemple/controller/main.py:389
 msgid "Error opening the ROM"
 msgstr "Erreur lors de l'ouverture de la ROM"
 
-#: skytemple/skytemple/controller/main.py:417
+#: skytemple/skytemple/controller/main.py:415
 msgid "Error saving the ROM"
 msgstr "Erreur lors de la sauvegarde de la ROM"
 
-#: skytemple/skytemple/controller/main.py:550
-#: skytemple/skytemple/controller/main.py:602
+#: skytemple/skytemple/controller/main.py:548
+#: skytemple/skytemple/controller/main.py:600
 msgid "A project must be opened to use this."
 msgstr "Il faut ouvrir un projet pour l'utiliser."
 
-#: skytemple/skytemple/controller/main.py:612
+#: skytemple/skytemple/controller/main.py:610
 msgid "'spritecollab' module must be installed to use this."
 msgstr "Le module « spritecollab » doit être installé pour utiliser cela."
 
-#: skytemple/skytemple/controller/main.py:669
-#: skytemple/skytemple/controller/main.py:670
+#: skytemple/skytemple/controller/main.py:667
+#: skytemple/skytemple/controller/main.py:668
 msgid "Open a ROM"
 msgstr "Ouvrir une ROM"
 
-#: skytemple/skytemple/controller/main.py:695
+#: skytemple/skytemple/controller/main.py:693
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
 msgstr "Chargement de la ROM « {rom_name} »..."
 
-#: skytemple/skytemple/controller/main.py:697
+#: skytemple/skytemple/controller/main.py:695
 #, python-brace-format
 msgid "Opening {filename}."
 msgstr "Ouverture de {filename}."
 
-#: skytemple/skytemple/controller/main.py:876
+#: skytemple/skytemple/controller/main.py:874
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
 msgstr "Enregistrement de la ROM « {rom_name} »..."
 
-#: skytemple/skytemple/controller/main.py:878
+#: skytemple/skytemple/controller/main.py:876
 #, python-brace-format
 msgid "Saving {rom.filename}."
 msgstr "Sauvegarde de {rom.filename}."
 
-#: skytemple/skytemple/controller/main.py:891
+#: skytemple/skytemple/controller/main.py:889
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
 msgstr "Voulez vous enregistrer les changement vers {rom_name} ?"
@@ -10395,57 +10395,57 @@ msgid "This will import the tiles for the selected layer\n"
 "before you can use it. See the \"Format Details\"."
 msgstr ""
 
-#: skytemple/skytemple/module/map_bg/module.py:84
-#: skytemple/skytemple/module/script/module.py:114
-#: skytemple/skytemple/module/script/module.py:117
+#: skytemple/skytemple/module/map_bg/module.py:83
+#: skytemple/skytemple/module/script/module.py:113
+#: skytemple/skytemple/module/script/module.py:116
 msgid "S - System"
 msgstr "S - Système"
 
-#: skytemple/skytemple/module/map_bg/module.py:91
-#: skytemple/skytemple/module/script/module.py:121
-#: skytemple/skytemple/module/script/module.py:124
+#: skytemple/skytemple/module/map_bg/module.py:90
+#: skytemple/skytemple/module/script/module.py:120
+#: skytemple/skytemple/module/script/module.py:123
 msgid "T - Town"
 msgstr "T - Ville"
 
-#: skytemple/skytemple/module/map_bg/module.py:98
-#: skytemple/skytemple/module/script/module.py:128
-#: skytemple/skytemple/module/script/module.py:131
+#: skytemple/skytemple/module/map_bg/module.py:97
+#: skytemple/skytemple/module/script/module.py:127
+#: skytemple/skytemple/module/script/module.py:130
 msgid "D - Dungeon"
 msgstr "D - Donjon"
 
-#: skytemple/skytemple/module/map_bg/module.py:105
-#: skytemple/skytemple/module/script/module.py:135
-#: skytemple/skytemple/module/script/module.py:138
+#: skytemple/skytemple/module/map_bg/module.py:104
+#: skytemple/skytemple/module/script/module.py:134
+#: skytemple/skytemple/module/script/module.py:137
 msgid "G - Guild"
 msgstr "G - Guilde"
 
-#: skytemple/skytemple/module/map_bg/module.py:112
-#: skytemple/skytemple/module/script/module.py:142
-#: skytemple/skytemple/module/script/module.py:145
+#: skytemple/skytemple/module/map_bg/module.py:111
+#: skytemple/skytemple/module/script/module.py:141
+#: skytemple/skytemple/module/script/module.py:144
 msgid "H - Habitat"
 msgstr "H - Habitat"
 
-#: skytemple/skytemple/module/map_bg/module.py:119
-#: skytemple/skytemple/module/script/module.py:149
-#: skytemple/skytemple/module/script/module.py:152
+#: skytemple/skytemple/module/map_bg/module.py:118
+#: skytemple/skytemple/module/script/module.py:148
+#: skytemple/skytemple/module/script/module.py:151
 msgid "P - Places"
 msgstr "P - Lieux"
 
-#: skytemple/skytemple/module/map_bg/module.py:126
-#: skytemple/skytemple/module/script/module.py:156
-#: skytemple/skytemple/module/script/module.py:159
+#: skytemple/skytemple/module/map_bg/module.py:125
+#: skytemple/skytemple/module/script/module.py:155
+#: skytemple/skytemple/module/script/module.py:158
 msgid "V - Visual"
 msgstr "V - Visuel"
 
-#: skytemple/skytemple/module/map_bg/module.py:133
+#: skytemple/skytemple/module/map_bg/module.py:132
 msgid "W - Weather"
 msgstr "W - Météo"
 
-#: skytemple/skytemple/module/map_bg/module.py:262
+#: skytemple/skytemple/module/map_bg/module.py:261
 msgid "Error adding the logo."
 msgstr "Erreur lors de l'ajout du logo."
 
-#: skytemple/skytemple/module/map_bg/module.py:268
+#: skytemple/skytemple/module/map_bg/module.py:267
 msgid "Logo added successfully. Thank you!"
 msgstr "Logo ajouté avec succès. Merci !"
 
@@ -11756,11 +11756,11 @@ msgstr "Capacités"
 msgid "at level {x[0]}"
 msgstr "au niveau {x[0]}"
 
-#: skytemple/skytemple/module/monster/module.py:218
+#: skytemple/skytemple/module/monster/module.py:217
 msgid "This entry has no portraits."
 msgstr "Cette entrée n'a pas de portrait."
 
-#: skytemple/skytemple/module/monster/module.py:261
+#: skytemple/skytemple/module/monster/module.py:260
 msgid "Stats and moves are only editable for base forms."
 msgstr "Les statistiques et attaques ne sont modifiables que pour les formes de base."
 
@@ -13326,15 +13326,15 @@ msgid "This section contains all sub scenes for the map {self.name}.\n\n"
 "depending on the current story progress."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:330
+#: skytemple/skytemple/module/script/module.py:329
 msgid "Map not found."
 msgstr "Carte introuvable."
 
-#: skytemple/skytemple/module/script/module.py:484
+#: skytemple/skytemple/module/script/module.py:483
 msgid "The file name provided must not have a file extension."
 msgstr ""
 
-#: skytemple/skytemple/module/script/module.py:486
+#: skytemple/skytemple/module/script/module.py:485
 msgid "The file name provided is too long (max 8 characters)."
 msgstr "Le nom du fichier est trop long (8 caractères maximum)."
 
@@ -13522,43 +13522,43 @@ msgstr "Un autre sprite existe déjà sous ce nom."
 msgid "Object sprite added successfully"
 msgstr "Sprite d’objet ajouté avec succès"
 
-#: skytemple/skytemple/module/sprite/module.py:137
+#: skytemple/skytemple/module/sprite/module.py:136
 msgid "Import WAN sprite..."
 msgstr "Importer le sprite WAN..."
 
-#: skytemple/skytemple/module/sprite/module.py:155
+#: skytemple/skytemple/module/sprite/module.py:154
 msgid "Export WAN sprite..."
 msgstr "Exporter le sprite WAN..."
 
-#: skytemple/skytemple/module/sprite/module.py:161
+#: skytemple/skytemple/module/sprite/module.py:160
 msgid "WAN sprite (*.wan)"
 msgstr "sprite WAN (*.wan)"
 
-#: skytemple/skytemple/module/sprite/module.py:178
+#: skytemple/skytemple/module/sprite/module.py:177
 msgid "To import select the directory of the sprite export. If it is still zipped, unzip it first."
 msgstr "Pour l’import, sélectionner le dossier contenant l’export du sprite. S’il est encore compressé, décompresser le."
 
-#: skytemple/skytemple/module/sprite/module.py:184
+#: skytemple/skytemple/module/sprite/module.py:183
 msgid "Import gfxcrunch sprite..."
 msgstr "Importer un sprite «·gfxcrunch·» ..."
 
-#: skytemple/skytemple/module/sprite/module.py:201
+#: skytemple/skytemple/module/sprite/module.py:200
 msgid "Error importing the sprite."
 msgstr "Error lors de l'importation du sprite."
 
-#: skytemple/skytemple/module/sprite/module.py:224
+#: skytemple/skytemple/module/sprite/module.py:223
 msgid "Error exporting the sprite."
 msgstr "Erreur lors de l'exportation du sprite."
 
-#: skytemple/skytemple/module/sprite/module.py:229
+#: skytemple/skytemple/module/sprite/module.py:228
 msgid "Import image file..."
 msgstr "Importer un fichier image..."
 
-#: skytemple/skytemple/module/sprite/module.py:247
+#: skytemple/skytemple/module/sprite/module.py:246
 msgid "Error importing image to object."
 msgstr "Erreur lors de l’import de l’image pour l’objet."
 
-#: skytemple/skytemple/module/sprite/module.py:306
+#: skytemple/skytemple/module/sprite/module.py:305
 msgid "Error with sprite files: They don't have the same length. This will be corrected by adding empty sprites. You should re-import the last imported sprite."
 msgstr ""
 
