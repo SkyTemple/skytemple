@@ -5,7 +5,7 @@ This is the documentation for developing and distributing plugins
 for SkyTemple. The documentation on how to install and use plugins,
 as well as general information, can be found on our wiki_.
 
-.. _wiki: https://skytemple.org/index.php/Plugin
+.. _wiki: https://wiki.skytemple.org/index.php/Plugin
 
 Overview
 --------
