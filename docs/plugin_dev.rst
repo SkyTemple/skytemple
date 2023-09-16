@@ -27,8 +27,7 @@ theoretically possible.
 Loading Plugins
 ---------------
 Depending on how SkyTemple is installed, there are two ways plugins are
-discovered and loaded. Understanding these mechanisms is important to
-understand.
+discovered and loaded. Understanding these mechanisms is important.
 
 Via ``site-packages``
 ~~~~~~~~~~~~~~~~~~~~~
@@ -59,7 +58,7 @@ directory...").
 
 A plugin wheel placed in these directories is automatically loaded after
 the user confirms it on start. This is the primary way to distribute
-wheels. The section "Distribution_" will go into more details on how
+plugins. The section "Distribution_" will go into more details on how
 to create these wheels.
 
 .. _wheels: https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/#wheels
