@@ -259,7 +259,7 @@ Python module (a CPython extension) or if you just use it dynamically
 via ``ctypes``.
 
 A "Platform Wheel" is always bound to a specific Python release,
-architecture and operating system. For Linux Wheels must be built
+architecture and operating system. Linux Wheels must be built
 using the manylinux_ Docker images in order to be distributable.
 
 Please provide wheels for all Python versions and platforms supported
