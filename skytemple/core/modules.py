@@ -17,11 +17,19 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
 
+import os
 import sys
 import logging
-from typing import TYPE_CHECKING, Type, Iterable
+from typing import TYPE_CHECKING, Type, Sequence
 
 from typing import Dict
+
+from skytemple_files.common.i18n_util import _, f
+from skytemple_files.common.project_file_manager import ProjectFileManager
+
+from skytemple.core.plugin_loader import load_plugins
+from skytemple.core.settings import SkyTempleSettingsStore
+from gi.repository import Gtk
 
 if sys.version_info >= (3, 10):
     import importlib.metadata as importlib_metadata
@@ -39,7 +47,11 @@ class Modules:
     _modules: Dict = {}
 
     @classmethod
-    def load(cls):
+    def load(cls, settings: SkyTempleSettingsStore):
+        # Load plugins
+        plugin_dir = os.path.join(ProjectFileManager.shared_config_dir(), "plugins")
+        load_plugins(cls.confirm_plugin_load, settings, plugin_dir)
+
         # Look up package entrypoints for modules
         cls._modules = {}
         try:
@@ -48,13 +60,12 @@ class Modules:
                     entry_point.load() for entry_point in importlib_metadata.entry_points().select(group=MODULE_ENTRYPOINT_KEY)
             }
         except Exception as ex:
-            logger.warning("Failed loading modules.", exc_info=ex)
+            logger.error("Failed loading modules.", exc_info=ex)
+            raise ex
 
         if len(cls._modules) < 1:
-            logger.warning("No module found, falling back to default.")
-            # PyInstaller under Windows has no idea what (custom) entrypoints are...
-            # TODO: Figure out a better way to do this...
-            cls._modules = cls._load_windows_modules()
+            logger.error("No modules found.")
+            raise ValueError("No modules found.")
         dependencies = {}
         for k, module in cls._modules.items():
             dependencies[k] = module.depends_on()
@@ -62,6 +73,44 @@ class Modules:
         cls._modules = dict(sorted(cls._modules.items(), key=lambda x: resolved_deps.index(x[0])))
         for module in cls._modules.values():
             module.load()
+
+    # noinspection PyUnusedLocal
+    @classmethod
+    def confirm_plugin_load(cls, plugin_names: Sequence[str], settings: SkyTempleSettingsStore, plugin_dir: str) -> bool:
+        plugin_names = sorted(plugin_names)
+        if plugin_names != settings.get_approved_plugins():
+            plugin_names_str = ",".join(plugin_names)
+            text = f(_(
+                "SkyTemple found the following plugins in your plugins directory ({plugin_dir}).\n\n"
+                "Do you want to continue with these plugins? These plugins contain code which will run on your computer "
+                "once you accept this dialog with 'Yes'.\n"
+                "Only continue if you trust the authors of the patches. "
+                "Malicious people could otherwise hijack your computer and/or steal information.\n\n"
+                "Clicking 'Yes' will remember this plugin configuration and not ask you again next time."
+            ))
+            md = Gtk.MessageDialog(
+                title="SkyTemple",
+                message_type=Gtk.MessageType.WARNING,
+                buttons=Gtk.ButtonsType.YES_NO,
+                text=text
+            )
+            sw = Gtk.ScrolledWindow()
+            tv = Gtk.TextView()
+            tv.get_buffer().set_text(plugin_names_str)
+            sw.add(tv)
+            content = md.get_content_area()
+            content.pack_start(sw, True, True, 0)
+            sw.set_size_request(100, 80)
+            content.show_all()
+            response = md.run()
+            md.hide()
+            md.destroy()
+            proceed = response == Gtk.ResponseType.YES
+            if proceed:
+                settings.set_approved_plugins(plugin_names)
+            return proceed
+        return True
+
 
     @classmethod
     def all(cls):
@@ -72,45 +121,6 @@ class Modules:
     def get_rom_module(cls) -> Type['RomModule']:
         assert cls._modules["rom"] is not None
         return cls._modules["rom"]
-
-    @classmethod
-    def _load_windows_modules(cls):
-        from skytemple.module.rom.module import RomModule
-        from skytemple.module.bgp.module import BgpModule
-        from skytemple.module.tiled_img.module import TiledImgModule
-        from skytemple.module.map_bg.module import MapBgModule
-        from skytemple.module.script.module import ScriptModule
-        from skytemple.module.monster.module import MonsterModule
-        from skytemple.module.portrait.module import PortraitModule
-        from skytemple.module.patch.module import PatchModule
-        from skytemple.module.lists.module import ListsModule
-        from skytemple.module.misc_graphics.module import MiscGraphicsModule
-        from skytemple.module.dungeon.module import DungeonModule
-        from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
-        from skytemple.module.strings.module import StringsModule
-        from skytemple.module.gfxcrunch.module import GfxcrunchModule
-        from skytemple.module.sprite.module import SpriteModule
-        from skytemple.module.moves_items.module import MovesItemsModule
-        from skytemple.module.spritecollab.module import SpritecollabModule
-        return {
-            "rom": RomModule,
-            "bgp": BgpModule,
-            "tiled_img": TiledImgModule,
-            "map_bg": MapBgModule,
-            "script": ScriptModule,
-            "monster": MonsterModule,
-            "portrait": PortraitModule,
-            "patch": PatchModule,
-            "lists": ListsModule,
-            "misc_graphics": MiscGraphicsModule,
-            "dungeon": DungeonModule,
-            "dungeon_graphics": DungeonGraphicsModule,
-            "strings": StringsModule,
-            "gfxcrunch": GfxcrunchModule,
-            "sprite": SpriteModule,
-            'moves_items': MovesItemsModule,
-            'spritecollab': SpritecollabModule
-        }
 
 
 def dep(arg):

@@ -80,6 +80,7 @@ setup(
         'psutil >= 5.9.0',
         'sentry-sdk >= 1.5',
         'packaging',
+        'wheel',
         'importlib_metadata>=4.6; python_version < "3.10"'
     ],
     extras_require={
