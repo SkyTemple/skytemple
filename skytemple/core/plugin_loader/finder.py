@@ -100,8 +100,9 @@ class SkyTemplePluginFinder(importlib_metadata.DistributionFinder):
             )
             dists.append(dist)
             # TODO: Is this OK to do like this?
-            packages_in_dist = set(x.parts[0] for x in dist.files if not x.parts[0].endswith('.dist-info'))
-            for package in packages_in_dist:
-                self.packages[package] = os.path.join(temp_dir, package)
+            if dist.files is not None:
+                packages_in_dist = set(x.parts[0] for x in dist.files if not x.parts[0].endswith('.dist-info'))
+                for package in packages_in_dist:
+                    self.packages[package] = os.path.join(temp_dir, package)
 
         return dists
