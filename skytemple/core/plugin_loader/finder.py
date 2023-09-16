@@ -19,7 +19,6 @@ import contextlib
 import os
 import sys
 from importlib.machinery import ModuleSpec
-from importlib.metadata import DistributionFinder, Distribution
 from importlib.util import spec_from_loader
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -80,8 +79,8 @@ class SkyTemplePluginFinder(importlib_metadata.DistributionFinder):
 
     def find_distributions(
         self,
-        context: DistributionFinder.Context = DistributionFinder.Context()
-    ) -> Iterable[Distribution]:
+        context: importlib_metadata.DistributionFinder.Context = importlib_metadata.DistributionFinder.Context()
+    ) -> Iterable[importlib_metadata.Distribution]:
         """
         From the docs:
         Return an iterable of all Distribution instances capable of
