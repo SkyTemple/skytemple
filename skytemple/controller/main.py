@@ -96,7 +96,7 @@ class MainController:
         cls._instance._lock_trees()
         # Show loading stack page in editor stack
         cls._instance._editor_stack.set_visible_child(builder_get_assert(cls._instance.builder, Gtk.Box, 'es_loading'))
-        view_cls: Union[AbstractController, StViewWidget] = assert_not_none(cls._instance._current_view)  # type: ignore
+        view_cls: Union[AbstractController, Gtk.Widget] = assert_not_none(cls._instance._current_view)  # type: ignore
         # Fully load the view and the controller
         AsyncTaskDelegator.run_task(load_view(
             assert_not_none(cls._instance._current_view_module),
@@ -139,7 +139,7 @@ class MainController:
 
         self._search_text: Optional[str] = None
         self._current_view_module: Optional[AbstractModule] = None
-        self._current_view: Union[AbstractController, StViewWidget, None] = None
+        self._current_view: Union[AbstractController, Gtk.Widget, None] = None
         self._current_view_item_id: Optional[int] = None
         self._resize_timeout_id: Optional[int] = None
         self._loaded_map_bg_module: Optional['MapBgModule'] = None
