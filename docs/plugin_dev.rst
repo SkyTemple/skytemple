@@ -148,9 +148,9 @@ it can be empty. In this example the ``module.py`` contains the module:
             Your plugin gets passed in the RomProject when it is created.
             This is your primary way to interact with the game and other modules.
 
-            Note that `__init__` is called before all modules are loaded, so even modules
-            you defined in `depends_on` may not exist yet. You can override the option `AbstractModule.load`
-            method to perform load operations that need those dependencies.
+            Note that `__init__` is called to create an instance of your module whenever a ROM
+            is loaded. If you want to perform one-time initialization when SkyTemple starts
+            use the classmethod load.
             """
 
         @classmethod
