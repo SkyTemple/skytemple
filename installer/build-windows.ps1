@@ -39,7 +39,7 @@ pip install -U certifi
 
 # install SkyTemple
 pip install -r ../requirements-mac-windows.txt
-pip install ..
+pip install '..[eventserver]'
 
 if ($env:IS_DEV_BUILD) {
   bash .\install-skytemple-components-from-git.sh

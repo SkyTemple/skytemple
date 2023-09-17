@@ -231,7 +231,7 @@ def run_main(settings: SkyTempleSettingsStore):
             logging.warning("Error setting up Discord integration:", exc_info=exc)
 
     # Load modules
-    Modules.load()
+    Modules.load(settings)
 
     # Load main window + controller
     MainController(builder, main_window, settings)

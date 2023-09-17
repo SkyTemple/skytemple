@@ -17,7 +17,7 @@
 import configparser
 import logging
 import os
-from typing import Optional, Tuple, List
+from typing import Optional, Tuple, List, Sequence
 
 from skytemple.core.async_tasks.delegator import AsyncConfiguration
 from skytemple_files.common.impl_cfg import ImplementationType
@@ -44,6 +44,7 @@ KEY_USE_NATIVE_FILE_HANDLERS = 'use_native_file_handlers'
 KEY_ASYNC_CONFIGURATION = 'async_configuration'
 KEY_ALLOW_SENTRY = 'send_error_reports'
 KEY_ENABLE_CSD = 'enable_csd'
+KEY_APPROVED_PLUGINS = 'approved_plugins'
 
 KEY_WINDOW_SIZE_X = 'width'
 KEY_WINDOW_SIZE_Y = 'height'
@@ -243,6 +244,18 @@ class SkyTempleSettingsStore:
         if SECT_GENERAL not in self.loaded_config:
             self.loaded_config[SECT_GENERAL] = {}
         self.loaded_config[SECT_GENERAL][KEY_ENABLE_CSD] = '1' if value else '0'
+        self._save()
+
+    def get_approved_plugins(self) -> Sequence[str]:
+        if SECT_GENERAL in self.loaded_config:
+            if KEY_APPROVED_PLUGINS in self.loaded_config[SECT_GENERAL]:
+                return self.loaded_config[SECT_GENERAL][KEY_APPROVED_PLUGINS].split(',')
+        return []
+
+    def set_approved_plugins(self, plugin_names: Sequence[str]):
+        if SECT_GENERAL not in self.loaded_config:
+            self.loaded_config[SECT_GENERAL] = {}
+        self.loaded_config[SECT_GENERAL][KEY_APPROVED_PLUGINS] = ','.join(plugin_names)
         self._save()
 
     def _save(self):

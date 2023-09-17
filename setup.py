@@ -80,11 +80,12 @@ setup(
         'psutil >= 5.9.0',
         'sentry-sdk >= 1.5',
         'packaging',
+        'wheel',
         'importlib_metadata>=4.6; python_version < "3.10"'
     ],
     extras_require={
         'discord':  ["pypresence >= 4.2.1"],
-        'eventserver': ["skytemple-eventserver >= 1.0.0"]
+        'eventserver': ["skytemple-eventserver >= 1.6.0, < 1.7.0"]
     },
     classifiers=[
         'Development Status :: 4 - Beta',
