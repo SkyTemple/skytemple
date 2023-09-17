@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-09-15 23:10+0000\n"
+"POT-Creation-Date: 2023-09-17 12:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5856,6 +5856,17 @@ msgstr ""
 
 #: skytemple/skytemple/core/logger.py:84
 msgid "SkyTemple - Uncaught error!"
+msgstr ""
+
+#: skytemple/skytemple/core/modules.py:85
+#, python-brace-format
+msgid ""
+"SkyTemple found the following plugins in your plugins directory ({plugin_dir}).\n"
+"\n"
+"Do you want to continue with these plugins? These plugins contain code which will run on your computer once you accept this dialog with 'Yes'.\n"
+"Only continue if you trust the authors of the patches. Malicious people could otherwise hijack your computer and/or steal information.\n"
+"\n"
+"Clicking 'Yes' will remember this plugin configuration and not ask you again next time."
 msgstr ""
 
 #: skytemple/skytemple/core/rom_project.py:136
