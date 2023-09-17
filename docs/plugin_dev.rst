@@ -215,7 +215,7 @@ SkyTemple 1.6
 - CairoSVG 2.7
 - packaging
 - wheel
-- importlib_metadata on Python < 3.9
+- importlib_metadata on Python < 3.10
 - importlib_resources on Python < 3.9
 
 
