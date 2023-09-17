@@ -50,7 +50,7 @@ configuration directory.
 This directory should be at the following location:
 
 - Linux: ``~/.config/skytemple/plugins`` (``$XDG_CONFIG_HOME`` is used)
-- MacOS: ``~/Library/Preferences/skytemple/plugins``
+- MacOS: ``~/Library/Application Support/skytemple/plugins``
 - Windows: ``C:\Users\<username>\AppData\Local\skytemple\plugins``
 
 You can open the configuration directory from SkyTemple ("Open config
