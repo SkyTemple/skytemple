@@ -50,6 +50,7 @@ class Modules:
     def load(cls, settings: SkyTempleSettingsStore):
         # Load plugins
         plugin_dir = os.path.join(ProjectFileManager.shared_config_dir(), "plugins")
+        os.makedirs(plugin_dir, exist_ok=True)
         load_plugins(cls.confirm_plugin_load, settings, plugin_dir)
 
         # Look up package entrypoints for modules
