@@ -10,10 +10,7 @@ platform="windows-2019"
 arch="x64"
 py_version="3.11"
 
-branch="release"
-if [ -n "$IS_DEV_BUILD" ]; then
-  branch="master"
-fi
+branch="master"
 
 if [ -n "$IS_MACOS" ]; then
   platform="macos-11"

@@ -158,12 +158,15 @@ jobs:
           # Package
           .\build-windows.ps1 $PACKAGE_VERSION
 
+          
           if(!(Test-Path ".\dist\skytemple\skytemple.exe")){
               return 1
           }
           
           # Install latest skytemple-rust
-          bash .\install-skytemple-rust.sh
+          if ($env:IS_DEV_BUILD) {
+              bash .\install-skytemple-rust.sh
+          }
       - name: Create installer
         uses: joncloud/makensis-action@v3.7
         with:
@@ -201,7 +204,9 @@ jobs:
 
           # Install other dependencies and SkyTemple itself
           pip3 install py-desmume pyinstaller
-          IS_MACOS=1 installer/install-skytemple-rust.sh x86_64
+          if [ -n "$IS_DEV_BUILD" ]; then
+            IS_MACOS=1 installer/install-skytemple-rust.sh x86_64
+          fi
           pip3 install -r requirements-mac-windows.txt
           pip3 install '.[eventserver]'
           if [ -n "$IS_DEV_BUILD" ]; then
