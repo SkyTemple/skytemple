@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-15 23:10+0000\n"
-"PO-Revision-Date: 2023-09-18 12:42\n"
+"PO-Revision-Date: 2023-09-18 13:41\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -1427,7 +1427,7 @@ msgstr "せいしんりょく"
 #: skytemple-files/skytemple_files/data/md/protocol.py:164
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:36
 msgid "Static"
-msgstr "せいでんき"
+msgstr "スタティック"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:165
 msgid "Shed Skin"
@@ -3341,11 +3341,11 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:99
 msgid "Standing Animation (loop)"
-msgstr "立ちアニメ(ループ)"
+msgstr "立ちアニメーション(ループ)"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:100
 msgid "Standing Animation (1st frame)"
-msgstr ""
+msgstr "立ちアニメーション(1フレーム目)"
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:101
 msgid "Special"
@@ -3353,7 +3353,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/hardcoded/monster_sprite_data_table.py:102
 msgid "Walking Animation (1st frame)"
-msgstr ""
+msgstr "歩きアニメーション(1フレーム目)"
 
 #: skytemple-files/skytemple_files/patch/arm_patcher.py:236
 #, python-brace-format
@@ -4696,11 +4696,11 @@ msgstr "ExplorerScript のソースコードを保持"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:18
 msgid "Disable breakpoints (all files)."
-msgstr "ブレークポイントを無効にする (すべてのファイル)"
+msgstr "ブレークポイントを無効化 (すべてのファイル)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:19
 msgid "Disable Breaks"
-msgstr "ブレークを無効にする"
+msgstr "ブレークを無効化"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:44
 msgid "Resume."
@@ -4717,7 +4717,7 @@ msgstr "現在の命令をステップオーバーします。関数をデバッ
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:61
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:403
 msgid "Step Over"
-msgstr "ステップオーバー"
+msgstr "ステップ実行"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:76
 msgid "Step into the current instruction, if it's a call, otherwise step over."
@@ -4726,7 +4726,7 @@ msgstr "現在の命令にステップインします。関数の場合はその
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:77
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:413
 msgid "Step Into"
-msgstr "ステップイン"
+msgstr "詳細ステップ実行"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:92
 msgid "Step out of the current function call."
@@ -4815,7 +4815,7 @@ msgstr "単語単位で検索"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:595
 msgid "Wrap Around"
-msgstr ""
+msgstr "ラップアラウンド"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ssb_editor.glade:609
 msgid "Regular Expression"
@@ -4827,15 +4827,15 @@ msgstr "シナリオ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:53
 msgid "Init"
-msgstr ""
+msgstr "初期値"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:55
 msgid "Dungeon Progress"
-msgstr ""
+msgstr "ダンジョンの進行状況"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:58
 msgid "Dungeon Init"
-msgstr ""
+msgstr "ダンジョンの初期値"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:60
 msgid "World Map"
@@ -4843,7 +4843,7 @@ msgstr "ワールドマップ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:61
 msgid "Specific"
-msgstr ""
+msgstr "イベント値"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:66
 #: skytemple/skytemple/module/lists/controller/starters_list.glade:177
@@ -4915,11 +4915,11 @@ msgstr "表示(_V)"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:357
 msgid "Color Schemes"
-msgstr ""
+msgstr "配色"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:365
 msgid "Enable Spellcheck"
-msgstr ""
+msgstr "スペルチェックを有効化"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:378
 msgid "_Debugger"
@@ -5272,7 +5272,7 @@ msgstr "使用中"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2378
 msgid "Dump Selected Block"
-msgstr ""
+msgstr "選択中のブロックをダンプ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2392
 #: skytemple/skytemple/module/lists/controller/actor_list.glade:288
@@ -5312,7 +5312,7 @@ msgstr "リロード"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2413
 msgid "Allocated Memory"
-msgstr ""
+msgstr "割り当て済みメモリ"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2428
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2448
@@ -8510,7 +8510,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/animations.glade:197
 #: skytemple/skytemple/module/lists/module.py:164
 msgid "Animations"
-msgstr ""
+msgstr "アニメーション"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:213
 msgid "Edits the animation tables used by the game."
@@ -8524,7 +8524,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:274
 msgid "Animation Tables"
-msgstr ""
+msgstr "アニメーションテーブル"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:290
 msgid "Edits the animation attributes."
@@ -8618,7 +8618,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/animations.glade:738
 #: skytemple/skytemple/module/lists/controller/animations.glade:982
 msgid "Animation"
-msgstr ""
+msgstr "アニメーション"
 
 #: skytemple/skytemple/module/lists/controller/animations.glade:782
 msgid "First Spec. Entry"
@@ -9616,7 +9616,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:481
 msgid "Enable Palette Animations"
-msgstr ""
+msgstr "パレットアニメーションを有効化"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:544
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:657
@@ -9950,7 +9950,7 @@ msgstr "インポート・エクスポート…"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4678
 msgid "Edit Animation Palette"
-msgstr ""
+msgstr "アニメーションパレットの編集"
 
 #: skytemple/skytemple/module/map_bg/controller/map_bg.glade:4788
 msgid "Collision 1"
