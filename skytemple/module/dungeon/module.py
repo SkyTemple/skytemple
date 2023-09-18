@@ -36,13 +36,12 @@ from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import data_dir
+from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.dungeon import MAX_ITEMS
-from skytemple.module.dungeon.controller.dojos import DOJOS_NAME, DojosController
 from skytemple.module.dungeon.controller.dungeon import DungeonController
 from skytemple.module.dungeon.controller.fixed import FixedController
 from skytemple.module.dungeon.controller.fixed_rooms import FIXED_ROOMS_NAME, FixedRoomsController
 from skytemple.module.dungeon.controller.floor import FloorController
-from skytemple.module.dungeon.controller.group import GroupController
 from skytemple.module.dungeon.controller.invalid import InvalidDungeonController
 from skytemple.module.dungeon.controller.main import MainController, DUNGEONS_NAME
 from skytemple_files.common.types.file_types import FileType
@@ -84,6 +83,13 @@ DUNGEON_BIN = 'DUNGEON/dungeon.bin'
 FLOOR_RANKS = "BALANCE/f_ranks.bin"
 FLOOR_MISSION_FORBIDDEN = "BALANCE/fforbid.bin"
 logger = logging.getLogger(__name__)
+
+
+DOJOS_VIEW_DATA = StStatusPageData(
+    icon_name='skytemple-illust-dungeons',
+    title=_('Dojo Dungeons'),
+    description=_("Dojo Dungeons are the dungeons used in the Marowak Dojo.\nYou can not change the number of floors for Dojo Dungeons.")
+)
 
 
 class DungeonViewInfo:
@@ -329,8 +335,8 @@ class DungeonModule(AbstractModule):
                     icon=ICON_GROUP,
                     name=self.generate_group_label(dungeon_or_group.base_dungeon_id),
                     module=self,
-                    view_class=GroupController,
-                    item_data=dungeon_or_group.base_dungeon_id
+                    view_class=StStatusPage,
+                    item_data=self.make_status_page_data_group(dungeon_or_group.base_dungeon_id)
                 ))
                 for dungeon, start_id in zip(dungeon_or_group.dungeon_ids, dungeon_or_group.start_ids):
                     self._add_dungeon_to_tree(group, dungeon, start_id)
@@ -341,10 +347,10 @@ class DungeonModule(AbstractModule):
         # Dojo dungeons
         dojo_root = self._item_tree.add_entry(root, ItemTreeEntry(
             icon=ICON_DUNGEONS,
-            name=DOJOS_NAME,
+            name=DOJOS_VIEW_DATA.title,
             module=self,
-            view_class=DojosController,
-            item_data=0
+            view_class=StStatusPage,
+            item_data=DOJOS_VIEW_DATA
         ))
         for i in range(DOJO_DUNGEONS_FIRST, DOJO_DUNGEONS_LAST + 1):
             self._add_dungeon_to_tree(dojo_root, i, 0)
@@ -886,3 +892,13 @@ class DungeonModule(AbstractModule):
         if len(weights_nonzero) > 0:
             weights_gcd = reduce(gcd, weights_nonzero)
         return [int(w / weights_gcd) for w in weights]
+
+    def make_status_page_data_group(self, base_dungeon_id: int) -> StStatusPageData:
+        return StStatusPageData(
+            icon_name='skytemple-illust-dungeons',
+            title=self.generate_group_label(base_dungeon_id),
+            description=_(
+                'Dungeon groups contain multiple dungeon to create one big continuous dungeon.\n'
+                'You can edit groups under "Dungeons".'
+            )
+        )

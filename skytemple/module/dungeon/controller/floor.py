@@ -42,7 +42,6 @@ from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import add_dialog_xml_filter, glib_async, catch_overflow, builder_get_assert, \
     iter_tree_model
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG
-from skytemple.module.dungeon.controller.dojos import DOJOS_NAME
 from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer
 from skytemple.module.dungeon.fixed_room_entity_renderer.full_map import FullMapEntityRenderer
 from skytemple.module.dungeon.fixed_room_entity_renderer.minimap import MinimapEntityRenderer
@@ -1294,9 +1293,10 @@ class FloorController(AbstractController):
                 self._add_dungeon_to_export_dialog_tree(None, store, dungeon_or_group, 0)
 
         # Dojo dungeons
+        from skytemple.module.dungeon.module import DOJOS_VIEW_DATA
         dojo_root = store.append(None, [
             -1, -1, False, ICON_DUNGEONS,
-            DOJOS_NAME, False, False
+            DOJOS_VIEW_DATA.title, False, False
         ])
         for i in range(DOJO_DUNGEONS_FIRST, DOJO_DUNGEONS_LAST + 1):
             self._add_dungeon_to_export_dialog_tree(dojo_root, store, i, 0)

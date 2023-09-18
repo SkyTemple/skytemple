@@ -27,7 +27,7 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.controller.main import MainController as SkyTempleMainController
-from skytemple.module.monster.controller.entity import EntityController
+from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.monster.controller.level_up import LevelUpController
 from skytemple.module.monster.controller.main import MainController, MONSTER_NAME
 from skytemple.module.monster.controller.monster import MonsterController
@@ -149,8 +149,8 @@ class MonsterModule(AbstractModule):
             icon='skytemple-e-monster-base-symbolic',
             name=f'#{entid:03}: {name}',
             module=self,
-            view_class=EntityController,
-            item_data=f'#{entid:03}: {name}'
+            view_class=StStatusPage,
+            item_data=make_status_page_data_entity(f'#{entid:03}: {name}')
         )
 
     def generate_entry__entry(self, i, gender: Gender) -> ItemTreeEntry:
@@ -493,3 +493,15 @@ class MonsterModule(AbstractModule):
         if isinstance(open_view, MonsterController):
             pass  # todo
         return None
+
+
+def make_status_page_data_entity(name: str) -> StStatusPageData:
+    return StStatusPageData(
+        icon_name='skytemple-illust-monsters',
+        title=name,
+        description=_(
+            "Each Pokémon has two gender forms (even if it only has one gender).\n"
+            "This entry contains both of these forms. The first form is the main form, it is used "
+            "as a fallback in some cases, when the data for the second form doesn't exist."
+        )
+    )

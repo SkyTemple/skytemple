@@ -24,10 +24,10 @@ from skytemple.core.item_tree import ItemTree, ItemTreeEntry, ItemTreeEntryRef, 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_MUSIC
 from skytemple.core.rom_project import RomProject, BinaryName
+from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.lists.controller.dungeon_music import DungeonMusicController
 from skytemple.module.lists.controller.guest_pokemon import GuestPokemonController
 from skytemple.module.lists.controller.iq import IqController
-from skytemple.module.lists.controller.main import MainController, GROUND_LISTS
 from skytemple.module.lists.controller.actor_list import ActorListController
 from skytemple.module.lists.controller.object_list import ObjectListController
 from skytemple.module.lists.controller.misc_settings import MiscSettingsController
@@ -66,6 +66,12 @@ DUNGEON_INTERRUPT = "BALANCE/inter_d.bin"
 ANIMATIONS = "BALANCE/anim.bin"
 
 
+MAIN_VIEW_DATA = StStatusPageData(
+    icon_name='skytemple-illust-bboard',
+    title=_('Lists'),
+    description=_("This section lets you edit various lists of the game.")
+)
+
 class ListsModule(AbstractModule):
     """Module to modify lists."""
     @classmethod
@@ -98,10 +104,10 @@ class ListsModule(AbstractModule):
     def load_tree_items(self, item_tree: ItemTree):
         root = item_tree.add_entry(None, ItemTreeEntry(
             icon='skytemple-view-list-symbolic',
-            name=GROUND_LISTS,
+            name=MAIN_VIEW_DATA.title,
             module=self,
-            view_class=MainController,
-            item_data=0
+            view_class=StStatusPage,
+            item_data=MAIN_VIEW_DATA
         ))
         self._actor_tree_iter = item_tree.add_entry(root, ItemTreeEntry(
             icon='skytemple-e-actor-symbolic',

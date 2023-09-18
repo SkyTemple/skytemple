@@ -55,10 +55,13 @@ class StStatusPage(Gtk.Box):
     description_w = cast(Gtk.Label, Gtk.Template.Child())
 
     # noinspection PyUnusedLocal
-    def __init__(self, module: AbstractModule, item_data: Any):
+    def __init__(self, module: AbstractModule, item_data: StStatusPageData):
         super().__init__()
 
         assert isinstance(item_data, StStatusPageData)
+
+        self.module = module
+        self.item_data = item_data
 
         self.image_w.props.icon_name = item_data.icon_name
         self.title_w.props.label = item_data.title

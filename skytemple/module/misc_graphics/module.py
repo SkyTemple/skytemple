@@ -17,11 +17,14 @@
 from typing import Optional, Dict, List, Union
 
 from gi.repository import Gtk
+from skytemple_files.common.i18n_util import _
+
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef, ItemTreeEntry, RecursionType
 from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject, BinaryName
+from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.misc_graphics.controller.w16 import W16Controller
 from skytemple.module.misc_graphics.controller.wte_wtu import WteWtuController
 from skytemple.module.misc_graphics.controller.zmappat import ZMappaTController
@@ -29,7 +32,6 @@ from skytemple.module.misc_graphics.controller.font import FontController
 from skytemple.module.misc_graphics.controller.graphic_font import GraphicFontController
 from skytemple.module.misc_graphics.controller.chr import ChrController
 from skytemple.module.misc_graphics.controller.cart_removed import CartRemovedController
-from skytemple.module.misc_graphics.controller.main import MainController, MISC_GRAPHICS
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
 from skytemple_files.graphics.wte.model import Wte
@@ -65,6 +67,13 @@ FONT_PAL_ASSOC = [("FONT/banner.bin","FONT/b_pal.bin"),
                   ("FONT/banner_c.bin","FONT/b_pal_r.bin"),
                   ("FONT/banner_c.bin","FONT/b_pal_p.bin"),
                   ("FONT/banner_s.bin",None)]
+
+
+MAIN_VIEW_DATA = StStatusPageData(
+    icon_name='skytemple-illust-misc_graphics',
+    title=_('Misc. Graphics'),
+    description=_("This section lets you edit miscellaneous graphics.")
+)
 
 
 class FontOpenSpec:
@@ -130,10 +139,10 @@ class MiscGraphicsModule(AbstractModule):
 
         root = item_tree.add_entry(None, ItemTreeEntry(
             icon='skytemple-e-graphics-symbolic',
-            name=MISC_GRAPHICS,
+            name=MAIN_VIEW_DATA.title,
             module=self,
-            view_class=MainController,
-            item_data=0
+            view_class=StStatusPage,
+            item_data=MAIN_VIEW_DATA
         ))
         self._item_tree = item_tree
         self._tree_level_iter = {}

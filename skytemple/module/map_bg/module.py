@@ -28,8 +28,8 @@ from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
 from skytemple.core.rom_project import RomProject, BinaryName
+from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.map_bg.controller.bg import BgController
-from skytemple.module.map_bg.controller.folder import FolderController
 from skytemple.module.map_bg.controller.main import MainController, MAPBG_NAME
 from skytemple.module.map_bg.script.add_created_with_logo import AddCreatedWithLogo
 from skytemple_files.common.types.file_types import FileType
@@ -82,57 +82,57 @@ class MapBgModule(AbstractModule):
                 icon='skytemple-folder-symbolic',
                 name=_('S - System'),
                 module=self,
-                view_class=FolderController,
-                item_data='S - System'
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder('S - System')
             )),
             'T': item_tree.add_entry(root, ItemTreeEntry(
                 icon='skytemple-folder-symbolic',
                 name=_('T - Town'),
                 module=self,
-                view_class=FolderController,
-                item_data='T - Town'
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder('T - Town')
             )),
             'D': item_tree.add_entry(root, ItemTreeEntry(
                 icon='skytemple-folder-symbolic',
                 name=_('D - Dungeon'),
                 module=self,
-                view_class=FolderController,
-                item_data='D - Dungeon'
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder('D - Dungeon')
             )),
             'G': item_tree.add_entry(root, ItemTreeEntry(
                 icon='skytemple-folder-symbolic',
                 name=_('G - Guild'),
                 module=self,
-                view_class=FolderController,
-                item_data='G - Guild'
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder('G - Guild')
             )),
             'H': item_tree.add_entry(root, ItemTreeEntry(
                 icon='skytemple-folder-symbolic',
                 name=_('H - Habitat'),
                 module=self,
-                view_class=FolderController,
-                item_data='H - Habitat'
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder('H - Habitat')
             )),
             'P': item_tree.add_entry(root, ItemTreeEntry(
                 icon='skytemple-folder-symbolic',
                 name=_('P - Places'),
                 module=self,
-                view_class=FolderController,
-                item_data='P - Places'
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder('P - Places')
             )),
             'V': item_tree.add_entry(root, ItemTreeEntry(
                 icon='skytemple-folder-symbolic',
                 name=_('V - Visual'),
                 module=self,
-                view_class=FolderController,
-                item_data='V - Visual'
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder('V - Visual')
             )),
             'W': item_tree.add_entry(root, ItemTreeEntry(
                 icon='skytemple-folder-symbolic',
                 name=_('W - Weather'),
                 module=self,
-                view_class=FolderController,
-                item_data='W - Weather'
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder('W - Weather')
             ))
         }
         # Other
@@ -140,8 +140,8 @@ class MapBgModule(AbstractModule):
             icon='skytemple-folder-symbolic',
             name=_('Others'),
             module=self,
-            view_class=FolderController,
-            item_data=None
+            view_class=StStatusPage,
+            item_data=make_status_page_data_folder(None)
         ))
         self._item_tree = item_tree
         self._tree_level_iter = []
@@ -322,3 +322,19 @@ class MapBgModule(AbstractModule):
         if isinstance(open_view, BgController):
             pass  # todo
         return None
+
+
+# noinspection PyUnusedLocal
+def make_status_page_data_folder(name: Optional[str]) -> StStatusPageData:
+    if name is not None:
+        title = _('Map Background category "{}"').format(name)
+        description = _("This section contains all the map backgrounds, that start with the letter {}.".format(name[0]))
+    else:
+        title = _('Map Backgrounds for other maps')
+        description = _("This section contains all the map backgrounds, that don't fit in any of the other categories.")
+
+    return StStatusPageData(
+        icon_name="skytemple-illust-map",
+        title=title,
+        description=description
+    )

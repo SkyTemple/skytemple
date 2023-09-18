@@ -24,10 +24,10 @@ from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET
 from skytemple.core.rom_project import RomProject, BinaryName
-from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController, \
-    BACKGROUNDS_NAMES, DungeonBgMainController
+from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
+from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController
 from skytemple.module.dungeon_graphics.controller.colvec import ColvecController
-from skytemple.module.dungeon_graphics.controller.tileset import TilesetController, TILESETS_NAME, TilesetMainController
+from skytemple.module.dungeon_graphics.controller.tileset import TilesetController
 from skytemple.module.dungeon_graphics.controller.main import MainController, DUNGEON_GRAPHICS_NAME
 from skytemple.module.dungeon_graphics.controller.trp_itm_img import ImgType, TrpItmImgController
 from skytemple_files.common.types.file_types import FileType
@@ -50,6 +50,20 @@ DUNGEON_BIN = 'DUNGEON/dungeon.bin'
 ITEM_ICON_FILE = 'items.itm.img'
 TRAP_ICON_FILE = 'traps.trp.img'
 logger = logging.getLogger(__name__)
+
+
+MAIN_VIEW_DUNGEONBG_DATA = StStatusPageData(
+    icon_name='skytemple-illust-map',
+    title=_('Backgrounds'),
+    description=_("This section lets you edit the background images that are used for some special dungeon floors.")
+)
+
+
+MAIN_VIEW_TILESET_DATA = StStatusPageData(
+    icon_name='skytemple-illust-dungeon_tileset',
+    title=_('Tilesets'),
+    description=_("This section lets you edit the tilesets that are used for dungeons.")
+)
 
 
 class DungeonGraphicsModule(AbstractModule):
@@ -85,17 +99,17 @@ class DungeonGraphicsModule(AbstractModule):
         ))
         tileset_root = item_tree.add_entry(root, ItemTreeEntry(
             icon='skytemple-e-dungeon-tileset-symbolic',
-            name=TILESETS_NAME,
+            name=MAIN_VIEW_TILESET_DATA.title,
             module=self,
-            view_class=TilesetMainController,
-            item_data=0
+            view_class=StStatusPage,
+            item_data=MAIN_VIEW_TILESET_DATA
         ))
         bg_root = item_tree.add_entry(root, ItemTreeEntry(
             icon='skytemple-e-mapbg-symbolic',
-            name=BACKGROUNDS_NAMES,
+            name=MAIN_VIEW_DUNGEONBG_DATA.title,
             module=self,
-            view_class=DungeonBgMainController,
-            item_data=0
+            view_class=StStatusPage,
+            item_data=MAIN_VIEW_DUNGEONBG_DATA
         ))
         self._item_tree = item_tree
         self._tree_level_iter = []

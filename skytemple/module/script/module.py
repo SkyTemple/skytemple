@@ -31,14 +31,12 @@ from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.ssb_debugger.ssb_loaded_file_handler import SsbLoadedFileHandler
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import data_dir
-from skytemple.module.script.controller.folder import FolderController
+from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.script.controller.map import MapController
 from skytemple.module.script.controller.dialog.pos_mark_editor import PosMarkEditorController
 from skytemple.module.script.controller.ssa import SsaController
 from skytemple.module.script.controller.ssb import SsbController, SCRIPT_SCRIPTS
-from skytemple.module.script.controller.lsd import LsdController
 from skytemple.module.script.controller.main import MainController, SCRIPT_SCENES
-from skytemple.module.script.controller.sub import SubController
 from skytemple_files.common.script_util import load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT, LSD_EXT
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.i18n_util import f, _
@@ -112,50 +110,50 @@ class ScriptModule(AbstractModule):
                 icon='skytemple-folder-symbolic',
                 name=_('S - System'),
                 module=self,
-                view_class=FolderController,
-                item_data=_('S - System')
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder(_('S - System'))
             )),
             'T': item_tree.add_entry(root, ItemTreeEntry(
                 icon='skytemple-folder-symbolic',
                 name=_('T - Town'),
                 module=self,
-                view_class=FolderController,
-                item_data=_('T - Town')
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder(_('T - Town'))
             )),
             'D': item_tree.add_entry(root, ItemTreeEntry(
                 icon='skytemple-folder-symbolic',
                 name=_('D - Dungeon'),
                 module=self,
-                view_class=FolderController,
-                item_data=_('D - Dungeon')
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder(_('D - Dungeon'))
             )),
             'G': item_tree.add_entry(root, ItemTreeEntry(
                 icon='skytemple-folder-symbolic',
                 name=_('G - Guild'),
                 module=self,
-                view_class=FolderController,
-                item_data=_('G - Guild')
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder(_('G - Guild'))
             )),
             'H': item_tree.add_entry(root, ItemTreeEntry(
                 icon='skytemple-folder-symbolic',
                 name=_('H - Habitat'),
                 module=self,
-                view_class=FolderController,
-                item_data=_('H - Habitat')
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder(_('H - Habitat'))
             )),
             'P': item_tree.add_entry(root, ItemTreeEntry(
                 icon='skytemple-folder-symbolic',
                 name=_('P - Places'),
                 module=self,
-                view_class=FolderController,
-                item_data=_('P - Places')
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder(_('P - Places'))
             )),
             'V': item_tree.add_entry(root, ItemTreeEntry(
                 icon='skytemple-folder-symbolic',
                 name=_('V - Visual'),
                 module=self,
-                view_class=FolderController,
-                item_data=_('V - Visual')
+                view_class=StStatusPage,
+                item_data=make_status_page_data_folder(_('V - Visual'))
             ))
         }
         # Other
@@ -163,8 +161,8 @@ class ScriptModule(AbstractModule):
             icon='skytemple-folder-symbolic',
             name=_('Others'),
             module=self,
-            view_class=FolderController,
-            item_data=None
+            view_class=StStatusPage,
+            item_data=make_status_page_data_folder(None)
         ))
         self._other_node = other
         self._sub_nodes = sub_nodes
@@ -205,8 +203,8 @@ class ScriptModule(AbstractModule):
             icon='skytemple-folder-open-symbolic',
             name=_('Acting (ssa)'),
             module=self,
-            view_class=LsdController,
-            item_data=map_obj['name']
+            view_class=StStatusPage,
+            item_data=make_status_page_data_lsd(map_obj['name'])
         ))
             self._acting_roots[map_obj['name']] = acting_root
             for ssa, ssb in map_obj['ssas']:
@@ -231,8 +229,8 @@ class ScriptModule(AbstractModule):
             icon='skytemple-folder-open-symbolic',
             name=_('Sub (sss)'),
             module=self,
-            view_class=SubController,
-            item_data=map_obj['name']
+            view_class=StStatusPage,
+            item_data=make_status_page_data_sub(map_obj['name'])
         ))
             self._sub_roots[map_obj['name']] = sub_root
             for sss, ssbs in map_obj['subscripts'].items():
@@ -389,16 +387,16 @@ class ScriptModule(AbstractModule):
             icon='skytemple-folder-open-symbolic',
             name=_('Acting (ssa)'),
             module=self,
-            view_class=LsdController,
-            item_data=new_name
+            view_class=StStatusPage,
+            item_data=make_status_page_data_lsd(new_name)
         ))
         self._acting_roots[new_name] = ar
         sr = self._item_tree.add_entry(map_root, ItemTreeEntry(
             icon='skytemple-folder-open-symbolic',
             name=_('Sub (sss)'),
             module=self,
-            view_class=SubController,
-            item_data=new_name
+            view_class=StStatusPage,
+            item_data=make_status_page_data_sub(new_name)
         ))
         self._sub_roots[new_name] = sr
 
@@ -408,14 +406,15 @@ class ScriptModule(AbstractModule):
         sub = None
         for child in self._map_scene_root[name].children():
             entry = child.entry()
-            controller = entry.view_class
+            view = entry.view_class
             data = entry.item_data
-            if controller == SsaController and isinstance(data, dict) and 'type' in data and data['type'] == 'sse':
+            if issubclass(view, SsaController) and isinstance(data, dict) and 'type' in data and data['type'] == 'sse':
                 enter = child
-            elif controller == LsdController:
-                acting = child
-            elif controller == SubController:
-                sub = child
+            elif issubclass(view, StStatusPage):
+                if isinstance(data, StStatusPageDataLsd):
+                    acting = child
+                if isinstance(data, StStatusPageDataSub):
+                    sub = child
 
         return enter, acting, sub
 
@@ -533,3 +532,52 @@ class ScriptModule(AbstractModule):
         if isinstance(open_view, SsaController):
             pass  # todo
         return None
+
+
+class StStatusPageDataLsd(StStatusPageData):
+    pass
+
+
+class StStatusPageDataSub(StStatusPageData):
+    pass
+
+
+# noinspection PyUnusedLocal
+def make_status_page_data_folder(name: Optional[str]) -> StStatusPageData:
+    if name is not None:
+        title = _('Script Scenes for maps in category "{}"').format(name)
+        description = _("This section contains all the script scenes of maps, that start with the letter {}.").format(name[0])
+    else:
+        title = _('Script Scenes for other maps')
+        description = _("This section contains all the script scenes of maps, that don't fit in any of the other categories.")
+
+    return StStatusPageData(
+        icon_name="skytemple-illust-scenes",
+        title=title,
+        description=description
+    )
+
+
+# noinspection PyUnusedLocal
+def make_status_page_data_sub(name: str) -> StStatusPageData:
+    return StStatusPageDataSub(
+        icon_name="skytemple-illust-scenes",
+        title=_('Sub Scenes for "{}"').format(name),
+        description=_(
+            'This section contains all sub scenes for the map {}.\n\n'
+            'These scenes can be loaded on top of the "Enter" scene,\n'
+            'depending on the current story progress.'
+        ).format(name)
+    )
+
+# noinspection PyUnusedLocal
+def make_status_page_data_lsd(name: str) -> StStatusPageData:
+    return StStatusPageDataLsd(
+        icon_name="skytemple-illust-scenes",
+        title=_('Acting Scenes for "{}"').format(name),
+        description=_(
+            'This section contains all acting scenes for the map {}.\n\n'
+            'These scenes are used for cutscenes.\n'
+            'The player can usually not move the character in them.'
+        ).format(name)
+    )

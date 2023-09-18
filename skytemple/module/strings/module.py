@@ -17,15 +17,26 @@
 from typing import Dict, Optional, Union
 
 from gi.repository import Gtk
+from skytemple_files.common.i18n_util import _
+
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.item_tree import ItemTree, ItemTreeEntry, ItemTreeEntryRef, RecursionType
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
-from skytemple.module.strings.controller.main import MainController, TEXT_STRINGS
+from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.strings.controller.strings import StringsController
 
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.str.model import Str
+
+
+MAIN_VIEW_DATA = StStatusPageData(
+    icon_name='skytemple-illust-text',
+    title=_('Text Strings'),
+    description=_("This section lets you edit the text strings in the game. Please note that some of these strings "
+                  "can also be edited in other places in the UI (eg. the Pokémon names under Pokémon).\n"
+                  "Not included are the strings of the game's scripts.")
+)
 
 
 class StringsModule(AbstractModule):
@@ -47,10 +58,10 @@ class StringsModule(AbstractModule):
     def load_tree_items(self, item_tree: ItemTree):
         root = item_tree.add_entry(None, ItemTreeEntry(
             icon='skytemple-e-string-symbolic',
-            name=TEXT_STRINGS,
+            name=MAIN_VIEW_DATA.title,
             module=self,
-            view_class=MainController,
-            item_data=0
+            view_class=StStatusPage,
+            item_data=MAIN_VIEW_DATA
         ))
         config = self.project.get_rom_module().get_static_data()
         for language in config.string_index_data.languages:

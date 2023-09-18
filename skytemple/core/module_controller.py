@@ -78,17 +78,6 @@ class AbstractController(ABC):
         logger.debug(f'{self.__class__.__name__} controller unloaded.')
 
 
-class NotImplementedController(AbstractController):
-    """
-    :deprecated: Use `skytemple.core.widget.StStatusPage` instead.  See its documentation for more info.
-    """
-    def __init__(self, module: AbstractModule, item_id: int):
-        pass
-
-    def get_view(self) -> Widget:
-        return Gtk.Label.new("(This view is not implemented)")
-
-
 class SimpleController(AbstractController, ABC):
     """
     :deprecated: Use `skytemple.core.widget.StStatusPage` instead.  See its documentation for more info.

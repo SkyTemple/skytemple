@@ -82,23 +82,6 @@ Some image editors have problems when working with indexed
 images, that contain the same color multiple times. You can
 make all colors on the map unique before exporting at
 Palettes > Edit Palettes.""")
-BACKGROUNDS_NAMES = _('Backgrounds')
-
-
-class DungeonBgMainController(SimpleController):
-    def __init__(self, module: AbstractModule, item_id: int):
-        pass
-
-    def get_title(self) -> str:
-        return BACKGROUNDS_NAMES
-
-    def get_content(self) -> Gtk.Widget:
-        return self.generate_content_label(
-            _("This section lets you edit the background images that are used for some special dungeon floors.")
-        )
-
-    def get_icon(self) -> str:
-        return 'skytemple-illust-map'
 
 
 class DungeonBgController(AbstractController):

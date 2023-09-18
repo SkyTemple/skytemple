@@ -25,9 +25,8 @@ from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef, ItemTreeEntry, 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.string_provider import StringType
+from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.moves_items.controller.item import ItemController
-from skytemple.module.moves_items.controller.main_moves import MainMovesController, MOVES
-from skytemple.module.moves_items.controller.main_items import MainItemsController, ITEMS
 from skytemple.module.moves_items.controller.item_lists import ItemListsController
 from skytemple.module.moves_items.controller.item_keys import ItemKeysController
 from skytemple.module.moves_items.controller.move import MoveController
@@ -48,6 +47,19 @@ ITEM_FILE = 'BALANCE/item_p.bin'
 ITEM_LISTS = 'TABLEDAT/list_%02d.bin'
 FIRST_EXCLUSIVE_ITEM_ID = 444
 logger = logging.getLogger(__name__)
+
+
+MAIN_VIEW_ITEMS_DATA = StStatusPageData(
+    icon_name='skytemple-illust-items',
+    title=_('Items'),
+    description=_("This section lets you edit settings related to items.")
+)
+
+MAIN_VIEW_MOVES_DATA = StStatusPageData(
+    icon_name='skytemple-illust-moves',
+    title=_('Moves'),
+    description=_("This section lets you edit settings related to moves.")
+)
 
 
 class MovesItemsModule(AbstractModule):
@@ -73,17 +85,17 @@ class MovesItemsModule(AbstractModule):
     def load_tree_items(self, item_tree: ItemTree):
         root_items = item_tree.add_entry(None, ItemTreeEntry(
             icon='skytemple-e-item-symbolic',
-            name=ITEMS,
+            name=MAIN_VIEW_ITEMS_DATA.title,
             module=self,
-            view_class=MainItemsController,
-            item_data=0
+            view_class=StStatusPage,
+            item_data=MAIN_VIEW_ITEMS_DATA
         ))
         root_moves = item_tree.add_entry(None, ItemTreeEntry(
             icon='skytemple-e-move-symbolic',
-            name=MOVES,
+            name=MAIN_VIEW_MOVES_DATA.title,
             module=self,
-            view_class=MainMovesController,
-            item_data=0
+            view_class=StStatusPage,
+            item_data=MAIN_VIEW_MOVES_DATA
         ))
         self._item_lists_tree_iter = item_tree.add_entry(root_items, ItemTreeEntry(
             icon='skytemple-view-list-symbolic',

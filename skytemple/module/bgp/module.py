@@ -17,15 +17,24 @@
 from typing import List, Optional, Union
 
 from gi.repository import Gtk
+from skytemple_files.common.i18n_util import _
+
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.item_tree import ItemTree, ItemTreeEntry, ItemTreeEntryRef, RecursionType
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
+from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.bgp.controller.bgp import BgpController
-from skytemple.module.bgp.controller.main import MainController, BACKGROUNDS_NAME
 from skytemple_files.common.types.file_types import FileType
 
 BGP_FILE_EXT = 'bgp'
+
+
+MAIN_VIEW_DATA = StStatusPageData(
+    icon_name='skytemple-illust-background',
+    title=_('Backgrounds'),
+    description=_("This section lets you edit static backgrounds used in various places of the game.")
+)
 
 
 class BgpModule(AbstractModule):
@@ -48,10 +57,10 @@ class BgpModule(AbstractModule):
     def load_tree_items(self, item_tree: ItemTree):
         root = item_tree.add_entry(None, ItemTreeEntry(
             icon='skytemple-e-bgp-symbolic',
-            name=BACKGROUNDS_NAME,
+            name=MAIN_VIEW_DATA.title,
             module=self,
-            view_class=MainController,
-            item_data=0
+            view_class=StStatusPage,
+            item_data=MAIN_VIEW_DATA
         ))
         self._item_tree = item_tree
         self._tree_level_iter = []
