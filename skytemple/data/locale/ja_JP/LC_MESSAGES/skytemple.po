@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-15 23:10+0000\n"
-"PO-Revision-Date: 2023-09-18 13:41\n"
+"PO-Revision-Date: 2023-09-18 16:09\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -355,7 +355,7 @@ msgstr "投擲物 (石)"
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4472
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1321
 msgid "Berries, Seeds, Vitamins"
-msgstr "きのみ・タネ・飲料"
+msgstr "タネ・きのみ・えいようドリンク"
 
 #: /dev/fd/63:84 /dev/fd/63:206
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4639
@@ -543,7 +543,7 @@ msgstr "adventure_log に値が設定されていません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_clear.py:42
 msgid "No variable for clear."
-msgstr "clear という変数はありません。"
+msgstr "変数無しでclearしています。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:43
 msgid "No variable for dungeon_mode set."
@@ -2171,15 +2171,15 @@ msgstr "待機 (グラウンド)"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:34
 msgid "Physical Move"
-msgstr "物理技"
+msgstr "ぶつりわざ"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:35
 msgid "Special Move"
-msgstr "特殊技"
+msgstr "とくしゅわざ"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:36
 msgid "Status Move"
-msgstr "変化技"
+msgstr "へんかわざ"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:59
 msgid "Enemies"
@@ -4339,7 +4339,7 @@ msgstr ""
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:192
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:213
 msgid "<Empty>"
-msgstr "<なし>"
+msgstr "<Empty>"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:196
 msgid "1 (Enter)"
@@ -6270,7 +6270,7 @@ msgstr "アイテム情報を表示"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:384
 msgid "I"
-msgstr "イ"
+msgstr "ア"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:399
 msgid "Show Pokémon Info"
@@ -6351,11 +6351,11 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:801
 msgid "Entity:"
-msgstr "エンティティー:"
+msgstr "エンティティ:"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:848
 msgid "Add new entity"
-msgstr "新規エンティティー追加"
+msgstr "新規エンティティ追加"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:857
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:931
@@ -6610,7 +6610,7 @@ msgstr "N. {i}"
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:202
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.py:38
 msgid "Fixed Rooms"
-msgstr "固定場所"
+msgstr "固定部屋"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:218
 msgid "This section lets you edit fixed rooms. Fixed rooms can be configured to appear on dungeon floors.\n"
@@ -6758,27 +6758,27 @@ msgstr "HP"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1118
 msgid "Exp. Yield"
-msgstr ""
+msgstr "けいけんち"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1132
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:598
 msgid "Atk."
-msgstr "攻撃力"
+msgstr "こうげき"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1146
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:612
 msgid "Sp. Atk."
-msgstr ""
+msgstr "とくこう"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1160
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:626
 msgid "Def."
-msgstr "防衛力"
+msgstr "ぼうぎょ"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1174
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:640
 msgid "Sp. Def."
-msgstr ""
+msgstr "とくぼう"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1188
 msgid "UnkA"
