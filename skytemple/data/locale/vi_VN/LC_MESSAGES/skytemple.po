@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-19 00:20+0000\n"
-"PO-Revision-Date: 2023-09-19 01:10\n"
+"PO-Revision-Date: 2023-09-19 15:39\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Language: vi_VN\n"
@@ -924,7 +924,7 @@ msgstr "Nút xuống"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:321
 msgid "Down Right"
-msgstr ""
+msgstr "Xuống Phải"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:323
@@ -934,7 +934,7 @@ msgstr "Nút phải"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:325
 msgid "Up Right"
-msgstr ""
+msgstr "Lên Phải"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:327
@@ -946,7 +946,7 @@ msgstr "Nút lên"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:329
 msgid "Up Left"
-msgstr ""
+msgstr "Lên Trái"
 
 #. TRANSLATORS: DS Key name
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:331
@@ -956,7 +956,7 @@ msgstr "Nút trái"
 
 #: skytemple-files/skytemple_files/common/ppmdu_config/script_data.py:333
 msgid "Down Left"
-msgstr ""
+msgstr "Xuống Trái"
 
 #: skytemple-files/skytemple_files/common/tiled_image.py:51
 msgid "Tile Mapping can not be processed. The tile number referenced ({idx}) is bigger than the maximum ({0x3FF}). If you are importing an image, please try to have less unique tiles."
@@ -1157,7 +1157,7 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/monster.glade:2163
 #: skytemple/skytemple/module/monster/controller/monster.glade:2302
 msgid "Pokémon"
-msgstr ""
+msgstr "Pokémon"
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:38
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/ground_state.py:72
@@ -1170,7 +1170,7 @@ msgstr ""
 #: skytemple/skytemple/module/script/controller/ssa.glade:2078
 #: skytemple/skytemple/module/script/controller/ssa.py:1348
 msgid "Type"
-msgstr ""
+msgstr "Hệ"
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:71
 msgid "The Pokemon may hatch holding the item."
@@ -1198,7 +1198,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/starters_list.py:62
 #: skytemple/skytemple/module/lists/controller/starters_list.py:64
 msgid "Male"
-msgstr ""
+msgstr "Nam"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:68
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3546
@@ -1219,82 +1219,82 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/starters_list.py:63
 #: skytemple/skytemple/module/lists/controller/starters_list.py:65
 msgid "Female"
-msgstr ""
+msgstr "Nữ"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:69
 msgid "Genderless"
-msgstr ""
+msgstr "Không giới tính"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:93
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:383
 msgid "Normal"
-msgstr ""
+msgstr "Thường"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:94
 msgid "Fire"
-msgstr ""
+msgstr "Lửa"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:95
 #: skytemple-files/skytemple_files/data/md/protocol.py:522
 msgid "Water"
-msgstr ""
+msgstr "Nước"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:96
 msgid "Grass"
-msgstr ""
+msgstr "Cỏ"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:97
 msgid "Electric"
-msgstr ""
+msgstr "Điện"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:98
 msgid "Ice"
-msgstr ""
+msgstr "Băng"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:99
 msgid "Fighting"
-msgstr ""
+msgstr "Giác đấu"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:100
 msgid "Poison"
-msgstr ""
+msgstr "Độc"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:101
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1879
 msgid "Ground"
-msgstr ""
+msgstr "Đất"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:102
 msgid "Flying"
-msgstr ""
+msgstr "Bay"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:103
 msgid "Psychic"
-msgstr ""
+msgstr "Tâm linh"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:104
 msgid "Bug"
-msgstr ""
+msgstr "Bọ"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:105
 msgid "Rock"
-msgstr ""
+msgstr "Đá"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:106
 msgid "Ghost"
-msgstr ""
+msgstr "Ma"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:107
 msgid "Dragon"
-msgstr ""
+msgstr "Rồng"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:108
 msgid "Dark"
-msgstr ""
+msgstr "Bóng tối"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:109
 msgid "Steel"
-msgstr ""
+msgstr "Thép"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:110
 msgid "Neutral"
@@ -1958,7 +1958,7 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/level_up.py:48
 #: skytemple/skytemple/module/script/controller/main.glade:524
 msgid "Level"
-msgstr ""
+msgstr "Cấp"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:453
 #: skytemple/skytemple/module/lists/controller/guest_pokemon.glade:584
@@ -1966,7 +1966,7 @@ msgstr ""
 #: skytemple/skytemple/module/lists/controller/special_pcs.glade:239
 #: skytemple/skytemple/module/lists/module.py:205
 msgid "IQ"
-msgstr ""
+msgstr "IQ"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:454
 #: skytemple/skytemple/core/events/impl/discord.py:269
