@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-18 21:11+0000\n"
-"PO-Revision-Date: 2023-09-18 21:21\n"
+"PO-Revision-Date: 2023-09-19 00:12\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -10561,7 +10561,7 @@ msgstr "Das Logo wurde erfolgreich hinzugefügt. Vielen Dank!"
 
 #: skytemple/skytemple/module/map_bg/module.py:330
 msgid "Map Background category \"{}\""
-msgstr ""
+msgstr "Kartenhintergrund-Kategorie \"{}\""
 
 #: skytemple/skytemple/module/map_bg/module.py:331
 msgid "This section contains all the map backgrounds, that start with the letter {}."
@@ -13495,11 +13495,11 @@ msgstr "Der angegebene Dateiname ist zu lang (max. 8 Zeichen)."
 
 #: skytemple/skytemple/module/script/module.py:548
 msgid "Script Scenes for maps in category \"{}\""
-msgstr ""
+msgstr "Skriptszenen für Karten in der Kategorie \"{}\""
 
 #: skytemple/skytemple/module/script/module.py:549
 msgid "This section contains all the script scenes of maps, that start with the letter {}."
-msgstr ""
+msgstr "Dieser Abschnitt enthält alle Skriptszenen von Karten, die mit dem Buchstaben {} beginnen."
 
 #: skytemple/skytemple/module/script/module.py:551
 msgid "Script Scenes for other maps"
@@ -13511,13 +13511,15 @@ msgstr "Dieser Abschnitt enthält alle Skriptszenen von Karten, die in keine der
 
 #: skytemple/skytemple/module/script/module.py:565
 msgid "Sub Scenes for \"{}\""
-msgstr ""
+msgstr "Sub-Szenen für \"{}\""
 
 #: skytemple/skytemple/module/script/module.py:567
 msgid "This section contains all sub scenes for the map {}.\n\n"
 "These scenes can be loaded on top of the \"Enter\" scene,\n"
 "depending on the current story progress."
-msgstr ""
+msgstr "Dieser Abschnitt enthält alle Unterszenen für die Karte {}.\n\n"
+"Diese Szenen können über die „Eingang“ -Szene geladen werden,\n"
+"abhängig vom aktuellen Story-Fortschritt."
 
 #: skytemple/skytemple/module/script/module.py:577
 msgid "Acting Scenes for \"{}\""
@@ -13527,7 +13529,9 @@ msgstr "Handlungsszenen für \"{}\""
 msgid "This section contains all acting scenes for the map {}.\n\n"
 "These scenes are used for cutscenes.\n"
 "The player can usually not move the character in them."
-msgstr ""
+msgstr "Dieser Abschnitt enthält alle Handlungsszenen für die Karte {}.\n\n"
+"Diese Szenen werden für Zwischensequenzen verwendet.\n"
+"Der Spieler kann den Charakter in diesen Szenen normalerweise nicht bewegen."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:48
 msgid "<span size=\"large\">Spritesheet</span>"
