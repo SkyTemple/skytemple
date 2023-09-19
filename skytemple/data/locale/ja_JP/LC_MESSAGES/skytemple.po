@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-19 00:20+0000\n"
-"PO-Revision-Date: 2023-09-19 05:11\n"
+"PO-Revision-Date: 2023-09-19 06:30\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -25,7 +25,7 @@ msgstr "英語"
 
 #: /dev/fd/63:2 /dev/fd/63:124
 msgid "Explorer Ranks Names"
-msgstr "探検隊ランクの名称"
+msgstr "たんけんたいランクの名称"
 
 #: /dev/fd/63:3 /dev/fd/63:125
 msgid "Default Team Names"
@@ -49,11 +49,11 @@ msgstr "グミを食べた時の文字列"
 
 #: /dev/fd/63:8 /dev/fd/63:130
 msgid "Items and Pokemon Menu Strings"
-msgstr "道具とポケモンのメニュー文字列"
+msgstr "どうぐとポケモンのメニュー文字列"
 
 #: /dev/fd/63:9 /dev/fd/63:131
 msgid "Kangaskhan Storage Strings"
-msgstr "「ガルーラの倉庫」の文字列"
+msgstr "「ガルーラのそうこ」の文字列"
 
 #: /dev/fd/63:10 /dev/fd/63:132
 msgid "Evolution Strings"
@@ -81,11 +81,11 @@ msgstr "性格診断時のパラメータ文字列 (デバッグ用)"
 
 #: /dev/fd/63:16 /dev/fd/63:138
 msgid "Weather Change Feedback"
-msgstr "天気変化時のメッセージ"
+msgstr "てんき変化時のメッセージ"
 
 #: /dev/fd/63:17 /dev/fd/63:139
 msgid "Weather Names"
-msgstr "天気名"
+msgstr "てんき名"
 
 #: /dev/fd/63:18 /dev/fd/63:140
 msgid "Floor-Wide Status Names+Desc"
@@ -149,7 +149,7 @@ msgstr "バトル時のメッセージ"
 
 #: /dev/fd/63:33 /dev/fd/63:155
 msgid "Misson Feedback"
-msgstr "依頼関連のメッセージ"
+msgstr "いらい関連のメッセージ"
 
 #: /dev/fd/63:34 /dev/fd/63:156
 msgid "Kecleon Dungeon Shop Strings"
@@ -189,7 +189,7 @@ msgstr "「さくせん」メニューの文字列"
 
 #: /dev/fd/63:43 /dev/fd/63:165
 msgid "Item Became Sticky"
-msgstr "道具がネバついた"
+msgstr "どうぐがネバついた"
 
 #: /dev/fd/63:44 /dev/fd/63:166
 msgid "Pokemon LEVEL_UP Dialogue"
@@ -217,11 +217,11 @@ msgstr "待機時の台詞 (グラウンド)"
 
 #: /dev/fd/63:50 /dev/fd/63:172
 msgid "Item Names"
-msgstr "道具名"
+msgstr "どうぐ名"
 
 #: /dev/fd/63:51 /dev/fd/63:173
 msgid "Move Names"
-msgstr "技名"
+msgstr "わざ名"
 
 #: /dev/fd/63:52 /dev/fd/63:174
 msgid "Pokemon Names"
@@ -233,11 +233,11 @@ msgstr "ポケモンの分類"
 
 #: /dev/fd/63:54 /dev/fd/63:176
 msgid "Tactics Names"
-msgstr "作戦名"
+msgstr "さくせん名"
 
 #: /dev/fd/63:55 /dev/fd/63:177
 msgid "Tactics Descriptions"
-msgstr "作戦の説明"
+msgstr "さくせんの説明"
 
 #: /dev/fd/63:56 /dev/fd/63:178
 msgid "IQ Skills Names"
@@ -249,31 +249,31 @@ msgstr "かしこさの説明"
 
 #: /dev/fd/63:58 /dev/fd/63:180
 msgid "Move Targets Strings"
-msgstr "技の対象の文字列"
+msgstr "わざの対象の文字列"
 
 #: /dev/fd/63:59 /dev/fd/63:181
 msgid "Accuracy/Power Stars Ratings"
-msgstr "命中率/威力の星のレート"
+msgstr "めいちゅう/いりょくの星のレート"
 
 #: /dev/fd/63:60 /dev/fd/63:182
 msgid "Move Descriptions"
-msgstr "技の説明"
+msgstr "わざの説明"
 
 #: /dev/fd/63:61 /dev/fd/63:183
 msgid "Item Long Descriptions"
-msgstr "道具の長い説明"
+msgstr "どうぐの長い説明"
 
 #: /dev/fd/63:62 /dev/fd/63:184
 msgid "Item Short Descriptions"
-msgstr "道具の短い説明"
+msgstr "どうぐの短い説明"
 
 #: /dev/fd/63:63 /dev/fd/63:185
 msgid "Trap Names"
-msgstr "罠名"
+msgstr "わな名"
 
 #: /dev/fd/63:64 /dev/fd/63:186
 msgid "Trap Descriptions"
-msgstr "罠の説明"
+msgstr "わなの説明"
 
 #: /dev/fd/63:65 /dev/fd/63:187
 msgid "Statuses Names and Descriptions"
@@ -285,11 +285,11 @@ msgstr "タイプ名"
 
 #: /dev/fd/63:67 /dev/fd/63:189
 msgid "Ability Names"
-msgstr "特性名"
+msgstr "とくせい名"
 
 #: /dev/fd/63:68 /dev/fd/63:190
 msgid "Ability Descriptions"
-msgstr "特性の説明"
+msgstr "とくせいの説明"
 
 #: /dev/fd/63:69 /dev/fd/63:191
 msgid "Debug Menu Strings"
@@ -361,13 +361,13 @@ msgstr "タネ・きのみ・えいようドリンク"
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4639
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1475
 msgid "Foods, Gummies"
-msgstr "食料・グミ"
+msgstr "しょくりょう・グミ"
 
 #: /dev/fd/63:85 /dev/fd/63:207
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4806
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1629
 msgid "Hold"
-msgstr "装備品"
+msgstr "そうびひん"
 
 #: /dev/fd/63:86 /dev/fd/63:208
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4973
@@ -479,7 +479,7 @@ msgstr ""
 
 #: /dev/fd/63:111 /dev/fd/63:233
 msgid "String ID when revealing an item"
-msgstr "道具を表示する時の文字列ID"
+msgstr "どうぐを表示する時の文字列ID"
 
 #: /dev/fd/63:112 /dev/fd/63:234
 msgid "All strings mentioned above are replaced by a default text when applying"
@@ -487,7 +487,7 @@ msgstr "適用時、上記の文字列はデフォルトのテキストに置き
 
 #: /dev/fd/63:113 /dev/fd/63:235
 msgid "Cost of each Treasure Box (Only for Appraise All option)"
-msgstr "宝箱鑑定時の価格 (すべて鑑定時のみ)"
+msgstr "たからばこの鑑定価格 (すべて鑑定時のみ)"
 
 #: /dev/fd/63:114 /dev/fd/63:236
 msgid "Update the level and stats of evolved enemies"
@@ -10945,31 +10945,31 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1611
 msgid "Base HP:"
-msgstr "ベースHP:"
+msgstr "HP:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1623
 msgid "Weight:"
-msgstr ""
+msgstr "重さ:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1635
 msgid "Base Atk:"
-msgstr "ベース攻撃力:"
+msgstr "こうげき:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1647
 msgid "Base Sp. Atk:"
-msgstr ""
+msgstr "とくこう:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1659
 msgid "Base Def:"
-msgstr "ベース防衛力:"
+msgstr "ぼうぎょ:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1671
 msgid "Base Sp. Def:"
-msgstr ""
+msgstr "とくぼう:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1683
 msgid "Size:"
-msgstr "サイズ:"
+msgstr "高さ:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1695
 msgid "Movement Speed:"
@@ -11109,39 +11109,39 @@ msgstr "不明1.3:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3078
 msgid "Can move:"
-msgstr ""
+msgstr "移動可能:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3090
 msgid "Can throw items:"
-msgstr ""
+msgstr "道具投げ可能:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3102
 msgid "Can evolve:"
-msgstr ""
+msgstr "進化可能:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3114
 msgid "Item req. for spawn:"
-msgstr ""
+msgstr "スポーンに道具必須:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3314
 msgid "Chest with type 2 exclusive items:"
-msgstr ""
+msgstr "タイプ2の専用道具が入った宝箱:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3338
 msgid "Chest with type 1 exclusive items:"
-msgstr ""
+msgstr "タイプ1の専用道具が入った宝箱:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3362
 msgid "Chest with normal items:"
-msgstr ""
+msgstr "通常の道具が入った宝箱"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3386
 msgid "No drop:"
-msgstr ""
+msgstr "ドロップなし:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3410
 msgid "Chest Drop Rates:"
-msgstr ""
+msgstr "宝箱ドロップ率:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:3426
 msgid "label_chance_no_drop"
@@ -11162,7 +11162,8 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/monster.glade:3575
 msgid "This Pokémon has no stats and/or level up moves. It can only be used in cutscenes. \n"
 "Trying to use it in dungeons will not work."
-msgstr ""
+msgstr "このポケモンにはステータス・成長率がありません。カットシーンでのみ使用できます。 \n"
+"ダンジョンで使用しようとしても動作しません。"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:113
 msgid "Spinda Egg"
@@ -11349,7 +11350,8 @@ msgstr ""
 #: skytemple/skytemple/module/monster/controller/monster.py:1410
 msgid "The sprite size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
-msgstr ""
+msgstr "このポケモンのスプライトサイズは、このポケモンに割り当てられたスプライトと一致していませんでした。\n"
+"SkyTemple によって自動的に修正されました。"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1444
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
@@ -11359,7 +11361,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1447
 msgid "Entity ID"
-msgstr ""
+msgstr "エンティティ ID"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1457
 msgid "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
@@ -11377,49 +11379,49 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1471
 msgid "Evolution Bonus Info"
-msgstr ""
+msgstr "進化ボーナス"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1570
 #, python-brace-format
 msgid "A pokémon can't evolve into more than {MAX_EVOS} evolutions."
-msgstr ""
+msgstr "ポケモンは {MAX_EVOS} 進化以上に進化することはできません。"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1577
 msgid "Too much evolutions."
-msgstr ""
+msgstr "進化の数が多すぎます。"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1583
 #, python-brace-format
 msgid "A pokémon can't have more than {MAX_EGGS} children."
-msgstr ""
+msgstr "ポケモンは {MAX_EGGS} 以上の子を持つことはできません。"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1590
 msgid "Too much children."
-msgstr ""
+msgstr "子の数が多すぎます。"
 
 #: skytemple/skytemple/module/monster/level_up_graph.py:86
 msgid "Exp."
-msgstr ""
+msgstr "経験値"
 
 #. TRANSLATORS: Health Points
 #: skytemple/skytemple/module/monster/level_up_graph.py:88
 msgid "ATK"
-msgstr "攻撃力"
+msgstr "こうげき"
 
 #. TRANSLATORS: Attack
 #: skytemple/skytemple/module/monster/level_up_graph.py:89
 msgid "Sp. ATK"
-msgstr ""
+msgstr "とくこう"
 
 #. TRANSLATORS: Special Attack
 #: skytemple/skytemple/module/monster/level_up_graph.py:90
 msgid "DEF"
-msgstr "防衛力"
+msgstr "ぼうぎょ"
 
 #. TRANSLATORS: Defense
 #: skytemple/skytemple/module/monster/level_up_graph.py:91
 msgid "Sp. DEF"
-msgstr ""
+msgstr "とくぼう"
 
 #. TRANSLATORS: Special Defense
 #: skytemple/skytemple/module/monster/level_up_graph.py:92
@@ -11430,81 +11432,82 @@ msgstr "わざ"
 #: skytemple/skytemple/module/monster/level_up_graph.py:93
 #, python-brace-format
 msgid "at level {x[0]}"
-msgstr ""
+msgstr "レベル {x[0]}"
 
 #: skytemple/skytemple/module/monster/module.py:217
 msgid "This entry has no portraits."
-msgstr ""
+msgstr "このエントリにはポートレートがありません。"
 
 #: skytemple/skytemple/module/monster/module.py:260
 msgid "Stats and moves are only editable for base forms."
-msgstr ""
+msgstr "ステータスと技はベースフォームでのみ編集可能です。"
 
 #: skytemple/skytemple/module/monster/module.py:503
 msgid "Each Pokémon has two gender forms (even if it only has one gender).\n"
 "This entry contains both of these forms. The first form is the main form, it is used as a fallback in some cases, when the data for the second form doesn't exist."
-msgstr ""
+msgstr "各ポケモンには2つの性別形態があります（性別が1つしかない場合も含む）。\n"
+"このエントリにはこの2つの形態が含まれています。1 番目のフォームはメインフォームで、2 番目のフォームのデータが存在しない場合の代替として使用されます。"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:52
 msgid "Item ID:"
-msgstr ""
+msgstr "道具 ID:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:147
 msgid "Buy Price:"
-msgstr ""
+msgstr "買値:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:159
 msgid "Sell Price:"
-msgstr ""
+msgstr "売値:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:197
 msgid "Palette ID:"
-msgstr ""
+msgstr "パレット ID:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:409
 msgid "Long Description:"
-msgstr ""
+msgstr "説明 (長):"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:585
 msgid "Short Description:"
-msgstr ""
+msgstr "説明 (短):"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:750
 #: skytemple/skytemple/module/moves_items/controller/move.glade:76
 msgid "Move ID:"
-msgstr ""
+msgstr "技 ID:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:762
 msgid "Min Amount:"
-msgstr ""
+msgstr "最小個数:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:820
 msgid "Max Amount:"
-msgstr ""
+msgstr "最大個数:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:865
 msgid "Action Name:"
-msgstr ""
+msgstr "アクション名:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1002
 msgid "Is Valid:"
-msgstr ""
+msgstr "有効:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1014
 msgid "Is in T/D:"
-msgstr ""
+msgstr "時闇に存在:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1026
 msgid "AI Flag: Throw at enemies"
-msgstr ""
+msgstr "AI: 敵に投げる"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1038
 msgid "AI Flag: Throw at allies"
-msgstr ""
+msgstr "AI: 味方に投げる"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1050
 msgid "AI Flag: Use on self"
-msgstr ""
+msgstr "AI: 自分に使用"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1092
 msgid "Flags"
@@ -11512,15 +11515,15 @@ msgstr "フラグ"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1117
 msgid "Exclusive Item Type:"
-msgstr ""
+msgstr "専用道具タイプ:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1129
 msgid "Exclusive Item Parameter:"
-msgstr ""
+msgstr "専用道具パラメーター:"
 
 #: skytemple/skytemple/module/moves_items/controller/item.glade:1210
 msgid "Exclusive Item Settings"
-msgstr ""
+msgstr "専用道具設定"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:37
 #: skytemple/skytemple/module/moves_items/controller/item.py:44
@@ -11531,83 +11534,85 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/item.py:51
 #: skytemple/skytemple/module/moves_items/controller/item.py:52
 msgid "Use"
-msgstr ""
+msgstr "つかう"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:38
 msgid "Hurl"
-msgstr ""
+msgstr "うつ"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:39
 msgid "Throw"
-msgstr ""
+msgstr "なげる"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:40
 #: skytemple/skytemple/module/moves_items/controller/item.py:48
 #: skytemple/skytemple/module/moves_items/controller/item.py:49
 msgid "Equip"
-msgstr ""
+msgstr "つける"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:41
 msgid "Eat"
-msgstr "食べる"
+msgstr "たべる"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:42
 msgid "Ingest"
-msgstr ""
+msgstr "のむ"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:43
 msgid "Peel"
-msgstr ""
+msgstr "むく"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:320
 msgid "For stackable items: Indicates the minimum amount you can get for 1 instance of that item."
-msgstr ""
+msgstr "スタック可能な道具の場合、一度に拾うことができる最小の数を示します。"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:321
 msgid "Min Amount"
-msgstr ""
+msgstr "最小個数"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:331
 msgid "For stackable items: Indicates the maximum amount you can get for 1 instance of that item."
-msgstr ""
+msgstr "スタック可能な道具の場合、一度に拾うことができる最大の数を示します。"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:332
 msgid "Max Amount"
-msgstr ""
+msgstr "最大個数"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:342
 msgid "The ID of a move, that is associated with this item."
-msgstr ""
+msgstr "この道具に関連付けられている技のID。"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:343
 msgid "Move ID"
-msgstr ""
+msgstr "技 ID"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:349
 msgid "Either the ID of a type or of a Pokémon, depending on the type of the exclusive item.\n\n"
 "IDs for Types:\n"
-msgstr ""
+msgstr "専用道具の種類に対応した、タイプまたはポケモン ID のいずれか。\n\n"
+"タイプ ID:\n"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:358
 msgid "Exclusive Item Parameter"
-msgstr ""
+msgstr "専用道具パラメーター"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:368
 msgid "Some exclusive items are assigned to Pokémon, others to types. See the values in the dropdown for the possible options."
-msgstr ""
+msgstr "一部の専用道具はポケモンに割り当てられ、それ以外はタイプに割り当てられます。選択できるオプションについては、ドロップダウンの値を参照してください。"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:370
 msgid "Exclusive Item Type"
-msgstr ""
+msgstr "専用道具タイプ"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:380
 msgid "Action name displayed in dungeon menus (Use, Eat, Ingest, Equip...).\n"
 "See 'Text Strings' for actual values."
-msgstr ""
+msgstr "ダンジョンメニューに表示されるアクション名（つかう、たべる、のむ、つける...）。\n"
+"実際の値については、「テキスト文字列」を参照してください。"
 
 #: skytemple/skytemple/module/moves_items/controller/item.py:382
 msgid "Action Name"
-msgstr ""
+msgstr "アクション名"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:67
 msgid "Item/Remove Key Placeholder Title"
@@ -11619,27 +11624,27 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:139
 msgid "Item Keys"
-msgstr ""
+msgstr "アイテムキー"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:213
 msgid "Sort Key"
-msgstr ""
+msgstr "並べ替えキー"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:228
 msgid "Item Name"
-msgstr ""
+msgstr "道具名"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:253
 msgid "Insert Key..."
-msgstr ""
+msgstr "キーを挿入..."
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:270
 msgid "Remove Key..."
-msgstr ""
+msgstr "キーを削除..."
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.glade:287
 msgid "Add Missing Keys"
-msgstr ""
+msgstr "不足しているキーを追加"
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:68
 msgid "Sort keys are used to sort items in your inventory when using the sort feature in game.\n"
@@ -11677,24 +11682,26 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/item_keys.py:179
 msgid "Error removing key."
-msgstr ""
+msgstr "キーの削除中にエラーが発生しました。"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:527
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:604
 #: skytemple/skytemple/module/moves_items/module.py:102
 msgid "Item Lists"
-msgstr ""
+msgstr "道具リスト"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:543
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:620
 msgid "Edits the lists used for mission rewards, treasure boxes and Treasure Town Kecleon shops."
-msgstr ""
+msgstr "依頼の報酬、宝箱、トレジャータウンのカクレオン商店に使用されるリストを編集します。"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:556
 msgid "<Not available>\n\n"
 "To view and edit those lists, please apply the \"ExtractHardcodedItemLists\" \n"
 "ASM patch from the \"Patches\" > \"ASM\" menu."
-msgstr ""
+msgstr "<Not available>\n\n"
+"これらのリストを表示および編集するには、\n"
+"「パッチ」>「ASM」メニューから「ExtractHardCodeItemLists」のASMパッチを適用してください。"
 
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:638
 msgid "Lists: "
@@ -11906,7 +11913,7 @@ msgstr "ちょうはつを無視:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1310
 msgid "Message ID for Use:"
-msgstr ""
+msgstr "メッセージID:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1362
 #: skytemple/skytemple/module/moves_items/controller/move.py:411
@@ -11923,7 +11930,7 @@ msgstr "2つ目の命中率。この値で失敗すると、別のメッセー�
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:307
 msgid "Possibly the number of times a move hits in a row."
-msgstr ""
+msgstr "連続で技を繰り出す回数。"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:318
 msgid "These are the range settings that the game uses for processing the actual move."
@@ -11944,23 +11951,23 @@ msgstr ""
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:354
 msgid "Whether the move is affected by magic coat."
-msgstr ""
+msgstr "技が「マジックコート」の影響を受けるかどうか。"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:365
 msgid "Whether the move is affected by snatch."
-msgstr ""
+msgstr "技が「すりかえ」の影響を受けるかどうか。"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:376
 msgid "Whether the move is disabled by the \"muzzled\" status."
-msgstr ""
+msgstr "技がくちなし状態によって無効化されるかどうか。"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:387
 msgid "Whether the move can be used while taunted."
-msgstr ""
+msgstr "技をちょうはつ状態の間でも使用できるかどうか。"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:398
 msgid "Message ID offset that is displayed for the move. 0 uses the Text String 3860. Higher values select the strings after that (offsets)."
-msgstr ""
+msgstr "技を使用時に表示されるメッセージ ID オフセット。テキスト文字列 3860 を基準にします。値が大きいほど、その後の文字列 (オフセット) が選択されます。"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:400
 msgid "Message ID:"
@@ -11972,77 +11979,79 @@ msgstr "ステータスチェッカーを持つ AI がこおり状態の時に�
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:421
 msgid "Text string to display to describe the range of the move. 0 uses the Text String 10095/10097 (US/EU). Higher values select the strings after that (offsets)."
-msgstr "技の範囲を説明するために表示されるテキスト文字列。0 では 10095/10097 (NA/EU) を使用します。値が大きいほど、その後の文字列 (オフセット) が選択されます。"
+msgstr "技の範囲を説明するために表示されるテキスト文字列。テキスト文字列 10095/10097 (NA/EU) を基準にします。値が大きいほど、その後の文字列 (オフセット) が選択されます。"
 
 #: skytemple/skytemple/module/moves_items/module.py:55
 msgid "This section lets you edit settings related to items."
-msgstr ""
+msgstr "このセクションでは、道具に関連する設定を編集できます。"
 
 #: skytemple/skytemple/module/moves_items/module.py:61
 msgid "This section lets you edit settings related to moves."
-msgstr ""
+msgstr "このセクションでは、技に関する設定を編集できます。"
 
 #: skytemple/skytemple/module/moves_items/module.py:109
 msgid "Item Sort Keys"
-msgstr ""
+msgstr "アイテムソートキー"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:25
 msgid "ASM Patches"
-msgstr ""
+msgstr "ASM パッチ"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:42
 msgid "Apply ASM (assembler) patches to the game."
-msgstr ""
+msgstr "ASM (アセンブラ) パッチをゲームに適用します。"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:76
 msgid "Open Patch Directory..."
-msgstr ""
+msgstr "パッチディレクトリを開く..."
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:127
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:43
 #: skytemple/skytemple/module/spritecollab/module.py:155
 msgid "Apply"
-msgstr ""
+msgstr "適用"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:177
 msgctxt "Issues as in problems"
 msgid "Show Issues"
-msgstr ""
+msgstr "問題を表示"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:250
 msgid "A compatibility issue was detected while loading one or more patches."
-msgstr ""
+msgstr "複数のパッチの読み込み中に、互換性の問題が検出されました。"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:263
 msgid "A compatibility issue was detected while applying this patch. \n"
 "But it was still applied successfully."
-msgstr ""
+msgstr "パッチの適用中に互換性の問題が検出されましたが、 \n"
+"パッチは正常に適用されました。"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:277
 msgid "One or more patches failed to be loaded."
-msgstr ""
+msgstr "複数のパッチの読み込みに失敗しました。"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:290
 msgid "There was an error while applying the patch."
-msgstr ""
+msgstr "パッチの適用中にエラーが発生しました。"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:303
 msgid "This patch will stop working in a future version of SkyTemple, \n"
 "unless the author updates the patch."
-msgstr ""
+msgstr "このパッチは、作者がパッチを更新しない限り、 \n"
+"将来のバージョンの SkyTemple では動作しなくなります。"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:324
 msgid "Details:"
-msgstr ""
+msgstr "詳細:"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:403
 msgid "Author"
-msgstr ""
+msgstr "作成者"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:416
 #: skytemple/skytemple/module/patch/controller/pmdsky_debug.glade:384
 msgid "Description"
-msgstr ""
+msgstr "説明"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:432
 msgid "Status"
@@ -12051,32 +12060,33 @@ msgstr "ステータス"
 #: skytemple/skytemple/module/patch/controller/asm.py:44
 #: skytemple/skytemple/module/patch/module.py:41
 msgid "Patches"
-msgstr ""
+msgstr "パッチ"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:88
 msgid "This patch has had no issues loading."
-msgstr ""
+msgstr "このパッチの読み込みに問題はありません。"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:99
 msgid "This patch is already applied. Some patches support applying them again, but you might also run into problems with some. Proceed with care."
-msgstr ""
+msgstr "このパッチはすでに適用されています。一部のパッチは再適用をサポートしていますが、問題が発生する可能性があります。注意して進めてください。"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:109
 msgid "The current ROM is not supported by this patch."
-msgstr ""
+msgstr "現在の ROM ではこのパッチはサポートされていません。"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:113
 msgid "Please save the ROM before applying the patch."
-msgstr ""
+msgstr "パッチを適用する前に ROM を保存してください。"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:120
 msgid "This patch extends the Pokémon list. It is very experimental and WILL break a few things. Once applied you can not remove it again. Proceed?"
-msgstr ""
+msgstr "このパッチはポケモンリストを拡張します。非常に実験的な内容で、いくつかの問題が起きる場合があります。一度適用するとこの操作は取り消せません。続行しますか？"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:137
 msgid "\n"
 "Do you want to apply these first?"
-msgstr ""
+msgstr "\n"
+"これらを最初に適用しますか？"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:137
 msgid "This patch requires some other patches to be applied first:\n"
@@ -12092,7 +12102,8 @@ msgstr ""
 #, python-brace-format
 msgid "Error applying the patch:\n"
 "{err}"
-msgstr ""
+msgstr "パッチ適用エラー:\n"
+"{err}"
 
 #: skytemple/skytemple/module/patch/controller/asm.py:164
 #, python-brace-format
@@ -12157,7 +12168,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:303
 #: skytemple/skytemple/module/patch/module.py:96
 msgid "Item Effects"
-msgstr ""
+msgstr "道具の効果"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:92
 msgid "Edits the item effects used by the game.\n"
@@ -12180,7 +12191,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:240
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:216
 msgid "Effect"
-msgstr ""
+msgstr "効果"
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:324
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:365
@@ -12194,7 +12205,7 @@ msgstr ""
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:384
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:342
 msgid "Effect ID: "
-msgstr ""
+msgstr "効果 ID: "
 
 #: skytemple/skytemple/module/patch/controller/item_effects.glade:440
 #: skytemple/skytemple/module/patch/controller/move_effects.glade:481
