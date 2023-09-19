@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-19 00:20+0000\n"
-"PO-Revision-Date: 2023-09-19 02:51\n"
+"PO-Revision-Date: 2023-09-19 05:11\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -11887,22 +11887,22 @@ msgstr "マジックコートの影響:"
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1094
 #: skytemple/skytemple/module/moves_items/controller/move.py:423
 msgid "Text String ID for Range Text:"
-msgstr ""
+msgstr "範囲のテキスト文字列 ID:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1118
 #: skytemple/skytemple/module/moves_items/controller/move.py:366
 msgid "Is Snatchable:"
-msgstr ""
+msgstr "よこどり可能:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1130
 #: skytemple/skytemple/module/moves_items/controller/move.py:377
 msgid "Uses Mouth:"
-msgstr ""
+msgstr "くちなし状態の影響:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1142
 #: skytemple/skytemple/module/moves_items/controller/move.py:388
 msgid "Ignores Taunted:"
-msgstr ""
+msgstr "ちょうはつを無視:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1310
 msgid "Message ID for Use:"
@@ -11911,15 +11911,15 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/move.glade:1362
 #: skytemple/skytemple/module/moves_items/controller/move.py:411
 msgid "AI - Don't use on Frozen:"
-msgstr ""
+msgstr "こおり状態で使用しない (AI):"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:283
 msgid "The percentage indicating the chances the move will succeed. 100 is perfect accuracy. Anything higher than 100 is a never-miss move."
-msgstr ""
+msgstr "技が命中する確率を示すパーセンテージ。100 を超える技は必中技になります。"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:295
 msgid "Seems to be a second sort of accuracy check. A different message will be shown if this accuracy test fails."
-msgstr ""
+msgstr "2つ目の命中率。この値で失敗すると、別のメッセージが表示されます。"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:307
 msgid "Possibly the number of times a move hits in a row."
@@ -11968,7 +11968,7 @@ msgstr "メッセージ ID:"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:410
 msgid "Whether the AI with Status Checker can select this move when the target is frozen."
-msgstr ""
+msgstr "ステータスチェッカーを持つ AI がこおり状態の時にこの技を選択できるかどうか。"
 
 #: skytemple/skytemple/module/moves_items/controller/move.py:421
 msgid "Text string to display to describe the range of the move. 0 uses the Text String 10095/10097 (US/EU). Higher values select the strings after that (offsets)."
