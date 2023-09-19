@@ -25,6 +25,7 @@ import os
 from typing import List, Optional, Callable
 
 from gi.repository import GLib
+from skytemple_files.common.i18n_util import _
 from skytemple_files.common.types.file_types import FileType
 
 from skytemple.core.abstract_module import AbstractModule
@@ -37,6 +38,7 @@ import time
 
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import version
+from skytemple.core.widget.status_page import StStatusPage
 
 CLIENT_ID = "736538698719690814"
 IDLE_TIMEOUT = 5 * 60
@@ -261,15 +263,13 @@ class DiscordPresence(AbstractListener):
     def on_view_switch__MovesItemsModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
         from skytemple.module.moves_items.controller.item import ItemController
         from skytemple.module.moves_items.controller.item_lists import ItemListsController
-        from skytemple.module.moves_items.controller.main_items import MainItemsController
-        from skytemple.module.moves_items.controller.main_moves import MainMovesController
         from skytemple.module.moves_items.controller.move import MoveController
 
-        if isinstance(controller, MainItemsController):
-            self.module_info = 'Editing Items'
-            self.module_state = self.rom_name
-        elif isinstance(controller, MainMovesController):
-            self.module_info = 'Editing Moves'
+        if isinstance(controller, StStatusPage):
+            if controller.item_data.title == _('Items'):
+                self.module_info = 'Editing Items'
+            else:
+                self.module_info = 'Editing Moves'
             self.module_state = self.rom_name
         elif isinstance(controller, ItemController):
             self.module_info = 'Editing Items'
