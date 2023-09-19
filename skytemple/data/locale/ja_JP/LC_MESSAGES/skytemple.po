@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-19 00:20+0000\n"
-"PO-Revision-Date: 2023-09-19 06:30\n"
+"PO-Revision-Date: 2023-09-19 10:39\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -6953,7 +6953,7 @@ msgstr "音楽"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1198
 msgid "Fixed Room"
-msgstr "固定場所"
+msgstr "固定部屋"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1277
 #: skytemple/skytemple/module/dungeon_graphics/controller/colvec.glade:50
@@ -7661,7 +7661,7 @@ msgstr "スカイテンプル"
 #: skytemple/skytemple/module/dungeon/module.py:195
 #, python-brace-format
 msgid "Fixed Room {i}"
-msgstr "固定場所 {i}"
+msgstr "固定部屋 {i}"
 
 #: skytemple/skytemple/module/dungeon/module.py:467
 msgid "Some dungeons were missing in the new group list. This is a bug."
@@ -10973,7 +10973,7 @@ msgstr "高さ:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1695
 msgid "Movement Speed:"
-msgstr ""
+msgstr "移動速度:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1853
 msgid "Base Stats"
@@ -10981,11 +10981,11 @@ msgstr "ベースステータス"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1878
 msgid "Base Form Index:"
-msgstr ""
+msgstr "ベースフォーム Index:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1890
 msgid "Pre Evolution:"
-msgstr ""
+msgstr "進化前:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1902
 msgid "Main Requirement:"
@@ -13445,7 +13445,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:529
 msgid "Static Tiles"
-msgstr "固定タイル"
+msgstr "静的タイル"
 
 #: skytemple/skytemple/module/tiled_img/dialog_controller/chunk_editor.glade:576
 msgid "Animated Tiles Slot 1"
