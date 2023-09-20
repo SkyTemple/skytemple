@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-19 00:20+0000\n"
-"PO-Revision-Date: 2023-09-19 14:12\n"
+"PO-Revision-Date: 2023-09-20 01:53\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -1944,7 +1944,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:451
 msgid "Not an Evolved Form."
-msgstr "進化形ではありません。"
+msgstr "進化しない"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:452
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:1090
@@ -6430,7 +6430,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/move.glade:767
 #: skytemple/skytemple/skytemple.glade:259
 msgid "General"
-msgstr ""
+msgstr "一般"
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1281
 msgid "Overrides"
@@ -7656,7 +7656,7 @@ msgstr ""
 #: skytemple/skytemple/skytemple.glade:948
 #: skytemple/skytemple/skytemple.glade:1305
 msgid "SkyTemple"
-msgstr "スカイテンプル"
+msgstr "SkyTemple"
 
 #: skytemple/skytemple/module/dungeon/module.py:195
 #, python-brace-format
@@ -10719,7 +10719,7 @@ msgstr ""
 #: skytemple/skytemple/module/moves_items/controller/item.glade:726
 #: skytemple/skytemple/module/moves_items/controller/move.glade:554
 msgid "Text"
-msgstr ""
+msgstr "テキスト"
 
 #: skytemple/skytemple/module/monster/controller/main.glade:712
 msgid "Type: "
@@ -10727,11 +10727,11 @@ msgstr "タイプ: "
 
 #: skytemple/skytemple/module/monster/controller/main.glade:730
 msgid "Remove Group"
-msgstr ""
+msgstr "グループを削除"
 
 #: skytemple/skytemple/module/monster/controller/main.glade:751
 msgid "Add Group"
-msgstr ""
+msgstr "グループを追加"
 
 #: skytemple/skytemple/module/monster/controller/main.glade:844
 msgid "Personality Groups"
@@ -10881,7 +10881,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:653
 msgid "Base ID:"
-msgstr ""
+msgstr "ベースID:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:665
 #: skytemple/skytemple/module/moves_items/controller/move.glade:52
@@ -10890,11 +10890,11 @@ msgstr "タイプ:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:699
 msgid "Gender:"
-msgstr ""
+msgstr "性別:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:711
 msgid "Pokédex:"
-msgstr "ポケデックス:"
+msgstr "図鑑番号:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:775
 msgid "Entity ID:"
@@ -10909,39 +10909,39 @@ msgstr "スプライトID:"
 #: skytemple/skytemple/module/moves_items/controller/item.glade:393
 #: skytemple/skytemple/module/moves_items/controller/move.glade:357
 msgid "Name:"
-msgstr "名:"
+msgstr "名称:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1324
 msgid "Body Size:"
-msgstr ""
+msgstr "からだのおおきさ:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1336
 msgid "Movement:"
-msgstr ""
+msgstr "移動タイプ:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1348
 msgid "IQ Group:"
-msgstr ""
+msgstr "かしこさグループ:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1360
 msgid "Ability:"
-msgstr "アビリティ:"
+msgstr "特性:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1372
 msgid "Exp. Yield:"
-msgstr ""
+msgstr "基礎経験値:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1384
 msgid "Recruit Rate:"
-msgstr ""
+msgstr "勧誘率:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1396
 msgid "Talk Group:"
-msgstr ""
+msgstr "会話グループ:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1538
 msgid "Idle Animation Type:"
-msgstr ""
+msgstr "アイドルアニメーションタイプ:"
 
 #: skytemple/skytemple/module/monster/controller/monster.glade:1611
 msgid "Base HP:"
@@ -11163,7 +11163,7 @@ msgstr ""
 msgid "This Pokémon has no stats and/or level up moves. It can only be used in cutscenes. \n"
 "Trying to use it in dungeons will not work."
 msgstr "このポケモンにはステータス・成長率がありません。カットシーンでのみ使用できます。 \n"
-"ダンジョンで使用しようとしても動作しません。"
+"ダンジョンでは動作せず、使用できません。"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:113
 msgid "Spinda Egg"
@@ -11991,7 +11991,7 @@ msgstr "このセクションでは、技に関する設定を編集できます
 
 #: skytemple/skytemple/module/moves_items/module.py:109
 msgid "Item Sort Keys"
-msgstr "アイテムソートキー"
+msgstr "道具ソートキー"
 
 #: skytemple/skytemple/module/patch/controller/asm.glade:25
 msgid "ASM Patches"
