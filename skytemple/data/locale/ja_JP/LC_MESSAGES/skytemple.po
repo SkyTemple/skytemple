@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-19 00:20+0000\n"
-"PO-Revision-Date: 2023-09-20 05:30\n"
+"PO-Revision-Date: 2023-09-20 07:16\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -543,7 +543,7 @@ msgstr "adventure_log に値が設定されていません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_clear.py:42
 msgid "No variable for clear."
-msgstr "変数無しでclearしています。"
+msgstr "変数 clear が存在しません。"
 
 #: explorerscript/explorerscript/ssb_converting/compiler/compile_handlers/assignments/assignment_dungeon_mode.py:43
 msgid "No variable for dungeon_mode set."
@@ -2172,15 +2172,15 @@ msgstr "待機 (グラウンド)"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:34
 msgid "Physical Move"
-msgstr "ぶつりわざ"
+msgstr "ぶつり"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:35
 msgid "Special Move"
-msgstr "とくしゅわざ"
+msgstr "とくしゅ"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:36
 msgid "Status Move"
-msgstr "へんかわざ"
+msgstr "へんか"
 
 #: skytemple-files/skytemple_files/data/waza_p/protocol.py:59
 msgid "Enemies"
