@@ -137,12 +137,14 @@ class MonsterModule(AbstractModule):
 
         entry = self.monster_md.entries[item_id]
         name = self.project.get_string_provider().get_value(StringType.POKEMON_NAMES, getattr(entry, b_attr))
-        self._tree_model[self._tree_iter__entity_roots[getattr(entry, b_attr)]][:] = self.generate_entry__entity_root(  # type: ignore
+        entry_entity = self._tree_iter__entity_roots[getattr(entry, b_attr)]
+        entry_entity.update(self.generate_entry__entity_root(
             getattr(entry, b_attr), name
-        )
-        self._tree_model[self._tree_iter__entries[item_id]][:] = self.generate_entry__entry(  # type: ignore
+        ))
+        entry_form = self._tree_iter__entries[item_id]
+        entry_form.update(self.generate_entry__entry(
             entry.md_index, Gender(entry.gender)
-        )
+        ))
 
     def generate_entry__entity_root(self, entid, name) -> ItemTreeEntry:
         return ItemTreeEntry(

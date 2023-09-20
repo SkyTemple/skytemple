@@ -74,6 +74,9 @@ class MonsterController(AbstractController):
         self._portrait_provider = module.project.get_module('portrait').get_portrait_provider()
         self._level_up_controller: Optional[LevelUpController] = None
         self._cached_sprite_page: Optional[int] = None
+        # The ID of our language. The ID is referring to the ID in the widget names (so starting with 1)
+        # defaults to 1 otherwise.
+        self._our_lang_index = 1
 
         self._render_graph_on_tab_change = True
 
@@ -263,25 +266,38 @@ class MonsterController(AbstractController):
         self.mark_as_modified()
 
     def on_entry_lang1_changed(self, w, *args):
-        builder_get_assert(self.builder, Gtk.Label, 'label_id_name').set_text(f'${self.entry.md_index:04d}: {w.get_text()}')
         self._update_lang_from_entry(w, 0)
-        self.module.refresh(self.item_id)
+        if self._our_lang_index == 1:
+            builder_get_assert(self.builder, Gtk.Label, 'label_id_name').set_text(f'${self.entry.md_index:04d}: {w.get_text()}')
+            self.module.refresh(self.item_id)
         self.mark_as_modified()
 
     def on_entry_lang2_changed(self, w, *args):
         self._update_lang_from_entry(w, 1)
+        if self._our_lang_index == 2:
+            builder_get_assert(self.builder, Gtk.Label, 'label_id_name').set_text(f'${self.entry.md_index:04d}: {w.get_text()}')
+            self.module.refresh(self.item_id)
         self.mark_as_modified()
 
     def on_entry_lang3_changed(self, w, *args):
         self._update_lang_from_entry(w, 2)
+        if self._our_lang_index == 3:
+            builder_get_assert(self.builder, Gtk.Label, 'label_id_name').set_text(f'${self.entry.md_index:04d}: {w.get_text()}')
+            self.module.refresh(self.item_id)
         self.mark_as_modified()
 
     def on_entry_lang4_changed(self, w, *args):
         self._update_lang_from_entry(w, 3)
+        if self._our_lang_index == 4:
+            builder_get_assert(self.builder, Gtk.Label, 'label_id_name').set_text(f'${self.entry.md_index:04d}: {w.get_text()}')
+            self.module.refresh(self.item_id)
         self.mark_as_modified()
 
     def on_entry_lang5_changed(self, w, *args):
         self._update_lang_from_entry(w, 4)
+        if self._our_lang_index == 5:
+            builder_get_assert(self.builder, Gtk.Label, 'label_id_name').set_text(f'${self.entry.md_index:04d}: {w.get_text()}')
+            self.module.refresh(self.item_id)
         self.mark_as_modified()
 
     def on_entry_lang1_cat_changed(self, w, *args):
@@ -1055,6 +1071,8 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
     def _init_language_labels(self):
         langs = self._string_provider.get_languages()
+        our_lang = self._string_provider.get_language()
+        self._our_lang_index = 1
         for lang_id in range(0, 5):
             gui_id = lang_id + 1
             gui_label = builder_get_assert(self.builder, Gtk.Label, f'label_lang{gui_id}')
@@ -1065,6 +1083,8 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                 # We have this language
                 gui_label.set_text(_(langs[lang_id].name_localized) + ':')
                 gui_label_cat.set_text(_(langs[lang_id].name_localized) + ':')
+                if our_lang.name == langs[lang_id].name:
+                    self._our_lang_index = gui_id
             else:
                 # We don't.
                 gui_label.set_text("")
