@@ -218,10 +218,11 @@ class BrowserController(AbstractController):
         diag_browser_url = builder_get_assert(self.builder, Gtk.Entry, 'sc_diag_browser_url')
 
         # Label, Custom select, preset server url, preset browser url
-        model = assert_not_none(cast(Optional[Gtk.ListStore], diag_preset.get_model()))
+        model = cast(Optional[Gtk.ListStore], diag_preset.get_model())
         had_model = model is not None
         if not had_model:
-            model = Gtk.ListStore([str, bool, str, str])
+            model = Gtk.ListStore(str, bool, str, str)
+        assert model is not None
         model.clear()
         model.append([f(_("SpriteCollab (SpriteBot, {DEFAULT_SERVER})")), False, DEFAULT_SERVER, DEFAULT_SERVER_BROWSER])
         model.append([f(_("NotSpriteCollab ({NOT_SC_SERVER})")), False, NOT_SC_SERVER, NOT_SC_SERVER_BROWSER])
