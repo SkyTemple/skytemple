@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-09-19 00:20+0000\n"
-"PO-Revision-Date: 2023-09-19 01:10\n"
+"POT-Creation-Date: 2023-09-20 19:37+0000\n"
+"PO-Revision-Date: 2023-09-20 19:53\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -1228,7 +1228,7 @@ msgid "Genderless"
 msgstr "Geschlechtslos"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:93
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:383
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:384
 msgid "Normal"
 msgstr "Normal"
 
@@ -2959,10 +2959,10 @@ msgstr "Erdbeben"
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:356
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:357
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:359
-#: skytemple/skytemple/module/monster/controller/monster.py:1378
-#: skytemple/skytemple/module/monster/controller/monster.py:1379
-#: skytemple/skytemple/module/monster/controller/monster.py:1380
-#: skytemple/skytemple/module/monster/controller/monster.py:1381
+#: skytemple/skytemple/module/monster/controller/monster.py:1398
+#: skytemple/skytemple/module/monster/controller/monster.py:1399
+#: skytemple/skytemple/module/monster/controller/monster.py:1400
+#: skytemple/skytemple/module/monster/controller/monster.py:1401
 msgid "???"
 msgstr "???"
 
@@ -7301,7 +7301,7 @@ msgstr "Kecleon Level "
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:4874
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5041
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:5208
-#: skytemple/skytemple/module/monster/controller/monster.py:629
+#: skytemple/skytemple/module/monster/controller/monster.py:645
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:748
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:920
 #: skytemple/skytemple/module/moves_items/controller/item_lists.glade:1069
@@ -11126,7 +11126,7 @@ msgid "Stat Growth"
 msgstr "Statuswerte-Anstieg"
 
 #: skytemple/skytemple/module/monster/controller/main.glade:238
-#: skytemple/skytemple/module/monster/controller/monster.py:1269
+#: skytemple/skytemple/module/monster/controller/monster.py:1289
 msgid "Portraits"
 msgstr "Portraits"
 
@@ -11613,41 +11613,41 @@ msgid "This Pokémon has no stats and/or level up moves. It can only be used in 
 msgstr "Dieses Pokémon hat keine Statuswerte und/oder Attacken durch Levelaufstieg. Es kann nur in Zwischensequenzen verwendet werden. \n"
 "Das Pokémon in Dungeons zu verwenden wird nicht funktionieren."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:113
+#: skytemple/skytemple/module/monster/controller/monster.py:116
 msgid "Spinda Egg"
 msgstr "Pandir-Ei"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:114
+#: skytemple/skytemple/module/monster/controller/monster.py:117
 msgid "Spinda Recruit"
 msgstr "Pandir-Rekrut"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:115
+#: skytemple/skytemple/module/monster/controller/monster.py:118
 msgid "Don't appear in Missions"
 msgstr "Erscheint nicht in Missionen"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:116
+#: skytemple/skytemple/module/monster/controller/monster.py:119
 msgid "Don't appear in Missions during story"
 msgstr "Erscheint während der Story nicht in Missionen"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:117
+#: skytemple/skytemple/module/monster/controller/monster.py:120
 msgid "Sprite Size"
 msgstr "Sprite Größe"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:118
+#: skytemple/skytemple/module/monster/controller/monster.py:121
 msgid "Sprite File Size"
 msgstr "Sprite Dateigröße"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:471
+#: skytemple/skytemple/module/monster/controller/monster.py:487
 msgid "This value can only be edited with the ChangePokemonGroundAnim patch. \n"
 "This tells how idle animations should be handled for each pokemon. "
 msgstr "Dieser Wert kann nur mit dem ChangePokemonGroundAnim-Patch bearbeitet werden. \n"
 "Dies gibt an, wie Animationen im Stillstand für jedes Pokémon gehandhabt werden sollten. "
 
-#: skytemple/skytemple/module/monster/controller/monster.py:473
+#: skytemple/skytemple/module/monster/controller/monster.py:489
 msgid "Idle Animation Types"
 msgstr "Stillstand-Animationstypen"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:483
+#: skytemple/skytemple/module/monster/controller/monster.py:499
 msgid "Value depends on Main Requirement:\n"
 "- Not an Evolved Form: Unused\n"
 "- Level: Level required to evolve\n"
@@ -11663,21 +11663,21 @@ msgstr "Der Wert hängt von der Hauptvoraussetzung ab:\n"
 "- Angeworben: ID des Pokémon, dass zuvor angeworben werden muss\n"
 "- Keine Hauptvoraussetzung: Unbenutzt"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:490
+#: skytemple/skytemple/module/monster/controller/monster.py:506
 msgid "Evolution Parameters"
 msgstr "Entwicklungsparameter"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:500
+#: skytemple/skytemple/module/monster/controller/monster.py:516
 msgid "This value indicates the family of a pokemon.\n"
 "This is used by a certain type of exclusive items that benefits to a family."
 msgstr "Dieser Wert legt die Familie eines Pokémon fest.\n"
 "Dieser wird von bestimmten Typen von exklusiven Items benutzt, die dieser Familie zugeordnet sind."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:502
+#: skytemple/skytemple/module/monster/controller/monster.py:518
 msgid "Base Form Info"
 msgstr "Basis-Form Info"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:512
+#: skytemple/skytemple/module/monster/controller/monster.py:528
 msgid "This value indicates the previous evolution of the pokémon.\n"
 "The game use this in several cases: \n"
 "1 - For evolution purposes.\n"
@@ -11692,11 +11692,11 @@ msgstr "Dieser Wert bestimmt die vorherigen Entwicklung der Pokémon.\n"
 "3 - Für Missionen bei denen es Eier als Belohnung gibt, enthält das Ei ein zufälliges Pokémon basierend auf der Spawn-Listn der Missions-Ebene. Die Pokémon die gewählt werden, sind die Pokémon ohne Vorstufen oder die Vorstufen, die hier definiert werden (tiefste Vorstufen).\n"
 "Falls der ChangeEvoSystem Patch angewendet wird, trifft nur Punkt 2 zu. Die anderen Punkte werden über andere Daten abgebildet."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:519
+#: skytemple/skytemple/module/monster/controller/monster.py:535
 msgid "Pre Evolution Info"
 msgstr "Info zur Vorstufe"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:529
+#: skytemple/skytemple/module/monster/controller/monster.py:545
 msgid "The values are actually percentages.\n"
 "10 -> 1.0%,\n"
 "100 -> 10.0%,\n"
@@ -11710,118 +11710,118 @@ msgstr "Die Werte sind in Wirklichkeit Prozentwerte.\n"
 "Falls die Frage im Persönlichkeitstest, ob der Spieler bereits Zeit oder Dunkelheit gespielt hat, mit Ja beantwortet wurde und das jeweilige Pokémon noch nicht rekrutiert wurde, wird stattdessen der zweite Rekrutierungswert verwendet.\n"
 "Wenn das betroffene Pokémon bereits rekrutiert wurde, wird die Quote halbiert (nur wenn sie positiv ist)."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:536
+#: skytemple/skytemple/module/monster/controller/monster.py:552
 msgid "Recruit Rate"
 msgstr "Rekrutierungsrate"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:546
+#: skytemple/skytemple/module/monster/controller/monster.py:562
 #, python-format
 msgid "The % of HP that this Pokémon regenerates at the end of each turn is equal to 1/(value * 2), before applying any modifiers.\n"
 "The final value is capped between 1/30 and 1/500"
 msgstr "Der Prozentsatz der KP, den dieses Pokémon am Ende jeder Runde regeneriert, entspricht vor Anwendung von Modifikatoren 1/(Wert * 2).\n"
 "Der endgültige Wert ist zwischen 1/30 und 1/500 begrenzt"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:549
+#: skytemple/skytemple/module/monster/controller/monster.py:565
 msgid "HP Regeneration"
 msgstr "KP Regeneration"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:559
+#: skytemple/skytemple/module/monster/controller/monster.py:575
 msgid "Whether or not the enemy or ally AI will move the Pokémon in dungeons."
 msgstr "Ob die Gegner-KI dieses Pokémon im Dungeon bewegt."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:560
+#: skytemple/skytemple/module/monster/controller/monster.py:576
 msgid "Can Move?"
 msgstr "Kann sich bewegen?"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:570
+#: skytemple/skytemple/module/monster/controller/monster.py:586
 msgid "Whether or not the Pokémon can throw any items."
 msgstr "Ob das Pokémon irgendwelche Gegenstände werfen kann oder nicht."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:571
+#: skytemple/skytemple/module/monster/controller/monster.py:587
 msgid "Can Throw Items?"
 msgstr "Kann Items werfen?"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:581
+#: skytemple/skytemple/module/monster/controller/monster.py:597
 msgid "Controls the drop rates of different types of chests.\n"
 "Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected."
 msgstr "Steuert die Drop-Raten von verschiedenen Arten von Boxen.\n"
 "Für jeden Drop-Typen X muss eine Chance von (Rate X)/(Summer aller Raten) ausgewählt werden."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:583
+#: skytemple/skytemple/module/monster/controller/monster.py:599
 msgid "Chests drop rates"
 msgstr "Drop-Daten für Truhen"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:593
+#: skytemple/skytemple/module/monster/controller/monster.py:609
 msgid "Whether or not the Pokémon can evolve at Luminous Spring (If it's off, it will never be allowed to evolve even if it has an evolution)."
 msgstr "Ob sich dieses Pokémon bei der Glitzerquelle entwickeln kann (falls deaktiviert kann es sich nicht entwickeln, selbst wenn Daten für die Entwicklung definiert sind)."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:595
+#: skytemple/skytemple/module/monster/controller/monster.py:611
 msgid "Can Evolve?"
 msgstr "Entwicklung möglich?"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:605
+#: skytemple/skytemple/module/monster/controller/monster.py:621
 msgid "Whether or not you need to have a special item in the bag (mystery part/secret slab) for the Pokémon to spawn in dungeons"
 msgstr "Ob du einen speziellen Gegenstand in der Tasche (Geheimteil/Geheimtafel) benötigst, damit dieses Pokémon in Dungeons spawnen kann"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:607
+#: skytemple/skytemple/module/monster/controller/monster.py:623
 msgid "Item Required for spawning?"
 msgstr "Item zum Spawnen benötigt?"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:617
+#: skytemple/skytemple/module/monster/controller/monster.py:633
 msgid "If the current $SCENARIO_BALANCE_FLAG value is lower than this number, the pokémon won't spawn in dungeons."
 msgstr "Wenn der aktuelle Wert von $SCENARIO_BALANCE_FLAG niedriger ist als diese Zahl, wird das Pokémon nicht in Dungeons spawnen."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:618
+#: skytemple/skytemple/module/monster/controller/monster.py:634
 msgid "Spawn Threshold"
 msgstr "Spawn-Schwellwert"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:628
+#: skytemple/skytemple/module/monster/controller/monster.py:644
 msgid "Affects the damage the Pokémon takes when attacked with Grass Knot."
 msgstr "Beeinflusst den Schaden, den das Pokémon nimmt, wenn es mit Strauchler angegriffen wird."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:639
+#: skytemple/skytemple/module/monster/controller/monster.py:655
 msgid "Affects the damage the Pokémon takes when attacked with a Sizebust Orb."
 msgstr "Beeinflusst den Schaden, den das Pokémon nimmt, wenn es mit einem Proportorb angegriffen wird."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:640
+#: skytemple/skytemple/module/monster/controller/monster.py:656
 msgid "Size"
 msgstr "Größe"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:960
+#: skytemple/skytemple/module/monster/controller/monster.py:976
 msgid "Export Pokémon as..."
 msgstr "Pokémon exportieren als..."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1000
+#: skytemple/skytemple/module/monster/controller/monster.py:1016
 msgid "Import Pokémon from..."
 msgstr "Pokémon importieren aus..."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1266
+#: skytemple/skytemple/module/monster/controller/monster.py:1286
 msgid "Stats and Moves"
 msgstr "Statuswerte und Attacken"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1281
+#: skytemple/skytemple/module/monster/controller/monster.py:1301
 msgid "Sprites"
 msgstr "Sprites"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1318
+#: skytemple/skytemple/module/monster/controller/monster.py:1338
 msgid "??? Enter a valid parameter (#)"
 msgstr "??? Bitte eine gültigen Parameter (#) eingeben"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1337
+#: skytemple/skytemple/module/monster/controller/monster.py:1357
 msgid "??? Enter a valid Base ID (#)"
 msgstr "??? Bitte eine gültige Basis-ID (#) eingeben"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1352
+#: skytemple/skytemple/module/monster/controller/monster.py:1372
 msgid "??? Enter a valid Entry ID ($)"
 msgstr "??? Bitte eine gültige Eintrags-ID ($) eingeben"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1410
+#: skytemple/skytemple/module/monster/controller/monster.py:1430
 msgid "The sprite size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr "Der Wert für die Größe des Sprites vom Pokémon war inkonsistent.\n"
 "SkyTemple hat den Wert automatisch korrigiert."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1444
+#: skytemple/skytemple/module/monster/controller/monster.py:1464
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
 "After the patch is applied, this value defines the Base ID and therefore how Pokémon are grouped.\n"
 "Reload the project after making changes to this value, to reflect them in the tree on the left."
@@ -11829,45 +11829,45 @@ msgstr "Falls der \"ExpandPokeList\" Patch nicht angewendet ist, ist dieser Wert
 "Nachdem der Patch angewendet ist, definiert dieser Wert die Basis-ID und damit wie Pokémon gruppiert sind.\n"
 "Lade das Projekt neu, nachdem du diesen Wert geändert hast, sodass der Wert auch im Dateibaum links aktualisiert wird."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1447
+#: skytemple/skytemple/module/monster/controller/monster.py:1467
 msgid "Entity ID"
 msgstr "Entität-ID"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1457
+#: skytemple/skytemple/module/monster/controller/monster.py:1477
 msgid "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "This list indicates this Pokémon's children. If no children exist, the game will default to that pokémon species. "
 msgstr "Für Missionen mit einem Ei als Belohnung enthält das Ei ein zufälliges Pokémon, das unter den Kinder-Pokémon der Spawnliste der Missions-Ebene ausgewählt wird.\n"
 "Diese Liste zeigt die Kinder dieses Pokémons an. Wenn keine Kinder existieren, wird das Spiel standardmäßig auf diese Pokémon-Spezies auswählen. "
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1459
+#: skytemple/skytemple/module/monster/controller/monster.py:1479
 msgid "Children Info"
 msgstr "Kind-Info"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1469
+#: skytemple/skytemple/module/monster/controller/monster.py:1489
 msgid "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
 "Negative values are allowed."
 msgstr "Dies sind die Boni, die auf Statuswerte angewendet werden, wenn sich ein Poémon in diese Spezies entwickelt.\n"
 "Negative Werte sind erlaubt."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1471
+#: skytemple/skytemple/module/monster/controller/monster.py:1491
 msgid "Evolution Bonus Info"
 msgstr "Entwicklungsbonus Info"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1570
+#: skytemple/skytemple/module/monster/controller/monster.py:1590
 #, python-brace-format
 msgid "A pokémon can't evolve into more than {MAX_EVOS} evolutions."
 msgstr "Ein Pokémon kann sich nicht zu mehr als {MAX_EVOS} Entwicklungen entwickeln."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1577
+#: skytemple/skytemple/module/monster/controller/monster.py:1597
 msgid "Too much evolutions."
 msgstr "Zu viele Entwicklungen."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1583
+#: skytemple/skytemple/module/monster/controller/monster.py:1603
 #, python-brace-format
 msgid "A pokémon can't have more than {MAX_EGGS} children."
 msgstr "Ein Pokémon kann nicht mehr als {MAX_EGGS} Kinder haben."
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1590
+#: skytemple/skytemple/module/monster/controller/monster.py:1610
 msgid "Too much children."
 msgstr "Zu viele Kinder."
 
@@ -11906,15 +11906,15 @@ msgstr "Attacken"
 msgid "at level {x[0]}"
 msgstr "auf Level {x[0]}"
 
-#: skytemple/skytemple/module/monster/module.py:217
+#: skytemple/skytemple/module/monster/module.py:219
 msgid "This entry has no portraits."
 msgstr "Dieser Eintrag hat keine Portraits."
 
-#: skytemple/skytemple/module/monster/module.py:260
+#: skytemple/skytemple/module/monster/module.py:262
 msgid "Stats and moves are only editable for base forms."
 msgstr "Statuswerte und Attacken sind nur für Basis-Formen editierbar."
 
-#: skytemple/skytemple/module/monster/module.py:503
+#: skytemple/skytemple/module/monster/module.py:505
 msgid "Each Pokémon has two gender forms (even if it only has one gender).\n"
 "This entry contains both of these forms. The first form is the main form, it is used as a fallback in some cases, when the data for the second form doesn't exist."
 msgstr "Jedes Pokémon hat zwei Geschlechterformen (auch wenn es nur ein Geschlecht hat).\n"
@@ -13812,57 +13812,57 @@ msgstr "Fehler beim Laden der Pokémon-Liste vom konfigurierten SpriteCollab-Ser
 msgid "Error Updating Sprites"
 msgstr "Fehler beim Aktualisieren der Sprites"
 
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:226
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:227
 #, python-brace-format
 msgid "SpriteCollab (SpriteBot, {DEFAULT_SERVER})"
 msgstr "SpriteCollab (SpriteBot, {DEFAULT_SERVER})"
 
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:227
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:228
 #, python-brace-format
 msgid "NotSpriteCollab ({NOT_SC_SERVER})"
 msgstr "NotSpriteCollab ({NOT_SC_SERVER})"
 
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:228
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:229
 msgid "Custom Server"
 msgstr "Benutzerdefinierter Server"
 
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:365
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:366
 msgid "Failed loading this Pokémon."
 msgstr "Laden dieses Pokémon fehlgeschlagen."
 
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:366
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:367
 msgid "Error Loading Pokémon"
 msgstr "Fehler beim Laden der Pokémon"
 
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:400
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:401
 msgid "<b>Portraits:</b>"
 msgstr "<b>Portraits:</b>"
 
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:411
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:412
 msgid "Apply Portraits"
 msgstr "Portraits anwenden"
 
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:420
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:421
 msgid "<b>Sprites:</b>"
 msgstr "<b>Sprites:</b>"
 
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:438
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:439
 msgid "Apply Sprites"
 msgstr "Sprites anwenden"
 
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:455
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:456
 msgid "<b><i>Make sure to credit artists:</i></b>"
 msgstr "<b><i>Stelle sicher, dass die die Künstler in den Credits erwähnst:</i></b>"
 
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:461
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:462
 msgid "<b>Portrait Credits:</b>"
 msgstr "<b>Portrait-Credits:</b>"
 
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:475
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:476
 msgid "<b>Sprite Credits:</b>"
 msgstr "<b>Sprite-Credits:</b>"
 
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:488
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:489
 msgid "Open Details on Website..."
 msgstr "Details auf der Website öffnen..."
 
