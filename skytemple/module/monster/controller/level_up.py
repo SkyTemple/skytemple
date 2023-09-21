@@ -271,19 +271,19 @@ class LevelUpController(AbstractController):
                     is_missing = _('is missing in the CSV')
                     content = list(csv.DictReader(csv_file))
                     if CSV_LEVEL not in content[0]:
-                        raise ValueError(f'{CSV_LEVEL} {is_missing}.')
+                        raise UserValueError(f'{CSV_LEVEL} {is_missing}.')
                     if CSV_EXP_POINTS not in content[0]:
-                        raise ValueError(f'{CSV_EXP_POINTS} {is_missing}.')
+                        raise UserValueError(f'{CSV_EXP_POINTS} {is_missing}.')
                     if CSV_HP not in content[0]:
-                        raise ValueError(f'{CSV_HP} {is_missing}.')
+                        raise UserValueError(f'{CSV_HP} {is_missing}.')
                     if CSV_ATK not in content[0]:
-                        raise ValueError(f'{CSV_ATK} {is_missing}.')
+                        raise UserValueError(f'{CSV_ATK} {is_missing}.')
                     if CSV_SP_ATK not in content[0]:
-                        raise ValueError(f'{CSV_SP_ATK} {is_missing}.')
+                        raise UserValueError(f'{CSV_SP_ATK} {is_missing}.')
                     if CSV_DEF not in content[0]:
-                        raise ValueError(f'{CSV_DEF} {is_missing}.')
+                        raise UserValueError(f'{CSV_DEF} {is_missing}.')
                     if CSV_SP_DEF not in content[0]:
-                        raise ValueError(f'{CSV_SP_DEF} {is_missing}.')
+                        raise UserValueError(f'{CSV_SP_DEF} {is_missing}.')
                     try:
                         levels = [int(row[CSV_LEVEL]) for row in content]
                         for row in content:
@@ -294,10 +294,10 @@ class LevelUpController(AbstractController):
                             int(row[CSV_DEF])
                             int(row[CSV_SP_DEF])
                     except ValueError:
-                        raise ValueError(_('All values must be numbers.'))
+                        raise UserValueError(_('All values must be numbers.'))
                     all_levels = set(range(1, 101))
                     if len(levels) != len(all_levels) or set(levels) != all_levels:
-                        raise ValueError(_("The CSV must contain one entry per level."))
+                        raise UserValueError(_("The CSV must contain one entry per level."))
                     content.sort(key=lambda row: int(row[CSV_LEVEL]))
             except BaseException as err:
                 display_error(
