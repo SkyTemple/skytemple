@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-20 19:37+0000\n"
-"PO-Revision-Date: 2023-09-22 13:12\n"
+"PO-Revision-Date: 2023-09-22 15:04\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -165,7 +165,7 @@ msgstr "Escaleras al Bazar Secreto encontradas"
 
 #: /dev/fd/63:37 /dev/fd/63:159
 msgid "Kirlia Secret Bazaar Greeting"
-msgstr ""
+msgstr "Saludo del Bazar Secreto de Kirlia"
 
 #: /dev/fd/63:38 /dev/fd/63:160
 msgid "Grab Bags Shop Strings"
@@ -995,7 +995,7 @@ msgstr "La imagen seleccionada para importar es demasiado compleja. Tiene demasi
 
 #: skytemple-files/skytemple_files/common/util.py:535
 msgid "The file you tried to open does not seem to be a valid NDS ROM file."
-msgstr ""
+msgstr "El archivo que intentaste abrir no es un archivo ROM NDS válido."
 
 #: skytemple-files/skytemple_files/common/util.py:549
 msgid "This ROM is not supported by SkyTemple."
@@ -3465,7 +3465,7 @@ msgstr "Recursión infinita detectada en preevoluciones para la entrada de MD {i
 #: skytemple-files/skytemple_files/patch/handler/change_evo.py:244
 #, python-brace-format
 msgid "One of the monsters in the pre-evolution chain of monster ${i:04} has an invalid pre evolution configured: ${pre_evo:04}. Can not apply patch."
-msgstr ""
+msgstr "Uno de los monstruos de la cadena anterior a la evolución del monstruo ${i:04} tiene una configuración previa no válida: ${pre_evo:04}. No se puede aplicar el parche."
 
 #: skytemple-files/skytemple_files/patch/handler/change_ff_prop.py:52
 msgid "Changes and adds some properties for fixed floors.\n"
@@ -5857,7 +5857,7 @@ msgstr "Error al intentar mostrar el error. ¡Guau!"
 
 #: skytemple/skytemple/core/error_handler.py:79
 msgid "You can try opening one of the following file manually in a web browser or text editor: "
-msgstr ""
+msgstr "Puedes intentar abrir uno de los siguientes archivos manualmente en un navegador web o editor de texto: "
 
 #: skytemple/skytemple/core/error_handler.py:98 skytemple/skytemple/main.py:162
 msgid "SkyTemple - Error!"
@@ -13187,7 +13187,7 @@ msgstr "Nombre de nivel"
 
 #: skytemple/skytemple/module/script/controller/main.py:128
 msgid "If you also need a new background for this level, you can create one under \"Map Backgrounds\" and assign it to this level afterwards."
-msgstr ""
+msgstr "Si también necesitas un nuevo fondo para este nivel, puedes crear uno debajo de \"Fondos de mapa\" y asignarlo a este nivel después."
 
 #: skytemple/skytemple/module/script/controller/main.py:157
 msgid "New level created."
