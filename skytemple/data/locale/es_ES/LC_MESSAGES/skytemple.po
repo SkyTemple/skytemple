@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-20 19:37+0000\n"
-"PO-Revision-Date: 2023-09-20 19:53\n"
+"PO-Revision-Date: 2023-09-22 09:14\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -1765,7 +1765,7 @@ msgstr "Muro Mágico"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:250
 msgid "Multitype"
-msgstr ""
+msgstr "Multitipo"
 
 #. TRANSLATORS: Name of the ability.
 #: skytemple-files/skytemple_files/data/md/protocol.py:251
@@ -3996,12 +3996,12 @@ msgstr ""
 
 #: skytemple-rust/src/st_dpla.rs:100
 msgid "Palette is invalid."
-msgstr ""
+msgstr "La paleta no es válida."
 
 #: skytemple-rust/src/st_dpla.rs:106 skytemple-rust/src/st_dpla.rs:166
 #: skytemple-rust/src/st_dpla.rs:203 skytemple-rust/src/st_dpla.rs:211
 msgid "Palette index out of range."
-msgstr ""
+msgstr "Índice de paleta fuera de rango."
 
 #: skytemple-rust/src/st_dpla.rs:258
 msgid "Frame durations out of range while trying to build color."
@@ -4484,12 +4484,13 @@ msgstr "¡Error al cargar el emulador!"
 #, python-brace-format
 msgid "The emulator reported an error:\n\n"
 "{errs_as_str}"
-msgstr ""
+msgstr "El emulador ha reportado el siguiente error:\n\n"
+"{errs_as_str}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:338
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:344
 msgid "Emulator Error"
-msgstr ""
+msgstr "Error de emulador"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:343
 msgid "The emulator reported an internal error:\n\n"
@@ -5174,15 +5175,15 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1640
 msgid "Disable Sound"
-msgstr ""
+msgstr "Desactivar sonido"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1656
 msgid "Disable Background Music"
-msgstr ""
+msgstr "Desactivar música de fondo"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1672
 msgid "Disable Sound Effects"
-msgstr ""
+msgstr "Desactivar efectos de sonido"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1698
 msgid "Stage NPC Dummy (?)"
@@ -5263,15 +5264,15 @@ msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2071
 msgid "Thread"
-msgstr ""
+msgstr "Hilo"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2087
 msgid "Kernel"
-msgstr ""
+msgstr "Kernel"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2103
 msgid "Performance"
-msgstr ""
+msgstr "Rendimiento"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2155
 #: skytemple/skytemple/module/misc_graphics/controller/font.glade:302
@@ -7026,7 +7027,7 @@ msgstr "(y/o) <b>2b. Copiar a otro(s) piso(s)</b>"
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1069
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3329
 msgid "Main Weight"
-msgstr ""
+msgstr "Peso principal"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1075
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3361
@@ -7279,7 +7280,7 @@ msgstr "El generador de pisos aleatorios ha fallado tres veces seguidas\n"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3379
 msgid "MH Chance"
-msgstr ""
+msgstr "Probabilidad de nidos de monstruos"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3429
 msgid "Use same spawn weights for Monster Houses"
@@ -11819,7 +11820,8 @@ msgstr "??? Introduce una entrada de ID válida ($)"
 #: skytemple/skytemple/module/monster/controller/monster.py:1430
 msgid "The sprite size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
-msgstr ""
+msgstr "El tamaño del sprite de este Pokémon no era consistente para su sprite asignado.\n"
+"SkyTemple lo ha corregido automáticamente."
 
 #: skytemple/skytemple/module/monster/controller/monster.py:1464
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
@@ -13489,11 +13491,11 @@ msgstr "El nombre del archivo es demasiado largo (máx. 8 caracteres)."
 
 #: skytemple/skytemple/module/script/module.py:548
 msgid "Script Scenes for maps in category \"{}\""
-msgstr ""
+msgstr "Scripts de escenas para mapas de la categoría \"{}\""
 
 #: skytemple/skytemple/module/script/module.py:549
 msgid "This section contains all the script scenes of maps, that start with the letter {}."
-msgstr ""
+msgstr "Esta sección contiene todas los scripts de escenas de los mapas que comienzan con la letra {}."
 
 #: skytemple/skytemple/module/script/module.py:551
 msgid "Script Scenes for other maps"
@@ -13505,13 +13507,15 @@ msgstr "Esta sección contiene todos los scripts de escenas de los mapas que no 
 
 #: skytemple/skytemple/module/script/module.py:565
 msgid "Sub Scenes for \"{}\""
-msgstr ""
+msgstr "Subescenas para \"{}\""
 
 #: skytemple/skytemple/module/script/module.py:567
 msgid "This section contains all sub scenes for the map {}.\n\n"
 "These scenes can be loaded on top of the \"Enter\" scene,\n"
 "depending on the current story progress."
-msgstr ""
+msgstr "Esta sección contiene todas las subescenas del mapa {}.\n\n"
+"Estas escenas pueden ser cargadas sobre la escena \"Entrada\",\n"
+"dependiendo del progreso actual de la historia."
 
 #: skytemple/skytemple/module/script/module.py:577
 msgid "Acting Scenes for \"{}\""
@@ -13521,7 +13525,9 @@ msgstr "Escenas de acción para \"{}\""
 msgid "This section contains all acting scenes for the map {}.\n\n"
 "These scenes are used for cutscenes.\n"
 "The player can usually not move the character in them."
-msgstr ""
+msgstr "Esta sección contiene todas las escenas de acción para el mapa {}.\n\n"
+"Estas escenas se utilizan para cinemáticas.\n"
+"El jugador normalmente no puede mover al personaje en ellas."
 
 #: skytemple/skytemple/module/sprite/controller/monster_sprite.glade:48
 msgid "<span size=\"large\">Spritesheet</span>"
@@ -14423,7 +14429,7 @@ msgstr ""
 
 #: skytemple/skytemple/skytemple.glade:2648
 msgid "Advanced Options"
-msgstr ""
+msgstr "Opciones avanzadas"
 
 #: skytemple/skytemple/skytemple.glade:2727
 msgid "Additional Input Image (optional)"
