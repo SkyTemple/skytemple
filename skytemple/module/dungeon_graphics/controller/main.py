@@ -14,11 +14,13 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from enum import Enum
 from typing import TYPE_CHECKING, Type, Union, Optional
 
 from gi.repository import Gtk
 
 from skytemple.core.module_controller import AbstractController
+from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import glib_async, builder_get_assert, iter_tree_model
 from skytemple_files.common.i18n_util import f, _
 from skytemple_files.data.md.protocol import PokeType
@@ -115,17 +117,23 @@ class MainController(AbstractController):
         # cr_secret_power_effect
         self._create_for_enum(builder_get_assert(self.builder, Gtk.CellRendererCombo, 'cr_secret_power_effect'), TilesetSecretPowerEffect)
         # cr_camouflage_type
-        self._create_for_enum(builder_get_assert(self.builder, Gtk.CellRendererCombo, 'cr_camouflage_type'), PokeType)
+        self._create_for_enum_with_strings(builder_get_assert(self.builder, Gtk.CellRendererCombo, 'cr_camouflage_type'), PokeType, StringType.TYPE_NAMES)
         # cr_nature_power_move_entry
         self._create_for_enum(builder_get_assert(self.builder, Gtk.CellRendererCombo, 'cr_nature_power_move_entry'), TilesetNaturePowerMoveEntry)
         # cr_weather_effect
         self._create_for_enum(builder_get_assert(self.builder, Gtk.CellRendererCombo, 'cr_weather_effect'), TilesetWeatherEffect)
 
-    def _create_for_enum(self, cr: Gtk.CellRendererCombo, en: Union[Type[TilesetBaseEnum], Type[PokeType]]):
+    def _create_for_enum(self, cr: Gtk.CellRendererCombo, en: Type[Enum]):
         store = Gtk.ListStore(int, str)  # id, name
         cr.props.model = store
         for e in en:
             store.append([e.value, e.print_name])  # type: ignore
+
+    def _create_for_enum_with_strings(self, cr: Gtk.CellRendererCombo, en: Type[Enum], string_type: StringType):
+        store = Gtk.ListStore(int, str)  # id, name
+        cr.props.model = store
+        for e in en:
+            store.append([e.value, self.module.project.get_string_provider().get_value(string_type, e.value)])  # type: ignore
 
     def _init_values(self):
         from skytemple.module.dungeon_graphics.module import NUMBER_OF_TILESETS
@@ -137,7 +145,8 @@ class MainController(AbstractController):
                 v.camouflage_type.value, v.nature_power_move_entry.value, v.weather_effect.value,
                 v.full_water_floor,
                 v.map_color.print_name, v.stirring_effect.print_name, v.secret_power_effect.print_name,
-                v.camouflage_type.print_name, v.nature_power_move_entry.print_name, v.weather_effect.print_name,
+                self.module.project.get_string_provider().get_value(StringType.TYPE_NAMES, v.camouflage_type.value),
+                v.nature_power_move_entry.print_name, v.weather_effect.print_name,
             ])
 
     def _save_list(self):

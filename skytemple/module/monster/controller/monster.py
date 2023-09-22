@@ -1110,7 +1110,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         # IQ Groups
         self._comboxbox_for_enum(['cb_iq_group'], IQGroup)
         # Abilities
-        self._comboxbox_for_enum(['cb_ability_primary', 'cb_ability_secondary'], Ability, True)
+        self._comboxbox_for_enum_with_strings(['cb_ability_primary', 'cb_ability_secondary'], Ability, StringType.ABILITY_NAMES, unused_starting_at=0x7C)
         # Evolution Methods
         self._comboxbox_for_enum(['cb_evo_method'], EvolutionMethod)
         # Additional Requirement
@@ -1212,10 +1212,13 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         for name in names:
             self._fast_set_comboxbox_store(builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1)
 
-    def _comboxbox_for_enum_with_strings(self, names: List[str], enum: Type[Enum], string_type: StringType):
+    def _comboxbox_for_enum_with_strings(self, names: List[str], enum: Type[Enum], string_type: StringType, unused_starting_at=999999):
         store = Gtk.ListStore(int, str)  # id, name
         for entry in enum:
-            store.append([entry.value, self._string_provider.get_value(string_type, entry.value)])
+            name = _("Unused") + f" 0x{entry.value:0x}"
+            if entry.value < unused_starting_at:
+                name = self._string_provider.get_value(string_type, entry.value)
+            store.append([entry.value, name])
         for name in names:
             self._fast_set_comboxbox_store(builder_get_assert(self.builder, Gtk.ComboBox, name), store, 1)
 

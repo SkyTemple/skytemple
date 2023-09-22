@@ -1620,7 +1620,11 @@ class FloorController(AbstractController):
                 store, self.module.project.get_sprite_provider().get_for_trap, i, i, (trap, )
             )
             store.append([
-                trap.value, trap.name, chance, str(relative_weight), trap_icon
+                trap.value,
+                self.module.project.get_string_provider().get_value(StringType.TRAP_NAMES, trap.value),
+                chance,
+                str(relative_weight),
+                trap_icon
             ])
 
     def _init_item_spawns(self):
