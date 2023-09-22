@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-09-20 19:37+0000\n"
-"PO-Revision-Date: 2023-09-20 19:53\n"
+"POT-Creation-Date: 2023-09-22 20:12+0000\n"
+"PO-Revision-Date: 2023-09-22 20:21\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -1051,7 +1051,6 @@ msgstr "Centre"
 
 #: skytemple-files/skytemple_files/data/anim/model.py:50
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:36
-#: skytemple-files/skytemple_files/data/md/protocol.py:92
 #: skytemple-files/skytemple_files/data/md/protocol.py:479
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:354
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:540
@@ -1227,722 +1226,15 @@ msgstr "Femelle"
 msgid "Genderless"
 msgstr "Genre neutre"
 
-#: skytemple-files/skytemple_files/data/md/protocol.py:93
-#: skytemple/skytemple/module/spritecollab/controller/browser.py:384
-msgid "Normal"
-msgstr "Normal"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:94
-msgid "Fire"
-msgstr "Feu"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:95
-#: skytemple-files/skytemple_files/data/md/protocol.py:522
-msgid "Water"
-msgstr "Eau"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:96
-msgid "Grass"
-msgstr "Plante"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:97
-msgid "Electric"
-msgstr "Électrik"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:98
-msgid "Ice"
-msgstr "Glace"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:99
-msgid "Fighting"
-msgstr "Combat"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:100
-msgid "Poison"
-msgstr "Poison"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:101
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1879
-msgid "Ground"
-msgstr "Sol"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:102
-msgid "Flying"
-msgstr "Vol"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:103
-msgid "Psychic"
-msgstr "Psy"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:104
-msgid "Bug"
-msgstr "Insecte"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:105
-msgid "Rock"
-msgstr "Roche"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:106
-msgid "Ghost"
-msgstr "Spectre"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:107
-msgid "Dragon"
-msgstr "Dragon"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:108
-msgid "Dark"
-msgstr "Ténèbres"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:109
-msgid "Steel"
-msgstr "Acier"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:110
-msgid "Neutral"
-msgstr "Neutre"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:133
-msgid "Stench"
-msgstr "Puanteur"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:134
-msgid "Thick Fat"
-msgstr "Isograisse"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:135
-msgid "Rain Dish"
-msgstr "Cuvette"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:136
-msgid "Drizzle"
-msgstr "Crachin"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:137
-msgid "Arena Trap"
-msgstr "Piège"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:138
-msgid "Intimidate"
-msgstr "Intimidation"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:139
-msgid "Rock Head"
-msgstr "Tête de Roc"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:140
-msgid "Air Lock"
-msgstr "Air Lock"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:141
-msgid "Hyper Cutter"
-msgstr "Hyper Cutter"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:142
-msgid "Shadow tag"
-msgstr "Marque Ombre"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:143
-msgid "Speed Boost"
-msgstr "Turbo"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:144
-msgid "Battle Armor"
-msgstr "Armurbaston"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:145
-msgid "Sturdy"
-msgstr "Fermeté"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:146
-msgid "Suction Cups"
-msgstr "Ventouse"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:147
-msgid "Clear Body"
-msgstr "Corps Sain"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:148
-msgid "Torrent"
-msgstr "Torrent"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:149
-msgid "Guts"
-msgstr "Cran"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:150
-msgid "Rough Skin"
-msgstr "Peau Dure"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:151
-msgid "Shell Armor"
-msgstr "Coque Armure"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:152
-msgid "Natural Cure"
-msgstr "Médic Nature"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:153
-msgid "Damp"
-msgstr "Moiteur"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:154
-msgid "Limber"
-msgstr "Echauffement"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:155
-msgid "Magnet Pull"
-msgstr "Magnépiège"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:156
-msgid "White Smoke"
-msgstr "Ecran Fumée"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:157
-msgid "Synchronize"
-msgstr "Synchro"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:158
-msgid "Overgrow"
-msgstr "Engrais"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:159
-msgid "Swift Swim"
-msgstr "Glissade"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:160
-msgid "Sand Stream"
-msgstr "Sable Volant"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:161
-msgid "Sand Veil"
-msgstr "Voile Sable"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:162
-msgid "Keen Eye"
-msgstr "Regard Vif"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:163
-msgid "Inner Focus"
-msgstr "Attention"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:164
-#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:36
-msgid "Static"
-msgstr "Statik"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:165
-msgid "Shed Skin"
-msgstr "Mue"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:166
-msgid "Huge Power"
-msgstr "Coloforce"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:167
-msgid "Volt Absorb"
-msgstr "Absorb Volt"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:168
-msgid "Water Absorb"
-msgstr "Absorb Eau"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:169
-msgid "Forecast"
-msgstr "Météo"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:170
-msgid "Serene Grace"
-msgstr "Sérénité"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:171
-msgid "Poison Point"
-msgstr "Point Poison"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:172
-msgid "Trace"
-msgstr "Calque"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:173
-msgid "Oblivious"
-msgstr "Benêt"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:174
-msgid "Truant"
-msgstr "Absentéisme"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:175
-msgid "Run Away"
-msgstr "Fuite"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:176
-msgid "Sticky Hold"
-msgstr "Glue"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:177
-msgid "Cloud Nine"
-msgstr "Ciel Gris"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:178
-msgid "Illuminate"
-msgstr "Lumiatirance"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:179
-msgid "Early Bird"
-msgstr "Matinal"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:180
-msgid "Hustle"
-msgstr "Agitation"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:181
-msgid "Drought"
-msgstr "Sécheresse"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:182
-msgid "LightningRod"
-msgstr "Paratonnerre"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:183
-msgid "CompoundEyes"
-msgstr "Oeil Composé"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:184
-msgid "Marvel Scale"
-msgstr "Ecaille Spé."
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:185
-msgid "Wonder Guard"
-msgstr "Garde Mystik"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:186
-msgid "Insomnia"
-msgstr "Insomnia"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:187
-msgid "Levitate"
-msgstr "Lévitation"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:188
-msgid "Plus"
-msgstr "Plus"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:189
-msgid "Pressure"
-msgstr "Pression"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:190
-msgid "Liquid Ooze"
-msgstr "Suintement"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:191
-msgid "Color Change"
-msgstr "Déguisement"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:192
-msgid "Soundproof"
-msgstr "Anti-Bruit"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:193
-msgid "Effect Spore"
-msgstr "Pose Spore"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:194
-msgid "Flame Body"
-msgstr "Corps Ardent"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:195
-msgid "Minus"
-msgstr "Minus"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:196
-msgid "Own Tempo"
-msgstr "Tempo Perso"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:197
-msgid "Magma Armor"
-msgstr "Armumagma"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:198
-msgid "Water Veil"
-msgstr "Ignifu-Voile"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:199
-msgid "Swarm"
-msgstr "Essaim"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:200
-msgid "Cute Charm"
-msgstr "Joli Sourire"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:201
-msgid "Immunity"
-msgstr "Vaccin"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:202
-msgid "Blaze"
-msgstr "Brasier"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:203
-msgid "Pickup"
-msgstr "Ramassage"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:204
-msgid "Flash Fire"
-msgstr "Torche"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:205
-msgid "Vital Spirit"
-msgstr "Esprit Vital"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:206
-msgid "Chlorophyll"
-msgstr "Chlorophyle"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:207
-msgid "Pure Power"
-msgstr "Force Pure"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:208
-msgid "Shield Dust"
-msgstr "Ecran Poudre"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:209
-msgid "Ice Body"
-msgstr "Corps Gel"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:210
-msgid "Stall"
-msgstr "Frein"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:211
-msgid "Anger Point"
-msgstr "Colérique"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:212
-msgid "Tinted Lens"
-msgstr "Lentiteintée"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:213
-msgid "Hydration"
-msgstr "Hydratation"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:214
-msgid "Frisk"
-msgstr "Fouille"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:215
-msgid "Mold Breaker"
-msgstr "Brise Moule"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:216
-msgid "Unburden"
-msgstr "Délestage"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:217
-msgid "Dry Skin"
-msgstr "Peau Sèche"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:218
-msgid "Anticipation"
-msgstr "Anticipation"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:219
-msgid "Scrappy"
-msgstr "Querelleur"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:220
-msgid "Super Luck"
-msgstr "Chanceux"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:221
-msgid "Gluttony"
-msgstr "Gloutonnerie"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:222
-msgid "Solar Power"
-msgstr "Force Soleil"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:223
-msgid "Skill Link"
-msgstr "Multi-Coups"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:224
-msgid "Reckless"
-msgstr "Téméraire"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:225
-msgid "Sniper"
-msgstr "Sniper"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:226
-msgid "Slow Start"
-msgstr "Début Calme"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:227
-msgid "Heatproof"
-msgstr "Ignifuge"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:228
-msgid "Download"
-msgstr "Télécharge"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:229
-msgid "Simple"
-msgstr "Simple"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:230
-msgid "Tangled Feet"
-msgstr "Pieds Confus"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:231
-msgid "Adaptability"
-msgstr "Adaptabilité"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:232
-msgid "Technician"
-msgstr "Technicien"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:233
-msgid "Iron Fist"
-msgstr "Poing de Fer"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:234
-msgid "Motor Drive"
-msgstr "Motorisé"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:235
-msgid "Unaware"
-msgstr "Inconscient"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:236
-msgid "Rivalry"
-msgstr "Rivalité"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:237
-msgid "Bad Dreams"
-msgstr "Mauvais Rêve"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:238
-msgid "No Guard"
-msgstr "Annule Garde"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:239
-msgid "Normalize"
-msgstr "Normalise"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:240
-msgid "Solid Rock"
-msgstr "Solide Roc"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:241
-msgid "Quick Feet"
-msgstr "Pied Véloce"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:242
-msgid "Filter"
-msgstr "Filtre"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:243
-msgid "Klutz"
-msgstr "Maladresse"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:244
-msgid "Steadfast"
-msgstr "Impassible"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:245
-msgid "Flower Gift"
-msgstr "Don Floral"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:246
-msgid "Poison Heal"
-msgstr "Soin Poison"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:247
-msgid "Magic Guard"
-msgstr "Garde Magik"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:250
-msgid "Multitype"
-msgstr ""
-
-#. TRANSLATORS: Name of the ability.
-#: skytemple-files/skytemple_files/data/md/protocol.py:251
-msgid "Honey Gather"
-msgstr "Cherche Miel"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:252
-msgid "Aftermath"
-msgstr "Boom Final"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:253
-msgid "Snow Cloak"
-msgstr "Rideau Neige"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:254
-msgid "Snow Warning"
-msgstr "Alerte Neige"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:255
-msgid "Forewarn"
-msgstr "Prédiction"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:256
-msgid "Storm Drain"
-msgstr "Lavabo"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:257
-msgid "Leaf Guard"
-msgstr "Feuil. Garde"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:258
-#: skytemple-files/skytemple_files/data/md/protocol.py:259
-#: skytemple-files/skytemple_files/data/md/protocol.py:260
-#: skytemple-files/skytemple_files/data/md/protocol.py:261
-#: skytemple-files/skytemple_files/data/md/protocol.py:262
-#: skytemple-files/skytemple_files/data/md/protocol.py:263
-#: skytemple-files/skytemple_files/data/md/protocol.py:264
-#: skytemple-files/skytemple_files/data/md/protocol.py:265
-#: skytemple-files/skytemple_files/data/md/protocol.py:266
-#: skytemple-files/skytemple_files/data/md/protocol.py:267
-#: skytemple-files/skytemple_files/data/md/protocol.py:268
-#: skytemple-files/skytemple_files/data/md/protocol.py:269
-#: skytemple-files/skytemple_files/data/md/protocol.py:270
-#: skytemple-files/skytemple_files/data/md/protocol.py:271
-#: skytemple-files/skytemple_files/data/md/protocol.py:272
-#: skytemple-files/skytemple_files/data/md/protocol.py:273
-#: skytemple-files/skytemple_files/data/md/protocol.py:274
-#: skytemple-files/skytemple_files/data/md/protocol.py:275
-#: skytemple-files/skytemple_files/data/md/protocol.py:276
-#: skytemple-files/skytemple_files/data/md/protocol.py:277
-#: skytemple-files/skytemple_files/data/md/protocol.py:278
-#: skytemple-files/skytemple_files/data/md/protocol.py:279
-#: skytemple-files/skytemple_files/data/md/protocol.py:280
-#: skytemple-files/skytemple_files/data/md/protocol.py:281
-#: skytemple-files/skytemple_files/data/md/protocol.py:282
-#: skytemple-files/skytemple_files/data/md/protocol.py:283
-#: skytemple-files/skytemple_files/data/md/protocol.py:284
-#: skytemple-files/skytemple_files/data/md/protocol.py:285
-#: skytemple-files/skytemple_files/data/md/protocol.py:286
-#: skytemple-files/skytemple_files/data/md/protocol.py:287
-#: skytemple-files/skytemple_files/data/md/protocol.py:288
-#: skytemple-files/skytemple_files/data/md/protocol.py:289
-#: skytemple-files/skytemple_files/data/md/protocol.py:290
-#: skytemple-files/skytemple_files/data/md/protocol.py:291
-#: skytemple-files/skytemple_files/data/md/protocol.py:292
-#: skytemple-files/skytemple_files/data/md/protocol.py:293
-#: skytemple-files/skytemple_files/data/md/protocol.py:294
-#: skytemple-files/skytemple_files/data/md/protocol.py:295
-#: skytemple-files/skytemple_files/data/md/protocol.py:296
-#: skytemple-files/skytemple_files/data/md/protocol.py:297
-#: skytemple-files/skytemple_files/data/md/protocol.py:298
-#: skytemple-files/skytemple_files/data/md/protocol.py:299
-#: skytemple-files/skytemple_files/data/md/protocol.py:300
-#: skytemple-files/skytemple_files/data/md/protocol.py:301
-#: skytemple-files/skytemple_files/data/md/protocol.py:302
-#: skytemple-files/skytemple_files/data/md/protocol.py:303
-#: skytemple-files/skytemple_files/data/md/protocol.py:304
-#: skytemple-files/skytemple_files/data/md/protocol.py:305
-#: skytemple-files/skytemple_files/data/md/protocol.py:306
-#: skytemple-files/skytemple_files/data/md/protocol.py:307
-#: skytemple-files/skytemple_files/data/md/protocol.py:308
-#: skytemple-files/skytemple_files/data/md/protocol.py:309
-#: skytemple-files/skytemple_files/data/md/protocol.py:310
-#: skytemple-files/skytemple_files/data/md/protocol.py:311
-#: skytemple-files/skytemple_files/data/md/protocol.py:312
-#: skytemple-files/skytemple_files/data/md/protocol.py:313
-#: skytemple-files/skytemple_files/data/md/protocol.py:314
-#: skytemple-files/skytemple_files/data/md/protocol.py:315
-#: skytemple-files/skytemple_files/data/md/protocol.py:316
-#: skytemple-files/skytemple_files/data/md/protocol.py:317
-#: skytemple-files/skytemple_files/data/md/protocol.py:318
-#: skytemple-files/skytemple_files/data/md/protocol.py:319
-#: skytemple-files/skytemple_files/data/md/protocol.py:320
-#: skytemple-files/skytemple_files/data/md/protocol.py:321
-#: skytemple-files/skytemple_files/data/md/protocol.py:322
-#: skytemple-files/skytemple_files/data/md/protocol.py:323
-#: skytemple-files/skytemple_files/data/md/protocol.py:324
-#: skytemple-files/skytemple_files/data/md/protocol.py:325
-#: skytemple-files/skytemple_files/data/md/protocol.py:326
-#: skytemple-files/skytemple_files/data/md/protocol.py:327
-#: skytemple-files/skytemple_files/data/md/protocol.py:328
-#: skytemple-files/skytemple_files/data/md/protocol.py:329
-#: skytemple-files/skytemple_files/data/md/protocol.py:330
-#: skytemple-files/skytemple_files/data/md/protocol.py:331
-#: skytemple-files/skytemple_files/data/md/protocol.py:332
-#: skytemple-files/skytemple_files/data/md/protocol.py:333
-#: skytemple-files/skytemple_files/data/md/protocol.py:334
-#: skytemple-files/skytemple_files/data/md/protocol.py:335
-#: skytemple-files/skytemple_files/data/md/protocol.py:336
-#: skytemple-files/skytemple_files/data/md/protocol.py:337
-#: skytemple-files/skytemple_files/data/md/protocol.py:338
-#: skytemple-files/skytemple_files/data/md/protocol.py:339
-#: skytemple-files/skytemple_files/data/md/protocol.py:340
-#: skytemple-files/skytemple_files/data/md/protocol.py:341
-#: skytemple-files/skytemple_files/data/md/protocol.py:342
-#: skytemple-files/skytemple_files/data/md/protocol.py:343
-#: skytemple-files/skytemple_files/data/md/protocol.py:344
-#: skytemple-files/skytemple_files/data/md/protocol.py:345
-#: skytemple-files/skytemple_files/data/md/protocol.py:346
-#: skytemple-files/skytemple_files/data/md/protocol.py:347
-#: skytemple-files/skytemple_files/data/md/protocol.py:348
-#: skytemple-files/skytemple_files/data/md/protocol.py:349
-#: skytemple-files/skytemple_files/data/md/protocol.py:350
-#: skytemple-files/skytemple_files/data/md/protocol.py:351
-#: skytemple-files/skytemple_files/data/md/protocol.py:352
-#: skytemple-files/skytemple_files/data/md/protocol.py:353
-#: skytemple-files/skytemple_files/data/md/protocol.py:354
-#: skytemple-files/skytemple_files/data/md/protocol.py:355
-#: skytemple-files/skytemple_files/data/md/protocol.py:356
-#: skytemple-files/skytemple_files/data/md/protocol.py:357
-#: skytemple-files/skytemple_files/data/md/protocol.py:358
-#: skytemple-files/skytemple_files/data/md/protocol.py:359
-#: skytemple-files/skytemple_files/data/md/protocol.py:360
-#: skytemple-files/skytemple_files/data/md/protocol.py:361
-#: skytemple-files/skytemple_files/data/md/protocol.py:362
-#: skytemple-files/skytemple_files/data/md/protocol.py:363
-#: skytemple-files/skytemple_files/data/md/protocol.py:364
-#: skytemple-files/skytemple_files/data/md/protocol.py:365
-#: skytemple-files/skytemple_files/data/md/protocol.py:366
-#: skytemple-files/skytemple_files/data/md/protocol.py:367
-#: skytemple-files/skytemple_files/data/md/protocol.py:368
-#: skytemple-files/skytemple_files/data/md/protocol.py:369
-#: skytemple-files/skytemple_files/data/md/protocol.py:370
-#: skytemple-files/skytemple_files/data/md/protocol.py:371
-#: skytemple-files/skytemple_files/data/md/protocol.py:372
-#: skytemple-files/skytemple_files/data/md/protocol.py:373
-#: skytemple-files/skytemple_files/data/md/protocol.py:374
-#: skytemple-files/skytemple_files/data/md/protocol.py:375
-#: skytemple-files/skytemple_files/data/md/protocol.py:376
-#: skytemple-files/skytemple_files/data/md/protocol.py:377
-#: skytemple-files/skytemple_files/data/md/protocol.py:378
-#: skytemple-files/skytemple_files/data/md/protocol.py:379
-#: skytemple-files/skytemple_files/data/md/protocol.py:380
-#: skytemple-files/skytemple_files/data/md/protocol.py:381
-#: skytemple-files/skytemple_files/data/md/protocol.py:382
-#: skytemple-files/skytemple_files/data/md/protocol.py:383
-#: skytemple-files/skytemple_files/data/md/protocol.py:384
-#: skytemple-files/skytemple_files/data/md/protocol.py:385
-#: skytemple-files/skytemple_files/data/md/protocol.py:386
-#: skytemple-files/skytemple_files/data/md/protocol.py:387
-#: skytemple-files/skytemple_files/data/md/protocol.py:388
 #: skytemple-files/skytemple_files/data/md/protocol.py:421
 #: skytemple-files/skytemple_files/data/md/protocol.py:422
 #: skytemple-files/skytemple_files/data/md/protocol.py:425
 #: skytemple-files/skytemple_files/data/md/protocol.py:426
 #: skytemple-files/skytemple_files/data/md/protocol.py:427
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:160
+#: skytemple/skytemple/module/monster/controller/monster.py:1218
 msgid "Unused"
 msgstr "Non-utilisé"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:389
-msgid "NONE"
-msgstr "AUCUNE"
-
-#: skytemple-files/skytemple_files/data/md/protocol.py:390
-msgid "NULL"
-msgstr "NULL"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:451
 msgid "Not an Evolved Form."
@@ -2070,6 +1362,10 @@ msgstr "Traverser les murs"
 #: skytemple-files/skytemple_files/data/md/protocol.py:521
 msgid "Lava"
 msgstr "Lave"
+
+#: skytemple-files/skytemple_files/data/md/protocol.py:522
+msgid "Water"
+msgstr "Eau"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:545
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:59
@@ -2960,10 +2256,10 @@ msgstr "Séisme"
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:356
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:357
 #: skytemple-files/skytemple_files/hardcoded/dungeons.py:359
-#: skytemple/skytemple/module/monster/controller/monster.py:1398
-#: skytemple/skytemple/module/monster/controller/monster.py:1399
-#: skytemple/skytemple/module/monster/controller/monster.py:1400
 #: skytemple/skytemple/module/monster/controller/monster.py:1401
+#: skytemple/skytemple/module/monster/controller/monster.py:1402
+#: skytemple/skytemple/module/monster/controller/monster.py:1403
+#: skytemple/skytemple/module/monster/controller/monster.py:1404
 msgid "???"
 msgstr ""
 
@@ -4271,6 +3567,10 @@ msgstr "Fermer"
 msgid "Free"
 msgstr "Libre"
 
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:36
+msgid "Static"
+msgstr "Statik"
+
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/global_state.py:37
 msgid "Block"
 msgstr "Bloc"
@@ -5214,6 +4514,10 @@ msgstr ""
 msgid "Dungeon"
 msgstr "Donjon"
 
+#: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1879
+msgid "Ground"
+msgstr "Sol"
+
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1911
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3143
 msgid "Script Debug"
@@ -5587,7 +4891,7 @@ msgid "_OK"
 msgstr "_OK"
 
 #: skytemple/skytemple/_i18n.py:36
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1968
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1972
 msgid "No"
 msgstr "Non"
 
@@ -5596,7 +4900,7 @@ msgid "_No"
 msgstr "_Non"
 
 #: skytemple/skytemple/_i18n.py:38
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1969
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1973
 msgid "Yes"
 msgstr "Oui"
 
@@ -6672,7 +5976,7 @@ msgid "No override"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:514
-#: skytemple/skytemple/module/dungeon/controller/floor.py:2008
+#: skytemple/skytemple/module/dungeon/controller/floor.py:2012
 #, python-brace-format
 msgid "No. {i}"
 msgstr "N° {i}"
@@ -7604,22 +6908,22 @@ msgstr "Importer un étage depuis..."
 msgid "Error importing the floor."
 msgstr "Erreur lors de l'import de l'étage."
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1989
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1993
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:105
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:119
 msgid "Random "
 msgstr "Aléatoire "
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1992
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1996
 msgid "Invalid?"
 msgstr "Invalide ?"
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:1994
+#: skytemple/skytemple/module/dungeon/controller/floor.py:1998
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:124
 msgid "INVALID!!!"
 msgstr "INVALIDE !!!"
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:2006
+#: skytemple/skytemple/module/dungeon/controller/floor.py:2010
 msgid "No fixed room"
 msgstr "Aucune pièce fixe"
 
@@ -8300,7 +7604,7 @@ msgid "- The images is a 256-color indexed PNG.\n"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/main.glade:40
-#: skytemple/skytemple/module/dungeon_graphics/controller/main.py:31
+#: skytemple/skytemple/module/dungeon_graphics/controller/main.py:33
 msgid "Dungeon Graphics"
 msgstr ""
 
@@ -10997,7 +10301,7 @@ msgid "Stat Growth"
 msgstr "Gains de Stats"
 
 #: skytemple/skytemple/module/monster/controller/main.glade:238
-#: skytemple/skytemple/module/monster/controller/monster.py:1289
+#: skytemple/skytemple/module/monster/controller/monster.py:1292
 msgid "Portraits"
 msgstr "Portraits"
 
@@ -11650,75 +10954,75 @@ msgstr ""
 msgid "Import Pokémon from..."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1286
+#: skytemple/skytemple/module/monster/controller/monster.py:1289
 msgid "Stats and Moves"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1301
+#: skytemple/skytemple/module/monster/controller/monster.py:1304
 msgid "Sprites"
 msgstr "Sprites"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1338
+#: skytemple/skytemple/module/monster/controller/monster.py:1341
 msgid "??? Enter a valid parameter (#)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1357
+#: skytemple/skytemple/module/monster/controller/monster.py:1360
 msgid "??? Enter a valid Base ID (#)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1372
+#: skytemple/skytemple/module/monster/controller/monster.py:1375
 msgid "??? Enter a valid Entry ID ($)"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1430
+#: skytemple/skytemple/module/monster/controller/monster.py:1433
 msgid "The sprite size of this Pokémon was not consistent for this Pokémon's assigned sprite.\n"
 "SkyTemple automatically corrected it."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1464
+#: skytemple/skytemple/module/monster/controller/monster.py:1467
 msgid "If the 'ExpandPokeList' patch is not applied, this is unused. Note however that it is used to build groups when applying the patches.\n"
 "After the patch is applied, this value defines the Base ID and therefore how Pokémon are grouped.\n"
 "Reload the project after making changes to this value, to reflect them in the tree on the left."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1467
+#: skytemple/skytemple/module/monster/controller/monster.py:1470
 msgid "Entity ID"
 msgstr "ID d'entité"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1477
+#: skytemple/skytemple/module/monster/controller/monster.py:1480
 msgid "For missions with an egg as a reward, the egg contains a random Pokémon that is selected among the child Pokémon of the ones in the spawn list of the mission floor.\n"
 "This list indicates this Pokémon's children. If no children exist, the game will default to that pokémon species. "
 msgstr "Pour les missions avec un œuf comme récompense, l’œuf contient un Pokémon sélectionné au hasard Paris la liste des enfants des Pokémon de la liste d’apparition de cet étage.\n"
 "Cette liste indique les enfants des Pokémon. Si aucunes enfants existe, le jeu utilise l’espèce du parent par défaut. "
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1479
+#: skytemple/skytemple/module/monster/controller/monster.py:1482
 msgid "Children Info"
 msgstr "Info des enfants"
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1489
+#: skytemple/skytemple/module/monster/controller/monster.py:1492
 msgid "These are the bonuses applied to stats when a Pokémon evolved into that species.\n"
 "Negative values are allowed."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1491
+#: skytemple/skytemple/module/monster/controller/monster.py:1494
 msgid "Evolution Bonus Info"
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1590
+#: skytemple/skytemple/module/monster/controller/monster.py:1593
 #, python-brace-format
 msgid "A pokémon can't evolve into more than {MAX_EVOS} evolutions."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1597
+#: skytemple/skytemple/module/monster/controller/monster.py:1600
 msgid "Too much evolutions."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1603
+#: skytemple/skytemple/module/monster/controller/monster.py:1606
 #, python-brace-format
 msgid "A pokémon can't have more than {MAX_EGGS} children."
 msgstr ""
 
-#: skytemple/skytemple/module/monster/controller/monster.py:1610
+#: skytemple/skytemple/module/monster/controller/monster.py:1613
 msgid "Too much children."
 msgstr "Trop d'enfants."
 
@@ -13635,6 +12939,10 @@ msgstr ""
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:367
 msgid "Error Loading Pokémon"
 msgstr ""
+
+#: skytemple/skytemple/module/spritecollab/controller/browser.py:384
+msgid "Normal"
+msgstr "Normal"
 
 #: skytemple/skytemple/module/spritecollab/controller/browser.py:401
 msgid "<b>Portraits:</b>"
