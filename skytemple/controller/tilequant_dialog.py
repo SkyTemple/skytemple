@@ -139,7 +139,9 @@ class TilequantController:
         builder_get_assert(builder, Gtk.Button, "tq_convert").connect(
             "clicked", self.convert
         )
-        builder.get_object("tq_help").connect("clicked", self.show_wiki_help)
+        builder_get_assert(builder, Gtk.Button, "tq_help").connect(
+            "clicked", self.show_wiki_help
+        )
         self.builder = builder
         self._previous_output_image: Optional[str] = None
         self._previous_second_output_image: Optional[str] = None
