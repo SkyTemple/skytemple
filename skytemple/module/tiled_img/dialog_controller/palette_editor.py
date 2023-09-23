@@ -96,8 +96,8 @@ class PaletteEditorController:
         page_num = self.notebook.get_current_page()
         color: Gdk.Color = cb.get_color()
         self.palettes[page_num][color_index * 3 : color_index * 3 + 3] = [
-            int(color.red_float * 255),
-            int(color.green_float * 255),
+            int(color.red_float * 255),  # type: ignore
+            int(color.green_float * 255),  # type: ignore
             int(color.blue_float * 255),  # type: ignore
         ]
 
