@@ -21,13 +21,18 @@ from typing import List
 from gi.repository import GLib
 
 from skytemple.core.events.abstract_listener import AbstractListener
-from skytemple.core.events.events import EVT_FOCUS_LOST, EVT_MAIN_WINDOW_FOCUS, EVT_DEBUGGER_WINDOW_FOCUS
+from skytemple.core.events.events import (
+    EVT_FOCUS_LOST,
+    EVT_MAIN_WINDOW_FOCUS,
+    EVT_DEBUGGER_WINDOW_FOCUS,
+)
 
 logger = logging.getLogger(__name__)
 
 
 class EventManager:
     """Class for handling UI events."""
+
     _instance = None
 
     def __init__(self):
@@ -46,13 +51,14 @@ class EventManager:
 
     def trigger(self, event_name: str, *args, **kwargs):
         """Triggers the specified UI event with the provided arguments."""
-        logger.debug(f'Event {event_name} triggered.')
+        logger.debug(f"Event {event_name} triggered.")
         for listener in self._listeners:
             try:
                 listener.on(event_name, *args, **kwargs)
             except BaseException as ex:
                 logger.error(
-                    f'Error while handling event {event_name} with handler {listener}: {str(ex)}', exc_info=ex
+                    f"Error while handling event {event_name} with handler {listener}: {str(ex)}",
+                    exc_info=ex,
                 )
 
     def register_listener(self, listener_instance: AbstractListener):
@@ -95,7 +101,11 @@ class EventManager:
     def lost_foucs_check(self):
         """Check if both windows don't have focus."""
         self._will_check_focus = False
-        if self._a_window_had_focus and not self._debugger_window_focus and not self._main_window_focus:
+        if (
+            self._a_window_had_focus
+            and not self._debugger_window_focus
+            and not self._main_window_focus
+        ):
             self._a_window_had_focus = False
             self.trigger(EVT_FOCUS_LOST)
 

@@ -16,11 +16,18 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import cairo
 
-from skytemple.module.dungeon.fixed_room_entity_renderer.abstract import AbstractEntityRenderer
+from skytemple.module.dungeon.fixed_room_entity_renderer.abstract import (
+    AbstractEntityRenderer,
+)
 from skytemple.module.dungeon.minimap_provider import MinimapProvider, ZMAPPAT_DIM
 from skytemple_files.common.dungeon_floor_generator.generator import TileType, RoomType
-from skytemple_files.dungeon_data.fixed_bin.model import EntityRule, FixedFloorActionRule, TileRuleType, TileRule, \
-    DirectRule
+from skytemple_files.dungeon_data.fixed_bin.model import (
+    EntityRule,
+    FixedFloorActionRule,
+    TileRuleType,
+    TileRule,
+    DirectRule,
+)
 from skytemple_files.dungeon_data.mappa_bin.protocol import MappaTrapType
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
 
@@ -33,10 +40,14 @@ class MinimapEntityRenderer(AbstractEntityRenderer):
         super().__init__(parent)
         self.minimap_provider = minimap_provider
 
-    def draw_action(self, ctx: cairo.Context, action: FixedFloorActionRule, x: int, y: int):
+    def draw_action(
+        self, ctx: cairo.Context, action: FixedFloorActionRule, x: int, y: int
+    ):
         if isinstance(action, EntityRule):
             assert self.parent.entity_rule_container is not None
-            item, monster, tile, stats = self.parent.entity_rule_container.get(action.entity_rule_id)
+            item, monster, tile, stats = self.parent.entity_rule_container.get(
+                action.entity_rule_id
+            )
             # Has trap?
             if tile.trap_id == MappaTrapType.WONDER_TILE.value:
                 self.paint(ctx, self.minimap_provider.get_minimap_tile(7), x, y)
@@ -47,13 +58,15 @@ class MinimapEntityRenderer(AbstractEntityRenderer):
                 self.paint(ctx, self.minimap_provider.get_minimap_tile(3), x, y)
             # Has Pokémon?
             if monster.md_idx > 0:
-                if monster.enemy_settings == MonsterSpawnType.ENEMY_STRONG or \
-                        monster.enemy_settings == MonsterSpawnType.ENEMY_NORMAL or \
-                        monster.enemy_settings == MonsterSpawnType.ENEMY_OUTLAW or \
-                        monster.enemy_settings == MonsterSpawnType.ENEMY_NORMAL_2 or \
-                        monster.enemy_settings == MonsterSpawnType.OUTLAW or \
-                        monster.enemy_settings == MonsterSpawnType.OUTLAW_RUN or \
-                        monster.enemy_settings == MonsterSpawnType.UNKNOWN_F:
+                if (
+                    monster.enemy_settings == MonsterSpawnType.ENEMY_STRONG
+                    or monster.enemy_settings == MonsterSpawnType.ENEMY_NORMAL
+                    or monster.enemy_settings == MonsterSpawnType.ENEMY_OUTLAW
+                    or monster.enemy_settings == MonsterSpawnType.ENEMY_NORMAL_2
+                    or monster.enemy_settings == MonsterSpawnType.OUTLAW
+                    or monster.enemy_settings == MonsterSpawnType.OUTLAW_RUN
+                    or monster.enemy_settings == MonsterSpawnType.UNKNOWN_F
+                ):
                     self.paint(ctx, self.minimap_provider.get_minimap_tile(2), x, y)
                 else:
                     self.paint(ctx, self.minimap_provider.get_minimap_tile(10), x, y)
@@ -71,10 +84,16 @@ class MinimapEntityRenderer(AbstractEntityRenderer):
             if action.tr_type == TileRuleType.ATTENDANT3_SPAWN:
                 self.paint(ctx, self.minimap_provider.get_minimap_tile(10), x, y)
             # Key walls
-            if action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0C or action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0D:
+            if (
+                action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0C
+                or action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0D
+            ):
                 self.paint(ctx, self.minimap_provider.get_minimap_tile(9), x, y)
             # Warp zone
-            if action.tr_type == TileRuleType.WARP_ZONE or action.tr_type == TileRuleType.WARP_ZONE_2:
+            if (
+                action.tr_type == TileRuleType.WARP_ZONE
+                or action.tr_type == TileRuleType.WARP_ZONE_2
+            ):
                 self.paint(ctx, self.minimap_provider.get_minimap_tile(5), x, y)
         elif isinstance(action, DirectRule):
             if action.tile.typ == TileType.PLAYER_SPAWN:

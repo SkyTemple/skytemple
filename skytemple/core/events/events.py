@@ -15,10 +15,10 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-EVT_MAIN_WINDOW_FOCUS = 'main_window_focus'
-EVT_DEBUGGER_WINDOW_FOCUS = 'debugger_window_focus'
-EVT_FOCUS_LOST = 'focus_lost'
-EVT_PROJECT_OPEN = 'project_open'
-EVT_VIEW_SWITCH = 'view_switch'
-EVT_DEBUGGER_SCRIPT_OPEN = 'debugger_script_open'
-EVT_DEBUGGER_SELECTED_STRING_CHANGED = 'debugger_selected_string_changed'
+EVT_MAIN_WINDOW_FOCUS = "main_window_focus"
+EVT_DEBUGGER_WINDOW_FOCUS = "debugger_window_focus"
+EVT_FOCUS_LOST = "focus_lost"
+EVT_PROJECT_OPEN = "project_open"
+EVT_VIEW_SWITCH = "view_switch"
+EVT_DEBUGGER_SCRIPT_OPEN = "debugger_script_open"
+EVT_DEBUGGER_SELECTED_STRING_CHANGED = "debugger_selected_string_changed"

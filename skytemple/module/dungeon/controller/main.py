@@ -27,9 +27,14 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple.core.string_provider import StringType
-from skytemple_files.dungeon_data.mappa_bin.validator.exception import DungeonTotalFloorCountInvalidError, \
-    DungeonValidatorError, InvalidFloorListReferencedError, InvalidFloorReferencedError, FloorReusedError, \
-    DungeonMissingFloorError
+from skytemple_files.dungeon_data.mappa_bin.validator.exception import (
+    DungeonTotalFloorCountInvalidError,
+    DungeonValidatorError,
+    InvalidFloorListReferencedError,
+    InvalidFloorReferencedError,
+    FloorReusedError,
+    DungeonMissingFloorError,
+)
 from skytemple_files.hardcoded.dungeons import DungeonDefinition
 from skytemple.controller.main import MainController as MainSkyTempleController
 from skytemple_files.common.i18n_util import f, _
@@ -39,14 +44,12 @@ from skytemple.core.ui_utils import builder_get_assert, iter_tree_model
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, DungeonGroup
 
-DUNGEONS_NAME = _('Dungeons')
-DND_TARGETS = [
-    Gtk.TargetEntry.new('MY_TREE_MODEL_ROW', Gtk.TargetFlags.SAME_WIDGET, 0)
-]
+DUNGEONS_NAME = _("Dungeons")
+DND_TARGETS = [Gtk.TargetEntry.new("MY_TREE_MODEL_ROW", Gtk.TargetFlags.SAME_WIDGET, 0)]
 
 
 class MainController(AbstractController):
-    def __init__(self, module: 'DungeonModule', *args):
+    def __init__(self, module: "DungeonModule", *args):
         self.module = module
 
         self.builder: Gtk.Builder = None  # type: ignore
@@ -54,19 +57,23 @@ class MainController(AbstractController):
         self.string_provider = self.module.project.get_string_provider()
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'main.glade')
+        self.builder = self._get_builder(__file__, "main.glade")
         assert self.builder
 
         # Enable drag and drop
-        dungeons_tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree_grouped')
-        dungeons_tree.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK, DND_TARGETS, Gdk.DragAction.MOVE)
+        dungeons_tree = builder_get_assert(self.builder, Gtk.TreeView, "tree_grouped")
+        dungeons_tree.enable_model_drag_source(
+            Gdk.ModifierType.BUTTON1_MASK, DND_TARGETS, Gdk.DragAction.MOVE
+        )
         dungeons_tree.enable_model_drag_dest(DND_TARGETS, Gdk.DragAction.MOVE)
 
         self.builder.connect_signals(self)
-        return builder_get_assert(self.builder, Gtk.Widget, 'main_box')
+        return builder_get_assert(self.builder, Gtk.Widget, "main_box")
 
     def on_fix_dungeons_clicked(self, *args):
-        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_fix_dungeon_errors')
+        dialog = builder_get_assert(
+            self.builder, Gtk.Dialog, "dialog_fix_dungeon_errors"
+        )
         dialog.set_attached_to(SkyTempleMainController.window())
         dialog.set_transient_for(SkyTempleMainController.window())
         dialog.resize(900, 520)
@@ -74,7 +81,7 @@ class MainController(AbstractController):
         dungeon_list = self.module.get_dungeon_list()
         validator = self.module.get_validator()
         validator.validate(dungeon_list)
-        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_dungeon_errors')
+        store = builder_get_assert(self.builder, Gtk.ListStore, "store_dungeon_errors")
         store.clear()
         validator.errors.sort(key=lambda e: e.dungeon_id)
         for e in validator.errors:
@@ -82,16 +89,20 @@ class MainController(AbstractController):
                 if isinstance(e, FloorReusedError):
                     i = e.reused_of_dungeon_with_id
                     e.reused_of_dungeon_name = f'{"dungeon"} {i} ({self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, i)})'
-                dungeon_name = f'{e.dungeon_id}: {self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, e.dungeon_id)}'
-                store.append([
-                    True,  # selected
-                    dungeon_name,  # dungeon_name
-                    e.dungeon_id,  # dungeon_id
-                    textwrap.fill(e.name, 40),  # error_name
-                    textwrap.fill(str(e), 40),  # error_description
-                    textwrap.fill(self._get_solution_text(dungeon_list, e), 40),  # solution
-                    e,  # error
-                ])
+                dungeon_name = f"{e.dungeon_id}: {self.module.project.get_string_provider().get_value(StringType.DUNGEON_NAMES_MAIN, e.dungeon_id)}"
+                store.append(
+                    [
+                        True,  # selected
+                        dungeon_name,  # dungeon_name
+                        e.dungeon_id,  # dungeon_id
+                        textwrap.fill(e.name, 40),  # error_name
+                        textwrap.fill(str(e), 40),  # error_description
+                        textwrap.fill(
+                            self._get_solution_text(dungeon_list, e), 40
+                        ),  # solution
+                        e,  # error
+                    ]
+                )
 
         resp = dialog.run()
         dialog.hide()
@@ -109,19 +120,24 @@ class MainController(AbstractController):
             if not validator.validate(dungeon_list):
                 md = SkyTempleMessageDialog(
                     MainSkyTempleController.window(),
-                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.WARNING,
+                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                    Gtk.MessageType.WARNING,
                     Gtk.ButtonsType.OK,
-                    _("Dungeon Errors were fixed.\nHowever there are still errors left. "
-                      "Re-open the dialog to fix the rest. If they are still not fixed, please report a bug!"),
-                    title=_("Fix Dungeon Errors")
+                    _(
+                        "Dungeon Errors were fixed.\nHowever there are still errors left. "
+                        "Re-open the dialog to fix the rest. If they are still not fixed, please report a bug!"
+                    ),
+                    title=_("Fix Dungeon Errors"),
                 )
             else:
                 md = SkyTempleMessageDialog(
                     MainSkyTempleController.window(),
-                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                    Gtk.MessageType.INFO,
                     Gtk.ButtonsType.OK,
                     _("Dungeon Errors were successfully fixed."),
-                    title=_("Fix Dungeon Errors"), is_success=True
+                    title=_("Fix Dungeon Errors"),
+                    is_success=True,
                 )
             md.run()
             md.destroy()
@@ -131,17 +147,19 @@ class MainController(AbstractController):
             self.module.rebuild_dungeon_tree()
 
     def on_cr_errors_fix_toggled(self, widget, path):
-        store = builder_get_assert(self.builder, Gtk.ListStore, 'store_dungeon_errors')
+        store = builder_get_assert(self.builder, Gtk.ListStore, "store_dungeon_errors")
         store[path][0] = not widget.get_active()
 
     def on_edit_groups_clicked(self, *args):
         if not self.module.get_validator().validate(self.module.get_dungeon_list()):
             display_error(
                 None,
-                _("The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first.")
+                _(
+                    "The game currently contains invalid dungeons. Please click 'Fix Dungeon Errors' first."
+                ),
             )
             return
-        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_groups')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, "dialog_groups")
         dialog.set_attached_to(SkyTempleMainController.window())
         dialog.set_transient_for(SkyTempleMainController.window())
 
@@ -152,16 +170,24 @@ class MainController(AbstractController):
         if resp == Gtk.ResponseType.APPLY:
             try:
                 # Collect new dungeon groupings and tell module to re-group dungeons
-                new_groups: List[Union['DungeonGroup', int]] = sorted(self._collect_new_groups_from_dialog(), key=int)
-                dungeon_ids_from_dialog = set(chain.from_iterable([x] if isinstance(x, int) else x.dungeon_ids for x in new_groups))
+                new_groups: List[Union["DungeonGroup", int]] = sorted(
+                    self._collect_new_groups_from_dialog(), key=int
+                )
+                dungeon_ids_from_dialog = set(
+                    chain.from_iterable(
+                        [x] if isinstance(x, int) else x.dungeon_ids for x in new_groups
+                    )
+                )
 
                 # Sanity check
                 if expected_dungeon_ids != dungeon_ids_from_dialog:
                     display_error(
                         None,
-                        _("Dungeons were missing in the list. This is a bug in SkyTemple! "
-                          "Please try again and report this!"),
-                        _("Failed regrouping the dungeons.")
+                        _(
+                            "Dungeons were missing in the list. This is a bug in SkyTemple! "
+                            "Please try again and report this!"
+                        ),
+                        _("Failed regrouping the dungeons."),
                     )
                     return
 
@@ -170,7 +196,7 @@ class MainController(AbstractController):
                 display_error(
                     sys.exc_info(),
                     _("An internal error occurred: ") + str(ex),
-                    _("Failed regrouping the dungeons.")
+                    _("Failed regrouping the dungeons."),
                 )
                 return
 
@@ -179,7 +205,7 @@ class MainController(AbstractController):
     def _load_dungeons(self):
         from skytemple.module.dungeon.module import DungeonGroup
 
-        dungeons_tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree_grouped')
+        dungeons_tree = builder_get_assert(self.builder, Gtk.TreeView, "tree_grouped")
         dungeons = cast(Optional[Gtk.TreeStore], dungeons_tree.get_model())
         assert dungeons is not None
         dungeons.clear()
@@ -187,7 +213,9 @@ class MainController(AbstractController):
         dungeon_ids = set()
         for dungeon_or_group in self.module.load_dungeons():
             if isinstance(dungeon_or_group, DungeonGroup):
-                group_root = dungeons.append(None, self._generate_group_row(dungeon_or_group.base_dungeon_id))
+                group_root = dungeons.append(
+                    None, self._generate_group_row(dungeon_or_group.base_dungeon_id)
+                )
                 for dungeon_id in dungeon_or_group.dungeon_ids:
                     dungeon_ids.add(dungeon_id)
                     dungeons.append(group_root, self._generate_dungeon_row(dungeon_id))
@@ -198,19 +226,23 @@ class MainController(AbstractController):
 
     # <editor-fold desc="DRAGGING AND DROPPING IN THE GROUP DIALOG" defaultstate="collapsed">
 
-    def on_tree_grouped_drag_data_get(self, w: Gtk.TreeView, context, selection: Gtk.SelectionData, target_id, etime):
+    def on_tree_grouped_drag_data_get(
+        self, w: Gtk.TreeView, context, selection: Gtk.SelectionData, target_id, etime
+    ):
         model, treeiter = w.get_selection().get_selected()
         if treeiter is not None:
             dungeon_id = model[treeiter][1]
             was_group = model[treeiter][0]
             if not was_group:
-                selection.set(selection.get_target(), 8, bytes(dungeon_id, 'utf-8'))
+                selection.set(selection.get_target(), 8, bytes(dungeon_id, "utf-8"))
 
-    def on_tree_grouped_drag_data_received(self, w: Gtk.TreeView, context, x, y, selection: Gtk.SelectionData, info, etime):
+    def on_tree_grouped_drag_data_received(
+        self, w: Gtk.TreeView, context, x, y, selection: Gtk.SelectionData, info, etime
+    ):
         model = cast(Optional[Gtk.TreeStore], w.get_model())
         assert model is not None
-        dungeon_id_str = str(selection.get_data(), 'utf-8')
-        if dungeon_id_str == '':
+        dungeon_id_str = str(selection.get_data(), "utf-8")
+        if dungeon_id_str == "":
             return
         dungeon_id = int(dungeon_id_str)
         dungeon_iter = self._find_dungeon_iter(model, dungeon_id)
@@ -220,19 +252,26 @@ class MainController(AbstractController):
 
         if drop_info:
             path, position = drop_info
-            if model.get_path(dungeon_iter) != path:  # do not continue when dragging on itself.
+            if (
+                model.get_path(dungeon_iter) != path
+            ):  # do not continue when dragging on itself.
                 iter = model.get_iter(path)
 
                 did_drag = True
 
                 # Did we drag onto a group or a dungeon in a group?
                 new_group_iter = self._get_group_iter(model, iter, position)
-                old_group_iter = self._get_group_iter(model, dungeon_iter, Gtk.TreeViewDropPosition.INTO_OR_BEFORE)
+                old_group_iter = self._get_group_iter(
+                    model, dungeon_iter, Gtk.TreeViewDropPosition.INTO_OR_BEFORE
+                )
 
                 if not new_group_iter:
                     # After/Before top level:
                     # Don't do anything
-                    if position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE or position == Gtk.TreeViewDropPosition.INTO_OR_AFTER:
+                    if (
+                        position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE
+                        or position == Gtk.TreeViewDropPosition.INTO_OR_AFTER
+                    ):
                         # Inside top level, dungeon:
                         # Build new group
                         dungeon_id_insert = model[iter][1]
@@ -240,18 +279,24 @@ class MainController(AbstractController):
                         assert iter is not None
                         model.remove(iter)
                         if before_iter is None:
-                            new_iter = model.insert(None, 0, self._generate_group_row(
-                                dungeon_id_insert
-                            ))
+                            new_iter = model.insert(
+                                None, 0, self._generate_group_row(dungeon_id_insert)
+                            )
                         else:
-                            new_iter = model.insert_after(model.iter_parent(before_iter), before_iter, self._generate_group_row(
-                                dungeon_id_insert
-                            ))
-                        model.append(new_iter, self._generate_dungeon_row(dungeon_id_insert))
+                            new_iter = model.insert_after(
+                                model.iter_parent(before_iter),
+                                before_iter,
+                                self._generate_group_row(dungeon_id_insert),
+                            )
+                        model.append(
+                            new_iter, self._generate_dungeon_row(dungeon_id_insert)
+                        )
                         model.append(new_iter, self._generate_dungeon_row(dungeon_id))
                         w.expand_row(model.get_path(new_iter), False)
                     elif old_group_iter is not None:
-                        self._reinsert(model, dungeon_id, self._generate_dungeon_row(dungeon_id))
+                        self._reinsert(
+                            model, dungeon_id, self._generate_dungeon_row(dungeon_id)
+                        )
                     else:
                         did_drag = False
                 else:
@@ -259,16 +304,29 @@ class MainController(AbstractController):
                         # Inside top level, group:
                         # Add to end of group
                         assert new_group_iter is not None
-                        model.append(new_group_iter, self._generate_dungeon_row(dungeon_id))
+                        model.append(
+                            new_group_iter, self._generate_dungeon_row(dungeon_id)
+                        )
                     else:
                         # After/Before in group / Inside in group:
                         # Add it to group after/before this element
-                        if position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE or position == Gtk.TreeViewDropPosition.BEFORE:
+                        if (
+                            position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE
+                            or position == Gtk.TreeViewDropPosition.BEFORE
+                        ):
                             assert new_group_iter is not None
-                            model.insert_before(new_group_iter, iter, self._generate_dungeon_row(dungeon_id))
+                            model.insert_before(
+                                new_group_iter,
+                                iter,
+                                self._generate_dungeon_row(dungeon_id),
+                            )
                         else:
                             assert new_group_iter is not None
-                            model.insert_after(new_group_iter, iter, self._generate_dungeon_row(dungeon_id))
+                            model.insert_after(
+                                new_group_iter,
+                                iter,
+                                self._generate_dungeon_row(dungeon_id),
+                            )
 
                 if did_drag:
                     assert dungeon_iter is not None
@@ -293,7 +351,13 @@ class MainController(AbstractController):
                             dungeon_id_that_was_in_group = model[rem_iter][1]
                             assert old_group_iter is not None
                             model.remove(old_group_iter)
-                            self._reinsert(model, dungeon_id_that_was_in_group, self._generate_dungeon_row(dungeon_id_that_was_in_group))
+                            self._reinsert(
+                                model,
+                                dungeon_id_that_was_in_group,
+                                self._generate_dungeon_row(
+                                    dungeon_id_that_was_in_group
+                                ),
+                            )
 
                     # Select the newly inserted.
                     dungeon_iter = self._find_dungeon_iter(model, dungeon_id)
@@ -304,10 +368,17 @@ class MainController(AbstractController):
             # We remove the source data manual.
             context.finish(True, False, etime)
 
-    def _get_group_iter(self, model: Gtk.TreeStore, liter: Optional[Gtk.TreeIter],
-                        position: Gtk.TreeViewDropPosition) -> Optional[Gtk.TreeIter]:
+    def _get_group_iter(
+        self,
+        model: Gtk.TreeStore,
+        liter: Optional[Gtk.TreeIter],
+        position: Gtk.TreeViewDropPosition,
+    ) -> Optional[Gtk.TreeIter]:
         # If we drag before or after and not into, we work with the parent instead!
-        if position == Gtk.TreeViewDropPosition.BEFORE or position == Gtk.TreeViewDropPosition.AFTER:
+        if (
+            position == Gtk.TreeViewDropPosition.BEFORE
+            or position == Gtk.TreeViewDropPosition.AFTER
+        ):
             if liter is not None:
                 liter = model.iter_parent(liter)
 
@@ -322,11 +393,19 @@ class MainController(AbstractController):
 
     def _generate_dungeon_row(self, dungeon_id):
         dungeon_id = int(dungeon_id)
-        return [False, str(dungeon_id), self.string_provider.get_value(StringType.DUNGEON_NAMES_MAIN, dungeon_id)]
+        return [
+            False,
+            str(dungeon_id),
+            self.string_provider.get_value(StringType.DUNGEON_NAMES_MAIN, dungeon_id),
+        ]
 
     def _generate_group_row(self, base_dungeon_id):
         base_dungeon_id = int(base_dungeon_id)
-        return [True, str(base_dungeon_id), self.module.generate_group_label(base_dungeon_id)]
+        return [
+            True,
+            str(base_dungeon_id),
+            self.module.generate_group_label(base_dungeon_id),
+        ]
 
     def _find_dungeon_iter(self, model, dungeon_id, start=None):
         if start:
@@ -335,7 +414,9 @@ class MainController(AbstractController):
             treeiter = model.get_iter_first()
         while treeiter is not None:
             if model.iter_n_children(treeiter) > 0:
-                candidate = self._find_dungeon_iter(model, dungeon_id, model.iter_nth_child(treeiter, 0))
+                candidate = self._find_dungeon_iter(
+                    model, dungeon_id, model.iter_nth_child(treeiter, 0)
+                )
                 if candidate:
                     return candidate
 
@@ -361,7 +442,9 @@ class MainController(AbstractController):
         if current_group_dungeon_id != first_dungeon_in_group_id:
             # We need to re-write...
             model[group_iter][:] = self._generate_group_row(first_dungeon_in_group_id)
-            after_iter, prepend_instead = self._reinsert_get_pos(model, first_dungeon_in_group_id)
+            after_iter, prepend_instead = self._reinsert_get_pos(
+                model, first_dungeon_in_group_id
+            )
             if not prepend_instead:
                 model.move_before(group_iter, after_iter)
             else:
@@ -386,10 +469,15 @@ class MainController(AbstractController):
 
     # </editor-fold>
 
-    def _collect_new_groups_from_dialog(self, start=None, allow_groups=True) -> Sequence[Union['DungeonGroup', int]]:
+    def _collect_new_groups_from_dialog(
+        self, start=None, allow_groups=True
+    ) -> Sequence[Union["DungeonGroup", int]]:
         from skytemple.module.dungeon.module import DungeonGroup
+
         assert self.builder
-        model = builder_get_assert(self.builder, Gtk.TreeStore, 'store_grouped_dungeons')
+        model = builder_get_assert(
+            self.builder, Gtk.TreeStore, "store_grouped_dungeons"
+        )
         treeiter: Optional[Gtk.TreeIter]
         if start is None:
             treeiter = model.get_iter_first()
@@ -402,13 +490,19 @@ class MainController(AbstractController):
                 assert model[treeiter][0], "Only groups may have children."
                 if not allow_groups:
                     raise ValueError("Group was not allowed on this level.")
-                sub_group_dungeons = self._collect_new_groups_from_dialog(model.iter_nth_child(treeiter, 0), False)
-                assert len(sub_group_dungeons) > 0 and all(isinstance(x, int) for x in sub_group_dungeons)
-                dungeons.append(DungeonGroup(
-                    sub_group_dungeons[0],  # type: ignore
-                    sub_group_dungeons,  # type: ignore
-                    []
-                ))
+                sub_group_dungeons = self._collect_new_groups_from_dialog(
+                    model.iter_nth_child(treeiter, 0), False
+                )
+                assert len(sub_group_dungeons) > 0 and all(
+                    isinstance(x, int) for x in sub_group_dungeons
+                )
+                dungeons.append(
+                    DungeonGroup(
+                        sub_group_dungeons[0],  # type: ignore
+                        sub_group_dungeons,  # type: ignore
+                        [],
+                    )
+                )
             else:
                 assert not model[treeiter][0], "Empty groups are not allowed."
                 dungeons.append(int(model[treeiter][1]))  # type: ignore
@@ -416,39 +510,57 @@ class MainController(AbstractController):
             treeiter = model.iter_next(treeiter)
         return dungeons
 
-    def _get_solution_text(self, dungeons: List[DungeonDefinition], e: DungeonValidatorError):
+    def _get_solution_text(
+        self, dungeons: List[DungeonDefinition], e: DungeonValidatorError
+    ):
         if isinstance(e, InvalidFloorListReferencedError):
-            return _('Create a new floor list with one empty floor for this dungeon.')
+            return _("Create a new floor list with one empty floor for this dungeon.")
         if isinstance(e, InvalidFloorReferencedError):
-            return _('Correct the floor count for this dungeon. If no floor exists, generate one.')
+            return _(
+                "Correct the floor count for this dungeon. If no floor exists, generate one."
+            )
         if isinstance(e, FloorReusedError):
-            return _('Create a new floor list with one empty floor for this dungeon.')
+            return _("Create a new floor list with one empty floor for this dungeon.")
         if isinstance(e, DungeonMissingFloorError):
             # Special case for Regigigas Chamber
             if self._is_regigias_special_case(dungeons, e):
-                return _('Remove the unused floor.')
-            return _('Add the remaining floors to the dungeon.')
-        return '???'
+                return _("Remove the unused floor.")
+            return _("Add the remaining floors to the dungeon.")
+        return "???"
 
     def _is_regigias_special_case(self, dungeons, e):
-        return e.dungeon_id == 61 and dungeons[e.dungeon_id].mappa_index == 52 and \
-                    dungeons[e.dungeon_id].start_after == 18 and e.floors_in_mappa_not_referenced == [19]
+        return (
+            e.dungeon_id == 61
+            and dungeons[e.dungeon_id].mappa_index == 52
+            and dungeons[e.dungeon_id].start_after == 18
+            and e.floors_in_mappa_not_referenced == [19]
+        )
 
     def _fix_error(self, dungeons: List[DungeonDefinition], e: DungeonValidatorError):
         mappa = self.module.get_mappa()
         if isinstance(e, DungeonTotalFloorCountInvalidError):
-            dungeons[e.dungeon_id].number_floors_in_group = e.expected_floor_count_in_group
-        elif isinstance(e, InvalidFloorListReferencedError) or isinstance(e, FloorReusedError):
-            dungeons[e.dungeon_id].mappa_index = self.module.mappa_generate_and_insert_new_floor_list()
+            dungeons[
+                e.dungeon_id
+            ].number_floors_in_group = e.expected_floor_count_in_group
+        elif isinstance(e, InvalidFloorListReferencedError) or isinstance(
+            e, FloorReusedError
+        ):
+            dungeons[
+                e.dungeon_id
+            ].mappa_index = self.module.mappa_generate_and_insert_new_floor_list()
             dungeons[e.dungeon_id].start_after = u8(0)
             dungeons[e.dungeon_id].number_floors = u8(1)
             dungeons[e.dungeon_id].number_floors_in_group = u8(1)
         elif isinstance(e, InvalidFloorReferencedError):
-            valid_floors = len(mappa.floor_lists[e.dungeon.mappa_index]) - e.dungeon.start_after
+            valid_floors = (
+                len(mappa.floor_lists[e.dungeon.mappa_index]) - e.dungeon.start_after
+            )
             if valid_floors > 0:
                 dungeons[e.dungeon_id].number_floors = u8_checked(valid_floors)
             else:
-                mappa.add_floor_to_floor_list(e.dungeon.mappa_index, self.module.mappa_generate_new_floor())
+                mappa.add_floor_to_floor_list(
+                    e.dungeon.mappa_index, self.module.mappa_generate_new_floor()
+                )
                 dungeons[e.dungeon_id].number_floors = u8(1)
         elif isinstance(e, DungeonMissingFloorError):
             # Special case for Regigigas Chamber
@@ -456,7 +568,8 @@ class MainController(AbstractController):
                 # Remove additional floors
                 # Collect floors to keep
                 floor_list = [
-                    floor for i, floor in enumerate(mappa.floor_lists[e.dungeon.mappa_index])
+                    floor
+                    for i, floor in enumerate(mappa.floor_lists[e.dungeon.mappa_index])
                     if i not in e.floors_in_mappa_not_referenced
                 ]
                 # Then first remove all
@@ -468,11 +581,16 @@ class MainController(AbstractController):
             else:
                 # Add additional floors
                 # TODO: Raise error or warning if we can't fix it? It should really always be consecutive.
-                if min(e.floors_in_mappa_not_referenced) == e.dungeon.start_after + e.dungeon.number_floors:
+                if (
+                    min(e.floors_in_mappa_not_referenced)
+                    == e.dungeon.start_after + e.dungeon.number_floors
+                ):
                     if check_consecutive(e.floors_in_mappa_not_referenced):
                         max_floor_id = max(e.floors_in_mappa_not_referenced)
-                        dungeons[e.dungeon_id].number_floors = u8_checked(max_floor_id - dungeons[e.dungeon_id].start_after + 1)
+                        dungeons[e.dungeon_id].number_floors = u8_checked(
+                            max_floor_id - dungeons[e.dungeon_id].start_after + 1
+                        )
 
 
 def check_consecutive(l):
-    return sorted(l) == list(range(min(l), max(l)+1))
+    return sorted(l) == list(range(min(l), max(l) + 1))

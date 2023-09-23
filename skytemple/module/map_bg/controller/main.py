@@ -29,22 +29,25 @@ from skytemple_files.common.types.file_types import FileType
 if TYPE_CHECKING:
     from skytemple.module.map_bg.module import MapBgModule
 
-MAPBG_NAME = _('Map Backgrounds')
+MAPBG_NAME = _("Map Backgrounds")
 
 
 class MainController(AbstractController):
-    def __init__(self, module: 'MapBgModule', item_id: int):
+    def __init__(self, module: "MapBgModule", item_id: int):
         self.module = module
         self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'main.glade')
+        self.builder = self._get_builder(__file__, "main.glade")
         self.builder.connect_signals(self)
-        return builder_get_assert(self.builder, Gtk.Widget, 'box_list')
+        return builder_get_assert(self.builder, Gtk.Widget, "box_list")
 
     def on_btn_add_clicked(self, *args):
         from skytemple.module.map_bg.module import MAP_BG_PATH
-        response, name = self._show_generic_input(_('Map Background Name'), _('Create Background'))
+
+        response, name = self._show_generic_input(
+            _("Map Background Name"), _("Create Background")
+        )
         if response != Gtk.ResponseType.OK:
             return
         name = name.lower()
@@ -52,55 +55,73 @@ class MainController(AbstractController):
         if len(name) < 1 or len(name) > 8:
             md = SkyTempleMessageDialog(
                 SkyTempleMainController.window(),
-                Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
+                Gtk.DialogFlags.MODAL,
+                Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,
-                _("The length of the map background name must be between 1-8 characters.")
+                _(
+                    "The length of the map background name must be between 1-8 characters."
+                ),
             )
             md.run()
             md.destroy()
             return
-        bpl_name = f'{name}.bpl'
-        bpc_name = f'{name}.bpc'
-        bma_name = f'{name}.bma'
-        if self.module.project.file_exists(MAP_BG_PATH + bpl_name) or \
-                self.module.project.file_exists(MAP_BG_PATH + bpc_name) or \
-                self.module.project.file_exists(MAP_BG_PATH + bma_name):
+        bpl_name = f"{name}.bpl"
+        bpc_name = f"{name}.bpc"
+        bma_name = f"{name}.bma"
+        if (
+            self.module.project.file_exists(MAP_BG_PATH + bpl_name)
+            or self.module.project.file_exists(MAP_BG_PATH + bpc_name)
+            or self.module.project.file_exists(MAP_BG_PATH + bma_name)
+        ):
             md = SkyTempleMessageDialog(
                 SkyTempleMainController.window(),
-                Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
+                Gtk.DialogFlags.MODAL,
+                Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,
-                _("A map background with this name already exists.")
+                _("A map background with this name already exists."),
             )
             md.run()
             md.destroy()
             return
 
-        with open(os.path.join(data_dir(), 'empty.bpl'), 'rb') as f:
+        with open(os.path.join(data_dir(), "empty.bpl"), "rb") as f:
             empty_bpl = FileType.BPL.deserialize(f.read())
-        with open(os.path.join(data_dir(), 'empty.bma'), 'rb') as f:
+        with open(os.path.join(data_dir(), "empty.bma"), "rb") as f:
             empty_bma = FileType.BMA.deserialize(f.read())
-        with open(os.path.join(data_dir(), 'empty.bpc'), 'rb') as f:
+        with open(os.path.join(data_dir(), "empty.bpc"), "rb") as f:
             empty_bpc = FileType.BPC.deserialize(f.read())
 
         # Write to ROM
-        self.module.project.create_new_file(MAP_BG_PATH + bpl_name, empty_bpl, FileType.BPL)
-        self.module.project.create_new_file(MAP_BG_PATH + bma_name, empty_bma, FileType.BMA)
-        self.module.project.create_new_file(MAP_BG_PATH + bpc_name, empty_bpc, FileType.BPC)
+        self.module.project.create_new_file(
+            MAP_BG_PATH + bpl_name, empty_bpl, FileType.BPL
+        )
+        self.module.project.create_new_file(
+            MAP_BG_PATH + bma_name, empty_bma, FileType.BMA
+        )
+        self.module.project.create_new_file(
+            MAP_BG_PATH + bpc_name, empty_bpc, FileType.BPC
+        )
         self.module.add_map(name_bg_list)
 
         md = SkyTempleMessageDialog(
             SkyTempleMainController.window(),
-            Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO,
+            Gtk.DialogFlags.MODAL,
+            Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("Map background added successfully"), is_success=True
+            _("Map background added successfully"),
+            is_success=True,
         )
         md.run()
         md.destroy()
 
     def _show_generic_input(self, label_text, ok_text):
-        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'generic_input_dialog')
-        entry = builder_get_assert(self.builder, Gtk.Entry, 'generic_input_dialog_entry')
-        label = builder_get_assert(self.builder, Gtk.Label, 'generic_input_dialog_label')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, "generic_input_dialog")
+        entry = builder_get_assert(
+            self.builder, Gtk.Entry, "generic_input_dialog_entry"
+        )
+        label = builder_get_assert(
+            self.builder, Gtk.Label, "generic_input_dialog_label"
+        )
         label.set_text(label_text)
         btn_cancel = dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
         btn = dialog.add_button(ok_text, Gtk.ResponseType.OK)

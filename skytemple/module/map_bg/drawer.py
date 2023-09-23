@@ -33,6 +33,7 @@ from skytemple_files.graphics.bma.protocol import BmaProtocol
 import cairo
 
 from skytemple_files.graphics.bpc import BPC_TILE_DIM
+
 FPS = 60
 
 
@@ -45,9 +46,13 @@ class DrawerInteraction(Enum):
 
 class Drawer:
     def __init__(
-            self, draw_area: Widget, bma: Union[BmaProtocol, None], bpa_durations: int, pal_ani_durations: int,
-            # chunks_surfaces[layer_number][chunk_idx][palette_animation_frame][frame]
-            chunks_surfaces: Iterable[Iterable[Iterable[Iterable[cairo.Surface]]]]
+        self,
+        draw_area: Widget,
+        bma: Union[BmaProtocol, None],
+        bpa_durations: int,
+        pal_ani_durations: int,
+        # chunks_surfaces[layer_number][chunk_idx][palette_animation_frame][frame]
+        chunks_surfaces: Iterable[Iterable[Iterable[Iterable[cairo.Surface]]]],
     ):
         """
         Initialize a drawer...
@@ -80,16 +85,20 @@ class Drawer:
         self.draw_collision2 = False
         self.draw_data_layer = False
 
-        self.selection_plugin = SelectionDrawerPlugin(BPC_TILE_DIM, BPC_TILE_DIM, self.selection_draw_callback)
+        self.selection_plugin = SelectionDrawerPlugin(
+            BPC_TILE_DIM, BPC_TILE_DIM, self.selection_draw_callback
+        )
         self.tile_grid_plugin = GridDrawerPlugin(BPC_TILE_DIM, BPC_TILE_DIM)
         self.chunk_grid_plugin = GridDrawerPlugin(
-            BPC_TILE_DIM * self.tiling_width, BPC_TILE_DIM * self.tiling_height, color=(0.15, 0.15, 0.15, 0.25)
+            BPC_TILE_DIM * self.tiling_width,
+            BPC_TILE_DIM * self.tiling_height,
+            color=(0.15, 0.15, 0.15, 0.25),
         )
 
         self.scale = 1
 
         self.drawing_is_active = False
-    
+
     def reset_bma(self, bma):
         if isinstance(bma, BmaProtocol):
             self.tiling_width = bma.tiling_width
@@ -118,14 +127,16 @@ class Drawer:
     def reset(self, bma, bpa_durations, pal_ani_durations, chunks_surfaces):
         self.reset_bma(bma)
 
-        self.animation_context = AnimationContext(chunks_surfaces, bpa_durations, pal_ani_durations)
+        self.animation_context = AnimationContext(
+            chunks_surfaces, bpa_durations, pal_ani_durations
+        )
         self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
 
     def start(self):
         """Start drawing on the DrawingArea"""
         self.drawing_is_active = True
         if isinstance(self.draw_area, Gtk.DrawingArea):
-            self.draw_area.connect('draw', self.draw)
+            self.draw_area.connect("draw", self.draw)
         self.draw_area.queue_draw()
         GLib.timeout_add(int(1000 / FPS), self._tick)
 
@@ -155,17 +166,25 @@ class Drawer:
         else:
             ctx.set_source_rgb(1.0, 0, 1.0)
         ctx.rectangle(
-            0, 0,
+            0,
+            0,
             self.width_in_chunks * self.tiling_width * BPC_TILE_DIM,
-            self.height_in_chunks * self.tiling_height * BPC_TILE_DIM
+            self.height_in_chunks * self.tiling_height * BPC_TILE_DIM,
         )
         ctx.fill()
 
-        if self._tileset_drawer_overlay is not None and self._tileset_drawer_overlay.enabled:
-            self._tileset_drawer_overlay.draw_full(ctx, self.mappings[0], self.width_in_chunks, self.height_in_chunks)
+        if (
+            self._tileset_drawer_overlay is not None
+            and self._tileset_drawer_overlay.enabled
+        ):
+            self._tileset_drawer_overlay.draw_full(
+                ctx, self.mappings[0], self.width_in_chunks, self.height_in_chunks
+            )
         else:
             # Layers
-            for layer_idx, chunks_at_frame in enumerate(self.animation_context.current()):
+            for layer_idx, chunks_at_frame in enumerate(
+                self.animation_context.current()
+            ):
                 if self.show_only_edited_layer and layer_idx != self.edited_layer:
                     continue
                 current_layer_mappings = self.mappings[layer_idx]
@@ -174,7 +193,11 @@ class Drawer:
                         chunk = chunks_at_frame[chunk_at_pos]
                         ctx.set_source_surface(chunk, 0, 0)
                         ctx.get_source().set_filter(cairo.Filter.NEAREST)
-                        if self.edited_layer != -1 and layer_idx > 0 and layer_idx != self.edited_layer:
+                        if (
+                            self.edited_layer != -1
+                            and layer_idx > 0
+                            and layer_idx != self.edited_layer
+                        ):
                             # For Layer 1 if not the current edited: Set an alpha mask
                             ctx.paint_with_alpha(0.7)
                         else:
@@ -182,7 +205,9 @@ class Drawer:
                     if (i + 1) % self.width_in_chunks == 0:
                         # Move to beginning of next line
                         if do_translates:
-                            ctx.translate(-chunk_width * (self.width_in_chunks - 1), chunk_height)
+                            ctx.translate(
+                                -chunk_width * (self.width_in_chunks - 1), chunk_height
+                            )
                     else:
                         # Move to next tile in line
                         if do_translates:
@@ -192,22 +217,35 @@ class Drawer:
                 if do_translates:
                     ctx.translate(0, -chunk_height * self.height_in_chunks)
 
-                if (self.edited_layer != -1 and layer_idx < 1 and layer_idx != self.edited_layer) \
-                    or (layer_idx == 1 and self.dim_layers) \
-                    or (layer_idx == 0 and self.animation_context.num_layers < 2 and self.dim_layers):
+                if (
+                    (
+                        self.edited_layer != -1
+                        and layer_idx < 1
+                        and layer_idx != self.edited_layer
+                    )
+                    or (layer_idx == 1 and self.dim_layers)
+                    or (
+                        layer_idx == 0
+                        and self.animation_context.num_layers < 2
+                        and self.dim_layers
+                    )
+                ):
                     # For Layer 0 if not the current edited: Draw dark rectangle
                     # or for layer 1 if dim layers
                     # ...or for layer 0 if dim layers and no second layer
                     ctx.set_source_rgba(0, 0, 0, 0.5)
                     ctx.rectangle(
-                        0, 0,
+                        0,
+                        0,
                         self.width_in_chunks * self.tiling_width * BPC_TILE_DIM,
-                        self.height_in_chunks * self.tiling_height * BPC_TILE_DIM
+                        self.height_in_chunks * self.tiling_height * BPC_TILE_DIM,
                     )
                     ctx.fill()
 
         # Col 1 and 2
-        for col_index, should_draw in enumerate([self.draw_collision1, self.draw_collision2]):
+        for col_index, should_draw in enumerate(
+            [self.draw_collision1, self.draw_collision2]
+        ):
             if should_draw:
                 if col_index == 0:
                     ctx.set_source_rgba(1, 0, 0, 0.4)
@@ -218,11 +256,7 @@ class Drawer:
 
                 for i, c in enumerate(col):
                     if c:
-                        ctx.rectangle(
-                            0, 0,
-                            BPC_TILE_DIM,
-                            BPC_TILE_DIM
-                        )
+                        ctx.rectangle(0, 0, BPC_TILE_DIM, BPC_TILE_DIM)
                         ctx.fill()
                     if (i + 1) % self.width_in_tiles == 0:  # type: ignore
                         # Move to beginning of next line
@@ -238,7 +272,9 @@ class Drawer:
 
         # Data
         if self.draw_data_layer:
-            ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+            ctx.select_font_face(
+                "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
+            )
             ctx.set_font_size(6)
             ctx.set_source_rgb(0, 0, 1)
             assert self.data_layer is not None
@@ -265,7 +301,9 @@ class Drawer:
         size_h //= self.scale
         # Selection
         if self.interaction_mode == DrawerInteraction.CHUNKS:
-            self.selection_plugin.set_size(self.tiling_width * BPC_TILE_DIM, self.tiling_height * BPC_TILE_DIM)
+            self.selection_plugin.set_size(
+                self.tiling_width * BPC_TILE_DIM, self.tiling_height * BPC_TILE_DIM
+            )
         else:
             self.selection_plugin.set_size(BPC_TILE_DIM, BPC_TILE_DIM)
         self.selection_plugin.draw(ctx, size_w, size_h, self.mouse_x, self.mouse_y)
@@ -292,16 +330,14 @@ class Drawer:
             # Draw collision
             if self.interaction_col_solid:
                 ctx.set_source_rgba(1, 0, 0, 1)
-                ctx.rectangle(
-                    x, y,
-                    BPC_TILE_DIM,
-                    BPC_TILE_DIM
-                )
+                ctx.rectangle(x, y, BPC_TILE_DIM, BPC_TILE_DIM)
                 ctx.fill()
         elif self.interaction_mode == DrawerInteraction.DAT:
             # Draw data
             if self.interaction_dat_value > 0:
-                ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+                ctx.select_font_face(
+                    "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
+                )
                 ctx.set_font_size(6)
                 ctx.set_source_rgb(1, 1, 1)
                 ctx.move_to(x, y + BPC_TILE_DIM - 2)
@@ -414,21 +450,31 @@ class Drawer:
 
 
 class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
-    __gproperties__ = {
-        'chunkidx': (int, "", "", 0, 999999, 0, ParamFlags.READWRITE)
-    }
+    __gproperties__ = {"chunkidx": (int, "", "", 0, 999999, 0, ParamFlags.READWRITE)}
 
-    def __init__(self, icon_view, layer: int, bpa_durations: int, pal_ani_durations: int,
-                 chunks_surfaces: Iterable[Iterable[Iterable[Iterable[cairo.Surface]]]]):
-
-        super().__init__(icon_view, None, bpa_durations, pal_ani_durations, chunks_surfaces)
+    def __init__(
+        self,
+        icon_view,
+        layer: int,
+        bpa_durations: int,
+        pal_ani_durations: int,
+        chunks_surfaces: Iterable[Iterable[Iterable[Iterable[cairo.Surface]]]],
+    ):
+        super().__init__(
+            icon_view, None, bpa_durations, pal_ani_durations, chunks_surfaces
+        )
         super(Gtk.CellRenderer, self).__init__()
         self.layer = layer
 
         self.chunkidx = 0
 
     def do_get_size(self, widget, cell_area):
-        return 0, 0, int(BPC_TILE_DIM * 3 * self.scale), int(BPC_TILE_DIM * 3 * self.scale)
+        return (
+            0,
+            0,
+            int(BPC_TILE_DIM * 3 * self.scale),
+            int(BPC_TILE_DIM * 3 * self.scale),
+        )
 
     def do_set_property(self, pspec, value):
         setattr(self, pspec.name, value)
@@ -438,14 +484,17 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
 
     def do_render(self, ctx, wdg, background_area, cell_area, flags):
         ctx.translate(cell_area.x, cell_area.y)
-        self.mappings = [[self.chunkidx], []] if self.layer < 1 else [[], [self.chunkidx]]
+        self.mappings = (
+            [[self.chunkidx], []] if self.layer < 1 else [[], [self.chunkidx]]
+        )
         self.draw(wdg, ctx, False)
-        if 'GTK_CELL_RENDERER_SELECTED' in str(flags):
+        if "GTK_CELL_RENDERER_SELECTED" in str(flags):
             ctx.set_source_rgba(0, 0, 90, 0.3)
             ctx.rectangle(
-                0, 0,
+                0,
+                0,
                 self.width_in_chunks * self.tiling_width * BPC_TILE_DIM,
-                self.height_in_chunks * self.tiling_height * BPC_TILE_DIM
+                self.height_in_chunks * self.tiling_height * BPC_TILE_DIM,
             )
             ctx.fill()
         ctx.translate(-cell_area.x, -cell_area.y)

@@ -34,11 +34,12 @@ from skytemple_files.common.types.file_types import FileType
 from skytemple_files.graphics.kao.protocol import KaoProtocol
 
 logger = logging.getLogger(__name__)
-PORTRAIT_FILE = 'FONT/kaomado.kao'
+PORTRAIT_FILE = "FONT/kaomado.kao"
 
 
 class PortraitModule(AbstractModule):
     """Provides editing and displaying functionality for portraits."""
+
     @classmethod
     def depends_on(cls):
         return []
@@ -50,7 +51,9 @@ class PortraitModule(AbstractModule):
     def __init__(self, rom_project: RomProject):
         """Loads the list of backgrounds for the ROM."""
         self.project = rom_project
-        self.kao: KaoProtocol = self.project.open_file_in_rom(PORTRAIT_FILE, FileType.KAO)
+        self.kao: KaoProtocol = self.project.open_file_in_rom(
+            PORTRAIT_FILE, FileType.KAO
+        )
         self._portrait_provider = PortraitProvider(self.kao)
         self._portrait_provider__was_init = False
 
@@ -87,25 +90,28 @@ class PortraitModule(AbstractModule):
                     display_error(
                         sys.exc_info(),
                         f(_('Failed importing image "{name}":\n{err}')),
-                        f(_("Error for '{name}'."))
+                        f(_("Error for '{name}'.")),
                     )
         except Exception as err:
             logger.error(f"Failed importing portraits sheet: {err}", exc_info=err)
             display_error(
                 sys.exc_info(),
-                f(_('Failed importing portraits sheet:\n{err}')),
-                _("Could not import.")
+                f(_("Failed importing portraits sheet:\n{err}")),
+                _("Could not import."),
             )
         # Mark as modified
         self.mark_as_modified()
 
     def get_portrait_name(self, subindex):
-        portrait_name = self.project.get_rom_module().get_static_data().script_data.face_names__by_id[
-            math.floor(subindex / 2)
-        ].name.replace('-', '_')
-        portrait_name = f'{subindex}: {portrait_name}'
+        portrait_name = (
+            self.project.get_rom_module()
+            .get_static_data()
+            .script_data.face_names__by_id[math.floor(subindex / 2)]
+            .name.replace("-", "_")
+        )
+        portrait_name = f"{subindex}: {portrait_name}"
         if subindex % 2 != 0:
-            portrait_name += _(' (flip)')  # TRANSLATORS: Suffix for flipped portraits
+            portrait_name += _(" (flip)")  # TRANSLATORS: Suffix for flipped portraits
         return portrait_name
 
     def mark_as_modified(self):

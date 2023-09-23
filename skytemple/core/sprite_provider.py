@@ -109,7 +109,7 @@ STANDIN_ENTITIES_DEFAULT = {
     64: 1,
     65: 4,
     66: 1,
-    67: 4
+    67: 4,
 }
 # TODO: Read from ROM eventually
 TRAP_PALETTE_MAP = {
@@ -146,9 +146,9 @@ TRAP_PALETTE_MAP = {
     32: 0,  # Pitfall trap, destroyed
     33: 1,  # X?
 }
-TRP_FILENAME = 'traps.trp.img'
-ITM_FILENAME = 'items.itm.img'
-FILE_NAME_STANDIN_SPRITES = '.standin_sprites.json'
+TRP_FILENAME = "traps.trp.img"
+ITM_FILENAME = "items.itm.img"
+FILE_NAME_STANDIN_SPRITES = ".standin_sprites.json"
 
 
 class SpriteProvider:
@@ -156,14 +156,19 @@ class SpriteProvider:
     SpriteProvider. This class renders sprites using Threads. If a Sprite is requested, a loading icon
     is returned instead, until it is loaded by the AsyncTaskDelegator.
     """
-    def __init__(self, project: 'RomProject'):
+
+    def __init__(self, project: "RomProject"):
         self._project = project
         self._loader_surface_dims: Optional[Tuple[int, int]] = None
         self._loader_surface: Optional[cairo.ImageSurface] = None
 
         self._loaded__monsters: Dict[ActorSpriteKey, SpriteAndOffsetAndDims] = {}
-        self._loaded__monsters_outlines: Dict[ActorSpriteKey, SpriteAndOffsetAndDims] = {}
-        self._loaded__actor_placeholders: Dict[ActorSpriteKey, SpriteAndOffsetAndDims] = {}
+        self._loaded__monsters_outlines: Dict[
+            ActorSpriteKey, SpriteAndOffsetAndDims
+        ] = {}
+        self._loaded__actor_placeholders: Dict[
+            ActorSpriteKey, SpriteAndOffsetAndDims
+        ] = {}
         self._loaded__objects: Dict[str, SpriteAndOffsetAndDims] = {}
         self._loaded__traps: Dict[int, SpriteAndOffsetAndDims] = {}
         self._loaded__items: Dict[int, SpriteAndOffsetAndDims] = {}
@@ -175,11 +180,15 @@ class SpriteProvider:
         self._requests__traps: List[int] = []
         self._requests__items: List[int] = []
 
-        self._monster_md: ModelContext[MdProtocol] = self._project.open_file_in_rom(MONSTER_MD, FileType.MD, threadsafe=True)
-        self._monster_bin: ModelContext[BinPack] = self._project.open_file_in_rom(MONSTER_BIN, FileType.BIN_PACK, threadsafe=True)
+        self._monster_md: ModelContext[MdProtocol] = self._project.open_file_in_rom(
+            MONSTER_MD, FileType.MD, threadsafe=True
+        )
+        self._monster_bin: ModelContext[BinPack] = self._project.open_file_in_rom(
+            MONSTER_BIN, FileType.BIN_PACK, threadsafe=True
+        )
         self._dungeon_bin: Optional[ModelContext[DungeonBinPack]] = None
 
-        self._stripes = Image.open(os.path.join(data_dir(), 'stripes.png'))
+        self._stripes = Image.open(os.path.join(data_dir(), "stripes.png"))
         self._loaded_standins: Optional[Dict[int, int]] = None
 
         # init_loader MUST be called next!
@@ -187,20 +196,36 @@ class SpriteProvider:
     def init_loader(self, screen: Gdk.Screen):
         icon_theme: Gtk.IconTheme = Gtk.IconTheme.get_for_screen(screen)
         # Loader icon
-        loader_icon = assert_not_none(assert_not_none(icon_theme.load_icon(
-            'skytemple-image-loading-symbolic', 24, Gtk.IconLookupFlags.FORCE_SIZE
-        )).copy())
+        loader_icon = assert_not_none(
+            assert_not_none(
+                icon_theme.load_icon(
+                    "skytemple-image-loading-symbolic",
+                    24,
+                    Gtk.IconLookupFlags.FORCE_SIZE,
+                )
+            ).copy()
+        )
         self._loader_surface_dims = loader_icon.get_width(), loader_icon.get_height()
-        self._loader_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, *self._loader_surface_dims)
+        self._loader_surface = cairo.ImageSurface(
+            cairo.FORMAT_ARGB32, *self._loader_surface_dims
+        )
         ctx = cairo.Context(self._loader_surface)
         Gdk.cairo_set_source_pixbuf(ctx, loader_icon, 0, 0)
         ctx.paint()
         # Error icon
-        error_icon = assert_not_none(assert_not_none(icon_theme.load_icon(
-            'skytemple-img-load-error-symbolic', 24, Gtk.IconLookupFlags.FORCE_SIZE
-        )).copy())
+        error_icon = assert_not_none(
+            assert_not_none(
+                icon_theme.load_icon(
+                    "skytemple-img-load-error-symbolic",
+                    24,
+                    Gtk.IconLookupFlags.FORCE_SIZE,
+                )
+            ).copy()
+        )
         self._error_surface_dims = error_icon.get_width(), error_icon.get_height()
-        self._error_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, *self._error_surface_dims)
+        self._error_surface = cairo.ImageSurface(
+            cairo.FORMAT_ARGB32, *self._error_surface_dims
+        )
         ctx = cairo.Context(self._error_surface)
         Gdk.cairo_set_source_pixbuf(ctx, error_icon, 0, 0)
         ctx.paint()
@@ -219,7 +244,9 @@ class SpriteProvider:
             self._requests__traps = []
             self._requests__items = []
 
-    def get_actor_placeholder(self, actor_id, direction_id: int, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+    def get_actor_placeholder(
+        self, actor_id, direction_id: int, after_load_cb=lambda: None
+    ) -> SpriteAndOffsetAndDims:
         """
         Returns a placeholder sprite for the actor with the given index (in the actor table).
         As long as the sprite is being loaded, the loader sprite is returned instead.
@@ -232,7 +259,9 @@ class SpriteProvider:
                 self._load_actor_placeholder(actor_id, direction_id, after_load_cb)
         return self.get_loader()
 
-    def get_monster(self, md_index, direction_id: int, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+    def get_monster(
+        self, md_index, direction_id: int, after_load_cb=lambda: None
+    ) -> SpriteAndOffsetAndDims:
         """
         Returns the sprite using the index from the monster.md.
         As long as the sprite is being loaded, the loader sprite is returned instead.
@@ -245,7 +274,9 @@ class SpriteProvider:
                 self._load_monster(md_index, direction_id, after_load_cb)
         return self.get_loader()
 
-    def get_monster_outline(self, md_index, direction_id: int, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+    def get_monster_outline(
+        self, md_index, direction_id: int, after_load_cb=lambda: None
+    ) -> SpriteAndOffsetAndDims:
         """
         Returns the outline of a sprite using the index from the monster.md.
         As long as the sprite is being loaded, the loader sprite is returned instead.
@@ -258,7 +289,9 @@ class SpriteProvider:
                 self._load_monster_outline(md_index, direction_id, after_load_cb)
         return self.get_loader()
 
-    def get_for_object(self, name, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+    def get_for_object(
+        self, name, after_load_cb=lambda: None
+    ) -> SpriteAndOffsetAndDims:
         """
         Returns a named object sprite file from the GROUND directory.
         As long as the sprite is being loaded, the loader sprite is returned instead.
@@ -271,7 +304,9 @@ class SpriteProvider:
                 self._load_object(name, after_load_cb)
         return self.get_loader()
 
-    def get_for_trap(self, trp: Union[MappaTrapType, int], after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+    def get_for_trap(
+        self, trp: Union[MappaTrapType, int], after_load_cb=lambda: None
+    ) -> SpriteAndOffsetAndDims:
         """
         Returns a trap sprite.
         As long as the sprite is being loaded, the loader sprite is returned instead.
@@ -289,7 +324,9 @@ class SpriteProvider:
                 self._load_trap(trpv, after_load_cb)
         return self.get_loader()
 
-    def get_for_item(self, itm: ItemPEntryProtocol, after_load_cb=lambda: None) -> SpriteAndOffsetAndDims:
+    def get_for_item(
+        self, itm: ItemPEntryProtocol, after_load_cb=lambda: None
+    ) -> SpriteAndOffsetAndDims:
         """
         Returns a item sprite based on the sprite ID.
         As long as the sprite is being loaded, the loader sprite is returned instead.
@@ -304,28 +341,36 @@ class SpriteProvider:
         return self.get_loader()
 
     def _load_actor_placeholder(self, actor_id, direction_id: int, after_load_cb):
-        AsyncTaskDelegator.run_task(self._load_actor_placeholder__impl(actor_id, direction_id, after_load_cb))
+        AsyncTaskDelegator.run_task(
+            self._load_actor_placeholder__impl(actor_id, direction_id, after_load_cb)
+        )
 
-    async def _load_actor_placeholder__impl(self, actor_id, direction_id: int, after_load_cb):
+    async def _load_actor_placeholder__impl(
+        self, actor_id, direction_id: int, after_load_cb
+    ):
         md_index = FALLBACK_STANDIN_ENTITIY
         if actor_id in self.get_standin_entities():
             md_index = self.get_standin_entities()[actor_id]
         try:
-            sprite_img, cx, cy, w, h = self._retrieve_monster_sprite(md_index, direction_id)
+            sprite_img, cx, cy, w, h = self._retrieve_monster_sprite(
+                md_index, direction_id
+            )
 
             # Convert to outline + stripes
-            alpha_sprite = sprite_img.getchannel('A')
+            alpha_sprite = sprite_img.getchannel("A")
 
             im_outline = sprite_img.filter(ImageFilter.FIND_EDGES)
-            alpha_outline = im_outline.getchannel('A')
+            alpha_outline = im_outline.getchannel("A")
 
-            out_sprite = Image.new('RGBA', im_outline.size)
+            out_sprite = Image.new("RGBA", im_outline.size)
             for i in range(0, out_sprite.width, self._stripes.width):
                 for j in range(0, out_sprite.height, self._stripes.height):
                     out_sprite.paste(self._stripes, (i, j))
 
-            im_outline = Image.new('RGBA', im_outline.size, color='white')
-            out_sprite.paste(im_outline, (0, 0, im_outline.width, im_outline.height), alpha_outline)
+            im_outline = Image.new("RGBA", im_outline.size, color="white")
+            out_sprite.paste(
+                im_outline, (0, 0, im_outline.width, im_outline.height), alpha_outline
+            )
 
             out_sprite.putalpha(alpha_sprite)
             # Make red transparent
@@ -353,11 +398,15 @@ class SpriteProvider:
         after_load_cb()
 
     def _load_monster(self, md_index, direction_id: int, after_load_cb):
-        AsyncTaskDelegator.run_task(self._load_monster__impl(md_index, direction_id, after_load_cb))
+        AsyncTaskDelegator.run_task(
+            self._load_monster__impl(md_index, direction_id, after_load_cb)
+        )
 
     async def _load_monster__impl(self, md_index, direction_id: int, after_load_cb):
         try:
-            pil_img, cx, cy, w, h = self._retrieve_monster_sprite(md_index, direction_id)
+            pil_img, cx, cy, w, h = self._retrieve_monster_sprite(
+                md_index, direction_id
+            )
             surf = pil_to_cairo_surface(pil_img)
             loaded = surf, cx, cy, w, h
         except BaseException:
@@ -371,17 +420,23 @@ class SpriteProvider:
         after_load_cb()
 
     def _load_monster_outline(self, md_index, direction_id: int, after_load_cb):
-        AsyncTaskDelegator.run_task(self._load_monster_outline__impl(md_index, direction_id, after_load_cb))
+        AsyncTaskDelegator.run_task(
+            self._load_monster_outline__impl(md_index, direction_id, after_load_cb)
+        )
 
-    async def _load_monster_outline__impl(self, md_index, direction_id: int, after_load_cb):
+    async def _load_monster_outline__impl(
+        self, md_index, direction_id: int, after_load_cb
+    ):
         try:
-            sprite_img, cx, cy, w, h = self._retrieve_monster_sprite(md_index, direction_id)
+            sprite_img, cx, cy, w, h = self._retrieve_monster_sprite(
+                md_index, direction_id
+            )
 
             # Convert to outline + stripes
 
             im_outline = sprite_img.filter(ImageFilter.FIND_EDGES)
-            alpha_outline = im_outline.getchannel('A')
-            im_outline = Image.new('RGBA', im_outline.size, color='white')
+            alpha_outline = im_outline.getchannel("A")
+            im_outline = Image.new("RGBA", im_outline.size, color="white")
             im_outline.putalpha(alpha_outline)
 
             # /
@@ -398,7 +453,9 @@ class SpriteProvider:
                 pass
         after_load_cb()
 
-    def _retrieve_monster_sprite(self, md_index, direction_id: int) -> Tuple[Image.Image, int, int, int, int]:
+    def _retrieve_monster_sprite(
+        self, md_index, direction_id: int
+    ) -> Tuple[Image.Image, int, int, int, int]:
         try:
             with self._monster_md as monster_md:
                 actor_sprite_id = monster_md[md_index].sprite_index
@@ -415,7 +472,9 @@ class SpriteProvider:
             return sprite_img, cx, cy, sprite_img.width, sprite_img.height
         except BaseException as e:
             # Error :(
-            logger.warning(f"Error loading a monster sprite for {md_index}.", exc_info=e)
+            logger.warning(
+                f"Error loading a monster sprite for {md_index}.", exc_info=e
+            )
             raise RuntimeError(f"Error loading monster sprite for {md_index}") from e
 
     def _load_object(self, name, after_load_cb):
@@ -423,7 +482,7 @@ class SpriteProvider:
 
     async def _load_object__impl(self, name, after_load_cb):
         try:
-            with self._load_sprite_from_rom(f'GROUND/{name}.wan') as sprite:
+            with self._load_sprite_from_rom(f"GROUND/{name}.wan") as sprite:
                 ani_group = sprite.anim_groups[0]
                 frame_id = 0
                 mfg_id = ani_group[frame_id].frames[0].frame_id
@@ -431,7 +490,13 @@ class SpriteProvider:
                 sprite_img, (cx, cy) = sprite.render_frame(sprite.frames[mfg_id])
             surf = pil_to_cairo_surface(sprite_img)
             with sprite_provider_lock:
-                self._loaded__objects[name] = surf, cx, cy, sprite_img.width, sprite_img.height
+                self._loaded__objects[name] = (
+                    surf,
+                    cx,
+                    cy,
+                    sprite_img.width,
+                    sprite_img.height,
+                )
 
         except BaseException as e:
             # Error :(
@@ -453,7 +518,9 @@ class SpriteProvider:
             assert self._dungeon_bin is not None
             with self._dungeon_bin as dungeon_bin:
                 traps: ImgTrp = dungeon_bin.get(TRP_FILENAME)
-            surf = pil_to_cairo_surface(traps.to_pil(trp, TRAP_PALETTE_MAP[trp]).convert('RGBA'))
+            surf = pil_to_cairo_surface(
+                traps.to_pil(trp, TRAP_PALETTE_MAP[trp]).convert("RGBA")
+            )
             with sprite_provider_lock:
                 self._loaded__traps[trp] = surf, 0, 0, 24, 24
 
@@ -479,8 +546,8 @@ class SpriteProvider:
                 items: ImgItm = dungeon_bin.get(ITM_FILENAME)
             img = items.to_pil(item.sprite, item.palette)
             alpha = [px % 16 != 0 for px in img.getdata()]
-            img = img.convert('RGBA')
-            alphaimg = Image.new('1', (img.width, img.height))
+            img = img.convert("RGBA")
+            alphaimg = Image.new("1", (img.width, img.height))
             alphaimg.putdata(alpha)
             img.putalpha(alphaimg)
             surf = pil_to_cairo_surface(img)
@@ -500,7 +567,9 @@ class SpriteProvider:
 
     def _load_sprite_from_bin_pack(self, bin_pack: BinPack, file_id) -> Wan:
         # TODO: Support of bin_pack item management via the RomProject instead?
-        return FileType.WAN.deserialize(FileType.COMMON_AT.deserialize(bin_pack[file_id]).decompress())
+        return FileType.WAN.deserialize(
+            FileType.COMMON_AT.deserialize(bin_pack[file_id]).decompress()
+        )
 
     def _load_sprite_from_rom(self, path: str) -> ModelContext[Wan]:
         return self._project.open_file_in_rom(path, FileType.WAN, threadsafe=True)
@@ -512,40 +581,48 @@ class SpriteProvider:
         assert self._loader_surface_dims
         assert self._loader_surface
         w, h = self._loader_surface_dims
-        return self._loader_surface, int(w/2), h, w, h
+        return self._loader_surface, int(w / 2), h, w, h
 
     def get_error(self) -> SpriteAndOffsetAndDims:
         """
         Returns the error sprite. An "error" icon with the size ~24x24px.
         """
         w, h = self._error_surface_dims
-        return self._error_surface, int(w/2), h, w, h
+        return self._error_surface, int(w / 2), h, w, h
 
     def get_standin_entities(self):
         if not self._loaded_standins:
             self._loaded_standins = STANDIN_ENTITIES_DEFAULT
             p = self._standin_entities_filepath()
             if os.path.exists(p):
-                with open_utf8(p, 'r') as f:
+                with open_utf8(p, "r") as f:
                     try:
-                        self._loaded_standins = {int(k): v for k, v in json.load(f).items()}
+                        self._loaded_standins = {
+                            int(k): v for k, v in json.load(f).items()
+                        }
                     except BaseException as err:
-                        logger.error(f"Failed to load standin sprites from {p}, falling back to default: {err}.")
+                        logger.error(
+                            f"Failed to load standin sprites from {p}, falling back to default: {err}."
+                        )
         return self._loaded_standins
 
     def set_standin_entities(self, mappings):
         with sprite_provider_lock:
             self._loaded__actor_placeholders = {}
         p = self._standin_entities_filepath()
-        with open_utf8(p, 'w') as f:
+        with open_utf8(p, "w") as f:
             json.dump(mappings, f)
         self._loaded_standins = mappings
 
     def _standin_entities_filepath(self):
-        return os.path.join(self._project.get_project_file_manager().dir(), FILE_NAME_STANDIN_SPRITES)
+        return os.path.join(
+            self._project.get_project_file_manager().dir(), FILE_NAME_STANDIN_SPRITES
+        )
 
     def _load_dungeon_bin(self):
         self._dungeon_bin = self._project.open_file_in_rom(
-            DUNGEON_BIN, FileType.DUNGEON_BIN,
-            static_data=self._project.get_rom_module().get_static_data(), threadsafe=True
+            DUNGEON_BIN,
+            FileType.DUNGEON_BIN,
+            static_data=self._project.get_rom_module().get_static_data(),
+            threadsafe=True,
         )

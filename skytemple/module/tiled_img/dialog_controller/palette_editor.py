@@ -29,8 +29,12 @@ from skytemple_files.common.i18n_util import _
 
 class PaletteEditorController:
     def __init__(
-        self, parent_window, palettes: Dict[str, List[int]],
-        disable_color0=True, allow_adding_removing=False, show_make_unique_button=True
+        self,
+        parent_window,
+        palettes: Dict[str, List[int]],
+        disable_color0=True,
+        allow_adding_removing=False,
+        show_make_unique_button=True,
     ):
         path = os.path.abspath(os.path.dirname(__file__))
 
@@ -39,15 +43,16 @@ class PaletteEditorController:
         self.allow_adding_removing = allow_adding_removing
         self.show_make_unique_button = show_make_unique_button
 
-        self.builder = make_builder(os.path.join(path, 'palette_editor.glade'))
+        self.builder = make_builder(os.path.join(path, "palette_editor.glade"))
 
-        self.dialog = builder_get_assert(self.builder, Gtk.Dialog, 'map_bg_palettes')
+        self.dialog = builder_get_assert(self.builder, Gtk.Dialog, "map_bg_palettes")
         self.dialog.set_attached_to(parent_window)
         self.dialog.set_transient_for(parent_window)
 
-        self.notebook = builder_get_assert(self.builder, Gtk.Notebook, 'notebook')
-        self.notebook.add_events(Gdk.EventMask.SCROLL_MASK |\
-                                 Gdk.EventMask.SMOOTH_SCROLL_MASK)
+        self.notebook = builder_get_assert(self.builder, Gtk.Notebook, "notebook")
+        self.notebook.add_events(
+            Gdk.EventMask.SCROLL_MASK | Gdk.EventMask.SMOOTH_SCROLL_MASK
+        )
 
         self.page_boxes: List[Gtk.Box] = []
 
@@ -61,9 +66,13 @@ class PaletteEditorController:
         self._init_notebook_pages()
         self._init_page(0)
         if not self.show_make_unique_button:
-            builder_get_assert(self.builder, Gtk.Box, 'make_unique_box').set_visible(False)
+            builder_get_assert(self.builder, Gtk.Box, "make_unique_box").set_visible(
+                False
+            )
         if not self.allow_adding_removing:
-            builder_get_assert(self.builder, Gtk.ButtonBox, 'add_remove_btns').set_visible(False)
+            builder_get_assert(
+                self.builder, Gtk.ButtonBox, "add_remove_btns"
+            ).set_visible(False)
 
         resp = self.dialog.run()
         self.dialog.destroy()
@@ -86,22 +95,29 @@ class PaletteEditorController:
     def on_color_button_color_set(self, cb: Gtk.ColorButton, color_index):
         page_num = self.notebook.get_current_page()
         color: Gdk.Color = cb.get_color()
-        self.palettes[page_num][color_index*3:color_index*3+3] = [
-            int(color.red_float * 255), int(color.green_float * 255), int(color.blue_float * 255)  # type: ignore
+        self.palettes[page_num][color_index * 3 : color_index * 3 + 3] = [
+            int(color.red_float * 255),
+            int(color.green_float * 255),
+            int(color.blue_float * 255),  # type: ignore
         ]
 
     def on_make_unique_info_button_clicked(self, *args):
-        md = SkyTempleMessageDialog(self.dialog,
-                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK,
-                                    _("Some images editors have problems when editing indexed images that contain\n"
-                                      "the same color multiple times (they mis-match the actual color index).\n"
-                                      "Since the import expects all 8x8 tiles to only use one 16-color palette, this\n"
-                                      "can lead to issues.\n\n"
-                                      "To solve this, you can make all colors in the palettes unique. This is done by\n"
-                                      "slightly shifting the color values of duplicate colors (not visible for the\n"
-                                      "human eye)."),
-                                    title=_("Make Colors Unique"))
+        md = SkyTempleMessageDialog(
+            self.dialog,
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _(
+                "Some images editors have problems when editing indexed images that contain\n"
+                "the same color multiple times (they mis-match the actual color index).\n"
+                "Since the import expects all 8x8 tiles to only use one 16-color palette, this\n"
+                "can lead to issues.\n\n"
+                "To solve this, you can make all colors in the palettes unique. This is done by\n"
+                "slightly shifting the color values of duplicate colors (not visible for the\n"
+                "human eye)."
+            ),
+            title=_("Make Colors Unique"),
+        )
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
@@ -109,17 +125,21 @@ class PaletteEditorController:
     def on_make_unique_button_clicked(self, *args):
         self.palettes = make_palette_colors_unique(self.palettes)
         self._init_page(self.notebook.get_current_page())
-        md = SkyTempleMessageDialog(self.dialog,
-                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK,
-                                    _("Made colors unique."),
-                                    title=_("Palette Editor"), is_success=True)
+        md = SkyTempleMessageDialog(
+            self.dialog,
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("Made colors unique."),
+            title=_("Palette Editor"),
+            is_success=True,
+        )
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
 
     def on_palette_add_button_release_event(self, wdg, event):
-        tab_label = Gtk.Label.new('*')
+        tab_label = Gtk.Label.new("*")
         tab_label.show()
         current_page_idx = self.notebook.get_current_page()
         if event.get_state() & Gdk.ModifierType.CONTROL_MASK:
@@ -136,10 +156,14 @@ class PaletteEditorController:
 
     def on_palette_remove_clicked(self, wdg):
         if self.notebook.get_n_pages() < 2:
-            md = SkyTempleMessageDialog(self.dialog,
-                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                                        Gtk.ButtonsType.OK, _("You can not remove the last palette."),
-                                        title=_("Error!"))
+            md = SkyTempleMessageDialog(
+                self.dialog,
+                Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                Gtk.MessageType.ERROR,
+                Gtk.ButtonsType.OK,
+                _("You can not remove the last palette."),
+                title=_("Error!"),
+            )
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()
@@ -195,11 +219,15 @@ class PaletteEditorController:
             cbx = Gtk.Box.new(Gtk.Orientation.VERTICAL, 0)
             lb = Gtk.Label.new(_("Color ") + str(i))
             cb: Gtk.ColorButton = Gtk.ColorButton.new()
-            if hasattr(cb.props, 'show_editor'):
-                cb.set_property('show_editor', True)
-            cb.set_color(Gdk.Color.from_floats(
-                palette[color_idx] / 255, palette[color_idx + 1] / 255, palette[color_idx + 2] / 255
-            ))
+            if hasattr(cb.props, "show_editor"):
+                cb.set_property("show_editor", True)
+            cb.set_color(
+                Gdk.Color.from_floats(
+                    palette[color_idx] / 255,
+                    palette[color_idx + 1] / 255,
+                    palette[color_idx + 2] / 255,
+                )
+            )
 
             if i == 0 and self.disable_color0:
                 cb.set_sensitive(False)
@@ -211,19 +239,23 @@ class PaletteEditorController:
             cbx.show()
 
             # Connect signal
-            cb.connect('color-set', self.on_color_button_color_set, i)
+            cb.connect("color-set", self.on_color_button_color_set, i)
 
             if i % grid_w == 0:
                 if previous_row_start_elem:
                     # New row
-                    grid.attach_next_to(cbx, previous_row_start_elem, Gtk.PositionType.BOTTOM, 1, 1)
+                    grid.attach_next_to(
+                        cbx, previous_row_start_elem, Gtk.PositionType.BOTTOM, 1, 1
+                    )
                 else:
                     # First row
                     grid.add(cbx)
                 previous_row_start_elem = cbx
             else:
                 # New cell in next column
-                grid.attach_next_to(cbx, previous_col_start_elem, Gtk.PositionType.RIGHT, 1, 1)
+                grid.attach_next_to(
+                    cbx, previous_col_start_elem, Gtk.PositionType.RIGHT, 1, 1
+                )
 
             previous_col_start_elem = cbx
 

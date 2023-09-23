@@ -33,14 +33,16 @@ from skytemple.core.ui_utils import version
 
 
 def default_loglevel():
-    if version() == 'dev':
+    if version() == "dev":
         return logging.DEBUG
     else:
         return logging.INFO
 
 
-logger = logging.getLogger('system')
-SKYTEMPLE_LOGLEVEL = os.environ.get("SKYTEMPLE_LOGLEVEL", logging.getLevelName(default_loglevel()))
+logger = logging.getLogger("system")
+SKYTEMPLE_LOGLEVEL = os.environ.get(
+    "SKYTEMPLE_LOGLEVEL", logging.getLevelName(default_loglevel())
+)
 
 
 def current_log_level():
@@ -48,14 +50,14 @@ def current_log_level():
     if sys.version_info >= (3, 11):
         return logging.getLevelNamesMapping()[SKYTEMPLE_LOGLEVEL]
     _nameToLevel = {
-        'CRITICAL': logging.CRITICAL,
-        'FATAL': logging.FATAL,
-        'ERROR': logging.ERROR,
-        'WARN': logging.WARNING,
-        'WARNING': logging.WARNING,
-        'INFO': logging.INFO,
-        'DEBUG': logging.DEBUG,
-        'NOTSET': logging.NOTSET,
+        "CRITICAL": logging.CRITICAL,
+        "FATAL": logging.FATAL,
+        "ERROR": logging.ERROR,
+        "WARN": logging.WARNING,
+        "WARNING": logging.WARNING,
+        "INFO": logging.INFO,
+        "DEBUG": logging.DEBUG,
+        "NOTSET": logging.NOTSET,
     }
     return _nameToLevel[SKYTEMPLE_LOGLEVEL]
 
@@ -63,7 +65,11 @@ def current_log_level():
 def async_handle_exeception(loop: AbstractEventLoop, context):
     """Exception handler for asyncio-like event loops"""
     if "exception" in context:
-        handle_exception(type(context['exception']), context['exception'], context['exception'].__traceback__)
+        handle_exception(
+            type(context["exception"]),
+            context["exception"],
+            context["exception"].__traceback__,
+        )
     # TODO: The exception really should always be there, but what if not?
     else:
         loop.default_exception_handler(context)
@@ -77,12 +83,23 @@ def handle_exception(exc_type, exc_value, exc_traceback):
     logger.critical("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
     try:
         # noinspection PyUnusedLocal
-        traceback_str = ''.join(traceback.format_exception(exc_type, exc_value, exc_traceback))
-        GLib.idle_add(lambda: display_error(
-            (exc_type, exc_value, exc_traceback),
-             f(_("An uncaught exception occurred! This shouldn't happen, please report it!")) + "\n\n" + traceback_str,
-            _("SkyTemple - Uncaught error!"), log=False
-        ))
+        traceback_str = "".join(
+            traceback.format_exception(exc_type, exc_value, exc_traceback)
+        )
+        GLib.idle_add(
+            lambda: display_error(
+                (exc_type, exc_value, exc_traceback),
+                f(
+                    _(
+                        "An uncaught exception occurred! This shouldn't happen, please report it!"
+                    )
+                )
+                + "\n\n"
+                + traceback_str,
+                _("SkyTemple - Uncaught error!"),
+                log=False,
+            )
+        )
     except:
         pass
 
@@ -97,10 +114,10 @@ def setup_logging():
     dirn = ProjectFileManager.shared_config_dir()
     os.makedirs(dirn, exist_ok=True)
     handler = RotatingFileHandler(
-        os.path.join(dirn, 'skytemple.log'),
-        maxBytes=100000, backupCount=5)
+        os.path.join(dirn, "skytemple.log"), maxBytes=100000, backupCount=5
+    )
     logging.basicConfig(
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        handlers=[logging.StreamHandler(), handler]
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        handlers=[logging.StreamHandler(), handler],
     )
     logging.getLogger().setLevel(SKYTEMPLE_LOGLEVEL)

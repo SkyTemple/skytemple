@@ -24,10 +24,10 @@ class SkyTemplePluginLoader(SourceLoader):
         self.__path = path
 
     def get_data(self, path: Union[str, bytes]) -> bytes:
-        with open(path, 'rb') as f:
+        with open(path, "rb") as f:
             return f.read()
 
     def get_filename(self, fullname: str) -> str:
         if os.path.isdir(self.__path):
-            return os.path.join(self.__path, '__init__.py')
+            return os.path.join(self.__path, "__init__.py")
         return self.__path

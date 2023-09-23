@@ -15,7 +15,12 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.item_tree import ItemTreeEntryRef, ItemTree, ItemTreeEntry, RecursionType
+from skytemple.core.item_tree import (
+    ItemTreeEntryRef,
+    ItemTree,
+    ItemTreeEntry,
+    RecursionType,
+)
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.patch.controller.cot import CotController
 from skytemple.module.patch.controller.item_effects import ItemEffectsController
@@ -30,24 +35,27 @@ from skytemple_files.data.data_cd.model import DataCD
 from skytemple_files.data.val_list.handler import ValListHandler
 from skytemple_files.data.val_list.model import ValList
 
-SP_EFFECTS = 'BALANCE/process.bin'
-MOVE_EFFECTS = 'BALANCE/waza_cd.bin'
-ITEM_EFFECTS = 'BALANCE/item_cd.bin'
-METRONOME_POOL = 'BALANCE/metrono.bin'
+SP_EFFECTS = "BALANCE/process.bin"
+MOVE_EFFECTS = "BALANCE/waza_cd.bin"
+ITEM_EFFECTS = "BALANCE/item_cd.bin"
+METRONOME_POOL = "BALANCE/metrono.bin"
 
 
 MAIN_VIEW_DATA = StStatusPageData(
-    icon_name='skytemple-illust-patch',
-    title=_('Patches'),
-    description=_("In this section you can apply built-in ASM patches, your own ASM patches and custom\nitem-, move- and "
-                  "special process effects written in Assembler.\n\nYou will also find information on how to write your own\n"
-                  "patches and effects in the C and Rust programming languages.\n\nAdditionally you can browse all symbols "
-                  "and functions\nin the game known to SkyTemple.")
+    icon_name="skytemple-illust-patch",
+    title=_("Patches"),
+    description=_(
+        "In this section you can apply built-in ASM patches, your own ASM patches and custom\nitem-, move- and "
+        "special process effects written in Assembler.\n\nYou will also find information on how to write your own\n"
+        "patches and effects in the C and Rust programming languages.\n\nAdditionally you can browse all symbols "
+        "and functions\nin the game known to SkyTemple."
+    ),
 )
 
 
 class PatchModule(AbstractModule):
     """Module to apply ASM based ROM patches."""
+
     @classmethod
     def depends_on(cls):
         return []
@@ -65,63 +73,83 @@ class PatchModule(AbstractModule):
         self._asm_item_effects: ItemTreeEntryRef
         self._asm_move_effects: ItemTreeEntryRef
 
-
     def load_tree_items(self, item_tree: ItemTree):
-        root = item_tree.add_entry(None, ItemTreeEntry(
-            icon='skytemple-e-patch-symbolic',
-            name=MAIN_VIEW_DATA.title,
-            module=self,
-            view_class=StStatusPage,
-            item_data=MAIN_VIEW_DATA
-        ))
+        root = item_tree.add_entry(
+            None,
+            ItemTreeEntry(
+                icon="skytemple-e-patch-symbolic",
+                name=MAIN_VIEW_DATA.title,
+                module=self,
+                view_class=StStatusPage,
+                item_data=MAIN_VIEW_DATA,
+            ),
+        )
 
-        self._asm_iter = item_tree.add_entry(root, ItemTreeEntry(
-            icon='skytemple-e-patch-symbolic',
-            name=_('ASM'),
-            module=self,
-            view_class=AsmController,
-            item_data=0
-        ))
+        self._asm_iter = item_tree.add_entry(
+            root,
+            ItemTreeEntry(
+                icon="skytemple-e-patch-symbolic",
+                name=_("ASM"),
+                module=self,
+                view_class=AsmController,
+                item_data=0,
+            ),
+        )
 
-        self._asm_special_procs = item_tree.add_entry(self._asm_iter, ItemTreeEntry(
-            icon='skytemple-e-special-symbolic',
-            name=_('Special Process Effects'),
-            module=self,
-            view_class=SPEffectsController,
-            item_data=0
-        ))
+        self._asm_special_procs = item_tree.add_entry(
+            self._asm_iter,
+            ItemTreeEntry(
+                icon="skytemple-e-special-symbolic",
+                name=_("Special Process Effects"),
+                module=self,
+                view_class=SPEffectsController,
+                item_data=0,
+            ),
+        )
 
-        self._asm_item_effects = item_tree.add_entry(self._asm_iter, ItemTreeEntry(
-            icon='skytemple-e-item-symbolic',
-            name=_('Item Effects'),
-            module=self,
-            view_class=ItemEffectsController,
-            item_data=0
-        ))
+        self._asm_item_effects = item_tree.add_entry(
+            self._asm_iter,
+            ItemTreeEntry(
+                icon="skytemple-e-item-symbolic",
+                name=_("Item Effects"),
+                module=self,
+                view_class=ItemEffectsController,
+                item_data=0,
+            ),
+        )
 
-        self._asm_move_effects = item_tree.add_entry(self._asm_iter, ItemTreeEntry(
-            icon='skytemple-e-move-symbolic',
-            name=_('Move Effects'),
-            module=self,
-            view_class=MoveEffectsController,
-            item_data=0
-        ))
+        self._asm_move_effects = item_tree.add_entry(
+            self._asm_iter,
+            ItemTreeEntry(
+                icon="skytemple-e-move-symbolic",
+                name=_("Move Effects"),
+                module=self,
+                view_class=MoveEffectsController,
+                item_data=0,
+            ),
+        )
 
-        item_tree.add_entry(root, ItemTreeEntry(
-            icon='skytemple-e-patch-symbolic',
-            name=_('C / Rust'),
-            module=self,
-            view_class=CotController,
-            item_data=0
-        ))
+        item_tree.add_entry(
+            root,
+            ItemTreeEntry(
+                icon="skytemple-e-patch-symbolic",
+                name=_("C / Rust"),
+                module=self,
+                view_class=CotController,
+                item_data=0,
+            ),
+        )
 
-        item_tree.add_entry(root, ItemTreeEntry(
-            icon='skytemple-e-patch-symbolic',
-            name=_('Symbols'),
-            module=self,
-            view_class=PmdSkyDebugController,
-            item_data=0
-        ))
+        item_tree.add_entry(
+            root,
+            ItemTreeEntry(
+                icon="skytemple-e-patch-symbolic",
+                name=_("Symbols"),
+                module=self,
+                view_class=PmdSkyDebugController,
+                item_data=0,
+            ),
+        )
 
         self._item_tree = item_tree
 

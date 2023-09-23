@@ -34,20 +34,26 @@ from skytemple.core.ui_utils import builder_get_assert
 
 logger = logging.getLogger(__name__)
 LANGS = [
-    ('', _('Detect automatically')),
-    ('C', _('English')),
-    ('fr_FR.utf8', _('French')),
-    ('de_DE.utf8', _('German')),
-    ('pt_BR.utf8', _('Portuguese, Brazilian')),
-    ('es_ES.utf8', _('Spanish')),
-    ('ja_JP.utf8', _('Japanese')),
+    ("", _("Detect automatically")),
+    ("C", _("English")),
+    ("fr_FR.utf8", _("French")),
+    ("de_DE.utf8", _("German")),
+    ("pt_BR.utf8", _("Portuguese, Brazilian")),
+    ("es_ES.utf8", _("Spanish")),
+    ("ja_JP.utf8", _("Japanese")),
 ]
 
 
 class SettingsController:
     """A dialog controller for UI settings."""
-    def __init__(self, parent_window: Gtk.Window, builder: Gtk.Builder, settings: SkyTempleSettingsStore):
-        self.window = builder_get_assert(builder, Gtk.Dialog, 'dialog_settings')
+
+    def __init__(
+        self,
+        parent_window: Gtk.Window,
+        builder: Gtk.Builder,
+        settings: SkyTempleSettingsStore,
+    ):
+        self.window = builder_get_assert(builder, Gtk.Dialog, "dialog_settings")
         self.window.set_transient_for(parent_window)
         self.window.set_attached_to(parent_window)
         self.parent_window = parent_window
@@ -55,10 +61,18 @@ class SettingsController:
         self.builder = builder
         self.settings = settings
 
-        builder_get_assert(self.builder, Gtk.Button, 'setting_help_native_enable').connect('clicked', self.on_setting_help_native_enable_clicked)
-        builder_get_assert(self.builder, Gtk.Button, 'setting_help_async').connect('clicked', self.on_setting_help_async_clicked)
-        builder_get_assert(self.builder, Gtk.Label, 'setting_help_privacy').connect('activate-link', self.on_help_privacy_activate_link)
-        builder_get_assert(self.builder, Gtk.Label, 'setting_help_language').connect('activate-link', self.on_help_language_activate_link)
+        builder_get_assert(
+            self.builder, Gtk.Button, "setting_help_native_enable"
+        ).connect("clicked", self.on_setting_help_native_enable_clicked)
+        builder_get_assert(self.builder, Gtk.Button, "setting_help_async").connect(
+            "clicked", self.on_setting_help_async_clicked
+        )
+        builder_get_assert(self.builder, Gtk.Label, "setting_help_privacy").connect(
+            "activate-link", self.on_help_privacy_activate_link
+        )
+        builder_get_assert(self.builder, Gtk.Label, "setting_help_language").connect(
+            "activate-link", self.on_help_language_activate_link
+        )
 
     def run(self):
         """
@@ -68,13 +82,15 @@ class SettingsController:
 
         # Discord enabled state
         discord_enabled_previous = self.settings.get_integration_discord_enabled()
-        settings_discord_enable = builder_get_assert(self.builder, Gtk.Switch, 'setting_discord_enable')
+        settings_discord_enable = builder_get_assert(
+            self.builder, Gtk.Switch, "setting_discord_enable"
+        )
         settings_discord_enable.set_active(discord_enabled_previous)
 
         # Gtk Theme
-        if not sys.platform.startswith('linux'):
+        if not sys.platform.startswith("linux"):
             store: Gtk.ListStore = Gtk.ListStore.new([str])
-            cb = builder_get_assert(self.builder, Gtk.ComboBox, 'setting_gtk_theme')
+            cb = builder_get_assert(self.builder, Gtk.ComboBox, "setting_gtk_theme")
             active = None
             for id, theme in enumerate(self._list_gtk_themes()):
                 store.append([theme])
@@ -84,7 +100,7 @@ class SettingsController:
             if active is not None:
                 cb.set_active(active)
         else:
-            gbox = builder_get_assert(self.builder, Gtk.Box, 'setting_gtk_theme_box')
+            gbox = builder_get_assert(self.builder, Gtk.Box, "setting_gtk_theme_box")
             for child in gbox.get_children():
                 gbox.remove(child)
             label = Gtk.Label()
@@ -93,8 +109,8 @@ class SettingsController:
             label.show()
 
         # Languages
-        cb  = builder_get_assert(self.builder, Gtk.ComboBox, 'setting_language')
-        store = builder_get_assert(self.builder, Gtk.ListStore, 'lang_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, "setting_language")
+        store = builder_get_assert(self.builder, Gtk.ListStore, "lang_store")
         store.clear()
         active_i: Optional[int] = None
         for idx, (code, name) in enumerate(LANGS):
@@ -105,13 +121,17 @@ class SettingsController:
             cb.set_active(active_i)
 
         # Native file handler
-        native_impl_enabled_previous = self.settings.get_implementation_type() == ImplementationType.NATIVE
-        settings_native_enable = builder_get_assert(self.builder, Gtk.Switch, 'setting_native_enable')
+        native_impl_enabled_previous = (
+            self.settings.get_implementation_type() == ImplementationType.NATIVE
+        )
+        settings_native_enable = builder_get_assert(
+            self.builder, Gtk.Switch, "setting_native_enable"
+        )
         settings_native_enable.set_active(native_impl_enabled_previous)
 
         # Async modes
-        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'setting_async')
-        store = builder_get_assert(self.builder, Gtk.ListStore, 'async_store')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, "setting_async")
+        store = builder_get_assert(self.builder, Gtk.ListStore, "async_store")
         store.clear()
         active = None
         for mode in AsyncConfiguration:
@@ -124,19 +144,22 @@ class SettingsController:
 
         # Sentry
         allow_sentry_previous = self.settings.get_allow_sentry()
-        settings_allow_sentry_enable = builder_get_assert(self.builder, Gtk.Switch, 'setting_allow_sentry')
+        settings_allow_sentry_enable = builder_get_assert(
+            self.builder, Gtk.Switch, "setting_allow_sentry"
+        )
         settings_allow_sentry_enable.set_active(allow_sentry_previous)
 
         # CSD
         csd_before = self.settings.csd_enabled()
-        settings_csd_enable = builder_get_assert(self.builder, Gtk.Switch, 'setting_csd_enable')
+        settings_csd_enable = builder_get_assert(
+            self.builder, Gtk.Switch, "setting_csd_enable"
+        )
         settings_csd_enable.set_active(csd_before)
 
         response = self.window.run()
 
         have_to_restart = False
         if response == Gtk.ResponseType.ACCEPT:
-
             # Discord enabled state
             discord_enabled = settings_discord_enable.get_active()
             if discord_enabled != discord_enabled_previous:
@@ -144,8 +167,8 @@ class SettingsController:
                 have_to_restart = True
 
             # Gtk Theme
-            if not sys.platform.startswith('linux'):
-                cb = builder_get_assert(self.builder, Gtk.ComboBox, 'setting_gtk_theme')
+            if not sys.platform.startswith("linux"):
+                cb = builder_get_assert(self.builder, Gtk.ComboBox, "setting_gtk_theme")
                 iter = cb.get_active_iter()
                 if iter is not None:
                     theme_name = cb.get_model()[iter][0]
@@ -153,7 +176,7 @@ class SettingsController:
                     self.settings.set_gtk_theme(theme_name)
 
             # Languages
-            cb = builder_get_assert(self.builder, Gtk.ComboBox, 'setting_language')
+            cb = builder_get_assert(self.builder, Gtk.ComboBox, "setting_language")
             cb_iter = cb.get_active_iter()
             assert cb_iter is not None
             lang_name = cb.get_model()[cb_iter][0]
@@ -165,11 +188,15 @@ class SettingsController:
             # Native file handler enabled state
             native_impl_enabled = settings_native_enable.get_active()
             if native_impl_enabled != native_impl_enabled_previous:
-                self.settings.set_implementation_type(ImplementationType.NATIVE if native_impl_enabled else ImplementationType.PYTHON)
+                self.settings.set_implementation_type(
+                    ImplementationType.NATIVE
+                    if native_impl_enabled
+                    else ImplementationType.PYTHON
+                )
                 have_to_restart = True
 
             # Async modes
-            cb = builder_get_assert(self.builder, Gtk.ComboBox, 'setting_async')
+            cb = builder_get_assert(self.builder, Gtk.ComboBox, "setting_async")
             cb_iter = cb.get_active_iter()
             assert cb_iter is not None
             async_mode = AsyncConfiguration(cb.get_model()[cb_iter][0])
@@ -186,6 +213,7 @@ class SettingsController:
                     have_to_restart = True
                 else:
                     from skytemple.core import sentry
+
                     sentry.init()
 
             # CSD
@@ -198,22 +226,28 @@ class SettingsController:
         self.window.hide()
 
         if have_to_restart:
-            md = SkyTempleMessageDialog(self.parent_window,
-                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                        Gtk.ButtonsType.OK, _("You need to restart SkyTemple to "
-                                                              "apply some of the settings."),
-                                        title="SkyTemple")
+            md = SkyTempleMessageDialog(
+                self.parent_window,
+                Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                Gtk.MessageType.INFO,
+                Gtk.ButtonsType.OK,
+                _("You need to restart SkyTemple to " "apply some of the settings."),
+                title="SkyTemple",
+            )
             md.run()
             md.destroy()
 
     def on_setting_help_native_enable_clicked(self, *args):
         md = SkyTempleMessageDialog(
             self.window,
-            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("If this is enabled a new and faster (but slightly experimental) codebase is "
-              "used to load and manipulate game files. Try to disable this if you run into "
-              "crashes or other issues.")
+            _(
+                "If this is enabled a new and faster (but slightly experimental) codebase is "
+                "used to load and manipulate game files. Try to disable this if you run into "
+                "crashes or other issues."
+            ),
         )
         md.run()
         md.destroy()
@@ -221,18 +255,21 @@ class SettingsController:
     def on_setting_help_async_clicked(self, *args):
         md = SkyTempleMessageDialog(
             self.window,
-            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("This changes the way SkyTemple behaves when asynchronous operations are done "
-              "(eg. loading files and views). You usually don't want to change this, "
-              "unless you know what you are doing or are running into crashes or other issues.\n\n\n"
-              "Thread-based: SkyTemple spawns an extra thread to run asynchronous operations. "
-              "This could lead to thread safety issues, but is the 'smoothest' loading experience.\n\n"
-              "Synchronous: Asynchronous operations run immediately. The SkyTemple UI freezes briefly during that.\n\n"
-              "GLib: Same has 'Synchronous' but the UI gets the chance to finish displaying loaders etc. "
-              "before they are run.\n\n"
-              "Using Gbulb event loop: This enables Single-Thread asynchronous loading. It is generally the preferred"
-              "option if available.")
+            _(
+                "This changes the way SkyTemple behaves when asynchronous operations are done "
+                "(eg. loading files and views). You usually don't want to change this, "
+                "unless you know what you are doing or are running into crashes or other issues.\n\n\n"
+                "Thread-based: SkyTemple spawns an extra thread to run asynchronous operations. "
+                "This could lead to thread safety issues, but is the 'smoothest' loading experience.\n\n"
+                "Synchronous: Asynchronous operations run immediately. The SkyTemple UI freezes briefly during that.\n\n"
+                "GLib: Same has 'Synchronous' but the UI gets the chance to finish displaying loaders etc. "
+                "before they are run.\n\n"
+                "Using Gbulb event loop: This enables Single-Thread asynchronous loading. It is generally the preferred"
+                "option if available."
+            ),
         )
         md.run()
         md.destroy()
@@ -246,15 +283,15 @@ class SettingsController:
     def _list_gtk_themes(self):
         dirs = [
             Gtk.rc_get_theme_dir(),
-            os.path.join(GLib.get_user_data_dir(), 'themes'),
-            os.path.join(GLib.get_home_dir(), '.themes')
+            os.path.join(GLib.get_user_data_dir(), "themes"),
+            os.path.join(GLib.get_home_dir(), ".themes"),
         ]
         for dir in GLib.get_system_data_dirs():
-            dirs.append(os.path.join(dir, 'themes'))
+            dirs.append(os.path.join(dir, "themes"))
 
         themes = set()
         for dir in dirs:
-            for f in glob(os.path.join(dir, '*', 'index.theme')):
+            for f in glob(os.path.join(dir, "*", "index.theme")):
                 themes.add(f.split(os.path.sep)[-2])
 
         return themes

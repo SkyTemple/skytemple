@@ -34,10 +34,12 @@ FPS = 60
 
 class DungeonChunkDrawer:
     def __init__(
-            self, draw_area: Widget, pal_ani_durations: int,
-            # chunks_surfaces[chunk_idx][palette_animation_frame][frame]
-            # Since we only have static tiles, frames should always only contain one element.
-            chunks_surfaces: Iterable[Iterable[List[cairo.Surface]]]
+        self,
+        draw_area: Widget,
+        pal_ani_durations: int,
+        # chunks_surfaces[chunk_idx][palette_animation_frame][frame]
+        # Since we only have static tiles, frames should always only contain one element.
+        chunks_surfaces: Iterable[Iterable[List[cairo.Surface]]],
     ):
         """
         Initialize a drawer...
@@ -62,13 +64,15 @@ class DungeonChunkDrawer:
 
     # noinspection PyAttributeOutsideInit
     def reset_surfaces(self, chunks_surfaces):
-        self.animation_context = AnimationContext([chunks_surfaces], 1, self.pal_ani_durations)
+        self.animation_context = AnimationContext(
+            [chunks_surfaces], 1, self.pal_ani_durations
+        )
 
     def start(self):
         """Start drawing on the DrawingArea"""
         self.drawing_is_active = True
         if isinstance(self.draw_area, Gtk.DrawingArea):
-            self.draw_area.connect('draw', self.draw)
+            self.draw_area.connect("draw", self.draw)
         self.draw_area.queue_draw()
         GLib.timeout_add(int(1000 / FPS), self._tick)
 
@@ -103,19 +107,26 @@ class DungeonChunkDrawer:
 
 
 class DungeonChunkCellDrawer(DungeonChunkDrawer, Gtk.CellRenderer):
-    __gproperties__ = {
-        'chunkidx': (int, "", "", 0, 999999, 0, ParamFlags.READWRITE)
-    }
+    __gproperties__ = {"chunkidx": (int, "", "", 0, 999999, 0, ParamFlags.READWRITE)}
 
-    def __init__(self, icon_view, pal_ani_durations: int,
-                 chunks_surfaces: Iterable[Iterable[List[cairo.Surface]]], selection_draw_solid):
-
+    def __init__(
+        self,
+        icon_view,
+        pal_ani_durations: int,
+        chunks_surfaces: Iterable[Iterable[List[cairo.Surface]]],
+        selection_draw_solid,
+    ):
         super().__init__(icon_view, pal_ani_durations, chunks_surfaces)
         super(Gtk.CellRenderer, self).__init__()
         self.selection_draw_solid = selection_draw_solid
 
     def do_get_size(self, widget, cell_area):
-        return 0, 0, int(DPCI_TILE_DIM * 3 * self.scale), int(DPCI_TILE_DIM * 3 * self.scale)
+        return (
+            0,
+            0,
+            int(DPCI_TILE_DIM * 3 * self.scale),
+            int(DPCI_TILE_DIM * 3 * self.scale),
+        )
 
     def do_set_property(self, pspec, value):
         setattr(self, pspec.name, value)
@@ -133,11 +144,9 @@ class DungeonChunkCellDrawer(DungeonChunkDrawer, Gtk.CellRenderer):
         ctx.translate(-cell_area.x, -cell_area.y)
 
     def draw_selection(self, ctx, flags):
-        if 'GTK_CELL_RENDERER_SELECTED' in str(flags):
+        if "GTK_CELL_RENDERER_SELECTED" in str(flags):
             ctx.set_source_rgba(0, 0, 90, 0.3)
             ctx.rectangle(
-                0, 0,
-                DPC_TILING_DIM * DPCI_TILE_DIM,
-                DPC_TILING_DIM * DPCI_TILE_DIM
+                0, 0, DPC_TILING_DIM * DPCI_TILE_DIM, DPC_TILING_DIM * DPCI_TILE_DIM
             )
             ctx.fill()

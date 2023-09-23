@@ -29,7 +29,10 @@ from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.ui_utils import APP, make_builder, builder_get_assert
 from skytemple.module.script.drawer import Drawer, InteractionMode
-from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevel, Pmd2ScriptLevelMapType
+from skytemple_files.common.ppmdu_config.script_data import (
+    Pmd2ScriptLevel,
+    Pmd2ScriptLevelMapType,
+)
 from skytemple_files.graphics.bpc import BPC_TILE_DIM
 from skytemple_files.hardcoded.ground_dungeon_tilesets import resolve_mapping_for_level
 from skytemple_files.script.ssa_sse_sss.model import Ssa
@@ -40,12 +43,20 @@ SIZE_REQUEST_NONE = 500
 
 
 class PosMarkEditorController:
-    def __init__(self, ssa: Ssa, parent_window: Gtk.Window, sprite_provider: SpriteProvider,
-                 level: Pmd2ScriptLevel, map_bg_module, script_module,
-                 pos_marks: List[SourceMapPositionMark], pos_mark_to_edit: int):
+    def __init__(
+        self,
+        ssa: Ssa,
+        parent_window: Gtk.Window,
+        sprite_provider: SpriteProvider,
+        level: Pmd2ScriptLevel,
+        map_bg_module,
+        script_module,
+        pos_marks: List[SourceMapPositionMark],
+        pos_mark_to_edit: int,
+    ):
         """A controller for a dialog for editing position marks for an Ssb file."""
         path = os.path.abspath(os.path.dirname(__file__))
-        self.builder = make_builder(os.path.join(path, 'pos_mark_editor.glade'))
+        self.builder = make_builder(os.path.join(path, "pos_mark_editor.glade"))
         self.sprite_provider = sprite_provider
         self.ssa: Ssa = ssa
         self.map_bg_module = map_bg_module
@@ -66,15 +77,15 @@ class PosMarkEditorController:
         self._map_bg_surface: Optional[cairo.Surface] = None
         self._currently_selected_mark: Optional[SourceMapPositionMark] = None
 
-        self._w_ssa_draw = builder_get_assert(self.builder, Gtk.DrawingArea, 'ssa_draw')
+        self._w_ssa_draw = builder_get_assert(self.builder, Gtk.DrawingArea, "ssa_draw")
         self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
 
         self.drawer: Optional[Drawer] = None
 
-        self.window = builder_get_assert(self.builder, Gtk.Dialog, 'dialog')
+        self.window = builder_get_assert(self.builder, Gtk.Dialog, "dialog")
         self.window.set_transient_for(parent_window)
         self.window.set_attached_to(parent_window)
-        self.title = _('Edit Position Marks')
+        self.title = _("Edit Position Marks")
 
         self.builder.connect_signals(self)
 
@@ -147,13 +158,22 @@ class PosMarkEditorController:
                     start_x, start_y = self._bg_draw_is_clicked__location
                     # Start drag & drop if mouse moved at least one tile.
                     if not self._bg_draw_is_clicked__drag_active and (
-                            abs(start_x - motion.x) > BPC_TILE_DIM / 2 * self._scale_factor
-                            or abs(start_y - motion.y) > BPC_TILE_DIM / 2 * self._scale_factor
+                        abs(start_x - motion.x) > BPC_TILE_DIM / 2 * self._scale_factor
+                        or abs(start_y - motion.y)
+                        > BPC_TILE_DIM / 2 * self._scale_factor
                     ):
                         self._bg_draw_is_clicked__drag_active = True
                         self.drawer.set_drag_position(
-                            int((start_x - 4) / self._scale_factor) - (self._currently_selected_mark.x_with_offset * BPC_TILE_DIM),
-                            int((start_y - 4) / self._scale_factor) - (self._currently_selected_mark.y_with_offset * BPC_TILE_DIM)
+                            int((start_x - 4) / self._scale_factor)
+                            - (
+                                self._currently_selected_mark.x_with_offset
+                                * BPC_TILE_DIM
+                            ),
+                            int((start_y - 4) / self._scale_factor)
+                            - (
+                                self._currently_selected_mark.y_with_offset
+                                * BPC_TILE_DIM
+                            ),
                         )
 
             self._w_ssa_draw.queue_draw()
@@ -179,7 +199,9 @@ class PosMarkEditorController:
             self.mapbg_id = item_id
             bma = self.map_bg_module.get_bma(item_id)
             if self._tileset_drawer_overlay and self._tileset_drawer_overlay.enabled:
-                self._map_bg_surface = self._tileset_drawer_overlay.create(bma.layer0, bma.map_width_chunks, bma.map_height_chunks)
+                self._map_bg_surface = self._tileset_drawer_overlay.create(
+                    bma.layer0, bma.map_width_chunks, bma.map_height_chunks
+                )
                 bma_width = bma.map_width_camera * BPC_TILE_DIM
                 bma_height = bma.map_height_camera * BPC_TILE_DIM
             else:
@@ -187,7 +209,9 @@ class PosMarkEditorController:
                 bpc = self.map_bg_module.get_bpc(item_id)
                 bpas = self.map_bg_module.get_bpas(item_id)
                 self._map_bg_surface = pil_to_cairo_surface(
-                    bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[0].convert('RGBA')
+                    bma.to_pil(bpc, bpl, bpas, False, False, single_frame=True)[
+                        0
+                    ].convert("RGBA")
                 )
                 bma_width = bma.map_width_camera * BPC_TILE_DIM
                 bma_height = bma.map_height_camera * BPC_TILE_DIM
@@ -197,7 +221,9 @@ class PosMarkEditorController:
     def _init_all_the_stores(self):
         # MAP BGS
         map_bg_list = self.map_bg_module.bgs
-        tool_choose_map_bg_cb = builder_get_assert(self.builder, Gtk.ComboBox, 'tool_choose_map_bg_cb')
+        tool_choose_map_bg_cb = builder_get_assert(
+            self.builder, Gtk.ComboBox, "tool_choose_map_bg_cb"
+        )
         map_bg_store = Gtk.ListStore(int, str)  # ID, BMA name
         default_bg = map_bg_store.append([-1, _("None")])
         for i, entry in enumerate(map_bg_list.level):
@@ -208,20 +234,26 @@ class PosMarkEditorController:
         tool_choose_map_bg_cb.set_active_iter(default_bg)
 
     def _init_drawer(self):
-        self.drawer = Drawer(self._w_ssa_draw, self.ssa,
-                             lambda *args: '', self.sprite_provider)
+        self.drawer = Drawer(
+            self._w_ssa_draw, self.ssa, lambda *args: "", self.sprite_provider
+        )
         self.drawer.add_position_marks(self.pos_marks)
         self.drawer.edit_position_marks()
         self.drawer.set_selected(self.pos_marks[self.pos_mark_to_edit])
         self.drawer.start()
 
-        self.drawer.set_draw_tile_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tool_scene_grid').get_active())
+        self.drawer.set_draw_tile_grid(
+            builder_get_assert(
+                self.builder, Gtk.ToggleToolButton, f"tool_scene_grid"
+            ).get_active()
+        )
 
     def _set_drawer_bg(self, surface: cairo.Surface, w: int, h: int):
         self._map_bg_width = w
         self._map_bg_height = h
         self._w_ssa_draw.set_size_request(
-            round(self._map_bg_width * self._scale_factor), round(self._map_bg_height * self._scale_factor)
+            round(self._map_bg_width * self._scale_factor),
+            round(self._map_bg_height * self._scale_factor),
         )
         if self.drawer:
             self.drawer.map_bg = surface
@@ -229,7 +261,8 @@ class PosMarkEditorController:
 
     def _update_scales(self):
         self._w_ssa_draw.set_size_request(
-            round(self._map_bg_width * self._scale_factor), round(self._map_bg_height * self._scale_factor)
+            round(self._map_bg_width * self._scale_factor),
+            round(self._map_bg_height * self._scale_factor),
         )
         if self.drawer:
             self.drawer.set_scale(self._scale_factor)
@@ -244,14 +277,29 @@ class PosMarkEditorController:
         cb.add_attribute(renderer_text, "text", col)
 
     def _init_rest_room_note(self):
-        info_bar = builder_get_assert(self.builder, Gtk.InfoBar, 'editor_rest_room_note')
-        if self.level.mapty_enum == Pmd2ScriptLevelMapType.TILESET or self.level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM:
-            mappings, mappa, fixed, dungeon_bin_context, dungeon_list = self.script_module.get_mapping_dungeon_assets()
+        info_bar = builder_get_assert(
+            self.builder, Gtk.InfoBar, "editor_rest_room_note"
+        )
+        if (
+            self.level.mapty_enum == Pmd2ScriptLevelMapType.TILESET
+            or self.level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM
+        ):
+            (
+                mappings,
+                mappa,
+                fixed,
+                dungeon_bin_context,
+                dungeon_list,
+            ) = self.script_module.get_mapping_dungeon_assets()
             with dungeon_bin_context as dungeon_bin:
-                mapping = resolve_mapping_for_level(self.level, mappings, mappa, fixed, dungeon_bin, dungeon_list)
+                mapping = resolve_mapping_for_level(
+                    self.level, mappings, mappa, fixed, dungeon_bin, dungeon_list
+                )
             if mapping:
                 dma, dpc, dpci, dpl, _, fixed_room = mapping
-                self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)
+                self._tileset_drawer_overlay = MapTilesetOverlay(
+                    dma, dpc, dpci, dpl, fixed_room
+                )
             else:
                 info_bar.destroy()
         else:
@@ -260,4 +308,6 @@ class PosMarkEditorController:
     def on_btn_toggle_overlay_rendering_clicked(self, *args):
         assert self._tileset_drawer_overlay is not None
         self._tileset_drawer_overlay.enabled = not self._tileset_drawer_overlay.enabled
-        self.on_tool_choose_map_bg_cb_changed(builder_get_assert(self.builder, Gtk.ComboBox, 'tool_choose_map_bg_cb'))
+        self.on_tool_choose_map_bg_cb_changed(
+            builder_get_assert(self.builder, Gtk.ComboBox, "tool_choose_map_bg_cb")
+        )

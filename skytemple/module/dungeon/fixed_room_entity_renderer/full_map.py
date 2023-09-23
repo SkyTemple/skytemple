@@ -19,21 +19,33 @@ import math
 import cairo
 from gi.repository import GLib
 
-from skytemple.module.dungeon.fixed_room_entity_renderer.abstract import AbstractEntityRenderer
+from skytemple.module.dungeon.fixed_room_entity_renderer.abstract import (
+    AbstractEntityRenderer,
+)
 from skytemple_files.common.dungeon_floor_generator.generator import TileType, RoomType
-from skytemple_files.dungeon_data.fixed_bin.model import EntityRule, FixedFloorActionRule, TileRuleType, TileRule, \
-    DirectRule
+from skytemple_files.dungeon_data.fixed_bin.model import (
+    EntityRule,
+    FixedFloorActionRule,
+    TileRuleType,
+    TileRule,
+    DirectRule,
+)
 from skytemple_files.graphics.dpc import DPC_TILING_DIM
 from skytemple_files.graphics.dpci import DPCI_TILE_DIM
+
 COLOR_ITEM = (0, 0.3, 1, 1)
 COLOR_OUTLINE = (0, 0, 0, 1)
 
 
 class FullMapEntityRenderer(AbstractEntityRenderer):
-    def draw_action(self, ctx: cairo.Context, action: FixedFloorActionRule, sx: int, sy: int):
+    def draw_action(
+        self, ctx: cairo.Context, action: FixedFloorActionRule, sx: int, sy: int
+    ):
         if isinstance(action, EntityRule):
             assert self.parent.entity_rule_container is not None
-            item, monster, tile, stats = self.parent.entity_rule_container.get(action.entity_rule_id)
+            item, monster, tile, stats = self.parent.entity_rule_container.get(
+                action.entity_rule_id
+            )
             # Has trap?
             if tile.trap_id < 25:
                 self._draw_trap(ctx, tile.trap_id, sx, sy)
@@ -42,8 +54,13 @@ class FullMapEntityRenderer(AbstractEntityRenderer):
                 if item.item_id < self.parent.module.item_count():
                     self._draw_item(ctx, item.item_id, sx, sy)
                 else:
-                    ctx.arc(sx + DPCI_TILE_DIM * DPC_TILING_DIM / 2, sy + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
-                            DPCI_TILE_DIM * DPC_TILING_DIM / 2, 0, 2 * math.pi)
+                    ctx.arc(
+                        sx + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
+                        sy + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
+                        DPCI_TILE_DIM * DPC_TILING_DIM / 2,
+                        0,
+                        2 * math.pi,
+                    )
                     ctx.set_source_rgba(*COLOR_ITEM)
                     ctx.fill_preserve()
                     ctx.set_source_rgba(*COLOR_OUTLINE)
@@ -66,10 +83,12 @@ class FullMapEntityRenderer(AbstractEntityRenderer):
             if action.tr_type == TileRuleType.ATTENDANT3_SPAWN:
                 self.parent.draw_placeholder(15, sx, sy, action.direction, ctx)
             # Key walls
-            if action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0C or action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0D:
+            if (
+                action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0C
+                or action.tr_type == TileRuleType.FL_WA_ROOM_FLAG_0D
+            ):
                 sprite, x, y, w, h = self.parent.sprite_provider.get_for_trap(
-                    31,
-                    lambda: GLib.idle_add(self.parent.redraw)
+                    31, lambda: GLib.idle_add(self.parent.redraw)
                 )
                 ctx.translate(sx, sy)
                 ctx.set_source_surface(sprite)
@@ -77,20 +96,25 @@ class FullMapEntityRenderer(AbstractEntityRenderer):
                 ctx.paint()
                 ctx.translate(-sx, -sy)
             # Warp zone
-            if action.tr_type == TileRuleType.WARP_ZONE or action.tr_type == TileRuleType.WARP_ZONE_2:
+            if (
+                action.tr_type == TileRuleType.WARP_ZONE
+                or action.tr_type == TileRuleType.WARP_ZONE_2
+            ):
                 self._draw_stairs(ctx, sx, sy)
         elif isinstance(action, DirectRule):
             if action.tile.room_type == RoomType.KECLEON_SHOP:
                 sprite, x, y, w, h = self.parent.sprite_provider.get_for_trap(
-                    30,
-                    lambda: GLib.idle_add(self.parent.redraw)
+                    30, lambda: GLib.idle_add(self.parent.redraw)
                 )
                 ctx.translate(sx, sy)
                 ctx.set_source_surface(sprite)
                 ctx.get_source().set_filter(cairo.Filter.NEAREST)
                 ctx.paint()
                 ctx.translate(-sx, -sy)
-            if action.tile.typ == TileType.PLAYER_SPAWN or action.tile.typ == TileType.ENEMY:
+            if (
+                action.tile.typ == TileType.PLAYER_SPAWN
+                or action.tile.typ == TileType.ENEMY
+            ):
                 self._draw_pokemon(ctx, action.itmtpmon_id, action.direction, sx, sy)
             if action.tile.typ == TileType.STAIRS:
                 self._draw_stairs(ctx, sx, sy)
@@ -102,20 +126,25 @@ class FullMapEntityRenderer(AbstractEntityRenderer):
                 self._draw_item(ctx, action.itmtpmon_id, sx, sy)
             if action.tile.room_type == RoomType.MONSTER_HOUSE:
                 ctx.set_source_rgba(230, 0, 0, 0.2)
-                ctx.rectangle(sx, sy, DPCI_TILE_DIM * DPC_TILING_DIM, DPCI_TILE_DIM * DPC_TILING_DIM)
+                ctx.rectangle(
+                    sx,
+                    sy,
+                    DPCI_TILE_DIM * DPC_TILING_DIM,
+                    DPCI_TILE_DIM * DPC_TILING_DIM,
+                )
                 ctx.fill()
 
     def _draw_pokemon(self, ctx, md_idx, direction, sx, sy):
         sprite, cx, cy, w, h = self.parent.sprite_provider.get_monster(
             md_idx,
             direction.ssa_id if direction is not None else 0,
-            lambda: GLib.idle_add(self.parent.redraw)
+            lambda: GLib.idle_add(self.parent.redraw),
         )
         ctx.translate(sx, sy)
         ctx.set_source_surface(
             sprite,
             -cx + DPCI_TILE_DIM * DPC_TILING_DIM / 2,
-            -cy + DPCI_TILE_DIM * DPC_TILING_DIM * 0.75
+            -cy + DPCI_TILE_DIM * DPC_TILING_DIM * 0.75,
         )
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
         ctx.paint()
@@ -123,8 +152,7 @@ class FullMapEntityRenderer(AbstractEntityRenderer):
 
     def _draw_stairs(self, ctx, sx, sy):
         sprite, x, y, w, h = self.parent.sprite_provider.get_for_trap(
-            28,
-            lambda: GLib.idle_add(self.parent.redraw)
+            28, lambda: GLib.idle_add(self.parent.redraw)
         )
         ctx.translate(sx, sy)
         ctx.set_source_surface(sprite)
@@ -134,8 +162,7 @@ class FullMapEntityRenderer(AbstractEntityRenderer):
 
     def _draw_trap(self, ctx, trap_id, sx, sy):
         sprite, x, y, w, h = self.parent.sprite_provider.get_for_trap(
-            trap_id,
-            lambda: GLib.idle_add(self.parent.redraw)
+            trap_id, lambda: GLib.idle_add(self.parent.redraw)
         )
         ctx.translate(sx, sy)
         ctx.set_source_surface(sprite)
@@ -146,8 +173,7 @@ class FullMapEntityRenderer(AbstractEntityRenderer):
     def _draw_item(self, ctx, item_id, sx, sy, buried=False):
         itm = self.parent.module.get_item(item_id)
         sprite, x, y, w, h = self.parent.sprite_provider.get_for_item(
-            itm,
-            lambda: GLib.idle_add(self.parent.redraw)
+            itm, lambda: GLib.idle_add(self.parent.redraw)
         )
         ctx.translate(sx + 4, sy + 4)
         ctx.set_source_surface(sprite)

@@ -21,9 +21,9 @@ from gi.repository import Gtk
 
 from skytemple.core.ui_utils import data_dir
 
-IMG_HAPPY = 'duskako_happy.png'
-IMG_SAD = 'duskako_sad.png'
-IMG_NEUTRAL = 'duskako_neutral.png'
+IMG_HAPPY = "duskako_happy.png"
+IMG_SAD = "duskako_sad.png"
+IMG_NEUTRAL = "duskako_neutral.png"
 
 IMGS = {
     Gtk.MessageType.INFO: IMG_NEUTRAL,
@@ -32,16 +32,19 @@ IMGS = {
     Gtk.MessageType.QUESTION: IMG_NEUTRAL,
     Gtk.MessageType.OTHER: IMG_NEUTRAL,
 }
-IS_SUCCESS = 'is_success'
+IS_SUCCESS = "is_success"
 
 
 class SkyTempleMessageDialog(Gtk.MessageDialog):
     def __init__(
-            self, parent: Optional[Gtk.Window], dialog_flags: Gtk.DialogFlags,
-            message_type: Gtk.MessageType, buttons_type: Gtk.ButtonsType,
-            text: str,
-            text_selectable: bool = False,
-            **kwargs
+        self,
+        parent: Optional[Gtk.Window],
+        dialog_flags: Gtk.DialogFlags,
+        message_type: Gtk.MessageType,
+        buttons_type: Gtk.ButtonsType,
+        text: str,
+        text_selectable: bool = False,
+        **kwargs,
     ):
         img = IMGS[message_type]
         if IS_SUCCESS in kwargs:
@@ -49,16 +52,21 @@ class SkyTempleMessageDialog(Gtk.MessageDialog):
                 img = IMG_HAPPY
             del kwargs[IS_SUCCESS]
         self.img: Gtk.Image = Gtk.Image.new_from_file(os.path.join(data_dir(), img))
-        kwargs.update({
-            'destroy_with_parent': (dialog_flags & Gtk.DialogFlags.DESTROY_WITH_PARENT) > 0,
-            'modal': (dialog_flags & Gtk.DialogFlags.MODAL) > 0,
-            'use_header_bar': (dialog_flags & Gtk.DialogFlags.USE_HEADER_BAR) > 0,
-            'message_type': message_type,
-            'buttons': buttons_type,
-            'text': text
-        })
+        kwargs.update(
+            {
+                "destroy_with_parent": (
+                    dialog_flags & Gtk.DialogFlags.DESTROY_WITH_PARENT
+                )
+                > 0,
+                "modal": (dialog_flags & Gtk.DialogFlags.MODAL) > 0,
+                "use_header_bar": (dialog_flags & Gtk.DialogFlags.USE_HEADER_BAR) > 0,
+                "message_type": message_type,
+                "buttons": buttons_type,
+                "text": text,
+            }
+        )
         if parent is not None:
-            kwargs['parent'] = parent
+            kwargs["parent"] = parent
         super().__init__(**kwargs)
 
         box = cast(Gtk.Box, self.get_message_area())
@@ -76,5 +84,5 @@ class SkyTempleMessageDialog(Gtk.MessageDialog):
         p.pack_start(self.img, False, False, 0)
         p.pack_start(box, False, False, 0)
 
-        p.child_set_property(self.img, 'position', 0)
+        p.child_set_property(self.img, "position", 0)
         self.img.show()

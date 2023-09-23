@@ -35,48 +35,66 @@ if TYPE_CHECKING:
 
 
 class MainController(AbstractController):
-    def __init__(self, module: 'RomModule', item_id: int):
+    def __init__(self, module: "RomModule", item_id: int):
         self.module = module
         self.project = module.project
         self.icon_banner = module.project.get_icon_banner()
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'rom.glade')
+        self.builder = self._get_builder(__file__, "rom.glade")
 
         file_name = os.path.basename(self.module.project.filename)
-        builder_get_assert(self.builder, Gtk.Label, 'file_name').set_text(file_name)
+        builder_get_assert(self.builder, Gtk.Label, "file_name").set_text(file_name)
 
-        builder_get_assert(self.builder, Gtk.Entry, 'name').set_text(self.project.get_rom_name())
-        builder_get_assert(self.builder, Gtk.Entry, 'id_code').set_text(self.project.get_id_code())
-        self.icon_surface = pil_to_cairo_surface(self.icon_banner.icon.to_pil().convert('RGBA'))
+        builder_get_assert(self.builder, Gtk.Entry, "name").set_text(
+            self.project.get_rom_name()
+        )
+        builder_get_assert(self.builder, Gtk.Entry, "id_code").set_text(
+            self.project.get_id_code()
+        )
+        self.icon_surface = pil_to_cairo_surface(
+            self.icon_banner.icon.to_pil().convert("RGBA")
+        )
 
-        title_japanese_buffer = builder_get_assert(self.builder, Gtk.TextView, 'title_japanese').get_buffer()
+        title_japanese_buffer = builder_get_assert(
+            self.builder, Gtk.TextView, "title_japanese"
+        ).get_buffer()
         title_japanese_buffer.set_text(self.icon_banner.title_japanese)
-        title_japanese_buffer.connect('changed', self.on_title_japanese_changed)
+        title_japanese_buffer.connect("changed", self.on_title_japanese_changed)
 
-        title_english_buffer = builder_get_assert(self.builder, Gtk.TextView, 'title_english').get_buffer()
+        title_english_buffer = builder_get_assert(
+            self.builder, Gtk.TextView, "title_english"
+        ).get_buffer()
         title_english_buffer.set_text(self.icon_banner.title_english)
-        title_english_buffer.connect('changed', self.on_title_english_changed)
+        title_english_buffer.connect("changed", self.on_title_english_changed)
 
-        title_french_buffer = builder_get_assert(self.builder, Gtk.TextView, 'title_french').get_buffer()
+        title_french_buffer = builder_get_assert(
+            self.builder, Gtk.TextView, "title_french"
+        ).get_buffer()
         title_french_buffer.set_text(self.icon_banner.title_french)
-        title_french_buffer.connect('changed', self.on_title_french_changed)
+        title_french_buffer.connect("changed", self.on_title_french_changed)
 
-        title_german_buffer = builder_get_assert(self.builder, Gtk.TextView, 'title_german').get_buffer()
+        title_german_buffer = builder_get_assert(
+            self.builder, Gtk.TextView, "title_german"
+        ).get_buffer()
         title_german_buffer.set_text(self.icon_banner.title_german)
-        title_german_buffer.connect('changed', self.on_title_german_changed)
+        title_german_buffer.connect("changed", self.on_title_german_changed)
 
-        title_italian_buffer = builder_get_assert(self.builder, Gtk.TextView, 'title_italian').get_buffer()
+        title_italian_buffer = builder_get_assert(
+            self.builder, Gtk.TextView, "title_italian"
+        ).get_buffer()
         title_italian_buffer.set_text(self.icon_banner.title_italian)
-        title_italian_buffer.connect('changed', self.on_title_italian_changed)
+        title_italian_buffer.connect("changed", self.on_title_italian_changed)
 
-        title_spanish_buffer = builder_get_assert(self.builder, Gtk.TextView, 'title_spanish').get_buffer()
+        title_spanish_buffer = builder_get_assert(
+            self.builder, Gtk.TextView, "title_spanish"
+        ).get_buffer()
         title_spanish_buffer.set_text(self.icon_banner.title_spanish)
-        title_spanish_buffer.connect('changed', self.on_title_spanish_changed)
+        title_spanish_buffer.connect("changed", self.on_title_spanish_changed)
 
         self.builder.connect_signals(self)
 
-        return builder_get_assert(self.builder, Gtk.Widget, 'box_list')
+        return builder_get_assert(self.builder, Gtk.Widget, "box_list")
 
     def on_draw_icon_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
         scale = 2
@@ -92,7 +110,8 @@ class MainController(AbstractController):
             _("Export game icon as PNG..."),
             SkyTempleMainController.window(),
             Gtk.FileChooserAction.SAVE,
-            None, None
+            None,
+            None,
         )
 
         add_dialog_png_filter(dialog)
@@ -102,7 +121,7 @@ class MainController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
-            fn = add_extension_if_missing(fn, 'png')
+            fn = add_extension_if_missing(fn, "png")
             self.icon_banner.icon.to_pil().save(fn)
 
     def on_import_icon_clicked(self, *args):
@@ -110,7 +129,8 @@ class MainController(AbstractController):
             _("Import game icon from PNG..."),
             SkyTempleMainController.window(),
             Gtk.FileChooserAction.OPEN,
-            None, None
+            None,
+            None,
         )
 
         add_dialog_png_filter(dialog)
@@ -125,11 +145,13 @@ class MainController(AbstractController):
             except Exception as err:
                 display_error(
                     sys.exc_info(),
-                    _('Failed importing game icon:\n') + str(err),
-                    _("Could not import.")
+                    _("Failed importing game icon:\n") + str(err),
+                    _("Could not import."),
                 )
-            self.icon_surface = pil_to_cairo_surface(self.icon_banner.icon.to_pil().convert('RGBA'))
-            builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_icon').queue_draw()
+            self.icon_surface = pil_to_cairo_surface(
+                self.icon_banner.icon.to_pil().convert("RGBA")
+            )
+            builder_get_assert(self.builder, Gtk.DrawingArea, "draw_icon").queue_draw()
             # Mark as modified
             self.module.mark_as_modified()
 

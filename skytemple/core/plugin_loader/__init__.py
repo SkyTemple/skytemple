@@ -31,7 +31,7 @@ logger = logging.getLogger(__name__)
 def load_plugins(
     load_confirmation: Callable[[Sequence[str], SkyTempleSettingsStore, str], bool],
     settings: SkyTempleSettingsStore,
-    plugin_dir: str
+    plugin_dir: str,
 ):
     """
     Load plugin wheels from the SkyTemple plugins directory.

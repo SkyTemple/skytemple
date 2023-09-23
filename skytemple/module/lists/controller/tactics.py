@@ -29,21 +29,21 @@ from skytemple_files.common.i18n_util import _
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 
-PATTERN_LOCATION_ENTRY = re.compile(r'.*\((\d+)\).*')
-MOVE_NAME_PATTERN = re.compile(r'.*\((\d+)\).*')
+PATTERN_LOCATION_ENTRY = re.compile(r".*\((\d+)\).*")
+MOVE_NAME_PATTERN = re.compile(r".*\((\d+)\).*")
 logger = logging.getLogger(__name__)
 
 
 class TacticsController(AbstractController):
-    def __init__(self, module: 'ListsModule', item_id):
+    def __init__(self, module: "ListsModule", item_id):
         super().__init__(module, item_id)
         self.module = module
         self._list: List[i16]
         self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'tactics.glade')
-        lst = builder_get_assert(self.builder, Gtk.Box, 'box_list')
+        self.builder = self._get_builder(__file__, "tactics.glade")
+        lst = builder_get_assert(self.builder, Gtk.Box, "box_list")
         self._list = self.module.get_tactics()
         self.refresh_list()
 
@@ -56,7 +56,7 @@ class TacticsController(AbstractController):
             i16_checked(int(text))  # this is only for validating.
         except ValueError:
             return
-        builder_get_assert(self.builder, Gtk.ListStore, 'list_store')[path][1] = text
+        builder_get_assert(self.builder, Gtk.ListStore, "list_store")[path][1] = text
 
     @glib_async
     def on_list_store_row_changed(self, store, path, l_iter):
@@ -68,15 +68,21 @@ class TacticsController(AbstractController):
         self.module.set_tactics(self._list)
 
     def refresh_list(self):
-        tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, "tree")
         store = cast(Gtk.ListStore, tree.get_model())
         if store:
             store.clear()
 
             # Iterate list
             for idx, entry in enumerate(self._list):
-                store.append([
-                    str(idx), str(entry), self.module.project.get_string_provider().get_value(
-                        StringType.TACTICS_NAMES, idx
-                    ) if idx != 11 else _('<Not working>')
-                ])
+                store.append(
+                    [
+                        str(idx),
+                        str(entry),
+                        self.module.project.get_string_provider().get_value(
+                            StringType.TACTICS_NAMES, idx
+                        )
+                        if idx != 11
+                        else _("<Not working>"),
+                    ]
+                )

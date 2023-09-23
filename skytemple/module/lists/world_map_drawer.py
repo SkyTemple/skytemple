@@ -35,8 +35,11 @@ Color = Tuple[Num, Num, Num]
 
 class WorldMapDrawer:
     def __init__(
-            self, draw_area: Gtk.Widget, markers: List[MapMarkerPlacement],
-            cb_dungeon_name: Callable[[int], str], scale: int
+        self,
+        draw_area: Gtk.Widget,
+        markers: List[MapMarkerPlacement],
+        cb_dungeon_name: Callable[[int], str],
+        scale: int,
     ):
         self.draw_area = draw_area
 
@@ -69,7 +72,7 @@ class WorldMapDrawer:
         """Start drawing on the DrawingArea"""
         self.drawing_is_active = True
         if isinstance(self.draw_area, Gtk.DrawingArea):
-            self.draw_area.connect('draw', self.draw)
+            self.draw_area.connect("draw", self.draw)
         self.draw_area.queue_draw()
 
     def draw(self, wdg, ctx: cairo.Context):
@@ -100,7 +103,12 @@ class WorldMapDrawer:
         # RENDER MARKERS
         self.markers_at_pos = {}
         for i, marker in enumerate(self.markers):
-            if marker != self._editing and marker != self._hide and marker.level_id == self.level_id and marker.reference_id <= -1:
+            if (
+                marker != self._editing
+                and marker != self._hide
+                and marker.level_id == self.level_id
+                and marker.reference_id <= -1
+            ):
                 self._draw_marker(ctx, marker)
 
         if self._editing:
@@ -112,7 +120,7 @@ class WorldMapDrawer:
             self._draw_marker(ctx, self._editing)
 
         # nah, too crowded.
-        #for (x, y), list_of_markers in self.markers_at_pos.items():
+        # for (x, y), list_of_markers in self.markers_at_pos.items():
         #    ms = [self.markers.index(m) for m in list_of_markers]
         #    self._draw_name(ctx, ms, x, y)
         return True
@@ -132,7 +140,9 @@ class WorldMapDrawer:
         self.mouse_x = x
         self.mouse_y = y
 
-    def _draw_marker(self, ctx: cairo.Context, marker: MapMarkerPlacement, x=None, y=None):
+    def _draw_marker(
+        self, ctx: cairo.Context, marker: MapMarkerPlacement, x=None, y=None
+    ):
         x, y = self._get_marker_xy(marker, x, y)
         if (x, y) not in self.markers_at_pos:
             self.markers_at_pos[(x, y)] = []
@@ -167,8 +177,7 @@ class WorldMapDrawer:
         if self._selected.level_id != self.level_id:
             return
         x, y = self._get_marker_xy(self._selected)
-        x, y, w, h = (x - RAD * 2, y - RAD * 2,
-                      RAD * 4, RAD * 4)
+        x, y, w, h = (x - RAD * 2, y - RAD * 2, RAD * 4, RAD * 4)
 
         ctx.set_source_rgba(0, 0, 1, 0.6)
         ctx.rectangle(x, y, w, h)
@@ -176,24 +185,30 @@ class WorldMapDrawer:
 
     def _draw_name(self, ctx: cairo.Context, marker_ids: List[int], x: int, y: int):
         ctx.set_source_rgb(*COLOR_MARKERS)
-        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.select_font_face(
+            "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
+        )
         ctx.set_font_size(4 * self.scale)
         ctx.move_to(x, y - 4 * self.scale)
         label = ""
         for mid in marker_ids:
             if self.markers[mid].reference_id > -1:
                 dlabel = self._cb_dungeon_name(mid)
-                if dlabel == '':
-                    dlabel = f'{mid}'
-                label += f'{dlabel}, '
-        ctx.show_text(label.strip(', '))
+                if dlabel == "":
+                    dlabel = f"{mid}"
+                label += f"{dlabel}, "
+        ctx.show_text(label.strip(", "))
 
     def set_selected(self, entity: Optional[MapMarkerPlacement]):
         self._selected = entity
         self.draw_area.queue_draw()
 
-    def set_editing(self, entity: Optional[MapMarkerPlacement],
-                    editing_pos: Optional[Tuple[int, int]] = None, hide: Optional[MapMarkerPlacement] = None):
+    def set_editing(
+        self,
+        entity: Optional[MapMarkerPlacement],
+        editing_pos: Optional[Tuple[int, int]] = None,
+        hide: Optional[MapMarkerPlacement] = None,
+    ):
         self._editing = entity
         if editing_pos is None:
             assert entity

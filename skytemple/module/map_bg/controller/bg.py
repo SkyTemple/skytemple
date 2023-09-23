@@ -45,7 +45,8 @@ if TYPE_CHECKING:
     from skytemple.module.map_bg.module import MapBgModule
 
 
-INFO_IMEXPORT_TILES = _("""- The image consists of 8x8 tiles.
+INFO_IMEXPORT_TILES = _(
+    """- The image consists of 8x8 tiles.
 - The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
@@ -57,9 +58,11 @@ INFO_IMEXPORT_TILES = _("""- The image consists of 8x8 tiles.
 - Each import must result in a maximum of 1024 unique 8x8 tiles 
   (=not existing with another palette or flipped or rotated).
 
-Animated tiles are not imported.""")
+Animated tiles are not imported."""
+)
 
-INFO_IMEXPORT_CHUNK = _("""- The image consists of 8x8 tiles.
+INFO_IMEXPORT_CHUNK = _(
+    """- The image consists of 8x8 tiles.
 - The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
@@ -86,9 +89,11 @@ transparency.
 
 Static tiles, chunks and palettes are replaced on import. 
 Animated tiles and palette animation settings are not changed.
-""")
+"""
+)
 
-INFO_IMEXPORT_ENTIRE = _("""- The image is a 256-color indexed PNG.
+INFO_IMEXPORT_ENTIRE = _(
+    """- The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
   one of these 16 palettes.
@@ -109,11 +114,12 @@ Static tiles are replaced on import.
 Animated tiles and palette animation settings are not changed.
 
 Since no animated tiles are imported, they need
-to be (re-)assigned to chunks after the import.""")
+to be (re-)assigned to chunks after the import."""
+)
 
 
 class BgController(AbstractController):
-    def __init__(self, module: 'MapBgModule', item_id: int):
+    def __init__(self, module: "MapBgModule", item_id: int):
         self.module = module
         self.item_id = item_id
 
@@ -161,9 +167,9 @@ class BgController(AbstractController):
             self.bpas = module.get_bpas(item_id)
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'map_bg.glade')
+        self.builder = self._get_builder(__file__, "map_bg.glade")
         self.set_warning_palette()
-        self.notebook = builder_get_assert(self.builder, Gtk.Notebook, 'bg_notebook')
+        self.notebook = builder_get_assert(self.builder, Gtk.Notebook, "bg_notebook")
         self._init_drawer()
         current_page = self.notebook.get_nth_page(self.notebook.get_current_page())
         if current_page:
@@ -175,22 +181,29 @@ class BgController(AbstractController):
             # Invalidate SSA scene cache for this BG
             # TODO: This is obviously very ugly coupling...
             from skytemple.module.script.controller.ssa import SsaController
-            SsaController.map_bg_surface_cache = (None, )
+
+            SsaController.map_bg_surface_cache = (None,)
         except ImportError:
             pass
         if self._was_asset_copied:
-                md = SkyTempleMessageDialog(MainController.window(),
-                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                            Gtk.ButtonsType.OK, _("This map background shared some asset files with "
-                                                                  "other map backgrounds.\n"
-                                                                  "SkyTemple can't edit shared files, so "
-                                                                  "those assets were copied."),
-                                            title=_("SkyTemple - Notice"))
-                md.run()
-                md.destroy()
-                self.module.mark_as_modified(self.item_id)
-                self.module.mark_level_list_as_modified()
-        return builder_get_assert(self.builder, Gtk.Widget, 'editor_map_bg')
+            md = SkyTempleMessageDialog(
+                MainController.window(),
+                Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                Gtk.MessageType.INFO,
+                Gtk.ButtonsType.OK,
+                _(
+                    "This map background shared some asset files with "
+                    "other map backgrounds.\n"
+                    "SkyTemple can't edit shared files, so "
+                    "those assets were copied."
+                ),
+                title=_("SkyTemple - Notice"),
+            )
+            md.run()
+            md.destroy()
+            self.module.mark_as_modified(self.item_id)
+            self.module.mark_level_list_as_modified()
+        return builder_get_assert(self.builder, Gtk.Widget, "editor_map_bg")
 
     @typing.no_type_check
     def unload(self):
@@ -232,8 +245,12 @@ class BgController(AbstractController):
                 self.last_bma = self.bma.deepcopy()
             self.bg_draw_is_clicked = True
             if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
-                snap_x = correct_mouse_x - correct_mouse_x % (self.bma.tiling_width * BPC_TILE_DIM)
-                snap_y = correct_mouse_y - correct_mouse_y % (self.bma.tiling_height * BPC_TILE_DIM)
+                snap_x = correct_mouse_x - correct_mouse_x % (
+                    self.bma.tiling_width * BPC_TILE_DIM
+                )
+                snap_y = correct_mouse_y - correct_mouse_y % (
+                    self.bma.tiling_height * BPC_TILE_DIM
+                )
             else:
                 snap_x = correct_mouse_x - correct_mouse_x % BPC_TILE_DIM
                 snap_y = correct_mouse_y - correct_mouse_y % BPC_TILE_DIM
@@ -254,8 +271,12 @@ class BgController(AbstractController):
         correct_mouse_y = int(motion.y / self.scale_factor)
         if self.drawer:
             if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
-                snap_x = correct_mouse_x - correct_mouse_x % (self.bma.tiling_width * BPC_TILE_DIM)
-                snap_y = correct_mouse_y - correct_mouse_y % (self.bma.tiling_height * BPC_TILE_DIM)
+                snap_x = correct_mouse_x - correct_mouse_x % (
+                    self.bma.tiling_width * BPC_TILE_DIM
+                )
+                snap_y = correct_mouse_y - correct_mouse_y % (
+                    self.bma.tiling_height * BPC_TILE_DIM
+                )
                 tilling_x = self.bma.tiling_width * BPC_TILE_DIM
                 tilling_y = self.bma.tiling_height * BPC_TILE_DIM
             else:
@@ -266,7 +287,9 @@ class BgController(AbstractController):
             self.drawer.set_mouse_position(snap_x, snap_y)
             if self.bg_draw_is_clicked:
                 assert self.builder
-                tb_rectangle = builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tb_rectangle')
+                tb_rectangle = builder_get_assert(
+                    self.builder, Gtk.ToggleToolButton, "tb_rectangle"
+                )
                 if tb_rectangle.get_active():
                     # TODO: Clearly not optimized
                     assert self.last_bma
@@ -281,14 +304,23 @@ class BgController(AbstractController):
                     y_pos = [snap_y, self.first_cursor_pos[1]]
                     y_pos.sort()
                     y = y_pos[0]
-                    while y < y_pos[1]+tilling_y:
+                    while y < y_pos[1] + tilling_y:
                         x = x_pos[0]
-                        while x < x_pos[1]+tilling_x:
-                            if self.drawer.get_interaction_mode() == DrawerInteraction.CHUNKS:
+                        while x < x_pos[1] + tilling_x:
+                            if (
+                                self.drawer.get_interaction_mode()
+                                == DrawerInteraction.CHUNKS
+                            ):
                                 self._set_chunk_at_pos(x, y)
-                            elif self.drawer.get_interaction_mode() == DrawerInteraction.COL:
+                            elif (
+                                self.drawer.get_interaction_mode()
+                                == DrawerInteraction.COL
+                            ):
                                 self._set_col_at_pos(x, y)
-                            elif self.drawer.get_interaction_mode() == DrawerInteraction.DAT:
+                            elif (
+                                self.drawer.get_interaction_mode()
+                                == DrawerInteraction.DAT
+                            ):
                                 self._set_data_at_pos(x, y)
                             x += tilling_x
                         y += tilling_y
@@ -305,28 +337,49 @@ class BgController(AbstractController):
         if self.drawer:
             chunk_x = int(mouse_x / (self.bma.tiling_width * BPC_TILE_DIM))
             chunk_y = int(mouse_y / (self.bma.tiling_height * BPC_TILE_DIM))
-            if 0 <= chunk_x < self.bma.map_width_chunks and 0 <= chunk_y < self.bma.map_height_chunks:
+            if (
+                0 <= chunk_x < self.bma.map_width_chunks
+                and 0 <= chunk_y < self.bma.map_height_chunks
+            ):
                 # Set chunk at current position
                 self.mark_as_modified()
-                self.bma.place_chunk(self.current_chunks_icon_layer, chunk_x, chunk_y, self.drawer.get_selected_chunk_id())
+                self.bma.place_chunk(
+                    self.current_chunks_icon_layer,
+                    chunk_x,
+                    chunk_y,
+                    self.drawer.get_selected_chunk_id(),
+                )
 
     def _set_col_at_pos(self, mouse_x, mouse_y):
         if self.drawer:
             tile_x = int(mouse_x / BPC_TILE_DIM)
             tile_y = int(mouse_y / BPC_TILE_DIM)
-            if 0 <= tile_x < self.bma.map_width_camera and 0 <= tile_y < self.bma.map_height_camera:
+            if (
+                0 <= tile_x < self.bma.map_width_camera
+                and 0 <= tile_y < self.bma.map_height_camera
+            ):
                 # Set collision at current position
                 self.mark_as_modified()
-                self.bma.place_collision(self.drawer.get_edited_collision(), tile_x, tile_y, self.drawer.get_interaction_col_solid())
+                self.bma.place_collision(
+                    self.drawer.get_edited_collision(),
+                    tile_x,
+                    tile_y,
+                    self.drawer.get_interaction_col_solid(),
+                )
 
     def _set_data_at_pos(self, mouse_x, mouse_y):
         if self.drawer:
             tile_x = int(mouse_x / BPC_TILE_DIM)
             tile_y = int(mouse_y / BPC_TILE_DIM)
-            if 0 <= tile_x < self.bma.map_width_camera and 0 <= tile_y < self.bma.map_height_camera:
+            if (
+                0 <= tile_x < self.bma.map_width_camera
+                and 0 <= tile_y < self.bma.map_height_camera
+            ):
                 # Set data value at current position
                 self.mark_as_modified()
-                self.bma.place_data(tile_x, tile_y, self.drawer.get_interaction_dat_value())
+                self.bma.place_data(
+                    tile_x, tile_y, self.drawer.get_interaction_dat_value()
+                )
 
     def on_current_icon_view_selection_changed(self, icon_view: Gtk.IconView):
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
@@ -374,15 +427,21 @@ class BgController(AbstractController):
             associated = self.module.get_associated_script_map(self.item_id)
             if associated is None:
                 raise ValueError()
-            self.module.project.request_open(OpenRequest(
-                REQUEST_TYPE_SCENE, associated.name
-            ), True)
+            self.module.project.request_open(
+                OpenRequest(REQUEST_TYPE_SCENE, associated.name), True
+            )
         except ValueError:
-            md = SkyTempleMessageDialog(MainController.window(),
-                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                        Gtk.ButtonsType.OK, _("A script map with the same name as "
-                                                              "this background does not exist."),
-                                        title=_("No Scenes Found"))
+            md = SkyTempleMessageDialog(
+                MainController.window(),
+                Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                Gtk.MessageType.INFO,
+                Gtk.ButtonsType.OK,
+                _(
+                    "A script map with the same name as "
+                    "this background does not exist."
+                ),
+                title=_("No Scenes Found"),
+            )
             md.run()
             md.destroy()
 
@@ -456,25 +515,37 @@ class BgController(AbstractController):
         self.menu_controller.on_men_palettes_ani_edit_activate()
 
     def on_format_details_entire_clicked(self, *args):
-        md = SkyTempleMessageDialog(MainController.window(),
-                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_ENTIRE)
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            INFO_IMEXPORT_ENTIRE,
+        )
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
 
     def on_format_details_chunks_clicked(self, *args):
-        md = SkyTempleMessageDialog(MainController.window(),
-                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_CHUNK)
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            INFO_IMEXPORT_CHUNK,
+        )
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
 
     def on_format_details_tiles_clicked(self, *args):
-        md = SkyTempleMessageDialog(MainController.window(),
-                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_TILES)
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            INFO_IMEXPORT_TILES,
+        )
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
@@ -487,15 +558,17 @@ class BgController(AbstractController):
 
     def set_warning_palette(self):
         if self.builder:
-            editor_warning_palette = builder_get_assert(self.builder, Gtk.InfoBar, 'editor_warning_palette')
+            editor_warning_palette = builder_get_assert(
+                self.builder, Gtk.InfoBar, "editor_warning_palette"
+            )
             editor_warning_palette.set_revealed(self.weird_palette)
-        
+
     def _init_chunk_imgs(self):
         """(Re)-draw the chunk images"""
 
         # Set the weird palette warning to false
         self.weird_palette = False
-        
+
         if self.bpc.number_of_layers > 1:
             layer_idxs_bpc = [1, 0]
         else:
@@ -514,17 +587,23 @@ class BgController(AbstractController):
                 chunks_current_layer.append(pal_ani_frames)
 
                 chunk_data = self.bpc.get_chunk(layer_idx_bpc, chunk_idx)
-                chunk_images = self.bpc.single_chunk_animated_to_pil(layer_idx_bpc, chunk_idx, self.bpl.palettes, self.bpas)
+                chunk_images = self.bpc.single_chunk_animated_to_pil(
+                    layer_idx_bpc, chunk_idx, self.bpl.palettes, self.bpas
+                )
                 if not self.weird_palette:
                     for x in chunk_images:
                         for n in x.tobytes("raw", "P"):
                             n //= 16
-                            if n >= self.bpl.number_palettes or n>=BPL_NORMAL_MAX_PAL:
+                            if n >= self.bpl.number_palettes or n >= BPL_NORMAL_MAX_PAL:
                                 # If one chunk uses weird palette values, display the warning
                                 self.weird_palette = True
                                 break
-                        if self.weird_palette:break 
-                has_pal_ani = any(self.bpl.is_palette_affected_by_animation(chunk.pal_idx) for chunk in chunk_data)
+                        if self.weird_palette:
+                            break
+                has_pal_ani = any(
+                    self.bpl.is_palette_affected_by_animation(chunk.pal_idx)
+                    for chunk in chunk_data
+                )
                 len_pal_ani = len(self.bpl.animation_palette) if has_pal_ani else 1
 
                 for pal_ani in range(0, len_pal_ani):
@@ -534,13 +613,15 @@ class BgController(AbstractController):
                     for img in chunk_images:
                         # Switch out the palette with that from the palette animation
                         if has_pal_ani:
-                            pal_for_frame = itertools.chain.from_iterable(self.bpl.apply_palette_animations(pal_ani))
+                            pal_for_frame = itertools.chain.from_iterable(
+                                self.bpl.apply_palette_animations(pal_ani)
+                            )
                             img.putpalette(pal_for_frame)
                         # Remove alpha first
                         img_mask = img.copy()
                         img_mask.putpalette(MASK_PAL)
-                        img_mask = img_mask.convert('1')
-                        img = img.convert('RGBA')
+                        img_mask = img_mask.convert("1")
+                        img = img.convert("RGBA")
                         img.putalpha(img_mask)
                         bpa_ani_frames.append(pil_to_cairo_surface(img))
 
@@ -548,19 +629,25 @@ class BgController(AbstractController):
             self.bpa_durations = 0
             for bpa in self.bpas:
                 if bpa is not None:
-                    single_bpa_duration = max(info.duration_per_frame for info in bpa.frame_info) if len(bpa.frame_info) > 0 else 9999
+                    single_bpa_duration = (
+                        max(info.duration_per_frame for info in bpa.frame_info)
+                        if len(bpa.frame_info) > 0
+                        else 9999
+                    )
                     if single_bpa_duration > self.bpa_durations:
                         self.bpa_durations = single_bpa_duration
 
             # TODO: No BPL animations at different speeds supported at the moment
             self.pal_ani_durations = 0
             if self.bpl.has_palette_animation:
-                self.pal_ani_durations = max(spec.duration_per_frame for spec in self.bpl.animation_specs)
+                self.pal_ani_durations = max(
+                    spec.duration_per_frame for spec in self.bpl.animation_specs
+                )
         self.set_warning_palette()
 
     def _init_drawer(self):
         """(Re)-initialize the main drawing area"""
-        bg_draw_sw = builder_get_assert(self.builder, Gtk.ScrolledWindow, 'bg_draw_sw')
+        bg_draw_sw = builder_get_assert(self.builder, Gtk.ScrolledWindow, "bg_draw_sw")
         for child in bg_draw_sw.get_children():
             bg_draw_sw.remove(child)
         if self.bg_draw_event_box:
@@ -575,7 +662,9 @@ class BgController(AbstractController):
         self.bg_draw_event_box.add_events(Gdk.EventMask.POINTER_MOTION_MASK)
         self.bg_draw_event_box.connect("button-press-event", self.on_bg_draw_click)
         self.bg_draw_event_box.connect("button-release-event", self.on_bg_draw_release)
-        self.bg_draw_event_box.connect("motion-notify-event", self.on_bg_draw_mouse_move)
+        self.bg_draw_event_box.connect(
+            "motion-notify-event", self.on_bg_draw_mouse_move
+        )
 
         self.bg_draw = Gtk.DrawingArea.new()
         self.bg_draw_event_box.add(self.bg_draw)
@@ -584,10 +673,16 @@ class BgController(AbstractController):
 
         self.bg_draw.set_size_request(
             self.bma.map_width_chunks * self.bma.tiling_width * BPC_TILE_DIM,
-            self.bma.map_height_chunks * self.bma.tiling_height * BPC_TILE_DIM
+            self.bma.map_height_chunks * self.bma.tiling_height * BPC_TILE_DIM,
         )
 
-        self.drawer = Drawer(self.bg_draw, self.bma, self.bpa_durations, self.pal_ani_durations, self.chunks_surfaces)
+        self.drawer = Drawer(
+            self.bg_draw,
+            self.bma,
+            self.bpa_durations,
+            self.pal_ani_durations,
+            self.chunks_surfaces,
+        )
         if self._tileset_drawer_overlay:
             self.drawer.add_overlay(self._tileset_drawer_overlay)
         self.drawer.start()
@@ -597,30 +692,70 @@ class BgController(AbstractController):
         self.drawer.set_edited_layer(self.current_chunks_icon_layer)
 
         # Set drawer state based on some buttons
-        self.drawer.set_show_only_edited_layer(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_hide_other').get_active())
-        self.drawer.set_draw_chunk_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_chunk_grid').get_active())
-        self.drawer.set_draw_tile_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_tile_grid').get_active())
-        self.drawer.set_pink_bg(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_bg_color').get_active())
+        self.drawer.set_show_only_edited_layer(
+            builder_get_assert(
+                self.builder, Gtk.ToggleToolButton, f"tb_hide_other"
+            ).get_active()
+        )
+        self.drawer.set_draw_chunk_grid(
+            builder_get_assert(
+                self.builder, Gtk.ToggleToolButton, f"tb_chunk_grid"
+            ).get_active()
+        )
+        self.drawer.set_draw_tile_grid(
+            builder_get_assert(
+                self.builder, Gtk.ToggleToolButton, f"tb_tile_grid"
+            ).get_active()
+        )
+        self.drawer.set_pink_bg(
+            builder_get_assert(
+                self.builder, Gtk.ToggleToolButton, f"tb_bg_color"
+            ).get_active()
+        )
 
     def _init_drawer_collision_selected(self, collision_id):
         assert self.drawer is not None
         self.drawer.set_edited_collision(collision_id)
-        self.drawer.set_interaction_col_solid(builder_get_assert(self.builder, Gtk.Switch, 'collison_switch').get_active())
+        self.drawer.set_interaction_col_solid(
+            builder_get_assert(self.builder, Gtk.Switch, "collison_switch").get_active()
+        )
 
         # Set drawer state based on some buttons
-        self.drawer.set_draw_chunk_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_chunk_grid').get_active())
-        self.drawer.set_draw_tile_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_tile_grid').get_active())
-        self.drawer.set_pink_bg(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_bg_color').get_active())
+        self.drawer.set_draw_chunk_grid(
+            builder_get_assert(
+                self.builder, Gtk.ToggleToolButton, f"tb_chunk_grid"
+            ).get_active()
+        )
+        self.drawer.set_draw_tile_grid(
+            builder_get_assert(
+                self.builder, Gtk.ToggleToolButton, f"tb_tile_grid"
+            ).get_active()
+        )
+        self.drawer.set_pink_bg(
+            builder_get_assert(
+                self.builder, Gtk.ToggleToolButton, f"tb_bg_color"
+            ).get_active()
+        )
 
     def _init_drawer_data_layer_selected(self):
         assert self.drawer is not None
         self.drawer.set_edit_data_layer()
-        cb: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'data_combo_box')
+        cb: Gtk.ComboBox = builder_get_assert(
+            self.builder, Gtk.ComboBox, "data_combo_box"
+        )
         self.drawer.set_interaction_dat_value(cb.get_active())
 
         # Set drawer state based on some buttons
-        self.drawer.set_draw_chunk_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_chunk_grid').get_active())
-        self.drawer.set_draw_tile_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_tile_grid').get_active())
+        self.drawer.set_draw_chunk_grid(
+            builder_get_assert(
+                self.builder, Gtk.ToggleToolButton, f"tb_chunk_grid"
+            ).get_active()
+        )
+        self.drawer.set_draw_tile_grid(
+            builder_get_assert(
+                self.builder, Gtk.ToggleToolButton, f"tb_tile_grid"
+            ).get_active()
+        )
 
     def _init_chunks_icon_view(self, layer_number: int):
         """Fill the icon view for the specified layer"""
@@ -628,16 +763,22 @@ class BgController(AbstractController):
 
         self.current_chunks_icon_layer = layer_number
 
-        icon_view = builder_get_assert(self.builder, Gtk.IconView, f'bg_chunks_view')
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, f"bg_chunks_view")
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
-        self.current_icon_view_renderer = DrawerCellRenderer(icon_view, layer_number,
-                                                             self.bpa_durations, self.pal_ani_durations,
-                                                             self.chunks_surfaces)
+        self.current_icon_view_renderer = DrawerCellRenderer(
+            icon_view,
+            layer_number,
+            self.bpa_durations,
+            self.pal_ani_durations,
+            self.chunks_surfaces,
+        )
         store = Gtk.ListStore(int)
         icon_view.set_model(store)
         icon_view.pack_start(self.current_icon_view_renderer, True)
-        icon_view.add_attribute(self.current_icon_view_renderer, 'chunkidx', 0)
-        icon_view.connect('selection-changed', self.on_current_icon_view_selection_changed)
+        icon_view.add_attribute(self.current_icon_view_renderer, "chunkidx", 0)
+        icon_view.connect(
+            "selection-changed", self.on_current_icon_view_selection_changed
+        )
 
         for idx in range(0, len(self.chunks_surfaces[layer_number])):
             store.append([idx])
@@ -647,27 +788,31 @@ class BgController(AbstractController):
             icon_view.select_path(store.get_path(siter))
         self.current_icon_view_renderer.start()
 
-        self.current_icon_view_renderer.set_pink_bg(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_bg_color').get_active())
+        self.current_icon_view_renderer.set_pink_bg(
+            builder_get_assert(
+                self.builder, Gtk.ToggleToolButton, f"tb_bg_color"
+            ).get_active()
+        )
 
     def _deinit_chunks_icon_view(self):
         """Remove the icon view for the specified layer"""
-        icon_view = builder_get_assert(self.builder, Gtk.IconView, f'bg_chunks_view')
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, f"bg_chunks_view")
         icon_view.clear()
         icon_view.set_model(None)
 
     def _init_data_layer_combobox(self):
-        cb = builder_get_assert(self.builder, Gtk.ComboBox, f'data_combo_box')
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, f"data_combo_box")
         if cb.get_model() is None:
             store = Gtk.ListStore(str, int)
             for i in range(0, 256):
                 if i == 0:
-                    store.append([_('None'), i])
+                    store.append([_("None"), i])
                 else:
-                    store.append([f'0x{i:02x}', i])
+                    store.append([f"0x{i:02x}", i])
             cb.set_model(store)
             cell = Gtk.CellRendererText()
             cb.pack_start(cell, True)
-            cb.add_attribute(cell, 'text', 0)
+            cb.add_attribute(cell, "text", 0)
             cb.set_active(0)
 
     def mark_as_modified(self):
@@ -675,30 +820,38 @@ class BgController(AbstractController):
 
     def _init_tab(self, notebook_page: Gtk.Box):
         assert self.builder
-        layers_box = builder_get_assert(self.builder, Gtk.Box, 'bg_layers')
+        layers_box = builder_get_assert(self.builder, Gtk.Box, "bg_layers")
 
-        toolbox_box = builder_get_assert(self.builder, Gtk.Box, 'bg_layers_toolbox')
-        toolbox_box_child_layers = builder_get_assert(self.builder, Gtk.Box, 'bg_layers_toolbox_layers')
-        toolbox_box_child_collision = builder_get_assert(self.builder, Gtk.Box, 'bg_layers_toolbox_collision')
-        toolbox_box_child_data = builder_get_assert(self.builder, Gtk.Box, 'bg_layers_toolbox_data')
+        toolbox_box = builder_get_assert(self.builder, Gtk.Box, "bg_layers_toolbox")
+        toolbox_box_child_layers = builder_get_assert(
+            self.builder, Gtk.Box, "bg_layers_toolbox_layers"
+        )
+        toolbox_box_child_collision = builder_get_assert(
+            self.builder, Gtk.Box, "bg_layers_toolbox_collision"
+        )
+        toolbox_box_child_data = builder_get_assert(
+            self.builder, Gtk.Box, "bg_layers_toolbox_data"
+        )
 
-        if Gtk.Buildable.get_name(notebook_page) != 'metadata':
+        if Gtk.Buildable.get_name(notebook_page) != "metadata":
             for child in notebook_page.get_children():
-                    notebook_page.remove(child)
+                notebook_page.remove(child)
             for child in toolbox_box.get_children():
                 toolbox_box.remove(child)
 
         page_name = Gtk.Buildable.get_name(notebook_page)
-        if page_name == 'bg_layer2' and self.bma.number_of_layers < 2:
+        if page_name == "bg_layer2" and self.bma.number_of_layers < 2:
             # Layer 2: Does not exist
             label: Gtk.Label = Gtk.Label.new(
-                _('This map only has one layer.\n'
-                  'You can add a second layer at Map > Settings.')
+                _(
+                    "This map only has one layer.\n"
+                    "You can add a second layer at Map > Settings."
+                )
             )
             label.set_vexpand(True)
             label.show()
             notebook_page.add(label)
-        elif page_name in ['bg_layer1', 'bg_layer2']:
+        elif page_name in ["bg_layer1", "bg_layer2"]:
             # Layer 1 / 2
             layers_box_parent = layers_box.get_parent()
             if layers_box_parent:
@@ -707,30 +860,36 @@ class BgController(AbstractController):
 
             toolbox_box_child_layers_parent = toolbox_box_child_layers.get_parent()
             if toolbox_box_child_layers_parent:
-                typing.cast(Gtk.Container, toolbox_box_child_layers_parent).remove(toolbox_box_child_layers)
+                typing.cast(Gtk.Container, toolbox_box_child_layers_parent).remove(
+                    toolbox_box_child_layers
+                )
             toolbox_box.pack_start(toolbox_box_child_layers, True, True, 0)
 
-            self._init_chunks_icon_view(0 if page_name == 'bg_layer1' else 1)
+            self._init_chunks_icon_view(0 if page_name == "bg_layer1" else 1)
             self._init_drawer_layer_selected()
-        elif page_name == 'bg_col1' and self.bma.number_of_collision_layers < 1:
+        elif page_name == "bg_col1" and self.bma.number_of_collision_layers < 1:
             # Collision 1: Does not exist
             label = Gtk.Label.new(
-                _('This map has no collision.\n'
-                  'You can add collision at Map > Settings.')
+                _(
+                    "This map has no collision.\n"
+                    "You can add collision at Map > Settings."
+                )
             )
             label.set_vexpand(True)
             label.show()
             notebook_page.add(label)
-        elif page_name == 'bg_col2' and self.bma.number_of_collision_layers < 2:
+        elif page_name == "bg_col2" and self.bma.number_of_collision_layers < 2:
             # Collision 2: Does not exist
             label = Gtk.Label.new(
-                _('This map has no second collision layer.\n'
-                  'You can add a second collision layer at Map > Settings.')
+                _(
+                    "This map has no second collision layer.\n"
+                    "You can add a second collision layer at Map > Settings."
+                )
             )
             label.set_vexpand(True)
             label.show()
             notebook_page.add(label)
-        elif page_name in ['bg_col1', 'bg_col2']:
+        elif page_name in ["bg_col1", "bg_col2"]:
             # Collision 1 / 2
             layers_box_parent = layers_box.get_parent()
             if layers_box_parent:
@@ -739,20 +898,24 @@ class BgController(AbstractController):
 
             toolbox_box_child_layers_parent = toolbox_box_child_layers.get_parent()
             if toolbox_box_child_layers_parent:
-                typing.cast(Gtk.Container, toolbox_box_child_layers_parent).remove(toolbox_box_child_collision)
+                typing.cast(Gtk.Container, toolbox_box_child_layers_parent).remove(
+                    toolbox_box_child_collision
+                )
             toolbox_box.pack_start(toolbox_box_child_collision, True, True, 0)
 
-            self._init_drawer_collision_selected(0 if page_name == 'bg_col1' else 1)
-        elif page_name == 'bg_data' and self.bma.unk6 < 1:
+            self._init_drawer_collision_selected(0 if page_name == "bg_col1" else 1)
+        elif page_name == "bg_data" and self.bma.unk6 < 1:
             # Data Layer: Does not exist
             label = Gtk.Label.new(
-                _('This map has no data layer.\n'
-                  'You can add a data layer at Map > Settings.')
+                _(
+                    "This map has no data layer.\n"
+                    "You can add a data layer at Map > Settings."
+                )
             )
             label.set_vexpand(True)
             label.show()
             notebook_page.add(label)
-        elif page_name == 'bg_data':
+        elif page_name == "bg_data":
             # Data Layer
             layers_box_parent = layers_box.get_parent()
             if layers_box_parent:
@@ -761,7 +924,9 @@ class BgController(AbstractController):
 
             toolbox_box_child_data_parent = toolbox_box_child_data.get_parent()
             if toolbox_box_child_data_parent:
-                typing.cast(Gtk.Container, toolbox_box_child_data_parent).remove(toolbox_box_child_data)
+                typing.cast(Gtk.Container, toolbox_box_child_data_parent).remove(
+                    toolbox_box_child_data
+                )
             toolbox_box.pack_start(toolbox_box_child_data, True, True, 0)
 
             self._init_data_layer_combobox()
@@ -775,21 +940,41 @@ class BgController(AbstractController):
 
     def _refresh_metadata(self):
         level_entry = self.module.get_level_entry(self.item_id)
-        builder_get_assert(self.builder, Gtk.Label, 'filename_bma').set_text(level_entry.bma_name + BMA_EXT)
-        builder_get_assert(self.builder, Gtk.Label, 'filename_bpc').set_text(level_entry.bpc_name + BPC_EXT)
-        builder_get_assert(self.builder, Gtk.Label, 'filename_bpl').set_text(level_entry.bpl_name + BPL_EXT)
+        builder_get_assert(self.builder, Gtk.Label, "filename_bma").set_text(
+            level_entry.bma_name + BMA_EXT
+        )
+        builder_get_assert(self.builder, Gtk.Label, "filename_bpc").set_text(
+            level_entry.bpc_name + BPC_EXT
+        )
+        builder_get_assert(self.builder, Gtk.Label, "filename_bpl").set_text(
+            level_entry.bpl_name + BPL_EXT
+        )
         for i in range(0, 8):
             if level_entry.bpa_names[i] is not None:
-                builder_get_assert(self.builder, Gtk.Label, f'filename_bpa{i + 1}').set_text(level_entry.bpa_names[i] + BPA_EXT)
+                builder_get_assert(
+                    self.builder, Gtk.Label, f"filename_bpa{i + 1}"
+                ).set_text(level_entry.bpa_names[i] + BPA_EXT)
             else:
-                builder_get_assert(self.builder, Gtk.Label, f'filename_bpa{i + 1}').set_text("n/a")
+                builder_get_assert(
+                    self.builder, Gtk.Label, f"filename_bpa{i + 1}"
+                ).set_text("n/a")
 
     def _update_scales(self):
         """Update drawers+DrawingArea and iconview+Renderer scales"""
         assert self.bg_draw is not None
         self.bg_draw.set_size_request(
-            round(self.bma.map_width_chunks * self.bma.tiling_width * BPC_TILE_DIM * self.scale_factor),
-            round(self.bma.map_height_chunks * self.bma.tiling_height * BPC_TILE_DIM * self.scale_factor)
+            round(
+                self.bma.map_width_chunks
+                * self.bma.tiling_width
+                * BPC_TILE_DIM
+                * self.scale_factor
+            ),
+            round(
+                self.bma.map_height_chunks
+                * self.bma.tiling_height
+                * BPC_TILE_DIM
+                * self.scale_factor
+            ),
         )
         if self.drawer:
             self.drawer.set_scale(self.scale_factor)
@@ -798,10 +983,13 @@ class BgController(AbstractController):
             self.current_icon_view_renderer.set_scale(self.scale_factor)
             # update size
             self.current_icon_view_renderer.set_fixed_size(
-                int(BPC_TILE_DIM * 3 * self.scale_factor), int(BPC_TILE_DIM * 3 * self.scale_factor)
+                int(BPC_TILE_DIM * 3 * self.scale_factor),
+                int(BPC_TILE_DIM * 3 * self.scale_factor),
             )
 
-            icon_view = builder_get_assert(self.builder, Gtk.IconView, f'bg_chunks_view')
+            icon_view = builder_get_assert(
+                self.builder, Gtk.IconView, f"bg_chunks_view"
+            )
             icon_view.queue_resize()
 
     def reload_all(self):
@@ -811,7 +999,12 @@ class BgController(AbstractController):
         self.bpas = self.module.get_bpas(self.item_id)
         self._init_chunk_imgs()
         if self.drawer:
-            self.drawer.reset(self.bma, self.bpa_durations, self.pal_ani_durations, self.chunks_surfaces)
+            self.drawer.reset(
+                self.bma,
+                self.bpa_durations,
+                self.pal_ani_durations,
+                self.chunks_surfaces,
+            )
         if self.notebook is not None:
             tab = self.notebook.get_nth_page(self.notebook.get_current_page())
             if tab is not None:
@@ -821,18 +1014,38 @@ class BgController(AbstractController):
     def _init_rest_room_note(self):
         mode_10_or_11_level = None
         for level in self.module.get_all_associated_script_maps(self.item_id):
-            if level.mapty_enum == Pmd2ScriptLevelMapType.TILESET or level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM:
+            if (
+                level.mapty_enum == Pmd2ScriptLevelMapType.TILESET
+                or level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM
+            ):
                 mode_10_or_11_level = level
                 break
 
-        info_bar = builder_get_assert(self.builder, Gtk.InfoBar, 'editor_rest_room_note')
+        info_bar = builder_get_assert(
+            self.builder, Gtk.InfoBar, "editor_rest_room_note"
+        )
         if mode_10_or_11_level:
-            mappings, mappa, fixed, dungeon_bin_context, dungeon_list = self.module.get_mapping_dungeon_assets()
+            (
+                mappings,
+                mappa,
+                fixed,
+                dungeon_bin_context,
+                dungeon_list,
+            ) = self.module.get_mapping_dungeon_assets()
             with dungeon_bin_context as dungeon_bin:
-                mapping = resolve_mapping_for_level(mode_10_or_11_level, mappings, mappa, fixed, dungeon_bin, dungeon_list)
+                mapping = resolve_mapping_for_level(
+                    mode_10_or_11_level,
+                    mappings,
+                    mappa,
+                    fixed,
+                    dungeon_bin,
+                    dungeon_list,
+                )
             if mapping:
                 dma, dpc, dpci, dpl, _, fixed_room = mapping
-                self._tileset_drawer_overlay = MapTilesetOverlay(dma, dpc, dpci, dpl, fixed_room)
+                self._tileset_drawer_overlay = MapTilesetOverlay(
+                    dma, dpc, dpci, dpl, fixed_room
+                )
                 if self.drawer:
                     self.drawer.add_overlay(self._tileset_drawer_overlay)
             else:
@@ -847,28 +1060,32 @@ class BgController(AbstractController):
         if map_list.find_bma(entry.bma_name) > 1:
             self._was_asset_copied = True
             new_name, new_rom_filename = self._find_new_name(entry.bma_name, BMA_EXT)
-            self.module.project.create_new_file(new_rom_filename,
-                                                self.bma, FileType.BMA)
+            self.module.project.create_new_file(
+                new_rom_filename, self.bma, FileType.BMA
+            )
             entry.bma_name = new_name
         if map_list.find_bpl(entry.bpl_name) > 1:
             self._was_asset_copied = True
             new_name, new_rom_filename = self._find_new_name(entry.bpl_name, BPL_EXT)
-            self.module.project.create_new_file(new_rom_filename,
-                                                self.bpl, FileType.BPL)
+            self.module.project.create_new_file(
+                new_rom_filename, self.bpl, FileType.BPL
+            )
             entry.bpl_name = new_name
         if map_list.find_bpc(entry.bpc_name) > 1:
             self._was_asset_copied = True
             new_name, new_rom_filename = self._find_new_name(entry.bpc_name, BPC_EXT)
-            self.module.project.create_new_file(new_rom_filename,
-                                                self.bpc, FileType.BPC)
+            self.module.project.create_new_file(
+                new_rom_filename, self.bpc, FileType.BPC
+            )
             entry.bpc_name = new_name
         for bpa_id, bpa in enumerate(entry.bpa_names):
             if bpa is not None:
                 if map_list.find_bpa(bpa) > 1:
                     self._was_asset_copied = True
                     new_name, new_rom_filename = self._find_new_name(bpa, BPA_EXT)
-                    self.module.project.create_new_file(new_rom_filename,
-                                                        self.bpas[bpa_id], FileType.BPA)
+                    self.module.project.create_new_file(
+                        new_rom_filename, self.bpas[bpa_id], FileType.BPA
+                    )
                     entry.bpa_names[bpa_id] = new_name
 
     def _find_new_name(self, name_upper, ext):
@@ -886,14 +1103,17 @@ class BgController(AbstractController):
     def on_btn_about_palettes_clicked(self, w, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
-            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("Map backgrounds can be used as primary or secondary.\n"
-              "When used as primary, the background can have up to 14 palettes, using slots from 0 to 13.\n"
-              "When used as secondary, the background can only have 1 palette, using slot 14, and every palette value will have a new value of (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
-              "It is still possible to use palette values above those limits, but this is only in cases where a background needs to reference a palette from the other background.\n"
-              "Note: in the original game, almost every background is used as primary, the exceptions being mainly the weather (W) backgrounds.\n"),
-            title=_("Background Palettes")
+            _(
+                "Map backgrounds can be used as primary or secondary.\n"
+                "When used as primary, the background can have up to 14 palettes, using slots from 0 to 13.\n"
+                "When used as secondary, the background can only have 1 palette, using slot 14, and every palette value will have a new value of (old_value{chr(0xA0)}+{chr(0xA0)}14){chr(0xA0)}mod{chr(0xA0)}16.\n"
+                "It is still possible to use palette values above those limits, but this is only in cases where a background needs to reference a palette from the other background.\n"
+                "Note: in the original game, almost every background is used as primary, the exceptions being mainly the weather (W) backgrounds.\n"
+            ),
+            title=_("Background Palettes"),
         )
         md.run()
         md.destroy()

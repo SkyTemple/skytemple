@@ -31,46 +31,64 @@ if TYPE_CHECKING:
 
 
 class PmdSkyDebugController(AbstractController):
-    def __init__(self, module: 'PatchModule', *args):
+    def __init__(self, module: "PatchModule", *args):
         self.module = module
 
         self.builder: Gtk.Builder = None  # type: ignore
         self._selected_binary: Optional[str] = None
         self._selected_symbol_type: Optional[str] = None
         self._all_selected_binaries: List[str] = []
-        self._all_symbol_types: List[str] = ['data', 'functions']
+        self._all_symbol_types: List[str] = ["data", "functions"]
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'pmdsky_debug.glade')
+        self.builder = self._get_builder(__file__, "pmdsky_debug.glade")
         assert self.builder
 
         self.load()
 
         self.builder.connect_signals(self)
-        return builder_get_assert(self.builder, Gtk.Widget, 'main_box')
+        return builder_get_assert(self.builder, Gtk.Widget, "main_box")
 
-    def on_symbol_notebook_switch_page(self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num):
+    def on_symbol_notebook_switch_page(
+        self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num
+    ):
         self._selected_binary = self._all_selected_binaries[page_num]
         self.reset_all()
         self.refresh()
 
-    def on_symbol_notebook_bin_switch_page(self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num):
+    def on_symbol_notebook_bin_switch_page(
+        self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num
+    ):
         self._selected_symbol_type = self._all_symbol_types[page_num]
         self.reset_all()
         self.refresh()
 
     def reset_all(self):
-        symbol_box = builder_get_assert(self.builder, Gtk.Box, 'symbol_box')
-        assert_not_none(cast(Optional[Gtk.Container], symbol_box.get_parent())).remove(symbol_box)
-        symbol_window= builder_get_assert(self.builder, Gtk.ScrolledWindow, 'symbol_window')
-        assert_not_none(cast(Optional[Gtk.Container], symbol_window.get_parent())).remove(symbol_window)
+        symbol_box = builder_get_assert(self.builder, Gtk.Box, "symbol_box")
+        assert_not_none(cast(Optional[Gtk.Container], symbol_box.get_parent())).remove(
+            symbol_box
+        )
+        symbol_window = builder_get_assert(
+            self.builder, Gtk.ScrolledWindow, "symbol_window"
+        )
+        assert_not_none(
+            cast(Optional[Gtk.Container], symbol_window.get_parent())
+        ).remove(symbol_window)
 
     def load(self):
-        symbol_notebook = builder_get_assert(self.builder, Gtk.Notebook, 'symbol_notebook')
-        symbol_notebook_bin = builder_get_assert(self.builder, Gtk.Notebook, 'symbol_notebook_bin')
+        symbol_notebook = builder_get_assert(
+            self.builder, Gtk.Notebook, "symbol_notebook"
+        )
+        symbol_notebook_bin = builder_get_assert(
+            self.builder, Gtk.Notebook, "symbol_notebook_bin"
+        )
         # Fill symbol_notebook_bin
-        symbol_notebook_bin.append_page(Gtk.Box.new(Gtk.Orientation.VERTICAL, 0), Gtk.Label.new(_('Data')))
-        symbol_notebook_bin.append_page(Gtk.Box.new(Gtk.Orientation.VERTICAL, 0), Gtk.Label.new(_('Functions')))
+        symbol_notebook_bin.append_page(
+            Gtk.Box.new(Gtk.Orientation.VERTICAL, 0), Gtk.Label.new(_("Data"))
+        )
+        symbol_notebook_bin.append_page(
+            Gtk.Box.new(Gtk.Orientation.VERTICAL, 0), Gtk.Label.new(_("Functions"))
+        )
         project = RomProject.get_current()
         assert project is not None
         bin_sections = project.get_rom_module().get_static_data().bin_sections
@@ -78,44 +96,70 @@ class PmdSkyDebugController(AbstractController):
         keys = list(dict(vars(bin_sections)).keys())
         keys.sort(key=sort_bin_names)
         for bin_name in keys:
-            if not bin_name.startswith('_'):
-                symbol_notebook.append_page(Gtk.Box.new(Gtk.Orientation.VERTICAL, 0), Gtk.Label.new(readable_name(bin_name)))
+            if not bin_name.startswith("_"):
+                symbol_notebook.append_page(
+                    Gtk.Box.new(Gtk.Orientation.VERTICAL, 0),
+                    Gtk.Label.new(readable_name(bin_name)),
+                )
                 self._all_selected_binaries.append(bin_name)
 
         self._selected_binary = self._all_selected_binaries[0]
         self._selected_symbol_type = self._all_symbol_types[0]
 
-        builder_get_assert(self.builder, Gtk.Label, 'pmdsky_debug_version').set_text(RELEASE)
+        builder_get_assert(self.builder, Gtk.Label, "pmdsky_debug_version").set_text(
+            RELEASE
+        )
 
         self.refresh()
 
     def refresh(self):
-        symbol_notebook = builder_get_assert(self.builder, Gtk.Notebook, 'symbol_notebook')
-        symbol_notebook_bin = builder_get_assert(self.builder, Gtk.Notebook, 'symbol_notebook_bin')
-        symbol_box = builder_get_assert(self.builder, Gtk.Box, 'symbol_box')
-        symbol_window = builder_get_assert(self.builder, Gtk.ScrolledWindow, 'symbol_window')
-        tree = builder_get_assert(self.builder, Gtk.TreeView, 'symbol_tree')
-        symbol_description = builder_get_assert(self.builder, Gtk.Label, 'symbol_description')
-        symbol_meta = builder_get_assert(self.builder, Gtk.Label, 'symbol_meta')
+        symbol_notebook = builder_get_assert(
+            self.builder, Gtk.Notebook, "symbol_notebook"
+        )
+        symbol_notebook_bin = builder_get_assert(
+            self.builder, Gtk.Notebook, "symbol_notebook_bin"
+        )
+        symbol_box = builder_get_assert(self.builder, Gtk.Box, "symbol_box")
+        symbol_window = builder_get_assert(
+            self.builder, Gtk.ScrolledWindow, "symbol_window"
+        )
+        tree = builder_get_assert(self.builder, Gtk.TreeView, "symbol_tree")
+        symbol_description = builder_get_assert(
+            self.builder, Gtk.Label, "symbol_description"
+        )
+        symbol_meta = builder_get_assert(self.builder, Gtk.Label, "symbol_meta")
         # ATTACH
         assert self._selected_binary is not None
         assert self._selected_symbol_type is not None
         assert self.builder
-        bin_page = symbol_notebook_bin.get_nth_page(self._all_symbol_types.index(self._selected_symbol_type))
+        bin_page = symbol_notebook_bin.get_nth_page(
+            self._all_symbol_types.index(self._selected_symbol_type)
+        )
         assert bin_page is not None
         cast(Gtk.Box, bin_page).pack_start(symbol_window, True, True, 0)
-        sym_page = symbol_notebook.get_nth_page(self._all_selected_binaries.index(self._selected_binary))
+        sym_page = symbol_notebook.get_nth_page(
+            self._all_selected_binaries.index(self._selected_binary)
+        )
         assert sym_page is not None
         cast(Gtk.Box, sym_page).pack_start(symbol_box, True, True, 0)
 
         project = RomProject.get_current()
         assert project is not None
-        section: SectionProtocol = getattr(project.get_rom_module().get_static_data().bin_sections, self._selected_binary)
+        section: SectionProtocol = getattr(
+            project.get_rom_module().get_static_data().bin_sections,
+            self._selected_binary,
+        )
         bin_load_address = section.loadaddress
         bin_length = section.length
 
         symbol_description.set_text(section.description.strip())
-        symbol_meta.set_markup(f(_("<b>Load Address:</b> 0x{bin_load_address:0x} | <b>Length:</b> {bin_length}")))
+        symbol_meta.set_markup(
+            f(
+                _(
+                    "<b>Load Address:</b> 0x{bin_load_address:0x} | <b>Length:</b> {bin_length}"
+                )
+            )
+        )
 
         model = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
         model.clear()
@@ -125,18 +169,23 @@ class PmdSkyDebugController(AbstractController):
         else:
             symsect = section.functions
         for symbol_name in dict(vars(symsect)).keys():
-            if not symbol_name.startswith('_'):
+            if not symbol_name.startswith("_"):
                 symbol: Symbol = getattr(symsect, symbol_name)
                 if symbol is not None:
-                    model.append([
-                        symbol_name,
-                        f"0x{symbol.absolute_address:0x}" if symbol.absolute_addresses is not None and len(symbol.absolute_addresses) > 0 else "???",
-                        str(symbol.length if symbol.length is not None else 1),
-                        symbol.description.strip()
-                    ])
+                    model.append(
+                        [
+                            symbol_name,
+                            f"0x{symbol.absolute_address:0x}"
+                            if symbol.absolute_addresses is not None
+                            and len(symbol.absolute_addresses) > 0
+                            else "???",
+                            str(symbol.length if symbol.length is not None else 1),
+                            symbol.description.strip(),
+                        ]
+                    )
 
     def on_repo_pmdsky_debug_clicked(self, *args):
-        webbrowser.open_new_tab('https://github.com/UsernameFodder/pmdsky-debug')
+        webbrowser.open_new_tab("https://github.com/UsernameFodder/pmdsky-debug")
 
 
 def readable_name(bin_name: str):

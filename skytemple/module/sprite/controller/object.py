@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 
 class ObjectController(AbstractController):
-    def __init__(self, module: 'SpriteModule', item_id: str):
+    def __init__(self, module: "SpriteModule", item_id: str):
         self.module = module
         self.item_id = item_id
         self._sprite_provider = module.get_sprite_provider()
@@ -44,16 +44,20 @@ class ObjectController(AbstractController):
         self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'object.glade')
+        self.builder = self._get_builder(__file__, "object.glade")
         self.builder.connect_signals(self)
         self._sprite_provider.reset()
-        builder_get_assert(self.builder, Gtk.Label, 'file_name').set_text(self.item_id)
+        builder_get_assert(self.builder, Gtk.Label, "file_name").set_text(self.item_id)
         if self.module.get_gfxcrunch().is_available():
-            builder_get_assert(self.builder, Gtk.Label, 'explanation_text').set_markup(_("""SkyTemple can not edit sprites. 
+            builder_get_assert(self.builder, Gtk.Label, "explanation_text").set_markup(
+                _(
+                    """SkyTemple can not edit sprites. 
 However you can export the sprite in the gfxcrunch format and import it back again.
-Warning: SkyTemple does not validate the files you import."""))
+Warning: SkyTemple does not validate the files you import."""
+                )
+            )
 
-        return builder_get_assert(self.builder, Gtk.Widget, 'main_box')
+        return builder_get_assert(self.builder, Gtk.Widget, "main_box")
 
     def on_explanation_text_activate_link(self, *args):
         self.module.open_gfxcrunch_page()

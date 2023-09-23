@@ -30,66 +30,78 @@ from skytemple_files.common.types.file_types import FileType
 if TYPE_CHECKING:
     from skytemple.module.sprite.module import SpriteModule
 
-OBJECT_SPRTIES = _('Object Sprites')
+OBJECT_SPRTIES = _("Object Sprites")
+
 
 class ObjectMainController(AbstractController):
-    def __init__(self, module: 'SpriteModule', item_id: int):
+    def __init__(self, module: "SpriteModule", item_id: int):
         self.module = module
         self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'object_main.glade')
+        self.builder = self._get_builder(__file__, "object_main.glade")
         self.builder.connect_signals(self)
-        return builder_get_assert(self.builder, Gtk.Widget, 'box_list')
+        return builder_get_assert(self.builder, Gtk.Widget, "box_list")
 
     def on_btn_add_clicked(self, *args):
         from skytemple.module.sprite.module import GROUND_DIR, WAN_FILE_EXT
-        response, name = self._show_generic_input(_('Sprite Name'), _('Create Object Sprite'))
+
+        response, name = self._show_generic_input(
+            _("Sprite Name"), _("Create Object Sprite")
+        )
         if response != Gtk.ResponseType.OK:
             return
         name = name.lower()
         if len(name) < 1 or len(name) > 10:
             md = SkyTempleMessageDialog(
                 SkyTempleMainController.window(),
-                Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
+                Gtk.DialogFlags.MODAL,
+                Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,
-                _("The length of the sprite name must be between 1-10 characters.")
+                _("The length of the sprite name must be between 1-10 characters."),
             )
             md.run()
             md.destroy()
             return
-        obj_name = f'{GROUND_DIR}/{name}.{WAN_FILE_EXT}'
+        obj_name = f"{GROUND_DIR}/{name}.{WAN_FILE_EXT}"
         if self.module.project.file_exists(obj_name):
             md = SkyTempleMessageDialog(
                 SkyTempleMainController.window(),
-                Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
+                Gtk.DialogFlags.MODAL,
+                Gtk.MessageType.ERROR,
                 Gtk.ButtonsType.OK,
-                _("A sprite with this name already exists.")
+                _("A sprite with this name already exists."),
             )
             md.run()
             md.destroy()
             return
 
-        with open(os.path.join(data_dir(), 'empty.wan'), 'rb') as f:
+        with open(os.path.join(data_dir(), "empty.wan"), "rb") as f:
             empty_wan = f.read()
 
         # Write to ROM
         self.module.project.create_file_manually(obj_name, empty_wan)
-        self.module.add_wan(f'{name}.{WAN_FILE_EXT}')
+        self.module.add_wan(f"{name}.{WAN_FILE_EXT}")
 
         md = SkyTempleMessageDialog(
             SkyTempleMainController.window(),
-            Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO,
+            Gtk.DialogFlags.MODAL,
+            Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("Object sprite added successfully"), is_success=True
+            _("Object sprite added successfully"),
+            is_success=True,
         )
         md.run()
         md.destroy()
 
     def _show_generic_input(self, label_text, ok_text):
-        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'generic_input_dialog')
-        entry = builder_get_assert(self.builder, Gtk.Entry, 'generic_input_dialog_entry')
-        label = builder_get_assert(self.builder, Gtk.Label, 'generic_input_dialog_label')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, "generic_input_dialog")
+        entry = builder_get_assert(
+            self.builder, Gtk.Entry, "generic_input_dialog_entry"
+        )
+        label = builder_get_assert(
+            self.builder, Gtk.Label, "generic_input_dialog_label"
+        )
         label.set_text(label_text)
         btn_cancel = dialog.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
         btn = dialog.add_button(ok_text, Gtk.ResponseType.OK)
@@ -101,5 +113,7 @@ class ObjectMainController(AbstractController):
         response = dialog.run()
         dialog.hide()
         assert_not_none(cast(Optional[Gtk.Container], btn.get_parent())).remove(btn)
-        assert_not_none(cast(Optional[Gtk.Container], btn_cancel.get_parent())).remove(btn_cancel)
+        assert_not_none(cast(Optional[Gtk.Container], btn_cancel.get_parent())).remove(
+            btn_cancel
+        )
         return response, entry.get_text()

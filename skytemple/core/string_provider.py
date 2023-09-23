@@ -28,34 +28,35 @@ if TYPE_CHECKING:
 
 class StringType(Enum):
     """This enum maps to entries from the Pmd2StringBlock of the Pmd2Data's Pmd2StringIndexData."""
-    ITEM_NAMES = auto(), 'Item Names'
-    MOVE_NAMES = auto(), 'Move Names'
-    POKEMON_NAMES = auto(), 'Pokemon Names'
-    POKEMON_CATEGORIES = auto(), 'Pokemon Categories'
-    MOVE_DESCRIPTIONS = auto(), 'Move Descriptions'
-    ITEM_LONG_DESCRIPTIONS = auto(), 'Item Long Descriptions'
-    ITEM_SHORT_DESCRIPTIONS = auto(), 'Item Short Descriptions'
-    TRAP_NAMES = auto(), 'Trap Names'
-    TYPE_NAMES = auto(), 'Type Names'
-    ABILITY_NAMES = auto(), 'Ability Names'
-    ABILITY_DESCRIPTIONS = auto(), 'Ability Descriptions'
-    PORTRAIT_NAMES = auto(), 'Portrait Names'
-    GROUND_MAP_NAMES = auto(), 'Ground Map Names'
-    DUNGEON_NAMES_MAIN = auto(), 'Dungeon Names (Main)'
-    DUNGEON_NAMES_SELECTION = auto(), 'Dungeon Names (Selection)'
-    DUNGEON_NAMES_SET_DUNGEON_BANNER = auto(), 'Dungeon Names (SetDungeonBanner)'
-    DUNGEON_NAMES_BANNER = auto(), 'Dungeon Names (Banner)'
-    DEFAULT_TEAM_NAMES = auto(), 'Default Team Names'
-    RANK_NAMES = auto(), 'Explorer Ranks Names'
-    DIALOGUE_LEVEL_UP = auto(), 'Pokemon LEVEL_UP Dialogue'
-    DIALOGUE_WAIT = auto(), 'Pokemon WAIT Dialogue'
-    DIALOGUE_HEALTHY = auto(), 'Pokemon HEALTHY Dialogue'
-    DIALOGUE_HALF_LIFE = auto(), 'Pokemon HALF_LIFE Dialogue'
-    DIALOGUE_PINCH = auto(), 'Pokemon PINCH Dialogue'
-    DIALOGUE_GROUND_WAIT = auto(), 'Pokemon GROUND_WAIT Dialogue'
-    WEATHER_NAMES = auto(), 'Weather Names'
-    TACTICS_NAMES = auto(), 'Tactics Names'
-    IQ_SKILL_NAMES = auto(), 'IQ Skills Names'
+
+    ITEM_NAMES = auto(), "Item Names"
+    MOVE_NAMES = auto(), "Move Names"
+    POKEMON_NAMES = auto(), "Pokemon Names"
+    POKEMON_CATEGORIES = auto(), "Pokemon Categories"
+    MOVE_DESCRIPTIONS = auto(), "Move Descriptions"
+    ITEM_LONG_DESCRIPTIONS = auto(), "Item Long Descriptions"
+    ITEM_SHORT_DESCRIPTIONS = auto(), "Item Short Descriptions"
+    TRAP_NAMES = auto(), "Trap Names"
+    TYPE_NAMES = auto(), "Type Names"
+    ABILITY_NAMES = auto(), "Ability Names"
+    ABILITY_DESCRIPTIONS = auto(), "Ability Descriptions"
+    PORTRAIT_NAMES = auto(), "Portrait Names"
+    GROUND_MAP_NAMES = auto(), "Ground Map Names"
+    DUNGEON_NAMES_MAIN = auto(), "Dungeon Names (Main)"
+    DUNGEON_NAMES_SELECTION = auto(), "Dungeon Names (Selection)"
+    DUNGEON_NAMES_SET_DUNGEON_BANNER = auto(), "Dungeon Names (SetDungeonBanner)"
+    DUNGEON_NAMES_BANNER = auto(), "Dungeon Names (Banner)"
+    DEFAULT_TEAM_NAMES = auto(), "Default Team Names"
+    RANK_NAMES = auto(), "Explorer Ranks Names"
+    DIALOGUE_LEVEL_UP = auto(), "Pokemon LEVEL_UP Dialogue"
+    DIALOGUE_WAIT = auto(), "Pokemon WAIT Dialogue"
+    DIALOGUE_HEALTHY = auto(), "Pokemon HEALTHY Dialogue"
+    DIALOGUE_HALF_LIFE = auto(), "Pokemon HALF_LIFE Dialogue"
+    DIALOGUE_PINCH = auto(), "Pokemon PINCH Dialogue"
+    DIALOGUE_GROUND_WAIT = auto(), "Pokemon GROUND_WAIT Dialogue"
+    WEATHER_NAMES = auto(), "Weather Names"
+    TACTICS_NAMES = auto(), "Tactics Names"
+    IQ_SKILL_NAMES = auto(), "IQ Skills Names"
 
     def __new__(cls, *args, **kwargs):
         obj = object.__new__(cls)
@@ -70,32 +71,38 @@ class StringType(Enum):
         return self._xml_name_
 
     def __repr__(self):
-        return f'StringType.{self.name}'
+        return f"StringType.{self.name}"
 
     @property
     def xml_name(self):
         return self._xml_name_
-    
+
     def replace_xml_name(self, new_name):
         self._xml_name_ = new_name
 
 
 LanguageLike = Union[str, Pmd2Language]  # locale string or Pmd2Language
-MESSAGE_DIR = 'MESSAGE'
+MESSAGE_DIR = "MESSAGE"
 
 
 class StringProvider:
     """
     SpriteProvider. Provides strings from the big string table(s).
     """
-    def __init__(self, project: 'RomProject'):
+
+    def __init__(self, project: "RomProject"):
         self.project = project
 
     @property
     def _static_data(self):
         return self.project.get_rom_module().get_static_data()
 
-    def get_value(self, string_type: StringType, index: int, language: Optional[LanguageLike] = None) -> str:
+    def get_value(
+        self,
+        string_type: StringType,
+        index: int,
+        language: Optional[LanguageLike] = None,
+    ) -> str:
         """
         Returns the value of a string in the big string file for the given language, starting from the offset
         defined by the string_type.
@@ -113,14 +120,16 @@ class StringProvider:
         # TODO: We should probably also check the end offset (overflow check).
         return self._get_string_block(string_type).begin + index
 
-    def get_all(self, string_type: StringType, language: Optional[LanguageLike] = None) -> List[str]:
+    def get_all(
+        self, string_type: StringType, language: Optional[LanguageLike] = None
+    ) -> List[str]:
         """
         Returns all strings of the given type.
         If language is not set, the default ROM language is used.
         """
         model = self.get_model(language)
         string_block = self._get_string_block(string_type)
-        return model.strings[string_block.begin:string_block.end]
+        return model.strings[string_block.begin : string_block.end]
 
     def get_model(self, language: Optional[LanguageLike] = None) -> Str:
         """
@@ -128,8 +137,11 @@ class StringProvider:
         If language is not set, the default ROM language is used.
         """
         return self.project.open_file_in_rom(
-            f'{MESSAGE_DIR}/{self.get_language(language).filename}', FileType.STR,
-            string_encoding=self.project.get_rom_module().get_static_data().string_encoding
+            f"{MESSAGE_DIR}/{self.get_language(language).filename}",
+            FileType.STR,
+            string_encoding=self.project.get_rom_module()
+            .get_static_data()
+            .string_encoding,
         )
 
     def get_languages(self) -> List[Pmd2Language]:
@@ -138,11 +150,13 @@ class StringProvider:
 
     def mark_as_modified(self):
         for lang in self.get_languages():
-            fname = f'{MESSAGE_DIR}/{lang.filename}'
+            fname = f"{MESSAGE_DIR}/{lang.filename}"
             if self.project.is_opened(fname):
                 self.project.mark_as_modified(fname)
 
-    def get_language(self, language_locale: Optional[LanguageLike] = None) -> Pmd2Language:
+    def get_language(
+        self, language_locale: Optional[LanguageLike] = None
+    ) -> Pmd2Language:
         if isinstance(language_locale, Pmd2Language):
             return language_locale
 
@@ -169,9 +183,9 @@ class StringProvider:
 
     def _get_locale_from_app_locale(self) -> Pmd2Language:
         try:
-            current_locale = locale.getlocale()[0].split('_')[0]  # type: ignore
+            current_locale = locale.getlocale()[0].split("_")[0]  # type: ignore
             for lang in self.get_languages():
-                lang_locale = lang.locale.split('-')[0]
+                lang_locale = lang.locale.split("-")[0]
                 if lang_locale == current_locale:
                     return lang
             return self.get_languages()[0]

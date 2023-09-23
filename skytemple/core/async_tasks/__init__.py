@@ -21,7 +21,7 @@ from typing import Protocol, Coroutine
 class AsyncTaskRunnerProtocol(Protocol):
     @classmethod
     @abstractmethod
-    def instance(cls) -> 'AsyncTaskRunnerProtocol':
+    def instance(cls) -> "AsyncTaskRunnerProtocol":
         pass
 
     @abstractmethod

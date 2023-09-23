@@ -32,7 +32,7 @@ if TYPE_CHECKING:
 
 
 class InvalidDungeonController(AbstractController):
-    def __init__(self, module: 'DungeonModule', dungeon_info: 'DungeonViewInfo'):
+    def __init__(self, module: "DungeonModule", dungeon_info: "DungeonViewInfo"):
         self.module = module
         self.dungeon_info = dungeon_info
         self.dungeon_name = self.module.project.get_string_provider().get_value(
@@ -42,15 +42,15 @@ class InvalidDungeonController(AbstractController):
         self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'invalid.glade')
+        self.builder = self._get_builder(__file__, "invalid.glade")
         assert self.builder
 
-        builder_get_assert(self.builder, Gtk.Label, 'label_dungeon_name').set_text(self.dungeon_name)
+        builder_get_assert(self.builder, Gtk.Label, "label_dungeon_name").set_text(
+            self.dungeon_name
+        )
         self.builder.connect_signals(self)
 
-        return builder_get_assert(self.builder, Gtk.Widget, 'main_box')
+        return builder_get_assert(self.builder, Gtk.Widget, "main_box")
 
     def on_btn_goto_clicked(self, *args):
-        self.module.project.request_open(OpenRequest(
-            REQUEST_TYPE_DUNGEONS, None
-        ))
+        self.module.project.request_open(OpenRequest(REQUEST_TYPE_DUNGEONS, None))

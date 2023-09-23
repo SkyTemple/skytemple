@@ -27,14 +27,27 @@ from skytemple.core.sprite_provider import SpriteProvider
 from skytemple.core.string_provider import StringProvider, StringType
 from skytemple.module.dungeon import MAX_ITEMS
 from skytemple.module.dungeon.entity_rule_container import EntityRuleContainer
-from skytemple.module.dungeon.fixed_room_entity_renderer.abstract import AbstractEntityRenderer
-from skytemple.module.dungeon.fixed_room_tileset_renderer.abstract import AbstractTilesetRenderer
-from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRule, TileRuleType, FloorType, EntityRule, \
-    RoomType, FixedFloorActionRule, DirectRule
+from skytemple.module.dungeon.fixed_room_entity_renderer.abstract import (
+    AbstractEntityRenderer,
+)
+from skytemple.module.dungeon.fixed_room_tileset_renderer.abstract import (
+    AbstractTilesetRenderer,
+)
+from skytemple_files.dungeon_data.fixed_bin.model import (
+    FixedFloor,
+    TileRule,
+    TileRuleType,
+    FloorType,
+    EntityRule,
+    RoomType,
+    FixedFloorActionRule,
+    DirectRule,
+)
 from skytemple_files.dungeon_data.mappa_bin.protocol import MappaTrapType
 from skytemple_files.graphics.dma.protocol import DmaType
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
 from skytemple_files.common.i18n_util import _
+
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule
 
@@ -66,9 +79,14 @@ class InfoLayer(Enum):
 
 class FixedRoomDrawer:
     def __init__(
-            self, draw_area: Gtk.Widget, fixed_floor: Optional[FixedFloor],
-            sprite_provider: SpriteProvider, entity_rule_container: Optional[EntityRuleContainer],
-            string_provider: StringProvider, module: 'DungeonModule', add_fixed_room_padding=True
+        self,
+        draw_area: Gtk.Widget,
+        fixed_floor: Optional[FixedFloor],
+        sprite_provider: SpriteProvider,
+        entity_rule_container: Optional[EntityRuleContainer],
+        string_provider: StringProvider,
+        module: "DungeonModule",
+        add_fixed_room_padding=True,
     ):
         self.draw_area = draw_area
         self.module = module
@@ -105,7 +123,7 @@ class FixedRoomDrawer:
         """Start drawing on the DrawingArea"""
         self.drawing_is_active = True
         if isinstance(self.draw_area, Gtk.DrawingArea):
-            self.draw_area.connect('draw', self.draw)
+            self.draw_area.connect("draw", self.draw)
         self.draw_area.queue_draw()
 
     @typing.no_type_check
@@ -137,8 +155,11 @@ class FixedRoomDrawer:
         # Iterate over floor and render it
         rules = []
         if self.add_fixed_room_padding:
-            draw_outside_as_second_terrain = any(action.tr_type == TileRuleType.SECONDARY_HALLWAY_VOID_ALL
-                                                 for action in self.fixed_floor.actions if isinstance(action, TileRule))
+            draw_outside_as_second_terrain = any(
+                action.tr_type == TileRuleType.SECONDARY_HALLWAY_VOID_ALL
+                for action in self.fixed_floor.actions
+                if isinstance(action, TileRule)
+            )
             outside = DmaType.WATER if draw_outside_as_second_terrain else DmaType.WALL
             rules.append([outside] * (self.fixed_floor.width + 10))
             rules.append([outside] * (self.fixed_floor.width + 10))
@@ -162,7 +183,9 @@ class FixedRoomDrawer:
                     elif action.tr_type.floor_type == FloorType.FLOOR_OR_WALL:
                         row.append(DmaType.WALL)
                 elif isinstance(action, EntityRule):
-                    item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
+                    item, monster, tile, stats = self.entity_rule_container.get(
+                        action.entity_rule_id
+                    )
                     if tile.is_secondary_terrain():
                         row.append(DmaType.WATER)
                     else:
@@ -186,27 +209,41 @@ class FixedRoomDrawer:
 
         # Tile Grid
         if self.draw_tile_grid:
-            self.tile_grid_plugin.draw(ctx,
-                                       size_w - self.tileset_renderer.chunk_dim() * OFFSET_BASE,
-                                       size_h - self.tileset_renderer.chunk_dim() * OFFSET_BASE,
-                                       self.mouse_x, self.mouse_y)
+            self.tile_grid_plugin.draw(
+                ctx,
+                size_w - self.tileset_renderer.chunk_dim() * OFFSET_BASE,
+                size_h - self.tileset_renderer.chunk_dim() * OFFSET_BASE,
+                self.mouse_x,
+                self.mouse_y,
+            )
 
         # Black out non-editable area
         ctx.set_source_rgba(0, 0, 0, 0.5)
-        ctx.rectangle(0, 0,
-                      size_w, self.tileset_renderer.chunk_dim() * 5)
+        ctx.rectangle(0, 0, size_w, self.tileset_renderer.chunk_dim() * 5)
         ctx.fill()
         ctx.set_source_rgba(0, 0, 0, 0.5)
-        ctx.rectangle(0, self.tileset_renderer.chunk_dim() * (self.fixed_floor.height + 5),
-                      size_w, self.tileset_renderer.chunk_dim() * 5)
+        ctx.rectangle(
+            0,
+            self.tileset_renderer.chunk_dim() * (self.fixed_floor.height + 5),
+            size_w,
+            self.tileset_renderer.chunk_dim() * 5,
+        )
         ctx.fill()
         ctx.set_source_rgba(0, 0, 0, 0.5)
-        ctx.rectangle(0, self.tileset_renderer.chunk_dim() * 5,
-                      self.tileset_renderer.chunk_dim() * 5, self.tileset_renderer.chunk_dim() * self.fixed_floor.height)
+        ctx.rectangle(
+            0,
+            self.tileset_renderer.chunk_dim() * 5,
+            self.tileset_renderer.chunk_dim() * 5,
+            self.tileset_renderer.chunk_dim() * self.fixed_floor.height,
+        )
         ctx.fill()
         ctx.set_source_rgba(0, 0, 0, 0.5)
-        ctx.rectangle(self.tileset_renderer.chunk_dim() * (self.fixed_floor.width + 5), self.tileset_renderer.chunk_dim() * 5,
-                      self.tileset_renderer.chunk_dim() * 5, self.tileset_renderer.chunk_dim() * self.fixed_floor.height)
+        ctx.rectangle(
+            self.tileset_renderer.chunk_dim() * (self.fixed_floor.width + 5),
+            self.tileset_renderer.chunk_dim() * 5,
+            self.tileset_renderer.chunk_dim() * 5,
+            self.tileset_renderer.chunk_dim() * self.fixed_floor.height,
+        )
         ctx.fill()
 
         # Draw Pokémon, items, traps, etc.
@@ -236,27 +273,58 @@ class FixedRoomDrawer:
                     sx = self.tileset_renderer.chunk_dim() * x
                     sy = self.tileset_renderer.chunk_dim() * y
                     if isinstance(action, EntityRule):
-                        item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
+                        item, monster, tile, stats = self.entity_rule_container.get(
+                            action.entity_rule_id
+                        )
                         # Has trap?
-                        if tile.trap_id < 25 and self.info_layer_active == InfoLayer.TRAP:
-                            self._draw_info_trap(sx, sy, ctx, self._trap_name(tile.trap_id),
-                                                 tile.can_be_broken(), tile.trap_is_visible())
+                        if (
+                            tile.trap_id < 25
+                            and self.info_layer_active == InfoLayer.TRAP
+                        ):
+                            self._draw_info_trap(
+                                sx,
+                                sy,
+                                ctx,
+                                self._trap_name(tile.trap_id),
+                                tile.can_be_broken(),
+                                tile.trap_is_visible(),
+                            )
                         # Has item?
-                        if item.item_id > 0 and self.info_layer_active == InfoLayer.ITEM:
-                            self._draw_info_item(sx, sy, ctx, self._item_name(item.item_id))
+                        if (
+                            item.item_id > 0
+                            and self.info_layer_active == InfoLayer.ITEM
+                        ):
+                            self._draw_info_item(
+                                sx, sy, ctx, self._item_name(item.item_id)
+                            )
                         # Has Pokémon?
-                        if monster.md_idx > 0 and self.info_layer_active == InfoLayer.MONSTER:
+                        if (
+                            monster.md_idx > 0
+                            and self.info_layer_active == InfoLayer.MONSTER
+                        ):
                             self._draw_info_monster(sx, sy, ctx, monster.enemy_settings)
                         if self.info_layer_active == InfoLayer.TILE:
-                            self._draw_info_tile(sx, sy, ctx, tile.room_id, False, False)
+                            self._draw_info_tile(
+                                sx, sy, ctx, tile.room_id, False, False
+                            )
                     elif self.info_layer_active == InfoLayer.TILE:
-                        self._draw_info_tile(sx, sy, ctx, 
-                                             0 if action.tr_type.room_type == RoomType.ROOM else -1, 
-                                             action.tr_type.impassable, action.tr_type.absolute_mover)
+                        self._draw_info_tile(
+                            sx,
+                            sy,
+                            ctx,
+                            0 if action.tr_type.room_type == RoomType.ROOM else -1,
+                            action.tr_type.impassable,
+                            action.tr_type.absolute_mover,
+                        )
                     ridx += 1
 
         # Cursor / Active selected / Place mode
-        x, y, w, h = self.mouse_x, self.mouse_y, self.tileset_renderer.chunk_dim(), self.tileset_renderer.chunk_dim()
+        x, y, w, h = (
+            self.mouse_x,
+            self.mouse_y,
+            self.tileset_renderer.chunk_dim(),
+            self.tileset_renderer.chunk_dim(),
+        )
         self.selection_plugin.set_size(w, h)
         xg, yg = self.get_cursor_pos_in_grid()
         xg *= self.tileset_renderer.chunk_dim()
@@ -270,11 +338,16 @@ class FixedRoomDrawer:
                 assert self.fixed_floor is not None
                 # Draw dragged:
                 selected_x, selected_y = self._selected  # type: ignore
-                selected = self.fixed_floor.actions[self.fixed_floor.width * selected_y + selected_x]
+                selected = self.fixed_floor.actions[
+                    self.fixed_floor.width * selected_y + selected_x
+                ]
                 self._draw_single_tile(ctx, selected, x, y)
                 self._draw_action(ctx, selected, x, y)
         # Tool modes
-        elif self.interaction_mode == InteractionMode.PLACE_TILE or self.interaction_mode == InteractionMode.PLACE_ENTITY:
+        elif (
+            self.interaction_mode == InteractionMode.PLACE_TILE
+            or self.interaction_mode == InteractionMode.PLACE_ENTITY
+        ):
             self._draw_single_tile(ctx, self._selected, x, y)
             self._draw_action(ctx, self._selected, x, y)
 
@@ -299,11 +372,15 @@ class FixedRoomDrawer:
     def set_tileset_renderer(self, renderer: AbstractTilesetRenderer):
         self.tileset_renderer = renderer
         self.selection_plugin = SelectionDrawerPlugin(
-            self.tileset_renderer.chunk_dim(), self.tileset_renderer.chunk_dim(), self.selection_draw_callback
+            self.tileset_renderer.chunk_dim(),
+            self.tileset_renderer.chunk_dim(),
+            self.selection_draw_callback,
         )
         self.tile_grid_plugin = GridDrawerPlugin(
-            self.tileset_renderer.chunk_dim(), self.tileset_renderer.chunk_dim(),
-            offset_x=self.tileset_renderer.chunk_dim() * OFFSET_BASE, offset_y=self.tileset_renderer.chunk_dim() * OFFSET_BASE
+            self.tileset_renderer.chunk_dim(),
+            self.tileset_renderer.chunk_dim(),
+            offset_x=self.tileset_renderer.chunk_dim() * OFFSET_BASE,
+            offset_y=self.tileset_renderer.chunk_dim() * OFFSET_BASE,
         )
 
     def set_entity_renderer(self, renderer: AbstractEntityRenderer):
@@ -331,7 +408,7 @@ class FixedRoomDrawer:
 
     def get_pos_is_in_bounds(self, x, y, w, h, real_offset=False):
         x, y = self.get_pos_in_grid(x, y, real_offset)
-        return x > -1 and y > - 1 and x < w and y < h
+        return x > -1 and y > -1 and x < w and y < h
 
     def get_pos_in_grid(self, x, y, real_offset=False):
         assert self.tileset_renderer is not None
@@ -352,13 +429,13 @@ class FixedRoomDrawer:
         sprite, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(
             actor_id,
             direction.ssa_id if direction is not None else 0,
-            lambda: GLib.idle_add(self.redraw)
+            lambda: GLib.idle_add(self.redraw),
         )
         ctx.translate(sx, sy)
         ctx.set_source_surface(
             sprite,
             -cx + self.tileset_renderer.chunk_dim() / 2,
-            -cy + self.tileset_renderer.chunk_dim() * 0.75
+            -cy + self.tileset_renderer.chunk_dim() * 0.75,
         )
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
         ctx.paint()
@@ -367,37 +444,43 @@ class FixedRoomDrawer:
     def _draw_info_trap(self, sx, sy, ctx, name, can_be_broken, visible):
         self._draw_name(ctx, sx, sy, name, COLOR_WHITE)
         if can_be_broken:
-            self._draw_bottom_left(ctx, sx, sy, COLOR_RED, 'B')
+            self._draw_bottom_left(ctx, sx, sy, COLOR_RED, "B")
         if visible:
-            self._draw_bottom_right(ctx, sx, sy, COLOR_YELLOW, 'V')
+            self._draw_bottom_right(ctx, sx, sy, COLOR_YELLOW, "V")
 
     def _draw_info_item(self, sx, sy, ctx, name):
         self._draw_name(ctx, sx, sy, name, COLOR_WHITE)
 
     def _draw_info_monster(self, sx, sy, ctx, enemy_settings):
         if enemy_settings == MonsterSpawnType.ALLY_HELP:
-            self._draw_bottom_left(ctx, sx, sy, COLOR_GREEN, 'A')
+            self._draw_bottom_left(ctx, sx, sy, COLOR_GREEN, "A")
         elif enemy_settings == MonsterSpawnType.ENEMY_STRONG:
-            self._draw_bottom_left(ctx, sx, sy, COLOR_RED, 'E')
+            self._draw_bottom_left(ctx, sx, sy, COLOR_RED, "E")
         else:
-            self._draw_bottom_right(ctx, sx, sy, COLOR_YELLOW, 'O')
+            self._draw_bottom_right(ctx, sx, sy, COLOR_YELLOW, "O")
 
     def _draw_info_tile(self, sx, sy, ctx, room_id, impassable, absolute_mover):
         if room_id > -1:
             self._draw_top_right(ctx, sx, sy, COLOR_RED, str(room_id))
         if impassable:
-            self._draw_bottom_left(ctx, sx, sy, COLOR_YELLOW, 'I')
+            self._draw_bottom_left(ctx, sx, sy, COLOR_YELLOW, "I")
         if absolute_mover:
-            self._draw_bottom_right(ctx, sx, sy, COLOR_GREEN, 'A')
+            self._draw_bottom_right(ctx, sx, sy, COLOR_GREEN, "A")
 
     def _trap_name(self, trap_id):
         return MappaTrapType(trap_id).name
 
     def _item_name(self, item_id):
-        return self.string_provider.get_value(StringType.ITEM_NAMES, item_id) if item_id < MAX_ITEMS else _("(Special?)")
+        return (
+            self.string_provider.get_value(StringType.ITEM_NAMES, item_id)
+            if item_id < MAX_ITEMS
+            else _("(Special?)")
+        )
 
     def _draw_name(self, ctx, sx, sy, name, color):
-        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.select_font_face(
+            "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
+        )
         ctx.set_source_rgba(*color)
         ctx.set_font_size(12)
         ctx.move_to(sx, sy - 10)
@@ -413,7 +496,9 @@ class FixedRoomDrawer:
         self._draw_little_text(ctx, sx + 20, sy + 22, color, text)
 
     def _draw_little_text(self, ctx, sx, sy, color, text):
-        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.select_font_face(
+            "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
+        )
         ctx.set_source_rgba(*color)
         ctx.set_font_size(8)
         ctx.move_to(sx, sy)
@@ -435,15 +520,15 @@ class FixedRoomDrawer:
                 type = DmaType.WALL
         else:
             assert self.entity_rule_container is not None
-            item, monster, tile, stats = self.entity_rule_container.get(action.entity_rule_id)
+            item, monster, tile, stats = self.entity_rule_container.get(
+                action.entity_rule_id
+            )
             if tile.is_secondary_terrain():
                 type = DmaType.WATER
 
         surf = self.tileset_renderer.get_single_tile(type)
         ctx.translate(x, y)
-        ctx.set_source_surface(
-            surf, 0, 0
-        )
+        ctx.set_source_surface(surf, 0, 0)
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
         ctx.paint()
         ctx.translate(-x, -y)

@@ -24,7 +24,7 @@ from gi.repository import GdkPixbuf, GLib
 
 from skytemple.core.ui_utils import get_list_store_iter_by_idx
 
-ORANGE = 'orange'
+ORANGE = "orange"
 ORANGE_RGB = (1, 0.65, 0)
 
 
@@ -37,9 +37,15 @@ class ListIconRenderer:
         self._registered_for_reload = []
         self._loading = True
 
-    def load_icon(self, store, load_fn, target_name, idx, parameters, is_placeholder=False):
-        self._registered_for_reload.append((store, idx, (store, load_fn, target_name, idx, parameters, is_placeholder)))
-        return self._get_icon(store, load_fn, target_name, idx, parameters, is_placeholder)
+    def load_icon(
+        self, store, load_fn, target_name, idx, parameters, is_placeholder=False
+    ):
+        self._registered_for_reload.append(
+            (store, idx, (store, load_fn, target_name, idx, parameters, is_placeholder))
+        )
+        return self._get_icon(
+            store, load_fn, target_name, idx, parameters, is_placeholder
+        )
 
     @typing.no_type_check
     def unload(self):
@@ -50,12 +56,24 @@ class ListIconRenderer:
         self._registered_for_reload = None
         self._loading = True
 
-    def _get_icon(self, store, load_fn, target_name, idx, parameters, is_placeholder=False):
+    def _get_icon(
+        self, store, load_fn, target_name, idx, parameters, is_placeholder=False
+    ):
         was_loading = self._loading
-        sprite, x, y, w, h = load_fn(*parameters,
-                                     lambda: GLib.idle_add(
-                                         partial(self._reload_icon, parameters, idx, store, load_fn, target_name, was_loading)
-                                     ))
+        sprite, x, y, w, h = load_fn(
+            *parameters,
+            lambda: GLib.idle_add(
+                partial(
+                    self._reload_icon,
+                    parameters,
+                    idx,
+                    store,
+                    load_fn,
+                    target_name,
+                    was_loading,
+                )
+            ),
+        )
 
         if is_placeholder:
             ctx = cairo.Context(sprite)
@@ -71,8 +89,13 @@ class ListIconRenderer:
             new_data += bytes([r, g, b, a])
         self._icon_pixbufs[target_name] = GdkPixbuf.Pixbuf.new_from_data(
             new_data,  # type: ignore
-            GdkPixbuf.Colorspace.RGB, True, 8, w, h, sprite.get_stride(),
-            destroy_fn=None # todo: memory leak? Probably not?
+            GdkPixbuf.Colorspace.RGB,
+            True,
+            8,
+            w,
+            h,
+            sprite.get_stride(),
+            destroy_fn=None,  # todo: memory leak? Probably not?
         )
         return self._icon_pixbufs[target_name]
 
@@ -81,7 +104,14 @@ class ListIconRenderer:
             return
         if not self._loading and not was_loading:
             row = store[get_list_store_iter_by_idx(store, idx)]
-            row[self.column_id] = self._get_icon(store, load_fn, target_name, idx, parameters, row[8] == ORANGE if self.can_be_placeholder else False)
+            row[self.column_id] = self._get_icon(
+                store,
+                load_fn,
+                target_name,
+                idx,
+                parameters,
+                row[8] == ORANGE if self.can_be_placeholder else False,
+            )
             return
         if self._refresh_timer is not None:
             GLib.source_remove(self._refresh_timer)
@@ -90,7 +120,9 @@ class ListIconRenderer:
     def _reload_icons_in_tree(self):
         try:
             for model, idx, params in self._registered_for_reload:
-                model[get_list_store_iter_by_idx(model, idx)][self.column_id] = self._get_icon(*params)
+                model[get_list_store_iter_by_idx(model, idx)][
+                    self.column_id
+                ] = self._get_icon(*params)
             self._loading = False
             self._refresh_timer = None
         except (AttributeError, TypeError):

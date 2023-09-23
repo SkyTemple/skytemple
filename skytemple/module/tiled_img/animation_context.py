@@ -17,11 +17,13 @@
 from typing import List, Iterable, Optional, Tuple
 
 import cairo
+
 FRAME_COUNTER_MAX = 1000000
 
 
 class AnimationContext:
     """This class can draw animated backgrounds using palette and frame animations."""
+
     # TODO: No BPAs at different speeds supported at the moment
     # TODO: No BPL animations at different speeds supported at the moment
     def __init__(
@@ -29,7 +31,7 @@ class AnimationContext:
         # [collection_idx][tile_or_chunk_idx][palette_animation_frame][frame]
         surfaces: List[List[List[List[cairo.Surface]]]],
         bpa_durations: int,
-        pal_ani_durations: int
+        pal_ani_durations: int,
     ):
         self.surfaces = surfaces
         self.bpa_durations = bpa_durations

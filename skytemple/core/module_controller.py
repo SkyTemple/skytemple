@@ -28,6 +28,7 @@ from gi.repository.Gtk import Widget
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.ui_utils import make_builder
+
 logger = logging.getLogger(__name__)
 
 
@@ -37,6 +38,7 @@ class AbstractController(ABC):
 
     :deprecated: Use a `Gtk.Widget` instead.  See the `ItemTreeEntry.__init__` documentation for more info.
     """
+
     @abstractmethod
     def __init__(self, module: AbstractModule, item_id):
         """NO Gtk operations allowed here, not threadsafe!"""
@@ -59,10 +61,10 @@ class AbstractController(ABC):
         """
         # Delete all toplevel widgets introduced:
         builder: Optional[Gtk.Builder] = None
-        if hasattr(self, 'builder'):
-            builder = getattr(self, 'builder')
-        if hasattr(self, '_builder'):
-            builder = getattr(self, '_builder')
+        if hasattr(self, "builder"):
+            builder = getattr(self, "builder")
+        if hasattr(self, "_builder"):
+            builder = getattr(self, "_builder")
         if builder:
             for obj in builder.get_objects():
                 # We are excluding Switches due to a PyGobject bug.
@@ -75,4 +77,4 @@ class AbstractController(ABC):
         return make_builder(os.path.join(path, glade_file))
 
     def __del__(self):
-        logger.debug(f'{self.__class__.__name__} controller unloaded.')
+        logger.debug(f"{self.__class__.__name__} controller unloaded.")

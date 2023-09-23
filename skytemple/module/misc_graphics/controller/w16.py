@@ -43,7 +43,7 @@ logger = logging.getLogger(__name__)
 
 
 class W16Controller(AbstractController):
-    def __init__(self, module: 'MiscGraphicsModule', item_id: int):
+    def __init__(self, module: "MiscGraphicsModule", item_id: int):
         self.module = module
         self.item_id = item_id
         self.w16: W16 = self.module.get_w16(self.item_id)
@@ -53,12 +53,12 @@ class W16Controller(AbstractController):
         self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'w16.glade')
+        self.builder = self._get_builder(__file__, "w16.glade")
         self.builder.connect_signals(self)
 
         self._reset()
 
-        return builder_get_assert(self.builder, Gtk.Widget, 'box_main')
+        return builder_get_assert(self.builder, Gtk.Widget, "box_main")
 
     def on_draw(self, index: int, widget: Gtk.DrawingArea, ctx: cairo.Context):
         w16 = self._surfaces[index]
@@ -76,7 +76,8 @@ class W16Controller(AbstractController):
             _("Export all images as PNGs..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            _("_Save"), None
+            _("_Save"),
+            None,
         )
 
         response = dialog.run()
@@ -85,18 +86,21 @@ class W16Controller(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             for index, image in enumerate(self.w16):
-                filename = os.path.join(fn, f'{index}.png')
+                filename = os.path.join(fn, f"{index}.png")
                 img = image.get()
                 img.save(filename)
 
     def on_import_clicked(self, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
-            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("To import, select a directory to import from. Files with the pattern 'XX.png'\n"
-              "will be imported, where XX is a number between 0 and 99. The image dimensions must be a multiple of 8."),
-            title=_("Import Images")
+            _(
+                "To import, select a directory to import from. Files with the pattern 'XX.png'\n"
+                "will be imported, where XX is a number between 0 and 99. The image dimensions must be a multiple of 8."
+            ),
+            title=_("Import Images"),
         )
         md.run()
         md.destroy()
@@ -104,7 +108,8 @@ class W16Controller(AbstractController):
             _("Import images from PNGs..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            None, None
+            None,
+            None,
         )
 
         response = dialog.run()
@@ -113,42 +118,48 @@ class W16Controller(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             r = re.compile(rf"(\d+)\.png", re.IGNORECASE)
-            imgs_dict = {int(match[1]): name
-                         for match, name in self._try_match_import(r, os.listdir(fn))
-                         if match is not None}
+            imgs_dict = {
+                int(match[1]): name
+                for match, name in self._try_match_import(r, os.listdir(fn))
+                if match is not None
+            }
             imgs = []
             # Convert imgs to list
             for i in range(0, len(imgs_dict)):
                 if i not in imgs_dict:
                     display_error(
                         None,
-                        f(_('Failed importing image "{i}":\nImage for number {i} missing.')),
-                        _('Image for number {i} missing.')
+                        f(
+                            _(
+                                'Failed importing image "{i}":\nImage for number {i} missing.'
+                            )
+                        ),
+                        _("Image for number {i} missing."),
                     )
                     return
                 imgs.append(imgs_dict[i])
             if len(imgs) == 0:
-                display_error(
-                    None,
-                    _('No images found.'),
-                    _("No images found.")
-                )
+                display_error(None, _("No images found."), _("No images found."))
                 return
             for index, image_fn in enumerate(imgs):
                 try:
-                    with open(os.path.join(fn, image_fn), 'rb') as file:
+                    with open(os.path.join(fn, image_fn), "rb") as file:
                         image = Image.open(file)
                         if len(self.w16) > index:
                             # Existing image, update
                             self.w16[index].set(image)
                         else:
-                            self.w16.append(W16AtImage.new(W16TocEntry(0, 0, 0, 0), image))
+                            self.w16.append(
+                                W16AtImage.new(W16TocEntry(0, 0, 0, 0), image)
+                            )
                 except Exception as err:
-                    logger.error(f(_("Failed importing image '{index}'.")), exc_info=err)
+                    logger.error(
+                        f(_("Failed importing image '{index}'.")), exc_info=err
+                    )
                     display_error(
                         sys.exc_info(),
                         f(_('Failed importing image "{index}":\n{err}')),
-                        f(_("Error for '{index}'."))
+                        f(_("Error for '{index}'.")),
                     )
             # Re-render
             self._reset()
@@ -162,7 +173,7 @@ class W16Controller(AbstractController):
             yield r.match(name), name
 
     def _reset(self):
-        grid = builder_get_assert(self.builder, Gtk.Grid, 'grid')
+        grid = builder_get_assert(self.builder, Gtk.Grid, "grid")
         self._surfaces = []
         for child in grid.get_children():
             grid.remove(child)
@@ -172,13 +183,15 @@ class W16Controller(AbstractController):
             y = int(index / 4)
             draw = self._append(grid, x, y, index, image)
             self._draws.append(draw)
-            draw.connect('draw', partial(self.on_draw, index))
+            draw.connect("draw", partial(self.on_draw, index))
 
-    def _append(self, grid: Gtk.Grid, x, y, index, image: Image.Image) -> Gtk.DrawingArea:
+    def _append(
+        self, grid: Gtk.Grid, x, y, index, image: Image.Image
+    ) -> Gtk.DrawingArea:
         self._surfaces.append(self._get_surface(image))
         box: Gtk.Box = Gtk.Box.new(Gtk.Orientation.VERTICAL, 5)
         box.set_margin_bottom(10)
-        label: Gtk.Label = Gtk.Label.new(f'{index}')
+        label: Gtk.Label = Gtk.Label.new(f"{index}")
         draw_area: Gtk.DrawingArea = Gtk.DrawingArea.new()
         draw_area.set_halign(Gtk.Align.CENTER)
         draw_area.set_size_request(64, 64)
@@ -189,4 +202,4 @@ class W16Controller(AbstractController):
         return draw_area
 
     def _get_surface(self, img: Image.Image):
-        return pil_to_cairo_surface(img.resize((64, 64), Image.NEAREST).convert('RGBA'))
+        return pil_to_cairo_surface(img.resize((64, 64), Image.NEAREST).convert("RGBA"))

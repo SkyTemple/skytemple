@@ -19,7 +19,12 @@ from typing import Optional
 from ndspy.rom import NintendoDSRom
 
 from skytemple.core.abstract_module import AbstractModule
-from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef, ItemTreeEntry, RecursionType
+from skytemple.core.item_tree import (
+    ItemTree,
+    ItemTreeEntryRef,
+    ItemTreeEntry,
+    RecursionType,
+)
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import assert_not_none
 from skytemple.module.rom.controller.main import MainController
@@ -56,25 +61,29 @@ class RomModule(AbstractModule):
 
     def load_tree_items(self, item_tree: ItemTree):
         self._item_tree = item_tree
-        self._root_node = item_tree.set_root(ItemTreeEntry(
-            icon='skytemple-e-rom-symbolic',
-            name=os.path.basename(self.project.filename),
-            module=self,
-            view_class=MainController,
-            item_data=0
-        ))
+        self._root_node = item_tree.set_root(
+            ItemTreeEntry(
+                icon="skytemple-e-rom-symbolic",
+                name=os.path.basename(self.project.filename),
+                module=self,
+                view_class=MainController,
+                item_data=0,
+            )
+        )
 
     def update_filename(self):
         assert self._item_tree is not None
         assert self._root_node is not None
         old_entry = self._root_node.entry()
-        self._root_node.update(ItemTreeEntry(
-            icon=old_entry.icon,
-            name=os.path.basename(self.project.filename),
-            module=old_entry.module,
-            view_class=old_entry.view_class,
-            item_data=old_entry.item_data
-        ))
+        self._root_node.update(
+            ItemTreeEntry(
+                icon=old_entry.icon,
+                name=os.path.basename(self.project.filename),
+                module=old_entry.module,
+                view_class=old_entry.view_class,
+                item_data=old_entry.item_data,
+            )
+        )
 
     def load_rom_data(self):
         if self._static_data is None:

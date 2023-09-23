@@ -19,16 +19,16 @@
 
 import gi
 
-gi.require_version('Gtk', '3.0')
+gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gdk, GLib, GObject, Pango
 
 
 class CustomEditable(Gtk.EventBox, Gtk.CellEditable):
-    __gtype_name__ = 'CustomEditable'
+    __gtype_name__ = "CustomEditable"
 
-    editing_canceled = GObject.property(type=bool,
-                                        default=False,
-                                        flags=GObject.PARAM_READWRITE)
+    editing_canceled = GObject.property(
+        type=bool, default=False, flags=GObject.PARAM_READWRITE
+    )
 
     def __init__(self):
         Gtk.EventBox.__init__(self)
@@ -38,7 +38,7 @@ class CustomEditable(Gtk.EventBox, Gtk.CellEditable):
         self.editor.set_wrap_mode(Gtk.WrapMode.WORD)
         self.editor.set_editable(True)
         self.editor.set_accepts_tab(False)
-        self.editor.connect('key-press-event', self.on_key_press_event)
+        self.editor.connect("key-press-event", self.on_key_press_event)
         self.connect("button-press-event", self.on_click_event)
         self.scrolled.add(self.editor)
         self.add(self.scrolled)
@@ -71,21 +71,23 @@ class CustomEditable(Gtk.EventBox, Gtk.CellEditable):
         self.editor.get_buffer().paste_clipboard(clipboard, None, True)
 
     def on_key_press_event(self, widget, event):
-        '''Catch pressing Enter keys and Tab.
+        """Catch pressing Enter keys and Tab.
 
         Shift, Ctrl or Alt combined with Return or Keypad Enter can be used
         for linebreaking. Pressing Return or Keypad Enter alone will finish
-        editing.'''
+        editing."""
 
         mask = event.get_state()
         keyname = Gdk.keyval_name(event.get_keyval()[1])
 
-        accel_masks = (Gdk.ModifierType.CONTROL_MASK | \
-                       Gdk.ModifierType.SHIFT_MASK | \
-                       Gdk.ModifierType.MOD1_MASK)
-        enter_keynames = ('Return', 'KP_Enter')
-        cancel_keynames = ('Escape',)
-        tab_keynames = ('Tab', 'ISO_Left_Tab')
+        accel_masks = (
+            Gdk.ModifierType.CONTROL_MASK
+            | Gdk.ModifierType.SHIFT_MASK
+            | Gdk.ModifierType.MOD1_MASK
+        )
+        enter_keynames = ("Return", "KP_Enter")
+        cancel_keynames = ("Escape",)
+        tab_keynames = ("Tab", "ISO_Left_Tab")
 
         # Finish editing
         if (keyname in enter_keynames) and not (mask & accel_masks):
@@ -97,10 +99,10 @@ class CustomEditable(Gtk.EventBox, Gtk.CellEditable):
             self.props.editing_canceled = True
             self.editing_done()
             return True
-        elif keyname in ('c', 'C') and (mask & Gdk.ModifierType.CONTROL_MASK):
+        elif keyname in ("c", "C") and (mask & Gdk.ModifierType.CONTROL_MASK):
             self.copy_clipboard()
             return True
-        elif keyname in ('v', 'V') and (mask & Gdk.ModifierType.CONTROL_MASK):
+        elif keyname in ("v", "V") and (mask & Gdk.ModifierType.CONTROL_MASK):
             self.paste_clipboard()
             return True
         # Finish editing on tab
@@ -120,36 +122,31 @@ class CustomEditable(Gtk.EventBox, Gtk.CellEditable):
 class CellRendererTextView(Gtk.CellRendererText):
     """Custom cellrenderertext with textview"""
 
-    __gtype_name__ = 'CellRendererTextView'
+    __gtype_name__ = "CellRendererTextView"
 
-    full_text = GObject.property(type=str,
-                                 default='',
-                                 flags=GObject.PARAM_READWRITE)
+    full_text = GObject.property(type=str, default="", flags=GObject.PARAM_READWRITE)
 
     def __init__(self):
         Gtk.CellRendererText.__init__(self)
 
     def do_start_editing(self, event, tree, path, background_area, cell_area, flags):
-
-        if not self.get_property('editable'):
+        if not self.get_property("editable"):
             return
 
         text = self.props.full_text
-        if text == '':
+        if text == "":
             text = self.props.text
 
         if text is None:
-            text = ''
+            text = ""
 
         editable = CustomEditable()
-        editable.connect('editing-done', self.editing_done, tree, path)
+        editable.connect("editing-done", self.editing_done, tree, path)
         editable.set_text(text)
         editable.scrolled.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.EXTERNAL)
         return editable
 
     def editing_done(self, editable, tree, path):
         if editable.props.editing_canceled == False:
-            self.emit('edited', path, editable.get_text())
+            self.emit("edited", path, editable.get_text())
         tree.grab_focus()
-
-

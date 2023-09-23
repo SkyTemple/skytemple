@@ -25,10 +25,11 @@ class Now(AsyncTaskRunnerProtocol):
     """
     An implementation of an asynchronous task runner, that just runs the task synchronously.
     """
+
     _instance = None
 
     @classmethod
-    def instance(cls) -> 'Now':
+    def instance(cls) -> "Now":
         if cls._instance is None:
             cls._instance = Now()
         return cls._instance
@@ -46,8 +47,10 @@ class Now(AsyncTaskRunnerProtocol):
                 try:
                     self._cancel_all_tasks()
                     self._loop.run_until_complete(self._loop.shutdown_asyncgens())
-                    if hasattr(self._loop, 'shutdown_default_executor'):
-                        self._loop.run_until_complete(self._loop.shutdown_default_executor())
+                    if hasattr(self._loop, "shutdown_default_executor"):
+                        self._loop.run_until_complete(
+                            self._loop.shutdown_default_executor()
+                        )
                 finally:
                     asyncio.set_event_loop(None)
                     self._loop.close()
@@ -73,8 +76,10 @@ class Now(AsyncTaskRunnerProtocol):
             if task.cancelled():
                 continue
             if task.exception() is not None:
-                self._loop.call_exception_handler({
-                    'message': 'unhandled exception during asyncio.run() shutdown',
-                    'exception': task.exception(),
-                    'task': task,
-                })
+                self._loop.call_exception_handler(
+                    {
+                        "message": "unhandled exception during asyncio.run() shutdown",
+                        "exception": task.exception(),
+                        "task": task,
+                    }
+                )

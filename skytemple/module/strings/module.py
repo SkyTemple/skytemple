@@ -20,7 +20,12 @@ from gi.repository import Gtk
 from skytemple_files.common.i18n_util import _
 
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
-from skytemple.core.item_tree import ItemTree, ItemTreeEntry, ItemTreeEntryRef, RecursionType
+from skytemple.core.item_tree import (
+    ItemTree,
+    ItemTreeEntry,
+    ItemTreeEntryRef,
+    RecursionType,
+)
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
@@ -31,16 +36,19 @@ from skytemple_files.data.str.model import Str
 
 
 MAIN_VIEW_DATA = StStatusPageData(
-    icon_name='skytemple-illust-text',
-    title=_('Text Strings'),
-    description=_("This section lets you edit the text strings in the game. Please note that some of these strings "
-                  "can also be edited in other places in the UI (eg. the Pokémon names under Pokémon).\n"
-                  "Not included are the strings of the game's scripts.")
+    icon_name="skytemple-illust-text",
+    title=_("Text Strings"),
+    description=_(
+        "This section lets you edit the text strings in the game. Please note that some of these strings "
+        "can also be edited in other places in the UI (eg. the Pokémon names under Pokémon).\n"
+        "Not included are the strings of the game's scripts."
+    ),
 )
 
 
 class StringsModule(AbstractModule):
     """Module to edit the strings files in the MESSAGE directory."""
+
     @classmethod
     def depends_on(cls):
         return []
@@ -56,22 +64,28 @@ class StringsModule(AbstractModule):
         self._tree_iters: Dict[str, ItemTreeEntryRef] = {}
 
     def load_tree_items(self, item_tree: ItemTree):
-        root = item_tree.add_entry(None, ItemTreeEntry(
-            icon='skytemple-e-string-symbolic',
-            name=MAIN_VIEW_DATA.title,
-            module=self,
-            view_class=StStatusPage,
-            item_data=MAIN_VIEW_DATA
-        ))
+        root = item_tree.add_entry(
+            None,
+            ItemTreeEntry(
+                icon="skytemple-e-string-symbolic",
+                name=MAIN_VIEW_DATA.title,
+                module=self,
+                view_class=StStatusPage,
+                item_data=MAIN_VIEW_DATA,
+            ),
+        )
         config = self.project.get_rom_module().get_static_data()
         for language in config.string_index_data.languages:
-            self._tree_iters[language.filename] = item_tree.add_entry(root, ItemTreeEntry(
-                icon='skytemple-e-string-symbolic',
-                name=language.name_localized,
-                module=self,
-                view_class=StringsController,
-                item_data=language
-            ))
+            self._tree_iters[language.filename] = item_tree.add_entry(
+                root,
+                ItemTreeEntry(
+                    icon="skytemple-e-string-symbolic",
+                    name=language.name_localized,
+                    module=self,
+                    view_class=StringsController,
+                    item_data=language,
+                ),
+            )
         self._item_tree = item_tree
 
     def get_string_file(self, filename: str) -> Str:
@@ -82,9 +96,13 @@ class StringsModule(AbstractModule):
         self.project.mark_as_modified(f"MESSAGE/{filename}")
         # Mark as modified in tree
         if self._item_tree is not None:
-            self._item_tree.mark_as_modified(self._tree_iters[filename], RecursionType.UP)
+            self._item_tree.mark_as_modified(
+                self._tree_iters[filename], RecursionType.UP
+            )
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(
+        self, open_view: Union[AbstractController, Gtk.Widget]
+    ) -> Optional[DebuggingInfo]:
         if isinstance(open_view, StringsController):
             pass  # todo
         return None

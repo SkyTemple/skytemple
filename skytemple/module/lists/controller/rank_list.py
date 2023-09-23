@@ -23,18 +23,23 @@ from range_typed_integers import u32_checked, u32
 
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import glib_async, catch_overflow, builder_get_assert, assert_not_none
+from skytemple.core.ui_utils import (
+    glib_async,
+    catch_overflow,
+    builder_get_assert,
+    assert_not_none,
+)
 from skytemple_files.hardcoded.rank_up_table import Rank
 
 if TYPE_CHECKING:
     from skytemple.module.lists.module import ListsModule
 
-PATTERN_ITEM_ENTRY = re.compile(r'.*\(#(\d+)\).*')
+PATTERN_ITEM_ENTRY = re.compile(r".*\(#(\d+)\).*")
 logger = logging.getLogger(__name__)
 
 
 class RankListController(AbstractController):
-    def __init__(self, module: 'ListsModule', *args):
+    def __init__(self, module: "ListsModule", *args):
         super().__init__(module, *args)
         self.module = module
         self._rank_up_table: List[Rank] = None  # type: ignore
@@ -43,8 +48,8 @@ class RankListController(AbstractController):
         self._loading = True
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'rank_list.glade')
-        lst = builder_get_assert(self.builder, Gtk.Box, 'box_list')
+        self.builder = self._get_builder(__file__, "rank_list.glade")
+        lst = builder_get_assert(self.builder, Gtk.Box, "box_list")
         self._rank_up_table = self.module.get_rank_list()
 
         self._init_item_store()
@@ -88,45 +93,63 @@ class RankListController(AbstractController):
         self._list_store[path][5] = self._item_names[item_id]
 
     def on_cr_item_awarded_editing_started(self, renderer, editable, path):
-        editable.set_completion(builder_get_assert(self.builder, Gtk.EntryCompletion, 'completion_items'))
+        editable.set_completion(
+            builder_get_assert(self.builder, Gtk.EntryCompletion, "completion_items")
+        )
 
     @glib_async
     def on_list_store_row_changed(self, store, path, l_iter):
         """Propagate changes to list store entries to the lists."""
         if self._loading:
             return
-        name_string_id, name_string, points_needed_next, storage_capacity, item_id, item_name, idx = store[path][:]
+        (
+            name_string_id,
+            name_string,
+            points_needed_next,
+            storage_capacity,
+            item_id,
+            item_name,
+            idx,
+        ) = store[path][:]
         self._rank_up_table[idx] = Rank(
-            u32(name_string_id), u32(int(points_needed_next)), u32(int(storage_capacity)), u32(item_id)
+            u32(name_string_id),
+            u32(int(points_needed_next)),
+            u32(int(storage_capacity)),
+            u32(item_id),
         )
         # Update the actual name_string
         sp = self.module.project.get_string_provider()
-        sp.get_model().strings[
-            sp.get_index(StringType.RANK_NAMES, idx)
-        ] = name_string
+        sp.get_model().strings[sp.get_index(StringType.RANK_NAMES, idx)] = name_string
         sp.mark_as_modified()
         logger.debug(f"Updated list entry {idx}: {self._rank_up_table[idx]}")
 
         self.module.set_rank_list(self._rank_up_table)
 
     def refresh_list(self):
-        tree = builder_get_assert(self.builder, Gtk.TreeView, 'tree')
-        self._list_store = assert_not_none(cast(Optional[Gtk.ListStore], tree.get_model()))
+        tree = builder_get_assert(self.builder, Gtk.TreeView, "tree")
+        self._list_store = assert_not_none(
+            cast(Optional[Gtk.ListStore], tree.get_model())
+        )
         self._list_store.clear()
 
         # Iterate list
         sp = self.module.project.get_string_provider()
         for idx, rank_up in enumerate(self._rank_up_table):
-            self._list_store.append([
-                rank_up.rank_name_str, sp.get_value(StringType.RANK_NAMES, idx),
-                str(rank_up.points_needed_next), str(rank_up.storage_capacity),
-                rank_up.item_awarded, self._item_names[rank_up.item_awarded],
-                idx
-            ])
+            self._list_store.append(
+                [
+                    rank_up.rank_name_str,
+                    sp.get_value(StringType.RANK_NAMES, idx),
+                    str(rank_up.points_needed_next),
+                    str(rank_up.storage_capacity),
+                    rank_up.item_awarded,
+                    self._item_names[rank_up.item_awarded],
+                    idx,
+                ]
+            )
 
     def _init_item_store(self):
-        item_store = builder_get_assert(self.builder, Gtk.ListStore, 'item_store')
+        item_store = builder_get_assert(self.builder, Gtk.ListStore, "item_store")
         sp = self.module.project.get_string_provider()
         for i, name in enumerate(sp.get_all(StringType.ITEM_NAMES)):
-            self._item_names[i] = f'{name} (#{i:03})'
+            self._item_names[i] = f"{name} (#{i:03})"
             item_store.append([self._item_names[i]])

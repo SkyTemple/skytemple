@@ -22,7 +22,9 @@ from skytemple.core.mapbg_util.drawer_plugin.abstract import AbstractDrawerPlugi
 
 
 class SelectionDrawerPlugin(AbstractDrawerPlugin):
-    def __init__(self, brush_width: int, brush_height: int, callback_draw_content: Callable):
+    def __init__(
+        self, brush_width: int, brush_height: int, callback_draw_content: Callable
+    ):
         self.brush_width = brush_width
         self.brush_height = brush_height
         self.callback_draw_content = callback_draw_content
@@ -31,14 +33,20 @@ class SelectionDrawerPlugin(AbstractDrawerPlugin):
         self.brush_width = brush_width
         self.brush_height = brush_height
 
-    def draw(self, ctx: cairo.Context, size_w: int, size_h: int, mouse_x: int, mouse_y: int, ignore_obb=False):
+    def draw(
+        self,
+        ctx: cairo.Context,
+        size_w: int,
+        size_h: int,
+        mouse_x: int,
+        mouse_y: int,
+        ignore_obb=False,
+    ):
         if ignore_obb or (mouse_x < size_w and mouse_y < size_h):
             # Background
             ctx.set_source_rgba(0, 0, 1, 0.3)
             ctx.rectangle(
-                mouse_x - 3, mouse_y - 3,
-                self.brush_width + 6,
-                self.brush_height + 6
+                mouse_x - 3, mouse_y - 3, self.brush_width + 6, self.brush_height + 6
             )
             ctx.fill()
             # Draw content

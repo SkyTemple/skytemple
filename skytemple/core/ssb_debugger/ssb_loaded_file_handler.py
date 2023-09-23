@@ -25,23 +25,26 @@ from skytemple_ssb_debugger.model.ssb_files.file import SsbLoadedFile
 from skytemple_ssb_debugger.model.ssb_files.file_manager import SsbFileManager
 
 
-class SsbLoadedFileHandler(DataHandler['SsbLoadedFile']):
+class SsbLoadedFileHandler(DataHandler["SsbLoadedFile"]):
     @classmethod
-    def deserialize(cls, data: bytes, *, filename, static_data, project_fm, **kwargs: OptionalKwargs) -> 'SsbLoadedFile':  # type: ignore
+    def deserialize(cls, data: bytes, *, filename, static_data, project_fm, **kwargs: OptionalKwargs) -> "SsbLoadedFile":  # type: ignore
         f = SsbLoadedFile(
-            filename, FileType.SSB.deserialize(data, static_data),
-            None, project_fm
+            filename, FileType.SSB.deserialize(data, static_data), None, project_fm
         )
         f.exps.ssb_hash = SsbFileManager.hash(data)
         return f
 
     @classmethod
-    def serialize(cls, data: 'SsbLoadedFile', *, static_data, **kwargs: OptionalKwargs) -> bytes:  # type: ignore
+    def serialize(cls, data: "SsbLoadedFile", *, static_data, **kwargs: OptionalKwargs) -> bytes:  # type: ignore
         return FileType.SSB.serialize(data.ssb_model, static_data)
 
     @classmethod
     def create(cls, filename, static_data, project_fm) -> SsbLoadedFile:
         """Create a new empty Ssb + SsbLoadedFile"""
 
-        return cls.deserialize(FileType.SSB.serialize(SsbHandler.create(static_data), static_data),
-                               filename=filename, static_data=static_data, project_fm=project_fm)
+        return cls.deserialize(
+            FileType.SSB.serialize(SsbHandler.create(static_data), static_data),
+            filename=filename,
+            static_data=static_data,
+            project_fm=project_fm,
+        )

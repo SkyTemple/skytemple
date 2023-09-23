@@ -21,7 +21,12 @@ from typing import TYPE_CHECKING, Optional, List
 
 from range_typed_integers import u16_checked, u16
 
-from skytemple.core.ui_utils import REPO_MOVE_EFFECTS, catch_overflow, builder_get_assert, assert_not_none
+from skytemple.core.ui_utils import (
+    REPO_MOVE_EFFECTS,
+    catch_overflow,
+    builder_get_assert,
+    assert_not_none,
+)
 from skytemple_files.common.i18n_util import _, f
 
 from gi.repository import Gtk
@@ -42,7 +47,7 @@ logger = logging.getLogger(__name__)
 
 
 class SPEffectsController(AbstractController):
-    def __init__(self, module: 'PatchModule', *args):
+    def __init__(self, module: "PatchModule", *args):
         super().__init__(module, *args)
         self.module = module
         self.builder: Gtk.Builder
@@ -50,35 +55,43 @@ class SPEffectsController(AbstractController):
         self._string_provider = module.project.get_string_provider()
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'sp_effects.glade')
-        stack = builder_get_assert(self.builder, Gtk.Stack, 'list_stack')
+        self.builder = self._get_builder(__file__, "sp_effects.glade")
+        stack = builder_get_assert(self.builder, Gtk.Stack, "list_stack")
 
         if not self.module.has_sp_effects():
-            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_na'))
+            stack.set_visible_child(
+                builder_get_assert(self.builder, Gtk.Widget, "box_na")
+            )
             return stack
         self.sp_effects = self.module.get_sp_effects()
 
         self._init_sp_list()
         self._init_combos()
         self.on_cb_effect_ids_changed()
-        
-        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_list'))
+
+        stack.set_visible_child(
+            builder_get_assert(self.builder, Gtk.Widget, "box_list")
+        )
         self.builder.connect_signals(self)
-        
+
         return stack
 
     def _get_current_sp_effect(self) -> Optional[int]:
-        tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'sp_effects_store')
-        active_rows : List[Gtk.TreePath] = builder_get_assert(self.builder, Gtk.TreeView, 'sps_tree').get_selection().get_selected_rows()[1]
+        tree_store = builder_get_assert(self.builder, Gtk.ListStore, "sp_effects_store")
+        active_rows: List[Gtk.TreePath] = (
+            builder_get_assert(self.builder, Gtk.TreeView, "sps_tree")
+            .get_selection()
+            .get_selected_rows()[1]
+        )
 
         sp_effect = None
         for x in active_rows:
             sp_effect = tree_store[x.get_indices()[0]][1]
         return sp_effect
-    
+
     def _get_current_effect(self) -> int:
-        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'effect_ids_store')
-        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_effect_ids')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, "effect_ids_store")
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, "cb_effect_ids")
 
         if cb.get_active_iter() is not None:
             return cb_store[assert_not_none(cb.get_active_iter())][0]
@@ -87,20 +100,20 @@ class SPEffectsController(AbstractController):
 
     def _init_sp_list(self):
         # Init available menus
-        sp_store = builder_get_assert(self.builder, Gtk.ListStore, 'sp_effects_store')
+        sp_store = builder_get_assert(self.builder, Gtk.ListStore, "sp_effects_store")
         # Init list
         sp_store.clear()
         for i in range(self.sp_effects.nb_items()):
             sp_store.append([i, self.sp_effects.get_item_effect_id(i)])
-        
+
     def _init_combos(self, active=0):
         # Init available menus
-        cb_store = builder_get_assert(self.builder, Gtk.ListStore, 'effect_ids_store')
-        cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_effect_ids')
+        cb_store = builder_get_assert(self.builder, Gtk.ListStore, "effect_ids_store")
+        cb = builder_get_assert(self.builder, Gtk.ComboBox, "cb_effect_ids")
         # Init combobox
         cb_store.clear()
         for i in range(self.sp_effects.nb_effects()):
-            cb_store.append([i, f'Effect {i}'])
+            cb_store.append([i, f"Effect {i}"])
         cb.set_active(active)
 
     def on_btn_import_code_clicked(self, *args):
@@ -108,7 +121,8 @@ class SPEffectsController(AbstractController):
             _("Import Special Process Effect ASM Code..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
-            None, None
+            None,
+            None,
         )
 
         filter = Gtk.FileFilter()
@@ -132,19 +146,19 @@ class SPEffectsController(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
-                if fn.split('.')[-1].lower() == 'asm':
-                    with open_utf8(fn, 'r') as file:
-                        self.sp_effects.import_armips_effect_code(self._get_current_effect(), file.read())
+                if fn.split(".")[-1].lower() == "asm":
+                    with open_utf8(fn, "r") as file:
+                        self.sp_effects.import_armips_effect_code(
+                            self._get_current_effect(), file.read()
+                        )
                 else:
-                    with open(fn, 'rb') as file:
-                        self.sp_effects.set_effect_code(self._get_current_effect(), file.read())
+                    with open(fn, "rb") as file:
+                        self.sp_effects.set_effect_code(
+                            self._get_current_effect(), file.read()
+                        )
                 self.module.mark_sp_effects_as_modified()
             except Exception as err:
-                display_error(
-                    sys.exc_info(),
-                    str(err),
-                    _("Error importing ASM code.")
-                )
+                display_error(sys.exc_info(), str(err), _("Error importing ASM code."))
 
     def on_tv_paste_import_buffer_paste_done(self, buff: Gtk.TextBuffer, *args):
         text = buff.get_text(buff.get_start_iter(), buff.get_end_iter(), False)
@@ -154,26 +168,24 @@ class SPEffectsController(AbstractController):
             self.module.mark_sp_effects_as_modified()
             md = SkyTempleMessageDialog(
                 MainController.window(),
-                Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+                Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK,
                 _("Patch successfully imported."),
-                is_success=True
+                is_success=True,
             )
             md.run()
             md.destroy()
         except Exception as err:
-            display_error(
-                sys.exc_info(),
-                str(err),
-                _("Error importing ASM code.")
-            )
+            display_error(sys.exc_info(), str(err), _("Error importing ASM code."))
 
     def on_btn_export_code_clicked(self, *args):
         dialog = Gtk.FileChooserNative.new(
             _("Export Special Process Effect ASM Code..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
-            None, None
+            None,
+            None,
         )
 
         response = dialog.run()
@@ -181,15 +193,17 @@ class SPEffectsController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
-            with open(fn, 'wb') as file:
+            with open(fn, "wb") as file:
                 file.write(self.sp_effects.get_effect_code(self._get_current_effect()))
 
     def on_btn_help_import_clicked(self):
         md = SkyTempleMessageDialog(
             MainController.window(),
-            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("""Export and import effect code.
+            _(
+                """Export and import effect code.
 The export only exports the raw machine code. It is NOT disassembled.
 The import accepts both armips ASM code or the raw binary machine code.
 Please note, that SkyTemple does not check the raw code you try to import.
@@ -197,8 +211,9 @@ If you import armips ASM code, an effect code library is available.
 
 You can use the ASM Editor tool to generate patch files.
 The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to import.
-"""),
-            title=_("Export / Import Effect Code Help")
+"""
+            ),
+            title=_("Export / Import Effect Code Help"),
         )
         md.run()
         md.destroy()
@@ -207,51 +222,53 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
         webbrowser.open_new_tab(REPO_MOVE_EFFECTS)
 
     def on_btn_asmeditor_clicked(self, *args):
-        webbrowser.open_new_tab('https://asmeditor.skytemple.org/')
+        webbrowser.open_new_tab("https://asmeditor.skytemple.org/")
 
     def on_btn_add_effect_clicked(self, *args):
-        self.sp_effects.add_effect_code(bytes([0x1C, 0x2, 0x00, 0xEA])) # Branch to the end
-        self._init_combos(self.sp_effects.nb_effects()-1)
+        self.sp_effects.add_effect_code(
+            bytes([0x1C, 0x2, 0x00, 0xEA])
+        )  # Branch to the end
+        self._init_combos(self.sp_effects.nb_effects() - 1)
         self.module.mark_sp_effects_as_modified()
-        
+
     def on_btn_remove_effect_clicked(self, *args):
         try:
             effect_id = self._get_current_effect()
             self.sp_effects.del_effect_code(effect_id)
-            self._init_combos(min(effect_id, self.sp_effects.nb_effects()-1))
+            self._init_combos(min(effect_id, self.sp_effects.nb_effects() - 1))
             self._init_sp_list()
             self.module.mark_sp_effects_as_modified()
         except ValueError as err:
-            display_error(
-                sys.exc_info(),
-                str(err),
-                "Cannot delete this effect."
-            )
-        
+            display_error(sys.exc_info(), str(err), "Cannot delete this effect.")
+
     def on_btn_goto_effect_clicked(self, *args):
         sp_effect = self._get_current_sp_effect()
         if sp_effect is not None:
-            cb = builder_get_assert(self.builder, Gtk.ComboBox, 'cb_effect_ids')
+            cb = builder_get_assert(self.builder, Gtk.ComboBox, "cb_effect_ids")
             cb.set_active(sp_effect)
-            effects_notebook = builder_get_assert(self.builder, Gtk.Notebook, 'effects_notebook')
+            effects_notebook = builder_get_assert(
+                self.builder, Gtk.Notebook, "effects_notebook"
+            )
             effects_notebook.set_current_page(1)
 
     @catch_overflow(u16)
     def on_sp_effect_id_edited(self, widget, path, text):
         try:
-            if int(text) >= self.sp_effects.nb_effects() or int(text)<0:
+            if int(text) >= self.sp_effects.nb_effects() or int(text) < 0:
                 return
-            tree_store = builder_get_assert(self.builder, Gtk.ListStore, 'sp_effects_store')
+            tree_store = builder_get_assert(
+                self.builder, Gtk.ListStore, "sp_effects_store"
+            )
             tree_store[path][1] = u16_checked(int(text))
         except ValueError:
             return
         self.sp_effects.set_item_effect_id(tree_store[path][0], tree_store[path][1])
         self.on_cb_effect_ids_changed()
         self.module.mark_sp_effects_as_modified()
-        
+
     def on_cb_effect_ids_changed(self, *args):
         effect_id = self._get_current_effect()
-        store = builder_get_assert(self.builder, Gtk.ListStore, 'effect_sps_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, "effect_sps_store")
         store.clear()
         for x in self.sp_effects.get_all_of(effect_id):
             store.append([x])

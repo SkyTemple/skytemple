@@ -19,7 +19,10 @@ from enum import Enum
 from typing import Dict, Union
 
 from skytemple_files.common.i18n_util import _
-from skytemple_files.common.ppmdu_config.data import Pmd2PatchParameter, Pmd2PatchParameterType
+from skytemple_files.common.ppmdu_config.data import (
+    Pmd2PatchParameter,
+    Pmd2PatchParameterType,
+)
 
 from gi.repository import Gtk
 
@@ -40,16 +43,24 @@ class ParamDialogController:
         self.window.set_transient_for(parent_window)
         self.window.set_attached_to(parent_window)
         self.window.set_modal(True)
-        self.window.add_buttons(_("Cancel"), Gtk.ResponseType.CLOSE, _("Apply"), Gtk.ResponseType.APPLY)
+        self.window.add_buttons(
+            _("Cancel"), Gtk.ResponseType.CLOSE, _("Apply"), Gtk.ResponseType.APPLY
+        )
         self.window.get_action_area().show_all()
 
-    def run(self, name: str, parameters: Dict[str, Pmd2PatchParameter]) -> Dict[str, Union[str, int]]:
+    def run(
+        self, name: str, parameters: Dict[str, Pmd2PatchParameter]
+    ) -> Dict[str, Union[str, int]]:
         content: Gtk.Box = self.window.get_content_area()
         self.window.set_title(_('Settings for the "{}" Patch').format(name))
 
         content.pack_start(
-            Gtk.Label.new(_('The patch "{}" requires additional configuration:').format(name)),
-            False, False, 10
+            Gtk.Label.new(
+                _('The patch "{}" requires additional configuration:').format(name)
+            ),
+            False,
+            False,
+            10,
         )
 
         grid: Gtk.Grid = Gtk.Grid.new()
@@ -58,14 +69,11 @@ class ParamDialogController:
         controls = {}
 
         for i, param in enumerate(parameters.values()):
-            grid.attach(Gtk.Label.new(_(param.label) + ':'), 0, i, 1, 1)
+            grid.attach(Gtk.Label.new(_(param.label) + ":"), 0, i, 1, 1)
             controls[param.name] = self._generate_control(param)
             grid.attach(controls[param.name], 1, i, 1, 1)
 
-        content.pack_start(
-            grid,
-            True, True, 10
-        )
+        content.pack_start(grid, True, True, 10)
 
         content.show_all()
         response = self.window.run()
@@ -80,7 +88,10 @@ class ParamDialogController:
         return config
 
     def _generate_control(self, param: Pmd2PatchParameter):
-        if param.type == Pmd2PatchParameterType.INTEGER or param.type == Pmd2PatchParameterType.STRING:
+        if (
+            param.type == Pmd2PatchParameterType.INTEGER
+            or param.type == Pmd2PatchParameterType.STRING
+        ):
             entry = Gtk.Entry()
             if param.default:
                 entry.set_text(str(param.default))
@@ -94,9 +105,14 @@ class ParamDialogController:
             return combobox_text
         raise TypeError(f"Unknown parameter type {param.type}")
 
-    def _process_control(self, control: Gtk.Widget, param: Pmd2PatchParameter) -> Union[int, str]:
+    def _process_control(
+        self, control: Gtk.Widget, param: Pmd2PatchParameter
+    ) -> Union[int, str]:
         try:
-            if param.type == Pmd2PatchParameterType.INTEGER or param.type == Pmd2PatchParameterType.STRING:
+            if (
+                param.type == Pmd2PatchParameterType.INTEGER
+                or param.type == Pmd2PatchParameterType.STRING
+            ):
                 assert isinstance(control, Gtk.Entry)
                 value = control.get_text()
                 if param.type == Pmd2PatchParameterType.INTEGER:
@@ -115,5 +131,8 @@ class ParamDialogController:
                 raise TypeError("Unknown option " + selected_id)
             raise TypeError(f"Unknown parameter type {param.type}")
         except ValueError:
-            raise PatchNotConfiguredError(_("Invalid values for some settings provided. Please try again."), "*",
-                                          _("Invalid values for some settings provided. Please try again."))
+            raise PatchNotConfiguredError(
+                _("Invalid values for some settings provided. Please try again."),
+                "*",
+                _("Invalid values for some settings provided. Please try again."),
+            )

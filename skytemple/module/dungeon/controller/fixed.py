@@ -27,20 +27,46 @@ from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
-from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, \
-    REQUEST_TYPE_DUNGEON_TILESET
+from skytemple.core.open_request import (
+    OpenRequest,
+    REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY,
+    REQUEST_TYPE_DUNGEON_TILESET,
+)
 from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import catch_overflow, builder_get_assert
-from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG, SPECIAL_MONSTERS
+from skytemple.module.dungeon import (
+    COUNT_VALID_TILESETS,
+    TILESET_FIRST_BG,
+    SPECIAL_MONSTERS,
+)
 from skytemple.module.dungeon.entity_rule_container import EntityRuleContainer
-from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer, InfoLayer, InteractionMode
-from skytemple.module.dungeon.fixed_room_entity_renderer.full_map import FullMapEntityRenderer
-from skytemple.module.dungeon.fixed_room_entity_renderer.minimap import MinimapEntityRenderer
-from skytemple.module.dungeon.fixed_room_tileset_renderer.bg import FixedFloorDrawerBackground
-from skytemple.module.dungeon.fixed_room_tileset_renderer.minimap import FixedFloorDrawerMinimap
-from skytemple.module.dungeon.fixed_room_tileset_renderer.tileset import FixedFloorDrawerTileset
+from skytemple.module.dungeon.fixed_room_drawer import (
+    FixedRoomDrawer,
+    InfoLayer,
+    InteractionMode,
+)
+from skytemple.module.dungeon.fixed_room_entity_renderer.full_map import (
+    FullMapEntityRenderer,
+)
+from skytemple.module.dungeon.fixed_room_entity_renderer.minimap import (
+    MinimapEntityRenderer,
+)
+from skytemple.module.dungeon.fixed_room_tileset_renderer.bg import (
+    FixedFloorDrawerBackground,
+)
+from skytemple.module.dungeon.fixed_room_tileset_renderer.minimap import (
+    FixedFloorDrawerMinimap,
+)
+from skytemple.module.dungeon.fixed_room_tileset_renderer.tileset import (
+    FixedFloorDrawerTileset,
+)
 from skytemple.module.dungeon.minimap_provider import MinimapProvider
-from skytemple_files.dungeon_data.fixed_bin.model import FixedFloor, TileRuleType, TileRule, EntityRule
+from skytemple_files.dungeon_data.fixed_bin.model import (
+    FixedFloor,
+    TileRuleType,
+    TileRule,
+    EntityRule,
+)
 from skytemple_files.graphics.dpc import DPC_TILING_DIM
 from skytemple_files.graphics.dpci import DPCI_TILE_DIM
 from skytemple_files.hardcoded.fixed_floor import MonsterSpawnType
@@ -54,7 +80,7 @@ class FixedController(AbstractController):
     _last_scale_factor: Optional[float] = None
     _last_show_full_map = True
 
-    def __init__(self, module: 'DungeonModule', item_id: int):
+    def __init__(self, module: "DungeonModule", item_id: int):
         self.floor_id = item_id
         self.module = module
         self.tileset_id = 0
@@ -79,19 +105,25 @@ class FixedController(AbstractController):
         self.long_enemy_settings_name = [f"{i}: ???" for i in range(0, 256)]
         for spawn_type in MonsterSpawnType:
             self.enemy_settings_name[spawn_type.value] = f"{spawn_type.description}"
-            self.long_enemy_settings_name[spawn_type.value] = f"{spawn_type.value}: {spawn_type.description}"
+            self.long_enemy_settings_name[
+                spawn_type.value
+            ] = f"{spawn_type.value}: {spawn_type.description}"
 
         self.monster_names = {}
         self.long_monster_names = {}
         length = len(self.module.get_monster_md().entries)
         num_entities = FileType.MD.properties().num_entities
         for i, entry in enumerate(self.module.get_monster_md().entries):
-            name = self.module.project.get_string_provider().get_value(StringType.POKEMON_NAMES, i % num_entities)
-            self.monster_names[i] = f'{name}'
-            self.long_monster_names[i] = f'{name} ({Gender(entry.gender).name.capitalize()}) (${i:04})'
+            name = self.module.project.get_string_provider().get_value(
+                StringType.POKEMON_NAMES, i % num_entities
+            )
+            self.monster_names[i] = f"{name}"
+            self.long_monster_names[
+                i
+            ] = f"{name} ({Gender(entry.gender).name.capitalize()}) (${i:04})"
         for i in range(length, length + SPECIAL_MONSTERS):
-            self.monster_names[i] = _('(Special?)')
-            self.long_monster_names[i] = _('(Special?)') + f' (${i:04})'
+            self.monster_names[i] = _("(Special?)")
+            self.long_monster_names[i] = _("(Special?)") + f" (${i:04})"
 
         self.floor: Optional[FixedFloor] = None
         self._draw: Optional[Gtk.DrawingArea] = None
@@ -101,26 +133,30 @@ class FixedController(AbstractController):
         self._bg_draw_is_clicked__location: Optional[Tuple[int, int]] = None
         self._currently_selected = None
 
-        self.script_data = self.module.project.get_rom_module().get_static_data().script_data
+        self.script_data = (
+            self.module.project.get_rom_module().get_static_data().script_data
+        )
 
     def get_view(self) -> Widget:
-        self.builder = self._get_builder(__file__, 'fixed.glade')
+        self.builder = self._get_builder(__file__, "fixed.glade")
         assert self.builder
-        self._draw = builder_get_assert(self.builder, Gtk.DrawingArea, 'fixed_draw')
+        self._draw = builder_get_assert(self.builder, Gtk.DrawingArea, "fixed_draw")
 
         self._init_comboboxes()
         self._auto_select_tileset()
         self._init_fixed_floor()
         self._load_settings()
         self._init_drawer()
-        tool_fullmap = builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_fullmap')
+        tool_fullmap = builder_get_assert(
+            self.builder, Gtk.ToggleToolButton, "tool_fullmap"
+        )
         tool_fullmap.set_active(self._last_show_full_map)
         self.on_tool_fullmap_toggled(tool_fullmap, ignore_scaling=True)
         self._update_scales()
 
         self.builder.connect_signals(self)
 
-        return builder_get_assert(self.builder, Gtk.Notebook, 'editor')
+        return builder_get_assert(self.builder, Gtk.Notebook, "editor")
 
     def on_fixed_draw_event_button_press_event(self, box, button: Gdk.EventButton):
         if not self.drawer:
@@ -142,29 +178,43 @@ class FixedController(AbstractController):
             # COPY
             if self.drawer.interaction_mode == InteractionMode.COPY:
                 if self.drawer.get_cursor_is_in_bounds(
-                        self.floor.width, self.floor.height, True
+                    self.floor.width, self.floor.height, True
                 ):
                     x, y = self.drawer.get_cursor_pos_in_grid(True)
                     action_to_copy = self.floor.actions[y * self.floor.width + x]
                     if isinstance(action_to_copy, TileRule):
-                        builder_get_assert(self.builder, Gtk.RadioToolButton, 'tool_scene_add_tile').set_active(True)
-                        self._select_combobox('utility_tile_type',
-                                              lambda row: row[0] == action_to_copy.tr_type.value)
-                        self._select_combobox('utility_tile_direction',
-                                              lambda row: row[0] == action_to_copy.direction.ssa_id
-                                              if action_to_copy.direction is not None else 0)
+                        builder_get_assert(
+                            self.builder, Gtk.RadioToolButton, "tool_scene_add_tile"
+                        ).set_active(True)
+                        self._select_combobox(
+                            "utility_tile_type",
+                            lambda row: row[0] == action_to_copy.tr_type.value,
+                        )
+                        self._select_combobox(
+                            "utility_tile_direction",
+                            lambda row: row[0] == action_to_copy.direction.ssa_id
+                            if action_to_copy.direction is not None
+                            else 0,
+                        )
                     else:
-                        builder_get_assert(self.builder, Gtk.RadioToolButton, 'tool_scene_add_entity').set_active(True)
-                        self._select_combobox('utility_entity_type',
-                                              lambda row: row[0] == action_to_copy.entity_rule_id)
-                        self._select_combobox('utility_entity_direction',
-                                              lambda row: row[0] == action_to_copy.direction.ssa_id
-                                              if action_to_copy.direction is not None else 0)
+                        builder_get_assert(
+                            self.builder, Gtk.RadioToolButton, "tool_scene_add_entity"
+                        ).set_active(True)
+                        self._select_combobox(
+                            "utility_entity_type",
+                            lambda row: row[0] == action_to_copy.entity_rule_id,
+                        )
+                        self._select_combobox(
+                            "utility_entity_direction",
+                            lambda row: row[0] == action_to_copy.direction.ssa_id
+                            if action_to_copy.direction is not None
+                            else 0,
+                        )
 
             # SELECT
             elif self.drawer.interaction_mode == InteractionMode.SELECT:
                 if self.drawer.get_cursor_is_in_bounds(
-                        self.floor.width, self.floor.height, True
+                    self.floor.width, self.floor.height, True
                 ):
                     self._currently_selected = self.drawer.get_cursor_pos_in_grid(True)
 
@@ -192,9 +242,13 @@ class FixedController(AbstractController):
                     old_x, old_y = self.drawer.get_selected()
                     # abort if dragging onto same tile
                     if old_x != tile_x or old_y != tile_y:
-                        self.floor.actions[tile_y * self.floor.width + tile_x] = self.floor.actions[old_y * self.floor.width + old_x]
+                        self.floor.actions[
+                            tile_y * self.floor.width + tile_x
+                        ] = self.floor.actions[old_y * self.floor.width + old_x]
                         # Insert floor at old position
-                        self.floor.actions[old_y * self.floor.width + old_x] = TileRule(TileRuleType.FLOOR_ROOM, None)
+                        self.floor.actions[old_y * self.floor.width + old_x] = TileRule(
+                            TileRuleType.FLOOR_ROOM, None
+                        )
                         self.module.mark_fixed_floor_as_modified(self.floor_id)
         self._currently_selected = None
         self._bg_draw_is_clicked__location = None
@@ -220,17 +274,25 @@ class FixedController(AbstractController):
                     start_x, start_y = self._bg_draw_is_clicked__location
                     # Start drag & drop if mouse moved at least one tile.
                     if not self._bg_draw_is_clicked__drag_active and (
-                            abs(start_x - this_x) > (DPC_TILING_DIM * DPCI_TILE_DIM * 0.7) * self._scale_factor
-                            or abs(start_y - this_y) >  (DPC_TILING_DIM * DPCI_TILE_DIM * 0.7) * self._scale_factor
+                        abs(start_x - this_x)
+                        > (DPC_TILING_DIM * DPCI_TILE_DIM * 0.7) * self._scale_factor
+                        or abs(start_y - this_y)
+                        > (DPC_TILING_DIM * DPCI_TILE_DIM * 0.7) * self._scale_factor
                     ):
                         start_x /= self._scale_factor
                         start_y /= self._scale_factor
-                        if self.drawer.get_pos_is_in_bounds(start_x, start_y, self.floor.width, self.floor.height, True):
-                            self.drawer.set_selected(self.drawer.get_pos_in_grid(start_x, start_y, True))
+                        if self.drawer.get_pos_is_in_bounds(
+                            start_x, start_y, self.floor.width, self.floor.height, True
+                        ):
+                            self.drawer.set_selected(
+                                self.drawer.get_pos_in_grid(start_x, start_y, True)
+                            )
                             self._bg_draw_is_clicked__drag_active = True
                             self.drawer.set_drag_position(
-                                int((start_x - 4) / self._scale_factor) - self._currently_selected[0],
-                                int((start_y - 4) / self._scale_factor) - self._currently_selected[1]
+                                int((start_x - 4) / self._scale_factor)
+                                - self._currently_selected[0],
+                                int((start_y - 4) / self._scale_factor)
+                                - self._currently_selected[1],
                             )
 
             if self._draw:
@@ -243,10 +305,12 @@ class FixedController(AbstractController):
         self._reapply_selected_entity()
 
     def on_btn_goto_entity_editor_clicked(self, *args):
-        idx = builder_get_assert(self.builder, Gtk.ComboBox, 'utility_entity_type').get_active()
-        self.module.project.request_open(OpenRequest(
-            REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, idx
-        ))
+        idx = builder_get_assert(
+            self.builder, Gtk.ComboBox, "utility_entity_type"
+        ).get_active()
+        self.module.project.request_open(
+            OpenRequest(REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY, idx)
+        )
 
     def on_utility_tile_direction_changed(self, *args):
         self._reapply_selected_tile()
@@ -255,14 +319,17 @@ class FixedController(AbstractController):
         self._reapply_selected_tile()
 
     def on_tool_scene_goto_tileset_clicked(self, *args):
-        self.module.project.request_open(OpenRequest(
-            REQUEST_TYPE_DUNGEON_TILESET, self.tileset_id
-        ))
+        self.module.project.request_open(
+            OpenRequest(REQUEST_TYPE_DUNGEON_TILESET, self.tileset_id)
+        )
 
     def on_tool_choose_tileset_cb_changed(self, w: Gtk.ComboBox):
         idx = w.get_active()
         self.tileset_id = idx
-        self.on_tool_fullmap_toggled(builder_get_assert(self.builder, Gtk.ToggleToolButton, 'tool_fullmap'), ignore_scaling=True)
+        self.on_tool_fullmap_toggled(
+            builder_get_assert(self.builder, Gtk.ToggleToolButton, "tool_fullmap"),
+            ignore_scaling=True,
+        )
 
     def on_tool_scene_copy_toggled(self, *args):
         self._enable_copy_or_move_mode()
@@ -289,32 +356,42 @@ class FixedController(AbstractController):
     def on_tb_info_layer_none_toggled(self, *args):
         if self.drawer:
             self.drawer.set_info_layer(None)
-        info = builder_get_assert(self.builder, Gtk.Widget, 'info_none')
-        builder_get_assert(self.builder, Gtk.Stack, 'legend_stack').set_visible_child(info)
+        info = builder_get_assert(self.builder, Gtk.Widget, "info_none")
+        builder_get_assert(self.builder, Gtk.Stack, "legend_stack").set_visible_child(
+            info
+        )
 
     def on_tb_info_layer_tiles_toggled(self, *args):
         if self.drawer:
             self.drawer.set_info_layer(InfoLayer.TILE)
-        info = builder_get_assert(self.builder, Gtk.Widget, 'info_tiles')
-        builder_get_assert(self.builder, Gtk.Stack, 'legend_stack').set_visible_child(info)
+        info = builder_get_assert(self.builder, Gtk.Widget, "info_tiles")
+        builder_get_assert(self.builder, Gtk.Stack, "legend_stack").set_visible_child(
+            info
+        )
 
     def on_tb_info_layer_items_toggled(self, *args):
         if self.drawer:
             self.drawer.set_info_layer(InfoLayer.ITEM)
-        info = builder_get_assert(self.builder, Gtk.Widget, 'info_items')
-        builder_get_assert(self.builder, Gtk.Stack, 'legend_stack').set_visible_child(info)
+        info = builder_get_assert(self.builder, Gtk.Widget, "info_items")
+        builder_get_assert(self.builder, Gtk.Stack, "legend_stack").set_visible_child(
+            info
+        )
 
     def on_tb_info_layer_monsters_toggled(self, *args):
         if self.drawer:
             self.drawer.set_info_layer(InfoLayer.MONSTER)
-        info = builder_get_assert(self.builder, Gtk.Widget, 'info_monsters')
-        builder_get_assert(self.builder, Gtk.Stack, 'legend_stack').set_visible_child(info)
+        info = builder_get_assert(self.builder, Gtk.Widget, "info_monsters")
+        builder_get_assert(self.builder, Gtk.Stack, "legend_stack").set_visible_child(
+            info
+        )
 
     def on_tb_info_layer_traps_toggled(self, *args):
         if self.drawer:
             self.drawer.set_info_layer(InfoLayer.TRAP)
-        info = builder_get_assert(self.builder, Gtk.Widget, 'info_traps')
-        builder_get_assert(self.builder, Gtk.Stack, 'legend_stack').set_visible_child(info)
+        info = builder_get_assert(self.builder, Gtk.Widget, "info_traps")
+        builder_get_assert(self.builder, Gtk.Stack, "legend_stack").set_visible_child(
+            info
+        )
 
     def on_tool_scene_zoom_in_clicked(self, *args):
         self._scale_factor *= 2
@@ -326,7 +403,9 @@ class FixedController(AbstractController):
         self.__class__._last_scale_factor = self._scale_factor
         self._update_scales()
 
-    def on_tool_fullmap_toggled(self, w: Gtk.ToggleToolButton, *args, ignore_scaling=False):
+    def on_tool_fullmap_toggled(
+        self, w: Gtk.ToggleToolButton, *args, ignore_scaling=False
+    ):
         self.__class__._last_show_full_map = w.get_active()
         if w.get_active():
             if not ignore_scaling:
@@ -341,8 +420,12 @@ class FixedController(AbstractController):
                 self.__class__._last_scale_factor = self._scale_factor
             minimap_provider = MinimapProvider(self.module.get_zmappa())
             if self.drawer:
-                self.drawer.set_entity_renderer(MinimapEntityRenderer(self.drawer, minimap_provider))
-                self.drawer.set_tileset_renderer(FixedFloorDrawerMinimap(minimap_provider))
+                self.drawer.set_entity_renderer(
+                    MinimapEntityRenderer(self.drawer, minimap_provider)
+                )
+                self.drawer.set_tileset_renderer(
+                    FixedFloorDrawerMinimap(minimap_provider)
+                )
         self._update_scales()
         if self._draw:
             self._draw.queue_draw()
@@ -412,16 +495,24 @@ class FixedController(AbstractController):
 
     def on_btn_apply_size_clicked(self, *args):
         try:
-            width = int(builder_get_assert(self.builder, Gtk.Entry, 'settings_width').get_text())
-            height = int(builder_get_assert(self.builder, Gtk.Entry, 'settings_height').get_text())
-            if width == 0 or height == 0: # 0x0 rooms are allowed to be consistent with the fact that they exist
+            width = int(
+                builder_get_assert(self.builder, Gtk.Entry, "settings_width").get_text()
+            )
+            height = int(
+                builder_get_assert(
+                    self.builder, Gtk.Entry, "settings_height"
+                ).get_text()
+            )
+            if (
+                width == 0 or height == 0
+            ):  # 0x0 rooms are allowed to be consistent with the fact that they exist
                 width = height = 0
             assert width >= 0 and height >= 0
         except (ValueError, AssertionError):
             display_error(
                 sys.exc_info(),
                 _("Width and height must be numbers >= 0."),
-                _("Invalid values.")
+                _("Invalid values."),
             )
             return
 
@@ -433,8 +524,10 @@ class FixedController(AbstractController):
                 Gtk.DialogFlags.MODAL,
                 Gtk.MessageType.WARNING,
                 Gtk.ButtonsType.YES_NO,
-                _("You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"),
-                title=_("Warning!")
+                _(
+                    "You are about to reduce the size of the room. This will delete tiles. Do you want to continue?"
+                ),
+                title=_("Warning!"),
             )
             response = md.run()
             md.destroy()
@@ -445,49 +538,93 @@ class FixedController(AbstractController):
             MainController.reload_view()
 
     def on_btn_help_music_clicked(self, *args):
-        self._help(_("If not set, the track ID specified on the floor this fixed floor is assigned to will be used "
-                     "instead."))
+        self._help(
+            _(
+                "If not set, the track ID specified on the floor this fixed floor is assigned to will be used "
+                "instead."
+            )
+        )
 
     def on_btn_help_moves_clicked(self, *args):
-        self._help(_("Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will "
-                     "not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled"
-                     ")"))
+        self._help(
+            _(
+                "Whether or not moves can be used. Does not affect the regular attack. If 0, other Pokémon will "
+                "not attack (they won't even use the regular attack, not even if Exclusive Move-User is disabled"
+                ")"
+            )
+        )
 
     def on_btn_help_orbs_clicked(self, *args):
-        self._help(_("If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."))
+        self._help(
+            _(
+                "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
+            )
+        )
 
     def on_btn_help_defeat_enemies_clicked(self, *args):
-        self._help(_("If enabled, the floor is exited after all the enemies have been defeated"))
+        self._help(
+            _(
+                "If enabled, the floor is exited after all the enemies have been defeated"
+            )
+        )
 
     def on_btn_help_unk5_clicked(self, *args):
-        self._help(_("If disabled, certain traps (Summon, Pitfall and Pokémon) will be disabled."
-                     "\nIf ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."))
+        self._help(
+            _(
+                "If disabled, certain traps (Summon, Pitfall and Pokémon) will be disabled."
+                "\nIf ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
+            )
+        )
 
     def on_btn_help_unk8_clicked(self, *args):
-        self._help(_("If disabled, warping, being blown away and leaping effects will be disabled."
-                     "\nIf ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."))
+        self._help(
+            _(
+                "If disabled, warping, being blown away and leaping effects will be disabled."
+                "\nIf ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
+            )
+        )
 
     def on_btn_help_unk9_clicked(self, *args):
-        self._help(_("If disabled, prevents any kind of item pulling (such as with the Trawl Orb)."
-                     "\nIf ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."))
-    
+        self._help(
+            _(
+                "If disabled, prevents any kind of item pulling (such as with the Trawl Orb)."
+                "\nIf ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. It is always enabled."
+            )
+        )
+
     def on_btn_help_complete_clicked(self, *args):
-        self._help(_("If enabled, the game will treat this fixed room as an entire floor, not a single room in a floor layout."
-                     "\nIf ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 164. "))
-    
+        self._help(
+            _(
+                "If enabled, the game will treat this fixed room as an entire floor, not a single room in a floor layout."
+                "\nIf ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 164. "
+            )
+        )
+
     def on_btn_help_boss_clicked(self, *args):
-        self._help(_("Enables boss fight conditions."
-                     "\nIf ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 80. "))
-    
+        self._help(
+            _(
+                "Enables boss fight conditions."
+                "\nIf ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 80. "
+            )
+        )
+
     def on_btn_help_free_clicked(self, *args):
-        self._help(_("Allows free layouts. For example, fixed rooms with this setting can omit stairs."
-                     "\nIf ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 110. "))
+        self._help(
+            _(
+                "Allows free layouts. For example, fixed rooms with this setting can omit stairs."
+                "\nIf ChangeFixedFloorProperties is not applied, this will only be enabled when the fixed floor ID is between 1 and 110. "
+            )
+        )
 
     def on_btn_help_override_clicked(self, *args):
-        self._help(_("If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will "
-                     "be used instead.\nThis is used in dungeons where the content of a fixed floor varies depending "
-                     "on the story progress, such as in most of the dungeons with a legendary Pokémon at the end "
-                     "(first visit vs rematch)."))
+        self._help(
+            _(
+                "If the dungeon mode is REQUEST (= the dungeon is marked as cleared once), this fixed floor will "
+                "be used instead.\nThis is used in dungeons where the content of a fixed floor varies depending "
+                "on the story progress, such as in most of the dungeons with a legendary Pokémon at the end "
+                "(first visit vs rematch)."
+            )
+        )
 
     # END EDIT SETTINGS
 
@@ -505,24 +642,34 @@ class FixedController(AbstractController):
                 store.append([i, f(_("Background {i}"))])
             else:
                 store.append([i, f(_("Tileset {i}"))])
-        self._fast_set_comboxbox_store(builder_get_assert(self.builder, Gtk.ComboBox, 'tool_choose_tileset_cb'), store, 1)
+        self._fast_set_comboxbox_store(
+            builder_get_assert(self.builder, Gtk.ComboBox, "tool_choose_tileset_cb"),
+            store,
+            1,
+        )
 
     def _init_override_dropdown(self):
         store = Gtk.ListStore(int, str)  # id, name
         store.append([0, _("No override")])
         for i in range(1, 256):
             store.append([i, f(_("No. {i}"))])  # TRANSLATORS: Number {i}
-        self._fast_set_comboxbox_store(builder_get_assert(self.builder, Gtk.ComboBox, 'settings_override'), store, 1)
+        self._fast_set_comboxbox_store(
+            builder_get_assert(self.builder, Gtk.ComboBox, "settings_override"),
+            store,
+            1,
+        )
 
     def _init_entity_combobox(self):
         store = Gtk.ListStore(int, str)  # id, name
         reserved_ids = [x.value for x in TileRuleType]
-        for i, (item_spawn, monster_spawn, tile_spawn, stats) in enumerate(self.entity_rule_container):
+        for i, (item_spawn, monster_spawn, tile_spawn, stats) in enumerate(
+            self.entity_rule_container
+        ):
             # Make sure we are not allowing entities which would turn into tile rules upon saving!
             if i + 16 in reserved_ids:
                 continue
             store.append([i, self._desc(i, item_spawn, monster_spawn, tile_spawn)])
-        w = builder_get_assert(self.builder, Gtk.ComboBox, 'utility_entity_type')
+        w = builder_get_assert(self.builder, Gtk.ComboBox, "utility_entity_type")
         self._fast_set_comboxbox_store(w, store, 1)
         w.set_active(0)
 
@@ -530,20 +677,20 @@ class FixedController(AbstractController):
         store = Gtk.ListStore(int, str)  # id, name
         for rule in TileRuleType:
             store.append([rule.value, f"{rule.value}: " + rule.explanation])
-        w = builder_get_assert(self.builder, Gtk.ComboBox, 'utility_tile_type')
+        w = builder_get_assert(self.builder, Gtk.ComboBox, "utility_tile_type")
         self._fast_set_comboxbox_store(w, store, 1)
         w.set_active(0)
 
     def _init_direction_combobox(self):
         store_tile = Gtk.ListStore(int, str)  # id, name
         store_entity = Gtk.ListStore(int, str)  # id, name
-        store_tile.append([0, _('None')])
-        store_entity.append([0, _('None')])
+        store_tile.append([0, _("None")])
+        store_entity.append([0, _("None")])
         for idx, dir in self.script_data.directions__by_ssa_id.items():
             store_tile.append([idx, dir.name])
             store_entity.append([idx, dir.name])
-        w1 = builder_get_assert(self.builder, Gtk.ComboBox, 'utility_tile_direction')
-        w2 = builder_get_assert(self.builder, Gtk.ComboBox, 'utility_entity_direction')
+        w1 = builder_get_assert(self.builder, Gtk.ComboBox, "utility_tile_direction")
+        w2 = builder_get_assert(self.builder, Gtk.ComboBox, "utility_entity_direction")
         self._fast_set_comboxbox_store(w1, store_tile, 1)
         self._fast_set_comboxbox_store(w2, store_entity, 1)
         w1.set_active(0)
@@ -555,20 +702,30 @@ class FixedController(AbstractController):
             desc += ", " + self.module.desc_fixed_floor_item(item_spawn.item_id)
         if monster_spawn.md_idx > 0:
             desc += ", " + self.module.desc_fixed_floor_monster(
-                monster_spawn.md_idx, monster_spawn.enemy_settings.value, self.monster_names, self.enemy_settings_name,
-                short=True
+                monster_spawn.md_idx,
+                monster_spawn.enemy_settings.value,
+                self.monster_names,
+                self.enemy_settings_name,
+                short=True,
             )
         return desc
 
     def _place(self):
         assert self.floor is not None and self.drawer is not None
-        if self._bg_draw_is_clicked__press_active and self.drawer.get_cursor_is_in_bounds(
+        if (
+            self._bg_draw_is_clicked__press_active
+            and self.drawer.get_cursor_is_in_bounds(
                 self.floor.width, self.floor.height, True
+            )
         ):
             x, y = self.drawer.get_cursor_pos_in_grid(True)
-            if self.drawer.interaction_mode == InteractionMode.PLACE_TILE \
-                    or self.drawer.interaction_mode == InteractionMode.PLACE_ENTITY:
-                self.floor.actions[y * self.floor.width + x] = self.drawer.get_selected()
+            if (
+                self.drawer.interaction_mode == InteractionMode.PLACE_TILE
+                or self.drawer.interaction_mode == InteractionMode.PLACE_ENTITY
+            ):
+                self.floor.actions[
+                    y * self.floor.width + x
+                ] = self.drawer.get_selected()
                 self.module.mark_fixed_floor_as_modified(self.floor_id)
 
     @staticmethod
@@ -579,34 +736,76 @@ class FixedController(AbstractController):
         cb.add_attribute(renderer_text, "text", col)
 
     def _auto_select_tileset(self):
-        cb: Gtk.ComboBox = builder_get_assert(self.builder, Gtk.ComboBox, 'tool_choose_tileset_cb')
+        cb: Gtk.ComboBox = builder_get_assert(
+            self.builder, Gtk.ComboBox, "tool_choose_tileset_cb"
+        )
         self.tileset_id = self.module.get_default_tileset_for_fixed_floor(self.floor_id)
         cb.set_active(self.tileset_id)
 
     def _load_settings(self):
         assert self.floor is not None
-        builder_get_assert(self.builder, Gtk.Entry, 'settings_music').set_text(str(self.properties.music_track))
-        builder_get_assert(self.builder, Gtk.Switch, 'settings_moves').set_active(self.properties.moves_enabled)
-        builder_get_assert(self.builder, Gtk.Switch, 'settings_orbs').set_active(self.properties.orbs_enabled)
-        builder_get_assert(self.builder, Gtk.Switch, 'settings_defeat_enemies').set_active(self.properties.exit_floor_when_defeating_enemies)
-        builder_get_assert(self.builder, Gtk.Switch, 'settings_unk4').set_active(self.properties.unk4)
-        builder_get_assert(self.builder, Gtk.Switch, 'settings_unk5').set_active(self.properties.unk5)
-        builder_get_assert(self.builder, Gtk.Switch, 'settings_unk8').set_active(self.properties.unk8)
-        builder_get_assert(self.builder, Gtk.Switch, 'settings_unk9').set_active(self.properties.unk9)
-        builder_get_assert(self.builder, Gtk.ComboBox, 'settings_override').set_active(self.override_id)
-        builder_get_assert(self.builder, Gtk.Entry, 'settings_width').set_text(str(self.floor.width))
-        builder_get_assert(self.builder, Gtk.Entry, 'settings_height').set_text(str(self.floor.height))
-        if not self.module.project.is_patch_applied('ChangeFixedFloorProperties'):
-            builder_get_assert(self.builder, Gtk.Switch, 'settings_complete').set_sensitive(False)
-            builder_get_assert(self.builder, Gtk.Switch, 'settings_boss').set_sensitive(False)
-            builder_get_assert(self.builder, Gtk.Switch, 'settings_free').set_sensitive(False)
-            builder_get_assert(self.builder, Gtk.Switch, 'settings_complete').set_active(bool(1<=self.floor_id<165))
-            builder_get_assert(self.builder, Gtk.Switch, 'settings_boss').set_active(bool(1<=self.floor_id<=80))
-            builder_get_assert(self.builder, Gtk.Switch, 'settings_free').set_active(bool(1<=self.floor_id<=110))
+        builder_get_assert(self.builder, Gtk.Entry, "settings_music").set_text(
+            str(self.properties.music_track)
+        )
+        builder_get_assert(self.builder, Gtk.Switch, "settings_moves").set_active(
+            self.properties.moves_enabled
+        )
+        builder_get_assert(self.builder, Gtk.Switch, "settings_orbs").set_active(
+            self.properties.orbs_enabled
+        )
+        builder_get_assert(
+            self.builder, Gtk.Switch, "settings_defeat_enemies"
+        ).set_active(self.properties.exit_floor_when_defeating_enemies)
+        builder_get_assert(self.builder, Gtk.Switch, "settings_unk4").set_active(
+            self.properties.unk4
+        )
+        builder_get_assert(self.builder, Gtk.Switch, "settings_unk5").set_active(
+            self.properties.unk5
+        )
+        builder_get_assert(self.builder, Gtk.Switch, "settings_unk8").set_active(
+            self.properties.unk8
+        )
+        builder_get_assert(self.builder, Gtk.Switch, "settings_unk9").set_active(
+            self.properties.unk9
+        )
+        builder_get_assert(self.builder, Gtk.ComboBox, "settings_override").set_active(
+            self.override_id
+        )
+        builder_get_assert(self.builder, Gtk.Entry, "settings_width").set_text(
+            str(self.floor.width)
+        )
+        builder_get_assert(self.builder, Gtk.Entry, "settings_height").set_text(
+            str(self.floor.height)
+        )
+        if not self.module.project.is_patch_applied("ChangeFixedFloorProperties"):
+            builder_get_assert(
+                self.builder, Gtk.Switch, "settings_complete"
+            ).set_sensitive(False)
+            builder_get_assert(self.builder, Gtk.Switch, "settings_boss").set_sensitive(
+                False
+            )
+            builder_get_assert(self.builder, Gtk.Switch, "settings_free").set_sensitive(
+                False
+            )
+            builder_get_assert(
+                self.builder, Gtk.Switch, "settings_complete"
+            ).set_active(bool(1 <= self.floor_id < 165))
+            builder_get_assert(self.builder, Gtk.Switch, "settings_boss").set_active(
+                bool(1 <= self.floor_id <= 80)
+            )
+            builder_get_assert(self.builder, Gtk.Switch, "settings_free").set_active(
+                bool(1 <= self.floor_id <= 110)
+            )
         else:
-            builder_get_assert(self.builder, Gtk.Switch, 'settings_complete').set_active(bool(self.properties.null&0x1))
-            builder_get_assert(self.builder, Gtk.Switch, 'settings_boss').set_active(bool(self.properties.null&0x2))
-            builder_get_assert(self.builder, Gtk.Switch, 'settings_free').set_active(bool(self.properties.null&0x4))
+            builder_get_assert(
+                self.builder, Gtk.Switch, "settings_complete"
+            ).set_active(bool(self.properties.null & 0x1))
+            builder_get_assert(self.builder, Gtk.Switch, "settings_boss").set_active(
+                bool(self.properties.null & 0x2)
+            )
+            builder_get_assert(self.builder, Gtk.Switch, "settings_free").set_active(
+                bool(self.properties.null & 0x4)
+            )
 
     def _init_fixed_floor(self):
         # Fixed floor data
@@ -616,67 +815,101 @@ class FixedController(AbstractController):
         assert self.drawer is not None
         if self.tileset_id < TILESET_FIRST_BG:
             # Real tileset
-            self.drawer.set_tileset_renderer(FixedFloorDrawerTileset(*self.module.get_dungeon_tileset(self.tileset_id)))
+            self.drawer.set_tileset_renderer(
+                FixedFloorDrawerTileset(
+                    *self.module.get_dungeon_tileset(self.tileset_id)
+                )
+            )
         else:
             # Background to render using dummy tileset
-            self.drawer.set_tileset_renderer(FixedFloorDrawerBackground(
-                *self.module.get_dungeon_background(self.tileset_id - TILESET_FIRST_BG),
-                *self.module.get_dummy_tileset())
+            self.drawer.set_tileset_renderer(
+                FixedFloorDrawerBackground(
+                    *self.module.get_dungeon_background(
+                        self.tileset_id - TILESET_FIRST_BG
+                    ),
+                    *self.module.get_dummy_tileset(),
+                )
             )
 
     def _init_drawer(self):
         if self._draw:
-            self.drawer = FixedRoomDrawer(self._draw, self.floor, self.module.project.get_sprite_provider(),
-                                          self.entity_rule_container,
-                                          self.module.project.get_string_provider(), self.module)
+            self.drawer = FixedRoomDrawer(
+                self._draw,
+                self.floor,
+                self.module.project.get_sprite_provider(),
+                self.entity_rule_container,
+                self.module.project.get_string_provider(),
+                self.module,
+            )
             self.drawer.start()
 
-            self.drawer.set_draw_tile_grid(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tool_scene_grid').get_active())
+            self.drawer.set_draw_tile_grid(
+                builder_get_assert(
+                    self.builder, Gtk.ToggleToolButton, f"tool_scene_grid"
+                ).get_active()
+            )
 
     def _update_scales(self):
-        assert self.drawer is not None and self._draw is not None and self.drawer.tileset_renderer is not None
+        assert (
+            self.drawer is not None
+            and self._draw is not None
+            and self.drawer.tileset_renderer is not None
+        )
         assert self.floor is not None
         self._draw.set_size_request(
-            (self.floor.width + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor,
-            (self.floor.height + 10) * self.drawer.tileset_renderer.chunk_dim() * self._scale_factor
+            (self.floor.width + 10)
+            * self.drawer.tileset_renderer.chunk_dim()
+            * self._scale_factor,
+            (self.floor.height + 10)
+            * self.drawer.tileset_renderer.chunk_dim()
+            * self._scale_factor,
         )
         self.drawer.set_scale(self._scale_factor)
 
         self._draw.queue_draw()
 
     def _enable_entity_editing(self):
-        stack: Gtk.Stack = builder_get_assert(self.builder, Gtk.Stack, 'utility_stack')
-        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Frame, 'utility_entity_frame'))
+        stack: Gtk.Stack = builder_get_assert(self.builder, Gtk.Stack, "utility_stack")
+        stack.set_visible_child(
+            builder_get_assert(self.builder, Gtk.Frame, "utility_entity_frame")
+        )
         if self.drawer:
             self.drawer.interaction_mode = InteractionMode.PLACE_ENTITY
 
     def _enable_tile_editing(self):
-        stack: Gtk.Stack = builder_get_assert(self.builder, Gtk.Stack, 'utility_stack')
-        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Frame, 'utility_tile_frame'))
+        stack: Gtk.Stack = builder_get_assert(self.builder, Gtk.Stack, "utility_stack")
+        stack.set_visible_child(
+            builder_get_assert(self.builder, Gtk.Frame, "utility_tile_frame")
+        )
         if self.drawer:
             self.drawer.interaction_mode = InteractionMode.PLACE_TILE
 
     def _enable_copy_or_move_mode(self):
-        stack: Gtk.Stack = builder_get_assert(self.builder, Gtk.Stack, 'utility_stack')
-        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Label, 'utility_default'))
+        stack: Gtk.Stack = builder_get_assert(self.builder, Gtk.Stack, "utility_stack")
+        stack.set_visible_child(
+            builder_get_assert(self.builder, Gtk.Label, "utility_default")
+        )
 
     def _reapply_selected_entity(self):
         dir = None
-        dir_id = builder_get_assert(self.builder, Gtk.ComboBox, 'utility_entity_direction').get_active()
+        dir_id = builder_get_assert(
+            self.builder, Gtk.ComboBox, "utility_entity_direction"
+        ).get_active()
         if dir_id > 0:
             dir = self.script_data.directions__by_ssa_id[dir_id]
-        w = builder_get_assert(self.builder, Gtk.ComboBox, 'utility_entity_type')
+        w = builder_get_assert(self.builder, Gtk.ComboBox, "utility_entity_type")
         active_iter = w.get_active_iter()
         assert active_iter is not None
         entity_id = w.get_model()[active_iter][0]
         assert self.drawer is not None
-        self.drawer.set_selected(EntityRule(
-            entity_id,
-            dir
-        ))
+        self.drawer.set_selected(EntityRule(entity_id, dir))
         entity = self.entity_rule_container.entities[entity_id]
-        item_spawn, monster_spawn, tile_spawn, stats = self.entity_rule_container.get(entity_id)
-        builder_get_assert(self.builder, Gtk.Label, 'utility_entity_frame_desc_label').set_markup(
+        item_spawn, monster_spawn, tile_spawn, stats = self.entity_rule_container.get(
+            entity_id
+        )
+        builder_get_assert(
+            self.builder, Gtk.Label, "utility_entity_frame_desc_label"
+        ).set_markup(
             f"<b>Pokémon ({entity.monster_id})</b>:\n"
             f"{self.module.desc_fixed_floor_monster(monster_spawn.md_idx, monster_spawn.enemy_settings.value, self.long_monster_names, self.long_enemy_settings_name)}\n\n"
             f"<b>{_('Stats')} ({monster_spawn.stats_entry})</b>:\n"
@@ -689,19 +922,20 @@ class FixedController(AbstractController):
 
     def _reapply_selected_tile(self):
         dir = None
-        dir_id = builder_get_assert(self.builder, Gtk.ComboBox, 'utility_tile_direction').get_active()
+        dir_id = builder_get_assert(
+            self.builder, Gtk.ComboBox, "utility_tile_direction"
+        ).get_active()
         if dir_id > 0:
             dir = self.script_data.directions__by_ssa_id[dir_id]
-        w = builder_get_assert(self.builder, Gtk.ComboBox, 'utility_tile_type')
+        w = builder_get_assert(self.builder, Gtk.ComboBox, "utility_tile_type")
         active_iter = w.get_active_iter()
         assert active_iter is not None
         tile_rule = TileRuleType(w.get_model()[active_iter][0])  # type: ignore
         assert self.drawer is not None
-        self.drawer.set_selected(TileRule(
-            tile_rule,
-            dir
-        ))
-        builder_get_assert(self.builder, Gtk.Label, 'utility_tile_frame_desc_label').set_markup(
+        self.drawer.set_selected(TileRule(tile_rule, dir))
+        builder_get_assert(
+            self.builder, Gtk.Label, "utility_tile_frame_desc_label"
+        ).set_markup(
             f"<b>{tile_rule.explanation}</b>\n"
             f"{_('Type')}: {tile_rule.floor_type.name.capitalize()}\n"
             f"{tile_rule.room_type.name.capitalize()}\n"
@@ -711,7 +945,9 @@ class FixedController(AbstractController):
             f"{tile_rule.notes}"
         )
 
-    def _select_combobox(self, cb_name: str, callback: Callable[[Gtk.TreeModelRow], bool]):
+    def _select_combobox(
+        self, cb_name: str, callback: Callable[[Gtk.TreeModelRow], bool]
+    ):
         cb = builder_get_assert(self.builder, Gtk.ComboBox, cb_name)
         l_iter = cb.get_model().get_iter_first()
         while l_iter is not None:
@@ -721,8 +957,12 @@ class FixedController(AbstractController):
             l_iter = cb.get_model().iter_next(l_iter)
 
     def _help(self, msg):
-        md = SkyTempleMessageDialog(MainController.window(),
-                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, msg)
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            msg,
+        )
         md.run()
         md.destroy()

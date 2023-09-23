@@ -50,8 +50,15 @@ FPS = 30
 
 
 class MonsterSpriteController(AbstractController):
-    def __init__(self, module: 'SpriteModule', item_id: int,
-                 mark_as_modified_cb, assign_new_sprite_id_cb, get_shadow_size_cb, set_shadow_size_cb):
+    def __init__(
+        self,
+        module: "SpriteModule",
+        item_id: int,
+        mark_as_modified_cb,
+        assign_new_sprite_id_cb,
+        get_shadow_size_cb,
+        set_shadow_size_cb,
+    ):
         self.module = module
         self.item_id = item_id
         self._sprite_provider = self.module.get_sprite_provider()
@@ -64,19 +71,27 @@ class MonsterSpriteController(AbstractController):
         self._drawing_is_active = 0
         self._draw_area: Optional[Gtk.DrawingArea] = None
         self._monster_bin: ModelContext[BinPack] = self.module.get_monster_bin_ctx()
-        self._rendered_frame_info: List[Tuple[int, Tuple[cairo.Surface, int, int, int, int]]] = []
+        self._rendered_frame_info: List[
+            Tuple[int, Tuple[cairo.Surface, int, int, int, int]]
+        ] = []
 
         self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
         if not self.module.is_idx_supported(self.item_id):
-            return Gtk.Label.new(_('Invalid Sprite ID.'))
-        self.builder = self._get_builder(__file__, 'monster_sprite.glade')
-        self._draw_area = builder_get_assert(self.builder, Gtk.DrawingArea, 'draw_sprite')
+            return Gtk.Label.new(_("Invalid Sprite ID."))
+        self.builder = self._get_builder(__file__, "monster_sprite.glade")
+        self._draw_area = builder_get_assert(
+            self.builder, Gtk.DrawingArea, "draw_sprite"
+        )
         if self.module.get_gfxcrunch().is_available():
-            builder_get_assert(self.builder, Gtk.Label, 'explanation_text2').set_markup(_("""Alternatively you can export the sprite files 
+            builder_get_assert(self.builder, Gtk.Label, "explanation_text2").set_markup(
+                _(
+                    """Alternatively you can export the sprite files 
 in the gfxcrunch format and edit them manually.
-Warning: SkyTemple does not validate the files you import."""))
+Warning: SkyTemple does not validate the files you import."""
+                )
+            )
         self.builder.connect_signals(self)
 
         try:
@@ -85,7 +100,7 @@ Warning: SkyTemple does not validate the files you import."""))
         except BaseException as ex:
             logger.error("Failed rendering sprite preview", exc_info=ex)
 
-        return builder_get_assert(self.builder, Gtk.Widget, 'main_box')
+        return builder_get_assert(self.builder, Gtk.Widget, "main_box")
 
     def start_sprite_drawing(self):
         """Start drawing on the DrawingArea"""
@@ -125,7 +140,9 @@ Warning: SkyTemple does not validate the files you import."""))
         return True
 
     def _zip_is_active(self):
-        return builder_get_assert(self.builder, Gtk.CheckButton, "import_export_zip").get_active()
+        return builder_get_assert(
+            self.builder, Gtk.CheckButton, "import_export_zip"
+        ).get_active()
 
     def _add_zip_filter_to_dialog(self, dialog: Gtk.FileChooserNative):
         filter_zip = Gtk.FileFilter()
@@ -140,8 +157,11 @@ Warning: SkyTemple does not validate the files you import."""))
         dialog = Gtk.FileChooserNative.new(
             _("Export spritesheet..."),
             MainController.window(),
-            Gtk.FileChooserAction.SELECT_FOLDER if not is_zip else Gtk.FileChooserAction.SAVE,
-            _('_Save'), None
+            Gtk.FileChooserAction.SELECT_FOLDER
+            if not is_zip
+            else Gtk.FileChooserAction.SAVE,
+            _("_Save"),
+            None,
         )
 
         if is_zip:
@@ -153,70 +173,96 @@ Warning: SkyTemple does not validate the files you import."""))
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
-                monster: WanFile = self.module.get_monster_monster_sprite_chara(self.item_id)
-                ground: WanFile = self.module.get_monster_ground_sprite_chara(self.item_id)
-                attack: WanFile = self.module.get_monster_attack_sprite_chara(self.item_id)
+                monster: WanFile = self.module.get_monster_monster_sprite_chara(
+                    self.item_id
+                )
+                ground: WanFile = self.module.get_monster_ground_sprite_chara(
+                    self.item_id
+                )
+                attack: WanFile = self.module.get_monster_attack_sprite_chara(
+                    self.item_id
+                )
                 merged = FileType.WAN.CHARA.merge_wan(monster, ground, attack)
                 merged.sdwSize = self._get_shadow_size_cb()
                 try:
-                    animation_names = self.module.project.get_rom_module().get_static_data().animation_names[
-                        self.item_id]
+                    animation_names = (
+                        self.module.project.get_rom_module()
+                        .get_static_data()
+                        .animation_names[self.item_id]
+                    )
                 except KeyError:
                     # Fall back to Bulbasaur
-                    animation_names = self.module.project.get_rom_module().get_static_data().animation_names[0]
+                    animation_names = (
+                        self.module.project.get_rom_module()
+                        .get_static_data()
+                        .animation_names[0]
+                    )
                 if not is_zip:
-                    FileType.WAN.CHARA.export_sheets(
-                        fn, merged, animation_names
-                    )
+                    FileType.WAN.CHARA.export_sheets(fn, merged, animation_names)
                 else:
-                    FileType.WAN.CHARA.export_sheets_as_zip(
-                        fn, merged, animation_names
-                    )
+                    FileType.WAN.CHARA.export_sheets_as_zip(fn, merged, animation_names)
 
-                md = SkyTempleMessageDialog(MainController.window(),
-                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                            Gtk.ButtonsType.OK, _("The spritesheet was successfully exported."),
-                                            title=_("Success!"), is_success=True)
+                md = SkyTempleMessageDialog(
+                    MainController.window(),
+                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                    Gtk.MessageType.INFO,
+                    Gtk.ButtonsType.OK,
+                    _("The spritesheet was successfully exported."),
+                    title=_("Success!"),
+                    is_success=True,
+                )
                 md.run()
                 md.destroy()
             except BaseException as e:
                 display_error(
-                    sys.exc_info(),
-                    str(e),
-                    _("Error exporting the spritesheet.")
+                    sys.exc_info(), str(e), _("Error exporting the spritesheet.")
                 )
 
     def on_import_clicked(self, w: Gtk.MenuToolButton):
-        md = SkyTempleMessageDialog(MainController.window(),
-                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, _("To import select the archive that contains the spritesheets.")
-                                    if self._zip_is_active()
-                                    else _("To import select the directory of the spritesheets. If it "
-                                           "is still zipped, unzip it first."),
-                                    title="SkyTemple")
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            _("To import select the archive that contains the spritesheets.")
+            if self._zip_is_active()
+            else _(
+                "To import select the directory of the spritesheets. If it "
+                "is still zipped, unzip it first."
+            ),
+            title="SkyTemple",
+        )
         md.run()
         md.destroy()
         self.do_import(self.item_id)
 
     def on_import_new_clicked(self, w: Gtk.MenuToolButton):
-        md = SkyTempleMessageDialog(MainController.window(),
-                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK_CANCEL,
-                                    _("This will insert a completely new sprite into the game's sprite file and "
-                                      "assign the new ID to the Pokémon.\n"
-                                      "If you want to instead replace the currently assigned sprite, choose 'Import'.\n")
-                                    +
-                                    _("To import select the archive that contains the spritesheets.")
-                                    if self._zip_is_active()
-                                    else _("To import select the directory of the spritesheets. If it "
-                                           "is still zipped, unzip it first."),
-                                    title="SkyTemple")
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK_CANCEL,
+            _(
+                "This will insert a completely new sprite into the game's sprite file and "
+                "assign the new ID to the Pokémon.\n"
+                "If you want to instead replace the currently assigned sprite, choose 'Import'.\n"
+            )
+            + _("To import select the archive that contains the spritesheets.")
+            if self._zip_is_active()
+            else _(
+                "To import select the directory of the spritesheets. If it "
+                "is still zipped, unzip it first."
+            ),
+            title="SkyTemple",
+        )
         response = md.run()
         md.destroy()
         if response == Gtk.ResponseType.OK:
             new_sprite_id = self.module.get_monster_sprite_count()
             if new_sprite_id > -1:
-                self.do_import(new_sprite_id, lambda: self._assign_new_sprite_id_cb(new_sprite_id))
+                self.do_import(
+                    new_sprite_id, lambda: self._assign_new_sprite_id_cb(new_sprite_id)
+                )
 
     def do_import(self, sprite_id: int, cb=lambda: None):
         is_zip = self._zip_is_active()
@@ -224,8 +270,11 @@ Warning: SkyTemple does not validate the files you import."""))
         dialog = Gtk.FileChooserNative.new(
             _("Import spritesheet..."),
             MainController.window(),
-            Gtk.FileChooserAction.SELECT_FOLDER if not is_zip else Gtk.FileChooserAction.OPEN,
-            None, None
+            Gtk.FileChooserAction.SELECT_FOLDER
+            if not is_zip
+            else Gtk.FileChooserAction.OPEN,
+            None,
+            None,
         )
 
         if is_zip:
@@ -237,31 +286,43 @@ Warning: SkyTemple does not validate the files you import."""))
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
-                wan = FileType.WAN.CHARA.import_sheets(fn) if not is_zip \
+                wan = (
+                    FileType.WAN.CHARA.import_sheets(fn)
+                    if not is_zip
                     else FileType.WAN.CHARA.import_sheets_from_zip(fn)
+                )
 
                 self.module.save_monster_sprite(sprite_id, wan)
 
-                md = SkyTempleMessageDialog(MainController.window(),
-                                            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                            Gtk.ButtonsType.OK, _("The spritesheet was successfully imported."),
-                                            title=_("Success!"), is_success=True)
+                md = SkyTempleMessageDialog(
+                    MainController.window(),
+                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                    Gtk.MessageType.INFO,
+                    Gtk.ButtonsType.OK,
+                    _("The spritesheet was successfully imported."),
+                    title=_("Success!"),
+                    is_success=True,
+                )
                 md.run()
                 md.destroy()
 
                 # Shadow size
                 if not is_zip:
-                    tree = ElementTree.parse(os.path.join(fn, 'AnimData.xml')).getroot()
+                    tree = ElementTree.parse(os.path.join(fn, "AnimData.xml")).getroot()
                 else:
-                    with ZipFile(fn, 'r') as ZipObj:
-                        tree = ElementTree.fromstring(ZipObj.read('AnimData.xml'))
-                self._set_shadow_size_cb(int(assert_not_none(assert_not_none(tree.find('ShadowSize')).text)))
+                    with ZipFile(fn, "r") as ZipObj:
+                        tree = ElementTree.fromstring(ZipObj.read("AnimData.xml"))
+                self._set_shadow_size_cb(
+                    int(assert_not_none(assert_not_none(tree.find("ShadowSize")).text))
+                )
 
                 # Update/create sprconf.json:
                 anims: Element = assert_not_none(tree.find("Anims"))
                 action_indices = {}
                 for action in anims:
-                    name_normal: str = assert_not_none(assert_not_none(action.find("Name")).text)
+                    name_normal: str = assert_not_none(
+                        assert_not_none(action.find("Name")).text
+                    )
                     action_index = action.find("Index")
                     if action_index is not None:
                         idx = int(assert_not_none(action_index.text))
@@ -273,13 +334,13 @@ Warning: SkyTemple does not validate the files you import."""))
                 MainController.reload_view()
             except BaseException as e:
                 display_error(
-                    sys.exc_info(),
-                    str(e),
-                    _("Error importing the spritesheet.")
+                    sys.exc_info(), str(e), _("Error importing the spritesheet.")
                 )
 
     def on_export_ground_clicked(self, w: Gtk.MenuToolButton):
-        self.module.export_a_sprite(self.module.get_monster_ground_sprite_chara(self.item_id, raw=True))
+        self.module.export_a_sprite(
+            self.module.get_monster_ground_sprite_chara(self.item_id, raw=True)
+        )
 
     def on_import_ground_clicked(self, w: Gtk.MenuToolButton):
         sprite = self.module.import_a_sprite()
@@ -290,7 +351,9 @@ Warning: SkyTemple does not validate the files you import."""))
         MainController.reload_view()
 
     def on_export_dungeon_clicked(self, w: Gtk.MenuToolButton):
-        self.module.export_a_sprite(self.module.get_monster_monster_sprite_chara(self.item_id, raw=True))
+        self.module.export_a_sprite(
+            self.module.get_monster_monster_sprite_chara(self.item_id, raw=True)
+        )
 
     def on_import_dungeon_clicked(self, w: Gtk.MenuToolButton):
         sprite = self.module.import_a_sprite()
@@ -301,7 +364,9 @@ Warning: SkyTemple does not validate the files you import."""))
         MainController.reload_view()
 
     def on_export_attack_clicked(self, w: Gtk.MenuToolButton):
-        self.module.export_a_sprite(self.module.get_monster_attack_sprite_chara(self.item_id, raw=True))
+        self.module.export_a_sprite(
+            self.module.get_monster_attack_sprite_chara(self.item_id, raw=True)
+        )
 
     def on_import_attack_clicked(self, w: Gtk.MenuToolButton):
         sprite = self.module.import_a_sprite()
@@ -340,8 +405,20 @@ Warning: SkyTemple does not validate the files you import."""))
                 mfg_id = frame.frame_id
                 sprite_img, (cx, cy) = sprite.render_frame(sprite.frames[mfg_id])
                 self._rendered_frame_info.append(
-                    (frame.duration, (pil_to_cairo_surface(sprite_img), cx, cy, sprite_img.width, sprite_img.height)))
+                    (
+                        frame.duration,
+                        (
+                            pil_to_cairo_surface(sprite_img),
+                            cx,
+                            cy,
+                            sprite_img.width,
+                            sprite_img.height,
+                        ),
+                    )
+                )
 
     def _load_sprite_from_bin_pack(self, bin_pack: BinPack, file_id) -> Wan:
         # TODO: Support of bin_pack item management via the RomProject instead?
-        return FileType.WAN.deserialize(FileType.PKDPX.deserialize(bin_pack[file_id]).decompress())
+        return FileType.WAN.deserialize(
+            FileType.PKDPX.deserialize(bin_pack[file_id]).decompress()
+        )

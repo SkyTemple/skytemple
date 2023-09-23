@@ -17,7 +17,9 @@
 from abc import ABC
 from typing import List, Sequence
 
-from skytemple.module.tiled_img.chunk_editor_data_provider.tile_graphics_provider import AbstractTileGraphicsProvider
+from skytemple.module.tiled_img.chunk_editor_data_provider.tile_graphics_provider import (
+    AbstractTileGraphicsProvider,
+)
 from skytemple_files.graphics.bpa.protocol import BpaProtocol
 from skytemple_files.graphics.bpc.protocol import BpcProtocol
 
@@ -43,4 +45,3 @@ class MapBgAnimatedTileProvider(AbstractTileGraphicsProvider):
 
     def count(self):
         return self.bpa.number_of_tiles
-

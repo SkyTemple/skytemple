@@ -37,19 +37,21 @@ from skytemple_files.common.i18n_util import _
 if TYPE_CHECKING:
     from skytemple.module.bgp.module import BgpModule
 
-INFO_IMEXPORT_ENTIRE = _("""- The image is a 256-color indexed PNG.
+INFO_IMEXPORT_ENTIRE = _(
+    """- The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
   one of these 16 palettes.
 - The first color in each palette is transparency.
 - Each import must result in a maximum of 1024 unique 8x8 tiles 
-  (=not existing with another palette or flipped or rotated).""")
+  (=not existing with another palette or flipped or rotated)."""
+)
 
 logger = logging.getLogger(__name__)
 
 
 class BgpController(AbstractController):
-    def __init__(self, module: 'BgpModule', item_id: int):
+    def __init__(self, module: "BgpModule", item_id: int):
         self.module = module
         self.item_id = item_id
         self.bgp = self.module.get_bgp(self.item_id)
@@ -57,14 +59,18 @@ class BgpController(AbstractController):
         self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'bgp.glade')
+        self.builder = self._get_builder(__file__, "bgp.glade")
         self.builder.connect_signals(self)
         self._reinit_image()
-        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').connect('draw', self.draw)
-        return builder_get_assert(self.builder, Gtk.Box, 'editor_bgp')
+        builder_get_assert(self.builder, Gtk.DrawingArea, "draw").connect(
+            "draw", self.draw
+        )
+        return builder_get_assert(self.builder, Gtk.Box, "editor_bgp")
 
     def on_men_bg_export_activate(self, *args):
-        dialog: Gtk.Dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_bg_export')
+        dialog: Gtk.Dialog = builder_get_assert(
+            self.builder, Gtk.Dialog, "dialog_bg_export"
+        )
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
@@ -75,7 +81,8 @@ class BgpController(AbstractController):
                 "Export as PNG...",
                 MainController.window(),
                 Gtk.FileChooserAction.SAVE,
-                None, None
+                None,
+                None,
             )
 
             add_dialog_png_filter(file_chooser)
@@ -85,15 +92,17 @@ class BgpController(AbstractController):
             file_chooser.destroy()
 
             if response == Gtk.ResponseType.ACCEPT and fn is not None:
-                fn = add_extension_if_missing(fn, 'png')
+                fn = add_extension_if_missing(fn, "png")
                 self.bgp.to_pil().save(fn)
 
     def on_men_bg_import_activate(self, *args):
-        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog_bg_import')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, "dialog_bg_import")
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
 
-        file_chooser = builder_get_assert(self.builder, Gtk.FileChooserButton, 'bg_import_file')
+        file_chooser = builder_get_assert(
+            self.builder, Gtk.FileChooserButton, "bg_import_file"
+        )
 
         resp = dialog.run()
         dialog.hide()
@@ -102,21 +111,21 @@ class BgpController(AbstractController):
             try:
                 path = file_chooser.get_filename()
                 if path is not None:
-                    with open(path, 'rb') as f:
+                    with open(path, "rb") as f:
                         self.bgp.from_pil(Image.open(f), True)
             except Exception as err:
-                display_error(
-                    sys.exc_info(),
-                    str(err),
-                    _("Error importing the image.")
-                )
+                display_error(sys.exc_info(), str(err), _("Error importing the image."))
             self.module.mark_as_modified(self.item_id)
             self._reinit_image()
 
     def on_format_details_entire_clicked(self, *args):
-        md = SkyTempleMessageDialog(MainController.window(),
-                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_ENTIRE)
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            INFO_IMEXPORT_ENTIRE,
+        )
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
@@ -128,8 +137,8 @@ class BgpController(AbstractController):
         MainController.show_tilequant_dialog(16, 16)
 
     def _reinit_image(self):
-        self.surface = pil_to_cairo_surface(self.bgp.to_pil().convert('RGBA'))
-        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').queue_draw()
+        self.surface = pil_to_cairo_surface(self.bgp.to_pil().convert("RGBA"))
+        builder_get_assert(self.builder, Gtk.DrawingArea, "draw").queue_draw()
 
     def draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:

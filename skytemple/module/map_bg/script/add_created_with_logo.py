@@ -45,6 +45,7 @@ class AddCreatedWithLogo:
 
     Error messages are displayed with GTK.
     """
+
     def __init__(self, bma: BmaProtocol, bpc: BpcProtocol, bpl: BplProtocol):
         self.bma = bma
         self.bpc = bpc
@@ -53,7 +54,7 @@ class AddCreatedWithLogo:
     def process(self):
         # BPC:
         start_offset = self.bpc.layers[0].chunk_tilemap_len
-        with open(os.path.join(data_dir(), 'created_with.png'), 'rb') as f:
+        with open(os.path.join(data_dir(), "created_with.png"), "rb") as f:
             palettes = self._import_to_bpc(0, Image.open(f))
         # BMA:
         for x in range(0, 11):
@@ -68,17 +69,27 @@ class AddCreatedWithLogo:
         self.bpl.set_palettes(pals)
 
     def _error(self, error_msg):
-        md = SkyTempleMessageDialog(None,
-                               Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.ERROR,
-                               Gtk.ButtonsType.OK, error_msg)
+        md = SkyTempleMessageDialog(
+            None,
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.ERROR,
+            Gtk.ButtonsType.OK,
+            error_msg,
+        )
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
 
     def _import_to_bpc(self, layer, image):
         new_tiles, new_tilemap, palettes = from_pil(
-            image, BPL_IMG_PAL_LEN, BPL_MAX_PAL, BPC_TILE_DIM,
-            image.width, image.height, 3, 3
+            image,
+            BPL_IMG_PAL_LEN,
+            BPL_MAX_PAL,
+            BPC_TILE_DIM,
+            image.width,
+            image.height,
+            3,
+            3,
         )
         # Correct the indices of the new tilemap
         # Correct the layer mappings to use the correct palettes
@@ -90,6 +101,8 @@ class AddCreatedWithLogo:
         self.bpc.layers[layer].tilemap += new_tilemap
 
         self.bpc.layers[layer].number_tiles += len(new_tiles)
-        self.bpc.layers[layer].chunk_tilemap_len += int(len(new_tilemap) / self.bpc.tiling_width / self.bpc.tiling_height)
+        self.bpc.layers[layer].chunk_tilemap_len += int(
+            len(new_tilemap) / self.bpc.tiling_width / self.bpc.tiling_height
+        )
 
         return palettes

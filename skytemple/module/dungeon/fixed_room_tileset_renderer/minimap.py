@@ -20,7 +20,9 @@ import cairo
 from PIL import Image
 
 from skytemple.core.img_utils import pil_to_cairo_surface
-from skytemple.module.dungeon.fixed_room_tileset_renderer.abstract import AbstractTilesetRenderer
+from skytemple.module.dungeon.fixed_room_tileset_renderer.abstract import (
+    AbstractTilesetRenderer,
+)
 from skytemple.module.dungeon.minimap_provider import MinimapProvider, ZMAPPAT_DIM
 from skytemple_files.graphics.dma.protocol import DmaType
 
@@ -36,24 +38,43 @@ class FixedFloorDrawerMinimap(AbstractTilesetRenderer):
 
     def get_dungeon(self, rules: List[List[int]]) -> cairo.Surface:
         if rules != self._cached_rules:
-            surf = pil_to_cairo_surface(Image.new(
-                'RGBA', size=(len(rules[0] * ZMAPPAT_DIM), len(rules * ZMAPPAT_DIM)), color=(0, 0, 231, 255)
-            ))
+            surf = pil_to_cairo_surface(
+                Image.new(
+                    "RGBA",
+                    size=(len(rules[0] * ZMAPPAT_DIM), len(rules * ZMAPPAT_DIM)),
+                    color=(0, 0, 231, 255),
+                )
+            )
             ctx = cairo.Context(surf)
             for y, row in enumerate(rules):
                 for x, cell in enumerate(row):
                     if cell == DmaType.WALL:
                         continue
-                    self.paint(ctx, self.get_single_tile(cell), x * ZMAPPAT_DIM, y * ZMAPPAT_DIM)
+                    self.paint(
+                        ctx,
+                        self.get_single_tile(cell),
+                        x * ZMAPPAT_DIM,
+                        y * ZMAPPAT_DIM,
+                    )
                     if cell == DmaType.WATER:
-                        self.paint(ctx, self.minimap_provider.get_secondary_tile(), x * ZMAPPAT_DIM, y * ZMAPPAT_DIM)
+                        self.paint(
+                            ctx,
+                            self.minimap_provider.get_secondary_tile(),
+                            x * ZMAPPAT_DIM,
+                            y * ZMAPPAT_DIM,
+                        )
                     else:
                         w_below = self.w_below(rules, x, y)  # 0001
                         w_right = self.w_right(rules, x, y)  # 0010
                         w_above = self.w_above(rules, x, y)  # 0100
-                        w_left = self.w_left(rules, x, y)    # 1000
+                        w_left = self.w_left(rules, x, y)  # 1000
                         idx = 16 + w_below + 2 * w_right + 4 * w_above + 8 * w_left
-                        self.paint(ctx, self.minimap_provider.get_minimap_tile(idx), x * ZMAPPAT_DIM, y * ZMAPPAT_DIM)
+                        self.paint(
+                            ctx,
+                            self.minimap_provider.get_minimap_tile(idx),
+                            x * ZMAPPAT_DIM,
+                            y * ZMAPPAT_DIM,
+                        )
 
             self._cached_dungeon_surface = surf
             self._cached_rules = rules

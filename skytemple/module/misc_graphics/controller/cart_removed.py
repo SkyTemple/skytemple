@@ -40,40 +40,47 @@ logger = logging.getLogger(__name__)
 if TYPE_CHECKING:
     from skytemple.module.misc_graphics.module import MiscGraphicsModule
 
+
 class CartRemovedController(AbstractController):
-    def __init__(self, module: 'MiscGraphicsModule', _: str):
+    def __init__(self, module: "MiscGraphicsModule", _: str):
         self.module = module
-        
+
         self.builder: Gtk.Builder = None  # type: ignore
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'cart_removed.glade')
+        self.builder = self._get_builder(__file__, "cart_removed.glade")
 
         self._reinit_image()
-        
+
         self.builder.connect_signals(self)
-        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').connect('draw', self.draw)
-        return builder_get_assert(self.builder, Gtk.Widget, 'editor')
+        builder_get_assert(self.builder, Gtk.DrawingArea, "draw").connect(
+            "draw", self.draw
+        )
+        return builder_get_assert(self.builder, Gtk.Widget, "editor")
 
     def on_cart_removed_info_clicked(self, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
-            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("This is what the game shows when the cartridge is removed while playing.\n"
-              "IMPORTANT! The game stores this compressed in the ARM9, so this is limited in space.\n"
-              "It is recommended to only edit this to change the text color/content."),
-            title=_("Cartridge Removed Image Info")
+            _(
+                "This is what the game shows when the cartridge is removed while playing.\n"
+                "IMPORTANT! The game stores this compressed in the ARM9, so this is limited in space.\n"
+                "It is recommended to only edit this to change the text color/content."
+            ),
+            title=_("Cartridge Removed Image Info"),
         )
         md.run()
         md.destroy()
-    
+
     def on_export_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(
             _("Export image as PNG..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
-            _("_Save"), None
+            _("_Save"),
+            None,
         )
 
         add_dialog_png_filter(dialog)
@@ -83,14 +90,16 @@ class CartRemovedController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
-            fn = add_extension_if_missing(fn, 'png')
+            fn = add_extension_if_missing(fn, "png")
             self.module.get_cart_removed_data().save(fn)
+
     def on_import_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(
             _("Import image as PNG..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
-            _("_Open"), None
+            _("_Open"),
+            None,
         )
 
         add_dialog_png_filter(dialog)
@@ -101,21 +110,19 @@ class CartRemovedController(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
-                img = Image.open(fn, 'r')
+                img = Image.open(fn, "r")
                 self.module.set_cart_removed_data(img)
             except Exception as err:
                 display_error(
-                    sys.exc_info(),
-                    str(err),
-                    _("Error importing cart removed image.")
+                    sys.exc_info(), str(err), _("Error importing cart removed image.")
                 )
             self._reinit_image()
 
     def _reinit_image(self):
         surface = self.module.get_cart_removed_data()
-        self.surface = pil_to_cairo_surface(surface.convert('RGBA'))
-        builder_get_assert(self.builder, Gtk.DrawingArea, 'draw').queue_draw()
-    
+        self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
+        builder_get_assert(self.builder, Gtk.DrawingArea, "draw").queue_draw()
+
     def draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:
             wdg.set_size_request(self.surface.get_width(), self.surface.get_height())

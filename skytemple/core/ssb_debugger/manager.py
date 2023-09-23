@@ -23,7 +23,9 @@ from gi.repository import Gtk
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ssb_debugger.context import SkyTempleMainDebuggerControlContext
 from skytemple.core.ui_utils import make_builder, builder_get_assert
-from skytemple_ssb_debugger.controller.main import MainController as DebuggerMainController
+from skytemple_ssb_debugger.controller.main import (
+    MainController as DebuggerMainController,
+)
 from skytemple_ssb_debugger.main import get_debugger_package_dir
 
 
@@ -41,8 +43,12 @@ class DebuggerManager:
             self._was_opened_once = True
             self._context = SkyTempleMainDebuggerControlContext(self)
 
-            builder = make_builder(os.path.join(get_debugger_package_dir(), "debugger.glade"))
-            self._opened_main_window = builder_get_assert(builder, Gtk.Window, "main_window")
+            builder = make_builder(
+                os.path.join(get_debugger_package_dir(), "debugger.glade")
+            )
+            self._opened_main_window = builder_get_assert(
+                builder, Gtk.Window, "main_window"
+            )
             self._opened_main_window.set_role("SkyTemple Script Engine Debugger")
             self._opened_main_window.set_title("SkyTemple Script Engine Debugger")
 
@@ -109,7 +115,9 @@ class DebuggerManager:
         """Inform the debugger about a newly created SSB file."""
         if self.is_opened():
             assert self._opened_main_controller is not None
-            self._opened_main_controller.on_script_added(ssb_path, mapname, scene_type, scene_name)
+            self._opened_main_controller.on_script_added(
+                ssb_path, mapname, scene_type, scene_name
+            )
 
     def on_script_removed(self, ssb_path):
         """Inform the debugger about a removed SSB file."""
@@ -130,4 +138,3 @@ class DebuggerManager:
 
     def get_window(self) -> Optional[Gtk.Window]:
         return self._opened_main_window
-

@@ -26,8 +26,8 @@ from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import data_dir
 from skytemple.module.gfxcrunch.controller.gfxcrunch import GfxcrunchController
 
-GFXCRUNCH_BIN = 'ppmd_gfxcrunch.exe'
-WINE_BIN = 'wine'
+GFXCRUNCH_BIN = "ppmd_gfxcrunch.exe"
+WINE_BIN = "wine"
 ENABLE_GFXCRUNCH = True
 
 
@@ -44,7 +44,7 @@ class GfxcrunchModule(AbstractModule):
         pass
 
     def load_tree_items(self, item_tree: ItemTree):
-        pass   # n/a
+        pass  # n/a
 
     def is_available(self):
         if not ENABLE_GFXCRUNCH:
@@ -54,7 +54,7 @@ class GfxcrunchModule(AbstractModule):
         if not os.path.exists(path):
             return False
 
-        if not sys.platform.startswith('win'):
+        if not sys.platform.startswith("win"):
             if which(WINE_BIN) is None:
                 return False
 
@@ -62,7 +62,7 @@ class GfxcrunchModule(AbstractModule):
 
     def get_gfxcrunch_cmd(self) -> Tuple[str, List[str], bool]:
         """Returns the CMD for gfxcrunch and the base argument list and if shell=True"""
-        if sys.platform.startswith('win'):
+        if sys.platform.startswith("win"):
             return os.path.join(data_dir(), GFXCRUNCH_BIN), [], False
         return WINE_BIN, [os.path.join(data_dir(), GFXCRUNCH_BIN)], False
 
@@ -73,4 +73,6 @@ class GfxcrunchModule(AbstractModule):
         return GfxcrunchController(self).export_sprite(wan, dir_fn)
 
     def open_gfxcrunch_page(self):
-        webbrowser.open_new_tab('https://projectpokemon.org/home/forums/topic/31407-pokemon-mystery-dungeon-2-psy_commandos-tools-and-research-notes/')
+        webbrowser.open_new_tab(
+            "https://projectpokemon.org/home/forums/topic/31407-pokemon-mystery-dungeon-2-psy_commandos-tools-and-research-notes/"
+        )

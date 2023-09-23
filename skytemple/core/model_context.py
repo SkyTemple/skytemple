@@ -18,7 +18,7 @@ import threading
 from contextlib import AbstractContextManager
 from typing import TypeVar, Generic
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 class ModelContext(Generic[T], AbstractContextManager):
@@ -26,6 +26,7 @@ class ModelContext(Generic[T], AbstractContextManager):
     ContextManager that wraps a model for thread-safe data access.
     References to the model are invalid outside of the context provided.
     """
+
     def __init__(self, model: T):
         self._model = model
         self._lock = threading.RLock()

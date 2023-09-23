@@ -33,7 +33,10 @@ from skytemple_files.script.ssa_sse_sss.event import SsaEvent
 from skytemple_files.script.ssa_sse_sss.model import Ssa
 from skytemple_files.script.ssa_sse_sss.object import SsaObject
 from skytemple_files.script.ssa_sse_sss.performer import SsaPerformer
-from skytemple_files.script.ssa_sse_sss.position import ACTOR_DEFAULT_HITBOX_W, ACTOR_DEFAULT_HITBOX_H
+from skytemple_files.script.ssa_sse_sss.position import (
+    ACTOR_DEFAULT_HITBOX_W,
+    ACTOR_DEFAULT_HITBOX_H,
+)
 
 
 ALPHA_T = 0.3
@@ -59,8 +62,11 @@ class InteractionMode(Enum):
 
 class Drawer:
     def __init__(
-            self, draw_area: Gtk.Widget, ssa: Ssa, cb_trigger_label: Callable[[int], str],
-            sprite_provider: SpriteProvider
+        self,
+        draw_area: Gtk.Widget,
+        ssa: Ssa,
+        cb_trigger_label: Callable[[int], str],
+        sprite_provider: SpriteProvider,
     ):
         self.draw_area = draw_area
 
@@ -81,7 +87,9 @@ class Drawer:
         self._sectors_visible = [True for _ in range(0, len(self.ssa.layer_list))]
         self._sectors_solo = [False for _ in range(0, len(self.ssa.layer_list))]
         self._sector_highlighted = None
-        self._selected: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent, SourceMapPositionMark]] = None
+        self._selected: Optional[
+            Union[SsaActor, SsaObject, SsaPerformer, SsaEvent, SourceMapPositionMark]
+        ] = None
         # If not None, drag is active and value is coordinate
         self._selected__drag: Optional[Tuple[int, int]] = None
         self._edit_pos_marks = False
@@ -90,8 +98,10 @@ class Drawer:
             BPC_TILE_DIM, BPC_TILE_DIM, self.selection_draw_callback
         )
         self.tile_grid_plugin = GridDrawerPlugin(
-            BPC_TILE_DIM, BPC_TILE_DIM,
-            offset_x=-BPC_TILE_DIM / 2, offset_y=-BPC_TILE_DIM / 2
+            BPC_TILE_DIM,
+            BPC_TILE_DIM,
+            offset_x=-BPC_TILE_DIM / 2,
+            offset_y=-BPC_TILE_DIM / 2,
         )
 
         self.scale = 1
@@ -102,7 +112,7 @@ class Drawer:
         """Start drawing on the DrawingArea"""
         self.drawing_is_active = True
         if isinstance(self.draw_area, Gtk.DrawingArea):
-            self.draw_area.connect('draw', self.draw)
+            self.draw_area.connect("draw", self.draw)
         self.draw_area.queue_draw()
 
     def draw(self, wdg, ctx: cairo.Context):
@@ -181,15 +191,22 @@ class Drawer:
 
         # Position
         ctx.scale(1 / self.scale, 1 / self.scale)
-        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.select_font_face(
+            "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
+        )
         ctx.set_source_rgb(*COLOR_WHITE)
         ctx.set_font_size(18)
         try:
             p1 = assert_not_none(self.draw_area.get_parent())
             p2 = assert_not_none(p1.get_parent())
-            sw: Gtk.ScrolledWindow = typing.cast(Gtk.ScrolledWindow, assert_not_none(p2.get_parent()))
+            sw: Gtk.ScrolledWindow = typing.cast(
+                Gtk.ScrolledWindow, assert_not_none(p2.get_parent())
+            )
             s = sw.get_allocated_size()
-            ctx.move_to(sw.get_hadjustment().get_value() + 30, s[0].height + sw.get_vadjustment().get_value() - 30)
+            ctx.move_to(
+                sw.get_hadjustment().get_value() + 30,
+                s[0].height + sw.get_vadjustment().get_value() - 30,
+            )
             if self._selected__drag is not None:
                 sx, sy = self.get_current_drag_entity_pos()
             else:
@@ -207,7 +224,9 @@ class Drawer:
 
         return True
 
-    def selection_draw_callback(self, ctx: cairo.Context, x: Union[int, float], y: Union[int, float]):
+    def selection_draw_callback(
+        self, ctx: cairo.Context, x: Union[int, float], y: Union[int, float]
+    ):
         if self.interaction_mode == InteractionMode.SELECT:
             if self._selected is not None and self._selected__drag is not None:
                 # Draw dragged:
@@ -242,7 +261,11 @@ class Drawer:
         self.mouse_x = x
         self.mouse_y = y
 
-    def get_under_mouse(self) -> Tuple[Optional[int], Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]]]:
+    def get_under_mouse(
+        self,
+    ) -> Tuple[
+        Optional[int], Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]]
+    ]:
         """
         Returns the first entity under the mouse position, if any, and it's layer number.
         Not visible layers are not searched.
@@ -289,35 +312,54 @@ class Drawer:
     def set_scale(self, v):
         self.scale = v
 
-    def get_bb_actor(self, actor: SsaActor, x=None, y=None) -> Tuple[int, int, int, int]:
+    def get_bb_actor(
+        self, actor: SsaActor, x=None, y=None
+    ) -> Tuple[int, int, int, int]:
         if x is None:
             x = actor.pos.x_absolute
         if y is None:
             y = actor.pos.y_absolute
         if actor.actor.entid <= 0:
-            _, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(actor.actor.id, assert_not_none(actor.pos.direction).id, lambda: GLib.idle_add(self._redraw))
+            _, cx, cy, w, h = self.sprite_provider.get_actor_placeholder(
+                actor.actor.id,
+                assert_not_none(actor.pos.direction).id,
+                lambda: GLib.idle_add(self._redraw),
+            )
         else:
-            _, cx, cy, w, h = self.sprite_provider.get_monster(actor.actor.entid, assert_not_none(actor.pos.direction).id, lambda: GLib.idle_add(self._redraw))
+            _, cx, cy, w, h = self.sprite_provider.get_monster(
+                actor.actor.entid,
+                assert_not_none(actor.pos.direction).id,
+                lambda: GLib.idle_add(self._redraw),
+            )
         return x - cx, y - cy, w, h
 
     def _draw_hitbox_actor(self, ctx: cairo.Context, actor: SsaActor):
         coords_hitbox = self._get_pmd_bounding_box(
-            actor.pos.x_absolute, actor.pos.y_absolute, ACTOR_DEFAULT_HITBOX_W, ACTOR_DEFAULT_HITBOX_H
+            actor.pos.x_absolute,
+            actor.pos.y_absolute,
+            ACTOR_DEFAULT_HITBOX_W,
+            ACTOR_DEFAULT_HITBOX_H,
         )
         self._draw_hitbox(ctx, COLOR_ACTORS, *coords_hitbox)
 
     def _draw_actor(self, ctx: cairo.Context, actor: SsaActor, *sprite_coords):
         self._draw_actor_sprite(ctx, actor, sprite_coords[0], sprite_coords[1])
-        self._draw_name(ctx, COLOR_ACTORS, actor.actor.name, sprite_coords[0], sprite_coords[1])
+        self._draw_name(
+            ctx, COLOR_ACTORS, actor.actor.name, sprite_coords[0], sprite_coords[1]
+        )
 
-    def get_bb_object(self, object: SsaObject, x=None, y=None) -> Tuple[int, int, int, int]:
+    def get_bb_object(
+        self, object: SsaObject, x=None, y=None
+    ) -> Tuple[int, int, int, int]:
         if x is None:
             x = object.pos.x_absolute
         if y is None:
             y = object.pos.y_absolute
-        if object.object.name != 'NULL':
+        if object.object.name != "NULL":
             # Load sprite to get dims.
-            _, cx, cy, w, h = self.sprite_provider.get_for_object(object.object.name, lambda: GLib.idle_add(self._redraw))
+            _, cx, cy, w, h = self.sprite_provider.get_for_object(
+                object.object.name, lambda: GLib.idle_add(self._redraw)
+            )
             return x - cx, y - cy, w, h
         return self._get_pmd_bounding_box(
             x, y, object.hitbox_w * BPC_TILE_DIM, object.hitbox_h * BPC_TILE_DIM
@@ -325,30 +367,47 @@ class Drawer:
 
     def _draw_hitbox_object(self, ctx: cairo.Context, object: SsaObject):
         coords_hitbox = self._get_pmd_bounding_box(
-            object.pos.x_absolute, object.pos.y_absolute, object.hitbox_w * BPC_TILE_DIM, object.hitbox_h * BPC_TILE_DIM
+            object.pos.x_absolute,
+            object.pos.y_absolute,
+            object.hitbox_w * BPC_TILE_DIM,
+            object.hitbox_h * BPC_TILE_DIM,
         )
         self._draw_hitbox(ctx, COLOR_OBJECTS, *coords_hitbox)
 
-    def _draw_object(self, ctx: cairo.Context, object: SsaObject, sprite_coords: Tuple[int, int, int, int]):
+    def _draw_object(
+        self,
+        ctx: cairo.Context,
+        object: SsaObject,
+        sprite_coords: Tuple[int, int, int, int],
+    ):
         # Draw sprite representation
-        if object.object.name != 'NULL':
+        if object.object.name != "NULL":
             self._draw_object_sprite(ctx, object, sprite_coords[0], sprite_coords[1])
-            self._draw_name(ctx, COLOR_OBJECTS, object.object.name, sprite_coords[0], sprite_coords[1])
+            self._draw_name(
+                ctx,
+                COLOR_OBJECTS,
+                object.object.name,
+                sprite_coords[0],
+                sprite_coords[1],
+            )
             return
         self._draw_generic_placeholder(
-            ctx, COLOR_OBJECTS, object.object.unique_name,
+            ctx,
+            COLOR_OBJECTS,
+            object.object.unique_name,
             *sprite_coords,
-            direction=assert_not_none(object.pos.direction)
+            direction=assert_not_none(object.pos.direction),
         )
 
-    def get_bb_performer(self, performer: SsaPerformer, x=None, y=None) -> Tuple[int, int, int, int]:
+    def get_bb_performer(
+        self, performer: SsaPerformer, x=None, y=None
+    ) -> Tuple[int, int, int, int]:
         if x is None:
             x = performer.pos.x_absolute
         if y is None:
             y = performer.pos.y_absolute
         return self._get_pmd_bounding_box(
-            x, y,
-            performer.hitbox_w * BPC_TILE_DIM, performer.hitbox_h * BPC_TILE_DIM
+            x, y, performer.hitbox_w * BPC_TILE_DIM, performer.hitbox_h * BPC_TILE_DIM
         )
 
     def _draw_hitbox_performer(self, ctx: cairo.Context, performer: SsaPerformer):
@@ -356,44 +415,63 @@ class Drawer:
 
     def _draw_performer(self, ctx: cairo.Context, performer: SsaPerformer, x, y, w, h):
         # Label
-        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.select_font_face(
+            "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
+        )
         ctx.set_source_rgb(*COLOR_PERFORMER)
         ctx.set_font_size(12)
         ctx.move_to(x - 4, y - 8)
-        ctx.show_text(f'{performer.type}')
+        ctx.show_text(f"{performer.type}")
         # Direction arrow
-        self._triangle(ctx, x, y, BPC_TILE_DIM, COLOR_PERFORMER, assert_not_none(performer.pos.direction).id)
+        self._triangle(
+            ctx,
+            x,
+            y,
+            BPC_TILE_DIM,
+            COLOR_PERFORMER,
+            assert_not_none(performer.pos.direction).id,
+        )
 
-    def get_bb_trigger(self, trigger: SsaEvent, x=None, y=None) -> Tuple[int, int, int, int]:
+    def get_bb_trigger(
+        self, trigger: SsaEvent, x=None, y=None
+    ) -> Tuple[int, int, int, int]:
         if x is None:
             x = trigger.pos.x_absolute
         if y is None:
             y = trigger.pos.y_absolute
         return (
-            x, y,
-            trigger.trigger_width * BPC_TILE_DIM, trigger.trigger_height * BPC_TILE_DIM
+            x,
+            y,
+            trigger.trigger_width * BPC_TILE_DIM,
+            trigger.trigger_height * BPC_TILE_DIM,
         )
 
     def _draw_trigger(self, ctx: cairo.Context, trigger: SsaEvent, *coords_hitbox):
         # Draw hitbox
         self._draw_hitbox(ctx, COLOR_PERFORMER, *coords_hitbox)
         # Label
-        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.select_font_face(
+            "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
+        )
         ctx.set_source_rgb(1, 1, 1)
         ctx.set_font_size(12)
         ctx.move_to(coords_hitbox[0] + 4, coords_hitbox[1] + 14)
-        ctx.show_text(f'{self._cb_trigger_label(trigger.trigger_id)}')
+        ctx.show_text(f"{self._cb_trigger_label(trigger.trigger_id)}")
 
         return coords_hitbox
 
-    def get_bb_pos_mark(self, pos_mark: SourceMapPositionMark, x=None, y=None) -> Tuple[int, int, int, int]:
+    def get_bb_pos_mark(
+        self, pos_mark: SourceMapPositionMark, x=None, y=None
+    ) -> Tuple[int, int, int, int]:
         if x is None:
             x = pos_mark.x_with_offset * BPC_TILE_DIM
         if y is None:
             y = pos_mark.y_with_offset * BPC_TILE_DIM
         return x - BPC_TILE_DIM, y - BPC_TILE_DIM, BPC_TILE_DIM * 3, BPC_TILE_DIM * 3
 
-    def _draw_pos_mark(self, ctx: cairo.Context, pos_mark: SourceMapPositionMark, *bb_cords):
+    def _draw_pos_mark(
+        self, ctx: cairo.Context, pos_mark: SourceMapPositionMark, *bb_cords
+    ):
         # Outline
         ctx.set_source_rgba(*COLOR_POS_MARKS, 0.8)
         ctx.rectangle(*bb_cords)
@@ -402,18 +480,34 @@ class Drawer:
         ctx.stroke()
         ctx.set_dash([])
         # Inner
-        ctx.rectangle(bb_cords[0] + BPC_TILE_DIM, bb_cords[1] + BPC_TILE_DIM, BPC_TILE_DIM, BPC_TILE_DIM)
+        ctx.rectangle(
+            bb_cords[0] + BPC_TILE_DIM,
+            bb_cords[1] + BPC_TILE_DIM,
+            BPC_TILE_DIM,
+            BPC_TILE_DIM,
+        )
         ctx.fill()
         # Label
-        self._draw_name(ctx, COLOR_POS_MARKS, pos_mark.name, bb_cords[0], bb_cords[1], scale=2)
+        self._draw_name(
+            ctx, COLOR_POS_MARKS, pos_mark.name, bb_cords[0], bb_cords[1], scale=2
+        )
 
     def _is_layer_visible(self, layer_i: int) -> bool:
-        return self._sectors_solo[layer_i] or (not any(self._sectors_solo) and self._sectors_visible[layer_i])
+        return self._sectors_solo[layer_i] or (
+            not any(self._sectors_solo) and self._sectors_visible[layer_i]
+        )
 
-    def _is_dragged(self, entity: Union[SsaActor, SsaObject, SsaPerformer, SsaEvent, SourceMapPositionMark]):
+    def _is_dragged(
+        self,
+        entity: Union[
+            SsaActor, SsaObject, SsaPerformer, SsaEvent, SourceMapPositionMark
+        ],
+    ):
         return entity == self._selected and self._selected__drag is not None
 
-    def _handle_layer_highlight(self, ctx: cairo.Context, layer: int, x: int, y: int, w: int, h: int):
+    def _handle_layer_highlight(
+        self, ctx: cairo.Context, layer: int, x: int, y: int, w: int, h: int
+    ):
         if layer == self._sector_highlighted:
             padding = 2
             x -= padding
@@ -476,21 +570,38 @@ class Drawer:
         # Tool modes
         x = self.mouse_x - self.mouse_x % (BPC_TILE_DIM / 2)
         y = self.mouse_y - self.mouse_y % (BPC_TILE_DIM / 2)
-        return x - BPC_TILE_DIM * 1.5, y - BPC_TILE_DIM * 1.5, BPC_TILE_DIM * 3, BPC_TILE_DIM * 3
+        return (
+            x - BPC_TILE_DIM * 1.5,
+            y - BPC_TILE_DIM * 1.5,
+            BPC_TILE_DIM * 3,
+            BPC_TILE_DIM * 3,
+        )
 
-    def _get_pmd_bounding_box(self, x_center: int, y_center: int, w: int, h: int,
-                              y_offset=0.0) -> Tuple[int, int, int, int]:
+    def _get_pmd_bounding_box(
+        self, x_center: int, y_center: int, w: int, h: int, y_offset=0.0
+    ) -> Tuple[int, int, int, int]:
         left = x_center - int(w / 2)
         top = y_center - int(h / 2) - int(y_offset)
         return left, top, w, h
 
-    def _draw_hitbox(self, ctx: cairo.Context, color: Color, x: int, y: int, w: int, h: int):
+    def _draw_hitbox(
+        self, ctx: cairo.Context, color: Color, x: int, y: int, w: int, h: int
+    ):
         ctx.set_source_rgba(*color, ALPHA_T)
         ctx.rectangle(x, y, w, h)
         ctx.fill()
 
-    def _draw_generic_placeholder(self, ctx: cairo.Context, color: Color, label: str,
-                                  x: int, y: int, w: int, h: int, direction: Pmd2ScriptDirection):
+    def _draw_generic_placeholder(
+        self,
+        ctx: cairo.Context,
+        color: Color,
+        label: str,
+        x: int,
+        y: int,
+        w: int,
+        h: int,
+        direction: Pmd2ScriptDirection,
+    ):
         # Rectangle
         ctx.set_source_rgb(*color)
         ctx.set_line_width(1)
@@ -500,43 +611,77 @@ class Drawer:
         self._draw_name(ctx, color, label, x, y)
         # Direction arrow
         a_sz = int(BPC_TILE_DIM / 2)
-        self._triangle(ctx,
-                       x + int(w/2) - int(a_sz / 2), y + h - a_sz - int(a_sz / 2),
-                       a_sz,
-                       (1, 1, 1), direction.id)
+        self._triangle(
+            ctx,
+            x + int(w / 2) - int(a_sz / 2),
+            y + h - a_sz - int(a_sz / 2),
+            a_sz,
+            (1, 1, 1),
+            direction.id,
+        )
 
-    def _draw_name(self, ctx: cairo.Context, color: Color, label: str, x: int, y: int, scale=1):
+    def _draw_name(
+        self, ctx: cairo.Context, color: Color, label: str, x: int, y: int, scale=1
+    ):
         ctx.set_source_rgb(*color)
-        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.select_font_face(
+            "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
+        )
         ctx.set_font_size(6 * scale)
         ctx.move_to(x, y - 4 * scale)
         ctx.show_text(label)
 
-    def _triangle(self, ctx: cairo.Context, x: int, y: int, a_sz: int, color: Color, direction_id: int):
+    def _triangle(
+        self,
+        ctx: cairo.Context,
+        x: int,
+        y: int,
+        a_sz: int,
+        color: Color,
+        direction_id: int,
+    ):
         if direction_id == 1 or direction_id == 0:
             # Down
-            self._polygon(ctx, [(x, y), (x + a_sz, y), (x + int(a_sz / 2), y + a_sz)], color=color)
+            self._polygon(
+                ctx, [(x, y), (x + a_sz, y), (x + int(a_sz / 2), y + a_sz)], color=color
+            )
         elif direction_id == 2:
             # DownRight
-            self._polygon(ctx, [(x + a_sz, y), (x + a_sz, y + a_sz), (x, y + a_sz)], color=color)
+            self._polygon(
+                ctx, [(x + a_sz, y), (x + a_sz, y + a_sz), (x, y + a_sz)], color=color
+            )
         elif direction_id == 3:
             # Right
-            self._polygon(ctx, [(x, y), (x + a_sz, y + int(a_sz / 2)), (x, y + a_sz)], color=color)
+            self._polygon(
+                ctx, [(x, y), (x + a_sz, y + int(a_sz / 2)), (x, y + a_sz)], color=color
+            )
         elif direction_id == 4:
             # UpRight
-            self._polygon(ctx, [(x, y), (x + a_sz, y), (x + a_sz, y + a_sz)], color=color)
+            self._polygon(
+                ctx, [(x, y), (x + a_sz, y), (x + a_sz, y + a_sz)], color=color
+            )
         elif direction_id == 5:
             # Up
-            self._polygon(ctx, [(x, y + a_sz), (x + a_sz, y + a_sz), (x + int(a_sz / 2), y)], color=color)
+            self._polygon(
+                ctx,
+                [(x, y + a_sz), (x + a_sz, y + a_sz), (x + int(a_sz / 2), y)],
+                color=color,
+            )
         elif direction_id == 6:
             # UpLeft
             self._polygon(ctx, [(x, y + a_sz), (x, y), (x + a_sz, y)], color=color)
         elif direction_id == 7:
             # Left
-            self._polygon(ctx, [(x + a_sz, y), (x, y + int(a_sz / 2)), (x + a_sz, y + a_sz)], color=color)
+            self._polygon(
+                ctx,
+                [(x + a_sz, y), (x, y + int(a_sz / 2)), (x + a_sz, y + a_sz)],
+                color=color,
+            )
         elif direction_id == 8:
             # DownLeft
-            self._polygon(ctx, [(x, y), (x, y + a_sz), (x + a_sz, y + a_sz)], color=color)
+            self._polygon(
+                ctx, [(x, y), (x, y + a_sz), (x + a_sz, y + a_sz)], color=color
+            )
 
     def _polygon(self, ctx: cairo.Context, points, color, outline=None):
         ctx.new_path()
@@ -560,7 +705,9 @@ class Drawer:
             )[0]
         else:
             sprite = self.sprite_provider.get_monster(
-                actor.actor.entid, assert_not_none(actor.pos.direction).id, lambda: GLib.idle_add(self._redraw)
+                actor.actor.entid,
+                assert_not_none(actor.pos.direction).id,
+                lambda: GLib.idle_add(self._redraw),
             )[0]
         ctx.translate(x, y)
         ctx.set_source_surface(sprite)
@@ -570,7 +717,9 @@ class Drawer:
 
     def _draw_object_sprite(self, ctx: cairo.Context, obj: SsaObject, x, y):
         """Draws the sprite for an object"""
-        sprite = self.sprite_provider.get_for_object(obj.object.name, lambda: GLib.idle_add(self._redraw))[0]
+        sprite = self.sprite_provider.get_for_object(
+            obj.object.name, lambda: GLib.idle_add(self._redraw)
+        )[0]
         ctx.translate(x, y)
         ctx.set_source_surface(sprite)
         ctx.get_source().set_filter(cairo.Filter.NEAREST)
@@ -590,77 +739,68 @@ class Drawer:
 
     def get_pos_place_actor(self) -> Tuple[int, int]:
         """Get the X and Y position on the grid to place the actor on, in PLACE_ACTOR mode."""
-        return self._snap_pos(
-            self.mouse_x,
-            self.mouse_y + BPC_TILE_DIM
-        )
+        return self._snap_pos(self.mouse_x, self.mouse_y + BPC_TILE_DIM)
 
     def _surface_place_object(self, ctx: cairo.Context, x, y, w, h):
         ctx.set_line_width(1)
         cx, cy = x + w / 2, y + h / 2
         rect_dim = BPC_TILE_DIM * 2
         ctx.set_source_rgb(1, 1, 1)
-        ctx.rectangle(
-            cx - rect_dim / 2,
-            cy - rect_dim / 2,
-            rect_dim, rect_dim
-        )
+        ctx.rectangle(cx - rect_dim / 2, cy - rect_dim / 2, rect_dim, rect_dim)
         ctx.stroke()
-        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.select_font_face(
+            "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
+        )
         ctx.set_font_size(6)
         ctx.move_to(cx - 5, cy - 2)
-        ctx.show_text(f'OBJ')
+        ctx.show_text(f"OBJ")
         ctx.translate(x, y)
         self._draw_plus(ctx)
         ctx.translate(-x, -y)
 
     def get_pos_place_object(self) -> Tuple[int, int]:
         """Get the X and Y position on the grid to place the object on, in PLACE_OBJECT mode."""
-        return self._snap_pos(
-            self.mouse_x,
-            self.mouse_y
-        )
+        return self._snap_pos(self.mouse_x, self.mouse_y)
 
     def _surface_place_performer(self, ctx: cairo.Context, x, y, w, h):
         ctx.set_line_width(1)
         cx, cy = x + w / 2, y + h / 2
-        self._triangle(ctx, cx - BPC_TILE_DIM / 2, cy - BPC_TILE_DIM / 2, BPC_TILE_DIM, (255, 255, 255), 1)
+        self._triangle(
+            ctx,
+            cx - BPC_TILE_DIM / 2,
+            cy - BPC_TILE_DIM / 2,
+            BPC_TILE_DIM,
+            (255, 255, 255),
+            1,
+        )
         ctx.translate(x, y)
         self._draw_plus(ctx)
         ctx.translate(-x, -y)
 
     def get_pos_place_performer(self) -> Tuple[int, int]:
         """Get the X and Y position on the grid to place the performer on, in PLACE_PERFORMER mode."""
-        return self._snap_pos(
-            self.mouse_x,
-            self.mouse_y
-        )
+        return self._snap_pos(self.mouse_x, self.mouse_y)
 
     def _surface_place_trigger(self, ctx: cairo.Context, x, y, w, h):
         ctx.set_line_width(1)
         cx, cy = x + w / 2, y + h / 2
         rect_dim = BPC_TILE_DIM * 2
         ctx.set_source_rgb(1, 1, 1)
-        ctx.rectangle(
-            cx - rect_dim / 2,
-            cy - rect_dim / 2,
-            rect_dim, rect_dim
-        )
+        ctx.rectangle(cx - rect_dim / 2, cy - rect_dim / 2, rect_dim, rect_dim)
         ctx.stroke()
-        ctx.select_font_face("monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL)
+        ctx.select_font_face(
+            "monospace", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_NORMAL
+        )
         ctx.set_font_size(6)
         ctx.move_to(cx - 5, cy - 2)
-        ctx.show_text(f'TRG')
+        ctx.show_text(f"TRG")
         ctx.translate(x, y)
         self._draw_plus(ctx)
         ctx.translate(-x, -y)
 
     def get_pos_place_trigger(self) -> Tuple[int, int]:
         """Get the X and Y position on the grid to place the trigger on, in PLACE_TRIGGER mode."""
-        return self._snap_pos(
-            self.mouse_x - BPC_TILE_DIM,
-            self.mouse_y - BPC_TILE_DIM
-        )
+        return self._snap_pos(self.mouse_x - BPC_TILE_DIM, self.mouse_y - BPC_TILE_DIM)
 
     def _draw_plus(self, ctx: cairo.Context):
         arrow_len = BPC_TILE_DIM / 4
@@ -690,7 +830,12 @@ class Drawer:
     def get_sector_highlighted(self):
         return self._sector_highlighted
 
-    def set_selected(self, entity: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent, SourceMapPositionMark]]):
+    def set_selected(
+        self,
+        entity: Optional[
+            Union[SsaActor, SsaObject, SsaPerformer, SsaEvent, SourceMapPositionMark]
+        ],
+    ):
         self._selected = entity
         self.draw_area.queue_draw()
 
@@ -716,11 +861,13 @@ class Drawer:
         elif self._sector_highlighted is not None and self._sector_highlighted > id:
             self._sector_highlighted -= 1
 
-    def get_current_drag_entity_pos(self) -> Tuple[Union[int, float], Union[int, float]]:
+    def get_current_drag_entity_pos(
+        self,
+    ) -> Tuple[Union[int, float], Union[int, float]]:
         assert self._selected__drag is not None
         return self._snap_pos(
             self.mouse_x - self._selected__drag[0],
-            self.mouse_y - self._selected__drag[1]
+            self.mouse_y - self._selected__drag[1],
         )
 
     @typing.no_type_check
@@ -763,5 +910,3 @@ class Drawer:
         x = x - x % (BPC_TILE_DIM / 2)
         y = y - y % (BPC_TILE_DIM / 2)
         return x, y
-
-

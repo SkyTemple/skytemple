@@ -50,7 +50,7 @@ class SkyTemplePluginFinder(importlib_metadata.DistributionFinder):
         self.plugin_names = []
         with os.scandir(self.plugin_dir) as it:
             for entry in it:
-                if entry.name.lower().endswith('.whl') and entry.is_file():
+                if entry.name.lower().endswith(".whl") and entry.is_file():
                     self.plugin_names.append(entry.name)
 
     def st_list(self) -> Sequence[str]:
@@ -60,7 +60,7 @@ class SkyTemplePluginFinder(importlib_metadata.DistributionFinder):
         self,
         fullname: str,
         path: Optional[Sequence[Union[bytes, str]]],
-        target: Optional[ModuleType] = None
+        target: Optional[ModuleType] = None,
     ) -> Optional[ModuleSpec]:
         """
         From the docs:
@@ -74,12 +74,14 @@ class SkyTemplePluginFinder(importlib_metadata.DistributionFinder):
         implementing concrete MetaPathFinders.
         """
         if fullname in self.packages:
-            return spec_from_loader(fullname, SkyTemplePluginLoader(self.packages[fullname]))
+            return spec_from_loader(
+                fullname, SkyTemplePluginLoader(self.packages[fullname])
+            )
         return None
 
     def find_distributions(
         self,
-        context: importlib_metadata.DistributionFinder.Context = importlib_metadata.DistributionFinder.Context()
+        context: importlib_metadata.DistributionFinder.Context = importlib_metadata.DistributionFinder.Context(),
     ) -> Iterable[importlib_metadata.Distribution]:
         """
         From the docs:
@@ -100,7 +102,11 @@ class SkyTemplePluginFinder(importlib_metadata.DistributionFinder):
             dists.append(dist)
             # TODO: Is this OK to do like this?
             if dist.files is not None:
-                packages_in_dist = set(x.parts[0] for x in dist.files if not x.parts[0].endswith('.dist-info'))
+                packages_in_dist = set(
+                    x.parts[0]
+                    for x in dist.files
+                    if not x.parts[0].endswith(".dist-info")
+                )
                 for package in packages_in_dist:
                     self.packages[package] = os.path.join(temp_dir, package)
 

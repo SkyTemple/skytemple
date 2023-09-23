@@ -39,6 +39,7 @@ class AbstractModule(ABC):
     """
     A SkyTemple module.
     """
+
     @abstractmethod
     def __init__(self, rom_project: RomProject):
         pass
@@ -71,7 +72,9 @@ class AbstractModule(ABC):
         """
         pass
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(
+        self, open_view: Union[AbstractController, Gtk.Widget]
+    ) -> Optional[DebuggingInfo]:
         """
         Return debugging information for the currently opened controller or view widget (passed in).
         If this module can't provide this information for that controller, returns None.

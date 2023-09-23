@@ -62,7 +62,7 @@ class DiscordPresence(AbstractListener):
 
         self.start = None
         self._reset_playtime()
-        self.current_presence = 'main'
+        self.current_presence = "main"
         self.module_info = None
         self.module_state = None
         self.rom_name = None
@@ -76,23 +76,23 @@ class DiscordPresence(AbstractListener):
         if self._idle_timeout_id is not None:
             GLib.source_remove(self._idle_timeout_id)
             self._idle_timeout_id = None
-        if self.current_presence == 'idle':
+        if self.current_presence == "idle":
             self._reset_playtime()
-        self.current_presence = 'main'
+        self.current_presence = "main"
         self._update_current_presence()
 
     def on_debugger_window_focus(self):
         if self._idle_timeout_id is not None:
             GLib.source_remove(self._idle_timeout_id)
             self._idle_timeout_id = None
-        self.current_presence = 'debugger'
-        if self.current_presence == 'idle':
+        self.current_presence = "debugger"
+        if self.current_presence == "idle":
             self._reset_playtime()
         self._update_current_presence()
 
     def on_idle(self):
         self._idle_timeout_id = None
-        self.current_presence = 'idle'
+        self.current_presence = "idle"
         self._update_current_presence()
 
     def on_focus_lost(self):
@@ -107,8 +107,15 @@ class DiscordPresence(AbstractListener):
             self.rom_name = "Version " + version()
         self._update_current_presence()
 
-    def on_view_switch(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
-        mod_handler = getattr(self, f"on_view_switch__{module.__class__.__name__}", None)
+    def on_view_switch(
+        self,
+        module: AbstractModule,
+        controller: AbstractController,
+        breadcrumbs: List[str],
+    ):
+        mod_handler = getattr(
+            self, f"on_view_switch__{module.__class__.__name__}", None
+        )
         if mod_handler and callable(mod_handler):
             mod_handler(module, controller, breadcrumbs)
         else:
@@ -116,100 +123,133 @@ class DiscordPresence(AbstractListener):
             self.module_state = self.rom_name
         self._update_current_presence()
 
-    def on_view_switch__MiscGraphicsModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
+    def on_view_switch__MiscGraphicsModule(
+        self, module, controller: AbstractController, breadcrumbs: List[str]
+    ):
         from skytemple.module.misc_graphics.module import MiscGraphicsModule
         from skytemple.module.misc_graphics.controller.w16 import W16Controller
         from skytemple.module.misc_graphics.controller.wte_wtu import WteWtuController
 
-        self.module_info = 'Editing graphics'
+        self.module_info = "Editing graphics"
         self.module_state = self.rom_name
         if isinstance(controller, W16Controller):
             self.module_state = module.list_of_w16s[controller.item_id]
         if isinstance(controller, WteWtuController):
             self.module_state = controller.item.wte_filename
 
-    def on_view_switch__DungeonGraphicsModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
-        from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule, NUMBER_OF_TILESETS
-        from skytemple.module.dungeon_graphics.controller.tileset import TilesetController
-        from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController
+    def on_view_switch__DungeonGraphicsModule(
+        self, module, controller: AbstractController, breadcrumbs: List[str]
+    ):
+        from skytemple.module.dungeon_graphics.module import (
+            DungeonGraphicsModule,
+            NUMBER_OF_TILESETS,
+        )
+        from skytemple.module.dungeon_graphics.controller.tileset import (
+            TilesetController,
+        )
+        from skytemple.module.dungeon_graphics.controller.dungeon_bg import (
+            DungeonBgController,
+        )
 
-        self.module_info = 'Editing dungeon tilesets'
+        self.module_info = "Editing dungeon tilesets"
         self.module_state = self.rom_name
         if isinstance(controller, TilesetController):
-            self.module_state = f'Tileset {controller.item_id}'
+            self.module_state = f"Tileset {controller.item_id}"
         if isinstance(controller, DungeonBgController):
-            self.module_state = f'Background {NUMBER_OF_TILESETS + controller.item_id}'
+            self.module_state = f"Background {NUMBER_OF_TILESETS + controller.item_id}"
 
-    def on_view_switch__BgpModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
+    def on_view_switch__BgpModule(
+        self, module, controller: AbstractController, breadcrumbs: List[str]
+    ):
         from skytemple.module.bgp.module import BgpModule
         from skytemple.module.bgp.controller.bgp import BgpController
 
-        self.module_info = 'Editing background images'
+        self.module_info = "Editing background images"
         self.module_state = self.rom_name
         if isinstance(controller, BgpController):
             self.module_state = module.list_of_bgps[controller.item_id]
 
-    def on_view_switch__RomModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
-        self.module_info = 'Editing the ROM'
+    def on_view_switch__RomModule(
+        self, module, controller: AbstractController, breadcrumbs: List[str]
+    ):
+        self.module_info = "Editing the ROM"
         self.module_state = self.rom_name
 
-    def on_view_switch__ListsModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
+    def on_view_switch__ListsModule(
+        self, module, controller: AbstractController, breadcrumbs: List[str]
+    ):
         from skytemple.module.lists.module import ListsModule
         from skytemple.module.lists.controller.actor_list import ActorListController
-        from skytemple.module.lists.controller.starters_list import StartersListController
-        from skytemple.module.lists.controller.recruitment_list import RecruitmentListController
+        from skytemple.module.lists.controller.starters_list import (
+            StartersListController,
+        )
+        from skytemple.module.lists.controller.recruitment_list import (
+            RecruitmentListController,
+        )
         from skytemple.module.lists.controller.world_map import WorldMapController
 
-        self.module_info = 'Editing lists'
+        self.module_info = "Editing lists"
         self.module_state = self.rom_name
         if isinstance(controller, ActorListController):
-            self.module_info = 'Editing the actor list'
+            self.module_info = "Editing the actor list"
         if isinstance(controller, StartersListController):
-            self.module_info = 'Editing the starters list'
+            self.module_info = "Editing the starters list"
         if isinstance(controller, RecruitmentListController):
-            self.module_info = 'Editing the recruitment list'
+            self.module_info = "Editing the recruitment list"
         if isinstance(controller, WorldMapController):
-            self.module_info = 'Editing the world map'
+            self.module_info = "Editing the world map"
 
-    def on_view_switch__PatchModule(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
+    def on_view_switch__PatchModule(
+        self,
+        module: AbstractModule,
+        controller: AbstractController,
+        breadcrumbs: List[str],
+    ):
         from skytemple.module.patch.controller.item_effects import ItemEffectsController
         from skytemple.module.patch.controller.move_effects import MoveEffectsController
         from skytemple.module.patch.controller.sp_effects import SPEffectsController
+
         if isinstance(controller, ItemEffectsController):
-            self.module_info = 'Editing item effects'
+            self.module_info = "Editing item effects"
             self.module_state = self.rom_name
         elif isinstance(controller, MoveEffectsController):
-            self.module_info = 'Editing move effects'
+            self.module_info = "Editing move effects"
             self.module_state = self.rom_name
         elif isinstance(controller, SPEffectsController):
-            self.module_info = 'Editing special processes'
+            self.module_info = "Editing special processes"
             self.module_state = self.rom_name
         else:
-            self.module_info = 'Editing patches'
+            self.module_info = "Editing patches"
             self.module_state = self.rom_name
 
-    def on_view_switch__MapBgModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
+    def on_view_switch__MapBgModule(
+        self, module, controller: AbstractController, breadcrumbs: List[str]
+    ):
         from skytemple.module.map_bg.module import MapBgModule
         from skytemple.module.map_bg.controller.bg import BgController
 
-        self.module_info = 'Editing map backgrounds'
+        self.module_info = "Editing map backgrounds"
         self.module_state = self.rom_name
         if isinstance(controller, BgController):
             self.module_state = breadcrumbs[0]
 
-    def on_view_switch__ScriptModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
+    def on_view_switch__ScriptModule(
+        self, module, controller: AbstractController, breadcrumbs: List[str]
+    ):
         from skytemple.module.script.module import ScriptModule
         from skytemple.module.script.controller.ssa import SsaController
 
-        self.module_info = 'Editing scenes'
+        self.module_info = "Editing scenes"
         self.module_state = self.rom_name
         if isinstance(controller, SsaController):
-            if controller.type == 'sse':
-                self.module_state = f'{breadcrumbs[1]} / {breadcrumbs[0]}'
+            if controller.type == "sse":
+                self.module_state = f"{breadcrumbs[1]} / {breadcrumbs[0]}"
             else:
-                self.module_state = f'{breadcrumbs[2]} / {breadcrumbs[0]}'
+                self.module_state = f"{breadcrumbs[2]} / {breadcrumbs[0]}"
 
-    def on_view_switch__DungeonModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
+    def on_view_switch__DungeonModule(
+        self, module, controller: AbstractController, breadcrumbs: List[str]
+    ):
         from skytemple.module.dungeon.module import DungeonModule
         from skytemple.module.dungeon.controller.dungeon import DungeonController
         from skytemple.module.dungeon.controller.floor import FloorController
@@ -218,112 +258,134 @@ class DiscordPresence(AbstractListener):
 
         self.module_state = self.rom_name
         if isinstance(controller, DungeonController):
-            self.module_info = 'Editing Dungeons'
+            self.module_info = "Editing Dungeons"
             self.module_state = controller.dungeon_name
         elif isinstance(controller, FloorController):
-            self.module_info = 'Editing Dungeons'
+            self.module_info = "Editing Dungeons"
             dungeon_name = module.project.get_string_provider().get_value(
                 StringType.DUNGEON_NAMES_MAIN, controller.item.dungeon.dungeon_id
             )
-            self.module_state = f'{dungeon_name} - Floor {controller.item.floor_id + 1}'
+            self.module_state = f"{dungeon_name} - Floor {controller.item.floor_id + 1}"
         elif isinstance(controller, FixedRoomsController):
-            self.module_info = 'Editing Fixed Rooms'
+            self.module_info = "Editing Fixed Rooms"
         elif isinstance(controller, FixedController):
-            self.module_info = 'Editing Fixed Rooms'
-            self.module_state = f'Fixed Room {controller.floor_id}'
+            self.module_info = "Editing Fixed Rooms"
+            self.module_state = f"Fixed Room {controller.floor_id}"
 
-    def on_view_switch__MonsterModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
+    def on_view_switch__MonsterModule(
+        self, module, controller: AbstractController, breadcrumbs: List[str]
+    ):
         from skytemple.module.monster.module import MonsterModule
         from skytemple.module.monster.controller.monster import MonsterController
 
-        self.module_info = 'Editing Pokémon'
+        self.module_info = "Editing Pokémon"
         self.module_state = self.rom_name
         if isinstance(controller, MonsterController):
             self.module_state = module.project.get_string_provider().get_value(
-                StringType.POKEMON_NAMES, controller.item_id % FileType.MD.properties().num_entities
+                StringType.POKEMON_NAMES,
+                controller.item_id % FileType.MD.properties().num_entities,
             )
 
-    def on_view_switch__StringsModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
+    def on_view_switch__StringsModule(
+        self, module, controller: AbstractController, breadcrumbs: List[str]
+    ):
         from skytemple.module.strings.module import StringsModule
         from skytemple.module.strings.controller.strings import StringsController
 
-        self.module_info = 'Editing Text Strings'
+        self.module_info = "Editing Text Strings"
         self.module_state = self.rom_name
         if isinstance(controller, StringsController):
             self.module_state = controller.langname
 
-    def on_view_switch__SpriteModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
+    def on_view_switch__SpriteModule(
+        self, module, controller: AbstractController, breadcrumbs: List[str]
+    ):
         from skytemple.module.sprite.controller.object import ObjectController
 
-        self.module_info = 'Editing sprites'
+        self.module_info = "Editing sprites"
         self.module_state = self.rom_name
         if isinstance(controller, ObjectController):
             self.module_state = breadcrumbs[0]
 
-    def on_view_switch__MovesItemsModule(self, module, controller: AbstractController, breadcrumbs: List[str]):
+    def on_view_switch__MovesItemsModule(
+        self, module, controller: AbstractController, breadcrumbs: List[str]
+    ):
         from skytemple.module.moves_items.controller.item import ItemController
-        from skytemple.module.moves_items.controller.item_lists import ItemListsController
+        from skytemple.module.moves_items.controller.item_lists import (
+            ItemListsController,
+        )
         from skytemple.module.moves_items.controller.move import MoveController
 
         if isinstance(controller, StStatusPage):
-            if controller.item_data.title == _('Items'):
-                self.module_info = 'Editing Items'
+            if controller.item_data.title == _("Items"):
+                self.module_info = "Editing Items"
             else:
-                self.module_info = 'Editing Moves'
+                self.module_info = "Editing Moves"
             self.module_state = self.rom_name
         elif isinstance(controller, ItemController):
-            self.module_info = 'Editing Items'
+            self.module_info = "Editing Items"
             self.module_state = breadcrumbs[0]
         elif isinstance(controller, MoveController):
-            self.module_info = 'Editing Moves'
+            self.module_info = "Editing Moves"
             self.module_state = breadcrumbs[0]
         elif isinstance(controller, ItemListsController):
-            self.module_info = 'Editing Item Lists'
+            self.module_info = "Editing Item Lists"
             self.module_state = self.rom_name
 
     def on_debugger_script_open(self, script_name: str):
         assert self.project is not None
-        self.debugger_script_name = script_name.replace(self.project.get_project_file_manager().dir(), '')
+        self.debugger_script_name = script_name.replace(
+            self.project.get_project_file_manager().dir(), ""
+        )
         self._update_current_presence()
 
     def _update_current_presence(self):
         try:
-            if self.current_presence == 'main':
+            if self.current_presence == "main":
                 self._update_presence(
                     state=self.module_state,
                     details=self.module_info,
                     start=self.start,
-                    large_text=self.rom_name
+                    large_text=self.rom_name,
                 )
-            elif self.current_presence == 'debugger':
+            elif self.current_presence == "debugger":
                 self._update_presence(
                     state=self.debugger_script_name,
-                    details="In the debugger" if self.debugger_script_name is None else "Editing script",
+                    details="In the debugger"
+                    if self.debugger_script_name is None
+                    else "Editing script",
                     start=self.start,
                     large_text=self.rom_name,
-                    small_image="bug"
+                    small_image="bug",
                 )
             else:  # idle
                 self._update_presence(
-                    state=None,
-                    details="Idle",
-                    start=None,
-                    large_text=self.rom_name
+                    state=None, details="Idle", start=None, large_text=self.rom_name
                 )
         except BaseException as ex:
             logger.error("Updating the presence failed: ", exc_info=ex)
 
     def _update_presence(
-            self, state, details, start,
-            large_text, large_image='skytemple',
-            small_image=None, small_text=None
+        self,
+        state,
+        details,
+        start,
+        large_text,
+        large_image="skytemple",
+        small_image=None,
+        small_text=None,
     ):
         if self.rpc.sock_writer is not None:
             self._schedule(
                 self.rpc.update,
-                state=state, details=details, start=start, large_image=large_image,
-                large_text=large_text, small_image=small_image, small_text=small_text,
-                buttons=[{"label": "Get SkyTemple", "url": "https://skytemple.org"}]
+                state=state,
+                details=details,
+                start=start,
+                large_image=large_image,
+                large_text=large_text,
+                small_image=small_image,
+                small_text=small_text,
+                buttons=[{"label": "Get SkyTemple", "url": "https://skytemple.org"}],
             )
 
     def _reset_playtime(self):

@@ -36,6 +36,7 @@ class PortraitProvider:
     PortraitProvider. This class renders portraits using Threads. If a portrait is requested, a loading icon
     is returned instead, until it is loaded by the AsyncTaskDelegator.
     """
+
     def __init__(self, kao: KaoProtocol):
         self._kao = kao
         self._loader_surface: Optional[cairo.ImageSurface] = None
@@ -52,17 +53,29 @@ class PortraitProvider:
         icon_theme: Gtk.IconTheme = Gtk.IconTheme.get_for_screen(screen)
         assert icon_theme is not None
         # Loader icon
-        loader_icon: GdkPixbuf.Pixbuf = assert_not_none(assert_not_none(icon_theme.load_icon(
-            'skytemple-image-loading-symbolic', IMG_DIM, Gtk.IconLookupFlags.FORCE_SIZE
-        )).copy())
+        loader_icon: GdkPixbuf.Pixbuf = assert_not_none(
+            assert_not_none(
+                icon_theme.load_icon(
+                    "skytemple-image-loading-symbolic",
+                    IMG_DIM,
+                    Gtk.IconLookupFlags.FORCE_SIZE,
+                )
+            ).copy()
+        )
         self._loader_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, IMG_DIM, IMG_DIM)
         ctx = cairo.Context(self._loader_surface)
         Gdk.cairo_set_source_pixbuf(ctx, loader_icon, 0, 0)
         ctx.paint()
         # Error icon
-        error_icon: GdkPixbuf.Pixbuf = assert_not_none(assert_not_none(icon_theme.load_icon(
-            'skytemple-img-load-error-symbolic', IMG_DIM, Gtk.IconLookupFlags.FORCE_SIZE
-        )).copy())
+        error_icon: GdkPixbuf.Pixbuf = assert_not_none(
+            assert_not_none(
+                icon_theme.load_icon(
+                    "skytemple-img-load-error-symbolic",
+                    IMG_DIM,
+                    Gtk.IconLookupFlags.FORCE_SIZE,
+                )
+            ).copy()
+        )
         self._error_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, IMG_DIM, IMG_DIM)
         ctx = cairo.Context(self._error_surface)
         Gdk.cairo_set_source_pixbuf(ctx, error_icon, 0, 0)
@@ -74,7 +87,13 @@ class PortraitProvider:
             self._loaded__is_fallback = {}
             self._requests = []
 
-    def get(self, entry_id: int, sub_id: int, after_load_cb=lambda: None, allow_fallback=True) -> cairo.Surface:
+    def get(
+        self,
+        entry_id: int,
+        sub_id: int,
+        after_load_cb=lambda: None,
+        allow_fallback=True,
+    ) -> cairo.Surface:
         """
         Returns a portrait.
         As long as the portrait is being loaded, the loader portrait is returned instead.
@@ -82,7 +101,10 @@ class PortraitProvider:
         """
         with portrait_provider_lock:
             if (entry_id, sub_id) in self._loaded:
-                if allow_fallback or (not allow_fallback and not self._loaded__is_fallback[(entry_id, sub_id)]):
+                if allow_fallback or (
+                    not allow_fallback
+                    and not self._loaded__is_fallback[(entry_id, sub_id)]
+                ):
                     return self._loaded[(entry_id, sub_id)]
                 else:
                     return self.get_error()
@@ -92,7 +114,9 @@ class PortraitProvider:
         return self.get_loader()
 
     def _load(self, entry_id, sub_id, after_load_cb, allow_fallback):
-        AsyncTaskDelegator.run_task(self._load__impl(entry_id, sub_id, after_load_cb, allow_fallback))
+        AsyncTaskDelegator.run_task(
+            self._load__impl(entry_id, sub_id, after_load_cb, allow_fallback)
+        )
 
     async def _load__impl(self, entry_id, sub_id, after_load_cb, allow_fallback):
         is_fallback = False
@@ -101,13 +125,15 @@ class PortraitProvider:
             if kao is None:
                 if allow_fallback:
                     is_fallback = True
-                    kao = self._kao.get(entry_id % FileType.MD.properties().num_entities, sub_id)
+                    kao = self._kao.get(
+                        entry_id % FileType.MD.properties().num_entities, sub_id
+                    )
                     if kao is None:
                         raise RuntimeError()
                 else:
                     raise RuntimeError()
             portrait_pil = kao.get()
-            surf = pil_to_cairo_surface(portrait_pil.convert('RGBA'))
+            surf = pil_to_cairo_surface(portrait_pil.convert("RGBA"))
             loaded = surf
         except (RuntimeError, ValueError, OverflowError):
             loaded = self.get_error()

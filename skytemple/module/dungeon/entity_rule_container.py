@@ -16,31 +16,48 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from typing import List, Optional, Tuple, Generator
 
-from skytemple_files.hardcoded.fixed_floor import EntitySpawnEntry, ItemSpawn, MonsterSpawn, TileSpawn, \
-    MonsterSpawnStats
+from skytemple_files.hardcoded.fixed_floor import (
+    EntitySpawnEntry,
+    ItemSpawn,
+    MonsterSpawn,
+    TileSpawn,
+    MonsterSpawnStats,
+)
 
 
 class EntityRuleContainer:
-    def __init__(self, entities: List[EntitySpawnEntry], items: List[ItemSpawn], monsters: List[MonsterSpawn],
-                 tiles: List[TileSpawn], stats: List[MonsterSpawnStats]):
+    def __init__(
+        self,
+        entities: List[EntitySpawnEntry],
+        items: List[ItemSpawn],
+        monsters: List[MonsterSpawn],
+        tiles: List[TileSpawn],
+        stats: List[MonsterSpawnStats],
+    ):
         self.entities = entities
         self.items = items
         self.monsters = monsters
         self.tiles = tiles
         self.stats = stats
 
-    def get(self, idx: int) -> Tuple[ItemSpawn, MonsterSpawn, TileSpawn, MonsterSpawnStats]:
+    def get(
+        self, idx: int
+    ) -> Tuple[ItemSpawn, MonsterSpawn, TileSpawn, MonsterSpawnStats]:
         entity = self.entities[idx]
         return (
             self.items[entity.item_id],
             self.monsters[entity.monster_id],
             self.tiles[entity.tile_id],
-            self.stats[self.monsters[entity.monster_id].stats_entry]
+            self.stats[self.monsters[entity.monster_id].stats_entry],
         )
 
     def __len__(self):
         return len(self.entities)
 
-    def __iter__(self) -> Generator[Tuple[ItemSpawn, MonsterSpawn, TileSpawn, MonsterSpawnStats], None, None]:
+    def __iter__(
+        self,
+    ) -> Generator[
+        Tuple[ItemSpawn, MonsterSpawn, TileSpawn, MonsterSpawnStats], None, None
+    ]:
         for i in range(0, len(self)):
             yield self.get(i)

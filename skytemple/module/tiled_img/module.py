@@ -21,6 +21,7 @@ from skytemple.core.rom_project import RomProject
 
 class TiledImgModule(AbstractModule):
     """Utility module that provides common dialogs for MapBGs and dungeon graphics."""
+
     @classmethod
     def depends_on(cls):
         return []

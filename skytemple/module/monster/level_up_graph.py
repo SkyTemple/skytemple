@@ -27,18 +27,28 @@ from skytemple_files.common.i18n_util import f, _
 
 
 class LevelUpGraphProvider:
-    def __init__(self, monster: MdEntryProtocol, level_bin_entry: LevelBinEntry,
-                 move_learnset: MoveLearnsetProtocol, move_strings: List[str]):
+    def __init__(
+        self,
+        monster: MdEntryProtocol,
+        level_bin_entry: LevelBinEntry,
+        move_learnset: MoveLearnsetProtocol,
+        move_strings: List[str],
+    ):
         self.monster = monster
         self.level_bin_entry = level_bin_entry
         self.move_learnset = move_learnset
         self.move_strings = move_strings
 
-    def provide(self, add_title=None, dark=False, disable_xml_declaration=False) -> Graph:
+    def provide(
+        self, add_title=None, dark=False, disable_xml_declaration=False
+    ) -> Graph:
         chart = pygal.XY(
             xrange=(1, len(self.level_bin_entry.levels) + 1),
-            secondary_range=(0, max([x.experience_required for x in self.level_bin_entry.levels])),
-            disable_xml_declaration=disable_xml_declaration
+            secondary_range=(
+                0,
+                max([x.experience_required for x in self.level_bin_entry.levels]),
+            ),
+            disable_xml_declaration=disable_xml_declaration,
         )
         if add_title:
             chart.title = add_title
@@ -78,58 +88,71 @@ class LevelUpGraphProvider:
             else:
                 processed_levels[lum.level_id] = 1
             count_so_far = processed_levels[lum.level_id] - 1
-            moves.append({
-                'value': (lum.level_id, max_val + 5 + (5 * count_so_far)),
-                'label': self.move_strings[lum.move_id]
-            })
+            moves.append(
+                {
+                    "value": (lum.level_id, max_val + 5 + (5 * count_so_far)),
+                    "label": self.move_strings[lum.move_id],
+                }
+            )
 
-        chart.add(_('Exp.'), exps, secondary=True)  # TRANSLATORS: Experience
-        chart.add(_('HP'), hps)  # TRANSLATORS: Health Points
-        chart.add(_('ATK'), atks)  # TRANSLATORS: Attack
-        chart.add(_('Sp. ATK'), sp_atks)  # TRANSLATORS: Special Attack
-        chart.add(_('DEF'), defs)  # TRANSLATORS: Defense
-        chart.add(_('Sp. DEF'), sp_defs)  # TRANSLATORS: Special Defense
-        chart.add(_('Moves'), moves, stroke=False,
-                  formatter=lambda x: f(_('at level {x[0]}')))
+        chart.add(_("Exp."), exps, secondary=True)  # TRANSLATORS: Experience
+        chart.add(_("HP"), hps)  # TRANSLATORS: Health Points
+        chart.add(_("ATK"), atks)  # TRANSLATORS: Attack
+        chart.add(_("Sp. ATK"), sp_atks)  # TRANSLATORS: Special Attack
+        chart.add(_("DEF"), defs)  # TRANSLATORS: Defense
+        chart.add(_("Sp. DEF"), sp_defs)  # TRANSLATORS: Special Defense
+        chart.add(
+            _("Moves"), moves, stroke=False, formatter=lambda x: f(_("at level {x[0]}"))
+        )
 
         return chart
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
     def main_test():
         import os
         from skytemple_files.common.types.file_types import FileType
         from ndspy.rom import NintendoDSRom
         from skytemple_files.common.util import get_ppmdu_config_for_rom
+
         # Testing.
-        base_dir = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..')
-        rom = NintendoDSRom.fromFile(os.path.join(base_dir, 'skyworkcopy_us.nds'))
+        base_dir = os.path.join(os.path.dirname(__file__), "..", "..", "..", "..")
+        rom = NintendoDSRom.fromFile(os.path.join(base_dir, "skyworkcopy_us.nds"))
         config = get_ppmdu_config_for_rom(rom)
-        out_dir = '/tmp/monster_graphs'
+        out_dir = "/tmp/monster_graphs"
         os.makedirs(out_dir, exist_ok=True)
-        monster_md = FileType.MD.deserialize(rom.getFileByName('BALANCE/monster.md'))
-        level_bin = FileType.BIN_PACK.deserialize(rom.getFileByName('BALANCE/m_level.bin'))
-        waza_p = FileType.WAZA_P.deserialize(rom.getFileByName('BALANCE/waza_p.bin'))
-        move_string_block = config.string_index_data.string_blocks['Move Names']
-        monster_name_block = config.string_index_data.string_blocks['Pokemon Names']
-        strings = FileType.STR.deserialize(rom.getFileByName('MESSAGE/text_e.str'))
-        move_strings = strings.strings[move_string_block.begin:move_string_block.end]
-        monster_strings = strings.strings[monster_name_block.begin:monster_name_block.end]
+        monster_md = FileType.MD.deserialize(rom.getFileByName("BALANCE/monster.md"))
+        level_bin = FileType.BIN_PACK.deserialize(
+            rom.getFileByName("BALANCE/m_level.bin")
+        )
+        waza_p = FileType.WAZA_P.deserialize(rom.getFileByName("BALANCE/waza_p.bin"))
+        move_string_block = config.string_index_data.string_blocks["Move Names"]
+        monster_name_block = config.string_index_data.string_blocks["Pokemon Names"]
+        strings = FileType.STR.deserialize(rom.getFileByName("MESSAGE/text_e.str"))
+        move_strings = strings.strings[move_string_block.begin : move_string_block.end]
+        monster_strings = strings.strings[
+            monster_name_block.begin : monster_name_block.end
+        ]
 
         level_bin = level_bin
 
         # The level_bin has no entry for monster 0.
-        for monster, lbinentry_bin, waza_entry in zip(monster_md.entries[1:], level_bin, waza_p.learnsets[1:]):
+        for monster, lbinentry_bin, waza_entry in zip(
+            monster_md.entries[1:], level_bin, waza_p.learnsets[1:]
+        ):
             level_bin_entry = FileType.LEVEL_BIN_ENTRY.deserialize(
-                FileType.COMMON_AT.deserialize(FileType.SIR0.deserialize(lbinentry_bin).content).decompress()
+                FileType.COMMON_AT.deserialize(
+                    FileType.SIR0.deserialize(lbinentry_bin).content
+                ).decompress()
             )
-            graph_provider = LevelUpGraphProvider(monster, level_bin_entry, waza_entry, move_strings)
+            graph_provider = LevelUpGraphProvider(
+                monster, level_bin_entry, waza_entry, move_strings
+            )
             g = graph_provider.provide(
-                f'{monster_strings[monster.md_index]}',
-                dark=True
+                f"{monster_strings[monster.md_index]}", dark=True
             )
-            g.render_to_file(os.path.join(out_dir, f'{monster.md_index}.svg'))
-            g.render_to_png(os.path.join(out_dir, f'{monster.md_index}.png'), dpi=92)
-
+            g.render_to_file(os.path.join(out_dir, f"{monster.md_index}.svg"))
+            g.render_to_png(os.path.join(out_dir, f"{monster.md_index}.png"), dpi=92)
 
     main_test()

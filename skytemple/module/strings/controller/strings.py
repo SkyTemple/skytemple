@@ -29,7 +29,12 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.third_party_util.cellrenderercustomtext import CellRendererTextView
-from skytemple.core.ui_utils import add_dialog_csv_filter, builder_get_assert, assert_not_none, create_tree_view_column
+from skytemple.core.ui_utils import (
+    add_dialog_csv_filter,
+    builder_get_assert,
+    assert_not_none,
+    create_tree_view_column,
+)
 from skytemple_files.common.ppmdu_config.data import Pmd2Language, Pmd2StringBlock
 from skytemple_files.common.util import add_extension_if_missing, open_utf8
 from skytemple_files.data.str.model import Str
@@ -38,14 +43,14 @@ from skytemple_files.common.i18n_util import f, _
 if TYPE_CHECKING:
     from skytemple.module.strings.module import StringsModule
 
-ORANGE = 'orange'
+ORANGE = "orange"
 ORANGE_RGB = (1, 0.65, 0)
-PATTERN_MD_ENTRY = re.compile(r'.*\(\$(\d+)\).*')
+PATTERN_MD_ENTRY = re.compile(r".*\(\$(\d+)\).*")
 logger = logging.getLogger(__name__)
 
 
 class StringsController(AbstractController):
-    def __init__(self, module: 'StringsModule', lang: Pmd2Language):
+    def __init__(self, module: "StringsModule", lang: Pmd2Language):
         self.module = module
         self.langname = lang.name_localized
         self.filename = lang.filename
@@ -60,18 +65,24 @@ class StringsController(AbstractController):
         self._search_text = ""
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'strings.glade')
+        self.builder = self._get_builder(__file__, "strings.glade")
         assert self.builder
-        builder_get_assert(self.builder, Gtk.Label, 'lang_name').set_text(f(_('{self.langname} Text Strings')))
+        builder_get_assert(self.builder, Gtk.Label, "lang_name").set_text(
+            f(_("{self.langname} Text Strings"))
+        )
 
         self._str = self.module.get_string_file(self.filename)
-        self._string_cats = self.module.project.get_rom_module().get_static_data().string_index_data.string_blocks
+        self._string_cats = (
+            self.module.project.get_rom_module()
+            .get_static_data()
+            .string_index_data.string_blocks
+        )
 
         self.refresh_cats()
         self.refresh_list()
 
         self.builder.connect_signals(self)
-        return builder_get_assert(self.builder, Gtk.Widget, 'main_box')
+        return builder_get_assert(self.builder, Gtk.Widget, "main_box")
 
     @typing.no_type_check
     def unload(self):
@@ -90,13 +101,15 @@ class StringsController(AbstractController):
 
     def on_cr_string_edited(self, widget, path, text):
         idx = self._filter[path][0] - 1
-        logger.debug(f'String edited - {idx} - {path} - {self._str.strings[idx]} -> {text}')
+        logger.debug(
+            f"String edited - {idx} - {path} - {self._str.strings[idx]} -> {text}"
+        )
         self._filter[path][1] = text
         self._str.strings[idx] = text
         self.module.mark_as_modified(self.filename)
 
     def refresh_cats(self):
-        tree = builder_get_assert(self.builder, Gtk.TreeView, 'category_tree')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, "category_tree")
         cat_store = typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))
         cat_store.clear()
         cat_store.append([_("(All)"), None])
@@ -107,15 +120,15 @@ class StringsController(AbstractController):
             tree.get_selection().select_iter(first)
 
     def refresh_list(self):
-        tree = builder_get_assert(self.builder, Gtk.TreeView, 'string_tree')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, "string_tree")
 
         renderer_editabletext = CellRendererTextView()
-        renderer_editabletext.set_property('editable', True)
+        renderer_editabletext.set_property("editable", True)
         column_editabletext = create_tree_view_column(
             _("String"), renderer_editabletext, text=1, editable=2
         )
         tree.append_column(column_editabletext)
-        renderer_editabletext.connect('edited', self.on_cr_string_edited)
+        renderer_editabletext.connect("edited", self.on_cr_string_edited)
 
         self._list_store = typing.cast(Gtk.ListStore, assert_not_none(tree.get_model()))
         self._list_store.clear()
@@ -142,11 +155,14 @@ class StringsController(AbstractController):
     def on_btn_import_clicked(self, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
-            Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO,
+            Gtk.DialogFlags.MODAL,
+            Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("Import is done from a CSV file with the following specifications:\n"
-              "- Has to contain all strings in order, one per row\n"
-              "- Strings may be quoted with: \" and escaped with double quotes.")
+            _(
+                "Import is done from a CSV file with the following specifications:\n"
+                "- Has to contain all strings in order, one per row\n"
+                '- Strings may be quoted with: " and escaped with double quotes.'
+            ),
         )
         md.run()
         md.destroy()
@@ -154,7 +170,8 @@ class StringsController(AbstractController):
             _("Import strings from..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
-            None, None
+            None,
+            None,
         )
 
         add_dialog_csv_filter(save_diag)
@@ -171,26 +188,33 @@ class StringsController(AbstractController):
                         if len(row) > 0:
                             strings.append(row[0])
                     if len(self._str.strings) != len(strings):
-                        raise ValueError(f(_("The CSV file must contain exactly {len(self._str.strings)} strings, "
-                                             "has {len(strings)}.")))
+                        raise ValueError(
+                            f(
+                                _(
+                                    "The CSV file must contain exactly {len(self._str.strings)} strings, "
+                                    "has {len(strings)}."
+                                )
+                            )
+                        )
                     self._str.strings = strings
                 self.module.mark_as_modified(self.filename)
                 MainController.reload_view()
             except BaseException as err:
                 display_error(
-                    sys.exc_info(),
-                    str(err),
-                    _("Error importing the strings.")
+                    sys.exc_info(), str(err), _("Error importing the strings.")
                 )
 
     def on_btn_export_clicked(self, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
-            Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO,
+            Gtk.DialogFlags.MODAL,
+            Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            _("Export is done to a CSV file with the following specifications:\n"
-              "- Contains all strings in order, one per row\n"
-              "- Strings may be quoted with: \" and escaped with double quotes.")
+            _(
+                "Export is done to a CSV file with the following specifications:\n"
+                "- Contains all strings in order, one per row\n"
+                '- Strings may be quoted with: " and escaped with double quotes.'
+            ),
         )
         md.run()
         md.destroy()
@@ -199,7 +223,8 @@ class StringsController(AbstractController):
             _("Export strings as..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
-            None, None
+            None,
+            None,
         )
 
         add_dialog_csv_filter(save_diag)
@@ -208,14 +233,18 @@ class StringsController(AbstractController):
         save_diag.destroy()
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
-            fn = add_extension_if_missing(fn, 'csv')
-            with open_utf8(fn, 'w', newline='') as result_file:
-                wr = csv.writer(result_file, lineterminator='\n')
+            fn = add_extension_if_missing(fn, "csv")
+            with open_utf8(fn, "w", newline="") as result_file:
+                wr = csv.writer(result_file, lineterminator="\n")
                 wr.writerows([[x] for x in self._str.strings])
 
     def _visibility_func(self, model, iter, *args):
         if self._active_category is not None:
-            if not (self._active_category.begin <= model[iter][0] - 1 < self._active_category.end):
+            if not (
+                self._active_category.begin
+                <= model[iter][0] - 1
+                < self._active_category.end
+            ):
                 return False
         if self._search_text != "":
             if self._search_text.lower() not in model[iter][1].lower():

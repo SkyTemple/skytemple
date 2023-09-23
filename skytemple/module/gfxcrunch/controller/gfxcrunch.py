@@ -40,40 +40,42 @@ class GfxcrunchStatus(Enum):
     SUCCESS = auto()
 
 
-IMG_NEUTRAL = 'poochy_neutral.png'
-IMG_HAPPY = 'poochy_happy.png'
-IMG_SAD = 'poochy_sad.png'
+IMG_NEUTRAL = "poochy_neutral.png"
+IMG_HAPPY = "poochy_happy.png"
+IMG_SAD = "poochy_sad.png"
 IMGS = {
     GfxcrunchStatus.RUNNING: IMG_NEUTRAL,
     GfxcrunchStatus.ERROR: IMG_SAD,
-    GfxcrunchStatus.SUCCESS: IMG_HAPPY
+    GfxcrunchStatus.SUCCESS: IMG_HAPPY,
 }
 
 
 class GfxcrunchController:
-    def __init__(self, module: 'GfxcrunchModule'):
+    def __init__(self, module: "GfxcrunchModule"):
         self.module = module
 
-        self.builder = self._get_builder(__file__, 'gfxcrunch.glade')
+        self.builder = self._get_builder(__file__, "gfxcrunch.glade")
         self.builder.connect_signals(self)
-        self.buffer = builder_get_assert(self.builder, Gtk.TextView, 'console').get_buffer()
+        self.buffer = builder_get_assert(
+            self.builder, Gtk.TextView, "console"
+        ).get_buffer()
         self.status = GfxcrunchStatus.RUNNING
 
     def import_sprite(self, dir_fn: str) -> bytes:
         with tempfile.TemporaryDirectory() as tmp_path:
-            tmp_path = os.path.join(tmp_path, 'tmp.wan')
+            tmp_path = os.path.join(tmp_path, "tmp.wan")
             AsyncTaskDelegator.run_task(self._run_gfxcrunch([dir_fn, tmp_path]))
             self._run_window()
             if self.status == GfxcrunchStatus.SUCCESS:
-                with open(tmp_path, 'rb') as f:
+                with open(tmp_path, "rb") as f:
                     return f.read()
             else:
                 raise make_user_err(RuntimeError, _("The gfxcrunch process failed."))
 
     def export_sprite(self, wan: bytes, dir_fn: str):
         with tempfile.TemporaryDirectory() as tmp_path:
-            tmp_path = os.path.join(tmp_path, 'tmp.wan')
-            with open(tmp_path, 'wb') as f:
+            tmp_path = os.path.join(tmp_path, "tmp.wan")
+            with open(tmp_path, "wb") as f:
                 f.write(wan)
             AsyncTaskDelegator.run_task(self._run_gfxcrunch([tmp_path, dir_fn]))
             self._run_window()
@@ -81,14 +83,14 @@ class GfxcrunchController:
                 raise make_user_err(RuntimeError, _("The gfxcrunch process failed."))
 
     def _run_window(self):
-        dialog = builder_get_assert(self.builder, Gtk.Dialog, 'dialog')
+        dialog = builder_get_assert(self.builder, Gtk.Dialog, "dialog")
         dialog.resize(750, 350)
         dialog.set_transient_for(MainController.window())
         dialog.set_attached_to(MainController.window())
         self.buffer.delete(self.buffer.get_start_iter(), self.buffer.get_end_iter())
         self._update_status(GfxcrunchStatus.RUNNING)
-        builder_get_assert(self.builder, Gtk.Spinner, 'spinner').start()
-        builder_get_assert(self.builder, Gtk.Button, 'close').set_sensitive(False)
+        builder_get_assert(self.builder, Gtk.Spinner, "spinner").start()
+        builder_get_assert(self.builder, Gtk.Button, "close").set_sensitive(False)
         dialog.run()
         dialog.hide()
 
@@ -102,7 +104,7 @@ class GfxcrunchController:
             stderr=subprocess.PIPE,
             shell=shell,
             universal_newlines=True
-            #creationflags=
+            # creationflags=
         )
 
         assert proc.stdout is not None and proc.stderr is not None
@@ -136,16 +138,22 @@ class GfxcrunchController:
         self.buffer.insert_markup(self.buffer.get_end_iter(), line, -1)
 
     def _stderr(self, line):
-        self.buffer.insert_markup(self.buffer.get_end_iter(), f'<span color="red">{line}</span>', -1)
+        self.buffer.insert_markup(
+            self.buffer.get_end_iter(), f'<span color="red">{line}</span>', -1
+        )
 
     def _done(self, return_code):
-        self._update_status(GfxcrunchStatus.SUCCESS if return_code == 0 else GfxcrunchStatus.ERROR)
+        self._update_status(
+            GfxcrunchStatus.SUCCESS if return_code == 0 else GfxcrunchStatus.ERROR
+        )
         if return_code != 0:
-            self._stderr(f(_('!! Process exited with error. Exit code: {return_code} !!')))
-        builder_get_assert(self.builder, Gtk.Spinner, 'spinner').stop()
-        builder_get_assert(self.builder, Gtk.Button, 'close').set_sensitive(True)
+            self._stderr(
+                f(_("!! Process exited with error. Exit code: {return_code} !!"))
+            )
+        builder_get_assert(self.builder, Gtk.Spinner, "spinner").stop()
+        builder_get_assert(self.builder, Gtk.Button, "close").set_sensitive(True)
 
     def _update_status(self, status):
         self.status = status
-        img = builder_get_assert(self.builder, Gtk.Image, 'duskako')
+        img = builder_get_assert(self.builder, Gtk.Image, "duskako")
         img.set_from_file(os.path.join(data_dir(), IMGS[status]))

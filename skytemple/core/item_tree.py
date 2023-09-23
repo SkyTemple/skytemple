@@ -36,6 +36,7 @@ class ItemTreeEntryRef:
     """
     A reference to an entry in the SkyTemple item tree.
     """
+
     _tree: Gtk.TreeStore
     _self: Gtk.TreeIter
 
@@ -47,9 +48,7 @@ class ItemTreeEntryRef:
 
     def entry(self) -> ItemTreeEntry:
         row = self._tree[self._self]
-        return ItemTreeEntry(
-            row[0], row[1], row[2], row[3], row[4]
-        )
+        return ItemTreeEntry(row[0], row[1], row[2], row[3], row[4])
 
     def update(self, new_entry_data: ItemTreeEntry):
         """Update the entry. All kwargs-only parameters in __init__ of ItemTreeEntry are ignored."""
@@ -82,14 +81,8 @@ class ItemTreeEntry:
     """
     An entry to be placed in the SkyTemple item tree.
     """
-    __slots__ = [
-        '_icon',
-        '_name',
-        '_module',
-        '_view_class',
-        '_item_data',
-        '_modified'
-    ]
+
+    __slots__ = ["_icon", "_name", "_module", "_view_class", "_item_data", "_modified"]
 
     _icon: str
     _name: str
@@ -106,7 +99,7 @@ class ItemTreeEntry:
         view_class: Union[Type[Gtk.Widget], Type[AbstractController]],
         item_data: Any,
         *,
-        modified: bool = False
+        modified: bool = False,
     ):
         """
         Create an entry model. This can be added to an item tree or used to update an `ItemTreeEntryRef`.
@@ -159,6 +152,7 @@ class ItemTree:
     """
     The SkyTemple item tree (navigation tree on the left side of the UI).
     """
+
     _tree: Gtk.TreeStore
     _root_node: Optional[Gtk.TreeIter]
     _finalized: bool
@@ -172,35 +166,43 @@ class ItemTree:
 
     def set_root(self, root: ItemTreeEntry) -> ItemTreeEntryRef:
         """This must only be called from the ROM module."""
-        new_iter = self._tree.append(None, [
-            root.icon,
-            root.name,
-            root.module,
-            root.view_class,
-            root.item_data,
-            False,
-            '',
-            True
-        ])
+        new_iter = self._tree.append(
+            None,
+            [
+                root.icon,
+                root.name,
+                root.module,
+                root.view_class,
+                root.item_data,
+                False,
+                "",
+                True,
+            ],
+        )
         self._root_node = new_iter
         return ItemTreeEntryRef(self._tree, new_iter)
 
-    def add_entry(self, root: Optional[ItemTreeEntryRef], entry: ItemTreeEntry) -> ItemTreeEntryRef:
+    def add_entry(
+        self, root: Optional[ItemTreeEntryRef], entry: ItemTreeEntry
+    ) -> ItemTreeEntryRef:
         """Add a new entry. All kwargs-only parameters in __init__ of ItemTreeEntry are ignored."""
         root_iter = self._root_node
         if root is not None:
             root_iter = root._self
         assert root_iter is not None
-        new_iter = self._tree.append(root_iter, [
-            entry.icon,
-            entry.name,
-            entry.module,
-            entry.view_class,
-            entry.item_data,
-            False,
-            '',
-            True
-        ])
+        new_iter = self._tree.append(
+            root_iter,
+            [
+                entry.icon,
+                entry.name,
+                entry.module,
+                entry.view_class,
+                entry.item_data,
+                False,
+                "",
+                True,
+            ],
+        )
 
         if self._finalized:
             # If we already finalized we need to generate the label now.
@@ -208,7 +210,11 @@ class ItemTree:
 
         return ItemTreeEntryRef(self._tree, new_iter)
 
-    def mark_as_modified(self, entry: ItemTreeEntryRef, recursion_type: RecursionType = RecursionType.NONE):
+    def mark_as_modified(
+        self,
+        entry: ItemTreeEntryRef,
+        recursion_type: RecursionType = RecursionType.NONE,
+    ):
         row = self._tree[entry._self]
         if recursion_type == RecursionType.UP:
             _recursive_up_item_store_mark_as_modified(row, True)
@@ -236,7 +242,10 @@ def _recursive_up_item_store_mark_as_modified(row: Gtk.TreeModelRow, modified=Tr
     row[5] = modified
     _generate_item_store_row_label(row)
     if row.parent is not None:
-        _recursive_up_item_store_mark_as_modified(cast(Gtk.TreeModelRow, row.parent), modified)
+        _recursive_up_item_store_mark_as_modified(
+            cast(Gtk.TreeModelRow, row.parent), modified
+        )
+
 
 def _recursive_down_item_store_mark_as_modified(row: Gtk.TreeModelRow, modified=True):
     """Starting at the row, move DOWN the tree and set column 5 (starting at 0) to modified."""

@@ -24,35 +24,44 @@ from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import glib_async, builder_get_assert, iter_tree_model
 from skytemple_files.common.i18n_util import f, _
 from skytemple_files.data.md.protocol import PokeType
-from skytemple_files.hardcoded.dungeons import TilesetMapColor, TilesetStirringEffect, TilesetBaseEnum, \
-    TilesetSecretPowerEffect, TilesetNaturePowerMoveEntry, TilesetWeatherEffect, TilesetProperties
+from skytemple_files.hardcoded.dungeons import (
+    TilesetMapColor,
+    TilesetStirringEffect,
+    TilesetBaseEnum,
+    TilesetSecretPowerEffect,
+    TilesetNaturePowerMoveEntry,
+    TilesetWeatherEffect,
+    TilesetProperties,
+)
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
 
-DUNGEON_GRAPHICS_NAME = _('Dungeon Graphics')
+DUNGEON_GRAPHICS_NAME = _("Dungeon Graphics")
 
 
 class MainController(AbstractController):
-    def __init__(self, module: 'DungeonGraphicsModule', *args):
+    def __init__(self, module: "DungeonGraphicsModule", *args):
         self.module = module
 
         self.builder: Gtk.Builder = None  # type: ignore
         self.lst = self.module.get_tileset_properties()
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'main.glade')
+        self.builder = self._get_builder(__file__, "main.glade")
         assert self.builder
 
         self._init_combo_stores()
         self._init_values()
 
         self.builder.connect_signals(self)
-        return builder_get_assert(self.builder, Gtk.Widget, 'box_list')
+        return builder_get_assert(self.builder, Gtk.Widget, "box_list")
 
     @glib_async
-    def on_cr_map_color_changed(self, widget: Gtk.CellRendererCombo, path, new_iter, *args):
-        store = builder_get_assert(self.builder, Gtk.ListStore, 'list_tree_store')
+    def on_cr_map_color_changed(
+        self, widget: Gtk.CellRendererCombo, path, new_iter, *args
+    ):
+        store = builder_get_assert(self.builder, Gtk.ListStore, "list_tree_store")
         cb_store = widget.props.model
 
         store[path][2] = cb_store[new_iter][0]
@@ -60,8 +69,10 @@ class MainController(AbstractController):
         self._save_list()
 
     @glib_async
-    def on_cr_stirring_effect_changed(self, widget: Gtk.CellRendererCombo, path, new_iter, *args):
-        store = builder_get_assert(self.builder, Gtk.ListStore, 'list_tree_store')
+    def on_cr_stirring_effect_changed(
+        self, widget: Gtk.CellRendererCombo, path, new_iter, *args
+    ):
+        store = builder_get_assert(self.builder, Gtk.ListStore, "list_tree_store")
         cb_store = widget.props.model
 
         store[path][3] = cb_store[new_iter][0]
@@ -69,8 +80,10 @@ class MainController(AbstractController):
         self._save_list()
 
     @glib_async
-    def on_cr_secret_power_effect_changed(self, widget: Gtk.CellRendererCombo, path, new_iter, *args):
-        store = builder_get_assert(self.builder, Gtk.ListStore, 'list_tree_store')
+    def on_cr_secret_power_effect_changed(
+        self, widget: Gtk.CellRendererCombo, path, new_iter, *args
+    ):
+        store = builder_get_assert(self.builder, Gtk.ListStore, "list_tree_store")
         cb_store = widget.props.model
 
         store[path][4] = cb_store[new_iter][0]
@@ -78,8 +91,10 @@ class MainController(AbstractController):
         self._save_list()
 
     @glib_async
-    def on_cr_camouflage_type_changed(self, widget: Gtk.CellRendererCombo, path, new_iter, *args):
-        store = builder_get_assert(self.builder, Gtk.ListStore, 'list_tree_store')
+    def on_cr_camouflage_type_changed(
+        self, widget: Gtk.CellRendererCombo, path, new_iter, *args
+    ):
+        store = builder_get_assert(self.builder, Gtk.ListStore, "list_tree_store")
         cb_store = widget.props.model
 
         store[path][5] = cb_store[new_iter][0]
@@ -87,8 +102,10 @@ class MainController(AbstractController):
         self._save_list()
 
     @glib_async
-    def on_cr_nature_power_move_entry_changed(self, widget: Gtk.CellRendererCombo, path, new_iter, *args):
-        store = builder_get_assert(self.builder, Gtk.ListStore, 'list_tree_store')
+    def on_cr_nature_power_move_entry_changed(
+        self, widget: Gtk.CellRendererCombo, path, new_iter, *args
+    ):
+        store = builder_get_assert(self.builder, Gtk.ListStore, "list_tree_store")
         cb_store = widget.props.model
 
         store[path][6] = cb_store[new_iter][0]
@@ -96,8 +113,10 @@ class MainController(AbstractController):
         self._save_list()
 
     @glib_async
-    def on_cr_weather_effect_changed(self, widget: Gtk.CellRendererCombo, path, new_iter, *args):
-        store = builder_get_assert(self.builder, Gtk.ListStore, 'list_tree_store')
+    def on_cr_weather_effect_changed(
+        self, widget: Gtk.CellRendererCombo, path, new_iter, *args
+    ):
+        store = builder_get_assert(self.builder, Gtk.ListStore, "list_tree_store")
         cb_store = widget.props.model
 
         store[path][7] = cb_store[new_iter][0]
@@ -105,23 +124,52 @@ class MainController(AbstractController):
         self._save_list()
 
     def on_cr_full_water_floor_toggled(self, widget: Gtk.CellRendererToggle, path):
-        store = builder_get_assert(self.builder, Gtk.ListStore, 'list_tree_store')
+        store = builder_get_assert(self.builder, Gtk.ListStore, "list_tree_store")
         store[path][8] = not widget.get_active()
         self._save_list()
 
     def _init_combo_stores(self):
         # cr_map_color
-        self._create_for_enum(builder_get_assert(self.builder, Gtk.CellRendererCombo, 'cr_map_color'), TilesetMapColor)
+        self._create_for_enum(
+            builder_get_assert(self.builder, Gtk.CellRendererCombo, "cr_map_color"),
+            TilesetMapColor,
+        )
         # cr_stirring_effect
-        self._create_for_enum(builder_get_assert(self.builder, Gtk.CellRendererCombo, 'cr_stirring_effect'), TilesetStirringEffect)
+        self._create_for_enum(
+            builder_get_assert(
+                self.builder, Gtk.CellRendererCombo, "cr_stirring_effect"
+            ),
+            TilesetStirringEffect,
+        )
         # cr_secret_power_effect
-        self._create_for_enum(builder_get_assert(self.builder, Gtk.CellRendererCombo, 'cr_secret_power_effect'), TilesetSecretPowerEffect)
+        self._create_for_enum(
+            builder_get_assert(
+                self.builder, Gtk.CellRendererCombo, "cr_secret_power_effect"
+            ),
+            TilesetSecretPowerEffect,
+        )
         # cr_camouflage_type
-        self._create_for_enum_with_strings(builder_get_assert(self.builder, Gtk.CellRendererCombo, 'cr_camouflage_type'), PokeType, StringType.TYPE_NAMES)
+        self._create_for_enum_with_strings(
+            builder_get_assert(
+                self.builder, Gtk.CellRendererCombo, "cr_camouflage_type"
+            ),
+            PokeType,
+            StringType.TYPE_NAMES,
+        )
         # cr_nature_power_move_entry
-        self._create_for_enum(builder_get_assert(self.builder, Gtk.CellRendererCombo, 'cr_nature_power_move_entry'), TilesetNaturePowerMoveEntry)
+        self._create_for_enum(
+            builder_get_assert(
+                self.builder, Gtk.CellRendererCombo, "cr_nature_power_move_entry"
+            ),
+            TilesetNaturePowerMoveEntry,
+        )
         # cr_weather_effect
-        self._create_for_enum(builder_get_assert(self.builder, Gtk.CellRendererCombo, 'cr_weather_effect'), TilesetWeatherEffect)
+        self._create_for_enum(
+            builder_get_assert(
+                self.builder, Gtk.CellRendererCombo, "cr_weather_effect"
+            ),
+            TilesetWeatherEffect,
+        )
 
     def _create_for_enum(self, cr: Gtk.CellRendererCombo, en: Type[Enum]):
         store = Gtk.ListStore(int, str)  # id, name
@@ -129,7 +177,9 @@ class MainController(AbstractController):
         for e in en:
             store.append([e.value, e.print_name])  # type: ignore
 
-    def _create_for_enum_with_strings(self, cr: Gtk.CellRendererCombo, en: Type[Enum], string_type: StringType):
+    def _create_for_enum_with_strings(
+        self, cr: Gtk.CellRendererCombo, en: Type[Enum], string_type: StringType
+    ):
         store = Gtk.ListStore(int, str)  # id, name
         cr.props.model = store
         for e in en:
@@ -137,29 +187,48 @@ class MainController(AbstractController):
 
     def _init_values(self):
         from skytemple.module.dungeon_graphics.module import NUMBER_OF_TILESETS
-        store = builder_get_assert(self.builder, Gtk.ListStore, 'list_tree_store')
+
+        store = builder_get_assert(self.builder, Gtk.ListStore, "list_tree_store")
         for i, v in enumerate(self.lst):
-            store.append([
-                str(i), f"{_('Tileset')} {i}" if i < NUMBER_OF_TILESETS else f"{_('Background')} {i}",
-                v.map_color.value, v.stirring_effect.value, v.secret_power_effect.value,
-                v.camouflage_type.value, v.nature_power_move_entry.value, v.weather_effect.value,
-                v.full_water_floor,
-                v.map_color.print_name, v.stirring_effect.print_name, v.secret_power_effect.print_name,
-                self.module.project.get_string_provider().get_value(StringType.TYPE_NAMES, v.camouflage_type.value),
-                v.nature_power_move_entry.print_name, v.weather_effect.print_name,
-            ])
+            store.append(
+                [
+                    str(i),
+                    f"{_('Tileset')} {i}"
+                    if i < NUMBER_OF_TILESETS
+                    else f"{_('Background')} {i}",
+                    v.map_color.value,
+                    v.stirring_effect.value,
+                    v.secret_power_effect.value,
+                    v.camouflage_type.value,
+                    v.nature_power_move_entry.value,
+                    v.weather_effect.value,
+                    v.full_water_floor,
+                    v.map_color.print_name,
+                    v.stirring_effect.print_name,
+                    v.secret_power_effect.print_name,
+                    self.module.project.get_string_provider().get_value(
+                        StringType.TYPE_NAMES, v.camouflage_type.value
+                    ),
+                    v.nature_power_move_entry.print_name,
+                    v.weather_effect.print_name,
+                ]
+            )
 
     def _save_list(self):
         self.lst = []
-        for row in iter_tree_model(builder_get_assert(self.builder, Gtk.ListStore, 'list_tree_store')):
-            self.lst.append(TilesetProperties(
-                TilesetMapColor(row[2]),  # type: ignore
-                TilesetStirringEffect(row[3]),  # type: ignore
-                TilesetSecretPowerEffect(row[4]),  # type: ignore
-                PokeType(row[5]),
-                TilesetNaturePowerMoveEntry(row[6]),  # type: ignore
-                TilesetWeatherEffect(row[7]),  # type: ignore
-                bool(row[8]),
-            ))
+        for row in iter_tree_model(
+            builder_get_assert(self.builder, Gtk.ListStore, "list_tree_store")
+        ):
+            self.lst.append(
+                TilesetProperties(
+                    TilesetMapColor(row[2]),  # type: ignore
+                    TilesetStirringEffect(row[3]),  # type: ignore
+                    TilesetSecretPowerEffect(row[4]),  # type: ignore
+                    PokeType(row[5]),
+                    TilesetNaturePowerMoveEntry(row[6]),  # type: ignore
+                    TilesetWeatherEffect(row[7]),  # type: ignore
+                    bool(row[8]),
+                )
+            )
 
         self.module.set_tileset_properties(self.lst)

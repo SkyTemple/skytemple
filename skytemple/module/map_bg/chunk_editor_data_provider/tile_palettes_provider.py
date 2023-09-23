@@ -17,7 +17,9 @@
 from abc import ABC
 from typing import List, Sequence
 
-from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import AbstractTilePalettesProvider
+from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import (
+    AbstractTilePalettesProvider,
+)
 from skytemple_files.graphics.bpl.protocol import BplProtocol
 
 

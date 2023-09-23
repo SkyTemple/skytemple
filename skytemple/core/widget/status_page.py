@@ -24,7 +24,7 @@ from skytemple.core.ui_utils import data_dir
 
 
 class StStatusPageData:
-    __slots__ = ['icon_name', 'title', 'description']
+    __slots__ = ["icon_name", "title", "description"]
     icon_name: str
     title: str
     description: str
@@ -35,7 +35,7 @@ class StStatusPageData:
         self.description = description
 
 
-@Gtk.Template(filename=os.path.join(data_dir(), 'widget', 'status_page.ui'))
+@Gtk.Template(filename=os.path.join(data_dir(), "widget", "status_page.ui"))
 class StStatusPage(Gtk.Box):
     """
     An base view widget that presents a single large icon and a description text.
@@ -45,6 +45,7 @@ class StStatusPage(Gtk.Box):
 
     The `item_data` is an instance of `StStatusPageData`.
     """
+
     __gtype_name__ = "StStatusPage"
 
     module: AbstractModule

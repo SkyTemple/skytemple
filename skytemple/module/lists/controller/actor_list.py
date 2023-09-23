@@ -38,25 +38,31 @@ logger = logging.getLogger(__name__)
 
 
 class ActorListController(ListBaseController):
-    def __init__(self, module: 'ListsModule', *args):
+    def __init__(self, module: "ListsModule", *args):
         super().__init__(module, *args)
         self._list: ActorListBin
         self._list_store: Gtk.ListStore
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'actor_list.glade')
-        stack = builder_get_assert(self.builder, Gtk.Stack, 'list_stack')
+        self.builder = self._get_builder(__file__, "actor_list.glade")
+        stack = builder_get_assert(self.builder, Gtk.Stack, "list_stack")
 
         if not self.module.has_actor_list():
-            stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_na'))
+            stack.set_visible_child(
+                builder_get_assert(self.builder, Gtk.Widget, "box_na")
+            )
             return stack
         self._list = self.module.get_actor_list()
 
         # ON LOAD ASSIGN PPMDU ENTITY LIST TO ACTOR LIST MODEL
         # This will also reflect changes to the list in other parts of the UI.
-        self.module.project.get_rom_module().get_static_data().script_data.level_entities = self._list.list
+        self.module.project.get_rom_module().get_static_data().script_data.level_entities = (
+            self._list.list
+        )
 
-        stack.set_visible_child(builder_get_assert(self.builder, Gtk.Widget, 'box_list'))
+        stack.set_visible_child(
+            builder_get_assert(self.builder, Gtk.Widget, "box_list")
+        )
         self.load()
         return stack
 
@@ -64,28 +70,39 @@ class ActorListController(ListBaseController):
         # TODO
         md = SkyTempleMessageDialog(
             MainController.window(),
-            Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
+            Gtk.DialogFlags.MODAL,
+            Gtk.MessageType.ERROR,
             Gtk.ButtonsType.OK,
-            _("Not implemented.")
+            _("Not implemented."),
         )
         md.run()
         md.destroy()
 
     def on_btn_add_clicked(self, *args):
         idx = len(self._list.list)
-        self._list_store.append([
-            str(idx), "NEW", str(0), self._get_icon(1, idx, False),
-            1, str(0), str(0), self._ent_names[1],
-            None
-        ])
-        self._list.list.append(Pmd2ScriptEntity(
-            id=u16(idx),
-            type=u16(0),
-            entid=u16(1),
-            name="NEW",
-            unk3=u16(0),
-            unk4=u16(0)
-        ))
+        self._list_store.append(
+            [
+                str(idx),
+                "NEW",
+                str(0),
+                self._get_icon(1, idx, False),
+                1,
+                str(0),
+                str(0),
+                self._ent_names[1],
+                None,
+            ]
+        )
+        self._list.list.append(
+            Pmd2ScriptEntity(
+                id=u16(idx),
+                type=u16(0),
+                entid=u16(1),
+                name="NEW",
+                unk3=u16(0),
+                unk4=u16(0),
+            )
+        )
         self.module.mark_actors_as_modified()
 
     def on_cr_name_edited(self, widget, path, text):
@@ -130,7 +147,9 @@ class ActorListController(ListBaseController):
         # ent_icon:
         # If color is orange it's special.
         # TODO: it's a bit weird doing this over the color
-        self._list_store[path][3] = self._get_icon(entid, idx, self._list_store[path][8] == ORANGE)
+        self._list_store[path][3] = self._get_icon(
+            entid, idx, self._list_store[path][8] == ORANGE
+        )
 
     @catch_overflow(u16)
     def on_cr_unk3_edited(self, widget, path, text):
@@ -153,7 +172,9 @@ class ActorListController(ListBaseController):
         """Propagate changes to list store entries to the model."""
         if self._loading:
             return
-        a_id, name, a_type, ent_icon, entid, unk3, unk4, ent_name, color = store[path][:]
+        a_id, name, a_type, ent_icon, entid, unk3, unk4, ent_name, color = store[path][
+            :
+        ]
         a_id = int(a_id)
         actor = self._list.list[a_id]
         actor.name = name
@@ -169,7 +190,7 @@ class ActorListController(ListBaseController):
         self.module.mark_actors_as_modified()
 
     def refresh_list(self):
-        tree = builder_get_assert(self.builder, Gtk.TreeView, 'actor_tree')
+        tree = builder_get_assert(self.builder, Gtk.TreeView, "actor_tree")
         self._list_store = cast(Gtk.ListStore, tree.get_model())
         self._list_store.clear()
         # Iterate list
@@ -184,14 +205,22 @@ class ActorListController(ListBaseController):
                 standins = self._sprite_provider.get_standin_entities()
                 if idx in standins:
                     entid_to_edit = standins[idx]
-            self._list_store.append([
-                str(idx), entry.name, str(entry.type), self._get_icon(entid_to_edit, idx, force_placeholder),
-                entid_to_edit, str(entry.unk3), str(entry.unk4), self._ent_names[entid_to_edit],
-                ORANGE if force_placeholder else None
-            ])
+            self._list_store.append(
+                [
+                    str(idx),
+                    entry.name,
+                    str(entry.type),
+                    self._get_icon(entid_to_edit, idx, force_placeholder),
+                    entid_to_edit,
+                    str(entry.unk3),
+                    str(entry.unk4),
+                    self._ent_names[entid_to_edit],
+                    ORANGE if force_placeholder else None,
+                ]
+            )
 
     def get_tree(self):
-        return builder_get_assert(self.builder, Gtk.TreeView, 'actor_tree')
+        return builder_get_assert(self.builder, Gtk.TreeView, "actor_tree")
 
     def can_be_placeholder(self):
         return True

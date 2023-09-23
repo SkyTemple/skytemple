@@ -37,9 +37,12 @@ FPS = 60
 
 class Drawer:
     def __init__(
-            self, draw_area: Widget, dbg: Union[DbgProtocol, None], pal_ani_durations: int,
-            # chunks_surfaces[chunk_idx][palette_animation_frame][frame]
-            chunks_surfaces: Iterable[Iterable[List[cairo.Surface]]]
+        self,
+        draw_area: Widget,
+        dbg: Union[DbgProtocol, None],
+        pal_ani_durations: int,
+        # chunks_surfaces[chunk_idx][palette_animation_frame][frame]
+        chunks_surfaces: Iterable[Iterable[List[cairo.Surface]]],
     ):
         """
         Initialize a drawer...
@@ -68,10 +71,14 @@ class Drawer:
         self.width_in_tiles = DBG_WIDTH_AND_HEIGHT * 3
         self.height_in_tiles = DBG_WIDTH_AND_HEIGHT * 3
 
-        self.selection_plugin = SelectionDrawerPlugin(DPCI_TILE_DIM, DPCI_TILE_DIM, self.selection_draw_callback)
+        self.selection_plugin = SelectionDrawerPlugin(
+            DPCI_TILE_DIM, DPCI_TILE_DIM, self.selection_draw_callback
+        )
         self.tile_grid_plugin = GridDrawerPlugin(DPCI_TILE_DIM, DPCI_TILE_DIM)
         self.chunk_grid_plugin = GridDrawerPlugin(
-            DPCI_TILE_DIM * self.tiling_width, DPCI_TILE_DIM * self.tiling_height, color=(0.15, 0.15, 0.15, 0.25)
+            DPCI_TILE_DIM * self.tiling_width,
+            DPCI_TILE_DIM * self.tiling_height,
+            color=(0.15, 0.15, 0.15, 0.25),
         )
 
         self.scale = 1
@@ -85,13 +92,15 @@ class Drawer:
         else:
             self.mappings = []
 
-        self.animation_context = AnimationContext([chunks_surfaces], 0, pal_ani_durations)
+        self.animation_context = AnimationContext(
+            [chunks_surfaces], 0, pal_ani_durations
+        )
 
     def start(self):
         """Start drawing on the DrawingArea"""
         self.drawing_is_active = True
         if isinstance(self.draw_area, Gtk.DrawingArea):
-            self.draw_area.connect('draw', self.draw)
+            self.draw_area.connect("draw", self.draw)
         self.draw_area.queue_draw()
         GLib.timeout_add(int(1000 / FPS), self._tick)
 
@@ -121,9 +130,10 @@ class Drawer:
         else:
             ctx.set_source_rgb(1.0, 0, 1.0)
         ctx.rectangle(
-            0, 0,
+            0,
+            0,
             self.width_in_chunks * self.tiling_width * DPCI_TILE_DIM,
-            self.height_in_chunks * self.tiling_height * DPCI_TILE_DIM
+            self.height_in_chunks * self.tiling_height * DPCI_TILE_DIM,
         )
         ctx.fill()
 
@@ -138,7 +148,9 @@ class Drawer:
                 if (i + 1) % self.width_in_chunks == 0:
                     # Move to beginning of next line
                     if do_translates:
-                        ctx.translate(-chunk_width * (self.width_in_chunks - 1), chunk_height)
+                        ctx.translate(
+                            -chunk_width * (self.width_in_chunks - 1), chunk_height
+                        )
                 else:
                     # Move to next tile in line
                     if do_translates:
@@ -154,7 +166,9 @@ class Drawer:
         size_w //= self.scale
         size_h //= self.scale
         # Selection
-        self.selection_plugin.set_size(self.tiling_width * DPCI_TILE_DIM, self.tiling_height * DPCI_TILE_DIM)
+        self.selection_plugin.set_size(
+            self.tiling_width * DPCI_TILE_DIM, self.tiling_height * DPCI_TILE_DIM
+        )
         self.selection_plugin.draw(ctx, size_w, size_h, self.mouse_x, self.mouse_y)
 
         # Tile Grid
@@ -199,20 +213,26 @@ class Drawer:
 
 
 class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
-    __gproperties__ = {
-        'chunkidx': (int, "", "", 0, 999999, 0, ParamFlags.READWRITE)
-    }
+    __gproperties__ = {"chunkidx": (int, "", "", 0, 999999, 0, ParamFlags.READWRITE)}
 
-    def __init__(self, icon_view, pal_ani_durations: int,
-                 chunks_surfaces: List[List[List[cairo.Surface]]]):
-
+    def __init__(
+        self,
+        icon_view,
+        pal_ani_durations: int,
+        chunks_surfaces: List[List[List[cairo.Surface]]],
+    ):
         super().__init__(icon_view, None, pal_ani_durations, chunks_surfaces)
         super(Gtk.CellRenderer, self).__init__()
 
         self.chunkidx = 0
 
     def do_get_size(self, widget, cell_area):
-        return 0, 0, int(DPCI_TILE_DIM * 3 * self.scale), int(DPCI_TILE_DIM * 3 * self.scale)
+        return (
+            0,
+            0,
+            int(DPCI_TILE_DIM * 3 * self.scale),
+            int(DPCI_TILE_DIM * 3 * self.scale),
+        )
 
     def do_set_property(self, pspec, value):
         setattr(self, pspec.name, value)
@@ -224,12 +244,13 @@ class DrawerCellRenderer(Drawer, Gtk.CellRenderer):
         ctx.translate(cell_area.x, cell_area.y)
         self.mappings = [self.chunkidx]
         self.draw(wdg, ctx, False)
-        if 'GTK_CELL_RENDERER_SELECTED' in str(flags):
+        if "GTK_CELL_RENDERER_SELECTED" in str(flags):
             ctx.set_source_rgba(0, 0, 90, 0.3)
             ctx.rectangle(
-                0, 0,
+                0,
+                0,
                 self.width_in_chunks * self.tiling_width * DPCI_TILE_DIM,
-                self.height_in_chunks * self.tiling_height * DPCI_TILE_DIM
+                self.height_in_chunks * self.tiling_height * DPCI_TILE_DIM,
             )
             ctx.fill()
         ctx.translate(-cell_area.x, -cell_area.y)

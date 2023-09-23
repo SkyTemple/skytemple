@@ -39,7 +39,7 @@ else:
 if TYPE_CHECKING:
     from skytemple.module.rom.module import RomModule
 
-MODULE_ENTRYPOINT_KEY = 'skytemple.module'
+MODULE_ENTRYPOINT_KEY = "skytemple.module"
 logger = logging.getLogger(__name__)
 
 
@@ -57,8 +57,10 @@ class Modules:
         cls._modules = {}
         try:
             cls._modules = {
-                entry_point.name:
-                    entry_point.load() for entry_point in importlib_metadata.entry_points().select(group=MODULE_ENTRYPOINT_KEY)
+                entry_point.name: entry_point.load()
+                for entry_point in importlib_metadata.entry_points().select(
+                    group=MODULE_ENTRYPOINT_KEY
+                )
             }
         except Exception as ex:
             logger.error("Failed loading modules.", exc_info=ex)
@@ -71,29 +73,38 @@ class Modules:
         for k, module in cls._modules.items():
             dependencies[k] = module.depends_on()
         resolved_deps = dep(dependencies)
-        cls._modules = dict(sorted(cls._modules.items(), key=lambda x: resolved_deps.index(x[0])))
+        cls._modules = dict(
+            sorted(cls._modules.items(), key=lambda x: resolved_deps.index(x[0]))
+        )
         for module in cls._modules.values():
             module.load()
 
     # noinspection PyUnusedLocal
     @classmethod
-    def confirm_plugin_load(cls, plugin_names: Sequence[str], settings: SkyTempleSettingsStore, plugin_dir: str) -> bool:
+    def confirm_plugin_load(
+        cls,
+        plugin_names: Sequence[str],
+        settings: SkyTempleSettingsStore,
+        plugin_dir: str,
+    ) -> bool:
         plugin_names = sorted(plugin_names)
         if plugin_names != settings.get_approved_plugins():
             plugin_names_str = ",".join(plugin_names)
-            text = f(_(
-                "SkyTemple found the following plugins in your plugins directory ({plugin_dir}).\n\n"
-                "Do you want to continue with these plugins? These plugins contain code which will run on your computer "
-                "once you accept this dialog with 'Yes'.\n"
-                "Only continue if you trust the authors of the patches. "
-                "Malicious people could otherwise hijack your computer and/or steal information.\n\n"
-                "Clicking 'Yes' will remember this plugin configuration and not ask you again next time."
-            ))
+            text = f(
+                _(
+                    "SkyTemple found the following plugins in your plugins directory ({plugin_dir}).\n\n"
+                    "Do you want to continue with these plugins? These plugins contain code which will run on your computer "
+                    "once you accept this dialog with 'Yes'.\n"
+                    "Only continue if you trust the authors of the patches. "
+                    "Malicious people could otherwise hijack your computer and/or steal information.\n\n"
+                    "Clicking 'Yes' will remember this plugin configuration and not ask you again next time."
+                )
+            )
             md = Gtk.MessageDialog(
                 title="SkyTemple",
                 message_type=Gtk.MessageType.WARNING,
                 buttons=Gtk.ButtonsType.YES_NO,
-                text=text
+                text=text,
             )
             sw = Gtk.ScrolledWindow()
             tv = Gtk.TextView()
@@ -112,14 +123,13 @@ class Modules:
             return proceed
         return True
 
-
     @classmethod
     def all(cls):
         """Returns a list of all loaded modules, ordered by dependencies"""
         return cls._modules
 
     @classmethod
-    def get_rom_module(cls) -> Type['RomModule']:
+    def get_rom_module(cls) -> Type["RomModule"]:
         assert cls._modules["rom"] is not None
         return cls._modules["rom"]
 
@@ -140,11 +150,11 @@ def dep(arg):
     r = []
     while d:
         # values not in keys (items without dep)
-        t = set(i for v in d.values() for i in v)-set(d.keys())
+        t = set(i for v in d.values() for i in v) - set(d.keys())
         # and keys without value (items without dep)
         t.update(k for k, v in d.items() if not v)
         # can be done right away
         r.append(t)
         # and cleaned up
-        d = dict(((k, v-t) for k, v in d.items() if v))
+        d = dict(((k, v - t) for k, v in d.items() if v))
     return [item for s in r for item in s]

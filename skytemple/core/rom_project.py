@@ -20,8 +20,21 @@ import os
 import shutil
 import sys
 from enum import Enum, auto
-from typing import Union, Iterator, TYPE_CHECKING, Optional, Dict, Callable, Type, Tuple, Any, List, overload, Literal, \
-    cast
+from typing import (
+    Union,
+    Iterator,
+    TYPE_CHECKING,
+    Optional,
+    Dict,
+    Callable,
+    Type,
+    Tuple,
+    Any,
+    List,
+    overload,
+    Literal,
+    cast,
+)
 from datetime import datetime
 
 from gi.repository import GLib, Gtk
@@ -44,16 +57,24 @@ from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 from skytemple_files.common.types.data_handler import DataHandler, T
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.i18n_util import _
-from skytemple_files.common.util import get_files_from_rom_with_extension, get_rom_folder, create_file_in_rom, \
-    get_ppmdu_config_for_rom, get_files_from_folder_with_extension, \
-    folder_in_rom_exists, create_folder_in_rom, get_binary_from_rom, set_binary_in_rom
+from skytemple_files.common.util import (
+    get_files_from_rom_with_extension,
+    get_rom_folder,
+    create_file_in_rom,
+    get_ppmdu_config_for_rom,
+    get_files_from_folder_with_extension,
+    folder_in_rom_exists,
+    create_folder_in_rom,
+    get_binary_from_rom,
+    set_binary_in_rom,
+)
 from skytemple_files.container.sir0.sir0_serializable import Sir0Serializable
 from skytemple_files.patch.patches import Patcher
 from skytemple_files.compression_container.common_at.handler import CommonAtType
 from skytemple_files.hardcoded.icon_banner import IconBanner
 
 logger = logging.getLogger(__name__)
-BACKUP_NAME = '.~backup.bin'
+BACKUP_NAME = ".~backup.bin"
 
 if TYPE_CHECKING:
     from skytemple.controller.main import MainController
@@ -65,13 +86,14 @@ from contextlib import nullcontext, AbstractContextManager
 
 class BinaryName(Enum):
     """This enum maps to binary names of SymbolsProtocol."""
-    ARM9 = auto(), 'arm9'
-    OVERLAY_00 = auto(), 'overlay0'
-    OVERLAY_09 = auto(), 'overlay9'
-    OVERLAY_10 = auto(), 'overlay10'
-    OVERLAY_11 = auto(), 'overlay11'
-    OVERLAY_13 = auto(), 'overlay13'
-    OVERLAY_29 = auto(), 'overlay29'
+
+    ARM9 = auto(), "arm9"
+    OVERLAY_00 = auto(), "overlay0"
+    OVERLAY_09 = auto(), "overlay9"
+    OVERLAY_10 = auto(), "overlay10"
+    OVERLAY_11 = auto(), "overlay11"
+    OVERLAY_13 = auto(), "overlay13"
+    OVERLAY_29 = auto(), "overlay29"
 
     def __new__(cls, *args, **kwargs):
         obj = object.__new__(cls)
@@ -86,7 +108,7 @@ class BinaryName(Enum):
         return self._xml_name_
 
     def __repr__(self):
-        return f'BinaryName.{self.name}'
+        return f"BinaryName.{self.name}"
 
     @property
     def xml_name(self):
@@ -94,15 +116,15 @@ class BinaryName(Enum):
 
 
 class RomProject:
-    _current: Optional['RomProject'] = None
+    _current: Optional["RomProject"] = None
 
     @classmethod
-    def get_current(cls) -> Optional['RomProject']:
+    def get_current(cls) -> Optional["RomProject"]:
         """Returns the currently open RomProject or None"""
         return cls._current
 
     @classmethod
-    def open(cls, filename, main_controller: 'MainController'):
+    def open(cls, filename, main_controller: "MainController"):
         """
         Open a file (in a new thread).
         If the main controller is set, it will be informed about this.
@@ -115,7 +137,7 @@ class RomProject:
         AsyncTaskDelegator.run_task(cls._open_impl(filename, main_controller))
 
     @classmethod
-    async def _open_impl(cls, filename, main_controller: 'MainController'):
+    async def _open_impl(cls, filename, main_controller: "MainController"):
         cls._current = RomProject(filename, main_controller.load_view_main_list)
         try:
             await cls._current.load()
@@ -125,29 +147,45 @@ class RomProject:
             exc_info = sys.exc_info()
             cls._current = None
             if main_controller:
-                GLib.idle_add(lambda ex=ex: main_controller.on_file_opened_error(exc_info, ex))
+                GLib.idle_add(
+                    lambda ex=ex: main_controller.on_file_opened_error(exc_info, ex)
+                )
 
     @classmethod
-    def handle_backup_restore(cls, rom_fn: str, backup_fn: str, main_controller: 'MainController'):
+    def handle_backup_restore(
+        cls, rom_fn: str, backup_fn: str, main_controller: "MainController"
+    ):
         dialog: Gtk.MessageDialog = SkyTempleMessageDialog(
             main_controller.window(),
             Gtk.DialogFlags.MODAL,
             Gtk.MessageType.WARNING,
-            Gtk.ButtonsType.NONE, _("There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last.")
+            Gtk.ButtonsType.NONE,
+            _(
+                "There was a backup file for this ROM found. This indicates that the ROM was corrupted when SkyTemple tried to save it last."
+            ),
         )
         as_is: Gtk.Widget = dialog.add_button(_("No, load ROM as-is"), 0)
-        as_is.get_style_context().add_class('destructive-action')
+        as_is.get_style_context().add_class("destructive-action")
         dialog.add_button(_("Yes, load backup"), 1)
 
-        original_rom_text = _("Last modified: {} - Size: {}").format(datetime.fromtimestamp(os.path.getmtime(rom_fn)).isoformat(), os.path.getsize(rom_fn))
-        backup_rom_text = _("Last modified: {} - Size: {}").format(datetime.fromtimestamp(os.path.getmtime(backup_fn)).isoformat(), os.path.getsize(backup_fn))
+        original_rom_text = _("Last modified: {} - Size: {}").format(
+            datetime.fromtimestamp(os.path.getmtime(rom_fn)).isoformat(),
+            os.path.getsize(rom_fn),
+        )
+        backup_rom_text = _("Last modified: {} - Size: {}").format(
+            datetime.fromtimestamp(os.path.getmtime(backup_fn)).isoformat(),
+            os.path.getsize(backup_fn),
+        )
 
-        dialog.format_secondary_text(_(
-            "Do you want to restore the backup?\n"
-            "If you select 'Yes, load backup', the backup will replace the ROM file and will then be loaded.\n"
-            "If you select 'No, load ROM as-is', the backup will be deleted and SkyTemple will attempt to load the (potentially) corrupted ROM file.\n\n"
-            "Original ROM: {}\n"
-            "Backup ROM: {}").format(original_rom_text, backup_rom_text))
+        dialog.format_secondary_text(
+            _(
+                "Do you want to restore the backup?\n"
+                "If you select 'Yes, load backup', the backup will replace the ROM file and will then be loaded.\n"
+                "If you select 'No, load ROM as-is', the backup will be deleted and SkyTemple will attempt to load the (potentially) corrupted ROM file.\n\n"
+                "Original ROM: {}\n"
+                "Backup ROM: {}"
+            ).format(original_rom_text, backup_rom_text)
+        )
         response = dialog.run()
         dialog.destroy()
         if response == 1:
@@ -158,7 +196,7 @@ class RomProject:
     def __init__(self, filename: str, cb_open_view: Callable[[ItemTreeEntryRef], None]):
         self.filename = filename
         self._rom: Optional[NintendoDSRom] = None
-        self._rom_module: Optional['RomModule'] = None
+        self._rom_module: Optional["RomModule"] = None
         self._loaded_modules: Dict[str, AbstractModule] = {}
         self._sprite_renderer: Optional[SpriteProvider] = None
         self._string_provider: Optional[StringProvider] = None
@@ -179,7 +217,7 @@ class RomProject:
         self._project_fm = ProjectFileManager(filename)
 
         self._icon_banner: Optional[IconBanner] = None
-        
+
         # Lazy
         self._patcher: Optional[Patcher] = None
 
@@ -193,7 +231,7 @@ class RomProject:
         self._rom_module.load_rom_data()
         for name, module in Modules.all().items():
             logger.debug(f"Loading module {name} for ROM...")
-            if name == 'rom':
+            if name == "rom":
                 continue
             else:
                 self._loaded_modules[name] = module(self)
@@ -205,7 +243,7 @@ class RomProject:
         await AsyncTaskDelegator.buffer()
         self._icon_banner = IconBanner(self._rom)
 
-    def get_rom_module(self) -> 'RomModule':
+    def get_rom_module(self) -> "RomModule":
         assert self._rom_module is not None
         return self._rom_module
 
@@ -239,39 +277,72 @@ class RomProject:
         from skytemple.module.spritecollab.module import SpritecollabModule
 
     @overload
-    def get_module(self, name: Literal['rom']) -> 'RomModule': ...
+    def get_module(self, name: Literal["rom"]) -> "RomModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['bgp']) -> 'BgpModule': ...
+    def get_module(self, name: Literal["bgp"]) -> "BgpModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['tiled_img']) -> 'TiledImgModule': ...
+    def get_module(self, name: Literal["tiled_img"]) -> "TiledImgModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['map_bg']) -> 'MapBgModule': ...
+    def get_module(self, name: Literal["map_bg"]) -> "MapBgModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['script']) -> 'ScriptModule': ...
+    def get_module(self, name: Literal["script"]) -> "ScriptModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['gfxcrunch']) -> 'GfxcrunchModule': ...
+    def get_module(self, name: Literal["gfxcrunch"]) -> "GfxcrunchModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['sprite']) -> 'SpriteModule': ...
+    def get_module(self, name: Literal["sprite"]) -> "SpriteModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['monster']) -> 'MonsterModule': ...
+    def get_module(self, name: Literal["monster"]) -> "MonsterModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['portrait']) -> 'PortraitModule': ...
+    def get_module(self, name: Literal["portrait"]) -> "PortraitModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['patch']) -> 'PatchModule': ...
+    def get_module(self, name: Literal["patch"]) -> "PatchModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['lists']) -> 'ListsModule': ...
+    def get_module(self, name: Literal["lists"]) -> "ListsModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['moves_items']) -> 'MovesItemsModule': ...
+    def get_module(self, name: Literal["moves_items"]) -> "MovesItemsModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['misc_graphics']) -> 'MiscGraphicsModule': ...
+    def get_module(self, name: Literal["misc_graphics"]) -> "MiscGraphicsModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['dungeon']) -> 'DungeonModule': ...
+    def get_module(self, name: Literal["dungeon"]) -> "DungeonModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['dungeon_graphics']) -> 'DungeonGraphicsModule': ...
+    def get_module(self, name: Literal["dungeon_graphics"]) -> "DungeonGraphicsModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['strings']) -> 'StringsModule': ...
+    def get_module(self, name: Literal["strings"]) -> "StringsModule":
+        ...
+
     @overload
-    def get_module(self, name: Literal['spritecollab']) -> 'SpritecollabModule': ...
+    def get_module(self, name: Literal["spritecollab"]) -> "SpritecollabModule":
+        ...
 
     def get_module(self, name: str) -> AbstractModule:
         return self._loaded_modules[name]
@@ -282,32 +353,47 @@ class RomProject:
 
     def get_rom_name(self) -> str:
         assert self._rom is not None
-        return self._rom.name.decode('ascii')
+        return self._rom.name.decode("ascii")
 
     def set_rom_name(self, name: str):
         assert self._rom is not None
-        self._rom.name = name.encode('ascii')
+        self._rom.name = name.encode("ascii")
 
     def get_id_code(self) -> str:
         assert self._rom is not None
-        return self._rom.idCode.decode('ascii')
+        return self._rom.idCode.decode("ascii")
 
     def set_id_code(self, id_code: str):
         assert self._rom is not None
-        self._rom.idCode = id_code.encode('ascii')
+        self._rom.idCode = id_code.encode("ascii")
 
     @overload
-    def open_file_in_rom(self, file_path_in_rom: str, file_handler_class: Type[DataHandler[T]],
-                         threadsafe: Literal[False] = False, **kwargs) -> T:
+    def open_file_in_rom(
+        self,
+        file_path_in_rom: str,
+        file_handler_class: Type[DataHandler[T]],
+        threadsafe: Literal[False] = False,
+        **kwargs,
+    ) -> T:
         ...
 
     @overload
-    def open_file_in_rom(self, file_path_in_rom: str, file_handler_class: Type[DataHandler[T]],
-                         threadsafe: Literal[True], **kwargs) -> ModelContext[T]:
+    def open_file_in_rom(
+        self,
+        file_path_in_rom: str,
+        file_handler_class: Type[DataHandler[T]],
+        threadsafe: Literal[True],
+        **kwargs,
+    ) -> ModelContext[T]:
         ...
 
-    def open_file_in_rom(self, file_path_in_rom: str, file_handler_class: Type[DataHandler[T]],
-                         threadsafe=False, **kwargs):
+    def open_file_in_rom(
+        self,
+        file_path_in_rom: str,
+        file_handler_class: Type[DataHandler[T]],
+        threadsafe=False,
+        **kwargs,
+    ):
         """
         Open a file. If already open, the opened object is returned.
         The second parameter is a file handler to use. Please note, that the file handler is only
@@ -324,13 +410,19 @@ class RomProject:
         if file_path_in_rom not in self._opened_files:
             assert self._rom is not None
             bin = self._rom.getFileByName(file_path_in_rom)
-            self._opened_files[file_path_in_rom] = file_handler_class.deserialize(bin, **kwargs)
+            self._opened_files[file_path_in_rom] = file_handler_class.deserialize(
+                bin, **kwargs
+            )
             self._file_handlers[file_path_in_rom] = file_handler_class
             self._file_handler_kwargs[file_path_in_rom] = kwargs
         return self._open_common(file_path_in_rom, threadsafe)
 
-    def open_sir0_file_in_rom(self, file_path_in_rom: str, sir0_serializable_type: Type[Sir0Serializable],
-                              threadsafe=False):
+    def open_sir0_file_in_rom(
+        self,
+        file_path_in_rom: str,
+        sir0_serializable_type: Type[Sir0Serializable],
+        threadsafe=False,
+    ):
         """
         Open a SIR0 wrapped file. If already open, the opened object is returned.
         The second parameter is the type of a Sir0Serializable to use.
@@ -345,7 +437,9 @@ class RomProject:
             assert self._rom is not None
             bin = self._rom.getFileByName(file_path_in_rom)
             sir0 = FileType.SIR0.deserialize(bin)
-            self._opened_files[file_path_in_rom] = FileType.SIR0.unwrap_obj(sir0, sir0_serializable_type)
+            self._opened_files[file_path_in_rom] = FileType.SIR0.unwrap_obj(
+                sir0, sir0_serializable_type
+            )
             self._file_handlers[file_path_in_rom] = FileType.SIR0
             self._file_handler_kwargs[file_path_in_rom] = {}
         return self._open_common(file_path_in_rom, threadsafe)
@@ -366,10 +460,14 @@ class RomProject:
                     f"Tried to open {file_path_in_rom} threadsafe, but it was requested unsafe somewhere else."
                 )
             if file_path_in_rom not in self._opened_files_contexts:
-                self._opened_files_contexts[file_path_in_rom] = ModelContext(self._opened_files[file_path_in_rom])
+                self._opened_files_contexts[file_path_in_rom] = ModelContext(
+                    self._opened_files[file_path_in_rom]
+                )
             return self._opened_files_contexts[file_path_in_rom]
         elif file_path_in_rom in self._files_threadsafe:
-            raise ValueError(f"Tried to open {file_path_in_rom} unsafe, but it was requested threadsafe somewhere else.")
+            raise ValueError(
+                f"Tried to open {file_path_in_rom} unsafe, but it was requested threadsafe somewhere else."
+            )
         return self._opened_files[file_path_in_rom]
 
     def is_opened(self, filename):
@@ -382,7 +480,9 @@ class RomProject:
             if file not in self._modified_files:
                 self._modified_files.append(file)
         else:
-            filename = list(self._opened_files.keys())[list(self._opened_files.values()).index(file)]
+            filename = list(self._opened_files.keys())[
+                list(self._opened_files.values()).index(file)
+            ]
             if filename not in self._modified_files:
                 self._modified_files.append(filename)
 
@@ -392,7 +492,7 @@ class RomProject:
     def has_modifications(self):
         return len(self._modified_files) > 0 or self._forced_modified
 
-    def save(self, main_controller: Optional['MainController']):
+    def save(self, main_controller: Optional["MainController"]):
         """Save the rom. The main controller will be informed about this, if given."""
         AsyncTaskDelegator.run_task(self._save_impl(main_controller))
 
@@ -414,16 +514,16 @@ class RomProject:
             del self._opened_files_contexts[filename]
         self._rom.setFileByName(filename, data)
         self.force_mark_as_modified()
-        
+
     def create_file_manually(self, filename: str, data: bytes):
         """
-        Manually create a file in the ROM. 
+        Manually create a file in the ROM.
         """
         assert self._rom is not None
         create_file_in_rom(self._rom, filename, data)
         self.force_mark_as_modified()
 
-    async def _save_impl(self, main_controller: Optional['MainController']):
+    async def _save_impl(self, main_controller: Optional["MainController"]):
         try:
             for name in self._modified_files:
                 self.prepare_save_model(name)
@@ -442,7 +542,11 @@ class RomProject:
         except Exception as err:
             if main_controller:
                 exc_info = sys.exc_info()
-                GLib.idle_add(lambda err=err: assert_not_none(main_controller).on_file_saved_error(exc_info, err))
+                GLib.idle_add(
+                    lambda err=err: assert_not_none(
+                        main_controller
+                    ).on_file_saved_error(exc_info, err)
+                )
 
     def prepare_save_model(self, name, assert_that=None):
         """
@@ -499,13 +603,17 @@ class RomProject:
         assert self._rom is not None
         return path in self._rom.filenames
 
-    def create_new_file(self, new_filename, model, file_handler_class: Type[DataHandler[T]], **kwargs):
+    def create_new_file(
+        self, new_filename, model, file_handler_class: Type[DataHandler[T]], **kwargs
+    ):
         """Creates a new file in the ROM and fills it with the model content provided and
         writes the serialized model data there"""
         assert self._rom is not None
         copy_bin = file_handler_class.serialize(model, **kwargs)
         create_file_in_rom(self._rom, new_filename, copy_bin)
-        self._opened_files[new_filename] = file_handler_class.deserialize(copy_bin, **kwargs)
+        self._opened_files[new_filename] = file_handler_class.deserialize(
+            copy_bin, **kwargs
+        )
         self._file_handlers[new_filename] = file_handler_class
         self._file_handler_kwargs[new_filename] = kwargs
         return copy_bin
@@ -550,16 +658,24 @@ class RomProject:
     def get_binary(self, binary: Union[SectionProtocol, BinaryName, str]) -> bytes:
         assert self._rom is not None
         if isinstance(binary, str) or isinstance(binary, BinaryName):
-            the_binary = getattr(self.get_rom_module().get_static_data().bin_sections, str(binary))
+            the_binary = getattr(
+                self.get_rom_module().get_static_data().bin_sections, str(binary)
+            )
         else:
             the_binary = binary
         return get_binary_from_rom(self._rom, the_binary)
 
-    def modify_binary(self, binary: Union[SectionProtocol, BinaryName, str], modify_cb: Callable[[bytearray], None]):
+    def modify_binary(
+        self,
+        binary: Union[SectionProtocol, BinaryName, str],
+        modify_cb: Callable[[bytearray], None],
+    ):
         """Modify one of the binaries (such as arm9 or overlay) and save it to the ROM"""
         assert self._rom is not None
         if isinstance(binary, str) or isinstance(binary, BinaryName):
-            the_binary = getattr(self.get_rom_module().get_static_data().bin_sections, str(binary))
+            the_binary = getattr(
+                self.get_rom_module().get_static_data().bin_sections, str(binary)
+            )
         else:
             the_binary = binary
         data = bytearray(self.get_binary(the_binary))
@@ -576,25 +692,25 @@ class RomProject:
                 return False
         except NotImplementedError:
             return False
-        
+
     def init_patch_properties(self):
-        """ Initialize patch-specific properties of the rom. """
-        
+        """Initialize patch-specific properties of the rom."""
+
         # Allow ATUPX files if the ProvideATUPXSupport patch is applied
         if self.is_patch_applied("ProvideATUPXSupport"):
             FileType.COMMON_AT.allow(CommonAtType.ATUPX)
         else:
             FileType.COMMON_AT.disallow(CommonAtType.ATUPX)
-            
+
         # Change Pokemon Names and Categories strings if ExpandPokeList
         md_properties = FileType.MD.properties()
         if self.is_patch_applied("ExpandPokeList"):
-            StringType.POKEMON_NAMES.replace_xml_name('New Pokemon Names')
-            StringType.POKEMON_CATEGORIES.replace_xml_name('New Pokemon Categories')
+            StringType.POKEMON_NAMES.replace_xml_name("New Pokemon Names")
+            StringType.POKEMON_CATEGORIES.replace_xml_name("New Pokemon Categories")
             md_properties.num_entities = 2048
             md_properties.max_possible = 2048
         else:
-            StringType.POKEMON_NAMES.replace_xml_name('Pokemon Names')
-            StringType.POKEMON_CATEGORIES.replace_xml_name('Pokemon Categories')
+            StringType.POKEMON_NAMES.replace_xml_name("Pokemon Names")
+            StringType.POKEMON_CATEGORIES.replace_xml_name("Pokemon Categories")
             md_properties.num_entities = 600
             md_properties.max_possible = 554

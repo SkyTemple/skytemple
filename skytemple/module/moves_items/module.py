@@ -21,7 +21,12 @@ from range_typed_integers import u16
 
 from gi.repository import Gtk
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
-from skytemple.core.item_tree import ItemTree, ItemTreeEntryRef, ItemTreeEntry, RecursionType
+from skytemple.core.item_tree import (
+    ItemTree,
+    ItemTreeEntryRef,
+    ItemTreeEntry,
+    RecursionType,
+)
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.string_provider import StringType
@@ -41,24 +46,24 @@ from skytemple_files.data.val_list.handler import ValListHandler
 from skytemple_files.dungeon_data.mappa_bin.protocol import MappaItemListProtocol
 from skytemple_files.common.i18n_util import _
 
-MOVE_FILE = 'BALANCE/waza_p.bin'
-ITEM_S_FILE = 'BALANCE/item_s_p.bin'
-ITEM_FILE = 'BALANCE/item_p.bin'
-ITEM_LISTS = 'TABLEDAT/list_%02d.bin'
+MOVE_FILE = "BALANCE/waza_p.bin"
+ITEM_S_FILE = "BALANCE/item_s_p.bin"
+ITEM_FILE = "BALANCE/item_p.bin"
+ITEM_LISTS = "TABLEDAT/list_%02d.bin"
 FIRST_EXCLUSIVE_ITEM_ID = 444
 logger = logging.getLogger(__name__)
 
 
 MAIN_VIEW_ITEMS_DATA = StStatusPageData(
-    icon_name='skytemple-illust-items',
-    title=_('Items'),
-    description=_("This section lets you edit settings related to items.")
+    icon_name="skytemple-illust-items",
+    title=_("Items"),
+    description=_("This section lets you edit settings related to items."),
 )
 
 MAIN_VIEW_MOVES_DATA = StStatusPageData(
-    icon_name='skytemple-illust-moves',
-    title=_('Moves'),
-    description=_("This section lets you edit settings related to moves.")
+    icon_name="skytemple-illust-moves",
+    title=_("Moves"),
+    description=_("This section lets you edit settings related to moves."),
 )
 
 
@@ -83,56 +88,78 @@ class MovesItemsModule(AbstractModule):
         self.move_iters: Dict[int, ItemTreeEntryRef] = {}
 
     def load_tree_items(self, item_tree: ItemTree):
-        root_items = item_tree.add_entry(None, ItemTreeEntry(
-            icon='skytemple-e-item-symbolic',
-            name=MAIN_VIEW_ITEMS_DATA.title,
-            module=self,
-            view_class=StStatusPage,
-            item_data=MAIN_VIEW_ITEMS_DATA
-        ))
-        root_moves = item_tree.add_entry(None, ItemTreeEntry(
-            icon='skytemple-e-move-symbolic',
-            name=MAIN_VIEW_MOVES_DATA.title,
-            module=self,
-            view_class=StStatusPage,
-            item_data=MAIN_VIEW_MOVES_DATA
-        ))
-        self._item_lists_tree_iter = item_tree.add_entry(root_items, ItemTreeEntry(
-            icon='skytemple-view-list-symbolic',
-            name=_('Item Lists'),
-            module=self,
-            view_class=ItemListsController,
-            item_data=0
-        ))
-        self._item_keys_tree_iter = item_tree.add_entry(root_items, ItemTreeEntry(
-            icon='skytemple-view-list-symbolic',
-            name=_('Item Sort Keys'),
-            module=self,
-            view_class=ItemKeysController,
-            item_data=0
-        ))
+        root_items = item_tree.add_entry(
+            None,
+            ItemTreeEntry(
+                icon="skytemple-e-item-symbolic",
+                name=MAIN_VIEW_ITEMS_DATA.title,
+                module=self,
+                view_class=StStatusPage,
+                item_data=MAIN_VIEW_ITEMS_DATA,
+            ),
+        )
+        root_moves = item_tree.add_entry(
+            None,
+            ItemTreeEntry(
+                icon="skytemple-e-move-symbolic",
+                name=MAIN_VIEW_MOVES_DATA.title,
+                module=self,
+                view_class=StStatusPage,
+                item_data=MAIN_VIEW_MOVES_DATA,
+            ),
+        )
+        self._item_lists_tree_iter = item_tree.add_entry(
+            root_items,
+            ItemTreeEntry(
+                icon="skytemple-view-list-symbolic",
+                name=_("Item Lists"),
+                module=self,
+                view_class=ItemListsController,
+                item_data=0,
+            ),
+        )
+        self._item_keys_tree_iter = item_tree.add_entry(
+            root_items,
+            ItemTreeEntry(
+                icon="skytemple-view-list-symbolic",
+                name=_("Item Sort Keys"),
+                module=self,
+                view_class=ItemKeysController,
+                item_data=0,
+            ),
+        )
 
         logger.debug("Building item tree...")
         for i, _item in enumerate(self.get_item_p().item_list):
-            name = self.project.get_string_provider().get_value(StringType.ITEM_NAMES, i)
-            self.item_iters[i] = (item_tree.add_entry(root_items, ItemTreeEntry(
-                icon='skytemple-e-item-symbolic',
-                name=f'#{i:04}: {name}',
-                module=self,
-                view_class=ItemController,
-                item_data=i
-            )))
+            name = self.project.get_string_provider().get_value(
+                StringType.ITEM_NAMES, i
+            )
+            self.item_iters[i] = item_tree.add_entry(
+                root_items,
+                ItemTreeEntry(
+                    icon="skytemple-e-item-symbolic",
+                    name=f"#{i:04}: {name}",
+                    module=self,
+                    view_class=ItemController,
+                    item_data=i,
+                ),
+            )
 
         logger.debug("Building move tree...")
         for i, __item in enumerate(self.get_waza_p().moves):
-            name = self.project.get_string_provider().get_value(StringType.MOVE_NAMES, i)
-            self.move_iters[i] = (item_tree.add_entry(root_moves, ItemTreeEntry(
-                icon='skytemple-e-move-symbolic',
-                name=f'#{i:04}: {name}',
-                module=self,
-                view_class=MoveController,
-                item_data=i
-            )))
+            name = self.project.get_string_provider().get_value(
+                StringType.MOVE_NAMES, i
+            )
+            self.move_iters[i] = item_tree.add_entry(
+                root_moves,
+                ItemTreeEntry(
+                    icon="skytemple-e-move-symbolic",
+                    name=f"#{i:04}: {name}",
+                    module=self,
+                    view_class=MoveController,
+                    item_data=i,
+                ),
+            )
         logger.debug("Done building trees.")
 
         self._item_tree = item_tree
@@ -142,8 +169,9 @@ class MovesItemsModule(AbstractModule):
 
     def get_item_list(self, list_id) -> MappaItemListProtocol:
         static_data = self.project.get_rom_module().get_static_data()
-        return self.project.open_file_in_rom(ITEM_LISTS % list_id, ItemListHandler,
-                                             items=static_data.dungeon_data.items)
+        return self.project.open_file_in_rom(
+            ITEM_LISTS % list_id, ItemListHandler, items=static_data.dungeon_data.items
+        )
 
     def mark_item_list_as_modified(self, list_id):
         """Mark as modified"""
@@ -159,7 +187,10 @@ class MovesItemsModule(AbstractModule):
 
     def get_item(self, item_id) -> Tuple[ItemPEntryProtocol, Optional[ItemSPEntry]]:
         if item_id >= FIRST_EXCLUSIVE_ITEM_ID:
-            return self.get_item_p().item_list[item_id], self.get_item_s_p().item_list[item_id - FIRST_EXCLUSIVE_ITEM_ID]
+            return (
+                self.get_item_p().item_list[item_id],
+                self.get_item_s_p().item_list[item_id - FIRST_EXCLUSIVE_ITEM_ID],
+            )
         return self.get_item_p().item_list[item_id], None
 
     def mark_item_as_modified(self, item_id):
@@ -172,7 +203,9 @@ class MovesItemsModule(AbstractModule):
 
         # Reload item categories:
         conf = self.project.get_rom_module().get_static_data()
-        cats: Dict[Pmd2DungeonItemCategory, List[int]] = {x: [] for x in conf.dungeon_data.item_categories.values()}
+        cats: Dict[Pmd2DungeonItemCategory, List[int]] = {
+            x: [] for x in conf.dungeon_data.item_categories.values()
+        }
 
         for idx, entry in enumerate(self.get_item_p().item_list):
             cats[conf.dungeon_data.item_categories[entry.category]].append(idx)
@@ -189,13 +222,17 @@ class MovesItemsModule(AbstractModule):
     def get_i2n(self, in_lang: str) -> List[u16]:
         sp = self.project.get_string_provider()
         lang = sp.get_language(in_lang)
-        i2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.i2n}", ValListHandler)
+        i2n_model = self.project.open_file_in_rom(
+            f"BALANCE/{lang.sort_lists.i2n}", ValListHandler
+        )
         return i2n_model.get_list()
-    
+
     def set_i2n(self, in_lang: str, values: List[u16]):
         sp = self.project.get_string_provider()
         lang = sp.get_language(in_lang)
-        i2n_model = self.project.open_file_in_rom(f"BALANCE/{lang.sort_lists.i2n}", ValListHandler)
+        i2n_model = self.project.open_file_in_rom(
+            f"BALANCE/{lang.sort_lists.i2n}", ValListHandler
+        )
         i2n_model.set_list(values)
         self.project.mark_as_modified(f"BALANCE/{lang.sort_lists.i2n}")
         self._item_tree.mark_as_modified(self._item_keys_tree_iter, RecursionType.UP)
@@ -206,7 +243,9 @@ class MovesItemsModule(AbstractModule):
         # Mark as modified in tree
         self._item_tree.mark_as_modified(self.move_iters[move_id], RecursionType.UP)
 
-    def collect_debugging_info(self, open_view: Union[AbstractController, Gtk.Widget]) -> Optional[DebuggingInfo]:
+    def collect_debugging_info(
+        self, open_view: Union[AbstractController, Gtk.Widget]
+    ) -> Optional[DebuggingInfo]:
         if isinstance(open_view, MoveController):
             pass  # todo
         if isinstance(open_view, ItemController):

@@ -24,7 +24,10 @@ from gi.repository import Gtk, GLib, Pango
 from range_typed_integers import i16
 from skytemple_files.common.i18n_util import _
 from skytemple_files.common.ppmdu_config.data import Pmd2Sprite
-from skytemple_files.common.spritecollab.client import MonsterFormDetails, SpriteCollabClient
+from skytemple_files.common.spritecollab.client import (
+    MonsterFormDetails,
+    SpriteCollabClient,
+)
 from skytemple_files.data.md.protocol import ShadowSize
 from skytemple_files.graphics.chara_wan.model import WanFile
 
@@ -40,7 +43,7 @@ from skytemple.module.spritecollab.controller.browser import BrowserController
 class SpritecollabModule(AbstractModule):
     @classmethod
     def depends_on(cls):
-        return ['sprite', 'portrait']
+        return ["sprite", "portrait"]
 
     @classmethod
     def sort_order(cls):
@@ -61,19 +64,21 @@ class SpritecollabModule(AbstractModule):
         if monster_idx is None:
             return
         assert project is not None
-        portrait_module = project.get_module('portrait')
+        portrait_module = project.get_module("portrait")
         prt_idx = monster_idx - 1
         if not portrait_module.is_idx_supported(prt_idx):
             self._msg_not_supported(window)
             return
         fname: Optional[str] = None
         try:
-            with NamedTemporaryFile('w+b', delete=False, suffix='.png') as f:
+            with NamedTemporaryFile("w+b", delete=False, suffix=".png") as f:
                 fname = f.name
                 portraits.save(f)
             portrait_module.import_sheet(prt_idx, fname)
             GLib.idle_add(lambda: MainController.reload_view())
-            GLib.idle_add(lambda: self._msg_success(window, _("Portraits successfully imported.")))
+            GLib.idle_add(
+                lambda: self._msg_success(window, _("Portraits successfully imported."))
+            )
         finally:
             try:
                 if fname is not None:
@@ -81,7 +86,9 @@ class SpritecollabModule(AbstractModule):
             except Exception:
                 pass
 
-    def apply_sprites(self, window: Gtk.Window, client: SpriteCollabClient, form: MonsterFormDetails):
+    def apply_sprites(
+        self, window: Gtk.Window, client: SpriteCollabClient, form: MonsterFormDetails
+    ):
         project = RomProject.get_current()
         monster_idx = self._check_opened(window)
         if monster_idx is None:
@@ -94,8 +101,8 @@ class SpritecollabModule(AbstractModule):
             return
         copy_event_sleep, new = show_sprite_diag
 
-        sprite_module = project.get_module('sprite')
-        monster_module = project.get_module('monster')
+        sprite_module = project.get_module("sprite")
+        monster_module = project.get_module("monster")
         if new:
             sprite_idx = i16(sprite_module.get_monster_sprite_count())
         else:
@@ -104,7 +111,9 @@ class SpritecollabModule(AbstractModule):
             self._msg_not_supported(window)
             return
 
-        spr_result = asyncio.run(get_sprites(client, (form.monster_id, form.form_path), copy_event_sleep))
+        spr_result = asyncio.run(
+            get_sprites(client, (form.monster_id, form.form_path), copy_event_sleep)
+        )
         if spr_result is not None:
             wan_file, pmd2_sprite, shadow_size_id = spr_result
             # update sprite
@@ -112,8 +121,7 @@ class SpritecollabModule(AbstractModule):
 
             monster_module.set_sprite_idx(monster_idx, sprite_idx)
             monster_module.set_shadow_size(
-                monster_idx,
-                ShadowSize(shadow_size_id)  # type: ignore
+                monster_idx, ShadowSize(shadow_size_id)  # type: ignore
             )
             sprite_module.update_sprconf(pmd2_sprite)
         else:
@@ -121,14 +129,16 @@ class SpritecollabModule(AbstractModule):
             return
 
         GLib.idle_add(lambda: MainController.reload_view())
-        GLib.idle_add(lambda: self._msg_success(window, _("Sprites successfully imported.")))
+        GLib.idle_add(
+            lambda: self._msg_success(window, _("Sprites successfully imported."))
+        )
 
     def _check_opened(self, window: Gtk.Window) -> Optional[int]:
         project = RomProject.get_current()
         if project is None:
             self._msg_not_opened(window)
             return None
-        monster_module = project.get_module('monster')
+        monster_module = project.get_module("monster")
         monster_idx = monster_module.get_opened_id()
         if monster_idx is None:
             self._msg_not_opened(window)
@@ -139,41 +149,61 @@ class SpritecollabModule(AbstractModule):
         self._msg(msg, window, Gtk.MessageType.INFO, is_success=True)
 
     def _msg_not_opened(self, window: Gtk.Window):
-        self._msg(_("Open a Pokémon in the main window to apply the assets to."), window, Gtk.MessageType.INFO)
+        self._msg(
+            _("Open a Pokémon in the main window to apply the assets to."),
+            window,
+            Gtk.MessageType.INFO,
+        )
 
     def _msg_no_data(self, window: Gtk.Window):
-        self._msg(_("Could not apply the sprites, since no sprite data is available."), window, Gtk.MessageType.ERROR)
+        self._msg(
+            _("Could not apply the sprites, since no sprite data is available."),
+            window,
+            Gtk.MessageType.ERROR,
+        )
 
     def _msg_not_supported(self, window: Gtk.Window):
-        self._msg(_("This Pokémon does not support portraits and/or sprites."), window, Gtk.MessageType.ERROR)
+        self._msg(
+            _("This Pokémon does not support portraits and/or sprites."),
+            window,
+            Gtk.MessageType.ERROR,
+        )
 
     def _show_sprite_diag(self, window: Gtk.Window) -> Optional[Tuple[bool, bool]]:
         diag: Gtk.Dialog = Gtk.Dialog()
         diag.set_parent(window)
         diag.set_transient_for(window)
         diag.set_modal(True)
-        diag.add_buttons(_("Cancel"), Gtk.ResponseType.CLOSE, _("Apply"), Gtk.ResponseType.APPLY)
+        diag.add_buttons(
+            _("Cancel"), Gtk.ResponseType.CLOSE, _("Apply"), Gtk.ResponseType.APPLY
+        )
         content: Gtk.Box = diag.get_content_area()
         content.set_spacing(10)
         content.set_margin_start(5)
         content.set_margin_end(5)
         content.set_margin_left(5)
         content.set_margin_right(5)
-        content_label: Gtk.Label = Gtk.Label.new(_(
-            "This will replace the sprite of this Pokémon with the one from the repository.\n"
-            "You can also choose to create a new sprite instead, it will be assigned to the Pokémon.\n\n"
-            "Additionally you can choose to copy the Sleep animation to the EventSleep/Laying/Waking\n"
-            "animations (if they aren't available for this Pokémon otherwise).\n"
-            "This will fix Pokémon using weird animations instead of sleeping on the overworld, \n"
-            "when choosing them as a starter or partner."
-        ))
+        content_label: Gtk.Label = Gtk.Label.new(
+            _(
+                "This will replace the sprite of this Pokémon with the one from the repository.\n"
+                "You can also choose to create a new sprite instead, it will be assigned to the Pokémon.\n\n"
+                "Additionally you can choose to copy the Sleep animation to the EventSleep/Laying/Waking\n"
+                "animations (if they aren't available for this Pokémon otherwise).\n"
+                "This will fix Pokémon using weird animations instead of sleeping on the overworld, \n"
+                "when choosing them as a starter or partner."
+            )
+        )
         content_label.set_line_wrap(True)
         content_label.set_line_wrap_mode(Pango.WrapMode.WORD)
         content.pack_start(content_label, True, True, 0)
-        new_sprite_id: Gtk.CheckButton = Gtk.CheckButton.new_with_label(_("Create a new sprite instead of replacing the existing one."))
+        new_sprite_id: Gtk.CheckButton = Gtk.CheckButton.new_with_label(
+            _("Create a new sprite instead of replacing the existing one.")
+        )
         new_sprite_id.set_active(False)
         content.pack_start(new_sprite_id, True, True, 0)
-        copy_event_sleep: Gtk.CheckButton = Gtk.CheckButton.new_with_label(_("Copy the Sleep animation to EventSleep/Laying/Waking."))
+        copy_event_sleep: Gtk.CheckButton = Gtk.CheckButton.new_with_label(
+            _("Copy the Sleep animation to EventSleep/Laying/Waking.")
+        )
         copy_event_sleep.set_active(True)
         content.pack_start(copy_event_sleep, True, True, 0)
         content.show_all()
@@ -184,32 +214,34 @@ class SpritecollabModule(AbstractModule):
             return copy_event_sleep.get_active(), new_sprite_id.get_active()
         return None
 
-    def _msg(self, msg: str, window: Gtk.Window, typ=Gtk.MessageType.ERROR, is_success=False):
+    def _msg(
+        self, msg: str, window: Gtk.Window, typ=Gtk.MessageType.ERROR, is_success=False
+    ):
         if typ == Gtk.MessageType.ERROR:
-            display_error(
-                None,
-                msg,
-                should_report=False,
-                window=window
-            )
+            display_error(None, msg, should_report=False, window=window)
         else:
-            md = SkyTempleMessageDialog(window,
-                                        Gtk.DialogFlags.DESTROY_WITH_PARENT, typ,
-                                        Gtk.ButtonsType.OK, msg, is_success=is_success)
+            md = SkyTempleMessageDialog(
+                window,
+                Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                typ,
+                Gtk.ButtonsType.OK,
+                msg,
+                is_success=is_success,
+            )
             md.set_position(Gtk.WindowPosition.CENTER)
             md.run()
             md.destroy()
 
 
 async def get_sprites(
-        client: SpriteCollabClient,
-        form: Tuple[int, str],
-        copy_to_event_sleep_if_missing: bool
+    client: SpriteCollabClient,
+    form: Tuple[int, str],
+    copy_to_event_sleep_if_missing: bool,
 ) -> Optional[Tuple[WanFile, Pmd2Sprite, int]]:
     async with client as session:
         sprites = await session.fetch_sprites(
             [form],
             [None],
-            copy_to_event_sleep_if_missing=copy_to_event_sleep_if_missing
+            copy_to_event_sleep_if_missing=copy_to_event_sleep_if_missing,
         )
         return sprites[0]

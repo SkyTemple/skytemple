@@ -29,6 +29,7 @@ class AbstractListener(ABC):
     event listener. This method will receive all events first and can also handle custom
     events.
     """
+
     async def on_event_loop_started(self):
         """
         Called IF SkyTemple is running an asyncio-compatible event loop for concurrency and it was started.
@@ -47,7 +48,12 @@ class AbstractListener(ABC):
     def on_project_open(self, project: RomProject):
         """Triggered, when a new project is loaded"""
 
-    def on_view_switch(self, module: AbstractModule, controller: AbstractController, breadcrumbs: List[str]):
+    def on_view_switch(
+        self,
+        module: AbstractModule,
+        controller: AbstractController,
+        breadcrumbs: List[str],
+    ):
         """
         Triggered, when a view in the main UI was fully and successfully loaded.
         :param module: Instance of the module, that the view belongs to.

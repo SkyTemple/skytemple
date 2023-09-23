@@ -41,7 +41,7 @@ logger = logging.getLogger(__name__)
 
 
 class PortraitController(AbstractController):
-    def __init__(self, module: 'PortraitModule', item_id: int, mark_as_modified_cb):
+    def __init__(self, module: "PortraitModule", item_id: int, mark_as_modified_cb):
         self.module = module
         self.item_id = item_id
         self._portrait_provider = self.module.get_portrait_provider()
@@ -57,23 +57,28 @@ class PortraitController(AbstractController):
             draw.queue_draw()
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'portrait.glade')
+        self.builder = self._get_builder(__file__, "portrait.glade")
         self.builder.connect_signals(self)
 
         for index, subindex, kao in self.kao:
             gui_number = subindex + 1
             portrait_name = self.module.get_portrait_name(subindex)
-            builder_get_assert(self.builder, Gtk.Label, f'portrait_label{gui_number}').set_text(portrait_name)
-            draw = builder_get_assert(self.builder, Gtk.DrawingArea, f'portrait_draw{gui_number}')
+            builder_get_assert(
+                self.builder, Gtk.Label, f"portrait_label{gui_number}"
+            ).set_text(portrait_name)
+            draw = builder_get_assert(
+                self.builder, Gtk.DrawingArea, f"portrait_draw{gui_number}"
+            )
             self._draws.append(draw)
-            draw.connect('draw', partial(self.on_draw, subindex))
+            draw.connect("draw", partial(self.on_draw, subindex))
 
-        return builder_get_assert(self.builder, Gtk.Widget, 'box_main')
+        return builder_get_assert(self.builder, Gtk.Widget, "box_main")
 
     def on_draw(self, subindex: int, widget: Gtk.DrawingArea, ctx: cairo.Context):
         scale = 2
-        portrait = self._portrait_provider.get(self.item_id, subindex,
-                                               lambda: GLib.idle_add(widget.queue_draw), False)
+        portrait = self._portrait_provider.get(
+            self.item_id, subindex, lambda: GLib.idle_add(widget.queue_draw), False
+        )
         ctx.set_source_rgb(1, 1, 1)
         w, h = widget.get_size_request()
         assert w is not None and h is not None
@@ -87,10 +92,14 @@ class PortraitController(AbstractController):
         return True
 
     def on_export_clicked(self, w: Gtk.MenuToolButton):
-        cast(Gtk.Menu, w.get_menu()).popup(None, None, None, None, 0, Gtk.get_current_event_time())
+        cast(Gtk.Menu, w.get_menu()).popup(
+            None, None, None, None, 0, Gtk.get_current_event_time()
+        )
 
     def on_import_clicked(self, w: Gtk.MenuToolButton):
-        cast(Gtk.Menu, w.get_menu()).popup(None, None, None, None, 0, Gtk.get_current_event_time())
+        cast(Gtk.Menu, w.get_menu()).popup(
+            None, None, None, None, 0, Gtk.get_current_event_time()
+        )
 
     def on_delete_clicked(self, label: Gtk.Label):
         index = int(label.get_label().split(":")[0])
@@ -105,7 +114,8 @@ class PortraitController(AbstractController):
             _("Export all portraits as PNGs..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            _("_Save"), None
+            _("_Save"),
+            None,
         )
 
         response = dialog.run()
@@ -113,22 +123,27 @@ class PortraitController(AbstractController):
         dialog.destroy()
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
-            base_filename = os.path.join(fn, f'{self.item_id + 1}')
+            base_filename = os.path.join(fn, f"{self.item_id + 1}")
             for subindex in range(0, SUBENTRIES):
                 kao = self.kao.get(self.item_id, subindex)
                 if kao:
-                    filename = f'{base_filename}_{subindex}.png'
+                    filename = f"{base_filename}_{subindex}.png"
                     img = kao.get()
                     img.save(filename)
 
     def on_separate_import_activate(self, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
-            Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
             Gtk.ButtonsType.OK,
-            f(_("To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
-                "will be imported, where XX is a number between 0 and 40.")),
-            title=_("Import Portraits")
+            f(
+                _(
+                    "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\n"
+                    "will be imported, where XX is a number between 0 and 40."
+                )
+            ),
+            title=_("Import Portraits"),
         )
         md.run()
         md.destroy()
@@ -136,7 +151,8 @@ class PortraitController(AbstractController):
             _("Import portraits from PNGs..."),
             MainController.window(),
             Gtk.FileChooserAction.SELECT_FOLDER,
-            None, None
+            None,
+            None,
         )
 
         response = dialog.run()
@@ -145,12 +161,14 @@ class PortraitController(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             r = re.compile(rf"{self.item_id + 1}_(\d+)\.png", re.IGNORECASE)
-            imgs = {int(match[1]): name
-                    for match, name in self._try_match_import(r, os.listdir(fn))
-                    if match is not None and int(match[1]) <= 40}
+            imgs = {
+                int(match[1]): name
+                for match, name in self._try_match_import(r, os.listdir(fn))
+                if match is not None and int(match[1]) <= 40
+            }
             for subindex, image_fn in imgs.items():
                 try:
-                    with open(os.path.join(fn, image_fn), 'rb') as file:
+                    with open(os.path.join(fn, image_fn), "rb") as file:
                         image = Image.open(file)
                         self.kao.set_from_img(self.item_id, subindex, image)
                 except Exception as err:
@@ -159,7 +177,7 @@ class PortraitController(AbstractController):
                     display_error(
                         sys.exc_info(),
                         f(_('Failed importing image "{name}":\n{err}')),
-                        f(_(f"Error for '{name}'."))
+                        f(_(f"Error for '{name}'.")),
                     )
             self.re_render()
             # Mark as modified
@@ -171,7 +189,8 @@ class PortraitController(AbstractController):
             _("Export portrait as PNG sheet..."),
             MainController.window(),
             Gtk.FileChooserAction.SAVE,
-            None, None
+            None,
+            None,
         )
 
         add_dialog_png_filter(dialog)
@@ -181,7 +200,7 @@ class PortraitController(AbstractController):
 
         fn = dialog.get_filename()
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
-            fn = add_extension_if_missing(fn, 'png')
+            fn = add_extension_if_missing(fn, "png")
             SpriteBotSheet.create(self.kao, self.item_id).save(fn)
 
     def on_spritebot_import_activate(self, *args):
@@ -189,7 +208,8 @@ class PortraitController(AbstractController):
             _("Import portraits from PNG sheet..."),
             MainController.window(),
             Gtk.FileChooserAction.OPEN,
-            None, None
+            None,
+            None,
         )
 
         add_dialog_png_filter(dialog)

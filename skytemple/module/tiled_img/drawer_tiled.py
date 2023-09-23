@@ -39,10 +39,13 @@ FRAME_COUNTER_MAX = 1000000
 
 class DrawerTiled:
     def __init__(
-            self, draw_area: Widget, tile_mappings: Optional[List[TilemapEntry]],
-            bpa_durations: int, pal_ani_durations: int,
-            # Format: tile_surfaces[pal][tile_idx][pal_frame][frame]
-            tile_surfaces: List[List[List[List[cairo.Surface]]]]
+        self,
+        draw_area: Widget,
+        tile_mappings: Optional[List[TilemapEntry]],
+        bpa_durations: int,
+        pal_ani_durations: int,
+        # Format: tile_surfaces[pal][tile_idx][pal_frame][frame]
+        tile_surfaces: List[List[List[List[cairo.Surface]]]],
     ):
         """
 
@@ -61,7 +64,9 @@ class DrawerTiled:
         if tile_mappings is not None:
             self.set_tile_mappings(tile_mappings)
 
-        self.animation_context = AnimationContext(tile_surfaces, bpa_durations, pal_ani_durations)
+        self.animation_context = AnimationContext(
+            tile_surfaces, bpa_durations, pal_ani_durations
+        )
 
         self.scale = 1
 
@@ -82,7 +87,7 @@ class DrawerTiled:
         """Start drawing on the DrawingArea"""
         self.drawing_is_active = True
         if isinstance(self.draw_area, Gtk.DrawingArea):
-            self.draw_area.connect('draw', self.draw)
+            self.draw_area.connect("draw", self.draw)
         self.draw_area.queue_draw()
         GLib.timeout_add(int(1000 / FPS), self._tick)
 
@@ -107,10 +112,7 @@ class DrawerTiled:
 
         # Background
         ctx.set_source_rgb(0, 0, 0)
-        ctx.rectangle(
-            0, 0,
-            self.width, self.height
-        )
+        ctx.rectangle(0, 0, self.width, self.height)
         ctx.fill()
 
         matrix_x_flip = cairo.Matrix(-1, 0, 0, 1, BPC_TILE_DIM, 0)
@@ -141,15 +143,21 @@ class DrawerTiled:
 
 
 class DrawerTiledCellRenderer(DrawerTiled, Gtk.CellRenderer):
-    __gproperties__ = {
-        'tileidx': (int, "", "", 0, 999999, 0, ParamFlags.READWRITE)
-    }
+    __gproperties__ = {"tileidx": (int, "", "", 0, 999999, 0, ParamFlags.READWRITE)}
 
-    def __init__(self, icon_view, bpa_durations: int, pal_ani_durations: int,
-                 will_draw_chunk, all_mappings: List[TilemapEntry],
-                 tile_surfaces: List[List[List[List[cairo.Surface]]]], scale):
-
-        super().__init__(icon_view, None, bpa_durations, pal_ani_durations, tile_surfaces)
+    def __init__(
+        self,
+        icon_view,
+        bpa_durations: int,
+        pal_ani_durations: int,
+        will_draw_chunk,
+        all_mappings: List[TilemapEntry],
+        tile_surfaces: List[List[List[List[cairo.Surface]]]],
+        scale,
+    ):
+        super().__init__(
+            icon_view, None, bpa_durations, pal_ani_durations, tile_surfaces
+        )
         super(Gtk.CellRenderer, self).__init__()
 
         self.scale = scale
@@ -165,7 +173,12 @@ class DrawerTiledCellRenderer(DrawerTiled, Gtk.CellRenderer):
         self.tileidx = 0
 
     def do_get_size(self, widget, cell_area):
-        return 0, 0, int(self.expected_dim * self.scale), int(self.expected_dim * self.scale)
+        return (
+            0,
+            0,
+            int(self.expected_dim * self.scale),
+            int(self.expected_dim * self.scale),
+        )
 
     def do_set_property(self, pspec, value):
         setattr(self, pspec.name, value)
@@ -177,7 +190,7 @@ class DrawerTiledCellRenderer(DrawerTiled, Gtk.CellRenderer):
         cell_area = self.get_aligned_area(wdg, flags, cell_area)
         ctx.translate(cell_area.x, cell_area.y)
         if self.will_draw_chunk:
-            self.set_tile_mappings(self.all_mappings[self.tileidx:self.tileidx+9])
+            self.set_tile_mappings(self.all_mappings[self.tileidx : self.tileidx + 9])
         else:
             self.set_tile_mappings([self.all_mappings[self.tileidx]])
         self.draw(wdg, ctx)

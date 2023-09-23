@@ -27,7 +27,10 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.ui_utils import builder_get_assert
 from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
-from skytemple.module.dungeon_graphics.dungeon_bg_drawer import Drawer, DrawerCellRenderer
+from skytemple.module.dungeon_graphics.dungeon_bg_drawer import (
+    Drawer,
+    DrawerCellRenderer,
+)
 from skytemple_files.common.util import lcm
 from skytemple_files.graphics.dbg.protocol import DbgProtocol
 from skytemple_files.graphics.dbg import DBG_TILING_DIM, DBG_WIDTH_AND_HEIGHT
@@ -43,7 +46,8 @@ if TYPE_CHECKING:
     from skytemple.module.dungeon_graphics.module import DungeonGraphicsModule
 
 
-INFO_IMEXPORT_TILES = _("""- The image consists of 8x8 tiles.
+INFO_IMEXPORT_TILES = _(
+    """- The image consists of 8x8 tiles.
 - The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
@@ -54,9 +58,11 @@ INFO_IMEXPORT_TILES = _("""- The image consists of 8x8 tiles.
   chunk mapping (Chunks > Edit Chunks).
 - Each import must result in a maximum of 1024 unique 8x8 tiles 
   (=not existing with another palette or flipped or rotated).
-""")
+"""
+)
 
-INFO_IMEXPORT_CHUNK = _("""- The image is a 256-color indexed PNG.
+INFO_IMEXPORT_CHUNK = _(
+    """- The image is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
   one of these 16 palettes.
@@ -67,9 +73,11 @@ INFO_IMEXPORT_CHUNK = _("""- The image is a 256-color indexed PNG.
 Some image editors have problems when working with indexed
 images, that contain the same color multiple times. You can
 make all colors on the map unique before exporting at
-Palettes > Edit Palettes.""")
+Palettes > Edit Palettes."""
+)
 
-INFO_IMEXPORT_ENTIRE = _("""- The images is a 256-color indexed PNG.
+INFO_IMEXPORT_ENTIRE = _(
+    """- The images is a 256-color indexed PNG.
 - The 256 colors are divided into 16 16 color palettes.
 - Each 8x8 tile in the image MUST only use colors from
   one of these 16 palettes.
@@ -80,11 +88,12 @@ INFO_IMEXPORT_ENTIRE = _("""- The images is a 256-color indexed PNG.
 Some image editors have problems when working with indexed
 images, that contain the same color multiple times. You can
 make all colors on the map unique before exporting at
-Palettes > Edit Palettes.""")
+Palettes > Edit Palettes."""
+)
 
 
 class DungeonBgController(AbstractController):
-    def __init__(self, module: 'DungeonGraphicsModule', item_id: int):
+    def __init__(self, module: "DungeonGraphicsModule", item_id: int):
         self.module = module
         self.item_id = item_id
 
@@ -115,19 +124,23 @@ class DungeonBgController(AbstractController):
         self.menu_controller = BgMenuController(self)
 
     def get_view(self) -> Gtk.Widget:
-        self.builder = self._get_builder(__file__, 'dungeon_bg.glade')
+        self.builder = self._get_builder(__file__, "dungeon_bg.glade")
         self._init_drawer()
         self._init_main_area()
         self.builder.connect_signals(self)
-        return builder_get_assert(self.builder, Gtk.Widget, 'editor_map_bg')
+        return builder_get_assert(self.builder, Gtk.Widget, "editor_map_bg")
 
     def on_bg_draw_click(self, box, button: Gdk.EventButton):
         correct_mouse_x = int(button.x / self.scale_factor)
         correct_mouse_y = int(button.y / self.scale_factor)
         if button.button == 1:
             self.bg_draw_is_clicked = True
-            snap_x = correct_mouse_x - correct_mouse_x % (DBG_TILING_DIM * DPCI_TILE_DIM)
-            snap_y = correct_mouse_y - correct_mouse_y % (DBG_TILING_DIM * DPCI_TILE_DIM)
+            snap_x = correct_mouse_x - correct_mouse_x % (
+                DBG_TILING_DIM * DPCI_TILE_DIM
+            )
+            snap_y = correct_mouse_y - correct_mouse_y % (
+                DBG_TILING_DIM * DPCI_TILE_DIM
+            )
             self._set_chunk_at_pos(snap_x, snap_y)
 
     def on_bg_draw_release(self, box, button: Gdk.EventButton):
@@ -138,8 +151,12 @@ class DungeonBgController(AbstractController):
         correct_mouse_x = int(motion.x / self.scale_factor)
         correct_mouse_y = int(motion.y / self.scale_factor)
         if self.drawer:
-            snap_x = correct_mouse_x - correct_mouse_x % (DBG_TILING_DIM * DPCI_TILE_DIM)
-            snap_y = correct_mouse_y - correct_mouse_y % (DBG_TILING_DIM * DPCI_TILE_DIM)
+            snap_x = correct_mouse_x - correct_mouse_x % (
+                DBG_TILING_DIM * DPCI_TILE_DIM
+            )
+            snap_y = correct_mouse_y - correct_mouse_y % (
+                DBG_TILING_DIM * DPCI_TILE_DIM
+            )
             self.drawer.set_mouse_position(snap_x, snap_y)
             if self.bg_draw_is_clicked:
                 self._set_chunk_at_pos(snap_x, snap_y)
@@ -148,10 +165,15 @@ class DungeonBgController(AbstractController):
         if self.drawer:
             chunk_x = int(mouse_x / (DBG_TILING_DIM * DPCI_TILE_DIM))
             chunk_y = int(mouse_y / (DBG_TILING_DIM * DPCI_TILE_DIM))
-            if 0 <= chunk_x < DBG_WIDTH_AND_HEIGHT and 0 <= chunk_y < DBG_WIDTH_AND_HEIGHT:
+            if (
+                0 <= chunk_x < DBG_WIDTH_AND_HEIGHT
+                and 0 <= chunk_y < DBG_WIDTH_AND_HEIGHT
+            ):
                 # Set chunk at current position
                 self.mark_as_modified()
-                self.dbg.place_chunk(chunk_x, chunk_y, self.drawer.get_selected_chunk_id())
+                self.dbg.place_chunk(
+                    chunk_x, chunk_y, self.drawer.get_selected_chunk_id()
+                )
 
     def on_current_icon_view_selection_changed(self, icon_view: Gtk.IconView):
         model, treeiter = icon_view.get_model(), icon_view.get_selected_items()
@@ -216,25 +238,37 @@ class DungeonBgController(AbstractController):
         self.menu_controller.edit_palette_ani(1)
 
     def on_format_details_entire_clicked(self, *args):
-        md = SkyTempleMessageDialog(MainController.window(),
-                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_ENTIRE)
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            INFO_IMEXPORT_ENTIRE,
+        )
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
 
     def on_format_details_chunks_clicked(self, *args):
-        md = SkyTempleMessageDialog(MainController.window(),
-                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_CHUNK)
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            INFO_IMEXPORT_CHUNK,
+        )
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
 
     def on_format_details_tiles_clicked(self, *args):
-        md = SkyTempleMessageDialog(MainController.window(),
-                                    Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, INFO_IMEXPORT_TILES)
+        md = SkyTempleMessageDialog(
+            MainController.window(),
+            Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.INFO,
+            Gtk.ButtonsType.OK,
+            INFO_IMEXPORT_TILES,
+        )
         md.set_position(Gtk.WindowPosition.CENTER)
         md.run()
         md.destroy()
@@ -256,13 +290,22 @@ class DungeonBgController(AbstractController):
             self.chunks_surfaces.append(pal_ani_frames)
 
             chunk_data = self.dpc.chunks[chunk_idx]
-            chunk_image = self.dpc.single_chunk_to_pil(chunk_idx, self.dpci, self.dpl.palettes)
-            has_pal_ani = any(chunk.pal_idx >= 10 and self.dpla.has_for_palette(chunk.pal_idx - 10) for chunk in chunk_data)
+            chunk_image = self.dpc.single_chunk_to_pil(
+                chunk_idx, self.dpci, self.dpl.palettes
+            )
+            has_pal_ani = any(
+                chunk.pal_idx >= 10 and self.dpla.has_for_palette(chunk.pal_idx - 10)
+                for chunk in chunk_data
+            )
 
             if not has_pal_ani:
                 len_pal_ani = 1
             else:
-                ani_pal_lengths = [self.dpla.get_frame_count_for_palette(x) for x in (0, 1) if self.dpla.has_for_palette(x)]
+                ani_pal_lengths = [
+                    self.dpla.get_frame_count_for_palette(x)
+                    for x in (0, 1)
+                    if self.dpla.has_for_palette(x)
+                ]
                 if len(ani_pal_lengths) < 2:
                     len_pal_ani = ani_pal_lengths[0]
                 else:
@@ -274,9 +317,11 @@ class DungeonBgController(AbstractController):
                 pal_ani_frames.append(ani_frames)
                 # Switch out the palette with that from the palette animation
                 if has_pal_ani:
-                    pal_for_frame = itertools.chain.from_iterable(self.dpla.apply_palette_animations(self.dpl.palettes, pal_ani))
+                    pal_for_frame = itertools.chain.from_iterable(
+                        self.dpla.apply_palette_animations(self.dpl.palettes, pal_ani)
+                    )
                     chunk_image.putpalette(pal_for_frame)
-                ani_frames.append(pil_to_cairo_surface(chunk_image.convert('RGBA')))
+                ani_frames.append(pil_to_cairo_surface(chunk_image.convert("RGBA")))
 
         # TODO: No DPLA animations at different speeds supported at the moment
         ani_pal11 = 9999
@@ -290,7 +335,7 @@ class DungeonBgController(AbstractController):
 
     def _init_drawer(self):
         """(Re)-initialize the main drawing area"""
-        bg_draw_sw = builder_get_assert(self.builder, Gtk.ScrolledWindow, 'bg_draw_sw')
+        bg_draw_sw = builder_get_assert(self.builder, Gtk.ScrolledWindow, "bg_draw_sw")
         for child in bg_draw_sw.get_children():
             bg_draw_sw.remove(child)
         if self.bg_draw_event_box:
@@ -305,7 +350,9 @@ class DungeonBgController(AbstractController):
         self.bg_draw_event_box.add_events(Gdk.EventMask.POINTER_MOTION_MASK)
         self.bg_draw_event_box.connect("button-press-event", self.on_bg_draw_click)
         self.bg_draw_event_box.connect("button-release-event", self.on_bg_draw_release)
-        self.bg_draw_event_box.connect("motion-notify-event", self.on_bg_draw_mouse_move)
+        self.bg_draw_event_box.connect(
+            "motion-notify-event", self.on_bg_draw_mouse_move
+        )
 
         self.bg_draw = Gtk.DrawingArea.new()
         self.bg_draw_event_box.add(self.bg_draw)
@@ -314,23 +361,29 @@ class DungeonBgController(AbstractController):
 
         self.bg_draw.set_size_request(
             DBG_WIDTH_AND_HEIGHT * DBG_TILING_DIM * DPCI_TILE_DIM,
-            DBG_WIDTH_AND_HEIGHT * DBG_TILING_DIM * DPCI_TILE_DIM
+            DBG_WIDTH_AND_HEIGHT * DBG_TILING_DIM * DPCI_TILE_DIM,
         )
 
-        self.drawer = Drawer(self.bg_draw, self.dbg, self.pal_ani_durations, self.chunks_surfaces)
+        self.drawer = Drawer(
+            self.bg_draw, self.dbg, self.pal_ani_durations, self.chunks_surfaces
+        )
         self.drawer.start()
 
     def _init_chunks_icon_view(self):
         """Fill the icon view"""
         self._deinit_chunks_icon_view()
-        icon_view = builder_get_assert(self.builder, Gtk.IconView, f'bg_chunks_view')
+        icon_view = builder_get_assert(self.builder, Gtk.IconView, f"bg_chunks_view")
         icon_view.set_selection_mode(Gtk.SelectionMode.BROWSE)
-        self.current_icon_view_renderer = DrawerCellRenderer(icon_view, self.pal_ani_durations, self.chunks_surfaces)
+        self.current_icon_view_renderer = DrawerCellRenderer(
+            icon_view, self.pal_ani_durations, self.chunks_surfaces
+        )
         store = Gtk.ListStore(int)
         icon_view.set_model(store)
         icon_view.pack_start(self.current_icon_view_renderer, True)
-        icon_view.add_attribute(self.current_icon_view_renderer, 'chunkidx', 0)
-        icon_view.connect('selection-changed', self.on_current_icon_view_selection_changed)
+        icon_view.add_attribute(self.current_icon_view_renderer, "chunkidx", 0)
+        icon_view.connect(
+            "selection-changed", self.on_current_icon_view_selection_changed
+        )
 
         for idx in range(0, len(self.chunks_surfaces)):
             store.append([idx])
@@ -340,11 +393,17 @@ class DungeonBgController(AbstractController):
             icon_view.select_path(store.get_path(first_iter))
         self.current_icon_view_renderer.start()
 
-        self.current_icon_view_renderer.set_pink_bg(builder_get_assert(self.builder, Gtk.ToggleToolButton, f'tb_bg_color').get_active())
+        self.current_icon_view_renderer.set_pink_bg(
+            builder_get_assert(
+                self.builder, Gtk.ToggleToolButton, f"tb_bg_color"
+            ).get_active()
+        )
 
     def _deinit_chunks_icon_view(self):
         """Remove the icon view for the specified layer"""
-        icon_view: Gtk.IconView = builder_get_assert(self.builder, Gtk.IconView, f'bg_chunks_view')
+        icon_view: Gtk.IconView = builder_get_assert(
+            self.builder, Gtk.IconView, f"bg_chunks_view"
+        )
         icon_view.clear()
         icon_view.set_model(None)
 
@@ -359,8 +418,18 @@ class DungeonBgController(AbstractController):
         """Update drawers+DrawingArea and iconview+Renderer scales"""
         if self.bg_draw:
             self.bg_draw.set_size_request(
-                round(DBG_WIDTH_AND_HEIGHT * DBG_TILING_DIM * DPCI_TILE_DIM * self.scale_factor),
-                round(DBG_WIDTH_AND_HEIGHT * DBG_TILING_DIM * DPCI_TILE_DIM * self.scale_factor)
+                round(
+                    DBG_WIDTH_AND_HEIGHT
+                    * DBG_TILING_DIM
+                    * DPCI_TILE_DIM
+                    * self.scale_factor
+                ),
+                round(
+                    DBG_WIDTH_AND_HEIGHT
+                    * DBG_TILING_DIM
+                    * DPCI_TILE_DIM
+                    * self.scale_factor
+                ),
             )
         if self.drawer:
             self.drawer.set_scale(self.scale_factor)
@@ -369,10 +438,13 @@ class DungeonBgController(AbstractController):
             self.current_icon_view_renderer.set_scale(self.scale_factor)
             # update size
             self.current_icon_view_renderer.set_fixed_size(
-                int(DPCI_TILE_DIM * 3 * self.scale_factor), int(DPCI_TILE_DIM * 3 * self.scale_factor)
+                int(DPCI_TILE_DIM * 3 * self.scale_factor),
+                int(DPCI_TILE_DIM * 3 * self.scale_factor),
             )
 
-            icon_view: Gtk.IconView = builder_get_assert(self.builder, Gtk.IconView, f'bg_chunks_view')
+            icon_view: Gtk.IconView = builder_get_assert(
+                self.builder, Gtk.IconView, f"bg_chunks_view"
+            )
             icon_view.queue_resize()
 
     def reload_all(self):

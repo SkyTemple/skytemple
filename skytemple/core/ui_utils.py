@@ -29,7 +29,7 @@ import gi
 from gi.repository import GObject
 from range_typed_integers import u8, u16, u32, i8, i16, get_range, i32
 
-gi.require_version('Gtk', '3.0')
+gi.require_version("Gtk", "3.0")
 
 from gi.repository import Gtk, GLib
 from gi.repository.Gio import AppInfo
@@ -41,7 +41,7 @@ if sys.version_info >= (3, 9):
 else:
     import importlib_metadata
 
-APP = 'skytemple'
+APP = "skytemple"
 REPO_MOVE_EFFECTS = "https://github.com/theCapypara/eos_move_effects"
 
 T = TypeVar("T", bound=GObject.Object)
@@ -75,54 +75,54 @@ def iter_tree_model(model: Gtk.TreeModel) -> Any:
 
 
 def add_dialog_file_filters(dialog):
-        filter_nds = Gtk.FileFilter()
-        filter_nds.set_name(_("Nintendo DS ROMs (*.nds)"))
-        filter_nds.add_mime_type("application/x-nintendo-ds-rom")
-        filter_nds.add_pattern("*.nds")
-        dialog.add_filter(filter_nds)
+    filter_nds = Gtk.FileFilter()
+    filter_nds.set_name(_("Nintendo DS ROMs (*.nds)"))
+    filter_nds.add_mime_type("application/x-nintendo-ds-rom")
+    filter_nds.add_pattern("*.nds")
+    dialog.add_filter(filter_nds)
 
-        filter_any = Gtk.FileFilter()
-        filter_any.set_name(_("Any files"))
-        filter_any.add_pattern("*")
-        dialog.add_filter(filter_any)
+    filter_any = Gtk.FileFilter()
+    filter_any.set_name(_("Any files"))
+    filter_any.add_pattern("*")
+    dialog.add_filter(filter_any)
 
 
 def add_dialog_gif_filter(dialog):
-        filter = Gtk.FileFilter()
-        filter.set_name(_("GIF image (*.gif)"))
-        filter.add_mime_type("image/gif")
-        filter.add_pattern("*.gif")
-        dialog.add_filter(filter)
+    filter = Gtk.FileFilter()
+    filter.set_name(_("GIF image (*.gif)"))
+    filter.add_mime_type("image/gif")
+    filter.add_pattern("*.gif")
+    dialog.add_filter(filter)
 
 
 def add_dialog_png_filter(dialog):
-        filter = Gtk.FileFilter()
-        filter.set_name(_("PNG image (*.png)"))
-        filter.add_mime_type("image/png")
-        filter.add_pattern("*.png")
-        dialog.add_filter(filter)
+    filter = Gtk.FileFilter()
+    filter.set_name(_("PNG image (*.png)"))
+    filter.add_mime_type("image/png")
+    filter.add_pattern("*.png")
+    dialog.add_filter(filter)
 
 
 def add_dialog_xml_filter(dialog):
-        filter = Gtk.FileFilter()
-        filter.set_name(_("XML document (*.xml)"))
-        filter.add_mime_type("application/xml")
-        filter.add_pattern("*.xml")
-        dialog.add_filter(filter)
+    filter = Gtk.FileFilter()
+    filter.set_name(_("XML document (*.xml)"))
+    filter.add_mime_type("application/xml")
+    filter.add_pattern("*.xml")
+    dialog.add_filter(filter)
 
 
 def add_dialog_csv_filter(dialog):
-        filter = Gtk.FileFilter()
-        filter.set_name(_("CSV file (*.csv)"))
-        filter.add_mime_type("text/csv")
-        filter.add_pattern("*.csv")
-        dialog.add_filter(filter)
+    filter = Gtk.FileFilter()
+    filter.set_name(_("CSV file (*.csv)"))
+    filter.add_mime_type("text/csv")
+    filter.add_pattern("*.csv")
+    dialog.add_filter(filter)
 
 
 def data_dir() -> str:
-    if getattr(sys, 'frozen', False):
-        return os.path.join(os.path.dirname(sys.executable), 'data')
-    return os.path.join(os.path.dirname(__file__), '..', 'data')
+    if getattr(sys, "frozen", False):
+        return os.path.join(os.path.dirname(sys.executable), "data")
+    return os.path.join(os.path.dirname(__file__), "..", "data")
 
 
 def is_dark_theme(widget) -> bool:
@@ -133,24 +133,26 @@ def is_dark_theme(widget) -> bool:
 
 def open_dir(directory):
     """Cross-platform open directory"""
-    if sys.platform == 'win32':
+    if sys.platform == "win32":
         os.startfile(directory)
     else:
         AppInfo.launch_default_for_uri(pathlib.Path(directory).as_uri())
 
 
 def version(*, ignore_dev=False) -> str:
-    if not ignore_dev and os.path.exists(os.path.abspath(os.path.join(data_dir(), '..', '..', '.git'))):
-        return 'dev'
+    if not ignore_dev and os.path.exists(
+        os.path.abspath(os.path.join(data_dir(), "..", "..", ".git"))
+    ):
+        return "dev"
     try:
         return importlib_metadata.metadata("skytemple")["version"]
     except importlib_metadata.PackageNotFoundError:
         # Try reading from a VERSION file instead
-        version_file = os.path.join(data_dir(), 'VERSION')
+        version_file = os.path.join(data_dir(), "VERSION")
         if os.path.exists(version_file):
             with open(version_file) as f:
                 return f.read()
-        return 'unknown'
+        return "unknown"
 
 
 def make_builder(gui_file) -> Gtk.Builder:
@@ -158,10 +160,10 @@ def make_builder(gui_file) -> Gtk.Builder:
     if sys.platform == "win32":
         tree = ElementTree.parse(gui_file)
         for node in tree.iter():
-            if 'translatable' in node.attrib:
+            if "translatable" in node.attrib:
                 node.text = _(node.text)
         with NamedTemporaryFile(delete=False) as temp_file:
-            tree.write(temp_file.file, encoding='utf-8', xml_declaration=True)
+            tree.write(temp_file.file, encoding="utf-8", xml_declaration=True)
         builder = Gtk.Builder.new_from_file(temp_file.name)
         os.unlink(temp_file.name)
     else:
@@ -180,6 +182,7 @@ def make_builder(gui_file) -> Gtk.Builder:
 
 def glib_async(f):
     """Decorator to wrap a function call in Glib.idle_add."""
+
     @functools.wraps(f)
     def wrapper(*args, **kwargs):
         return GLib.idle_add(lambda: f(*args, **kwargs))
@@ -188,9 +191,17 @@ def glib_async(f):
 
 
 @overload
-def catch_overflow(typ: Union[Type[u8], Type[u16], Type[u32], Type[i8], Type[i16], Type[i32]]): ...
+def catch_overflow(
+    typ: Union[Type[u8], Type[u16], Type[u32], Type[i8], Type[i16], Type[i32]]
+):
+    ...
+
+
 @overload
-def catch_overflow(range_start: int, range_end: int): ...
+def catch_overflow(range_start: int, range_end: int):
+    ...
+
+
 def catch_overflow(typ_or_range_start, range_end=None):
     """
     Decorator to display a friendly error message with OverflowErrors occur
@@ -198,6 +209,7 @@ def catch_overflow(typ_or_range_start, range_end=None):
 
     This is only to be used for values directly input by the user.
     """
+
     def catch_overflow_decorator(f):
         @functools.wraps(f)
         def wrapper(*args, **kwargs):
@@ -205,6 +217,7 @@ def catch_overflow(typ_or_range_start, range_end=None):
                 return f(*args, **kwargs)
             except OverflowError:
                 from skytemple.core.error_handler import display_error
+
                 rmin = None
                 rmax = None
                 if range_end is None:
@@ -216,15 +229,21 @@ def catch_overflow(typ_or_range_start, range_end=None):
                     rmin = typ_or_range_start
                     rmax = range_end
                 if rmin is not None:
-                    GLib.idle_add(lambda: display_error(
-                        sys.exc_info(),
-                        _("The value you entered is invalid.\n\nValid values must be in the range [{},{}].").format(rmin, rmax),
-                        _("SkyTemple - Value out of range"), log=False
-                    ))
+                    GLib.idle_add(
+                        lambda: display_error(
+                            sys.exc_info(),
+                            _(
+                                "The value you entered is invalid.\n\nValid values must be in the range [{},{}]."
+                            ).format(rmin, rmax),
+                            _("SkyTemple - Value out of range"),
+                            log=False,
+                        )
+                    )
                 else:
                     raise
 
         return wrapper
+
     return catch_overflow_decorator
 
 
@@ -239,9 +258,7 @@ def get_list_store_iter_by_idx(store: Gtk.ListStore, idx, get_iter=False):
 
 
 def create_tree_view_column(
-    title: str,
-    renderer: Gtk.CellRenderer,
-    **kwargs: int
+    title: str, renderer: Gtk.CellRenderer, **kwargs: int
 ) -> Gtk.TreeViewColumn:
     """
     Compatibility with the 'old' TreeViewColumn constructor and generally a convenient shortcut for quick TreeViewColumn
