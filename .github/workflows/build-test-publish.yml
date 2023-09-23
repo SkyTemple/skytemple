@@ -226,7 +226,7 @@ jobs:
 
 
           # Install other dependencies and SkyTemple itself
-          pip3 install py-desmume pyinstaller
+          pip3 install py-desmume 'pyinstaller~=5.0'
           if [ -n "$IS_DEV_BUILD" ]; then
             IS_MACOS=1 installer/install-skytemple-rust.sh x86_64
           fi

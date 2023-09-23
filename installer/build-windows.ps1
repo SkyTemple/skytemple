@@ -28,7 +28,7 @@ python -m venv C:\skytemple-venv
 C:\skytemple-venv\Scripts\activate.ps1
 
 # Install PyInstaller
-pip install setuptools wheel pyinstaller
+pip install setuptools wheel 'pyinstaller~=5.0'
 
 # Install PyGObject and pycairo
 pip install --force-reinstall (Resolve-Path C:\gtk-build\build\x64\release\pygobject\dist\PyGObject*.whl)
