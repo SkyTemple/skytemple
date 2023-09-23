@@ -35,7 +35,6 @@ from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.script.controller.map import MapController
 from skytemple.module.script.controller.dialog.pos_mark_editor import PosMarkEditorController
 from skytemple.module.script.controller.ssa import SsaController
-from skytemple.module.script.controller.ssb import SsbController, SCRIPT_SCRIPTS
 from skytemple.module.script.controller.main import MainController, SCRIPT_SCENES
 from skytemple_files.common.script_util import load_script_files, SCRIPT_DIR, SSA_EXT, SSS_EXT, LSD_EXT
 from skytemple_files.common.types.file_types import FileType
@@ -50,6 +49,7 @@ from skytemple_files.list.level.model import LevelListBin
 from skytemple_files.script.lsd.model import Lsd
 from skytemple_files.script.ssa_sse_sss.model import Ssa
 from skytemple.controller.main import MainController as SkyTempleMainController
+from skytemple.module.script.widget.ssb import StScriptSsbPage
 
 LEVEL_LIST = 'BALANCE/level_list.bin'
 
@@ -99,10 +99,10 @@ class ScriptModule(AbstractModule):
         #    -> Common [common]
         item_tree.add_entry(root, ItemTreeEntry(
             icon='skytemple-e-script-symbolic',
-            name=SCRIPT_SCRIPTS,
+            name=_('Scripts'),
             module=self,
-            view_class=SsbController,
-            item_data=0
+            view_class=StScriptSsbPage,
+            item_data=None
         ))
 
         sub_nodes = {

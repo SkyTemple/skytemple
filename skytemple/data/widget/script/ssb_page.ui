@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.22"/>
+  <template class="StScriptSsbPage" parent="GtkBox">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkAlignment">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="xscale">0.8</property>
+        <property name="yscale">0.8</property>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-bottom">73</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkImage" id="image_w">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">20</property>
+                <property name="pixel-size">127</property>
+                <property name="icon-name">skytemple-illust-script</property>
+                <property name="icon_size">3</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">20</property>>
+                <property name="label" translatable="yes">Scripts</property>
+                <property name="wrap">true</property>
+                <style>
+                  <class name="skytemple-view-main-label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <!--
+box: Gtk.Box = Gtk.Box.new(Gtk.Orientation.VERTICAL, 20)
+label = self.generate_content_label(
+_('Each of the scenes has at least one script assigned to them, which is run when the scene is loaded.\n'
+'In addition to that, there is also "COMMON/unionall.ssb", which contains the game\'s coroutines '
+'(main scripts).\n\n'
+'To edit the game\'s scripts, open the Script Engine Debugger. You can also do this by clicking the bug '
+'icon in the top right.\n')
+)
+button_box = Gtk.ButtonBox.new(Gtk.Orientation.VERTICAL)
+button: Gtk.Button = Gtk.Button.new_with_label(_('Open Script Engine Debugger'))
+button.connect('clicked', lambda *args: MainController.debugger_manager().open(MainController.window()))
+button_box.pack_start(button, False, False, 0)
+
+box.pack_start(label, False, False, 0)
+box.pack_start(button_box, False, False, 0)
+-->
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">20</property>
+                <property name="margin-top">5</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label" translatable="yes">Each of the scenes has at least one script assigned to them, which is run when the scene is loaded.
+In addition to that, there is also "COMMON/unionall.ssb", which contains the game's coroutines (main scripts).
+
+To edit the game's scripts, open the Script Engine Debugger. You can also do this by clicking the bug icon in the top right.
+                    </property>
+                    <property name="justify">center</property>
+                    <property name="wrap">true</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button_script_debugger">
+                    <property name="label" translatable="yes">Open Script Engine Debugger</property>
+                    <property name="halign">center</property>
+                    <signal name="clicked" handler="on_button_script_debugger_clicked"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </template>
+</interface>
