@@ -48,7 +48,7 @@ from gi.repository import Gtk
 
 from skytemple.controller.main import MainController
 from skytemple.core.img_utils import pil_to_cairo_surface
-from skytemple.core.module_controller import AbstractController, SimpleController
+from skytemple.core.module_controller import AbstractController
 from skytemple.module.dungeon_graphics.dungeon_chunk_drawer import DungeonChunkCellDrawer
 from skytemple_files.common.util import lcm, chunks
 from skytemple_files.graphics.dma.protocol import DmaProtocol, DmaExtraType, DmaType

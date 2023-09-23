@@ -22,10 +22,9 @@ import cairo
 from gi.repository import Gtk, Gdk
 
 from skytemple.controller.main import MainController
-from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.module_controller import AbstractController, SimpleController
+from skytemple.core.module_controller import AbstractController
 from skytemple.core.ui_utils import builder_get_assert
 from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
 from skytemple.module.dungeon_graphics.dungeon_bg_drawer import Drawer, DrawerCellRenderer
