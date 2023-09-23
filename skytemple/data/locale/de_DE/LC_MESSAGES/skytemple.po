@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-09-22 20:12+0000\n"
-"PO-Revision-Date: 2023-09-22 21:29\n"
+"POT-Creation-Date: 2023-09-23 13:01+0000\n"
+"PO-Revision-Date: 2023-09-23 13:13\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -4190,7 +4190,7 @@ msgid "Player"
 msgstr "Spieler"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/variable.py:70
-#: skytemple/skytemple/skytemple.glade:2379
+#: skytemple/skytemple/skytemple.glade:2358
 msgid "Mode"
 msgstr "Modus"
 
@@ -4375,7 +4375,7 @@ msgstr "Ground Engine Zustand"
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1089
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2798
 #: skytemple/skytemple/controller/main.py:894
-#: skytemple/skytemple/skytemple.glade:1367
+#: skytemple/skytemple/skytemple.glade:1346
 msgid "Save"
 msgstr "Speichern"
 
@@ -4723,7 +4723,7 @@ msgstr "Emulator"
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:128
 #: skytemple/skytemple/module/script/controller/main.glade:463
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:210
-#: skytemple/skytemple/skytemple.glade:1168
+#: skytemple/skytemple/skytemple.glade:1147
 msgid "page0"
 msgstr "page0"
 
@@ -4761,7 +4761,7 @@ msgstr ""
 
 #. TRANSLATORS: Replace this string with your names, one name per line.
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3288
-#: skytemple/skytemple/skytemple.glade:1478
+#: skytemple/skytemple/skytemple.glade:1457
 msgid "translator-credits"
 msgstr "Marco \"Capypara\" Köpcke"
 
@@ -5679,7 +5679,7 @@ msgstr "Wähle eine Kachel \n"
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:493
 #: skytemple/skytemple/module/dungeon/controller/fixed.glade:1073
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:3233
-#: skytemple/skytemple/skytemple.glade:1275
+#: skytemple/skytemple/skytemple.glade:1254
 msgid "page2"
 msgstr "page2"
 
@@ -5758,7 +5758,7 @@ msgstr "Neue Entität hinzufügen"
 #: skytemple/skytemple/module/patch/controller/sp_effects.glade:827
 #: skytemple/skytemple/module/script/controller/main.glade:275
 #: skytemple/skytemple/module/spritecollab/controller/browser.glade:236
-#: skytemple/skytemple/skytemple.glade:1192
+#: skytemple/skytemple/skytemple.glade:1171
 msgid "page1"
 msgstr "page1"
 
@@ -7081,8 +7081,8 @@ msgid "The dungeon floor data of this ROM is corrupt. SkyTemple will still try t
 msgstr "Die Dungeon-Ebenen-Daten dieser ROM sind beschädigt. SkyTemple wird trotzdem versuchen die ROM zu öffnen, aber Dungeon-Bearbeitung wird nicht verfügbar sein. Du kannst außerdem mit weiteren Problemen rechnen. Bitte repariere die ROM."
 
 #: skytemple/skytemple/module/dungeon/module.py:155
-#: skytemple/skytemple/skytemple.glade:948
-#: skytemple/skytemple/skytemple.glade:1305
+#: skytemple/skytemple/skytemple.glade:927
+#: skytemple/skytemple/skytemple.glade:1284
 msgid "SkyTemple"
 msgstr "SkyTemple"
 
@@ -7545,7 +7545,7 @@ msgstr "Dies wird den gesamten Hintergrund importieren.\n\n"
 "Siehe die \"Format-Details\" für weitere Informationen."
 
 #: skytemple/skytemple/module/dungeon_graphics/controller/dungeon_bg.glade:2279
-#: skytemple/skytemple/skytemple.glade:2675
+#: skytemple/skytemple/skytemple.glade:2654
 msgid "Input Image"
 msgstr "Eingabe-Bild"
 
@@ -13491,7 +13491,7 @@ msgstr "<i>Die Übersetzungen wurden von Freiwilligen geschrieben und sind mögl
 "Du kannst <a href=\"translate\">uns helfen</a> SkyTemple zu übersetzen!</i>"
 
 #: skytemple/skytemple/skytemple.glade:671
-#: skytemple/skytemple/skytemple.glade:1110
+#: skytemple/skytemple/skytemple.glade:1089
 msgid "More Files"
 msgstr "Weitere Dateien"
 
@@ -13523,71 +13523,71 @@ msgstr "Konfigurations-Verzeichnis öffnen..."
 msgid "About"
 msgstr "Über"
 
-#: skytemple/skytemple/skytemple.glade:979
+#: skytemple/skytemple/skytemple.glade:958
 msgid "A new version of SkyTemple is available: "
 msgstr "Eine neue Version von SkyTemple ist verfügbar: "
 
-#: skytemple/skytemple/skytemple.glade:1004
+#: skytemple/skytemple/skytemple.glade:983
 msgid "Update now!"
 msgstr "Jetzt aktualisieren!"
 
-#: skytemple/skytemple/skytemple.glade:1032
+#: skytemple/skytemple/skytemple.glade:1011
 msgid "Support us!"
 msgstr "Unterstütze uns!"
 
-#: skytemple/skytemple/skytemple.glade:1068
+#: skytemple/skytemple/skytemple.glade:1047
 msgid "Recent Files:"
 msgstr "Zuletzt geöffnet:"
 
-#: skytemple/skytemple/skytemple.glade:1155
+#: skytemple/skytemple/skytemple.glade:1134
 msgid "Native File Handlers enabled."
 msgstr "Native Datei-Handler aktiviert."
 
-#: skytemple/skytemple/skytemple.glade:1219
+#: skytemple/skytemple/skytemple.glade:1198
 msgid "Oops!"
 msgstr "Ups!"
 
-#: skytemple/skytemple/skytemple.glade:1234
+#: skytemple/skytemple/skytemple.glade:1213
 msgid "An error happened while trying to load this view. Sorry!"
 msgstr "Ein Fehler ist aufgetreten! Tut uns Leid!"
 
-#: skytemple/skytemple/skytemple.glade:1322
+#: skytemple/skytemple/skytemple.glade:1301
 msgid "Open"
 msgstr "Öffnen"
 
-#: skytemple/skytemple/skytemple.glade:1372
+#: skytemple/skytemple/skytemple.glade:1351
 msgid "Save to ROM"
 msgstr "Speichere ROM"
 
-#: skytemple/skytemple/skytemple.glade:1386
+#: skytemple/skytemple/skytemple.glade:1365
 msgid "Reload current ROM"
 msgstr "Aktuelle ROM neuladen"
 
-#: skytemple/skytemple/skytemple.glade:1408
+#: skytemple/skytemple/skytemple.glade:1387
 msgid "Open script editor / debugger"
 msgstr "Öffne Skript-Editor / Debugger"
 
-#: skytemple/skytemple/skytemple.glade:1435
+#: skytemple/skytemple/skytemple.glade:1414
 msgid "Application to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky (EU/US)."
 msgstr "Anwendung zum Bearbeiten der ROM von Pokémon Mystery Dungeon Erkundungsteam Himmel (EU/US)."
 
-#: skytemple/skytemple/skytemple.glade:1437
+#: skytemple/skytemple/skytemple.glade:1416
 msgid "https://github.com/SkyTemple/skytemple"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:1512
+#: skytemple/skytemple/skytemple.glade:1491
 msgid "Privacy Information"
 msgstr "Datenschutzinformationen"
 
-#: skytemple/skytemple/skytemple.glade:1532
+#: skytemple/skytemple/skytemple.glade:1511
 msgid "Don't allow"
 msgstr "Nicht erlauben"
 
-#: skytemple/skytemple/skytemple.glade:1545
+#: skytemple/skytemple/skytemple.glade:1524
 msgid "Allow sending error reports"
 msgstr "Senden von Fehlerberichten zulassen"
 
-#: skytemple/skytemple/skytemple.glade:1572
+#: skytemple/skytemple/skytemple.glade:1551
 msgid "<span size=\"large\">Welcome to SkyTemple!</span>\n\n"
 "We would like to collect some error information if things go wrong.\n\n"
 "You can find more information about the data we collect and how we\n"
@@ -13599,21 +13599,21 @@ msgstr "<span size=\"large\">Willkommen bei SkyTempel!</span>\n\n"
 "verwenden, findest du in unseren <a href=\"privacy\">Datenschutz-Informationen</a>.\n\n"
 "Die Informationen verwenden wir, um SkyTemple zu verbessern."
 
-#: skytemple/skytemple/skytemple.glade:1638
+#: skytemple/skytemple/skytemple.glade:1617
 msgid "Loading ROM \"NAME\"..."
 msgstr "Lade ROM \"NAME\"..."
 
-#: skytemple/skytemple/skytemple.glade:1720
+#: skytemple/skytemple/skytemple.glade:1699
 msgid "You want to support SkyTemple and PMD2 ROM hacking?\n"
 "Thank you! You can support us..."
 msgstr "Du möchtest SkyTemple und PMD2 ROM-Hacking unterstützen?\n"
 "Danke! Du kannst uns unterstützen..."
 
-#: skytemple/skytemple/skytemple.glade:1740
+#: skytemple/skytemple/skytemple.glade:1719
 msgid "... by testing new features!"
 msgstr "... indem du neue Features testest!"
 
-#: skytemple/skytemple/skytemple.glade:1756
+#: skytemple/skytemple/skytemple.glade:1735
 msgid "Join our Discord server and become a \"Beta Tester\", to get\n"
 "access to new features. Your feedback will directly help\n"
 "to improve SkyTemple and you can also suggest new features!"
@@ -13622,11 +13622,11 @@ msgstr "Trete unserem Discord-Server bei und werde ein „Betatester“, um\n"
 "direkt bei der Verbesserung von SkyTemple und wenn du möchtest \n"
 "kannst du dort auch neue Funktionen vorschlagen!"
 
-#: skytemple/skytemple/skytemple.glade:1802
+#: skytemple/skytemple/skytemple.glade:1781
 msgid "... by joining development or reverse engineering the game!"
 msgstr "... indem du bei der Entwicklung oder dem Hacken des Spiels mithilfst!"
 
-#: skytemple/skytemple/skytemple.glade:1818
+#: skytemple/skytemple/skytemple.glade:1797
 msgid "We are always looking for people to help develop SkyTemple\n"
 "or who help hacking the game. If you are interested in reverse\n"
 "engineering or implementing new features for SkyTemple,\n"
@@ -13638,41 +13638,41 @@ msgstr "Wir suchen immer nach Leuten, die bei der Entwicklung von\n"
 "findest du das Projekt auf Github!\n"
 "Du kannst auch unserem Discord-Server beitreten, falls du Fragen hast."
 
-#: skytemple/skytemple/skytemple.glade:1866
+#: skytemple/skytemple/skytemple.glade:1845
 msgid "... by helping to translate SkyTemple!"
 msgstr "... indem du hilfst, SkyTemple zu übersetzen!"
 
-#: skytemple/skytemple/skytemple.glade:1882
+#: skytemple/skytemple/skytemple.glade:1861
 msgid "Do you want to help translating SkyTemple to your native\n"
 "language? Join our Discord for more information."
 msgstr "Möchtest du helfen, SkyTemple in deine Muttersprache zu übersetzen? \n"
 "Komm auf unseren Discord-Server, um weitere Informationen zu erhalten."
 
-#: skytemple/skytemple/skytemple.glade:1926
+#: skytemple/skytemple/skytemple.glade:1905
 msgid "... by buying us a coffee!"
 msgstr "... indem du uns einen Kaffee kaufst!"
 
-#: skytemple/skytemple/skytemple.glade:1949
+#: skytemple/skytemple/skytemple.glade:1928
 msgid "If you like SkyTemple or other PMD2 hacking tools, you can\n"
 "support us with a small donation."
 msgstr "Wenn du SkyTemple oder andere PMD2 Hacking Tools magst,\n"
 "kannst du uns mit einer kleinen Spende unterstützen."
 
-#: skytemple/skytemple/skytemple.glade:1974
+#: skytemple/skytemple/skytemple.glade:1953
 msgid "Parakoopa"
 msgstr "Parakoopa"
 
-#: skytemple/skytemple/skytemple.glade:1991
+#: skytemple/skytemple/skytemple.glade:1970
 msgid "Developer of SkyTemple and \n"
 "creator of ExplorerScript.\n"
 msgstr "Entwickler von SkyTemple und \n"
 "Ersteller von ExplorerScript.\n"
 
-#: skytemple/skytemple/skytemple.glade:2037
+#: skytemple/skytemple/skytemple.glade:2016
 msgid "psy_commando"
 msgstr "psy_commando"
 
-#: skytemple/skytemple/skytemple.glade:2054
+#: skytemple/skytemple/skytemple.glade:2033
 msgid "Figured out most things about \n"
 "how this game works!\n"
 "Developer of ppmdu."
@@ -13680,27 +13680,27 @@ msgstr "Hat das meiste darüber herausgefunden,\n"
 "wie dieses Spiel funktioniert!\n"
 "Entwickler von ppmdu."
 
-#: skytemple/skytemple/skytemple.glade:2132
+#: skytemple/skytemple/skytemple.glade:2111
 msgid "Dither: Ordered"
 msgstr "Dithering: Geordnet"
 
-#: skytemple/skytemple/skytemple.glade:2136
+#: skytemple/skytemple/skytemple.glade:2115
 msgid "Dither: Floyd Steinberg"
 msgstr "Dithering: Floyd Steinberg"
 
-#: skytemple/skytemple/skytemple.glade:2140
+#: skytemple/skytemple/skytemple.glade:2119
 msgid "No Dithering"
 msgstr "Kein Dithering"
 
-#: skytemple/skytemple/skytemple.glade:2144
+#: skytemple/skytemple/skytemple.glade:2123
 msgid "Reorganize colors only"
 msgstr "Farben nur neu sortieren"
 
-#: skytemple/skytemple/skytemple.glade:2150
+#: skytemple/skytemple/skytemple.glade:2129
 msgid "Tilequant"
 msgstr "Tilequant"
 
-#: skytemple/skytemple/skytemple.glade:2199
+#: skytemple/skytemple/skytemple.glade:2178
 msgid "This tool converts any image into the image format required by Explorers of Sky.\n"
 "Please note that the game has pretty strict color restrictions.\n\n"
 "Each 8x8 tile will only be able to use one palette.\n\n"
@@ -13710,43 +13710,43 @@ msgstr "Dieses Tool konvertiert jedes Bild in das von \"Erkundungsteam Himmel\" 
 "Jede 8x8 Kachel kann nur eine Palette verwenden.\n\n"
 "Die von diesem Werkzeug erstellten Bilder können als Hintergründe importiert werden."
 
-#: skytemple/skytemple/skytemple.glade:2228
+#: skytemple/skytemple/skytemple.glade:2207
 msgid "Number of Palettes"
 msgstr "Anzahl der Paletten"
 
-#: skytemple/skytemple/skytemple.glade:2271
+#: skytemple/skytemple/skytemple.glade:2250
 msgid "16"
 msgstr ""
 
-#: skytemple/skytemple/skytemple.glade:2303
+#: skytemple/skytemple/skytemple.glade:2282
 msgid "Transparent Color"
 msgstr "Transparente Farbe"
 
-#: skytemple/skytemple/skytemple.glade:2346
+#: skytemple/skytemple/skytemple.glade:2325
 msgid "Color"
 msgstr "Farbe"
 
-#: skytemple/skytemple/skytemple.glade:2458
+#: skytemple/skytemple/skytemple.glade:2437
 msgid "Dithering Level"
 msgstr "Dithering-Stärke"
 
-#: skytemple/skytemple/skytemple.glade:2546
+#: skytemple/skytemple/skytemple.glade:2525
 msgid "No. of tile clustering passes"
 msgstr "Anzahl der Tile-Clustering-Durchläufe"
 
-#: skytemple/skytemple/skytemple.glade:2602
+#: skytemple/skytemple/skytemple.glade:2581
 msgid "No. of color clustering passes"
 msgstr "Anzahl der Farb-Clustering-Durchläufe"
 
-#: skytemple/skytemple/skytemple.glade:2648
+#: skytemple/skytemple/skytemple.glade:2627
 msgid "Advanced Options"
 msgstr "Erweiterte Einstellungen"
 
-#: skytemple/skytemple/skytemple.glade:2727
+#: skytemple/skytemple/skytemple.glade:2706
 msgid "Additional Input Image (optional)"
 msgstr "Zusätzliches Eingabebild (optional)"
 
-#: skytemple/skytemple/skytemple.glade:2821
+#: skytemple/skytemple/skytemple.glade:2800
 msgid "Convert"
 msgstr "Konvertieren"
 
