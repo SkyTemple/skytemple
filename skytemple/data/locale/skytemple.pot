@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-09-23 13:01+0000\n"
+"POT-Creation-Date: 2023-09-23 14:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4333,8 +4333,9 @@ msgid "Script Browser"
 msgstr ""
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:866
+#: skytemple/skytemple/data/widget/script/ssb_page.ui:40
 #: skytemple/skytemple/module/script/controller/ssa.glade:1131
-#: skytemple/skytemple/module/script/controller/ssb.py:24
+#: skytemple/skytemple/module/script/module.py:102
 msgid "Scripts"
 msgstr ""
 
@@ -5237,6 +5238,19 @@ msgstr ""
 
 #: skytemple/skytemple/core/ui_utils.py:222
 msgid "SkyTemple - Value out of range"
+msgstr ""
+
+#: skytemple/skytemple/data/widget/script/ssb_page.ui:76
+msgid ""
+"Each of the scenes has at least one script assigned to them, which is run when the scene is loaded.\n"
+"In addition to that, there is also \"COMMON/unionall.ssb\", which contains the game's coroutines (main scripts).\n"
+"\n"
+"To edit the game's scripts, open the Script Engine Debugger. You can also do this by clicking the bug icon in the top right.\n"
+"                    "
+msgstr ""
+
+#: skytemple/skytemple/data/widget/script/ssb_page.ui:92
+msgid "Open Script Engine Debugger"
 msgstr ""
 
 #: skytemple/skytemple/main.py:161
@@ -12528,18 +12542,6 @@ msgstr ""
 
 #: skytemple/skytemple/module/script/controller/ssa_event_dialog.py:51
 msgid "New Event"
-msgstr ""
-
-#: skytemple/skytemple/module/script/controller/ssb.py:37
-msgid ""
-"Each of the scenes has at least one script assigned to them, which is run when the scene is loaded.\n"
-"In addition to that, there is also \"COMMON/unionall.ssb\", which contains the game's coroutines (main scripts).\n"
-"\n"
-"To edit the game's scripts, open the Script Engine Debugger. You can also do this by clicking the bug icon in the top right.\n"
-msgstr ""
-
-#: skytemple/skytemple/module/script/controller/ssb.py:44
-msgid "Open Script Engine Debugger"
 msgstr ""
 
 #: skytemple/skytemple/module/script/module.py:327
