@@ -118,7 +118,8 @@ class MainController:
                 view_cls.__class__,
                 assert_not_none(cls._instance._current_view_item_id),
                 assert_not_none(cls._instance),
-            ), threadsafe=False
+            ),
+            threadsafe=False,
         )
 
     @classmethod
@@ -486,7 +487,8 @@ class MainController:
                 self._current_view_controller_class,
                 self._current_view_item_id,
                 self,
-            ), threadsafe=False
+            ),
+            threadsafe=False,
         )
         # Expand the node
         tree.expand_to_path(path)
