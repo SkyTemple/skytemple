@@ -30,28 +30,26 @@ from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
-from skytemple.module.misc_graphics.controller.w16 import W16Controller
-from skytemple.module.misc_graphics.controller.wte_wtu import WteWtuController
-from skytemple.module.misc_graphics.controller.zmappat import ZMappaTController
-from skytemple.module.misc_graphics.controller.font import FontController
-from skytemple.module.misc_graphics.controller.graphic_font import GraphicFontController
-from skytemple.module.misc_graphics.controller.chr import ChrController
-from skytemple.module.misc_graphics.controller.cart_removed import CartRemovedController
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
 from skytemple_files.graphics.wte.model import Wte
 from skytemple_files.graphics.wtu.model import Wtu
 from skytemple_files.graphics.fonts import *
 from skytemple_files.graphics.fonts.abstract import AbstractFont
-from skytemple_files.graphics.fonts.font_dat.model import FontDat
-from skytemple_files.graphics.fonts.font_sir0.model import FontSir0
-from skytemple_files.graphics.fonts.banner_font.model import BannerFont
 from skytemple_files.graphics.fonts.graphic_font.model import GraphicFont
 from skytemple_files.graphics.chr.model import Chr
 from skytemple_files.graphics.zmappat.model import ZMappaT
 from skytemple_files.hardcoded.cart_removed import HardcodedCartRemoved
 
 from PIL import Image
+
+from skytemple.module.misc_graphics.widget.cart_removed import StMiscGraphicsCartRemovedPage
+from skytemple.module.misc_graphics.widget.chr import StMiscGraphicsChrPage
+from skytemple.module.misc_graphics.widget.font import StMiscGraphicsFontPage
+from skytemple.module.misc_graphics.widget.graphic_font import StMiscGraphicsGraphicFontPage
+from skytemple.module.misc_graphics.widget.w16 import StMiscGraphicsW16Page
+from skytemple.module.misc_graphics.widget.wte_wtu import StMiscGraphicsWteWtuPage
+from skytemple.module.misc_graphics.widget.zmappat import StMiscGraphicsZMappaTPage
 
 W16_FILE_EXT = "w16"
 WTE_FILE_EXT = "wte"
@@ -194,7 +192,7 @@ class MiscGraphicsModule(AbstractModule):
                     icon="skytemple-e-graphics-symbolic",
                     name=name,
                     module=self,
-                    view_class=ChrController,
+                    view_class=StMiscGraphicsChrPage,
                     item_data=name,
                 ),
             )
@@ -216,7 +214,7 @@ class MiscGraphicsModule(AbstractModule):
                         icon="skytemple-e-graphics-symbolic",
                         name=name,
                         module=self,
-                        view_class=W16Controller,
+                        view_class=StMiscGraphicsW16Page,
                         item_data=self.list_of_w16s.index(name),
                     ),
                 )
@@ -230,7 +228,7 @@ class MiscGraphicsModule(AbstractModule):
                         icon="skytemple-e-graphics-symbolic",
                         name=name,
                         module=self,
-                        view_class=WteWtuController,
+                        view_class=StMiscGraphicsWteWtuPage,
                         item_data=WteOpenSpec(name, wtu_name, False),
                     ),
                 )
@@ -244,7 +242,7 @@ class MiscGraphicsModule(AbstractModule):
                     icon="skytemple-e-graphics-symbolic",
                     name=spec.get_row_name(),
                     module=self,
-                    view_class=FontController,
+                    view_class=StMiscGraphicsFontPage,
                     item_data=spec,
                 ),
             )
@@ -257,7 +255,7 @@ class MiscGraphicsModule(AbstractModule):
                     icon="skytemple-e-graphics-symbolic",
                     name=spec.get_row_name(),
                     module=self,
-                    view_class=FontController,
+                    view_class=StMiscGraphicsFontPage,
                     item_data=spec,
                 ),
             )
@@ -281,7 +279,7 @@ class MiscGraphicsModule(AbstractModule):
                                 icon="skytemple-e-graphics-symbolic",
                                 name=spec.get_row_name(),
                                 module=self,
-                                view_class=FontController,
+                                view_class=StMiscGraphicsFontPage,
                                 item_data=spec,
                             ),
                         )
@@ -297,7 +295,7 @@ class MiscGraphicsModule(AbstractModule):
                     icon="skytemple-e-graphics-symbolic",
                     name=spec.get_row_name(),
                     module=self,
-                    view_class=GraphicFontController,
+                    view_class=StMiscGraphicsGraphicFontPage,
                     item_data=spec,
                 ),
             )
@@ -313,7 +311,7 @@ class MiscGraphicsModule(AbstractModule):
                     icon="skytemple-e-graphics-symbolic",
                     name="dungeon.bin:" + name,
                     module=self,
-                    view_class=WteWtuController,
+                    view_class=StMiscGraphicsWteWtuPage,
                     item_data=WteOpenSpec(name, wtu_name, True),
                 ),
             )
@@ -325,7 +323,7 @@ class MiscGraphicsModule(AbstractModule):
                     icon="skytemple-e-graphics-symbolic",
                     name="dungeon.bin:" + name,
                     module=self,
-                    view_class=ZMappaTController,
+                    view_class=StMiscGraphicsZMappaTPage,
                     item_data=name,
                 ),
             )
@@ -337,7 +335,7 @@ class MiscGraphicsModule(AbstractModule):
                 icon="skytemple-e-graphics-symbolic",
                 name=CART_REMOVED_NAME,
                 module=self,
-                view_class=CartRemovedController,
+                view_class=StMiscGraphicsCartRemovedPage,
                 item_data=CART_REMOVED_NAME,
             ),
         )
@@ -483,18 +481,18 @@ class MiscGraphicsModule(AbstractModule):
     def collect_debugging_info(
         self, open_view: Union[AbstractController, Gtk.Widget]
     ) -> Optional[DebuggingInfo]:
-        if isinstance(open_view, CartRemovedController):
+        if isinstance(open_view, StMiscGraphicsCartRemovedPage):
             pass  # todo
-        if isinstance(open_view, ChrController):
+        if isinstance(open_view, StMiscGraphicsChrPage):
             pass  # todo
-        if isinstance(open_view, FontController):
+        if isinstance(open_view, StMiscGraphicsFontPage):
             pass  # todo
-        if isinstance(open_view, GraphicFontController):
+        if isinstance(open_view, StMiscGraphicsGraphicFontPage):
             pass  # todo
-        if isinstance(open_view, W16Controller):
+        if isinstance(open_view, StMiscGraphicsW16Page):
             pass  # todo
-        if isinstance(open_view, WteWtuController):
+        if isinstance(open_view, StMiscGraphicsWteWtuPage):
             pass  # todo
-        if isinstance(open_view, ZMappaTController):
+        if isinstance(open_view, StMiscGraphicsZMappaTPage):
             pass  # todo
         return None

@@ -35,12 +35,6 @@ from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
-from skytemple.module.sprite.controller.monster_sprite import MonsterSpriteController
-from skytemple.module.sprite.controller.object import ObjectController
-from skytemple.module.sprite.controller.object_main import (
-    OBJECT_SPRTIES,
-    ObjectMainController,
-)
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import MONSTER_BIN, add_extension_if_missing
 from skytemple_files.container.bin_pack.model import BinPack
@@ -48,6 +42,13 @@ from skytemple_files.data.sprconf.handler import SPRCONF_FILENAME
 from skytemple_files.graphics.chara_wan.model import WanFile
 from skytemple_files.common.i18n_util import f, _
 from skytemple_rust import pmd_wan
+
+from skytemple.module.sprite.widget.monster_sprite import StSpriteMonsterSpritePage
+from skytemple.module.sprite.widget.object import StSpriteObjectPage
+from skytemple.module.sprite.widget.object_main import (
+    OBJECT_SPRTIES,
+    StSpriteObjectMainPage,
+)
 
 if TYPE_CHECKING:
     from skytemple.module.gfxcrunch.module import GfxcrunchModule
@@ -86,7 +87,7 @@ class SpriteModule(AbstractModule):
                 icon="skytemple-e-object-symbolic",
                 name=OBJECT_SPRTIES,
                 module=self,
-                view_class=ObjectMainController,
+                view_class=StSpriteObjectMainPage,
                 item_data=0,
             ),
         )
@@ -100,7 +101,7 @@ class SpriteModule(AbstractModule):
                     icon="skytemple-e-object-symbolic",
                     name=name,
                     module=self,
-                    view_class=ObjectController,
+                    view_class=StSpriteObjectPage,
                     item_data=name,
                 ),
             )
@@ -114,7 +115,7 @@ class SpriteModule(AbstractModule):
         set_shadow_size_cb,
     ) -> Gtk.Widget:
         """Returns the view for one portrait slots"""
-        controller = MonsterSpriteController(
+        return StSpriteMonsterSpritePage(
             self,
             sprite_id,
             modified_callback,
@@ -122,7 +123,6 @@ class SpriteModule(AbstractModule):
             get_shadow_size_cb,
             set_shadow_size_cb,
         )
-        return controller.get_view()
 
     def get_object_sprite_raw(self, filename):
         assert filename in self.list_of_obj_sprites
@@ -148,7 +148,7 @@ class SpriteModule(AbstractModule):
                 icon="skytemple-e-object-symbolic",
                 name=obj_name,
                 module=self,
-                view_class=ObjectController,
+                view_class=StSpriteObjectPage,
                 item_data=obj_name,
             ),
         )
@@ -462,7 +462,7 @@ class SpriteModule(AbstractModule):
     def collect_debugging_info(
         self, open_view: Union[AbstractController, Gtk.Widget]
     ) -> Optional[DebuggingInfo]:
-        if isinstance(open_view, ObjectController):
+        if isinstance(open_view, StSpriteObjectPage):
             pass  # todo
         return None
 

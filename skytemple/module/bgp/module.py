@@ -29,8 +29,9 @@ from skytemple.core.item_tree import (
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
-from skytemple.module.bgp.controller.bgp import BgpController
 from skytemple_files.common.types.file_types import FileType
+
+from skytemple.module.bgp.widget.bgp import StBgpBgpPage
 
 BGP_FILE_EXT = "bgp"
 
@@ -82,7 +83,7 @@ class BgpModule(AbstractModule):
                         icon="skytemple-e-bgp-symbolic",
                         name=bgp_name,
                         module=self,
-                        view_class=BgpController,
+                        view_class=StBgpBgpPage,
                         item_data=i,
                     ),
                 )
@@ -104,6 +105,6 @@ class BgpModule(AbstractModule):
     def collect_debugging_info(
         self, open_view: Union[AbstractController, Gtk.Widget]
     ) -> Optional[DebuggingInfo]:
-        if isinstance(open_view, BgpController):
+        if isinstance(open_view, StBgpBgpPage):
             return {"models": {self.list_of_bgps[open_view.item_id]: open_view.bgp}}
         return None

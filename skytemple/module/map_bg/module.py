@@ -34,8 +34,6 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
-from skytemple.module.map_bg.controller.bg import BgController
-from skytemple.module.map_bg.controller.main import MainController, MAPBG_NAME
 from skytemple.module.map_bg.script.add_created_with_logo import AddCreatedWithLogo
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
@@ -52,6 +50,9 @@ from skytemple_files.hardcoded.ground_dungeon_tilesets import (
     GroundTilesetMapping,
     HardcodedGroundDungeonTilesets,
 )
+
+from skytemple.module.map_bg.widget.bg import StMapBgBgPage
+from skytemple.module.map_bg.widget.main import MAPBG_NAME, StMapBgMainPage
 
 MAP_BG_PATH = "MAP_BG/"
 MAP_BG_LIST = MAP_BG_PATH + "bg_list.dat"
@@ -86,7 +87,7 @@ class MapBgModule(AbstractModule):
                 icon="skytemple-e-mapbg-symbolic",
                 name=MAPBG_NAME,
                 module=self,
-                view_class=MainController,
+                view_class=StMapBgMainPage,
                 item_data=0,
             ),
         )
@@ -196,7 +197,7 @@ class MapBgModule(AbstractModule):
                         icon="skytemple-e-mapbg-symbolic",
                         name=level.bma_name,
                         module=self,
-                        view_class=BgController,
+                        view_class=StMapBgBgPage,
                         item_data=i,
                     ),
                 )
@@ -269,7 +270,7 @@ class MapBgModule(AbstractModule):
                     icon="skytemple-e-mapbg-symbolic",
                     name=map_name,
                     module=self,
-                    view_class=BgController,
+                    view_class=StMapBgBgPage,
                     item_data=item_id,
                 ),
             )
@@ -408,7 +409,7 @@ class MapBgModule(AbstractModule):
     def collect_debugging_info(
         self, open_view: Union[AbstractController, Gtk.Widget]
     ) -> Optional[DebuggingInfo]:
-        if isinstance(open_view, BgController):
+        if isinstance(open_view, StMapBgBgPage):
             pass  # todo
         return None
 
