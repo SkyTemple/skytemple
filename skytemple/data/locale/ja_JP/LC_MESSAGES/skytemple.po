@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-23 19:42+0000\n"
-"PO-Revision-Date: 2023-09-24 07:02\n"
+"PO-Revision-Date: 2023-09-24 07:57\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -6801,7 +6801,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1597
 msgid "This seed is used as the base to randomly generate the actual seeds used by the dungeon generation engine. Note that generated previews might not be 100% accurate."
-msgstr ""
+msgstr "このシードは、ダンジョン生成エンジンが使用する実際のシードをランダムに生成するためのベースとして使用されます。生成されたプレビューは 100% 正確ではない場合があるので注意してください。"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:1607
 msgid "Change the chances of Pokémon, traps or items spawning.\n"
@@ -10561,7 +10561,12 @@ msgid "The values are actually percentages.\n"
 "1000 -> 100%, etc.\n\n"
 "If you answered yes to the question asking if you played EoT or EoD in the personality test and you haven't recruited this Pokémon yet, the second recruit rate is used instead.\n"
 "If you have recruited this Pokémon already, its recruit rate is halved (only if it's positive)."
-msgstr ""
+msgstr "値は実際にはパーセンテージです。\n"
+"10-> 1.0%、\n"
+"100-> 10.0%、\n"
+"1000-> 100% など。\n\n"
+"性格診断の 「ときのたんけんたいか やみのたんけんたいを あそんだことがある？」の質問で「はい」を選んだうえで、このポケモンをまだ仲間にしていない場合は、代わりに 2 番目の勧誘率が使用されます。\n"
+"このポケモンをすでに仲間にしている場合、勧誘率は半分になります（ポジティブな場合のみ）。"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:625
 msgid "Recruit Rate"
