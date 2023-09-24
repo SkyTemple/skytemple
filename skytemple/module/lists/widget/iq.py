@@ -61,8 +61,6 @@ class IqGainOtherItem(Enum):
     JUICE_BAR_NECTAR = auto()
 
 
-
-
 @Gtk.Template(filename=os.path.join(data_dir(), "widget", "lists", "iq.ui"))
 class StListsIqPage(Gtk.Box):
     __gtype_name__ = "StListsIqPage"

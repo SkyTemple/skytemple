@@ -27,8 +27,9 @@ from skytemple.core.item_tree import (
 )
 from skytemple.core.rom_project import RomProject
 from skytemple.core.ui_utils import assert_not_none
-from skytemple.module.rom.controller.main import MainController
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
+
+from skytemple.module.rom.widget.main import StRomMainPage
 
 
 class RomModule(AbstractModule):
@@ -66,7 +67,7 @@ class RomModule(AbstractModule):
                 icon="skytemple-e-rom-symbolic",
                 name=os.path.basename(self.project.filename),
                 module=self,
-                view_class=MainController,
+                view_class=StRomMainPage,
                 item_data=0,
             )
         )

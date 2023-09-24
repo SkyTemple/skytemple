@@ -49,15 +49,6 @@ from skytemple.core.string_provider import StringType
 from skytemple.core.ui_utils import data_dir
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
 from skytemple.module.dungeon import MAX_ITEMS
-from skytemple.module.dungeon.controller.dungeon import DungeonController
-from skytemple.module.dungeon.controller.fixed import FixedController
-from skytemple.module.dungeon.controller.fixed_rooms import (
-    FIXED_ROOMS_NAME,
-    FixedRoomsController,
-)
-from skytemple.module.dungeon.controller.floor import FloorController
-from skytemple.module.dungeon.controller.invalid import InvalidDungeonController
-from skytemple.module.dungeon.controller.main import MainController, DUNGEONS_NAME
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
 from skytemple_files.data.md.protocol import MdProtocol
@@ -102,6 +93,16 @@ from skytemple_files.hardcoded.fixed_floor import (
     FixedFloorProperties,
 )
 from skytemple_files.common.i18n_util import _, f
+
+from skytemple.module.dungeon.widget.dungeon import StDungeonDungeonPage
+from skytemple.module.dungeon.widget.fixed import StDungeonFixedPage
+from skytemple.module.dungeon.widget.fixed_rooms import (
+    FIXED_ROOMS_NAME,
+    StDungeonFixedRoomsPage,
+)
+from skytemple.module.dungeon.widget.floor import StDungeonFloorPage
+from skytemple.module.dungeon.widget.invalid import StDungeonInvalidDungeonPage
+from skytemple.module.dungeon.widget.main import DUNGEONS_NAME, StDungeonMainPage
 
 # TODO: Add this to dungeondata.xml?
 DOJO_DUNGEONS_FIRST = 0xB4
@@ -205,7 +206,7 @@ class DungeonModule(AbstractModule):
                 icon=ICON_ROOT,
                 name=DUNGEONS_NAME,
                 module=self,
-                view_class=MainController,
+                view_class=StDungeonMainPage,
                 item_data=0,
             ),
         )
@@ -231,7 +232,7 @@ class DungeonModule(AbstractModule):
                 icon=ICON_FIXED_ROOMS,
                 name=FIXED_ROOMS_NAME,
                 module=self,
-                view_class=FixedRoomsController,
+                view_class=StDungeonFixedRoomsPage,
                 item_data=0,
             ),
         )
@@ -243,7 +244,7 @@ class DungeonModule(AbstractModule):
                         icon=ICON_FIXED_ROOMS,
                         name=f(_("Fixed Room {i}")),
                         module=self,
-                        view_class=FixedController,
+                        view_class=StDungeonFixedPage,
                         item_data=i,
                     ),
                 )
@@ -297,7 +298,7 @@ class DungeonModule(AbstractModule):
                     f"Could not fulfill floor open request: {ex.__class__.__name__}:{ex}"
                 )
         if request.type == REQUEST_TYPE_DUNGEON_FIXED_FLOOR_ENTITY:
-            FixedRoomsController.focus_entity_on_open = request.identifier
+            StDungeonFixedRoomsPage.focus_entity_on_open = request.identifier
             return self._fixed_floor_root_iter
         return None
 
@@ -446,9 +447,9 @@ class DungeonModule(AbstractModule):
 
     def _add_dungeon_to_tree(self, root_node, idx, previous_floor_id):
         clazz = (
-            DungeonController
+            StDungeonDungeonPage
             if idx not in self._validator.invalid_dungeons
-            else InvalidDungeonController
+            else StDungeonInvalidDungeonPage
         )
         dungeon_info = DungeonViewInfo(idx, idx < DOJO_DUNGEONS_FIRST)
         self._dungeon_iters[idx] = self._item_tree.add_entry(
@@ -461,7 +462,7 @@ class DungeonModule(AbstractModule):
                 item_data=dungeon_info,
             ),
         )
-        if clazz == DungeonController:
+        if clazz == StDungeonDungeonPage:
             self._regenerate_dungeon_floors(idx, previous_floor_id)
 
     def _regenerate_dungeon_floors(self, idx, previous_floor_id):
@@ -477,7 +478,7 @@ class DungeonModule(AbstractModule):
                         icon=ICON_FLOOR,
                         name=self.generate_floor_label(floor_i + previous_floor_id),
                         module=self,
-                        view_class=FloorController,
+                        view_class=StDungeonFloorPage,
                         item_data=FloorViewInfo(
                             previous_floor_id + floor_i, dungeon_info
                         ),
@@ -1063,13 +1064,13 @@ class DungeonModule(AbstractModule):
     def collect_debugging_info(
         self, open_view: Union[AbstractController, Gtk.Widget]
     ) -> Optional[DebuggingInfo]:
-        if isinstance(open_view, DungeonController):
+        if isinstance(open_view, StDungeonDungeonPage):
             pass  # todo
-        if isinstance(open_view, FloorController):
+        if isinstance(open_view, StDungeonFloorPage):
             pass  # todo
-        if isinstance(open_view, FixedRoomsController):
+        if isinstance(open_view, StDungeonFixedRoomsPage):
             pass  # todo
-        if isinstance(open_view, FixedController):
+        if isinstance(open_view, StDungeonFixedPage):
             pass  # todo
         return None
 

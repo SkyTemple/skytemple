@@ -29,11 +29,11 @@ from skytemple.core.item_tree import (
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
-from skytemple.module.strings.controller.strings import StringsController
 
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.str.model import Str
 
+from skytemple.module.strings.widget.strings import StStringsStringsPage
 
 MAIN_VIEW_DATA = StStatusPageData(
     icon_name="skytemple-illust-text",
@@ -82,7 +82,7 @@ class StringsModule(AbstractModule):
                     icon="skytemple-e-string-symbolic",
                     name=language.name_localized,
                     module=self,
-                    view_class=StringsController,
+                    view_class=StStringsStringsPage,
                     item_data=language,
                 ),
             )
@@ -103,6 +103,6 @@ class StringsModule(AbstractModule):
     def collect_debugging_info(
         self, open_view: Union[AbstractController, Gtk.Widget]
     ) -> Optional[DebuggingInfo]:
-        if isinstance(open_view, StringsController):
+        if isinstance(open_view, StStringsStringsPage):
             pass  # todo
         return None

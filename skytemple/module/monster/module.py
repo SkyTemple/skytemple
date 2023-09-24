@@ -33,9 +33,6 @@ from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.string_provider import StringType
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
-from skytemple.module.monster.controller.level_up import LevelUpController
-from skytemple.module.monster.controller.main import MainController, MONSTER_NAME
-from skytemple.module.monster.controller.monster import MonsterController
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.bin_pack.model import BinPack
 from skytemple_files.data.val_list.handler import ValListHandler
@@ -58,6 +55,10 @@ from skytemple_files.hardcoded.monster_sprite_data_table import (
 )
 from skytemple_files.common.i18n_util import _
 from skytemple_files.common.util import normalize_string
+
+from skytemple.module.monster.widget.level_up import StMonsterLevelUpPage
+from skytemple.module.monster.widget.main import StMonsterMainPage, MONSTER_NAME
+from skytemple.module.monster.widget.monster import StMonsterMonsterPage
 
 MONSTER_MD_FILE = "BALANCE/monster.md"
 M_LEVEL_BIN = "BALANCE/m_level.bin"
@@ -122,7 +123,7 @@ class MonsterModule(AbstractModule):
                 icon="skytemple-e-monster-symbolic",
                 name=MONSTER_NAME,
                 module=self,
-                view_class=MainController,
+                view_class=StMonsterMainPage,
                 item_data=0,
             ),
         )
@@ -161,7 +162,7 @@ class MonsterModule(AbstractModule):
     def get_opened_id(self) -> Optional[int]:
         """Returns the ID of the currently opened monster in SkyTemple. None if no view for a monster is opened."""
         module, controller, item_id = SkyTempleMainController.view_info()
-        if isinstance(module, MonsterModule) and controller == MonsterController:
+        if isinstance(module, MonsterModule) and controller == StMonsterMonsterPage:
             return item_id
         return None
 
@@ -199,7 +200,7 @@ class MonsterModule(AbstractModule):
             icon="skytemple-e-monster-symbolic",
             name=f"${i:04}: {gender.print_name}{suffix}",
             module=self,
-            view_class=MonsterController,
+            view_class=StMonsterMonsterPage,
             item_data=i,
         )
 
@@ -311,8 +312,9 @@ class MonsterModule(AbstractModule):
                 Gtk.Label.new(_("Stats and moves are only editable for base forms.")),
                 None,
             )
-        controller = LevelUpController(self, item_id)
-        return controller.get_view(), controller
+        view = StMonsterLevelUpPage(self, item_id)
+        # this may seem silly but is for backwards compatibility:
+        return view, view
 
     def set_idle_anim_type(self, item_id, value):
         """Set idle value of the monster"""
@@ -627,7 +629,7 @@ class MonsterModule(AbstractModule):
     def collect_debugging_info(
         self, open_view: Union[AbstractController, Gtk.Widget]
     ) -> Optional[DebuggingInfo]:
-        if isinstance(open_view, MonsterController):
+        if isinstance(open_view, StMonsterMonsterPage):
             pass  # todo
         return None
 

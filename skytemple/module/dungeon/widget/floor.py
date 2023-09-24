@@ -141,8 +141,6 @@ class FloorEditItemList(Enum):
     UNK2 = 5
 
 
-
-
 class FloorRanks(Enum):
     INVALID = (0, _("Invalid"))
     E_RANK = (1, _("E Rank"))
@@ -182,16 +180,12 @@ class FloorRanks(Enum):
         return self._print_name_
 
 
-
-
 @dataclasses.dataclass
 class SpawnEntry:
     entid: int
     level: u8
     relative_weight_main: int
     relative_weight_mh: int
-
-
 
 
 @Gtk.Template(filename=os.path.join(data_dir(), "widget", "dungeon", "floor.ui"))

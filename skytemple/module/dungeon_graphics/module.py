@@ -30,17 +30,6 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_DUNGEON_TILESET
 from skytemple.core.rom_project import RomProject, BinaryName
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
-from skytemple.module.dungeon_graphics.controller.dungeon_bg import DungeonBgController
-from skytemple.module.dungeon_graphics.controller.colvec import ColvecController
-from skytemple.module.dungeon_graphics.controller.tileset import TilesetController
-from skytemple.module.dungeon_graphics.controller.main import (
-    MainController,
-    DUNGEON_GRAPHICS_NAME,
-)
-from skytemple.module.dungeon_graphics.controller.trp_itm_img import (
-    ImgType,
-    TrpItmImgController,
-)
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.container.dungeon_bin.model import DungeonBinPack
 from skytemple_files.graphics.dbg.protocol import DbgProtocol
@@ -54,6 +43,22 @@ from skytemple_files.common.i18n_util import _
 
 # TODO: Not so great that this is hard-coded, but how else can we really do it? - Maybe at least in the dungeondata.xml?
 from skytemple_files.hardcoded.dungeons import TilesetProperties, HardcodedDungeons
+
+from skytemple.module.dungeon_graphics.widget.colvec import StDungeonGraphicsColvecPage
+from skytemple.module.dungeon_graphics.widget.dungeon_bg import (
+    StDungeonGraphicsDungeonBgPage,
+)
+from skytemple.module.dungeon_graphics.widget.main import (
+    DUNGEON_GRAPHICS_NAME,
+    StDungeonGraphicsMainPage,
+)
+from skytemple.module.dungeon_graphics.widget.tileset import (
+    StDungeonGraphicsTilesetPage,
+)
+from skytemple.module.dungeon_graphics.widget.trp_itm_img import (
+    ImgType,
+    StDungeonGraphicsTrpItmImgPage,
+)
 
 NUMBER_OF_TILESETS = 170
 NUMBER_OF_BACKGROUNDS = 29
@@ -113,7 +118,7 @@ class DungeonGraphicsModule(AbstractModule):
                 icon="skytemple-e-dungeon-tileset-symbolic",
                 name=DUNGEON_GRAPHICS_NAME,
                 module=self,
-                view_class=MainController,
+                view_class=StDungeonGraphicsMainPage,
                 item_data=0,
             ),
         )
@@ -147,7 +152,7 @@ class DungeonGraphicsModule(AbstractModule):
                         icon="skytemple-e-dungeon-tileset-symbolic",
                         name=f"{_('Tileset')} {i}",
                         module=self,
-                        view_class=TilesetController,
+                        view_class=StDungeonGraphicsTilesetPage,
                         item_data=i,
                     ),
                 )
@@ -160,7 +165,7 @@ class DungeonGraphicsModule(AbstractModule):
                         icon="skytemple-e-mapbg-symbolic",
                         name=f"{_('Background')} {i + NUMBER_OF_TILESETS}",
                         module=self,
-                        view_class=DungeonBgController,
+                        view_class=StDungeonGraphicsDungeonBgPage,
                         item_data=i,
                     ),
                 )
@@ -172,7 +177,7 @@ class DungeonGraphicsModule(AbstractModule):
                     icon="skytemple-e-graphics-symbolic",
                     name="Traps",
                     module=self,
-                    view_class=TrpItmImgController,
+                    view_class=StDungeonGraphicsTrpItmImgPage,
                     item_data=ImgType.TRP,
                 ),
             )
@@ -185,7 +190,7 @@ class DungeonGraphicsModule(AbstractModule):
                     icon="skytemple-e-graphics-symbolic",
                     name="Items",
                     module=self,
-                    view_class=TrpItmImgController,
+                    view_class=StDungeonGraphicsTrpItmImgPage,
                     item_data=ImgType.ITM,
                 ),
             )
@@ -198,7 +203,7 @@ class DungeonGraphicsModule(AbstractModule):
                     icon="skytemple-e-dungeon-tileset-symbolic",
                     name=_("Color Map"),
                     module=self,
-                    view_class=ColvecController,
+                    view_class=StDungeonGraphicsColvecPage,
                     item_data=i,
                 ),
             )
@@ -313,12 +318,12 @@ class DungeonGraphicsModule(AbstractModule):
     def collect_debugging_info(
         self, open_view: Union[AbstractController, Gtk.Widget]
     ) -> Optional[DebuggingInfo]:
-        if isinstance(open_view, DungeonBgController):
+        if isinstance(open_view, StDungeonGraphicsDungeonBgPage):
             pass  # todo
-        if isinstance(open_view, ColvecController):
+        if isinstance(open_view, StDungeonGraphicsColvecPage):
             pass  # todo
-        if isinstance(open_view, TilesetController):
+        if isinstance(open_view, StDungeonGraphicsTilesetPage):
             pass  # todo
-        if isinstance(open_view, TrpItmImgController):
+        if isinstance(open_view, StDungeonGraphicsTrpItmImgPage):
             pass  # todo
         return None

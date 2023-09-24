@@ -31,10 +31,6 @@ from skytemple.core.module_controller import AbstractController
 from skytemple.core.rom_project import RomProject
 from skytemple.core.string_provider import StringType
 from skytemple.core.widget.status_page import StStatusPageData, StStatusPage
-from skytemple.module.moves_items.controller.item import ItemController
-from skytemple.module.moves_items.controller.item_lists import ItemListsController
-from skytemple.module.moves_items.controller.item_keys import ItemKeysController
-from skytemple.module.moves_items.controller.move import MoveController
 from skytemple_files.common.ppmdu_config.dungeon_data import Pmd2DungeonItemCategory
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.data.item_p.protocol import ItemPProtocol, ItemPEntryProtocol
@@ -45,6 +41,11 @@ from skytemple_files.list.items.handler import ItemListHandler
 from skytemple_files.data.val_list.handler import ValListHandler
 from skytemple_files.dungeon_data.mappa_bin.protocol import MappaItemListProtocol
 from skytemple_files.common.i18n_util import _
+
+from skytemple.module.moves_items.widget.item import StMovesItemsItemPage
+from skytemple.module.moves_items.widget.item_keys import StMovesItemsItemKeysPage
+from skytemple.module.moves_items.widget.item_lists import StMovesItemsItemListsPage
+from skytemple.module.moves_items.widget.move import StMovesItemsMovePage
 
 MOVE_FILE = "BALANCE/waza_p.bin"
 ITEM_S_FILE = "BALANCE/item_s_p.bin"
@@ -114,7 +115,7 @@ class MovesItemsModule(AbstractModule):
                 icon="skytemple-view-list-symbolic",
                 name=_("Item Lists"),
                 module=self,
-                view_class=ItemListsController,
+                view_class=StMovesItemsItemListsPage,
                 item_data=0,
             ),
         )
@@ -124,7 +125,7 @@ class MovesItemsModule(AbstractModule):
                 icon="skytemple-view-list-symbolic",
                 name=_("Item Sort Keys"),
                 module=self,
-                view_class=ItemKeysController,
+                view_class=StMovesItemsItemKeysPage,
                 item_data=0,
             ),
         )
@@ -140,7 +141,7 @@ class MovesItemsModule(AbstractModule):
                     icon="skytemple-e-item-symbolic",
                     name=f"#{i:04}: {name}",
                     module=self,
-                    view_class=ItemController,
+                    view_class=StMovesItemsItemPage,
                     item_data=i,
                 ),
             )
@@ -156,7 +157,7 @@ class MovesItemsModule(AbstractModule):
                     icon="skytemple-e-move-symbolic",
                     name=f"#{i:04}: {name}",
                     module=self,
-                    view_class=MoveController,
+                    view_class=StMovesItemsMovePage,
                     item_data=i,
                 ),
             )
@@ -246,12 +247,12 @@ class MovesItemsModule(AbstractModule):
     def collect_debugging_info(
         self, open_view: Union[AbstractController, Gtk.Widget]
     ) -> Optional[DebuggingInfo]:
-        if isinstance(open_view, MoveController):
+        if isinstance(open_view, StMovesItemsMovePage):
             pass  # todo
-        if isinstance(open_view, ItemController):
+        if isinstance(open_view, StMovesItemsItemPage):
             pass  # todo
-        if isinstance(open_view, ItemKeysController):
+        if isinstance(open_view, StMovesItemsItemKeysPage):
             pass  # todo
-        if isinstance(open_view, ItemListsController):
+        if isinstance(open_view, StMovesItemsItemListsPage):
             pass  # todo
         return None
