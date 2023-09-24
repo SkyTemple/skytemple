@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-23 19:42+0000\n"
-"PO-Revision-Date: 2023-09-23 19:47\n"
+"PO-Revision-Date: 2023-09-24 04:27\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -1138,7 +1138,7 @@ msgstr ""
 
 #: skytemple-files/skytemple_files/data/inter_d/model.py:42
 msgid "Scenario Greater or Equal"
-msgstr ""
+msgstr "シナリオ以上"
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:37
 #: skytemple/skytemple/module/dungeon/controller/fixed_rooms.glade:348
@@ -1177,7 +1177,7 @@ msgstr "このポケモンは専用道具を所持して孵化することがあ
 
 #: skytemple-files/skytemple_files/data/item_s_p/model.py:79
 msgid "? (Only all the Eeveelutions, and the Tyrogue line have items with this type!)"
-msgstr ""
+msgstr "？ (このタイプを持つ道具は、イーブイの進化系とバルキーの進化系にしかありません！)"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:67
 #: skytemple/skytemple/module/lists/controller/starters_list.py:34
@@ -1327,19 +1327,19 @@ msgstr "メス (2つ目の姿)"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:491
 msgid "Knows AncientPower"
-msgstr ""
+msgstr "技「げんしのちから」を習得している"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:492
 msgid "Knows Rollout"
-msgstr ""
+msgstr "技「ころがる」を習得している"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:493
 msgid "Knows Double Hit"
-msgstr ""
+msgstr "技「ダブルアタック」を習得している"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:494
 msgid "Knows Mimic"
-msgstr ""
+msgstr "技「ものまね」を習得している"
 
 #: skytemple-files/skytemple_files/data/md/protocol.py:517
 msgid "Standard"
@@ -4707,11 +4707,13 @@ msgstr "デバッグログ"
 msgid "Powered by DeSmuME, the Nintendo DS Emulator:\n"
 "Originally licensed under GPLv2. See https://github.com/TASVideos/desmume/blob/master/desmume/AUTHORS for a list of authors!\n"
 "Thanks for making this great emulator!"
-msgstr ""
+msgstr "ニンテンドーDSエミュレーターである「DeSmuME」を搭載：\n"
+"元々はGPLv2でライセンスされていました。著者のリストについては https://github.com/TASVideos/desmume/blob/master/desmume/AUTHORS を参照してください！\n"
+"この素晴らしいエミュレータを作ってくれてありがとう！"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3249
 msgid "Interactive debugger for the script engine of Pokémon Mystery Dungeon Explorers of Sky (EU/US)"
-msgstr ""
+msgstr "ポケモン不思議のダンジョン 空の探検隊 (EU/US) のスクリプトエンジン用のインタラクティブデバッガー"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:3251
 msgid "https://github.com/SkyTemple/skytemple-ssb-debugger"
@@ -4778,7 +4780,8 @@ msgstr ""
 #, python-brace-format
 msgid "The script contains a syntax error, please fix it before editing the Position Mark.\n"
 "Parse error: {err}"
-msgstr ""
+msgstr "スクリプトに構文エラーがあります。ポジションマークを編集する前に修正してください。\n"
+"Parse error: {err}"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/completion/constants.py:41
 msgid "Constants & Variables"
@@ -4795,7 +4798,7 @@ msgstr "関数"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:257
 msgid "Macros have no scenes."
-msgstr ""
+msgstr "マクロにシーンがありません。"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/model/script_file_context/exps_macro.py:258
 msgid "Action not supported"
