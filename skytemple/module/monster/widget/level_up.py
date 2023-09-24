@@ -117,12 +117,10 @@ class StMonsterLevelUpPage(Gtk.Notebook):
     egg_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     _last_open_tab_id = 0
 
-    def __init__(self, module: "MonsterModule", item_id: int):
+    def __init__(self, module: "MonsterModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
-        self.item_id = item_id
+        self.item_data = item_data
         self._string_provider = self.module.project.get_string_provider()
         self._move_names: dict[int, str] = {}
         self._level_bin_entry: Optional[LevelBinEntry] = None
@@ -401,7 +399,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
 
     def _rebuild_level_up(self):
         store = self.level_up_store
-        learn_set = self._waza_p.learnsets[self.item_id]
+        learn_set = self._waza_p.learnsets[self.item_data]
         level_up_moves = []
         for row in iter_tree_model(store):
             level_up_moves.append(
@@ -414,7 +412,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
 
     def _rebuild_hmtm(self):
         store = self.hmtm_store
-        learn_set = self._waza_p.learnsets[self.item_id]
+        learn_set = self._waza_p.learnsets[self.item_data]
         learn_set.tm_hm_moves = []
         for row in iter_tree_model(store):
             learn_set.tm_hm_moves.append(u32(int(row[0])))
@@ -422,7 +420,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
 
     def _rebuild_egg(self):
         store = self.egg_store
-        learn_set = self._waza_p.learnsets[self.item_id]
+        learn_set = self._waza_p.learnsets[self.item_data]
         learn_set.egg_moves = []
         for row in iter_tree_model(store):
             learn_set.egg_moves.append(u32(int(row[0])))
@@ -430,10 +428,10 @@ class StMonsterLevelUpPage(Gtk.Notebook):
 
     def _mark_stats_as_modified(self):
         assert self._level_bin_entry is not None
-        self.module.set_m_level_bin_entry(self.item_id - 1, self._level_bin_entry)
+        self.module.set_m_level_bin_entry(self.item_data - 1, self._level_bin_entry)
 
     def _mark_moves_as_modified(self):
-        self.module.mark_waza_as_modified(self.item_id)
+        self.module.mark_waza_as_modified(self.item_data)
 
     def _edit(self, store_name, path, index, val, check_fn: Callable[[Any], Any]):
         store = getattr(self, store_name)
@@ -483,7 +481,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
 
     def _init_stats_notebook(self):
         stats_store = self.stats_store
-        entry_id = self.item_id - 1
+        entry_id = self.item_data - 1
         if entry_id < 0 or entry_id >= self.module.count_m_level_entries():
             # No valid entry
             stats_box = self.stats_box
@@ -515,7 +513,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
         level_up_store = self.level_up_store
         hmtm_store = self.hmtm_store
         egg_store = self.egg_store
-        if self.item_id < 0 or self.item_id >= len(self._waza_p.learnsets):
+        if self.item_data < 0 or self.item_data >= len(self._waza_p.learnsets):
             # No valid entry
             level_up_box = self.level_up_box
             hmtm_box = self.hmtm_box
@@ -537,7 +535,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
             )
             self._has_stats = False
         else:
-            entry = self._waza_p.learnsets[self.item_id]
+            entry = self._waza_p.learnsets[self.item_data]
             # Level up
             for level_and_move in entry.level_up_moves:
                 level_up_store.append(
@@ -591,12 +589,12 @@ class StMonsterLevelUpPage(Gtk.Notebook):
         if self._level_bin_entry is None:
             return
         stack = self.graph_stack
-        if self.item_id < len(self._waza_p.learnsets):
-            learnset = self._waza_p.learnsets[self.item_id]
+        if self.item_data < len(self._waza_p.learnsets):
+            learnset = self._waza_p.learnsets[self.item_data]
         else:
             learnset = FileType.WAZA_P.get_learnset_model()([], [], [])
         graph_provider = LevelUpGraphProvider(
-            self.module.get_entry(self.item_id),
+            self.module.get_entry(self.item_data),
             self._level_bin_entry,
             learnset,
             self._string_provider.get_all(StringType.MOVE_NAMES),
@@ -607,7 +605,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
         with open_utf8(self.get_tmp_html_path(), "w") as f:
             f.write(
                 render_graph_template(
-                    f"{self._string_provider.get_value(StringType.POKEMON_NAMES, self.item_id)} {_('Stats Graph')} (SkyTemple)",
+                    f"{self._string_provider.get_value(StringType.POKEMON_NAMES, self.item_data)} {_('Stats Graph')} (SkyTemple)",
                     svg,
                 )
             )

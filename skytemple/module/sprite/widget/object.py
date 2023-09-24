@@ -41,17 +41,15 @@ class StSpriteObjectPage(Gtk.Box):
     export: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     importimage: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "SpriteModule", item_id: str):
+    def __init__(self, module: "SpriteModule", item_data: str):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
-        self.item_id = item_id
+        self.item_data = item_data
         self._sprite_provider = module.get_sprite_provider()
         self._draws: list[Gtk.DrawingArea] = []
         self._surfaces: list[cairo.Surface] = []
         self._sprite_provider.reset()
-        self.file_name.set_text(self.item_id)
+        self.file_name.set_text(self.item_data)
         if self.module.get_gfxcrunch().is_available():  # noqa: W291
             self.explanation_text.set_markup(
                 _(
@@ -67,7 +65,7 @@ class StSpriteObjectPage(Gtk.Box):
     def on_draw_sprite_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
         scale = 2
         sprite, x, y, w, h = self._sprite_provider.get_for_object(
-            self.item_id[:-4], lambda: GLib.idle_add(widget.queue_draw)
+            self.item_data[:-4], lambda: GLib.idle_add(widget.queue_draw)
         )
         ctx.scale(scale, scale)
         ctx.set_source_surface(sprite)
@@ -81,14 +79,14 @@ class StSpriteObjectPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, *args):
-        self.module.export_a_sprite(self.module.get_object_sprite_raw(self.item_id))
+        self.module.export_a_sprite(self.module.get_object_sprite_raw(self.item_data))
 
     @Gtk.Template.Callback()
     def on_import_clicked(self, *args):
         sprite = self.module.import_a_sprite()
         if sprite is None:
             return
-        self.module.save_object_sprite(self.item_id, sprite)
+        self.module.save_object_sprite(self.item_data, sprite)
         MainController.reload_view()
 
     @Gtk.Template.Callback()
@@ -96,5 +94,5 @@ class StSpriteObjectPage(Gtk.Box):
         sprite = self.module.import_an_image()
         if sprite is None:
             return
-        self.module.save_object_sprite(self.item_id, sprite)
+        self.module.save_object_sprite(self.item_data, sprite)
         MainController.reload_view()

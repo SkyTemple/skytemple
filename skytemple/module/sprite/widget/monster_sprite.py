@@ -71,7 +71,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
     def __init__(
         self,
         module: "SpriteModule",
-        item_id: int,
+        item_data: int,
         mark_as_modified_cb,
         assign_new_sprite_id_cb,
         get_shadow_size_cb,
@@ -79,9 +79,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
     ):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
-        self.item_id = item_id
+        self.item_data = item_data
         self._sprite_provider = self.module.get_sprite_provider()
         self._mark_as_modified_cb = mark_as_modified_cb
         self._assign_new_sprite_id_cb = assign_new_sprite_id_cb
@@ -95,7 +93,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
         self._rendered_frame_info: list[
             tuple[int, tuple[cairo.Surface, int, int, int, int]]
         ] = []
-        if not self.module.is_idx_supported(self.item_id):
+        if not self.module.is_idx_supported(self.item_data):
             return Gtk.Label.new(_("Invalid Sprite ID."))
         self._draw_area = self.draw_sprite
         if self.module.get_gfxcrunch().is_available():  # noqa: W291
@@ -188,13 +186,13 @@ class StSpriteMonsterSpritePage(Gtk.Box):
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 monster: WanFile = self.module.get_monster_monster_sprite_chara(
-                    self.item_id
+                    self.item_data
                 )
                 ground: WanFile = self.module.get_monster_ground_sprite_chara(
-                    self.item_id
+                    self.item_data
                 )
                 attack: WanFile = self.module.get_monster_attack_sprite_chara(
-                    self.item_id
+                    self.item_data
                 )
                 merged = FileType.WAN.CHARA.merge_wan(monster, ground, attack)
                 merged.sdwSize = self._get_shadow_size_cb()
@@ -202,7 +200,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
                     animation_names = (
                         self.module.project.get_rom_module()
                         .get_static_data()
-                        .animation_names[self.item_id]
+                        .animation_names[self.item_data]
                     )
                 except KeyError:
                     # Fall back to Bulbasaur
@@ -247,7 +245,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
         )
         md.run()
         md.destroy()
-        self.do_import(self.item_id)
+        self.do_import(self.item_data)
 
     @Gtk.Template.Callback()
     def on_import_new_clicked(self, w: Gtk.MenuToolButton):
@@ -342,7 +340,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
     @Gtk.Template.Callback()
     def on_export_ground_clicked(self, w: Gtk.MenuToolButton):
         self.module.export_a_sprite(
-            self.module.get_monster_ground_sprite_chara(self.item_id, raw=True)
+            self.module.get_monster_ground_sprite_chara(self.item_data, raw=True)
         )
 
     @Gtk.Template.Callback()
@@ -350,14 +348,14 @@ class StSpriteMonsterSpritePage(Gtk.Box):
         sprite = self.module.import_a_sprite()
         if sprite is None:
             return
-        self.module.save_monster_ground_sprite(self.item_id, sprite, raw=True)
+        self.module.save_monster_ground_sprite(self.item_data, sprite, raw=True)
         self._mark_as_modified_cb()
         MainController.reload_view()
 
     @Gtk.Template.Callback()
     def on_export_dungeon_clicked(self, w: Gtk.MenuToolButton):
         self.module.export_a_sprite(
-            self.module.get_monster_monster_sprite_chara(self.item_id, raw=True)
+            self.module.get_monster_monster_sprite_chara(self.item_data, raw=True)
         )
 
     @Gtk.Template.Callback()
@@ -365,14 +363,14 @@ class StSpriteMonsterSpritePage(Gtk.Box):
         sprite = self.module.import_a_sprite()
         if sprite is None:
             return
-        self.module.save_monster_monster_sprite(self.item_id, sprite, raw=True)
+        self.module.save_monster_monster_sprite(self.item_data, sprite, raw=True)
         self._mark_as_modified_cb()
         MainController.reload_view()
 
     @Gtk.Template.Callback()
     def on_export_attack_clicked(self, w: Gtk.MenuToolButton):
         self.module.export_a_sprite(
-            self.module.get_monster_attack_sprite_chara(self.item_id, raw=True)
+            self.module.get_monster_attack_sprite_chara(self.item_data, raw=True)
         )
 
     @Gtk.Template.Callback()
@@ -380,7 +378,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
         sprite = self.module.import_a_sprite()
         if sprite is None:
             return
-        self.module.save_monster_attack_sprite(self.item_id, sprite, raw=True)
+        self.module.save_monster_attack_sprite(self.item_data, sprite, raw=True)
         self._mark_as_modified_cb()
         MainController.reload_view()
 
@@ -408,7 +406,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
 
     def _load_frames(self):
         with self._monster_bin as monster_bin:
-            sprite = self._load_sprite_from_bin_pack(monster_bin, self.item_id)
+            sprite = self._load_sprite_from_bin_pack(monster_bin, self.item_data)
             ani_group = sprite.anim_groups[0]
             frame_id = 2
             for frame in ani_group[frame_id].frames:

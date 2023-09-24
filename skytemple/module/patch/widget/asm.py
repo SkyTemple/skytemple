@@ -80,11 +80,10 @@ class StPatchAsmPage(Gtk.Box):
     patch_window: Gtk.ScrolledWindow = cast(Gtk.ScrolledWindow, Gtk.Template.Child())
     patch_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
 
-    def __init__(self, module: "PatchModule", *args):
+    def __init__(self, module: "PatchModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = None
-        self.module = module
+        self.item_data = item_data
         self._patcher: Patcher = None
         self._were_issues_activated = False
         self._issues: dict[str, list[warnings.WarningMessage]] = {}

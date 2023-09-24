@@ -64,13 +64,11 @@ class StDungeonGraphicsColvecPage(Gtk.Paned):
     description: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     colvec_info: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "DungeonGraphicsModule", item: str):
+    def __init__(self, module: "DungeonGraphicsModule", item_data: str):
         super().__init__()
         self.module = module
-        self.item_data = item
-        self.module = module
+        self.item_data = item_data
         self._string_provider = module.project.get_string_provider()
-        self.filename = item
         self.colvec: Colvec = self.module.get_colvec()
         self.dma: DmaProtocol
         self.dpl: DplProtocol
@@ -79,8 +77,8 @@ class StDungeonGraphicsColvecPage(Gtk.Paned):
         self.dpci: DpciProtocol
         self._init_colvec()
         self._reinit_image()
-        self.draw_tileset.connect("draw", self.draw_tileset)
-        self.draw_colormap.connect("draw", self.draw_colormap)
+        self.draw_tileset.connect("draw", self.exec_draw_tileset)
+        self.draw_colormap.connect("draw", self.exec_draw_colormap)
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, *args):
@@ -217,7 +215,7 @@ class StDungeonGraphicsColvecPage(Gtk.Paned):
                 [v, self._string_provider.get_value(StringType.WEATHER_NAMES, v)]
             )
 
-    def draw_tileset(self, wdg, ctx: cairo.Context, *args):
+    def exec_draw_tileset(self, wdg, ctx: cairo.Context, *args):
         if self.surface:
             wdg.set_size_request(self.surface.get_width(), self.surface.get_height())
             ctx.fill()
@@ -226,7 +224,7 @@ class StDungeonGraphicsColvecPage(Gtk.Paned):
             ctx.paint()
         return True
 
-    def draw_colormap(self, wdg, ctx: cairo.Context, *args):
+    def exec_draw_colormap(self, wdg, ctx: cairo.Context, *args):
         if self.colormap:
             wdg.set_size_request(self.colormap.get_width(), self.colormap.get_height())
             ctx.fill()

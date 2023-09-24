@@ -46,13 +46,11 @@ class StMiscGraphicsW16Page(Gtk.Box):
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     grid: Gtk.Grid = cast(Gtk.Grid, Gtk.Template.Child())
 
-    def __init__(self, module: "MiscGraphicsModule", item_id: int):
+    def __init__(self, module: "MiscGraphicsModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
-        self.item_id = item_id
-        self.w16: W16 = self.module.get_w16(self.item_id)
+        self.item_data = item_data
+        self.w16: W16 = self.module.get_w16(self.item_data)
         self._draws: list[Gtk.DrawingArea] = []
         self._surfaces: list[cairo.Surface] = []
         self._reset()
@@ -160,7 +158,7 @@ class StMiscGraphicsW16Page(Gtk.Box):
             for draw in self._draws:
                 draw.queue_draw()
             # Mark as modified
-            self.module.mark_w16_as_modified(self.item_id)
+            self.module.mark_w16_as_modified(self.item_data)
 
     def _try_match_import(self, r, names):
         for name in names:

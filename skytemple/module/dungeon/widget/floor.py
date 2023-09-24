@@ -548,13 +548,11 @@ class StDungeonFloorPage(Gtk.Box):
     _last_scale_factor: Optional[CanvasScale] = None
     _last_show_full_map = False
 
-    def __init__(self, module: "DungeonModule", item: "FloorViewInfo"):
+    def __init__(self, module: "DungeonModule", item_data: "FloorViewInfo"):
         super().__init__()
         self.module = module
-        self.item_data = item
-        self.module = module
-        self.item = item
-        self.entry: MappaFloorProtocol = self.module.get_mappa_floor(item)
+        self.item_data = item_data
+        self.entry: MappaFloorProtocol = self.module.get_mappa_floor(item_data)
         self._draw: Optional[Gtk.DrawingArea] = None
         self.drawer: Optional[FixedRoomDrawer] = None
         self._refresh_timer: Optional[int] = None
@@ -630,30 +628,6 @@ class StDungeonFloorPage(Gtk.Box):
         item_list_notebook = self.item_list_notebook
         item_list_notebook.set_current_page(self._item_list_edit_active.value)
 
-    @typing.no_type_check
-    def unload(self):
-        # We need to destroy this first.
-        # GTK is an enigma sometimes.
-        try:
-            self.export_dialog.destroy()
-        except AssertionError:
-            pass
-        super().unload()
-        if self.drawer:
-            self.drawer.unload()
-        self.module = None
-        self.item = None
-        self.entry = None
-        self._draw = None
-        self._refresh_timer = None
-        self._loading = False
-        self._string_provider = None
-        self._sprite_provider = None
-        self._scale_factor = None
-        self._item_list_edit_active = None
-        self._ent_names = {}
-        self._item_names = {}
-
     # <editor-fold desc="HANDLERS LAYOUT" defaultstate="collapsed">
 
     @Gtk.Template.Callback()
@@ -667,7 +641,9 @@ class StDungeonFloorPage(Gtk.Box):
         if self.module.has_floor_ranks():
             cb = self.cb_floor_ranks
             self.module.set_floor_rank(
-                self.item.dungeon.dungeon_id, self.item.floor_id, cb.get_active()
+                self.item_data.dungeon.dungeon_id,
+                self.item_data.floor_id,
+                cb.get_active(),
             )
             self.mark_as_modified()
 
@@ -684,7 +660,9 @@ class StDungeonFloorPage(Gtk.Box):
         if self.module.has_floor_ranks():
             cb = self.cb_mission_forbidden
             self.module.set_floor_mf(
-                self.item.dungeon.dungeon_id, self.item.floor_id, cb.get_active()
+                self.item_data.dungeon.dungeon_id,
+                self.item_data.floor_id,
+                cb.get_active(),
             )
             self.mark_as_modified()
 
@@ -2044,7 +2022,7 @@ class StDungeonFloorPage(Gtk.Box):
             try:
                 with open_utf8(fn, "r") as xml_file:
                     self.module.import_from_xml(
-                        [(self.item.dungeon.dungeon_id, self.item.floor_id)],
+                        [(self.item_data.dungeon.dungeon_id, self.item_data.floor_id)],
                         ElementTree.parse(xml_file).getroot(),
                     )
                     SkyTempleMainController.reload_view()
@@ -2141,12 +2119,12 @@ class StDungeonFloorPage(Gtk.Box):
 
     def _init_labels(self):
         dungeon_name = self._string_provider.get_value(
-            StringType.DUNGEON_NAMES_MAIN, self.item.dungeon.dungeon_id
+            StringType.DUNGEON_NAMES_MAIN, self.item_data.dungeon.dungeon_id
         )
         self.label_dungeon_name.set_text(
-            f"{'Dungeon'} {self.item.dungeon.dungeon_id}\n{dungeon_name}"
+            f"{'Dungeon'} {self.item_data.dungeon.dungeon_id}\n{dungeon_name}"
         )
-        self.label_floor_number.set_text(f"{'Floor'} {self.item.floor_id + 1}")
+        self.label_floor_number.set_text(f"{'Floor'} {self.item_data.floor_id + 1}")
 
     def _init_layout_stores(self):
         # cb_structure
@@ -2182,9 +2160,12 @@ class StDungeonFloorPage(Gtk.Box):
 
     def _init_layout_values(self):
         cb = self.cb_floor_ranks
-        if self.item.dungeon.length_can_be_edited and self.module.has_floor_ranks():
+        if (
+            self.item_data.dungeon.length_can_be_edited
+            and self.module.has_floor_ranks()
+        ):
             rank = self.module.get_floor_rank(
-                self.item.dungeon.dungeon_id, self.item.floor_id
+                self.item_data.dungeon.dungeon_id, self.item_data.floor_id
             )
             if rank:
                 cb.set_active(rank)
@@ -2192,11 +2173,11 @@ class StDungeonFloorPage(Gtk.Box):
             cb.set_sensitive(False)
         cb = self.cb_mission_forbidden
         if (
-            self.item.dungeon.length_can_be_edited
+            self.item_data.dungeon.length_can_be_edited
             and self.module.has_mission_forbidden()
         ):
             mf = self.module.get_floor_mf(
-                self.item.dungeon.dungeon_id, self.item.floor_id
+                self.item_data.dungeon.dungeon_id, self.item_data.floor_id
             )
             if mf:
                 cb.set_active(mf)
@@ -2718,7 +2699,7 @@ class StDungeonFloorPage(Gtk.Box):
 
     def mark_as_modified(self, modified_mappag=False):
         if not self._loading:
-            self.module.mark_floor_as_modified(self.item, modified_mappag)
+            self.module.mark_floor_as_modified(self.item_data, modified_mappag)
 
     def _comboxbox_for_enum(self, names: list[str], enum: type[Enum]):
         store = Gtk.ListStore(int, str)  # id, name

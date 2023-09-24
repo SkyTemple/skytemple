@@ -59,17 +59,15 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
     switch_minimized: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     minimized_info: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "MiscGraphicsModule", item: str):
+    def __init__(self, module: "MiscGraphicsModule", item_data: str):
         super().__init__()
         self.module = module
-        self.item_data = item
-        self.module = module
-        self.filename = item
-        self.zmappat: ZMappaT = self.module.get_dungeon_bin_file(self.filename)
+        self.item_data = item_data
+        self.zmappat: ZMappaT = self.module.get_dungeon_bin_file(self.item_data)
         self._init_zmappat()
         self._reinit_image()
-        self.draw_tiles.connect("draw", self.draw_tiles)
-        self.draw_masks.connect("draw", self.draw_masks)
+        self.draw_tiles.connect("draw", self.exec_draw_tiles)
+        self.draw_masks.connect("draw", self.exec_draw_masks)
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, w: Gtk.MenuToolButton):
@@ -155,7 +153,7 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
                     imgs[v.value] = Image.open(fn_tiles, "r")
                     masks[v.value] = Image.open(fn_masks, "r")
                 self.zmappat.from_pil_minimized(imgs, masks)
-                self.module.mark_zmappat_as_modified(self.zmappat, self.filename)
+                self.module.mark_zmappat_as_modified(self.zmappat, self.item_data)
             except Exception as err:
                 display_error(
                     sys.exc_info(), str(err), _("Error importing minimized zmappat.")
@@ -211,7 +209,7 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
                     imgs[v.value] = Image.open(fn_tiles, "r")
                     masks[v.value] = Image.open(fn_masks, "r")
                 self.zmappat.from_pil(imgs, masks)
-                self.module.mark_zmappat_as_modified(self.zmappat, self.filename)
+                self.module.mark_zmappat_as_modified(self.zmappat, self.item_data)
             except Exception as err:
                 display_error(
                     sys.exc_info(), str(err), _("Error importing full zmappat.")
@@ -259,7 +257,7 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
         for v in variations:
             cb_store.append([v.value, v.description])
 
-    def draw_tiles(self, wdg, ctx: cairo.Context, *args):
+    def exec_draw_tiles(self, wdg, ctx: cairo.Context, *args):
         if self.surface:
             wdg.set_size_request(self.surface.get_width(), self.surface.get_height())
             ctx.fill()
@@ -268,7 +266,7 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
             ctx.paint()
         return True
 
-    def draw_masks(self, wdg, ctx: cairo.Context, *args):
+    def exec_draw_masks(self, wdg, ctx: cairo.Context, *args):
         if self.mask:
             wdg.set_size_request(self.mask.get_width(), self.mask.get_height())
             ctx.fill()

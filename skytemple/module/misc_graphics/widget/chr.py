@@ -43,19 +43,17 @@ class StMiscGraphicsChrPage(Gtk.Paned):
     item_data: str
     import_widget: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child("import"))
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
-    draw: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
+    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
     chr_palette_variant: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
     table_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
-    def __init__(self, module: "MiscGraphicsModule", filename: str):
+    def __init__(self, module: "MiscGraphicsModule", item_data: str):
         super().__init__()
         self.module = module
-        self.item_data = filename
-        self.module = module
-        self.filename = filename
-        self.chr: Chr = self.module.get_chr(self.filename)
+        self.item_data = item_data
+        self.chr: Chr = self.module.get_chr(self.item_data)
         self._init_chr()
-        self.draw.connect("draw", self.draw)
+        self.draw_widget.connect("draw", self.exec_draw)
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, w: Gtk.MenuToolButton):
@@ -95,7 +93,7 @@ class StMiscGraphicsChrPage(Gtk.Paned):
                 if isinstance(err, AttributeError):
                     mark_as_user_err(err)
                 display_error(sys.exc_info(), str(err), _("Error importing chr image."))
-            self.module.mark_chr_as_modified(self.filename)
+            self.module.mark_chr_as_modified(self.item_data)
             self._reinit_image()
 
     def _init_chr(self):
@@ -112,9 +110,9 @@ class StMiscGraphicsChrPage(Gtk.Paned):
         variant = int(self.chr_palette_variant.get_text())
         surface = self.chr.to_pil(variant)
         self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
-        self.draw.queue_draw()
+        self.draw_widget.queue_draw()
 
-    def draw(self, wdg, ctx: cairo.Context, *args):
+    def exec_draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:
             wdg.set_size_request(self.surface.get_width(), self.surface.get_height())
             ctx.fill()

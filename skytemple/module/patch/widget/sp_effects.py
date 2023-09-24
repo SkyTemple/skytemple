@@ -69,23 +69,21 @@ class StPatchSPEffectsPage(Gtk.Stack):
     btn_repo: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_asmeditor: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "PatchModule", *args):
+    def __init__(self, module: "PatchModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = None
-        super().__init__(module, *args)
-        self.module = module
+        self.item_data = item_data
         self.sp_effects: DataCD
         self._string_provider = module.project.get_string_provider()
         stack = self.list_stack
         if not self.module.has_sp_effects():
             stack.set_visible_child(self.box_na)
-            return stack
-        self.sp_effects = self.module.get_sp_effects()
-        self._init_sp_list()
-        self._init_combos()
-        self.on_cb_effect_ids_changed()
-        stack.set_visible_child(self.box_list)
+        else:
+            self.sp_effects = self.module.get_sp_effects()
+            self._init_sp_list()
+            self._init_combos()
+            self.on_cb_effect_ids_changed()
+            stack.set_visible_child(self.box_list)
 
     def _get_current_sp_effect(self) -> Optional[int]:
         tree_store = self.sp_effects_store

@@ -53,22 +53,20 @@ class StMiscGraphicsGraphicFontPage(Gtk.Paned):
     entry_stack: Gtk.Stack = cast(Gtk.Stack, Gtk.Template.Child())
     no_entry_label: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     entry_viewer: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
-    draw: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
+    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
     entry_id: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
     table_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
-    def __init__(self, module: "MiscGraphicsModule", item: "FontOpenSpec"):
+    def __init__(self, module: "MiscGraphicsModule", item_data: "FontOpenSpec"):
         super().__init__()
         self.module = module
-        self.item_data = item
-        self.module = module
-        self.spec = item
+        self.item_data = item_data
         self.font: GraphicFont = assert_not_none(
-            self.module.get_graphic_font(self.spec)
+            self.module.get_graphic_font(self.item_data)
         )
         assert self.font is not None
         self._init_font()
-        self.draw.connect("draw", self.draw)
+        self.draw_widget.connect("draw", self.exec_draw)
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, w: Gtk.MenuToolButton):
@@ -133,7 +131,7 @@ class StMiscGraphicsGraphicFontPage(Gtk.Paned):
                         else:
                             lst_entries.append(None)
                     self.font.set_entries(lst_entries)
-                    self.module.mark_font_as_modified(self.spec)
+                    self.module.mark_font_as_modified(self.item_data)
                 except Exception as err:
                     display_error(sys.exc_info(), str(err), _("Error importing font."))
                 self._init_font()
@@ -180,12 +178,12 @@ class StMiscGraphicsGraphicFontPage(Gtk.Paned):
                 (surface.width * IMAGE_ZOOM, surface.height * IMAGE_ZOOM)
             )
             self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
-            self.draw.queue_draw()
+            self.draw_widget.queue_draw()
         else:
             stack.set_visible_child(self.no_entry_label)
             self.surface = pil_to_cairo_surface(Image.new("RGBA", size=(1, 1)))
 
-    def draw(self, wdg, ctx: cairo.Context, *args):
+    def exec_draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:
             wdg.set_size_request(self.surface.get_width(), self.surface.get_height())
             ctx.fill()

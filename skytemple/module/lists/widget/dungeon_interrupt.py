@@ -68,21 +68,19 @@ class StListsDungeonInterruptPage(Gtk.Stack):
     btn_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "ListsModule", *args):
+    def __init__(self, module: "ListsModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = None
-        super().__init__(module, *args)
-        self.module = module
+        self.item_data = item_data
         self.sp_effects = None
         self._string_provider = module.project.get_string_provider()
         stack = self.list_stack
         if not self.module.has_dungeon_interrupts():
             stack.set_visible_child(self.box_na)
-            return stack
-        self.inter_d = self.module.get_dungeon_interrupts()
-        self._init_combos()
-        stack.set_visible_child(self.box_list)
+        else:
+            self.inter_d = self.module.get_dungeon_interrupts()
+            self._init_combos()
+            stack.set_visible_child(self.box_list)
 
     def _init_combos(self):
         store = self.type_store

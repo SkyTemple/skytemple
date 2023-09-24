@@ -83,14 +83,11 @@ class StListsIqPage(Gtk.Box):
     entry_min_iq_item_master: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     intimidator_activation_chance: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
 
-    def __init__(self, module: "ListsModule", *args):
+    def __init__(self, module: "ListsModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = None
-        super().__init__(module, *args)
-        self.module = module
+        self.item_data = item_data
         self._string_provider = module.project.get_string_provider()
-        box = self.box_list
         self._init_iq_gains()
         self._init_iq_skills()
         self._init_misc_settings()

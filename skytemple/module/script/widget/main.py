@@ -84,11 +84,10 @@ class StScriptMainPage(Gtk.Box):
         Gtk.CellRendererText, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "ScriptModule", item_id: int):
+    def __init__(self, module: "ScriptModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
+        self.item_data = item_data
         self._list: LevelListBin
         self._dungeon_tilesets: list[GroundTilesetMapping]
         self._labels_mapid: dict[int, str] = {}

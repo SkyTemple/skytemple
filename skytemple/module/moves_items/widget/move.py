@@ -128,13 +128,11 @@ class StMovesItemsMovePage(Gtk.Box):
         Gtk.EntryCompletion, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "MovesItemsModule", move_id: int):
+    def __init__(self, module: "MovesItemsModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = move_id
-        self.module = module
-        self.move_id = move_id
-        self.move: WazaMoveProtocol = self.module.get_move(move_id)
+        self.item_data = item_data
+        self.move: WazaMoveProtocol = self.module.get_move(item_data)
         self._string_provider = module.project.get_string_provider()
         self._is_loading = True
         self._init_language_labels()
@@ -597,8 +595,8 @@ class StMovesItemsMovePage(Gtk.Box):
                 gui_entry_desc.set_sensitive(False)
 
     def _init_entid(self):
-        name = self._string_provider.get_value(StringType.MOVE_NAMES, self.move_id)
-        self.label_id_name.set_text(f"#{self.move_id:04d}: {name}")
+        name = self._string_provider.get_value(StringType.MOVE_NAMES, self.item_data)
+        self.label_id_name.set_text(f"#{self.item_data:04d}: {name}")
 
     def _init_stores(self):
         self._comboxbox_for_enum(["cb_category"], WazaMoveCategory)
@@ -624,12 +622,12 @@ class StMovesItemsMovePage(Gtk.Box):
                 # We have this language
                 gui_entry.set_text(
                     self._string_provider.get_value(
-                        StringType.MOVE_NAMES, self.move_id, langs[lang_id]
+                        StringType.MOVE_NAMES, self.item_data, langs[lang_id]
                     )
                 )
                 gui_entry_desc.set_text(
                     self._string_provider.get_value(
-                        StringType.MOVE_DESCRIPTIONS, self.move_id, langs[lang_id]
+                        StringType.MOVE_DESCRIPTIONS, self.item_data, langs[lang_id]
                     )
                 )
         self._set_entry("entry_move_id", self.move.move_id)
@@ -663,7 +661,7 @@ class StMovesItemsMovePage(Gtk.Box):
 
     def mark_as_modified(self):
         if not self._is_loading:
-            self.module.mark_move_as_modified(self.move_id)
+            self.module.mark_move_as_modified(self.item_data)
 
     def _comboxbox_for_enum(
         self, names: list[str], enum: type[Enum], sort_by_name=False
@@ -733,11 +731,13 @@ class StMovesItemsMovePage(Gtk.Box):
     def _update_lang_from_entry(self, w: Gtk.Entry, lang_index):
         lang = self._string_provider.get_languages()[lang_index]
         self._string_provider.get_model(lang).strings[
-            self._string_provider.get_index(StringType.MOVE_NAMES, self.move_id)
+            self._string_provider.get_index(StringType.MOVE_NAMES, self.item_data)
         ] = w.get_text()
 
     def _update_lang_desc_from_buffer(self, w: Gtk.TextBuffer, lang_index):
         lang = self._string_provider.get_languages()[lang_index]
         self._string_provider.get_model(lang).strings[
-            self._string_provider.get_index(StringType.MOVE_DESCRIPTIONS, self.move_id)
+            self._string_provider.get_index(
+                StringType.MOVE_DESCRIPTIONS, self.item_data
+            )
         ] = w.get_text(w.get_start_iter(), w.get_end_iter(), False)

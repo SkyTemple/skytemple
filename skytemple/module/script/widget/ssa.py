@@ -240,17 +240,16 @@ class StScriptSsaPage(Gtk.Box):
     # Should be set to (None, ) when loading a map BG context.
     map_bg_surface_cache = (None,)
 
-    def __init__(self, module: "ScriptModule", item: dict):
+    def __init__(self, module: "ScriptModule", item_data: dict):
         super().__init__()
         self.module = module
-        self.item_data = item
-        self.module = module
+        self.item_data = item_data
         self.map_bg_module: "MapBgModule" = module.project.get_module("map_bg")
         self.static_data: Pmd2Data = module.project.get_rom_module().get_static_data()
-        self.mapname = item["map"]
-        self.filename = item["file"]
-        self.type = item["type"]
-        self.scripts = item["scripts"]
+        self.mapname = item_data["map"]
+        self.filename = item_data["file"]
+        self.type = item_data["type"]
+        self.scripts = item_data["scripts"]
         self.level: Optional[Pmd2ScriptLevel] = None
         self.mapbg_id = -1
         if self.mapname in self.static_data.script_data.level_list__by_name:
@@ -306,37 +305,6 @@ class StScriptSsaPage(Gtk.Box):
         self._init_rest_room_note()
         self._init_all_the_stores()
         self._update_scales()
-
-    @typing.no_type_check
-    def unload(self):
-        super().unload()
-        self.module = None
-        self.map_bg_module = None
-        self.static_data = None
-        self.mapname = None
-        self.filename = None
-        self.type = None
-        self.scripts = None
-        self.level = None
-        self._scale_factor = 1
-        self._bg_draw_is_clicked__location = None
-        self._bg_draw_is_clicked__drag_active = False
-        self._map_bg_surface = None
-        self._suppress_events = False
-        self._currently_open_popover = None
-        self._currently_selected_entity = None
-        self._currently_selected_entity_layer = None
-        self._selected_by_map_click = False
-        self._w_ssa_draw = None
-        self._w_po_actors = None
-        self._w_po_objects = None
-        self._w_po_performers = None
-        self._w_po_triggers = None
-        self.ssa = None
-        if self.drawer:
-            self.drawer.unload()
-        self.drawer = None
-        self._tileset_drawer_overlay = None
 
     @Gtk.Template.Callback()
     def on_ssa_utility_switch_page(self, util_notebook: Gtk.Notebook, p, pnum, *args):

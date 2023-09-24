@@ -42,16 +42,14 @@ class StScriptMapPage(Gtk.Box):
     generic_input_dialog_label: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     generic_input_dialog_entry: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
 
-    def __init__(self, module: "ScriptModule", name):
+    def __init__(self, module: "ScriptModule", item_data: str):
         super().__init__()
         self.module = module
-        self.item_data = name
-        self.module = module
-        self.name = name
+        self.item_data = item_data
         self._sub_enter: Optional[ItemTreeEntryRef] = None
         self._sub_acting: Optional[ItemTreeEntryRef] = None
         self._sub_sub: Optional[ItemTreeEntryRef] = None
-        self.title.set_text(f(_('Script Scenes for "{}"').format(self.name)))
+        self.title.set_text(f(_('Script Scenes for "{}"').format(self.item_data)))
         self.desc.set_text(
             f(
                 _(
@@ -60,15 +58,19 @@ class StScriptMapPage(Gtk.Box):
             )
         )
         self._sub_enter, self._sub_acting, self._sub_sub = self.module.get_subnodes(
-            self.name
+            self.item_data
         )
         if self._sub_enter:
             self.btn_add_enter.set_sensitive(False)
 
+    @property
+    def name(self):
+        return self.item_data
+
     @Gtk.Template.Callback()
     def on_btn_add_enter_clicked(self, *args):
         try:
-            self.module.add_scene_enter(self.name)
+            self.module.add_scene_enter(self.item_data)
         except ValueError as err:
             md = SkyTempleMessageDialog(
                 SkyTempleMainController.window(),
@@ -112,7 +114,7 @@ class StScriptMapPage(Gtk.Box):
             md.destroy()
             return
         try:
-            self.module.add_scene_acting(self.name, name_file)
+            self.module.add_scene_acting(self.item_data, name_file)
         except ValueError as err:
             md = SkyTempleMessageDialog(
                 SkyTempleMainController.window(),
@@ -155,7 +157,7 @@ class StScriptMapPage(Gtk.Box):
             md.destroy()
             return
         try:
-            self.module.add_scene_sub(self.name, name_file)
+            self.module.add_scene_sub(self.item_data, name_file)
         except ValueError as err:
             md = SkyTempleMessageDialog(
                 SkyTempleMainController.window(),

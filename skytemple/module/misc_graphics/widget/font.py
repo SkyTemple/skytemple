@@ -59,20 +59,18 @@ class StMiscGraphicsFontPage(Gtk.Paned):
     table_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     import_widget: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child("import"))
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
-    draw: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
+    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
     entry_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     btn_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     cb_table_select: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     table: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
 
-    def __init__(self, module: "MiscGraphicsModule", item: "FontOpenSpec"):
+    def __init__(self, module: "MiscGraphicsModule", item_data: "FontOpenSpec"):
         super().__init__()
         self.module = module
-        self.item_data = item
-        self.module = module
-        self.spec = item
-        self.font: Optional[AbstractFont] = self.module.get_font(self.spec)
+        self.item_data = item_data
+        self.font: Optional[AbstractFont] = self.module.get_font(self.item_data)
         self._init_font()
         assert self.font
         # Generate Automatically the columns since we don't know what properties we will be using
@@ -88,7 +86,7 @@ class StMiscGraphicsFontPage(Gtk.Paned):
             self._column_mapping.append((renderer, p))
             entry_tree.append_column(column)
         self._switch_table()
-        self.draw.connect("draw", self.draw)
+        self.draw_widget.connect("draw", self.exec_draw)
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, w: Gtk.MenuToolButton):
@@ -144,7 +142,7 @@ class StMiscGraphicsFontPage(Gtk.Paned):
                         tables[i] = Image.open(path, "r")
                 assert self.font
                 self.font.import_from_xml(xml, tables)
-                self.module.mark_font_as_modified(self.spec)
+                self.module.mark_font_as_modified(self.item_data)
             except Exception as err:
                 display_error(sys.exc_info(), str(err), _("Error importing font."))
             self._init_font()
@@ -185,7 +183,7 @@ class StMiscGraphicsFontPage(Gtk.Paned):
                 (self.tables[v].width * IMAGE_ZOOM, self.tables[v].height * IMAGE_ZOOM)
             )
             self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
-            self.draw.queue_draw()
+            self.draw_widget.queue_draw()
 
     @Gtk.Template.Callback()
     def on_entry_char_id_changed(self, widget):
@@ -232,7 +230,7 @@ class StMiscGraphicsFontPage(Gtk.Paned):
                     cast(Optional[Gtk.ListStore], entry_tree.get_model())
                 )
                 self._add_property_row(store, entry)
-                self.module.mark_font_as_modified(self.spec)
+                self.module.mark_font_as_modified(self.item_data)
             except Exception as err:
                 display_error(sys.exc_info(), str(err), _("Error adding character."))
 
@@ -251,7 +249,7 @@ class StMiscGraphicsFontPage(Gtk.Paned):
             self.font.delete_entry(elt)
             del self.entries[x.get_indices()[0]]
             del store[x.get_indices()[0]]
-        self.module.mark_font_as_modified(self.spec)
+        self.module.mark_font_as_modified(self.item_data)
         self.tables = self.font.to_pil()
         self._switch_table()
 
@@ -266,12 +264,12 @@ class StMiscGraphicsFontPage(Gtk.Paned):
             if widget == c[0]:
                 store[path][i] = text
                 self.entries[int(path)].set_properties({c[1]: int(text)})
-        self.module.mark_font_as_modified(self.spec)
-        self.draw.queue_draw()
+        self.module.mark_font_as_modified(self.item_data)
+        self.draw_widget.queue_draw()
 
     @Gtk.Template.Callback()
     def on_entry_tree_selection_changed(self, *args):
-        self.draw.queue_draw()
+        self.draw_widget.queue_draw()
 
     @Gtk.Template.Callback()
     def on_font_table_changed(self, widget):
@@ -283,7 +281,7 @@ class StMiscGraphicsFontPage(Gtk.Paned):
         for v in self.tables.keys():
             cb_store.append([v, f"Table {v}"])
 
-    def draw(self, wdg, ctx: cairo.Context, *args):
+    def exec_draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:
             if TYPE_CHECKING:
                 assert self.font

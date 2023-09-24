@@ -73,7 +73,7 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
     wtu_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     import_widget: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child("import"))
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
-    draw: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
+    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
     info_image_only: Gtk.InfoBar = cast(Gtk.InfoBar, Gtk.Template.Child())
     info_palette_only: Gtk.InfoBar = cast(Gtk.InfoBar, Gtk.Template.Child())
     lbl_canvas_size: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
@@ -90,25 +90,23 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
     btn_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "MiscGraphicsModule", item: "WteOpenSpec"):
+    def __init__(self, module: "MiscGraphicsModule", item_data: "WteOpenSpec"):
         super().__init__()
         self.module = module
-        self.item_data = item
-        self.module = module
-        self.item = item
+        self.item_data = item_data
         self.wtu: Optional[Wtu] = None
-        if item.in_dungeon_bin:
-            self.wte: Wte = self.module.get_dungeon_bin_file(item.wte_filename)
-            if item.wtu_filename is not None:
-                self.wtu = self.module.get_dungeon_bin_file(item.wtu_filename)
+        if item_data.in_dungeon_bin:
+            self.wte: Wte = self.module.get_dungeon_bin_file(item_data.wte_filename)
+            if item_data.wtu_filename is not None:
+                self.wtu = self.module.get_dungeon_bin_file(item_data.wtu_filename)
         else:
-            self.wte = self.module.get_wte(item.wte_filename)
-            if item.wtu_filename is not None:
-                self.wtu = self.module.get_wtu(item.wtu_filename)
+            self.wte = self.module.get_wte(item_data.wte_filename)
+            if item_data.wtu_filename is not None:
+                self.wtu = self.module.get_wtu(item_data.wtu_filename)
         self._init_wtu()
         self._reinit_image()
         self._init_wte()
-        self.draw.connect("draw", self.draw)
+        self.draw_widget.connect("draw", self.exec_draw)
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, w: Gtk.MenuToolButton):
@@ -171,7 +169,7 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
                     )
                 except AttributeError as err:
                     display_error(sys.exc_info(), str(err), _("Not an indexed image."))
-                self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
+                self.module.mark_wte_as_modified(self.item_data, self.wte, self.wtu)
                 self._init_wte()
                 self._reinit_image()
                 if self.wtu:
@@ -216,7 +214,7 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
         except ValueError:
             val = 0
         self.surface = pil_to_cairo_surface(self.wte.to_pil_canvas(val).convert("RGBA"))
-        self.draw.queue_draw()
+        self.draw_widget.queue_draw()
 
     @Gtk.Template.Callback()
     def on_wte_variant_changed(self, widget):
@@ -322,9 +320,9 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
                     u16(int(row[3])),
                 )
             )
-        self.module.mark_wte_as_modified(self.item, self.wte, self.wtu)
+        self.module.mark_wte_as_modified(self.item_data, self.wte, self.wtu)
 
-    def draw(self, wdg, ctx: cairo.Context, *args):
+    def exec_draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:
             ctx.fill()
             ctx.set_source_surface(self.surface, 0, 0)

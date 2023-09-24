@@ -248,11 +248,10 @@ class StMovesItemsItemListsPage(Gtk.Stack):
     item_cat_others_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_others_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "MovesItemsModule", *args):
+    def __init__(self, module: "MovesItemsModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = None
-        self.module = module
+        self.item_data = item_data
         self._item_list: MappaItemListProtocol
         self._item_names: dict[int, str] = {}
         orig_cats = (
@@ -286,19 +285,19 @@ class StMovesItemsItemListsPage(Gtk.Stack):
         stack = self.list_stack
         if not self.module.has_item_lists():
             stack.set_visible_child(self.box_na)
-            return stack
-        self._init_combos()
-        self._init_item_spawns()
-        self._recalculate_spawn_chances("item_categories_store", 4, 3)
-        self._recalculate_spawn_chances("item_cat_thrown_pierce_store", 4, 3)
-        self._recalculate_spawn_chances("item_cat_thrown_rock_store", 4, 3)
-        self._recalculate_spawn_chances("item_cat_berries_store", 4, 3)
-        self._recalculate_spawn_chances("item_cat_foods_store", 4, 3)
-        self._recalculate_spawn_chances("item_cat_hold_store", 4, 3)
-        self._recalculate_spawn_chances("item_cat_tms_store", 4, 3)
-        self._recalculate_spawn_chances("item_cat_orbs_store", 4, 3)
-        self._recalculate_spawn_chances("item_cat_others_store", 4, 3)
-        stack.set_visible_child(self.box_list)
+        else:
+            self._init_combos()
+            self._init_item_spawns()
+            self._recalculate_spawn_chances("item_categories_store", 4, 3)
+            self._recalculate_spawn_chances("item_cat_thrown_pierce_store", 4, 3)
+            self._recalculate_spawn_chances("item_cat_thrown_rock_store", 4, 3)
+            self._recalculate_spawn_chances("item_cat_berries_store", 4, 3)
+            self._recalculate_spawn_chances("item_cat_foods_store", 4, 3)
+            self._recalculate_spawn_chances("item_cat_hold_store", 4, 3)
+            self._recalculate_spawn_chances("item_cat_tms_store", 4, 3)
+            self._recalculate_spawn_chances("item_cat_orbs_store", 4, 3)
+            self._recalculate_spawn_chances("item_cat_others_store", 4, 3)
+            stack.set_visible_child(self.box_list)
 
     def _init_combos(self):
         # Init available types

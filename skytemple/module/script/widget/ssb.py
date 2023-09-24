@@ -35,7 +35,7 @@ class StScriptSsbPage(Gtk.Box):
     item_data: None
 
     # noinspection PyUnusedLocal
-    def __init__(self, module: ScriptModule, item_data):
+    def __init__(self, module: ScriptModule, item_data: None):
         super().__init__()
 
         self.module = module

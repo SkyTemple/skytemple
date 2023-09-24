@@ -157,13 +157,11 @@ class StMovesItemsItemPage(Gtk.Box):
         Gtk.EntryCompletion, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "MovesItemsModule", item_id: int):
+    def __init__(self, module: "MovesItemsModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
-        self.item_id = item_id
-        self.item_p, self.item_sp = self.module.get_item(item_id)
+        self.item_data = item_data
+        self.item_p, self.item_sp = self.module.get_item(item_data)
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
         self._is_loading = True
@@ -176,17 +174,6 @@ class StMovesItemsItemPage(Gtk.Box):
         if not self.item_sp:
             notebook = self.main_notebook
             notebook.remove_page(3)
-
-    @typing.no_type_check
-    def unload(self):
-        super().unload()
-        self.module = None
-        self.item_id = None
-        self.item_p = None
-        self.item_sp = None
-        self._string_provider = None
-        self._sprite_provider = None
-        self._is_loading = True
 
     @Gtk.Template.Callback()
     def on_draw_sprite_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
@@ -530,8 +517,8 @@ class StMovesItemsItemPage(Gtk.Box):
                 gui_entry_short_desc.set_sensitive(False)
 
     def _init_entid(self):
-        name = self._string_provider.get_value(StringType.ITEM_NAMES, self.item_id)
-        self.label_id_name.set_text(f"#{self.item_id:04d}: {name}")
+        name = self._string_provider.get_value(StringType.ITEM_NAMES, self.item_data)
+        self.label_id_name.set_text(f"#{self.item_data:04d}: {name}")
 
     def _init_stores(self):
         store = Gtk.ListStore(int, str)  # id, name
@@ -557,17 +544,21 @@ class StMovesItemsItemPage(Gtk.Box):
                 # We have this language
                 gui_entry.set_text(
                     self._string_provider.get_value(
-                        StringType.ITEM_NAMES, self.item_id, langs[lang_id]
+                        StringType.ITEM_NAMES, self.item_data, langs[lang_id]
                     )
                 )
                 gui_entry_short_desc.set_text(
                     self._string_provider.get_value(
-                        StringType.ITEM_SHORT_DESCRIPTIONS, self.item_id, langs[lang_id]
+                        StringType.ITEM_SHORT_DESCRIPTIONS,
+                        self.item_data,
+                        langs[lang_id],
                     )
                 )
                 gui_entry_desc.set_text(
                     self._string_provider.get_value(
-                        StringType.ITEM_LONG_DESCRIPTIONS, self.item_id, langs[lang_id]
+                        StringType.ITEM_LONG_DESCRIPTIONS,
+                        self.item_data,
+                        langs[lang_id],
                     )
                 )
         self._set_entry("entry_sprite", self.item_p.sprite)
@@ -591,7 +582,7 @@ class StMovesItemsItemPage(Gtk.Box):
 
     def mark_as_modified(self):
         if not self._is_loading:
-            self.module.mark_item_as_modified(self.item_id)
+            self.module.mark_item_as_modified(self.item_data)
 
     def _comboxbox_for_enum(
         self, names: list[str], enum: type[Enum], sort_by_name=False
@@ -650,14 +641,14 @@ class StMovesItemsItemPage(Gtk.Box):
     def _update_lang_from_entry(self, w: Gtk.Entry, lang_index):
         lang = self._string_provider.get_languages()[lang_index]
         self._string_provider.get_model(lang).strings[
-            self._string_provider.get_index(StringType.ITEM_NAMES, self.item_id)
+            self._string_provider.get_index(StringType.ITEM_NAMES, self.item_data)
         ] = w.get_text()
 
     def _update_lang_short_desc_from_entry(self, w: Gtk.Entry, lang_index):
         lang = self._string_provider.get_languages()[lang_index]
         self._string_provider.get_model(lang).strings[
             self._string_provider.get_index(
-                StringType.ITEM_SHORT_DESCRIPTIONS, self.item_id
+                StringType.ITEM_SHORT_DESCRIPTIONS, self.item_data
             )
         ] = w.get_text()
 
@@ -665,6 +656,6 @@ class StMovesItemsItemPage(Gtk.Box):
         lang = self._string_provider.get_languages()[lang_index]
         self._string_provider.get_model(lang).strings[
             self._string_provider.get_index(
-                StringType.ITEM_LONG_DESCRIPTIONS, self.item_id
+                StringType.ITEM_LONG_DESCRIPTIONS, self.item_data
             )
         ] = w.get_text(w.get_start_iter(), w.get_end_iter(), False)

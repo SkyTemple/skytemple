@@ -60,17 +60,14 @@ class StListsRankListPage(Gtk.Box):
         Gtk.CellRendererText, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "ListsModule", *args):
+    def __init__(self, module: "ListsModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = None
-        super().__init__(module, *args)
-        self.module = module
+        self.item_data = item_data
         self._rank_up_table: list[Rank] = None
         self._item_names: dict[int, str] = {}
         self._list_store: Gtk.ListStore = None
         self._loading = True
-        lst = self.box_list
         self._rank_up_table = self.module.get_rank_list()
         self._init_item_store()
         self.refresh_list()

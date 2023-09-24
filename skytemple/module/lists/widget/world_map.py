@@ -57,7 +57,7 @@ class StListsWorldMapPage(Gtk.Box):
     diag_draw: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     list_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     draw_event: Gtk.EventBox = cast(Gtk.EventBox, Gtk.Template.Child())
-    draw: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
+    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
     edit_map_bg: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     tree_selection: Gtk.TreeSelection = cast(Gtk.TreeSelection, Gtk.Template.Child())
@@ -65,11 +65,10 @@ class StListsWorldMapPage(Gtk.Box):
     cr_position: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     edit_selected: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "ListsModule", *args):
+    def __init__(self, module: "ListsModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = None
-        self.module = module
+        self.item_data = item_data
         self.map_bg_module: "MapBgModule" = module.project.get_module("map_bg")
         self.drawer: Optional[WorldMapDrawer] = None
         self.dialog_drawer: Optional[WorldMapDrawer] = None
@@ -80,7 +79,6 @@ class StListsWorldMapPage(Gtk.Box):
         self._level_id: int
         self._edited_marker: Optional[MapMarkerPlacement] = None
         self._edited_pos: Optional[tuple[int, int]] = None
-        lst = self.box_list
         self._markers = self.module.get_world_map_markers()
         self._config = self.module.project.get_rom_module().get_static_data()
         # Build the location names list
@@ -104,7 +102,7 @@ class StListsWorldMapPage(Gtk.Box):
             if WORLD_MAP_DEFAULT_ID in self._config.script_data.level_list__by_id
             else 0
         )
-        self._change_map_bg(self._level_id, self.draw, self.drawer)
+        self._change_map_bg(self._level_id, self.draw_widget, self.drawer)
 
     def _init_list(self):
         tree = self.tree
@@ -153,7 +151,9 @@ class StListsWorldMapPage(Gtk.Box):
                 ll_by_name = self._config.script_data.level_list__by_name
                 if self._level_id != ll_by_name[map_name].id:
                     self._level_id = ll_by_name[map_name].id
-                    self._change_map_bg(ll_by_name[map_name].id, self.draw, self.drawer)
+                    self._change_map_bg(
+                        ll_by_name[map_name].id, self.draw_widget, self.drawer
+                    )
 
     @Gtk.Template.Callback()
     def on_draw_event_button_press_event(self, box, button: Gdk.EventButton):
@@ -191,7 +191,7 @@ class StListsWorldMapPage(Gtk.Box):
         )
 
     def _init_drawer(self):
-        draw = self.draw
+        draw = self.draw_widget
         self.drawer = WorldMapDrawer(draw, self._markers, self._get_dungeon_name, SCALE)
         self.drawer.start()
         draw = self.diag_draw
@@ -388,7 +388,7 @@ class StListsWorldMapPage(Gtk.Box):
                 ]
                 if marker.level_id != self._level_id:
                     self._level_id = marker.level_id
-                    self._change_map_bg(marker.level_id, self.draw, self.drawer)
+                    self._change_map_bg(marker.level_id, self.draw_widget, self.drawer)
                 elif self.drawer is not None:
                     self.drawer.draw_area.queue_draw()
                 self.module.set_world_map_markers(self._markers)

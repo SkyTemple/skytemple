@@ -44,17 +44,17 @@ class StMiscGraphicsCartRemovedPage(Gtk.Paned):
     item_data: str
     import_widget: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child("import"))
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
-    draw: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
+    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
     cart_removed_info: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     table_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
-    def __init__(self, module: "MiscGraphicsModule", _: str):
+    def __init__(self, module: "MiscGraphicsModule", item_data: str):
         super().__init__()
         self.module = module
-        self.item_data = _
+        self.item_data = item_data
         self.module = module
         self._reinit_image()
-        self.draw.connect("draw", self.draw)
+        self.draw_widget.connect("draw", self.exec_draw)
 
     @Gtk.Template.Callback()
     def on_cart_removed_info_clicked(self, *args):
@@ -114,9 +114,9 @@ class StMiscGraphicsCartRemovedPage(Gtk.Paned):
     def _reinit_image(self):
         surface = self.module.get_cart_removed_data()
         self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
-        self.draw.queue_draw()
+        self.draw_widget.queue_draw()
 
-    def draw(self, wdg, ctx: cairo.Context, *args):
+    def exec_draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:
             wdg.set_size_request(self.surface.get_width(), self.surface.get_height())
             ctx.fill()

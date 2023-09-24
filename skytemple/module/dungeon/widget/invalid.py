@@ -38,14 +38,12 @@ class StDungeonInvalidDungeonPage(Gtk.Box):
         Gtk.Adjustment, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "DungeonModule", dungeon_info: "DungeonViewInfo"):
+    def __init__(self, module: "DungeonModule", item_data: "DungeonViewInfo"):
         super().__init__()
         self.module = module
-        self.item_data = dungeon_info
-        self.module = module
-        self.dungeon_info = dungeon_info
+        self.item_data = item_data
         self.dungeon_name = self.module.project.get_string_provider().get_value(
-            StringType.DUNGEON_NAMES_MAIN, self.dungeon_info.dungeon_id
+            StringType.DUNGEON_NAMES_MAIN, self.item_data.dungeon_id
         )
         self.label_dungeon_name.set_text(self.dungeon_name)
 

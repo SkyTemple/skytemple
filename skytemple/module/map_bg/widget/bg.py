@@ -281,17 +281,15 @@ class StMapBgBgPage(Gtk.Box):
         Gtk.FileChooserButton, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "MapBgModule", item_id: int):
+    def __init__(self, module: "MapBgModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
-        self.item_id = item_id
+        self.item_data = item_data
         self.notebook: Optional[Gtk.Notebook] = None
-        self.bma = module.get_bma(item_id)
-        self.bpl = module.get_bpl(item_id)
-        self.bpc = module.get_bpc(item_id)
-        self.bpas = module.get_bpas(item_id)
+        self.bma = module.get_bma(item_data)
+        self.bpl = module.get_bpl(item_data)
+        self.bpc = module.get_bpc(item_data)
+        self.bpas = module.get_bpas(item_data)
         self.first_cursor_pos = (0, 0)
         self.last_bma: Optional[BmaProtocol] = None
         # Cairo surfaces for each tile in each layer for each frame
@@ -314,10 +312,10 @@ class StMapBgBgPage(Gtk.Box):
         self._perform_asset_copy()
         if self._was_asset_copied:
             # Force reload of the models, if we had to copy.
-            self.bma = module.get_bma(item_id)
-            self.bpl = module.get_bpl(item_id)
-            self.bpc = module.get_bpc(item_id)
-            self.bpas = module.get_bpas(item_id)
+            self.bma = module.get_bma(item_data)
+            self.bpl = module.get_bpl(item_data)
+            self.bpc = module.get_bpc(item_data)
+            self.bpas = module.get_bpas(item_data)
         self.set_warning_palette()
         self.notebook = self.bg_notebook
         self._init_drawer()
@@ -347,35 +345,8 @@ class StMapBgBgPage(Gtk.Box):
             )
             md.run()
             md.destroy()
-            self.module.mark_as_modified(self.item_id)
+            self.module.mark_as_modified(self.item_data)
             self.module.mark_level_list_as_modified()
-
-    @typing.no_type_check
-    def unload(self):
-        super().unload()
-        self.module = None
-        self.item_id = None
-        self.notebook = None
-        self.bma = None
-        self.bpl = None
-        self.bpc = None
-        self.bpas = None
-        self.chunks_surfaces = None
-        self.bpa_durations = None
-        if self.drawer:
-            self.drawer.unload()
-        self.drawer = None
-        if self.current_icon_view_renderer:
-            self.current_icon_view_renderer.unload()
-        self.current_icon_view_renderer = None
-        self.bg_draw = None
-        self.bg_draw_event_box = None
-        self._tileset_drawer_overlay = None
-        self.scale_factor = 1
-        self.current_chunks_icon_layer = 0
-        self.bg_draw_is_clicked = False
-        self.menu_controller = None
-        self._was_asset_copied = False
 
     @Gtk.Template.Callback()
     def on_bg_notebook_switch_page(self, notebook, page, *args):
@@ -575,7 +546,7 @@ class StMapBgBgPage(Gtk.Box):
     @Gtk.Template.Callback()
     def on_tb_goto_scene_clicked(self, w):
         try:
-            associated = self.module.get_associated_script_map(self.item_id)
+            associated = self.module.get_associated_script_map(self.item_data)
             if associated is None:
                 raise ValueError()
             self.module.project.request_open(
@@ -926,7 +897,7 @@ class StMapBgBgPage(Gtk.Box):
             cb.set_active(0)
 
     def mark_as_modified(self):
-        self.module.mark_as_modified(self.item_id)
+        self.module.mark_as_modified(self.item_data)
 
     def _init_tab(self, notebook_page: Gtk.Box):
         layers_box = self.bg_layers
@@ -1028,7 +999,7 @@ class StMapBgBgPage(Gtk.Box):
         self._update_scales()
 
     def _refresh_metadata(self):
-        level_entry = self.module.get_level_entry(self.item_id)
+        level_entry = self.module.get_level_entry(self.item_data)
         self.filename_bma.set_text(level_entry.bma_name + BMA_EXT)
         self.filename_bpc.set_text(level_entry.bpc_name + BPC_EXT)
         self.filename_bpl.set_text(level_entry.bpl_name + BPL_EXT)
@@ -1073,7 +1044,7 @@ class StMapBgBgPage(Gtk.Box):
         """Reload all image related things"""
         if self.current_icon_view_renderer:
             self.current_icon_view_renderer.stop()
-        self.bpas = self.module.get_bpas(self.item_id)
+        self.bpas = self.module.get_bpas(self.item_data)
         self._init_chunk_imgs()
         if self.drawer:
             self.drawer.reset(
@@ -1090,7 +1061,7 @@ class StMapBgBgPage(Gtk.Box):
 
     def _init_rest_room_note(self):
         mode_10_or_11_level = None
-        for level in self.module.get_all_associated_script_maps(self.item_id):
+        for level in self.module.get_all_associated_script_maps(self.item_data):
             if (
                 level.mapty_enum == Pmd2ScriptLevelMapType.TILESET
                 or level.mapty_enum == Pmd2ScriptLevelMapType.FIXED_ROOM
@@ -1126,7 +1097,7 @@ class StMapBgBgPage(Gtk.Box):
     def _perform_asset_copy(self):
         """Check if assets need to be copied, and if so do so."""
         map_list = self.module.bgs
-        entry = self.module.get_level_entry(self.item_id)
+        entry = self.module.get_level_entry(self.item_data)
         if map_list.find_bma(entry.bma_name) > 1:
             self._was_asset_copied = True
             new_name, new_rom_filename = self._find_new_name(entry.bma_name, BMA_EXT)

@@ -176,17 +176,15 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
     )
     _last_open_tab_id = 0
 
-    def __init__(self, module: "DungeonGraphicsModule", item_id: int):
+    def __init__(self, module: "DungeonGraphicsModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
-        self.item_id = item_id
-        self.dma: DmaProtocol = module.get_dma(item_id)
-        self.dpl: DplProtocol = module.get_dpl(item_id)
-        self.dpla: DplaProtocol = module.get_dpla(item_id)
-        self.dpc: DpcProtocol = module.get_dpc(item_id)
-        self.dpci: DpciProtocol = module.get_dpci(item_id)
+        self.item_data = item_data
+        self.dma: DmaProtocol = module.get_dma(item_data)
+        self.dpl: DplProtocol = module.get_dpl(item_data)
+        self.dpla: DplaProtocol = module.get_dpla(item_data)
+        self.dpc: DpcProtocol = module.get_dpc(item_data)
+        self.dpci: DpciProtocol = module.get_dpci(item_data)
         self.rules: MutableSequence[MutableSequence[int]] = [
             [0, 0, 0],
             [0, 0, 0],
@@ -202,12 +200,11 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
         self._init_rule_icon_views()
         self._init_chunk_picker_icon_view()
         self._init_secondary_terrain()
-        editor = self.editor
         root = self.editor_root
         root.set_current_page(self.__class__._last_open_tab_id)
         self.on_editor_root_switch_page(None, None, self.__class__._last_open_tab_id)
-        self.label_tileset_name.set_text(f(_("Dungeon Tileset {self.item_id} Rules")))
-        self.label_tileset_name2.set_text(f(_("Dungeon Tileset {self.item_id}")))
+        self.label_tileset_name.set_text(f(_("Dungeon Tileset {self.item_data} Rules")))
+        self.label_tileset_name2.set_text(f(_("Dungeon Tileset {self.item_data}")))
 
     @Gtk.Template.Callback()
     def on_editor_root_switch_page(self, w, p, pnum, *args):
@@ -419,7 +416,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
         secondary_terrains = HardcodedDungeons.get_secondary_terrains(
             self.module.project.get_binary(BinaryName.ARM9), static
         )
-        secondary_terrains[self.item_id] = SecondaryTerrainTableEntry(idx)
+        secondary_terrains[self.item_data] = SecondaryTerrainTableEntry(idx)
 
         def update(arm9):
             HardcodedDungeons.set_secondary_terrains(secondary_terrains, arm9, static)
@@ -470,7 +467,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
                 self.mark_as_modified()
 
     def mark_as_modified(self):
-        self.module.mark_as_modified(self.item_id, False)
+        self.module.mark_as_modified(self.item_data, False)
 
     def reload_all(self):
         """Reload all image related things"""
@@ -686,5 +683,5 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
             secondary_terrain = HardcodedDungeons.get_secondary_terrains(
                 self.module.project.get_binary(BinaryName.ARM9),
                 self.module.project.get_rom_module().get_static_data(),
-            )[self.item_id]
+            )[self.item_data]
             w.set_active(secondary_terrain.value)

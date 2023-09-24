@@ -60,15 +60,12 @@ class StListsMenuListPage(Gtk.Box):
     action: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     btn_help: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "ListsModule", *args):
+    def __init__(self, module: "ListsModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = None
-        super().__init__(module, *args)
-        self.module = module
+        self.item_data = item_data
         self._string_provider = module.project.get_string_provider()
         self._list_store: Gtk.ListStore
-        lst = self.box_list
         self._rank_up_table = self.module.get_rank_list()
         self._init_combos()
         self.on_lang_changed()

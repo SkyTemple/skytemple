@@ -180,17 +180,15 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
         Gtk.FileChooserButton, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "DungeonGraphicsModule", item_id: int):
+    def __init__(self, module: "DungeonGraphicsModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
-        self.item_id = item_id
-        self.dbg: DbgProtocol = module.get_bg_dbg(item_id)
-        self.dpl: DplProtocol = module.get_bg_dpl(item_id)
-        self.dpla: DplaProtocol = module.get_bg_dpla(item_id)
-        self.dpc: DpcProtocol = module.get_bg_dpc(item_id)
-        self.dpci: DpciProtocol = module.get_bg_dpci(item_id)
+        self.item_data = item_data
+        self.dbg: DbgProtocol = module.get_bg_dbg(item_data)
+        self.dpl: DplProtocol = module.get_bg_dpl(item_data)
+        self.dpla: DplaProtocol = module.get_bg_dpla(item_data)
+        self.dpc: DpcProtocol = module.get_bg_dpc(item_data)
+        self.dpci: DpciProtocol = module.get_bg_dpci(item_data)
         # Cairo surfaces for each tile in each layer for each frame
         # chunks_surfaces[chunk_idx][palette_animation_frame]
         self.chunks_surfaces: list[list[list[cairo.Surface]]] = []
@@ -487,7 +485,7 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
         icon_view.set_model(None)
 
     def mark_as_modified(self):
-        self.module.mark_as_modified(self.item_id, True)
+        self.module.mark_as_modified(self.item_data, True)
 
     def _init_main_area(self):
         self._init_chunks_icon_view()

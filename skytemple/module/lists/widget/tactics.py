@@ -41,14 +41,11 @@ class StListsTacticsPage(Gtk.Box):
     tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     cr_level: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
 
-    def __init__(self, module: "ListsModule", item_id):
+    def __init__(self, module: "ListsModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        super().__init__(module, item_id)
-        self.module = module
+        self.item_data = item_data
         self._list: list[i16]
-        lst = self.box_list
         self._list = self.module.get_tactics()
         self.refresh_list()
 

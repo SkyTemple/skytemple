@@ -18,7 +18,6 @@ from __future__ import annotations
 import logging
 import re
 import sys
-import typing
 from enum import Enum
 from typing import TYPE_CHECKING, Optional, cast
 from xml.etree import ElementTree
@@ -257,13 +256,11 @@ class StMonsterMonsterPage(Gtk.Box):
     _last_open_tab_id = 0
     _previous_item_id = -1
 
-    def __init__(self, module: "MonsterModule", item_id: int):
+    def __init__(self, module: "MonsterModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
-        self.item_id = item_id
-        self.entry: MdEntryProtocol = self.module.get_entry(self.item_id)
+        self.item_data = item_data
+        self.entry: MdEntryProtocol = self.module.get_entry(self.item_data)
         self._monster_bin = self.module.project.open_file_in_rom(
             MONSTER_BIN, FileType.BIN_PACK, threadsafe=True
         )
@@ -322,28 +319,8 @@ class StMonsterMonsterPage(Gtk.Box):
         self.draw_sprite.queue_draw()
         notebook = self.main_notebook
         notebook.set_current_page(self.__class__._last_open_tab_id)
-        self._check_sprite_size(self.__class__._previous_item_id != self.item_id)
-        self.__class__._previous_item_id = self.item_id
-
-    @typing.no_type_check
-    def unload(self):
-        # We need to destroy this first.
-        # GTK is an enigma sometimes.
-        if self.builder is not None:
-            self.export_dialog.destroy()
-        super().unload()
-        self.module = None
-        self.item_id = None
-        self.entry = None
-        self._monster_bin = None
-        self._is_loading = False
-        self._string_provider = None
-        self._sprite_provider = None
-        self._portrait_provider = None
-        self._level_up_controller = None
-        self._cached_sprite_page = None
-        self._render_graph_on_tab_change = True
-        self.item_names = {}
+        self._check_sprite_size(self.__class__._previous_item_id != self.item_data)
+        self.__class__._previous_item_id = self.item_data
 
     @Gtk.Template.Callback()
     def on_main_notebook_switch_page(self, notebook, page, page_num):
@@ -421,7 +398,7 @@ class StMonsterMonsterPage(Gtk.Box):
     @catch_overflow(u8)
     def on_entry_personality_changed(self, w, *args):
         try:
-            self.module.set_personality(self.item_id, u8_checked(int(w.get_text())))
+            self.module.set_personality(self.item_data, u8_checked(int(w.get_text())))
         except ValueError:
             pass
 
@@ -429,7 +406,7 @@ class StMonsterMonsterPage(Gtk.Box):
     def on_cb_idle_anim_changed(self, w, *args):
         try:
             val = w.get_model()[w.get_active_iter()][0]
-            self.module.set_idle_anim_type(self.item_id, IdleAnimType(val))
+            self.module.set_idle_anim_type(self.item_data, IdleAnimType(val))
         except ValueError:
             pass
 
@@ -451,7 +428,7 @@ class StMonsterMonsterPage(Gtk.Box):
     def on_cb_gender_changed(self, w, *args):
         self._update_from_cb(w)
         # Changing the gender should also refresh the tree, as the gender is marked here.
-        self.module.refresh(self.item_id)
+        self.module.refresh(self.item_data)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
@@ -459,7 +436,7 @@ class StMonsterMonsterPage(Gtk.Box):
         self._update_lang_from_entry(w, 0)
         if self._our_lang_index == 1:
             self.label_id_name.set_text(f"${self.entry.md_index:04d}: {w.get_text()}")
-            self.module.refresh(self.item_id)
+            self.module.refresh(self.item_data)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
@@ -467,7 +444,7 @@ class StMonsterMonsterPage(Gtk.Box):
         self._update_lang_from_entry(w, 1)
         if self._our_lang_index == 2:
             self.label_id_name.set_text(f"${self.entry.md_index:04d}: {w.get_text()}")
-            self.module.refresh(self.item_id)
+            self.module.refresh(self.item_data)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
@@ -475,7 +452,7 @@ class StMonsterMonsterPage(Gtk.Box):
         self._update_lang_from_entry(w, 2)
         if self._our_lang_index == 3:
             self.label_id_name.set_text(f"${self.entry.md_index:04d}: {w.get_text()}")
-            self.module.refresh(self.item_id)
+            self.module.refresh(self.item_data)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
@@ -483,7 +460,7 @@ class StMonsterMonsterPage(Gtk.Box):
         self._update_lang_from_entry(w, 3)
         if self._our_lang_index == 4:
             self.label_id_name.set_text(f"${self.entry.md_index:04d}: {w.get_text()}")
-            self.module.refresh(self.item_id)
+            self.module.refresh(self.item_data)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
@@ -491,7 +468,7 @@ class StMonsterMonsterPage(Gtk.Box):
         self._update_lang_from_entry(w, 4)
         if self._our_lang_index == 5:
             self.label_id_name.set_text(f"${self.entry.md_index:04d}: {w.get_text()}")
-            self.module.refresh(self.item_id)
+            self.module.refresh(self.item_data)
         self.mark_as_modified()
 
     @Gtk.Template.Callback()
@@ -1461,12 +1438,14 @@ class StMonsterMonsterPage(Gtk.Box):
                     )
                 )
         # Stats
-        a = self.module.get_idle_anim_type(self.item_id)
+        a = self.module.get_idle_anim_type(self.item_data)
         if a is None:
             self.cb_idle_anim.set_sensitive(False)
         else:
             self._set_cb("cb_idle_anim", a.value)
-        self._set_entry("entry_personality", self.module.get_personality(self.item_id))
+        self._set_entry(
+            "entry_personality", self.module.get_personality(self.item_data)
+        )
         self._set_entry("entry_unk31", self.entry.unk31)
         self._set_entry(
             "entry_national_pokedex_number", self.entry.national_pokedex_number
@@ -1532,7 +1511,7 @@ class StMonsterMonsterPage(Gtk.Box):
 
     def mark_as_modified(self):
         if not self._is_loading:
-            self.module.mark_md_as_modified(self.item_id)
+            self.module.mark_md_as_modified(self.item_data)
 
     def _comboxbox_for_enum(
         self, names: list[str], enum: type[Enum], sort_by_name=False
@@ -1629,11 +1608,11 @@ class StMonsterMonsterPage(Gtk.Box):
         notebook = self.main_notebook
         tab_label: Gtk.Label = Gtk.Label.new(_("Stats and Moves"))
         level_up_view, self._level_up_controller = self.module.get_level_up_view(
-            self.item_id
+            self.item_data
         )
         notebook.append_page(level_up_view, tab_label)
         tab_label = Gtk.Label.new(_("Portraits"))
-        notebook.append_page(self.module.get_portrait_view(self.item_id), tab_label)
+        notebook.append_page(self.module.get_portrait_view(self.item_data), tab_label)
         self._reload_sprite_page()
         if self._level_up_controller is not None:
             self._show_no_stats_warning(not self._level_up_controller.has_stats)
@@ -1647,7 +1626,7 @@ class StMonsterMonsterPage(Gtk.Box):
         tab_label: Gtk.Label = Gtk.Label.new(_("Sprites"))
         tab_label.show()
         self._cached_sprite_page = notebook.append_page(
-            self.module.get_sprite_view(self.entry.sprite_index, self.item_id),
+            self.module.get_sprite_view(self.entry.sprite_index, self.item_data),
             tab_label,
         )
 
@@ -1885,8 +1864,8 @@ class StMonsterMonsterPage(Gtk.Box):
         self._rebuild_evo_lists()
 
     def _init_evo_lists(self):
-        current_evo = self._md_evo.evo_entries[self.item_id]
-        current_stats = self._md_evo.evo_stats[self.item_id]
+        current_evo = self._md_evo.evo_entries[self.item_data]
+        current_stats = self._md_evo.evo_stats[self.item_data]
         tree = self.evo_tree
         store = cast(Optional[Gtk.ListStore], tree.get_model())
         assert store is not None
@@ -1912,8 +1891,8 @@ class StMonsterMonsterPage(Gtk.Box):
             val = i16_checked(int(w.get_text()))
         except ValueError:
             return
-        self._md_evo.evo_stats[self.item_id].hp_bonus = val
-        self.module.mark_md_evo_as_modified(self.item_id)
+        self._md_evo.evo_stats[self.item_data].hp_bonus = val
+        self.module.mark_md_evo_as_modified(self.item_data)
 
     @Gtk.Template.Callback()
     @catch_overflow(i16)
@@ -1922,8 +1901,8 @@ class StMonsterMonsterPage(Gtk.Box):
             val = i16_checked(int(w.get_text()))
         except ValueError:
             return
-        self._md_evo.evo_stats[self.item_id].atk_bonus = val
-        self.module.mark_md_evo_as_modified(self.item_id)
+        self._md_evo.evo_stats[self.item_data].atk_bonus = val
+        self.module.mark_md_evo_as_modified(self.item_data)
 
     @Gtk.Template.Callback()
     @catch_overflow(i16)
@@ -1932,8 +1911,8 @@ class StMonsterMonsterPage(Gtk.Box):
             val = i16_checked(int(w.get_text()))
         except ValueError:
             return
-        self._md_evo.evo_stats[self.item_id].spatk_bonus = val
-        self.module.mark_md_evo_as_modified(self.item_id)
+        self._md_evo.evo_stats[self.item_data].spatk_bonus = val
+        self.module.mark_md_evo_as_modified(self.item_data)
 
     @Gtk.Template.Callback()
     @catch_overflow(i16)
@@ -1942,8 +1921,8 @@ class StMonsterMonsterPage(Gtk.Box):
             val = i16_checked(int(w.get_text()))
         except ValueError:
             return
-        self._md_evo.evo_stats[self.item_id].def_bonus = val
-        self.module.mark_md_evo_as_modified(self.item_id)
+        self._md_evo.evo_stats[self.item_data].def_bonus = val
+        self.module.mark_md_evo_as_modified(self.item_data)
 
     @Gtk.Template.Callback()
     @catch_overflow(i16)
@@ -1952,13 +1931,13 @@ class StMonsterMonsterPage(Gtk.Box):
             val = i16_checked(int(w.get_text()))
         except ValueError:
             return
-        self._md_evo.evo_stats[self.item_id].spdef_bonus = val
-        self.module.mark_md_evo_as_modified(self.item_id)
+        self._md_evo.evo_stats[self.item_data].spdef_bonus = val
+        self.module.mark_md_evo_as_modified(self.item_data)
 
     @Gtk.Template.Callback()
     def on_btn_add_evo_clicked(self, *args):
         try:
-            if len(self._md_evo.evo_entries[self.item_id].evos) >= MAX_EVOS:
+            if len(self._md_evo.evo_entries[self.item_data].evos) >= MAX_EVOS:
                 raise ValueError(
                     _(f"A pokémon can't evolve into more than {MAX_EVOS} evolutions.")
                 )
@@ -1970,7 +1949,7 @@ class StMonsterMonsterPage(Gtk.Box):
     @Gtk.Template.Callback()
     def on_btn_add_egg_clicked(self, *args):
         try:
-            if len(self._md_evo.evo_entries[self.item_id].eggs) >= MAX_EGGS:
+            if len(self._md_evo.evo_entries[self.item_data].eggs) >= MAX_EGGS:
                 raise ValueError(
                     _(f"A pokémon can't have more than {MAX_EGGS} children.")
                 )
@@ -2013,12 +1992,12 @@ class StMonsterMonsterPage(Gtk.Box):
         evo_entries = []
         for entry in iter_tree_model(store):
             evo_entries.append(entry[0])
-        self._md_evo.evo_entries[self.item_id].evos = evo_entries
+        self._md_evo.evo_entries[self.item_data].evos = evo_entries
         tree = self.egg_tree
         store = cast(Optional[Gtk.ListStore], tree.get_model())
         assert store is not None
         eggs_entries = []
         for entry in iter_tree_model(store):
             eggs_entries.append(entry[0])
-        self._md_evo.evo_entries[self.item_id].eggs = eggs_entries
-        self.module.mark_md_evo_as_modified(self.item_id)
+        self._md_evo.evo_entries[self.item_data].eggs = eggs_entries
+        self.module.mark_md_evo_as_modified(self.item_data)

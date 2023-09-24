@@ -56,7 +56,7 @@ class StBgpBgpPage(Gtk.Box):
     men_bg_import: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     men_bg_export: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     men_tools_tilequant: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
-    draw: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
+    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
     image1: Gtk.Image = cast(Gtk.Image, Gtk.Template.Child())
     dialog_bg_export: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_map_export_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
@@ -70,15 +70,13 @@ class StBgpBgpPage(Gtk.Box):
         Gtk.FileChooserButton, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "BgpModule", item_id: int):
+    def __init__(self, module: "BgpModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
-        self.item_id = item_id
-        self.bgp = self.module.get_bgp(self.item_id)
+        self.item_data = item_data
+        self.bgp = self.module.get_bgp(self.item_data)
         self._reinit_image()
-        self.draw.connect("draw", self.draw)
+        self.draw_widget.connect("draw", self.exec_draw)
 
     @Gtk.Template.Callback()
     def on_men_bg_export_activate(self, *args):
@@ -119,7 +117,7 @@ class StBgpBgpPage(Gtk.Box):
                         self.bgp.from_pil(Image.open(f), True)
             except Exception as err:
                 display_error(sys.exc_info(), str(err), _("Error importing the image."))
-            self.module.mark_as_modified(self.item_id)
+            self.module.mark_as_modified(self.item_data)
             self._reinit_image()
 
     @Gtk.Template.Callback()
@@ -145,9 +143,9 @@ class StBgpBgpPage(Gtk.Box):
 
     def _reinit_image(self):
         self.surface = pil_to_cairo_surface(self.bgp.to_pil().convert("RGBA"))
-        self.draw.queue_draw()
+        self.draw_widget.queue_draw()
 
-    def draw(self, wdg, ctx: cairo.Context, *args):
+    def exec_draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:
             ctx.fill()
             ctx.set_source_surface(self.surface, 0, 0)

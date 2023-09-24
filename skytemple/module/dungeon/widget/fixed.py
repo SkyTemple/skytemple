@@ -183,12 +183,10 @@ class StDungeonFixedPage(Gtk.Notebook):
     _last_scale_factor: Optional[CanvasScale] = None
     _last_show_full_map = True
 
-    def __init__(self, module: "DungeonModule", item_id: int):
+    def __init__(self, module: "DungeonModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.floor_id = item_id
-        self.module = module
+        self.item_data = item_data
         self.tileset_id = 0
         if self.__class__._last_scale_factor is not None:
             self._scale_factor = self.__class__._last_scale_factor
@@ -198,8 +196,8 @@ class StDungeonFixedPage(Gtk.Notebook):
         self.entity_rule_container: EntityRuleContainer = EntityRuleContainer(
             *self.module.get_fixed_floor_entity_lists()
         )
-        self.properties = self.module.get_fixed_floor_properties()[self.floor_id]
-        self.override_id = self.module.get_fixed_floor_overrides()[self.floor_id]
+        self.properties = self.module.get_fixed_floor_properties()[self.item_data]
+        self.override_id = self.module.get_fixed_floor_overrides()[self.item_data]
         # TODO: Duplicated code
         self.enemy_settings_name = [f"{i}" for i in range(0, 256)]
         self.long_enemy_settings_name = [f"{i}: ???" for i in range(0, 256)]
@@ -327,7 +325,7 @@ class StDungeonFixedPage(Gtk.Notebook):
                         self.floor.actions[old_y * self.floor.width + old_x] = TileRule(
                             TileRuleType.FLOOR_ROOM, None
                         )
-                        self.module.mark_fixed_floor_as_modified(self.floor_id)
+                        self.module.mark_fixed_floor_as_modified(self.item_data)
         self._currently_selected = None
         self._bg_draw_is_clicked__location = None
         self._bg_draw_is_clicked__drag_active = False
@@ -520,7 +518,7 @@ class StDungeonFixedPage(Gtk.Notebook):
             self.properties.music_track = u32_checked(int(w.get_text()))
         except ValueError:
             return
-        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+        self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_complete_state_set(self, w: Gtk.Switch, state: bool, *args):
@@ -528,7 +526,7 @@ class StDungeonFixedPage(Gtk.Notebook):
             self.properties.null |= 1
         else:
             self.properties.null &= ~1
-        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+        self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_boss_state_set(self, w: Gtk.Switch, state: bool, *args):
@@ -536,7 +534,7 @@ class StDungeonFixedPage(Gtk.Notebook):
             self.properties.null |= 2
         else:
             self.properties.null &= ~2
-        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+        self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_free_state_set(self, w: Gtk.Switch, state: bool, *args):
@@ -544,47 +542,47 @@ class StDungeonFixedPage(Gtk.Notebook):
             self.properties.null |= 4
         else:
             self.properties.null &= ~4
-        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+        self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_moves_state_set(self, w: Gtk.Switch, state: bool, *args):
         self.properties.moves_enabled = state
-        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+        self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_orbs_state_set(self, w: Gtk.Switch, state: bool, *args):
         self.properties.orbs_enabled = state
-        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+        self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_defeat_enemies_state_set(self, w: Gtk.Switch, state: bool, *args):
         self.properties.exit_floor_when_defeating_enemies = state
-        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+        self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_unk4_state_set(self, w: Gtk.Switch, state: bool, *args):
         self.properties.unk4 = state
-        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+        self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_unk5_state_set(self, w: Gtk.Switch, state: bool, *args):
         self.properties.unk5 = state
-        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+        self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_unk8_state_set(self, w: Gtk.Switch, state: bool, *args):
         self.properties.unk8 = state
-        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+        self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_unk9_state_set(self, w: Gtk.Switch, state: bool, *args):
         self.properties.unk9 = state
-        self.module.save_fixed_floor_properties(self.floor_id, self.properties)
+        self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_override_changed(self, w: Gtk.ComboBox, *args):
         self.override_id = u8(w.get_active())
-        self.module.save_fixed_floor_override(self.floor_id, self.override_id)
+        self.module.save_fixed_floor_override(self.item_data, self.override_id)
 
     @Gtk.Template.Callback()
     def on_btn_apply_size_clicked(self, *args):
@@ -621,7 +619,7 @@ class StDungeonFixedPage(Gtk.Notebook):
             confirm = response == Gtk.ResponseType.YES
         if confirm:
             self.floor.resize(width, height)
-            self.module.mark_fixed_floor_as_modified(self.floor_id)
+            self.module.mark_fixed_floor_as_modified(self.item_data)
             MainController.reload_view()
 
     @Gtk.Template.Callback()
@@ -804,7 +802,7 @@ class StDungeonFixedPage(Gtk.Notebook):
                 self.floor.actions[y * self.floor.width + x] = (
                     self.drawer.get_selected()
                 )
-                self.module.mark_fixed_floor_as_modified(self.floor_id)
+                self.module.mark_fixed_floor_as_modified(self.item_data)
 
     @staticmethod
     def _fast_set_comboxbox_store(cb: Gtk.ComboBox, store: Gtk.ListStore, col):
@@ -815,7 +813,9 @@ class StDungeonFixedPage(Gtk.Notebook):
 
     def _auto_select_tileset(self):
         cb: Gtk.ComboBox = self.tool_choose_tileset_cb
-        self.tileset_id = self.module.get_default_tileset_for_fixed_floor(self.floor_id)
+        self.tileset_id = self.module.get_default_tileset_for_fixed_floor(
+            self.item_data
+        )
         cb.set_active(self.tileset_id)
 
     def _load_settings(self):
@@ -837,9 +837,9 @@ class StDungeonFixedPage(Gtk.Notebook):
             self.settings_complete.set_sensitive(False)
             self.settings_boss.set_sensitive(False)
             self.settings_free.set_sensitive(False)
-            self.settings_complete.set_active(bool(1 <= self.floor_id < 165))
-            self.settings_boss.set_active(bool(1 <= self.floor_id <= 80))
-            self.settings_free.set_active(bool(1 <= self.floor_id <= 110))
+            self.settings_complete.set_active(bool(1 <= self.item_data < 165))
+            self.settings_boss.set_active(bool(1 <= self.item_data <= 80))
+            self.settings_free.set_active(bool(1 <= self.item_data <= 110))
         else:
             self.settings_complete.set_active(bool(self.properties.null & 1))
             self.settings_boss.set_active(bool(self.properties.null & 2))
@@ -847,7 +847,7 @@ class StDungeonFixedPage(Gtk.Notebook):
 
     def _init_fixed_floor(self):
         # Fixed floor data
-        self.floor = self.module.get_fixed_floor(self.floor_id)
+        self.floor = self.module.get_fixed_floor(self.item_data)
 
     def _init_tileset(self):
         assert self.drawer is not None

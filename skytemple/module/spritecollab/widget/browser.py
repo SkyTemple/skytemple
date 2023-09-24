@@ -16,7 +16,6 @@ from skytemple_files.common.spritecollab.client import (
 )
 from skytemple_files.common.spritecollab.schema import Credit
 from skytemple.controller.main import MainController
-from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.error_handler import display_error
 from skytemple.core.list_icon_renderer import ListIconRenderer
 
@@ -98,7 +97,7 @@ import os
 @Gtk.Template(filename=os.path.join(data_dir(), "widget", "spritecollab", "browser.ui"))
 class StSpritecollabBrowserPage(Gtk.Window):
     __gtype_name__ = "StSpritecollabBrowserPage"
-    module: AbstractModule
+    module: SpritecollabModule
     item_data: None
     sc_store_switcher_combobox: Gtk.ListStore = cast(
         Gtk.ListStore, Gtk.Template.Child()
@@ -126,11 +125,10 @@ class StSpritecollabBrowserPage(Gtk.Window):
     sc_diag_browser_url: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     _instance = None
 
-    def __init__(self, module: AbstractModule, _item_id):
+    def __init__(self, module: SpritecollabModule, item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = _item_id
-        self.module: SpritecollabModule = module
+        self.item_data = item_data
         self.was_realized = False
         self._store: Gtk.ListStore = None
         self._filter: Gtk.TreeModelFilter = None
