@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-23 19:42+0000\n"
-"PO-Revision-Date: 2023-09-24 05:53\n"
+"PO-Revision-Date: 2023-09-24 07:02\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -10571,7 +10571,8 @@ msgstr ""
 #, python-format
 msgid "The % of HP that this Pokémon regenerates at the end of each turn is equal to 1/(value * 2), before applying any modifiers.\n"
 "The final value is capped between 1/30 and 1/500"
-msgstr ""
+msgstr "このポケモンが各ターンの終わりに回復するHPの割合は、修飾子を適用する前の 1/(値* 2) に等しくなります。\n"
+"最終的な値は 1/30 から 1/500 の間に制限されます。"
 
 #: skytemple/skytemple/module/monster/controller/monster.py:641
 msgid "HP Regeneration"
