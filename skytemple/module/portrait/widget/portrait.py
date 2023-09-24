@@ -174,12 +174,10 @@ class StPortraitPortraitPage(Gtk.Box):
     portrait_draw40: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     portrait_label40: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
 
-    def __init__(self, module: "PortraitModule", item_id: int, mark_as_modified_cb):
+    def __init__(self, module: "PortraitModule", item_data: int, mark_as_modified_cb):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
-        self.item_id = item_id
+        self.item_data = item_data
         self._portrait_provider = self.module.get_portrait_provider()
         self._draws: list[Gtk.DrawingArea] = []
         self._mark_as_modified_cb = mark_as_modified_cb
@@ -200,7 +198,7 @@ class StPortraitPortraitPage(Gtk.Box):
     def on_draw(self, subindex: int, widget: Gtk.DrawingArea, ctx: cairo.Context):
         scale = 2
         portrait = self._portrait_provider.get(
-            self.item_id, subindex, lambda: GLib.idle_add(widget.queue_draw), False
+            self.item_data, subindex, lambda: GLib.idle_add(widget.queue_draw), False
         )
         ctx.set_source_rgb(1, 1, 1)
         w, h = widget.get_size_request()
@@ -229,7 +227,7 @@ class StPortraitPortraitPage(Gtk.Box):
     @Gtk.Template.Callback()
     def on_delete_clicked(self, label: Gtk.Label):
         index = int(label.get_label().split(":")[0])
-        self.kao.delete(self.item_id, index)
+        self.kao.delete(self.item_data, index)
         self.re_render()
         # Mark as modified
         self.module.mark_as_modified()
@@ -248,9 +246,9 @@ class StPortraitPortraitPage(Gtk.Box):
         fn = dialog.get_filename()
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
-            base_filename = os.path.join(fn, f"{self.item_id + 1}")
+            base_filename = os.path.join(fn, f"{self.item_data + 1}")
             for subindex in range(0, SUBENTRIES):
-                kao = self.kao.get(self.item_id, subindex)
+                kao = self.kao.get(self.item_data, subindex)
                 if kao:
                     filename = f"{base_filename}_{subindex}.png"
                     img = kao.get()
@@ -265,7 +263,7 @@ class StPortraitPortraitPage(Gtk.Box):
             Gtk.ButtonsType.OK,
             f(
                 _(
-                    "To import, select a directory to import from. Files with the pattern '{self.item_id + 1}_XX.png'\nwill be imported, where XX is a number between 0 and 40."
+                    "To import, select a directory to import from. Files with the pattern '{self.item_data + 1}_XX.png'\nwill be imported, where XX is a number between 0 and 40."
                 )
             ),
             title=_("Import Portraits"),
@@ -283,7 +281,7 @@ class StPortraitPortraitPage(Gtk.Box):
         fn = dialog.get_filename()
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
-            r = re.compile(f"{self.item_id + 1}_(\\d+)\\.png", re.IGNORECASE)
+            r = re.compile(f"{self.item_data + 1}_(\\d+)\\.png", re.IGNORECASE)
             imgs = {
                 int(match[1]): name
                 for match, name in self._try_match_import(r, os.listdir(fn))
@@ -293,7 +291,7 @@ class StPortraitPortraitPage(Gtk.Box):
                 try:
                     with open(os.path.join(fn, image_fn), "rb") as file:
                         image = Image.open(file)
-                        self.kao.set_from_img(self.item_id, subindex, image)
+                        self.kao.set_from_img(self.item_data, subindex, image)
                 except Exception as err:
                     name = self.module.get_portrait_name(subindex)
                     logger.error(f"Failed importing image '{name}'.", exc_info=err)
@@ -322,7 +320,7 @@ class StPortraitPortraitPage(Gtk.Box):
         fn = dialog.get_filename()
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, "png")
-            SpriteBotSheet.create(self.kao, self.item_id).save(fn)
+            SpriteBotSheet.create(self.kao, self.item_data).save(fn)
 
     @Gtk.Template.Callback()
     def on_spritebot_import_activate(self, *args):
@@ -338,7 +336,7 @@ class StPortraitPortraitPage(Gtk.Box):
         fn = dialog.get_filename()
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
-            self.module.import_sheet(self.item_id, fn)
+            self.module.import_sheet(self.item_data, fn)
             self.re_render()
             self._mark_as_modified_cb()
 

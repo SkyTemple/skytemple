@@ -56,14 +56,11 @@ class StListsMiscSettingsPage(Gtk.Box):
     entry_oran_berry: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     entry_sitrus_berry: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
 
-    def __init__(self, module: "ListsModule", *args):
+    def __init__(self, module: "ListsModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = None
-        super().__init__(module, *args)
-        self.module = module
+        self.item_data = item_data
         self._string_provider = module.project.get_string_provider()
-        box = self.box
         self._init_combos()
         self._init_values()
 

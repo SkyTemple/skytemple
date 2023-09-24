@@ -64,13 +64,12 @@ class StStringsStringsPage(Gtk.Box):
     string_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     search: Gtk.SearchEntry = cast(Gtk.SearchEntry, Gtk.Template.Child())
 
-    def __init__(self, module: "StringsModule", lang: Pmd2Language):
+    def __init__(self, module: "StringsModule", item_data: Pmd2Language):
         super().__init__()
         self.module = module
-        self.item_data = lang
-        self.module = module
-        self.langname = lang.name_localized
-        self.filename = lang.filename
+        self.item_data = item_data
+        self.langname = item_data.name_localized
+        self.filename = item_data.filename
         self._str: Str
         self._tree_iters_by_idx: dict[int, Gtk.TreeIter] = {}
         self._list_store: Gtk.ListStore
@@ -87,20 +86,6 @@ class StStringsStringsPage(Gtk.Box):
         )
         self.refresh_cats()
         self.refresh_list()
-
-    @typing.no_type_check
-    def unload(self):
-        super().unload()
-        self.module = None
-        self.langname = None
-        self.filename = None
-        self._str = None
-        self._tree_iters_by_idx = {}
-        self._list_store = None
-        self._string_cats = None
-        self._filter = None
-        self._active_category = None
-        self._search_text = ""
 
     def on_cr_string_edited(self, widget, path, text):
         idx = self._filter[path][0] - 1

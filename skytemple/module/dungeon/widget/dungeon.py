@@ -99,24 +99,22 @@ class StDungeonDungeonPage(Gtk.Box):
     label_floor_count_in_dialog: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     spin_floor_count: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
 
-    def __init__(self, module: "DungeonModule", dungeon_info: "DungeonViewInfo"):
+    def __init__(self, module: "DungeonModule", item_data: "DungeonViewInfo"):
         super().__init__()
         self.module = module
-        self.item_data = dungeon_info
-        self.module = module
-        self.dungeon_info = dungeon_info
+        self.item_data = item_data
         self.dungeon_name = self.module.project.get_string_provider().get_value(
-            StringType.DUNGEON_NAMES_MAIN, self.dungeon_info.dungeon_id
+            StringType.DUNGEON_NAMES_MAIN, self.item_data.dungeon_id
         )
         self.restrictions = None
-        if self.dungeon_info.length_can_be_edited:
+        if self.item_data.length_can_be_edited:
             self.restrictions = self.module.get_dungeon_restrictions()[
-                dungeon_info.dungeon_id
+                item_data.dungeon_id
             ]
         self._is_loading = True
         self.label_dungeon_name.set_text(self.dungeon_name)
         edit_text = ""
-        if not self.dungeon_info.length_can_be_edited:
+        if not self.item_data.length_can_be_edited:
             edit_text = _(
                 "\nSince this is a Dojo Dungeon, the floor count can not be changed."
             )
@@ -124,7 +122,7 @@ class StDungeonDungeonPage(Gtk.Box):
             self.dungeon_restrictions_grid.set_sensitive(False)
         else:
             self._init_dungeon_restrictions()
-        floor_count = self.module.get_number_floors(self.dungeon_info.dungeon_id)
+        floor_count = self.module.get_number_floors(self.item_data.dungeon_id)
         self.label_floor_count.set_text(
             f(_("This dungeon has {floor_count} floors.{edit_text}"))
         )
@@ -151,28 +149,28 @@ class StDungeonDungeonPage(Gtk.Box):
                 entry_main_lang.set_text(
                     sp.get_value(
                         StringType.DUNGEON_NAMES_MAIN,
-                        self.dungeon_info.dungeon_id,
+                        self.item_data.dungeon_id,
                         langs[lang_id],
                     ).replace("\n", "\\n")
                 )
                 entry_selection_lang.set_text(
                     sp.get_value(
                         StringType.DUNGEON_NAMES_SELECTION,
-                        self.dungeon_info.dungeon_id,
+                        self.item_data.dungeon_id,
                         langs[lang_id],
                     ).replace("\n", "\\n")
                 )
                 entry_script_engine_lang.set_text(
                     sp.get_value(
                         StringType.DUNGEON_NAMES_SET_DUNGEON_BANNER,
-                        self.dungeon_info.dungeon_id,
+                        self.item_data.dungeon_id,
                         langs[lang_id],
                     ).replace("\n", "\\n")
                 )
                 entry_banner_lang.set_text(
                     sp.get_value(
                         StringType.DUNGEON_NAMES_BANNER,
-                        self.dungeon_info.dungeon_id,
+                        self.item_data.dungeon_id,
                         langs[lang_id],
                     ).replace("\n", "\\n")
                 )
@@ -221,9 +219,7 @@ class StDungeonDungeonPage(Gtk.Box):
         dialog: Gtk.Dialog = self.dialog_adjust_floor_count
         dialog.set_attached_to(MainController.window())
         dialog.set_transient_for(MainController.window())
-        current_floor_count = self.module.get_number_floors(
-            self.dungeon_info.dungeon_id
-        )
+        current_floor_count = self.module.get_number_floors(self.item_data.dungeon_id)
         label_floor_count_in_dialog = self.label_floor_count_in_dialog
         spin_floor_count = self.spin_floor_count
         label_floor_count_in_dialog.set_text(
@@ -234,7 +230,7 @@ class StDungeonDungeonPage(Gtk.Box):
         dialog.hide()
         if resp == ResponseType.APPLY:
             self.module.change_floor_count(
-                self.dungeon_info.dungeon_id, int(spin_floor_count.get_value())
+                self.item_data.dungeon_id, int(spin_floor_count.get_value())
             )
 
     # <editor-fold desc="HANDLERS NAMES" defaultstate="collapsed">
@@ -507,12 +503,12 @@ class StDungeonDungeonPage(Gtk.Box):
 
     def mark_as_modified(self):
         if not self._is_loading:
-            self.module.mark_dungeon_as_modified(self.dungeon_info.dungeon_id, False)
+            self.module.mark_dungeon_as_modified(self.item_data.dungeon_id, False)
 
     def _save_dungeon_restrictions(self):
         assert self.restrictions is not None
         self.module.update_dungeon_restrictions(
-            self.dungeon_info.dungeon_id, self.restrictions
+            self.item_data.dungeon_id, self.restrictions
         )
         self.mark_as_modified()
 
@@ -521,7 +517,7 @@ class StDungeonDungeonPage(Gtk.Box):
             sp = self.module.project.get_string_provider()
             lang = sp.get_languages()[lang_index]
             sp.get_model(lang).strings[
-                sp.get_index(string_type, self.dungeon_info.dungeon_id)
+                sp.get_index(string_type, self.item_data.dungeon_id)
             ] = w.get_text().replace("\\n", "\n")
 
     def _help(self, msg):

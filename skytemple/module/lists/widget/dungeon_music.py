@@ -58,15 +58,12 @@ class StListsDungeonMusicPage(Gtk.Box):
         Gtk.CellRendererCombo, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "ListsModule", *args):
+    def __init__(self, module: "ListsModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = None
-        super().__init__(module, *args)
-        self.module = module
+        self.item_data = item_data
         self._string_provider = module.project.get_string_provider()
         self._music_list, self._random_list = self.module.get_dungeon_music_spec()
-        box = self.box_list
         self._init_cr_stores()
         self._init_values()
 

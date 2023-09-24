@@ -39,10 +39,10 @@ class StMapBgMainPage(Gtk.Box):
     generic_input_dialog_label: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     generic_input_dialog_entry: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
 
-    def __init__(self, module: "MapBgModule", item_id: int):
+    def __init__(self, module: "MapBgModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = item_id
+        self.item_data = item_data
         self.module = module
 
     @Gtk.Template.Callback()

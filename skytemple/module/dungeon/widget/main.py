@@ -82,11 +82,10 @@ class StDungeonMainPage(Gtk.Box):
     tree_grouped: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     store_ungrouped_dungeons: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
-    def __init__(self, module: "DungeonModule", *args):
+    def __init__(self, module: "DungeonModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = None
-        self.module = module
+        self.item_data = item_data
         self.string_provider = self.module.project.get_string_provider()
         # Enable drag and drop
         dungeons_tree = self.tree_grouped

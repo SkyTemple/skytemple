@@ -50,11 +50,10 @@ class StRomMainPage(Gtk.Box):
     title_french: Gtk.TextView = cast(Gtk.TextView, Gtk.Template.Child())
     title_english: Gtk.TextView = cast(Gtk.TextView, Gtk.Template.Child())
 
-    def __init__(self, module: "RomModule", item_id: int):
+    def __init__(self, module: "RomModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
+        self.item_data = item_data
         self.project = module.project
         self.icon_banner = module.project.get_icon_banner()
         file_name = os.path.basename(self.module.project.filename)

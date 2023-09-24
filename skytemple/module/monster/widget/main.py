@@ -119,11 +119,10 @@ class StMonsterMainPage(Gtk.Box):
         Gtk.CellRendererText, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "MonsterModule", item_id: int):
+    def __init__(self, module: "MonsterModule", item_data: int):
         super().__init__()
         self.module = module
-        self.item_data = item_id
-        self.module = module
+        self.item_data = item_data
         self._string_provider = module.project.get_string_provider()
         self._init_combos()
         self._init_groups()
@@ -397,9 +396,3 @@ class StMonsterMainPage(Gtk.Box):
                 md.run()
                 md.destroy()
                 return
-
-    @typing.no_type_check
-    def unload(self):
-        self.export_dialog.destroy()
-        self.progress_dialog.destroy()
-        super().unload()

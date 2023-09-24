@@ -79,26 +79,24 @@ class StPatchMoveEffectsPage(Gtk.Stack):
     btn_add_metronome: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_remove_metronome: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "PatchModule", *args):
+    def __init__(self, module: "PatchModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = None
-        super().__init__(module, *args)
-        self.module = module
+        self.item_data = item_data
         self.move_effects: DataCD
         self.metronome: ValList
         self._string_provider = module.project.get_string_provider()
         stack = self.list_stack
         if not self.module.has_move_effects() or not self.module.has_metronome_pool():
             stack.set_visible_child(self.box_na)
-            return stack
-        self.move_effects = self.module.get_move_effects()
-        self.metronome = self.module.get_metronome_pool()
-        self._metronome_pool = self.metronome.get_list(4)
-        self._init_move_list()
-        self._init_combos()
-        self.on_cb_effect_ids_changed()
-        stack.set_visible_child(self.box_list)
+        else:
+            self.move_effects = self.module.get_move_effects()
+            self.metronome = self.module.get_metronome_pool()
+            self._metronome_pool = self.metronome.get_list(4)
+            self._init_move_list()
+            self._init_combos()
+            self.on_cb_effect_ids_changed()
+            stack.set_visible_child(self.box_list)
 
     def _get_current_move_effect(self) -> Optional[int]:
         tree_store = self.move_effects_store

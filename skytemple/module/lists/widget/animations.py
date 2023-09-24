@@ -138,24 +138,22 @@ class StListsAnimationsPage(Gtk.Stack):
     item_anim1: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_anim2: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
 
-    def __init__(self, module: "ListsModule", *args):
+    def __init__(self, module: "ListsModule", item_data: None):
         super().__init__()
         self.module = module
-        self.item_data = None
-        super().__init__(module, *args)
-        self.module = module
+        self.item_data = item_data
         self.sp_effects = None
         self._string_provider = module.project.get_string_provider()
         stack = self.list_stack
         if not self.module.has_animations():
             stack.set_visible_child(self.box_na)
-            return stack
-        self.animations = self.module.get_animations()
-        self._ent_names: dict[int, str] = dict()
-        self._init_monster_store()
-        self._init_combos()
-        self._init_trees()
-        stack.set_visible_child(self.box_list)
+        else:
+            self.animations = self.module.get_animations()
+            self._ent_names: dict[int, str] = dict()
+            self._init_monster_store()
+            self._init_combos()
+            self._init_trees()
+            stack.set_visible_child(self.box_list)
 
     def _init_combos(self):
         # Init available menus

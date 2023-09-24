@@ -65,27 +65,25 @@ class StDungeonGraphicsTrpItmImgPage(Gtk.Box):
     entry_stack: Gtk.Stack = cast(Gtk.Stack, Gtk.Template.Child())
     no_entry_label: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     entry_viewer: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
-    draw: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
+    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
     entry_id: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
     entry_palette: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
     lbl_name: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     table_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
-    def __init__(self, module: "DungeonGraphicsModule", img_type: ImgType):
+    def __init__(self, module: "DungeonGraphicsModule", item_data: ImgType):
         super().__init__()
         self.module = module
-        self.item_data = img_type
-        self.module = module
-        self.img_type = img_type
-        self.img: Union[ImgItm, ImgTrp] = self.module.get_icons(img_type)
+        self.item_data = item_data
+        self.img: Union[ImgItm, ImgTrp] = self.module.get_icons(item_data)
         self.image_idx = 0
         self.palette_idx = 0
-        if self.img_type == ImgType.ITM:
+        if self.item_data == ImgType.ITM:
             self.lbl_name.set_text(_("Items"))
         else:
             self.lbl_name.set_text(_("Traps"))
         self._init_sprites()
-        self.draw.connect("draw", self.draw)
+        self.draw_widget.connect("draw", self.exec_draw)
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, w: Gtk.MenuToolButton):
@@ -146,7 +144,7 @@ class StDungeonGraphicsTrpItmImgPage(Gtk.Box):
                     idx = self.image_idx
                 try:
                     self.img.from_pil(idx, img, import_palette)
-                    self.module.mark_icons_as_modified(self.img_type, self.img)
+                    self.module.mark_icons_as_modified(self.item_data, self.img)
                     self.module.project.get_sprite_provider().reset()
                 except Exception as err:
                     display_error(sys.exc_info(), str(err), "Error importing sprite.")
@@ -200,12 +198,12 @@ class StDungeonGraphicsTrpItmImgPage(Gtk.Box):
                 (surface.width * IMAGE_ZOOM, surface.height * IMAGE_ZOOM)
             )
             self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
-            self.draw.queue_draw()
+            self.draw_widget.queue_draw()
         else:
             stack.set_visible_child(self.no_entry_label)
             self.surface = pil_to_cairo_surface(Image.new("RGBA", size=(1, 1)))
 
-    def draw(self, wdg, ctx: cairo.Context, *args):
+    def exec_draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:
             wdg.set_size_request(self.surface.get_width(), self.surface.get_height())
             ctx.fill()
