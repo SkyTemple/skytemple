@@ -31,7 +31,7 @@ from skytemple.core.ui_utils import (
     iter_tree_model,
     data_dir,
 )
-from skytemple.module.dungeon.controller.floor import (
+from skytemple.module.dungeon.widget.floor import (
     POKE_CATEGORY_ID,
     LINKBOX_CATEGORY_ID,
 )
