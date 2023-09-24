@@ -2099,16 +2099,12 @@ class FloorController(AbstractController):
                 i,
                 (trap,),
             )
-            if trap.value == 0:
-                trap_name = _("Unused")
-            else:
-                trap_name = self.module.project.get_string_provider().get_value(
-                    StringType.TRAP_NAMES, trap.value
-                )
             store.append(
                 [
                     trap.value,
-                    trap_name,
+                    self.module.project.get_string_provider().get_value(
+                        StringType.TRAP_NAMES, trap.value
+                    ),
                     chance,
                     str(relative_weight),
                     trap_icon,
