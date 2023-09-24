@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-09-23 19:42+0000\n"
-"PO-Revision-Date: 2023-09-23 19:47\n"
+"POT-Creation-Date: 2023-09-24 11:17+0000\n"
+"PO-Revision-Date: 2023-09-24 11:37\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -1232,7 +1232,6 @@ msgstr "Sem Gênero"
 #: skytemple-files/skytemple_files/data/md/protocol.py:426
 #: skytemple-files/skytemple_files/data/md/protocol.py:427
 #: skytemple-files/skytemple_files/dungeon_data/mappa_bin/protocol.py:160
-#: skytemple/skytemple/module/dungeon/controller/floor.py:2103
 #: skytemple/skytemple/module/monster/controller/monster.py:1447
 msgid "Unused"
 msgstr "Não Usado"
@@ -4854,7 +4853,7 @@ msgid "_OK"
 msgstr "_OK"
 
 #: skytemple/skytemple/_i18n.py:36
-#: skytemple/skytemple/module/dungeon/controller/floor.py:2573
+#: skytemple/skytemple/module/dungeon/controller/floor.py:2569
 msgid "No"
 msgstr "Não"
 
@@ -4863,7 +4862,7 @@ msgid "_No"
 msgstr "_Não"
 
 #: skytemple/skytemple/_i18n.py:38
-#: skytemple/skytemple/module/dungeon/controller/floor.py:2574
+#: skytemple/skytemple/module/dungeon/controller/floor.py:2570
 msgid "Yes"
 msgstr "Sim"
 
@@ -5918,7 +5917,7 @@ msgid "No override"
 msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:655
-#: skytemple/skytemple/module/dungeon/controller/floor.py:2623
+#: skytemple/skytemple/module/dungeon/controller/floor.py:2619
 #, python-brace-format
 msgid "No. {i}"
 msgstr ""
@@ -6829,22 +6828,22 @@ msgstr ""
 msgid "Error importing the floor."
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:2602
+#: skytemple/skytemple/module/dungeon/controller/floor.py:2598
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:147
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:167
 msgid "Random "
 msgstr "Aleatório "
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:2605
+#: skytemple/skytemple/module/dungeon/controller/floor.py:2601
 msgid "Invalid?"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:2607
+#: skytemple/skytemple/module/dungeon/controller/floor.py:2603
 #: skytemple/skytemple/module/lists/controller/dungeon_music.py:172
 msgid "INVALID!!!"
 msgstr ""
 
-#: skytemple/skytemple/module/dungeon/controller/floor.py:2621
+#: skytemple/skytemple/module/dungeon/controller/floor.py:2617
 msgid "No fixed room"
 msgstr ""
 
