@@ -151,7 +151,9 @@ class StListsWorldMapPage(Gtk.Box):
                 ll_by_name = self._config.script_data.level_list__by_name
                 if self._level_id != ll_by_name[map_name].id:
                     self._level_id = ll_by_name[map_name].id
-                    self._change_map_bg(ll_by_name[map_name].id, self.draw_widget, self.drawer)
+                    self._change_map_bg(
+                        ll_by_name[map_name].id, self.draw_widget, self.drawer
+                    )
 
     @Gtk.Template.Callback()
     def on_draw_event_button_press_event(self, box, button: Gdk.EventButton):

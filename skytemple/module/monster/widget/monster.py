@@ -1444,7 +1444,9 @@ class StMonsterMonsterPage(Gtk.Box):
             self.cb_idle_anim.set_sensitive(False)
         else:
             self._set_cb("cb_idle_anim", a.value)
-        self._set_entry("entry_personality", self.module.get_personality(self.item_data))
+        self._set_entry(
+            "entry_personality", self.module.get_personality(self.item_data)
+        )
         self._set_entry("entry_unk31", self.entry.unk31)
         self._set_entry(
             "entry_national_pokedex_number", self.entry.national_pokedex_number

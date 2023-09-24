@@ -550,12 +550,16 @@ class StMovesItemsItemPage(Gtk.Box):
                 )
                 gui_entry_short_desc.set_text(
                     self._string_provider.get_value(
-                        StringType.ITEM_SHORT_DESCRIPTIONS, self.item_data, langs[lang_id]
+                        StringType.ITEM_SHORT_DESCRIPTIONS,
+                        self.item_data,
+                        langs[lang_id],
                     )
                 )
                 gui_entry_desc.set_text(
                     self._string_provider.get_value(
-                        StringType.ITEM_LONG_DESCRIPTIONS, self.item_data, langs[lang_id]
+                        StringType.ITEM_LONG_DESCRIPTIONS,
+                        self.item_data,
+                        langs[lang_id],
                     )
                 )
         self._set_entry("entry_sprite", self.item_p.sprite)

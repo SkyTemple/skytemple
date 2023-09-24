@@ -43,10 +43,14 @@ from skytemple_files.hardcoded.cart_removed import HardcodedCartRemoved
 
 from PIL import Image
 
-from skytemple.module.misc_graphics.widget.cart_removed import StMiscGraphicsCartRemovedPage
+from skytemple.module.misc_graphics.widget.cart_removed import (
+    StMiscGraphicsCartRemovedPage,
+)
 from skytemple.module.misc_graphics.widget.chr import StMiscGraphicsChrPage
 from skytemple.module.misc_graphics.widget.font import StMiscGraphicsFontPage
-from skytemple.module.misc_graphics.widget.graphic_font import StMiscGraphicsGraphicFontPage
+from skytemple.module.misc_graphics.widget.graphic_font import (
+    StMiscGraphicsGraphicFontPage,
+)
 from skytemple.module.misc_graphics.widget.w16 import StMiscGraphicsW16Page
 from skytemple.module.misc_graphics.widget.wte_wtu import StMiscGraphicsWteWtuPage
 from skytemple.module.misc_graphics.widget.zmappat import StMiscGraphicsZMappaTPage

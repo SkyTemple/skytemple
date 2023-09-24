@@ -814,7 +814,9 @@ class StDungeonFixedPage(Gtk.Notebook):
 
     def _auto_select_tileset(self):
         cb: Gtk.ComboBox = self.tool_choose_tileset_cb
-        self.tileset_id = self.module.get_default_tileset_for_fixed_floor(self.item_data)
+        self.tileset_id = self.module.get_default_tileset_for_fixed_floor(
+            self.item_data
+        )
         cb.set_active(self.tileset_id)
 
     def _load_settings(self):

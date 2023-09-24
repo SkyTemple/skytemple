@@ -737,5 +737,7 @@ class StMovesItemsMovePage(Gtk.Box):
     def _update_lang_desc_from_buffer(self, w: Gtk.TextBuffer, lang_index):
         lang = self._string_provider.get_languages()[lang_index]
         self._string_provider.get_model(lang).strings[
-            self._string_provider.get_index(StringType.MOVE_DESCRIPTIONS, self.item_data)
+            self._string_provider.get_index(
+                StringType.MOVE_DESCRIPTIONS, self.item_data
+            )
         ] = w.get_text(w.get_start_iter(), w.get_end_iter(), False)
