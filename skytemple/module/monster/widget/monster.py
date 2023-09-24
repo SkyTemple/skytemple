@@ -47,7 +47,7 @@ from skytemple.core.ui_utils import (
     iter_tree_model,
     data_dir,
 )
-from skytemple.module.monster.controller.level_up import LevelUpController
+from skytemple.module.monster.widget.level_up import StMonsterLevelUpPage
 from skytemple.module.portrait.portrait_provider import IMG_DIM
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import add_extension_if_missing, MONSTER_BIN
@@ -273,7 +273,7 @@ class StMonsterMonsterPage(Gtk.Box):
         self._portrait_provider = module.project.get_module(
             "portrait"
         ).get_portrait_provider()
-        self._level_up_controller: Optional[LevelUpController] = None
+        self._level_up_controller: Optional[StMonsterLevelUpPage] = None
         self._cached_sprite_page: Optional[int] = None
         # The ID of our language. The ID is referring to the ID in the widget names (so starting with 1)
         # defaults to 1 otherwise.
