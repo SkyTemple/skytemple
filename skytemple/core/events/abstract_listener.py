@@ -15,6 +15,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from abc import ABC
+from typing import Union
+from gi.repository import Gtk
 
 from skytemple.core.abstract_module import AbstractModule
 from skytemple.core.module_controller import AbstractController
@@ -50,13 +52,13 @@ class AbstractListener(ABC):
     def on_view_switch(
         self,
         module: AbstractModule,
-        controller: AbstractController,
+        view: Union[AbstractController, Gtk.Widget],
         breadcrumbs: list[str],
     ):
         """
         Triggered, when a view in the main UI was fully and successfully loaded.
         :param module: Instance of the module, that the view belongs to.
-        :param controller: Instance of the controller that handles the loaded view
+        :param view: Instance of the view that handles the loaded view
         :param breadcrumbs: List of strings of the path in the main UI tree that lead up to this view (as displayed
                             in the titlebar). The most inner level is the first entry.
         """
