@@ -524,7 +524,7 @@ class MainController:
             EventManager.instance().trigger(
                 EVT_VIEW_SWITCH,
                 module=module,
-                controller=in_view,
+                view=in_view,
                 breadcrumbs=self._current_breadcrumbs,
             )
 
