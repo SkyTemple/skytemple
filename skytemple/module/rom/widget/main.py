@@ -54,6 +54,8 @@ class StRomMainPage(Gtk.Box):
         super().__init__()
         self.module = module
         self.item_data = item_data
+
+        self.loading = True
         self.project = module.project
         self.icon_banner = module.project.get_icon_banner()
         file_name = os.path.basename(self.module.project.filename)
@@ -81,6 +83,7 @@ class StRomMainPage(Gtk.Box):
         title_spanish_buffer = self.title_spanish.get_buffer()
         title_spanish_buffer.set_text(self.icon_banner.title_spanish)
         title_spanish_buffer.connect("changed", self.on_title_spanish_changed)
+        self.loading = False
 
     @Gtk.Template.Callback()
     def on_draw_icon_draw(self, widget: Gtk.DrawingArea, ctx: cairo.Context):
@@ -170,6 +173,8 @@ class StRomMainPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_name_changed(self, entry: Gtk.Entry):
+        if self.loading:
+            return
         try:
             self.project.set_rom_name(entry.get_text())
             self.module.mark_as_modified()
@@ -179,6 +184,8 @@ class StRomMainPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_id_code_changed(self, entry: Gtk.Entry):
+        if self.loading:
+            return
         try:
             self.project.set_id_code(entry.get_text())
             self.module.mark_as_modified()
