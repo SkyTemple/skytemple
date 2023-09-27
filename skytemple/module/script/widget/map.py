@@ -20,7 +20,7 @@ from typing import TYPE_CHECKING, Optional, cast
 from gi.repository import Gtk
 from skytemple.core.item_tree import ItemTreeEntryRef
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import data_dir, assert_not_none
+from skytemple.core.ui_utils import data_dir, assert_not_none, safe_destroy
 from skytemple_files.common.i18n_util import _, f
 from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.types.file_types import FileType
@@ -63,6 +63,11 @@ class StScriptMapPage(Gtk.Box):
         )
         if self._sub_enter:
             self.btn_add_enter.set_sensitive(False)
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.generic_input_dialog)
 
     @property
     def name(self):

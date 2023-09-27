@@ -7,6 +7,7 @@
     <property name="window-position">center-on-parent</property>
     <property name="destroy-with-parent">True</property>
     <signal name="delete-event" handler="gtk_widget_hide_on_delete" swapped="no" />
+    <signal name="destroy" handler="on_self_destroy" swapped="no" />
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>

@@ -92,6 +92,7 @@ you want to add in the table: </property>
   <template class="StMiscGraphicsFontPage" parent="GtkPaned">
     <property name="visible">True</property>
     <property name="can-focus">True</property>
+    <signal name="destroy" handler="on_self_destroy" swapped="no" />
     <child>
       <object class="GtkFrame">
         <property name="visible">True</property>

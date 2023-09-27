@@ -603,6 +603,7 @@ If you choose to export both genders, upon import the matching gender entry will
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
+    <signal name="destroy" handler="on_self_destroy" swapped="no" />
     <child>
       <object class="GtkBox" id="box_main">
         <property name="visible">True</property>

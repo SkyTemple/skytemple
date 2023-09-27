@@ -28,6 +28,7 @@ from skytemple.core.ui_utils import (
     catch_overflow,
     assert_not_none,
     iter_tree_model,
+    safe_destroy,
 )
 from skytemple_files.common.i18n_util import _, f
 from skytemple.controller.main import MainController as SkyTempleMainController
@@ -107,6 +108,11 @@ class StScriptMainPage(Gtk.Box):
         self._dungeon_tilesets = self.module.get_dungeon_tilesets()
         self._init_td_label_stores()
         self._init_td_list_store()
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.generic_input_dialog)
 
     @Gtk.Template.Callback()
     def on_cr_name_edited(self, widget, path, text):

@@ -26,6 +26,7 @@ from skytemple.core.ui_utils import (
     catch_overflow,
     iter_tree_model,
     data_dir,
+    safe_destroy,
 )
 from skytemple_files.common.util import add_extension_if_missing
 from skytemple_files.graphics.wte.model import Wte, WteImageType
@@ -95,18 +96,23 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
         self.module = module
         self.item_data = item_data
         self.wtu: Optional[Wtu] = None
-        if item.in_dungeon_bin:
-            self.wte: Wte = self.module.get_dungeon_bin_file(item.wte_filename)
-            if item.wtu_filename is not None:
-                self.wtu = self.module.get_dungeon_bin_file(item.wtu_filename)
+        if item_data.in_dungeon_bin:
+            self.wte: Wte = self.module.get_dungeon_bin_file(item_data.wte_filename)
+            if item_data.wtu_filename is not None:
+                self.wtu = self.module.get_dungeon_bin_file(item_data.wtu_filename)
         else:
-            self.wte = self.module.get_wte(item.wte_filename)
-            if item.wtu_filename is not None:
-                self.wtu = self.module.get_wtu(item.wtu_filename)
+            self.wte = self.module.get_wte(item_data.wte_filename)
+            if item_data.wtu_filename is not None:
+                self.wtu = self.module.get_wtu(item_data.wtu_filename)
         self._init_wtu()
         self._reinit_image()
         self._init_wte()
         self.draw_widget.connect("draw", self.exec_draw)
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.dialog_import_settings)
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, w: Gtk.MenuToolButton):

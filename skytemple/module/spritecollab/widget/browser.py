@@ -27,6 +27,7 @@ from skytemple.core.ui_utils import (
     iter_tree_model,
     create_tree_view_column,
     data_dir,
+    safe_destroy,
 )
 from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.spritecollab.client import (
@@ -177,6 +178,11 @@ class StSpritecollabBrowserPage(Gtk.Window):
                 self._icon_renderer = ListIconRenderer(3, False)
             self.reinit()
             self.was_realized = True
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.sc_diag_settings)
 
     @classmethod
     def get_instance(cls, module):

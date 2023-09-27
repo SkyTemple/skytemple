@@ -22,7 +22,7 @@ from range_typed_integers import i8, i8_checked, i16, i16_checked
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import catch_overflow, data_dir
+from skytemple.core.ui_utils import catch_overflow, data_dir, safe_destroy
 from skytemple_files.hardcoded.dungeons import DungeonRestrictionDirection
 from skytemple_files.common.i18n_util import _, f
 
@@ -129,7 +129,10 @@ class StDungeonDungeonPage(Gtk.Box):
         self._init_names()
         self._is_loading = False
 
-    # noinspection PyUnusedLocal
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.dialog_adjust_floor_count)
 
     def _init_names(self):
         sp = self.module.project.get_string_provider()
