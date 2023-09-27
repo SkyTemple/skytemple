@@ -87,6 +87,7 @@
   <template class="StDungeonFixedPage" parent="GtkNotebook">
     <property name="visible">True</property>
     <property name="can-focus">True</property>
+    <signal name="destroy" handler="on_self_destroy" swapped="no" />
     <child>
       <object class="GtkBox" id="tab_scene">
         <property name="visible">True</property>

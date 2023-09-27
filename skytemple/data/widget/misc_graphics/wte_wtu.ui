@@ -285,6 +285,7 @@ This is for files that use another file's palette data. </property>
   <template class="StMiscGraphicsWteWtuPage" parent="GtkPaned">
     <property name="visible">True</property>
     <property name="can-focus">True</property>
+    <signal name="destroy" handler="on_self_destroy" swapped="no" />
     <child>
       <object class="GtkFrame">
         <property name="visible">True</property>

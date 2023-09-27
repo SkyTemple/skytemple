@@ -57,6 +57,7 @@ from skytemple.core.ui_utils import (
     catch_overflow,
     iter_tree_model,
     data_dir,
+    safe_destroy,
 )
 from skytemple.module.dungeon import COUNT_VALID_TILESETS, TILESET_FIRST_BG
 from skytemple.module.dungeon.fixed_room_drawer import FixedRoomDrawer
@@ -110,9 +111,11 @@ from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.i18n_util import _, f
 from skytemple_files.user_error import UserValueError
 from skytemple_files.common.util import open_utf8
+import os
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, FloorViewInfo
+
 COUNT_VALID_BGM = 118
 COUNT_VALID_FIXED_FLOORS = 256
 KECLEON_MD_INDEX = [383, 983]
@@ -129,7 +132,6 @@ LINKBOX_CATEGORY_ID = 10
 # TODO: Have a way to configure this
 LINKBOX_ITEM_ID = 362
 logger = logging.getLogger(__name__)
-import os
 
 
 class FloorEditItemList(Enum):
@@ -627,6 +629,26 @@ class StDungeonFloorPage(Gtk.Box):
         notebook.set_current_page(self.__class__._last_open_tab_id)
         item_list_notebook = self.item_list_notebook
         item_list_notebook.set_current_page(self._item_list_edit_active.value)
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.dialog_category_add)
+        safe_destroy(self.chance_label1)
+        safe_destroy(self.chance_label2)
+        safe_destroy(self.chance_label3)
+        safe_destroy(self.chance_label4)
+        safe_destroy(self.chance_label5)
+        safe_destroy(self.chance_label6)
+        safe_destroy(self.chance_label7)
+        safe_destroy(self.chance_label8)
+        safe_destroy(self.chance_label9)
+        safe_destroy(self.export_dialog)
+        safe_destroy(self.monster_spawns_chance_label)
+        safe_destroy(self.monster_spawns_chance_label1)
+        safe_destroy(self.monster_spawns_main_weight_label)
+        safe_destroy(self.monster_spawns_mh_weight_label)
+        safe_destroy(self.trap_spawns_tree_chance_label)
 
     # <editor-fold desc="HANDLERS LAYOUT" defaultstate="collapsed">
 

@@ -1259,6 +1259,7 @@ be able to re-import the tiles!</property>
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
+    <signal name="destroy" handler="on_self_destroy" swapped="no" />
     <child>
       <object class="GtkNotebook" id="editor_root">
         <property name="visible">True</property>

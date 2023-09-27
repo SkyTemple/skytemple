@@ -37,7 +37,7 @@ from skytemple_files.dungeon_data.mappa_bin.validator.exception import (
 from skytemple_files.hardcoded.dungeons import DungeonDefinition
 from skytemple.controller.main import MainController as MainSkyTempleController
 from skytemple_files.common.i18n_util import _
-from skytemple.core.ui_utils import iter_tree_model, data_dir
+from skytemple.core.ui_utils import iter_tree_model, data_dir, safe_destroy
 
 if TYPE_CHECKING:
     from skytemple.module.dungeon.module import DungeonModule, DungeonGroup
@@ -93,6 +93,14 @@ class StDungeonMainPage(Gtk.Box):
             Gdk.ModifierType.BUTTON1_MASK, DND_TARGETS, Gdk.DragAction.MOVE
         )
         dungeons_tree.enable_model_drag_dest(DND_TARGETS, Gdk.DragAction.MOVE)
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.edit_groups_img)
+        safe_destroy(self.fix_dungeons_img)
+        safe_destroy(self.dialog_fix_dungeon_errors)
+        safe_destroy(self.dialog_groups)
 
     @Gtk.Template.Callback()
     def on_fix_dungeons_clicked(self, *args):

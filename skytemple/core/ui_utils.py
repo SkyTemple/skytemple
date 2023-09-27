@@ -271,3 +271,8 @@ def create_tree_view_column(
     for attr, column_id in kwargs.items():
         column.add_attribute(renderer, attr, column_id)
     return column
+
+
+def safe_destroy(widget: Gtk.Widget):
+    """Destroys the given widget in a template destroy scenario. May skip the widget if not deemed sound."""
+    widget.destroy()

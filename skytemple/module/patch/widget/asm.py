@@ -28,7 +28,7 @@ from gi.repository import Gtk, Gdk
 from skytemple_files.common.warnings import DeprecatedToBeRemovedWarning
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog, IMG_SAD
-from skytemple.core.ui_utils import open_dir, data_dir, assert_not_none
+from skytemple.core.ui_utils import open_dir, data_dir, assert_not_none, safe_destroy
 from skytemple.module.patch.controller.param_dialog import (
     ParamDialogController,
     PatchCanceledError,
@@ -96,6 +96,13 @@ class StPatchAsmPage(Gtk.Box):
         self._current_tab: Optional[PatchCategory] = None
         self._load_image_for_issue_dialog()
         self.refresh_all()
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.btn_show_issues)
+        safe_destroy(self.issue_dialog)
+        safe_destroy(self.patch_window)
 
     @Gtk.Template.Callback()
     def on_btn_show_issues_clicked(self, *args):

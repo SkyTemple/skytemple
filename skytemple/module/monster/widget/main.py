@@ -18,7 +18,7 @@ from __future__ import annotations
 import os
 from typing import TYPE_CHECKING, cast
 from gi.repository import Gtk, GLib
-from skytemple.core.ui_utils import iter_tree_model, data_dir
+from skytemple.core.ui_utils import iter_tree_model, data_dir, safe_destroy
 from skytemple_files.common.types.file_types import FileType
 from skytemple_files.common.util import open_utf8
 from skytemple_files.common.xml_util import prettify
@@ -126,6 +126,12 @@ class StMonsterMainPage(Gtk.Box):
         self._init_groups()
         self._init_spec_personalities()
         self.on_lang_changed()
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.export_dialog)
+        safe_destroy(self.progress_dialog)
 
     def _init_groups(self):
         self.spin_group_nb.set_text(str(0))

@@ -27,7 +27,7 @@ from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_SCENE
-from skytemple.core.ui_utils import data_dir
+from skytemple.core.ui_utils import data_dir, safe_destroy
 from skytemple.module.map_bg.controller.bg_menu import BgMenuController
 from skytemple.module.map_bg.drawer import Drawer, DrawerCellRenderer, DrawerInteraction
 from skytemple_files.common.ppmdu_config.script_data import Pmd2ScriptLevelMapType
@@ -347,6 +347,34 @@ class StMapBgBgPage(Gtk.Box):
             md.destroy()
             self.module.mark_as_modified(self.item_data)
             self.module.mark_level_list_as_modified()
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.bg_layers_toolbox_collision)
+        safe_destroy(self.bg_layers_toolbox_data)
+        safe_destroy(self.bg_layers_toolbox_layers)
+        safe_destroy(self.dialog_palettes_animated_settings)
+        safe_destroy(self.dialog_settings)
+        safe_destroy(self.dialog_tiles_animated_export)
+        safe_destroy(self.dialog_tiles_animated_settings)
+        safe_destroy(self.dialog_width_height)
+        safe_destroy(self.editor_map_bg)
+        safe_destroy(self.image1)
+        safe_destroy(self.dialog_chunks_export)
+        safe_destroy(self.image2)
+        safe_destroy(self.dialog_map_export)
+        safe_destroy(self.image3)
+        safe_destroy(self.dialog_tiles_export)
+        safe_destroy(self.image4)
+        safe_destroy(self.image5)
+        safe_destroy(self.image6)
+        safe_destroy(self.image7)
+        safe_destroy(self.image8)
+        safe_destroy(self.image9)
+        safe_destroy(self.dialog_chunks_import)
+        safe_destroy(self.dialog_map_import)
+        safe_destroy(self.dialog_tiles_import)
 
     @Gtk.Template.Callback()
     def on_bg_notebook_switch_page(self, notebook, page, *args):

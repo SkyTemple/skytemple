@@ -31,7 +31,7 @@ from skytemple.core.open_request import (
     REQUEST_TYPE_DUNGEON_TILESET,
 )
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import catch_overflow, data_dir
+from skytemple.core.ui_utils import catch_overflow, data_dir, safe_destroy
 from skytemple.module.dungeon import (
     COUNT_VALID_TILESETS,
     TILESET_FIRST_BG,
@@ -240,6 +240,12 @@ class StDungeonFixedPage(Gtk.Notebook):
         tool_fullmap.set_active(self._last_show_full_map)
         self.on_tool_fullmap_toggled(tool_fullmap, ignore_scaling=True)
         self._update_scales()
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.ovl_add_entity)
+        safe_destroy(self.ovl_add_tile)
 
     @Gtk.Template.Callback()
     def on_fixed_draw_event_button_press_event(self, box, button: Gdk.EventButton):

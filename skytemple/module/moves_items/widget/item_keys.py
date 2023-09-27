@@ -24,7 +24,12 @@ from skytemple.core.error_handler import display_error
 from skytemple.controller.main import MainController
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import iter_tree_model, assert_not_none, data_dir
+from skytemple.core.ui_utils import (
+    iter_tree_model,
+    assert_not_none,
+    data_dir,
+    safe_destroy,
+)
 from skytemple_files.common.i18n_util import _
 
 if TYPE_CHECKING:
@@ -65,6 +70,11 @@ class StMovesItemsItemKeysPage(Gtk.Box):
         self._string_provider = module.project.get_string_provider()
         self._init_combos()
         self.on_lang_changed()
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.dialog_add_remove)
 
     def _init_combos(self):
         # Init available languages

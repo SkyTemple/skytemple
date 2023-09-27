@@ -20,7 +20,7 @@ from typing import TYPE_CHECKING, Optional, cast
 from gi.repository import Gtk
 from pmdsky_debug_py import RELEASE
 from pmdsky_debug_py.protocol import SectionProtocol, Symbol
-from skytemple.core.ui_utils import assert_not_none, data_dir
+from skytemple.core.ui_utils import assert_not_none, data_dir, safe_destroy
 from skytemple_files.common.i18n_util import _, f
 from skytemple.core.rom_project import RomProject
 
@@ -56,6 +56,12 @@ class StPatchPmdSkyDebugPage(Gtk.Box):
         self._all_selected_binaries: list[str] = []
         self._all_symbol_types: list[str] = ["data", "functions"]
         self.load()
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.symbol_box)
+        safe_destroy(self.symbol_window)
 
     @Gtk.Template.Callback()
     def on_symbol_notebook_switch_page(

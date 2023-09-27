@@ -23,7 +23,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.canvas_scale import CanvasScale
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import data_dir
+from skytemple.core.ui_utils import data_dir, safe_destroy
 from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
 from skytemple.module.dungeon_graphics.dungeon_bg_drawer import (
     Drawer,
@@ -202,6 +202,26 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
         self.menu_controller = BgMenuController(self)
         self._init_drawer()
         self._init_main_area()
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.dialog_palettes_animated_settings)
+        safe_destroy(self.image1)
+        safe_destroy(self.image2)
+        safe_destroy(self.image3)
+        safe_destroy(self.dialog_tiles_export)
+        safe_destroy(self.image4)
+        safe_destroy(self.dialog_map_export)
+        safe_destroy(self.image5)
+        safe_destroy(self.dialog_chunks_export)
+        safe_destroy(self.image6)
+        safe_destroy(self.image7)
+        safe_destroy(self.image8)
+        safe_destroy(self.image9)
+        safe_destroy(self.dialog_chunks_import)
+        safe_destroy(self.dialog_map_import)
+        safe_destroy(self.dialog_tiles_import)
 
     def on_bg_draw_click(self, box, button: Gdk.EventButton):
         correct_mouse_x = int(button.x / self.scale_factor)

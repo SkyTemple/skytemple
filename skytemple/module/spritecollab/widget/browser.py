@@ -1,3 +1,19 @@
+#  Copyright 2020-2024 Capypara and the SkyTemple Contributors
+#
+#  This file is part of SkyTemple.
+#
+#  SkyTemple is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  SkyTemple is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
 import asyncio
 import platform
@@ -6,7 +22,12 @@ from threading import Thread
 from typing import Optional, Callable, TYPE_CHECKING, Any, cast
 from PIL import Image
 from gi.repository import Gtk, GLib, GdkPixbuf
-from skytemple.core.ui_utils import assert_not_none, create_tree_view_column, data_dir
+from skytemple.core.ui_utils import (
+    assert_not_none,
+    create_tree_view_column,
+    data_dir,
+    safe_destroy,
+)
 from skytemple_files.common.i18n_util import _, f
 from skytemple_files.common.spritecollab.client import (
     DEFAULT_SERVER,
@@ -156,6 +177,11 @@ class StSpritecollabBrowserPage(Gtk.Window):
                 self._icon_renderer = ListIconRenderer(3, False)
             self.reinit()
             self.was_realized = True
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.sc_diag_settings)
 
     @classmethod
     def get_instance(cls, module):

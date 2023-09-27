@@ -25,7 +25,7 @@ from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import add_dialog_png_filter, data_dir
+from skytemple.core.ui_utils import add_dialog_png_filter, data_dir, safe_destroy
 from skytemple_files.common.i18n_util import _
 from skytemple_files.common.util import (
     make_palette_colors_unique,
@@ -84,6 +84,11 @@ class StDungeonGraphicsTrpItmImgPage(Gtk.Box):
             self.lbl_name.set_text(_("Traps"))
         self._init_sprites()
         self.draw_widget.connect("draw", self.exec_draw)
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.dialog_import)
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, w: Gtk.MenuToolButton):

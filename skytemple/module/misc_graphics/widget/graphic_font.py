@@ -20,7 +20,7 @@ import os
 import sys
 from typing import TYPE_CHECKING, Optional, cast
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import assert_not_none, data_dir
+from skytemple.core.ui_utils import assert_not_none, data_dir, safe_destroy
 import cairo
 from skytemple.core.error_handler import display_error
 from skytemple_files.graphics.fonts.graphic_font.model import GraphicFont
@@ -67,6 +67,11 @@ class StMiscGraphicsGraphicFontPage(Gtk.Paned):
         assert self.font is not None
         self._init_font()
         self.draw_widget.connect("draw", self.exec_draw)
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.dialog_import)
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, w: Gtk.MenuToolButton):

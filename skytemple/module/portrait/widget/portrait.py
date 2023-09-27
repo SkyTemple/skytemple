@@ -31,7 +31,7 @@ from skytemple_files.graphics.kao.sprite_bot_sheet import SpriteBotSheet
 from skytemple.controller.main import MainController
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import add_dialog_png_filter, data_dir
+from skytemple.core.ui_utils import add_dialog_png_filter, data_dir, safe_destroy
 
 if TYPE_CHECKING:
     from skytemple.module.portrait.module import PortraitModule
@@ -189,6 +189,50 @@ class StPortraitPortraitPage(Gtk.Box):
             draw = getattr(self, f"portrait_draw{gui_number}")
             self._draws.append(draw)
             draw.connect("draw", partial(self.on_draw, subindex))
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.image1)
+        safe_destroy(self.image10)
+        safe_destroy(self.image11)
+        safe_destroy(self.image12)
+        safe_destroy(self.image13)
+        safe_destroy(self.image14)
+        safe_destroy(self.image15)
+        safe_destroy(self.image16)
+        safe_destroy(self.image17)
+        safe_destroy(self.image18)
+        safe_destroy(self.image19)
+        safe_destroy(self.image2)
+        safe_destroy(self.image20)
+        safe_destroy(self.image21)
+        safe_destroy(self.image22)
+        safe_destroy(self.image23)
+        safe_destroy(self.image24)
+        safe_destroy(self.image25)
+        safe_destroy(self.image26)
+        safe_destroy(self.image27)
+        safe_destroy(self.image28)
+        safe_destroy(self.image29)
+        safe_destroy(self.image3)
+        safe_destroy(self.image30)
+        safe_destroy(self.image31)
+        safe_destroy(self.image32)
+        safe_destroy(self.image33)
+        safe_destroy(self.image34)
+        safe_destroy(self.image35)
+        safe_destroy(self.image36)
+        safe_destroy(self.image37)
+        safe_destroy(self.image38)
+        safe_destroy(self.image39)
+        safe_destroy(self.image4)
+        safe_destroy(self.image40)
+        safe_destroy(self.image5)
+        safe_destroy(self.image6)
+        safe_destroy(self.image7)
+        safe_destroy(self.image8)
+        safe_destroy(self.image9)
 
     def re_render(self):
         self._portrait_provider.reset()

@@ -46,6 +46,7 @@ from skytemple.core.ui_utils import (
     create_tree_view_column,
     add_dialog_xml_filter,
     data_dir,
+    safe_destroy,
 )
 from skytemple.module.script.controller.ssa_event_dialog import SsaEventDialogController
 from skytemple.module.script.drawer import Drawer, InteractionMode
@@ -305,6 +306,20 @@ class StScriptSsaPage(Gtk.Box):
         self._init_rest_room_note()
         self._init_all_the_stores()
         self._update_scales()
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.dialog_event)
+        safe_destroy(self.generic_input_dialog)
+        safe_destroy(self.ovl_add_actor)
+        safe_destroy(self.ovl_add_object)
+        safe_destroy(self.ovl_add_performer)
+        safe_destroy(self.ovl_add_trigger)
+        safe_destroy(self.po_actor)
+        safe_destroy(self.po_object)
+        safe_destroy(self.po_performer)
+        safe_destroy(self.po_trigger)
 
     @Gtk.Template.Callback()
     def on_ssa_utility_switch_page(self, util_notebook: Gtk.Notebook, p, pnum, *args):

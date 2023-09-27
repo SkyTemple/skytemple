@@ -21,7 +21,7 @@ from typing import TYPE_CHECKING, cast
 import cairo
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
-from skytemple.core.ui_utils import add_dialog_png_filter, data_dir
+from skytemple.core.ui_utils import add_dialog_png_filter, data_dir, safe_destroy
 from skytemple_files.common.util import add_extension_if_missing
 from PIL import Image
 from gi.repository import Gtk
@@ -77,6 +77,15 @@ class StBgpBgpPage(Gtk.Box):
         self.bgp = self.module.get_bgp(self.item_data)
         self._reinit_image()
         self.draw_widget.connect("draw", self.exec_draw)
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.image1)
+        safe_destroy(self.dialog_bg_export)
+        safe_destroy(self.image6)
+        safe_destroy(self.image7)
+        safe_destroy(self.dialog_bg_import)
 
     @Gtk.Template.Callback()
     def on_men_bg_export_activate(self, *args):

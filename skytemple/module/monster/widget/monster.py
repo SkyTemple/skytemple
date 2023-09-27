@@ -45,6 +45,7 @@ from skytemple.core.ui_utils import (
     assert_not_none,
     iter_tree_model,
     data_dir,
+    safe_destroy,
 )
 from skytemple.module.monster.widget.level_up import StMonsterLevelUpPage
 from skytemple.module.portrait.portrait_provider import IMG_DIM
@@ -321,6 +322,11 @@ class StMonsterMonsterPage(Gtk.Box):
         notebook.set_current_page(self.__class__._last_open_tab_id)
         self._check_sprite_size(self.__class__._previous_item_id != self.item_data)
         self.__class__._previous_item_id = self.item_data
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.export_dialog)
 
     @Gtk.Template.Callback()
     def on_main_notebook_switch_page(self, notebook, page, page_num):

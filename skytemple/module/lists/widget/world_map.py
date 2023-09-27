@@ -24,7 +24,7 @@ from skytemple.core.error_handler import display_error
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.open_request import OpenRequest, REQUEST_TYPE_MAP_BG
 from skytemple.core.string_provider import StringType
-from skytemple.core.ui_utils import data_dir
+from skytemple.core.ui_utils import data_dir, safe_destroy
 from skytemple.module.lists.controller import WORLD_MAP_DEFAULT_ID
 from skytemple.module.lists.world_map_drawer import WorldMapDrawer
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
@@ -103,6 +103,11 @@ class StListsWorldMapPage(Gtk.Box):
             else 0
         )
         self._change_map_bg(self._level_id, self.draw_widget, self.drawer)
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.diag_edit)
 
     def _init_list(self):
         tree = self.tree

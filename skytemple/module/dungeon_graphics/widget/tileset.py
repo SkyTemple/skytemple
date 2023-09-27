@@ -28,7 +28,12 @@ from skytemple_files.user_error import mark_as_user_err
 from skytemple.core.error_handler import display_error
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.rom_project import BinaryName
-from skytemple.core.ui_utils import add_dialog_xml_filter, iter_tree_model, data_dir
+from skytemple.core.ui_utils import (
+    add_dialog_xml_filter,
+    iter_tree_model,
+    data_dir,
+    safe_destroy,
+)
 from skytemple.module.dungeon_graphics.controller.bg_menu import BgMenuController
 from skytemple_dtef import get_template_file
 from skytemple_dtef.explorers_dtef import ExplorersDtef, VAR0_FN, VAR2_FN, VAR1_FN
@@ -205,6 +210,15 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
         self.on_editor_root_switch_page(None, None, self.__class__._last_open_tab_id)
         self.label_tileset_name.set_text(f(_("Dungeon Tileset {self.item_data} Rules")))
         self.label_tileset_name2.set_text(f(_("Dungeon Tileset {self.item_data}")))
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.dialog_chunks_export)
+        safe_destroy(self.dialog_palettes_animated_settings)
+        safe_destroy(self.dialog_tiles_export)
+        safe_destroy(self.dialog_chunks_import)
+        safe_destroy(self.dialog_tiles_import)
 
     @Gtk.Template.Callback()
     def on_editor_root_switch_page(self, w, p, pnum, *args):

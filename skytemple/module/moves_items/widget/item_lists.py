@@ -30,6 +30,7 @@ from skytemple.core.ui_utils import (
     assert_not_none,
     iter_tree_model,
     data_dir,
+    safe_destroy,
 )
 from skytemple.module.dungeon.widget.floor import (
     POKE_CATEGORY_ID,
@@ -298,6 +299,20 @@ class StMovesItemsItemListsPage(Gtk.Stack):
             self._recalculate_spawn_chances("item_cat_orbs_store", 4, 3)
             self._recalculate_spawn_chances("item_cat_others_store", 4, 3)
             stack.set_visible_child(self.box_list)
+
+    @Gtk.Template.Callback()
+    def on_self_destroy(self, *args):
+        # Try to destroy all top-level widgets outside of the template to not leak memory.
+        safe_destroy(self.dialog_category_add)
+        safe_destroy(self.chance_label1)
+        safe_destroy(self.chance_label2)
+        safe_destroy(self.chance_label3)
+        safe_destroy(self.chance_label4)
+        safe_destroy(self.chance_label5)
+        safe_destroy(self.chance_label6)
+        safe_destroy(self.chance_label7)
+        safe_destroy(self.chance_label8)
+        safe_destroy(self.chance_label9)
 
     def _init_combos(self):
         # Init available types
