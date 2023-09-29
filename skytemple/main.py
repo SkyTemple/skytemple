@@ -160,6 +160,7 @@ from skytemple.core.logger import setup_logging, SKYTEMPLE_LOGLEVEL
 setup_logging()
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
+
 # Re-exports kept for compatibility until 2.x
 from skytemple.core.events.manager import EventManager
 from skytemple.core.modules import Modules
