@@ -17,19 +17,14 @@
 import sys
 from asyncio import AbstractEventLoop
 
-import gi
-
 from skytemple.core.logger import async_handle_exeception
 from skytemple_files.common.i18n_util import _
-
-gi.require_version("Gtk", "3.0")
 import asyncio
 from typing import Coroutine, Optional
 from enum import Enum, auto
 
 import gbulb
-from gi.repository import Gtk, GLib
-from typing import Callable
+from gi.repository import Gtk, GLib, Gio
 
 from skytemple.core.async_tasks.now import Now
 from skytemple_files.common.task_runner import AsyncTaskRunner
@@ -117,18 +112,20 @@ class AsyncTaskDelegator:
     _config_type = None
 
     @classmethod
-    def run_main(cls, main: Callable, *main_args, **main_kwargs):
+    def run_main(cls, app: Gio.Application):
+        exit_code = 0
         try:
-            main(*main_args, **main_kwargs)
             if cls.config_type().event_loop_type == AsyncEventLoopType.GLIB_ONLY:
-                Gtk.main()
+                exit_code = app.run(sys.argv)
             elif cls.config_type().event_loop_type == AsyncEventLoopType.GBULB:
                 gbulb.install(gtk=True)
                 gbulb.get_event_loop().set_exception_handler(async_handle_exeception)
                 from skytemple.core.events.manager import EventManager
 
                 GLib.idle_add(EventManager.instance().async_init)
-                asyncio.get_event_loop().run_forever()
+                loop = asyncio.get_event_loop()
+                assert isinstance(loop, gbulb.GLibEventLoop)
+                loop.run_forever(application=app, argv=sys.argv)
             else:
                 raise RuntimeError("Invalid async configuration")
         except OSError as ex:
@@ -144,6 +141,7 @@ class AsyncTaskDelegator:
             # TODO: Currently always required for Debugger compatibility
             #  (since that ALWAYS uses this async implementation)
             AsyncTaskRunner.end()
+            sys.exit(exit_code)
 
     @classmethod
     def run_task(cls, coro: Coroutine):

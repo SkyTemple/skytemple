@@ -154,11 +154,13 @@ from skytemple_files.common.i18n_util import _
 
 gi.require_version("Gtk", "3.0")
 
+# SKYTEMPLE_LOGLEVEL re-export kept for compatibility until 2.x
 from skytemple.core.logger import setup_logging, SKYTEMPLE_LOGLEVEL
 
 setup_logging()
 
 from skytemple.core.message_dialog import SkyTempleMessageDialog
+# Re-exports kept for compatibility until 2.x
 from skytemple.core.events.manager import EventManager
 from skytemple.core.modules import Modules
 from skytemple_icons import icons
@@ -183,97 +185,15 @@ except ImportError:
     md.destroy()
     exit(1)
 
-from gi.repository import Gtk, Gdk, GLib
-from gi.repository.Gtk import Window
-from skytemple.controller.main import MainController
-
-
-def run_main(settings: SkyTempleSettingsStore):
-    # TODO: Gtk.Application: https://python-gtk-3-tutorial.readthedocs.io/en/latest/application.html
-    path = os.path.abspath(os.path.dirname(__file__))
-
-    if sys.platform.startswith("win"):
-        # Load theming under Windows
-        _load_theme(settings)
-        # Solve issue #12
-        try:
-            from skytemple_files.common.platform_utils.win import win_set_error_mode
-
-            win_set_error_mode()
-        except BaseException:
-            # This really shouldn't fail, but it's not important enough to crash over
-            pass
-
-    if sys.platform.startswith("darwin"):
-        # Load theming under macOS
-        _load_theme(settings)
-
-        # The search path is wrong if SkyTemple is executed as an .app bundle
-        if getattr(sys, "frozen", False):
-            path = os.path.dirname(sys.executable)
-
-    itheme: Gtk.IconTheme = Gtk.IconTheme.get_default()
-    itheme.append_search_path(os.path.abspath(icons()))
-    itheme.append_search_path(os.path.abspath(os.path.join(data_dir(), "icons")))
-    itheme.append_search_path(
-        os.path.abspath(os.path.join(get_debugger_data_dir(), "icons"))
-    )
-    itheme.rescan_if_needed()
-
-    # Load Builder and Window
-    builder = make_builder(os.path.join(path, "skytemple.glade"))
-    main_window = builder_get_assert(builder, Window, "main_window")
-    main_window.set_role("SkyTemple")
-    GLib.set_application_name("SkyTemple")
-    GLib.set_prgname("skytemple")
-    # TODO: Deprecated but the only way to set the app title on GNOME...?
-    main_window.set_wmclass("SkyTemple", "SkyTemple")
-
-    # Load CSS
-    style_provider = Gtk.CssProvider()
-    with open(os.path.join(path, "skytemple.css"), "rb") as f:
-        css = f.read()
-    style_provider.load_from_data(css)
-    default_screen = Gdk.Screen.get_default()
-    if default_screen is not None:
-        Gtk.StyleContext.add_provider_for_screen(
-            default_screen, style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
-
-    # Init. core events
-    event_manager = EventManager.instance()
-    if settings.get_integration_discord_enabled():
-        try:
-            from skytemple.core.events.impl.discord import DiscordPresence
-
-            discord_listener = DiscordPresence()
-            event_manager.register_listener(discord_listener)
-        except BaseException as exc:
-            logging.warning("Error setting up Discord integration:", exc_info=exc)
-
-    # Load modules
-    Modules.load(settings)
-
-    # Load main window + controller
-    MainController(builder, main_window, settings)
-
-    main_window.present()
-    main_window.set_icon_name("skytemple")
-
-
-def _load_theme(settings: SkyTempleSettingsStore):
-    gtk_settings = Gtk.Settings.get_default()
-    if gtk_settings is not None:
-        gtk_settings.set_property(
-            "gtk-theme-name", settings.get_gtk_theme(default="Arc-Dark")
-        )
+from skytemple.app import SkyTempleApplication
 
 
 def main():
     # TODO: At the moment doesn't support any cli arguments.
     from skytemple.core.async_tasks.delegator import AsyncTaskDelegator
 
-    AsyncTaskDelegator.run_main(run_main, settings)
+    path = os.path.abspath(os.path.dirname(__file__))
+    AsyncTaskDelegator.run_main(SkyTempleApplication(path, settings))
 
 
 if __name__ == "__main__":

@@ -135,7 +135,10 @@ class MainController:
         )
 
     def __init__(
-        self, builder: Gtk.Builder, window: Gtk.Window, settings: SkyTempleSettingsStore
+        self,
+        builder: Gtk.Builder,
+        window: Gtk.ApplicationWindow,
+        settings: SkyTempleSettingsStore,
     ):
         self.builder = builder
         self._window = window
