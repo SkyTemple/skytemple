@@ -64,7 +64,7 @@ a = Analysis(['../skytemple/main.py'],
              datas=additional_datas,
              hiddenimports=['packaging.version', 'packaging.specifiers',
                             'packaging.requirements', 'packaging.markers', '_sysconfigdata__win32_', 'win32api',
-                            'certifi'],
+                            'certifi', 'tilequant_dsoinfo'],
              hookspath=[],
              hooksconfig={
                  "gi": {
