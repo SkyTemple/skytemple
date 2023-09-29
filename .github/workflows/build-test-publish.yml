@@ -165,7 +165,7 @@ jobs:
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
         run: |
-          perl -i -pe "s/version\s*=\s*\"(.*?)(\.rc.*|\.a.*|\.post.*)?\"/version=\"\1.dev0+$($env:GITHUB_SHA.Substring(0,8))\"/" pyproject.toml
+          perl -i -pe $('s/version\s*=\s*"(.*?)(\.rc.*|\.a.*|\.post.*)?"/version="\1.dev0+' + $($env:GITHUB_SHA.Substring(0,8)) + '"/') pyproject.toml
           echo "IS_DEV_BUILD=1" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Note version
         run: |
