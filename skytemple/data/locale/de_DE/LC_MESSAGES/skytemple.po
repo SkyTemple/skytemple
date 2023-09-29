@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
-"POT-Creation-Date: 2023-09-29 13:55+0000\n"
-"PO-Revision-Date: 2023-09-29 14:50\n"
+"POT-Creation-Date: 2023-09-29 20:21+0000\n"
+"PO-Revision-Date: 2023-09-29 20:47\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -3525,7 +3525,7 @@ msgid "Do you want to save changes to {filename}?"
 msgstr "Möchtest du die Änderungen an {filename} speichern?"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:328
-#: skytemple/skytemple/controller/main.py:1013
+#: skytemple/skytemple/controller/main.py:1016
 msgid "Don't Save"
 msgstr "Nicht speichern"
 
@@ -3553,7 +3553,7 @@ msgid "_Save"
 msgstr "_Speichern"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/editor_notebook.py:332
-#: skytemple/skytemple/controller/main.py:1017
+#: skytemple/skytemple/controller/main.py:1020
 msgid "If you don't save, your changes will be lost."
 msgstr "Falls du nicht speicherst, gehen deine Änderungen verloren."
 
@@ -3952,7 +3952,7 @@ msgstr "Löschen"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1712
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/controller/main.py:1723
-#: skytemple/skytemple/controller/main.py:1015
+#: skytemple/skytemple/controller/main.py:1018
 #: skytemple/skytemple/module/map_bg/controller/main.py:126
 #: skytemple/skytemple/module/patch/controller/param_dialog.py:47
 #: skytemple/skytemple/module/script/controller/main.py:233
@@ -4386,7 +4386,7 @@ msgstr "Ground Engine Zustand"
 
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:1089
 #: skytemple-ssb-debugger/skytemple_ssb_debugger/debugger.glade:2798
-#: skytemple/skytemple/controller/main.py:1016
+#: skytemple/skytemple/controller/main.py:1019
 #: skytemple/skytemple/skytemple.glade:1346
 msgid "Save"
 msgstr "Speichern"
@@ -4992,57 +4992,57 @@ msgstr "_Vergrößern"
 msgid "Zoom _Out"
 msgstr "V_erkleinern"
 
-#: skytemple/skytemple/controller/main.py:290
+#: skytemple/skytemple/controller/main.py:293
 msgid "Save As..."
 msgstr "Speichern unter..."
 
-#: skytemple/skytemple/controller/main.py:310
+#: skytemple/skytemple/controller/main.py:313
 msgid "Open ROM..."
 msgstr "ROM öffnen..."
 
-#: skytemple/skytemple/controller/main.py:423
+#: skytemple/skytemple/controller/main.py:426
 msgid "Error opening the ROM"
 msgstr "Fehler beim Öffnen der ROM"
 
-#: skytemple/skytemple/controller/main.py:445
+#: skytemple/skytemple/controller/main.py:448
 msgid "Error saving the ROM"
 msgstr "Fehler beim Speichern der ROM"
 
-#: skytemple/skytemple/controller/main.py:619
-#: skytemple/skytemple/controller/main.py:677
+#: skytemple/skytemple/controller/main.py:622
+#: skytemple/skytemple/controller/main.py:680
 msgid "A project must be opened to use this."
 msgstr "Ein Projekt muss geöffnet sein, um dies zu verwenden."
 
-#: skytemple/skytemple/controller/main.py:691
+#: skytemple/skytemple/controller/main.py:694
 msgid "'spritecollab' module must be installed to use this."
 msgstr "Das 'spritecollab' Modul muss installiert sein, um diese Funktion nutzen zu können."
 
-#: skytemple/skytemple/controller/main.py:758
 #: skytemple/skytemple/controller/main.py:761
+#: skytemple/skytemple/controller/main.py:764
 msgid "Open a ROM"
 msgstr "ROM öffnen"
 
-#: skytemple/skytemple/controller/main.py:794
+#: skytemple/skytemple/controller/main.py:797
 #, python-brace-format
 msgid "Loading ROM \"{rom_name}\"..."
 msgstr "Lade ROM \"{rom_name}\"..."
 
-#: skytemple/skytemple/controller/main.py:795
+#: skytemple/skytemple/controller/main.py:798
 #, python-brace-format
 msgid "Opening {filename}."
 msgstr "Öffne {filename}."
 
-#: skytemple/skytemple/controller/main.py:996
+#: skytemple/skytemple/controller/main.py:999
 #, python-brace-format
 msgid "Saving ROM \"{rom_name}\"..."
 msgstr "Speichere ROM \"{rom_name}\"..."
 
-#: skytemple/skytemple/controller/main.py:997
+#: skytemple/skytemple/controller/main.py:1000
 #, python-brace-format
 msgid "Saving {rom.filename}."
 msgstr "Speichere {rom.filename}."
 
-#: skytemple/skytemple/controller/main.py:1011
+#: skytemple/skytemple/controller/main.py:1014
 #, python-brace-format
 msgid "Do you want to save changes to {rom_name}?"
 msgstr "Möchtest du Änderungen an {rom_name} speichern?"
@@ -5154,15 +5154,15 @@ msgstr "Das Eingabe-Bild ist in einem nicht unterstütztes Format."
 msgid "Image was converted."
 msgstr "Das Bild wurde umgewandelt."
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:60
+#: skytemple/skytemple/core/async_tasks/delegator.py:55
 msgid "Thread-based"
 msgstr "Thread-basiert"
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:66
+#: skytemple/skytemple/core/async_tasks/delegator.py:61
 msgid "Synchronous"
 msgstr "Synchronisch"
 
-#: skytemple/skytemple/core/async_tasks/delegator.py:78
+#: skytemple/skytemple/core/async_tasks/delegator.py:73
 msgid "Using Gbulb event loop"
 msgstr "Gbulb Ereignis-Schleife verwenden"
 
@@ -5175,7 +5175,7 @@ msgid "You can try opening one of the following file manually in a web browser o
 msgstr "Du kannst versuchen eine der folgenden Dateien manuell in einen Webbrowser oder Texteditor zu öffnen: "
 
 #: skytemple/skytemple/core/error_handler.py:116
-#: skytemple/skytemple/main.py:179
+#: skytemple/skytemple/main.py:182
 msgid "SkyTemple - Error!"
 msgstr "SkyTemple - Fehler!"
 
@@ -5274,7 +5274,7 @@ msgstr "Jede Szenen hat mindestens ein Skript zugewiesen, das beim Laden der Sze
 msgid "Open Script Engine Debugger"
 msgstr "Script Engine Debugger öffnen"
 
-#: skytemple/skytemple/main.py:178
+#: skytemple/skytemple/main.py:181
 msgid "PyGObject compiled without Cairo support. Can't start!"
 msgstr "PyGObject wurde ohne Cairo Unterstützung kompiliert. Kann nicht starten!"
 
