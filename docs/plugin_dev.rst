@@ -157,8 +157,7 @@ it can be empty. In this example the ``module.py`` contains the module:
         def depends_on(cls) -> List[str]:
             """
             This returns a list of modules that your plugin needs. This can be another plugin module
-            or one of the built-in modules, which are listed in SkyTemple's setup.py
-            (or in the future it's pyproject.toml).
+            or one of the built-in modules, which are listed in SkyTemple's pyproject.toml.
 
             You can reference these other modules and rely on functionality in them.
             """

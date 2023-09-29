@@ -83,29 +83,3 @@ Follow the instructions for end-users, but instead of Step 4, continue with this
    # Run ExplorerScript test export/import script (warning, hardcoded to my machine by default. The other packages have similar debug scripts):
    python3 -m skytemple_files.script.ssb.dbg.export_explorerscript_test
    ```
-
-
-### Building binary dependencies
-These are the instructions on how you can compile the binary dependencies of SkyTemple yourself.
-
-#### skytemple_rust
-1. Make sure you have a Rust toolchain (nightly) setup.
-2. Clone https://github.com/SkyTemple/skytemple-rust.git
-3. Run `pip3 install -r dev-requirements.txt `
-3. Run `python3 setup.py build_ext`
-3. Run `pip3 install -e . `
-
-#### py-desmume
-1. Make sure you have the GNU build tools installed (Autoconf, Automake, Libtool) and some additional dependencies:
-   ``brew install coreutils libtool automake sdl``
-1. Add the binaries without the ``g`` prefix to the ``PATH``:
-   ```
-   export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-   # Also for glibtool - You can do this more elegant via an extra directory if you want! 
-   # Just setting LIBTOOL won't work!
-   sudo ln -s $(which glibtool) /usr/local/opt/coreutils/libexec/gnubin/libtool
-   ```
-2. Clone https://github.com/SkyTemple/py-desmume
-3. Run `pip3 install -r dev-requirements.txt `
-3. Run `python3 setup.py build`
-3. Run `pip3 install -e . `

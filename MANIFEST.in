@@ -1,0 +1,5 @@
+recursive-include skytemple *.css
+recursive-include skytemple *.glade
+recursive-include skytemple *.mo
+graft skytemple/data
+include skytemple/py.typed

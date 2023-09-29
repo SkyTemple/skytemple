@@ -37,6 +37,9 @@ pip install --force-reinstall (Resolve-Path C:\gtk-build\build\x64\release\pycai
 # Install certifi for cert handling
 pip install -U certifi
 
+# Generate MO localization files
+bash .\generate-mo.sh
+
 # install SkyTemple
 pip install -r ../requirements-mac-windows.txt
 pip install '..[eventserver]'

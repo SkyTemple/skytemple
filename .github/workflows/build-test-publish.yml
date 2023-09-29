@@ -57,16 +57,19 @@ jobs:
     runs-on: ubuntu-latest
     name: Build the Python wheel
     steps:
-      # For tags we assume the version in setup.py is correct!
+      # For tags we assume the version in pyproject.toml is correct!
       - name: Checkout
         uses: actions/checkout@v4
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
         run: |
-          perl -i -pe "s/__version__\s*=\s*'(.*?)(\.rc.*|\.a.*|\.post.*)?'/__version__='\1.dev0+${GITHUB_SHA::8}'/" setup.py
+          perl -i -pe "s/version\s*=\s*\"(.*?)(\.rc.*|\.a.*|\.post.*)?\"/version=\"\1.dev0+${GITHUB_SHA::8}\"/" pyproject.toml
       - name: Note version
         run: |
-          echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
+          echo "PACKAGE_VERSION=$(tomlq '.project.version' pyproject.toml -r)" >> $GITHUB_ENV
+      - name: Build localization MO files
+        run: |
+          installer/generate-mo.sh
       - name: Build Python wheels
         uses: RalfG/python-wheels-manylinux-build@v0.5.0-manylinux2014_x86_64
         with:
@@ -162,11 +165,11 @@ jobs:
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
         run: |
-          perl -i -pe "s/__version__\s*=\s*'(.*?)(\.rc.*|\.a.*|\.post.*)?'/__version__='\1.dev0+$($env:GITHUB_SHA.Substring(0,8))'/" setup.py
+          perl -i -pe "s/version\s*=\s*\"(.*?)(\.rc.*|\.a.*|\.post.*)?\"/version=\"\1.dev0+$($env:GITHUB_SHA.Substring(0,8))\"/" pyproject.toml
           echo "IS_DEV_BUILD=1" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Note version
         run: |
-          $env:PACKAGE_VERSION = python -- ./setup.py --version
+          $env:PACKAGE_VERSION = tomlq '.project.version' pyproject.toml -r
           echo "PACKAGE_VERSION=$env:PACKAGE_VERSION" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Install SkyTemple
         run: |
@@ -212,11 +215,11 @@ jobs:
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
         run: |
-          perl -i -pe "s/__version__\s*=\s*'(.*?)(\.rc.*|\.a.*|\.post.*)?'/__version__='\1.dev0+${GITHUB_SHA::8}'/" setup.py
+          perl -i -pe "s/version\s*=\s*\"(.*?)(\.rc.*|\.a.*|\.post.*)?\"/version=\"\1.dev0+${GITHUB_SHA::8}\"/" pyproject.toml
           echo "IS_DEV_BUILD=1" >> $GITHUB_ENV
       - name: Note version
         run: |
-          echo "PACKAGE_VERSION=$(python3 -- ./setup.py --version)" >> $GITHUB_ENV
+          echo "PACKAGE_VERSION=$(tomlq '.project.version' pyproject.toml -r)" >> $GITHUB_ENV
       - name: Install and package
         run: |
           # git is already installed.
@@ -231,6 +234,8 @@ jobs:
             IS_MACOS=1 installer/install-skytemple-rust.sh x86_64
           fi
           pip3 install -r requirements-mac-windows.txt
+          # Generate MO localization files
+          installer/generate-mo.sh
           pip3 install '.[eventserver]'
           if [ -n "$IS_DEV_BUILD" ]; then
             installer/install-skytemple-components-from-git.sh
