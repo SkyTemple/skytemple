@@ -164,12 +164,16 @@ jobs:
           Move-Item "C:\Program Files\Git\notbin" "C:\Program Files\Git\bin"
       - name: Rewrite version for dev if not tag
         if: "!startsWith(github.ref, 'refs/tags/')"
+        shell: sh
         run: |
-          perl -i -pe $('s/version\s*=\s*"(.*?)(\.rc.*|\.a.*|\.post.*)?"/version="\1.dev0+' + $($env:GITHUB_SHA.Substring(0,8)) + '"/') pyproject.toml
-          echo "IS_DEV_BUILD=1" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          perl -i -pe "s/version\s*=\s*\"(.*?)(\.rc.*|\.a.*|\.post.*)?\"/version=\"\1.dev0+${GITHUB_SHA::8}\"/" pyproject.toml
+          echo "IS_DEV_BUILD=1" >> $GITHUB_ENV
       - name: Note version
         run: |
-          $env:PACKAGE_VERSION = tomlq '.project.version' pyproject.toml -r
+          $env:path = "C:\pipx_bin;" + $env:path
+          
+          pipx install yq
+          $env:PACKAGE_VERSION = tomlq.exe '.project.version' pyproject.toml -r
           echo "PACKAGE_VERSION=$env:PACKAGE_VERSION" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Install SkyTemple
         run: |
