@@ -16,6 +16,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import logging
+import os
 import typing
 from datetime import datetime
 from functools import partial
@@ -76,6 +77,12 @@ def init():
         try:
             is_dev = version() == "dev"
             if is_dev:
+                if "SKYTEMPLE_DEV_ENABLE_SENTRY" not in os.environ:
+                    logger.warning(
+                        "Skipped enabling Sentry for development setup. Set env variable 'SKYTEMPLE_DEV_ENABLE_SENTRY' to enable."
+                    )
+                    already_init = True
+                    return
                 settings = {"debug": True, "environment": "development"}
             else:
                 settings = {"debug": False, "environment": "production"}
