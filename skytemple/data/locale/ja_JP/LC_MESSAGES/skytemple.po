@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-29 20:21+0000\n"
-"PO-Revision-Date: 2023-09-30 10:27\n"
+"PO-Revision-Date: 2023-09-30 12:15\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -2097,36 +2097,37 @@ msgstr ""
 #: skytemple-files/skytemple_files/graphics/kao/_model.py:371
 #, python-brace-format
 msgid "Can not convert PIL image to Kao: Image dimensions must be {img_dim}x{img_dim}px."
-msgstr ""
+msgstr "PILイメージをKaoファイルに変換できません。画像のサイズは {img_dim}x{img_dim}pxである必要があります。"
 
 #: skytemple-files/skytemple_files/graphics/kao/_model.py:490
 msgid "This portrait does not compress well, the result size is greater than 800 bytes ({len(new_img_compressed)} bytes total).\n"
 "If you haven't done already, try applying the 'ProvideATUPXSupport' to install an optimized compression algorithm, which might be able to better compress this image."
-msgstr ""
+msgstr "この顔グラフィックは圧縮されておらず、結果のサイズが 800 バイト ({len(new_img_compressed)} バイト合計) を超えています。\n"
+"最適化された圧縮アルゴリズム「ProvideATUPXSupport」を適用することで、より適切に圧縮できる可能性があります。"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:121
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, Not divisble by {PORTRAIT_SIZE}x{PORTRAIT_SIZE}"
-msgstr ""
+msgstr "顔グラフィックのサイズが無効です。 {img.size}で割り切ることができません。 {PORTRAIT_SIZE}x{PORTRAIT_SIZE}"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:132
 #, python-brace-format
 msgid "Portrait has an invalid size of {img.size}, exceeding max of {max_size}"
-msgstr ""
+msgstr "顔グラフィックサイズ {img.size} は無効です。最大サイズ {max_size} を超過しています。"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:174
 #, python-brace-format
 msgid "Semi-transparent pixels found at: {rogue_pixels}"
-msgstr ""
+msgstr "半透明のピクセルが見つかりました: {rogue_pixels}"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:178
 #, python-brace-format
 msgid "The following emotions have transparent pixels: {rogue_tiles}"
-msgstr "以下の表情には透明のピクセルがあります。: {rogue_tiles}"
+msgstr "以下の顔グラフィックには透明のピクセルがあります。: {rogue_tiles}"
 
 #: skytemple-files/skytemple_files/graphics/kao/sprite_bot_sheet.py:202
 msgid "File should have original and flipped versions of emotions: {str(flipped_tiles)}"
-msgstr ""
+msgstr "ファイルにはオリジナルと反転した顔グラフィックが必要です。: {str (flipped_tiles)}"
 
 #: skytemple-files/skytemple_files/graphics/wte/model.py:41
 msgid "Palette Only"
@@ -6706,7 +6707,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:606
 msgid "The value stored in the ROM is actually the value divided by 5. Because of this the saved value will be rounded to the next multiple of 5."
-msgstr ""
+msgstr "ROMに格納されている値は、実際には値を5で割ったものです。このため、保存される値は次の5の倍数に切り上げられます。"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.py:614
 msgid "These sliders control how likely it is (in %) for certain things to generate on this floor."
