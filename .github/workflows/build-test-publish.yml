@@ -223,6 +223,9 @@ jobs:
           echo "IS_DEV_BUILD=1" >> $GITHUB_ENV
       - name: Note version
         run: |
+          python3 -m venv .yq-venv
+          . .yq-venv/bin/activate
+          pip install yq
           echo "PACKAGE_VERSION=$(tomlq '.project.version' pyproject.toml -r)" >> $GITHUB_ENV
       - name: Install and package
         run: |
