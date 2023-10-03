@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: skytemple\n"
 "Report-Msgid-Bugs-To: https://translate.skytemple.org\n"
 "POT-Creation-Date: 2023-09-29 20:21+0000\n"
-"PO-Revision-Date: 2023-10-03 11:03\n"
+"PO-Revision-Date: 2023-10-03 12:33\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -105,11 +105,11 @@ msgstr "Objectifs de mission"
 
 #: /dev/fd/63:22 /dev/fd/63:145
 msgid "Mission Failure/Faint Strings"
-msgstr ""
+msgstr "Textes : Échec de mission/K.O."
 
 #: /dev/fd/63:23 /dev/fd/63:146
 msgid "Speed Change Feedback"
-msgstr ""
+msgstr "Textes : Changement de vitesse"
 
 #: /dev/fd/63:24 /dev/fd/63:147
 msgid "Potential Recruit Strings"
@@ -117,15 +117,15 @@ msgstr "Texte : Recrues potentielles"
 
 #: /dev/fd/63:25 /dev/fd/63:148
 msgid "Gummi Feedback"
-msgstr ""
+msgstr "Textes : Gelées"
 
 #: /dev/fd/63:26 /dev/fd/63:149
 msgid "Traps Feedback"
-msgstr ""
+msgstr "Textes : Pièges"
 
 #: /dev/fd/63:27 /dev/fd/63:150
 msgid "More Dungeon Feedback"
-msgstr ""
+msgstr "Textes : Plus de donjons"
 
 #: /dev/fd/63:28 /dev/fd/63:151
 msgid "Something's Stirring String"
@@ -133,7 +133,7 @@ msgstr "Textes : Quelque chose bouge"
 
 #: /dev/fd/63:29 /dev/fd/63:152
 msgid "Some Fake items Dialogue"
-msgstr ""
+msgstr "Textes : Quelques objets trompeurs"
 
 #: /dev/fd/63:30 /dev/fd/63:153
 msgid "Shaymin Form Change Strings"
@@ -249,7 +249,7 @@ msgstr "Descriptions des aptitudes Q.I."
 
 #: /dev/fd/63:58 /dev/fd/63:181
 msgid "Move Targets Strings"
-msgstr ""
+msgstr "Textes : cibles des capacitées"
 
 #: /dev/fd/63:59 /dev/fd/63:182
 msgid "Accuracy/Power Stars Ratings"
@@ -293,7 +293,7 @@ msgstr "Descriptions des capacités"
 
 #: /dev/fd/63:69 /dev/fd/63:192
 msgid "Debug Menu Strings"
-msgstr ""
+msgstr "Textes : Menu de débogage"
 
 #: /dev/fd/63:70 /dev/fd/63:193
 msgid "Portrait Names"
@@ -454,11 +454,11 @@ msgstr "ID de la première icône dans markfont.dat (24 entrées utilisées)"
 
 #: /dev/fd/63:105 /dev/fd/63:228
 msgid "String ID for push dialogue"
-msgstr ""
+msgstr "Identifiant du texte pour le dialogue de poussé"
 
 #: /dev/fd/63:106 /dev/fd/63:229
 msgid "String mentioned above is replaced by a default text when applying"
-msgstr ""
+msgstr "Le texte identifié ci-dessus est remplacé par un texte par défaut lors de l’application"
 
 #: /dev/fd/63:107 /dev/fd/63:230
 msgid "Only interruptions don't heal HP"
@@ -471,7 +471,7 @@ msgstr "% de l'exp. partagé"
 
 #: /dev/fd/63:109 /dev/fd/63:232
 msgid "String ID for the Menu Option"
-msgstr ""
+msgstr "Identifiant du texte pour l’option du menu"
 
 #: /dev/fd/63:110 /dev/fd/63:233
 msgid "String ID to confirm the appraise all"
@@ -499,11 +499,11 @@ msgstr ""
 
 #: /dev/fd/63:116 /dev/fd/63:239
 msgid "Fully heal enemies after evolving"
-msgstr ""
+msgstr "Soignez entièrement les ennemis après leurs évolutions"
 
 #: /dev/fd/63:117 /dev/fd/63:240
 msgid "Update the moves of evolved enemies"
-msgstr ""
+msgstr "Mettre à jour les capacités des ennemies évolués"
 
 #: /dev/fd/63:118 /dev/fd/63:241
 msgid "Increase Atk/SpAtk/Def/SpDef of evolved enemies by"
@@ -2695,7 +2695,8 @@ msgstr "Autres"
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:53
 msgid "Tells the game to load the actor and level lists from separate files.\n"
 "Extracts both files on applying the patch."
-msgstr ""
+msgstr "Indique au jeu de charger les listes d'acteurs et de niveaux à partir de fichiers séparés.\n"
+"Extrait ces deux fichiers lors de l'application de ce correctif."
 
 #: skytemple-files/skytemple_files/patch/handler/actor_and_level_loader.py:109
 msgid "This patch can not be re-applied."
@@ -2783,15 +2784,15 @@ msgstr "Alors, qui aimeriez-vous être?"
 
 #: skytemple-files/skytemple_files/patch/handler/choose_starter.py:66
 msgid "Adds an extra menu during the personality test to choose the starter."
-msgstr ""
+msgstr "Ajoute un menu supplémentaire lors du test de personnalité pour choisir un starter."
 
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:106
 msgid "[CS:S]Control mode set to[CR] [CS:C]automatic[CR][CS:S].[CR]"
-msgstr ""
+msgstr "[CS:S]Contrôle réglé en[CR] [CS:C]automatique[CR][CS:S].[CR]"
 
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:109
 msgid "[CS:S]Control mode set to[CR] [CS:E]manual[CR][CS:S].[CR]"
-msgstr ""
+msgstr "[CS:S]Contrôle réglé en[CR] [CS:C]manuel[CR][CS:S].[CR]"
 
 #: skytemple-files/skytemple_files/patch/handler/complete_team_control.py:121
 msgid "Pressing start in a dungeon toggles between automatic and manual mode. In manual mode, you can control your partners on their turns. You must apply the extra code overlay made by End45 before applying this patch."
@@ -2815,7 +2816,7 @@ msgstr "Implémente les interruptions à mi-donjon. "
 
 #: skytemple-files/skytemple_files/patch/handler/dynamic_bosses_everywhere.py:49
 msgid "Allows placing special fixed room entities #124-127 (Explorer Maze enemies) in any fixed room without causing the game to crash."
-msgstr ""
+msgstr "Permet de placer des entités spéciales (ID entre 124 et 127, ennemies du dojo Ossatueur) dans toute salle statique sans faire planter le jeu."
 
 #: skytemple-files/skytemple_files/patch/handler/edit_extra_pokemon.py:49
 msgid "Changes the way the game determines when to add additional pokémon to the team so it can be edited more easily"
@@ -3020,11 +3021,11 @@ msgstr "Valeur de configuration invalide."
 
 #: skytemple-files/skytemple_files/patch/patches.py:271
 msgid "Must be >= {}."
-msgstr "Doit être >= {}."
+msgstr "Doit être ≥ {}."
 
 #: skytemple-files/skytemple_files/patch/patches.py:277
 msgid "Must be <= {}."
-msgstr "Doit être <= {}."
+msgstr "Doit être ≤ {}."
 
 #: skytemple-files/skytemple_files/patch/patches.py:391
 msgid "config.xml missing in patch package."
@@ -5457,7 +5458,7 @@ msgstr ""
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:733
 msgid "Can switch leader:"
-msgstr ""
+msgstr "Peut changer de meneur :"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:746
 msgid "Exp. enabled:"
@@ -5465,7 +5466,7 @@ msgstr "Gain d'expérience activé : "
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:807
 msgid "Enemy evolution enabled:"
-msgstr ""
+msgstr "Évolution des ennemis activée :"
 
 #: skytemple/skytemple/module/dungeon/controller/dungeon.glade:820
 msgid "Money reset to 0:"
@@ -5944,7 +5945,7 @@ msgstr "Détermine si les capacités peuvent être utilisées. Cela n'affecte pa
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:560
 msgid "If ChangeFixedFloorProperties is not applied and the fixed floor ID is 0 or >= 165 this setting is ignored. Orbs are always allowed."
-msgstr "Si le patch 'ChangeFixedFloorProperties' n'est pas appliquer et que l'ID de la chambre fixe est 0 ou >= 165, ce paramètre est ignoré. Les orbres seront toujours utilisable."
+msgstr "Si la modification 'ChangeFixedFloorProperties' n'est pas appliquer et que l'ID de la chambre fixe est 0 ou >= 165, ce paramètre est ignoré. Les orbres seront toujours utilisable."
 
 #: skytemple/skytemple/module/dungeon/controller/fixed.py:567
 msgid "If enabled, the floor is exited after all the enemies have been defeated"
@@ -6432,7 +6433,7 @@ msgstr "Structure"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1821
 msgid "Secondary T. enabled?:"
-msgstr ""
+msgstr "Terrain secondaire activé ?"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1833
 msgid "Secondary Terrain:"
@@ -6440,7 +6441,7 @@ msgstr "Terrain secondaire :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1845
 msgid "Secondary T. density:"
-msgstr ""
+msgstr "Densité du terrain secondaire :"
 
 #: skytemple/skytemple/module/dungeon/controller/floor.glade:1857
 msgid "Imperfect rooms?:"
