@@ -32,7 +32,7 @@ settings = SkyTempleSettingsStore()
 if settings.get_allow_sentry():
     from skytemple.core import sentry
 
-    sentry.init()
+    sentry.init(settings)
 
 # Setup native library integration
 if ENV_SKYTEMPLE_USE_NATIVE not in os.environ:

@@ -1133,6 +1133,6 @@ class MainController:
                 self.settings.set_allow_sentry(True)
                 from skytemple.core import sentry
 
-                sentry.init()
+                sentry.init(self.settings)
             else:
                 self.settings.set_allow_sentry(False)

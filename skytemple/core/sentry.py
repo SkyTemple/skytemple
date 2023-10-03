@@ -15,6 +15,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from __future__ import annotations
 import logging
 import os
 import typing
@@ -71,7 +72,7 @@ def release_version(is_dev_version: bool):
             return raw_version
 
 
-def init():
+def init(skytemple_settings: SkyTempleSettingsStore):
     global already_init
     if not already_init:
         try:
@@ -97,6 +98,7 @@ def init():
                 traces_sample_rate=0.2,
                 release=release_version(is_dev),
                 integrations=[sentry_logging],
+                server_name="n/a",
                 **settings,  # type: ignore
             )
             # Make sure we actually track this release being used.
@@ -104,6 +106,7 @@ def init():
             hub = Hub(Hub.current)
             atexit.register(session_ctx.close)
             session_ctx.enter_context(auto_session_tracking(hub))  # type: ignore
+            sentry_sdk.set_user({"id": skytemple_settings.getset_sentry_user_id()})
         except Exception as ex:
             logger.error("Failed setting up Sentry", exc_info=ex)
         already_init = True
@@ -195,7 +198,7 @@ def if_not_none(obj, cb):
 
 
 # noinspection PyProtectedMember
-def debugger_open_scripts(manager: "DebuggerManager"):
+def debugger_open_scripts(manager: DebuggerManager):
     if not manager.is_opened():
         return None
     notebook = manager.get_controller().editor_notebook  # type: ignore
@@ -209,7 +212,7 @@ def debugger_open_scripts(manager: "DebuggerManager"):
 
 
 # noinspection PyProtectedMember
-def debugger_focused_script(manager: "DebuggerManager"):
+def debugger_focused_script(manager: DebuggerManager):
     if not manager.is_opened():
         return None
     notebook = manager.get_controller().editor_notebook  # type: ignore
@@ -229,7 +232,7 @@ def debugger_focused_script(manager: "DebuggerManager"):
 
 
 # noinspection PyProtectedMember
-def debugger_emulator_state(manager: "DebuggerManager"):
+def debugger_emulator_state(manager: DebuggerManager):
     if not manager.is_opened():
         return None
     debugger = manager.get_controller().debugger  # type: ignore
@@ -376,14 +379,14 @@ def collect_state_context() -> Dict[str, "Captured"]:
     }
 
 
-def collect_config_context(settings: "SkyTempleSettingsStore") -> Dict[str, "Captured"]:
+def collect_config_context(settings: SkyTempleSettingsStore) -> Dict[str, Captured]:
     return dict(settings.loaded_config.items())  # type: ignore
 
 
 def capture(
-    settings: "SkyTempleSettingsStore",
-    exc_info: Optional["ExceptionInfo"],
-    **error_context_in: "Capturable",
+    settings: SkyTempleSettingsStore,
+    exc_info: Optional[ExceptionInfo],
+    **error_context_in: Capturable,
 ):
     from skytemple_files.common.util import capture_capturable
 
