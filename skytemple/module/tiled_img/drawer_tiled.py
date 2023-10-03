@@ -41,11 +41,11 @@ class DrawerTiled:
     def __init__(
         self,
         draw_area: Widget,
-        tile_mappings: Optional[List[TilemapEntry]],
+        tile_mappings: Optional[list[TilemapEntry]],
         bpa_durations: int,
         pal_ani_durations: int,
         # Format: tile_surfaces[pal][tile_idx][pal_frame][frame]
-        tile_surfaces: List[List[List[List[cairo.Surface]]]],
+        tile_surfaces: list[list[list[list[cairo.Surface]]]],
     ):
         """
 
@@ -56,7 +56,7 @@ class DrawerTiled:
         """
         self.draw_area = draw_area
 
-        self.tile_mappings: List[TilemapEntry] = tile_mappings  # type: ignore
+        self.tile_mappings: list[TilemapEntry] = tile_mappings  # type: ignore
 
         self.tiling_width = 3
         self.tiling_height = 3
@@ -72,7 +72,7 @@ class DrawerTiled:
 
         self.drawing_is_active = False
 
-    def set_tile_mappings(self, tile_mappings: List[TilemapEntry]):
+    def set_tile_mappings(self, tile_mappings: list[TilemapEntry]):
         self.tile_mappings = tile_mappings
         if len(self.tile_mappings) == 1:
             self.width = BPC_TILE_DIM
@@ -151,8 +151,8 @@ class DrawerTiledCellRenderer(DrawerTiled, Gtk.CellRenderer):
         bpa_durations: int,
         pal_ani_durations: int,
         will_draw_chunk,
-        all_mappings: List[TilemapEntry],
-        tile_surfaces: List[List[List[List[cairo.Surface]]]],
+        all_mappings: list[TilemapEntry],
+        tile_surfaces: list[list[list[list[cairo.Surface]]]],
         scale,
     ):
         super().__init__(

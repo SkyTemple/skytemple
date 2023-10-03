@@ -51,7 +51,7 @@ class PosMarkEditorController:
         level: Pmd2ScriptLevel,
         map_bg_module,
         script_module,
-        pos_marks: List[SourceMapPositionMark],
+        pos_marks: list[SourceMapPositionMark],
         pos_mark_to_edit: int,
     ):
         """A controller for a dialog for editing position marks for an Ssb file."""
@@ -70,7 +70,7 @@ class PosMarkEditorController:
         self.mapbg_id = self.level.mapid
 
         self._scale_factor: float = 1.0
-        self._bg_draw_is_clicked__location: Optional[Tuple[int, int]] = None
+        self._bg_draw_is_clicked__location: Optional[tuple[int, int]] = None
         self._bg_draw_is_clicked__drag_active = False
         self._map_bg_width = SIZE_REQUEST_NONE
         self._map_bg_height = SIZE_REQUEST_NONE

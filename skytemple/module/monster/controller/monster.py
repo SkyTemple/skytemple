@@ -163,7 +163,7 @@ class MonsterController(AbstractController):
                 _("Sprite File Size")
             )
 
-        self._ent_names: Dict[int, str] = {}
+        self._ent_names: dict[int, str] = {}
 
         self._init_monster_store()
 
@@ -959,7 +959,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         # Fill Pokémon tree
         store = builder_get_assert(self.builder, Gtk.TreeStore, "export_dialog_store")
         store.clear()
-        monster_entries_by_base_id: Dict[int, List[MdEntryProtocol]] = {}
+        monster_entries_by_base_id: dict[int, list[MdEntryProtocol]] = {}
         for entry in self.module.monster_md.entries:
             if (
                 getattr(entry, self.module.effective_base_attr)
@@ -1167,7 +1167,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
                     return
 
             # 2. Import to selected Pokémon
-            selected_monsters: List[int] = []
+            selected_monsters: list[int] = []
 
             def collect_monsters_recurse(titer: Optional[Gtk.TreeIter]):
                 for i in range(store.iter_n_children(titer)):
@@ -1424,7 +1424,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
             self.module.mark_md_as_modified(self.item_id)
 
     def _comboxbox_for_enum(
-        self, names: List[str], enum: Type[Enum], sort_by_name=False
+        self, names: list[str], enum: type[Enum], sort_by_name=False
     ):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
@@ -1438,8 +1438,8 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
 
     def _comboxbox_for_enum_with_strings(
         self,
-        names: List[str],
-        enum: Type[Enum],
+        names: list[str],
+        enum: type[Enum],
         string_type: StringType,
         unused_starting_at=999999,
     ):
@@ -1887,7 +1887,7 @@ Each drop type x has a chance of (x rate)/(sum of all the rates) to be selected.
         assert store is not None
         # Deletes all selected dialogue entries
         # Allows multiple deletion
-        active_rows: List[Gtk.TreePath] = tree.get_selection().get_selected_rows()[1]
+        active_rows: list[Gtk.TreePath] = tree.get_selection().get_selected_rows()[1]
         for x in reversed(sorted(active_rows, key=lambda x: x.get_indices())):
             del store[x.get_indices()[0]]
         self._rebuild_evo_lists()

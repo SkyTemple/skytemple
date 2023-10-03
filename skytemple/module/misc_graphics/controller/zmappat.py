@@ -140,8 +140,8 @@ class ZMappaTController(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
-                imgs: List[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
-                masks: List[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
+                imgs: list[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
+                masks: list[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
                 for v in ZMappaTVariation:
                     fn_tiles = os.path.join(fn, f"zmappat-{v.filename}-tiles.min.png")
                     fn_masks = os.path.join(fn, f"zmappat-{v.filename}-masks.min.png")
@@ -201,8 +201,8 @@ class ZMappaTController(AbstractController):
 
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
-                imgs: List[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
-                masks: List[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
+                imgs: list[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
+                masks: list[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
                 for v in ZMappaTVariation:
                     fn_tiles = os.path.join(fn, f"zmappat-{v.filename}-tiles.png")
                     fn_masks = os.path.join(fn, f"zmappat-{v.filename}-masks.png")

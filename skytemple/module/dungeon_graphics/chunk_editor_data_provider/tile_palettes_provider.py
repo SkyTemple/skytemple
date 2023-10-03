@@ -14,7 +14,8 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import List, Sequence
+from typing import List
+from collections.abc import Sequence
 
 from skytemple_files.common.util import lcm
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_palettes_provider import (
@@ -49,7 +50,7 @@ class DungeonPalettesProvider(AbstractTilePalettesProvider):
             len_pal_ani = lcm(*ani_pal_lengths)
         return len_pal_ani
 
-    def apply_palette_animations(self, frame: int) -> List[List[int]]:
+    def apply_palette_animations(self, frame: int) -> list[list[int]]:
         return self.dpla.apply_palette_animations(self.dpl.palettes, frame)
 
     def number_of_palettes(self):

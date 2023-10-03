@@ -364,7 +364,7 @@ class ListsModule(AbstractModule):
     def get_waza_p(self) -> WazaPProtocol:
         return self.waza_p_bin
 
-    def get_starter_default_ids(self) -> Tuple[u16, u16]:
+    def get_starter_default_ids(self) -> tuple[u16, u16]:
         """Returns players & partner default starters"""
         arm9 = self.project.get_binary(BinaryName.ARM9)
         static_data = self.project.get_rom_module().get_static_data()
@@ -384,12 +384,12 @@ class ListsModule(AbstractModule):
 
         self._item_tree.mark_as_modified(self._starters_tree_iter, RecursionType.UP)
 
-    def get_special_pcs(self) -> List[SpecialEpisodePc]:
+    def get_special_pcs(self) -> list[SpecialEpisodePc]:
         arm9 = self.project.get_binary(BinaryName.ARM9)
         static_data = self.project.get_rom_module().get_static_data()
         return HardcodedDefaultStarters.get_special_episode_pcs(arm9, static_data)
 
-    def set_special_pcs(self, lst: List[SpecialEpisodePc]):
+    def set_special_pcs(self, lst: list[SpecialEpisodePc]):
         def update(arm9):
             static_data = self.project.get_rom_module().get_static_data()
             HardcodedDefaultStarters.set_special_episode_pcs(lst, arm9, static_data)
@@ -400,12 +400,12 @@ class ListsModule(AbstractModule):
             self._special_episodes_root_iter, RecursionType.UP
         )
 
-    def get_tactics(self) -> List[i16]:
+    def get_tactics(self) -> list[i16]:
         arm9 = self.project.get_binary(BinaryName.ARM9)
         static_data = self.project.get_rom_module().get_static_data()
         return HardcodedTactics.get_unlock_levels(arm9, static_data)
 
-    def set_tactics(self, lst: List[i16]):
+    def set_tactics(self, lst: list[i16]):
         def update(arm9):
             static_data = self.project.get_rom_module().get_static_data()
             HardcodedTactics.set_unlock_levels(lst, arm9, static_data)
@@ -414,7 +414,7 @@ class ListsModule(AbstractModule):
 
         self._item_tree.mark_as_modified(self._tactics_root_iter, RecursionType.UP)
 
-    def get_starter_ids(self) -> Tuple[List[u16], List[u16]]:
+    def get_starter_ids(self) -> tuple[list[u16], list[u16]]:
         """Returns players & partner starters"""
         ov13 = self.project.get_binary(BinaryName.OVERLAY_13)
         static_data = self.project.get_rom_module().get_static_data()
@@ -464,7 +464,7 @@ class ListsModule(AbstractModule):
 
         self._item_tree.mark_as_modified(self._starters_tree_iter, RecursionType.UP)
 
-    def get_recruitment_list(self) -> Tuple[List[u16], List[u16], List[u8]]:
+    def get_recruitment_list(self) -> tuple[list[u16], list[u16], list[u8]]:
         """Returns the recruitment lists: species, levels, locations"""
         ov11 = self.project.get_binary(BinaryName.OVERLAY_11)
         static_data = self.project.get_rom_module().get_static_data()
@@ -476,7 +476,7 @@ class ListsModule(AbstractModule):
         return species, level, location
 
     def set_recruitment_list(
-        self, species: List[u16], level: List[u16], location: List[u8]
+        self, species: list[u16], level: list[u16], location: list[u8]
     ):
         """Sets the recruitment lists: species, levels, locations"""
 
@@ -494,14 +494,14 @@ class ListsModule(AbstractModule):
 
         self._item_tree.mark_as_modified(self._recruitment_tree_iter, RecursionType.UP)
 
-    def get_world_map_markers(self) -> List[MapMarkerPlacement]:
+    def get_world_map_markers(self) -> list[MapMarkerPlacement]:
         """Returns the world map markers"""
         arm9bin = self.project.get_binary(BinaryName.ARM9)
         static_data = self.project.get_rom_module().get_static_data()
         markers = HardcodedDungeons.get_marker_placements(arm9bin, static_data)
         return markers
 
-    def set_world_map_markers(self, markers: List[MapMarkerPlacement]):
+    def set_world_map_markers(self, markers: list[MapMarkerPlacement]):
         """Sets the world map markers"""
 
         def update(arm9bin):
@@ -512,13 +512,13 @@ class ListsModule(AbstractModule):
 
         self._item_tree.mark_as_modified(self._world_map_tree_iter, RecursionType.UP)
 
-    def get_rank_list(self) -> List[Rank]:
+    def get_rank_list(self) -> list[Rank]:
         """Returns the rank up table."""
         arm9bin = self.project.get_binary(BinaryName.ARM9)
         static_data = self.project.get_rom_module().get_static_data()
         return HardcodedRankUpTable.get_rank_up_table(arm9bin, static_data)
 
-    def set_rank_list(self, values: List[Rank]):
+    def set_rank_list(self, values: list[Rank]):
         """Sets the rank up table."""
 
         def update(arm9bin):
@@ -529,13 +529,13 @@ class ListsModule(AbstractModule):
 
         self._item_tree.mark_as_modified(self._rank_list_tree_iter, RecursionType.UP)
 
-    def get_menu(self, menu_id) -> List[MenuEntry]:
+    def get_menu(self, menu_id) -> list[MenuEntry]:
         """Returns the rank up table."""
         binary = self.project.get_binary(MenuType(menu_id).binary)  # type: ignore
         static_data = self.project.get_rom_module().get_static_data()
         return HardcodedMenus.get_menu(MenuType(menu_id), binary, static_data)  # type: ignore
 
-    def set_menu(self, menu_id, values: List[MenuEntry]):
+    def set_menu(self, menu_id, values: list[MenuEntry]):
         """Sets the rank up table."""
 
         def update(binary):
@@ -554,7 +554,7 @@ class ListsModule(AbstractModule):
 
     def get_dungeon_music_spec(
         self,
-    ) -> Tuple[List[DungeonMusicEntry], List[Tuple[u16, u16, u16, u16]]]:
+    ) -> tuple[list[DungeonMusicEntry], list[tuple[u16, u16, u16, u16]]]:
         config = self.project.get_rom_module().get_static_data()
         ov10 = self.project.get_binary(BinaryName.OVERLAY_10)
         return (
@@ -579,7 +579,7 @@ class ListsModule(AbstractModule):
             self._dungeon_music_tree_iter, RecursionType.UP
         )
 
-    def set_extra_dungeon_data(self, lst: List[ExtraDungeonDataEntry]):
+    def set_extra_dungeon_data(self, lst: list[ExtraDungeonDataEntry]):
         """Updates the extra dungeon data list"""
 
         def update(arm9):
@@ -592,7 +592,7 @@ class ListsModule(AbstractModule):
             self._guest_pokemon_root_iter, RecursionType.UP
         )
 
-    def set_guest_pokemon_data(self, lst: List[GuestPokemon]):
+    def set_guest_pokemon_data(self, lst: list[GuestPokemon]):
         """Updates the guest pokémon data list"""
 
         def update(arm9):

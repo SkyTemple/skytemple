@@ -84,8 +84,8 @@ class MovesItemsModule(AbstractModule):
         self._item_tree: ItemTree
         self._item_lists_tree_iter: ItemTreeEntryRef
         self._item_keys_tree_iter: ItemTreeEntryRef
-        self.item_iters: Dict[int, ItemTreeEntryRef] = {}
-        self.move_iters: Dict[int, ItemTreeEntryRef] = {}
+        self.item_iters: dict[int, ItemTreeEntryRef] = {}
+        self.move_iters: dict[int, ItemTreeEntryRef] = {}
 
     def load_tree_items(self, item_tree: ItemTree):
         root_items = item_tree.add_entry(
@@ -185,7 +185,7 @@ class MovesItemsModule(AbstractModule):
     def get_item_s_p(self) -> ItemSP:
         return self.project.open_file_in_rom(ITEM_S_FILE, FileType.ITEM_SP)
 
-    def get_item(self, item_id) -> Tuple[ItemPEntryProtocol, Optional[ItemSPEntry]]:
+    def get_item(self, item_id) -> tuple[ItemPEntryProtocol, Optional[ItemSPEntry]]:
         if item_id >= FIRST_EXCLUSIVE_ITEM_ID:
             return (
                 self.get_item_p().item_list[item_id],
@@ -203,7 +203,7 @@ class MovesItemsModule(AbstractModule):
 
         # Reload item categories:
         conf = self.project.get_rom_module().get_static_data()
-        cats: Dict[Pmd2DungeonItemCategory, List[int]] = {
+        cats: dict[Pmd2DungeonItemCategory, list[int]] = {
             x: [] for x in conf.dungeon_data.item_categories.values()
         }
 
@@ -219,7 +219,7 @@ class MovesItemsModule(AbstractModule):
     def get_move(self, move_id) -> WazaMoveProtocol:
         return self.get_waza_p().moves[move_id]
 
-    def get_i2n(self, in_lang: str) -> List[u16]:
+    def get_i2n(self, in_lang: str) -> list[u16]:
         sp = self.project.get_string_provider()
         lang = sp.get_language(in_lang)
         i2n_model = self.project.open_file_in_rom(
@@ -227,7 +227,7 @@ class MovesItemsModule(AbstractModule):
         )
         return i2n_model.get_list()
 
-    def set_i2n(self, in_lang: str, values: List[u16]):
+    def set_i2n(self, in_lang: str, values: list[u16]):
         sp = self.project.get_string_provider()
         lang = sp.get_language(in_lang)
         i2n_model = self.project.open_file_in_rom(

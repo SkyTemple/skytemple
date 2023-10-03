@@ -49,7 +49,7 @@ COLOR_EVENTS = (0, 0, 1.0)
 COLOR_POS_MARKS = (0, 1.0, 0)
 COLOR_LAYER_HIGHLIGHT = (0.7, 0.7, 1, 0.7)
 Num = Union[int, float]
-Color = Tuple[Num, Num, Num]
+Color = tuple[Num, Num, Num]
 
 
 class InteractionMode(Enum):
@@ -72,7 +72,7 @@ class Drawer:
 
         self.ssa = ssa
         self.map_bg: Optional[cairo.Surface] = None
-        self.position_marks: List[SourceMapPositionMark] = []
+        self.position_marks: list[SourceMapPositionMark] = []
 
         self.draw_tile_grid = False
 
@@ -91,7 +91,7 @@ class Drawer:
             Union[SsaActor, SsaObject, SsaPerformer, SsaEvent, SourceMapPositionMark]
         ] = None
         # If not None, drag is active and value is coordinate
-        self._selected__drag: Optional[Tuple[int, int]] = None
+        self._selected__drag: Optional[tuple[int, int]] = None
         self._edit_pos_marks = False
 
         self.selection_plugin = SelectionDrawerPlugin(
@@ -265,7 +265,7 @@ class Drawer:
 
     def get_under_mouse(
         self,
-    ) -> Tuple[
+    ) -> tuple[
         Optional[int], Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]]
     ]:
         """
@@ -316,7 +316,7 @@ class Drawer:
 
     def get_bb_actor(
         self, actor: SsaActor, x=None, y=None
-    ) -> Tuple[int, int, int, int]:
+    ) -> tuple[int, int, int, int]:
         if x is None:
             x = actor.pos.x_absolute
         if y is None:
@@ -352,7 +352,7 @@ class Drawer:
 
     def get_bb_object(
         self, object: SsaObject, x=None, y=None
-    ) -> Tuple[int, int, int, int]:
+    ) -> tuple[int, int, int, int]:
         if x is None:
             x = object.pos.x_absolute
         if y is None:
@@ -380,7 +380,7 @@ class Drawer:
         self,
         ctx: cairo.Context,
         object: SsaObject,
-        sprite_coords: Tuple[int, int, int, int],
+        sprite_coords: tuple[int, int, int, int],
     ):
         # Draw sprite representation
         if object.object.name != "NULL":
@@ -403,7 +403,7 @@ class Drawer:
 
     def get_bb_performer(
         self, performer: SsaPerformer, x=None, y=None
-    ) -> Tuple[int, int, int, int]:
+    ) -> tuple[int, int, int, int]:
         if x is None:
             x = performer.pos.x_absolute
         if y is None:
@@ -436,7 +436,7 @@ class Drawer:
 
     def get_bb_trigger(
         self, trigger: SsaEvent, x=None, y=None
-    ) -> Tuple[int, int, int, int]:
+    ) -> tuple[int, int, int, int]:
         if x is None:
             x = trigger.pos.x_absolute
         if y is None:
@@ -464,7 +464,7 @@ class Drawer:
 
     def get_bb_pos_mark(
         self, pos_mark: SourceMapPositionMark, x=None, y=None
-    ) -> Tuple[int, int, int, int]:
+    ) -> tuple[int, int, int, int]:
         if x is None:
             x = pos_mark.x_with_offset * BPC_TILE_DIM
         if y is None:
@@ -581,7 +581,7 @@ class Drawer:
 
     def _get_pmd_bounding_box(
         self, x_center: int, y_center: int, w: int, h: int, y_offset=0.0
-    ) -> Tuple[int, int, int, int]:
+    ) -> tuple[int, int, int, int]:
         left = x_center - int(w / 2)
         top = y_center - int(h / 2) - int(y_offset)
         return left, top, w, h
@@ -739,7 +739,7 @@ class Drawer:
         self._draw_plus(ctx)
         ctx.translate(-x, -y)
 
-    def get_pos_place_actor(self) -> Tuple[int, int]:
+    def get_pos_place_actor(self) -> tuple[int, int]:
         """Get the X and Y position on the grid to place the actor on, in PLACE_ACTOR mode."""
         return self._snap_pos(self.mouse_x, self.mouse_y + BPC_TILE_DIM)
 
@@ -760,7 +760,7 @@ class Drawer:
         self._draw_plus(ctx)
         ctx.translate(-x, -y)
 
-    def get_pos_place_object(self) -> Tuple[int, int]:
+    def get_pos_place_object(self) -> tuple[int, int]:
         """Get the X and Y position on the grid to place the object on, in PLACE_OBJECT mode."""
         return self._snap_pos(self.mouse_x, self.mouse_y)
 
@@ -779,7 +779,7 @@ class Drawer:
         self._draw_plus(ctx)
         ctx.translate(-x, -y)
 
-    def get_pos_place_performer(self) -> Tuple[int, int]:
+    def get_pos_place_performer(self) -> tuple[int, int]:
         """Get the X and Y position on the grid to place the performer on, in PLACE_PERFORMER mode."""
         return self._snap_pos(self.mouse_x, self.mouse_y)
 
@@ -800,7 +800,7 @@ class Drawer:
         self._draw_plus(ctx)
         ctx.translate(-x, -y)
 
-    def get_pos_place_trigger(self) -> Tuple[int, int]:
+    def get_pos_place_trigger(self) -> tuple[int, int]:
         """Get the X and Y position on the grid to place the trigger on, in PLACE_TRIGGER mode."""
         return self._snap_pos(self.mouse_x - BPC_TILE_DIM, self.mouse_y - BPC_TILE_DIM)
 
@@ -865,7 +865,7 @@ class Drawer:
 
     def get_current_drag_entity_pos(
         self,
-    ) -> Tuple[Union[int, float], Union[int, float]]:
+    ) -> tuple[Union[int, float], Union[int, float]]:
         assert self._selected__drag is not None
         return self._snap_pos(
             self.mouse_x - self._selected__drag[0],

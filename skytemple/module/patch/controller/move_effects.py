@@ -81,7 +81,7 @@ class MoveEffectsController(AbstractController):
         tree_store = builder_get_assert(
             self.builder, Gtk.ListStore, "move_effects_store"
         )
-        active_rows: List[Gtk.TreePath] = (
+        active_rows: list[Gtk.TreePath] = (
             builder_get_assert(self.builder, Gtk.TreeView, "moves_tree")
             .get_selection()
             .get_selected_rows()[1]
@@ -304,7 +304,7 @@ The ASM patch must generate a 'code_out.bin' file, which SkyTemple will try to i
     def on_btn_remove_metronome_clicked(self, *args):
         # Deletes all selected metronome entries
         # Allows multiple deletions
-        active_rows: List[Gtk.TreePath] = (
+        active_rows: list[Gtk.TreePath] = (
             builder_get_assert(self.builder, Gtk.TreeView, "metronome_tree")
             .get_selection()
             .get_selected_rows()[1]

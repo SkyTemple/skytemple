@@ -20,7 +20,8 @@ from __future__ import annotations
 import os
 import sys
 import logging
-from typing import TYPE_CHECKING, Type, Sequence
+from typing import TYPE_CHECKING, Type
+from collections.abc import Sequence
 
 from typing import Dict
 
@@ -45,7 +46,7 @@ logger = logging.getLogger(__name__)
 
 
 class Modules:
-    _modules: Dict = {}
+    _modules: dict = {}
 
     @classmethod
     def load(cls, settings: SkyTempleSettingsStore):
@@ -140,7 +141,7 @@ class Modules:
         return cls._modules
 
     @classmethod
-    def get_rom_module(cls) -> Type["RomModule"]:
+    def get_rom_module(cls) -> type[RomModule]:
         assert cls._modules["rom"] is not None
         return cls._modules["rom"]
 
@@ -157,15 +158,15 @@ def dep(arg):
     Copyright: Louis RIVIERE
     Original license: MIT
     """
-    d = dict((k, set(arg[k])) for k in arg)
+    d = {k: set(arg[k]) for k in arg}
     r = []
     while d:
         # values not in keys (items without dep)
-        t = set(i for v in d.values() for i in v) - set(d.keys())
+        t = {i for v in d.values() for i in v} - set(d.keys())
         # and keys without value (items without dep)
         t.update(k for k, v in d.items() if not v)
         # can be done right away
         r.append(t)
         # and cleaned up
-        d = dict(((k, v - t) for k, v in d.items() if v))
+        d = {k: v - t for k, v in d.items() if v}
     return [item for s in r for item in s]

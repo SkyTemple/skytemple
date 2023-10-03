@@ -109,7 +109,7 @@ class LevelUpController(AbstractController):
         self.builder: Gtk.Builder = None  # type: ignore
         self.item_id = item_id
         self._string_provider = self.module.project.get_string_provider()
-        self._move_names: Dict[int, str] = {}
+        self._move_names: dict[int, str] = {}
         self._level_bin_entry: Optional[LevelBinEntry] = None
         self._waza_p: WazaPProtocol = self.module.get_waza_p()
         self._support_webview = False
@@ -252,7 +252,7 @@ class LevelUpController(AbstractController):
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             fn = add_extension_if_missing(fn, "csv")
             try:
-                rows: List[List[Any]] = [
+                rows: list[list[Any]] = [
                     [
                         CSV_LEVEL,
                         CSV_EXP_POINTS,

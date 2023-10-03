@@ -95,7 +95,7 @@ class DungeonGraphicsModule(AbstractModule):
 
         self.dungeon_bin_context: ModelContext[DungeonBinPack]
         self._item_tree: ItemTree
-        self._tree_level_iter: List[ItemTreeEntryRef] = []
+        self._tree_level_iter: list[ItemTreeEntryRef] = []
         self._colvec_pos: int
         self._root_node: ItemTreeEntryRef
 
@@ -295,13 +295,13 @@ class DungeonGraphicsModule(AbstractModule):
             raise ValueError("Invalid item type")
         self.project.mark_as_modified(DUNGEON_BIN)
 
-    def get_tileset_properties(self) -> List[TilesetProperties]:
+    def get_tileset_properties(self) -> list[TilesetProperties]:
         return HardcodedDungeons.get_tileset_properties(
             self.project.get_binary(BinaryName.OVERLAY_10),
             self.project.get_rom_module().get_static_data(),
         )
 
-    def set_tileset_properties(self, lst: List[TilesetProperties]):
+    def set_tileset_properties(self, lst: list[TilesetProperties]):
         self.project.modify_binary(
             BinaryName.OVERLAY_10,
             lambda binary: HardcodedDungeons.set_tileset_properties(

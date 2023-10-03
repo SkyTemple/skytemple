@@ -185,7 +185,7 @@ class DungeonInterruptController(AbstractController):
         self._build_list()
 
     def on_btn_remove_clicked(self, *args):
-        active_rows: List[Gtk.TreePath] = (
+        active_rows: list[Gtk.TreePath] = (
             builder_get_assert(self.builder, Gtk.TreeView, "interrupt_tree")
             .get_selection()
             .get_selected_rows()[1]

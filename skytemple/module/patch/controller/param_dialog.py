@@ -49,8 +49,8 @@ class ParamDialogController:
         self.window.get_action_area().show_all()
 
     def run(
-        self, name: str, parameters: Dict[str, Pmd2PatchParameter]
-    ) -> Dict[str, Union[str, int]]:
+        self, name: str, parameters: dict[str, Pmd2PatchParameter]
+    ) -> dict[str, Union[str, int]]:
         content: Gtk.Box = self.window.get_content_area()
         self.window.set_title(_('Settings for the "{}" Patch').format(name))
 

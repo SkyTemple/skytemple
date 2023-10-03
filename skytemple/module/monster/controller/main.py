@@ -150,7 +150,7 @@ class MainController(AbstractController):
     def on_value_changed(self, *args):
         self._refresh_list()
 
-    def _get_current_settings(self) -> Tuple[int, TalkType]:
+    def _get_current_settings(self) -> tuple[int, TalkType]:
         cb_store = builder_get_assert(self.builder, Gtk.ListStore, "cb_store_types")
         cb = builder_get_assert(self.builder, Gtk.ComboBox, "cb_types")
 
@@ -251,7 +251,7 @@ class MainController(AbstractController):
 
     def _refresh_list(self):
         group, talk_type = self._get_current_settings()
-        dialogues: List[int] = self.module.get_personality_dialogues(group, talk_type)
+        dialogues: list[int] = self.module.get_personality_dialogues(group, talk_type)
         tree_store = builder_get_assert(
             self.builder, Gtk.ListStore, "group_text_tree_store"
         )

@@ -94,7 +94,7 @@ class ItemListsController(AbstractController):
     def __init__(self, module: "MovesItemsModule", *args):
         self.module = module
         self._item_list: MappaItemListProtocol
-        self._item_names: Dict[int, str] = {}
+        self._item_names: dict[int, str] = {}
         orig_cats = (
             module.project.get_rom_module()
             .get_static_data()
@@ -625,9 +625,9 @@ class ItemListsController(AbstractController):
         self._update_cr_item_cat_name_store()
 
     def _split_items_in_list_in_cats(
-        self, items: Dict[int, Probability]
-    ) -> Dict[int, Dict[int, Probability]]:
-        out_items: Dict[int, Dict[int, Probability]] = {}
+        self, items: dict[int, Probability]
+    ) -> dict[int, dict[int, Probability]]:
+        out_items: dict[int, dict[int, Probability]] = {}
         for cat in self.item_categories.values():
             out_items[cat.id] = {}
             for item, probability in items.items():
@@ -681,7 +681,7 @@ class ItemListsController(AbstractController):
             for item in category.item_ids():
                 store.append([self._item_names[item]])
 
-    def _calculate_relative_weights(self, list_of_weights: List[int]) -> List[int]:
+    def _calculate_relative_weights(self, list_of_weights: list[int]) -> list[int]:
         weights = []
         if len(list_of_weights) < 1:
             return []
@@ -771,7 +771,7 @@ class ItemListsController(AbstractController):
             rows.sort(key=lambda e: e[0])
 
             sum_of_weights = sum(
-                (int(row[4]) for row in iter_tree_model(store) if row[2] is False)
+                int(row[4]) for row in iter_tree_model(store) if row[2] is False
             )
 
             last_weight = 0

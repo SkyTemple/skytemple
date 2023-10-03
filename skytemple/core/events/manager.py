@@ -37,7 +37,7 @@ class EventManager:
     _instance = None
 
     def __init__(self):
-        self._listeners: List[AbstractListener] = []
+        self._listeners: list[AbstractListener] = []
 
         self._a_window_had_focus = False
         self._main_window_focus = None

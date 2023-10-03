@@ -99,17 +99,17 @@ class ScriptModule(AbstractModule):
         )
 
         # Tree iters for handle_request:
-        self._map_scene_root: Dict[str, ItemTreeEntryRef] = {}
-        self._acting_roots: Dict[str, ItemTreeEntryRef] = {}
-        self._sub_roots: Dict[str, ItemTreeEntryRef] = {}
-        self._map_ssas: Dict[str, Dict[str, ItemTreeEntryRef]] = {}
-        self._map_sse: Dict[str, ItemTreeEntryRef] = {}
-        self._map_ssss: Dict[str, Dict[str, ItemTreeEntryRef]] = {}
+        self._map_scene_root: dict[str, ItemTreeEntryRef] = {}
+        self._acting_roots: dict[str, ItemTreeEntryRef] = {}
+        self._sub_roots: dict[str, ItemTreeEntryRef] = {}
+        self._map_ssas: dict[str, dict[str, ItemTreeEntryRef]] = {}
+        self._map_sse: dict[str, ItemTreeEntryRef] = {}
+        self._map_ssss: dict[str, dict[str, ItemTreeEntryRef]] = {}
 
         self._item_tree: ItemTree
         self._root: ItemTreeEntryRef
         self._other_node: ItemTreeEntryRef
-        self._sub_nodes: Dict[str, ItemTreeEntryRef] = {}
+        self._sub_nodes: dict[str, ItemTreeEntryRef] = {}
 
     def load_tree_items(self, item_tree: ItemTree):
         # -> Script [main]
@@ -476,7 +476,7 @@ class ScriptModule(AbstractModule):
         mapname: str,
         scene_name: str,
         scene_type: str,
-        pos_marks: List[SourceMapPositionMark],
+        pos_marks: list[SourceMapPositionMark],
         pos_mark_to_edit: int,
     ) -> PosMarkEditorController:
         if (
@@ -526,12 +526,12 @@ class ScriptModule(AbstractModule):
             StringType.GROUND_MAP_NAMES, nameid - 180
         )
 
-    def get_dungeon_tilesets(self) -> List[GroundTilesetMapping]:
+    def get_dungeon_tilesets(self) -> list[GroundTilesetMapping]:
         config = self.project.get_rom_module().get_static_data()
         ov11 = self.project.get_binary(BinaryName.OVERLAY_11)
         return HardcodedGroundDungeonTilesets.get_ground_dungeon_tilesets(ov11, config)
 
-    def save_dungeon_tilesets(self, value: List[GroundTilesetMapping]):
+    def save_dungeon_tilesets(self, value: list[GroundTilesetMapping]):
         config = self.project.get_rom_module().get_static_data()
         self.project.modify_binary(
             BinaryName.OVERLAY_11,
@@ -583,7 +583,7 @@ class ScriptModule(AbstractModule):
 
     def get_subnodes(
         self, name: str
-    ) -> Tuple[
+    ) -> tuple[
         Optional[ItemTreeEntryRef],
         Optional[ItemTreeEntryRef],
         Optional[ItemTreeEntryRef],
@@ -722,12 +722,12 @@ class ScriptModule(AbstractModule):
 
     def get_mapping_dungeon_assets(
         self,
-    ) -> Tuple[
-        List[GroundTilesetMapping],
+    ) -> tuple[
+        list[GroundTilesetMapping],
         MappaBinProtocol,
         FixedBin,
         ModelContext[DungeonBinPack],
-        List[DungeonDefinition],
+        list[DungeonDefinition],
     ]:
         static_data = self.project.get_rom_module().get_static_data()
         mappings = self.get_dungeon_tilesets()

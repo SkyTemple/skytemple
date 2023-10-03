@@ -47,8 +47,8 @@ class W16Controller(AbstractController):
         self.module = module
         self.item_id = item_id
         self.w16: W16 = self.module.get_w16(self.item_id)
-        self._draws: List[Gtk.DrawingArea] = []
-        self._surfaces: List[cairo.Surface] = []
+        self._draws: list[Gtk.DrawingArea] = []
+        self._surfaces: list[cairo.Surface] = []
 
         self.builder: Gtk.Builder = None  # type: ignore
 

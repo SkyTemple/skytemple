@@ -45,7 +45,7 @@ class PortraitController(AbstractController):
         self.module = module
         self.item_id = item_id
         self._portrait_provider = self.module.get_portrait_provider()
-        self._draws: List[Gtk.DrawingArea] = []
+        self._draws: list[Gtk.DrawingArea] = []
         self._mark_as_modified_cb = mark_as_modified_cb
         self.kao = self.module.kao
 

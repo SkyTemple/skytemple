@@ -17,7 +17,8 @@
 import math
 import sys
 from functools import partial
-from typing import TYPE_CHECKING, Optional, List, Union, Callable, Mapping, Tuple
+from typing import TYPE_CHECKING, Optional, List, Union, Callable, Tuple
+from collections.abc import Mapping
 from xml.etree import ElementTree
 
 import cairo
@@ -140,7 +141,7 @@ class SsaController(AbstractController):
             self._scale_factor: float = self.__class__._last_scale_factor
         else:
             self._scale_factor = 1.0
-        self._bg_draw_is_clicked__location: Optional[Tuple[int, int]] = None
+        self._bg_draw_is_clicked__location: Optional[tuple[int, int]] = None
         self._bg_draw_is_clicked__drag_active = False
         self._map_bg_width = SIZE_REQUEST_NONE
         self._map_bg_height = SIZE_REQUEST_NONE
@@ -571,7 +572,7 @@ class SsaController(AbstractController):
     def on_tool_events_remove_clicked(self, *args):
         widget = builder_get_assert(self.builder, Gtk.TreeView, "ssa_events")
         model, treeiter = typing.cast(
-            Tuple[Gtk.ListStore, Optional[Gtk.TreeIter]],
+            tuple[Gtk.ListStore, Optional[Gtk.TreeIter]],
             widget.get_selection().get_selected(),
         )
         if treeiter is not None and model is not None:
@@ -608,7 +609,7 @@ class SsaController(AbstractController):
     def on_tool_events_edit_clicked(self, *args):
         widget = builder_get_assert(self.builder, Gtk.TreeView, "ssa_events")
         model, treeiter = typing.cast(
-            Tuple[Gtk.ListStore, Optional[Gtk.TreeIter]],
+            tuple[Gtk.ListStore, Optional[Gtk.TreeIter]],
             widget.get_selection().get_selected(),
         )
         if treeiter is not None and model is not None:
@@ -702,7 +703,7 @@ class SsaController(AbstractController):
             # Okay, delete the layer/sector
             widget = builder_get_assert(self.builder, Gtk.TreeView, "ssa_layers")
             model, treeiter = typing.cast(
-                Tuple[Gtk.ListStore, Optional[Gtk.TreeIter]],
+                tuple[Gtk.ListStore, Optional[Gtk.TreeIter]],
                 widget.get_selection().get_selected(),
             )
             if treeiter is not None and model is not None:
@@ -1344,7 +1345,7 @@ class SsaController(AbstractController):
 
     def _get_list_tree_and_iter_for(
         self, selected
-    ) -> Tuple[Gtk.TreeView, Optional[Gtk.TreeIter]]:
+    ) -> tuple[Gtk.TreeView, Optional[Gtk.TreeIter]]:
         tree = self._get_list_for(selected)
         return tree, self._find_list_iter(tree, lambda row: selected is row[1])
 
@@ -2129,7 +2130,7 @@ class SsaController(AbstractController):
         return f(_("Type {performer.type}"))
 
     def _get_event_script_name(
-        self, events: List[SsaTrigger], event_id: int, short=False
+        self, events: list[SsaTrigger], event_id: int, short=False
     ) -> str:
         if len(events) < event_id + 1:
             return f"??? {event_id}"

@@ -15,7 +15,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from threading import Lock
-from typing import TYPE_CHECKING, Optional, List, Iterable, Dict, Set
+from typing import TYPE_CHECKING, Optional, List, Dict, Set
+from collections.abc import Iterable
 
 from gi.repository import Gtk
 
@@ -69,7 +70,7 @@ save_lock = Lock()
 class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
     def __init__(self, manager: "DebuggerManager"):
         self._manager = manager
-        self._special_words_cache: Optional[Set[str]] = None
+        self._special_words_cache: Optional[set[str]] = None
 
     def allows_interactive_file_management(self) -> bool:
         return False
@@ -224,7 +225,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         mapname: str,
         scene_name: str,
         scene_type: str,
-        pos_marks: List[SourceMapPositionMark],
+        pos_marks: list[SourceMapPositionMark],
         pos_mark_to_edit: int,
     ) -> bool:
         try:
@@ -277,7 +278,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         error_message,
         error_title="SkyTemple Script Engine Debugger - Error",
         *,
-        context: Optional[Dict[str, Capturable]] = None,
+        context: Optional[dict[str, Capturable]] = None,
         should_report=True,
     ):
         if error_title is None:
@@ -292,7 +293,7 @@ class SkyTempleMainDebuggerControlContext(AbstractDebuggerControlContext):
         )
 
     def capture_error(
-        self, exc_info, *, context: Optional[Dict[str, Capturable]] = None
+        self, exc_info, *, context: Optional[dict[str, Capturable]] = None
     ):
         if context is None:
             context = {}

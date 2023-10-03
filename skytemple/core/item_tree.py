@@ -17,7 +17,8 @@
 from __future__ import annotations
 
 from enum import Enum, auto
-from typing import Optional, TYPE_CHECKING, Union, Any, Type, Iterable, cast
+from typing import Optional, TYPE_CHECKING, Union, Any, Type, cast
+from collections.abc import Iterable
 
 from gi.repository import Gtk
 
@@ -87,7 +88,7 @@ class ItemTreeEntry:
     _icon: str
     _name: str
     _module: AbstractModule
-    _view_class: Union[Type[Gtk.Widget], Type[AbstractController]]
+    _view_class: type[Gtk.Widget] | type[AbstractController]
     _item_data: Any
     _modified: bool
 
@@ -96,7 +97,7 @@ class ItemTreeEntry:
         icon: str,
         name: str,
         module: AbstractModule,
-        view_class: Union[Type[Gtk.Widget], Type[AbstractController]],
+        view_class: type[Gtk.Widget] | type[AbstractController],
         item_data: Any,
         *,
         modified: bool = False,
@@ -135,7 +136,7 @@ class ItemTreeEntry:
         return self._module
 
     @property
-    def view_class(self) -> Union[Type[Gtk.Widget], Type[AbstractController]]:
+    def view_class(self) -> type[Gtk.Widget] | type[AbstractController]:
         return self._view_class
 
     @property
@@ -154,7 +155,7 @@ class ItemTree:
     """
 
     _tree: Gtk.TreeStore
-    _root_node: Optional[Gtk.TreeIter]
+    _root_node: Gtk.TreeIter | None
     _finalized: bool
 
     # DO NOT construct these yourself in module code.
@@ -183,7 +184,7 @@ class ItemTree:
         return ItemTreeEntryRef(self._tree, new_iter)
 
     def add_entry(
-        self, root: Optional[ItemTreeEntryRef], entry: ItemTreeEntry
+        self, root: ItemTreeEntryRef | None, entry: ItemTreeEntry
     ) -> ItemTreeEntryRef:
         """Add a new entry. All kwargs-only parameters in __init__ of ItemTreeEntry are ignored."""
         root_iter = self._root_node

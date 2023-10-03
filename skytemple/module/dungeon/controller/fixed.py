@@ -15,7 +15,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import sys
-from typing import TYPE_CHECKING, Optional, Callable, Mapping, Tuple
+from typing import TYPE_CHECKING, Optional, Callable, Tuple
+from collections.abc import Mapping
 
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import Widget
@@ -130,7 +131,7 @@ class FixedController(AbstractController):
 
         self._bg_draw_is_clicked__press_active = False
         self._bg_draw_is_clicked__drag_active = False
-        self._bg_draw_is_clicked__location: Optional[Tuple[int, int]] = None
+        self._bg_draw_is_clicked__location: Optional[tuple[int, int]] = None
         self._currently_selected = None
 
         self.script_data = (

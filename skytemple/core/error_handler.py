@@ -45,7 +45,7 @@ from skytemple_files.common.i18n_util import _
 
 logger = logging.getLogger(__name__)
 ExceptionInfo = Union[
-    BaseException, Tuple[Type[BaseException], BaseException, TracebackType]
+    BaseException, tuple[type[BaseException], BaseException, TracebackType]
 ]
 
 
@@ -108,7 +108,7 @@ def display_error(
     window=None,
     log=True,
     *,
-    context: Optional[Dict[str, Capturable]] = None,
+    context: Optional[dict[str, Capturable]] = None,
     should_report=True,
 ):
     """

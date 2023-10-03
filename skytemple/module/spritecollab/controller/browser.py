@@ -37,7 +37,7 @@ NOT_SC_SERVER_BROWSER = "https://nsc.pmdcollab.org/"
 
 def loader(
     client: SpriteCollabClient,
-    callback: Callable[[List[MonsterFormInfoWithPortrait]], Any],
+    callback: Callable[[list[MonsterFormInfoWithPortrait]], Any],
     error_callback: Callable[[Exception], Any],
 ):
     asyncio.run(
@@ -51,7 +51,7 @@ def loader(
 
 async def loader_impl(
     client: SpriteCollabClient,
-    callback: Callable[[List[MonsterFormInfoWithPortrait]], Any],
+    callback: Callable[[list[MonsterFormInfoWithPortrait]], Any],
     error_callback: Callable[[Exception], Any],
 ):
     try:
@@ -65,8 +65,8 @@ async def loader_impl(
 def entry_loader(
     client: SpriteCollabClient,
     idx: int,
-    form_paths: List[str],
-    callback: Callable[[List[Tuple[MonsterFormDetails, Image.Image]]], Any],
+    form_paths: list[str],
+    callback: Callable[[list[tuple[MonsterFormDetails, Image.Image]]], Any],
     error_callback: Callable[[Exception], Any],
 ):
     asyncio.run(
@@ -83,15 +83,15 @@ def entry_loader(
 async def entry_loader_impl(
     client: SpriteCollabClient,
     idx: int,
-    form_paths: List[str],
-    callback: Callable[[List[Tuple[MonsterFormDetails, Image.Image]]], Any],
+    form_paths: list[str],
+    callback: Callable[[list[tuple[MonsterFormDetails, Image.Image]]], Any],
     error_callback: Callable[[Exception], Any],
 ):
     async with client as session:
         try:
             res = await session.monster_form_details([(idx, p) for p in form_paths])
             res.sort(key=lambda x: x.form_path)
-            values: List[Tuple[MonsterFormDetails, Image.Image]] = []
+            values: list[tuple[MonsterFormDetails, Image.Image]] = []
             for r in res:
                 sheet = await r.fetch_portrait_sheet()
                 values.append((r, sheet))
@@ -207,10 +207,10 @@ class BrowserController(AbstractController):
             daemon=True,
         ).start()
 
-    def after_init(self, monsters: List[MonsterFormInfoWithPortrait]):
+    def after_init(self, monsters: list[MonsterFormInfoWithPortrait]):
         info_bar = builder_get_assert(self.builder, Gtk.InfoBar, "sc_infobar")
         monsters.sort(key=lambda m: m.monster_id)
-        lists_form_paths: Dict[int, List[str]] = {}
+        lists_form_paths: dict[int, list[str]] = {}
         for monster in monsters:
             if monster.monster_id not in lists_form_paths:
                 lists_form_paths[monster.monster_id] = []
@@ -379,7 +379,7 @@ class BrowserController(AbstractController):
             # Propagate visibility change down
             self._filter__make_subtree_visible(model, iter)
 
-    def load_entry(self, idx: int, form_paths: List[str]):
+    def load_entry(self, idx: int, form_paths: list[str]):
         # sanity check:
         if self._something_loading:
             return
@@ -402,7 +402,7 @@ class BrowserController(AbstractController):
             daemon=True,
         ).start()
 
-    def after_load_entry(self, details: List[Tuple[MonsterFormDetails, Image.Image]]):
+    def after_load_entry(self, details: list[tuple[MonsterFormDetails, Image.Image]]):
         try:
             if len(details) < 1:
                 raise ValueError("Invalid result returned: No form.")
@@ -601,7 +601,7 @@ class BrowserController(AbstractController):
         w.hide_on_delete()
         return True
 
-    def _credits(self, credits: List[Credit]):
+    def _credits(self, credits: list[Credit]):
         crstr = ""
 
         for c in credits:

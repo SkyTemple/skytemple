@@ -94,7 +94,7 @@ class GfxcrunchController:
         dialog.run()
         dialog.hide()
 
-    async def _run_gfxcrunch(self, arg_list: List[str]):
+    async def _run_gfxcrunch(self, arg_list: list[str]):
         cmd, base_args, shell = self.module.get_gfxcrunch_cmd()
         arg_list = [cmd] + base_args + arg_list
         logger.info(f"Running gfxcrunch: {arg_list}")

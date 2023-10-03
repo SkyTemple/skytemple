@@ -32,7 +32,7 @@ class LevelUpGraphProvider:
         monster: MdEntryProtocol,
         level_bin_entry: LevelBinEntry,
         move_learnset: MoveLearnsetProtocol,
-        move_strings: List[str],
+        move_strings: list[str],
     ):
         self.monster = monster
         self.level_bin_entry = level_bin_entry
@@ -81,7 +81,7 @@ class LevelUpGraphProvider:
 
         max_val: int = max(hp_accu, atk_accu, sp_atk_accu, def_accu, sp_def_accu)  # type: ignore
         moves = []
-        processed_levels: Dict[int, int] = {}
+        processed_levels: dict[int, int] = {}
         for lum in self.move_learnset.level_up_moves:
             if lum.level_id in processed_levels:
                 processed_levels[lum.level_id] += 1

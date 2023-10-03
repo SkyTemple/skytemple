@@ -20,7 +20,8 @@ from asyncio import AbstractEventLoop
 from skytemple.core.logger import async_handle_exeception
 from skytemple_files.common.i18n_util import _
 import asyncio
-from typing import Coroutine, Optional
+from typing import Optional
+from collections.abc import Coroutine
 from enum import Enum, auto
 
 import gbulb

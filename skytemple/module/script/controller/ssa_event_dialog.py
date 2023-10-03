@@ -14,7 +14,8 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Dict, Optional, Callable, Mapping, List, cast
+from typing import Dict, Optional, Callable, List, cast
+from collections.abc import Mapping
 
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeModelRow
@@ -34,7 +35,7 @@ class SsaEventDialogController:
         self,
         builder: Gtk.Builder,
         main_window: Gtk.Window,
-        talk_script_names: Dict[int, str],
+        talk_script_names: dict[int, str],
         scriptdata: Pmd2ScriptData,
         *,
         edit: Optional[SsaTrigger] = None,

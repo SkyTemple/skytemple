@@ -22,7 +22,8 @@ import os
 import pathlib
 import sys
 from tempfile import NamedTemporaryFile
-from typing import Union, Type, overload, TypeVar, Iterable, Any, cast, Dict
+from typing import Union, Type, overload, TypeVar, Any, cast, Dict
+from collections.abc import Iterable
 from xml.etree import ElementTree
 
 import gi
@@ -36,10 +37,7 @@ from gi.repository.Gio import AppInfo
 from gi.repository.Gtk import TreeModelRow
 from skytemple_files.common.i18n_util import _
 
-if sys.version_info >= (3, 9):
-    import importlib.metadata as importlib_metadata
-else:
-    import importlib_metadata
+import importlib.metadata as importlib_metadata
 
 APP = "skytemple"
 REPO_MOVE_EFFECTS = "https://github.com/theCapypara/eos_move_effects"
@@ -192,7 +190,7 @@ def glib_async(f):
 
 @overload
 def catch_overflow(
-    typ: Union[Type[u8], Type[u16], Type[u32], Type[i8], Type[i16], Type[i32]]
+    typ: type[u8] | type[u16] | type[u32] | type[i8] | type[i16] | type[i32]
 ):
     ...
 

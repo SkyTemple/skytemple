@@ -14,7 +14,8 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
-from typing import Optional, List, Iterable, Sequence
+from typing import Optional, List
+from collections.abc import Iterable, Sequence
 
 import cairo
 
@@ -47,7 +48,7 @@ class MapTilesetOverlay:
         self.enabled = True
         self._cached: Optional[cairo.ImageSurface] = None
         self._cached__bma_chunk_width: Optional[int] = None
-        self._cached__bma_chunks: List[int] = []
+        self._cached__bma_chunks: list[int] = []
 
     def draw_full(
         self,

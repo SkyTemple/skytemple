@@ -31,8 +31,8 @@ if TYPE_CHECKING:
 
 
 class DebuggingInfo(TypedDict, total=False):
-    models: Dict[str, Any]
-    additional: Optional[Captured]
+    models: dict[str, Any]
+    additional: Captured | None
 
 
 class AbstractModule(ABC):
@@ -53,7 +53,7 @@ class AbstractModule(ABC):
 
     @classmethod
     @abstractmethod
-    def depends_on(cls) -> List[str]:
+    def depends_on(cls) -> list[str]:
         """
         A list of modules (names of entry_points), that this module depends on.
         """
@@ -73,8 +73,8 @@ class AbstractModule(ABC):
         pass
 
     def collect_debugging_info(
-        self, open_view: Union[AbstractController, Gtk.Widget]
-    ) -> Optional[DebuggingInfo]:
+        self, open_view: AbstractController | Gtk.Widget
+    ) -> DebuggingInfo | None:
         """
         Return debugging information for the currently opened controller or view widget (passed in).
         If this module can't provide this information for that controller, returns None.
@@ -82,7 +82,7 @@ class AbstractModule(ABC):
         """
         return None
 
-    def handle_request(self, request: OpenRequest) -> Optional[ItemTreeEntryRef]:
+    def handle_request(self, request: OpenRequest) -> ItemTreeEntryRef | None:
         """
         Handle an OpenRequest. Must return an entry for the view in the main item tree, as generated
         in load_tree_items.

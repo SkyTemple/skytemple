@@ -122,9 +122,9 @@ class MainController:
     @classmethod
     def view_info(
         cls,
-    ) -> Tuple[
+    ) -> tuple[
         Optional[AbstractModule],
-        Union[Type[AbstractController], Type[Gtk.Widget], Type[None]],
+        Union[type[AbstractController], type[Gtk.Widget], type[None]],
         Optional[int],
     ]:
         """Returns the currently loaded view info in SkyTemple."""
@@ -168,7 +168,7 @@ class MainController:
         self._current_view_item_id: Optional[int] = None
         self._resize_timeout_id: Optional[int] = None
         self._loaded_map_bg_module: Optional["MapBgModule"] = None
-        self._current_breadcrumbs: List[str] = []
+        self._current_breadcrumbs: list[str] = []
         self._after_save_action = None
         self._view_load_sentry_event_id: Optional[str] = None
         self.csd_enabled = self.settings.csd_enabled()

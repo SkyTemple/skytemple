@@ -76,7 +76,7 @@ class SpriteModule(AbstractModule):
         )
 
         self._item_tree: ItemTree
-        self._tree_level_iter: Dict[str, ItemTreeEntryRef] = {}
+        self._tree_level_iter: dict[str, ItemTreeEntryRef] = {}
         self._root: ItemTreeEntryRef
 
     def load_tree_items(self, item_tree: ItemTree):
@@ -375,17 +375,17 @@ class SpriteModule(AbstractModule):
 
                 for missing_monster_sprite_id in range(len(monster_bin), max_size):
                     self.save_monster_monster_sprite_prepared(
-                        missing_monster_sprite_id, bytes()
+                        missing_monster_sprite_id, b''
                     )
 
                 for missing_attack_sprite_id in range(len(attack_bin), max_size):
                     self.save_monster_attack_sprite_prepared(
-                        missing_attack_sprite_id, bytes()
+                        missing_attack_sprite_id, b''
                     )
 
                 for missing_ground_sprite_id in range(len(ground_bin), max_size):
                     self.save_monster_ground_sprite_prepared(
-                        missing_ground_sprite_id, bytes()
+                        missing_ground_sprite_id, b''
                     )
 
                 return max_size

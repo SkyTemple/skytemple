@@ -171,14 +171,14 @@ class MainController(AbstractController):
             TilesetWeatherEffect,
         )
 
-    def _create_for_enum(self, cr: Gtk.CellRendererCombo, en: Type[Enum]):
+    def _create_for_enum(self, cr: Gtk.CellRendererCombo, en: type[Enum]):
         store = Gtk.ListStore(int, str)  # id, name
         cr.props.model = store
         for e in en:
             store.append([e.value, e.print_name])  # type: ignore
 
     def _create_for_enum_with_strings(
-        self, cr: Gtk.CellRendererCombo, en: Type[Enum], string_type: StringType
+        self, cr: Gtk.CellRendererCombo, en: type[Enum], string_type: StringType
     ):
         store = Gtk.ListStore(int, str)  # id, name
         cr.props.model = store

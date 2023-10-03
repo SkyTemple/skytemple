@@ -21,7 +21,8 @@ import re
 import sys
 from collections import OrderedDict
 from functools import partial
-from typing import TYPE_CHECKING, List, Optional, Tuple, Sequence, MutableSequence
+from typing import TYPE_CHECKING, List, Optional, Tuple
+from collections.abc import Sequence, MutableSequence
 
 from range_typed_integers import u16, u16_checked
 
@@ -535,7 +536,7 @@ class BgMenuController:
             enabled.set_active(bpa is not None)
             dialog.resize(470, 450)
 
-            this_frame_info_entries: List[Gtk.Entry] = []
+            this_frame_info_entries: list[Gtk.Entry] = []
             bpas_frame_info_entries.append(this_frame_info_entries)
 
             bpa_duration_box = builder_get_assert(
@@ -805,7 +806,7 @@ class BgMenuController:
                         )
                 else:
                     r = re.compile(
-                        f"{self.parent.module.bgs.level[self.parent.item_id].bma_name}_bpa{active_bpa_index+1}_\d+\.png",
+                        fr"{self.parent.module.bgs.level[self.parent.item_id].bma_name}_bpa{active_bpa_index+1}_\d+\.png",
                         re.IGNORECASE,
                     )
                     filenames_base = natsorted(
@@ -1203,11 +1204,11 @@ class BgMenuController:
         bpc_layer_to_use,
         bpc: BpcProtocol,
         bpl: BplProtocol,
-        bpas: List[Optional[BpaProtocol]],
-    ) -> Tuple[
-        List[TilemapEntryProtocol],
+        bpas: list[Optional[BpaProtocol]],
+    ) -> tuple[
+        list[TilemapEntryProtocol],
         MapBgStaticTileProvider,
-        List[Optional[MapBgAnimatedTileProvider]],
+        list[Optional[MapBgAnimatedTileProvider]],
         MapBgPaletteProvider,
     ]:
         palettes = MapBgPaletteProvider(bpl)
@@ -1215,7 +1216,7 @@ class BgMenuController:
 
         bpa_start = 0 if bpc_layer_to_use == 0 else 4
         bpas = bpas[bpa_start : bpa_start + 4]
-        animated_tiles: List[Optional[MapBgAnimatedTileProvider]] = []
+        animated_tiles: list[Optional[MapBgAnimatedTileProvider]] = []
         for bpa in bpas:
             if bpa is None:
                 animated_tiles.append(None)

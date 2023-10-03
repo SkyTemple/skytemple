@@ -30,13 +30,13 @@ from skytemple_files.graphics.dma.protocol import DmaType
 class FixedFloorDrawerMinimap(AbstractTilesetRenderer):
     def __init__(self, minimap_provider: MinimapProvider):
         self.minimap_provider = minimap_provider
-        self._cached_rules: Optional[List[List[int]]] = None
+        self._cached_rules: Optional[list[list[int]]] = None
         self._cached_dungeon_surface: Optional[cairo.ImageSurface] = None
 
     def get_background(self) -> Optional[cairo.Surface]:
         return None
 
-    def get_dungeon(self, rules: List[List[int]]) -> cairo.Surface:
+    def get_dungeon(self, rules: list[list[int]]) -> cairo.Surface:
         if rules != self._cached_rules:
             surf = pil_to_cairo_surface(
                 Image.new(
@@ -97,22 +97,22 @@ class FixedFloorDrawerMinimap(AbstractTilesetRenderer):
         ctx.paint()
         ctx.translate(-x, -y)
 
-    def w_below(self, rules: List[List[int]], x: int, y: int) -> bool:
+    def w_below(self, rules: list[list[int]], x: int, y: int) -> bool:
         if y + 1 < len(rules):
             return rules[y + 1][x] != DmaType.FLOOR
         return True
 
-    def w_right(self, rules: List[List[int]], x: int, y: int) -> bool:
+    def w_right(self, rules: list[list[int]], x: int, y: int) -> bool:
         if x + 1 < len(rules[y]):
             return rules[y][x + 1] != DmaType.FLOOR
         return True
 
-    def w_above(self, rules: List[List[int]], x: int, y: int) -> bool:
+    def w_above(self, rules: list[list[int]], x: int, y: int) -> bool:
         if y - 1 >= 0:
             return rules[y - 1][x] != DmaType.FLOOR
         return True
 
-    def w_left(self, rules: List[List[int]], x: int, y: int) -> bool:
+    def w_left(self, rules: list[list[int]], x: int, y: int) -> bool:
         if x - 1 >= 0:
             return rules[y][x - 1] != DmaType.FLOOR
         return True

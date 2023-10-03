@@ -29,7 +29,7 @@ class AbstractTilesetRenderer(ABC):
         """Returns the background as a surface"""
 
     @abstractmethod
-    def get_dungeon(self, rules: List[List[int]]) -> cairo.Surface:
+    def get_dungeon(self, rules: list[list[int]]) -> cairo.Surface:
         """Returns the rendered dungeon tiles for the rules."""
 
     @abstractmethod

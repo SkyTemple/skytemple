@@ -109,8 +109,8 @@ class FixedRoomDrawer:
         self.string_provider = string_provider
 
         # Depending on the mode this is either a coordinate tuple or a FixedFloorActionRule to place.
-        self._selected: Optional[Union[Tuple[int, int], FixedFloorActionRule]] = None
-        self._selected__drag: Optional[Tuple[int, int]] = None
+        self._selected: Optional[Union[tuple[int, int], FixedFloorActionRule]] = None
+        self._selected__drag: Optional[tuple[int, int]] = None
 
         self.selection_plugin: Optional[SelectionDrawerPlugin] = None
         self.tile_grid_plugin: Optional[GridDrawerPlugin] = None

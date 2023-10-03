@@ -31,7 +31,7 @@ class PaletteEditorController:
     def __init__(
         self,
         parent_window,
-        palettes: Dict[str, List[int]],
+        palettes: dict[str, list[int]],
         disable_color0=True,
         allow_adding_removing=False,
         show_make_unique_button=True,
@@ -54,7 +54,7 @@ class PaletteEditorController:
             Gdk.EventMask.SCROLL_MASK | Gdk.EventMask.SMOOTH_SCROLL_MASK
         )
 
-        self.page_boxes: List[Gtk.Box] = []
+        self.page_boxes: list[Gtk.Box] = []
 
         self.tab_keys = list(palettes.keys())
         self.palettes = list(palettes.values())

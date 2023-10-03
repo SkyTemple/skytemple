@@ -15,7 +15,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from abc import ABC
-from typing import List, Sequence
+from typing import List
+from collections.abc import Sequence
 
 from skytemple.module.tiled_img.chunk_editor_data_provider.tile_graphics_provider import (
     AbstractTileGraphicsProvider,

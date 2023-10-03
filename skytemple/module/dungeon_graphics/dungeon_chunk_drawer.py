@@ -16,7 +16,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 
-from typing import List, Iterable
+from typing import List
+from collections.abc import Iterable
 
 from gi.repository import GLib, Gtk
 from gi.repository.GObject import ParamFlags
@@ -39,7 +40,7 @@ class DungeonChunkDrawer:
         pal_ani_durations: int,
         # chunks_surfaces[chunk_idx][palette_animation_frame][frame]
         # Since we only have static tiles, frames should always only contain one element.
-        chunks_surfaces: Iterable[Iterable[List[cairo.Surface]]],
+        chunks_surfaces: Iterable[Iterable[list[cairo.Surface]]],
     ):
         """
         Initialize a drawer...
@@ -113,7 +114,7 @@ class DungeonChunkCellDrawer(DungeonChunkDrawer, Gtk.CellRenderer):
         self,
         icon_view,
         pal_ani_durations: int,
-        chunks_surfaces: Iterable[Iterable[List[cairo.Surface]]],
+        chunks_surfaces: Iterable[Iterable[list[cairo.Surface]]],
         selection_draw_solid,
     ):
         super().__init__(icon_view, pal_ani_durations, chunks_surfaces)

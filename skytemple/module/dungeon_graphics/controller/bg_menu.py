@@ -423,7 +423,7 @@ class BgMenuController:
             ani_pal_id * 16 : (ani_pal_id + 1) * 16
         ]
         # We need to transpose the list to instead have a list of frames.
-        list_of_frames: List[List[int]] = list(
+        list_of_frames: list[list[int]] = list(
             [] for _ in range(0, int(len(list_of_colors[0]) / 3))
         )
         for color in list_of_colors:
@@ -438,7 +438,7 @@ class BgMenuController:
         edited_palettes = cntrl.show()
         if edited_palettes:
             # Transpose back
-            edited_colors: List[List[int]] = list(
+            edited_colors: list[list[int]] = list(
                 [] for _ in range(0, int(len(edited_palettes[0]) / 3))
             )
             for palette in edited_palettes:

@@ -80,7 +80,7 @@ class ItemEffectsController(AbstractController):
         tree_store = builder_get_assert(
             self.builder, Gtk.ListStore, "item_effects_store"
         )
-        active_rows: List[Gtk.TreePath] = (
+        active_rows: list[Gtk.TreePath] = (
             builder_get_assert(self.builder, Gtk.TreeView, "items_tree")
             .get_selection()
             .get_selected_rows()[1]

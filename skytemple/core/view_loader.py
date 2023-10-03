@@ -31,8 +31,8 @@ if TYPE_CHECKING:
 
 
 async def load_view(
-    module: "AbstractModule",
-    view: Union[Type[Gtk.Widget], Type[AbstractController]],
+    module: AbstractModule,
+    view: type[Gtk.Widget] | type[AbstractController],
     item_data: Any,
     main_controller: MainController,
 ):

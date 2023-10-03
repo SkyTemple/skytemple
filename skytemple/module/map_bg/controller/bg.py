@@ -17,7 +17,8 @@
 
 import itertools
 import typing
-from typing import TYPE_CHECKING, Optional, Iterable, List, Sequence
+from typing import TYPE_CHECKING, Optional, List
+from collections.abc import Iterable, Sequence
 
 import cairo
 from gi.repository import Gtk, Gdk
@@ -135,7 +136,7 @@ class BgController(AbstractController):
 
         # Cairo surfaces for each tile in each layer for each frame
         # chunks_surfaces[layer_number][chunk_idx][palette_animation_frame][frame]
-        self.chunks_surfaces: List[Sequence[Iterable[List[cairo.Surface]]]] = []
+        self.chunks_surfaces: list[Sequence[Iterable[list[cairo.Surface]]]] = []
         self.bpa_durations = 0
 
         self.drawer: Optional[Drawer] = None
@@ -579,12 +580,12 @@ class BgController(AbstractController):
 
         # For each layer...
         for layer_idx, layer_idx_bpc in enumerate(layer_idxs_bpc):
-            chunks_current_layer: List[List[List[cairo.Surface]]] = []
+            chunks_current_layer: list[list[list[cairo.Surface]]] = []
             self.chunks_surfaces.append(chunks_current_layer)
             # For each chunk...
             for chunk_idx in range(0, self.bpc.layers[layer_idx_bpc].chunk_tilemap_len):
                 # For each frame of palette animation... ( applicable for this chunk )
-                pal_ani_frames: List[List[cairo.Surface]] = []
+                pal_ani_frames: list[list[cairo.Surface]] = []
                 chunks_current_layer.append(pal_ani_frames)
 
                 chunk_data = self.bpc.get_chunk(layer_idx_bpc, chunk_idx)
@@ -609,7 +610,7 @@ class BgController(AbstractController):
 
                 for pal_ani in range(0, len_pal_ani):
                     # For each frame of tile animation...
-                    bpa_ani_frames: List[cairo.Surface] = []
+                    bpa_ani_frames: list[cairo.Surface] = []
                     pal_ani_frames.append(bpa_ani_frames)
                     for img in chunk_images:
                         # Switch out the palette with that from the palette animation

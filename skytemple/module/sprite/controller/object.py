@@ -38,8 +38,8 @@ class ObjectController(AbstractController):
         self.module = module
         self.item_id = item_id
         self._sprite_provider = module.get_sprite_provider()
-        self._draws: List[Gtk.DrawingArea] = []
-        self._surfaces: List[cairo.Surface] = []
+        self._draws: list[Gtk.DrawingArea] = []
+        self._surfaces: list[cairo.Surface] = []
 
         self.builder: Gtk.Builder = None  # type: ignore
 

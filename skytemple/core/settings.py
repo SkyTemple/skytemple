@@ -18,7 +18,8 @@ import configparser
 import logging
 import os
 import uuid
-from typing import Optional, Tuple, List, Sequence
+from typing import Optional, Tuple, List
+from collections.abc import Sequence
 
 from skytemple.core.async_tasks.delegator import AsyncConfiguration
 from skytemple_files.common.impl_cfg import ImplementationType
@@ -73,7 +74,7 @@ class SkyTempleSettingsStore:
                     "Error reading config, falling back to default.", exc_info=err
                 )
 
-    def get_recent_files(self) -> List[str]:
+    def get_recent_files(self) -> list[str]:
         recents = []
         if SECT_RECENT_FILES in self.loaded_config:
             if KEY_RECENT_1 in self.loaded_config[SECT_RECENT_FILES]:
@@ -88,7 +89,7 @@ class SkyTempleSettingsStore:
                 recents.append(self.loaded_config[SECT_RECENT_FILES][KEY_RECENT_5])
         return recents
 
-    def set_recent_files(self, recent_files: List[str]):
+    def set_recent_files(self, recent_files: list[str]):
         # We only save the last 5 opened files. If the list is smaller than the old list, old entries are kept.
         if SECT_RECENT_FILES not in self.loaded_config:
             self.loaded_config[SECT_RECENT_FILES] = {}
@@ -140,7 +141,7 @@ class SkyTempleSettingsStore:
         self.loaded_config[SECT_GENERAL][KEY_LOCALE] = value
         self._save()
 
-    def get_window_size(self) -> Optional[Tuple[int, int]]:
+    def get_window_size(self) -> Optional[tuple[int, int]]:
         if SECT_WINDOW in self.loaded_config:
             if (
                 KEY_WINDOW_SIZE_X in self.loaded_config[SECT_WINDOW]
@@ -151,14 +152,14 @@ class SkyTempleSettingsStore:
                 )
         return None
 
-    def set_window_size(self, dim: Tuple[int, int]):
+    def set_window_size(self, dim: tuple[int, int]):
         if SECT_WINDOW not in self.loaded_config:
             self.loaded_config[SECT_WINDOW] = {}
         self.loaded_config[SECT_WINDOW][KEY_WINDOW_SIZE_X] = str(dim[0])
         self.loaded_config[SECT_WINDOW][KEY_WINDOW_SIZE_Y] = str(dim[1])
         self._save()
 
-    def get_window_position(self) -> Optional[Tuple[int, int]]:
+    def get_window_position(self) -> Optional[tuple[int, int]]:
         if SECT_WINDOW in self.loaded_config:
             if (
                 KEY_WINDOW_POS_X in self.loaded_config[SECT_WINDOW]
@@ -169,7 +170,7 @@ class SkyTempleSettingsStore:
                 )
         return None
 
-    def set_window_position(self, pos: Tuple[int, int]):
+    def set_window_position(self, pos: tuple[int, int]):
         if SECT_WINDOW not in self.loaded_config:
             self.loaded_config[SECT_WINDOW] = {}
         self.loaded_config[SECT_WINDOW][KEY_WINDOW_POS_X] = str(pos[0])

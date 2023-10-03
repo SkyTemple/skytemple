@@ -512,7 +512,7 @@ class ItemController(AbstractController):
             self.module.mark_item_as_modified(self.item_id)
 
     def _comboxbox_for_enum(
-        self, names: List[str], enum: Type[Enum], sort_by_name=False
+        self, names: list[str], enum: type[Enum], sort_by_name=False
     ):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
