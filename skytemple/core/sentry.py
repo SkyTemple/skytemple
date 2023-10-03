@@ -154,7 +154,6 @@ def collect_device_context() -> Dict[str, "Captured"]:
 
     return dict(
         **{
-            "name": socket.gethostname(),
             "arch": platform.machine(),
             "low_memory": mem.percent > 90,
             "memory_size": mem.total,
