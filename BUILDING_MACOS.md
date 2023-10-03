@@ -19,12 +19,12 @@ You will need to run the following commands in the Terminal.
    
 2. You additionally need to run: 
    ```
-   brew install python@3.8 gtksourceview4 adwaita-icon-theme
+   brew install python@3.9 gtksourceview4 adwaita-icon-theme
    ```
 2. In the following step, replace "USER" with your username.  
    Run these commands and **re-open the Terminal**:
    ```
-   echo 'export PATH=/usr/local/opt/python@3.8/bin:$PATH' >> ~/.zshrc
+   echo 'export PATH=/usr/local/opt/python@3.9/bin:$PATH' >> ~/.zshrc
    ```
 2. Install SkyTemple itself:
    ```
