@@ -190,7 +190,7 @@ def glib_async(f):
 
 @overload
 def catch_overflow(
-    typ: type[u8] | type[u16] | type[u32] | type[i8] | type[i16] | type[i32]
+    typ: type[u8] | type[u16] | type[u32] | type[i8] | type[i16] | type[i32],
 ):
     ...
 

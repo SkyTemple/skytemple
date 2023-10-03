@@ -806,7 +806,7 @@ class BgMenuController:
                         )
                 else:
                     r = re.compile(
-                        fr"{self.parent.module.bgs.level[self.parent.item_id].bma_name}_bpa{active_bpa_index+1}_\d+\.png",
+                        rf"{self.parent.module.bgs.level[self.parent.item_id].bma_name}_bpa{active_bpa_index+1}_\d+\.png",
                         re.IGNORECASE,
                     )
                     filenames_base = natsorted(
