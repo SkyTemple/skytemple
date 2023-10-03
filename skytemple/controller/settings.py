@@ -214,7 +214,7 @@ class SettingsController:
                 else:
                     from skytemple.core import sentry
 
-                    sentry.init()
+                    sentry.init(self.settings)
 
             # CSD
             csd_new = settings_csd_enable.get_active()

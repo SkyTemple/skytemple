@@ -17,6 +17,7 @@
 import configparser
 import logging
 import os
+import uuid
 from typing import Optional, Tuple, List, Sequence
 
 from skytemple.core.async_tasks.delegator import AsyncConfiguration
@@ -43,6 +44,7 @@ KEY_LOCALE = "locale"
 KEY_USE_NATIVE_FILE_HANDLERS = "use_native_file_handlers"
 KEY_ASYNC_CONFIGURATION = "async_configuration"
 KEY_ALLOW_SENTRY = "send_error_reports"
+KEY_SENTRY_USER_ID = "error_reports_user_id"
 KEY_ENABLE_CSD = "enable_csd"
 KEY_APPROVED_PLUGINS = "approved_plugins"
 
@@ -224,6 +226,16 @@ class SkyTempleSettingsStore:
             self.loaded_config[SECT_GENERAL] = {}
         self.loaded_config[SECT_GENERAL][KEY_ALLOW_SENTRY] = "1" if value else "0"
         self._save()
+
+    def getset_sentry_user_id(self) -> str:
+        if SECT_GENERAL in self.loaded_config:
+            if KEY_SENTRY_USER_ID in self.loaded_config[SECT_GENERAL]:
+                return self.loaded_config[SECT_GENERAL][KEY_SENTRY_USER_ID]
+        if SECT_GENERAL not in self.loaded_config:
+            self.loaded_config[SECT_GENERAL] = {}
+        self.loaded_config[SECT_GENERAL][KEY_SENTRY_USER_ID] = str(uuid.uuid4())
+        self._save()
+        return self.loaded_config[SECT_GENERAL][KEY_SENTRY_USER_ID]
 
     def is_allow_sentry_set(self) -> bool:
         if SECT_GENERAL in self.loaded_config:
