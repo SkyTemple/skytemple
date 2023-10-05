@@ -114,3 +114,12 @@ for Arch Linux a version is available through the AUR_.
 
 If you want to set up SkyTemple for development, clone the repos and install in editable
 mode instead. See the steps 7 and onward in "BUILDING_WINDOWS.md".
+
+Star History
+------------
+
+|star-history|
+
+.. |star-history| image:: https://api.star-history.com/svg?repos=skytemple/skytemple&type=Date
+    :target: https://star-history.com/#skytemple/skytemple&Date
+    :alt: Star History Graph
