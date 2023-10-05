@@ -16,10 +16,13 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import os
 from typing import Optional, Dict, List, Tuple, Union
+from xml.etree.ElementTree import Element
 
 from gi.repository import Gtk
 
 from explorerscript.source_map import SourceMapPositionMark
+from skytemple_files.script.ssa_sse_sss.ssa_xml import ssa_xml_import
+
 from skytemple.core.abstract_module import AbstractModule, DebuggingInfo
 from skytemple.core.item_tree import (
     ItemTree,
@@ -27,6 +30,7 @@ from skytemple.core.item_tree import (
     ItemTreeEntryRef,
     RecursionType,
 )
+from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.model_context import ModelContext
 from skytemple.core.module_controller import AbstractController
 from skytemple.core.open_request import (
@@ -371,6 +375,78 @@ class ScriptModule(AbstractModule):
             scenes.append(sss)
 
         return scenes
+
+    def import_from_xml(self, mapname, type, filename, xml: Element):
+        ssa = self.get_ssa(filename)
+        ssa_xml_import(xml, ssa)
+        warning = False
+        # Check actors, objects, coroutine IDs and scene IDs.
+        static_data = self.project.get_rom_module().get_static_data()
+        if type == "sse":
+            count_scripts = len(self._map_sse[mapname].entry().item_data["scripts"])
+        elif type == "ssa":
+            count_scripts = len(
+                self._map_ssas[mapname][filename].entry().item_data["scripts"]
+            )
+        elif type == "sss":
+            count_scripts = len(
+                self._map_ssss[mapname][filename].entry().item_data["scripts"]
+            )
+        else:
+            raise ValueError("Unknown scene type.")
+        actor_ids = static_data.script_data.level_entities__by_id.keys()
+        first_actor = static_data.script_data.level_entities__by_id[min(actor_ids)]
+        last_actor = static_data.script_data.level_entities__by_id[max(actor_ids)]
+        object_ids = static_data.script_data.objects__by_id.keys()
+        first_object = static_data.script_data.objects__by_id[min(object_ids)]
+        last_object = static_data.script_data.objects__by_id[max(object_ids)]
+        coroutine_ids = static_data.script_data.common_routine_info__by_id.keys()
+        first_coroutine = static_data.script_data.common_routine_info__by_id[
+            min(coroutine_ids)
+        ]
+        last_coroutine = static_data.script_data.common_routine_info__by_id[
+            max(coroutine_ids)
+        ]
+        for layer in ssa.layer_list:
+            for actor in layer.actors:
+                if actor.actor.id < first_actor.id or actor.actor.id > last_actor.id:
+                    actor.actor = first_actor
+                    warning = True
+                if actor.script_id < 0 or actor.script_id >= count_scripts:
+                    actor.script_id = -1
+                    warning = True
+            for obj in layer.objects:
+                if obj.object.id < first_object.id or obj.object.id > last_object.id:
+                    obj.object = first_object
+                    warning = True
+                if obj.script_id < 0 or obj.script_id >= count_scripts:
+                    obj.script_id = -1
+                    warning = True
+        for event in ssa.triggers:
+            if (
+                event.coroutine.id < first_coroutine.id
+                or event.coroutine.id > last_coroutine.id
+            ):
+                event.coroutine = first_coroutine
+                warning = True
+            if event.script_id < 0 or event.script_id >= count_scripts:
+                event.script_id = 0
+                warning = True
+        self.mark_as_modified(mapname, type, filename)
+        if warning:
+            md = SkyTempleMessageDialog(
+                SkyTempleMainController.window(),
+                Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                Gtk.MessageType.WARNING,
+                Gtk.ButtonsType.OK,
+                _(
+                    "The XML file contained some invalid references (eg. actor, object or script IDs). These have been replaced with default values."
+                ),
+            )
+            md.set_position(Gtk.WindowPosition.CENTER)
+            md.run()
+            md.destroy()
+        SkyTempleMainController.reload_view()
 
     def mark_as_modified(self, mapname, type, filename):
         """Mark a specific scene as modified"""

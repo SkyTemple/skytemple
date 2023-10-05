@@ -15,16 +15,22 @@
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 import math
+import sys
 from functools import partial
 from typing import TYPE_CHECKING, Optional, List, Union, Callable, Mapping, Tuple
+from xml.etree import ElementTree
 
 import cairo
 import typing
 from gi.repository import Gtk, Gdk
 from gi.repository.Gtk import TreeViewColumn
 from range_typed_integers import i16, u16
+from skytemple_files.common.util import add_extension_if_missing, open_utf8
+from skytemple_files.common.xml_util import prettify
+from skytemple_files.script.ssa_sse_sss.ssa_xml import ssa_to_xml, ssa_xml_import
 
 from skytemple.controller.main import MainController
+from skytemple.core.error_handler import display_error
 from skytemple.core.img_utils import pil_to_cairo_surface
 from skytemple.core.mapbg_util.map_tileset_overlay import MapTilesetOverlay
 from skytemple.core.message_dialog import SkyTempleMessageDialog
@@ -41,9 +47,11 @@ from skytemple.core.ui_utils import (
     builder_get_assert,
     assert_not_none,
     create_tree_view_column,
+    add_dialog_xml_filter,
 )
 from skytemple.module.script.controller.ssa_event_dialog import SsaEventDialogController
 from skytemple.module.script.drawer import Drawer, InteractionMode
+from skytemple.controller.main import MainController as SkyTempleMainController
 from skytemple_files.common.ppmdu_config.data import Pmd2Data
 from skytemple_files.common.ppmdu_config.script_data import (
     Pmd2ScriptRoutine,
@@ -417,6 +425,70 @@ class SsaController(AbstractController):
         if self.drawer:
             self.drawer.interaction_mode = InteractionMode.PLACE_TRIGGER
             self._select(None, None)
+
+    def on_tool_scene_import_clicked(self, *args):
+        save_diag = Gtk.FileChooserNative.new(
+            _("Import scene from..."),
+            SkyTempleMainController.window(),
+            Gtk.FileChooserAction.OPEN,
+            None,
+            None,
+        )
+
+        add_dialog_xml_filter(save_diag)
+        response = save_diag.run()
+        fn = save_diag.get_filename()
+        save_diag.destroy()
+
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
+            try:
+                with open_utf8(fn, "r") as xml_file:
+                    if self.drawer:
+                        self.drawer.drawing_is_active = False
+                    self.module.import_from_xml(
+                        self.mapname,
+                        self.type,
+                        self.filename,
+                        ElementTree.parse(xml_file).getroot(),
+                    )
+                    self.module.mark_as_modified(self.mapname, self.type, self.filename)
+                    SkyTempleMainController.reload_view()
+            except BaseException as err:
+                display_error(sys.exc_info(), str(err), _("Error importing the scene."))
+
+    def on_tool_scene_export_clicked(self, *args):
+        # Create output XML
+        xml = ssa_to_xml(self.ssa)
+
+        save_diag = Gtk.FileChooserNative.new(
+            _("Export scene as..."),
+            SkyTempleMainController.window(),
+            Gtk.FileChooserAction.SAVE,
+            None,
+            None,
+        )
+
+        add_dialog_xml_filter(save_diag)
+        response = save_diag.run()
+        fn = save_diag.get_filename()
+        if fn is not None:
+            fn = add_extension_if_missing(fn, "xml")
+        save_diag.destroy()
+
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
+            with open_utf8(fn, "w") as f:
+                f.write(prettify(xml))
+        else:
+            md = SkyTempleMessageDialog(
+                SkyTempleMainController.window(),
+                Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                Gtk.MessageType.WARNING,
+                Gtk.ButtonsType.OK,
+                _("Export was canceled."),
+            )
+            md.set_position(Gtk.WindowPosition.CENTER)
+            md.run()
+            md.destroy()
 
     def on_tool_choose_map_bg_cb_changed(self, w: Gtk.ComboBox):
         model, cbiter = w.get_model(), w.get_active_iter()
