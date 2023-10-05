@@ -116,6 +116,8 @@ class Drawer:
         self.draw_area.queue_draw()
 
     def draw(self, wdg, ctx: cairo.Context):
+        if not self.drawing_is_active:
+            return
         ctx.set_antialias(cairo.Antialias.NONE)
         ctx.scale(self.scale, self.scale)
         # Background
