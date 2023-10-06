@@ -529,25 +529,25 @@ class StDungeonFixedPage(Gtk.Notebook):
     @Gtk.Template.Callback()
     def on_settings_complete_state_set(self, w: Gtk.Switch, state: bool, *args):
         if state:
-            self.properties.null |= 1
+            self.properties.null |= 1  # type: ignore
         else:
-            self.properties.null &= ~1
+            self.properties.null &= ~1  # type: ignore
         self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_boss_state_set(self, w: Gtk.Switch, state: bool, *args):
         if state:
-            self.properties.null |= 2
+            self.properties.null |= 2  # type: ignore
         else:
-            self.properties.null &= ~2
+            self.properties.null &= ~2  # type: ignore
         self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
     def on_settings_free_state_set(self, w: Gtk.Switch, state: bool, *args):
         if state:
-            self.properties.null |= 4
+            self.properties.null |= 4  # type: ignore
         else:
-            self.properties.null &= ~4
+            self.properties.null &= ~4  # type: ignore
         self.module.save_fixed_floor_properties(self.item_data, self.properties)
 
     @Gtk.Template.Callback()
@@ -949,7 +949,7 @@ class StDungeonFixedPage(Gtk.Notebook):
         w = self.utility_tile_type
         active_iter = w.get_active_iter()
         assert active_iter is not None
-        tile_rule = TileRuleType(w.get_model()[active_iter][0])
+        tile_rule = TileRuleType(w.get_model()[active_iter][0])  # type: ignore
         assert self.drawer is not None
         self.drawer.set_selected(TileRule(tile_rule, dir))
         self.utility_tile_frame_desc_label.set_markup(

@@ -388,7 +388,7 @@ class StMovesItemsItemPage(Gtk.Box):
     @Gtk.Template.Callback()
     def on_cb_excl_type_changed(self, w, *args):
         val = w.get_model()[w.get_active_iter()][0]
-        self.item_sp.type = ItemSPType(val)
+        self.item_sp.type = ItemSPType(val)  # type: ignore
         self.mark_as_modified()
 
     @Gtk.Template.Callback()

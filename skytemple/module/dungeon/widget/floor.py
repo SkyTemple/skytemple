@@ -2519,7 +2519,7 @@ class StDungeonFloorPage(Gtk.Box):
             new_data += bytes([r, g, b, a])
         # todo: memory leak?
         return GdkPixbuf.Pixbuf.new_from_data(
-            new_data,
+            new_data,  # type: ignore
             GdkPixbuf.Colorspace.RGB,
             True,
             8,

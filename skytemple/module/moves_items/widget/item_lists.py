@@ -283,9 +283,8 @@ class StMovesItemsItemListsPage(Gtk.Stack):
             "item_cat_orbs_store": orig_cats[9],
             "item_cat_others_store": orig_cats[8],
         }
-        stack = self.list_stack
         if not self.module.has_item_lists():
-            stack.set_visible_child(self.box_na)
+            self.set_visible_child(self.box_na)
         else:
             self._init_combos()
             self._init_item_spawns()
@@ -298,7 +297,7 @@ class StMovesItemsItemListsPage(Gtk.Stack):
             self._recalculate_spawn_chances("item_cat_tms_store", 4, 3)
             self._recalculate_spawn_chances("item_cat_orbs_store", 4, 3)
             self._recalculate_spawn_chances("item_cat_others_store", 4, 3)
-            stack.set_visible_child(self.box_list)
+            self.set_visible_child(self.box_list)
 
     @Gtk.Template.Callback()
     def on_self_destroy(self, *args):

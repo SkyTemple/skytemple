@@ -182,7 +182,7 @@ class StMonsterMainPage(Gtk.Box):
         cb = self.cb_types
         active_iter = cb.get_active_iter()
         assert active_iter is not None
-        talk_type: TalkType = TalkType(cb_store[active_iter][0])
+        talk_type: TalkType = TalkType(cb_store[active_iter][0])  # type: ignore
         group: int = int(self.spin_group_nb.get_text())
         return (group, talk_type)
 

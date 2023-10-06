@@ -385,7 +385,7 @@ class StListsWorldMapPage(Gtk.Box):
                 tree = self.tree
                 tree_model = cast(Optional[Gtk.TreeStore], tree.get_model())
                 assert tree_model is not None
-                tree_model[self._tree_iters_by_idx[idx]][:] = [
+                tree_model[self._tree_iters_by_idx[idx]][:] = [  # type: ignore
                     str(idx),
                     self._get_map_name(marker),
                     self._get_position(marker),

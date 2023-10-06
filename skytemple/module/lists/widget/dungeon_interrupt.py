@@ -74,13 +74,12 @@ class StListsDungeonInterruptPage(Gtk.Stack):
         self.item_data = item_data
         self.sp_effects = None
         self._string_provider = module.project.get_string_provider()
-        stack = self.list_stack
         if not self.module.has_dungeon_interrupts():
-            stack.set_visible_child(self.box_na)
+            self.set_visible_child(self.box_na)
         else:
             self.inter_d = self.module.get_dungeon_interrupts()
             self._init_combos()
-            stack.set_visible_child(self.box_list)
+            self.set_visible_child(self.box_list)
 
     def _init_combos(self):
         store = self.type_store
@@ -140,7 +139,7 @@ class StListsDungeonInterruptPage(Gtk.Stack):
         for v in iter_tree_model(store_inter):
             e = InterDEntry()
             e.floor = u8_checked(v[0])
-            e.ent_type = InterDEntryType(v[1])
+            e.ent_type = InterDEntryType(v[1])  # type: ignore
             e.game_var_id = u16_checked(v[2])
             e.param1 = u8_checked(v[3])
             e.param2 = u8_checked(v[4])
@@ -177,7 +176,7 @@ class StListsDungeonInterruptPage(Gtk.Stack):
     def on_btn_add_clicked(self, *args):
         store = self.interrupt_store
         store.append(
-            [0, 0, 0, 0, 0, InterDEntryType(0).explanation, self.var_names[0], 0]
+            [0, 0, 0, 0, 0, InterDEntryType(0).explanation, self.var_names[0], 0]  # type: ignore
         )
         self._build_list()
 

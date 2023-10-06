@@ -16,6 +16,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from __future__ import annotations
 import itertools
 import logging
 import sys
@@ -50,16 +51,16 @@ from skytemple.module.tiled_img.dialog_controller.palette_editor import (
 )
 
 if TYPE_CHECKING:
-    from skytemple.module.dungeon_graphics.controller.dungeon_bg import (
-        DungeonBgController,
+    from skytemple.module.dungeon_graphics.widget.dungeon_bg import (
+        StDungeonGraphicsDungeonBgPage,
     )
-    from skytemple.module.dungeon_graphics.controller.tileset import TilesetController
+    from skytemple.module.dungeon_graphics.widget.tileset import StDungeonGraphicsTilesetPage
 
 logger = logging.getLogger(__name__)
 
 
 class BgMenuController:
-    def __init__(self, bg: Union["TilesetController", "DungeonBgController"]):
+    def __init__(self, bg: Union[StDungeonGraphicsTilesetPage, StDungeonGraphicsDungeonBgPage]):
         self.parent = bg
 
     def on_men_map_export_activate(self):
@@ -88,11 +89,7 @@ class BgMenuController:
 
             if response == Gtk.ResponseType.ACCEPT and fn is not None:
                 if TYPE_CHECKING:
-                    from skytemple.module.dungeon_graphics.controller.dungeon_bg import (
-                        DungeonBgController,
-                    )
-
-                    assert isinstance(self.parent, DungeonBgController)
+                    assert isinstance(self.parent, StDungeonGraphicsDungeonBgPage)
                 img = self.parent.dbg.to_pil(
                     self.parent.dpc, self.parent.dpci, self.parent.dpl.palettes
                 )
@@ -119,11 +116,7 @@ class BgMenuController:
                 img_path = bg_import_file.get_filename()
                 if img_path is not None:
                     if TYPE_CHECKING:
-                        from skytemple.module.dungeon_graphics.controller.dungeon_bg import (
-                            DungeonBgController,
-                        )
-
-                        assert isinstance(self.parent, DungeonBgController)
+                        assert isinstance(self.parent, StDungeonGraphicsDungeonBgPage)
                     self.parent.dbg.from_pil(
                         self.parent.dpc,
                         self.parent.dpci,

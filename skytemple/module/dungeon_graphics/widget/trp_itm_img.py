@@ -144,7 +144,7 @@ class StDungeonGraphicsTrpItmImgPage(Gtk.Box):
                 img = Image.open(fn)
                 if import_new:
                     idx = len(self.img.sprites)
-                    self.img.sprites.append(None)
+                    self.img.sprites.append(None)  # type: ignore
                 else:
                     idx = self.image_idx
                 try:

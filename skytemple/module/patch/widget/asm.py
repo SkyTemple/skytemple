@@ -84,7 +84,7 @@ class StPatchAsmPage(Gtk.Box):
         super().__init__()
         self.module = module
         self.item_data = item_data
-        self._patcher: Patcher = None
+        self._patcher: Patcher = self.module.project.create_patcher()
         self._were_issues_activated = False
         self._issues: dict[str, list[warnings.WarningMessage]] = {}
         self._acknowledged_danger = False

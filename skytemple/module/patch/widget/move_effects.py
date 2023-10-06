@@ -86,9 +86,8 @@ class StPatchMoveEffectsPage(Gtk.Stack):
         self.move_effects: DataCD
         self.metronome: ValList
         self._string_provider = module.project.get_string_provider()
-        stack = self.list_stack
         if not self.module.has_move_effects() or not self.module.has_metronome_pool():
-            stack.set_visible_child(self.box_na)
+            self.set_visible_child(self.box_na)
         else:
             self.move_effects = self.module.get_move_effects()
             self.metronome = self.module.get_metronome_pool()
@@ -96,7 +95,7 @@ class StPatchMoveEffectsPage(Gtk.Stack):
             self._init_move_list()
             self._init_combos()
             self.on_cb_effect_ids_changed()
-            stack.set_visible_child(self.box_list)
+            self.set_visible_child(self.box_list)
 
     def _get_current_move_effect(self) -> int | None:
         tree_store = self.move_effects_store
@@ -130,7 +129,7 @@ class StPatchMoveEffectsPage(Gtk.Stack):
                     self.move_effects.get_item_effect_id(i),
                 ]
             )
-        for x in sorted(non_sorted, key=lambda x: x[1]):
+        for x in sorted(non_sorted, key=lambda x: x[1]):  # type: ignore
             move_store.append(x)
         # Init available metronome moves
         metronome_store = self.metronome_store

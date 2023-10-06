@@ -412,7 +412,7 @@ class StMonsterMonsterPage(Gtk.Box):
     def on_cb_idle_anim_changed(self, w, *args):
         try:
             val = w.get_model()[w.get_active_iter()][0]
-            self.module.set_idle_anim_type(self.item_data, IdleAnimType(val))
+            self.module.set_idle_anim_type(self.item_data, IdleAnimType(val))  # type: ignore
         except ValueError:
             pass
 
@@ -1146,7 +1146,7 @@ class StMonsterMonsterPage(Gtk.Box):
             )
             for entry in entry_list:
                 entry_main_tree = self.module.generate_entry__entry(
-                    entry.md_index, Gender(entry.gender)
+                    entry.md_index, Gender(entry.gender)  # type: ignore
                 )
                 store.append(
                     ent_root,
@@ -1524,7 +1524,7 @@ class StMonsterMonsterPage(Gtk.Box):
     ):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
-            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))
+            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))  # type: ignore
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:
@@ -1562,7 +1562,7 @@ class StMonsterMonsterPage(Gtk.Box):
         getattr(self, entry_name).set_text(str(text))
 
     def _set_cb(self, cb_name, value):
-        cb = getattr(self, cb_name)
+        cb: Gtk.ComboBox = getattr(self, cb_name)
         l_iter: Gtk.TreeIter = assert_not_none(
             assert_not_none(cb.get_model()).get_iter_first()
         )
@@ -1700,7 +1700,7 @@ class StMonsterMonsterPage(Gtk.Box):
                 idx = entry.md_index
             name = self._string_provider.get_value(StringType.POKEMON_NAMES, idx)
             label.set_text(
-                f"${entry.md_index:04d}: {name} ({Gender(entry.gender).name[0]})"
+                f"${entry.md_index:04d}: {name} ({Gender(entry.gender).name[0]})"  # type: ignore
             )
         except BaseException:
             label.set_text(_("??? Enter a valid Entry ID ($)"))
@@ -1792,9 +1792,9 @@ class StMonsterMonsterPage(Gtk.Box):
             name = self.module.project.get_string_provider().get_value(
                 StringType.POKEMON_NAMES, sidx
             )
-            self._ent_names[idx] = (
-                f"{name} ({Gender(entry.gender).print_name}) (#{idx:04})"
-            )
+            self._ent_names[
+                idx
+            ] = f"{name} ({Gender(entry.gender).print_name}) (#{idx:04})"  # type: ignore
             monster_store.append([self._ent_names[idx]])
 
     @Gtk.Template.Callback()

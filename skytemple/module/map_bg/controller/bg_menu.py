@@ -16,6 +16,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
+from __future__ import annotations
 import logging
 import os
 import re
@@ -70,13 +71,13 @@ from skytemple.module.tiled_img.dialog_controller.palette_editor import (
 )
 
 if TYPE_CHECKING:
-    from skytemple.module.map_bg.controller.bg import BgController
+    from skytemple.module.map_bg.widget.bg import StMapBgBgPage
 
 logger = logging.getLogger(__name__)
 
 
 class BgMenuController:
-    def __init__(self, bg: "BgController"):
+    def __init__(self, bg: StMapBgBgPage):
         self.parent = bg
 
     def on_men_map_settings_activate(self):

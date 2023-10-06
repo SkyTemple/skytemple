@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <interface>
   <requires lib="gtk+" version="3.20" />
-  <template class="StMapBgBgPage" parent="GtkBox">
+  <object class="GtkBox" id="bg_layers">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
@@ -221,7 +221,7 @@
         <property name="position">1</property>
       </packing>
     </child>
-  </template>
+  </object>
   <object class="GtkBox" id="bg_layers_toolbox_collision">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -4324,7 +4324,7 @@ are used for the image data on Layer 1 and 2.</property>
       <action-widget response="-5">dialog_width_height_btn_ok</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkBox" id="editor_map_bg">
+  <template class="StMapBgBgPage" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
@@ -5350,7 +5350,7 @@ If this is intentional and you know what you are doing, you can ignore  this.</p
         <property name="position">1</property>
       </packing>
     </child>
-  </object>
+  </template>
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="can-focus">False</property>

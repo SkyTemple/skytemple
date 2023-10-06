@@ -306,7 +306,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
         fn = dialog.get_filename()
         dialog.destroy()
         assert self.dtef is not None
-        if response == Gtk.ResponseType.ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
                 # Write XML
                 with open(os.path.join(fn, "tileset.dtef.xml"), "w") as f:
@@ -619,7 +619,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
         def ia(i):
             return getattr(self, f"rules_a{i}").get_active()
 
-        self.rules = list(chunks([ia(i) for i in range(0, 9)], 3))
+        self.rules = list(chunks([ia(i) for i in range(0, 9)], 3))  # type: ignore
 
     def update_chunks_from_current_rules(self):
         solid_type = self._get_current_solid_type()
@@ -627,7 +627,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
         for y, row in enumerate(self.rules):
             for x, solid in enumerate(row):
                 chunk_type = solid_type if solid else DmaType.FLOOR
-                solid_neighbors = get_tile_neighbors(self.rules, x, y, bool(solid))
+                solid_neighbors = get_tile_neighbors(self.rules, x, y, bool(solid))  # type: ignore
                 all_chunk_mapping_vars.append(self.dma.get(chunk_type, solid_neighbors))
         for i, v_icon_view_name in enumerate(
             ("rules_main_1", "rules_main_2", "rules_main_3")
@@ -666,7 +666,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
             solid = bool(self.rules[x][y])
             self.dma.set(
                 self._get_current_solid_type() if solid else DmaType.FLOOR,
-                get_tile_neighbors(self.rules, x, y, solid),
+                get_tile_neighbors(self.rules, x, y, solid),  # type: ignore
                 variation,
                 edited_value,
             )
@@ -677,7 +677,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
         self.dtef = ExplorersDtef(self.dma, self.dpc, self.dpci, self.dpl, self.dpla)
         assert self.dtef is not None  # mypy is silly sometimes.
         box = self.dungeon_image_placeholder
-        for child in iter_tree_model(box):
+        for child in box:
             box.remove(child)
         image: Gtk.Image = Gtk.Image.new_from_surface(
             pil_to_cairo_surface(self.dtef.get_tiles()[0].convert("RGBA"))

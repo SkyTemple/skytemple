@@ -75,15 +75,14 @@ class StPatchItemEffectsPage(Gtk.Stack):
         self.item_data = item_data
         self.item_effects: DataCD
         self._string_provider = module.project.get_string_provider()
-        stack = self.list_stack
         if not self.module.has_item_effects():
-            stack.set_visible_child(self.box_na)
+            self.set_visible_child(self.box_na)
         else:
             self.item_effects = self.module.get_item_effects()
             self._init_item_list()
             self._init_combos()
             self.on_cb_effect_ids_changed()
-            stack.set_visible_child(self.box_list)
+            self.set_visible_child(self.box_list)
 
     def _get_current_item_effect(self) -> int | None:
         tree_store = self.item_effects_store

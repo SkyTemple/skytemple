@@ -106,5 +106,5 @@ class BgpModule(AbstractModule):
         self, open_view: Union[AbstractController, Gtk.Widget]
     ) -> Optional[DebuggingInfo]:
         if isinstance(open_view, StBgpBgpPage):
-            return {"models": {self.list_of_bgps[open_view.item_id]: open_view.bgp}}
+            return {"models": {self.list_of_bgps[open_view.item_data]: open_view.bgp}}
         return None

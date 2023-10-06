@@ -239,7 +239,7 @@ class StScriptSsaPage(Gtk.Box):
     _last_scale_factor: Optional[CanvasScale] = None
     # Cache for map backgrounds, for faster scene view transitions in the same map context
     # Should be set to (None, ) when loading a map BG context.
-    map_bg_surface_cache = (None,)
+    map_bg_surface_cache: typing.ClassVar[typing.Any] = (None,)
 
     def __init__(self, module: ScriptModule, item_data: dict):
         super().__init__()

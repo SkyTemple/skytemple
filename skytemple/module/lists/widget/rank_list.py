@@ -64,11 +64,10 @@ class StListsRankListPage(Gtk.Box):
         super().__init__()
         self.module = module
         self.item_data = item_data
-        self._rank_up_table: list[Rank] = None
+        self._rank_up_table: list[Rank] = self.module.get_rank_list()
         self._item_names: dict[int, str] = {}
-        self._list_store: Gtk.ListStore = None
+        self._list_store: Gtk.ListStore = None  # type: ignore
         self._loading = True
-        self._rank_up_table = self.module.get_rank_list()
         self._init_item_store()
         self.refresh_list()
         self._loading = False

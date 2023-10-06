@@ -134,8 +134,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
         self._init_move_notebooks()
         self._init_webview()
         self._init_graph()
-        notebook = self.level_up_notebook
-        notebook.set_current_page(self.__class__._last_open_tab_id)
+        self.set_current_page(self.__class__._last_open_tab_id)
 
     @property
     def has_stats(self) -> bool:
@@ -557,13 +556,13 @@ class StMonsterLevelUpPage(Gtk.Notebook):
             import gi
 
             gi.require_version("WebKit2", "4.0")
-            from gi.repository import WebKit2
+            from gi.repository import WebKit2  # type: ignore
 
             graph_webkit_box = self.graph_webkit_box
-            self._webview: WebKit2.WebView = WebKit2.WebView()
-            self._webview.load_uri(pathlib.Path(self.get_tmp_html_path()).as_uri())
+            self._webview: WebKit2.WebView = WebKit2.WebView()  # type: ignore
+            self._webview.load_uri(pathlib.Path(self.get_tmp_html_path()).as_uri())  # type: ignore
             scrolled_window: Gtk.ScrolledWindow = Gtk.ScrolledWindow.new()
-            scrolled_window.add(self._webview)
+            scrolled_window.add(self._webview)  # type: ignore
             graph_webkit_box.pack_start(scrolled_window, True, True, 0)
             self._support_webview = True
         except BaseException as ex:
@@ -627,7 +626,7 @@ class StMonsterLevelUpPage(Gtk.Notebook):
             graph_fallbck_box.pack_start(img, True, True, 0)
         else:
             stack.set_visible_child(self.graph_webkit_box)
-            self._webview.reload()
+            self._webview.reload()  # type: ignore
 
     @staticmethod
     def get_tmp_html_path():

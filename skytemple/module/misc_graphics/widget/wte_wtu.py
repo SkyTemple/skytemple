@@ -168,7 +168,7 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
                 depth = cb_store[titer][0]
                 discard: bool = self.chk_discard_palette.get_active()
                 try:
-                    self.wte.from_pil(img_pil, WteImageType(depth), discard)
+                    self.wte.from_pil(img_pil, WteImageType(depth), discard)  # type: ignore
                 except ValueError as err:
                     display_error(
                         sys.exc_info(), str(err), _("Imported image size too big.")

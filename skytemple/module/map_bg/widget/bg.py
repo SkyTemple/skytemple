@@ -59,6 +59,7 @@ class StMapBgBgPage(Gtk.Box):
     __gtype_name__ = "StMapBgBgPage"
     module: MapBgModule
     item_data: int
+    bg_layers: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     tb_zoom_in: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     tb_zoom_out: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     tb_chunk_grid: Gtk.ToggleToolButton = cast(
@@ -192,7 +193,6 @@ class StMapBgBgPage(Gtk.Box):
     map_wh_link_target: Gtk.ListBox = cast(Gtk.ListBox, Gtk.Template.Child())
     map_width_tiles: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
     map_height_tiles: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
-    editor_map_bg: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
     men_map_settings: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     men_map_width_height: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     men_map_export_gif: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
@@ -327,9 +327,9 @@ class StMapBgBgPage(Gtk.Box):
         try:
             # Invalidate SSA scene cache for this BG
             # TODO: This is obviously very ugly coupling...
-            from skytemple.module.script.controller.ssa import SsaController
+            from skytemple.module.script.widget.ssa import StScriptSsaPage
 
-            SsaController.map_bg_surface_cache = (None,)
+            StScriptSsaPage.map_bg_surface_cache = (None,)
         except ImportError:
             pass
         if self._was_asset_copied:
@@ -359,7 +359,7 @@ class StMapBgBgPage(Gtk.Box):
         safe_destroy(self.dialog_tiles_animated_export)
         safe_destroy(self.dialog_tiles_animated_settings)
         safe_destroy(self.dialog_width_height)
-        safe_destroy(self.editor_map_bg)
+        safe_destroy(self.bg_layers)
         safe_destroy(self.image1)
         safe_destroy(self.dialog_chunks_export)
         safe_destroy(self.image2)
@@ -732,9 +732,8 @@ class StMapBgBgPage(Gtk.Box):
         MainController.show_tilequant_dialog(14, 16)
 
     def set_warning_palette(self):
-        if self.builder:
-            editor_warning_palette = self.editor_warning_palette
-            editor_warning_palette.set_revealed(self.weird_palette)
+        editor_warning_palette = self.editor_warning_palette
+        editor_warning_palette.set_revealed(self.weird_palette)
 
     def _init_chunk_imgs(self):
         """(Re)-draw the chunk images"""
