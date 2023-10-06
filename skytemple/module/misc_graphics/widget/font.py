@@ -75,6 +75,7 @@ class StMiscGraphicsFontPage(Gtk.Paned):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_signals = True
         self.font: AbstractFont | None = self.module.get_font(self.item_data)
         self._init_font()
         assert self.font
@@ -92,6 +93,7 @@ class StMiscGraphicsFontPage(Gtk.Paned):
             entry_tree.append_column(column)
         self._switch_table()
         self.draw_area.connect("draw", self.exec_draw)
+        self._suppress_signals = False
 
     @Gtk.Template.Callback()
     def on_self_destroy(self, *args):
@@ -279,11 +281,13 @@ class StMiscGraphicsFontPage(Gtk.Paned):
 
     @Gtk.Template.Callback()
     def on_entry_tree_selection_changed(self, *args):
-        self.draw_area.queue_draw()
+        if not self._suppress_signals:
+            self.draw_area.queue_draw()
 
     @Gtk.Template.Callback()
     def on_font_table_changed(self, widget):
-        self._switch_table()
+        if not self._suppress_signals:
+            self._switch_table()
 
     def _fill_available_font_tables_into_store(self, cb_store):
         # Init combobox

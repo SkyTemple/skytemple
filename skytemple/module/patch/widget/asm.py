@@ -84,6 +84,7 @@ class StPatchAsmPage(Gtk.Box):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_signals = True
         self._patcher: Patcher = self.module.project.create_patcher()
         self._were_issues_activated = False
         self._issues: dict[str, list[warnings.WarningMessage]] = {}
@@ -96,6 +97,7 @@ class StPatchAsmPage(Gtk.Box):
         self._current_tab: PatchCategory | None = None
         self._load_image_for_issue_dialog()
         self.refresh_all()
+        self._suppress_signals = False
 
     @Gtk.Template.Callback()
     def on_self_destroy(self, *args):
@@ -257,10 +259,11 @@ class StPatchAsmPage(Gtk.Box):
     def on_patch_categories_switch_page(
         self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num
     ):
-        cat = self._category_tabs_reverse[page]
-        sw = self.patch_window
-        assert_not_none(cast(Optional[Gtk.Container], sw.get_parent())).remove(sw)
-        self.refresh(cat)
+        if not self._suppress_signals:
+            cat = self._category_tabs_reverse[page]
+            sw = self.patch_window
+            assert_not_none(cast(Optional[Gtk.Container], sw.get_parent())).remove(sw)
+            self.refresh(cat)
 
     def refresh_all(self):
         self._category_tabs = {}
