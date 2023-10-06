@@ -121,13 +121,13 @@ class StMonsterLevelUpPage(Gtk.Notebook):
     egg_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     _last_open_tab_id = 0
 
-    def __init__(self, module: "MonsterModule", item_data: int):
+    def __init__(self, module: MonsterModule, item_data: int):
         super().__init__()
         self.module = module
         self.item_data = item_data
         self._string_provider = self.module.project.get_string_provider()
         self._move_names: dict[int, str] = {}
-        self._level_bin_entry: Optional[LevelBinEntry] = None
+        self._level_bin_entry: LevelBinEntry | None = None
         self._waza_p: WazaPProtocol = self.module.get_waza_p()
         self._support_webview = False
         self._webview = None

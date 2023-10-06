@@ -63,7 +63,7 @@ class StMovesItemsItemKeysPage(Gtk.Box):
     btn_fix: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_help: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "MovesItemsModule", item_data: None):
+    def __init__(self, module: MovesItemsModule, item_data: None):
         super().__init__()
         self.module = module
         self.item_data = item_data

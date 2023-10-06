@@ -58,7 +58,7 @@ class StListsDungeonMusicPage(Gtk.Box):
         Gtk.CellRendererCombo, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "ListsModule", item_data: None):
+    def __init__(self, module: ListsModule, item_data: None):
         super().__init__()
         self.module = module
         self.item_data = item_data

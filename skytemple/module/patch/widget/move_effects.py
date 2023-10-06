@@ -79,7 +79,7 @@ class StPatchMoveEffectsPage(Gtk.Stack):
     btn_add_metronome: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_remove_metronome: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "PatchModule", item_data: None):
+    def __init__(self, module: PatchModule, item_data: None):
         super().__init__()
         self.module = module
         self.item_data = item_data
@@ -98,7 +98,7 @@ class StPatchMoveEffectsPage(Gtk.Stack):
             self.on_cb_effect_ids_changed()
             stack.set_visible_child(self.box_list)
 
-    def _get_current_move_effect(self) -> Optional[int]:
+    def _get_current_move_effect(self) -> int | None:
         tree_store = self.move_effects_store
         active_rows: list[
             Gtk.TreePath

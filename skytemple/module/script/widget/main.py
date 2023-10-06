@@ -86,7 +86,7 @@ class StScriptMainPage(Gtk.Box):
         Gtk.CellRendererText, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "ScriptModule", item_data: int):
+    def __init__(self, module: ScriptModule, item_data: int):
         super().__init__()
         self.module = module
         self.item_data = item_data
@@ -193,7 +193,7 @@ class StScriptMainPage(Gtk.Box):
             md.run()
             md.destroy()
             return
-        new_id = max((l.id for l in self._list.list)) + 1
+        new_id = max(l.id for l in self._list.list) + 1
         store = self.level_list_tree_store
         store.append(
             [

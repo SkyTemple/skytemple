@@ -99,7 +99,7 @@ class StDungeonDungeonPage(Gtk.Box):
     label_floor_count_in_dialog: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     spin_floor_count: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
 
-    def __init__(self, module: "DungeonModule", item_data: "DungeonViewInfo"):
+    def __init__(self, module: DungeonModule, item_data: DungeonViewInfo):
         super().__init__()
         self.module = module
         self.item_data = item_data
