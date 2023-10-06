@@ -488,7 +488,7 @@ class StDungeonMainPage(Gtk.Box):
             treeiter = model.get_iter_first()
         else:
             treeiter = start
-        dungeons = []
+        dungeons: list[DungeonGroup | int] = []
         while treeiter is not None:
             if model.iter_n_children(treeiter) > 0:
                 assert model[treeiter][0], "Only groups may have children."
@@ -502,7 +502,7 @@ class StDungeonMainPage(Gtk.Box):
                 )
 
                 dungeons.append(
-                    DungeonGroup(sub_group_dungeons[0], sub_group_dungeons, [])
+                    DungeonGroup(sub_group_dungeons[0], sub_group_dungeons, [])  # type: ignore
                 )
             else:
                 assert not model[treeiter][0], "Empty groups are not allowed."

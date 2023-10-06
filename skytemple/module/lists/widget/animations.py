@@ -144,16 +144,15 @@ class StListsAnimationsPage(Gtk.Stack):
         self.item_data = item_data
         self.sp_effects = None
         self._string_provider = module.project.get_string_provider()
-        stack = self.list_stack
         if not self.module.has_animations():
-            stack.set_visible_child(self.box_na)
+            self.set_visible_child(self.box_na)
         else:
             self.animations = self.module.get_animations()
             self._ent_names: dict[int, str] = dict()
             self._init_monster_store()
             self._init_combos()
             self._init_trees()
-            stack.set_visible_child(self.box_list)
+            self.set_visible_child(self.box_list)
 
     def _init_combos(self):
         # Init available menus
@@ -376,7 +375,9 @@ class StListsAnimationsPage(Gtk.Stack):
         store_spec[treepath][6] = store_type[treeiter][1]
         self.animations.special_move_table[
             store_spec[treepath][0]
-        ].point = AnimPointType(store_type[treeiter][0])
+        ].point = AnimPointType(
+            store_type[treeiter][0]
+        )  # type: ignore
         self.module.mark_animations_as_modified()
 
     @Gtk.Template.Callback()
@@ -495,7 +496,7 @@ class StListsAnimationsPage(Gtk.Stack):
         store_move[treepath][17] = store_type[treeiter][1]
         self.animations.move_table[store_move[treepath][0]].point = AnimPointType(
             store_type[treeiter][0]
-        )
+        )  # type: ignore
         self.module.mark_animations_as_modified()
 
     @Gtk.Template.Callback()
@@ -565,7 +566,7 @@ class StListsAnimationsPage(Gtk.Stack):
         store_gen[treepath][11] = store_type[treeiter][1]
         self.animations.general_table[store_gen[treepath][0]].anim_type = AnimType(
             store_type[treeiter][0]
-        )
+        )  # type: ignore
         self.module.mark_animations_as_modified()
 
     @Gtk.Template.Callback()
@@ -601,7 +602,7 @@ class StListsAnimationsPage(Gtk.Stack):
         store_gen[treepath][12] = store_type[treeiter][1]
         self.animations.general_table[store_gen[treepath][0]].point = AnimPointType(
             store_type[treeiter][0]
-        )
+        )  # type: ignore
         self.module.mark_animations_as_modified()
 
     @Gtk.Template.Callback()

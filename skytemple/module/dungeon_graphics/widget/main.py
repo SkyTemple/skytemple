@@ -173,7 +173,7 @@ class StDungeonGraphicsMainPage(Gtk.Box):
         store = Gtk.ListStore(int, str)  # id, name
         cr.props.model = store
         for e in en:
-            store.append([e.value, e.print_name])
+            store.append([e.value, e.print_name])  # type: ignore
 
     def _create_for_enum_with_strings(
         self, cr: Gtk.CellRendererCombo, en: type[Enum], string_type: StringType
@@ -231,6 +231,6 @@ class StDungeonGraphicsMainPage(Gtk.Box):
                     TilesetNaturePowerMoveEntry(row[6]),
                     TilesetWeatherEffect(row[7]),
                     bool(row[8]),
-                )
+                )  # type: ignore
             )
         self.module.set_tileset_properties(self.lst)

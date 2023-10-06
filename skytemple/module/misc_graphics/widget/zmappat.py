@@ -44,9 +44,7 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
     module: MiscGraphicsModule
     item_data: str
     variation_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    button_import: Gtk.MenuToolButton = cast(
-        Gtk.MenuToolButton, Gtk.Template.Child()
-    )
+    button_import: Gtk.MenuToolButton = cast(Gtk.MenuToolButton, Gtk.Template.Child())
     import_minimized: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     import_full: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     export: Gtk.MenuToolButton = cast(Gtk.MenuToolButton, Gtk.Template.Child())
@@ -145,8 +143,8 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
-                imgs: list[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS
-                masks: list[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS
+                imgs: list[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
+                masks: list[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
                 for v in ZMappaTVariation:
                     fn_tiles = os.path.join(fn, f"zmappat-{v.filename}-tiles.min.png")
                     fn_masks = os.path.join(fn, f"zmappat-{v.filename}-masks.min.png")
@@ -201,8 +199,8 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT and fn is not None:
             try:
-                imgs: list[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS
-                masks: list[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS
+                imgs: list[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
+                masks: list[Image.Image] = [None] * ZMAPPAT_NB_VARIATIONS  # type: ignore
                 for v in ZMappaTVariation:
                     fn_tiles = os.path.join(fn, f"zmappat-{v.filename}-tiles.png")
                     fn_masks = os.path.join(fn, f"zmappat-{v.filename}-masks.png")
@@ -230,11 +228,11 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
         assert active_iter is not None
         v: int = cb_store[active_iter][0]
         if self.switch_minimized.get_active():
-            surface = self.zmappat.to_pil_tiles_minimized(ZMappaTVariation(v))
-            mask = self.zmappat.to_pil_masks_minimized(ZMappaTVariation(v))
+            surface = self.zmappat.to_pil_tiles_minimized(ZMappaTVariation(v))  # type: ignore
+            mask = self.zmappat.to_pil_masks_minimized(ZMappaTVariation(v))  # type: ignore
         else:
-            surface = self.zmappat.to_pil_tiles(ZMappaTVariation(v))
-            mask = self.zmappat.to_pil_masks(ZMappaTVariation(v))
+            surface = self.zmappat.to_pil_tiles(ZMappaTVariation(v))  # type: ignore
+            mask = self.zmappat.to_pil_masks(ZMappaTVariation(v))  # type: ignore
         surface = surface.resize((surface.width * 4, surface.height * 4))
         self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
         mask = mask.resize((mask.width * 4, mask.height * 4))
