@@ -241,17 +241,17 @@ class StScriptSsaPage(Gtk.Box):
     # Should be set to (None, ) when loading a map BG context.
     map_bg_surface_cache = (None,)
 
-    def __init__(self, module: "ScriptModule", item_data: dict):
+    def __init__(self, module: ScriptModule, item_data: dict):
         super().__init__()
         self.module = module
         self.item_data = item_data
-        self.map_bg_module: "MapBgModule" = module.project.get_module("map_bg")
+        self.map_bg_module: MapBgModule = module.project.get_module("map_bg")
         self.static_data: Pmd2Data = module.project.get_rom_module().get_static_data()
         self.mapname = item_data["map"]
         self.filename = item_data["file"]
         self.type = item_data["type"]
         self.scripts = item_data["scripts"]
-        self.level: Optional[Pmd2ScriptLevel] = None
+        self.level: Pmd2ScriptLevel | None = None
         self.mapbg_id = -1
         if self.mapname in self.static_data.script_data.level_list__by_name:
             self.level = self.static_data.script_data.level_list__by_name[self.mapname]
@@ -267,17 +267,17 @@ class StScriptSsaPage(Gtk.Box):
             self._scale_factor = self.__class__._last_scale_factor
         else:
             self._scale_factor = CanvasScale(1.0)
-        self._bg_draw_is_clicked__location: Optional[tuple[int, int]] = None
+        self._bg_draw_is_clicked__location: tuple[int, int] | None = None
         self._bg_draw_is_clicked__drag_active = False
         self._map_bg_width = SIZE_REQUEST_NONE
         self._map_bg_height = SIZE_REQUEST_NONE
-        self._map_bg_surface: Optional[cairo.Surface] = None
+        self._map_bg_surface: cairo.Surface | None = None
         self._suppress_events = False
         self._currently_open_popover = None
-        self._currently_selected_entity: Optional[
-            Union[SsaActor, SsaObject, SsaEvent, SsaPerformer]
-        ] = None
-        self._currently_selected_entity_layer: Optional[int] = None
+        self._currently_selected_entity: None | (
+            SsaActor | SsaObject | SsaEvent | SsaPerformer
+        ) = None
+        self._currently_selected_entity_layer: int | None = None
         self._selected_by_map_click = False
         self._w_ssa_draw: Gtk.DrawingArea = None
         self._w_po_actors: Gtk.Popover = None
@@ -286,7 +286,7 @@ class StScriptSsaPage(Gtk.Box):
         self._w_po_triggers: Gtk.Popover = None
         self.ssa: Ssa = None
         self.drawer: Drawer = None
-        self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
+        self._tileset_drawer_overlay: MapTilesetOverlay | None = None
         self.module.get_sprite_provider().reset()
         self._w_ssa_draw = self.ssa_draw
         self._w_po_actors = self.po_actor
@@ -1466,7 +1466,7 @@ class StScriptSsaPage(Gtk.Box):
 
     def _get_list_tree_and_iter_for(
         self, selected
-    ) -> tuple[Gtk.TreeView, Optional[Gtk.TreeIter]]:
+    ) -> tuple[Gtk.TreeView, Gtk.TreeIter | None]:
         tree = self._get_list_for(selected)
         return (tree, self._find_list_iter(tree, lambda row: selected is row[1]))
 
@@ -1598,8 +1598,8 @@ class StScriptSsaPage(Gtk.Box):
     @typing.no_type_check
     def _select(
         self,
-        selected: Optional[Union[SsaActor, SsaObject, SsaPerformer, SsaEvent]],
-        selected_layer: Optional[int],
+        selected: SsaActor | SsaObject | SsaPerformer | SsaEvent | None,
+        selected_layer: int | None,
         open_popover=True,
         popup_x=None,
         popup_y=None,
@@ -1617,16 +1617,14 @@ class StScriptSsaPage(Gtk.Box):
         self._currently_selected_entity_layer = None
         self.drawer.set_selected(selected)
         if open_popover:
-            popover: Optional[Gtk.Popover] = None
+            popover: Gtk.Popover | None = None
             if isinstance(selected, SsaActor):
                 popover = self._w_po_actors
                 if popup_x is None or popup_y is None:
                     popup_x, popup_y = popover_position(
                         *tuple(
-                            (
-                                x * self._scale_factor
-                                for x in self.drawer.get_bb_actor(selected)
-                            )
+                            x * self._scale_factor
+                            for x in self.drawer.get_bb_actor(selected)
                         )
                     )
                 self._select_in_combobox_where_callback(
@@ -1652,10 +1650,8 @@ class StScriptSsaPage(Gtk.Box):
                 if popup_x is None or popup_y is None:
                     popup_x, popup_y = popover_position(
                         *tuple(
-                            (
-                                x * self._scale_factor
-                                for x in self.drawer.get_bb_object(selected)
-                            )
+                            x * self._scale_factor
+                            for x in self.drawer.get_bb_object(selected)
                         )
                     )
                 self._select_in_combobox_where_callback(
@@ -1683,10 +1679,8 @@ class StScriptSsaPage(Gtk.Box):
                 if popup_x is None or popup_y is None:
                     popup_x, popup_y = popover_position(
                         *tuple(
-                            (
-                                x * self._scale_factor
-                                for x in self.drawer.get_bb_performer(selected)
-                            )
+                            x * self._scale_factor
+                            for x in self.drawer.get_bb_performer(selected)
                         )
                     )
                 self._select_in_combobox_where_callback(
@@ -1711,10 +1705,8 @@ class StScriptSsaPage(Gtk.Box):
                 if popup_x is None or popup_y is None:
                     popup_x, popup_y = popover_position(
                         *tuple(
-                            (
-                                x * self._scale_factor
-                                for x in self.drawer.get_bb_trigger(selected)
-                            )
+                            x * self._scale_factor
+                            for x in self.drawer.get_bb_trigger(selected)
                         )
                     )
                 self._select_in_combobox_where_callback(
@@ -1738,7 +1730,7 @@ class StScriptSsaPage(Gtk.Box):
         self._currently_selected_entity_layer = selected_layer
 
     def _add_entity_to_list(
-        self, entity: Union[SsaActor, SsaObject, SsaPerformer, SsaEvent], layer: int
+        self, entity: SsaActor | SsaObject | SsaPerformer | SsaEvent, layer: int
     ):
         tree = self._get_list_for(entity)
         if isinstance(entity, SsaActor):
@@ -2186,7 +2178,7 @@ class StScriptSsaPage(Gtk.Box):
     @typing.overload
     def _script_id(self, name: str, as_int: typing.Literal[True]) -> int: ...
 
-    def _script_id(self, name: str, as_int: bool = False) -> Union[str, int]:
+    def _script_id(self, name: str, as_int: bool = False) -> str | int:
         # First try to parse as an int, if this fails, the event has no script assigned.
         try:
             int(name[-6:-4])

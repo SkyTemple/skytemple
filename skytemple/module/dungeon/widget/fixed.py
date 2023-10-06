@@ -183,7 +183,7 @@ class StDungeonFixedPage(Gtk.Notebook):
     _last_scale_factor: Optional[CanvasScale] = None
     _last_show_full_map = True
 
-    def __init__(self, module: "DungeonModule", item_data: int):
+    def __init__(self, module: DungeonModule, item_data: int):
         super().__init__()
         self.module = module
         self.item_data = item_data
@@ -192,7 +192,7 @@ class StDungeonFixedPage(Gtk.Notebook):
             self._scale_factor = self.__class__._last_scale_factor
         else:
             self._scale_factor = CanvasScale(1.0)
-        self.drawer: Optional[FixedRoomDrawer] = None
+        self.drawer: FixedRoomDrawer | None = None
         self.entity_rule_container: EntityRuleContainer = EntityRuleContainer(
             *self.module.get_fixed_floor_entity_lists()
         )
@@ -221,11 +221,11 @@ class StDungeonFixedPage(Gtk.Notebook):
         for i in range(length, length + SPECIAL_MONSTERS):
             self.monster_names[i] = _("(Special?)")
             self.long_monster_names[i] = _("(Special?)") + f" (${i:04})"
-        self.floor: Optional[FixedFloor] = None
-        self._draw: Optional[Gtk.DrawingArea] = None
+        self.floor: FixedFloor | None = None
+        self._draw: Gtk.DrawingArea | None = None
         self._bg_draw_is_clicked__press_active = False
         self._bg_draw_is_clicked__drag_active = False
-        self._bg_draw_is_clicked__location: Optional[tuple[int, int]] = None
+        self._bg_draw_is_clicked__location: tuple[int, int] | None = None
         self._currently_selected = None
         self.script_data = (
             self.module.project.get_rom_module().get_static_data().script_data

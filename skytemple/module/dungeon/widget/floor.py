@@ -168,7 +168,7 @@ class FloorRanks(Enum):
 
     # ignore the first param since it's already set by __new__
 
-    def __init__(self, _: int, print_name: Optional[str] = None):
+    def __init__(self, _: int, print_name: str | None = None):
         self._print_name_ = print_name
 
     def __str__(self):
@@ -550,14 +550,14 @@ class StDungeonFloorPage(Gtk.Box):
     _last_scale_factor: Optional[CanvasScale] = None
     _last_show_full_map = False
 
-    def __init__(self, module: "DungeonModule", item_data: "FloorViewInfo"):
+    def __init__(self, module: DungeonModule, item_data: FloorViewInfo):
         super().__init__()
         self.module = module
         self.item_data = item_data
         self.entry: MappaFloorProtocol = self.module.get_mappa_floor(item_data)
-        self._draw: Optional[Gtk.DrawingArea] = None
-        self.drawer: Optional[FixedRoomDrawer] = None
-        self._refresh_timer: Optional[int] = None
+        self._draw: Gtk.DrawingArea | None = None
+        self.drawer: FixedRoomDrawer | None = None
+        self._refresh_timer: int | None = None
         self._loading = False
         self._string_provider = module.project.get_string_provider()
         self._sprite_provider = module.project.get_sprite_provider()
@@ -2015,7 +2015,7 @@ class StDungeonFloorPage(Gtk.Box):
             # 2. Import to selected floors
             selected_floors: list[tuple[int, int]] = []
 
-            def collect_floors_recurse(titer: Optional[Gtk.TreeIter]):
+            def collect_floors_recurse(titer: Gtk.TreeIter | None):
                 for i in range(store.iter_n_children(titer)):
                     child = store.iter_nth_child(titer, i)
                     assert child is not None
@@ -2491,7 +2491,7 @@ class StDungeonFloorPage(Gtk.Box):
             weight_data_sets.append((weight_mh_idx, chance_mh_idx))
         for weight_idx, chance_idx in weight_data_sets:
             sum_of_all_weights = sum(
-                (int(row[weight_idx]) for row in iter_tree_model(store))
+                int(row[weight_idx]) for row in iter_tree_model(store)
             )
             if sum_of_all_weights <= 0:
                 sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
@@ -2577,8 +2577,8 @@ class StDungeonFloorPage(Gtk.Box):
         rows.append(SpawnEntry(original_kecleon_index, original_kecleon_level, 0, 0))
         rows.append(SpawnEntry(DUMMY_MD_INDEX, u8(1), 0, 0))
         rows.sort(key=lambda e: e.entid)
-        sum_of_weights_main = sum((row.relative_weight_main for row in rows))
-        sum_of_weights_mh = sum((row.relative_weight_mh for row in rows))
+        sum_of_weights_main = sum(row.relative_weight_main for row in rows)
+        sum_of_weights_mh = sum(row.relative_weight_mh for row in rows)
         last_weight_main = 0
         last_weight_mh = 0
         last_weight_main_set_idx = 0
@@ -2618,7 +2618,7 @@ class StDungeonFloorPage(Gtk.Box):
 
     def _save_trap_spawn_rates(self):
         store: Gtk.ListStore = self.trap_spawns_store
-        sum_of_weights = sum((int(row[3]) for row in iter_tree_model(store)))
+        sum_of_weights = sum(int(row[3]) for row in iter_tree_model(store))
         last_weight = 0
         last_weight_set_idx = 0
         weights = []
@@ -2672,7 +2672,7 @@ class StDungeonFloorPage(Gtk.Box):
                 rows.append(row[:])
             rows.sort(key=lambda e: e[0])
             sum_of_weights = sum(
-                (int(row[4]) for row in iter_tree_model(store) if row[2] is False)
+                int(row[4]) for row in iter_tree_model(store) if row[2] is False
             )
             last_weight = 0
             last_weight_set_idx = None

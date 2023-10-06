@@ -249,7 +249,7 @@ class StMovesItemsItemListsPage(Gtk.Stack):
     item_cat_others_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     item_cat_others_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "MovesItemsModule", item_data: None):
+    def __init__(self, module: MovesItemsModule, item_data: None):
         super().__init__()
         self.module = module
         self.item_data = item_data
@@ -821,9 +821,7 @@ class StMovesItemsItemListsPage(Gtk.Stack):
 
     def _recalculate_spawn_chances(self, store_name, weight_idx, chance_idx):
         store = getattr(self, store_name)
-        sum_of_all_weights = sum(
-            (int(row[weight_idx]) for row in iter_tree_model(store))
-        )
+        sum_of_all_weights = sum(int(row[weight_idx]) for row in iter_tree_model(store))
         if sum_of_all_weights <= 0:
             sum_of_all_weights = 1  # all weights are zero, so we just set this to 1 so it doesn't / by 0.
         for row in iter_tree_model(store):
@@ -870,7 +868,7 @@ class StMovesItemsItemListsPage(Gtk.Stack):
                 rows.append(row[:])
             rows.sort(key=lambda e: e[0])
             sum_of_weights = sum(
-                (int(row[4]) for row in iter_tree_model(store) if row[2] is False)
+                int(row[4]) for row in iter_tree_model(store) if row[2] is False
             )
             last_weight = 0
             last_weight_set_idx = None

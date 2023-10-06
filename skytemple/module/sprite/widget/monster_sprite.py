@@ -18,7 +18,7 @@ from __future__ import annotations
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, Optional, cast
+from typing import TYPE_CHECKING, cast
 from xml.etree import ElementTree
 from xml.etree.ElementTree import Element
 from zipfile import ZipFile
@@ -70,7 +70,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
 
     def __init__(
         self,
-        module: "SpriteModule",
+        module: SpriteModule,
         item_data: int,
         mark_as_modified_cb,
         assign_new_sprite_id_cb,
@@ -88,7 +88,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
         self._frame_counter = 0
         self._anim_counter = 0
         self._drawing_is_active = 0
-        self._draw_area: Optional[Gtk.DrawingArea] = None
+        self._draw_area: Gtk.DrawingArea | None = None
         self._monster_bin: ModelContext[BinPack] = self.module.get_monster_bin_ctx()
         self._rendered_frame_info: list[
             tuple[int, tuple[cairo.Surface, int, int, int, int]]

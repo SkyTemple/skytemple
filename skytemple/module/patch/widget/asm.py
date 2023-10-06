@@ -80,7 +80,7 @@ class StPatchAsmPage(Gtk.Box):
     patch_window: Gtk.ScrolledWindow = cast(Gtk.ScrolledWindow, Gtk.Template.Child())
     patch_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
 
-    def __init__(self, module: "PatchModule", item_data: None):
+    def __init__(self, module: PatchModule, item_data: None):
         super().__init__()
         self.module = module
         self.item_data = item_data
@@ -93,7 +93,7 @@ class StPatchAsmPage(Gtk.Box):
         self._category_tabs_reverse: dict[
             Gtk.Widget, PatchCategory
         ] = {}  # page -> category
-        self._current_tab: Optional[PatchCategory] = None
+        self._current_tab: PatchCategory | None = None
         self._load_image_for_issue_dialog()
         self.refresh_all()
 
@@ -282,7 +282,7 @@ class StPatchAsmPage(Gtk.Box):
                 self.refresh(category)
             page_num += 1
 
-    def refresh(self, patch_category: Optional[PatchCategory]):
+    def refresh(self, patch_category: PatchCategory | None):
         assert patch_category is not None
         # ATTACH
         page = self._category_tabs[patch_category]

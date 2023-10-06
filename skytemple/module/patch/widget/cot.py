@@ -40,7 +40,7 @@ class StPatchCotPage(Gtk.Box):
     readme_rod: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     image1: Gtk.Image = cast(Gtk.Image, Gtk.Template.Child())
 
-    def __init__(self, module: "PatchModule", item_data: None):
+    def __init__(self, module: PatchModule, item_data: None):
         super().__init__()
         self.module = module
         self.item_data = item_data

@@ -257,7 +257,7 @@ class StMonsterMonsterPage(Gtk.Box):
     _last_open_tab_id = 0
     _previous_item_id = -1
 
-    def __init__(self, module: "MonsterModule", item_data: int):
+    def __init__(self, module: MonsterModule, item_data: int):
         super().__init__()
         self.module = module
         self.item_data = item_data
@@ -271,8 +271,8 @@ class StMonsterMonsterPage(Gtk.Box):
         self._portrait_provider = module.project.get_module(
             "portrait"
         ).get_portrait_provider()
-        self._level_up_controller: Optional[StMonsterLevelUpPage] = None
-        self._cached_sprite_page: Optional[int] = None
+        self._level_up_controller: StMonsterLevelUpPage | None = None
+        self._cached_sprite_page: int | None = None
         # The ID of our language. The ID is referring to the ID in the widget names (so starting with 1)
         # defaults to 1 otherwise.
         self._our_lang_index = 1
@@ -1285,7 +1285,7 @@ class StMonsterMonsterPage(Gtk.Box):
             # 2. Import to selected Pokémon
             selected_monsters: list[int] = []
 
-            def collect_monsters_recurse(titer: Optional[Gtk.TreeIter]):
+            def collect_monsters_recurse(titer: Gtk.TreeIter | None):
                 for i in range(store.iter_n_children(titer)):
                     child = store.iter_nth_child(titer, i)
                     if child is not None:

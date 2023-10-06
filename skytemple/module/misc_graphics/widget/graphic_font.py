@@ -18,7 +18,7 @@ from __future__ import annotations
 import logging
 import os
 import sys
-from typing import TYPE_CHECKING, Optional, cast
+from typing import TYPE_CHECKING, cast
 from skytemple.core.message_dialog import SkyTempleMessageDialog
 from skytemple.core.ui_utils import assert_not_none, data_dir, safe_destroy
 import cairo
@@ -57,7 +57,7 @@ class StMiscGraphicsGraphicFontPage(Gtk.Paned):
     entry_id: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
     table_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
-    def __init__(self, module: "MiscGraphicsModule", item_data: "FontOpenSpec"):
+    def __init__(self, module: MiscGraphicsModule, item_data: FontOpenSpec):
         super().__init__()
         self.module = module
         self.item_data = item_data
@@ -128,7 +128,7 @@ class StMiscGraphicsGraphicFontPage(Gtk.Paned):
             dialog.hide()
             if resp == Gtk.ResponseType.OK and fn is not None:
                 try:
-                    lst_entries: list[Optional[Image.Image]] = []
+                    lst_entries: list[Image.Image | None] = []
                     for i in range(int(self.nb_entries_import.get_text())):
                         path = os.path.join(fn, f"{i:0>4}.png")
                         if os.path.exists(path):

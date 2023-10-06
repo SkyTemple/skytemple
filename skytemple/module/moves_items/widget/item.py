@@ -157,7 +157,7 @@ class StMovesItemsItemPage(Gtk.Box):
         Gtk.EntryCompletion, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "MovesItemsModule", item_data: int):
+    def __init__(self, module: MovesItemsModule, item_data: int):
         super().__init__()
         self.module = module
         self.item_data = item_data

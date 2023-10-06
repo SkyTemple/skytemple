@@ -38,7 +38,7 @@ class StSpriteObjectMainPage(Gtk.Box):
     generic_input_dialog_label: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     generic_input_dialog_entry: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
 
-    def __init__(self, module: "SpriteModule", item_data: int):
+    def __init__(self, module: SpriteModule, item_data: int):
         super().__init__()
         self.module = module
         self.item_data = item_data

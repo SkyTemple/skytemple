@@ -138,7 +138,7 @@ class StListsAnimationsPage(Gtk.Stack):
     item_anim1: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     item_anim2: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
 
-    def __init__(self, module: "ListsModule", item_data: None):
+    def __init__(self, module: ListsModule, item_data: None):
         super().__init__()
         self.module = module
         self.item_data = item_data

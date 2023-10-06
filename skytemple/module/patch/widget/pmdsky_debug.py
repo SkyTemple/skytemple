@@ -47,12 +47,12 @@ class StPatchPmdSkyDebugPage(Gtk.Box):
     symbol_window: Gtk.ScrolledWindow = cast(Gtk.ScrolledWindow, Gtk.Template.Child())
     symbol_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
 
-    def __init__(self, module: "PatchModule", item_data: None):
+    def __init__(self, module: PatchModule, item_data: None):
         super().__init__()
         self.module = module
         self.item_data = item_data
-        self._selected_binary: Optional[str] = None
-        self._selected_symbol_type: Optional[str] = None
+        self._selected_binary: str | None = None
+        self._selected_symbol_type: str | None = None
         self._all_selected_binaries: list[str] = []
         self._all_symbol_types: list[str] = ["data", "functions"]
         self.load()

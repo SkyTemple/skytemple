@@ -64,7 +64,7 @@ class StDungeonGraphicsColvecPage(Gtk.Paned):
     description: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     colvec_info: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "DungeonGraphicsModule", item_data: str):
+    def __init__(self, module: DungeonGraphicsModule, item_data: str):
         super().__init__()
         self.module = module
         self.item_data = item_data

@@ -41,7 +41,7 @@ class StListsTacticsPage(Gtk.Box):
     tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     cr_level: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
 
-    def __init__(self, module: "ListsModule", item_data: None):
+    def __init__(self, module: ListsModule, item_data: None):
         super().__init__()
         self.module = module
         self.item_data = item_data

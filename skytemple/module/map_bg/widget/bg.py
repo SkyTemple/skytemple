@@ -17,7 +17,7 @@
 from __future__ import annotations
 import itertools
 import typing
-from typing import TYPE_CHECKING, Optional, cast
+from typing import TYPE_CHECKING, cast
 from collections.abc import Iterable, Sequence
 import cairo
 from gi.repository import Gtk, Gdk
@@ -281,26 +281,26 @@ class StMapBgBgPage(Gtk.Box):
         Gtk.FileChooserButton, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "MapBgModule", item_data: int):
+    def __init__(self, module: MapBgModule, item_data: int):
         super().__init__()
         self.module = module
         self.item_data = item_data
-        self.notebook: Optional[Gtk.Notebook] = None
+        self.notebook: Gtk.Notebook | None = None
         self.bma = module.get_bma(item_data)
         self.bpl = module.get_bpl(item_data)
         self.bpc = module.get_bpc(item_data)
         self.bpas = module.get_bpas(item_data)
         self.first_cursor_pos = (0, 0)
-        self.last_bma: Optional[BmaProtocol] = None
+        self.last_bma: BmaProtocol | None = None
         # Cairo surfaces for each tile in each layer for each frame
         # chunks_surfaces[layer_number][chunk_idx][palette_animation_frame][frame]
         self.chunks_surfaces: list[Sequence[Iterable[list[cairo.Surface]]]] = []
         self.bpa_durations = 0
-        self.drawer: Optional[Drawer] = None
-        self.current_icon_view_renderer: Optional[DrawerCellRenderer] = None
-        self.bg_draw: Optional[Gtk.DrawingArea] = None
-        self.bg_draw_event_box: Optional[Gtk.EventBox] = None
-        self._tileset_drawer_overlay: Optional[MapTilesetOverlay] = None
+        self.drawer: Drawer | None = None
+        self.current_icon_view_renderer: DrawerCellRenderer | None = None
+        self.bg_draw: Gtk.DrawingArea | None = None
+        self.bg_draw_event_box: Gtk.EventBox | None = None
+        self._tileset_drawer_overlay: MapTilesetOverlay | None = None
         self.scale_factor = CanvasScale(1.0)
         self.current_chunks_icon_layer = 0
         self.bg_draw_is_clicked = False
@@ -769,10 +769,8 @@ class StMapBgBgPage(Gtk.Box):
                         if self.weird_palette:
                             break
                 has_pal_ani = any(
-                    (
-                        self.bpl.is_palette_affected_by_animation(chunk.pal_idx)
-                        for chunk in chunk_data
-                    )
+                    self.bpl.is_palette_affected_by_animation(chunk.pal_idx)
+                    for chunk in chunk_data
                 )
                 len_pal_ani = len(self.bpl.animation_palette) if has_pal_ani else 1
                 for pal_ani in range(0, len_pal_ani):
@@ -798,7 +796,7 @@ class StMapBgBgPage(Gtk.Box):
             for bpa in self.bpas:
                 if bpa is not None:
                     single_bpa_duration = (
-                        max((info.duration_per_frame for info in bpa.frame_info))
+                        max(info.duration_per_frame for info in bpa.frame_info)
                         if len(bpa.frame_info) > 0
                         else 9999
                     )
@@ -808,7 +806,7 @@ class StMapBgBgPage(Gtk.Box):
             self.pal_ani_durations = 0
             if self.bpl.has_palette_animation:
                 self.pal_ani_durations = max(
-                    (spec.duration_per_frame for spec in self.bpl.animation_specs)
+                    spec.duration_per_frame for spec in self.bpl.animation_specs
                 )
         self.set_warning_palette()
 

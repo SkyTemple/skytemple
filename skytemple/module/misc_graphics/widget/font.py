@@ -71,11 +71,11 @@ class StMiscGraphicsFontPage(Gtk.Paned):
     cb_table_select: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     table: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
 
-    def __init__(self, module: "MiscGraphicsModule", item_data: "FontOpenSpec"):
+    def __init__(self, module: MiscGraphicsModule, item_data: FontOpenSpec):
         super().__init__()
         self.module = module
         self.item_data = item_data
-        self.font: Optional[AbstractFont] = self.module.get_font(self.item_data)
+        self.font: AbstractFont | None = self.module.get_font(self.item_data)
         self._init_font()
         assert self.font
         # Generate Automatically the columns since we don't know what properties we will be using
@@ -168,7 +168,7 @@ class StMiscGraphicsFontPage(Gtk.Paned):
 
     def _add_property_row(self, store, entry):
         prop = entry.get_properties()
-        row: list[Optional[str]] = [None] * len(self.entry_properties)
+        row: list[str | None] = [None] * len(self.entry_properties)
         for i, c in enumerate(self.entry_properties):
             if c in prop:
                 row[i] = str(prop[c])

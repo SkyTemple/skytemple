@@ -46,7 +46,7 @@ class StMiscGraphicsW16Page(Gtk.Box):
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     grid: Gtk.Grid = cast(Gtk.Grid, Gtk.Template.Child())
 
-    def __init__(self, module: "MiscGraphicsModule", item_data: int):
+    def __init__(self, module: MiscGraphicsModule, item_data: int):
         super().__init__()
         self.module = module
         self.item_data = item_data

@@ -17,7 +17,7 @@
 from __future__ import annotations
 import sys
 from enum import Enum, auto
-from typing import TYPE_CHECKING, Union, cast
+from typing import TYPE_CHECKING, cast
 import cairo
 from PIL import Image
 from gi.repository import Gtk
@@ -71,11 +71,11 @@ class StDungeonGraphicsTrpItmImgPage(Gtk.Box):
     lbl_name: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     table_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
-    def __init__(self, module: "DungeonGraphicsModule", item_data: ImgType):
+    def __init__(self, module: DungeonGraphicsModule, item_data: ImgType):
         super().__init__()
         self.module = module
         self.item_data = item_data
-        self.img: Union[ImgItm, ImgTrp] = self.module.get_icons(item_data)
+        self.img: ImgItm | ImgTrp = self.module.get_icons(item_data)
         self.image_idx = 0
         self.palette_idx = 0
         if self.item_data == ImgType.ITM:

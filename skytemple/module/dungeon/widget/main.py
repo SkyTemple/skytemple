@@ -18,7 +18,7 @@ from __future__ import annotations
 import sys
 import textwrap
 from itertools import chain
-from typing import TYPE_CHECKING, Optional, Union, cast
+from typing import TYPE_CHECKING, Optional, cast
 from collections.abc import Sequence
 from gi.repository import Gtk, Gdk
 from range_typed_integers import u8, u8_checked
@@ -82,7 +82,7 @@ class StDungeonMainPage(Gtk.Box):
     tree_grouped: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     store_ungrouped_dungeons: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
-    def __init__(self, module: "DungeonModule", item_data: None):
+    def __init__(self, module: DungeonModule, item_data: None):
         super().__init__()
         self.module = module
         self.item_data = item_data
@@ -202,15 +202,12 @@ class StDungeonMainPage(Gtk.Box):
         if resp == Gtk.ResponseType.APPLY:
             try:
                 # Collect new dungeon groupings and tell module to re-group dungeons
-                new_groups: list[Union["DungeonGroup", int]] = sorted(
+                new_groups: list[DungeonGroup | int] = sorted(
                     self._collect_new_groups_from_dialog(), key=int
                 )
                 dungeon_ids_from_dialog = set(
                     chain.from_iterable(
-                        (
-                            [x] if isinstance(x, int) else x.dungeon_ids
-                            for x in new_groups
-                        )
+                        [x] if isinstance(x, int) else x.dungeon_ids for x in new_groups
                     )
                 )
                 # Sanity check
@@ -385,9 +382,9 @@ class StDungeonMainPage(Gtk.Box):
     def _get_group_iter(
         self,
         model: Gtk.TreeStore,
-        liter: Optional[Gtk.TreeIter],
+        liter: Gtk.TreeIter | None,
         position: Gtk.TreeViewDropPosition,
-    ) -> Optional[Gtk.TreeIter]:
+    ) -> Gtk.TreeIter | None:
         # If we drag before or after and not into, we work with the parent instead!
         if (
             position == Gtk.TreeViewDropPosition.BEFORE
@@ -482,11 +479,11 @@ class StDungeonMainPage(Gtk.Box):
 
     def _collect_new_groups_from_dialog(
         self, start=None, allow_groups=True
-    ) -> Sequence[Union["DungeonGroup", int]]:
+    ) -> Sequence[DungeonGroup | int]:
         from skytemple.module.dungeon.module import DungeonGroup
 
         model = self.store_grouped_dungeons
-        treeiter: Optional[Gtk.TreeIter]
+        treeiter: Gtk.TreeIter | None
         if start is None:
             treeiter = model.get_iter_first()
         else:
@@ -501,7 +498,7 @@ class StDungeonMainPage(Gtk.Box):
                     model.iter_nth_child(treeiter, 0), False
                 )
                 assert len(sub_group_dungeons) > 0 and all(
-                    (isinstance(x, int) for x in sub_group_dungeons)
+                    isinstance(x, int) for x in sub_group_dungeons
                 )
 
                 dungeons.append(

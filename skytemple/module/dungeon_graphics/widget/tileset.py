@@ -181,7 +181,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
     )
     _last_open_tab_id = 0
 
-    def __init__(self, module: "DungeonGraphicsModule", item_data: int):
+    def __init__(self, module: DungeonGraphicsModule, item_data: int):
         super().__init__()
         self.module = module
         self.item_data = item_data
@@ -506,11 +506,8 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
                 chunk_idx, self.dpci, self.dpl.palettes
             )
             has_pal_ani = any(
-                (
-                    chunk.pal_idx >= 10
-                    and self.dpla.has_for_palette(chunk.pal_idx - 10)
-                    for chunk in chunk_data
-                )
+                chunk.pal_idx >= 10 and self.dpla.has_for_palette(chunk.pal_idx - 10)
+                for chunk in chunk_data
             )
             if not has_pal_ani:
                 len_pal_ani = 1

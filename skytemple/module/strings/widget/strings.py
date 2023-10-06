@@ -20,7 +20,7 @@ import logging
 import re
 import sys
 import typing
-from typing import TYPE_CHECKING, Optional, cast
+from typing import TYPE_CHECKING, cast
 from gi.repository import Gtk
 from gi.repository.Gtk import TreeModelFilter, TreeSelection
 from skytemple.controller.main import MainController
@@ -64,7 +64,7 @@ class StStringsStringsPage(Gtk.Box):
     string_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     search: Gtk.SearchEntry = cast(Gtk.SearchEntry, Gtk.Template.Child())
 
-    def __init__(self, module: "StringsModule", item_data: Pmd2Language):
+    def __init__(self, module: StringsModule, item_data: Pmd2Language):
         super().__init__()
         self.module = module
         self.item_data = item_data
@@ -75,7 +75,7 @@ class StStringsStringsPage(Gtk.Box):
         self._list_store: Gtk.ListStore
         self._string_cats: dict[str, Pmd2StringBlock]
         self._filter: TreeModelFilter
-        self._active_category: Optional[Pmd2StringBlock] = None
+        self._active_category: Pmd2StringBlock | None = None
         self._search_text = ""
         self.lang_name.set_text(f(_("{self.langname} Text Strings")))
         self._str = self.module.get_string_file(self.filename)

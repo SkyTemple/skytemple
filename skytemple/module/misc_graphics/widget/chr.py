@@ -47,7 +47,7 @@ class StMiscGraphicsChrPage(Gtk.Paned):
     chr_palette_variant: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
     table_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
-    def __init__(self, module: "MiscGraphicsModule", item_data: str):
+    def __init__(self, module: MiscGraphicsModule, item_data: str):
         super().__init__()
         self.module = module
         self.item_data = item_data

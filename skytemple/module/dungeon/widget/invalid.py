@@ -38,7 +38,7 @@ class StDungeonInvalidDungeonPage(Gtk.Box):
         Gtk.Adjustment, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "DungeonModule", item_data: "DungeonViewInfo"):
+    def __init__(self, module: DungeonModule, item_data: DungeonViewInfo):
         super().__init__()
         self.module = module
         self.item_data = item_data

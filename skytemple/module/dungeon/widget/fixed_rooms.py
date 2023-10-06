@@ -191,7 +191,7 @@ class StDungeonFixedRoomsPage(Gtk.Box):
     # If set, this entity will be focused on first load
     focus_entity_on_open = None
 
-    def __init__(self, module: "DungeonModule", item_data: int):
+    def __init__(self, module: DungeonModule, item_data: int):
         super().__init__()
         self.module = module
         self.item_data = item_data

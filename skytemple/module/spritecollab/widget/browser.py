@@ -155,11 +155,11 @@ class StSpritecollabBrowserPage(Gtk.Window):
         self._filter: Gtk.TreeModelFilter = None
         self._treev: Gtk.TreeView = None
         self._icon_renderer: ListIconRenderer = None
-        self._window: Optional[Gtk.Window] = None
+        self._window: Gtk.Window | None = None
         self._search_text: str = ""
         self._spriteserver_url: str = DEFAULT_SERVER
-        self._spritebrowser_url: Optional[str] = DEFAULT_SERVER_BROWSER
-        self._spriteclient: Optional[SpriteCollabClient] = None
+        self._spritebrowser_url: str | None = DEFAULT_SERVER_BROWSER
+        self._spriteclient: SpriteCollabClient | None = None
         self._disable_switch = True
         self._something_loading = False
         window = self.sc_window

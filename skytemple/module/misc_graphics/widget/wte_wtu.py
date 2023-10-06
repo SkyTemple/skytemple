@@ -17,7 +17,7 @@
 from __future__ import annotations
 import logging
 import sys
-from typing import TYPE_CHECKING, Optional, cast
+from typing import TYPE_CHECKING, cast
 import cairo
 from range_typed_integers import u32, u16, u16_checked
 from skytemple.core.error_handler import display_error
@@ -91,11 +91,11 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
     btn_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "MiscGraphicsModule", item_data: "WteOpenSpec"):
+    def __init__(self, module: MiscGraphicsModule, item_data: WteOpenSpec):
         super().__init__()
         self.module = module
         self.item_data = item_data
-        self.wtu: Optional[Wtu] = None
+        self.wtu: Wtu | None = None
         if item_data.in_dungeon_bin:
             self.wte: Wte = self.module.get_dungeon_bin_file(item_data.wte_filename)
             if item_data.wtu_filename is not None:

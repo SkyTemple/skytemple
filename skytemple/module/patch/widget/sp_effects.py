@@ -18,7 +18,7 @@ from __future__ import annotations
 import logging
 import sys
 import webbrowser
-from typing import TYPE_CHECKING, Optional, cast
+from typing import TYPE_CHECKING, cast
 from range_typed_integers import u16_checked, u16
 from skytemple.core.ui_utils import (
     REPO_MOVE_EFFECTS,
@@ -69,7 +69,7 @@ class StPatchSPEffectsPage(Gtk.Stack):
     btn_repo: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_asmeditor: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "PatchModule", item_data: None):
+    def __init__(self, module: PatchModule, item_data: None):
         super().__init__()
         self.module = module
         self.item_data = item_data
@@ -85,7 +85,7 @@ class StPatchSPEffectsPage(Gtk.Stack):
             self.on_cb_effect_ids_changed()
             stack.set_visible_child(self.box_list)
 
-    def _get_current_sp_effect(self) -> Optional[int]:
+    def _get_current_sp_effect(self) -> int | None:
         tree_store = self.sp_effects_store
         active_rows: list[Gtk.TreePath] = (
             self.sps_tree.get_selection().get_selected_rows()[1]

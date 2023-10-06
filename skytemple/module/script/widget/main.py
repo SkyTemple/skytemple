@@ -85,7 +85,7 @@ class StScriptMainPage(Gtk.Box):
         Gtk.CellRendererText, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "ScriptModule", item_data: int):
+    def __init__(self, module: ScriptModule, item_data: int):
         super().__init__()
         self.module = module
         self.item_data = item_data

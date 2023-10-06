@@ -174,7 +174,7 @@ class StPortraitPortraitPage(Gtk.Box):
     portrait_draw40: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     portrait_label40: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
 
-    def __init__(self, module: "PortraitModule", item_data: int, mark_as_modified_cb):
+    def __init__(self, module: PortraitModule, item_data: int, mark_as_modified_cb):
         super().__init__()
         self.module = module
         self.item_data = item_data

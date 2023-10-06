@@ -23,7 +23,7 @@ import re
 import sys
 import tempfile
 import webbrowser
-from typing import TYPE_CHECKING, Optional, Any, Callable, cast
+from typing import TYPE_CHECKING, Any, Callable, cast
 import cairosvg
 from gi.repository import Gtk, GLib, Gio, GdkPixbuf
 from range_typed_integers import u8, u16, i32, i32_checked, u16_checked, u8_checked, u32
@@ -117,13 +117,13 @@ class StMonsterLevelUpPage(Gtk.Notebook):
     egg_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     _last_open_tab_id = 0
 
-    def __init__(self, module: "MonsterModule", item_data: int):
+    def __init__(self, module: MonsterModule, item_data: int):
         super().__init__()
         self.module = module
         self.item_data = item_data
         self._string_provider = self.module.project.get_string_provider()
         self._move_names: dict[int, str] = {}
-        self._level_bin_entry: Optional[LevelBinEntry] = None
+        self._level_bin_entry: LevelBinEntry | None = None
         self._waza_p: WazaPProtocol = self.module.get_waza_p()
         self._support_webview = False
         self._webview = None

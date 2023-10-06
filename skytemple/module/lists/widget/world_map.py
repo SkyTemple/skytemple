@@ -65,20 +65,20 @@ class StListsWorldMapPage(Gtk.Box):
     cr_position: Gtk.CellRendererText = cast(Gtk.CellRendererText, Gtk.Template.Child())
     edit_selected: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
-    def __init__(self, module: "ListsModule", item_data: None):
+    def __init__(self, module: ListsModule, item_data: None):
         super().__init__()
         self.module = module
         self.item_data = item_data
-        self.map_bg_module: "MapBgModule" = module.project.get_module("map_bg")
-        self.drawer: Optional[WorldMapDrawer] = None
-        self.dialog_drawer: Optional[WorldMapDrawer] = None
+        self.map_bg_module: MapBgModule = module.project.get_module("map_bg")
+        self.drawer: WorldMapDrawer | None = None
+        self.dialog_drawer: WorldMapDrawer | None = None
         self._location_names: dict[int, str] = {}
         self._markers: list[MapMarkerPlacement] = []
         self._config: Pmd2Data
         self._tree_iters_by_idx: dict[int, Gtk.TreeIter] = {}
         self._level_id: int
-        self._edited_marker: Optional[MapMarkerPlacement] = None
-        self._edited_pos: Optional[tuple[int, int]] = None
+        self._edited_marker: MapMarkerPlacement | None = None
+        self._edited_pos: tuple[int, int] | None = None
         self._markers = self.module.get_world_map_markers()
         self._config = self.module.project.get_rom_module().get_static_data()
         # Build the location names list

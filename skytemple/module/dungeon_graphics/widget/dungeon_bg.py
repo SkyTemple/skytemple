@@ -16,7 +16,7 @@
 #  along with SkyTemple.  If not, see <https://www.gnu.org/licenses/>.
 from __future__ import annotations
 import itertools
-from typing import TYPE_CHECKING, Optional, cast
+from typing import TYPE_CHECKING, cast
 import cairo
 from gi.repository import Gtk, Gdk
 from skytemple.controller.main import MainController
@@ -180,7 +180,7 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
         Gtk.FileChooserButton, Gtk.Template.Child()
     )
 
-    def __init__(self, module: "DungeonGraphicsModule", item_data: int):
+    def __init__(self, module: DungeonGraphicsModule, item_data: int):
         super().__init__()
         self.module = module
         self.item_data = item_data
@@ -192,10 +192,10 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
         # Cairo surfaces for each tile in each layer for each frame
         # chunks_surfaces[chunk_idx][palette_animation_frame]
         self.chunks_surfaces: list[list[list[cairo.Surface]]] = []
-        self.drawer: Optional[Drawer] = None
-        self.current_icon_view_renderer: Optional[DrawerCellRenderer] = None
-        self.bg_draw: Optional[Gtk.DrawingArea] = None
-        self.bg_draw_event_box: Optional[Gtk.EventBox] = None
+        self.drawer: Drawer | None = None
+        self.current_icon_view_renderer: DrawerCellRenderer | None = None
+        self.bg_draw: Gtk.DrawingArea | None = None
+        self.bg_draw_event_box: Gtk.EventBox | None = None
         self.scale_factor = CanvasScale(1.0)
         self.bg_draw_is_clicked = False
         self._init_chunk_imgs()
@@ -407,11 +407,8 @@ class StDungeonGraphicsDungeonBgPage(Gtk.Box):
                 chunk_idx, self.dpci, self.dpl.palettes
             )
             has_pal_ani = any(
-                (
-                    chunk.pal_idx >= 10
-                    and self.dpla.has_for_palette(chunk.pal_idx - 10)
-                    for chunk in chunk_data
-                )
+                chunk.pal_idx >= 10 and self.dpla.has_for_palette(chunk.pal_idx - 10)
+                for chunk in chunk_data
             )
             if not has_pal_ani:
                 len_pal_ani = 1

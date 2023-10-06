@@ -42,13 +42,13 @@ class StScriptMapPage(Gtk.Box):
     generic_input_dialog_label: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     generic_input_dialog_entry: Gtk.Entry = cast(Gtk.Entry, Gtk.Template.Child())
 
-    def __init__(self, module: "ScriptModule", item_data: str):
+    def __init__(self, module: ScriptModule, item_data: str):
         super().__init__()
         self.module = module
         self.item_data = item_data
-        self._sub_enter: Optional[ItemTreeEntryRef] = None
-        self._sub_acting: Optional[ItemTreeEntryRef] = None
-        self._sub_sub: Optional[ItemTreeEntryRef] = None
+        self._sub_enter: ItemTreeEntryRef | None = None
+        self._sub_acting: ItemTreeEntryRef | None = None
+        self._sub_sub: ItemTreeEntryRef | None = None
         self.title.set_text(f(_('Script Scenes for "{}"').format(self.item_data)))
         self.desc.set_text(
             f(

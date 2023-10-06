@@ -70,7 +70,7 @@ class StDungeonGraphicsMainPage(Gtk.Box):
     )
     list_tree_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
-    def __init__(self, module: "DungeonGraphicsModule", item_data: None):
+    def __init__(self, module: DungeonGraphicsModule, item_data: None):
         super().__init__()
         self.module = module
         self.item_data = item_data
