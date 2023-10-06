@@ -37,7 +37,7 @@ class StSpriteObjectPage(Gtk.Box):
     file_name: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     draw_sprite: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     explanation_text: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
-    import_widget: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child("import"))
+    button_import: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     export: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     importimage: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
 
@@ -82,7 +82,7 @@ class StSpriteObjectPage(Gtk.Box):
         self.module.export_a_sprite(self.module.get_object_sprite_raw(self.item_data))
 
     @Gtk.Template.Callback()
-    def on_import_clicked(self, *args):
+    def on_button_import_clicked(self, *args):
         sprite = self.module.import_a_sprite()
         if sprite is None:
             return

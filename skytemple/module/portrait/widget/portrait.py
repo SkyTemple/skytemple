@@ -83,9 +83,7 @@ class StPortraitPortraitPage(Gtk.Box):
     image7: Gtk.Image = cast(Gtk.Image, Gtk.Template.Child())
     image8: Gtk.Image = cast(Gtk.Image, Gtk.Template.Child())
     image9: Gtk.Image = cast(Gtk.Image, Gtk.Template.Child())
-    import_widget: Gtk.MenuToolButton = cast(
-        Gtk.MenuToolButton, Gtk.Template.Child("import")
-    )
+    button_import: Gtk.MenuToolButton = cast(Gtk.MenuToolButton, Gtk.Template.Child())
     separate_import: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     spritebot_import: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     export: Gtk.MenuToolButton = cast(Gtk.MenuToolButton, Gtk.Template.Child())
@@ -263,7 +261,7 @@ class StPortraitPortraitPage(Gtk.Box):
         )
 
     @Gtk.Template.Callback()
-    def on_import_clicked(self, w: Gtk.MenuToolButton):
+    def on_button_import_clicked(self, w: Gtk.MenuToolButton):
         cast(Gtk.Menu, w.get_menu()).popup(
             None, None, None, None, 0, Gtk.get_current_event_time()
         )

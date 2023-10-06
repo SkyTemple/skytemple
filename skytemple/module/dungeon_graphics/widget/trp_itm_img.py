@@ -60,12 +60,12 @@ class StDungeonGraphicsTrpItmImgPage(Gtk.Box):
     btn_cancel: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     switch_import_palette: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
     switch_import_new: Gtk.Switch = cast(Gtk.Switch, Gtk.Template.Child())
-    import_widget: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child("import"))
+    button_import: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     entry_stack: Gtk.Stack = cast(Gtk.Stack, Gtk.Template.Child())
     no_entry_label: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     entry_viewer: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
-    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
+    draw_area: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     entry_id: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
     entry_palette: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
     lbl_name: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
@@ -83,7 +83,7 @@ class StDungeonGraphicsTrpItmImgPage(Gtk.Box):
         else:
             self.lbl_name.set_text(_("Traps"))
         self._init_sprites()
-        self.draw_widget.connect("draw", self.exec_draw)
+        self.draw_area.connect("draw", self.exec_draw)
 
     @Gtk.Template.Callback()
     def on_self_destroy(self, *args):
@@ -120,7 +120,7 @@ class StDungeonGraphicsTrpItmImgPage(Gtk.Box):
             self.img.to_pil(self.image_idx, self.palette_idx).save(fn)
 
     @Gtk.Template.Callback()
-    def on_import_clicked(self, w: Gtk.MenuToolButton):
+    def on_button_import_clicked(self, w: Gtk.MenuToolButton):
         fdialog = Gtk.FileChooserNative.new(
             _("Import image..."),
             MainController.window(),
@@ -203,7 +203,7 @@ class StDungeonGraphicsTrpItmImgPage(Gtk.Box):
                 (surface.width * IMAGE_ZOOM, surface.height * IMAGE_ZOOM)
             )
             self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
-            self.draw_widget.queue_draw()
+            self.draw_area.queue_draw()
         else:
             stack.set_visible_child(self.no_entry_label)
             self.surface = pil_to_cairo_surface(Image.new("RGBA", size=(1, 1)))

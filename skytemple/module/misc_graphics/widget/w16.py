@@ -42,7 +42,7 @@ class StMiscGraphicsW16Page(Gtk.Box):
     __gtype_name__ = "StMiscGraphicsW16Page"
     module: MiscGraphicsModule
     item_data: int
-    import_widget: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child("import"))
+    import_widget: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     grid: Gtk.Grid = cast(Gtk.Grid, Gtk.Template.Child())
 
@@ -85,7 +85,7 @@ class StMiscGraphicsW16Page(Gtk.Box):
                 img.save(filename)
 
     @Gtk.Template.Callback()
-    def on_import_clicked(self, *args):
+    def on_button_import_clicked(self, *args):
         md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT,

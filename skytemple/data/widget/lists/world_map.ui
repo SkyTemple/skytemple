@@ -322,7 +322,7 @@ The behavior for this is undefined.</property>
                                     <property name="can-focus">False</property>
                                     <signal name="button-press-event" handler="on_draw_event_button_press_event" swapped="no" />
                                     <child>
-                                      <object class="GtkDrawingArea" id="draw">
+                                      <object class="GtkDrawingArea" id="draw_area">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                       </object>

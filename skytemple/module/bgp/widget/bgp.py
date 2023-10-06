@@ -56,7 +56,7 @@ class StBgpBgpPage(Gtk.Box):
     men_bg_import: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     men_bg_export: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     men_tools_tilequant: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
-    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
+    draw_area: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     image1: Gtk.Image = cast(Gtk.Image, Gtk.Template.Child())
     dialog_bg_export: Gtk.Dialog = cast(Gtk.Dialog, Gtk.Template.Child())
     dialog_map_export_btn_close: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
@@ -76,7 +76,7 @@ class StBgpBgpPage(Gtk.Box):
         self.item_data = item_data
         self.bgp = self.module.get_bgp(self.item_data)
         self._reinit_image()
-        self.draw_widget.connect("draw", self.exec_draw)
+        self.draw_area.connect("draw", self.exec_draw)
 
     @Gtk.Template.Callback()
     def on_self_destroy(self, *args):
@@ -152,7 +152,7 @@ class StBgpBgpPage(Gtk.Box):
 
     def _reinit_image(self):
         self.surface = pil_to_cairo_surface(self.bgp.to_pil().convert("RGBA"))
-        self.draw_widget.queue_draw()
+        self.draw_area.queue_draw()
 
     def exec_draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:

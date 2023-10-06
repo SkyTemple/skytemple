@@ -44,8 +44,8 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
     module: MiscGraphicsModule
     item_data: str
     variation_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    import_widget: Gtk.MenuToolButton = cast(
-        Gtk.MenuToolButton, Gtk.Template.Child("import")
+    button_import: Gtk.MenuToolButton = cast(
+        Gtk.MenuToolButton, Gtk.Template.Child()
     )
     import_minimized: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
     import_full: Gtk.MenuItem = cast(Gtk.MenuItem, Gtk.Template.Child())
@@ -76,7 +76,7 @@ class StMiscGraphicsZMappaTPage(Gtk.Paned):
         )
 
     @Gtk.Template.Callback()
-    def on_import_clicked(self, w: Gtk.MenuToolButton):
+    def on_button_import_clicked(self, w: Gtk.MenuToolButton):
         cast(Gtk.Menu, w.get_menu()).popup(
             None, None, None, None, 0, Gtk.get_current_event_time()
         )
