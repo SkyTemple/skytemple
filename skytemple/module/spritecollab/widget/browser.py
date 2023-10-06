@@ -151,32 +151,24 @@ class StSpritecollabBrowserPage(Gtk.Window):
         self.module = module
         self.item_data = item_data
         self.was_realized = False
-        self._store: Gtk.ListStore = None
-        self._filter: Gtk.TreeModelFilter = None
-        self._treev: Gtk.TreeView = None
-        self._icon_renderer: ListIconRenderer = None
-        self._window: Gtk.Window | None = None
         self._search_text: str = ""
         self._spriteserver_url: str = DEFAULT_SERVER
         self._spritebrowser_url: str | None = DEFAULT_SERVER_BROWSER
         self._spriteclient: SpriteCollabClient | None = None
         self._disable_switch = True
         self._something_loading = False
-        window = self.sc_window
-        window.set_parent(MainController.window())
-        if not self.was_realized:
-            window.resize(1100, 720)
-            # Filtered, Name, ID, Display Label, Form Paths (List[str])
-            self._store = Gtk.ListStore(bool, str, int, str, object)
-            self._filter = self._store.filter_new()
-            self._treev = self.sc_tree
-            self._treev.set_model(self._filter)
-            self._filter.set_visible_column(0)
-            self.sc_paned.set_position(200)
-            if self._icon_renderer is None:
-                self._icon_renderer = ListIconRenderer(3, False)
-            self.reinit()
-            self.was_realized = True
+        self.set_parent(MainController.window())
+        self.resize(1100, 720)
+        # Filtered, Name, ID, Display Label, Form Paths (List[str])
+        self._store = Gtk.ListStore(bool, str, int, str, object)
+        self._filter = self._store.filter_new()
+        self.sc_tree.set_model(self._filter)
+        self._filter.set_visible_column(0)
+        self.sc_paned.set_position(200)
+        self._icon_renderer = ListIconRenderer(3, False)
+        self.sc_diag_settings.set_transient_for(self)
+        self.sc_diag_settings.set_attached_to(self)
+        self.reinit()
 
     @Gtk.Template.Callback()
     def on_self_destroy(self, *args):
@@ -189,33 +181,19 @@ class StSpritecollabBrowserPage(Gtk.Window):
             cls._instance = cls(module, None)
         return cls._instance
 
-    def show(self):
-        if self._window is not None:
-            was_visible = self._window.is_visible()
-            self._window.present()
-            if not was_visible:
-                GLib.idle_add(lambda: self.reinit())
-            return
-        self._window = self.get_view()
-        self._window.show()
-        # cool bug?
-        self.sc_left.set_hexpand(True)
-        GLib.idle_add(lambda: self.sc_left.set_hexpand(False))
-
     def reinit(self):
         self._disable_switch = True
-        window = self.sc_window
         external_button = self.sc_external
         info_bar = self.sc_infobar
         stack = self.sc_stack
         search = self.sc_search
         if self._spritebrowser_url is not None:
-            cast(Gtk.HeaderBar, window.get_titlebar()).set_subtitle(
+            cast(Gtk.HeaderBar, self.get_titlebar()).set_subtitle(
                 self._spritebrowser_url
             )
             external_button.set_sensitive(True)
         else:
-            cast(Gtk.HeaderBar, window.get_titlebar()).set_subtitle(
+            cast(Gtk.HeaderBar, self.get_titlebar()).set_subtitle(
                 self._spriteserver_url
             )
             external_button.set_sensitive(False)
@@ -266,7 +244,7 @@ class StSpritecollabBrowserPage(Gtk.Window):
                 "Failed loading list of Pokémon from the configured SpriteCollab server."
             ),
             _("Error Updating Sprites"),
-            window=self.sc_window,
+            window=self,
         )
         info_bar.set_revealed(False)
 
@@ -460,7 +438,7 @@ class StSpritecollabBrowserPage(Gtk.Window):
             error,
             _("Failed loading this Pokémon."),
             _("Error Loading Pokémon"),
-            window=self.sc_window,
+            window=self,
         )
         stack.set_visible_child(self.sc_page_welcome)
         self._something_loading = False
@@ -509,7 +487,7 @@ class StSpritecollabBrowserPage(Gtk.Window):
         portraits_button: Gtk.Button = Gtk.Button.new_with_label(_("Apply Portraits"))
         portraits_button.connect(
             "clicked",
-            lambda *args: self.module.apply_portraits(self.sc_window, portrait),
+            lambda *args: self.module.apply_portraits(self, portrait),
         )
         new_child.attach(portraits_button, 0, 3, 1, 1)
         # Sprites
@@ -538,7 +516,7 @@ class StSpritecollabBrowserPage(Gtk.Window):
         sprite_button.connect(
             "clicked",
             lambda *args: self.module.apply_sprites(
-                self.sc_window, assert_not_none(self._spriteclient), form
+                self, assert_not_none(self._spriteclient), form
             ),
         )
         new_child.attach(sprite_button, 1, 3, 1, 1)
