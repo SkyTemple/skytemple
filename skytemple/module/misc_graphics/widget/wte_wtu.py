@@ -72,9 +72,9 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
     image_type_setting: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     chk_discard_palette: Gtk.CheckButton = cast(Gtk.CheckButton, Gtk.Template.Child())
     wtu_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    import_widget: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child("import"))
+    button_import: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
-    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
+    draw_area: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     info_image_only: Gtk.InfoBar = cast(Gtk.InfoBar, Gtk.Template.Child())
     info_palette_only: Gtk.InfoBar = cast(Gtk.InfoBar, Gtk.Template.Child())
     lbl_canvas_size: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
@@ -107,7 +107,7 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
         self._init_wtu()
         self._reinit_image()
         self._init_wte()
-        self.draw_widget.connect("draw", self.exec_draw)
+        self.draw_area.connect("draw", self.exec_draw)
 
     @Gtk.Template.Callback()
     def on_self_destroy(self, *args):
@@ -137,7 +137,7 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
                 self.wte.to_pil_palette().save(fn)
 
     @Gtk.Template.Callback()
-    def on_import_clicked(self, *args):
+    def on_button_import_clicked(self, *args):
         dialog = self.dialog_import_settings
         self.image_path_setting.unselect_all()
         # Init available categories
@@ -220,7 +220,7 @@ class StMiscGraphicsWteWtuPage(Gtk.Paned):
         except ValueError:
             val = 0
         self.surface = pil_to_cairo_surface(self.wte.to_pil_canvas(val).convert("RGBA"))
-        self.draw_widget.queue_draw()
+        self.draw_area.queue_draw()
 
     @Gtk.Template.Callback()
     def on_wte_variant_changed(self, widget):

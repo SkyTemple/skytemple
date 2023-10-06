@@ -61,7 +61,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
     export_dungeon: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     import_dungeon: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     explanation_text: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
-    import_widget: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child("import"))
+    button_import: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     export: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     import_new: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     import_export_zip: Gtk.CheckButton = cast(Gtk.CheckButton, Gtk.Template.Child())
@@ -230,7 +230,7 @@ class StSpriteMonsterSpritePage(Gtk.Box):
                 )
 
     @Gtk.Template.Callback()
-    def on_import_clicked(self, w: Gtk.MenuToolButton):
+    def on_button_import_clicked(self, w: Gtk.MenuToolButton):
         md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT,

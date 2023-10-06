@@ -76,11 +76,11 @@ Warning: SkyTemple does not validate the files you import.</property>
                 <property name="valign">end</property>
                 <property name="spacing">20</property>
                 <child>
-                  <object class="GtkButton" id="import">
+                  <object class="GtkButton" id="button_import">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
-                    <signal name="clicked" handler="on_import_clicked" swapped="no" />
+                    <signal name="clicked" handler="on_button_import_clicked" swapped="no" />
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>

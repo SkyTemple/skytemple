@@ -41,9 +41,9 @@ class StMiscGraphicsChrPage(Gtk.Paned):
     __gtype_name__ = "StMiscGraphicsChrPage"
     module: MiscGraphicsModule
     item_data: str
-    import_widget: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child("import"))
+    button_import: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
-    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
+    draw_area: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     chr_palette_variant: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
     table_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
@@ -53,7 +53,7 @@ class StMiscGraphicsChrPage(Gtk.Paned):
         self.item_data = item_data
         self.chr: Chr = self.module.get_chr(self.item_data)
         self._init_chr()
-        self.draw_widget.connect("draw", self.exec_draw)
+        self.draw_area.connect("draw", self.exec_draw)
 
     @Gtk.Template.Callback()
     def on_export_clicked(self, w: Gtk.MenuToolButton):
@@ -73,7 +73,7 @@ class StMiscGraphicsChrPage(Gtk.Paned):
             self.chr.to_pil().save(fn)
 
     @Gtk.Template.Callback()
-    def on_import_clicked(self, w: Gtk.MenuToolButton):
+    def on_button_import_clicked(self, w: Gtk.MenuToolButton):
         dialog = Gtk.FileChooserNative.new(
             _("Import image as indexed PNG..."),
             MainController.window(),
@@ -110,7 +110,7 @@ class StMiscGraphicsChrPage(Gtk.Paned):
         variant = int(self.chr_palette_variant.get_text())
         surface = self.chr.to_pil(variant)
         self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
-        self.draw_widget.queue_draw()
+        self.draw_area.queue_draw()
 
     def exec_draw(self, wdg, ctx: cairo.Context, *args):
         if self.surface:

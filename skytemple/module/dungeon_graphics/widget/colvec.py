@@ -52,7 +52,7 @@ class StDungeonGraphicsColvecPage(Gtk.Paned):
     item_data: str
     cb_tileset_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     cb_weather_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    import_widget: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child("import"))
+    button_import: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     cb_tileset: Gtk.ComboBox = cast(Gtk.ComboBox, Gtk.Template.Child())
     description1: Gtk.CellRendererText = cast(
@@ -103,7 +103,7 @@ class StDungeonGraphicsColvecPage(Gtk.Paned):
             self.colvec.to_pil(v).save(fn)
 
     @Gtk.Template.Callback()
-    def on_import_clicked(self, *args):
+    def on_button_import_clicked(self, *args):
         cb_store = self.cb_weather_store
         cb = self.cb_weather
         it = cb.get_active_iter()

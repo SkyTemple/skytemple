@@ -48,12 +48,12 @@ class StMiscGraphicsGraphicFontPage(Gtk.Paned):
     btn_ok: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_cancel: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     nb_entries_import: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
-    import_widget: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child("import"))
+    button_import: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     entry_stack: Gtk.Stack = cast(Gtk.Stack, Gtk.Template.Child())
     no_entry_label: Gtk.Label = cast(Gtk.Label, Gtk.Template.Child())
     entry_viewer: Gtk.Box = cast(Gtk.Box, Gtk.Template.Child())
-    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
+    draw_area: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     entry_id: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
     table_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
 
@@ -66,7 +66,7 @@ class StMiscGraphicsGraphicFontPage(Gtk.Paned):
         )
         assert self.font is not None
         self._init_font()
-        self.draw_widget.connect("draw", self.exec_draw)
+        self.draw_area.connect("draw", self.exec_draw)
 
     @Gtk.Template.Callback()
     def on_self_destroy(self, *args):
@@ -94,7 +94,7 @@ class StMiscGraphicsGraphicFontPage(Gtk.Paned):
                     e.save(path)
 
     @Gtk.Template.Callback()
-    def on_import_clicked(self, w: Gtk.MenuToolButton):
+    def on_button_import_clicked(self, w: Gtk.MenuToolButton):
         md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
@@ -183,7 +183,7 @@ class StMiscGraphicsGraphicFontPage(Gtk.Paned):
                 (surface.width * IMAGE_ZOOM, surface.height * IMAGE_ZOOM)
             )
             self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
-            self.draw_widget.queue_draw()
+            self.draw_area.queue_draw()
         else:
             stack.set_visible_child(self.no_entry_label)
             self.surface = pil_to_cairo_surface(Image.new("RGBA", size=(1, 1)))

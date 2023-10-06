@@ -57,7 +57,7 @@ class StListsWorldMapPage(Gtk.Box):
     diag_draw: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     list_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
     draw_event: Gtk.EventBox = cast(Gtk.EventBox, Gtk.Template.Child())
-    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
+    draw_area: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     edit_map_bg: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     tree_selection: Gtk.TreeSelection = cast(Gtk.TreeSelection, Gtk.Template.Child())
@@ -102,7 +102,7 @@ class StListsWorldMapPage(Gtk.Box):
             if WORLD_MAP_DEFAULT_ID in self._config.script_data.level_list__by_id
             else 0
         )
-        self._change_map_bg(self._level_id, self.draw_widget, self.drawer)
+        self._change_map_bg(self._level_id, self.draw_area, self.drawer)
 
     @Gtk.Template.Callback()
     def on_self_destroy(self, *args):
@@ -157,7 +157,7 @@ class StListsWorldMapPage(Gtk.Box):
                 if self._level_id != ll_by_name[map_name].id:
                     self._level_id = ll_by_name[map_name].id
                     self._change_map_bg(
-                        ll_by_name[map_name].id, self.draw_widget, self.drawer
+                        ll_by_name[map_name].id, self.draw_area, self.drawer
                     )
 
     @Gtk.Template.Callback()
@@ -196,7 +196,7 @@ class StListsWorldMapPage(Gtk.Box):
         )
 
     def _init_drawer(self):
-        draw = self.draw_widget
+        draw = self.draw_area
         self.drawer = WorldMapDrawer(draw, self._markers, self._get_dungeon_name, SCALE)
         self.drawer.start()
         draw = self.diag_draw
@@ -393,7 +393,7 @@ class StListsWorldMapPage(Gtk.Box):
                 ]
                 if marker.level_id != self._level_id:
                     self._level_id = marker.level_id
-                    self._change_map_bg(marker.level_id, self.draw_widget, self.drawer)
+                    self._change_map_bg(marker.level_id, self.draw_area, self.drawer)
                 elif self.drawer is not None:
                     self.drawer.draw_area.queue_draw()
                 self.module.set_world_map_markers(self._markers)

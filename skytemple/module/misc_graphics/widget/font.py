@@ -62,9 +62,9 @@ class StMiscGraphicsFontPage(Gtk.Paned):
     btn_cancel: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     entry_char_id: Gtk.SpinButton = cast(Gtk.SpinButton, Gtk.Template.Child())
     table_store: Gtk.ListStore = cast(Gtk.ListStore, Gtk.Template.Child())
-    import_widget: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child("import"))
+    button_import: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
-    draw_widget: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child("draw"))
+    draw_area: Gtk.DrawingArea = cast(Gtk.DrawingArea, Gtk.Template.Child())
     entry_tree: Gtk.TreeView = cast(Gtk.TreeView, Gtk.Template.Child())
     btn_add: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
     btn_remove: Gtk.Button = cast(Gtk.Button, Gtk.Template.Child())
@@ -91,7 +91,7 @@ class StMiscGraphicsFontPage(Gtk.Paned):
             self._column_mapping.append((renderer, p))
             entry_tree.append_column(column)
         self._switch_table()
-        self.draw_widget.connect("draw", self.exec_draw)
+        self.draw_area.connect("draw", self.exec_draw)
 
     @Gtk.Template.Callback()
     def on_self_destroy(self, *args):
@@ -119,7 +119,7 @@ class StMiscGraphicsFontPage(Gtk.Paned):
                 table.save(os.path.join(fn, f"table-{i}.png"))
 
     @Gtk.Template.Callback()
-    def on_import_clicked(self, w: Gtk.MenuToolButton):
+    def on_button_import_clicked(self, w: Gtk.MenuToolButton):
         md = SkyTempleMessageDialog(
             MainController.window(),
             Gtk.DialogFlags.DESTROY_WITH_PARENT,
@@ -193,7 +193,7 @@ class StMiscGraphicsFontPage(Gtk.Paned):
                 (self.tables[v].width * IMAGE_ZOOM, self.tables[v].height * IMAGE_ZOOM)
             )
             self.surface = pil_to_cairo_surface(surface.convert("RGBA"))
-            self.draw_widget.queue_draw()
+            self.draw_area.queue_draw()
 
     @Gtk.Template.Callback()
     def on_entry_char_id_changed(self, widget):
@@ -275,11 +275,11 @@ class StMiscGraphicsFontPage(Gtk.Paned):
                 store[path][i] = text
                 self.entries[int(path)].set_properties({c[1]: int(text)})
         self.module.mark_font_as_modified(self.item_data)
-        self.draw_widget.queue_draw()
+        self.draw_area.queue_draw()
 
     @Gtk.Template.Callback()
     def on_entry_tree_selection_changed(self, *args):
-        self.draw_widget.queue_draw()
+        self.draw_area.queue_draw()
 
     @Gtk.Template.Callback()
     def on_font_table_changed(self, widget):
