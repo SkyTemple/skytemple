@@ -51,11 +51,13 @@ class StPatchPmdSkyDebugPage(Gtk.Box):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_signals = True
         self._selected_binary: str | None = None
         self._selected_symbol_type: str | None = None
         self._all_selected_binaries: list[str] = []
         self._all_symbol_types: list[str] = ["data", "functions"]
         self.load()
+        self._suppress_signals = False
 
     @Gtk.Template.Callback()
     def on_self_destroy(self, *args):
@@ -67,17 +69,19 @@ class StPatchPmdSkyDebugPage(Gtk.Box):
     def on_symbol_notebook_switch_page(
         self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num
     ):
-        self._selected_binary = self._all_selected_binaries[page_num]
-        self.reset_all()
-        self.refresh()
+        if not self._suppress_signals:
+            self._selected_binary = self._all_selected_binaries[page_num]
+            self.reset_all()
+            self.refresh()
 
     @Gtk.Template.Callback()
     def on_symbol_notebook_bin_switch_page(
         self, notebook: Gtk.Notebook, page: Gtk.Widget, page_num
     ):
-        self._selected_symbol_type = self._all_symbol_types[page_num]
-        self.reset_all()
-        self.refresh()
+        if not self._suppress_signals:
+            self._selected_symbol_type = self._all_symbol_types[page_num]
+            self.reset_all()
+            self.refresh()
 
     def reset_all(self):
         symbol_box = self.symbol_box

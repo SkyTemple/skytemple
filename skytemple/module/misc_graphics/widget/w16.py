@@ -42,7 +42,7 @@ class StMiscGraphicsW16Page(Gtk.Box):
     __gtype_name__ = "StMiscGraphicsW16Page"
     module: MiscGraphicsModule
     item_data: int
-    import_widget: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
+    button_import: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     export: Gtk.ToolButton = cast(Gtk.ToolButton, Gtk.Template.Child())
     grid: Gtk.Grid = cast(Gtk.Grid, Gtk.Template.Child())
 
