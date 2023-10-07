@@ -68,6 +68,7 @@ class StStringsStringsPage(Gtk.Box):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_signals = True
         self.langname = item_data.name_localized
         self.filename = item_data.filename
         self._str: Str
@@ -86,6 +87,7 @@ class StStringsStringsPage(Gtk.Box):
         )
         self.refresh_cats()
         self.refresh_list()
+        self._suppress_signals = False
 
     def on_cr_string_edited(self, widget, path, text):
         idx = self._filter[path][0] - 1
@@ -129,6 +131,8 @@ class StStringsStringsPage(Gtk.Box):
     @Gtk.Template.Callback()
     def on_category_tree_selection_changed(self, selection: TreeSelection):
         """Open a file selected in a tree"""
+        if self._suppress_signals:
+            return
         model, treeiter = selection.get_selected()
         if treeiter is not None and model is not None:
             self._active_category = model[treeiter][1]
@@ -136,6 +140,8 @@ class StStringsStringsPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_search_search_changed(self, search: Gtk.SearchEntry):
+        if self._suppress_signals:
+            return
         self._search_text = search.get_text()
         self._filter.refilter()
 

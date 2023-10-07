@@ -123,12 +123,22 @@ class RecruitmentListController(ListBaseController):
             path
         ][:]
         a_id = int(a_id)
+        species_before = self._species[a_id]
+        level_before = self._levels[a_id]
+        location_before = self._locations[a_id]
         self._species[a_id] = u16(int(entid))
         self._levels[a_id] = u16(int(level))
         self._locations[a_id] = u8(int(location_id))
         logger.debug(f"Updated list entry {a_id}: {entid}, {level}, {location_id}")
 
-        self.module.set_recruitment_list(self._species, self._levels, self._locations)
+        if (
+            species_before != self._species[a_id]
+            or level_before != self._levels[a_id]
+            or location_before != self._locations[a_id]
+        ):
+            self.module.set_recruitment_list(
+                self._species, self._levels, self._locations
+            )
 
     def refresh_list(self):
         tree: Gtk.TreeView = self.get_tree()
