@@ -60,13 +60,17 @@ class StListsMiscSettingsPage(Gtk.Box):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_signals = True
         self._string_provider = module.project.get_string_provider()
         self._init_combos()
         self._init_values()
+        self._suppress_signals = False
 
     @Gtk.Template.Callback()
     @catch_overflow(u8)
     def on_entry_text_speed_changed(self, widget, *args):
+        if self._suppress_signals:
+            return
         try:
             val = u8_checked(int(widget.get_text()))
         except ValueError:
@@ -80,6 +84,8 @@ class StListsMiscSettingsPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_cb_main_menu_music_changed(self, widget: Gtk.ComboBox, *args):
+        if self._suppress_signals:
+            return
         model, cbiter = (widget.get_model(), widget.get_active_iter())
         if model is not None and cbiter is not None and (cbiter != []):
             static_data = self.module.project.get_rom_module().get_static_data()
@@ -98,6 +104,8 @@ class StListsMiscSettingsPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_entry_normal_spawn_delay_changed(self, widget, *args):
+        if self._suppress_signals:
+            return
         try:
             val = u16_checked(int(widget.get_text()))
         except ValueError:
@@ -112,6 +120,8 @@ class StListsMiscSettingsPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_entry_stolen_spawn_delay_changed(self, widget, *args):
+        if self._suppress_signals:
+            return
         try:
             val = u16_checked(int(widget.get_text()))
         except ValueError:
@@ -125,6 +135,8 @@ class StListsMiscSettingsPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_entry_belly_lost_changed(self, widget, *args):
+        if self._suppress_signals:
+            return
         try:
             val = float(widget.get_text())
         except ValueError:
@@ -139,6 +151,8 @@ class StListsMiscSettingsPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_entry_belly_lost_wtw_changed(self, widget, *args):
+        if self._suppress_signals:
+            return
         try:
             val = u16_checked(int(widget.get_text()))
         except ValueError:
@@ -155,6 +169,8 @@ class StListsMiscSettingsPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_entry_belly_lost_wtw_1000_changed(self, widget, *args):
+        if self._suppress_signals:
+            return
         try:
             val = u16_checked(int(widget.get_text()))
         except ValueError:
@@ -171,6 +187,8 @@ class StListsMiscSettingsPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_entry_ginseng_3_chance_changed(self, widget, *args):
+        if self._suppress_signals:
+            return
         try:
             val = u16_checked(int(widget.get_text()))
         except ValueError:
@@ -187,6 +205,8 @@ class StListsMiscSettingsPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_entry_life_seed_changed(self, widget, *args):
+        if self._suppress_signals:
+            return
         try:
             val = u16_checked(int(widget.get_text()))
         except ValueError:
@@ -201,6 +221,8 @@ class StListsMiscSettingsPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_entry_oran_berry_changed(self, widget, *args):
+        if self._suppress_signals:
+            return
         try:
             val = u16_checked(int(widget.get_text()))
         except ValueError:
@@ -215,6 +237,8 @@ class StListsMiscSettingsPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_entry_sitrus_berry_changed(self, widget, *args):
+        if self._suppress_signals:
+            return
         try:
             val = u16_checked(int(widget.get_text()))
         except ValueError:
@@ -229,6 +253,8 @@ class StListsMiscSettingsPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_entry_burn_damage_delay_changed(self, widget, *args):
+        if self._suppress_signals:
+            return
         try:
             val = u16_checked(int(widget.get_text()))
         except ValueError:
@@ -245,6 +271,8 @@ class StListsMiscSettingsPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_entry_poison_damage_delay_changed(self, widget, *args):
+        if self._suppress_signals:
+            return
         try:
             val = u16_checked(int(widget.get_text()))
         except ValueError:
@@ -261,6 +289,8 @@ class StListsMiscSettingsPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_entry_bad_poison_damage_delay_changed(self, widget, *args):
+        if self._suppress_signals:
+            return
         try:
             val = u16_checked(int(widget.get_text()))
         except ValueError:

@@ -62,51 +62,56 @@ class StListsDungeonMusicPage(Gtk.Box):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_signals = True
         self._string_provider = module.project.get_string_provider()
         self._music_list, self._random_list = self.module.get_dungeon_music_spec()
         self._init_cr_stores()
         self._init_values()
+        self._suppress_signals = False
 
     @Gtk.Template.Callback()
     @glib_async
     def on_cr_tracks_track_changed(self, widget, path, new_iter, *args):
-        track_store = self.store_tracks
-        cb_store = self.store_track_name
-        track_store[path][1] = cb_store[new_iter][1]
-        self._music_list[int(track_store[path][0])] = DungeonMusicEntry(
-            None, cb_store[new_iter][0], cb_store[new_iter][2]
-        )
-        self.module.set_dungeon_music(self._music_list, self._random_list)
+        if not self._suppress_signals:
+            track_store = self.store_tracks
+            cb_store = self.store_track_name
+            track_store[path][1] = cb_store[new_iter][1]
+            self._music_list[int(track_store[path][0])] = DungeonMusicEntry(
+                None, cb_store[new_iter][0], cb_store[new_iter][2]
+            )
+            self.module.set_dungeon_music(self._music_list, self._random_list)
 
     @Gtk.Template.Callback()
     @glib_async
     def on_cr_random_track1_changed(self, store, path, new_iter):
-        track_store = self.store_random_tracks
-        cb_store = self.store_track_name_single
-        track_store[path][1] = cb_store[new_iter][1]
-        t = self._random_list[int(track_store[path][0])]
-        self._random_list[int(track_store[path][0])] = (
-            cb_store[new_iter][0],
-            t[1],
-            t[2],
-            t[3],
-        )
-        self.module.set_dungeon_music(self._music_list, self._random_list)
+        if not self._suppress_signals:
+            track_store = self.store_random_tracks
+            cb_store = self.store_track_name_single
+            track_store[path][1] = cb_store[new_iter][1]
+            t = self._random_list[int(track_store[path][0])]
+            self._random_list[int(track_store[path][0])] = (
+                cb_store[new_iter][0],
+                t[1],
+                t[2],
+                t[3],
+            )
+            self.module.set_dungeon_music(self._music_list, self._random_list)
 
     @Gtk.Template.Callback()
     @glib_async
     def on_cr_random_track2_changed(self, widget, path, new_iter, *args):
-        track_store = self.store_random_tracks
-        cb_store = self.store_track_name_single
-        track_store[path][2] = cb_store[new_iter][1]
-        t = self._random_list[int(track_store[path][0])]
-        self._random_list[int(track_store[path][0])] = (
-            t[0],
-            cb_store[new_iter][0],
-            t[2],
-            t[3],
-        )
-        self.module.set_dungeon_music(self._music_list, self._random_list)
+        if not self._suppress_signals:
+            track_store = self.store_random_tracks
+            cb_store = self.store_track_name_single
+            track_store[path][2] = cb_store[new_iter][1]
+            t = self._random_list[int(track_store[path][0])]
+            self._random_list[int(track_store[path][0])] = (
+                t[0],
+                cb_store[new_iter][0],
+                t[2],
+                t[3],
+            )
+            self.module.set_dungeon_music(self._music_list, self._random_list)
 
     @Gtk.Template.Callback()
     @glib_async
@@ -126,17 +131,18 @@ class StListsDungeonMusicPage(Gtk.Box):
     @Gtk.Template.Callback()
     @glib_async
     def on_cr_random_track4_changed(self, widget, path, new_iter, *args):
-        track_store = self.store_random_tracks
-        cb_store = self.store_track_name_single
-        track_store[path][4] = cb_store[new_iter][1]
-        t = self._random_list[int(track_store[path][0])]
-        self._random_list[int(track_store[path][0])] = (
-            t[0],
-            t[1],
-            t[2],
-            cb_store[new_iter][0],
-        )
-        self.module.set_dungeon_music(self._music_list, self._random_list)
+        if not self._suppress_signals:
+            track_store = self.store_random_tracks
+            cb_store = self.store_track_name_single
+            track_store[path][4] = cb_store[new_iter][1]
+            t = self._random_list[int(track_store[path][0])]
+            self._random_list[int(track_store[path][0])] = (
+                t[0],
+                t[1],
+                t[2],
+                cb_store[new_iter][0],
+            )
+            self.module.set_dungeon_music(self._music_list, self._random_list)
 
     def _init_cr_stores(self):
         music_entries = (

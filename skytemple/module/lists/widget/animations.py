@@ -142,6 +142,7 @@ class StListsAnimationsPage(Gtk.Stack):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_signals = True
         self.sp_effects = None
         self._string_provider = module.project.get_string_provider()
         if not self.module.has_animations():
@@ -201,6 +202,7 @@ class StListsAnimationsPage(Gtk.Stack):
             tree_store.append(x)
         self._update_general()
         self._update_moves()
+        self._suppress_signals = False
         self.on_cb_filter_move_changed()
 
     def _get_move_filter_id(self):
@@ -265,33 +267,34 @@ class StListsAnimationsPage(Gtk.Stack):
 
     @Gtk.Template.Callback()
     def on_cb_filter_move_changed(self, *args):
-        cb = self.cb_filter_move
-        if cb.get_active_iter() is None:
-            return
-        tree_store = self.spec_store
-        tree_store.clear()
-        move_id = self._get_move_filter_id()
-        if move_id < 0:
-            data = self.animations.special_move_table
-            delta = 0
-        else:
-            mv = self.animations.move_table[move_id]
-            delta = mv.spec_start
-            data = self.animations.special_move_table[
-                mv.spec_start : mv.spec_start + mv.spec_entries
-            ]
-        for i, e in enumerate(data):
-            tree_store.append(
-                [
-                    delta + i,
-                    e.pkmn_id,
-                    e.animation,
-                    e.point.value,
-                    e.sfx,
-                    self._get_pkmn_name(e.pkmn_id),
-                    e.point.description,
+        if not self._suppress_signals:
+            cb = self.cb_filter_move
+            if cb.get_active_iter() is None:
+                return
+            tree_store = self.spec_store
+            tree_store.clear()
+            move_id = self._get_move_filter_id()
+            if move_id < 0:
+                data = self.animations.special_move_table
+                delta = 0
+            else:
+                mv = self.animations.move_table[move_id]
+                delta = mv.spec_start
+                data = self.animations.special_move_table[
+                    mv.spec_start : mv.spec_start + mv.spec_entries
                 ]
-            )
+            for i, e in enumerate(data):
+                tree_store.append(
+                    [
+                        delta + i,
+                        e.pkmn_id,
+                        e.animation,
+                        e.point.value,
+                        e.sfx,
+                        self._get_pkmn_name(e.pkmn_id),
+                        e.point.description,
+                    ]
+                )
 
     @Gtk.Template.Callback()
     def on_spec_entity_editing_started(self, renderer, editable, path):
@@ -369,14 +372,15 @@ class StListsAnimationsPage(Gtk.Stack):
     @Gtk.Template.Callback()
     @glib_async
     def on_spec_point_changed(self, w, treepath, treeiter):
-        store_spec = self.spec_store
-        store_type = self.point_store
-        store_spec[treepath][3] = store_type[treeiter][0]
-        store_spec[treepath][6] = store_type[treeiter][1]
-        self.animations.special_move_table[
-            store_spec[treepath][0]
-        ].point = AnimPointType(store_type[treeiter][0])  # type: ignore
-        self.module.mark_animations_as_modified()
+        if not self._suppress_signals:
+            store_spec = self.spec_store
+            store_type = self.point_store
+            store_spec[treepath][3] = store_type[treeiter][0]
+            store_spec[treepath][6] = store_type[treeiter][1]
+            self.animations.special_move_table[
+                store_spec[treepath][0]
+            ].point = AnimPointType(store_type[treeiter][0])  # type: ignore
+            self.module.mark_animations_as_modified()
 
     @Gtk.Template.Callback()
     def on_btn_remove_spec_clicked(self, *args):
@@ -488,14 +492,15 @@ class StListsAnimationsPage(Gtk.Stack):
     @Gtk.Template.Callback()
     @glib_async
     def on_move_point_changed(self, w, treepath, treeiter):
-        store_move = self.moves_store
-        store_type = self.point_store
-        store_move[treepath][13] = store_type[treeiter][0]
-        store_move[treepath][17] = store_type[treeiter][1]
-        self.animations.move_table[store_move[treepath][0]].point = AnimPointType(
-            store_type[treeiter][0]
-        )  # type: ignore
-        self.module.mark_animations_as_modified()
+        if not self._suppress_signals:
+            store_move = self.moves_store
+            store_type = self.point_store
+            store_move[treepath][13] = store_type[treeiter][0]
+            store_move[treepath][17] = store_type[treeiter][1]
+            self.animations.move_table[store_move[treepath][0]].point = AnimPointType(
+                store_type[treeiter][0]
+            )  # type: ignore
+            self.module.mark_animations_as_modified()
 
     @Gtk.Template.Callback()
     def on_move_sfx_edited(self, widget, path, text):
@@ -558,14 +563,15 @@ class StListsAnimationsPage(Gtk.Stack):
     @Gtk.Template.Callback()
     @glib_async
     def on_gen_file_type_changed(self, w, treepath, treeiter):
-        store_gen = self.general_store
-        store_type = self.type_store
-        store_gen[treepath][1] = store_type[treeiter][0]
-        store_gen[treepath][11] = store_type[treeiter][1]
-        self.animations.general_table[store_gen[treepath][0]].anim_type = AnimType(
-            store_type[treeiter][0]
-        )  # type: ignore
-        self.module.mark_animations_as_modified()
+        if not self._suppress_signals:
+            store_gen = self.general_store
+            store_type = self.type_store
+            store_gen[treepath][1] = store_type[treeiter][0]
+            store_gen[treepath][11] = store_type[treeiter][1]
+            self.animations.general_table[store_gen[treepath][0]].anim_type = AnimType(
+                store_type[treeiter][0]
+            )  # type: ignore
+            self.module.mark_animations_as_modified()
 
     @Gtk.Template.Callback()
     def on_gen_file_id_edited(self, widget, path, text):
@@ -594,14 +600,15 @@ class StListsAnimationsPage(Gtk.Stack):
     @Gtk.Template.Callback()
     @glib_async
     def on_gen_point_changed(self, w, treepath, treeiter):
-        store_gen = self.general_store
-        store_type = self.point_store
-        store_gen[treepath][8] = store_type[treeiter][0]
-        store_gen[treepath][12] = store_type[treeiter][1]
-        self.animations.general_table[store_gen[treepath][0]].point = AnimPointType(
-            store_type[treeiter][0]
-        )  # type: ignore
-        self.module.mark_animations_as_modified()
+        if not self._suppress_signals:
+            store_gen = self.general_store
+            store_type = self.point_store
+            store_gen[treepath][8] = store_type[treeiter][0]
+            store_gen[treepath][12] = store_type[treeiter][1]
+            self.animations.general_table[store_gen[treepath][0]].point = AnimPointType(
+                store_type[treeiter][0]
+            )  # type: ignore
+            self.module.mark_animations_as_modified()
 
     @Gtk.Template.Callback()
     def on_gen_unk5_toggled(self, widget, path):

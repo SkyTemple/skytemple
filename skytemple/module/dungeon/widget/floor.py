@@ -1818,8 +1818,10 @@ class StDungeonFloorPage(Gtk.Box):
                         )
                     idx = last
                 actions.append(DirectRule(x, idx))
-            assert self.drawer is not None
-            self.drawer.fixed_floor = FixedFloor.new(u16(SIZE_Y), u16(SIZE_X), actions)
+            if self.drawer is not None:
+                self.drawer.fixed_floor = FixedFloor.new(
+                    u16(SIZE_Y), u16(SIZE_X), actions
+                )
             if self.entry.layout.fixed_floor_id > 0:
                 self.tool_label_info.set_text(
                     (
@@ -1863,8 +1865,7 @@ class StDungeonFloorPage(Gtk.Box):
             )
 
     def _update_scales(self):
-        assert self.drawer is not None
-        if self.drawer.fixed_floor is not None:
+        if self.drawer is not None and self.drawer.fixed_floor is not None:
             assert self._draw is not None and self.drawer.tileset_renderer is not None
             self._draw.set_size_request(
                 (self.drawer.fixed_floor.width + 10)

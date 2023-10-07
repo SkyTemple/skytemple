@@ -166,7 +166,7 @@ class SpecialPcsController(ListBaseController):
             unk12,
         ) = store[path][:]
         a_id = int(a_id)
-        self._list[a_id] = SpecialEpisodePc(
+        new_pc = SpecialEpisodePc(
             u16(int(entid)),
             u16(int(location_id)),
             u16(self._get_move_id_from_display_name(move1)),
@@ -178,8 +178,10 @@ class SpecialPcsController(ListBaseController):
             u16(int(iq)),
             u16(int(unk12)),
         )
+        if new_pc != self._list[a_id]:
+            self._list[a_id] = new_pc
 
-        self.module.set_special_pcs(self._list)
+            self.module.set_special_pcs(self._list)
 
     def refresh_list(self):
         tree: Gtk.TreeView = self.get_tree()

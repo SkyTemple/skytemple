@@ -72,6 +72,7 @@ class StListsDungeonInterruptPage(Gtk.Stack):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_signals = True
         self.sp_effects = None
         self._string_provider = module.project.get_string_provider()
         if not self.module.has_dungeon_interrupts():
@@ -80,6 +81,7 @@ class StListsDungeonInterruptPage(Gtk.Stack):
             self.inter_d = self.module.get_dungeon_interrupts()
             self._init_combos()
             self.set_visible_child(self.box_list)
+        self._suppress_signals = False
 
     def _init_combos(self):
         store = self.type_store
@@ -116,21 +118,22 @@ class StListsDungeonInterruptPage(Gtk.Stack):
 
     @Gtk.Template.Callback()
     def on_cb_dungeon_changed(self, *args):
-        store = self.interrupt_store
-        store.clear()
-        for p in self.inter_d.list_dungeons[self._get_current_dungeon()]:
-            store.append(
-                [
-                    p.floor,
-                    p.ent_type.value,
-                    p.game_var_id,
-                    p.param1,
-                    p.param2,
-                    p.ent_type.explanation,
-                    self.var_names[p.game_var_id],
-                    p.continue_music,
-                ]
-            )
+        if not self._suppress_signals:
+            store = self.interrupt_store
+            store.clear()
+            for p in self.inter_d.list_dungeons[self._get_current_dungeon()]:
+                store.append(
+                    [
+                        p.floor,
+                        p.ent_type.value,
+                        p.game_var_id,
+                        p.param1,
+                        p.param2,
+                        p.ent_type.explanation,
+                        self.var_names[p.game_var_id],
+                        p.continue_music,
+                    ]
+                )
 
     def _build_list(self):
         dungeon = self._get_current_dungeon()
@@ -203,21 +206,23 @@ class StListsDungeonInterruptPage(Gtk.Stack):
     @Gtk.Template.Callback()
     @glib_async
     def on_combo_type_changed(self, w, treepath, treeiter):
-        store_inter = self.interrupt_store
-        store_type = self.type_store
-        store_inter[treepath][1] = store_type[treeiter][0]
-        store_inter[treepath][5] = store_type[treeiter][1]
-        self._build_list()
+        if not self._suppress_signals:
+            store_inter = self.interrupt_store
+            store_type = self.type_store
+            store_inter[treepath][1] = store_type[treeiter][0]
+            store_inter[treepath][5] = store_type[treeiter][1]
+            self._build_list()
 
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     @glib_async
     def on_combo_game_var_changed(self, w, treepath, treeiter):
-        store_inter = self.interrupt_store
-        store_var = self.var_store
-        store_inter[treepath][2] = store_var[treeiter][0]
-        store_inter[treepath][6] = store_var[treeiter][1]
-        self._build_list()
+        if not self._suppress_signals:
+            store_inter = self.interrupt_store
+            store_var = self.var_store
+            store_inter[treepath][2] = store_var[treeiter][0]
+            store_inter[treepath][6] = store_var[treeiter][1]
+            self._build_list()
 
     @Gtk.Template.Callback()
     @catch_overflow(u8)

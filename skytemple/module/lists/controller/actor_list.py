@@ -174,6 +174,11 @@ class ActorListController(ListBaseController):
         ]
         a_id = int(a_id)
         actor = self._list.list[a_id]
+        name_before = actor.name
+        entid_before = actor.entid
+        type_before = actor.type
+        unk3_before = actor.unk3
+        unk4_before = actor.unk4
         actor.name = name
         # If the color is orange, this is a spcial actor and we update the standin entries instead.
         # TODO: it's a bit weird doing this over the color
@@ -184,7 +189,14 @@ class ActorListController(ListBaseController):
         actor.unk4 = int(unk4)
         logger.debug(f"Updated actor {a_id}: {actor}")
 
-        self.module.mark_actors_as_modified()
+        if (
+            name_before != actor.name
+            or entid_before != actor.entid
+            or type_before != actor.type
+            or unk3_before != actor.unk3
+            or unk4_before != actor.unk4
+        ):
+            self.module.mark_actors_as_modified()
 
     def refresh_list(self):
         tree = builder_get_assert(self.builder, Gtk.TreeView, "actor_tree")

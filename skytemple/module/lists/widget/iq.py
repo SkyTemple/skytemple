@@ -95,46 +95,51 @@ class StListsIqPage(Gtk.Box):
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_entry_min_iq_exclusive_move_user_changed(self, widget, *args):
-        try:
-            val = u16_checked(int(widget.get_text()))
-        except ValueError:
-            return
-        static_data = self.module.project.get_rom_module().get_static_data()
-        self.module.project.modify_binary(
-            BinaryName.ARM9,
-            lambda bin: HardcodedIq.set_min_iq_for_exclusive_move_user(
-                val, bin, static_data
-            ),
-        )
-        self.module.mark_iq_as_modified()
+        if not self._suppress_signals:
+            try:
+                val = u16_checked(int(widget.get_text()))
+            except ValueError:
+                return
+            static_data = self.module.project.get_rom_module().get_static_data()
+            self.module.project.modify_binary(
+                BinaryName.ARM9,
+                lambda bin: HardcodedIq.set_min_iq_for_exclusive_move_user(
+                    val, bin, static_data
+                ),
+            )
+            self.module.mark_iq_as_modified()
 
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_entry_min_iq_item_master_changed(self, widget, *args):
-        try:
-            val = u16_checked(int(widget.get_text()))
-        except ValueError:
-            return
-        static_data = self.module.project.get_rom_module().get_static_data()
-        self.module.project.modify_binary(
-            BinaryName.ARM9,
-            lambda bin: HardcodedIq.set_min_iq_for_item_master(val, bin, static_data),
-        )
-        self.module.mark_iq_as_modified()
+        if not self._suppress_signals:
+            try:
+                val = u16_checked(int(widget.get_text()))
+            except ValueError:
+                return
+            static_data = self.module.project.get_rom_module().get_static_data()
+            self.module.project.modify_binary(
+                BinaryName.ARM9,
+                lambda bin: HardcodedIq.set_min_iq_for_item_master(
+                    val, bin, static_data
+                ),
+            )
+            self.module.mark_iq_as_modified()
 
     @Gtk.Template.Callback()
     @catch_overflow(u16)
     def on_intimidator_activation_chance_changed(self, widget, *args):
-        try:
-            val = u16_checked(int(widget.get_text()))
-        except ValueError:
-            return
-        static_data = self.module.project.get_rom_module().get_static_data()
-        self.module.project.modify_binary(
-            BinaryName.OVERLAY_10,
-            lambda bin: HardcodedIq.set_intimidator_chance(val, bin, static_data),
-        )
-        self.module.mark_iq_as_modified()
+        if not self._suppress_signals:
+            try:
+                val = u16_checked(int(widget.get_text()))
+            except ValueError:
+                return
+            static_data = self.module.project.get_rom_module().get_static_data()
+            self.module.project.modify_binary(
+                BinaryName.OVERLAY_10,
+                lambda bin: HardcodedIq.set_intimidator_chance(val, bin, static_data),
+            )
+            self.module.mark_iq_as_modified()
 
     @Gtk.Template.Callback()
     @catch_overflow(u8)

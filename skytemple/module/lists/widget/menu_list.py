@@ -64,10 +64,12 @@ class StListsMenuListPage(Gtk.Box):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_events = True
         self._string_provider = module.project.get_string_provider()
         self._list_store: Gtk.ListStore
         self._rank_up_table = self.module.get_rank_list()
         self._init_combos()
+        self._suppress_events = False
         self.on_lang_changed()
 
     def _init_combos(self):
@@ -111,16 +113,18 @@ class StListsMenuListPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_lang_changed(self, *args):
-        cb_store = self.cb_store_lang
-        cb = self.cb_lang
-        active_iter = cb.get_active_iter()
-        assert active_iter is not None
-        self._current_lang = cb_store[active_iter][0]
-        self._refresh_list()
+        if not self._suppress_events:
+            cb_store = self.cb_store_lang
+            cb = self.cb_lang
+            active_iter = cb.get_active_iter()
+            assert active_iter is not None
+            self._current_lang = cb_store[active_iter][0]
+            self._refresh_list()
 
     @Gtk.Template.Callback()
     def on_menu_changed(self, *args):
-        self._refresh_list()
+        if not self._suppress_events:
+            self._refresh_list()
 
     def _regenerate_list(self):
         menu_id = self._get_current_settings()
