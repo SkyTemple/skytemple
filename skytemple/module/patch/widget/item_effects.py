@@ -116,7 +116,7 @@ class StPatchItemEffectsPage(Gtk.Stack):
                     self.item_effects.get_item_effect_id(i),
                 ]
             )
-        for x in sorted(non_sorted, key=lambda x: x[1]):
+        for x in sorted(non_sorted, key=lambda x: x[1]):  # type: ignore
             item_store.append(x)
 
     def _init_combos(self, active=0):

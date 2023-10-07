@@ -87,10 +87,12 @@ class StListsIqPage(Gtk.Box):
         super().__init__()
         self.module = module
         self.item_data = item_data
+        self._suppress_signals = True
         self._string_provider = module.project.get_string_provider()
         self._init_iq_gains()
         self._init_iq_skills()
         self._init_misc_settings()
+        self._suppress_signals = False
 
     @Gtk.Template.Callback()
     @catch_overflow(u16)

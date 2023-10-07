@@ -686,7 +686,7 @@ class StDungeonGraphicsTilesetPage(Gtk.Box):
         self.dtef = ExplorersDtef(self.dma, self.dpc, self.dpci, self.dpl, self.dpla)
         assert self.dtef is not None  # mypy is silly sometimes.
         box = self.dungeon_image_placeholder
-        for child in box:
+        for child in box.get_children():
             box.remove(child)
         image: Gtk.Image = Gtk.Image.new_from_surface(
             pil_to_cairo_surface(self.dtef.get_tiles()[0].convert("RGBA"))

@@ -223,13 +223,13 @@ class StDungeonGraphicsMainPage(Gtk.Box):
         for row in iter_tree_model(self.list_tree_store):
             self.lst.append(
                 TilesetProperties(
-                    TilesetMapColor(row[2]),
-                    TilesetStirringEffect(row[3]),
-                    TilesetSecretPowerEffect(row[4]),
+                    TilesetMapColor(row[2]),  # type: ignore
+                    TilesetStirringEffect(row[3]),  # type: ignore
+                    TilesetSecretPowerEffect(row[4]),  # type: ignore
                     PokeType(row[5]),
-                    TilesetNaturePowerMoveEntry(row[6]),
-                    TilesetWeatherEffect(row[7]),
+                    TilesetNaturePowerMoveEntry(row[6]),  # type: ignore
+                    TilesetWeatherEffect(row[7]),  # type: ignore
                     bool(row[8]),
-                )  # type: ignore
+                )
             )
         self.module.set_tileset_properties(self.lst)

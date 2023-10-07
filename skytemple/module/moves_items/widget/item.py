@@ -589,7 +589,7 @@ class StMovesItemsItemPage(Gtk.Box):
     ):
         store = Gtk.ListStore(int, str)  # id, name
         if sort_by_name:
-            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))
+            enum = sorted(enum, key=lambda x: self._enum_entry_to_str(x))  # type: ignore
         for entry in enum:
             store.append([entry.value, self._enum_entry_to_str(entry)])
         for name in names:

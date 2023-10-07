@@ -116,6 +116,8 @@ class SpriteModule(AbstractModule):
         set_shadow_size_cb,
     ) -> Gtk.Widget:
         """Returns the view for one portrait slots"""
+        if not self.is_idx_supported(sprite_id):
+            return Gtk.Label.new(_("Invalid Sprite ID."))
         return StSpriteMonsterSpritePage(
             self,
             sprite_id,
