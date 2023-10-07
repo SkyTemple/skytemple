@@ -954,6 +954,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_switch_is_valid_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -965,6 +967,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_switch_is_in_td_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -976,6 +980,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_switch_ai_flag_1_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -987,6 +993,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_switch_ai_flag_2_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1058,6 +1066,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_switch_ai_flag_3_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>

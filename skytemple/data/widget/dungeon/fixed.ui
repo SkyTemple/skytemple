@@ -1236,6 +1236,8 @@ Tile Properties (ID):</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_settings_moves_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1247,6 +1249,8 @@ Tile Properties (ID):</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_settings_orbs_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1375,6 +1379,8 @@ Tile Properties (ID):</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_settings_unk9_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1386,6 +1392,8 @@ Tile Properties (ID):</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_settings_unk8_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1397,6 +1405,8 @@ Tile Properties (ID):</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_settings_unk5_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1408,6 +1418,8 @@ Tile Properties (ID):</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_settings_unk4_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1439,6 +1451,8 @@ Tile Properties (ID):</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_settings_defeat_enemies_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1505,6 +1519,8 @@ Tile Properties (ID):</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_settings_complete_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1516,6 +1532,8 @@ Tile Properties (ID):</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_settings_boss_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1527,6 +1545,8 @@ Tile Properties (ID):</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_settings_free_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>

@@ -1150,6 +1150,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_switch_affected_by_magic_coat_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1161,6 +1163,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_switch_is_snatchable_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1172,6 +1176,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_switch_uses_mouth_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1183,6 +1189,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_switch_ignores_taunted_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -1370,6 +1378,8 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <signal name="state-set" handler="on_switch_ai_frozen_check_state_set" swapped="no" />
+                <property name="halign">center</property>
+                <property name="valign">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
